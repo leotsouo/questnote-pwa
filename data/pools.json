@@ -1,0 +1,44 @@
+{
+  "pools": [
+    {
+      "id": "standard",
+      "name": "標準召喚",
+      "active": true,
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.30,
+        "SR": 0.10,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "petFilter": {
+        "poolTags": ["standard"]
+      }
+    },
+    {
+      "id": "event_dragon",
+      "name": "龍族降臨",
+      "active": false,
+      "cost": 100,
+      "rates": {
+        "N": 0.50,
+        "R": 0.28,
+        "SR": 0.12,
+        "SSR": 0.07,
+        "UR": 0.03
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "petFilter": {
+        "poolTags": ["standard", "dragon_event"]
+      }
+    }
+  ]
+}

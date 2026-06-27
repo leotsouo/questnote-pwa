@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QuestNote" />
+  <title>QuestNote</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div id="app-loader" class="app-loader">
+    <div class="loader-spinner"></div>
+    <p>載入 QuestNote…</p>
+  </div>
+
+  <div id="app" class="app">
+    <!-- 任務頁 -->
+    <main id="view-tasks" class="view active">
+      <header class="page-header">
+        <h1 class="page-title">任務</h1>
+      </header>
+
+      <section class="stats-bar">
+        <div class="stat-card">
+          <span class="stat-label">星塵</span>
+          <span class="stat-value" id="stat-stardust">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">今日完成</span>
+          <span class="stat-value" id="stat-today">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">圖鑑</span>
+          <span class="stat-value" id="stat-collection">0/0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">可抽卡</span>
+          <span class="stat-value" id="stat-pulls">0</span>
+        </div>
+      </section>
+
+      <section class="task-section">
+        <h2 class="section-title">進行中</h2>
+        <div id="task-list-incomplete" class="task-list"></div>
+      </section>
+
+      <section class="task-section completed-section collapsed" id="completed-section">
+        <button class="section-toggle" id="toggle-completed" aria-expanded="false">
+          ▶ 已完成 <span id="completed-count">0</span>
+        </button>
+        <div id="task-list-complete" class="task-list"></div>
+      </section>
+
+      <button id="btn-add-task" class="fab" aria-label="新增任務">＋</button>
+    </main>
+
+    <!-- 召喚頁 -->
+    <main id="view-gacha" class="view">
+      <header class="page-header">
+        <h1 class="page-title">召喚</h1>
+      </header>
+
+      <section class="gacha-panel card">
+        <h2 class="gacha-pool" id="gacha-pool-name">標準召喚</h2>
+
+        <div class="gacha-stardust">
+          <span class="gacha-stardust__label">目前星塵</span>
+          <span class="gacha-stardust__value" id="gacha-stardust">0</span>
+        </div>
+
+        <div class="gacha-info">
+          <p>單次消耗：<strong id="gacha-cost">100</strong> 星塵</p>
+        </div>
+
+        <div class="pity-bars">
+          <div class="pity-bar">
+            <span class="pity-label">SSR 保底</span>
+            <span class="pity-value" id="gacha-ssr-pity">0/30</span>
+          </div>
+          <div class="pity-bar">
+            <span class="pity-label">UR 保底</span>
+            <span class="pity-value" id="gacha-ur-pity">0/100</span>
+          </div>
+        </div>
+
+        <div class="gacha-rates" id="gacha-rates"></div>
+
+        <button id="btn-pull" class="btn btn--gacha btn--block">召喚 1 次</button>
+      </section>
+    </main>
+
+    <!-- 圖鑑頁 -->
+    <main id="view-collection" class="view">
+      <header class="page-header">
+        <h1 class="page-title">圖鑑</h1>
+        <p class="page-subtitle">已收集 <span id="collection-count">0/0</span></p>
+      </header>
+
+      <div class="filter-bar" id="collection-filters">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="N">N</button>
+        <button class="filter-btn" data-filter="R">R</button>
+        <button class="filter-btn" data-filter="SR">SR</button>
+        <button class="filter-btn" data-filter="SSR">SSR</button>
+        <button class="filter-btn" data-filter="UR">UR</button>
+      </div>
+
+      <div id="collection-grid" class="collection-grid"></div>
+    </main>
+
+    <!-- 設定頁 -->
+    <main id="view-settings" class="view">
+      <header class="page-header">
+        <h1 class="page-title">設定</h1>
+      </header>
+
+      <section class="card settings-stats">
+        <h2 class="section-title">資料統計</h2>
+        <dl class="stats-list">
+          <div class="stats-row">
+            <dt>任務總數</dt>
+            <dd id="settings-task-count">0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>星塵</dt>
+            <dd id="settings-stardust">0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>圖鑑進度</dt>
+            <dd id="settings-collection">0/0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>累計召喚</dt>
+            <dd id="settings-total-pulls">0</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="card settings-actions">
+        <button id="btn-export" class="btn btn--secondary btn--block">匯出 JSON 備份</button>
+        <button id="btn-reset" class="btn btn--danger btn--block">重置所有資料</button>
+      </section>
+
+      <p class="settings-note">QuestNote v1.0 — 離線個人任務記事 App</p>
+    </main>
+
+    <!-- 底部導航 -->
+    <nav class="bottom-nav" aria-label="主選單">
+      <button class="nav-item active" data-view="tasks" aria-label="任務">
+        <span class="nav-icon">📋</span>
+        <span class="nav-label">任務</span>
+      </button>
+      <button class="nav-item" data-view="gacha" aria-label="召喚">
+        <span class="nav-icon">✨</span>
+        <span class="nav-label">召喚</span>
+      </button>
+      <button class="nav-item" data-view="collection" aria-label="圖鑑">
+        <span class="nav-icon">📖</span>
+        <span class="nav-label">圖鑑</span>
+      </button>
+      <button class="nav-item" data-view="settings" aria-label="設定">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-label">設定</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- 通用彈窗 -->
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button id="modal-close" class="modal-close" aria-label="關閉">×</button>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

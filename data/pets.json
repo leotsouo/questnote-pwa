@@ -1,0 +1,260 @@
+{
+  "pets": [
+    {
+      "id": "pet_n01",
+      "name": "灰影幼狼",
+      "rarity": "N",
+      "image": "assets/pets/pet_n01.png",
+      "description": "棲息於迷霧森林的低階幻獸，雙眼在夜間泛著幽藍微光。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n02",
+      "name": "岩甲地鼠",
+      "rarity": "N",
+      "image": "assets/pets/pet_n02.png",
+      "description": "以堅硬岩甲包裹全身的穴居獸，挖掘速度驚人。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n03",
+      "name": "風語貓頭鷹",
+      "rarity": "N",
+      "image": "assets/pets/pet_n03.png",
+      "description": "能聽見風中低語的夜行鳥，是初階冒險者的可靠夥伴。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n04",
+      "name": "火花尾蜥",
+      "rarity": "N",
+      "image": "assets/pets/pet_n04.png",
+      "description": "尾巴尖端能迸出小火花的蜥蜴，性格活潑好動。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n05",
+      "name": "苔蘚史萊姆",
+      "rarity": "N",
+      "image": "assets/pets/pet_n05.png",
+      "description": "由森林苔蘚凝聚而成的軟體生物，對植物有特殊感應。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n06",
+      "name": "鐵喙渡鴉",
+      "rarity": "N",
+      "image": "assets/pets/pet_n06.png",
+      "description": "喙部如精鐵般堅硬的黑色渡鴉，象徵著旅途的開始。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n07",
+      "name": "泥沼蟾蜍",
+      "rarity": "N",
+      "image": "assets/pets/pet_n07.png",
+      "description": "棲息於沼澤地帶的兩棲獸，皮膚能分泌麻痹性黏液。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n08",
+      "name": "晶刺豪豬",
+      "rarity": "N",
+      "image": "assets/pets/pet_n08.png",
+      "description": "背脊長滿半透明晶刺的防禦型幻獸。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n09",
+      "name": "霧隱兔",
+      "rarity": "N",
+      "image": "assets/pets/pet_n09.png",
+      "description": "能在薄霧中隱身的敏捷生物，耳朵異常靈敏。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_n10",
+      "name": "銅鱗鯉",
+      "rarity": "N",
+      "image": "assets/pets/pet_n10.png",
+      "description": "鱗片如古銅般閃耀的淡水魚，據說能帶來好運。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_r01",
+      "name": "蒼嵐獵狼",
+      "rarity": "R",
+      "image": "assets/pets/pet_r01.png",
+      "description": "馳騁於高原的狼群首領，毛色隨風向變化。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_r02",
+      "name": "赤焰獅崽",
+      "rarity": "R",
+      "image": "assets/pets/pet_r02.png",
+      "description": "鬃毛燃燒著恆定火焰的幼獅，血脈中流淌著王族之力。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_r03",
+      "name": "雷紋飛蛇",
+      "rarity": "R",
+      "image": "assets/pets/pet_r03.png",
+      "description": "身體纏繞雷電紋路的飛行蛇類，速度凌厲。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_r04",
+      "name": "鋼骨鬣狗",
+      "rarity": "R",
+      "image": "assets/pets/pet_r04.png",
+      "description": "骨骼外化為金屬的兇猛鬣狗，咬合力驚人。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_r05",
+      "name": "冰晶狐",
+      "rarity": "R",
+      "image": "assets/pets/pet_r05.png",
+      "description": "九尾尚未覺醒的冰霜狐狸，足跡所至結成薄冰。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_r06",
+      "name": "影刃豹",
+      "rarity": "R",
+      "image": "assets/pets/pet_r06.png",
+      "description": "能在影子間穿梭的暗色豹獸，爪刃鋒利無比。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_r07",
+      "name": "翠羽鸚鵡",
+      "rarity": "R",
+      "image": "assets/pets/pet_r07.png",
+      "description": "羽毛如寶石般絢麗的靈鳥，能模仿各種魔法咒語。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_r08",
+      "name": "砂岩巨龜",
+      "rarity": "R",
+      "image": "assets/pets/pet_r08.png",
+      "description": "背甲上刻滿古代符文的沙漠巨龜，壽命逾千年。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_sr01",
+      "name": "蒼雷翼龍",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr01.png",
+      "description": "盤旋於暴雲之上的雷電翼龍，振翅時引發雷鳴。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_sr02",
+      "name": "熔岩鎧獅",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr02.png",
+      "description": "體表覆蓋流動熔岩鎧甲的戰獅，所過之處留下焦痕。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_sr03",
+      "name": "幽冥嘯天狼",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr03.png",
+      "description": "來自冥界的嘯天狼，嚎叫聲能撕裂靈魂邊界。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_sr04",
+      "name": "機械猎犬X",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr04.png",
+      "description": "古代文明遺留的機械獵犬，搭載自動追蹤系統。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_sr05",
+      "name": "玄冰晶龍",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr05.png",
+      "description": "由極地玄冰凝聚而成的晶龍，呼吸間凍結一切。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_sr06",
+      "name": "聖光獨角獸",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr06.png",
+      "description": "額角散發聖潔光芒的幻獸，能淨化黑暗腐化。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_ssr01",
+      "name": "天火鳳凰",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr01.png",
+      "description": "浴火重生的神話鳳凰，羽翼燃燒著不滅的天火。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_ssr02",
+      "name": "深淵魔狼",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr02.png",
+      "description": "守衛深淵入口的遠古魔狼，雙眸映照無盡虛空。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_ssr03",
+      "name": "泰坦機神獸",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr03.png",
+      "description": "以隕星核心驅動的泰坦機甲獸，一擊可撼動大地。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_ssr04",
+      "name": "九霄應龍",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr04.png",
+      "description": "翱翔九霄的應龍，掌控風雨雷電，為雨師之祖。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_ur01",
+      "name": "創世星龍",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur01.png",
+      "description": "誕生於宇宙初開的星龍，鱗片中嵌入整片星河。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_ur02",
+      "name": "滅世黑麒麟",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur02.png",
+      "description": "行走於毀滅與重生邊界的黑麒麟，蹄下踏碎命運。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_ur03",
+      "name": "永恆機械龍神",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur03.png",
+      "description": "超越時間的機械龍神，擁有自我進化的終極形態。",
+      "poolTags": ["standard"]
+    },
+    {
+      "id": "pet_ur04",
+      "name": "太初聖凰",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur04.png",
+      "description": "太初之時便存在的聖凰，一羽可化萬界、一啼可創生。",
+      "poolTags": ["standard"]
+    }
+  ]
+}
