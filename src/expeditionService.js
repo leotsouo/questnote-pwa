@@ -39,9 +39,25 @@ export async function loadExpeditionAreas() {
   return data.areas || [];
 }
 
+/** 正規化探險紀錄 */
+export function normalizeExpedition(expedition) {
+  if (!expedition || typeof expedition !== 'object') return null;
+  return {
+    ...expedition,
+    id: expedition.id,
+    areaId: expedition.areaId ?? null,
+    petId: expedition.petId ?? null,
+    startedAt: expedition.startedAt ?? null,
+    endsAt: expedition.endsAt ?? null,
+    claimed: expedition.claimed ?? false,
+    rewards: expedition.rewards ?? null,
+  };
+}
+
 /** 取得所有探險紀錄 */
 export async function getAllExpeditions() {
-  return dbGetAll(STORES.EXPEDITIONS);
+  const rows = await dbGetAll(STORES.EXPEDITIONS);
+  return rows.map(normalizeExpedition).filter(Boolean);
 }
 
 /** 取得進行中或未領取的探險（同一時間最多一筆） */
@@ -304,6 +320,7 @@ export async function exportExpeditions() {
 
 export async function importExpeditions(items) {
   for (const item of items) {
-    await dbPut(STORES.EXPEDITIONS, item);
+    const normalized = normalizeExpedition(item);
+    if (normalized?.id) await dbPut(STORES.EXPEDITIONS, normalized);
   }
 }

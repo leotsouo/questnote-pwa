@@ -3,12 +3,13 @@
  * 寵物與卡池資料從 JSON 讀取，不寫死在此檔
  */
 import { dbGet, dbPut, STORES } from './db.js';
-import { spendStardust, GACHA_COST } from './rewardService.js';
+import { spendStardust, getWallet, GACHA_COST, GACHA_TEN_COST } from './rewardService.js';
 import {
   addPetToCollection,
   addFragments,
   getPetCollection,
   FRAGMENT_BY_RARITY,
+  getCollection,
 } from './collectionService.js';
 
 const GACHA_STATS_KEY = 'gachaStats';
@@ -16,19 +17,33 @@ const GACHA_STATS_KEY = 'gachaStats';
 /** 預設保底設定（可被 pools.json 覆蓋） */
 const DEFAULT_PITY = { ssr: 30, ur: 100 };
 
+const RARITY_RANK = { N: 0, R: 1, SR: 2, SSR: 3, UR: 4 };
+
 /**
  * 取得抽卡統計（保底計數）
  */
-export async function getGachaStats() {
-  const stats = await dbGet(STORES.META, GACHA_STATS_KEY);
-  return (
-    stats ?? {
+export function normalizeGachaStats(stats) {
+  if (!stats) {
+    return {
       key: GACHA_STATS_KEY,
       ssrPity: 0,
       urPity: 0,
       totalPulls: 0,
-    }
-  );
+      tenPullCount: 0,
+    };
+  }
+  return {
+    key: GACHA_STATS_KEY,
+    ssrPity: stats.ssrPity ?? 0,
+    urPity: stats.urPity ?? 0,
+    totalPulls: stats.totalPulls ?? 0,
+    tenPullCount: stats.tenPullCount ?? 0,
+  };
+}
+
+export async function getGachaStats() {
+  const stats = await dbGet(STORES.META, GACHA_STATS_KEY);
+  return normalizeGachaStats(stats);
 }
 
 /** 儲存抽卡統計 */
@@ -39,14 +54,8 @@ async function saveGachaStats(stats) {
 /** 初始化抽卡統計 */
 export async function initGachaStats() {
   const existing = await dbGet(STORES.META, GACHA_STATS_KEY);
-  if (!existing) {
-    await saveGachaStats({
-      key: GACHA_STATS_KEY,
-      ssrPity: 0,
-      urPity: 0,
-      totalPulls: 0,
-    });
-  }
+  const stats = normalizeGachaStats(existing);
+  await saveGachaStats(stats);
 }
 
 /**
@@ -110,6 +119,7 @@ function rollSSRPlus(rates, poolPets) {
 
 /**
  * 決定本次抽卡的稀有度（含保底）
+ * @returns {{ rarity: string, triggeredPity: boolean }}
  */
 function determineRarity(stats, pool, poolPets) {
   const pity = { ...DEFAULT_PITY, ...pool.pity };
@@ -117,15 +127,15 @@ function determineRarity(stats, pool, poolPets) {
 
   // UR 保底：第 100 抽必定 UR
   if (stats.urPity >= pity.ur - 1) {
-    return 'UR';
+    return { rarity: 'UR', triggeredPity: true };
   }
 
   // SSR 保底：第 30 抽必定 SSR 以上
   if (stats.ssrPity >= pity.ssr - 1) {
-    return rollSSRPlus(rates, poolPets);
+    return { rarity: rollSSRPlus(rates, poolPets), triggeredPity: true };
   }
 
-  return rollRarity(rates);
+  return { rarity: rollRarity(rates), triggeredPity: false };
 }
 
 /**
@@ -146,32 +156,11 @@ function updatePityCounters(stats, rarity) {
 }
 
 /**
- * 執行單次抽卡
- * @returns {Promise<{
- *   pet: object,
- *   rarity: string,
- *   isNew: boolean,
- *   fragmentsGained: number,
- *   stats: object
- * }>}
+ * 從卡池依稀有度選寵物（含降級 fallback）
  */
-export async function pullOnce(allPets, poolsData) {
-  const pool = getActivePool(poolsData);
-  const cost = pool.cost ?? GACHA_COST;
-  const poolPets = getPoolPets(allPets, pool);
-
-  if (poolPets.length === 0) {
-    throw new Error('卡池中沒有可用寵物');
-  }
-
-  await spendStardust(cost);
-
-  const stats = await getGachaStats();
-  const rarity = determineRarity(stats, pool, poolPets);
-
+function resolvePetFromRarity(poolPets, rarity) {
   let pet = pickPetByRarity(poolPets, rarity);
 
-  // 若該稀有度無寵物，降級尋找
   if (!pet) {
     const fallbackOrder = ['UR', 'SSR', 'SR', 'R', 'N'];
     for (const r of fallbackOrder) {
@@ -180,6 +169,25 @@ export async function pullOnce(allPets, poolsData) {
     }
   }
 
+  return pet;
+}
+
+/**
+ * 執行一次抽卡核心邏輯（不扣星塵）
+ * 每一抽獨立更新保底、收藏與碎片
+ */
+async function rollSinglePull(allPets, poolsData) {
+  const pool = getActivePool(poolsData);
+  const poolPets = getPoolPets(allPets, pool);
+
+  if (poolPets.length === 0) {
+    throw new Error('卡池中沒有可用寵物');
+  }
+
+  const stats = await getGachaStats();
+  const { rarity, triggeredPity } = determineRarity(stats, pool, poolPets);
+
+  const pet = resolvePetFromRarity(poolPets, rarity);
   if (!pet) {
     throw new Error('無法從卡池抽取寵物');
   }
@@ -187,7 +195,6 @@ export async function pullOnce(allPets, poolsData) {
   updatePityCounters(stats, pet.rarity);
   await saveGachaStats(stats);
 
-  // 處理收藏
   const existing = await getPetCollection(pet.id);
   let isNew = false;
   let fragmentsGained = 0;
@@ -205,8 +212,84 @@ export async function pullOnce(allPets, poolsData) {
     rarity: pet.rarity,
     isNew,
     fragmentsGained,
+    triggeredPity,
     stats: await getGachaStats(),
+  };
+}
+
+/**
+ * 執行單次抽卡
+ */
+export async function pullOnce(allPets, poolsData) {
+  const pool = getActivePool(poolsData);
+  const cost = pool.cost ?? GACHA_COST;
+
+  const wallet = await getWallet();
+  if ((wallet.stardust ?? 0) < cost) {
+    throw new Error('星塵不足');
+  }
+
+  await spendStardust(cost);
+  const result = await rollSinglePull(allPets, poolsData);
+
+  return {
+    ...result,
     pool,
+  };
+}
+
+/**
+ * 執行 10 連抽 — 連續 10 次單抽邏輯，一次扣除 1000 星塵
+ */
+export async function performTenPull(allPets, poolsData) {
+  const wallet = await getWallet();
+  if ((wallet.stardust ?? 0) < GACHA_TEN_COST) {
+    return {
+      success: false,
+      error: '星塵不足，10 連抽需要 1000 星塵',
+    };
+  }
+
+  await spendStardust(GACHA_TEN_COST);
+
+  const results = [];
+  for (let i = 0; i < 10; i++) {
+    const pull = await rollSinglePull(allPets, poolsData);
+    results.push({
+      petId: pull.pet.id,
+      pet: pull.pet,
+      rarity: pull.rarity,
+      isNew: pull.isNew,
+      duplicateFragments: pull.fragmentsGained,
+      triggeredPity: pull.triggeredPity,
+    });
+  }
+
+  const newCount = results.filter((r) => r.isNew).length;
+  const duplicateCount = results.length - newCount;
+  const totalFragments = results.reduce((sum, r) => sum + r.duplicateFragments, 0);
+  const highestRarity = results.reduce(
+    (best, r) => (RARITY_RANK[r.rarity] > RARITY_RANK[best] ? r.rarity : best),
+    'N'
+  );
+
+  const stats = await getGachaStats();
+  stats.tenPullCount = (stats.tenPullCount || 0) + 1;
+  await saveGachaStats(stats);
+
+  return {
+    success: true,
+    cost: GACHA_TEN_COST,
+    results,
+    summary: {
+      newCount,
+      duplicateCount,
+      totalFragments,
+      highestRarity,
+    },
+    updatedWallet: await getWallet(),
+    updatedCollection: await getCollection(),
+    updatedGachaStats: await getGachaStats(),
   };
 }
 
@@ -217,5 +300,5 @@ export async function exportGachaStats() {
 
 /** 匯入抽卡統計（備份還原用，預留） */
 export async function importGachaStats(data) {
-  await saveGachaStats({ key: GACHA_STATS_KEY, ...data });
+  await saveGachaStats(normalizeGachaStats({ key: GACHA_STATS_KEY, ...data }));
 }

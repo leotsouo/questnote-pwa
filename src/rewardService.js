@@ -32,6 +32,9 @@ const PRIORITY_REWARDS = {
 /** 抽卡單次消耗（供 UI 計算可抽次數） */
 export const GACHA_COST = 100;
 
+/** 10 連抽消耗 */
+export const GACHA_TEN_COST = 1000;
+
 /** 各重要程度親密度獎勵 */
 const PRIORITY_BOND = {
   normal: 5,
@@ -57,15 +60,7 @@ export function calculateRewardAmount(task) {
  * 判斷任務是否可領取獎勵
  */
 export function canClaimReward(task) {
-  if (task.type === 'one_time') {
-    return !task.rewardClaimed;
-  }
-
-  // 可重複任務：每天最多領一次
-  if (!task.lastRewardClaimedAt) return true;
-  const lastDate = task.lastRewardClaimedAt.split('T')[0];
-  const today = new Date().toISOString().split('T')[0];
-  return lastDate !== today;
+  return !task.rewardClaimed;
 }
 
 /**
@@ -176,13 +171,9 @@ export async function claimTaskReward(task) {
 
   const now = new Date().toISOString();
   const updates = {
-    rewardClaimed: task.type === 'one_time' ? true : task.rewardClaimed,
+    rewardClaimed: true,
     lastRewardClaimedAt: now,
   };
-
-  if (task.type === 'one_time') {
-    updates.rewardClaimed = true;
-  }
 
   const updatedTask = await updateTask(task.id, updates);
 

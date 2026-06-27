@@ -2,13 +2,14 @@
  * IndexedDB 封裝 — 所有資料持久化操作
  */
 const DB_NAME = 'QuestNoteDB';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 const STORES = {
   TASKS: 'tasks',
   META: 'meta',
   COLLECTION: 'collection',
   EXPEDITIONS: 'expeditions',
+  HABITS: 'habits',
 };
 
 /** @type {IDBDatabase|null} */
@@ -40,6 +41,9 @@ export function openDB() {
       }
       if (!db.objectStoreNames.contains(STORES.EXPEDITIONS)) {
         db.createObjectStore(STORES.EXPEDITIONS, { keyPath: 'id' });
+      }
+      if (!db.objectStoreNames.contains(STORES.HABITS)) {
+        db.createObjectStore(STORES.HABITS, { keyPath: 'id' });
       }
     };
 
@@ -131,6 +135,7 @@ export async function clearAllData() {
   await dbClear(STORES.META);
   await dbClear(STORES.COLLECTION);
   await dbClear(STORES.EXPEDITIONS);
+  await dbClear(STORES.HABITS);
 }
 
 export { STORES };

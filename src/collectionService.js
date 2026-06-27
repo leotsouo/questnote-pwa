@@ -52,6 +52,10 @@ export function getBondProgress(bondExp, bondLevel) {
 }
 
 /** 正規化收藏紀錄，補齊舊資料缺少的欄位 */
+export function normalizeCollectionItem(entry) {
+  return normalizeEntry(entry);
+}
+
 export function normalizeEntry(entry) {
   if (!entry) return entry;
   const bondExp = entry.bondExp ?? 0;
