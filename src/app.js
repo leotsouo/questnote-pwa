@@ -91,17 +91,73 @@ async function resetAllData() {
 }
 
 /**
- * 註冊 Service Worker
+ * 註冊 Service Worker，並監聽新版本提示使用者重新載入
  */
+let swRefreshing = false;
+
 async function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
 
   try {
     const reg = await navigator.serviceWorker.register('./service-worker.js');
     console.log('[QuestNote] SW registered:', reg.scope);
+
+    // 已有等待中的新版 SW
+    if (reg.waiting) {
+      showUpdateBanner(reg);
+    }
+
+    // 偵測背景下載完成的新版 SW
+    reg.addEventListener('updatefound', () => {
+      const newWorker = reg.installing;
+      if (!newWorker) return;
+
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          showUpdateBanner(reg);
+        }
+      });
+    });
+
+    // App 回到前景時檢查更新
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        reg.update().catch(() => {});
+      }
+    });
+
+    // 新版 SW 接手後自動重新載入
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (swRefreshing) return;
+      swRefreshing = true;
+      window.location.reload();
+    });
   } catch (err) {
     console.warn('[QuestNote] SW registration failed:', err);
   }
+}
+
+/** 顯示更新提示橫幅 */
+function showUpdateBanner(reg) {
+  if (document.getElementById('update-banner')) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'update-banner';
+  banner.className = 'update-banner';
+  banner.innerHTML = `
+    <p class="update-banner__text">有新版本可用</p>
+    <button type="button" class="btn btn--primary btn--sm" id="btn-update-reload">立即更新</button>
+  `;
+  document.body.appendChild(banner);
+  requestAnimationFrame(() => banner.classList.add('show'));
+
+  document.getElementById('btn-update-reload')?.addEventListener('click', () => {
+    if (reg.waiting) {
+      reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+    } else {
+      window.location.reload();
+    }
+  });
 }
 
 /**

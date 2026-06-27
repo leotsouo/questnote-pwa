@@ -2,7 +2,7 @@
  * QuestNote Service Worker
  * 快取 App Shell 與靜態資源，支援離線使用
  */
-const CACHE_NAME = 'questnote-v2';
+const CACHE_NAME = 'questnote-v3';
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
 const PRECACHE_URLS = [
@@ -44,7 +44,13 @@ self.addEventListener('install', (event) => {
       );
     })()
   );
-  self.skipWaiting();
+  // 不在 install 時 skipWaiting，等使用者確認後再更新
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data?.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener('activate', (event) => {
