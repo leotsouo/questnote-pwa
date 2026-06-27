@@ -146,6 +146,30 @@ const DIALOGUES = {
     ssr: ['本週目標只差一次——今日補上，即可達標。', '每週習慣瀕臨達標，今日一擊即可收官。', '差一次達標，不要讓這週的戰果溜走。'],
     ur: ['本週契約只差一次——覺醒者，今日補上即可達標。', '星界感應到每週習慣即將完成，今日是關鍵。', '距離本週達標僅差一次，命運在此轉折。'],
   },
+  workshop_materials_ready: {
+    common: ['材料已經夠做一份禮物了，要去工坊看看嗎？', '探險材料夠了，可以去做禮物囉！', '材料齊了，工坊在等你～'],
+    sr: ['材料已足夠製作禮物，不妨前往工坊。', '探險所得已可製作道具，工坊等待你的到來。', '材料到位，是時候為夥伴準備禮物了。'],
+    ssr: ['材料匯聚完成——工坊可鑄造新的羈絆之禮。', '探險戰利品已足，前往工坊鍛造心意吧。', '資源齊備，為夥伴製作一份禮物的時機到了。'],
+    ur: ['星界材料已聚攏——工坊之門為你敞開，鑄造羈絆之禮吧。', '探險所得足以製作禮物，覺醒者，前往工坊。', '材料匯聚，傳說級的心意等待在工坊中誕生。'],
+  },
+  gift_available: {
+    common: ['背包裡有可以送給夥伴的禮物。', '有做好的禮物，要不要送給夥伴？', '道具做好了，去工坊贈送頁看看吧！'],
+    sr: ['背包中有可贈送的禮物，不妨前往工坊。', '已有親密度道具，是時候送給夥伴了。', '禮物已備，前往工坊贈送即可。'],
+    ssr: ['背包中已有羈絆之禮——贈予夥伴，加深羈絆。', '親密度道具已就緒，前往工坊完成贈送。', '禮物在背包中等待，別忘了送給夥伴。'],
+    ur: ['星界贈禮已備——覺醒者，將心意交予夥伴吧。', '背包中的羈絆道具等待你的贈予。', '禮物已鑄，前往工坊，完成這份星界的羈絆。'],
+  },
+  companion_likes_gift: {
+    common: ['牠好像會喜歡你準備的那份禮物。', '這份禮物牠可能會很開心喔！', '我覺得牠會喜歡背包裡的那個～'],
+    sr: ['以牠的喜好來看，背包中的禮物應會受歡迎。', '那份禮物與牠的特質相合，值得贈送。', '我感知到牠會喜歡你準備的禮物。'],
+    ssr: ['那份禮物與牠的羈絆共鳴——贈予後將大幅加深親密度。', '牠的特質與背包中的禮物高度契合。', '這份禮物正是牠所偏好的，別錯過贈送的時機。'],
+    ur: ['星界感應——背包中的禮物與牠的命運之線共鳴。', '那份贈禮正是牠靈魂所渴求的，覺醒者。', '傳說夥伴對這份禮物的喜好，星界已為你預示。'],
+  },
+  no_materials: {
+    common: ['探險能帶回製作禮物的材料。', '材料還不太夠，派夥伴去探險吧！', '去探險收集材料，就能做禮物了～'],
+    sr: ['探險可帶回製作禮物的材料，不妨派遣夥伴。', '材料尚少，探險是穩定的取得方式。', '派遣夥伴探險，可累積工坊所需材料。'],
+    ssr: ['材料匱乏——派遣探險，開拓材料來源。', '探險戰場可帶回製作禮物所需的資源。', '前往探險，為工坊補給材料。'],
+    ur: ['星界材料稀少——覺醒者，派遣夥伴穿越裂縫，帶回鑄禮之物。', '探險是取得工坊材料的命運之路。', '材料尚不足夠，讓夥伴踏上探險，為羈絆積累資源。'],
+  },
 };
 
 /** 自動選擇情境的優先順序 */
@@ -165,9 +189,13 @@ const SCENARIO_PRIORITY = [
   'ten_pull_ready',
   'stardust_ready',
   'expedition_ready',
+  'workshop_materials_ready',
+  'gift_available',
+  'companion_likes_gift',
   'progress_good',
   'habit_none',
   'no_task',
+  'no_materials',
   'idle',
   'welcome',
 ];
@@ -176,7 +204,17 @@ const SCENARIO_PRIORITY = [
  * 判斷各情境是否成立
  */
 export function detectScenarios(ctx) {
-  const { tasks, todayCompleted, wallet, activeExpedition, expeditionAreas, habits = [] } = ctx;
+  const {
+    tasks,
+    todayCompleted,
+    wallet,
+    activeExpedition,
+    expeditionAreas,
+    habits = [],
+    inventory,
+    craftables = [],
+    companion,
+  } = ctx;
   const today = getTodayDateString();
   const incomplete = tasks.filter((t) => !t.completed);
   const stardust = wallet?.stardust ?? 0;
@@ -206,6 +244,28 @@ export function detectScenarios(ctx) {
     : 999;
   const canExpedition = !activeExpedition && energy >= minEnergyCost;
 
+  let workshopMaterialsReady = false;
+  let giftAvailable = false;
+  let companionLikesGift = false;
+  let noMaterials = false;
+
+  if (wallet && craftables.length > 0) {
+    const { hasCraftableMaterials, hasBondItemsInInventory, companionLikesAnyGift, hasLowMaterials } =
+      ctx.workshopHelpers || {};
+    if (hasCraftableMaterials) {
+      workshopMaterialsReady = hasCraftableMaterials(wallet, craftables);
+    }
+    if (hasBondItemsInInventory && inventory) {
+      giftAvailable = hasBondItemsInInventory(inventory, craftables);
+    }
+    if (companionLikesAnyGift && inventory && companion) {
+      companionLikesGift = companionLikesAnyGift(companion, inventory, craftables);
+    }
+    if (hasLowMaterials) {
+      noMaterials = hasLowMaterials(wallet);
+    }
+  }
+
   return {
     welcome: !!ctx.isWelcome,
     habit_streak_7: hasAnyDailyStreak(habits, 7, today),
@@ -226,6 +286,10 @@ export function detectScenarios(ctx) {
     ten_pull_ready: stardust >= GACHA_TEN_COST,
     expedition_ready: canExpedition,
     expedition_done: !!expeditionComplete,
+    workshop_materials_ready: workshopMaterialsReady,
+    gift_available: giftAvailable,
+    companion_likes_gift: companionLikesGift,
+    no_materials: noMaterials && !workshopMaterialsReady,
     idle: !!ctx.isIdle,
   };
 }
@@ -258,7 +322,7 @@ export function getCompanionDialogue(ctx, forceScenario = null) {
   const { tasks, todayCompleted, companion } = ctx;
   const scenario = forceScenario || resolveScenario(ctx);
 
-  const scenarioList = ['expedition_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
+  const scenarioList = ['expedition_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'workshop_materials_ready', 'gift_available', 'companion_likes_gift', 'no_materials', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
   if (scenarioList.includes(scenario)) {
     return getDialogueForScenario(scenario, companion);
   }
@@ -278,7 +342,7 @@ export function getWelcomeCompanionLine(ctx) {
   const { tasks, todayCompleted, companion } = ctx;
   const scenario = resolveScenario({ ...ctx, isWelcome: true });
 
-  const scenarioList = ['expedition_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
+  const scenarioList = ['expedition_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'workshop_materials_ready', 'gift_available', 'companion_likes_gift', 'no_materials', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
   if (scenarioList.includes(scenario)) {
     const group = getRarityGroup(companion?.rarity || 'N');
     const pool = DIALOGUES[scenario]?.[group] || DIALOGUES.welcome.common;

@@ -32,6 +32,11 @@ import {
   setCompanion,
   STAR_UPGRADE_COST,
   getBondProgress,
+  setPetNickname,
+  clearPetNickname,
+  validatePetNickname,
+  getNicknameCharUnits,
+  NICKNAME_MAX_UNITS,
 } from './collectionService.js';
 import { getBondUpLine } from './companionService.js';
 import {
@@ -46,7 +51,15 @@ import {
   EXPEDITION_COMPLETE_MSG,
 } from './expeditionStatusService.js';
 import { getBondUnlockText } from './loreService.js';
-import { downloadBackup } from './backupService.js';
+import {
+  downloadBackup,
+  readBackupFile,
+  validateBackup,
+  normalizeBackupPayload,
+  previewBackup,
+  createAutoBackupBeforeImport,
+  restoreBackup,
+} from './backupService.js';
 import {
   claimAchievementReward,
   claimAllAchievementRewards,
@@ -58,7 +71,7 @@ import {
   CATEGORY_ICONS,
   formatAchievementReward,
 } from './achievementService.js';
-import { isDevMode, unlockDevTestPets, grantDevStardust, devForceCompleteExpedition } from './devService.js';
+import { isDevMode, unlockDevTestPets, unlockAllDevPets, grantDevStardust, devForceCompleteExpedition } from './devService.js';
 import {
   escapeHtml,
   emptyStateHtml,
@@ -72,7 +85,6 @@ import {
   getRemainingMs,
   formatRemainingTime,
   isPetOnExpedition,
-  MATERIAL_LABELS,
 } from './expeditionService.js';
 import {
   createHabit,
@@ -92,6 +104,26 @@ import {
   getWeekMonday,
   hasWeeklyNearGoal,
 } from './habitService.js';
+import {
+  craftItem,
+  useBondItem,
+  getCraftingPreview,
+  getMaterialInfo,
+  getCraftableInfo,
+  getMaterialName,
+  formatItemEffect,
+  getFavoriteBonus,
+  getDailyBondItemUsage,
+  getEnabledCraftables,
+  getMaterialInventory,
+  getItemInventory,
+  getFutureTagLabels,
+  DAILY_BOND_ITEM_LIMIT,
+  hasCraftableMaterials,
+  hasBondItemsInInventory,
+  companionLikesAnyGift,
+  hasLowMaterials,
+} from './workshopService.js';
 
 /** 稀有度中文與色彩 */
 export const RARITY_LABELS = {
@@ -110,6 +142,9 @@ export const PRIORITY_LABELS = {
 
 /** App 狀態參考（由 app.js 注入） */
 let state = null;
+let pendingImportBackup = null;
+let pendingImportFileName = '';
+let pendingImportWarnings = [];
 let onRefresh = null;
 let onAchievementCheck = null;
 let expeditionTimer = null;
@@ -128,10 +163,134 @@ let activeSmartListId = null;
 let taskCategoryFilter = 'all';
 let completedSectionCollapsed = true;
 let archivedHabitsCollapsed = true;
+let workshopTab = 'materials';
+let selectedGiftPetId = null;
+let selectedGiftItemId = null;
 const expandedTaskIds = new Set();
 const recentlyCompletedTaskIds = new Set();
 
 /** 全域 Toast 提示 */
+/** 寵物顯示名稱（暱稱優先） */
+function petDisplayName(pet) {
+  return pet?.displayName || pet?.name || '';
+}
+
+/** 寵物原始名稱 */
+function petOriginalName(pet) {
+  return pet?.originalName || pet?.name || '';
+}
+
+/** 有暱稱時顯示「原名：」小字 */
+function petOriginalNameHtml(pet) {
+  if (!pet?.nickname) return '';
+  return `<p class="pet-original-name">原名：${escapeHtml(petOriginalName(pet))}</p>`;
+}
+
+/** 圖鑑卡片名稱 HTML */
+function petNameBlockHtml(pet, { owned = true, heading = 'h3', className = 'collection-card__name' } = {}) {
+  if (!owned) {
+    return `<${heading} class="${className}">???</${heading}>`;
+  }
+  if (pet.nickname) {
+    return `
+      <${heading} class="${className}">${escapeHtml(petDisplayName(pet))}</${heading}>
+      <p class="pet-original-name pet-original-name--sm">原名：${escapeHtml(petOriginalName(pet))}</p>`;
+  }
+  return `<${heading} class="${className}">${escapeHtml(petDisplayName(pet))}</${heading}>`;
+}
+
+function openNicknameModal(petId) {
+  const pet = state.enrichedCollection.find((p) => p.id === petId);
+  if (!pet) {
+    showToast('找不到這隻寵物資料。', 'error');
+    return;
+  }
+  if (!pet.owned) {
+    showToast('尚未獲得的寵物無法設定暱稱。', 'warning');
+    return;
+  }
+
+  const currentNickname = pet.nickname || '';
+  const originalName = petOriginalName(pet);
+  const maxDisplay = Math.floor(NICKNAME_MAX_UNITS / 2);
+
+  openModal(`
+    <div class="nickname-modal">
+      <h2 class="modal-title">設定寵物暱稱</h2>
+      <div class="nickname-modal__pet">
+        ${petImageHtml(pet, { size: 'md' })}
+        <p class="nickname-modal__original">原始名稱：${escapeHtml(originalName)}</p>
+        ${pet.nickname ? `<p class="nickname-modal__current">目前暱稱：${escapeHtml(pet.nickname)}</p>` : '<p class="nickname-modal__current nickname-modal__current--empty">尚未設定暱稱</p>'}
+      </div>
+      <label class="nickname-modal__field">
+        <span class="nickname-modal__label">暱稱</span>
+        <input type="text" id="nickname-input" class="nickname-modal__input" maxlength="24" value="${escapeHtml(currentNickname)}" autocomplete="off" enterkeyhint="done" />
+        <span class="nickname-modal__counter" id="nickname-counter">0 / ${maxDisplay}</span>
+      </label>
+      <p class="nickname-modal__hint">暱稱只會影響顯示名稱，不會改變寵物原始資料。</p>
+      <div class="nickname-modal__actions">
+        <button type="button" class="btn btn--secondary" id="nickname-cancel">取消</button>
+        ${pet.nickname ? '<button type="button" class="btn btn--ghost" id="nickname-clear">清除暱稱</button>' : ''}
+        <button type="button" class="btn btn--primary" id="nickname-save">儲存</button>
+      </div>
+    </div>
+  `);
+
+  const input = document.getElementById('nickname-input');
+  const counter = document.getElementById('nickname-counter');
+
+  const updateCounter = () => {
+    const units = getNicknameCharUnits(input?.value || '');
+    const displayUsed = Math.ceil(units / 2);
+    if (counter) {
+      counter.textContent = `${displayUsed} / ${maxDisplay}`;
+      counter.classList.toggle('nickname-modal__counter--over', units > NICKNAME_MAX_UNITS);
+    }
+  };
+  updateCounter();
+  input?.addEventListener('input', updateCounter);
+
+  document.getElementById('nickname-cancel')?.addEventListener('click', closeModal);
+
+  document.getElementById('nickname-clear')?.addEventListener('click', async () => {
+    const result = await clearPetNickname(petId);
+    if (!result.success) {
+      showToast(result.message || '暱稱儲存失敗，請稍後再試。', 'error');
+      return;
+    }
+    closeModal();
+    await onRefresh();
+    openPetDetailModal(petId);
+    showToast('暱稱已清除', 'success');
+  });
+
+  document.getElementById('nickname-save')?.addEventListener('click', async () => {
+    const value = input?.value ?? '';
+    const validation = validatePetNickname(value);
+    if (!validation.valid) {
+      showToast(validation.error || '暱稱太長，請重新輸入。', 'warning');
+      return;
+    }
+    const result = await setPetNickname(petId, value);
+    if (!result.success) {
+      showToast(result.message || '暱稱儲存失敗，請稍後再試。', 'error');
+      return;
+    }
+    closeModal();
+    await onRefresh();
+    openPetDetailModal(petId);
+    showToast(result.cleared ? '暱稱已清除' : '暱稱已更新', 'success');
+    if (!result.cleared) {
+      const card = document.querySelector(`.collection-card[data-pet-id="${petId}"]`);
+      if (card && !state.userPreferences?.reduceMotion) {
+        card.classList.add('collection-card--nickname-glow');
+        setTimeout(() => card.classList.remove('collection-card--nickname-glow'), 800);
+      }
+    }
+    await handleAchievementCheckAfterAction();
+  });
+}
+
 export function showToast(message, type = 'info', duration = 2800) {
   const container = document.getElementById('toast-container');
   if (!container) return;
@@ -191,6 +350,17 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     if (!btn) return;
     taskCategoryFilter = btn.dataset.catFilter;
     renderTasksView();
+  });
+
+  document.getElementById('workshop-tabs')?.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-workshop-tab]');
+    if (!btn) return;
+    workshopTab = btn.dataset.workshopTab;
+    document.querySelectorAll('#workshop-tabs .segmented-control__btn').forEach((b) => {
+      b.classList.toggle('active', b.dataset.workshopTab === workshopTab);
+      b.setAttribute('aria-selected', b.dataset.workshopTab === workshopTab ? 'true' : 'false');
+    });
+    renderWorkshopView();
   });
 }
 
@@ -297,6 +467,10 @@ function bindDelegatedEvents() {
       switchView('achievements');
     } else if (action === 'go-habits') {
       switchView('habits');
+    } else if (action === 'companion-view-image') {
+      if (state?.companion) {
+        openCompanionImageModal(state.companion);
+      }
     } else if (action === 'companion-talk') {
       showCompanionDialogue();
     } else if (action === 'empty-add-task') {
@@ -360,7 +534,7 @@ function bindDelegatedEvents() {
     const result = await upgradeStar(petId);
     if (result.success) {
       await onRefresh();
-      showToast(`${pet.name} 升級至 ${result.entry.stars} 星！`, 'success');
+      showToast(`${petDisplayName(pet)} 升級至 ${result.entry.stars} 星！`, 'success');
     } else {
       showToast(result.message || `升星需要 ${cost} 碎片`, 'warning');
     }
@@ -377,6 +551,8 @@ function bindDelegatedEvents() {
     }
   });
 
+  initImportBackupHandlers();
+
   document.getElementById('btn-reset')?.addEventListener('click', handleReset);
 
   document.getElementById('toggle-reduce-motion')?.addEventListener('change', async (e) => {
@@ -388,6 +564,8 @@ function bindDelegatedEvents() {
   });
 
   document.getElementById('btn-dev-unlock')?.addEventListener('click', handleDevUnlock);
+
+  document.getElementById('btn-dev-unlock-all')?.addEventListener('click', handleDevUnlockAll);
 
   document.getElementById('btn-dev-stardust')?.addEventListener('click', handleDevStardust);
 
@@ -406,6 +584,10 @@ function bindDelegatedEvents() {
     const item = e.target.closest('[data-goto]');
     if (!item) return;
     switchView(item.dataset.goto);
+  });
+
+  document.getElementById('view-workshop')?.addEventListener('click', (e) => {
+    handleWorkshopClick(e);
   });
 
   document.getElementById('view-achievements')?.addEventListener('click', async (e) => {
@@ -557,7 +739,7 @@ export function switchView(viewName) {
   document.querySelectorAll('.nav-item').forEach((n) => n.classList.remove('active'));
 
   const view = document.getElementById(`view-${viewName}`);
-  const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' ? 'more' : viewName;
+  const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' ? 'more' : viewName;
   const nav = document.querySelector(`.nav-item[data-view="${navView}"]`);
   if (view) view.classList.add('active');
   if (nav) nav.classList.add('active');
@@ -591,7 +773,11 @@ export function switchView(viewName) {
     renderHabitsView();
   }
 
-  currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'more'
+  if (viewName === 'workshop') {
+    renderWorkshopView();
+  }
+
+  currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'more'
     ? currentTasksView
     : viewName;
   if (viewName === 'tasks' || viewName === 'gacha' || viewName === 'collection' || viewName === 'expedition' || viewName === 'more') {
@@ -627,7 +813,7 @@ export function closeModal() {
 
 /** 確認彈窗 */
 function openConfirmModal(title, message, onConfirm, options = {}) {
-  const { confirmLabel = '確定', danger = false } = options;
+  const { confirmLabel = '確定', danger = false, onCancel = null } = options;
   openModal(`
     <div class="confirm-modal">
       <div class="confirm-modal__icon">${danger ? '⚠️' : '❓'}</div>
@@ -640,7 +826,10 @@ function openConfirmModal(title, message, onConfirm, options = {}) {
     </div>
   `);
 
-  document.getElementById('confirm-cancel')?.addEventListener('click', closeModal);
+  document.getElementById('confirm-cancel')?.addEventListener('click', () => {
+    closeModal();
+    if (typeof onCancel === 'function') onCancel();
+  });
   document.getElementById('confirm-ok')?.addEventListener('click', async () => {
     closeModal();
     await onConfirm();
@@ -663,7 +852,7 @@ export function petImageHtml(pet, options = {}) {
     </div>`;
   }
 
-  return `<img class="${cls}" src="${pet.image}" alt="${escapeHtml(pet.name)}" onerror="${onError}" />`;
+  return `<img class="${cls}" src="${pet.image}" alt="${escapeHtml(petDisplayName(pet))}" onerror="${onError}" />`;
 }
 
 /** 星級顯示 */
@@ -686,6 +875,7 @@ export async function renderAll() {
   renderExpeditionView();
   renderSettingsView();
   renderMoreView();
+  renderWorkshopView();
   renderHabitsView();
   if (document.getElementById('view-achievements')?.classList.contains('active')) {
     renderAchievementsView();
@@ -1346,12 +1536,17 @@ function renderCompanionSection(companion, defaultLine) {
       <div class="companion-bubble companion-bubble--visible" id="companion-bubble" aria-live="polite">
         <p class="companion-bubble__text" id="companion-bubble-text">${escapeHtml(defaultLine)}</p>
       </div>
-      <article class="companion-card card ${rarityClass} companion-card--breathe" data-action="companion-talk" role="button" tabindex="0">
+      <article class="companion-card card ${rarityClass} companion-card--breathe">
         <div class="companion-card__glow"></div>
-        <div class="companion-card__image">${petImageHtml(companion, { size: 'lg' })}</div>
-        <div class="companion-card__body">
+        <button type="button" class="companion-card__image" data-action="companion-view-image" aria-label="放大查看 ${escapeHtml(petDisplayName(companion))}">
+          ${petImageHtml(companion, { size: 'lg' })}
+        </button>
+        <div class="companion-card__body" data-action="companion-talk" role="button" tabindex="0">
           <div class="companion-card__header">
-            <h2 class="companion-card__name">${escapeHtml(companion.name)}</h2>
+            <div class="companion-card__name-wrap">
+              <h2 class="companion-card__name">${escapeHtml(petDisplayName(companion))}</h2>
+              ${petOriginalNameHtml(companion)}
+            </div>
             <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
           </div>
           ${titleHtml}
@@ -1365,12 +1560,195 @@ function renderCompanionSection(companion, defaultLine) {
               <div class="progress-bar__fill" style="width:${progress.percent}%"></div>
             </div>
           </div>
-          <p class="companion-card__hint">點擊與夥伴互動</p>
+          <p class="companion-card__hint">點擊與夥伴互動 · 點圖片可放大</p>
         </div>
       </article>
     </div>`;
 
   startCompanionDialogueTimer();
+}
+
+let lastCompanionPetTime = 0;
+const COMPANION_PET_COOLDOWN_MS = 450;
+
+/** 輕柔震動（撫摸 / 餵食成功） */
+function triggerComfortVibration() {
+  if (state?.userPreferences?.reduceMotion) return;
+  if (typeof navigator !== 'undefined' && navigator.vibrate) {
+    try {
+      navigator.vibrate([12, 40, 18]);
+    } catch {
+      /* 部分瀏覽器不支援 */
+    }
+  }
+}
+
+/** 在預覽區跳出愛心 */
+function spawnCompanionHearts(container, count = 4) {
+  if (!container || state?.userPreferences?.reduceMotion) return;
+  const symbols = ['💜', '💗', '❤️', '✨'];
+  for (let i = 0; i < count; i += 1) {
+    const heart = document.createElement('span');
+    heart.className = 'companion-heart-float';
+    heart.textContent = symbols[i % symbols.length];
+    heart.style.left = `${28 + Math.random() * 44}%`;
+    heart.style.animationDelay = `${i * 0.1}s`;
+    heart.setAttribute('aria-hidden', 'true');
+    container.appendChild(heart);
+    setTimeout(() => heart.remove(), 1400);
+  }
+}
+
+/** 撫摸 / 餵食成功的視覺回饋 */
+function playCompanionComfortEffect() {
+  const heartsEl = document.getElementById('companion-preview-hearts');
+  const frame = document.querySelector('.companion-image-preview__frame');
+  triggerComfortVibration();
+  spawnCompanionHearts(heartsEl);
+  if (frame && !state?.userPreferences?.reduceMotion) {
+    frame.classList.add('companion-image-preview__frame--comfort');
+    setTimeout(() => frame.classList.remove('companion-image-preview__frame--comfort'), 650);
+  }
+}
+
+function buildCompanionFeedSection(companion) {
+  const inventory = state.inventory || { items: {} };
+  const itemCounts = getItemInventory(inventory);
+  const bondItems = (state.craftablesCatalog || []).filter(
+    (c) =>
+      (c.type === 'bond_item' || c.type === 'favorite_bond_item') &&
+      (itemCounts[c.id] || 0) > 0
+  );
+  const today = getTodayDateString();
+  const dailyUsed = getDailyBondItemUsage(companion.id, today, inventory);
+  const atLimit = dailyUsed >= DAILY_BOND_ITEM_LIMIT;
+  const progress = getBondProgress(companion.bondExp ?? 0, companion.bondLevel ?? 1);
+
+  if (bondItems.length === 0) {
+    return `
+      <section class="companion-preview-feed card">
+        <h3 class="companion-preview-feed__title">餵食</h3>
+        <p class="companion-preview-feed__empty">目前沒有親密度道具。<br>可到「更多 → 工坊」用探險材料製作。</p>
+      </section>
+      <p class="companion-preview-bond">親密度 Lv.${companion.bondLevel ?? 1} · ${progress.current}/${progress.max || 'MAX'}</p>`;
+  }
+
+  const options = bondItems
+    .map((item) => {
+      const stock = itemCounts[item.id] || 0;
+      const fav = getFavoriteBonus(item, companion).isFavorite;
+      const favMark = fav ? ' ★喜好' : '';
+      return `<option value="${item.id}">${escapeHtml(item.name)} ×${stock}${favMark}</option>`;
+    })
+    .join('');
+
+  return `
+    <section class="companion-preview-feed card">
+      <h3 class="companion-preview-feed__title">餵食</h3>
+      <p class="companion-preview-feed__daily">今日已餵 ${dailyUsed} / ${DAILY_BOND_ITEM_LIMIT}</p>
+      <label class="companion-preview-feed__picker">
+        <span class="companion-preview-feed__label">工坊食物</span>
+        <select id="companion-feed-select" class="companion-preview-feed__select">${options}</select>
+      </label>
+      <button type="button" class="btn btn--primary btn--block" id="companion-feed-btn" ${atLimit ? 'disabled' : ''}>餵食</button>
+      ${atLimit ? '<p class="companion-preview-feed__limit">今天這隻寵物已經收到足夠多禮物了，明天再來吧。</p>' : ''}
+    </section>
+    <p class="companion-preview-bond">親密度 Lv.${companion.bondLevel ?? 1} · ${progress.current}/${progress.max || 'MAX'}</p>`;
+}
+
+function bindCompanionPreviewInteractions(companion) {
+  const stage = document.getElementById('companion-preview-stage');
+  const img = stage?.querySelector('.companion-image-preview__img--interactive');
+  const petBtn = document.getElementById('companion-pet-btn');
+  const feedBtn = document.getElementById('companion-feed-btn');
+
+  const onPet = () => {
+    const now = Date.now();
+    if (now - lastCompanionPetTime < COMPANION_PET_COOLDOWN_MS) return;
+    lastCompanionPetTime = now;
+    playCompanionComfortEffect();
+  };
+
+  img?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    onPet();
+  });
+  petBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    onPet();
+  });
+
+  feedBtn?.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    if (feedBtn.disabled) return;
+    const select = document.getElementById('companion-feed-select');
+    const itemId = select?.value;
+    if (!itemId) {
+      showToast('請先選擇要餵食的食物', 'warning');
+      return;
+    }
+    try {
+      const result = await useBondItem(itemId, companion.id, state.allPets);
+      if (!result.success) {
+        showToast(result.message, 'warning');
+        return;
+      }
+      playCompanionComfortEffect();
+      await onRefresh();
+      const updated = state.companion;
+      if (updated) {
+        openCompanionImageModal(updated);
+      }
+      if (result.isFavorite) {
+        showToast(`牠很喜歡這份禮物！親密度 +${result.bondExp}`, 'success', 3200);
+      } else {
+        showToast(`親密度提升 +${result.bondExp}`, 'success');
+      }
+      if (result.leveledUp) {
+        setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
+      }
+      await handleAchievementCheckAfterAction();
+    } catch (err) {
+      showToast(err.message || '餵食失敗', 'error');
+    }
+  });
+}
+
+function openCompanionImageModal(companion) {
+  if (!companion?.image) return;
+
+  const rarityClass = `rarity-${companion.rarity}`;
+  const onError = `this.onerror=null;this.classList.add('companion-image-preview__img--error')`;
+  const feedSection = buildCompanionFeedSection(companion);
+
+  openModal(`
+    <div class="companion-image-preview ${rarityClass}">
+      <div class="companion-image-preview__stage" id="companion-preview-stage">
+        <div class="companion-preview-hearts" id="companion-preview-hearts" aria-hidden="true"></div>
+        <div class="companion-image-preview__frame">
+          <img
+            class="companion-image-preview__img companion-image-preview__img--interactive"
+            src="${companion.image}"
+            alt="${escapeHtml(petDisplayName(companion))}"
+            onerror="${onError}"
+          />
+        </div>
+      </div>
+      <h2 class="companion-image-preview__name">${escapeHtml(petDisplayName(companion))}</h2>
+      ${petOriginalNameHtml(companion)}
+      <div class="companion-image-preview__meta">
+        <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
+        ${renderStars(companion.stars ?? 1)}
+      </div>
+      <div class="companion-preview-actions">
+        <button type="button" class="btn btn--secondary btn--block" id="companion-pet-btn">撫摸</button>
+      </div>
+      ${feedSection}
+      <p class="companion-image-preview__hint">點擊夥伴或按撫摸 · 餵食使用工坊食物</p>
+    </div>
+  `);
+
+  bindCompanionPreviewInteractions(companion);
 }
 
 function updateCompanionBondDisplay(companion) {
@@ -1395,6 +1773,14 @@ function buildDialogueContext(overrides = {}) {
     activeExpedition: state.activeExpedition,
     expeditionAreas: state.expeditionAreas,
     habits: state.habits || [],
+    inventory: state.inventory,
+    craftables: state.craftablesCatalog || [],
+    workshopHelpers: {
+      hasCraftableMaterials,
+      hasBondItemsInInventory,
+      companionLikesAnyGift,
+      hasLowMaterials,
+    },
     isIdle,
     ...overrides,
   };
@@ -1780,7 +2166,8 @@ function renderCollectionView() {
         <div>${petImageHtml(state.companion, { size: 'sm' })}</div>
         <div>
           <p class="collection-companion__label">目前陪伴寵物</p>
-          <p class="collection-companion__name">${escapeHtml(state.companion.name)}</p>
+          <p class="collection-companion__name">${escapeHtml(petDisplayName(state.companion))}</p>
+          ${state.companion.nickname ? `<p class="pet-original-name pet-original-name--sm">原名：${escapeHtml(petOriginalName(state.companion))}</p>` : ''}
         </div>
         <span class="badge badge--rarity rarity-${state.companion.rarity}">${state.companion.rarity}</span>`;
       companionEl.classList.remove('collection-companion--empty');
@@ -1817,7 +2204,7 @@ function renderCollectionCard(pet) {
           ${owned ? petImageHtml(pet, { size: 'md' }) : petImageHtml(pet, { size: 'md', preview: true })}
         </div>
         <div class="collection-card__info">
-          <h3 class="collection-card__name">${owned ? escapeHtml(pet.name) : '???'}</h3>
+          ${petNameBlockHtml(pet, { owned, heading: 'h3', className: 'collection-card__name' })}
           ${owned && pet.title ? `<p class="collection-card__title">${escapeHtml(pet.title)}</p>` : ''}
           <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
           ${
@@ -1876,12 +2263,32 @@ function openPetDetailModal(petId) {
       ? pet.personality.map((p) => `<span class="tag">${escapeHtml(p)}</span>`).join('')
       : '';
 
+  const nicknameSection = owned
+    ? `
+      <section class="pet-detail__nickname card">
+        <h3 class="pet-detail__subtitle">暱稱</h3>
+        ${
+          pet.nickname
+            ? `<p class="pet-detail__display-name">${escapeHtml(petDisplayName(pet))}</p>
+               <p class="pet-original-name">原名：${escapeHtml(petOriginalName(pet))}</p>`
+            : `<p class="pet-detail__display-name">${escapeHtml(petOriginalName(pet))}</p>
+               <p class="pet-detail__nickname-empty">尚未設定暱稱</p>`
+        }
+        <div class="pet-detail__nickname-actions">
+          <button type="button" class="btn btn--secondary btn--sm" data-action="edit-nickname" data-pet-id="${pet.id}">${pet.nickname ? '修改暱稱' : '設定暱稱'}</button>
+          ${pet.nickname ? `<button type="button" class="btn btn--ghost btn--sm" data-action="clear-nickname" data-pet-id="${pet.id}">清除暱稱</button>` : ''}
+        </div>
+      </section>`
+    : '';
+
   openModal(`
     <div class="pet-detail ${rarityClass}">
       <div class="pet-detail__hero">
         ${owned ? petImageHtml(pet, { size: 'lg' }) : petImageHtml(pet, { size: 'lg', preview: true })}
       </div>
-      <h2 class="pet-detail__name">${owned ? escapeHtml(pet.name) : '???'}</h2>
+      <h2 class="pet-detail__name">${owned ? escapeHtml(petDisplayName(pet)) : '???'}</h2>
+      ${owned && pet.nickname ? `<p class="pet-original-name pet-original-name--center">原名：${escapeHtml(petOriginalName(pet))}</p>` : ''}
+      ${owned && !pet.nickname ? '<p class="pet-detail__nickname-empty pet-detail__nickname-empty--center">尚未設定暱稱</p>' : ''}
       ${owned && pet.title ? `<p class="pet-detail__title">${escapeHtml(pet.title)}</p>` : ''}
       <div class="pet-detail__badges">
         <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
@@ -1894,6 +2301,7 @@ function openPetDetailModal(petId) {
       ${owned && pet.lore ? `<p class="pet-detail__lore">${escapeHtml(pet.lore)}</p>` : ''}
       ${!owned ? '<p class="pet-detail__locked">召喚解鎖後，可閱讀完整背景與親密度故事。</p>' : ''}
       ${bondSection}
+      ${nicknameSection}
       ${
         owned && !pet.isCompanion
           ? `<button class="btn btn--companion btn--block" data-action="set-companion-detail" data-pet-id="${pet.id}">設為陪伴</button>`
@@ -1911,6 +2319,25 @@ function openPetDetailModal(petId) {
       await onRefresh();
       showToast('已設為陪伴寵物', 'success');
     }
+  });
+
+  document.querySelector('[data-action="edit-nickname"]')?.addEventListener('click', (e) => {
+    const id = e.target.dataset.petId;
+    if (id) openNicknameModal(id);
+  });
+
+  document.querySelector('[data-action="clear-nickname"]')?.addEventListener('click', async (e) => {
+    const id = e.target.dataset.petId;
+    if (!id) return;
+    const result = await clearPetNickname(id);
+    if (!result.success) {
+      showToast(result.message || '暱稱儲存失敗，請稍後再試。', 'error');
+      return;
+    }
+    closeModal();
+    await onRefresh();
+    openPetDetailModal(id);
+    showToast('暱稱已清除', 'success');
   });
 }
 
@@ -1986,7 +2413,8 @@ function renderExpeditionView() {
                 ${pet ? petImageHtml(pet, { size: 'md' }) : ''}
               </div>
               <div>
-                <p class="expedition-active-card__name">${pet ? escapeHtml(pet.name) : '未知寵物'}</p>
+                <p class="expedition-active-card__name">${pet ? escapeHtml(petDisplayName(pet)) : '未知寵物'}</p>
+                ${pet?.nickname ? `<p class="pet-original-name pet-original-name--sm">原名：${escapeHtml(petOriginalName(pet))}</p>` : ''}
                 <p class="expedition-active-card__area">${area ? escapeHtml(area.name) : ''}</p>
                 <p class="expedition-active-card__status-label">${complete ? '探索完成' : '探索日誌'}</p>
               </div>
@@ -2040,7 +2468,7 @@ function renderExpeditionView() {
                 </div>
                 <p class="expedition-area-card__rewards">
                   星塵 ${area.rewards.stardust.min}～${area.rewards.stardust.max}
-                  · ${escapeHtml(mat.name || MATERIAL_LABELS[mat.id] || mat.id)} ${mat.min}～${mat.max}
+                  · ${escapeHtml(getMaterialName(mat.id))} ${mat.min}～${mat.max}
                   · 親密度 +${area.rewards.bondExp}
                 </p>
                 ${locked ? `<p class="expedition-area-card__unlock">${escapeHtml(hint)}</p>` : ''}
@@ -2086,7 +2514,8 @@ function renderExpeditionView() {
                   ${hasActive || onExp ? 'disabled' : ''}
                 >
                   ${petImageHtml(pet, { size: 'sm' })}
-                  <span class="expedition-pet-card__name">${escapeHtml(pet.name)}</span>
+                  <span class="expedition-pet-card__name">${escapeHtml(petDisplayName(pet))}</span>
+                  ${pet.nickname ? `<span class="pet-original-name pet-original-name--xs">原名：${escapeHtml(petOriginalName(pet))}</span>` : ''}
                   <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
                   <span class="expedition-pet-card__bond">Lv.${pet.bondLevel || 1}</span>
                   ${onExp ? '<span class="expedition-pet-card__status">探險中</span>' : ''}
@@ -2258,7 +2687,13 @@ async function handleExpeditionClick(e) {
       );
       await onRefresh();
       showExpeditionRewardModal(result);
-      showToast('探險獎勵已領取', 'success', 2000);
+      const matEntries = Object.entries(result.rewards.materials || {}).filter(([, amt]) => amt > 0);
+      if (matEntries.length > 0) {
+        const matText = matEntries.map(([id, amt]) => `${getMaterialName(id)} x${amt}`).join('、');
+        showToast(`獲得 ${matText}`, 'success', 3200);
+      } else {
+        showToast('探險獎勵已領取', 'success', 2000);
+      }
       await handleAchievementCheckAfterAction();
     } catch (err) {
       showToast(err.message || '領取失敗', 'error');
@@ -2268,6 +2703,7 @@ async function handleExpeditionClick(e) {
 
 function showExpeditionRewardModal(result) {
   const { rewards, pet, bond } = result;
+  const displayPet = state.enrichedCollection?.find((p) => p.id === pet.id) || pet;
   const matEntries = Object.entries(rewards.materials || {});
   const rarityPct = Math.round((rewards.rarityBonus || 0) * 100);
   const bondPct = Math.round((rewards.bondBonus || 0) * 100);
@@ -2276,17 +2712,19 @@ function showExpeditionRewardModal(result) {
     <div class="expedition-reward-modal expedition-reward-modal--animate">
       <h2 class="modal-title">探險歸來！</h2>
       <div class="expedition-reward-modal__pet">
-        ${petImageHtml(pet, { size: 'md' })}
-        <p>${escapeHtml(pet.name)}</p>
+        ${petImageHtml(displayPet, { size: 'md' })}
+        <p>${escapeHtml(petDisplayName(displayPet))}</p>
+        ${displayPet.nickname ? `<p class="pet-original-name pet-original-name--sm">原名：${escapeHtml(petOriginalName(displayPet))}</p>` : ''}
       </div>
       <ul class="expedition-reward-list">
         <li>✦ 星塵 <strong>+${rewards.stardust}</strong>
           ${rewards.bonusStardust > 0 ? `<span class="expedition-bonus">（基礎 ${rewards.baseStardust} + 加成 ${rewards.bonusStardust}）</span>` : ''}
         </li>
-        ${matEntries.map(([id, amt]) => `<li>📦 ${escapeHtml(MATERIAL_LABELS[id] || id)} <strong>+${amt}</strong></li>`).join('')}
+        ${matEntries.map(([id, amt]) => `<li>📦 ${escapeHtml(getMaterialName(id))} <strong>+${amt}</strong></li>`).join('')}
         <li>💜 親密度 <strong>+${rewards.bondExp}</strong></li>
         ${rewards.fragmentGained > 0 ? `<li>💫 寵物碎片 <strong>+${rewards.fragmentGained}</strong></li>` : ''}
       </ul>
+      <p class="expedition-reward-modal__workshop-hint">可在工坊製作親密度道具。</p>
       ${
         rewards.bonusStardust > 0
           ? `<p class="expedition-bonus-detail">加成：稀有度 +${rarityPct}% · 親密度 Lv.${bond?.oldLevel ?? pet.bondLevel ?? 1} +${bondPct}%</p>`
@@ -2576,6 +3014,311 @@ function openHabitForm(habitId = null) {
 }
 
 /* ─── 更多 / 成就頁 ─── */
+
+function renderWorkshopView() {
+  if (!state) return;
+  if (!document.getElementById('view-workshop')?.classList.contains('active')) return;
+
+  const summaryEl = document.getElementById('workshop-summary');
+  const contentEl = document.getElementById('workshop-content');
+  if (!summaryEl || !contentEl) return;
+
+  const wallet = state.wallet || {};
+  const inventory = state.inventory || { items: {}, itemUsageLogs: {} };
+  const materialsCatalog = state.materialsCatalog || [];
+  const craftables = state.craftablesCatalog || getEnabledCraftables();
+  const materialCounts = getMaterialInventory(wallet);
+  const itemCounts = getItemInventory(inventory);
+
+  const knownMaterialIds = new Set(materialsCatalog.map((m) => m.id));
+  const extraMaterialIds = Object.keys(materialCounts).filter((id) => !knownMaterialIds.has(id));
+  const allMaterialEntries = [
+    ...materialsCatalog.map((m) => ({ ...m, amount: materialCounts[m.id] || 0 })),
+    ...extraMaterialIds.map((id) => ({
+      ...getMaterialInfo(id),
+      amount: materialCounts[id] || 0,
+    })),
+  ];
+
+  const totalMaterials = allMaterialEntries.reduce((sum, m) => sum + (m.amount || 0), 0);
+  const bondItems = craftables.filter(
+    (c) => c.type === 'bond_item' || c.type === 'favorite_bond_item'
+  );
+  const totalItems = bondItems.reduce((sum, c) => sum + (itemCounts[c.id] || 0), 0);
+
+  summaryEl.innerHTML = `
+    <div class="workshop-summary__grid">
+      <div class="workshop-summary__stat">
+        <span class="workshop-summary__label">材料總數</span>
+        <span class="workshop-summary__value">${totalMaterials}</span>
+      </div>
+      <div class="workshop-summary__stat">
+        <span class="workshop-summary__label">道具庫存</span>
+        <span class="workshop-summary__value">${totalItems}</span>
+      </div>
+    </div>
+    <p class="workshop-summary__hint">使用探險取得的材料製作禮物，提升寵物親密度。</p>`;
+
+  if (workshopTab === 'materials') {
+    if (allMaterialEntries.length === 0) {
+      contentEl.innerHTML = emptyStateHtml(
+        '目前還沒有材料',
+        '派遣寵物探險，可以帶回製作禮物的材料。'
+      );
+      return;
+    }
+
+    contentEl.innerHTML = `
+      <div class="workshop-material-list">
+        ${allMaterialEntries
+          .map((mat) => {
+            const tags = getFutureTagLabels(mat.futureTags || []).slice(0, 3);
+            const empty = (mat.amount || 0) === 0;
+            return `
+              <article class="workshop-material-card card ${empty ? 'workshop-material-card--empty' : ''}">
+                <div class="workshop-material-card__header">
+                  <h3>${escapeHtml(mat.name)}</h3>
+                  <span class="rarity-badge rarity-badge--${(mat.rarity || 'n').toLowerCase()}">${escapeHtml(mat.rarity || '?')}</span>
+                </div>
+                <p class="workshop-material-card__qty">數量：<strong>${mat.amount || 0}</strong></p>
+                <p class="workshop-material-card__desc">${escapeHtml(mat.description || '')}</p>
+                ${mat.sourceArea ? `<p class="workshop-material-card__source">來源：${escapeHtml(mat.sourceArea)}</p>` : ''}
+                ${tags.length ? `<div class="workshop-tag-row">${tags.map((t) => `<span class="workshop-tag">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
+              </article>`;
+          })
+          .join('')}
+      </div>`;
+    return;
+  }
+
+  if (workshopTab === 'craft') {
+    const enabled = craftables.filter((c) => c.enabled);
+    if (enabled.length === 0) {
+      contentEl.innerHTML = emptyStateHtml(
+        '目前沒有可製作的道具',
+        '等取得更多材料後再回來看看。'
+      );
+      return;
+    }
+
+    contentEl.innerHTML = `
+      <div class="workshop-craft-list">
+        ${enabled
+          .map((craftable) => {
+            const preview = getCraftingPreview(craftable.id, 1, wallet);
+            const maxQty = preview.maxQuantity;
+            const enough = preview.canCraft;
+            const favoriteHint =
+              craftable.type === 'favorite_bond_item'
+                ? `<p class="workshop-craft-card__favorite">喜歡的寵物可獲得 +${craftable.effect?.favoriteBonusBondExp ?? craftable.effect?.bondExp ?? 0}</p>`
+                : '';
+
+            return `
+              <article class="workshop-craft-card card ${enough ? '' : 'workshop-craft-card--disabled'}">
+                <div class="workshop-craft-card__header">
+                  <h3>${escapeHtml(craftable.name)}</h3>
+                  <span class="rarity-badge rarity-badge--${(craftable.rarity || 'n').toLowerCase()}">${escapeHtml(craftable.rarity || '?')}</span>
+                </div>
+                <p class="workshop-craft-card__effect">${escapeHtml(formatItemEffect(craftable))}</p>
+                ${favoriteHint}
+                <ul class="workshop-recipe-list">
+                  ${preview.materials
+                    .map(
+                      (m) =>
+                        `<li class="${m.enough ? '' : 'workshop-recipe-list__item--missing'}">${escapeHtml(m.name)} <span>${m.have} / ${m.need}</span></li>`
+                    )
+                    .join('')}
+                </ul>
+                <div class="workshop-craft-card__actions">
+                  <button class="btn btn--primary btn--sm" data-action="craft-item" data-item-id="${craftable.id}" data-qty="1" ${enough ? '' : 'disabled'}>製作 x1</button>
+                  ${maxQty >= 5 ? `<button class="btn btn--secondary btn--sm" data-action="craft-item" data-item-id="${craftable.id}" data-qty="5" ${maxQty >= 5 ? '' : 'disabled'}>x5</button>` : ''}
+                  ${maxQty > 1 ? `<button class="btn btn--secondary btn--sm" data-action="craft-item" data-item-id="${craftable.id}" data-qty="${maxQty}" ${enough ? '' : 'disabled'}>最大 (${maxQty})</button>` : ''}
+                </div>
+              </article>`;
+          })
+          .join('')}
+      </div>`;
+    return;
+  }
+
+  // gift tab
+  const ownedPets = (state.enrichedCollection || []).filter((p) => p.owned);
+  const availableItems = bondItems.filter((c) => (itemCounts[c.id] || 0) > 0);
+
+  if (ownedPets.length === 0) {
+    contentEl.innerHTML = emptyStateHtml(
+      '還沒有可以贈送的寵物',
+      '先透過召喚獲得第一位夥伴。'
+    );
+    return;
+  }
+
+  if (availableItems.length === 0) {
+    contentEl.innerHTML = emptyStateHtml(
+      '目前沒有可贈送的道具',
+      '先到製作頁使用探險材料製作親密度道具。'
+    );
+    return;
+  }
+
+  if (!selectedGiftPetId || !ownedPets.some((p) => p.id === selectedGiftPetId)) {
+    selectedGiftPetId = ownedPets[0].id;
+  }
+  if (!selectedGiftItemId || !availableItems.some((c) => c.id === selectedGiftItemId)) {
+    selectedGiftItemId = availableItems[0].id;
+  }
+
+  const selectedPet = ownedPets.find((p) => p.id === selectedGiftPetId);
+  const selectedItem = getCraftableInfo(selectedGiftItemId);
+  const today = getTodayDateString();
+  const dailyUsed = getDailyBondItemUsage(selectedGiftPetId, today, inventory);
+  const bonus = getFavoriteBonus(selectedItem, selectedPet);
+  const bondProgress = getBondProgress(selectedPet.bondExp ?? 0, selectedPet.bondLevel ?? 1);
+  const previewExp = (selectedPet.bondExp ?? 0) + bonus.bondExp;
+  const previewLevel = previewExp >= 500 ? 5 : previewExp >= 300 ? 4 : previewExp >= 150 ? 3 : previewExp >= 50 ? 2 : 1;
+  const willLevelUp = previewLevel > (selectedPet.bondLevel ?? 1);
+  const atDailyLimit = dailyUsed >= DAILY_BOND_ITEM_LIMIT;
+  const itemStock = itemCounts[selectedGiftItemId] || 0;
+
+  contentEl.innerHTML = `
+    <div class="workshop-gift-layout">
+      <section class="workshop-gift-section card">
+        <h2 class="section-title">選擇夥伴</h2>
+        <div class="workshop-gift-pet-list">
+          ${ownedPets
+            .map((pet) => {
+              const used = getDailyBondItemUsage(pet.id, today, inventory);
+              const selected = pet.id === selectedGiftPetId;
+              return `
+                <button type="button" class="workshop-gift-pet ${selected ? 'workshop-gift-pet--selected' : ''}" data-action="select-gift-pet" data-pet-id="${pet.id}">
+                  <div class="workshop-gift-pet__img">${petImageHtml(pet, { size: 'sm' })}</div>
+                  <div class="workshop-gift-pet__info">
+                    <span class="workshop-gift-pet__name">${escapeHtml(petDisplayName(pet))}</span>
+                    ${pet.nickname ? `<span class="pet-original-name pet-original-name--xs">原名：${escapeHtml(petOriginalName(pet))}</span>` : ''}
+                    <span class="workshop-gift-pet__meta">Lv.${pet.bondLevel ?? 1} · 今日 ${used}/${DAILY_BOND_ITEM_LIMIT}</span>
+                    ${pet.isCompanion ? '<span class="workshop-gift-pet__companion">陪伴中</span>' : ''}
+                  </div>
+                </button>`;
+            })
+            .join('')}
+        </div>
+      </section>
+
+      <section class="workshop-gift-section card">
+        <h2 class="section-title">選擇道具</h2>
+        <div class="workshop-gift-item-list">
+          ${availableItems
+            .map((item) => {
+              const selected = item.id === selectedGiftItemId;
+              const stock = itemCounts[item.id] || 0;
+              return `
+                <button type="button" class="workshop-gift-item ${selected ? 'workshop-gift-item--selected' : ''}" data-action="select-gift-item" data-item-id="${item.id}">
+                  <span class="workshop-gift-item__name">${escapeHtml(item.name)}</span>
+                  <span class="workshop-gift-item__stock">x${stock}</span>
+                  <span class="workshop-gift-item__effect">${escapeHtml(formatItemEffect(item))}</span>
+                </button>`;
+            })
+            .join('')}
+        </div>
+      </section>
+
+      <section class="workshop-gift-preview card ${bonus.isFavorite ? 'workshop-gift-preview--favorite' : ''}">
+        <h2 class="section-title">贈送預覽</h2>
+        <ul class="workshop-gift-preview__list">
+          <li>目前親密度：Lv.${selectedPet.bondLevel ?? 1}（${bondProgress.current}/${bondProgress.max || 'MAX'}）</li>
+          <li>使用後增加：+${bonus.bondExp}${bonus.isFavorite ? '（喜好加成）' : ''}</li>
+          <li>今日已使用：${dailyUsed} / ${DAILY_BOND_ITEM_LIMIT}</li>
+          ${willLevelUp ? `<li class="workshop-gift-preview__levelup">預計升級至 Lv.${previewLevel}</li>` : ''}
+        </ul>
+        <button class="btn btn--primary btn--block" data-action="gift-item" data-item-id="${selectedGiftItemId}" data-pet-id="${selectedGiftPetId}" ${atDailyLimit || itemStock <= 0 ? 'disabled' : ''}>贈送</button>
+        ${atDailyLimit ? '<p class="workshop-gift-preview__limit">今天這隻寵物已經收到足夠多禮物了，明天再來吧。</p>' : ''}
+      </section>
+    </div>`;
+}
+
+async function handleWorkshopClick(e) {
+  const backBtn = e.target.closest('[data-goto]');
+  if (backBtn) {
+    switchView(backBtn.dataset.goto);
+    return;
+  }
+
+  const target = e.target.closest('[data-action]');
+  if (!target || !state) return;
+
+  const action = target.dataset.action;
+
+  if (action === 'select-gift-pet') {
+    selectedGiftPetId = target.dataset.petId;
+    renderWorkshopView();
+    return;
+  }
+
+  if (action === 'select-gift-item') {
+    selectedGiftItemId = target.dataset.itemId;
+    renderWorkshopView();
+    return;
+  }
+
+  if (action === 'craft-item') {
+    const itemId = target.dataset.itemId;
+    const qty = parseInt(target.dataset.qty, 10) || 1;
+    if (target.disabled) {
+      showToast('材料不足，無法製作。', 'warning');
+      return;
+    }
+    try {
+      const result = await craftItem(itemId, qty);
+      if (!result.success) {
+        showToast(result.message, 'warning');
+        return;
+      }
+      await onRefresh();
+      renderWorkshopView();
+      showToast(result.message, 'success');
+      const card = target.closest('.workshop-craft-card');
+      if (card && !state.userPreferences?.reduceMotion) {
+        card.classList.add('workshop-craft-card--success');
+        setTimeout(() => card.classList.remove('workshop-craft-card--success'), 800);
+      }
+      await handleAchievementCheckAfterAction();
+    } catch (err) {
+      showToast(err.message || '製作失敗', 'error');
+    }
+    return;
+  }
+
+  if (action === 'gift-item') {
+    const itemId = target.dataset.itemId;
+    const petId = target.dataset.petId;
+    if (target.disabled) return;
+    try {
+      const result = await useBondItem(itemId, petId, state.allPets);
+      if (!result.success) {
+        showToast(result.message, 'warning');
+        return;
+      }
+      await onRefresh();
+      renderWorkshopView();
+      if (result.isFavorite) {
+        showToast(`牠很喜歡這份禮物！親密度 +${result.bondExp}`, 'success', 3200);
+      } else {
+        showToast(`親密度提升 +${result.bondExp}`, 'success');
+      }
+      if (result.leveledUp) {
+        setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
+      }
+      const petCard = document.querySelector(`.workshop-gift-pet[data-pet-id="${petId}"]`);
+      if (petCard && !state.userPreferences?.reduceMotion) {
+        petCard.classList.add('workshop-gift-pet--bounce');
+        setTimeout(() => petCard.classList.remove('workshop-gift-pet--bounce'), 600);
+      }
+      await handleAchievementCheckAfterAction();
+    } catch (err) {
+      showToast(err.message || '贈送失敗', 'error');
+    }
+  }
+}
 
 function renderMoreView() {
   const summary = state.achievementSummary;
@@ -2897,6 +3640,258 @@ function showAchievementUnlockNotifications(result) {
 
 /* ─── 設定頁 ─── */
 
+function formatBackupDateTime(isoString) {
+  if (!isoString) return '無資料';
+  const date = new Date(isoString);
+  if (Number.isNaN(date.getTime())) return '無資料';
+  return date.toLocaleString('zh-TW', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
+function resetImportUI() {
+  pendingImportBackup = null;
+  pendingImportFileName = '';
+  pendingImportWarnings = [];
+
+  const fileInput = document.getElementById('import-file-input');
+  if (fileInput) fileInput.value = '';
+
+  setImportElementHidden('import-idle-hint', false);
+  setImportElementHidden('import-loading-hint', true);
+  setImportElementHidden('import-error-hint', true);
+  setImportElementHidden('import-preview', true);
+  setImportElementHidden('import-restoring-hint', true);
+  setImportElementHidden('import-success-panel', true);
+  setImportElementHidden('btn-import-select', false);
+
+  const errorEl = document.getElementById('import-error-hint');
+  if (errorEl) errorEl.textContent = '';
+
+  const warningEl = document.getElementById('import-preview-warning');
+  if (warningEl) {
+    warningEl.textContent = '';
+    warningEl.hidden = true;
+  }
+}
+
+function setImportElementHidden(id, hidden) {
+  const el = document.getElementById(id);
+  if (el) el.hidden = hidden;
+}
+
+function renderImportPreview(preview, warnings = []) {
+  setText('import-preview-filename', preview.fileName);
+  setText('import-preview-version', preview.appVersion);
+  setText('import-preview-exported-at', formatBackupDateTime(preview.exportedAt));
+  setText('import-preview-tasks', preview.taskCount);
+  setText('import-preview-completed-tasks', preview.completedTaskCount);
+  setText('import-preview-habits', preview.habitCount);
+  setText('import-preview-collection', preview.collectionCount);
+  setText(
+    'import-preview-total-pets',
+    preview.totalPets != null ? String(preview.totalPets) : '無資料'
+  );
+  setText('import-preview-stardust', preview.stardust);
+  setText('import-preview-energy', preview.adventureEnergy);
+  setText('import-preview-expeditions', preview.expeditionCount);
+  setText('import-preview-achievements', preview.unlockedAchievementCount);
+  setText('import-preview-titles', preview.unlockedTitleCount);
+
+  const warningEl = document.getElementById('import-preview-warning');
+  if (warningEl) {
+    if (warnings.length > 0) {
+      warningEl.textContent = warnings.join(' ');
+      warningEl.hidden = false;
+    } else {
+      warningEl.textContent = '';
+      warningEl.hidden = true;
+    }
+  }
+
+  setImportElementHidden('import-idle-hint', true);
+  setImportElementHidden('import-loading-hint', true);
+  setImportElementHidden('import-error-hint', true);
+  setImportElementHidden('import-preview', false);
+  setImportElementHidden('import-restoring-hint', true);
+  setImportElementHidden('import-success-panel', true);
+  setImportElementHidden('btn-import-select', false);
+}
+
+function showImportError(message) {
+  const errorEl = document.getElementById('import-error-hint');
+  if (errorEl) errorEl.textContent = message;
+
+  setImportElementHidden('import-idle-hint', true);
+  setImportElementHidden('import-loading-hint', true);
+  setImportElementHidden('import-error-hint', false);
+  setImportElementHidden('import-preview', true);
+  setImportElementHidden('import-restoring-hint', true);
+  setImportElementHidden('import-success-panel', true);
+  setImportElementHidden('btn-import-select', false);
+}
+
+async function handleImportFileSelect(file) {
+  if (!file) return;
+
+  setImportElementHidden('import-idle-hint', true);
+  setImportElementHidden('import-loading-hint', false);
+  setImportElementHidden('import-error-hint', true);
+  setImportElementHidden('import-preview', true);
+  setImportElementHidden('import-success-panel', true);
+
+  try {
+    const rawBackup = await readBackupFile(file);
+    const validation = validateBackup(rawBackup);
+
+    if (!validation.valid) {
+      showImportError(validation.error || '這不是有效的 QuestNote 備份檔。');
+      showToast(validation.error || '這不是有效的 QuestNote 備份檔。', 'error');
+      return;
+    }
+
+    const normalized = normalizeBackupPayload(rawBackup);
+    pendingImportBackup = normalized;
+    pendingImportFileName = file.name;
+    pendingImportWarnings = validation.warnings || [];
+
+    const preview = previewBackup(normalized, {
+      fileName: file.name,
+      totalPets: state?.allPets?.length ?? null,
+    });
+
+    renderImportPreview(preview, validation.warnings || []);
+  } catch (err) {
+    const message = err?.message || '讀取備份檔失敗';
+    showImportError(message);
+    showToast(message, 'error');
+  }
+}
+
+function initImportBackupHandlers() {
+  const fileInput = document.getElementById('import-file-input');
+  const selectBtn = document.getElementById('btn-import-select');
+  const restoreBtn = document.getElementById('btn-import-restore');
+  const reloadBtn = document.getElementById('btn-import-reload');
+
+  resetImportUI();
+
+  selectBtn?.addEventListener('click', () => {
+    fileInput?.click();
+  });
+
+  fileInput?.addEventListener('change', (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleImportFileSelect(file);
+    }
+  });
+
+  restoreBtn?.addEventListener('click', () => {
+    if (!pendingImportBackup) {
+      showToast('請先選擇有效的備份檔', 'warning');
+      return;
+    }
+    handleRestoreBackup();
+  });
+
+  reloadBtn?.addEventListener('click', () => {
+    window.location.reload();
+  });
+}
+
+async function handleRestoreBackup() {
+  if (!pendingImportBackup) return;
+
+  const hasNewerVersionWarning = pendingImportWarnings.some((w) => w.includes('較新的版本'));
+
+  openConfirmModal(
+    '恢復備份',
+    '匯入後會覆蓋目前所有 QuestNote 資料，確定要繼續嗎？',
+    () => {
+      proceedRestoreAfterFirstConfirm(hasNewerVersionWarning);
+    },
+    { confirmLabel: '繼續', danger: true }
+  );
+}
+
+async function proceedRestoreAfterFirstConfirm(hasNewerVersionWarning) {
+  setImportElementHidden('import-preview', true);
+  setImportElementHidden('btn-import-select', true);
+  setImportElementHidden('import-restoring-hint', false);
+
+  const autoBackup = await createAutoBackupBeforeImport();
+  if (!autoBackup.success) {
+    setImportElementHidden('import-restoring-hint', true);
+    if (pendingImportBackup) {
+      setImportElementHidden('import-preview', false);
+    }
+    setImportElementHidden('btn-import-select', false);
+    showImportError('目前資料自動備份失敗，為了保護資料，本次匯入已取消。');
+    showToast('目前資料自動備份失敗，為了保護資料，本次匯入已取消。', 'error');
+    return;
+  }
+
+  setImportElementHidden('import-restoring-hint', true);
+
+  const secondMessage = hasNewerVersionWarning
+    ? '系統已自動下載目前資料備份。此備份來自較新版本，可能無法完全相容。請再次確認你選擇的是正確備份檔。'
+    : '系統已自動下載目前資料備份。請確認你選擇的是正確備份檔，再執行恢復。';
+
+  openConfirmModal(
+    '最後確認',
+    secondMessage,
+    async () => {
+      await executeRestoreBackup();
+    },
+    {
+      confirmLabel: '確認恢復',
+      danger: true,
+      onCancel: () => {
+        if (pendingImportBackup) {
+          setImportElementHidden('import-preview', false);
+        }
+        setImportElementHidden('btn-import-select', false);
+      },
+    }
+  );
+}
+
+async function executeRestoreBackup() {
+  if (!pendingImportBackup) return;
+
+  setImportElementHidden('import-preview', true);
+  setImportElementHidden('btn-import-select', true);
+  setImportElementHidden('import-restoring-hint', false);
+  setImportElementHidden('import-success-panel', true);
+
+  try {
+    await restoreBackup(pendingImportBackup);
+    await onRefresh();
+    applyReduceMotionClass(state?.userPreferences?.reduceMotion ?? false);
+    await handleAchievementCheckAfterAction();
+
+    setImportElementHidden('import-restoring-hint', true);
+    setImportElementHidden('import-success-panel', false);
+    setImportElementHidden('import-idle-hint', true);
+    setImportElementHidden('import-error-hint', true);
+
+    showToast('備份恢復完成', 'success');
+    showToast('建議重新整理 App，確認資料已完整載入。', 'info', 4000);
+  } catch (err) {
+    console.error('[QuestNote] 恢復備份失敗:', err);
+    setImportElementHidden('import-restoring-hint', true);
+    setImportElementHidden('import-preview', true);
+    setImportElementHidden('btn-import-select', false);
+    showImportError('恢復失敗，資料未完整寫入。請重新整理後再試。');
+    showToast('恢復失敗，請確認備份檔是否正確。', 'error');
+  }
+}
+
 function renderSettingsView() {
   const { tasks, wallet, collectionProgress, gachaStats, activeExpedition, userPreferences, achievementSummary } = state;
   const completedCount = tasks.filter((t) => t.completed).length;
@@ -2930,6 +3925,27 @@ async function handleDevUnlock() {
   await onRefresh();
   switchView('collection');
   alert(added > 0 ? `已解鎖 ${added} 隻新寵物（共 8 隻測試寵物已就緒）` : '8 隻測試寵物皆已在圖鑑中');
+}
+
+async function handleDevUnlockAll() {
+  if (!isDevMode()) return;
+
+  const petIds = (state?.allPets || []).map((p) => p.id);
+  if (petIds.length === 0) {
+    alert('寵物資料尚未載入，請稍後再試。');
+    return;
+  }
+
+  if (!confirm(`【開發測試】將全部 ${petIds.length} 隻寵物加入圖鑑，確定？`)) return;
+
+  const { newlyAdded, total } = await unlockAllDevPets(petIds);
+  await onRefresh();
+  switchView('collection');
+  alert(
+    newlyAdded > 0
+      ? `已解鎖 ${newlyAdded} 隻新寵物（全圖鑑 ${total} 隻已就緒）`
+      : `全圖鑑 ${total} 隻皆已在圖鑑中`
+  );
 }
 
 async function handleDevStardust() {

@@ -21,6 +21,7 @@ import {
   addMaterial,
 } from './rewardService.js';
 import { MATERIAL_LABELS } from './expeditionService.js';
+import { getWorkshopStats } from './workshopService.js';
 import { getTodayDateString, isCompletedToday, getLocalDateStringFromIso } from './taskFilterService.js';
 
 const ACHIEVEMENTS_KEY = 'achievements';
@@ -44,6 +45,7 @@ export const CATEGORY_LABELS = {
   bond: '親密度',
   special: '特殊',
   habit: '習慣',
+  workshop: '工坊',
 };
 
 /** 成就分類圖示 */
@@ -55,6 +57,7 @@ export const CATEGORY_ICONS = {
   bond: '💠',
   special: '🏅',
   habit: '🔄',
+  workshop: '🔨',
 };
 
 /** @type {object[]|null} */
@@ -166,7 +169,7 @@ function isTaskCompleted(task) {
  * 建立成就條件計算用的上下文
  */
 export async function buildAchievementContext(allPets = []) {
-  const [tasks, gachaStats, collection, expeditions, achState, taskStats, habits] = await Promise.all([
+  const [tasks, gachaStats, collection, expeditions, achState, taskStats, habits, workshopStats] = await Promise.all([
     getAllTasks(),
     getGachaStats(),
     getCollection(),
@@ -174,6 +177,7 @@ export async function buildAchievementContext(allPets = []) {
     getAchievementsState(),
     getTaskStats(),
     getAllHabits(),
+    getWorkshopStats(),
   ]);
 
   const completedTasks = tasks.filter(isTaskCompleted);
@@ -211,6 +215,9 @@ export async function buildAchievementContext(allPets = []) {
   const hasWeeklyGoalThisWeek = getWeeklyHabits(habits).some((h) =>
     isWeeklyGoalMet(h, monday)
   );
+  const hasSetNickname = collection.some(
+    (c) => typeof c.nickname === 'string' && c.nickname.trim()
+  );
 
   return {
     completedTasksTotal: completedTasks.length,
@@ -233,6 +240,10 @@ export async function buildAchievementContext(allPets = []) {
     habitLogTotal,
     maxDailyHabitStreak: maxDailyStreak,
     hasWeeklyHabitGoal: hasWeeklyGoalThisWeek,
+    craftCount: workshopStats.craftCount ?? 0,
+    giftCount: workshopStats.giftCount ?? 0,
+    favoriteGiftCount: workshopStats.favoriteGiftCount ?? 0,
+    hasSetNickname,
   };
 }
 
@@ -285,6 +296,14 @@ export function getAchievementProgress(achievement, context) {
       return context.hasWeeklyHabitGoal ? 1 : 0;
     case 'complete_50_habit_logs':
       return context.habitLogTotal;
+    case 'craft_count':
+      return context.craftCount;
+    case 'gift_count':
+      return context.giftCount;
+    case 'favorite_gift_count':
+      return context.favoriteGiftCount;
+    case 'first_nickname_set':
+      return context.hasSetNickname ? 1 : 0;
     default:
       return 0;
   }

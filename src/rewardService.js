@@ -13,6 +13,8 @@ export const DEFAULT_MATERIALS = {
   lava_core: 0,
   machine_part: 0,
   star_shard: 0,
+  aurora_ice: 0,
+  harvest_charm: 0,
 };
 
 /** 各重要程度的冒險能量獎勵 */
@@ -121,6 +123,34 @@ export async function addMaterial(materialId, amount) {
   if (amount <= 0) return getWallet();
   const wallet = await getWallet();
   wallet.materials[materialId] = (wallet.materials[materialId] || 0) + amount;
+  await dbPut(STORES.META, wallet);
+  return wallet;
+}
+
+/** 扣除材料 */
+export async function spendMaterial(materialId, amount) {
+  if (amount <= 0) return getWallet();
+  const wallet = await getWallet();
+  const current = wallet.materials[materialId] || 0;
+  if (current < amount) {
+    throw new Error('材料不足');
+  }
+  wallet.materials[materialId] = current - amount;
+  await dbPut(STORES.META, wallet);
+  return wallet;
+}
+
+/** 一次扣除多種材料（全部足夠才扣） */
+export async function spendMaterials(recipe) {
+  const wallet = await getWallet();
+  for (const [matId, amount] of Object.entries(recipe || {})) {
+    if ((wallet.materials[matId] || 0) < amount) {
+      throw new Error('材料不足');
+    }
+  }
+  for (const [matId, amount] of Object.entries(recipe || {})) {
+    wallet.materials[matId] = (wallet.materials[matId] || 0) - amount;
+  }
   await dbPut(STORES.META, wallet);
   return wallet;
 }

@@ -42,6 +42,8 @@ import {
 
   getCompanion,
 
+  migrateCollectionNicknames,
+
 } from './collectionService.js';
 
 import { getWelcomeCompanionLine } from './companionDialogueService.js';
@@ -73,6 +75,19 @@ import {
 } from './expeditionService.js';
 
 import { initHabits, getAllHabits, getHabitPageStats } from './habitService.js';
+
+import {
+  initWorkshop,
+  loadMaterials,
+  loadCraftables,
+  getInventory,
+  getWorkshopStats,
+  getEnabledCraftables,
+  hasCraftableMaterials,
+  hasBondItemsInInventory,
+  companionLikesAnyGift,
+  hasLowMaterials,
+} from './workshopService.js';
 
 import { initUI, renderAll, applyReduceMotionClass } from './ui.js';
 import { runAppHealthCheck } from './healthCheckService.js';
@@ -120,6 +135,18 @@ const appState = {
   habitStats: null,
 
   habitsLoadError: false,
+
+  inventory: { items: {}, itemUsageLogs: {} },
+
+  workshopStats: {
+    craftCount: 0,
+    giftCount: 0,
+    favoriteGiftCount: 0,
+  },
+
+  materialsCatalog: [],
+
+  craftablesCatalog: [],
 
   onReset: resetAllData,
 
@@ -205,7 +232,7 @@ async function refreshState() {
 
   let habitsLoadError = false;
 
-  const [tasks, wallet, gachaStats, availablePulls, habits] =
+  const [tasks, wallet, gachaStats, availablePulls, habits, inventory, workshopStats] =
 
     await Promise.all([
 
@@ -227,6 +254,22 @@ async function refreshState() {
 
       }),
 
+      getInventory().catch((err) => {
+
+        console.error('[QuestNote] 工坊庫存載入失敗:', err);
+
+        return { items: {}, itemUsageLogs: {} };
+
+      }),
+
+      getWorkshopStats().catch((err) => {
+
+        console.error('[QuestNote] 工坊統計載入失敗:', err);
+
+        return { craftCount: 0, giftCount: 0, favoriteGiftCount: 0 };
+
+      }),
+
     ]);
 
 
@@ -241,7 +284,9 @@ async function refreshState() {
 
   appState.habitStats = getHabitPageStats(habits, today);
 
+  appState.inventory = inventory;
 
+  appState.workshopStats = workshopStats;
 
   appState.tasks = sortTasks(tasks);
 
@@ -279,6 +324,17 @@ async function refreshState() {
 
     habits: appState.habits,
 
+    inventory: appState.inventory,
+
+    craftables: appState.craftablesCatalog,
+
+    workshopHelpers: {
+      hasCraftableMaterials,
+      hasBondItemsInInventory,
+      companionLikesAnyGift,
+      hasLowMaterials,
+    },
+
     isWelcome: true,
 
   });
@@ -306,6 +362,8 @@ async function resetAllData() {
   await initUserPreferences();
 
   await initAchievements();
+
+  await initWorkshop();
 
 }
 
@@ -510,6 +568,34 @@ async function initApp() {
     await initUserPreferences();
 
     await initAchievements();
+
+    try {
+
+      await initWorkshop();
+
+      appState.materialsCatalog = await loadMaterials();
+
+      appState.craftablesCatalog = await loadCraftables();
+
+    } catch (err) {
+
+      console.error('[QuestNote] 工坊初始化錯誤:', err);
+
+      const { showToast } = await import('./ui.js');
+
+      showToast('工坊資料初始化時發生問題，請稍後再試。', 'error');
+
+    }
+
+    try {
+
+      await migrateCollectionNicknames();
+
+    } catch (err) {
+
+      console.error('[QuestNote] 暱稱 migration 錯誤:', err);
+
+    }
 
     appState.userPreferences = await getUserPreferences();
 

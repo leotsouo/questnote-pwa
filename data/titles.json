@@ -31,6 +31,12 @@
     { "id": "title_habit_streak_7", "name": "七日堅持者", "sourceAchievementId": "ach_habit_streak_7" },
     { "id": "title_habit_streak_30", "name": "三十日修行者", "sourceAchievementId": "ach_habit_streak_30" },
     { "id": "title_weekly_goal", "name": "本週達標者", "sourceAchievementId": "ach_weekly_habit_goal" },
-    { "id": "title_stable_life", "name": "穩定生活者", "sourceAchievementId": "ach_complete_50_habit_logs" }
+    { "id": "title_stable_life", "name": "穩定生活者", "sourceAchievementId": "ach_complete_50_habit_logs" },
+    { "id": "title_apprentice_crafter", "name": "見習工匠", "sourceAchievementId": "ach_first_craft" },
+    { "id": "title_gentle_keeper", "name": "溫柔飼主", "sourceAchievementId": "ach_first_gift" },
+    { "id": "title_workshop_expert", "name": "工坊熟手", "sourceAchievementId": "ach_craft_20_items" },
+    { "id": "title_gift_master", "name": "禮物達人", "sourceAchievementId": "ach_gift_30_items" },
+    { "id": "title_mind_reader_keeper", "name": "讀心飼主", "sourceAchievementId": "ach_first_favorite_gift" },
+    { "id": "title_namer", "name": "命名者", "sourceAchievementId": "ach_first_nickname" }
   ]
 }

@@ -41,6 +41,21 @@ export async function unlockDevTestPets() {
 }
 
 /**
+ * 將全部寵物加入圖鑑（開發測試用）
+ * @param {string[]} petIds
+ * @returns {Promise<{ newlyAdded: number, total: number }>}
+ */
+export async function unlockAllDevPets(petIds) {
+  let newlyAdded = 0;
+  for (const petId of petIds) {
+    const before = await getPetCollection(petId);
+    await addPetToCollection(petId);
+    if (!before) newlyAdded += 1;
+  }
+  return { newlyAdded, total: petIds.length };
+}
+
+/**
  * 開發測試：發放大量星塵
  * @returns {Promise<number>} 發放後的星塵總數
  */

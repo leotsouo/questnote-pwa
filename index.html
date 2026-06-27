@@ -177,7 +177,7 @@
       <header class="page-header">
         <div class="page-header__inner">
           <h1 class="page-title">更多</h1>
-          <p class="page-subtitle">成就、習慣、設定與資料管理</p>
+          <p class="page-subtitle">成就、習慣、工坊、設定與資料管理</p>
         </div>
       </header>
 
@@ -198,6 +198,14 @@
             <span class="more-menu-desc">每日與每週習慣追蹤</span>
           </span>
           <span class="more-menu-badge" id="more-habits-badge" hidden aria-hidden="true"></span>
+          <span class="more-menu-arrow">›</span>
+        </button>
+        <button class="more-menu-item" data-goto="workshop" type="button">
+          <span class="more-menu-icon">🔨</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">工坊</span>
+            <span class="more-menu-desc">使用探險材料製作親密度道具</span>
+          </span>
           <span class="more-menu-arrow">›</span>
         </button>
         <button class="more-menu-item" data-goto="settings" type="button">
@@ -248,6 +256,7 @@
         <button class="filter-btn" data-ach-filter="collection">圖鑑</button>
         <button class="filter-btn" data-ach-filter="expedition">探險</button>
         <button class="filter-btn" data-ach-filter="bond">親密度</button>
+        <button class="filter-btn" data-ach-filter="workshop">工坊</button>
         <button class="filter-btn" data-ach-filter="special">特殊</button>
         <button class="filter-btn" data-ach-filter="done">已完成</button>
         <button class="filter-btn" data-ach-filter="pending">未完成</button>
@@ -255,6 +264,27 @@
       </div>
 
       <div id="achievement-list" class="achievement-list"></div>
+    </main>
+
+    <!-- 工坊頁 -->
+    <main id="view-workshop" class="view">
+      <header class="page-header page-header--with-back">
+        <button class="page-back-btn" data-goto="more" type="button" aria-label="返回更多">‹</button>
+        <div class="page-header__inner">
+          <h1 class="page-title">材料工坊</h1>
+          <p class="page-subtitle">使用探險取得的材料製作禮物，提升寵物親密度。</p>
+        </div>
+      </header>
+
+      <section id="workshop-summary" class="workshop-summary card"></section>
+
+      <div class="segmented-control segmented-control--workshop" id="workshop-tabs" role="tablist" aria-label="工坊分頁">
+        <button class="segmented-control__btn active" data-workshop-tab="materials" type="button" role="tab" aria-selected="true">材料</button>
+        <button class="segmented-control__btn" data-workshop-tab="craft" type="button" role="tab" aria-selected="false">製作</button>
+        <button class="segmented-control__btn" data-workshop-tab="gift" type="button" role="tab" aria-selected="false">贈送</button>
+      </div>
+
+      <div id="workshop-content" class="workshop-content"></div>
     </main>
 
     <!-- 設定頁 -->
@@ -280,9 +310,94 @@
       </section>
 
       <section class="card settings-backup">
-        <h2 class="section-title">資料備份</h2>
-        <button id="btn-export" class="btn btn--secondary btn--block">匯出 JSON 備份</button>
-        <p class="settings-section-note">之後可擴充匯入 JSON 功能</p>
+        <h2 class="section-title">備份與恢復</h2>
+        <p class="settings-section-note settings-backup__intro">
+          匯入備份會用備份檔內容覆蓋目前資料。匯入前系統會先自動下載一份目前資料備份，以避免誤操作。
+        </p>
+
+        <div class="settings-backup__actions">
+          <button id="btn-export" class="btn btn--secondary btn--block" type="button">匯出 JSON 備份</button>
+        </div>
+
+        <div class="settings-backup__import">
+          <p id="import-idle-hint" class="settings-backup__hint">選擇之前匯出的 QuestNote JSON 備份檔。</p>
+          <p id="import-loading-hint" class="settings-backup__hint settings-backup__hint--loading" hidden>正在讀取備份檔...</p>
+          <p id="import-error-hint" class="settings-backup__hint settings-backup__hint--error" hidden></p>
+
+          <input type="file" id="import-file-input" accept=".json,application/json" hidden />
+
+          <button id="btn-import-select" class="btn btn--secondary btn--block" type="button">選擇備份檔</button>
+
+          <div id="import-preview" class="import-preview" hidden>
+            <p class="import-preview__warning" id="import-preview-warning" hidden></p>
+            <dl class="import-preview__list">
+              <div class="import-preview__row">
+                <dt>檔案名稱</dt>
+                <dd id="import-preview-filename">—</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>備份版本</dt>
+                <dd id="import-preview-version">—</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>備份建立時間</dt>
+                <dd id="import-preview-exported-at">—</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>任務數</dt>
+                <dd id="import-preview-tasks">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>已完成任務</dt>
+                <dd id="import-preview-completed-tasks">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>習慣數</dt>
+                <dd id="import-preview-habits">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>寵物收集數</dt>
+                <dd id="import-preview-collection">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>總寵物數</dt>
+                <dd id="import-preview-total-pets">—</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>星塵</dt>
+                <dd id="import-preview-stardust">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>冒險能量</dt>
+                <dd id="import-preview-energy">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>探險紀錄數</dt>
+                <dd id="import-preview-expeditions">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>已解鎖成就</dt>
+                <dd id="import-preview-achievements">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>已解鎖稱號</dt>
+                <dd id="import-preview-titles">0</dd>
+              </div>
+            </dl>
+
+            <p class="import-preview__danger-note">恢復備份會覆蓋目前資料，請先確認備份內容正確。</p>
+
+            <button id="btn-import-restore" class="btn btn--danger btn--block" type="button">恢復此備份</button>
+          </div>
+
+          <p id="import-restoring-hint" class="settings-backup__hint settings-backup__hint--loading" hidden>正在恢復資料，請不要關閉 App。</p>
+
+          <div id="import-success-panel" class="import-success-panel" hidden>
+            <p class="import-success-panel__text">備份恢復完成。</p>
+            <p class="import-success-panel__subtext">建議重新整理 App，確認資料已完整載入。</p>
+            <button id="btn-import-reload" class="btn btn--primary btn--block" type="button">重新整理 App</button>
+          </div>
+        </div>
       </section>
 
       <section class="card settings-stats">
@@ -332,11 +447,12 @@
         <h2 class="section-title">開發測試用</h2>
         <p class="dev-tools__note">僅在本機開發環境顯示，GitHub Pages 正式版不會出現。</p>
         <button id="btn-dev-unlock" class="btn btn--dev btn--block">測試：解鎖 8 隻高稀有寵物</button>
+        <button id="btn-dev-unlock-all" class="btn btn--dev btn--block">測試：解鎖全圖鑑</button>
         <button id="btn-dev-stardust" class="btn btn--dev btn--block">測試：獲得 100,000 星塵</button>
         <button id="btn-dev-expedition" class="btn btn--dev btn--block">測試：立即結束派遣探險</button>
       </section>
 
-      <p class="settings-note">QuestNote v1.8.1 — 離線個人任務記事 App</p>
+      <p class="settings-note">QuestNote v2.0 — 離線個人任務記事 App</p>
     </main>
 
     <!-- 底部導航 -->

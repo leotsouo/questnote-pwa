@@ -27,6 +27,8 @@ export const MATERIAL_LABELS = {
   lava_core: '熔岩核心',
   machine_part: '機械零件',
   star_shard: '星界碎片',
+  aurora_ice: '極光冰晶',
+  harvest_charm: '豐穗護符',
 };
 
 /**
@@ -99,7 +101,24 @@ function textContainsKeyword(text, keywords) {
 
 function petMatchesElements(pet, elements) {
   const el = (pet.element || '').toLowerCase();
-  return elements.some((e) => el === e.toLowerCase());
+  return elements.some((e) => {
+    const key = e.toLowerCase();
+    return el === key || el.includes(key);
+  });
+}
+
+function petMatchesTraitUnlock(pet, unlock) {
+  const keywords = unlock.keywords || [];
+  const elements = unlock.elements || [];
+  const poolTags = unlock.poolTags || [];
+  const tags = pet.poolTags || [];
+  return (
+    petMatchesElements(pet, elements) ||
+    textContainsKeyword(pet.name, keywords) ||
+    textContainsKeyword(pet.description, keywords) ||
+    textContainsKeyword(pet.lore, keywords) ||
+    (poolTags.length > 0 && poolTags.some((t) => tags.includes(t)))
+  );
 }
 
 /**
@@ -114,23 +133,23 @@ export function checkAreaUnlock(area, ownedPets) {
   }
 
   if (unlock.type === 'fire_pet') {
-    const ok = ownedPets.some(
-      (p) =>
-        petMatchesElements(p, unlock.elements || []) ||
-        textContainsKeyword(p.name, unlock.keywords || []) ||
-        textContainsKeyword(p.description, unlock.keywords || [])
-    );
+    const ok = ownedPets.some((p) => petMatchesTraitUnlock(p, unlock));
     return { unlocked: ok, hint: unlock.hint || '需要火屬性夥伴' };
   }
 
   if (unlock.type === 'mechanical_pet') {
-    const ok = ownedPets.some(
-      (p) =>
-        petMatchesElements(p, unlock.elements || []) ||
-        textContainsKeyword(p.name, unlock.keywords || []) ||
-        textContainsKeyword(p.description, unlock.keywords || [])
-    );
+    const ok = ownedPets.some((p) => petMatchesTraitUnlock(p, unlock));
     return { unlocked: ok, hint: unlock.hint || '需要機械系夥伴' };
+  }
+
+  if (unlock.type === 'frost_pet') {
+    const ok = ownedPets.some((p) => petMatchesTraitUnlock(p, unlock));
+    return { unlocked: ok, hint: unlock.hint || '需要極寒或北境系夥伴' };
+  }
+
+  if (unlock.type === 'rustic_pet') {
+    const ok = ownedPets.some((p) => petMatchesTraitUnlock(p, unlock));
+    return { unlocked: ok, hint: unlock.hint || '需要田園或守護系夥伴' };
   }
 
   if (unlock.type === 'ur_pet') {

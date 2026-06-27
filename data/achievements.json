@@ -322,5 +322,65 @@
     "target": 50,
     "reward": { "stardust": 300, "adventureEnergy": 0, "materials": {} },
     "titleReward": "穩定生活者"
+  },
+  {
+    "id": "ach_first_craft",
+    "name": "初次製作",
+    "description": "第一次製作道具。",
+    "category": "workshop",
+    "conditionType": "craft_count",
+    "target": 1,
+    "reward": { "stardust": 50, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "見習工匠"
+  },
+  {
+    "id": "ach_first_gift",
+    "name": "第一份禮物",
+    "description": "第一次贈送親密度道具給寵物。",
+    "category": "workshop",
+    "conditionType": "gift_count",
+    "target": 1,
+    "reward": { "stardust": 50, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "溫柔飼主"
+  },
+  {
+    "id": "ach_craft_20_items",
+    "name": "工坊熟手",
+    "description": "累積製作 20 個道具。",
+    "category": "workshop",
+    "conditionType": "craft_count",
+    "target": 20,
+    "reward": { "stardust": 150, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "工坊熟手"
+  },
+  {
+    "id": "ach_gift_30_items",
+    "name": "禮物達人",
+    "description": "累積贈送 30 個道具。",
+    "category": "workshop",
+    "conditionType": "gift_count",
+    "target": 30,
+    "reward": { "stardust": 200, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "禮物達人"
+  },
+  {
+    "id": "ach_first_favorite_gift",
+    "name": "投其所好",
+    "description": "第一次觸發喜好加成。",
+    "category": "workshop",
+    "conditionType": "favorite_gift_count",
+    "target": 1,
+    "reward": { "stardust": 100, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "讀心飼主"
+  },
+  {
+    "id": "ach_first_nickname",
+    "name": "第一份心意",
+    "description": "第一次為夥伴取暱稱。完成後可領取 1000 星塵（可 10 連抽一次）。",
+    "category": "collection",
+    "conditionType": "first_nickname_set",
+    "target": 1,
+    "reward": { "stardust": 1000, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "命名者"
   }
 ]

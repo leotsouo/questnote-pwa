@@ -23,6 +23,153 @@ export const STAR_UPGRADE_COST = {
 /** 親密度等級門檻（累積 EXP） */
 export const BOND_LEVEL_THRESHOLDS = [0, 50, 150, 300, 500];
 
+/** 暱稱長度上限（中文算 2 單位、英文算 1 單位，最多 24 單位 = 12 中文或 24 英文） */
+export const NICKNAME_MAX_UNITS = 24;
+
+function isCjkChar(ch) {
+  return /[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/.test(ch);
+}
+
+/** 計算暱稱字元單位數 */
+export function getNicknameCharUnits(text) {
+  if (!text) return 0;
+  let units = 0;
+  for (const ch of text) {
+    units += isCjkChar(ch) ? 2 : 1;
+  }
+  return units;
+}
+
+/**
+ * 正規化暱稱輸入（trim、移除換行）
+ * @returns {string|null}
+ */
+export function normalizePetNickname(nickname) {
+  if (nickname == null) return null;
+  if (typeof nickname !== 'string') return null;
+  const trimmed = nickname.trim().replace(/[\r\n]+/g, '');
+  return trimmed || null;
+}
+
+/**
+ * 驗證暱稱
+ * @returns {{ valid: boolean, nickname?: string|null, error?: string }}
+ */
+export function validatePetNickname(nickname) {
+  const normalized = normalizePetNickname(nickname);
+  if (!normalized) {
+    return { valid: true, nickname: null };
+  }
+  const units = getNicknameCharUnits(normalized);
+  if (units > NICKNAME_MAX_UNITS) {
+    return {
+      valid: false,
+      error: '暱稱太長，請控制在 12 個中文字以內。',
+    };
+  }
+  return { valid: true, nickname: normalized };
+}
+
+/** 儲存用暱稱 sanitize（匯入時過長可截斷） */
+function sanitizeStoredNickname(nickname) {
+  if (nickname == null) return null;
+  if (typeof nickname !== 'string') return null;
+  const trimmed = nickname.trim().replace(/[\r\n]+/g, '');
+  if (!trimmed) return null;
+
+  const validation = validatePetNickname(trimmed);
+  if (validation.valid) return validation.nickname;
+
+  let result = '';
+  let units = 0;
+  for (const ch of trimmed) {
+    const chUnits = isCjkChar(ch) ? 2 : 1;
+    if (units + chUnits > NICKNAME_MAX_UNITS) break;
+    result += ch;
+    units += chUnits;
+  }
+  if (result) {
+    console.warn('[QuestNote] 暱稱過長已截斷:', nickname);
+    return result;
+  }
+  return null;
+}
+
+/** 取得寵物顯示名稱（暱稱優先） */
+export function getPetDisplayName(pet, collectionItem) {
+  if (!pet) return '';
+  const nickname = collectionItem?.nickname ?? pet?.nickname ?? null;
+  if (typeof nickname === 'string' && nickname.trim()) {
+    return nickname.trim();
+  }
+  return pet.name || '';
+}
+
+/** 取得寵物原始名稱 */
+export function getPetOriginalName(pet) {
+  return pet?.name || '';
+}
+
+/**
+ * 設定寵物暱稱
+ * @returns {Promise<{ success: boolean, message?: string, entry?: object, cleared?: boolean }>}
+ */
+export async function setPetNickname(petId, nickname) {
+  const entry = await getPetCollection(petId);
+  if (!entry) {
+    return { success: false, message: '尚未獲得的寵物無法設定暱稱。' };
+  }
+
+  const validation = validatePetNickname(nickname);
+  if (!validation.valid) {
+    return { success: false, message: validation.error || '暱稱太長，請重新輸入。' };
+  }
+
+  try {
+    const normalized = normalizeEntry(entry);
+    normalized.nickname = validation.nickname;
+    await dbPut(STORES.COLLECTION, normalized);
+    return { success: true, entry: normalized, cleared: validation.nickname === null };
+  } catch (err) {
+    console.error('[QuestNote] 暱稱儲存失敗:', err);
+    return { success: false, message: '暱稱儲存失敗，請稍後再試。' };
+  }
+}
+
+/**
+ * 清除寵物暱稱
+ */
+export async function clearPetNickname(petId) {
+  const entry = await getPetCollection(petId);
+  if (!entry) {
+    return { success: false, message: '找不到這隻寵物資料。' };
+  }
+
+  try {
+    const normalized = normalizeEntry(entry);
+    normalized.nickname = null;
+    await dbPut(STORES.COLLECTION, normalized);
+    return { success: true, entry: normalized };
+  } catch (err) {
+    console.error('[QuestNote] 暱稱清除失敗:', err);
+    return { success: false, message: '暱稱儲存失敗，請稍後再試。' };
+  }
+}
+
+/** 啟動時 migration：補齊 nickname 欄位 */
+export async function migrateCollectionNicknames() {
+  const items = await dbGetAll(STORES.COLLECTION);
+  for (const item of items) {
+    const normalized = normalizeEntry(item);
+    const changed =
+      !('nickname' in item) ||
+      item.nickname !== normalized.nickname;
+    if (changed) {
+      await dbPut(STORES.COLLECTION, normalized);
+    }
+  }
+}
+
 /** 依累積 EXP 計算親密度等級 */
 export function getBondLevelFromExp(exp) {
   if (exp >= 500) return 5;
@@ -66,6 +213,7 @@ export function normalizeEntry(entry) {
     bondExp,
     bondLevel: entry.bondLevel ?? getBondLevelFromExp(bondExp),
     isCompanion: entry.isCompanion ?? false,
+    nickname: sanitizeStoredNickname(entry.nickname),
   };
 }
 
@@ -95,6 +243,7 @@ export async function addPetToCollection(petId) {
     bondExp: 0,
     bondLevel: 1,
     isCompanion: false,
+    nickname: null,
     obtainedAt: new Date().toISOString(),
   });
   await dbPut(STORES.COLLECTION, entry);
@@ -167,6 +316,9 @@ export async function getCompanion(allPets) {
     ...pet,
     ...companionEntry,
     owned: true,
+    nickname: companionEntry.nickname ?? null,
+    displayName: getPetDisplayName(pet, companionEntry),
+    originalName: pet.name,
   };
 }
 
@@ -250,6 +402,9 @@ export async function getEnrichedCollection(allPets) {
       bondLevel: normalized?.bondLevel ?? 0,
       isCompanion: normalized?.isCompanion ?? false,
       obtainedAt: normalized?.obtainedAt ?? null,
+      nickname: normalized?.nickname ?? null,
+      displayName: normalized ? getPetDisplayName(pet, normalized) : pet.name,
+      originalName: pet.name,
     };
   });
 }
