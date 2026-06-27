@@ -16,18 +16,29 @@ import {
   syncWithPetDatabase,
   getCollectionProgress,
   getEnrichedCollection,
+  getCompanion,
 } from './collectionService.js';
+import { getDefaultCompanionLine } from './companionService.js';
+import { mergeAllPetsWithLore } from './loreService.js';
+import {
+  loadExpeditionAreas,
+  getActiveExpedition,
+} from './expeditionService.js';
 import { initUI, renderAll } from './ui.js';
 
 /** @type {object} 全域 App 狀態 */
 const appState = {
   tasks: [],
-  wallet: { stardust: 0 },
+  wallet: { stardust: 0, adventureEnergy: 0, materials: {} },
   gachaStats: { ssrPity: 0, urPity: 0, totalPulls: 0 },
   allPets: [],
   poolsData: { pools: [] },
+  expeditionAreas: [],
+  activeExpedition: null,
   collectionProgress: { owned: 0, total: 0 },
   enrichedCollection: [],
+  companion: null,
+  companionLine: '',
   todayCompleted: 0,
   availablePulls: 0,
   onReset: resetAllData,
@@ -37,9 +48,11 @@ const appState = {
  * 從 JSON 載入寵物與卡池資料（每次啟動讀取最新版）
  */
 async function loadGameData() {
-  const [petsRes, poolsRes] = await Promise.all([
+  const [petsRes, poolsRes, loreRes, expeditionsRes] = await Promise.all([
     fetch('./data/pets.json'),
     fetch('./data/pools.json'),
+    fetch('./data/pets-lore.json'),
+    fetch('./data/expeditions.json'),
   ]);
 
   if (!petsRes.ok || !poolsRes.ok) {
@@ -48,9 +61,17 @@ async function loadGameData() {
 
   const petsData = await petsRes.json();
   const poolsData = await poolsRes.json();
+  const loreData = loreRes.ok ? await loreRes.json() : { lore: [] };
 
-  appState.allPets = petsData.pets || [];
+  appState.allPets = mergeAllPetsWithLore(petsData.pets || [], loreData);
   appState.poolsData = poolsData;
+
+  if (expeditionsRes.ok) {
+    const expData = await expeditionsRes.json();
+    appState.expeditionAreas = expData.areas || [];
+  } else {
+    appState.expeditionAreas = await loadExpeditionAreas().catch(() => []);
+  }
 
   // 同步圖鑑 — 新寵物自動顯示未獲得
   await syncWithPetDatabase(appState.allPets);
@@ -79,6 +100,13 @@ async function refreshState() {
   appState.availablePulls = availablePulls;
   appState.collectionProgress = await getCollectionProgress(appState.allPets);
   appState.enrichedCollection = await getEnrichedCollection(appState.allPets);
+  appState.companion = await getCompanion(appState.allPets);
+  appState.companionLine = getDefaultCompanionLine(
+    appState.tasks,
+    appState.todayCompleted,
+    appState.companion
+  );
+  appState.activeExpedition = await getActiveExpedition();
 
   await renderAll();
 }

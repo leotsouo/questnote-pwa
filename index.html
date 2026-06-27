@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="theme-color" content="#0f0f1a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="QuestNote" />
@@ -27,23 +27,34 @@
       </header>
 
       <section class="stats-bar">
-        <div class="stat-card">
+        <div class="stat-card stat-card--stardust">
+          <span class="stat-icon">✦</span>
           <span class="stat-label">星塵</span>
           <span class="stat-value" id="stat-stardust">0</span>
         </div>
+        <div class="stat-card stat-card--energy">
+          <span class="stat-icon">⚡</span>
+          <span class="stat-label">冒險能量</span>
+          <span class="stat-value" id="stat-energy">0</span>
+        </div>
         <div class="stat-card">
+          <span class="stat-icon">✓</span>
           <span class="stat-label">今日完成</span>
           <span class="stat-value" id="stat-today">0</span>
         </div>
         <div class="stat-card">
+          <span class="stat-icon">📖</span>
           <span class="stat-label">圖鑑</span>
           <span class="stat-value" id="stat-collection">0/0</span>
         </div>
         <div class="stat-card">
+          <span class="stat-icon">✨</span>
           <span class="stat-label">可抽卡</span>
           <span class="stat-value" id="stat-pulls">0</span>
         </div>
       </section>
+
+      <section id="companion-section" class="companion-section"></section>
 
       <section class="task-section">
         <h2 class="section-title">進行中</h2>
@@ -79,13 +90,19 @@
         </div>
 
         <div class="pity-bars">
-          <div class="pity-bar">
-            <span class="pity-label">SSR 保底</span>
-            <span class="pity-value" id="gacha-ssr-pity">0/30</span>
+          <div class="pity-item">
+            <div class="pity-item__header">
+              <span class="pity-label">SSR 保底</span>
+              <span class="pity-value" id="gacha-ssr-pity">0/30</span>
+            </div>
+            <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--ssr" id="gacha-ssr-bar"></div></div>
           </div>
-          <div class="pity-bar">
-            <span class="pity-label">UR 保底</span>
-            <span class="pity-value" id="gacha-ur-pity">0/100</span>
+          <div class="pity-item">
+            <div class="pity-item__header">
+              <span class="pity-label">UR 保底</span>
+              <span class="pity-value" id="gacha-ur-pity">0/100</span>
+            </div>
+            <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--ur" id="gacha-ur-bar"></div></div>
           </div>
         </div>
 
@@ -114,6 +131,18 @@
       <div id="collection-grid" class="collection-grid"></div>
     </main>
 
+    <!-- 探險頁 -->
+    <main id="view-expedition" class="view">
+      <header class="page-header">
+        <h1 class="page-title">探險</h1>
+      </header>
+
+      <section id="expedition-energy" class="expedition-energy card"></section>
+      <section id="expedition-active" class="expedition-active"></section>
+      <section id="expedition-areas" class="expedition-areas"></section>
+      <section id="expedition-pets" class="expedition-pets"></section>
+    </main>
+
     <!-- 設定頁 -->
     <main id="view-settings" class="view">
       <header class="page-header">
@@ -132,6 +161,10 @@
             <dd id="settings-stardust">0</dd>
           </div>
           <div class="stats-row">
+            <dt>冒險能量</dt>
+            <dd id="settings-energy">0</dd>
+          </div>
+          <div class="stats-row">
             <dt>圖鑑進度</dt>
             <dd id="settings-collection">0/0</dd>
           </div>
@@ -147,7 +180,15 @@
         <button id="btn-reset" class="btn btn--danger btn--block">重置所有資料</button>
       </section>
 
-      <p class="settings-note">QuestNote v1.0 — 離線個人任務記事 App</p>
+      <section id="dev-tools-section" class="card dev-tools" hidden>
+        <h2 class="section-title">開發測試用</h2>
+        <p class="dev-tools__note">僅在本機開發環境顯示，GitHub Pages 正式版不會出現。</p>
+        <button id="btn-dev-unlock" class="btn btn--dev btn--block">測試：解鎖 8 隻高稀有寵物</button>
+        <button id="btn-dev-stardust" class="btn btn--dev btn--block">測試：獲得 100,000 星塵</button>
+        <button id="btn-dev-expedition" class="btn btn--dev btn--block">測試：立即結束派遣探險</button>
+      </section>
+
+      <p class="settings-note">QuestNote v1.2 — 離線個人任務記事 App</p>
     </main>
 
     <!-- 底部導航 -->
@@ -163,6 +204,10 @@
       <button class="nav-item" data-view="collection" aria-label="圖鑑">
         <span class="nav-icon">📖</span>
         <span class="nav-label">圖鑑</span>
+      </button>
+      <button class="nav-item" data-view="expedition" aria-label="探險">
+        <span class="nav-icon">🗺️</span>
+        <span class="nav-label">探險</span>
       </button>
       <button class="nav-item" data-view="settings" aria-label="設定">
         <span class="nav-icon">⚙️</span>

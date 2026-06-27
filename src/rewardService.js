@@ -3,8 +3,24 @@
  */
 import { dbGet, dbPut, STORES } from './db.js';
 import { updateTask } from './taskService.js';
+import { addBondExpToCompanion } from './collectionService.js';
 
 const WALLET_KEY = 'wallet';
+
+/** 預設材料 */
+export const DEFAULT_MATERIALS = {
+  forest_leaf: 0,
+  lava_core: 0,
+  machine_part: 0,
+  star_shard: 0,
+};
+
+/** 各重要程度的冒險能量獎勵 */
+const PRIORITY_ENERGY = {
+  normal: 1,
+  important: 2,
+  urgent: 3,
+};
 
 /** 各重要程度的基礎獎勵 */
 const PRIORITY_REWARDS = {
@@ -13,30 +29,27 @@ const PRIORITY_REWARDS = {
   urgent: 80,
 };
 
-/** 內容過短時的最低獎勵 */
-const MIN_CONTENT_REWARD = 5;
-
 /** 抽卡單次消耗（供 UI 計算可抽次數） */
 export const GACHA_COST = 100;
 
+/** 各重要程度親密度獎勵 */
+const PRIORITY_BOND = {
+  normal: 5,
+  important: 12,
+  urgent: 20,
+};
+
 /**
- * 計算任務內容的有效字元數
- * 少於 5 個中文字或 5 個非空白字元時視為內容過短
+ * 計算任務完成應得親密度
  */
-export function isContentTooShort(content) {
-  const text = (content || '').trim();
-  const chineseCount = (text.match(/[\u4e00-\u9fff]/g) || []).length;
-  const nonWhitespace = text.replace(/\s/g, '').length;
-  return chineseCount < 5 && nonWhitespace < 5;
+export function calculateBondAmount(task) {
+  return PRIORITY_BOND[task.priority] ?? PRIORITY_BOND.normal;
 }
 
 /**
  * 計算任務完成應得星塵
  */
 export function calculateRewardAmount(task) {
-  if (isContentTooShort(task.content)) {
-    return MIN_CONTENT_REWARD;
-  }
   return PRIORITY_REWARDS[task.priority] ?? PRIORITY_REWARDS.normal;
 }
 
@@ -55,10 +68,66 @@ export function canClaimReward(task) {
   return lastDate !== today;
 }
 
+/**
+ * 計算任務完成應得冒險能量
+ */
+export function calculateAdventureEnergyAmount(task) {
+  return PRIORITY_ENERGY[task.priority] ?? PRIORITY_ENERGY.normal;
+}
+
+/**
+ * 正規化錢包資料，補齊舊版缺少的欄位
+ */
+export function normalizeWallet(wallet) {
+  if (!wallet) {
+    return {
+      key: WALLET_KEY,
+      stardust: 0,
+      adventureEnergy: 0,
+      materials: { ...DEFAULT_MATERIALS },
+    };
+  }
+  return {
+    key: WALLET_KEY,
+    stardust: wallet.stardust ?? 0,
+    adventureEnergy: wallet.adventureEnergy ?? 0,
+    materials: { ...DEFAULT_MATERIALS, ...(wallet.materials || {}) },
+  };
+}
+
 /** 取得錢包資料 */
 export async function getWallet() {
   const wallet = await dbGet(STORES.META, WALLET_KEY);
-  return wallet ?? { key: WALLET_KEY, stardust: 0 };
+  return normalizeWallet(wallet);
+}
+
+/** 增加冒險能量 */
+export async function addAdventureEnergy(amount) {
+  if (amount <= 0) return getWallet();
+  const wallet = await getWallet();
+  wallet.adventureEnergy = (wallet.adventureEnergy || 0) + amount;
+  await dbPut(STORES.META, wallet);
+  return wallet;
+}
+
+/** 扣除冒險能量 */
+export async function spendAdventureEnergy(amount) {
+  const wallet = await getWallet();
+  if ((wallet.adventureEnergy || 0) < amount) {
+    throw new Error('冒險能量不足');
+  }
+  wallet.adventureEnergy -= amount;
+  await dbPut(STORES.META, wallet);
+  return wallet;
+}
+
+/** 增加材料 */
+export async function addMaterial(materialId, amount) {
+  if (amount <= 0) return getWallet();
+  const wallet = await getWallet();
+  wallet.materials[materialId] = (wallet.materials[materialId] || 0) + amount;
+  await dbPut(STORES.META, wallet);
+  return wallet;
 }
 
 /** 設定星塵數量 */
@@ -89,16 +158,21 @@ export async function spendStardust(amount) {
 }
 
 /**
- * 完成任務後領取獎勵
- * @returns {{ task: object, amount: number }}
+ * 完成任務後領取獎勵（星塵 + 冒險能量 + 陪伴寵物親密度）
+ * @returns {{ task: object, amount: number, energy: number, bond: object|null }}
  */
 export async function claimTaskReward(task) {
   if (!canClaimReward(task)) {
-    return { task, amount: 0 };
+    return { task, amount: 0, energy: 0, bond: null };
   }
 
   const amount = calculateRewardAmount(task);
+  const energy = calculateAdventureEnergyAmount(task);
+
   await addStardust(amount);
+  if (energy > 0) {
+    await addAdventureEnergy(energy);
+  }
 
   const now = new Date().toISOString();
   const updates = {
@@ -111,7 +185,12 @@ export async function claimTaskReward(task) {
   }
 
   const updatedTask = await updateTask(task.id, updates);
-  return { task: updatedTask, amount };
+
+  // 陪伴寵物親密度（與星塵共用防刷規則）
+  const bondAmount = calculateBondAmount(task);
+  const bond = await addBondExpToCompanion(bondAmount);
+
+  return { task: updatedTask, amount, energy, bond };
 }
 
 /** 計算目前可抽卡次數 */
@@ -120,10 +199,9 @@ export async function getAvailablePulls() {
   return Math.floor((wallet.stardust || 0) / GACHA_COST);
 }
 
-/** 初始化錢包（首次使用） */
+/** 初始化錢包（首次使用或遷移舊資料） */
 export async function initWallet() {
   const existing = await dbGet(STORES.META, WALLET_KEY);
-  if (!existing) {
-    await dbPut(STORES.META, { key: WALLET_KEY, stardust: 0 });
-  }
+  const wallet = normalizeWallet(existing);
+  await dbPut(STORES.META, wallet);
 }

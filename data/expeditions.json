@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "areas": [
+    {
+      "id": "mist_forest",
+      "name": "迷霧森林",
+      "description": "薄霧繚繞的初階探險地，適合剛起步的夥伴。",
+      "unlock": {
+        "type": "default"
+      },
+      "energyCost": 3,
+      "durationMinutes": 15,
+      "rewards": {
+        "stardust": { "min": 15, "max": 30 },
+        "material": { "id": "forest_leaf", "name": "森林之葉", "min": 1, "max": 2 },
+        "bondExp": 5
+      }
+    },
+    {
+      "id": "lava_rift",
+      "name": "熔岩裂谷",
+      "description": "熾熱裂谷深處藏有熔岩核心，需火屬性夥伴引路。",
+      "unlock": {
+        "type": "fire_pet",
+        "elements": ["火", "fire"],
+        "keywords": ["火", "焰", "熔岩"],
+        "hint": "擁有火屬性或名稱／描述含「火」「焰」「熔岩」的寵物"
+      },
+      "energyCost": 5,
+      "durationMinutes": 60,
+      "rewards": {
+        "stardust": { "min": 30, "max": 60 },
+        "material": { "id": "lava_core", "name": "熔岩核心", "min": 0, "max": 2 },
+        "bondExp": 10
+      }
+    },
+    {
+      "id": "machine_ruins",
+      "name": "古代機械遺跡",
+      "description": "失落文明的機械殘骸，機械系夥伴能解讀遺跡密碼。",
+      "unlock": {
+        "type": "mechanical_pet",
+        "elements": ["機械", "mechanical", "machine"],
+        "keywords": ["機械", "機神", "鋼", "鐵"],
+        "hint": "擁有機械類型或名稱／描述含「機械」「機神」「鋼」「鐵」的寵物"
+      },
+      "energyCost": 5,
+      "durationMinutes": 60,
+      "rewards": {
+        "stardust": { "min": 30, "max": 60 },
+        "material": { "id": "machine_part", "name": "機械零件", "min": 0, "max": 2 },
+        "bondExp": 10
+      }
+    },
+    {
+      "id": "astral_rift",
+      "name": "星界裂縫",
+      "description": "連接星界的裂縫，僅 UR 夥伴能穩定穿越。",
+      "unlock": {
+        "type": "ur_pet",
+        "hint": "擁有至少 1 隻 UR 寵物"
+      },
+      "energyCost": 10,
+      "durationMinutes": 240,
+      "rewards": {
+        "stardust": { "min": 80, "max": 150 },
+        "material": { "id": "star_shard", "name": "星界碎片", "min": 0, "max": 2 },
+        "bondExp": 20,
+        "fragmentChance": 0.1
+      }
+    }
+  ]
+}

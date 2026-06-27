@@ -104,7 +104,10 @@ export async function toggleTaskComplete(id) {
 
   // 自動發放獎勵
   const reward = await claimTaskReward(updated);
-  return { task: reward.task, reward: reward.amount > 0 ? reward : null };
+  if (reward.amount > 0 || reward.energy > 0) {
+    return { task: reward.task, reward };
+  }
+  return { task: reward.task, reward: null };
 }
 
 /** 今日完成的任務數 */

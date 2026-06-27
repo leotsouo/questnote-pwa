@@ -2,7 +2,7 @@
  * QuestNote Service Worker
  * 快取 App Shell 與靜態資源，支援離線使用
  */
-const CACHE_NAME = 'questnote-v3';
+const CACHE_NAME = 'questnote-v10';
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
 const PRECACHE_URLS = [
@@ -16,9 +16,15 @@ const PRECACHE_URLS = [
   'src/gachaService.js',
   'src/collectionService.js',
   'src/backupService.js',
+  'src/companionService.js',
+  'src/loreService.js',
+  'src/devService.js',
+  'src/expeditionService.js',
   'src/ui.js',
   'data/pets.json',
   'data/pools.json',
+  'data/pets-lore.json',
+  'data/expeditions.json',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',
 ];
