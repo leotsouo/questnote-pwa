@@ -44,7 +44,7 @@ import {
   randomBubbleInterval,
   IDLE_THRESHOLD_MS,
 } from './companionDialogueService.js';
-import { setReduceMotion } from './preferencesService.js';
+import { setReduceMotion, setTheme, applyThemeToDocument, normalizeTheme } from './preferencesService.js';
 import {
   pickStatusLine,
   randomStatusInterval,
@@ -627,9 +627,18 @@ function bindDelegatedEvents() {
     }
   });
 
-  document.getElementById('view-settings')?.addEventListener('click', (e) => {
+  document.getElementById('view-settings')?.addEventListener('click', async (e) => {
     const backBtn = e.target.closest('[data-goto]');
-    if (backBtn) switchView(backBtn.dataset.goto);
+    if (backBtn) {
+      switchView(backBtn.dataset.goto);
+      return;
+    }
+
+    const themeCard = e.target.closest('[data-action="select-theme"]');
+    if (themeCard) {
+      const theme = themeCard.dataset.theme;
+      if (theme) await applyTheme(theme);
+    }
   });
 
   document.getElementById('achievement-strip')?.addEventListener('click', () => {
@@ -868,6 +877,7 @@ export function renderStars(count, max = 5) {
 /** 渲染全部畫面 */
 export async function renderAll() {
   if (!state) return;
+  applyThemeToDocument(state.userPreferences?.theme ?? 'default');
   applyReduceMotionClass(state.userPreferences?.reduceMotion ?? false);
   renderTasksView();
   renderGachaView();
@@ -1474,6 +1484,7 @@ function renderAchievementStrip() {
   const titleText = summary.equippedTitle
     ? `稱號：${summary.equippedTitle.name}`
     : '尚未設定稱號';
+  const titleEmptyClass = summary.equippedTitle ? '' : ' achievement-strip__title--empty';
 
   const claimable = summary.claimable ?? 0;
   const recent = summary.recentUnlocked?.[0];
@@ -1490,7 +1501,7 @@ function renderAchievementStrip() {
     <div class="achievement-strip__inner">
       <span class="achievement-strip__icon">🏅</span>
       <div class="achievement-strip__text">
-        <p class="achievement-strip__title">${escapeHtml(titleText)}</p>
+        <p class="achievement-strip__title${titleEmptyClass}">${escapeHtml(titleText)}</p>
         <p class="achievement-strip__desc">${escapeHtml(subText)}</p>
       </div>
       ${claimable > 0 ? '<span class="achievement-strip__badge" aria-hidden="true"></span>' : ''}
@@ -1868,6 +1879,52 @@ function trackUserActivity() {
 
 export function applyReduceMotionClass(enabled) {
   document.body.classList.toggle('reduce-motion', !!enabled);
+}
+
+/**
+ * 套用美術風格主題
+ * @param {string} theme
+ * @param {{ silent?: boolean, skipSave?: boolean }} [options]
+ */
+export async function applyTheme(theme, options = {}) {
+  const { silent = false, skipSave = false } = options;
+  const valid = normalizeTheme(theme);
+  const previous = state?.userPreferences?.theme ?? document.body.dataset.theme ?? 'default';
+
+  applyThemeToDocument(valid);
+
+  if (!skipSave) {
+    const prefs = await setTheme(valid);
+    if (state) state.userPreferences = prefs;
+  } else if (state) {
+    state.userPreferences = { ...state.userPreferences, theme: valid };
+  }
+
+  if (state) {
+    applyReduceMotionClass(state.userPreferences?.reduceMotion ?? false);
+    await renderAll();
+  } else {
+    renderThemePickerState(valid);
+  }
+
+  if (!silent && previous !== valid) {
+    showToast('主題已切換', 'success');
+  }
+
+  return valid;
+}
+
+function renderThemePickerState(activeTheme) {
+  const theme = normalizeTheme(activeTheme);
+  document.querySelectorAll('[data-action="select-theme"]').forEach((card) => {
+    const cardTheme = card.dataset.theme;
+    const isActive = cardTheme === theme;
+    card.classList.toggle('theme-card--active', isActive);
+    card.setAttribute('aria-checked', isActive ? 'true' : 'false');
+  });
+  document.querySelectorAll('[data-theme-badge]').forEach((badge) => {
+    badge.hidden = badge.dataset.themeBadge !== theme;
+  });
 }
 
 function renderNavBadges() {
@@ -3457,12 +3514,15 @@ function renderAchievementsView() {
   }
 
   const currentTitle = summary.equippedTitle?.name || '尚未設定稱號';
+  const titleValueClass = summary.equippedTitle
+    ? 'achievement-title-bar__value'
+    : 'achievement-title-bar__value achievement-title-bar__value--empty';
   if (titleBarEl) {
     titleBarEl.innerHTML = `
       <div class="achievement-title-bar__row">
         <div>
           <p class="achievement-title-bar__label">目前稱號</p>
-          <p class="achievement-title-bar__value">${escapeHtml(currentTitle)}</p>
+          <p class="${titleValueClass}">${escapeHtml(currentTitle)}</p>
         </div>
         <button class="btn btn--secondary btn--sm" data-action="open-titles" type="button">稱號管理</button>
       </div>`;
@@ -3872,6 +3932,7 @@ async function executeRestoreBackup() {
   try {
     await restoreBackup(pendingImportBackup);
     await onRefresh();
+    await applyTheme(state?.userPreferences?.theme ?? 'default', { silent: true });
     applyReduceMotionClass(state?.userPreferences?.reduceMotion ?? false);
     await handleAchievementCheckAfterAction();
 
@@ -3912,6 +3973,8 @@ function renderSettingsView() {
   if (reduceMotionToggle) {
     reduceMotionToggle.checked = userPreferences?.reduceMotion ?? false;
   }
+
+  renderThemePickerState(userPreferences?.theme ?? 'default');
 
   const devSection = document.getElementById('dev-tools-section');
   if (devSection) devSection.hidden = !isDevMode();

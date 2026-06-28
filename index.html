@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
   <link rel="stylesheet" href="src/styles.css" />
 </head>
-<body>
+<body data-theme="default">
   <div id="app-loader" class="app-loader">
     <div class="loader-spinner"></div>
     <p>載入 QuestNote…</p>
@@ -40,7 +40,7 @@
           <span class="stat-label">冒險能量</span>
           <span class="stat-value" id="stat-energy">0</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-card--today">
           <span class="stat-icon" aria-hidden="true">✓</span>
           <span class="stat-label">今日完成</span>
           <span class="stat-value" id="stat-today">0</span>
@@ -297,6 +297,43 @@
         </div>
       </header>
 
+      <section class="card settings-theme">
+        <h2 class="section-title">美術風格</h2>
+        <p class="settings-section-note">
+          選擇你喜歡的 QuestNote 介面風格。這只會改變畫面外觀，不會影響任務、寵物、抽卡或資料。
+        </p>
+        <div class="theme-picker" role="radiogroup" aria-label="美術風格">
+          <button type="button" class="theme-card" data-action="select-theme" data-theme="default" role="radio" aria-checked="false">
+            <div class="theme-card__header">
+              <span class="theme-card__title">深色幻想風</span>
+              <span class="theme-card__badge" data-theme-badge="default" hidden>使用中</span>
+            </div>
+            <p class="theme-card__desc">目前預設風格，適合任務、冒險與幻獸收藏。</p>
+            <div class="theme-card__preview" aria-hidden="true">
+              <div class="theme-card__preview-frame theme-card__preview-frame--default">
+                <span class="theme-card__preview-btn theme-card__preview-btn--default"></span>
+                <span class="theme-card__swatch theme-card__swatch--accent-default"></span>
+              </div>
+              <span class="theme-card__swatch theme-card__swatch--primary-default"></span>
+            </div>
+          </button>
+          <button type="button" class="theme-card" data-action="select-theme" data-theme="sweet" role="radio" aria-checked="false">
+            <div class="theme-card__header">
+              <span class="theme-card__title">甜美可愛風</span>
+              <span class="theme-card__badge" data-theme-badge="sweet" hidden>使用中</span>
+            </div>
+            <p class="theme-card__desc">柔和粉彩、明亮可愛，適合喜歡輕鬆療癒感的介面。</p>
+            <div class="theme-card__preview" aria-hidden="true">
+              <div class="theme-card__preview-frame theme-card__preview-frame--sweet">
+                <span class="theme-card__preview-btn theme-card__preview-btn--sweet"></span>
+                <span class="theme-card__swatch theme-card__swatch--accent-sweet"></span>
+              </div>
+              <span class="theme-card__swatch theme-card__swatch--primary-sweet"></span>
+            </div>
+          </button>
+        </div>
+      </section>
+
       <section class="card settings-preferences">
         <h2 class="section-title">顯示偏好</h2>
         <label class="settings-toggle" for="toggle-reduce-motion">
@@ -452,7 +489,7 @@
         <button id="btn-dev-expedition" class="btn btn--dev btn--block">測試：立即結束派遣探險</button>
       </section>
 
-      <p class="settings-note">QuestNote v2.0 — 離線個人任務記事 App</p>
+      <p class="settings-note">QuestNote v2.1.2 — 離線個人任務記事 App</p>
     </main>
 
     <!-- 底部導航 -->

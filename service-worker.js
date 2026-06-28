@@ -1,12 +1,10 @@
 /**
 
- * QuestNote Service Worker — V2.1.1 陪伴互動
-
+ * QuestNote Service Worker — V2.1.2 sweet theme fix
  * 快取 App Shell 與靜態資源，支援離線使用
-
  */
 
-const CACHE_NAME = 'questnote-cache-v211-companion-interact';
+const CACHE_NAME = 'questnote-cache-v214-sweet-ui-tweaks';
 
 
 

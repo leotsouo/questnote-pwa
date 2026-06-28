@@ -48,7 +48,7 @@ import {
 
 import { getWelcomeCompanionLine } from './companionDialogueService.js';
 
-import { initUserPreferences, getUserPreferences } from './preferencesService.js';
+import { initUserPreferences, getUserPreferences, applyThemeToDocument } from './preferencesService.js';
 
 import {
 
@@ -124,7 +124,7 @@ const appState = {
 
   availablePulls: 0,
 
-  userPreferences: { reduceMotion: false },
+  userPreferences: { reduceMotion: false, theme: 'default' },
 
   achievementSummary: null,
 
@@ -531,12 +531,13 @@ async function initApp() {
 
     await openDB();
 
-
+    await initUserPreferences();
+    appState.userPreferences = await getUserPreferences();
+    applyThemeToDocument(appState.userPreferences.theme);
+    applyReduceMotionClass(appState.userPreferences?.reduceMotion ?? false);
 
     // 儘早綁定 UI，確保畫面可互動
-
     initUI(appState, refreshState, runAchievementCheck);
-
     hideLoader();
 
 
@@ -564,8 +565,6 @@ async function initApp() {
     await initWallet();
 
     await initGachaStats();
-
-    await initUserPreferences();
 
     await initAchievements();
 
@@ -598,10 +597,8 @@ async function initApp() {
     }
 
     appState.userPreferences = await getUserPreferences();
-
+    applyThemeToDocument(appState.userPreferences.theme);
     applyReduceMotionClass(appState.userPreferences?.reduceMotion ?? false);
-
-
 
     await loadAchievementsCatalog();
 
