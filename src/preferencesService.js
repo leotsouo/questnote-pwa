@@ -43,7 +43,7 @@ export function applyThemeToDocument(theme) {
   document.body.dataset.theme = valid;
   const metaTheme = document.querySelector('meta[name="theme-color"]');
   if (metaTheme) {
-    metaTheme.content = valid === 'sweet' ? '#FFF7FB' : '#0a0a14';
+    metaTheme.content = valid === 'sweet' ? '#FFF7FB' : '#080B16';
   }
   return valid;
 }

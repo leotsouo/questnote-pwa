@@ -1,10 +1,10 @@
 /**
 
- * QuestNote Service Worker — V2.1.2 sweet theme fix
+ * QuestNote Service Worker — V2.1.4 default theme polish
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v214-sweet-ui-tweaks';
+const CACHE_NAME = 'questnote-cache-v214-default-theme-polish';
 
 
 

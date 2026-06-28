@@ -4,44 +4,57 @@
    ═══════════════════════════════════════ */
 
 :root {
-  /* background */
-  --color-bg-main: #0a0a14;
-  --color-bg-surface: #12121f;
-  --color-bg-card: #161625;
-  --color-bg-card-soft: #1c1c30;
-  --color-bg-elevated: #22223a;
+  /* background — 星夜深藍黑 */
+  --color-bg-main: #080B16;
+  --color-bg-surface: #0E1324;
+  --color-bg-card: #141A2E;
+  --color-bg-card-soft: #18203A;
+  --color-bg-elevated: #1D2540;
 
   /* text */
-  --color-text-main: #e8e8f0;
-  --color-text-secondary: #b4b4cc;
-  --color-text-muted: #8888a8;
-  --color-text-disabled: #5c5c78;
-  --color-text-inverse: #0a0a14;
+  --color-text-main: #F4F7FF;
+  --color-text-secondary: #C7D2EA;
+  --color-text-muted: #9BA8C7;
+  --color-text-soft: #7F8CAF;
+  --color-text-disabled: #5F6B86;
+  --color-text-inverse: #080B16;
 
-  /* brand */
-  --color-primary: #7c5cff;
-  --color-primary-soft: rgba(124, 92, 255, 0.15);
-  --color-secondary: #a78bfa;
-  --color-accent: #fbbf24;
-  --color-danger: #f87171;
-  --color-warning: #fbbf24;
-  --color-success: #34d399;
+  /* brand — 皇家紫 · 奧術青藍 · 星金 */
+  --color-primary: #8B5CF6;
+  --color-primary-hover: #7C3AED;
+  --color-primary-soft: rgba(139, 92, 246, 0.18);
+  --color-primary-border: rgba(167, 139, 250, 0.42);
+  --color-secondary: #22D3EE;
+  --color-secondary-hover: #06B6D4;
+  --color-secondary-soft: rgba(34, 211, 238, 0.14);
+  --color-accent: #FBBF24;
+  --color-accent-hover: #F59E0B;
+  --color-accent-soft: rgba(251, 191, 36, 0.16);
+  --color-success: #34D399;
+  --color-success-hover: #10B981;
+  --color-success-soft: rgba(52, 211, 153, 0.15);
+  --color-danger: #FB7185;
+  --color-danger-hover: #F43F5E;
+  --color-danger-soft: rgba(251, 113, 133, 0.16);
+  --color-warning: #F59E0B;
+  --color-warning-soft: rgba(245, 158, 11, 0.16);
 
   /* border */
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-soft: rgba(255, 255, 255, 0.05);
+  --color-border: rgba(148, 163, 184, 0.22);
+  --color-border-soft: rgba(148, 163, 184, 0.14);
+  --color-divider: rgba(148, 163, 184, 0.16);
 
   /* rarity */
-  --rarity-n: #9ca3af;
-  --rarity-r: #34d399;
-  --rarity-sr: #60a5fa;
-  --rarity-ssr: #a78bfa;
-  --rarity-ur: #e879f9;
+  --rarity-n: #94A3B8;
+  --rarity-r: #38BDF8;
+  --rarity-sr: #A78BFA;
+  --rarity-ssr: #FBBF24;
+  --rarity-ur: #F472B6;
 
   /* task priority */
-  --priority-normal: #6b7280;
-  --priority-important: #f59e0b;
-  --priority-urgent: #ef4444;
+  --priority-normal: #34D399;
+  --priority-important: #FBBF24;
+  --priority-urgent: #FB7185;
 
   /* expedition */
   --expedition-forest: #34d399;
@@ -55,7 +68,7 @@
   --radius-xs: 6px;
   --radius-sm: 10px;
   --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-lg: 18px;
   --radius-xl: 20px;
   --radius-pill: 999px;
 
@@ -69,10 +82,10 @@
   --space-8: 32px;
 
   /* shadow */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 24px rgba(124, 92, 255, 0.35);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.26);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.34);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.46);
+  --shadow-glow: 0 0 28px rgba(139, 92, 246, 0.32);
 
   /* typography */
   --font-size-xs: 0.6875rem;
@@ -110,14 +123,14 @@
   --radius-card: var(--radius-lg);
   --shadow-card: var(--shadow-md);
   --bg: var(--color-bg-main);
-  --bg-gradient: linear-gradient(165deg, #0a0a14 0%, #12122a 40%, #1a1030 100%);
-  --bg-card-hover: #1e1e34;
+  --bg-gradient: linear-gradient(165deg, #080B16 0%, #0E1324 42%, #141A2E 100%);
+  --bg-card-hover: #1D2540;
   --text: var(--color-text-main);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(124, 92, 255, 0.25);
+  --border: var(--color-border);
+  --border-glow: rgba(167, 139, 250, 0.28);
   --primary: var(--color-primary);
   --primary-light: var(--color-primary-soft);
-  --primary-glow: rgba(124, 92, 255, 0.4);
+  --primary-glow: rgba(139, 92, 246, 0.34);
   --accent: var(--color-accent);
   --danger: var(--color-danger);
   --success: var(--color-success);
@@ -153,10 +166,10 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 70%, rgba(124, 92, 255, 0.12) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80% 20%, rgba(251, 191, 36, 0.1) 0%, transparent 100%),
-    radial-gradient(ellipse at 50% 0%, rgba(124, 92, 255, 0.06) 0%, transparent 60%);
+    radial-gradient(1px 1px at 18% 28%, rgba(244, 247, 255, 0.12) 0%, transparent 100%),
+    radial-gradient(1px 1px at 62% 72%, rgba(139, 92, 246, 0.10) 0%, transparent 100%),
+    radial-gradient(1px 1px at 82% 18%, rgba(34, 211, 238, 0.08) 0%, transparent 100%),
+    radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.05) 0%, transparent 58%);
   pointer-events: none;
   z-index: 0;
 }
@@ -5106,6 +5119,856 @@ body.reduce-motion .collection-card--nickname-glow {
 }
 
 /* ═══════════════════════════════════════
+   V2.1.4 — Default 深色主題 UI 潤色
+   僅作用於 body[data-theme="default"] 與 :root 基底
+   ═══════════════════════════════════════ */
+
+body[data-theme="default"] {
+  --color-bg-main: #080B16;
+  --color-bg-surface: #0E1324;
+  --color-bg-card: #141A2E;
+  --color-bg-card-soft: #18203A;
+  --color-bg-elevated: #1D2540;
+  --color-text-main: #F4F7FF;
+  --color-text-secondary: #C7D2EA;
+  --color-text-muted: #9BA8C7;
+  --color-text-soft: #7F8CAF;
+  --color-text-disabled: #5F6B86;
+  --color-text-inverse: #080B16;
+  --color-primary: #8B5CF6;
+  --color-primary-hover: #7C3AED;
+  --color-primary-soft: rgba(139, 92, 246, 0.18);
+  --color-primary-border: rgba(167, 139, 250, 0.42);
+  --color-secondary: #22D3EE;
+  --color-secondary-hover: #06B6D4;
+  --color-secondary-soft: rgba(34, 211, 238, 0.14);
+  --color-accent: #FBBF24;
+  --color-accent-hover: #F59E0B;
+  --color-accent-soft: rgba(251, 191, 36, 0.16);
+  --color-success: #34D399;
+  --color-success-hover: #10B981;
+  --color-success-soft: rgba(52, 211, 153, 0.15);
+  --color-danger: #FB7185;
+  --color-danger-hover: #F43F5E;
+  --color-danger-soft: rgba(251, 113, 133, 0.16);
+  --color-warning: #F59E0B;
+  --color-warning-soft: rgba(245, 158, 11, 0.16);
+  --color-border: rgba(148, 163, 184, 0.22);
+  --color-border-soft: rgba(148, 163, 184, 0.14);
+  --color-divider: rgba(148, 163, 184, 0.16);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.26);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.34);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.46);
+  --shadow-glow: 0 0 28px rgba(139, 92, 246, 0.32);
+  --rarity-n: #94A3B8;
+  --rarity-r: #38BDF8;
+  --rarity-sr: #A78BFA;
+  --rarity-ssr: #FBBF24;
+  --rarity-ur: #F472B6;
+  --priority-normal: #34D399;
+  --priority-important: #FBBF24;
+  --priority-urgent: #FB7185;
+  --bg-gradient: linear-gradient(165deg, #080B16 0%, #0E1324 42%, #141A2E 100%);
+  --bg-card-hover: #1D2540;
+  --border: var(--color-border);
+  --border-glow: rgba(167, 139, 250, 0.28);
+  --primary-glow: rgba(139, 92, 246, 0.34);
+}
+
+/* ─── 全域卡片層級 ─── */
+
+body[data-theme="default"] .card,
+body[data-theme="default"] .task-card,
+body[data-theme="default"] .habit-card,
+body[data-theme="default"] .achievement-card,
+body[data-theme="default"] .workshop-material-card,
+body[data-theme="default"] .workshop-craft-card,
+body[data-theme="default"] .workshop-gift-card {
+  background: linear-gradient(180deg, #161D33 0%, #11182B 100%);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+  border-radius: 18px;
+}
+
+body[data-theme="default"] .stat-card {
+  background: linear-gradient(180deg, #161D33 0%, #131A2E 100%);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+body[data-theme="default"] .stat-label {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+body[data-theme="default"] .stat-value {
+  color: var(--color-text-main);
+}
+
+body[data-theme="default"] .stat-card--stardust {
+  border-color: rgba(251, 191, 36, 0.28);
+  background: linear-gradient(145deg, #161D33, rgba(251, 191, 36, 0.08));
+}
+
+body[data-theme="default"] .stat-card--stardust .stat-value {
+  color: var(--color-accent);
+}
+
+body[data-theme="default"] .stat-card--energy {
+  border-color: rgba(52, 211, 153, 0.28);
+  background: linear-gradient(145deg, #161D33, rgba(52, 211, 153, 0.08));
+}
+
+body[data-theme="default"] .stat-card--energy .stat-value {
+  color: var(--color-success);
+}
+
+body[data-theme="default"] .page-subtitle,
+body[data-theme="default"] .section-desc,
+body[data-theme="default"] .settings-section-note {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .section-title {
+  color: var(--color-text-muted);
+}
+
+/* ─── 文字可讀性 ─── */
+
+body[data-theme="default"] .task-card__title,
+body[data-theme="default"] .habit-card__name,
+body[data-theme="default"] .form-label {
+  color: var(--color-text-main);
+}
+
+body[data-theme="default"] .task-card__meta,
+body[data-theme="default"] .task-card__preview,
+body[data-theme="default"] .task-card__done-info,
+body[data-theme="default"] .habit-card__desc,
+body[data-theme="default"] .habit-card__meta {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .task-reward-tag {
+  background: rgba(29, 37, 64, 0.85);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-soft);
+}
+
+body[data-theme="default"] .btn:disabled,
+body[data-theme="default"] .btn[disabled] {
+  opacity: 1;
+  background: #2A3147;
+  color: #7F8CAF;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: none;
+}
+
+body[data-theme="default"] .btn--primary {
+  background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(196, 181, 253, 0.32);
+  box-shadow: 0 8px 22px rgba(109, 40, 217, 0.30);
+}
+
+body[data-theme="default"] .btn--primary:active:not(:disabled) {
+  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+}
+
+body[data-theme="default"] .btn--secondary {
+  background: rgba(139, 92, 246, 0.14);
+  color: #DDD6FE;
+  border: 1px solid rgba(167, 139, 250, 0.28);
+}
+
+body[data-theme="default"] .btn--ghost {
+  color: var(--color-text-muted);
+}
+
+/* ─── 空狀態 ─── */
+
+body[data-theme="default"] .empty-state,
+body[data-theme="default"] .companion-empty {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(34, 211, 238, 0.08) 100%);
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  color: var(--color-text-secondary);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 22px rgba(0, 0, 0, 0.22);
+  border-radius: 18px;
+}
+
+body[data-theme="default"] .empty-state__title {
+  color: var(--color-text-main);
+  font-weight: 800;
+}
+
+body[data-theme="default"] .empty-state__desc,
+body[data-theme="default"] .companion-empty {
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+}
+
+body[data-theme="default"] .empty-state__icon {
+  opacity: 0.75;
+}
+
+/* ─── 召喚頁：星夜祭壇 ─── */
+
+body[data-theme="default"] .gacha-hero__symbol {
+  filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.38));
+  color: var(--color-accent);
+}
+
+body[data-theme="default"] .gacha-hero__tagline {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .gacha-panel {
+  background: linear-gradient(180deg, #161D33 0%, #11182B 100%);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.36), 0 0 24px rgba(139, 92, 246, 0.08);
+}
+
+body[data-theme="default"] .gacha-panel::before {
+  background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.10) 0%, transparent 55%);
+  opacity: 0.85;
+}
+
+body[data-theme="default"] .gacha-pool,
+body[data-theme="default"] .gacha-title,
+body[data-theme="default"] .pool-title {
+  color: #F4F7FF;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 18px rgba(139, 92, 246, 0.34);
+}
+
+body[data-theme="default"] .gacha-stardust__label,
+body[data-theme="default"] .gacha-info,
+body[data-theme="default"] .gacha-subtitle,
+body[data-theme="default"] .pity-label {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .gacha-info strong,
+body[data-theme="default"] .pity-value {
+  color: var(--color-text-main);
+}
+
+body[data-theme="default"] .gacha-stardust__value {
+  color: var(--color-accent);
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.28);
+}
+
+body[data-theme="default"] .btn--gacha,
+body[data-theme="default"] button[data-action="single-pull"],
+body[data-theme="default"] #btn-pull {
+  background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(196, 181, 253, 0.36);
+  box-shadow: 0 10px 24px rgba(109, 40, 217, 0.34);
+  animation: none;
+  background-size: auto;
+}
+
+body[data-theme="default"] .btn--gacha-ten,
+body[data-theme="default"] button[data-action="ten-pull"],
+body[data-theme="default"] #btn-pull-ten {
+  background: linear-gradient(135deg, #22D3EE 0%, #8B5CF6 48%, #FBBF24 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(251, 191, 36, 0.32);
+  box-shadow: 0 12px 28px rgba(34, 211, 238, 0.22), 0 0 24px rgba(139, 92, 246, 0.24);
+  animation: none;
+  background-size: auto;
+}
+
+body[data-theme="default"] .btn--gacha:disabled,
+body[data-theme="default"] .btn--gacha-ten:disabled,
+body[data-theme="default"] #btn-pull:disabled,
+body[data-theme="default"] #btn-pull-ten:disabled {
+  background: #2A3147;
+  color: #7F8CAF;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: none;
+  opacity: 1;
+}
+
+body[data-theme="default"] .rate-tag {
+  background: rgba(24, 32, 58, 0.9);
+  border-color: var(--color-border-soft);
+  color: var(--color-text-secondary);
+}
+
+/* ─── 圖鑑：暗色幻獸收藏冊 ─── */
+
+body[data-theme="default"] .collection-card,
+body[data-theme="default"] .pet-card {
+  background: linear-gradient(180deg, #18203A 0%, #11182B 100%);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.30);
+  border-radius: 18px;
+}
+
+body[data-theme="default"] .collection-card--locked {
+  opacity: 0.62;
+  background: linear-gradient(180deg, #12182C 0%, #0E1324 100%);
+  border-color: rgba(148, 163, 184, 0.14);
+}
+
+body[data-theme="default"] .collection-card__name,
+body[data-theme="default"] .pet-nickname,
+body[data-theme="default"] .current-companion-name,
+body[data-theme="default"] .companion-nickname,
+body[data-theme="default"] .collection-companion__name,
+body[data-theme="default"] .companion-card__name {
+  color: #F4F7FF;
+  font-weight: 800;
+}
+
+body[data-theme="default"] .pet-original-name,
+body[data-theme="default"] .companion-original-name,
+body[data-theme="default"] .collection-companion .pet-original-name {
+  color: var(--color-text-muted);
+}
+
+body[data-theme="default"] .collection-card__title {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .collection-card.rarity-R { border-color: rgba(56, 189, 248, 0.32); }
+body[data-theme="default"] .collection-card.rarity-SR { border-color: rgba(167, 139, 250, 0.36); }
+body[data-theme="default"] .collection-card.rarity-SSR {
+  border-color: rgba(251, 191, 36, 0.38);
+  background: linear-gradient(180deg, #1A2038 0%, #141A2E 100%);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.30), 0 0 16px rgba(251, 191, 36, 0.10);
+}
+body[data-theme="default"] .collection-card.rarity-UR {
+  border-color: rgba(244, 114, 182, 0.40);
+  background: linear-gradient(180deg, #1C1A34 0%, #141A2E 100%);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.30), 0 0 20px rgba(244, 114, 182, 0.12);
+}
+
+body[data-theme="default"] .companion-badge,
+body[data-theme="default"] .badge-companion {
+  background: rgba(52, 211, 153, 0.14);
+  color: #6EE7B7;
+  border: 1px solid rgba(52, 211, 153, 0.36);
+}
+
+body[data-theme="default"] .btn--companion,
+body[data-theme="default"] button[data-action="set-companion"],
+body[data-theme="default"] button[data-action="set-companion-detail"] {
+  background: linear-gradient(135deg, #34D399 0%, #059669 100%);
+  color: #06130F;
+  border: 1px solid rgba(110, 231, 183, 0.34);
+  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.24);
+  font-weight: 800;
+}
+
+body[data-theme="default"] .btn--companion:active:not(:disabled),
+body[data-theme="default"] button[data-action="set-companion"]:active:not(:disabled),
+body[data-theme="default"] button[data-action="set-companion-detail"]:active:not(:disabled) {
+  background: linear-gradient(135deg, #6EE7B7 0%, #10B981 100%);
+}
+
+body[data-theme="default"] .btn--companion:disabled,
+body[data-theme="default"] button[data-action="set-companion"]:disabled,
+body[data-theme="default"] button[data-action="set-companion-detail"]:disabled {
+  background: #223348;
+  color: #7F8CAF;
+  box-shadow: none;
+  border-color: rgba(148, 163, 184, 0.16);
+  opacity: 1;
+}
+
+/* ─── 寵物詳情 Modal：深色魔法圖鑑 ─── */
+
+body[data-theme="default"] .modal-overlay {
+  background: rgba(8, 11, 22, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+body[data-theme="default"] .modal {
+  background: linear-gradient(180deg, #18203A 0%, #0E1324 100%);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.52), 0 0 34px rgba(139, 92, 246, 0.12);
+  color: var(--color-text-main);
+}
+
+body[data-theme="default"] .modal:has(.pet-detail) {
+  background: linear-gradient(180deg, #18203A 0%, #0E1324 100%);
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.52), 0 0 34px rgba(139, 92, 246, 0.16);
+}
+
+body[data-theme="default"] .modal-title {
+  color: var(--color-text-main);
+  border-bottom: 1px solid rgba(167, 139, 250, 0.16);
+  padding-bottom: var(--space-3);
+}
+
+body[data-theme="default"] .modal-close {
+  background: rgba(29, 37, 64, 0.9);
+  border-color: var(--color-border-soft);
+  color: var(--color-text-muted);
+}
+
+body[data-theme="default"] .pet-detail__hero .pet-img-wrap {
+  background: radial-gradient(circle at 50% 40%, rgba(139, 92, 246, 0.18) 0%, rgba(14, 19, 36, 0.4) 70%);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.36), 0 0 28px rgba(139, 92, 246, 0.14);
+}
+
+body[data-theme="default"] .pet-detail__name {
+  color: #F4F7FF;
+}
+
+body[data-theme="default"] .pet-detail__title,
+body[data-theme="default"] .pet-detail__subtitle {
+  color: var(--color-text-muted);
+}
+
+body[data-theme="default"] .pet-detail__desc,
+body[data-theme="default"] .pet-detail__lore,
+body[data-theme="default"] .pet-description-box,
+body[data-theme="default"] .pet-lore-box {
+  background: rgba(8, 11, 22, 0.42);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  color: #DDE6FA;
+  line-height: 1.75;
+  border-radius: 18px;
+  padding: 16px;
+  font-size: 0.9375rem;
+}
+
+body[data-theme="default"] .pet-detail__lore {
+  border-left: 3px solid rgba(34, 211, 238, 0.45);
+}
+
+body[data-theme="default"] .pet-detail__locked,
+body[data-theme="default"] .pet-detail__nickname-empty {
+  color: var(--color-text-muted);
+}
+
+body[data-theme="default"] .pet-detail__display-name {
+  color: #F4F7FF;
+  font-weight: 800;
+}
+
+body[data-theme="default"] .pet-detail__nickname.card {
+  background: linear-gradient(180deg, #161D33 0%, #11182B 100%);
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+body[data-theme="default"] .bond-unlock {
+  background: rgba(14, 19, 36, 0.55);
+  border-color: var(--color-border-soft);
+}
+
+body[data-theme="default"] .bond-unlock--open {
+  border-color: rgba(167, 139, 250, 0.32);
+}
+
+body[data-theme="default"] .bond-unlock__text {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .bond-unlock--open .bond-unlock__text {
+  color: var(--color-text-main);
+}
+
+/* ─── 探險地區卡片 ─── */
+
+body[data-theme="default"] .expedition-area-card {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+  overflow: hidden;
+  position: relative;
+}
+
+body[data-theme="default"] .expedition-area-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.06) 0%, transparent 42%);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+body[data-theme="default"] .expedition-area-card::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 55%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+body[data-theme="default"] .expedition-area-card--mist_forest {
+  background: linear-gradient(135deg, #102116 0%, #0C1712 100%);
+  border-color: rgba(134, 239, 172, 0.28);
+}
+
+body[data-theme="default"] .expedition-area-card--lava_rift {
+  background: linear-gradient(135deg, #2A1510 0%, #160C0A 100%);
+  border-color: rgba(253, 186, 116, 0.30);
+}
+
+body[data-theme="default"] .expedition-area-card--machine_ruins {
+  background: linear-gradient(135deg, #1B1B34 0%, #101426 100%);
+  border-color: rgba(196, 181, 253, 0.30);
+}
+
+body[data-theme="default"] .expedition-area-card--astral_rift {
+  background: linear-gradient(135deg, #102033 0%, #0B1224 100%);
+  border-color: rgba(103, 232, 249, 0.30);
+}
+
+body[data-theme="default"] .expedition-area-card--polar_shore {
+  background: linear-gradient(135deg, #0E1E28 0%, #0A141C 100%);
+  border-color: rgba(103, 232, 249, 0.26);
+}
+
+body[data-theme="default"] .expedition-area-card--harvest_fields {
+  background: linear-gradient(135deg, #1E1A10 0%, #12100A 100%);
+  border-color: rgba(251, 191, 36, 0.28);
+}
+
+body[data-theme="default"] .expedition-area-card--mist_forest .expedition-area-card__header h3 {
+  color: #86EFAC;
+}
+
+body[data-theme="default"] .expedition-area-card--lava_rift .expedition-area-card__header h3 {
+  color: #FDBA74;
+}
+
+body[data-theme="default"] .expedition-area-card--machine_ruins .expedition-area-card__header h3 {
+  color: #C4B5FD;
+}
+
+body[data-theme="default"] .expedition-area-card--astral_rift .expedition-area-card__header h3 {
+  color: #67E8F9;
+}
+
+body[data-theme="default"] .expedition-area-card--polar_shore .expedition-area-card__header h3 {
+  color: #7DD3FC;
+}
+
+body[data-theme="default"] .expedition-area-card--harvest_fields .expedition-area-card__header h3 {
+  color: #FCD34D;
+}
+
+body[data-theme="default"] .expedition-area-card__desc,
+body[data-theme="default"] .expedition-area-card__meta,
+body[data-theme="default"] .expedition-area-card__rewards {
+  color: var(--color-text-secondary);
+  position: relative;
+  z-index: 1;
+}
+
+body[data-theme="default"] .expedition-area-card__header,
+body[data-theme="default"] .expedition-area-card__unlock {
+  position: relative;
+  z-index: 1;
+}
+
+body[data-theme="default"] .expedition-countdown {
+  color: var(--color-secondary);
+}
+
+body[data-theme="default"] .expedition-countdown__label,
+body[data-theme="default"] .expedition-active-card__area {
+  color: var(--color-text-muted);
+}
+
+body[data-theme="default"] .expedition-energy {
+  background: linear-gradient(180deg, #161D33 0%, #11182B 100%);
+  border-color: rgba(52, 211, 153, 0.24);
+}
+
+body[data-theme="default"] .expedition-energy__label,
+body[data-theme="default"] .expedition-energy__hint {
+  color: var(--color-text-muted);
+}
+
+body[data-theme="default"] .expedition-energy__value {
+  color: var(--color-success);
+}
+
+/* ─── 工坊 ─── */
+
+body[data-theme="default"] .workshop-material-card__qty {
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
+body[data-theme="default"] .workshop-material-card__desc,
+body[data-theme="default"] .workshop-craft-card__effect,
+body[data-theme="default"] .workshop-summary__label,
+body[data-theme="default"] .workshop-summary__hint {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .workshop-material-card__header h3,
+body[data-theme="default"] .workshop-craft-card__header h3,
+body[data-theme="default"] .workshop-summary__value {
+  color: var(--color-text-main);
+}
+
+body[data-theme="default"] .workshop-tag {
+  background: rgba(29, 37, 64, 0.85);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-soft);
+}
+
+body[data-theme="default"] .workshop-craft-card__favorite {
+  color: var(--color-accent);
+}
+
+body[data-theme="default"] .workshop-recipe-list__item--missing {
+  color: var(--color-danger);
+}
+
+body[data-theme="default"] .workshop-gift-pet__meta,
+body[data-theme="default"] .workshop-gift-item__effect {
+  color: var(--color-text-secondary);
+}
+
+/* ─── 成就與更多頁 ─── */
+
+body[data-theme="default"] .more-menu {
+  background: linear-gradient(180deg, #18203A 0%, #11182B 100%);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.30);
+}
+
+body[data-theme="default"] .more-menu-item {
+  border-bottom-color: var(--color-divider);
+}
+
+body[data-theme="default"] .more-menu-item:active {
+  background: rgba(139, 92, 246, 0.10);
+}
+
+body[data-theme="default"] .more-menu-label {
+  color: var(--color-text-main);
+  font-weight: 800;
+  font-size: 0.9375rem;
+}
+
+body[data-theme="default"] .more-menu-desc {
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+}
+
+body[data-theme="default"] .more-menu-icon {
+  background: rgba(139, 92, 246, 0.16);
+  color: #C4B5FD;
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+body[data-theme="default"] .more-menu-arrow {
+  color: var(--color-text-muted);
+}
+
+body[data-theme="default"] .achievement-strip__title--empty,
+body[data-theme="default"] .achievement-title-bar__value--empty,
+body[data-theme="default"] .title-empty,
+body[data-theme="default"] .no-title,
+body[data-theme="default"] .equipped-title-empty {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+body[data-theme="default"] .achievement-strip__title {
+  color: var(--color-text-main);
+  font-weight: 700;
+}
+
+body[data-theme="default"] .achievement-strip__desc {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .achievement-card__name {
+  color: var(--color-text-main);
+  font-weight: 700;
+}
+
+body[data-theme="default"] .achievement-card__desc,
+body[data-theme="default"] .achievement-card__progress-label,
+body[data-theme="default"] .achievement-card__reward-label {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .achievement-card--claimable {
+  border-color: rgba(52, 211, 153, 0.32);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32), 0 0 16px rgba(52, 211, 153, 0.10);
+}
+
+body[data-theme="default"] .achievement-card__status--done {
+  color: var(--color-success);
+}
+
+body[data-theme="default"] .achievement-card__status--locked {
+  color: var(--color-text-muted);
+}
+
+body[data-theme="default"] .achievement-title-bar__value:not(.achievement-title-bar__value--empty) {
+  color: var(--color-text-main);
+  font-weight: 800;
+}
+
+body[data-theme="default"] .badge {
+  font-weight: 600;
+}
+
+body[data-theme="default"] .rarity-N { background: rgba(148, 163, 184, 0.16); color: var(--rarity-n); }
+body[data-theme="default"] .rarity-R { background: rgba(56, 189, 248, 0.14); color: var(--rarity-r); }
+body[data-theme="default"] .rarity-SR { background: rgba(167, 139, 250, 0.16); color: var(--rarity-sr); }
+body[data-theme="default"] .rarity-SSR { background: rgba(251, 191, 36, 0.16); color: var(--rarity-ssr); }
+body[data-theme="default"] .rarity-UR { background: rgba(244, 114, 182, 0.16); color: var(--rarity-ur); }
+
+/* ─── 底部導航 ─── */
+
+body[data-theme="default"] .bottom-nav {
+  background: rgba(14, 19, 36, 0.92);
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.32);
+}
+
+body[data-theme="default"] .nav-item {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  min-height: var(--tap-min);
+}
+
+body[data-theme="default"] .nav-item.active {
+  color: #F4F7FF;
+  background: rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  border-radius: var(--radius-pill);
+  margin: 4px 2px;
+}
+
+/* ─── Modal / Toast ─── */
+
+body[data-theme="default"] .toast {
+  background: linear-gradient(180deg, #18203A 0%, #141A2E 100%);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  font-size: 0.9375rem;
+  box-shadow: var(--shadow-lg);
+}
+
+body[data-theme="default"] .toast--success {
+  background: linear-gradient(135deg, #141A2E, rgba(52, 211, 153, 0.12));
+  border-color: rgba(52, 211, 153, 0.32);
+}
+
+body[data-theme="default"] .toast--error {
+  background: linear-gradient(135deg, #141A2E, rgba(251, 113, 133, 0.10));
+  border-color: rgba(251, 113, 133, 0.32);
+}
+
+body[data-theme="default"] .toast--warning {
+  background: linear-gradient(135deg, #141A2E, rgba(245, 158, 11, 0.10));
+  border-color: rgba(245, 158, 11, 0.30);
+}
+
+body[data-theme="default"] .toast--info {
+  background: linear-gradient(135deg, #141A2E, rgba(139, 92, 246, 0.12));
+  border-color: rgba(167, 139, 250, 0.30);
+}
+
+body[data-theme="default"] .reward-toast {
+  background: linear-gradient(180deg, #18203A 0%, #141A2E 100%);
+  border-color: var(--color-border);
+  color: var(--color-text-main);
+}
+
+body[data-theme="default"] .pull-result__desc,
+body[data-theme="default"] .pull-result__detail,
+body[data-theme="default"] .ten-pull-summary {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme="default"] .ten-pull-card {
+  background: linear-gradient(180deg, #18203A 0%, #11182B 100%);
+  border-color: var(--color-border);
+}
+
+body[data-theme="default"] .filter-btn {
+  background: rgba(24, 32, 58, 0.9);
+  color: var(--color-text-muted);
+  border-color: var(--color-border-soft);
+}
+
+body[data-theme="default"] .filter-btn.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+}
+
+body[data-theme="default"] .companion-bubble {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border);
+}
+
+body[data-theme="default"] .companion-bubble__text {
+  color: var(--color-text-main);
+  font-size: 0.875rem;
+}
+
+body[data-theme="default"] .fab {
+  background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+  box-shadow: 0 8px 24px rgba(109, 40, 217, 0.36);
+}
+
+/* ─── Reduce Motion（default）─── */
+
+body.reduce-motion[data-theme="default"]::before {
+  background-image: none;
+}
+
+body.reduce-motion[data-theme="default"] .gacha-panel::before {
+  opacity: 0.5;
+}
+
+body.reduce-motion[data-theme="default"] .expedition-area-card::before,
+body.reduce-motion[data-theme="default"] .expedition-area-card::after {
+  opacity: 0;
+}
+
+body.reduce-motion[data-theme="default"] .btn--gacha,
+body.reduce-motion[data-theme="default"] .btn--gacha-ten {
+  animation: none;
+}
+
+body.reduce-motion[data-theme="default"] .collection-card.rarity-UR,
+body.reduce-motion[data-theme="default"] .collection-card.rarity-SSR {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.30);
+}
+
+body.reduce-motion[data-theme="default"] .gacha-pool,
+body.reduce-motion[data-theme="default"] .gacha-title {
+  text-shadow: none;
+}
+
+/* ═══════════════════════════════════════
    V2.1.2 — 美術風格主題：甜美可愛粉彩風
    ═══════════════════════════════════════ */
 
@@ -5931,8 +6794,8 @@ body.reduce-motion[data-theme="sweet"] .collection-card.rarity-UR {
 }
 
 .theme-card__preview-frame--default {
-  background: linear-gradient(145deg, #0a0a14, #1a1030);
-  border-color: rgba(124, 92, 255, 0.25);
+  background: linear-gradient(145deg, #080B16, #141A2E);
+  border-color: rgba(167, 139, 250, 0.28);
 }
 
 .theme-card__preview-frame--sweet {
@@ -5948,7 +6811,7 @@ body.reduce-motion[data-theme="sweet"] .collection-card.rarity-UR {
 }
 
 .theme-card__swatch--primary-default {
-  background: linear-gradient(135deg, #7c5cff, #a78bfa);
+  background: linear-gradient(135deg, #8B5CF6, #A78BFA);
 }
 
 .theme-card__swatch--accent-default {
@@ -5971,7 +6834,7 @@ body.reduce-motion[data-theme="sweet"] .collection-card.rarity-UR {
 }
 
 .theme-card__preview-btn--default {
-  background: linear-gradient(135deg, #7c5cff, #6344e0);
+  background: linear-gradient(135deg, #8B5CF6, #6D28D9);
 }
 
 .theme-card__preview-btn--sweet {

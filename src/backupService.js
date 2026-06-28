@@ -1,5 +1,5 @@
 /**
- * 備份與恢復服務 — QuestNote V2.1.2
+ * 備份與恢復服務 — QuestNote V2.1.4
  * 支援匯出、驗證、正規化與安全覆蓋恢復
  */
 import { exportTasks } from './taskService.js';
@@ -24,9 +24,9 @@ import {
 import { normalizeTask, migrateTasks } from './taskMigration.js';
 import { getTodayDateString } from './taskFilterService.js';
 
-export const APP_VERSION = '2.1.2';
+export const APP_VERSION = '2.1.4';
 const APP_NAME = 'QuestNote';
-const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2'];
+const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4'];
 const WALLET_KEY = 'wallet';
 const GACHA_STATS_KEY = 'gachaStats';
 const ACHIEVEMENTS_KEY = 'achievements';
