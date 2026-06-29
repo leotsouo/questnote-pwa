@@ -4,7 +4,7 @@
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v214-default-theme-polish';
+const CACHE_NAME = 'questnote-cache-v214-sweet-achievement-readability';
 
 
 

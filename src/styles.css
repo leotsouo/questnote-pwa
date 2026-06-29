@@ -6044,6 +6044,9 @@ body[data-theme="sweet"] {
   --accent-danger: var(--color-danger);
   --accent-primary: var(--color-primary);
   --accent-secondary: var(--color-secondary);
+  --text: var(--color-text-main);
+  --text-main: var(--color-text-main);
+  --text-muted: var(--color-text-muted);
 }
 
 body[data-theme="sweet"]::before {
@@ -6499,6 +6502,9 @@ body[data-theme="sweet"] .tag {
 body[data-theme="sweet"] .toast {
   border-color: var(--color-border);
   box-shadow: var(--shadow-md);
+  color: #2D1A24;
+  font-weight: 600;
+  font-size: 0.9375rem;
 }
 
 body[data-theme="sweet"] .companion-bubble {
@@ -6563,17 +6569,93 @@ body[data-theme="sweet"] .achievement-title-bar__value--empty,
 body[data-theme="sweet"] .title-empty,
 body[data-theme="sweet"] .no-title,
 body[data-theme="sweet"] .equipped-title-empty {
-  color: var(--color-text-muted);
+  color: #6F4C5E;
   font-weight: 600;
 }
 
+body[data-theme="sweet"] .achievement-strip__title {
+  color: #2D1A24;
+  font-weight: 700;
+}
+
 body[data-theme="sweet"] .achievement-title-bar__value:not(.achievement-title-bar__value--empty) {
-  color: var(--color-primary);
+  color: #B83274;
+  font-weight: 800;
 }
 
 body[data-theme="sweet"] .achievement-strip__desc,
 body[data-theme="sweet"] .achievement-title-bar__label {
-  color: var(--color-text-secondary);
+  color: #5A3A4B;
+}
+
+body[data-theme="sweet"] .achievement-summary__label {
+  color: #5A3A4B;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+body[data-theme="sweet"] .achievement-summary__value {
+  color: #2D1A24;
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] .achievement-summary__value--claimable {
+  color: #1F5A4D;
+}
+
+body[data-theme="sweet"] .achievement-card__name {
+  color: #2D1A24;
+  font-weight: 700;
+}
+
+body[data-theme="sweet"] .achievement-card__desc,
+body[data-theme="sweet"] .achievement-card__progress-label,
+body[data-theme="sweet"] .achievement-card__rewards {
+  color: #5A3A4B;
+}
+
+body[data-theme="sweet"] .achievement-card__progress-label span:last-child {
+  color: #3D2633;
+  font-weight: 700;
+}
+
+body[data-theme="sweet"] .achievement-card__reward-label {
+  color: #3D2633;
+  font-weight: 700;
+}
+
+body[data-theme="sweet"] .achievement-card__category {
+  color: #6F4C5E;
+  background: rgba(199, 53, 120, 0.10);
+  font-weight: 600;
+}
+
+body[data-theme="sweet"] .achievement-card__status--done {
+  color: #1F5A4D;
+  background: rgba(47, 118, 100, 0.16);
+  font-weight: 700;
+}
+
+body[data-theme="sweet"] .achievement-card__status--locked {
+  color: #6F4C5E;
+  background: rgba(111, 76, 94, 0.10);
+  font-weight: 600;
+}
+
+body[data-theme="sweet"] .achievement-card--claimed {
+  opacity: 1;
+}
+
+body[data-theme="sweet"] .achievement-error {
+  color: #6F4C5E;
+}
+
+body[data-theme="sweet"] .filter-bar--achievements .filter-btn {
+  color: #6F4C5E;
+}
+
+body[data-theme="sweet"] .filter-bar--achievements .filter-btn.active {
+  color: #FFFFFF;
 }
 
 body[data-theme="sweet"] .more-menu {
@@ -6668,21 +6750,48 @@ body[data-theme="sweet"] .expedition-energy__warning {
 body[data-theme="sweet"] .toast--success {
   background: linear-gradient(135deg, #FFFFFF, var(--color-success-soft));
   border-color: rgba(47, 118, 100, 0.30);
+  color: #1F4A3D;
 }
 
 body[data-theme="sweet"] .toast--info {
   background: linear-gradient(135deg, #FFFFFF, var(--color-secondary-soft));
   border-color: rgba(111, 85, 217, 0.25);
+  color: #3D2E6B;
 }
 
 body[data-theme="sweet"] .toast--warning {
   background: linear-gradient(135deg, #FFFFFF, var(--color-accent-soft));
   border-color: rgba(182, 106, 30, 0.25);
+  color: #6B4210;
 }
 
 body[data-theme="sweet"] .toast--error {
   background: linear-gradient(135deg, #FFFFFF, rgba(201, 62, 93, 0.08));
   border-color: rgba(201, 62, 93, 0.25);
+  color: #8A2340;
+}
+
+body[data-theme="sweet"] .reward-toast {
+  color: #2D1A24;
+  font-weight: 600;
+  border-color: var(--color-border);
+}
+
+body[data-theme="sweet"] .reward-toast strong {
+  color: #1F5A4D;
+}
+
+body[data-theme="sweet"] .reward-toast--bond {
+  color: #3D2E6B;
+}
+
+body[data-theme="sweet"] .reward-toast--bond strong {
+  color: #5E49C2;
+}
+
+body[data-theme="sweet"] .reward-toast__energy {
+  color: #1F5A4D;
+  font-weight: 700;
 }
 
 body.reduce-motion[data-theme="sweet"]::before {
