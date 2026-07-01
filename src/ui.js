@@ -2694,66 +2694,338 @@ async function handleTenPull() {
   }
 }
 
-function showPullResult(result) {
+function isSweetTheme() {
+  return normalizeTheme(state?.userPreferences?.theme) === 'sweet';
+}
+
+function getGachaAffordability() {
+  const pool = getActivePool(state.poolsData);
+  const singleCost = pool.cost ?? GACHA_COST;
+  const stardust = state.wallet.stardust ?? 0;
+  return {
+    singleCost,
+    stardust,
+    canSingle: stardust >= singleCost,
+    canTen: stardust >= GACHA_TEN_COST,
+  };
+}
+
+function sweetSummonRarityBadge(rarity, extraClass = '') {
+  return `<span class="sweet-summon-badge sweet-summon-badge--rarity ${extraClass}" data-rarity="${rarity}">${rarity}</span>`;
+}
+
+function sweetSummonStatusBadge(isNew, amount) {
+  if (isNew) {
+    return '<span class="sweet-summon-badge sweet-summon-badge--new">NEW</span>';
+  }
+  return `<span class="sweet-summon-badge sweet-summon-badge--fragment">碎片 +${amount}</span>`;
+}
+
+function sweetSummonRarityDesc(rarity) {
+  const labels = { N: '普通夥伴', R: '稀有夥伴', SR: '超稀有夥伴', SSR: '極稀有夥伴', UR: '傳說夥伴' };
+  return labels[rarity] || rarity;
+}
+
+function renderSweetSinglePullResult(result) {
   const { pet, isNew, fragmentsGained, rarity, triggeredPity } = result;
-  const rarityClass = `rarity-${rarity}`;
+  const { canSingle, canTen } = getGachaAffordability();
 
   openModal(`
-    <div class="pull-result pull-result--animate ${rarityClass}">
-      <div class="pull-result__flash"></div>
-      <div class="pull-result__glow pull-result__glow--${rarity}"></div>
-      ${triggeredPity ? '<p class="pull-result__pity-badge">保底觸發</p>' : ''}
-      <p class="pull-result__label">${isNew ? '🎉 新夥伴加入！' : '💫 重複獲得'}</p>
-      ${pet.summonLine ? `<p class="pull-result__summon">「${escapeHtml(pet.summonLine)}」</p>` : ''}
-      <div class="pull-result__image">${petImageHtml(pet, { size: 'lg' })}</div>
-      <h2 class="pull-result__name">${escapeHtml(pet.name)}</h2>
-      <span class="badge badge--rarity ${rarityClass}">${rarity}</span>
-      ${
-        isNew
-          ? '<p class="pull-result__desc">已加入圖鑑</p>'
-          : `<p class="pull-result__desc">獲得 ${fragmentsGained} 碎片</p>`
-      }
-      <p class="pull-result__detail">${escapeHtml(pet.description)}</p>
-      <button class="btn btn--primary btn--block" id="pull-close">確認</button>
+    <div class="sweet-summon-result sweet-summon-result--single" data-rarity="${rarity}">
+      <header class="sweet-summon-result__header">
+        <div class="sweet-summon-result__header-row">
+          <p class="sweet-summon-result__eyebrow">召喚結果</p>
+          ${sweetSummonRarityBadge(rarity)}
+        </div>
+        <h2 class="sweet-summon-result__title">${isNew ? '新夥伴加入' : '獲得寵物'}</h2>
+        ${triggeredPity ? '<p class="sweet-summon-result__pity">保底觸發</p>' : ''}
+      </header>
+
+      <div class="sweet-summon-result__scroll">
+        <section class="sweet-summon-showcase" data-rarity="${rarity}" aria-label="召喚寵物展示">
+          <div class="sweet-summon-showcase__frame">
+            ${petImageHtml(pet, { size: 'lg' })}
+          </div>
+          <h3 class="sweet-summon-showcase__name">${escapeHtml(pet.name)}</h3>
+          <div class="sweet-summon-showcase__badges">
+            ${sweetSummonStatusBadge(isNew, fragmentsGained)}
+            ${isNew ? '<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-new">新夥伴加入</span>' : '<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-dup">重複轉化</span>'}
+          </div>
+          ${pet.summonLine ? `<p class="sweet-summon-showcase__line">「${escapeHtml(pet.summonLine)}」</p>` : ''}
+          <p class="sweet-summon-showcase__desc">${escapeHtml(pet.description)}</p>
+        </section>
+
+        <section class="sweet-summon-info" aria-label="召喚結果資訊">
+          ${
+            isNew
+              ? `<div class="sweet-summon-info__row">
+                  <span class="sweet-summon-info__label">圖鑑狀態</span>
+                  <span class="sweet-summon-info__value sweet-summon-info__value--success">已加入圖鑑</span>
+                </div>`
+              : `<div class="sweet-summon-info__row">
+                  <span class="sweet-summon-info__label">轉化結果</span>
+                  <span class="sweet-summon-info__value sweet-summon-info__value--fragment">碎片 +${fragmentsGained}</span>
+                </div>`
+          }
+          <div class="sweet-summon-info__row">
+            <span class="sweet-summon-info__label">稀有度</span>
+            <span class="sweet-summon-info__value">${sweetSummonRarityDesc(rarity)}</span>
+          </div>
+        </section>
+      </div>
+
+      <footer class="sweet-summon-result__actions">
+        <button type="button" class="sweet-summon-btn sweet-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>再召喚 1 次</button>
+        <button type="button" class="sweet-summon-btn sweet-summon-btn--secondary" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>召喚 10 次</button>
+        <button type="button" class="sweet-summon-btn sweet-summon-btn--ghost" id="pull-close">關閉</button>
+      </footer>
     </div>
   `);
 
-  document.getElementById('pull-close')?.addEventListener('click', closeModal);
+  bindGachaResultButtons('pull-close');
 }
 
-function showTenPullResult(result) {
-  const { results, summary, cost } = result;
-  const glowClass = `ten-pull-result--${summary.highestRarity}`;
+function renderSweetTenPullResult(result) {
+  const { results, summary } = result;
+  const { canSingle, canTen } = getGachaAffordability();
 
   const cardsHtml = results
     .map(
       (r, i) => `
-      <div class="ten-pull-card rarity-${r.rarity}" style="animation-delay:${i * 0.06}s">
-        ${petImageHtml(r.pet, { size: 'sm' })}
-        <p class="ten-pull-card__name">${escapeHtml(r.pet.name)}</p>
-        <span class="badge badge--rarity rarity-${r.rarity}">${r.rarity}</span>
-        ${r.isNew ? '<span class="ten-pull-card__badge">NEW</span>' : `<span class="ten-pull-card__frag">+${r.duplicateFragments} 碎片</span>`}
-        ${r.triggeredPity ? '<span class="ten-pull-card__pity">保底</span>' : ''}
-      </div>`
+      <article class="sweet-summon-grid-card" data-rarity="${r.rarity}" style="animation-delay:${i * 0.05}s">
+        <div class="sweet-summon-grid-card__media">${petImageHtml(r.pet, { size: 'sm' })}</div>
+        <div class="sweet-summon-grid-card__body">
+          ${sweetSummonRarityBadge(r.rarity)}
+          <p class="sweet-summon-grid-card__name">${escapeHtml(r.pet.name)}</p>
+          <div class="sweet-summon-grid-card__footer">
+            ${sweetSummonStatusBadge(r.isNew, r.duplicateFragments)}
+            ${r.triggeredPity ? '<span class="sweet-summon-badge sweet-summon-badge--pity">保底</span>' : ''}
+          </div>
+        </div>
+      </article>`
     )
     .join('');
 
   openModal(`
-    <div class="ten-pull-result pull-result--animate ${glowClass}">
-      <h2 class="modal-title">10 連召喚結果</h2>
-      <div class="ten-pull-grid">${cardsHtml}</div>
-      <ul class="ten-pull-summary">
-        <li>新獲得 <strong>${summary.newCount}</strong> 隻</li>
-        <li>重複 <strong>${summary.duplicateCount}</strong> 隻</li>
-        <li>碎片總計 <strong>${summary.totalFragments}</strong></li>
-        <li>消耗星塵 <strong>${cost}</strong></li>
-        <li>最高稀有度 <strong>${summary.highestRarity}</strong></li>
-      </ul>
-      <button class="btn btn--primary btn--block" id="ten-pull-close">確認</button>
+    <div class="sweet-summon-result sweet-summon-result--ten" data-highest-rarity="${summary.highestRarity}">
+      <header class="sweet-summon-result__header">
+        <div class="sweet-summon-result__header-row">
+          <p class="sweet-summon-result__eyebrow">十連召喚結果</p>
+          ${sweetSummonRarityBadge(summary.highestRarity, 'sweet-summon-badge--highest')}
+        </div>
+        <h2 class="sweet-summon-result__title">今天的召喚成果</h2>
+      </header>
+
+      <div class="sweet-summon-result__scroll">
+        <section class="sweet-summon-summary" aria-label="十連召喚摘要">
+          <div class="sweet-summon-summary__item sweet-summon-summary__item--new">
+            <span class="sweet-summon-summary__label">新夥伴</span>
+            <span class="sweet-summon-summary__value">${summary.newCount}</span>
+          </div>
+          <div class="sweet-summon-summary__item sweet-summon-summary__item--dup">
+            <span class="sweet-summon-summary__label">重複</span>
+            <span class="sweet-summon-summary__value">${summary.duplicateCount}</span>
+          </div>
+          <div class="sweet-summon-summary__item sweet-summon-summary__item--frag">
+            <span class="sweet-summon-summary__label">碎片</span>
+            <span class="sweet-summon-summary__value">+${summary.totalFragments}</span>
+          </div>
+          <div class="sweet-summon-summary__item sweet-summon-summary__item--highest">
+            <span class="sweet-summon-summary__label">最高稀有</span>
+            <span class="sweet-summon-summary__value">${summary.highestRarity}</span>
+          </div>
+        </section>
+
+        <div class="sweet-summon-grid" role="list" aria-label="十連召喚卡片">${cardsHtml}</div>
+      </div>
+
+      <footer class="sweet-summon-result__actions">
+        <button type="button" class="sweet-summon-btn sweet-summon-btn--secondary" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>再召喚 10 次</button>
+        <button type="button" class="sweet-summon-btn sweet-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>召喚 1 次</button>
+        <button type="button" class="sweet-summon-btn sweet-summon-btn--ghost" id="ten-pull-close">關閉</button>
+      </footer>
     </div>
   `);
 
-  document.getElementById('ten-pull-close')?.addEventListener('click', closeModal);
+  bindGachaResultButtons('ten-pull-close');
+}
+
+function defaultSummonRarityBadge(rarity, extraClass = '') {
+  return `<span class="default-summon-badge default-summon-badge--rarity ${extraClass}" data-rarity="${rarity}">${rarity}</span>`;
+}
+
+function defaultSummonStatusBadge(isNew, amount) {
+  if (isNew) {
+    return '<span class="default-summon-badge default-summon-badge--new">NEW</span>';
+  }
+  return `<span class="default-summon-badge default-summon-badge--fragment">碎片 +${amount}</span>`;
+}
+
+function defaultSummonRarityDesc(rarity) {
+  const labels = { N: '普通夥伴', R: '稀有夥伴', SR: '超稀有夥伴', SSR: '極稀有夥伴', UR: '傳說夥伴' };
+  return labels[rarity] || rarity;
+}
+
+function defaultSummonRarityHint(rarity) {
+  if (rarity === 'UR') return '<p class="default-summon-showcase__hint default-summon-showcase__hint--ur">傳說夥伴</p>';
+  if (rarity === 'SSR') return '<p class="default-summon-showcase__hint default-summon-showcase__hint--ssr">稀有夥伴</p>';
+  return '';
+}
+
+function renderDefaultSinglePullResult(result) {
+  const { pet, isNew, fragmentsGained, rarity, triggeredPity } = result;
+  const { canSingle, canTen } = getGachaAffordability();
+
+  openModal(`
+    <div class="default-summon-result default-summon-result--single" data-rarity="${rarity}">
+      <header class="default-summon-result__header">
+        <div class="default-summon-result__header-row">
+          <p class="default-summon-result__eyebrow">召喚結果</p>
+          ${defaultSummonRarityBadge(rarity)}
+        </div>
+        <h2 class="default-summon-result__title">${isNew ? '新夥伴降臨' : '召喚完成'}</h2>
+        ${triggeredPity ? '<p class="default-summon-result__pity">保底觸發</p>' : ''}
+      </header>
+
+      <div class="default-summon-result__scroll">
+        <section class="default-summon-showcase" data-rarity="${rarity}" aria-label="召喚祭壇展示">
+          <div class="default-summon-showcase__altar" aria-hidden="true"></div>
+          ${defaultSummonRarityHint(rarity)}
+          <div class="default-summon-showcase__frame">
+            ${petImageHtml(pet, { size: 'lg' })}
+          </div>
+          <h3 class="default-summon-showcase__name">${escapeHtml(pet.name)}</h3>
+          <div class="default-summon-showcase__badges">
+            ${defaultSummonStatusBadge(isNew, fragmentsGained)}
+            ${isNew ? '<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-new">新夥伴加入</span>' : '<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-dup">重複轉化</span>'}
+          </div>
+          ${pet.summonLine ? `<p class="default-summon-showcase__line">「${escapeHtml(pet.summonLine)}」</p>` : ''}
+          <p class="default-summon-showcase__desc">${escapeHtml(pet.description)}</p>
+        </section>
+
+        <section class="default-summon-info" aria-label="召喚結果資訊">
+          ${
+            isNew
+              ? `<div class="default-summon-info__row">
+                  <span class="default-summon-info__label">圖鑑狀態</span>
+                  <span class="default-summon-info__value default-summon-info__value--success">已加入圖鑑</span>
+                </div>`
+              : `<div class="default-summon-info__row">
+                  <span class="default-summon-info__label">轉化結果</span>
+                  <span class="default-summon-info__value default-summon-info__value--fragment">碎片 +${fragmentsGained}</span>
+                </div>`
+          }
+          <div class="default-summon-info__row">
+            <span class="default-summon-info__label">稀有度</span>
+            <span class="default-summon-info__value">${defaultSummonRarityDesc(rarity)}</span>
+          </div>
+        </section>
+      </div>
+
+      <footer class="default-summon-result__actions">
+        <button type="button" class="default-summon-btn default-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>再召喚 1 次</button>
+        <button type="button" class="default-summon-btn default-summon-btn--ten" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>召喚 10 次</button>
+        <button type="button" class="default-summon-btn default-summon-btn--ghost" id="pull-close">關閉</button>
+      </footer>
+    </div>
+  `);
+
+  bindGachaResultButtons('pull-close');
+}
+
+function renderDefaultTenPullResult(result) {
+  const { results, summary } = result;
+  const { canSingle, canTen } = getGachaAffordability();
+
+  const cardsHtml = results
+    .map(
+      (r, i) => `
+      <article class="default-summon-grid-card" data-rarity="${r.rarity}" style="animation-delay:${i * 0.05}s">
+        <div class="default-summon-grid-card__media">${petImageHtml(r.pet, { size: 'sm' })}</div>
+        <div class="default-summon-grid-card__body">
+          ${defaultSummonRarityBadge(r.rarity)}
+          <p class="default-summon-grid-card__name">${escapeHtml(r.pet.name)}</p>
+          <div class="default-summon-grid-card__footer">
+            ${defaultSummonStatusBadge(r.isNew, r.duplicateFragments)}
+            ${r.triggeredPity ? '<span class="default-summon-badge default-summon-badge--pity">保底</span>' : ''}
+          </div>
+        </div>
+      </article>`
+    )
+    .join('');
+
+  openModal(`
+    <div class="default-summon-result default-summon-result--ten" data-highest-rarity="${summary.highestRarity}">
+      <header class="default-summon-result__header">
+        <div class="default-summon-result__header-row">
+          <p class="default-summon-result__eyebrow">十連召喚結果</p>
+          ${defaultSummonRarityBadge(summary.highestRarity, 'default-summon-badge--highest')}
+        </div>
+        <h2 class="default-summon-result__title">召喚儀式完成</h2>
+      </header>
+
+      <div class="default-summon-result__scroll">
+        <section class="default-summon-summary" aria-label="十連召喚摘要">
+          <div class="default-summon-summary__item default-summon-summary__item--new">
+            <span class="default-summon-summary__label">新夥伴</span>
+            <span class="default-summon-summary__value">${summary.newCount}</span>
+          </div>
+          <div class="default-summon-summary__item default-summon-summary__item--dup">
+            <span class="default-summon-summary__label">重複</span>
+            <span class="default-summon-summary__value">${summary.duplicateCount}</span>
+          </div>
+          <div class="default-summon-summary__item default-summon-summary__item--frag">
+            <span class="default-summon-summary__label">碎片</span>
+            <span class="default-summon-summary__value">+${summary.totalFragments}</span>
+          </div>
+          <div class="default-summon-summary__item default-summon-summary__item--highest">
+            <span class="default-summon-summary__label">最高稀有</span>
+            <span class="default-summon-summary__value">${summary.highestRarity}</span>
+          </div>
+        </section>
+
+        <div class="default-summon-grid" role="list" aria-label="十連召喚卡片">${cardsHtml}</div>
+      </div>
+
+      <footer class="default-summon-result__actions">
+        <button type="button" class="default-summon-btn default-summon-btn--ten" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>再召喚 10 次</button>
+        <button type="button" class="default-summon-btn default-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>召喚 1 次</button>
+        <button type="button" class="default-summon-btn default-summon-btn--ghost" id="ten-pull-close">關閉</button>
+      </footer>
+    </div>
+  `);
+
+  bindGachaResultButtons('ten-pull-close');
+}
+
+function bindGachaResultButtons(closeId = 'pull-close') {
+  document.getElementById(closeId)?.addEventListener('click', closeModal);
+
+  document.querySelector('[data-action="result-single-pull"]')?.addEventListener('click', async () => {
+    closeModal();
+    await handlePull();
+  });
+
+  document.querySelector('[data-action="result-ten-pull"]')?.addEventListener('click', async () => {
+    closeModal();
+    await handleTenPull();
+  });
+}
+
+function showPullResult(result) {
+  if (isSweetTheme()) {
+    renderSweetSinglePullResult(result);
+    return;
+  }
+  renderDefaultSinglePullResult(result);
+}
+
+function showTenPullResult(result) {
+  if (isSweetTheme()) {
+    renderSweetTenPullResult(result);
+    return;
+  }
+  renderDefaultTenPullResult(result);
 }
 
 /* ─── 圖鑑頁 ─── */

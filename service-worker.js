@@ -1,10 +1,10 @@
 /**
 
- * QuestNote Service Worker — V2.2 daily blessing collapse
+ * QuestNote Service Worker — V2.2.4 Default gacha result redesign
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v22-daily-blessing-collapse';
+const CACHE_NAME = 'questnote-cache-v224-default-gacha-result-redesign';
 
 
 
