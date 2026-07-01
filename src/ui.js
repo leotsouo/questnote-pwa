@@ -73,6 +73,14 @@ import {
   formatBuildTimeLocal,
 } from './version.js';
 import {
+  getPetImageSrc,
+  warmPetImageCache,
+  preloadCompanionImage,
+  preloadGachaResultImages,
+  preloadOwnedPetImages,
+  waitForPreloadWithTimeout,
+} from './imagePreloadService.js';
+import {
   claimAchievementReward,
   claimAllAchievementRewards,
   equipTitle,
@@ -183,6 +191,7 @@ let selectedExpeditionAreaId = null;
 let selectedExpeditionPetId = null;
 let achievementFilter = 'all';
 let collectionFilter = 'all';
+let lastCollectionGridKey = null;
 let taskViewMode = 'today';
 let activeSmartListId = null;
 let taskCategoryFilter = 'all';
@@ -288,7 +297,7 @@ function openNicknameModal(petId) {
       return;
     }
     closeModal();
-    await onRefresh();
+    await onRefresh({ renderMode: ['collection'] });
     openPetDetailModal(petId);
     showToast('暱稱已清除', 'success');
   });
@@ -306,7 +315,7 @@ function openNicknameModal(petId) {
       return;
     }
     closeModal();
-    await onRefresh();
+    await onRefresh({ renderMode: ['collection'] });
     openPetDetailModal(petId);
     showToast(result.cleared ? '暱稱已清除' : '暱稱已更新', 'success');
     if (!result.cleared) {
@@ -498,6 +507,14 @@ function bindDelegatedEvents() {
       switchView('achievements');
     } else if (action === 'go-habits') {
       switchView('habits');
+    } else if (action === 'toggle-daily-blessing') {
+      dailyBlessingCollapsed = !dailyBlessingCollapsed;
+      dailyBlessingCollapseDay = getTodayDateString();
+      renderDailyBlessingSection();
+    } else if (action === 'daily-check-in') {
+      await handleDailyCheckIn();
+    } else if (action === 'daily-open-wheel') {
+      await openDailyWheelModal();
     } else if (action === 'companion-view-image') {
       if (state?.companion) {
         openCompanionImageModal(state.companion);
@@ -530,12 +547,11 @@ function bindDelegatedEvents() {
     const target = e.target.closest('[data-action]');
     if (!target) return;
     const action = target.dataset.action;
-    if (action === 'toggle-daily-blessing') {
-      dailyBlessingCollapsed = !dailyBlessingCollapsed;
-      dailyBlessingCollapseDay = getTodayDateString();
-      renderDailyBlessingSection();
-    } else if (action === 'daily-check-in') {
-      await handleDailyCheckIn();
+    if (action === 'go-home-daily-blessing') {
+      switchView('tasks');
+      requestAnimationFrame(() => {
+        document.getElementById('homeDailyBlessingContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     } else if (action === 'daily-open-wheel') {
       await openDailyWheelModal();
     }
@@ -564,7 +580,7 @@ function bindDelegatedEvents() {
       const petId = card?.dataset.petId;
       if (petId) {
         await setCompanion(petId);
-        await onRefresh();
+        await onRefresh({ renderMode: ['collection', 'tasks'] });
         showToast('已設為陪伴寵物', 'success');
       }
       return;
@@ -582,7 +598,7 @@ function bindDelegatedEvents() {
 
     const result = await upgradeStar(petId);
     if (result.success) {
-      await onRefresh();
+      await onRefresh({ renderMode: ['collection', 'tasks'] });
       showToast(`${petDisplayName(pet)} 升級至 ${result.entry.stars} 星！`, 'success');
     } else {
       showToast(result.message || `升星需要 ${cost} 碎片`, 'warning');
@@ -636,7 +652,7 @@ function bindDelegatedEvents() {
     switchView(item.dataset.goto);
     if (item.hasAttribute('data-scroll-daily-blessing')) {
       requestAnimationFrame(() => {
-        document.getElementById('daily-blessing-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('homeDailyBlessingContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
   });
@@ -672,7 +688,7 @@ function bindDelegatedEvents() {
       claimBtn.disabled = true;
       const result = await claimAchievementReward(achId);
       if (result.success) {
-        await onRefresh();
+        await onRefresh({ renderMode: ['achievements', 'tasks'] });
         showToast(`已領取：${result.achievement.name}`, 'success');
         renderAchievementsView();
       } else {
@@ -742,7 +758,7 @@ function bindDelegatedEvents() {
       cardEl?.classList.add('habit-card--completing');
       const result = await completeHabitToday(id);
       if (result.success) {
-        await onRefresh();
+        await onRefresh({ renderMode: ['habits', 'tasks'] });
         renderHabitsView();
         const parts = [];
         if (result.stardustGiven > 0) parts.push(`星塵 +${result.stardustGiven}`);
@@ -763,7 +779,7 @@ function bindDelegatedEvents() {
     } else if (action === 'habit-uncomplete' && id) {
       const result = await uncompleteHabitToday(id);
       if (result.success) {
-        await onRefresh();
+        await onRefresh({ renderMode: ['habits', 'tasks'] });
         renderHabitsView();
         showToast('已取消今日完成', 'info');
       } else {
@@ -775,7 +791,7 @@ function bindDelegatedEvents() {
       openConfirmModal('封存習慣', '封存後將不再顯示於今日習慣，紀錄會保留。', async () => {
         const result = await archiveHabit(id);
         if (result.success) {
-          await onRefresh();
+          await onRefresh({ renderMode: ['habits', 'tasks'] });
           renderHabitsView();
           showToast('習慣已封存', 'success');
           await handleAchievementCheckAfterAction();
@@ -841,6 +857,14 @@ export function switchView(viewName) {
     renderWorkshopView();
   }
 
+  if (viewName === 'collection') {
+    preloadOwnedPetImages(state?.enrichedCollection, state?.allPets, 12).catch(() => {});
+  }
+
+  if (viewName === 'tasks' && state?.companion) {
+    preloadCompanionImage(state).catch(() => {});
+  }
+
   currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'more'
     ? currentTasksView
     : viewName;
@@ -902,21 +926,40 @@ function openConfirmModal(title, message, onConfirm, options = {}) {
 
 /** 寵物圖片含 fallback；preview 模式顯示模糊黑白預覽（未獲得） */
 export function petImageHtml(pet, options = {}) {
-  const { size = 'md', preview = false } = options;
+  const {
+    size = 'md',
+    preview = false,
+    loading = 'lazy',
+    eager = false,
+    framed = true,
+  } = options;
   const cls = `pet-img pet-img--${size}`;
-  const placeholder = `<div class="${cls} pet-img--placeholder"><span>?</span></div>`;
+  const src = getPetImageSrc(pet);
+  const loadAttr = eager || loading === 'eager' ? 'eager' : loading;
+  const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
+  const onerror = "this.onerror=null;this.classList.add('is-error');var f=this.closest('.pet-image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}";
+  const placeholder = framed
+    ? `<div class="pet-image-frame pet-image-frame--${size} is-error" role="img" aria-label="圖片暫時無法載入"><span class="pet-image-frame__fallback" aria-hidden="true">?</span></div>`
+    : `<div class="${cls} pet-img--placeholder"><span>?</span></div>`;
 
-  if (!pet?.image) return placeholder;
-
-  const onError = `this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} pet-img--placeholder',innerHTML:'<span>?</span>'}))`;
+  if (!src) return placeholder;
 
   if (preview) {
-    return `<div class="pet-img-wrap pet-img-wrap--preview pet-img-wrap--${size}">
-      <img class="${cls} pet-img--preview" src="${pet.image}" alt="" loading="lazy" onerror="${onError}" />
+    return `<div class="pet-img-wrap pet-img-wrap--preview pet-img-wrap--${size} pet-image-frame pet-image-frame--${size} is-loading">
+      <img class="${cls} pet-img--preview is-loading" src="${src}" alt="" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
+      <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
     </div>`;
   }
 
-  return `<img class="${cls}" src="${pet.image}" alt="${escapeHtml(petDisplayName(pet))}" onerror="${onError}" />`;
+  if (!framed) {
+    const onErrorLegacy = `this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} pet-img--placeholder',innerHTML:'<span>?</span>'}))`;
+    return `<img class="${cls} is-loading" src="${src}" alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="this.classList.add('is-loaded')" onerror="${onErrorLegacy}" />`;
+  }
+
+  return `<div class="pet-image-frame pet-image-frame--${size} is-loading">
+    <img class="${cls} is-loading" src="${src}" alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
+    <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
+  </div>`;
 }
 
 /** 星級顯示 */
@@ -929,9 +972,137 @@ export function renderStars(count, max = 5) {
   return html;
 }
 
-/** 渲染全部畫面 */
+/** 取得目前 active 的 view 名稱 */
+function getCurrentViewName() {
+  const active = document.querySelector('.view.active');
+  if (active?.id?.startsWith('view-')) {
+    return active.id.slice('view-'.length);
+  }
+  return currentTasksView || 'tasks';
+}
+
+/** 跨頁面共用的輕量 UI 更新（不重建整個 view） */
+export function renderSharedUI() {
+  if (!state) return;
+  if (isWheelSpinning()) return;
+  console.debug('[Render] renderSharedUI');
+  const { wallet, todayCompleted, availablePulls, achievementSummary } = state;
+  setText('stat-stardust', wallet.stardust ?? 0);
+  setText('stat-energy', wallet.adventureEnergy ?? 0);
+  setText('stat-today', todayCompleted);
+  setText('stat-pulls', availablePulls);
+  const claimable = achievementSummary?.claimable ?? 0;
+  setText('stat-claimable', claimable);
+  const claimableCard = document.getElementById('stat-claimable-card');
+  if (claimableCard) {
+    claimableCard.classList.toggle('stat-card--highlight', claimable > 0);
+  }
+  setText('gacha-stardust', wallet.stardust ?? 0);
+  setText('settings-stardust', wallet.stardust ?? 0);
+  setText('settings-energy', wallet.adventureEnergy ?? 0);
+  renderAchievementStrip();
+  renderNavBadges();
+  renderGachaDailyBlessingEntry();
+  maybeRefreshExpeditionBubble();
+}
+
+/** 渲染指定 view */
+export function renderView(viewName) {
+  if (!state) return;
+  if (isWheelSpinning()) return;
+  console.debug('[Render] renderView:', viewName);
+  switch (viewName) {
+    case 'tasks':
+      renderTasksView();
+      break;
+    case 'gacha':
+      renderGachaView();
+      break;
+    case 'collection':
+      renderCollectionView();
+      break;
+    case 'expedition':
+      renderExpeditionView();
+      break;
+    case 'workshop':
+      renderWorkshopView();
+      break;
+    case 'achievements':
+      renderAchievementsView();
+      break;
+    case 'habits':
+      renderHabitsView();
+      break;
+    case 'settings':
+      renderSettingsView();
+      break;
+    case 'more':
+      renderMoreView();
+      break;
+    default:
+      console.debug('[Render] renderAll fallback (unknown view:', viewName, ')');
+      renderAll();
+  }
+}
+
+/** 僅渲染目前 view + 共用 UI */
+export function renderCurrentView() {
+  if (!state) return;
+  if (isWheelSpinning()) {
+    console.debug('[Render] renderCurrentView skipped (wheel spinning)');
+    return;
+  }
+  const viewName = getCurrentViewName();
+  console.debug('[Render] renderCurrentView:', viewName);
+  if (isModalOpen()) {
+    renderSharedUI();
+    return;
+  }
+  renderView(viewName);
+  renderSharedUI();
+}
+
+/** 刷新多個 view + 共用 UI */
+export function renderViews(viewNames) {
+  if (!state || isWheelSpinning()) return;
+  if (isModalOpen()) {
+    console.debug('[Render] renderViews skipped view rebuild (modal open)');
+    renderSharedUI();
+    return;
+  }
+  const seen = new Set();
+  for (const name of viewNames) {
+    if (!name || seen.has(name)) continue;
+    seen.add(name);
+    renderView(name);
+  }
+  renderSharedUI();
+}
+
+/**
+ * 資料刷新後的渲染入口
+ * @param {'full' | 'current' | string[]} [mode]
+ */
+export async function renderAfterRefresh(mode = 'current') {
+  if (mode === 'full') {
+    await renderAll();
+    return;
+  }
+  if (Array.isArray(mode)) {
+    renderViews(mode);
+    return;
+  }
+  renderCurrentView();
+}
+
+/** 渲染全部畫面（安全 fallback） */
 export async function renderAll() {
   if (!state) return;
+  if (isWheelSpinning()) {
+    console.debug('[Render] renderAll skipped (wheel spinning)');
+    return;
+  }
+  console.debug('[Render] renderAll fallback');
   applyThemeToDocument(state.userPreferences?.theme ?? 'default');
   applyReduceMotionClass(state.userPreferences?.reduceMotion ?? false);
   renderTasksView();
@@ -945,8 +1116,7 @@ export async function renderAll() {
   if (document.getElementById('view-achievements')?.classList.contains('active')) {
     renderAchievementsView();
   }
-  renderNavBadges();
-  maybeRefreshExpeditionBubble();
+  renderSharedUI();
 }
 
 function maybeRefreshExpeditionBubble() {
@@ -1139,10 +1309,7 @@ function resolveDailyBlessingCollapsed(allDone, today) {
   return dailyBlessingCollapsed;
 }
 
-function renderDailyBlessingSection() {
-  const el = document.getElementById('daily-blessing-section');
-  if (!el) return;
-
+function buildDailyBlessingCardData() {
   const daily = state.dailyCheckIn;
   const today = getTodayDateString();
   const checkedIn = daily ? hasCheckedInToday(daily, today) : false;
@@ -1198,7 +1365,7 @@ function renderDailyBlessingSection() {
       </div>`
     : '';
 
-  el.innerHTML = `
+  const html = `
     <div class="daily-blessing-card${collapsed ? ' daily-blessing-card--collapsed' : ''}${hasPending ? ' daily-blessing-card--pending' : ''}">
       <header class="daily-blessing-card__header">
         <button type="button" class="daily-blessing-card__toggle" data-action="toggle-daily-blessing" aria-expanded="${!collapsed}">
@@ -1261,11 +1428,50 @@ function renderDailyBlessingSection() {
       </div>
     </div>`;
 
+  return { html, hasPending, allDone, checkedIn, spun, compactSummary, statusBadgeText };
+}
+
+function renderDailyBlessingSection() {
+  const homeEl = document.getElementById('homeDailyBlessingContainer');
+  if (!homeEl) return;
+
+  const { html, hasPending } = buildDailyBlessingCardData();
+  homeEl.innerHTML = html;
+
   if (hasPending) {
-    el.classList.add('daily-blessing-section--pending');
+    homeEl.classList.add('daily-blessing-section--pending');
   } else {
-    el.classList.remove('daily-blessing-section--pending');
+    homeEl.classList.remove('daily-blessing-section--pending');
   }
+
+  renderGachaDailyBlessingEntry();
+}
+
+function renderGachaDailyBlessingEntry() {
+  const el = document.getElementById('gacha-daily-blessing-entry');
+  if (!el) return;
+
+  const { allDone, checkedIn, spun, compactSummary, statusBadgeText } = buildDailyBlessingCardData();
+
+  let statusClass = 'daily-blessing-gacha-entry__status';
+  if (allDone) statusClass += ' daily-blessing-gacha-entry__status--done';
+
+  el.innerHTML = `
+    <div class="daily-blessing-gacha-entry__card card">
+      <div class="daily-blessing-gacha-entry__main">
+        <span class="daily-blessing-gacha-entry__icon" aria-hidden="true">✦</span>
+        <div class="daily-blessing-gacha-entry__text">
+          <span class="daily-blessing-gacha-entry__title">每日祝福</span>
+          <span class="daily-blessing-gacha-entry__summary">${escapeHtml(compactSummary)}</span>
+        </div>
+        <span class="${statusClass}">${escapeHtml(statusBadgeText)}</span>
+      </div>
+      <div class="daily-blessing-gacha-entry__actions">
+        ${!checkedIn ? '<button type="button" class="btn btn--secondary btn--sm" data-action="go-home-daily-blessing">前往簽到</button>' : ''}
+        ${!spun ? '<button type="button" class="btn btn--primary btn--sm" data-action="daily-open-wheel">幸運轉盤</button>' : ''}
+        ${allDone ? '<button type="button" class="btn btn--ghost btn--sm" data-action="go-home-daily-blessing">查看紀錄</button>' : ''}
+      </div>
+    </div>`;
 }
 
 async function handleDailyCheckIn() {
@@ -1282,7 +1488,7 @@ async function handleDailyCheckIn() {
     today
   );
   if (willBeAllDone) dailyBlessingCollapsed = true;
-  await onRefresh();
+  await onRefresh({ renderMode: ['tasks', 'gacha'] });
   showDailyBlessingRewardToast(`簽到成功！獲得 ${rewardText}`);
   if (result.streak >= 3) {
     showToast(`連續簽到 ${result.streak} 天！`, 'success');
@@ -1293,7 +1499,7 @@ async function handleDailyCheckIn() {
 const WHEEL_CX = 150;
 const WHEEL_CY = 150;
 const WHEEL_R = 140;
-const WHEEL_LABEL_R = 86;
+const WHEEL_LABEL_R = 82;
 
 const WHEEL_COLORS_DEFAULT = [
   '#2A1F4A', '#18304A', '#2B2340', '#3A2A18',
@@ -1465,9 +1671,10 @@ async function animateDailyWheel(rewardIndex, segmentCount) {
     ? 'transform 300ms ease-out'
     : 'transform 2800ms cubic-bezier(0.12, 0.72, 0.18, 1)';
 
-  // 強制 reflow，確保 transition 從當前角度開始
   void rotor.offsetHeight;
-  rotor.style.transform = `translate3d(0, 0, 0) rotate(${rotation}deg)`;
+  const transformValue = `translate3d(0, 0, 0) rotate(${rotation}deg)`;
+  rotor.style.setProperty('--wheel-rotation', `${rotation}deg`);
+  rotor.style.transform = transformValue;
 
   const fallbackMs = reduceMotion ? 400 : 3000;
   await waitForWheelRotorTransition(rotor, fallbackMs);
@@ -1520,22 +1727,33 @@ async function openDailyWheelModal() {
       return;
     }
 
-    try {
-      await animateDailyWheel(prep.rewardIndex, prep.segmentCount);
+    let wheelSpinFinished = false;
+    const finishWheelSpin = async () => {
+      if (wheelSpinFinished) return;
+      wheelSpinFinished = true;
+
       const result = await finalizeDailyWheelSpin(prep.reward);
       if (!result.success) {
         showToast(result.error || '轉盤結算失敗', 'error');
+        releaseWheelSpinLock();
+        startBtn.disabled = false;
         return;
       }
       closeModal();
       dailyBlessingCollapsed = true;
-      await onRefresh();
+      await onRefresh({ renderMode: ['tasks', 'gacha'] });
       showDailyBlessingRewardToast(`獲得：${prep.reward.label}`);
       await handleAchievementCheckAfterAction();
+    };
+
+    try {
+      await animateDailyWheel(prep.rewardIndex, prep.segmentCount);
+      await finishWheelSpin();
     } catch (err) {
       console.error('[QuestNote] 轉盤錯誤:', err);
       releaseWheelSpinLock();
       showToast('轉盤發生錯誤，請稍後再試', 'error');
+      startBtn.disabled = false;
     }
   });
 }
@@ -2185,8 +2403,11 @@ function renderCompanionSection(companion, defaultLine) {
 
   if (sameCompanion) {
     updateCompanionBondDisplay(companion);
+    updateCompanionImageIfNeeded(companion);
     return;
   }
+
+  warmPetImageCache(getPetImageSrc(companion)).catch(() => {});
 
   const progress = getBondProgress(companion.bondExp ?? 0, companion.bondLevel ?? 1);
   const rarityClass = `rarity-${companion.rarity}`;
@@ -2204,7 +2425,7 @@ function renderCompanionSection(companion, defaultLine) {
       <article class="companion-card card ${rarityClass} companion-card--breathe">
         <div class="companion-card__glow"></div>
         <button type="button" class="companion-card__image" data-action="companion-view-image" aria-label="放大查看 ${escapeHtml(petDisplayName(companion))}">
-          ${petImageHtml(companion, { size: 'lg' })}
+          ${petImageHtml(companion, { size: 'lg', loading: 'eager', eager: true, framed: true })}
         </button>
         <div class="companion-card__body" data-action="companion-talk" role="button" tabindex="0">
           <div class="companion-card__header">
@@ -2350,7 +2571,7 @@ function bindCompanionPreviewInteractions(companion) {
       if (result.leveledUp) {
         setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
       }
-      await onRefresh();
+      await onRefresh({ renderMode: ['tasks'] });
       const updated = state.companion;
       if (updated) {
         openCompanionImageModal(updated);
@@ -2384,7 +2605,7 @@ function bindCompanionPreviewInteractions(companion) {
         return;
       }
       playCompanionComfortEffect();
-      await onRefresh();
+      await onRefresh({ renderMode: ['tasks', 'workshop'] });
       const updated = state.companion;
       if (updated) {
         openCompanionImageModal(updated);
@@ -2407,21 +2628,29 @@ function bindCompanionPreviewInteractions(companion) {
 function openCompanionImageModal(companion) {
   if (!companion?.image) return;
 
+  const src = getPetImageSrc(companion);
+  warmPetImageCache(src).catch(() => {});
+
   const rarityClass = `rarity-${companion.rarity}`;
   const onError = `this.onerror=null;this.classList.add('companion-image-preview__img--error')`;
+  const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
   const feedSection = buildCompanionFeedSection(companion);
 
   openModal(`
     <div class="companion-image-preview ${rarityClass}">
       <div class="companion-image-preview__stage" id="companion-preview-stage">
         <div class="companion-preview-hearts" id="companion-preview-hearts" aria-hidden="true"></div>
-        <div class="companion-image-preview__frame">
+        <div class="companion-image-preview__frame pet-image-frame pet-image-frame--lg is-loading">
           <img
-            class="companion-image-preview__img companion-image-preview__img--interactive"
-            src="${companion.image}"
+            class="companion-image-preview__img companion-image-preview__img--interactive is-loading"
+            src="${src}"
             alt="${escapeHtml(petDisplayName(companion))}"
+            loading="eager"
+            decoding="async"
+            onload="${onload}"
             onerror="${onError}"
           />
+          <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
         </div>
       </div>
       <h2 class="companion-image-preview__name">${escapeHtml(petDisplayName(companion))}</h2>
@@ -2439,6 +2668,24 @@ function openCompanionImageModal(companion) {
   `);
 
   bindCompanionPreviewInteractions(companion);
+}
+
+/** 陪伴寵物未變時只更新圖片 src（避免整卡重建） */
+function updateCompanionImageIfNeeded(companion) {
+  const img = document.querySelector('.companion-card__image img');
+  const src = getPetImageSrc(companion);
+  if (!img || !src) return;
+
+  const currentSrc = img.getAttribute('src') || '';
+  if (currentSrc === src) return;
+
+  const frame = img.closest('.pet-image-frame');
+  frame?.classList.add('is-loading');
+  frame?.classList.remove('is-error');
+  img.classList.remove('is-loaded', 'is-error');
+  img.classList.add('is-loading');
+  img.setAttribute('src', src);
+  warmPetImageCache(src).catch(() => {});
 }
 
 function updateCompanionBondDisplay(companion) {
@@ -2776,6 +3023,8 @@ function renderGachaView() {
       hintTen.hidden = true;
     }
   }
+
+  renderGachaDailyBlessingEntry();
 }
 
 async function handlePull() {
@@ -2795,7 +3044,11 @@ async function handlePull() {
 
   try {
     const result = await pullOnce(state.allPets, state.poolsData);
-    await onRefresh();
+    const preloadPromise = preloadGachaResultImages(result);
+    await Promise.all([
+      onRefresh({ renderMode: ['gacha', 'collection'] }),
+      waitForPreloadWithTimeout(preloadPromise, 600),
+    ]);
     showPullResult(result);
     showToast('召喚成功！', 'success', 2000);
     await handleAchievementCheckAfterAction();
@@ -2824,7 +3077,11 @@ async function handleTenPull() {
       showToast(result.error || '10 連抽失敗', 'warning');
       return;
     }
-    await onRefresh();
+    const preloadPromise = preloadGachaResultImages(result.results);
+    await Promise.all([
+      onRefresh({ renderMode: ['gacha', 'collection'] }),
+      waitForPreloadWithTimeout(preloadPromise, 600),
+    ]);
     showTenPullResult(result);
     showToast('10 連抽完成！', 'success', 2000);
     await handleAchievementCheckAfterAction();
@@ -2885,7 +3142,7 @@ function renderSweetSinglePullResult(result) {
       <div class="sweet-summon-result__scroll">
         <section class="sweet-summon-showcase" data-rarity="${rarity}" aria-label="召喚寵物展示">
           <div class="sweet-summon-showcase__frame">
-            ${petImageHtml(pet, { size: 'lg' })}
+            ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true })}
           </div>
           <h3 class="sweet-summon-showcase__name">${escapeHtml(pet.name)}</h3>
           <div class="sweet-summon-showcase__badges">
@@ -2934,7 +3191,7 @@ function renderSweetTenPullResult(result) {
     .map(
       (r, i) => `
       <article class="sweet-summon-grid-card" data-rarity="${r.rarity}" style="animation-delay:${i * 0.05}s">
-        <div class="sweet-summon-grid-card__media">${petImageHtml(r.pet, { size: 'sm' })}</div>
+        <div class="sweet-summon-grid-card__media">${petImageHtml(r.pet, { size: 'sm', loading: 'eager', eager: true })}</div>
         <div class="sweet-summon-grid-card__body">
           ${sweetSummonRarityBadge(r.rarity)}
           <p class="sweet-summon-grid-card__name">${escapeHtml(r.pet.name)}</p>
@@ -3033,7 +3290,7 @@ function renderDefaultSinglePullResult(result) {
           <div class="default-summon-showcase__altar" aria-hidden="true"></div>
           ${defaultSummonRarityHint(rarity)}
           <div class="default-summon-showcase__frame">
-            ${petImageHtml(pet, { size: 'lg' })}
+            ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true })}
           </div>
           <h3 class="default-summon-showcase__name">${escapeHtml(pet.name)}</h3>
           <div class="default-summon-showcase__badges">
@@ -3082,7 +3339,7 @@ function renderDefaultTenPullResult(result) {
     .map(
       (r, i) => `
       <article class="default-summon-grid-card" data-rarity="${r.rarity}" style="animation-delay:${i * 0.05}s">
-        <div class="default-summon-grid-card__media">${petImageHtml(r.pet, { size: 'sm' })}</div>
+        <div class="default-summon-grid-card__media">${petImageHtml(r.pet, { size: 'sm', loading: 'eager', eager: true })}</div>
         <div class="default-summon-grid-card__body">
           ${defaultSummonRarityBadge(r.rarity)}
           <p class="default-summon-grid-card__name">${escapeHtml(r.pet.name)}</p>
@@ -3221,22 +3478,40 @@ function renderCollectionView() {
         '前往召喚',
         'empty-go-gacha'
       );
+      lastCollectionGridKey = null;
     } else if (filtered.length === 0) {
       grid.innerHTML = emptyStateHtml('🔍', '沒有符合的寵物', '試試其他稀有度或獲得狀態篩選。');
+      lastCollectionGridKey = null;
     } else {
-      grid.innerHTML = filtered.map(renderCollectionCard).join('');
+      const gridKey = `${collectionFilter}|${filtered.map((p) => `${p.id}:${p.owned}:${p.fragments}:${p.stars}:${p.isCompanion}:${p.nickname || ''}`).join(',')}`;
+      if (gridKey !== lastCollectionGridKey || !grid.querySelector('.collection-card')) {
+        let ownedEagerCount = 0;
+        grid.innerHTML = filtered
+          .map((pet) => {
+            const eager = pet.owned && ownedEagerCount < 12;
+            if (eager) ownedEagerCount += 1;
+            return renderCollectionCard(pet, { eager });
+          })
+          .join('');
+        lastCollectionGridKey = gridKey;
+        preloadOwnedPetImages(filtered.filter((p) => p.owned), [], 12).catch(() => {});
+      }
     }
   }
 }
 
-function renderCollectionCard(pet) {
+function renderCollectionCard(pet, imageOptions = {}) {
+  const { eager = false } = imageOptions;
   const owned = pet.owned;
   const rarityClass = `rarity-${pet.rarity}`;
+  const imgOpts = owned
+    ? { size: 'md', loading: eager ? 'eager' : 'lazy', eager }
+    : { size: 'md', preview: true, loading: 'lazy' };
   return `
     <article class="collection-card ${owned ? '' : 'collection-card--locked'} ${rarityClass}" data-pet-id="${pet.id}">
       <button class="collection-card__tap" data-action="view-detail" aria-label="查看詳情">
         <div class="collection-card__image">
-          ${owned ? petImageHtml(pet, { size: 'md' }) : petImageHtml(pet, { size: 'md', preview: true })}
+          ${petImageHtml(pet, imgOpts)}
         </div>
         <div class="collection-card__info">
           ${petNameBlockHtml(pet, { owned, heading: 'h3', className: 'collection-card__name' })}
@@ -3319,7 +3594,7 @@ function openPetDetailModal(petId) {
   openModal(`
     <div class="pet-detail ${rarityClass}">
       <div class="pet-detail__hero">
-        ${owned ? petImageHtml(pet, { size: 'lg' }) : petImageHtml(pet, { size: 'lg', preview: true })}
+        ${owned ? petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true }) : petImageHtml(pet, { size: 'lg', preview: true, loading: 'lazy' })}
       </div>
       <h2 class="pet-detail__name">${owned ? escapeHtml(petDisplayName(pet)) : '???'}</h2>
       ${owned && pet.nickname ? `<p class="pet-original-name pet-original-name--center">原名：${escapeHtml(petOriginalName(pet))}</p>` : ''}
@@ -3351,7 +3626,7 @@ function openPetDetailModal(petId) {
     if (id) {
       await setCompanion(id);
       closeModal();
-      await onRefresh();
+      await onRefresh({ renderMode: ['collection', 'tasks'] });
       showToast('已設為陪伴寵物', 'success');
     }
   });
@@ -3370,7 +3645,7 @@ function openPetDetailModal(petId) {
       return;
     }
     closeModal();
-    await onRefresh();
+    await onRefresh({ renderMode: ['collection'] });
     openPetDetailModal(id);
     showToast('暱稱已清除', 'success');
   });
@@ -3703,7 +3978,7 @@ async function handleExpeditionClick(e) {
       );
       selectedExpeditionAreaId = null;
       selectedExpeditionPetId = null;
-      await onRefresh();
+      await onRefresh({ renderMode: ['expedition', 'tasks'] });
       startExpeditionTimer();
       showToast('探險已開始！', 'success');
     } catch (err) {
@@ -3720,7 +3995,7 @@ async function handleExpeditionClick(e) {
         state.expeditionAreas,
         state.allPets
       );
-      await onRefresh();
+      await onRefresh({ renderMode: ['expedition', 'tasks'] });
       showExpeditionRewardModal(result);
       const matEntries = Object.entries(result.rewards.materials || {}).filter(([, amt]) => amt > 0);
       if (matEntries.length > 0) {
@@ -3779,10 +4054,6 @@ function renderHabitsView() {
   const statsEl = document.getElementById('habit-stats');
   const contentEl = document.getElementById('habit-view-content');
   if (!statsEl || !contentEl) return;
-
-  if (!document.getElementById('view-habits')?.classList.contains('active')) {
-    return;
-  }
 
   if (state.habitsLoadError) {
     statsEl.innerHTML = '';
@@ -4052,7 +4323,6 @@ function openHabitForm(habitId = null) {
 
 function renderWorkshopView() {
   if (!state) return;
-  if (!document.getElementById('view-workshop')?.classList.contains('active')) return;
 
   const summaryEl = document.getElementById('workshop-summary');
   const contentEl = document.getElementById('workshop-content');
@@ -4308,7 +4578,7 @@ async function handleWorkshopClick(e) {
         showToast(result.message, 'warning');
         return;
       }
-      await onRefresh();
+      await onRefresh({ renderMode: ['workshop', 'tasks'] });
       renderWorkshopView();
       showToast(result.message, 'success');
       const card = target.closest('.workshop-craft-card');
@@ -4333,7 +4603,7 @@ async function handleWorkshopClick(e) {
         showToast(result.message, 'warning');
         return;
       }
-      await onRefresh();
+      await onRefresh({ renderMode: ['workshop', 'tasks', 'collection'] });
       renderWorkshopView();
       if (result.isFavorite) {
         showToast(`牠很喜歡這份禮物！親密度 +${result.bondExp}`, 'success', 3200);
@@ -4407,7 +4677,7 @@ async function handleClaimAllAchievements() {
       return;
     }
 
-    await onRefresh();
+    await onRefresh({ renderMode: ['achievements', 'tasks'] });
 
     const rewards = result.rewards || {};
     const materialText = formatAchievementReward(rewards);
@@ -4626,7 +4896,7 @@ function openTitleManagementModal() {
       if (!titleId || btn.textContent === '已裝備') return;
       const result = await equipTitle(titleId);
       if (result.success) {
-        await onRefresh();
+        await onRefresh({ renderMode: ['achievements', 'collection', 'tasks'] });
         closeModal();
         showToast(`已設定稱號：${result.title.name}`, 'success');
       } else {
@@ -4637,7 +4907,7 @@ function openTitleManagementModal() {
 
   document.getElementById('btn-clear-title')?.addEventListener('click', async () => {
     await equipTitle(null);
-    await onRefresh();
+    await onRefresh({ renderMode: ['achievements', 'collection', 'tasks'] });
     closeModal();
     showToast('已清除稱號', 'info');
   });
@@ -4648,8 +4918,13 @@ async function handleAchievementCheckAfterAction() {
   const result = await onAchievementCheck();
   if (result.newlyUnlocked.length > 0) {
     showAchievementUnlockNotifications(result);
-    await onRefresh();
-    renderNavBadges();
+    if (isModalOpen()) {
+      await onRefresh();
+      return;
+    }
+    const viewName = getCurrentViewName();
+    const modes = viewName === 'tasks' ? ['tasks'] : [viewName, 'tasks'];
+    await onRefresh({ renderMode: modes });
   }
 }
 
@@ -4919,7 +5194,7 @@ async function executeRestoreBackup() {
 
   try {
     await restoreBackup(pendingImportBackup);
-    await onRefresh();
+    await onRefresh({ renderMode: 'full' });
     await applyTheme(state?.userPreferences?.theme ?? 'default', { silent: true });
     applyReduceMotionClass(state?.userPreferences?.reduceMotion ?? false);
     await handleAchievementCheckAfterAction();
@@ -5000,7 +5275,7 @@ async function handleDevUnlock() {
   if (!confirm('【開發測試】將 8 隻高稀有寵物加入圖鑑，確定？')) return;
 
   const added = await unlockDevTestPets();
-  await onRefresh();
+  await onRefresh({ renderMode: 'full' });
   switchView('collection');
   alert(added > 0 ? `已解鎖 ${added} 隻新寵物（共 8 隻測試寵物已就緒）` : '8 隻測試寵物皆已在圖鑑中');
 }
@@ -5017,7 +5292,7 @@ async function handleDevUnlockAll() {
   if (!confirm(`【開發測試】將全部 ${petIds.length} 隻寵物加入圖鑑，確定？`)) return;
 
   const { newlyAdded, total } = await unlockAllDevPets(petIds);
-  await onRefresh();
+  await onRefresh({ renderMode: 'full' });
   switchView('collection');
   alert(
     newlyAdded > 0
@@ -5030,7 +5305,7 @@ async function handleDevStardust() {
   if (!isDevMode()) return;
 
   const total = await grantDevStardust();
-  await onRefresh();
+  await onRefresh({ renderMode: ['tasks', 'gacha'] });
   alert(`已獲得 100,000 星塵！目前共 ${total.toLocaleString()} 星塵`);
 }
 
@@ -5039,7 +5314,7 @@ async function handleDevExpedition() {
 
   try {
     await devForceCompleteExpedition();
-    await onRefresh();
+    await onRefresh({ renderMode: ['expedition', 'tasks'] });
     switchView('expedition');
     alert('探險已立即結束，可前往探險頁領取獎勵。');
   } catch (err) {
@@ -5053,7 +5328,7 @@ async function handleDevResetDailyBlessing() {
 
   const result = await resetDevDailyBlessing();
   dailyBlessingCollapsed = false;
-  await onRefresh();
+  await onRefresh({ renderMode: ['tasks', 'gacha'] });
   switchView('tasks');
   alert(result.message);
 }
@@ -5069,7 +5344,7 @@ async function handleReset() {
         async () => {
           if (typeof state.onReset === 'function') {
             await state.onReset();
-            await onRefresh();
+            await onRefresh({ renderMode: 'full' });
             showToast('資料已重置', 'success');
           }
         },

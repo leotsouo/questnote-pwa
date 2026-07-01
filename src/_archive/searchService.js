@@ -1,9 +1,10 @@
 /**
- * 全域搜尋邏輯 — 本機離線搜尋
+ * 全域搜尋邏輯 — 已封存（V2.3.2）
+ * 正式 App 未引用。
  */
 import { getTaskTags } from './tagService.js';
-import { escapeHtml } from './uiHelpers.js';
-import { getTodayDateString, daysBetween } from './taskFilterService.js';
+import { escapeHtml } from '../uiHelpers.js';
+import { getTodayDateString, daysBetween } from '../taskFilterService.js';
 
 const MAX_RESULTS = 50;
 

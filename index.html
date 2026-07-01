@@ -57,6 +57,8 @@
         </div>
       </section>
 
+      <section id="homeDailyBlessingContainer" class="daily-blessing-section daily-blessing-section--home" aria-label="每日祝福"></section>
+
       <section id="achievement-strip" class="achievement-strip card" data-action="go-achievements" role="button" tabindex="0"></section>
 
       <section id="companion-section" class="companion-section"></section>
@@ -92,7 +94,7 @@
         <p class="gacha-hero__tagline">星塵匯聚，幻獸降臨</p>
       </div>
 
-      <section id="daily-blessing-section" class="daily-blessing-section" aria-label="每日祝福"></section>
+      <section id="gacha-daily-blessing-entry" class="daily-blessing-gacha-entry" aria-label="每日祝福入口"></section>
 
       <section class="gacha-panel card">
         <h2 class="gacha-pool" id="gacha-pool-name">標準召喚</h2>
@@ -184,7 +186,7 @@
       </header>
 
       <section class="more-menu card">
-        <button class="more-menu-item" data-goto="gacha" data-scroll-daily-blessing type="button">
+        <button class="more-menu-item" data-goto="tasks" data-scroll-daily-blessing type="button">
           <span class="more-menu-icon">🌙</span>
           <span class="more-menu-text">
             <span class="more-menu-label">每日祝福</span>
@@ -507,6 +509,9 @@
             <dd id="settings-sw-status">—</dd>
           </div>
         </dl>
+        <p class="settings-version__note" id="settings-update-hint">
+          若手機仍看到舊版，請移除主畫面 App 後重新加入，或清除 Safari 網站資料。
+        </p>
       </section>
 
       <section class="card settings-danger">

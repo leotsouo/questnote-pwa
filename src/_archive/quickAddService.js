@@ -1,8 +1,9 @@
 /**
- * Quick Add 快速新增解析
+ * Quick Add 快速新增解析 — 已封存（V2.3.2）
+ * 正式 App 未引用。
  */
 import { dedupeTags, normalizeTag } from './tagService.js';
-import { getTodayDateString } from './taskFilterService.js';
+import { getTodayDateString } from '../taskFilterService.js';
 
 const PRIORITY_MAP = {
   普通: 'normal',

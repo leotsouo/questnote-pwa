@@ -341,7 +341,7 @@ body::before {
 
 .stat-label {
   display: block;
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
   margin-bottom: 2px;
 }
@@ -893,7 +893,7 @@ button.companion-card__image:active {
 
 .btn--sm {
   padding: var(--space-2) var(--space-3);
-  min-height: 40px;
+  min-height: 44px;
   font-size: var(--font-size-sm);
 }
 
@@ -1001,7 +1001,7 @@ button.companion-card__image:active {
   border: none;
   cursor: pointer;
   color: var(--text-muted);
-  font-size: 0.5625rem;
+  font-size: 0.65625rem;
   padding: 6px 2px;
   min-width: 0;
   position: relative;
@@ -1116,7 +1116,14 @@ button.companion-card__image:active {
   border: 1px solid var(--border);
 }
 
-/* ─── 抽卡結果 ─── */
+/* =========================
+   Legacy Summon Result - Deprecated
+   =========================
+   Deprecated:
+   保留供舊路徑相容。
+   不要再新增樣式到這裡。
+   新版請使用 sweet-summon-result / default-summon-result 相關 class。
+   ========================= */
 
 .pull-result {
   text-align: center;
@@ -1680,6 +1687,70 @@ body.reduce-motion .companion-image-preview__frame--comfort {
 
 /* ─── 寵物圖片 ─── */
 
+.pet-image-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(148, 163, 184, 0.12);
+  border-radius: var(--radius);
+}
+
+.pet-image-frame--sm { width: 48px; height: 48px; }
+.pet-image-frame--md { width: 80px; height: 80px; }
+.pet-image-frame--lg { width: 96px; height: 96px; }
+
+.pet-image-frame.is-loading {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.pet-image-frame.is-error {
+  background: linear-gradient(135deg, var(--bg-elevated), #2a2a45);
+}
+
+.pet-image-frame__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0.25rem;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.pet-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.pet-image-frame img.is-loaded {
+  opacity: 1;
+}
+
+.pet-image-frame img.is-loaded + .pet-image-frame__fallback,
+.pet-image-frame.is-error .pet-image-frame__fallback {
+  opacity: 0;
+}
+
+.pet-image-frame.is-error .pet-image-frame__fallback {
+  opacity: 1;
+  font-size: 1.25rem;
+}
+
+body.reduce-motion .pet-image-frame img {
+  transition: none;
+}
+
 .pet-img {
   object-fit: cover;
   border-radius: var(--radius);
@@ -1801,6 +1872,13 @@ body.reduce-motion .companion-image-preview__frame--comfort {
 
 .settings-version__list .stats-row dd {
   text-align: right;
+}
+
+.settings-version__note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-muted);
 }
 
 /* ─── 開發測試工具（僅 localhost） ─── */
@@ -2759,7 +2837,7 @@ body.reduce-motion .companion-image-preview__frame--comfort {
   margin-top: 6px;
 }
 
-/* ─── 10 連抽結果 ─── */
+/* Legacy Summon Result - Deprecated（10 連抽舊版 UI） */
 
 .ten-pull-result {
   text-align: center;
@@ -3188,7 +3266,8 @@ body.reduce-motion .companion-image-preview__frame--comfort {
 }
 
 .companion-card__image .pet-img--lg,
-.companion-card__image .pet-img-wrap--lg {
+.companion-card__image .pet-img-wrap--lg,
+.companion-card__image .pet-image-frame--lg {
   width: 88px;
   height: 88px;
 }
@@ -3198,7 +3277,8 @@ body.reduce-motion .companion-image-preview__frame--comfort {
 }
 
 .collection-card__image .pet-img,
-.collection-card__image .pet-img-wrap .pet-img {
+.collection-card__image .pet-img-wrap .pet-img,
+.collection-card__image .pet-image-frame {
   object-fit: contain;
 }
 
@@ -3240,6 +3320,7 @@ body.reduce-motion .expedition-active-card__fx::after,
 body.reduce-motion .card-animate,
 body.reduce-motion .card,
 body.reduce-motion .btn--gacha,
+/* Legacy Summon Result - Deprecated（reduce-motion） */
 body.reduce-motion .pull-result--animate,
 body.reduce-motion .ten-pull-card {
   animation: none !important;
@@ -6006,6 +6087,7 @@ body[data-theme="default"] .reward-toast {
   color: var(--color-text-main);
 }
 
+/* Legacy Summon Result - Deprecated（default 主題覆寫） */
 body[data-theme="default"] .pull-result__desc,
 body[data-theme="default"] .pull-result__detail,
 body[data-theme="default"] .ten-pull-summary {
@@ -7562,13 +7644,89 @@ body[data-theme="sweet"] .form-select:disabled {
   background: linear-gradient(135deg, #C73578, #D44786);
 }
 
-/* ─── 每日祝福 V2.2 ─── */
+/* =========================
+   Daily Blessing
+   ========================= */
 
 .daily-blessing-section {
   margin-bottom: var(--space-md);
 }
 
-#view-gacha .daily-blessing-section {
+.daily-blessing-section--home {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.daily-blessing-gacha-entry {
+  margin-bottom: var(--space-md);
+}
+
+.daily-blessing-gacha-entry__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+}
+
+.daily-blessing-gacha-entry__main {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.daily-blessing-gacha-entry__icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.daily-blessing-gacha-entry__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.daily-blessing-gacha-entry__title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.daily-blessing-gacha-entry__summary {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.daily-blessing-gacha-entry__status {
+  flex-shrink: 0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: rgba(139, 92, 246, 0.14);
+  color: var(--text-secondary);
+}
+
+.daily-blessing-gacha-entry__status--done {
+  background: rgba(52, 211, 153, 0.14);
+  color: var(--success);
+}
+
+.daily-blessing-gacha-entry__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+#view-gacha .daily-blessing-gacha-entry {
   margin-top: 0;
 }
 
@@ -7872,6 +8030,10 @@ body.reduce-motion .daily-blessing-section--pending .daily-blessing-card {
 
 /* ─── Default 星夜主題 ─── */
 
+/* =========================
+   Daily Blessing — 主題覆寫（default / sweet）
+   ========================= */
+
 body[data-theme="default"] .daily-blessing-card,
 body[data-theme="default"] .daily-checkin-card {
   background:
@@ -8118,14 +8280,17 @@ body[data-theme="sweet"] .daily-milestone-progress__fill {
   background: linear-gradient(90deg, #6f55d9, #c73578);
 }
 
-/* 幸運轉盤 Modal */
+/* =========================
+   Daily Wheel
+   ========================= */
+
 .wheel-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-4);
   max-width: 100%;
-  padding-bottom: var(--space-sm);
+  padding-bottom: var(--space-3);
 }
 
 .daily-wheel-modal-body {
@@ -8141,28 +8306,28 @@ body[data-theme="sweet"] .daily-milestone-progress__fill {
 
 .wheel-modal__hint {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .wheel-container {
   position: relative;
   width: 100%;
   max-width: min(78vw, 320px);
-  min-height: 340px;
+  min-height: 300px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-3);
   flex: 0 0 auto;
 }
 
 .daily-wheel-stage {
   width: 100%;
-  min-height: 320px;
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8171,8 +8336,8 @@ body[data-theme="sweet"] .daily-milestone-progress__fill {
 
 .daily-wheel-wrapper {
   position: relative;
-  width: min(78vw, 300px);
-  height: min(78vw, 300px);
+  width: min(76vw, 292px);
+  height: min(76vw, 292px);
   aspect-ratio: 1 / 1;
   margin: 0 auto;
   flex: 0 0 auto;
@@ -8230,11 +8395,10 @@ body[data-theme="sweet"] .daily-wheel-pointer {
   height: 100%;
   border-radius: 50%;
   transform-origin: 50% 50%;
-  transform-box: fill-box;
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform: translate3d(0, 0, 0) rotate(0deg);
+  transform: translate3d(0, 0, 0) rotate(var(--wheel-rotation, 0deg));
 }
 
 .daily-wheel-svg {
@@ -8243,6 +8407,7 @@ body[data-theme="sweet"] .daily-wheel-pointer {
   height: 100%;
   overflow: visible;
   transform-origin: center center;
+  transform-box: fill-box;
   border-radius: 50%;
 }
 
@@ -8264,11 +8429,11 @@ body[data-theme="sweet"] .daily-wheel-outer-ring {
 }
 
 .daily-wheel-label__name {
-  font-size: 11.5px;
+  font-size: 11px;
 }
 
 .daily-wheel-label__amount {
-  font-size: 12px;
+  font-size: 11.5px;
 }
 
 body[data-theme="default"] .daily-wheel-label {
@@ -8283,24 +8448,22 @@ body[data-theme="sweet"] .daily-wheel-label {
   position: absolute;
   left: 50%;
   top: 50%;
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  min-height: 70px;
   transform: translate(-50%, -50%);
-  width: 74px;
-  height: 74px;
-  min-width: 74px;
-  min-height: 74px;
-  max-width: 74px;
-  max-height: 74px;
-  padding: 0;
   border-radius: 999px;
   z-index: 5;
   border: 3px solid #fbbf24;
   background: linear-gradient(145deg, #7c3aed, #5b21b6);
   color: #fff;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.2;
   text-align: center;
   white-space: normal;
+  padding: 0;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   flex-shrink: 0;
@@ -8325,8 +8488,8 @@ body[data-theme="sweet"] .daily-wheel-center-button {
   grid-template-columns: repeat(2, 1fr);
   gap: 4px 10px;
   width: 100%;
-  max-width: min(78vw, 300px);
-  font-size: 0.72rem;
+  max-width: min(76vw, 292px);
+  font-size: 0.78rem;
   line-height: 1.35;
   color: var(--text-secondary);
 }
@@ -8343,51 +8506,8 @@ body[data-theme="sweet"] .daily-wheel-preview__item {
   color: #3d2633;
 }
 
-.reward-toast--daily {
-  max-width: min(92vw, 360px);
-  text-align: center;
-}
-
 body.reduce-motion .daily-wheel-rotor {
   transition-duration: 300ms !important;
-}
-
-@media (max-width: 430px) {
-  .daily-wheel-stage {
-    min-height: 300px;
-  }
-
-  .wheel-container {
-    max-width: min(76vw, 300px);
-    min-height: 320px;
-  }
-
-  .daily-wheel-wrapper {
-    width: min(76vw, 292px);
-    height: min(76vw, 292px);
-  }
-
-  .daily-wheel-center-button {
-    width: 70px;
-    height: 70px;
-    min-width: 70px;
-    min-height: 70px;
-    max-width: 70px;
-    max-height: 70px;
-    font-size: 13px;
-  }
-
-  .daily-wheel-label__name {
-    font-size: 10.8px;
-  }
-
-  .daily-wheel-label__amount {
-    font-size: 11.5px;
-  }
-
-  .daily-wheel-preview {
-    max-width: min(76vw, 292px);
-  }
 }
 
 @media (max-width: 380px) {
@@ -8401,11 +8521,10 @@ body.reduce-motion .daily-wheel-rotor {
     height: 66px;
     min-width: 66px;
     min-height: 66px;
-    max-width: 66px;
-    max-height: 66px;
     font-size: 12px;
   }
 
+  .daily-wheel-label,
   .daily-wheel-label__name,
   .daily-wheel-label__amount {
     font-size: 10px;
@@ -8414,6 +8533,13 @@ body.reduce-motion .daily-wheel-rotor {
   .daily-wheel-preview {
     max-width: min(74vw, 270px);
   }
+}
+
+/* Daily Wheel — 區塊結束 */
+
+.reward-toast--daily {
+  max-width: min(92vw, 360px);
+  text-align: center;
 }
 
 /* ═══════════════════════════════════════════════════════════

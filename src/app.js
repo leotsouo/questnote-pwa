@@ -90,9 +90,10 @@ import {
   hasLowMaterials,
 } from './workshopService.js';
 
-import { initUI, renderAll, applyReduceMotionClass } from './ui.js';
+import { initUI, renderAfterRefresh, applyReduceMotionClass } from './ui.js';
 import { runAppHealthCheck } from './healthCheckService.js';
 import { getServiceWorkerRegisterUrl } from './version.js';
+import { preloadCompanionImage, preloadOwnedPetImages } from './imagePreloadService.js';
 
 
 
@@ -222,7 +223,19 @@ async function loadGameData() {
 
 
 
-async function refreshState() {
+/** 預載首頁陪伴與已擁有寵物圖片（背景執行，不阻斷 UI） */
+function warmCriticalPetImages() {
+  preloadCompanionImage(appState).catch(() => {});
+  preloadOwnedPetImages(appState.enrichedCollection, appState.allPets, 12).catch(() => {});
+}
+
+
+
+/**
+ * 重新載入 App 狀態並刷新 UI
+ * @param {{ renderMode?: 'full' | 'current' | string[] }} [options]
+ */
+async function refreshState(options = {}) {
 
   const today = getTodayDateString();
 
@@ -361,7 +374,9 @@ async function refreshState() {
 
 
 
-  await renderAll();
+  await renderAfterRefresh(options.renderMode ?? 'current');
+
+  warmCriticalPetImages();
 
 }
 
@@ -463,7 +478,7 @@ async function registerServiceWorker() {
 
           lastKnownDate = today;
 
-          refreshState().catch((err) => console.warn('[QuestNote] 跨日刷新失敗:', err));
+          refreshState({ renderMode: 'full' }).catch((err) => console.warn('[QuestNote] 跨日刷新失敗:', err));
 
         }
 
@@ -682,7 +697,7 @@ async function initApp() {
 
 
 
-    await refreshState();
+    await refreshState({ renderMode: 'full' });
 
 
 
@@ -692,7 +707,7 @@ async function initApp() {
 
       appState.achievementSummary = await getAchievementSummary(appState.allPets);
 
-      await renderAll();
+      await renderAfterRefresh('current');
 
     }
 

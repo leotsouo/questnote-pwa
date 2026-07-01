@@ -1,7 +1,8 @@
 /**
- * App 使用統計 — Quick Add、搜尋、標籤任務數
+ * App 使用統計 — 已封存（V2.3.2）
+ * Quick Add、搜尋、標籤任務數；正式 App 未引用。
  */
-import { dbGet, dbPut, STORES } from './db.js';
+import { dbGet, dbPut, STORES } from '../db.js';
 import { getTaskTags } from './tagService.js';
 
 const APP_STATS_KEY = 'appStats';
