@@ -68,6 +68,11 @@ import {
   restoreBackup,
 } from './backupService.js';
 import {
+  CACHE_NAME,
+  formatDisplayVersion,
+  formatBuildTimeLocal,
+} from './version.js';
+import {
   claimAchievementReward,
   claimAllAchievementRewards,
   equipTitle,
@@ -1288,7 +1293,7 @@ async function handleDailyCheckIn() {
 const WHEEL_CX = 150;
 const WHEEL_CY = 150;
 const WHEEL_R = 140;
-const WHEEL_LABEL_R = 90;
+const WHEEL_LABEL_R = 86;
 
 const WHEEL_COLORS_DEFAULT = [
   '#2A1F4A', '#18304A', '#2B2340', '#3A2A18',
@@ -1490,7 +1495,7 @@ async function openDailyWheelModal() {
   const canSpin = !(daily && hasSpunWheelToday(daily, today));
 
   openModal(`
-    <div class="wheel-modal">
+    <div class="wheel-modal daily-wheel-modal-body">
       <h2 class="modal-title">每日幸運轉盤</h2>
       <p class="wheel-modal__status">${canSpin ? '今天還可以轉 1 次' : '今天已經轉過了'}</p>
       <div class="wheel-container" id="daily-wheel-container">
@@ -4952,6 +4957,12 @@ function renderSettingsView() {
   const achTotal = achievementSummary?.total ?? 0;
   setText('settings-achievements', `${achUnlocked}/${achTotal}`);
 
+  setText('settings-app-version', formatDisplayVersion());
+  setText('settings-cache-name', CACHE_NAME);
+  setText('settings-build-time', formatBuildTimeLocal());
+  setText('settings-footer-note', `QuestNote ${formatDisplayVersion()} — 離線個人任務記事 App`);
+  updateServiceWorkerStatusDisplay();
+
   const reduceMotionToggle = document.getElementById('toggle-reduce-motion');
   if (reduceMotionToggle) {
     reduceMotionToggle.checked = userPreferences?.reduceMotion ?? false;
@@ -4961,6 +4972,27 @@ function renderSettingsView() {
 
   const devSection = document.getElementById('dev-tools-section');
   if (devSection) devSection.hidden = !isDevMode();
+}
+
+async function updateServiceWorkerStatusDisplay() {
+  const el = document.getElementById('settings-sw-status');
+  if (!el) return;
+
+  if (!('serviceWorker' in navigator)) {
+    el.textContent = '未支援';
+    return;
+  }
+
+  try {
+    const reg = await navigator.serviceWorker.getRegistration();
+    if (!reg) {
+      el.textContent = '未啟用';
+      return;
+    }
+    el.textContent = navigator.serviceWorker.controller ? '已啟用' : '安裝中';
+  } catch {
+    el.textContent = '未知';
+  }
 }
 
 async function handleDevUnlock() {

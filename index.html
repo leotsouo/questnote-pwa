@@ -487,6 +487,28 @@
         </dl>
       </section>
 
+      <section class="card settings-version" aria-label="版本資訊">
+        <h2 class="section-title">版本資訊</h2>
+        <dl class="stats-list settings-version__list">
+          <div class="stats-row">
+            <dt>目前版本</dt>
+            <dd id="settings-app-version">—</dd>
+          </div>
+          <div class="stats-row">
+            <dt>Cache</dt>
+            <dd id="settings-cache-name" class="settings-version__mono">—</dd>
+          </div>
+          <div class="stats-row">
+            <dt>更新時間</dt>
+            <dd id="settings-build-time">—</dd>
+          </div>
+          <div class="stats-row">
+            <dt>Service Worker</dt>
+            <dd id="settings-sw-status">—</dd>
+          </div>
+        </dl>
+      </section>
+
       <section class="card settings-danger">
         <h2 class="section-title section-title--danger">危險操作</h2>
         <button id="btn-reset" class="btn btn--danger btn--block">重置所有資料</button>
@@ -502,7 +524,7 @@
         <button id="btn-dev-daily-blessing" class="btn btn--dev btn--block">測試：重置每日祝福</button>
       </section>
 
-      <p class="settings-note">QuestNote v2.1.5 — 離線個人任務記事 App</p>
+      <p class="settings-note" id="settings-footer-note">QuestNote — 離線個人任務記事 App</p>
     </main>
 
     <!-- 底部導航 -->

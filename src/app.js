@@ -92,6 +92,7 @@ import {
 
 import { initUI, renderAll, applyReduceMotionClass } from './ui.js';
 import { runAppHealthCheck } from './healthCheckService.js';
+import { getServiceWorkerRegisterUrl } from './version.js';
 
 
 
@@ -414,7 +415,7 @@ async function registerServiceWorker() {
 
   try {
 
-    const reg = await navigator.serviceWorker.register('./service-worker.js');
+    const reg = await navigator.serviceWorker.register(getServiceWorkerRegisterUrl());
 
     console.log('[QuestNote] SW registered:', reg.scope);
 

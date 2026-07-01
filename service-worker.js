@@ -1,10 +1,9 @@
 /**
-
- * QuestNote Service Worker — V2.2.4 Default gacha result redesign
+ * QuestNote Service Worker — V2.2.7 每日轉盤手機版排版與版本快取修正
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v226-wheel-spin-stability';
+const CACHE_NAME = 'questnote-cache-v227-wheel-mobile-layout-fix';
 
 
 
@@ -61,6 +60,8 @@ const PRECACHE_URLS = [
   'src/workshopService.js',
 
   'src/ui.js',
+
+  'src/version.js',
 
   'src/uiHelpers.js',
 

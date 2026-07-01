@@ -24,10 +24,11 @@ import {
 import { normalizeTask, migrateTasks } from './taskMigration.js';
 import { getTodayDateString } from './taskFilterService.js';
 import { exportDailyCheckIn, normalizeDailyCheckIn } from './dailyCheckInService.js';
+import { APP_VERSION } from './version.js';
 
-export const APP_VERSION = '2.2';
+export { APP_VERSION };
 const APP_NAME = 'QuestNote';
-const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2'];
+const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2', '2.2.7'];
 const WALLET_KEY = 'wallet';
 const GACHA_STATS_KEY = 'gachaStats';
 const ACHIEVEMENTS_KEY = 'achievements';
