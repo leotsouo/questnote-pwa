@@ -4,6 +4,13 @@
 import { addPetToCollection, getPetCollection } from './collectionService.js';
 import { addStardust, getWallet } from './rewardService.js';
 import { forceCompleteActiveExpedition } from './expeditionService.js';
+import {
+  getDailyCheckIn,
+  getLocalDateKey,
+  normalizeDailyCheckIn,
+  releaseWheelSpinLock,
+} from './dailyCheckInService.js';
+import { dbPut, STORES } from './db.js';
 
 /** 每次測試發放的星塵數量 */
 export const DEV_STARDUST_GRANT = 100000;
@@ -70,4 +77,55 @@ export async function grantDevStardust() {
  */
 export async function devForceCompleteExpedition() {
   return forceCompleteActiveExpedition();
+}
+
+/**
+ * 開發測試：重置今日每日祝福（簽到與轉盤）
+ * @returns {Promise<{ success: boolean, changed: boolean, message: string }>}
+ */
+export async function resetDevDailyBlessing() {
+  const todayKey = getLocalDateKey();
+  const daily = await getDailyCheckIn();
+  const hadCheckIn = daily.lastCheckInDate === todayKey;
+  const hadWheel = daily.lastWheelSpinDate === todayKey;
+
+  if (!hadCheckIn && !hadWheel) {
+    return { success: true, changed: false, message: '今日尚未完成簽到或轉盤，無需重置。' };
+  }
+
+  if (hadCheckIn) {
+    const prevEntries = (daily.history || [])
+      .filter((h) => h?.date !== todayKey && h?.checkedInAt)
+      .sort((a, b) => a.date.localeCompare(b.date));
+    const prev = prevEntries[prevEntries.length - 1];
+
+    daily.lastCheckInDate = prev?.date ?? null;
+    daily.lastCheckInAt = prev?.checkedInAt ?? null;
+    daily.streak = Math.max(0, (daily.streak ?? 0) - 1);
+    daily.totalCheckIns = Math.max(0, (daily.totalCheckIns ?? 0) - 1);
+  }
+
+  if (hadWheel) {
+    daily.lastWheelSpinDate = null;
+    daily.lastWheelSpinAt = null;
+    daily.totalWheelSpins = Math.max(0, (daily.totalWheelSpins ?? 0) - 1);
+  }
+
+  daily.history = (daily.history || [])
+    .map((h) => {
+      if (h?.date !== todayKey) return h;
+      const entry = { ...h };
+      if (hadCheckIn) {
+        delete entry.checkedInAt;
+        delete entry.checkInReward;
+      }
+      if (hadWheel) delete entry.wheelReward;
+      return entry.checkedInAt || entry.checkInReward || entry.wheelReward ? entry : null;
+    })
+    .filter(Boolean);
+
+  releaseWheelSpinLock();
+  await dbPut(STORES.META, normalizeDailyCheckIn(daily));
+
+  return { success: true, changed: true, message: '已重置今日每日祝福，可重新簽到與轉盤。' };
 }

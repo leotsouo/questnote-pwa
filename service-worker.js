@@ -4,7 +4,7 @@
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v224-default-gacha-result-redesign';
+const CACHE_NAME = 'questnote-cache-v226-wheel-spin-stability';
 
 
 

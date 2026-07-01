@@ -78,7 +78,7 @@ import {
   CATEGORY_ICONS,
   formatAchievementReward,
 } from './achievementService.js';
-import { isDevMode, unlockDevTestPets, unlockAllDevPets, grantDevStardust, devForceCompleteExpedition } from './devService.js';
+import { isDevMode, unlockDevTestPets, unlockAllDevPets, grantDevStardust, devForceCompleteExpedition, resetDevDailyBlessing } from './devService.js';
 import {
   escapeHtml,
   emptyStateHtml,
@@ -614,6 +614,7 @@ function bindDelegatedEvents() {
   document.getElementById('btn-dev-stardust')?.addEventListener('click', handleDevStardust);
 
   document.getElementById('btn-dev-expedition')?.addEventListener('click', handleDevExpedition);
+  document.getElementById('btn-dev-daily-blessing')?.addEventListener('click', handleDevResetDailyBlessing);
 
   document.getElementById('view-expedition')?.addEventListener('click', (e) => {
     const emptyBtn = e.target.closest('[data-action="empty-go-gacha"]');
@@ -1284,61 +1285,196 @@ async function handleDailyCheckIn() {
   await handleAchievementCheckAfterAction();
 }
 
-const WHEEL_SEGMENT_COLORS = [
-  '#8B5CF6', '#A78BFA', '#FBBF24', '#34D399',
-  '#F472B6', '#60A5FA', '#FB923C', '#C084FC',
+const WHEEL_CX = 150;
+const WHEEL_CY = 150;
+const WHEEL_R = 140;
+const WHEEL_LABEL_R = 90;
+
+const WHEEL_COLORS_DEFAULT = [
+  '#2A1F4A', '#18304A', '#2B2340', '#3A2A18',
+  '#1F3A35', '#251F3F', '#18364A', '#3A2030',
 ];
 
-function buildWheelDiscHtml(rewards) {
+const WHEEL_COLORS_SWEET = [
+  '#FFF0F7', '#EEE9FF', '#FFF1D8', '#E7F6F1',
+  '#EAF3FF', '#FFE3EA', '#F9F3FF', '#FFF8EF',
+];
+
+function polarToCartesian(cx, cy, r, angleDeg) {
+  const angleRad = ((angleDeg - 90) * Math.PI) / 180;
+  return {
+    x: cx + r * Math.cos(angleRad),
+    y: cy + r * Math.sin(angleRad),
+  };
+}
+
+function describeArcSector(cx, cy, r, startAngle, endAngle) {
+  const start = polarToCartesian(cx, cy, r, endAngle);
+  const end = polarToCartesian(cx, cy, r, startAngle);
+  const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+  return [
+    'M', cx, cy,
+    'L', start.x, start.y,
+    'A', r, r, 0, largeArcFlag, 0, end.x, end.y,
+    'Z',
+  ].join(' ');
+}
+
+function truncateWheelLabel(text, maxLen = 8) {
+  const chars = Array.from(text || '');
+  return chars.length <= maxLen ? chars.join('') : chars.slice(0, maxLen).join('');
+}
+
+function getWheelShortLabel(reward) {
+  const amount = reward.amount ?? 1;
+  const amtStr = `+${amount}`;
+
+  if (reward.type === 'stardust') {
+    return { name: '星塵', amount: amtStr };
+  }
+  if (reward.type === 'adventureEnergy') {
+    return { name: '能量', amount: amtStr };
+  }
+  if (reward.type === 'material') {
+    const matNames = {
+      forest_leaf: '嫩葉',
+      lava_core: '熔岩',
+      machine_part: '齒輪',
+      star_shard: '星界',
+    };
+    const name = matNames[reward.materialId];
+    if (name) return { name, amount: amtStr };
+  }
+  if (reward.type === 'item' && reward.itemId === 'item_small_spirit_food') {
+    return { name: '靈食', amount: amtStr };
+  }
+
+  const label = reward.label || '';
+  const plusMatch = label.match(/^(.+?)\s*(\+\d+)\s*$/);
+  if (plusMatch) {
+    return {
+      name: truncateWheelLabel(plusMatch[1].trim(), 8),
+      amount: plusMatch[2],
+    };
+  }
+  return { name: truncateWheelLabel(label, 8), amount: amtStr };
+}
+
+function getWheelSectorColors() {
+  return isSweetTheme() ? WHEEL_COLORS_SWEET : WHEEL_COLORS_DEFAULT;
+}
+
+function getWheelSectorStroke() {
+  return isSweetTheme() ? '#F0C9DA' : 'rgba(244, 247, 255, 0.16)';
+}
+
+function buildWheelSvgHtml(rewards) {
   const count = rewards.length || 8;
   const seg = 360 / count;
-  const stops = rewards.map((_, i) => {
-    const start = i * seg;
-    const end = (i + 1) * seg;
-    return `${WHEEL_SEGMENT_COLORS[i % WHEEL_SEGMENT_COLORS.length]} ${start}deg ${end}deg`;
-  }).join(', ');
+  const colors = getWheelSectorColors();
+  const stroke = getWheelSectorStroke();
 
-  const labels = rewards.map((r, i) => {
-    const angle = i * seg + seg / 2;
-    return `<span class="wheel-segment-label" style="--seg-angle:${angle}deg">${escapeHtml(r.label)}</span>`;
+  const sectors = rewards.map((reward, i) => {
+    const startAngle = i * seg;
+    const endAngle = startAngle + seg;
+    const midAngle = startAngle + seg / 2;
+    const path = describeArcSector(WHEEL_CX, WHEEL_CY, WHEEL_R, startAngle, endAngle);
+    const short = getWheelShortLabel(reward);
+    const labelPoint = polarToCartesian(WHEEL_CX, WHEEL_CY, WHEEL_LABEL_R, midAngle);
+    let textRotation = midAngle;
+    if (midAngle > 90 && midAngle < 270) {
+      textRotation = midAngle + 180;
+    }
+
+    return `
+      <path class="daily-wheel-sector" d="${path}" fill="${colors[i % colors.length]}" stroke="${stroke}" stroke-width="1.5"/>
+      <g class="daily-wheel-label-group" transform="translate(${labelPoint.x.toFixed(2)}, ${labelPoint.y.toFixed(2)}) rotate(${textRotation.toFixed(2)})">
+        <text class="daily-wheel-label" text-anchor="middle" dominant-baseline="middle">
+          <tspan x="0" dy="-0.35em" class="daily-wheel-label__name">${escapeHtml(short.name)}</tspan>
+          <tspan x="0" dy="1.15em" class="daily-wheel-label__amount">${escapeHtml(short.amount)}</tspan>
+        </text>
+      </g>`;
   }).join('');
 
   return `
-    <div class="wheel-pointer" aria-hidden="true"></div>
-    <div class="wheel-disc-wrap">
-      <div class="wheel-disc" id="daily-wheel-disc" style="background: conic-gradient(from -90deg, ${stops})">
-        ${labels}
+    <svg class="daily-wheel-svg" viewBox="0 0 300 300" aria-hidden="true">
+      <circle class="daily-wheel-outer-ring" cx="${WHEEL_CX}" cy="${WHEEL_CY}" r="${WHEEL_R}" fill="none"/>
+      ${sectors}
+    </svg>`;
+}
+
+function buildWheelDiscHtml(rewards) {
+  const previewItems = rewards.map((r) =>
+    `<li class="daily-wheel-preview__item">${escapeHtml(r.label)}</li>`
+  ).join('');
+
+  return `
+    <div class="daily-wheel-stage">
+      <div class="daily-wheel-wrapper">
+        <div class="daily-wheel-pointer" aria-hidden="true"></div>
+        <div class="daily-wheel-rotor" id="daily-wheel-rotor">
+          ${buildWheelSvgHtml(rewards)}
+        </div>
+        <button type="button" class="daily-wheel-center-button" id="daily-wheel-start" aria-label="開始轉盤">開始</button>
       </div>
-      <button type="button" class="wheel-center-btn" id="daily-wheel-start" aria-label="開始轉盤">開始</button>
-    </div>`;
+    </div>
+    <ul class="daily-wheel-preview" aria-label="轉盤獎勵清單">
+      ${previewItems}
+    </ul>`;
+}
+
+function waitForWheelRotorTransition(rotor, fallbackMs) {
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      rotor.removeEventListener('transitionend', onEnd);
+      clearTimeout(timer);
+      resolve();
+    };
+    const onEnd = (event) => {
+      if (event.target !== rotor || event.propertyName !== 'transform') return;
+      finish();
+    };
+    rotor.addEventListener('transitionend', onEnd);
+    const timer = setTimeout(finish, fallbackMs);
+  });
+}
+
+async function animateDailyWheel(rewardIndex, segmentCount) {
+  const rotor = document.getElementById('daily-wheel-rotor');
+  const startBtn = document.getElementById('daily-wheel-start');
+  if (!rotor) return;
+
+  const reduceMotion = state.userPreferences?.reduceMotion ?? false;
+  if (startBtn) {
+    startBtn.disabled = true;
+    startBtn.textContent = '轉動';
+  }
+
+  const extraSpins = reduceMotion ? 1 : 3 + Math.floor(Math.random() * 2);
+  const rotation = computeWheelRotationDeg(rewardIndex, segmentCount, extraSpins);
+
+  rotor.style.transition = reduceMotion
+    ? 'transform 300ms ease-out'
+    : 'transform 2800ms cubic-bezier(0.12, 0.72, 0.18, 1)';
+
+  // 強制 reflow，確保 transition 從當前角度開始
+  void rotor.offsetHeight;
+  rotor.style.transform = `translate3d(0, 0, 0) rotate(${rotation}deg)`;
+
+  const fallbackMs = reduceMotion ? 400 : 3000;
+  await waitForWheelRotorTransition(rotor, fallbackMs);
+
+  if (startBtn) startBtn.textContent = '已轉';
 }
 
 function computeWheelRotationDeg(rewardIndex, segmentCount, extraSpins = 4) {
   const seg = 360 / segmentCount;
-  const center = rewardIndex * seg + seg / 2;
-  const jitter = (Math.random() - 0.5) * (seg * 0.25);
-  return extraSpins * 360 + (360 - center + jitter);
-}
-
-async function animateDailyWheel(rewardIndex, segmentCount) {
-  const disc = document.getElementById('daily-wheel-disc');
-  const startBtn = document.getElementById('daily-wheel-start');
-  if (!disc) return;
-
-  const reduceMotion = state.userPreferences?.reduceMotion ?? false;
-  if (startBtn) startBtn.disabled = true;
-
-  if (reduceMotion) {
-    disc.classList.add('wheel-disc--spinning-fast');
-    await new Promise((r) => setTimeout(r, 500));
-    disc.classList.remove('wheel-disc--spinning-fast');
-    return;
-  }
-
-  const rotation = computeWheelRotationDeg(rewardIndex, segmentCount, 3 + Math.floor(Math.random() * 2));
-  disc.style.transition = 'transform 2.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
-  disc.style.transform = `rotate(${rotation}deg)`;
-  await new Promise((r) => setTimeout(r, 2700));
+  const targetMidAngle = rewardIndex * seg + seg / 2;
+  const jitter = (Math.random() - 0.5) * (seg * 0.2);
+  return extraSpins * 360 + (360 - targetMidAngle + jitter);
 }
 
 async function openDailyWheelModal() {
@@ -4877,6 +5013,17 @@ async function handleDevExpedition() {
   } catch (err) {
     alert(err.message || '沒有進行中的探險');
   }
+}
+
+async function handleDevResetDailyBlessing() {
+  if (!isDevMode()) return;
+  if (!confirm('【開發測試】重置今日每日祝福（簽到與轉盤），確定？')) return;
+
+  const result = await resetDevDailyBlessing();
+  dailyBlessingCollapsed = false;
+  await onRefresh();
+  switchView('tasks');
+  alert(result.message);
 }
 
 async function handleReset() {

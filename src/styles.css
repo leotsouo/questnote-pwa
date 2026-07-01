@@ -8134,88 +8134,208 @@ body[data-theme="sweet"] .daily-milestone-progress__fill {
 
 .wheel-container {
   position: relative;
-  width: min(280px, 72vw);
-  height: min(280px, 72vw);
+  width: 100%;
+  max-width: min(82vw, 340px);
+  min-height: 380px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  flex: 0 0 auto;
 }
 
-.wheel-pointer {
+.daily-wheel-stage {
+  width: 100%;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.daily-wheel-wrapper {
+  position: relative;
+  width: min(82vw, 320px);
+  height: min(82vw, 320px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  flex: 0 0 auto;
+  contain: layout paint;
+}
+
+.daily-wheel-wrapper::before {
+  content: '';
   position: absolute;
-  top: -6px;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+body[data-theme="default"] .daily-wheel-wrapper::before {
+  box-shadow:
+    0 0 0 2px rgba(139, 92, 246, 0.2),
+    inset 0 0 24px rgba(0, 0, 0, 0.28);
+}
+
+body[data-theme="sweet"] .daily-wheel-wrapper::before {
+  box-shadow:
+    0 0 0 2px rgba(240, 201, 218, 0.85),
+    inset 0 0 16px rgba(199, 53, 120, 0.06);
+}
+
+.daily-wheel-pointer {
+  position: absolute;
   left: 50%;
+  top: -6px;
   transform: translateX(-50%);
+  z-index: 4;
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 18px solid #fbbf24;
-  z-index: 3;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
-}
-
-.wheel-disc-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.wheel-disc {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 4px solid rgba(251, 191, 36, 0.55);
-  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25), inset 0 0 20px rgba(0, 0, 0, 0.25);
-  position: relative;
-  transform: rotate(0deg);
-  will-change: transform;
-}
-
-.wheel-segment-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 38%;
-  transform-origin: 0 50%;
-  transform: rotate(var(--seg-angle)) translateX(18%) rotate(calc(-1 * var(--seg-angle) + 90deg));
-  font-size: 0.58rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.15;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 20px solid #fbbf24;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
   pointer-events: none;
 }
 
-.wheel-center-btn {
+body[data-theme="default"] .daily-wheel-pointer {
+  border-top-color: #fbbf24;
+}
+
+body[data-theme="sweet"] .daily-wheel-pointer {
+  border-top-color: #c73578;
+}
+
+.daily-wheel-rotor {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 64px;
-  height: 64px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
+  transform-origin: center center;
+  transform-box: fill-box;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0) rotate(0deg);
+}
+
+.daily-wheel-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform-origin: center center;
+  border-radius: 50%;
+}
+
+body[data-theme="default"] .daily-wheel-outer-ring {
+  stroke: rgba(251, 191, 36, 0.55);
+  stroke-width: 3;
+}
+
+body[data-theme="sweet"] .daily-wheel-outer-ring {
+  stroke: #e8a4be;
+  stroke-width: 3;
+}
+
+.daily-wheel-label {
+  font-family: inherit;
+  font-weight: 800;
+  pointer-events: none;
+  user-select: none;
+}
+
+.daily-wheel-label__name {
+  font-size: 12px;
+}
+
+.daily-wheel-label__amount {
+  font-size: 13px;
+}
+
+body[data-theme="default"] .daily-wheel-label {
+  fill: #f4f7ff;
+}
+
+body[data-theme="sweet"] .daily-wheel-label {
+  fill: #3d2633;
+}
+
+@media (max-width: 430px) {
+  .daily-wheel-label__name {
+    font-size: 11px;
+  }
+
+  .daily-wheel-label__amount {
+    font-size: 12px;
+  }
+}
+
+.daily-wheel-center-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px;
+  height: 84px;
+  min-width: 84px;
+  min-height: 84px;
+  max-width: 84px;
+  max-height: 84px;
+  padding: 0;
+  border-radius: 999px;
+  z-index: 5;
   border: 3px solid #fbbf24;
   background: linear-gradient(145deg, #7c3aed, #5b21b6);
   color: #fff;
   font-weight: 700;
-  font-size: 0.95rem;
-  z-index: 4;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
 }
 
-.wheel-center-btn:disabled {
+.daily-wheel-center-button:disabled {
   opacity: 0.55;
   cursor: not-allowed;
 }
 
-body[data-theme="sweet"] .wheel-center-btn {
+body[data-theme="sweet"] .daily-wheel-center-button {
   background: linear-gradient(145deg, #c73578, #6f55d9);
-  border-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.88);
+  color: #fff;
 }
 
-body[data-theme="sweet"] .wheel-pointer {
-  border-top-color: #c73578;
+.daily-wheel-preview {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 10px;
+  width: 100%;
+  max-width: min(82vw, 320px);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--text-secondary);
+}
+
+.daily-wheel-preview__item {
+  text-align: center;
+  padding: 3px 4px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+body[data-theme="sweet"] .daily-wheel-preview__item {
+  background: rgba(255, 255, 255, 0.55);
+  color: #3d2633;
 }
 
 .reward-toast--daily {
@@ -8223,22 +8343,8 @@ body[data-theme="sweet"] .wheel-pointer {
   text-align: center;
 }
 
-body.reduce-motion .wheel-disc {
-  transition-duration: 0.01ms !important;
-}
-
-.wheel-disc--spinning-fast {
-  animation: wheel-pulse 0.5s ease-in-out;
-}
-
-@keyframes wheel-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.02); }
-}
-
-body.reduce-motion .wheel-disc--spinning-fast {
-  animation: none;
-  opacity: 0.9;
+body.reduce-motion .daily-wheel-rotor {
+  transition-duration: 300ms !important;
 }
 
 /* ═══════════════════════════════════════════════════════════
