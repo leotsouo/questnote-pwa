@@ -1,10 +1,10 @@
 /**
 
- * QuestNote Service Worker — V2.1.4 default theme polish
+ * QuestNote Service Worker — V2.2 daily blessing collapse
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v214-sweet-achievement-readability';
+const CACHE_NAME = 'questnote-cache-v22-daily-blessing-collapse';
 
 
 
@@ -65,6 +65,10 @@ const PRECACHE_URLS = [
   'src/uiHelpers.js',
 
   'src/healthCheckService.js',
+
+  'src/dailyCheckInService.js',
+
+  'data/dailyWheelRewards.json',
 
   'data/pets.json',
 

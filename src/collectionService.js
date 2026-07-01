@@ -23,6 +23,12 @@ export const STAR_UPGRADE_COST = {
 /** 親密度等級門檻（累積 EXP） */
 export const BOND_LEVEL_THRESHOLDS = [0, 50, 150, 300, 500];
 
+/** 撫摸冷卻時間（4 小時） */
+export const PET_COOLDOWN_MS = 4 * 60 * 60 * 1000;
+
+/** 每次撫摸增加的親密度 */
+export const PET_BOND_EXP_GAIN = 5;
+
 /** 暱稱長度上限（中文算 2 單位、英文算 1 單位，最多 24 單位 = 12 中文或 24 英文） */
 export const NICKNAME_MAX_UNITS = 24;
 
@@ -203,6 +209,14 @@ export function normalizeCollectionItem(entry) {
   return normalizeEntry(entry);
 }
 
+function normalizeLastPettedAt(value) {
+  if (value == null) return null;
+  if (typeof value !== 'string') return null;
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  return value;
+}
+
 export function normalizeEntry(entry) {
   if (!entry) return entry;
   const bondExp = entry.bondExp ?? 0;
@@ -214,6 +228,7 @@ export function normalizeEntry(entry) {
     bondLevel: entry.bondLevel ?? getBondLevelFromExp(bondExp),
     isCompanion: entry.isCompanion ?? false,
     nickname: sanitizeStoredNickname(entry.nickname),
+    lastPettedAt: normalizeLastPettedAt(entry.lastPettedAt),
   };
 }
 
@@ -244,6 +259,7 @@ export async function addPetToCollection(petId) {
     bondLevel: 1,
     isCompanion: false,
     nickname: null,
+    lastPettedAt: null,
     obtainedAt: new Date().toISOString(),
   });
   await dbPut(STORES.COLLECTION, entry);
@@ -299,6 +315,73 @@ export async function setCompanion(petId) {
     await dbPut(STORES.COLLECTION, normalized);
   }
   return getPetCollection(petId);
+}
+
+/** 取得目前陪伴寵物的收藏紀錄 */
+export async function getCompanionPet() {
+  const collection = await getCollection();
+  return collection.find((c) => c.isCompanion) || null;
+}
+
+/** 撫摸冷卻是否已結束 */
+export function canPetCompanion(collectionItem) {
+  return getPetCooldownRemaining(collectionItem) <= 0;
+}
+
+/** 撫摸冷卻剩餘毫秒數 */
+export function getPetCooldownRemaining(collectionItem) {
+  if (!collectionItem?.lastPettedAt) return 0;
+  const last = new Date(collectionItem.lastPettedAt);
+  if (Number.isNaN(last.getTime())) return 0;
+  const elapsed = Date.now() - last.getTime();
+  return Math.max(0, PET_COOLDOWN_MS - elapsed);
+}
+
+/** 格式化冷卻剩餘時間 */
+export function formatCooldown(ms) {
+  if (ms <= 0) return '1 分鐘內';
+  const totalMinutes = Math.ceil(ms / 60000);
+  if (totalMinutes < 1) return '1 分鐘內';
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  if (hours > 0 && minutes > 0) return `${hours} 小時 ${minutes} 分鐘`;
+  if (hours > 0) return `${hours} 小時`;
+  return `${minutes} 分鐘`;
+}
+
+/**
+ * 撫摸陪伴寵物（+5 親密度，4 小時冷卻）
+ */
+export async function petCompanion() {
+  const entry = await getCompanionPet();
+  if (!entry) {
+    return { success: false, message: '尚未設定陪伴寵物。' };
+  }
+
+  const normalized = normalizeEntry(entry);
+  if (!canPetCompanion(normalized)) {
+    const remaining = getPetCooldownRemaining(normalized);
+    return {
+      success: false,
+      message: `牠剛剛已經被摸過了，還要 ${formatCooldown(remaining)}才能再次撫摸。`,
+      cooldownRemaining: remaining,
+    };
+  }
+
+  const oldLevel = normalized.bondLevel;
+  normalized.bondExp = (normalized.bondExp || 0) + PET_BOND_EXP_GAIN;
+  normalized.bondLevel = getBondLevelFromExp(normalized.bondExp);
+  normalized.lastPettedAt = new Date().toISOString();
+  await dbPut(STORES.COLLECTION, normalized);
+
+  return {
+    success: true,
+    entry: normalized,
+    expGained: PET_BOND_EXP_GAIN,
+    leveledUp: normalized.bondLevel > oldLevel,
+    newLevel: normalized.bondLevel,
+    oldLevel,
+  };
 }
 
 /**

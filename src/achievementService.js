@@ -23,6 +23,7 @@ import {
 import { MATERIAL_LABELS } from './expeditionService.js';
 import { getWorkshopStats } from './workshopService.js';
 import { getTodayDateString, isCompletedToday, getLocalDateStringFromIso } from './taskFilterService.js';
+import { getDailyCheckIn } from './dailyCheckInService.js';
 
 const ACHIEVEMENTS_KEY = 'achievements';
 
@@ -46,6 +47,7 @@ export const CATEGORY_LABELS = {
   special: '特殊',
   habit: '習慣',
   workshop: '工坊',
+  daily: '每日',
 };
 
 /** 成就分類圖示 */
@@ -58,6 +60,7 @@ export const CATEGORY_ICONS = {
   special: '🏅',
   habit: '🔄',
   workshop: '🔨',
+  daily: '🌙',
 };
 
 /** @type {object[]|null} */
@@ -169,7 +172,7 @@ function isTaskCompleted(task) {
  * 建立成就條件計算用的上下文
  */
 export async function buildAchievementContext(allPets = []) {
-  const [tasks, gachaStats, collection, expeditions, achState, taskStats, habits, workshopStats] = await Promise.all([
+  const [tasks, gachaStats, collection, expeditions, achState, taskStats, habits, workshopStats, dailyCheckIn] = await Promise.all([
     getAllTasks(),
     getGachaStats(),
     getCollection(),
@@ -178,6 +181,7 @@ export async function buildAchievementContext(allPets = []) {
     getTaskStats(),
     getAllHabits(),
     getWorkshopStats(),
+    getDailyCheckIn(),
   ]);
 
   const completedTasks = tasks.filter(isTaskCompleted);
@@ -244,6 +248,9 @@ export async function buildAchievementContext(allPets = []) {
     giftCount: workshopStats.giftCount ?? 0,
     favoriteGiftCount: workshopStats.favoriteGiftCount ?? 0,
     hasSetNickname,
+    totalCheckIns: dailyCheckIn.totalCheckIns ?? 0,
+    checkInStreak: Math.max(dailyCheckIn.streak ?? 0, dailyCheckIn.bestStreak ?? 0),
+    totalWheelSpins: dailyCheckIn.totalWheelSpins ?? 0,
   };
 }
 
@@ -304,6 +311,12 @@ export function getAchievementProgress(achievement, context) {
       return context.favoriteGiftCount;
     case 'first_nickname_set':
       return context.hasSetNickname ? 1 : 0;
+    case 'check_in_total':
+      return context.totalCheckIns;
+    case 'check_in_streak':
+      return context.checkInStreak;
+    case 'wheel_spin_total':
+      return context.totalWheelSpins;
     default:
       return 0;
   }

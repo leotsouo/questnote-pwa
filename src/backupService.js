@@ -1,5 +1,5 @@
 /**
- * 備份與恢復服務 — QuestNote V2.1.4
+ * 備份與恢復服務 — QuestNote V2.2
  * 支援匯出、驗證、正規化與安全覆蓋恢復
  */
 import { exportTasks } from './taskService.js';
@@ -23,10 +23,11 @@ import {
 } from './workshopService.js';
 import { normalizeTask, migrateTasks } from './taskMigration.js';
 import { getTodayDateString } from './taskFilterService.js';
+import { exportDailyCheckIn, normalizeDailyCheckIn } from './dailyCheckInService.js';
 
-export const APP_VERSION = '2.1.4';
+export const APP_VERSION = '2.2';
 const APP_NAME = 'QuestNote';
-const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4'];
+const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2'];
 const WALLET_KEY = 'wallet';
 const GACHA_STATS_KEY = 'gachaStats';
 const ACHIEVEMENTS_KEY = 'achievements';
@@ -48,6 +49,7 @@ const DATA_KEYS = [
   'taskStats',
   'inventory',
   'workshopStats',
+  'dailyCheckIn',
 ];
 
 /**
@@ -95,6 +97,7 @@ function buildDataPayload({
   userPreferences,
   inventory,
   workshopStats,
+  dailyCheckIn,
 }) {
   const walletData = {
     stardust: wallet.stardust ?? 0,
@@ -135,6 +138,7 @@ function buildDataPayload({
     adventureEnergy: walletData.adventureEnergy,
     inventory,
     workshopStats,
+    dailyCheckIn,
   };
 }
 
@@ -155,6 +159,7 @@ export async function exportBackup() {
     userPreferences,
     inventory,
     workshopStats,
+    dailyCheckIn,
   ] = await Promise.all([
     exportTasks(),
     getWallet(),
@@ -167,6 +172,7 @@ export async function exportBackup() {
     getUserPreferences(),
     exportInventory(),
     exportWorkshopStats(),
+    exportDailyCheckIn(),
   ]);
 
   const data = buildDataPayload({
@@ -181,6 +187,7 @@ export async function exportBackup() {
     userPreferences,
     inventory,
     workshopStats,
+    dailyCheckIn,
   });
 
   return {
@@ -449,6 +456,7 @@ export function normalizeBackupPayload(rawBackup) {
     taskStats: data.taskStats ?? {},
     inventory: normalizeInventory(data.inventory),
     workshopStats: normalizeWorkshopStats(data.workshopStats),
+    dailyCheckIn: normalizeDailyCheckIn(data.dailyCheckIn),
   };
 }
 
@@ -510,6 +518,7 @@ export function migrateImportedData(normalizedBackup) {
 
   const inventory = normalizeInventory(normalizedBackup.inventory);
   const workshopStats = normalizeWorkshopStats(normalizedBackup.workshopStats);
+  const dailyCheckIn = normalizeDailyCheckIn(normalizedBackup.dailyCheckIn);
 
   return {
     ...normalizedBackup,
@@ -525,6 +534,7 @@ export function migrateImportedData(normalizedBackup) {
     materials: wallet.materials,
     inventory,
     workshopStats,
+    dailyCheckIn,
   };
 }
 
@@ -611,6 +621,7 @@ export async function safeReplaceAllData(migratedData) {
     userPreferences: migratedData.userPreferences,
     inventory: migratedData.inventory,
     workshopStats: migratedData.workshopStats,
+    dailyCheckIn: migratedData.dailyCheckIn,
   });
 }
 

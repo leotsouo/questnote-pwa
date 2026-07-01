@@ -382,5 +382,55 @@
     "target": 1,
     "reward": { "stardust": 1000, "adventureEnergy": 0, "materials": {} },
     "titleReward": "命名者"
+  },
+  {
+    "id": "ach_first_check_in",
+    "name": "初次簽到",
+    "description": "完成第一次每日簽到。",
+    "category": "daily",
+    "conditionType": "check_in_total",
+    "target": 1,
+    "reward": { "stardust": 50, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "今日啟程者"
+  },
+  {
+    "id": "ach_check_in_3_streak",
+    "name": "連續三天",
+    "description": "連續簽到達 3 天。",
+    "category": "daily",
+    "conditionType": "check_in_streak",
+    "target": 3,
+    "reward": { "stardust": 100, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "三日同行者"
+  },
+  {
+    "id": "ach_check_in_7_streak",
+    "name": "連續七天",
+    "description": "連續簽到達 7 天。",
+    "category": "daily",
+    "conditionType": "check_in_streak",
+    "target": 7,
+    "reward": { "stardust": 200, "adventureEnergy": 3, "materials": {} },
+    "titleReward": "七日守約者"
+  },
+  {
+    "id": "ach_first_wheel_spin",
+    "name": "轉盤初體驗",
+    "description": "第一次轉動每日幸運轉盤。",
+    "category": "daily",
+    "conditionType": "wheel_spin_total",
+    "target": 1,
+    "reward": { "stardust": 50, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "幸運初醒者"
+  },
+  {
+    "id": "ach_wheel_spin_20",
+    "name": "幸運常客",
+    "description": "累積轉動幸運轉盤 20 次。",
+    "category": "daily",
+    "conditionType": "wheel_spin_total",
+    "target": 20,
+    "reward": { "stardust": 300, "adventureEnergy": 0, "materials": { "star_shard": 1 } },
+    "titleReward": "幸運常客"
   }
 ]

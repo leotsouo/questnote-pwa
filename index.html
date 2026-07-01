@@ -92,6 +92,8 @@
         <p class="gacha-hero__tagline">星塵匯聚，幻獸降臨</p>
       </div>
 
+      <section id="daily-blessing-section" class="daily-blessing-section" aria-label="每日祝福"></section>
+
       <section class="gacha-panel card">
         <h2 class="gacha-pool" id="gacha-pool-name">標準召喚</h2>
 
@@ -182,6 +184,15 @@
       </header>
 
       <section class="more-menu card">
+        <button class="more-menu-item" data-goto="gacha" data-scroll-daily-blessing type="button">
+          <span class="more-menu-icon">🌙</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">每日祝福</span>
+            <span class="more-menu-desc">每日簽到與幸運轉盤</span>
+          </span>
+          <span class="more-menu-badge" id="more-daily-blessing-badge" hidden aria-hidden="true"></span>
+          <span class="more-menu-arrow">›</span>
+        </button>
         <button class="more-menu-item" data-goto="achievements" type="button">
           <span class="more-menu-icon">🏅</span>
           <span class="more-menu-text">
@@ -257,6 +268,7 @@
         <button class="filter-btn" data-ach-filter="expedition">探險</button>
         <button class="filter-btn" data-ach-filter="bond">親密度</button>
         <button class="filter-btn" data-ach-filter="workshop">工坊</button>
+        <button class="filter-btn" data-ach-filter="daily">每日</button>
         <button class="filter-btn" data-ach-filter="special">特殊</button>
         <button class="filter-btn" data-ach-filter="done">已完成</button>
         <button class="filter-btn" data-ach-filter="pending">未完成</button>
@@ -489,7 +501,7 @@
         <button id="btn-dev-expedition" class="btn btn--dev btn--block">測試：立即結束派遣探險</button>
       </section>
 
-      <p class="settings-note">QuestNote v2.1.4 — 離線個人任務記事 App</p>
+      <p class="settings-note">QuestNote v2.1.5 — 離線個人任務記事 App</p>
     </main>
 
     <!-- 底部導航 -->

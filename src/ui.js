@@ -21,6 +21,9 @@ import {
   SMART_LISTS,
   filterBySmartList,
   filterByCategory,
+  filterCompletedTasksByRange,
+  COMPLETED_RANGE_OPTIONS,
+  getCompletedRangeEmptyMessage,
   sortTasks,
   getTodayViewSections,
   validateDateRange,
@@ -37,6 +40,10 @@ import {
   validatePetNickname,
   getNicknameCharUnits,
   NICKNAME_MAX_UNITS,
+  petCompanion,
+  canPetCompanion,
+  getPetCooldownRemaining,
+  formatCooldown,
 } from './collectionService.js';
 import { getBondUpLine } from './companionService.js';
 import {
@@ -124,6 +131,19 @@ import {
   companionLikesAnyGift,
   hasLowMaterials,
 } from './workshopService.js';
+import {
+  performDailyCheckIn,
+  prepareDailyWheelSpin,
+  finalizeDailyWheelSpin,
+  releaseWheelSpinLock,
+  loadWheelRewards,
+  hasCheckedInToday,
+  hasSpunWheelToday,
+  isWheelSpinning,
+  calculateCheckInRewards,
+  isYesterday,
+} from './dailyCheckInService.js';
+import { MATERIAL_LABELS } from './expeditionService.js';
 
 /** 稀有度中文與色彩 */
 export const RARITY_LABELS = {
@@ -162,8 +182,12 @@ let taskViewMode = 'today';
 let activeSmartListId = null;
 let taskCategoryFilter = 'all';
 let completedSectionCollapsed = true;
+let completedRangeFilter = 'completed_1_month';
 let archivedHabitsCollapsed = true;
 let workshopTab = 'materials';
+let dailyWheelRewards = null;
+let dailyBlessingCollapsed = true;
+let dailyBlessingCollapseDay = null;
 let selectedGiftPetId = null;
 let selectedGiftItemId = null;
 const expandedTaskIds = new Set();
@@ -397,10 +421,6 @@ function bindDelegatedEvents() {
         recentlyCompletedTaskIds.add(id);
         setTimeout(() => recentlyCompletedTaskIds.delete(id), 2500);
 
-        if (taskViewMode === 'all') {
-          completedSectionCollapsed = false;
-        }
-
         if (result.reward) {
           showRewardToast(result.reward.amount, result.reward.energy);
         } else {
@@ -449,9 +469,15 @@ function bindDelegatedEvents() {
       showToast('已移出今日計畫', 'info');
     } else if (action === 'smart-list') {
       activeSmartListId = target.dataset.listId;
+      if (target.dataset.listId === 'completed') {
+        completedRangeFilter = 'completed_1_month';
+      }
       renderTasksView();
     } else if (action === 'smart-list-back') {
       activeSmartListId = null;
+      renderTasksView();
+    } else if (action === 'completed-range') {
+      completedRangeFilter = target.dataset.range;
       renderTasksView();
     } else if (action === 'toggle-completed-section') {
       completedSectionCollapsed = !completedSectionCollapsed;
@@ -473,6 +499,9 @@ function bindDelegatedEvents() {
       }
     } else if (action === 'companion-talk') {
       showCompanionDialogue();
+    } else if (action === 'companion-pet') {
+      e.stopPropagation();
+      await handleCompanionPet();
     } else if (action === 'empty-add-task') {
       openTaskForm();
     } else if (action === 'empty-go-gacha') {
@@ -491,6 +520,21 @@ function bindDelegatedEvents() {
   });
 
   document.getElementById('btn-add-task')?.addEventListener('click', () => openTaskForm());
+
+  document.getElementById('view-gacha')?.addEventListener('click', async (e) => {
+    const target = e.target.closest('[data-action]');
+    if (!target) return;
+    const action = target.dataset.action;
+    if (action === 'toggle-daily-blessing') {
+      dailyBlessingCollapsed = !dailyBlessingCollapsed;
+      dailyBlessingCollapseDay = getTodayDateString();
+      renderDailyBlessingSection();
+    } else if (action === 'daily-check-in') {
+      await handleDailyCheckIn();
+    } else if (action === 'daily-open-wheel') {
+      await openDailyWheelModal();
+    }
+  });
 
   document.getElementById('btn-pull')?.addEventListener('click', handlePull);
   document.getElementById('btn-pull-ten')?.addEventListener('click', handleTenPull);
@@ -584,6 +628,11 @@ function bindDelegatedEvents() {
     const item = e.target.closest('[data-goto]');
     if (!item) return;
     switchView(item.dataset.goto);
+    if (item.hasAttribute('data-scroll-daily-blessing')) {
+      requestAnimationFrame(() => {
+        document.getElementById('daily-blessing-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
   });
 
   document.getElementById('view-workshop')?.addEventListener('click', (e) => {
@@ -921,6 +970,7 @@ function renderTasksView() {
   }
 
   renderAchievementStrip();
+  renderDailyBlessingSection();
   renderCompanionSection(companion, companionLine);
   renderTodayPlanSummary(tasks, today);
   renderHabitSummary();
@@ -974,6 +1024,379 @@ function renderHabitSummary() {
       </div>
       ${cta}
     </div>`;
+}
+
+function formatDailyRewardBundle(bundle) {
+  if (!bundle) return '';
+  const parts = [];
+  if (bundle.stardust > 0) parts.push(`星塵 +${bundle.stardust}`);
+  if (bundle.adventureEnergy > 0) parts.push(`冒險能量 +${bundle.adventureEnergy}`);
+  if (bundle.materials) {
+    for (const [id, amt] of Object.entries(bundle.materials)) {
+      if (amt > 0) parts.push(`${getMaterialName(id) || MATERIAL_LABELS[id] || id} +${amt}`);
+    }
+  }
+  if (bundle.items) {
+    for (const [id, amt] of Object.entries(bundle.items)) {
+      if (amt > 0) {
+        const info = getCraftableInfo(id);
+        parts.push(`${info?.name || id} +${amt}`);
+      }
+    }
+  }
+  return parts.join('、');
+}
+
+function getProjectedCheckInStreak(daily, today, checkedIn) {
+  if (checkedIn) return daily?.streak ?? 0;
+  if (daily?.lastCheckInDate && isYesterday(daily.lastCheckInDate, today)) {
+    return (daily.streak ?? 0) + 1;
+  }
+  return 1;
+}
+
+function buildDailyRewardPreviewChips(projectedStreak) {
+  const base = calculateCheckInRewards(1);
+  const full = calculateCheckInRewards(projectedStreak);
+  const chips = [];
+
+  chips.push({ icon: '✨', text: `星塵 +${base.stardust}`, bonus: false });
+  chips.push({ icon: '⚡', text: `冒險能量 +${base.adventureEnergy}`, bonus: false });
+
+  const extraStardust = full.stardust - base.stardust;
+  if (extraStardust > 0) {
+    chips.push({ icon: '✨', text: `星塵 +${extraStardust}`, bonus: true });
+  }
+  const extraEnergy = full.adventureEnergy - base.adventureEnergy;
+  if (extraEnergy > 0) {
+    chips.push({ icon: '⚡', text: `冒險能量 +${extraEnergy}`, bonus: true });
+  }
+  if (full.materials) {
+    for (const [id, amt] of Object.entries(full.materials)) {
+      if (amt > 0) {
+        chips.push({
+          icon: '💎',
+          text: `${getMaterialName(id) || MATERIAL_LABELS[id] || id} +${amt}`,
+          bonus: true,
+        });
+      }
+    }
+  }
+  if (full.items) {
+    for (const [id, amt] of Object.entries(full.items)) {
+      if (amt > 0) {
+        const info = getCraftableInfo(id);
+        chips.push({
+          icon: '🎁',
+          text: `${info?.name || id} +${amt}`,
+          bonus: true,
+        });
+      }
+    }
+  }
+  return chips;
+}
+
+function getSevenDayMilestoneProgress(projectedStreak) {
+  const target = 7;
+  const progress = Math.min(projectedStreak, target);
+  const percent = Math.round((progress / target) * 100);
+  let label;
+  if (projectedStreak >= target) {
+    label = projectedStreak === target
+      ? '今日達成 7 天連續簽到獎勵！'
+      : '已解鎖 7 天連續簽到獎勵';
+  } else {
+    const remaining = target - projectedStreak;
+    label = `距離 7 天獎勵還差 ${remaining} 天`;
+  }
+  return { percent, label };
+}
+
+function showDailyBlessingRewardToast(text) {
+  const toast = document.createElement('div');
+  toast.className = 'reward-toast reward-toast--daily';
+  toast.innerHTML = `<span class="reward-toast__icon">🌙</span><span>${escapeHtml(text)}</span>`;
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('show'));
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3200);
+}
+
+function resolveDailyBlessingCollapsed(allDone, today) {
+  if (dailyBlessingCollapseDay !== today) {
+    dailyBlessingCollapseDay = today;
+    dailyBlessingCollapsed = allDone;
+  }
+  return dailyBlessingCollapsed;
+}
+
+function renderDailyBlessingSection() {
+  const el = document.getElementById('daily-blessing-section');
+  if (!el) return;
+
+  const daily = state.dailyCheckIn;
+  const today = getTodayDateString();
+  const checkedIn = daily ? hasCheckedInToday(daily, today) : false;
+  const spun = daily ? hasSpunWheelToday(daily, today) : false;
+  const allDone = checkedIn && spun;
+  const hasPending = !allDone;
+  const collapsed = resolveDailyBlessingCollapsed(allDone, today);
+  const streak = daily?.streak ?? 0;
+  const bestStreak = daily?.bestStreak ?? 0;
+  const projectedStreak = getProjectedCheckInStreak(daily, today, checkedIn);
+  const rewardChips = buildDailyRewardPreviewChips(projectedStreak);
+  const milestone = getSevenDayMilestoneProgress(projectedStreak);
+
+  const checkInBtnLabel = checkedIn ? '今日已簽到' : '今日簽到';
+  const wheelBtnLabel = spun ? '今日已轉盤' : '幸運轉盤';
+
+  let statusBadgeText = '今日已完成';
+  let statusBadgeClass = 'daily-status-badge done';
+  if (!allDone) {
+    statusBadgeClass = 'daily-status-badge';
+    if (!checkedIn && !spun) statusBadgeText = '待領取';
+    else if (!checkedIn) statusBadgeText = '簽到待領';
+    else statusBadgeText = '轉盤待領';
+  }
+
+  let footerHint = '今天的祝福已全部領取，明天再來吧～';
+  if (!allDone) {
+    if (!checkedIn && !spun) footerHint = '完成簽到與轉盤，領取今日全部祝福';
+    else if (!checkedIn) footerHint = '轉盤已轉，別忘了領取今日簽到獎勵';
+    else footerHint = '簽到完成！記得轉動幸運轉盤喔';
+  }
+
+  let compactSummary = `連續 ${streak} 天`;
+  if (allDone) {
+    compactSummary += ' · 今日已完成';
+  } else {
+    const pendingParts = [];
+    if (!checkedIn) pendingParts.push('簽到');
+    if (!spun) pendingParts.push('轉盤');
+    compactSummary += ` · 待領取：${pendingParts.join('、')}`;
+  }
+
+  const rewardChipsHtml = rewardChips.map((chip) => `
+    <span class="daily-reward-chip${chip.bonus ? ' daily-reward-chip--bonus' : ''}">
+      <span class="daily-reward-chip__icon" aria-hidden="true">${chip.icon}</span>
+      <span class="daily-reward-chip__text">${escapeHtml(chip.text)}</span>
+    </span>`).join('');
+
+  const quickActions = collapsed && hasPending
+    ? `<div class="daily-blessing-card__quick-actions">
+        ${!checkedIn ? '<button type="button" class="btn btn--secondary btn--sm daily-blessing-card__quick-btn" data-action="daily-check-in">簽到</button>' : ''}
+        ${!spun ? '<button type="button" class="btn btn--primary btn--sm daily-blessing-card__quick-btn" data-action="daily-open-wheel">轉盤</button>' : ''}
+      </div>`
+    : '';
+
+  el.innerHTML = `
+    <div class="daily-blessing-card${collapsed ? ' daily-blessing-card--collapsed' : ''}${hasPending ? ' daily-blessing-card--pending' : ''}">
+      <header class="daily-blessing-card__header">
+        <button type="button" class="daily-blessing-card__toggle" data-action="toggle-daily-blessing" aria-expanded="${!collapsed}">
+          <span class="daily-blessing-card__icon daily-blessing-card__icon--default" aria-hidden="true">✦</span>
+          <span class="daily-blessing-card__icon daily-blessing-card__icon--sweet" aria-hidden="true">🌸</span>
+          <span class="daily-blessing-card__header-main">
+            <span class="daily-blessing-title">每日祝福</span>
+            <span class="daily-blessing-subtitle daily-blessing-subtitle--default">冒險者每日補給</span>
+            <span class="daily-blessing-subtitle daily-blessing-subtitle--sweet">每日小祝福</span>
+            <span class="daily-blessing-card__compact-summary">${escapeHtml(compactSummary)}</span>
+          </span>
+          <span class="${statusBadgeClass}">${escapeHtml(statusBadgeText)}</span>
+          <span class="daily-blessing-card__chevron" aria-hidden="true">${collapsed ? '▼' : '▲'}</span>
+        </button>
+        ${quickActions}
+      </header>
+
+      <div class="daily-blessing-card__body" ${collapsed ? 'hidden' : ''}>
+        <section class="daily-streak-section" aria-label="連續簽到">
+          <div class="daily-streak-row">
+            <div class="daily-streak-stat">
+              <span class="daily-streak-stat__label">連續簽到</span>
+              <span class="daily-streak-stat__value">連續簽到 <span class="daily-streak-number">${streak}</span> 天</span>
+            </div>
+            <div class="daily-streak-stat">
+              <span class="daily-streak-stat__label">最高紀錄</span>
+              <span class="daily-streak-stat__value">最高紀錄 ${bestStreak} 天</span>
+            </div>
+          </div>
+          <div class="daily-milestone-progress">
+            <div class="daily-milestone-progress__header">
+              <span class="daily-milestone-progress__label">${escapeHtml(milestone.label)}</span>
+              <span class="daily-milestone-progress__value">${Math.min(projectedStreak, 7)} / 7</span>
+            </div>
+            <div class="progress-bar daily-milestone-progress__bar">
+              <div class="progress-bar__fill daily-milestone-progress__fill" style="width: ${milestone.percent}%"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="daily-reward-preview" aria-label="今日獎勵預覽">
+          <h3 class="daily-reward-preview__title">今日獎勵預覽</h3>
+          <div class="daily-reward-preview__chips">
+            ${rewardChipsHtml}
+          </div>
+        </section>
+
+        <div class="daily-blessing-card__actions">
+          <button type="button" class="btn btn--secondary daily-blessing-card__btn"
+            data-action="daily-check-in" ${checkedIn ? 'disabled' : ''}>
+            ${escapeHtml(checkInBtnLabel)}
+          </button>
+          <button type="button" class="btn btn--primary daily-blessing-card__btn"
+            data-action="daily-open-wheel" ${spun ? 'disabled' : ''}>
+            ${escapeHtml(wheelBtnLabel)}
+          </button>
+        </div>
+
+        <p class="daily-blessing-card__footer">${escapeHtml(footerHint)}</p>
+      </div>
+    </div>`;
+
+  if (hasPending) {
+    el.classList.add('daily-blessing-section--pending');
+  } else {
+    el.classList.remove('daily-blessing-section--pending');
+  }
+}
+
+async function handleDailyCheckIn() {
+  if (isWheelSpinning()) return;
+  const result = await performDailyCheckIn();
+  if (!result.success) {
+    showToast(result.error || '簽到失敗', result.error?.includes('已經') ? 'info' : 'error');
+    return;
+  }
+  const rewardText = formatDailyRewardBundle(result.rewards);
+  const today = getTodayDateString();
+  const willBeAllDone = hasSpunWheelToday(
+    { ...state.dailyCheckIn, lastCheckInDate: today },
+    today
+  );
+  if (willBeAllDone) dailyBlessingCollapsed = true;
+  await onRefresh();
+  showDailyBlessingRewardToast(`簽到成功！獲得 ${rewardText}`);
+  if (result.streak >= 3) {
+    showToast(`連續簽到 ${result.streak} 天！`, 'success');
+  }
+  await handleAchievementCheckAfterAction();
+}
+
+const WHEEL_SEGMENT_COLORS = [
+  '#8B5CF6', '#A78BFA', '#FBBF24', '#34D399',
+  '#F472B6', '#60A5FA', '#FB923C', '#C084FC',
+];
+
+function buildWheelDiscHtml(rewards) {
+  const count = rewards.length || 8;
+  const seg = 360 / count;
+  const stops = rewards.map((_, i) => {
+    const start = i * seg;
+    const end = (i + 1) * seg;
+    return `${WHEEL_SEGMENT_COLORS[i % WHEEL_SEGMENT_COLORS.length]} ${start}deg ${end}deg`;
+  }).join(', ');
+
+  const labels = rewards.map((r, i) => {
+    const angle = i * seg + seg / 2;
+    return `<span class="wheel-segment-label" style="--seg-angle:${angle}deg">${escapeHtml(r.label)}</span>`;
+  }).join('');
+
+  return `
+    <div class="wheel-pointer" aria-hidden="true"></div>
+    <div class="wheel-disc-wrap">
+      <div class="wheel-disc" id="daily-wheel-disc" style="background: conic-gradient(from -90deg, ${stops})">
+        ${labels}
+      </div>
+      <button type="button" class="wheel-center-btn" id="daily-wheel-start" aria-label="開始轉盤">開始</button>
+    </div>`;
+}
+
+function computeWheelRotationDeg(rewardIndex, segmentCount, extraSpins = 4) {
+  const seg = 360 / segmentCount;
+  const center = rewardIndex * seg + seg / 2;
+  const jitter = (Math.random() - 0.5) * (seg * 0.25);
+  return extraSpins * 360 + (360 - center + jitter);
+}
+
+async function animateDailyWheel(rewardIndex, segmentCount) {
+  const disc = document.getElementById('daily-wheel-disc');
+  const startBtn = document.getElementById('daily-wheel-start');
+  if (!disc) return;
+
+  const reduceMotion = state.userPreferences?.reduceMotion ?? false;
+  if (startBtn) startBtn.disabled = true;
+
+  if (reduceMotion) {
+    disc.classList.add('wheel-disc--spinning-fast');
+    await new Promise((r) => setTimeout(r, 500));
+    disc.classList.remove('wheel-disc--spinning-fast');
+    return;
+  }
+
+  const rotation = computeWheelRotationDeg(rewardIndex, segmentCount, 3 + Math.floor(Math.random() * 2));
+  disc.style.transition = 'transform 2.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+  disc.style.transform = `rotate(${rotation}deg)`;
+  await new Promise((r) => setTimeout(r, 2700));
+}
+
+async function openDailyWheelModal() {
+  const daily = state.dailyCheckIn;
+  const today = getTodayDateString();
+  if (daily && hasSpunWheelToday(daily, today)) {
+    showToast('今天已經轉過幸運轉盤了，明天再來吧。', 'info');
+    return;
+  }
+
+  const rewards = dailyWheelRewards || await loadWheelRewards();
+  dailyWheelRewards = rewards;
+  const canSpin = !(daily && hasSpunWheelToday(daily, today));
+
+  openModal(`
+    <div class="wheel-modal">
+      <h2 class="modal-title">每日幸運轉盤</h2>
+      <p class="wheel-modal__status">${canSpin ? '今天還可以轉 1 次' : '今天已經轉過了'}</p>
+      <div class="wheel-container" id="daily-wheel-container">
+        ${buildWheelDiscHtml(rewards)}
+      </div>
+      <p class="wheel-modal__hint">轉盤結果由系統先決定，動畫僅為展示效果。</p>
+    </div>
+  `);
+
+  if (!canSpin) return;
+
+  const startBtn = document.getElementById('daily-wheel-start');
+  startBtn?.addEventListener('click', async () => {
+    if (startBtn.disabled || isWheelSpinning()) return;
+    startBtn.disabled = true;
+
+    const prep = await prepareDailyWheelSpin();
+    if (!prep.success) {
+      showToast(prep.error || '無法轉盤', 'info');
+      releaseWheelSpinLock();
+      startBtn.disabled = false;
+      return;
+    }
+
+    try {
+      await animateDailyWheel(prep.rewardIndex, prep.segmentCount);
+      const result = await finalizeDailyWheelSpin(prep.reward);
+      if (!result.success) {
+        showToast(result.error || '轉盤結算失敗', 'error');
+        return;
+      }
+      closeModal();
+      dailyBlessingCollapsed = true;
+      await onRefresh();
+      showDailyBlessingRewardToast(`獲得：${prep.reward.label}`);
+      await handleAchievementCheckAfterAction();
+    } catch (err) {
+      console.error('[QuestNote] 轉盤錯誤:', err);
+      releaseWheelSpinLock();
+      showToast('轉盤發生錯誤，請稍後再試', 'error');
+    }
+  });
 }
 
 function renderTodayPlanSummary(tasks, today) {
@@ -1078,30 +1501,24 @@ function renderTodayView(tasks, today) {
 function renderAllTasksView(tasks, today) {
   const filtered = applyCategoryFilter(tasks);
   const incomplete = sortTasks(filtered.filter((t) => !t.completed), today);
-  const complete = sortTasks(filtered.filter((t) => t.completed), today);
 
-  const categoryEmpty = taskCategoryFilter !== 'all' && incomplete.length === 0 && complete.length === 0;
+  const categoryEmpty = taskCategoryFilter !== 'all' && incomplete.length === 0;
 
-  let html = '';
   if (categoryEmpty) {
-    html += emptyStateHtml(
+    return emptyStateHtml(
       '📂',
       '這個分類還沒有任務',
       '新增任務時可以把它放進這個分類。',
       '新增任務',
       'empty-add-task'
     );
-  } else {
-    html += renderTaskListSection('進行中', incomplete,
-      incomplete.length === 0
-        ? emptyStateHtml('📋', '目前沒有待辦任務', '新增一個小任務，讓你的夥伴開始累積能量吧。', '新增任務', 'empty-add-task')
-        : ''
-    );
   }
 
-  html += renderCollapsibleTaskSection('已完成', complete);
-
-  return html;
+  return renderTaskListSection('進行中', incomplete,
+    incomplete.length === 0
+      ? emptyStateHtml('📋', '目前沒有待辦任務', '新增一個小任務，讓你的夥伴開始累積能量吧。', '新增任務', 'empty-add-task')
+      : ''
+  );
 }
 
 function renderSmartListHub(tasks, today) {
@@ -1122,11 +1539,29 @@ function renderSmartListHub(tasks, today) {
   return `<div class="smart-list-hub">${cards}</div>`;
 }
 
+function renderCompletedRangeFilter(tasks) {
+  const rangeBtns = COMPLETED_RANGE_OPTIONS.map((opt) => {
+    const count = filterCompletedTasksByRange(tasks, opt.id).length;
+    const active = completedRangeFilter === opt.id;
+    return `<button type="button" class="segmented-control__btn ${active ? 'active' : ''}" data-action="completed-range" data-range="${opt.id}" aria-pressed="${active}">${escapeHtml(opt.label)} <span class="section-count">${count}</span></button>`;
+  }).join('');
+
+  return `
+    <div class="completed-range-filter">
+      <div class="segmented-control completed-range-filter__control" role="group" aria-label="已完成時間篩選">
+        ${rangeBtns}
+      </div>
+    </div>`;
+}
+
 function renderSmartListDetail(tasks, listId, today) {
   const list = SMART_LISTS.find((l) => l.id === listId);
   if (!list) return '';
 
   let filtered = filterBySmartList(listId, tasks, today);
+  if (listId === 'completed') {
+    filtered = filterCompletedTasksByRange(filtered, completedRangeFilter);
+  }
   filtered = applyCategoryFilter(filtered);
   const sorted = sortTasks(filtered, today);
 
@@ -1138,15 +1573,18 @@ function renderSmartListDetail(tasks, listId, today) {
     important: ['這裡目前沒有任務', '狀態很好，沒有需要處理的項目。'],
     no_date: ['這裡目前沒有任務', '狀態很好，沒有需要處理的項目。'],
     has_subtasks: ['這裡目前沒有任務', '可以把大型任務拆成幾個小步驟。'],
-    completed: ['這裡目前沒有任務', '還沒有完成的任務紀錄。'],
+    completed: getCompletedRangeEmptyMessage(completedRangeFilter),
   };
   const [emptyTitle, emptyDesc] = emptyMessages[listId] || ['這裡目前沒有任務', '狀態很好，沒有需要處理的項目。'];
+
+  const rangeFilterHtml = listId === 'completed' ? renderCompletedRangeFilter(tasks) : '';
 
   return `
     <div class="smart-list-detail">
       <button type="button" class="btn btn--ghost btn--sm smart-list-back" data-action="smart-list-back">‹ 智慧清單</button>
       <h2 class="section-title">${list.icon} ${escapeHtml(list.name)}</h2>
       <p class="section-desc">${escapeHtml(list.desc)}</p>
+      ${rangeFilterHtml}
       ${sorted.length === 0
         ? emptyStateHtml(list.icon, emptyTitle, emptyDesc)
         : `<div class="task-list">${sorted.map(renderTaskCard).join('')}</div>`
@@ -1271,7 +1709,7 @@ function openTaskForm(taskId = null) {
 
   openModal(`
     <h2 class="modal-title">${isEdit ? '編輯任務' : '新增任務'}</h2>
-    <form id="task-form" class="form">
+    <form id="task-form" class="form task-form">
       <label class="form-label" for="task-content">任務內容</label>
       <textarea id="task-content" class="form-textarea" rows="4" placeholder="第一行將自動成為標題…" required>${task ? escapeHtml(task.content) : ''}</textarea>
 
@@ -1510,6 +1948,80 @@ function renderAchievementStrip() {
 }
 
 /** 渲染陪伴寵物區塊 */
+function renderCompanionPetButton(companion) {
+  const canPet = canPetCompanion(companion);
+  const remaining = getPetCooldownRemaining(companion);
+  const btnLabel = canPet ? '撫摸' : (remaining > 0 ? `還要 ${formatCooldown(remaining)}` : '冷卻中');
+  const cooldownHint = canPet
+    ? ''
+    : `<p class="companion-card__cooldown">撫摸冷卻中，${escapeHtml(formatCooldown(remaining))}後可再次撫摸</p>`;
+
+  return `
+    <div class="companion-card__pet-row">
+      <button type="button" class="btn btn--secondary btn--sm companion-pet-btn" data-action="companion-pet" ${canPet ? '' : 'disabled'}>${escapeHtml(btnLabel)}</button>
+      ${cooldownHint}
+    </div>`;
+}
+
+const PET_COMFORT_LINES = {
+  N: ['牠開心地蹭了蹭你的手。', '牠看起來精神變好了。'],
+  R: ['牠開心地蹭了蹭你的手。', '牠看起來精神變好了。'],
+  SR: ['牠安靜地靠近你，似乎更信任你了。', '牠接受了你的撫摸。'],
+  SSR: ['牠微微低下頭，默許了你的靠近。', '牠的氣息變得溫和了一些。'],
+  UR: ['牠短暫收起威壓，接受了你的觸碰。', '星光在牠身旁輕輕流動。'],
+};
+
+function getPetComfortLine(companion) {
+  const pool = PET_COMFORT_LINES[companion?.rarity] || PET_COMFORT_LINES.N;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function playHomeCompanionPetEffect() {
+  const card = document.querySelector('.companion-card');
+  const img = document.querySelector('.companion-card__image');
+  triggerComfortVibration();
+  if (!state?.userPreferences?.reduceMotion) {
+    card?.classList.add('companion-card--bounce', 'companion-card--pet-glow');
+    img?.classList.add('companion-img--bounce');
+    setTimeout(() => {
+      card?.classList.remove('companion-card--bounce', 'companion-card--pet-glow');
+      img?.classList.remove('companion-img--bounce');
+    }, 650);
+  }
+}
+
+async function handleCompanionPet() {
+  if (!state?.companion) {
+    showToast('尚未設定陪伴寵物。', 'warning');
+    return;
+  }
+
+  try {
+    const result = await petCompanion();
+    if (!result.success) {
+      showToast(result.message, 'warning', 3500);
+      await onRefresh();
+      return;
+    }
+
+    playHomeCompanionPetEffect();
+    showToast('你輕輕摸了摸牠，親密度 +5', 'success', 2800);
+    if (result.leveledUp) {
+      setTimeout(() => {
+        const bondLine = getBondUpLine(state.companion);
+        showBondLevelUpToast(result.newLevel, bondLine);
+      }, 400);
+    }
+
+    await onRefresh();
+    const comfortLine = getPetComfortLine(state.companion);
+    setCompanionBubbleText(comfortLine, true);
+  } catch (err) {
+    showToast(err.message || '撫摸失敗', 'error');
+  }
+}
+
+/** 渲染陪伴寵物區塊 */
 function renderCompanionSection(companion, defaultLine) {
   const section = document.getElementById('companion-section');
   if (!section) return;
@@ -1541,6 +2053,7 @@ function renderCompanionSection(companion, defaultLine) {
   const titleHtml = equippedTitle
     ? `<p class="companion-card__player-title">稱號：${escapeHtml(equippedTitle.name)}</p>`
     : '';
+  const petBtnHtml = renderCompanionPetButton(companion);
 
   section.innerHTML = `
     <div class="companion-wrap">
@@ -1571,6 +2084,7 @@ function renderCompanionSection(companion, defaultLine) {
               <div class="progress-bar__fill" style="width:${progress.percent}%"></div>
             </div>
           </div>
+          ${petBtnHtml}
           <p class="companion-card__hint">點擊與夥伴互動 · 點圖片可放大</p>
         </div>
       </article>
@@ -1578,9 +2092,6 @@ function renderCompanionSection(companion, defaultLine) {
 
   startCompanionDialogueTimer();
 }
-
-let lastCompanionPetTime = 0;
-const COMPANION_PET_COOLDOWN_MS = 450;
 
 /** 輕柔震動（撫摸 / 餵食成功） */
 function triggerComfortVibration() {
@@ -1667,27 +2178,54 @@ function buildCompanionFeedSection(companion) {
     <p class="companion-preview-bond">親密度 Lv.${companion.bondLevel ?? 1} · ${progress.current}/${progress.max || 'MAX'}</p>`;
 }
 
+function buildCompanionPetButtonHtml(companion) {
+  const canPet = canPetCompanion(companion);
+  const remaining = getPetCooldownRemaining(companion);
+  const btnLabel = canPet ? '撫摸' : (remaining > 0 ? `還要 ${formatCooldown(remaining)}` : '冷卻中');
+  return `<button type="button" class="btn btn--secondary btn--block" id="companion-pet-btn" ${canPet ? '' : 'disabled'}>${escapeHtml(btnLabel)}</button>`;
+}
+
 function bindCompanionPreviewInteractions(companion) {
   const stage = document.getElementById('companion-preview-stage');
   const img = stage?.querySelector('.companion-image-preview__img--interactive');
   const petBtn = document.getElementById('companion-pet-btn');
   const feedBtn = document.getElementById('companion-feed-btn');
 
-  const onPet = () => {
-    const now = Date.now();
-    if (now - lastCompanionPetTime < COMPANION_PET_COOLDOWN_MS) return;
-    lastCompanionPetTime = now;
-    playCompanionComfortEffect();
+  const onPet = async (e) => {
+    e?.stopPropagation();
+    if (!canPetCompanion(companion)) {
+      const remaining = getPetCooldownRemaining(companion);
+      showToast(`牠剛剛已經被摸過了，還要 ${formatCooldown(remaining)}才能再次撫摸。`, 'warning', 3500);
+      return;
+    }
+    try {
+      const result = await petCompanion();
+      if (!result.success) {
+        showToast(result.message, 'warning', 3500);
+        return;
+      }
+      playCompanionComfortEffect();
+      showToast('你輕輕摸了摸牠，親密度 +5', 'success', 2800);
+      if (result.leveledUp) {
+        setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
+      }
+      await onRefresh();
+      const updated = state.companion;
+      if (updated) {
+        openCompanionImageModal(updated);
+      }
+      const comfortLine = getPetComfortLine(updated || companion);
+      setCompanionBubbleText(comfortLine, true);
+    } catch (err) {
+      showToast(err.message || '撫摸失敗', 'error');
+    }
   };
 
   img?.addEventListener('click', (e) => {
     e.stopPropagation();
-    onPet();
+    onPet(e);
   });
-  petBtn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    onPet();
-  });
+  petBtn?.addEventListener('click', onPet);
 
   feedBtn?.addEventListener('click', async (e) => {
     e.stopPropagation();
@@ -1752,7 +2290,7 @@ function openCompanionImageModal(companion) {
         ${renderStars(companion.stars ?? 1)}
       </div>
       <div class="companion-preview-actions">
-        <button type="button" class="btn btn--secondary btn--block" id="companion-pet-btn">撫摸</button>
+        ${buildCompanionPetButtonHtml(companion)}
       </div>
       ${feedSection}
       <p class="companion-image-preview__hint">點擊夥伴或按撫摸 · 餵食使用工坊食物</p>
@@ -1772,6 +2310,32 @@ function updateCompanionBondDisplay(companion) {
   }
   const fill = document.querySelector('.companion-bond .progress-bar__fill');
   if (fill) fill.style.width = `${progress.percent}%`;
+
+  const petRow = document.querySelector('.companion-card__pet-row');
+  if (petRow) {
+    const canPet = canPetCompanion(companion);
+    const remaining = getPetCooldownRemaining(companion);
+    const btnLabel = canPet ? '撫摸' : (remaining > 0 ? `還要 ${formatCooldown(remaining)}` : '冷卻中');
+    const btn = petRow.querySelector('.companion-pet-btn');
+    if (btn) {
+      btn.textContent = btnLabel;
+      btn.disabled = !canPet;
+    }
+    let cooldownEl = petRow.querySelector('.companion-card__cooldown');
+    if (!canPet) {
+      const hint = `撫摸冷卻中，${formatCooldown(remaining)}後可再次撫摸`;
+      if (cooldownEl) {
+        cooldownEl.textContent = hint;
+      } else {
+        cooldownEl = document.createElement('p');
+        cooldownEl.className = 'companion-card__cooldown';
+        cooldownEl.textContent = hint;
+        petRow.appendChild(cooldownEl);
+      }
+    } else if (cooldownEl) {
+      cooldownEl.remove();
+    }
+  }
 }
 
 function buildDialogueContext(overrides = {}) {
@@ -1785,6 +2349,7 @@ function buildDialogueContext(overrides = {}) {
     expeditionAreas: state.expeditionAreas,
     habits: state.habits || [],
     inventory: state.inventory,
+    dailyCheckIn: state.dailyCheckIn,
     craftables: state.craftablesCatalog || [],
     workshopHelpers: {
       hasCraftableMaterials,
@@ -3001,7 +3566,7 @@ function openHabitForm(habitId = null) {
 
   openModal(`
     <h2 class="modal-title">${isEdit ? '編輯習慣' : '新增習慣'}</h2>
-    <form id="habit-form" class="task-form">
+    <form id="habit-form" class="form task-form">
       <label class="form-label" for="habit-name">習慣名稱</label>
       <input class="form-input" id="habit-name" type="text" maxlength="80" value="${escapeHtml(habit?.name || '')}" required placeholder="例如：每天背單字" />
 
@@ -3383,6 +3948,16 @@ function renderMoreView() {
   if (badge) {
     const show = (summary?.claimable ?? 0) > 0 || summary?.hasUnseenTitles;
     badge.hidden = !show;
+  }
+
+  const dailyBadge = document.getElementById('more-daily-blessing-badge');
+  if (dailyBadge) {
+    const daily = state.dailyCheckIn;
+    const today = getTodayDateString();
+    const pending = daily
+      ? !hasCheckedInToday(daily, today) || !hasSpunWheelToday(daily, today)
+      : true;
+    dailyBadge.hidden = !pending;
   }
 
   const habitsBadge = document.getElementById('more-habits-badge');

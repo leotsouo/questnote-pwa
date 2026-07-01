@@ -37,6 +37,11 @@
     { "id": "title_workshop_expert", "name": "工坊熟手", "sourceAchievementId": "ach_craft_20_items" },
     { "id": "title_gift_master", "name": "禮物達人", "sourceAchievementId": "ach_gift_30_items" },
     { "id": "title_mind_reader_keeper", "name": "讀心飼主", "sourceAchievementId": "ach_first_favorite_gift" },
-    { "id": "title_namer", "name": "命名者", "sourceAchievementId": "ach_first_nickname" }
+    { "id": "title_namer", "name": "命名者", "sourceAchievementId": "ach_first_nickname" },
+    { "id": "title_first_check_in", "name": "今日啟程者", "sourceAchievementId": "ach_first_check_in" },
+    { "id": "title_check_in_3", "name": "三日同行者", "sourceAchievementId": "ach_check_in_3_streak" },
+    { "id": "title_check_in_7", "name": "七日守約者", "sourceAchievementId": "ach_check_in_7_streak" },
+    { "id": "title_first_wheel", "name": "幸運初醒者", "sourceAchievementId": "ach_first_wheel_spin" },
+    { "id": "title_wheel_20", "name": "幸運常客", "sourceAchievementId": "ach_wheel_spin_20" }
   ]
 }

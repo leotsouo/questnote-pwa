@@ -75,6 +75,7 @@ import {
 } from './expeditionService.js';
 
 import { initHabits, getAllHabits, getHabitPageStats } from './habitService.js';
+import { initDailyCheckIn, getDailyCheckIn, loadWheelRewards } from './dailyCheckInService.js';
 
 import {
   initWorkshop,
@@ -147,6 +148,8 @@ const appState = {
   materialsCatalog: [],
 
   craftablesCatalog: [],
+
+  dailyCheckIn: null,
 
   onReset: resetAllData,
 
@@ -232,7 +235,7 @@ async function refreshState() {
 
   let habitsLoadError = false;
 
-  const [tasks, wallet, gachaStats, availablePulls, habits, inventory, workshopStats] =
+  const [tasks, wallet, gachaStats, availablePulls, habits, inventory, workshopStats, dailyCheckIn] =
 
     await Promise.all([
 
@@ -270,6 +273,14 @@ async function refreshState() {
 
       }),
 
+      getDailyCheckIn().catch((err) => {
+
+        console.error('[QuestNote] 每日祝福載入失敗:', err);
+
+        return null;
+
+      }),
+
     ]);
 
 
@@ -287,6 +298,8 @@ async function refreshState() {
   appState.inventory = inventory;
 
   appState.workshopStats = workshopStats;
+
+  appState.dailyCheckIn = dailyCheckIn;
 
   appState.tasks = sortTasks(tasks);
 
@@ -326,6 +339,8 @@ async function refreshState() {
 
     inventory: appState.inventory,
 
+    dailyCheckIn: appState.dailyCheckIn,
+
     craftables: appState.craftablesCatalog,
 
     workshopHelpers: {
@@ -362,6 +377,8 @@ async function resetAllData() {
   await initUserPreferences();
 
   await initAchievements();
+
+  await initDailyCheckIn();
 
   await initWorkshop();
 
@@ -566,9 +583,17 @@ async function initApp() {
 
     await initGachaStats();
 
-    await initAchievements();
+  await initAchievements();
 
-    try {
+  await initDailyCheckIn();
+
+  try {
+    await loadWheelRewards();
+  } catch (err) {
+    console.warn('[QuestNote] 轉盤獎勵預載失敗:', err);
+  }
+
+  try {
 
       await initWorkshop();
 

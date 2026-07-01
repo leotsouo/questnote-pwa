@@ -574,6 +574,51 @@ button.companion-card__image:active {
   margin-top: 4px;
 }
 
+.companion-card__pet-row {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.companion-pet-btn {
+  align-self: flex-start;
+  min-width: 88px;
+}
+
+.companion-card__cooldown {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.companion-card--pet-glow {
+  animation: companionPetGlow 0.65s ease;
+}
+
+@keyframes companionPetGlow {
+  0%, 100% { box-shadow: var(--shadow); }
+  50% { box-shadow: 0 0 22px var(--primary-glow); }
+}
+
+.completed-range-filter {
+  margin: 12px 0 16px;
+}
+
+.completed-range-filter__control .segmented-control__btn {
+  font-size: 0.75rem;
+  padding: 8px 6px;
+  line-height: 1.3;
+}
+
+.completed-range-filter__control .section-count {
+  display: inline-block;
+  margin-left: 2px;
+  font-size: 0.6875rem;
+  opacity: 0.85;
+}
+
 .companion-badge {
   display: inline-block;
   font-size: 0.625rem;
@@ -6806,6 +6851,466 @@ body.reduce-motion[data-theme="sweet"] .collection-card.rarity-UR {
   box-shadow: var(--shadow-md);
 }
 
+/* V2.1.6 — Sweet 主題新增／編輯任務表單 */
+
+body[data-theme="sweet"] .modal:has(#task-form) {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF8FC 100%);
+  border: 1px solid #F0C9DA;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 10px 28px rgba(199, 53, 120, 0.12);
+  color: #3D2633;
+  -webkit-overflow-scrolling: touch;
+}
+
+body[data-theme="sweet"] .modal:has(#task-form) .modal-title {
+  color: #3D2633;
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] .modal:has(#task-form) .modal-close {
+  background: #FFF0F7;
+  border-color: #E7AFC8;
+  color: #7A4E62;
+}
+
+body[data-theme="sweet"] #task-form.task-form {
+  color: #3D2633;
+}
+
+/* V2.2 — Sweet 主題新增／編輯習慣表單（對齊新增任務表單風格） */
+
+body[data-theme="sweet"] .modal:has(#habit-form) {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF8FC 100%);
+  border: 1px solid #F0C9DA;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 10px 28px rgba(199, 53, 120, 0.12);
+  color: #3D2633;
+  -webkit-overflow-scrolling: touch;
+}
+
+body[data-theme="sweet"] .modal:has(#habit-form) .modal-title {
+  color: #3D2633;
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] .modal:has(#habit-form) .modal-close {
+  background: #FFF0F7;
+  border-color: #E7AFC8;
+  color: #7A4E62;
+}
+
+body[data-theme="sweet"] #habit-form.task-form {
+  color: #3D2633;
+}
+
+body[data-theme="sweet"] #habit-form .form-label {
+  color: #5A3A4B;
+  font-weight: 700;
+}
+
+body[data-theme="sweet"] #habit-form .form-hint,
+body[data-theme="sweet"] #habit-form .settings-toggle__desc {
+  color: #7A4E62;
+  font-weight: 500;
+}
+
+body[data-theme="sweet"] #habit-form .form-input,
+body[data-theme="sweet"] #habit-form .form-textarea,
+body[data-theme="sweet"] #habit-form .form-select,
+body[data-theme="sweet"] #habit-form input[type="date"] {
+  color: #3D2633;
+  background: #FFFFFF;
+  border: 1px solid #E7AFC8;
+  border-radius: 16px;
+  caret-color: #C73578;
+  box-shadow: inset 0 1px 0 rgba(199, 53, 120, 0.04);
+}
+
+body[data-theme="sweet"] #habit-form .form-textarea {
+  min-height: 92px;
+  line-height: 1.55;
+}
+
+body[data-theme="sweet"] #habit-form .form-input::placeholder,
+body[data-theme="sweet"] #habit-form .form-textarea::placeholder {
+  color: #9A7285;
+  opacity: 1;
+}
+
+body[data-theme="sweet"] #habit-form .form-input:focus,
+body[data-theme="sweet"] #habit-form .form-textarea:focus,
+body[data-theme="sweet"] #habit-form .form-select:focus,
+body[data-theme="sweet"] #habit-form input[type="date"]:focus {
+  color: #3D2633;
+  background: #FFFFFF;
+  border-color: #C73578;
+  box-shadow: 0 0 0 3px rgba(199, 53, 120, 0.18);
+  outline: none;
+}
+
+body[data-theme="sweet"] #habit-form .form-actions {
+  gap: 12px;
+}
+
+body[data-theme="sweet"] #habit-form .form-actions .btn--primary {
+  background: linear-gradient(135deg, #D44786 0%, #6F55D9 100%);
+  border: 1px solid rgba(199, 53, 120, 0.28);
+}
+
+body[data-theme="sweet"] #habit-form .form-actions .btn--ghost {
+  background: #FFF0F7;
+  border-color: #E7AFC8;
+  color: #7A4E62;
+}
+
+/* V2.2 — Sweet 主題稱號管理（對齊表單視覺） */
+
+body[data-theme="sweet"] .modal:has(.title-modal) {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF8FC 100%);
+  border: 1px solid #F0C9DA;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 10px 28px rgba(199, 53, 120, 0.12);
+  color: #3D2633;
+}
+
+body[data-theme="sweet"] .modal:has(.title-modal) .modal-title {
+  color: #3D2633;
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] .modal:has(.title-modal) .modal-close {
+  background: #FFF0F7;
+  border-color: #E7AFC8;
+  color: #7A4E62;
+}
+
+body[data-theme="sweet"] .title-modal__desc {
+  color: #7A4E62;
+  font-weight: 500;
+}
+
+body[data-theme="sweet"] .title-list {
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+body[data-theme="sweet"] .title-item {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(111, 85, 217, 0.14);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+
+body[data-theme="sweet"] .title-item--equipped {
+  border-color: rgba(199, 53, 120, 0.22);
+  background: linear-gradient(135deg, rgba(255, 230, 240, 0.9), rgba(245, 237, 255, 0.9));
+}
+
+body[data-theme="sweet"] .title-item__name {
+  font-weight: 700;
+  color: #3D2633;
+}
+
+body[data-theme="sweet"] .title-item__badge {
+  color: #C73578;
+  background: rgba(199, 53, 120, 0.12);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+body[data-theme="sweet"] .title-item .btn.btn--secondary {
+  background: #FFFFFF;
+  border-color: rgba(111, 85, 217, 0.18);
+  color: #6F55D9;
+}
+
+body[data-theme="sweet"] .title-modal #btn-clear-title.btn {
+  background: #FFF0F7;
+  border-color: #E7AFC8;
+  color: #7A4E62;
+  border-radius: 16px;
+}
+
+body[data-theme="sweet"] #task-form .form-label {
+  color: #5A3A4B;
+  font-weight: 700;
+}
+
+body[data-theme="sweet"] #task-form .form-hint,
+body[data-theme="sweet"] #task-form .settings-toggle__desc {
+  color: #7A4E62;
+  font-weight: 500;
+}
+
+body[data-theme="sweet"] #task-form .settings-toggle__label {
+  color: #5A3A4B;
+  font-weight: 700;
+}
+
+body[data-theme="sweet"] #task-form .form-input,
+body[data-theme="sweet"] #task-form .form-textarea,
+body[data-theme="sweet"] #task-form .form-select,
+body[data-theme="sweet"] #task-form input[type="date"],
+body[data-theme="sweet"] #task-form .subtask-form-input {
+  color: #3D2633;
+  background: #FFFFFF;
+  border: 1px solid #E7AFC8;
+  border-radius: 16px;
+  caret-color: #C73578;
+  box-shadow: inset 0 1px 0 rgba(199, 53, 120, 0.04);
+}
+
+body[data-theme="sweet"] #task-form .form-textarea {
+  min-height: 112px;
+  line-height: 1.55;
+}
+
+body[data-theme="sweet"] #task-form input[type="date"] {
+  color-scheme: light;
+  min-height: var(--tap-min);
+}
+
+body[data-theme="sweet"] #task-form .form-input::placeholder,
+body[data-theme="sweet"] #task-form .form-textarea::placeholder,
+body[data-theme="sweet"] #task-form .subtask-form-input::placeholder {
+  color: #9A7285;
+  opacity: 1;
+}
+
+body[data-theme="sweet"] #task-form .form-input:focus,
+body[data-theme="sweet"] #task-form .form-textarea:focus,
+body[data-theme="sweet"] #task-form .form-select:focus,
+body[data-theme="sweet"] #task-form input[type="date"]:focus,
+body[data-theme="sweet"] #task-form .subtask-form-input:focus {
+  color: #3D2633;
+  background: #FFFFFF;
+  border-color: #C73578;
+  box-shadow: 0 0 0 3px rgba(199, 53, 120, 0.18);
+  outline: none;
+}
+
+body[data-theme="sweet"] #task-form .form-input:disabled,
+body[data-theme="sweet"] #task-form .form-textarea:disabled,
+body[data-theme="sweet"] #task-form .form-select:disabled {
+  color: #8A6677;
+  background: #F8EAF1;
+  border-color: #E9CEDA;
+  opacity: 1;
+}
+
+body[data-theme="sweet"] #task-form .form-select option {
+  color: #3D2633;
+  background: #FFFFFF;
+}
+
+body[data-theme="sweet"] #task-form #task-priority-group.segmented-control {
+  background: #FFF8FC;
+  border: 1px solid #F7DDEA;
+  border-radius: 16px;
+  padding: 4px;
+  gap: 4px;
+}
+
+body[data-theme="sweet"] #task-form #task-priority-group .segmented-control__btn {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-weight: 700;
+  color: inherit;
+  background: transparent;
+  box-shadow: none;
+}
+
+body[data-theme="sweet"] #task-form #task-priority-group .segmented-control__btn[data-value="normal"] {
+  background: #E7F6F1;
+  color: #2F7664;
+  border-color: #A8D8CA;
+}
+
+body[data-theme="sweet"] #task-form #task-priority-group .segmented-control__btn[data-value="important"],
+body[data-theme="sweet"] #task-form #task-priority-group .segmented-control__btn--important {
+  background: #FFF1D8;
+  color: #B66A1E;
+  border-color: #F0C878;
+}
+
+body[data-theme="sweet"] #task-form #task-priority-group .segmented-control__btn[data-value="urgent"],
+body[data-theme="sweet"] #task-form #task-priority-group .segmented-control__btn--urgent {
+  background: #FFE3EA;
+  color: #C93E5D;
+  border-color: #F3A8B8;
+}
+
+body[data-theme="sweet"] #task-form #task-priority-group .segmented-control__btn.active {
+  box-shadow: 0 0 0 3px rgba(199, 53, 120, 0.12);
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] #task-form .settings-toggle__switch {
+  background: #FFFFFF;
+  border: 1px solid #E7AFC8;
+}
+
+body[data-theme="sweet"] #task-form .settings-toggle__switch::after {
+  background: #9A7285;
+}
+
+body[data-theme="sweet"] #task-form .settings-toggle__input:checked + .settings-toggle__switch {
+  background: #C73578;
+  border-color: #C73578;
+}
+
+body[data-theme="sweet"] #task-form .settings-toggle__input:checked + .settings-toggle__switch::after {
+  background: #FFFFFF;
+}
+
+body[data-theme="sweet"] #task-form .form-toggle {
+  background: #FFF8FC;
+  border: 1px solid #F7DDEA;
+  border-radius: 18px;
+  padding: 14px 16px;
+}
+
+body[data-theme="sweet"] #task-form .subtask-form-list {
+  background: #FFF8FC;
+  border: 1px solid #F7DDEA;
+  border-radius: 18px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+body[data-theme="sweet"] #task-form .subtask-form-add {
+  margin-bottom: 8px;
+}
+
+body[data-theme="sweet"] #task-form #subtask-add-btn {
+  background: #FFF0F7;
+  color: #B83274;
+  border: 1px solid #E7AFC8;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+body[data-theme="sweet"] #task-form #subtask-add-btn:active:not(:disabled) {
+  background: #FFE0EE;
+}
+
+body[data-theme="sweet"] #task-form .subtask-form-remove {
+  color: #C93E5D;
+  border-color: #F3A8B8;
+  background: #FFE3EA;
+}
+
+body[data-theme="sweet"] #task-form .form-error {
+  color: #C93E5D;
+  background: #FFE3EA;
+  border: 1px solid #F3A8B8;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 600;
+}
+
+body[data-theme="sweet"] #task-form .form-actions {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid #F7DDEA;
+  gap: 10px;
+}
+
+body[data-theme="sweet"] #task-form .form-actions .btn--primary {
+  background: linear-gradient(135deg, #D44786 0%, #C73578 100%);
+  color: #FFFFFF;
+  border: none;
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgba(199, 53, 120, 0.24);
+}
+
+body[data-theme="sweet"] #task-form .form-actions .btn--primary:active:not(:disabled) {
+  background: linear-gradient(135deg, #C73578 0%, #B82E6D 100%);
+}
+
+body[data-theme="sweet"] #task-form .form-actions .btn--primary:disabled {
+  background: #E9CEDA;
+  color: #8A6677;
+  box-shadow: none;
+  opacity: 1;
+}
+
+body[data-theme="sweet"] #task-form .form-actions .btn--ghost,
+body[data-theme="sweet"] #task-form #form-cancel {
+  background: #FFF0F7;
+  color: #B83274;
+  border: 1px solid #E7AFC8;
+  font-weight: 700;
+}
+
+body[data-theme="sweet"] #task-form .form-actions .btn--ghost:active:not(:disabled),
+body[data-theme="sweet"] #task-form #form-cancel:active:not(:disabled) {
+  background: #FFE0EE;
+}
+
+/* V2.1.5 — Sweet 主題全域輸入可讀性（非任務表單區域） */
+body[data-theme="sweet"] input,
+body[data-theme="sweet"] textarea,
+body[data-theme="sweet"] select,
+body[data-theme="sweet"] .form-input,
+body[data-theme="sweet"] .form-textarea,
+body[data-theme="sweet"] .form-select,
+body[data-theme="sweet"] .task-input,
+body[data-theme="sweet"] .task-textarea,
+body[data-theme="sweet"] .new-task-input,
+body[data-theme="sweet"] .new-task-textarea,
+body[data-theme="sweet"] .subtask-input,
+body[data-theme="sweet"] .subtask-form-input {
+  color: #3D2633;
+  background: #FFFFFF;
+  border-color: #E7AFC8;
+  caret-color: #C73578;
+}
+
+body[data-theme="sweet"] input::placeholder,
+body[data-theme="sweet"] textarea::placeholder,
+body[data-theme="sweet"] .form-input::placeholder,
+body[data-theme="sweet"] .form-textarea::placeholder,
+body[data-theme="sweet"] .task-input::placeholder,
+body[data-theme="sweet"] .task-textarea::placeholder,
+body[data-theme="sweet"] .new-task-input::placeholder,
+body[data-theme="sweet"] .new-task-textarea::placeholder,
+body[data-theme="sweet"] .subtask-input::placeholder,
+body[data-theme="sweet"] .subtask-form-input::placeholder {
+  color: #9A7285;
+  opacity: 1;
+}
+
+body[data-theme="sweet"] input:focus,
+body[data-theme="sweet"] textarea:focus,
+body[data-theme="sweet"] select:focus,
+body[data-theme="sweet"] .form-input:focus,
+body[data-theme="sweet"] .form-textarea:focus,
+body[data-theme="sweet"] .form-select:focus,
+body[data-theme="sweet"] .task-input:focus,
+body[data-theme="sweet"] .task-textarea:focus,
+body[data-theme="sweet"] .new-task-input:focus,
+body[data-theme="sweet"] .new-task-textarea:focus,
+body[data-theme="sweet"] .subtask-input:focus,
+body[data-theme="sweet"] .subtask-form-input:focus {
+  color: #3D2633;
+  background: #FFFFFF;
+  border-color: #C73578;
+  box-shadow: 0 0 0 3px rgba(199, 53, 120, 0.18);
+  outline: none;
+}
+
+body[data-theme="sweet"] input:disabled,
+body[data-theme="sweet"] textarea:disabled,
+body[data-theme="sweet"] select:disabled,
+body[data-theme="sweet"] .form-input:disabled,
+body[data-theme="sweet"] .form-textarea:disabled,
+body[data-theme="sweet"] .form-select:disabled {
+  color: #8A6677;
+  background: #F8EAF1;
+  border-color: #E9CEDA;
+}
+
 /* ─── 設定頁：主題選擇 ─── */
 
 .settings-theme {
@@ -6948,5 +7453,694 @@ body.reduce-motion[data-theme="sweet"] .collection-card.rarity-UR {
 
 .theme-card__preview-btn--sweet {
   background: linear-gradient(135deg, #C73578, #D44786);
+}
+
+/* ─── 每日祝福 V2.2 ─── */
+
+.daily-blessing-section {
+  margin-bottom: var(--space-md);
+}
+
+#view-gacha .daily-blessing-section {
+  margin-top: 0;
+}
+
+.daily-blessing-section--pending .daily-blessing-card {
+  animation: daily-blessing-glow 3s ease-in-out infinite;
+}
+
+@keyframes daily-blessing-glow {
+  0%, 100% { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.36), 0 0 22px rgba(139, 92, 246, 0.14); }
+  50% { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.36), 0 0 32px rgba(139, 92, 246, 0.26); }
+}
+
+body.reduce-motion .daily-blessing-section--pending .daily-blessing-card {
+  animation: none;
+}
+
+.daily-blessing-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 1rem 1.05rem 1.1rem;
+}
+
+.daily-blessing-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.daily-blessing-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.daily-blessing-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.daily-blessing-card__toggle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 44px;
+  min-width: 0;
+  padding: 0.15rem 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+
+.daily-blessing-card__toggle:active {
+  opacity: 0.88;
+}
+
+.daily-blessing-card__icon {
+  flex-shrink: 0;
+  font-size: 1.45rem;
+  line-height: 1;
+  width: 2rem;
+  text-align: center;
+}
+
+.daily-blessing-card__icon--sweet {
+  display: none;
+}
+
+.daily-blessing-card__header-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+
+.daily-blessing-title {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+
+.daily-blessing-subtitle {
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  opacity: 0.88;
+}
+
+.daily-blessing-subtitle--sweet {
+  display: none;
+}
+
+.daily-blessing-card__compact-summary {
+  display: none;
+  font-size: 0.76rem;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.82;
+}
+
+.daily-blessing-card--collapsed .daily-blessing-subtitle {
+  display: none;
+}
+
+.daily-blessing-card--collapsed .daily-blessing-card__compact-summary {
+  display: block;
+}
+
+.daily-blessing-card--collapsed .daily-status-badge {
+  display: none;
+}
+
+.daily-status-badge {
+  flex-shrink: 0;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.daily-blessing-card__chevron {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  opacity: 0.65;
+  padding-left: 0.1rem;
+}
+
+.daily-blessing-card__quick-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.daily-blessing-card__quick-btn {
+  min-height: 34px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.74rem;
+}
+
+/* Body */
+.daily-blessing-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-top: 0.95rem;
+  margin-top: 0.85rem;
+  border-top: 1px solid rgba(167, 139, 250, 0.14);
+}
+
+.daily-blessing-card--collapsed .daily-blessing-card__body {
+  display: none;
+}
+
+/* Streak */
+.daily-streak-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.daily-streak-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.daily-streak-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 14px;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.14);
+}
+
+.daily-streak-stat__label {
+  font-size: 0.68rem;
+  opacity: 0.72;
+  letter-spacing: 0.03em;
+}
+
+.daily-streak-stat__value {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.daily-streak-number {
+  font-weight: 900;
+}
+
+.daily-milestone-progress__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.daily-milestone-progress__label {
+  font-size: 0.74rem;
+  line-height: 1.35;
+  flex: 1;
+  min-width: 0;
+}
+
+.daily-milestone-progress__value {
+  font-size: 0.72rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.daily-milestone-progress__bar {
+  height: 7px;
+}
+
+.daily-milestone-progress__fill {
+  background: linear-gradient(90deg, #8b5cf6, #fbbf24);
+}
+
+/* Reward preview */
+.daily-reward-preview__title {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0.88;
+}
+
+.daily-reward-preview__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.daily-reward-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.38rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+.daily-reward-chip--bonus {
+  background: rgba(251, 191, 36, 0.14);
+  border-color: rgba(251, 191, 36, 0.32);
+}
+
+.daily-reward-chip__icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* Actions */
+.daily-blessing-card__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.daily-blessing-card__btn {
+  min-height: 46px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: 14px;
+}
+
+/* Footer */
+.daily-blessing-card__footer {
+  margin: 0;
+  padding: 0.62rem 0.72rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: center;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.12);
+}
+
+/* ─── Default 星夜主題 ─── */
+
+body[data-theme="default"] .daily-blessing-card,
+body[data-theme="default"] .daily-checkin-card {
+  background:
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.24), transparent 34%),
+    radial-gradient(circle at bottom left, rgba(34, 211, 238, 0.14), transparent 32%),
+    linear-gradient(180deg, #18203A 0%, #101628 100%);
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.36),
+    0 0 26px rgba(139, 92, 246, 0.16);
+  color: #F4F7FF;
+}
+
+body[data-theme="default"] .daily-blessing-card::before,
+body[data-theme="default"] .daily-checkin-card::before {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.18) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  opacity: 0.08;
+}
+
+body[data-theme="default"] .daily-blessing-title,
+body[data-theme="default"] .daily-checkin-title {
+  color: #F4F7FF;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+body[data-theme="default"] .daily-blessing-subtitle,
+body[data-theme="default"] .daily-checkin-subtitle {
+  color: #C7D2EA;
+}
+
+body[data-theme="default"] .daily-blessing-card__compact-summary {
+  color: #C7D2EA;
+}
+
+body[data-theme="default"] .daily-streak-number {
+  color: #FBBF24;
+  font-weight: 900;
+  text-shadow: 0 0 16px rgba(251, 191, 36, 0.28);
+}
+
+body[data-theme="default"] .daily-streak-stat {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(167, 139, 250, 0.22);
+}
+
+body[data-theme="default"] .daily-streak-stat__label,
+body[data-theme="default"] .daily-milestone-progress__label {
+  color: #C7D2EA;
+}
+
+body[data-theme="default"] .daily-streak-stat__value,
+body[data-theme="default"] .daily-milestone-progress__value {
+  color: #F4F7FF;
+}
+
+body[data-theme="default"] .daily-status-badge {
+  background: rgba(139, 92, 246, 0.18);
+  color: #DDD6FE;
+  border: 1px solid rgba(167, 139, 250, 0.32);
+}
+
+body[data-theme="default"] .daily-status-badge.done {
+  background: rgba(52, 211, 153, 0.16);
+  color: #6EE7B7;
+  border-color: rgba(52, 211, 153, 0.34);
+}
+
+body[data-theme="default"] .daily-blessing-card__body {
+  border-top-color: rgba(167, 139, 250, 0.18);
+}
+
+body[data-theme="default"] .daily-reward-preview__title {
+  color: #DDD6FE;
+}
+
+body[data-theme="default"] .daily-reward-chip {
+  background: rgba(24, 32, 58, 0.55);
+  border-color: rgba(167, 139, 250, 0.28);
+  color: #F4F7FF;
+}
+
+body[data-theme="default"] .daily-reward-chip--bonus {
+  background: rgba(251, 191, 36, 0.12);
+  border-color: rgba(251, 191, 36, 0.38);
+  color: #FDE68A;
+}
+
+body[data-theme="default"] .daily-blessing-card__footer {
+  background: rgba(52, 211, 153, 0.08);
+  border-color: rgba(52, 211, 153, 0.18);
+  color: #C7D2EA;
+}
+
+body[data-theme="default"] .daily-blessing-card--pending {
+  border-color: rgba(167, 139, 250, 0.42);
+}
+
+body[data-theme="default"] .daily-blessing-card__icon--default {
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.45));
+}
+
+body[data-theme="default"] .daily-milestone-progress__bar {
+  background: rgba(15, 22, 40, 0.7);
+}
+
+body[data-theme="default"] .daily-milestone-progress__fill {
+  background: linear-gradient(90deg, #7c3aed, #fbbf24);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.35);
+}
+
+/* ─── Sweet 甜美主題 ─── */
+
+body[data-theme="sweet"] .daily-blessing-card__icon--default {
+  display: none;
+}
+
+body[data-theme="sweet"] .daily-blessing-card__icon--sweet {
+  display: block;
+}
+
+body[data-theme="sweet"] .daily-blessing-subtitle--default {
+  display: none;
+}
+
+body[data-theme="sweet"] .daily-blessing-subtitle--sweet {
+  display: block;
+}
+
+body[data-theme="sweet"] .daily-blessing-card,
+body[data-theme="sweet"] .daily-checkin-card {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255, 182, 210, 0.45), transparent 38%),
+    radial-gradient(circle at 6% 92%, rgba(186, 168, 255, 0.28), transparent 36%),
+    linear-gradient(165deg, #fffaf7 0%, #fff5f9 48%, #f9f4ff 100%);
+  border: 1.5px solid rgba(199, 53, 120, 0.16);
+  box-shadow:
+    0 10px 28px rgba(199, 53, 120, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  color: #4a3d5c;
+}
+
+body[data-theme="sweet"] .daily-blessing-card::before,
+body[data-theme="sweet"] .daily-checkin-card::before {
+  background-image:
+    radial-gradient(circle, rgba(199, 53, 120, 0.08) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+  opacity: 0.55;
+}
+
+body[data-theme="sweet"] .daily-blessing-title,
+body[data-theme="sweet"] .daily-checkin-title {
+  color: #6f55d9;
+  font-weight: 900;
+}
+
+body[data-theme="sweet"] .daily-blessing-subtitle,
+body[data-theme="sweet"] .daily-checkin-subtitle {
+  color: #c73578;
+}
+
+body[data-theme="sweet"] .daily-blessing-card__compact-summary {
+  color: #8b6b9e;
+}
+
+body[data-theme="sweet"] .daily-streak-number {
+  color: #c73578;
+  font-weight: 900;
+}
+
+body[data-theme="sweet"] .daily-streak-stat {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(199, 53, 120, 0.12);
+}
+
+body[data-theme="sweet"] .daily-streak-stat__label,
+body[data-theme="sweet"] .daily-milestone-progress__label {
+  color: #8b6b9e;
+}
+
+body[data-theme="sweet"] .daily-streak-stat__value,
+body[data-theme="sweet"] .daily-milestone-progress__value {
+  color: #4a3d5c;
+}
+
+body[data-theme="sweet"] .daily-status-badge {
+  background: rgba(111, 85, 217, 0.1);
+  color: #6f55d9;
+  border: 1px solid rgba(111, 85, 217, 0.22);
+}
+
+body[data-theme="sweet"] .daily-status-badge.done {
+  background: rgba(199, 53, 120, 0.1);
+  color: #c73578;
+  border-color: rgba(199, 53, 120, 0.24);
+}
+
+body[data-theme="sweet"] .daily-blessing-card__body {
+  border-top-color: rgba(199, 53, 120, 0.1);
+}
+
+body[data-theme="sweet"] .daily-reward-preview__title {
+  color: #6f55d9;
+}
+
+body[data-theme="sweet"] .daily-reward-chip {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(111, 85, 217, 0.16);
+  color: #4a3d5c;
+}
+
+body[data-theme="sweet"] .daily-reward-chip--bonus {
+  background: linear-gradient(135deg, rgba(255, 230, 240, 0.95), rgba(245, 237, 255, 0.95));
+  border-color: rgba(199, 53, 120, 0.22);
+  color: #c73578;
+}
+
+body[data-theme="sweet"] .daily-blessing-card__footer {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(199, 53, 120, 0.1);
+  color: #8b6b9e;
+}
+
+body[data-theme="sweet"] .daily-blessing-card--pending {
+  border-color: rgba(199, 53, 120, 0.28);
+}
+
+body[data-theme="sweet"] .daily-blessing-section--pending .daily-blessing-card {
+  animation: daily-blessing-glow-sweet 3s ease-in-out infinite;
+}
+
+@keyframes daily-blessing-glow-sweet {
+  0%, 100% { box-shadow: 0 10px 28px rgba(199, 53, 120, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95); }
+  50% { box-shadow: 0 12px 32px rgba(199, 53, 120, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95); }
+}
+
+body[data-theme="sweet"] .daily-milestone-progress__bar {
+  background: rgba(199, 53, 120, 0.08);
+}
+
+body[data-theme="sweet"] .daily-milestone-progress__fill {
+  background: linear-gradient(90deg, #6f55d9, #c73578);
+}
+
+/* 幸運轉盤 Modal */
+.wheel-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  max-width: 100%;
+  padding-bottom: var(--space-sm);
+}
+
+.wheel-modal__status {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.wheel-modal__hint {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.wheel-container {
+  position: relative;
+  width: min(280px, 72vw);
+  height: min(280px, 72vw);
+  margin: 0 auto;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 18px solid #fbbf24;
+  z-index: 3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+}
+
+.wheel-disc-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wheel-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid rgba(251, 191, 36, 0.55);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25), inset 0 0 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  transform: rotate(0deg);
+  will-change: transform;
+}
+
+.wheel-segment-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 38%;
+  transform-origin: 0 50%;
+  transform: rotate(var(--seg-angle)) translateX(18%) rotate(calc(-1 * var(--seg-angle) + 90deg));
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.15;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+  pointer-events: none;
+}
+
+.wheel-center-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #fbbf24;
+  background: linear-gradient(145deg, #7c3aed, #5b21b6);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  z-index: 4;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.wheel-center-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+body[data-theme="sweet"] .wheel-center-btn {
+  background: linear-gradient(145deg, #c73578, #6f55d9);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+body[data-theme="sweet"] .wheel-pointer {
+  border-top-color: #c73578;
+}
+
+.reward-toast--daily {
+  max-width: min(92vw, 360px);
+  text-align: center;
+}
+
+body.reduce-motion .wheel-disc {
+  transition-duration: 0.01ms !important;
+}
+
+.wheel-disc--spinning-fast {
+  animation: wheel-pulse 0.5s ease-in-out;
+}
+
+@keyframes wheel-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+body.reduce-motion .wheel-disc--spinning-fast {
+  animation: none;
+  opacity: 0.9;
 }
 

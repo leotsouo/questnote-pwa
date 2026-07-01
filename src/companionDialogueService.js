@@ -4,6 +4,7 @@
 import { GACHA_COST, GACHA_TEN_COST } from './rewardService.js';
 import { getRandomPetDialogue, getDefaultPetLine } from './loreService.js';
 import { getTodayDateString, isInTodayPlan, allSubtasksCompleted } from './taskFilterService.js';
+import { hasCheckedInToday, hasSpunWheelToday } from './dailyCheckInService.js';
 import {
   getActiveHabits,
   getHabitPageStats,
@@ -170,11 +171,31 @@ const DIALOGUES = {
     ssr: ['材料匱乏——派遣探險，開拓材料來源。', '探險戰場可帶回製作禮物所需的資源。', '前往探險，為工坊補給材料。'],
     ur: ['星界材料稀少——覺醒者，派遣夥伴穿越裂縫，帶回鑄禮之物。', '探險是取得工坊材料的命運之路。', '材料尚不足夠，讓夥伴踏上探險，為羈絆積累資源。'],
   },
+  check_in_available: {
+    common: ['今天的祝福還沒領喔。', '每日簽到還沒做，快來領祝福吧！', '別忘了今天的簽到獎勵喔～'],
+    sr: ['今天的祝福尚未領取，不妨先完成簽到。', '每日簽到仍在等待，先領取今日祝福吧。', '今日祝福尚未簽收，我與你同行。'],
+    ssr: ['今日祝福尚未領取——先簽到，再出發。', '每日契約等待履行，先領取祝福吧。', '星塵的祝福尚未到手，別錯過今日簽到。'],
+    ur: ['星界今日祝福尚未降臨——覺醒者，先完成簽到。', '命運的每日贈禮仍在等待，別讓它溜走。', '今日祝福契約未締結，先領取再踏上征途。'],
+  },
+  wheel_available: {
+    common: ['幸運轉盤好像正在發光。', '轉盤在閃耶，要不要試試手氣？', '今天的幸運轉盤還沒轉喔！'],
+    sr: ['幸運轉盤似乎正在等待你，不妨一試。', '今日的轉盤尚未轉動，或許有好運。', '轉盤微光閃爍，今日幸運尚未揭曉。'],
+    ssr: ['幸運轉盤正在發光——今日的命運等待你的抽選。', '轉盤已蓄力完畢，一轉或許改變今日戰果。', '星界的幸運之輪在呼喚，別錯過今日一次。'],
+    ur: ['星界幸運轉盤正在綻放光芒——覺醒者，命運等待你的抉擇。', '傳說級的幸運之輪已醒，今日僅此一轉。', '轉盤感應到你的氣息，星界的贈禮在旋轉中等待。'],
+  },
+  check_in_done: {
+    common: ['今天也有好好回來，做得不錯。', '簽到和轉盤都完成了，今天很棒！', '今日祝福都領到了，明天再來喔～'],
+    sr: ['今天也有好好回來，節奏穩健。', '今日祝福皆已完成，值得肯定。', '簽到與轉盤皆畢，明日再會。'],
+    ssr: ['今日祝福全數完成——你的紀律值得這份榮耀。', '簽到與轉盤皆畢，今日戰果穩固。', '你今日已領取全部祝福，明日再戰。'],
+    ur: ['今日祝福契約皆已履行——星界為你的歸來而震動。', '覺醒者，今日簽到與轉盤皆畢，傳說繼續累積。', '星界確認你今日已領取全部祝福，明日再臨。'],
+  },
 };
 
 /** 自動選擇情境的優先順序 */
 const SCENARIO_PRIORITY = [
   'expedition_done',
+  'check_in_available',
+  'wheel_available',
   'habit_streak_7',
   'habit_weekly_near_goal',
   'subtasks_all_done',
@@ -196,6 +217,7 @@ const SCENARIO_PRIORITY = [
   'habit_none',
   'no_task',
   'no_materials',
+  'check_in_done',
   'idle',
   'welcome',
 ];
@@ -214,6 +236,7 @@ export function detectScenarios(ctx) {
     inventory,
     craftables = [],
     companion,
+    dailyCheckIn,
   } = ctx;
   const today = getTodayDateString();
   const incomplete = tasks.filter((t) => !t.completed);
@@ -268,6 +291,11 @@ export function detectScenarios(ctx) {
 
   return {
     welcome: !!ctx.isWelcome,
+    check_in_available: dailyCheckIn ? !hasCheckedInToday(dailyCheckIn, today) : false,
+    wheel_available: dailyCheckIn ? !hasSpunWheelToday(dailyCheckIn, today) : false,
+    check_in_done: dailyCheckIn
+      ? hasCheckedInToday(dailyCheckIn, today) && hasSpunWheelToday(dailyCheckIn, today)
+      : false,
     habit_streak_7: hasAnyDailyStreak(habits, 7, today),
     habit_weekly_near_goal: hasWeeklyNearGoal(habits, today),
     habit_today_remaining: habitStats?.hasIncompleteToday ?? false,
@@ -322,7 +350,7 @@ export function getCompanionDialogue(ctx, forceScenario = null) {
   const { tasks, todayCompleted, companion } = ctx;
   const scenario = forceScenario || resolveScenario(ctx);
 
-  const scenarioList = ['expedition_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'workshop_materials_ready', 'gift_available', 'companion_likes_gift', 'no_materials', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
+  const scenarioList = ['expedition_done', 'check_in_available', 'wheel_available', 'check_in_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'workshop_materials_ready', 'gift_available', 'companion_likes_gift', 'no_materials', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
   if (scenarioList.includes(scenario)) {
     return getDialogueForScenario(scenario, companion);
   }
@@ -342,7 +370,7 @@ export function getWelcomeCompanionLine(ctx) {
   const { tasks, todayCompleted, companion } = ctx;
   const scenario = resolveScenario({ ...ctx, isWelcome: true });
 
-  const scenarioList = ['expedition_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'workshop_materials_ready', 'gift_available', 'companion_likes_gift', 'no_materials', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
+  const scenarioList = ['expedition_done', 'check_in_available', 'wheel_available', 'check_in_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'workshop_materials_ready', 'gift_available', 'companion_likes_gift', 'no_materials', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
   if (scenarioList.includes(scenario)) {
     const group = getRarityGroup(companion?.rarity || 'N');
     const pool = DIALOGUES[scenario]?.[group] || DIALOGUES.welcome.common;

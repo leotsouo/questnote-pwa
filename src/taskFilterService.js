@@ -202,6 +202,51 @@ export function filterBySmartList(listId, tasks, today = getTodayDateString()) {
   }
 }
 
+/** 已完成任務時間篩選選項 */
+export const COMPLETED_RANGE_OPTIONS = [
+  { id: 'completed_1_month', label: '一個月內', days: 30 },
+  { id: 'completed_3_months', label: '三個月內', days: 90 },
+  { id: 'completed_all', label: '全部已完成', days: null },
+];
+
+/**
+ * 依完成時間範圍篩選已完成任務
+ * @param {Array} tasks
+ * @param {'completed_1_month'|'completed_3_months'|'completed_all'} range
+ */
+export function filterCompletedTasksByRange(tasks, range) {
+  const completedTasks = tasks.filter((task) => task.completed);
+
+  if (range === 'completed_all') {
+    return completedTasks;
+  }
+
+  const days = range === 'completed_1_month' ? 30 : 90;
+  const now = new Date();
+  const cutoff = new Date(now);
+  cutoff.setDate(now.getDate() - days);
+
+  return completedTasks.filter((task) => {
+    if (!task.completedAt) return false;
+    const completedDate = new Date(task.completedAt);
+    if (Number.isNaN(completedDate.getTime())) return false;
+    return completedDate >= cutoff;
+  });
+}
+
+/** 已完成智慧清單空狀態文案 */
+export function getCompletedRangeEmptyMessage(range) {
+  switch (range) {
+    case 'completed_1_month':
+      return ['最近一個月還沒有完成的任務', '完成任務後會出現在這裡。'];
+    case 'completed_3_months':
+      return ['最近三個月還沒有完成的任務', '完成任務後會出現在這裡。'];
+    case 'completed_all':
+    default:
+      return ['目前還沒有已完成任務', '完成任務後會出現在這裡。'];
+  }
+}
+
 /** 依分類篩選 */
 export function filterByCategory(tasks, categoryId) {
   if (!categoryId || categoryId === 'all') return tasks;

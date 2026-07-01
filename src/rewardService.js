@@ -6,6 +6,7 @@ import { updateTask } from './taskService.js';
 import { addBondExpToCompanion } from './collectionService.js';
 
 const WALLET_KEY = 'wallet';
+const INVENTORY_KEY = 'inventory';
 
 /** 預設材料 */
 export const DEFAULT_MATERIALS = {
@@ -225,4 +226,45 @@ export async function initWallet() {
   const existing = await dbGet(STORES.META, WALLET_KEY);
   const wallet = normalizeWallet(existing);
   await dbPut(STORES.META, wallet);
+}
+
+/**
+ * 增加道具庫存（簽到 / 轉盤獎勵用）
+ */
+export async function addInventoryItem(itemId, amount = 1) {
+  if (!itemId || amount <= 0) {
+    const inv = await dbGet(STORES.META, INVENTORY_KEY);
+    return inv || { key: INVENTORY_KEY, items: {}, itemUsageLogs: {} };
+  }
+  const existing = await dbGet(STORES.META, INVENTORY_KEY);
+  const inventory = existing && typeof existing === 'object'
+    ? {
+        key: INVENTORY_KEY,
+        items: { ...(existing.items || {}) },
+        itemUsageLogs: { ...(existing.itemUsageLogs || {}) },
+      }
+    : { key: INVENTORY_KEY, items: {}, itemUsageLogs: {} };
+  inventory.items[itemId] = (inventory.items[itemId] || 0) + amount;
+  await dbPut(STORES.META, inventory);
+  return inventory;
+}
+
+/**
+ * 套用獎勵 bundle（星塵、能量、材料、道具）
+ * @param {{ stardust?: number, adventureEnergy?: number, materials?: object, items?: object }} bundle
+ */
+export async function applyRewardBundle(bundle) {
+  if (!bundle) return;
+  if (bundle.stardust > 0) await addStardust(bundle.stardust);
+  if (bundle.adventureEnergy > 0) await addAdventureEnergy(bundle.adventureEnergy);
+  if (bundle.materials) {
+    for (const [id, amt] of Object.entries(bundle.materials)) {
+      if (amt > 0) await addMaterial(id, amt);
+    }
+  }
+  if (bundle.items) {
+    for (const [id, amt] of Object.entries(bundle.items)) {
+      if (amt > 0) await addInventoryItem(id, amt);
+    }
+  }
 }
