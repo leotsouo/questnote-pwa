@@ -230,6 +230,10 @@
           <span class="more-menu-arrow">›</span>
         </button>
       </section>
+
+      <section class="card more-version-section" aria-label="版本資訊">
+        <div class="version-info-card version-info-card--compact" data-version-info data-version-info-compact></div>
+      </section>
     </main>
 
     <!-- 習慣頁 -->
@@ -489,29 +493,9 @@
         </dl>
       </section>
 
-      <section class="card settings-version" aria-label="版本資訊">
+      <section class="card settings-version settings-version-card" aria-label="版本資訊">
         <h2 class="section-title">版本資訊</h2>
-        <dl class="stats-list settings-version__list">
-          <div class="stats-row">
-            <dt>目前版本</dt>
-            <dd id="settings-app-version">—</dd>
-          </div>
-          <div class="stats-row">
-            <dt>Cache</dt>
-            <dd id="settings-cache-name" class="settings-version__mono">—</dd>
-          </div>
-          <div class="stats-row">
-            <dt>更新時間</dt>
-            <dd id="settings-build-time">—</dd>
-          </div>
-          <div class="stats-row">
-            <dt>Service Worker</dt>
-            <dd id="settings-sw-status">—</dd>
-          </div>
-        </dl>
-        <p class="settings-version__note" id="settings-update-hint">
-          若手機仍看到舊版，請移除主畫面 App 後重新加入，或清除 Safari 網站資料。
-        </p>
+        <div class="version-info-card" data-version-info></div>
       </section>
 
       <section class="card settings-danger">

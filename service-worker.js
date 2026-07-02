@@ -1,9 +1,9 @@
 /**
- * QuestNote Service Worker — V2.3.5 寵物圖片載入優化與手機快取
+ * QuestNote Service Worker — V2.3.7 Sweet 主題任務完成通知可讀性修正
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v235-pet-image-optimization';
+const CACHE_NAME = 'questnote-cache-v237-sweet-toast-contrast-fix';
 const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */

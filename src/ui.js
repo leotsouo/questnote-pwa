@@ -68,7 +68,9 @@ import {
   restoreBackup,
 } from './backupService.js';
 import {
+  APP_VERSION,
   CACHE_NAME,
+  BUILD_TIME,
   formatDisplayVersion,
   formatBuildTimeLocal,
 } from './version.js';
@@ -333,11 +335,11 @@ export function showToast(message, type = 'info', duration = 2800) {
   const container = document.getElementById('toast-container');
   if (!container) return;
 
-  const icons = { success: '✓', error: '✕', warning: '⚠', info: 'ℹ' };
+  const icons = { success: '✓', error: '✕', warning: '⚠', info: 'ℹ', reward: '✨' };
   const toast = document.createElement('div');
   toast.className = `toast toast--${type}`;
   toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
-  toast.innerHTML = `<span class="toast__icon" aria-hidden="true">${icons[type] || icons.info}</span><span>${escapeHtml(message)}</span>`;
+  toast.innerHTML = `<span class="toast__icon" aria-hidden="true">${icons[type] || icons.info}</span><span class="toast__message">${escapeHtml(message)}</span>`;
   container.appendChild(toast);
 
   requestAnimationFrame(() => toast.classList.add('show'));
@@ -345,6 +347,18 @@ export function showToast(message, type = 'info', duration = 2800) {
     toast.classList.remove('show');
     setTimeout(() => toast.remove(), 300);
   }, duration);
+}
+
+/** Sweet 主題 toast 可讀性測試（僅開發模式） */
+function bindSweetToastDevTest() {
+  if (!isDevMode()) return;
+  window.testSweetToasts = function testSweetToasts() {
+    showToast('任務完成！星塵 +20', 'success');
+    setTimeout(() => showRewardToast(20, 1), 800);
+    setTimeout(() => showToast('今天已經完成這項任務', 'info'), 1600);
+    setTimeout(() => showToast('材料不足，無法製作', 'warning'), 2400);
+    setTimeout(() => showToast('操作失敗，請稍後再試', 'error'), 3200);
+  };
 }
 
 export function initUI(appState, refreshCallback, achievementCheckCallback) {
@@ -400,6 +414,9 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     });
     renderWorkshopView();
   });
+
+  renderVersionInfo();
+  bindSweetToastDevTest();
 }
 
 /** 使用事件委派，避免重複渲染後按鈕失效 */
@@ -855,6 +872,14 @@ export function switchView(viewName) {
 
   if (viewName === 'workshop') {
     renderWorkshopView();
+  }
+
+  if (viewName === 'settings') {
+    renderSettingsView();
+  }
+
+  if (viewName === 'more') {
+    renderMoreView();
   }
 
   if (viewName === 'collection') {
@@ -2944,10 +2969,10 @@ function showBondLevelUpToast(level, customLine = null) {
 
 function showRewardToast(amount, energy = 0) {
   const toast = document.createElement('div');
-  toast.className = 'reward-toast';
-  let text = `<span class="reward-toast__icon">✨</span><span>獲得 <strong>${amount}</strong> 星塵！</span>`;
+  toast.className = 'reward-toast reward-toast--reward';
+  let text = `<span class="reward-toast__icon">✨</span><span class="reward-toast__message">獲得 <strong class="toast-highlight">${amount}</strong> 星塵！</span>`;
   if (energy > 0) {
-    text += `<span class="reward-toast__energy">＋${energy} 冒險能量</span>`;
+    text += `<span class="reward-toast__energy">＋<strong class="toast-highlight">${energy}</strong> 冒險能量</span>`;
   }
   toast.innerHTML = text;
   document.body.appendChild(toast);
@@ -4626,7 +4651,9 @@ async function handleWorkshopClick(e) {
 }
 
 function renderMoreView() {
-  const summary = state.achievementSummary;
+  renderVersionInfo();
+
+  const summary = state?.achievementSummary;
   const badge = document.getElementById('more-achievements-badge');
   if (badge) {
     const show = (summary?.claimable ?? 0) > 0 || summary?.hasUnseenTitles;
@@ -5216,7 +5243,84 @@ async function executeRestoreBackup() {
   }
 }
 
+function buildVersionInfoHtml({ compact = false, serviceWorkerStatus = '檢查中' } = {}) {
+  if (compact) {
+    return `
+      <dl class="stats-list settings-version__list version-info-list version-info-list--compact">
+        <div class="version-info-row stats-row">
+          <dt class="version-info-label">目前版本</dt>
+          <dd class="version-info-value" data-version-app-value>${escapeHtml(formatDisplayVersion())}</dd>
+        </div>
+        <div class="version-info-row stats-row">
+          <dt class="version-info-label">Service Worker</dt>
+          <dd class="version-info-value" data-version-sw-status>${escapeHtml(serviceWorkerStatus)}</dd>
+        </div>
+      </dl>`;
+  }
+
+  return `
+    <dl class="stats-list settings-version__list version-info-list">
+      <div class="version-info-row stats-row">
+        <dt class="version-info-label">目前版本</dt>
+        <dd class="version-info-value" data-version-app-value>${escapeHtml(formatDisplayVersion())}</dd>
+      </div>
+      <div class="version-info-row stats-row">
+        <dt class="version-info-label">Cache</dt>
+        <dd class="version-info-value version-info-value--mono settings-version__mono" data-version-cache-value>${escapeHtml(CACHE_NAME)}</dd>
+      </div>
+      <div class="version-info-row stats-row">
+        <dt class="version-info-label">更新時間</dt>
+        <dd class="version-info-value" data-version-build-value>${escapeHtml(formatBuildTimeLocal())}</dd>
+      </div>
+      <div class="version-info-row stats-row">
+        <dt class="version-info-label">Service Worker</dt>
+        <dd class="version-info-value" data-version-sw-status>${escapeHtml(serviceWorkerStatus)}</dd>
+      </div>
+    </dl>
+    <p class="settings-version__note version-info-note" data-version-update-hint>
+      若手機仍看到舊版，請移除主畫面 App 後重新加入，或清除 Safari 網站資料。
+    </p>`;
+}
+
+function updateVersionInfoServiceWorkerStatus(status) {
+  document.querySelectorAll('[data-version-sw-status]').forEach((el) => {
+    el.textContent = status;
+  });
+}
+
+/** 同步渲染版本資訊，再非同步更新 Service Worker 狀態 */
+export function renderVersionInfo() {
+  const containers = document.querySelectorAll('[data-version-info]');
+  console.debug('[VersionInfo] render', {
+    appVersion: APP_VERSION,
+    cacheName: CACHE_NAME,
+    buildTime: BUILD_TIME,
+    containers: containers.length,
+  });
+
+  if (!containers.length) {
+    console.warn('[VersionInfo] No version info container found');
+    return;
+  }
+
+  containers.forEach((container) => {
+    const compact = container.hasAttribute('data-version-info-compact');
+    container.innerHTML = buildVersionInfoHtml({ compact, serviceWorkerStatus: '檢查中' });
+  });
+
+  setText('settings-footer-note', `QuestNote ${formatDisplayVersion()} — 離線個人任務記事 App`);
+
+  updateServiceWorkerStatusDisplay().catch((error) => {
+    console.warn('[VersionInfo] Failed to check service worker:', error);
+    updateVersionInfoServiceWorkerStatus('無法確認');
+  });
+}
+
 function renderSettingsView() {
+  renderVersionInfo();
+
+  if (!state) return;
+
   const { tasks, wallet, collectionProgress, gachaStats, activeExpedition, userPreferences, achievementSummary } = state;
   const completedCount = tasks.filter((t) => t.completed).length;
 
@@ -5232,12 +5336,6 @@ function renderSettingsView() {
   const achTotal = achievementSummary?.total ?? 0;
   setText('settings-achievements', `${achUnlocked}/${achTotal}`);
 
-  setText('settings-app-version', formatDisplayVersion());
-  setText('settings-cache-name', CACHE_NAME);
-  setText('settings-build-time', formatBuildTimeLocal());
-  setText('settings-footer-note', `QuestNote ${formatDisplayVersion()} — 離線個人任務記事 App`);
-  updateServiceWorkerStatusDisplay();
-
   const reduceMotionToggle = document.getElementById('toggle-reduce-motion');
   if (reduceMotionToggle) {
     reduceMotionToggle.checked = userPreferences?.reduceMotion ?? false;
@@ -5250,24 +5348,31 @@ function renderSettingsView() {
 }
 
 async function updateServiceWorkerStatusDisplay() {
-  const el = document.getElementById('settings-sw-status');
-  if (!el) return;
-
-  if (!('serviceWorker' in navigator)) {
-    el.textContent = '未支援';
-    return;
-  }
+  let status = '無法確認';
 
   try {
-    const reg = await navigator.serviceWorker.getRegistration();
-    if (!reg) {
-      el.textContent = '未啟用';
-      return;
+    if (!('serviceWorker' in navigator)) {
+      status = '未支援';
+    } else {
+      const reg = await navigator.serviceWorker.getRegistration();
+      if (!reg) {
+        status = '未啟用';
+      } else if (reg.waiting) {
+        status = '有更新待套用';
+      } else if (reg.active) {
+        status = '已啟用';
+      } else if (reg.installing) {
+        status = '安裝中';
+      } else {
+        status = navigator.serviceWorker.controller ? '已啟用' : '未啟用';
+      }
     }
-    el.textContent = navigator.serviceWorker.controller ? '已啟用' : '安裝中';
-  } catch {
-    el.textContent = '未知';
+  } catch (err) {
+    console.warn('[VersionInfo] Failed to check service worker:', err);
+    status = '無法確認';
   }
+
+  updateVersionInfoServiceWorkerStatus(status);
 }
 
 async function handleDevUnlock() {

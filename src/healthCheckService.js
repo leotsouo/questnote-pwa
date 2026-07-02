@@ -519,6 +519,164 @@ async function checkPetImageSystem() {
 }
 
 /**
+ * 版本資訊顯示與 DOM 結構檢查
+ */
+async function checkVersionInfo() {
+  const [versionRes, indexRes, uiRes, cssRes] = await Promise.all([
+    fetch('./src/version.js'),
+    fetch('./index.html'),
+    fetch('./src/ui.js'),
+    fetch('./src/styles.css'),
+  ]);
+
+  if (!versionRes.ok || !indexRes.ok || !uiRes.ok || !cssRes.ok) {
+    throw new Error('無法讀取 version / index / ui / styles');
+  }
+
+  const versionText = await versionRes.text();
+  const indexText = await indexRes.text();
+  const uiText = await uiRes.text();
+  const cssText = await cssRes.text();
+  const notes = [];
+  const stats = [];
+
+  if (!versionText.includes('export const APP_VERSION')) {
+    throw new Error('APP_VERSION 不存在');
+  }
+  if (!versionText.includes('export const CACHE_NAME')) {
+    throw new Error('CACHE_NAME 不存在');
+  }
+  if (!versionText.includes('export const BUILD_TIME')) {
+    throw new Error('BUILD_TIME 不存在');
+  }
+  if (!versionText.includes('export function formatDisplayVersion')) {
+    throw new Error('formatDisplayVersion 不存在');
+  }
+
+  const versionMatch = versionText.match(/APP_VERSION\s*=\s*['"]([^'"]+)['"]/);
+  if (versionMatch) stats.push(`APP_VERSION=${versionMatch[1]}`);
+
+  const cacheMatch = versionText.match(/CACHE_NAME\s*=\s*['"]([^'"]+)['"]/);
+  if (cacheMatch) stats.push(`CACHE_NAME=${cacheMatch[1]}`);
+
+  if (!indexText.includes('data-version-info')) {
+    throw new Error('index.html 缺少 data-version-info container');
+  }
+
+  const versionInfoIdCount = (indexText.match(/id="versionInfo"/g) || []).length;
+  if (versionInfoIdCount > 0) {
+    notes.push(`發現 id="versionInfo" x${versionInfoIdCount}（建議改用 data-version-info）`);
+  }
+
+  if (!uiText.includes('export function renderVersionInfo')) {
+    throw new Error('renderVersionInfo 不存在');
+  }
+  if (!/updateServiceWorkerStatusDisplay[\s\S]{0,800}catch/.test(uiText)) {
+    notes.push('service worker status check 可能缺少 try/catch');
+  }
+  if (!uiText.includes('檢查中')) {
+    notes.push('版本資訊可能未先同步顯示 Service Worker 檢查中');
+  }
+
+  if (!cssText.includes('.version-info-card')) {
+    notes.push('CSS 缺少 .version-info-card');
+  }
+
+  const domContainers = typeof document !== 'undefined'
+    ? document.querySelectorAll('[data-version-info]').length
+    : 0;
+  stats.push(`data-version-info containers=${domContainers}`);
+
+  const summary = stats.join(' | ');
+  if (notes.length) {
+    return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  }
+  return summary;
+}
+
+/**
+ * Sweet 主題 toast 對比度與類型檢查
+ */
+async function checkSweetToastContrast() {
+  const [cssRes, uiRes] = await Promise.all([
+    fetch('./src/styles.css'),
+    fetch('./src/ui.js'),
+  ]);
+
+  if (!cssRes.ok || !uiRes.ok) {
+    throw new Error('無法讀取 styles / ui');
+  }
+
+  const cssText = await cssRes.text();
+  const uiText = await uiRes.text();
+  const notes = [];
+  const stats = [];
+
+  const requiredPairs = [
+    ['sweet toast success bg', 'body[data-theme="sweet"] .toast--success', '#E7F6F1'],
+    ['sweet toast success text', 'body[data-theme="sweet"] .toast--success', '#1F5C4D'],
+    ['sweet toast reward bg', 'body[data-theme="sweet"] .toast--reward', '#FFF1D8'],
+    ['sweet toast reward text', 'body[data-theme="sweet"] .toast--reward', '#8A4F10'],
+    ['sweet toast info bg', 'body[data-theme="sweet"] .toast--info', '#EEE9FF'],
+    ['sweet toast info text', 'body[data-theme="sweet"] .toast--info', '#4E3BA8'],
+    ['sweet toast warning bg', 'body[data-theme="sweet"] .toast--warning', '#FFF3E6'],
+    ['sweet toast warning text', 'body[data-theme="sweet"] .toast--warning', '#8A4F10'],
+    ['sweet toast error bg', 'body[data-theme="sweet"] .toast--error', '#FFE3EA'],
+    ['sweet toast error text', 'body[data-theme="sweet"] .toast--error', '#9F263F'],
+    ['sweet reward-toast bg', 'body[data-theme="sweet"] .reward-toast', '#FFF1D8'],
+    ['sweet reward-toast text', 'body[data-theme="sweet"] .reward-toast', '#8A4F10'],
+  ];
+
+  for (const [label, selector, color] of requiredPairs) {
+    const idx = cssText.indexOf(selector);
+    if (idx === -1) {
+      throw new Error(`缺少 ${selector}`);
+    }
+    const block = cssText.slice(idx, idx + 400);
+    if (!block.includes(color)) {
+      throw new Error(`${label} 未使用 ${color}`);
+    }
+    stats.push(`${label}=ok`);
+  }
+
+  if (!cssText.includes('V2.3.7') && !cssText.includes('Sweet 主題 Toast 可讀性修正')) {
+    notes.push('styles.css 可能缺少 V2.3.7 sweet toast 區塊標記');
+  }
+
+  if (!uiText.includes("reward: '✨'") && !uiText.includes('reward: \'✨\'')) {
+    notes.push('showToast 可能未支援 reward type');
+  }
+
+  if (!uiText.includes('reward-toast--reward')) {
+    throw new Error('showRewardToast 未使用 reward-toast--reward class');
+  }
+
+  const globalToastGradient = /\.toast--success\s*\{[^}]*linear-gradient/s.test(cssText);
+  const scopedDefaultToast = cssText.includes('body[data-theme="default"] .toast--success');
+  if (globalToastGradient && !scopedDefaultToast) {
+    notes.push('全域 .toast--success 漸層可能覆蓋 sweet 主題');
+  } else if (scopedDefaultToast) {
+    stats.push('default-only toast gradient=ok');
+  }
+
+  if (!uiText.includes("showToast('任務已完成', 'success')")) {
+    notes.push('任務完成 fallback toast 可能已變更');
+  } else {
+    stats.push('task-complete toast type=success');
+  }
+
+  if (typeof window !== 'undefined' && window.testSweetToasts) {
+    stats.push('testSweetToasts=available');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) {
+    return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  }
+  return summary;
+}
+
+/**
  * 執行健康檢查並輸出結果至 console
  * @returns {Promise<{ ok: boolean, results: Record<string, string>, errors: string[] }>}
  */
@@ -555,6 +713,8 @@ export async function runAppHealthCheck() {
   await runCheck('archived modules', checkArchivedModules);
   await runCheck('render system', checkRenderSystem);
   await runCheck('pet images', checkPetImageSystem);
+  await runCheck('version info', checkVersionInfo);
+  await runCheck('sweet toast contrast', checkSweetToastContrast);
   await runCheck('service worker', checkServiceWorker);
 
   console.log('QuestNote Health Check:');

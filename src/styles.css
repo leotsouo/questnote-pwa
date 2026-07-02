@@ -1881,6 +1881,86 @@ body.reduce-motion .pet-image-frame img {
   color: var(--text-muted);
 }
 
+.version-info-card,
+.settings-version-card {
+  display: block;
+  width: 100%;
+  min-height: 96px;
+}
+
+.version-info-card--compact {
+  min-height: 72px;
+}
+
+.version-info-row,
+.version-info-list .stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.version-info-label {
+  flex: 0 0 auto;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.version-info-value {
+  flex: 1 1 auto;
+  text-align: right;
+  word-break: break-word;
+  color: var(--color-text-main, var(--text-main, #e8e8f0));
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.version-info-value--mono {
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.settings-version__list .version-info-value,
+.settings-version__list .stats-row dd {
+  text-align: right;
+  color: var(--color-text-main, var(--text-main, #e8e8f0));
+}
+
+.more-version-section {
+  margin-top: 12px;
+}
+
+.version-info-note {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 430px) {
+  .version-info-row,
+  .version-info-list .stats-row {
+    display: block;
+    padding: 10px 0;
+  }
+
+  .version-info-value,
+  .settings-version__list .version-info-value,
+  .settings-version__list .stats-row dd {
+    display: block;
+    text-align: left;
+    margin-top: 2px;
+    width: 100%;
+  }
+
+  .version-info-card,
+  .settings-version-card {
+    min-height: 96px;
+    padding: 0;
+  }
+}
+
 /* ─── 開發測試工具（僅 localhost） ─── */
 
 .dev-tools {
@@ -2713,8 +2793,10 @@ body.reduce-motion .pet-image-frame img {
 .toast--error { border-color: rgba(248, 113, 113, 0.35); }
 .toast--warning { border-color: rgba(251, 191, 36, 0.35); }
 .toast--info { border-color: rgba(124, 92, 255, 0.35); }
+.toast--reward { border-color: rgba(251, 191, 36, 0.35); }
 
 .toast__icon { font-size: 1.125rem; flex-shrink: 0; }
+.toast__message { line-height: 1.5; }
 
 /* ─── 空狀態 ─── */
 
@@ -3975,20 +4057,20 @@ body.reduce-motion .loading-state__spinner {
   font-variant-numeric: tabular-nums;
 }
 
-/* Toast 強化 */
-.toast--success {
+/* Toast 強化（僅 default 主題，避免覆蓋 sweet） */
+body[data-theme="default"] .toast--success {
   background: linear-gradient(135deg, var(--color-bg-card), rgba(52, 211, 153, 0.06));
 }
 
-.toast--error {
+body[data-theme="default"] .toast--error {
   background: linear-gradient(135deg, var(--color-bg-card), rgba(248, 113, 113, 0.06));
 }
 
-.toast--warning {
+body[data-theme="default"] .toast--warning {
   background: linear-gradient(135deg, var(--color-bg-card), rgba(251, 191, 36, 0.06));
 }
 
-.toast--info {
+body[data-theme="default"] .toast--info {
   background: linear-gradient(135deg, var(--color-bg-card), rgba(124, 92, 255, 0.06));
 }
 
@@ -6981,51 +7063,156 @@ body[data-theme="sweet"] .expedition-energy__warning {
   color: var(--color-danger);
 }
 
+/* ═══════════════════════════════════════
+   V2.3.7 — Sweet 主題 Toast 可讀性修正
+   ═══════════════════════════════════════ */
+
+body[data-theme="sweet"] .toast,
+body[data-theme="sweet"] .reward-toast {
+  min-height: 44px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-size: 0.92rem;
+  box-shadow: 0 12px 30px rgba(199, 53, 120, 0.16);
+}
+
+body[data-theme="sweet"] .toast {
+  background: #FFFFFF;
+  color: #3D2633;
+  border: 1px solid #F0C9DA;
+}
+
+body[data-theme="sweet"] .toast__message,
+body[data-theme="sweet"] .toast__icon,
+body[data-theme="sweet"] .reward-toast__message {
+  color: inherit;
+}
+
+body[data-theme="sweet"] .toast__message,
+body[data-theme="sweet"] .reward-toast__message {
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+body[data-theme="sweet"] .toast strong,
+body[data-theme="sweet"] .toast .toast-highlight,
+body[data-theme="sweet"] .reward-toast strong,
+body[data-theme="sweet"] .reward-toast .toast-highlight {
+  color: inherit;
+  font-weight: 900;
+}
+
 body[data-theme="sweet"] .toast--success {
-  background: linear-gradient(135deg, #FFFFFF, var(--color-success-soft));
-  border-color: rgba(47, 118, 100, 0.30);
-  color: #1F4A3D;
+  background: #E7F6F1;
+  color: #1F5C4D;
+  border-color: #8FCDBD;
+}
+
+body[data-theme="sweet"] .toast--success .toast__icon {
+  color: #2F7664;
+}
+
+body[data-theme="sweet"] .toast--reward {
+  background: #FFF1D8;
+  color: #8A4F10;
+  border-color: #F0C878;
+}
+
+body[data-theme="sweet"] .toast--reward .toast__icon {
+  color: #B66A1E;
 }
 
 body[data-theme="sweet"] .toast--info {
-  background: linear-gradient(135deg, #FFFFFF, var(--color-secondary-soft));
-  border-color: rgba(111, 85, 217, 0.25);
-  color: #3D2E6B;
+  background: #EEE9FF;
+  color: #4E3BA8;
+  border-color: #CFC3F6;
+}
+
+body[data-theme="sweet"] .toast--info .toast__icon {
+  color: #6F55D9;
 }
 
 body[data-theme="sweet"] .toast--warning {
-  background: linear-gradient(135deg, #FFFFFF, var(--color-accent-soft));
-  border-color: rgba(182, 106, 30, 0.25);
-  color: #6B4210;
+  background: #FFF3E6;
+  color: #8A4F10;
+  border-color: #F0C878;
+}
+
+body[data-theme="sweet"] .toast--warning .toast__icon {
+  color: #B66A1E;
 }
 
 body[data-theme="sweet"] .toast--error {
-  background: linear-gradient(135deg, #FFFFFF, rgba(201, 62, 93, 0.08));
-  border-color: rgba(201, 62, 93, 0.25);
-  color: #8A2340;
+  background: #FFE3EA;
+  color: #9F263F;
+  border-color: #F3A8B8;
+}
+
+body[data-theme="sweet"] .toast--error .toast__icon {
+  color: #C93E5D;
 }
 
 body[data-theme="sweet"] .reward-toast {
-  color: #2D1A24;
-  font-weight: 600;
-  border-color: var(--color-border);
+  background: #FFF1D8;
+  color: #8A4F10;
+  border: 1px solid #F0C878;
+  font-weight: 700;
+  white-space: normal;
+  max-width: min(92vw, 420px);
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
 }
 
-body[data-theme="sweet"] .reward-toast strong {
-  color: #1F5A4D;
-}
-
-body[data-theme="sweet"] .reward-toast--bond {
-  color: #3D2E6B;
-}
-
-body[data-theme="sweet"] .reward-toast--bond strong {
-  color: #5E49C2;
+body[data-theme="sweet"] .reward-toast strong,
+body[data-theme="sweet"] .reward-toast .toast-highlight {
+  color: #8A4F10;
 }
 
 body[data-theme="sweet"] .reward-toast__energy {
-  color: #1F5A4D;
-  font-weight: 700;
+  color: #1F5C4D;
+  font-weight: 800;
+  width: 100%;
+}
+
+body[data-theme="sweet"] .reward-toast__energy strong,
+body[data-theme="sweet"] .reward-toast__energy .toast-highlight {
+  color: #2F7664;
+}
+
+body[data-theme="sweet"] .reward-toast--bond {
+  background: #EEE9FF;
+  color: #4E3BA8;
+  border-color: #CFC3F6;
+}
+
+body[data-theme="sweet"] .reward-toast--bond strong,
+body[data-theme="sweet"] .reward-toast--bond .toast-highlight {
+  color: #6F55D9;
+}
+
+body[data-theme="sweet"] .reward-toast--daily {
+  background: #E7F6F1;
+  color: #1F5C4D;
+  border-color: #8FCDBD;
+}
+
+body[data-theme="sweet"] .reward-toast--daily strong {
+  color: #2F7664;
+}
+
+@media (max-width: 430px) {
+  body[data-theme="sweet"] .toast-container {
+    width: calc(100vw - 28px);
+    max-width: 420px;
+  }
+
+  body[data-theme="sweet"] .toast,
+  body[data-theme="sweet"] .reward-toast {
+    width: calc(100vw - 28px);
+    max-width: 420px;
+    font-size: 0.92rem;
+  }
 }
 
 body.reduce-motion[data-theme="sweet"]::before {

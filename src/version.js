@@ -2,11 +2,11 @@
  * QuestNote 版本資訊 — 單一來源
  * 發佈新版時請同步更新 service-worker.js 的 CACHE_NAME
  */
-export const APP_VERSION = '2.3.5';
-export const CACHE_NAME = 'questnote-cache-v235-pet-image-optimization';
+export const APP_VERSION = '2.3.7';
+export const CACHE_NAME = 'questnote-cache-v237-sweet-toast-contrast-fix';
 export const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
 /** ISO 8601 — 每次發佈請更新 */
-export const BUILD_TIME = '2026-07-02T20:00:00+08:00';
+export const BUILD_TIME = '2026-07-02T23:30:00+08:00';
 
 export function formatDisplayVersion() {
   return `V${APP_VERSION}`;
