@@ -194,6 +194,7 @@ export async function replaceAllStores(payload) {
     if (payload.inventory) metaStore.put(payload.inventory);
     if (payload.workshopStats) metaStore.put(payload.workshopStats);
     if (payload.dailyCheckIn) metaStore.put(payload.dailyCheckIn);
+    if (payload.questProgress) metaStore.put(payload.questProgress);
   });
 }
 

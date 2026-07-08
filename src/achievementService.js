@@ -19,11 +19,13 @@ import {
   addStardust,
   addAdventureEnergy,
   addMaterial,
+  addInventoryItem,
 } from './rewardService.js';
 import { MATERIAL_LABELS } from './expeditionService.js';
 import { getWorkshopStats } from './workshopService.js';
 import { getTodayDateString, isCompletedToday, getLocalDateStringFromIso } from './taskFilterService.js';
 import { getDailyCheckIn } from './dailyCheckInService.js';
+import { getQuestProgress } from './questService.js';
 
 const ACHIEVEMENTS_KEY = 'achievements';
 
@@ -48,6 +50,7 @@ export const CATEGORY_LABELS = {
   habit: '習慣',
   workshop: '工坊',
   daily: '每日',
+  quest: '冒險任務',
 };
 
 /** 成就分類圖示 */
@@ -61,6 +64,7 @@ export const CATEGORY_ICONS = {
   habit: '🔄',
   workshop: '🔨',
   daily: '🌙',
+  quest: '🗺️',
 };
 
 /** @type {object[]|null} */
@@ -172,7 +176,7 @@ function isTaskCompleted(task) {
  * 建立成就條件計算用的上下文
  */
 export async function buildAchievementContext(allPets = []) {
-  const [tasks, gachaStats, collection, expeditions, achState, taskStats, habits, workshopStats, dailyCheckIn] = await Promise.all([
+  const [tasks, gachaStats, collection, expeditions, achState, taskStats, habits, workshopStats, dailyCheckIn, questProgress] = await Promise.all([
     getAllTasks(),
     getGachaStats(),
     getCollection(),
@@ -182,6 +186,7 @@ export async function buildAchievementContext(allPets = []) {
     getAllHabits(),
     getWorkshopStats(),
     getDailyCheckIn(),
+    getQuestProgress(),
   ]);
 
   const completedTasks = tasks.filter(isTaskCompleted);
@@ -196,6 +201,10 @@ export async function buildAchievementContext(allPets = []) {
     (max, c) => Math.max(max, c.bondLevel ?? 1),
     0
   );
+  // V2.6.0 羈絆解放：已解放（Lv.5）寵物數量
+  const bondLiberatedCount = collection.filter(
+    (c) => c.bondUnlocks?.bondLiberated || (c.bondLevel ?? 1) >= 5
+  ).length;
 
   const claimedExpeditions = expeditions.filter((e) => e.claimed);
   const expeditionAreaCounts = {};
@@ -234,6 +243,7 @@ export async function buildAchievementContext(allPets = []) {
     expeditionClaimedTotal: claimedExpeditions.length,
     expeditionAreaCounts,
     maxBondLevel,
+    bondLiberatedCount,
     activeDaysWithTasks: activeDays.size,
     hasExportedBackup: achState.hasExportedBackup ?? false,
     hasPlannedTodayEver: taskStats.hasPlannedTodayEver ?? false,
@@ -251,6 +261,8 @@ export async function buildAchievementContext(allPets = []) {
     totalCheckIns: dailyCheckIn.totalCheckIns ?? 0,
     checkInStreak: Math.max(dailyCheckIn.streak ?? 0, dailyCheckIn.bestStreak ?? 0),
     totalWheelSpins: dailyCheckIn.totalWheelSpins ?? 0,
+    totalDailyQuestsClaimed: questProgress?.stats?.totalDailyQuestsClaimed ?? 0,
+    totalWeeklyQuestsClaimed: questProgress?.stats?.totalWeeklyQuestsClaimed ?? 0,
   };
 }
 
@@ -279,6 +291,10 @@ export function getAchievementProgress(achievement, context) {
       return context.expeditionAreaCounts[achievement.areaId] || 0;
     case 'bond_level_max':
       return context.maxBondLevel;
+    case 'bond_badge_unlocked':
+      return context.maxBondLevel >= 3 ? 1 : 0;
+    case 'bond_liberated_count':
+      return context.bondLiberatedCount;
     case 'active_days_with_tasks':
       return context.activeDaysWithTasks;
     case 'has_exported_backup':
@@ -317,6 +333,10 @@ export function getAchievementProgress(achievement, context) {
       return context.checkInStreak;
     case 'wheel_spin_total':
       return context.totalWheelSpins;
+    case 'quest_daily_claimed_total':
+      return context.totalDailyQuestsClaimed;
+    case 'quest_weekly_claimed_total':
+      return context.totalWeeklyQuestsClaimed;
     default:
       return 0;
   }
@@ -392,6 +412,11 @@ export async function markExportedBackup() {
   return state;
 }
 
+/** 成就道具獎勵顯示名稱（少量，避免額外載入 craftables） */
+const REWARD_ITEM_LABELS = {
+  item_stardust_candy: '星塵糖果',
+};
+
 /** 格式化成就獎勵文字 */
 export function formatAchievementReward(reward) {
   if (!reward) return '無';
@@ -402,6 +427,13 @@ export function formatAchievementReward(reward) {
     for (const [id, amt] of Object.entries(reward.materials)) {
       if (amt > 0) {
         parts.push(`${MATERIAL_LABELS[id] || id} +${amt}`);
+      }
+    }
+  }
+  if (reward.items) {
+    for (const [id, amt] of Object.entries(reward.items)) {
+      if (amt > 0) {
+        parts.push(`${REWARD_ITEM_LABELS[id] || id} +${amt}`);
       }
     }
   }
@@ -446,6 +478,11 @@ export async function claimAchievementReward(achievementId) {
       if (reward.materials) {
         for (const [id, amt] of Object.entries(reward.materials)) {
           if (amt > 0) await addMaterial(id, amt);
+        }
+      }
+      if (reward.items) {
+        for (const [id, amt] of Object.entries(reward.items)) {
+          if (amt > 0) await addInventoryItem(id, amt);
         }
       }
     } catch (err) {
@@ -498,6 +535,7 @@ export async function claimAllAchievementRewards(allPets = []) {
     let totalStardust = 0;
     let totalEnergy = 0;
     const totalMaterials = {};
+    const totalItems = {};
 
     for (const achievement of toClaim) {
       const reward = achievement.reward || {};
@@ -510,6 +548,13 @@ export async function claimAllAchievementRewards(allPets = []) {
           }
         }
       }
+      if (reward.items) {
+        for (const [id, amt] of Object.entries(reward.items)) {
+          if (amt > 0) {
+            totalItems[id] = (totalItems[id] ?? 0) + amt;
+          }
+        }
+      }
     }
 
     try {
@@ -517,6 +562,9 @@ export async function claimAllAchievementRewards(allPets = []) {
       if (totalEnergy > 0) await addAdventureEnergy(totalEnergy);
       for (const [id, amt] of Object.entries(totalMaterials)) {
         if (amt > 0) await addMaterial(id, amt);
+      }
+      for (const [id, amt] of Object.entries(totalItems)) {
+        if (amt > 0) await addInventoryItem(id, amt);
       }
     } catch (err) {
       return { success: false, error: err.message || '獎勵發放失敗' };
@@ -536,6 +584,7 @@ export async function claimAllAchievementRewards(allPets = []) {
         stardust: totalStardust,
         adventureEnergy: totalEnergy,
         materials: totalMaterials,
+        items: totalItems,
       },
     };
   } finally {

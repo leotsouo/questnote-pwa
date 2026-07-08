@@ -1,9 +1,9 @@
 /**
- * QuestNote Service Worker — V2.3.7 Sweet 主題任務完成通知可讀性修正
+ * QuestNote Service Worker — V2.6.1 寵物原圖放大檢視功能恢復
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v237-sweet-toast-contrast-fix';
+const CACHE_NAME = 'questnote-cache-v261-pet-image-viewer';
 const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
@@ -20,6 +20,7 @@ const PRECACHE_URLS = [
   'src/categoryService.js',
   'src/rewardService.js',
   'src/gachaService.js',
+  'src/summonRevealService.js',
   'src/collectionService.js',
   'src/backupService.js',
   'src/companionService.js',
@@ -37,6 +38,7 @@ const PRECACHE_URLS = [
   'src/uiHelpers.js',
   'src/healthCheckService.js',
   'src/dailyCheckInService.js',
+  'src/questService.js',
   'src/imagePreloadService.js',
   'data/dailyWheelRewards.json',
   'data/pets.json',

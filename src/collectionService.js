@@ -162,18 +162,101 @@ export async function clearPetNickname(petId) {
   }
 }
 
-/** 啟動時 migration：補齊 nickname 欄位 */
+/** 啟動時 migration：補齊 nickname 與 bondUnlocks 欄位（bondUnlocks 為 silent unlock） */
 export async function migrateCollectionNicknames() {
   const items = await dbGetAll(STORES.COLLECTION);
   for (const item of items) {
     const normalized = normalizeEntry(item);
     const changed =
       !('nickname' in item) ||
-      item.nickname !== normalized.nickname;
+      item.nickname !== normalized.nickname ||
+      !item.bondUnlocks ||
+      typeof item.bondUnlocks !== 'object' ||
+      !Array.isArray(item.bondUnlocks.notifiedLevels);
     if (changed) {
       await dbPut(STORES.COLLECTION, normalized);
     }
   }
+}
+
+/* ─── V2.6.0 羈絆解放：解鎖狀態 ─── */
+
+/** 各解鎖項目對應的親密度等級門檻 */
+export const BOND_UNLOCK_LEVEL_MAP = {
+  dialogueLv2: 2,
+  badgeLv3: 3,
+  homeEffectLv4: 4,
+  bondFrameLv5: 5,
+  bondStoryLv5: 5,
+};
+
+/** 會觸發解鎖提示的等級（依序） */
+export const BOND_UNLOCK_LEVELS = [2, 3, 4, 5];
+
+/** 預設（全未解鎖）的 bondUnlocks 結構 */
+export function defaultBondUnlocks() {
+  return {
+    dialogueLv2: false,
+    badgeLv3: false,
+    homeEffectLv4: false,
+    bondFrameLv5: false,
+    bondStoryLv5: false,
+    bondLiberated: false,
+    notifiedLevels: [],
+  };
+}
+
+/** 依親密度等級推算各解鎖旗標（保證與 bondLevel 一致） */
+function computeBondUnlockFlags(bondLevel) {
+  const lv = Number.isFinite(bondLevel) ? bondLevel : 1;
+  return {
+    dialogueLv2: lv >= 2,
+    badgeLv3: lv >= 3,
+    homeEffectLv4: lv >= 4,
+    bondFrameLv5: lv >= 5,
+    bondStoryLv5: lv >= 5,
+    bondLiberated: lv >= 5,
+  };
+}
+
+/**
+ * 正規化 bondUnlocks，補齊缺少欄位並讓旗標與 bondLevel 一致。
+ * - 舊資料（完全沒有 bondUnlocks）：silent unlock，將已達成等級全部標記為已提示，避免啟動時洗版。
+ * - 既有 bondUnlocks：保留 notifiedLevels（讓 updatePetBondUnlocks 能偵測真正的新解鎖）。
+ * @param {object|null|undefined} raw
+ * @param {number} bondLevel
+ */
+export function normalizeBondUnlocks(raw, bondLevel = 1) {
+  const flags = computeBondUnlockFlags(bondLevel);
+  const isLegacy = !raw || typeof raw !== 'object';
+
+  let notifiedLevels;
+  if (isLegacy) {
+    // 舊資料 silent migration：已達成的解鎖等級直接視為已提示
+    notifiedLevels = BOND_UNLOCK_LEVELS.filter((lv) => bondLevel >= lv);
+  } else {
+    notifiedLevels = Array.isArray(raw.notifiedLevels)
+      ? [...new Set(raw.notifiedLevels.filter((n) => Number.isInteger(n) && n >= 2 && n <= 5))]
+      : [];
+  }
+  notifiedLevels.sort((a, b) => a - b);
+
+  return { ...flags, notifiedLevels };
+}
+
+/** 依親密度等級取得該版本會解鎖的項目清單 */
+export function getBondUnlocksByLevel(bondLevel) {
+  const map = {
+    2: ['dialogueLv2'],
+    3: ['badgeLv3'],
+    4: ['homeEffectLv4'],
+    5: ['bondFrameLv5', 'bondStoryLv5', 'bondLiberated'],
+  };
+  const result = [];
+  for (const lv of BOND_UNLOCK_LEVELS) {
+    if (bondLevel >= lv) result.push(...map[lv]);
+  }
+  return result;
 }
 
 /** 依累積 EXP 計算親密度等級 */
@@ -220,15 +303,17 @@ function normalizeLastPettedAt(value) {
 export function normalizeEntry(entry) {
   if (!entry) return entry;
   const bondExp = entry.bondExp ?? 0;
+  const bondLevel = entry.bondLevel ?? getBondLevelFromExp(bondExp);
   return {
     ...entry,
     stars: entry.stars ?? 1,
     fragments: entry.fragments ?? 0,
     bondExp,
-    bondLevel: entry.bondLevel ?? getBondLevelFromExp(bondExp),
+    bondLevel,
     isCompanion: entry.isCompanion ?? false,
     nickname: sanitizeStoredNickname(entry.nickname),
     lastPettedAt: normalizeLastPettedAt(entry.lastPettedAt),
+    bondUnlocks: normalizeBondUnlocks(entry.bondUnlocks, bondLevel),
   };
 }
 
@@ -398,6 +483,9 @@ export async function getCompanion(allPets) {
   return {
     ...pet,
     ...companionEntry,
+    // 保留 lore 的 bondUnlocks（等級→台詞文字），避免被收藏項目的解鎖旗標覆蓋
+    bondUnlocks: pet.bondUnlocks ?? {},
+    bondUnlockState: companionEntry.bondUnlocks ?? normalizeBondUnlocks(null, companionEntry.bondLevel ?? 1),
     owned: true,
     nickname: companionEntry.nickname ?? null,
     displayName: getPetDisplayName(pet, companionEntry),
@@ -454,6 +542,55 @@ export async function addBondExpToCompanion(amount) {
   };
 }
 
+/**
+ * 檢查並更新寵物羈絆解鎖狀態，回傳這次新解鎖的等級（供 UI 顯示提示）。
+ * - 旗標永遠與 bondLevel 一致（normalizeEntry 保證）。
+ * - notifiedLevels 用來避免重複提示。
+ * @param {string} petId
+ * @returns {Promise<{ newlyUnlockedLevels: number[], bondUnlocks: object|null, entry: object|null }>}
+ */
+export async function updatePetBondUnlocks(petId) {
+  const entry = await getPetCollection(petId);
+  if (!entry) return { newlyUnlockedLevels: [], bondUnlocks: null, entry: null };
+
+  const bondLevel = entry.bondLevel ?? 1;
+  const unlocks = entry.bondUnlocks || normalizeBondUnlocks(null, bondLevel);
+  const notified = new Set(unlocks.notifiedLevels || []);
+
+  const reached = BOND_UNLOCK_LEVELS.filter((lv) => bondLevel >= lv);
+  const newlyUnlockedLevels = reached.filter((lv) => !notified.has(lv));
+
+  if (newlyUnlockedLevels.length === 0) {
+    return { newlyUnlockedLevels: [], bondUnlocks: unlocks, entry };
+  }
+
+  for (const lv of newlyUnlockedLevels) notified.add(lv);
+  entry.bondUnlocks = {
+    ...unlocks,
+    notifiedLevels: [...notified].sort((a, b) => a - b),
+  };
+  await dbPut(STORES.COLLECTION, entry);
+
+  return { newlyUnlockedLevels, bondUnlocks: entry.bondUnlocks, entry };
+}
+
+/** 取得寵物目前的羈絆解鎖狀態（已正規化） */
+export async function getPetBondUnlockStatus(petId) {
+  const entry = await getPetCollection(petId);
+  if (!entry) return null;
+  return {
+    petId,
+    bondLevel: entry.bondLevel ?? 1,
+    bondUnlocks: entry.bondUnlocks || normalizeBondUnlocks(null, entry.bondLevel ?? 1),
+  };
+}
+
+/** 寵物是否已達羈絆解放（Lv.5） */
+export async function hasBondLiberated(petId) {
+  const entry = await getPetCollection(petId);
+  return !!entry?.bondUnlocks?.bondLiberated;
+}
+
 /** 同步寵物資料庫 */
 export async function syncWithPetDatabase(allPets) {
   return getCollection();
@@ -483,6 +620,7 @@ export async function getEnrichedCollection(allPets) {
       fragments: normalized?.fragments ?? 0,
       bondExp: normalized?.bondExp ?? 0,
       bondLevel: normalized?.bondLevel ?? 0,
+      bondUnlockState: normalized?.bondUnlocks ?? defaultBondUnlocks(),
       isCompanion: normalized?.isCompanion ?? false,
       obtainedAt: normalized?.obtainedAt ?? null,
       nickname: normalized?.nickname ?? null,

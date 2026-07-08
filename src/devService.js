@@ -1,7 +1,13 @@
 /**
  * 開發測試工具 — 僅 localhost 環境使用，正式部署可整檔移除
  */
-import { addPetToCollection, getPetCollection } from './collectionService.js';
+import {
+  addPetToCollection,
+  getPetCollection,
+  getCollection,
+  addBondExpToCompanion,
+  getBondLevelFromExp,
+} from './collectionService.js';
 import { addStardust, getWallet } from './rewardService.js';
 import { forceCompleteActiveExpedition } from './expeditionService.js';
 import {
@@ -31,6 +37,21 @@ export const DEV_TEST_PET_IDS = [
 export function isDevMode() {
   const host = window.location.hostname;
   return host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+}
+
+/**
+ * 是否為 Debug 模式（供演出測試按鈕等使用）。
+ * 條件：網址帶 ?debug=1 或 localStorage.questnote_debug === '1'。
+ * @returns {boolean}
+ */
+export function isDebugMode() {
+  try {
+    const params = new URLSearchParams(location.search);
+    if (params.get('debug') === '1') return true;
+    return localStorage.getItem('questnote_debug') === '1';
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -77,6 +98,49 @@ export async function grantDevStardust() {
  */
 export async function devForceCompleteExpedition() {
   return forceCompleteActiveExpedition();
+}
+
+/** 各親密度等級所需的累積 EXP 門檻（對應 getBondLevelFromExp） */
+const BOND_LEVEL_THRESHOLDS = { 2: 50, 3: 150, 4: 300, 5: 500 };
+
+/**
+ * 開發測試：將「陪伴中」的寵物親密度提升一個等級（剛好跨過下一級門檻）。
+ * 一次一級，方便逐級觀察 Lv.2～Lv.5 的羈絆解鎖提示。
+ * @returns {Promise<{ success: boolean, maxed?: boolean, petId?: string, oldLevel?: number, newLevel?: number, message: string }>}
+ */
+export async function raiseDevCompanionBond() {
+  const collection = await getCollection();
+  const companion = collection.find((c) => c.isCompanion);
+  if (!companion) {
+    return { success: false, message: '目前沒有陪伴中的寵物，請先在圖鑑設定一隻陪伴寵物。' };
+  }
+
+  const currentExp = companion.bondExp || 0;
+  const currentLevel = getBondLevelFromExp(currentExp);
+  if (currentLevel >= 5) {
+    return {
+      success: true,
+      maxed: true,
+      petId: companion.petId,
+      oldLevel: currentLevel,
+      newLevel: 5,
+      message: '陪伴寵物親密度已達 Lv.5（滿級）。',
+    };
+  }
+
+  const nextLevel = currentLevel + 1;
+  const amount = Math.max(1, BOND_LEVEL_THRESHOLDS[nextLevel] - currentExp);
+  const result = await addBondExpToCompanion(amount);
+  const newLevel = result?.newLevel ?? nextLevel;
+
+  return {
+    success: true,
+    maxed: false,
+    petId: companion.petId,
+    oldLevel: currentLevel,
+    newLevel,
+    message: `陪伴寵物親密度提升到 Lv.${newLevel}`,
+  };
 }
 
 /**

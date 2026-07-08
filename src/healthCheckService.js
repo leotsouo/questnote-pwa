@@ -12,6 +12,13 @@ import { normalizeGachaStats } from './gachaService.js';
 import { normalizeInventory, normalizeWorkshopStats } from './workshopService.js';
 import { normalizeDailyCheckIn } from './dailyCheckInService.js';
 import { normalizeExpedition } from './expeditionService.js';
+import {
+  getQuestProgress,
+  getTodayKey,
+  getWeekKey,
+  DAILY_QUEST_DEFS,
+  WEEKLY_QUEST_DEFS,
+} from './questService.js';
 
 const DATA_FILES = [
   { path: './data/pets.json', label: 'pets.json' },
@@ -677,6 +684,677 @@ async function checkSweetToastContrast() {
 }
 
 /**
+ * V2.3.8 — 召喚頁星塵同步檢查（靜態分析 ui.js）
+ */
+async function checkGachaSync() {
+  const uiRes = await fetch('./src/ui.js');
+  if (!uiRes.ok) throw new Error('無法讀取 ui.js');
+  const uiText = await uiRes.text();
+  const notes = [];
+  const stats = [];
+
+  if (!uiText.includes('export function updateGachaAffordability')) {
+    throw new Error('缺少 updateGachaAffordability 函式');
+  }
+  stats.push('updateGachaAffordability=exists');
+
+  if (!/function renderSharedUI[\s\S]{0,1200}updateGachaAffordability\s*\(/.test(uiText)) {
+    throw new Error('renderSharedUI 未呼叫 updateGachaAffordability');
+  }
+  stats.push('renderSharedUI→updateGachaAffordability=ok');
+
+  // 召喚頁切換時重新 render
+  if (!/viewName === 'gacha'[\s\S]{0,80}renderGachaView\s*\(/.test(uiText)) {
+    notes.push('switchView(gacha) 可能未重新 renderGachaView');
+  } else {
+    stats.push('switchView(gacha)→renderGachaView=ok');
+  }
+
+  // 單抽 / 十連 click handler 依最新 state.wallet 判斷
+  if (!/function handlePull[\s\S]{0,200}state\.wallet\.stardust/.test(uiText)) {
+    throw new Error('handlePull 未依最新 state.wallet 判斷');
+  }
+  if (!/function handleTenPull[\s\S]{0,200}state\.wallet\.stardust/.test(uiText)) {
+    throw new Error('handleTenPull 未依最新 state.wallet 判斷');
+  }
+  stats.push('pull handlers 讀最新 wallet=ok');
+
+  // updateGachaAffordability 依最新 state.wallet 計算按鈕狀態
+  if (!/function updateGachaAffordability[\s\S]{0,600}state\.wallet\.stardust/.test(uiText)) {
+    throw new Error('updateGachaAffordability 未讀最新 state.wallet');
+  }
+  if (!/function updateGachaAffordability[\s\S]{0,900}btn-pull['"]/.test(uiText)
+    || !/function updateGachaAffordability[\s\S]{0,900}btn-pull-ten/.test(uiText)) {
+    notes.push('updateGachaAffordability 可能未同時更新單抽與十連按鈕');
+  } else {
+    stats.push('單抽/十連 disabled 依最新 wallet=ok');
+  }
+
+  // DOM 缺失安全 return
+  if (!/function updateGachaAffordability[\s\S]{0,400}if\s*\(!btnSingle\s*&&\s*!btnTen\)\s*return/.test(uiText)) {
+    notes.push('updateGachaAffordability 可能缺少 DOM 缺失 safe return');
+  } else {
+    stats.push('DOM 缺失 safe return=ok');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) {
+    return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  }
+  return summary;
+}
+
+/**
+ * V2.3.8 — Sweet 可讀性檢查（召喚機率 + 探險歸來 modal）
+ */
+async function checkSweetContrast() {
+  const cssRes = await fetch('./src/styles.css');
+  if (!cssRes.ok) throw new Error('無法讀取 styles.css');
+  const cssText = await cssRes.text();
+  const stats = [];
+  const notes = [];
+
+  const requiredPairs = [
+    ['sweet rate SR text', 'body[data-theme="sweet"] .rate-tag.rate-SR', '#4E3BA8'],
+    ['sweet rate SSR text', 'body[data-theme="sweet"] .rate-tag.rate-SSR', '#8A4F10'],
+    ['sweet rate UR text', 'body[data-theme="sweet"] .rate-tag.rate-UR', '#9F2F67'],
+    ['sweet expedition title', 'body[data-theme="sweet"] .expedition-reward-modal__title', '#B83274'],
+    ['sweet expedition reward stardust', 'body[data-theme="sweet"] .expedition-reward-item[data-reward-type="stardust"]', '#8A4F10'],
+    ['sweet expedition reward material', 'body[data-theme="sweet"] .expedition-reward-item[data-reward-type="material"]', '#1F5C4D'],
+    ['sweet expedition reward bond', 'body[data-theme="sweet"] .expedition-reward-item[data-reward-type="bond"]', '#4E3BA8'],
+    ['sweet expedition confirm button', 'body[data-theme="sweet"] .expedition-confirm-button', '#C73578'],
+  ];
+
+  for (const [label, selector, color] of requiredPairs) {
+    const idx = cssText.indexOf(selector);
+    if (idx === -1) {
+      throw new Error(`缺少 ${selector}`);
+    }
+    const block = cssText.slice(idx, idx + 400);
+    if (!block.includes(color)) {
+      throw new Error(`${label} 未使用 ${color}`);
+    }
+    stats.push(`${label}=ok`);
+  }
+
+  // 淺底白字 / 淡粉字配粉底風險檢查（限 sweet 機率與探險 modal 區塊）
+  const sweetContrastIdx = cssText.indexOf('V2.3.8 — Sweet 顯示可讀性與召喚星塵同步修正');
+  if (sweetContrastIdx === -1) {
+    notes.push('styles.css 缺少 V2.3.8 sweet contrast 區塊標記');
+  } else {
+    const block = cssText.slice(sweetContrastIdx);
+    if (/\.rate-tag[\s\S]{0,120}color:\s*#FFF/i.test(block)) {
+      notes.push('sweet 機率區塊疑似淺底白字');
+    }
+    stats.push('sweet contrast 區塊=ok');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) {
+    return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  }
+  return summary;
+}
+
+/**
+ * V2.4.0 — SSR / UR 抽卡演出特效檢查（靜態分析）
+ * 只檢查與回報，不會自動修改資料。
+ */
+async function checkSummonReveal() {
+  const [svcRes, uiRes, cssRes, devRes, swRes, indexRes] = await Promise.all([
+    fetch('./src/summonRevealService.js'),
+    fetch('./src/ui.js'),
+    fetch('./src/styles.css'),
+    fetch('./src/devService.js'),
+    fetch('./service-worker.js'),
+    fetch('./index.html'),
+  ]);
+
+  if (!svcRes.ok) throw new Error('無法讀取 summonRevealService.js');
+  if (!uiRes.ok || !cssRes.ok || !devRes.ok || !swRes.ok || !indexRes.ok) {
+    throw new Error('無法讀取 ui / styles / devService / service-worker / index');
+  }
+
+  const svcText = await svcRes.text();
+  const uiText = await uiRes.text();
+  const cssText = await cssRes.text();
+  const devText = await devRes.text();
+  const swText = await swRes.text();
+  const indexText = await indexRes.text();
+  const notes = [];
+  const stats = [];
+
+  // 1. playSummonReveal / SSR / UR / 狀態 API 是否存在
+  const requiredApis = [
+    'export async function playSummonReveal',
+    'export function playSSRReveal',
+    'export function playURReveal',
+    'export function isSummonRevealPlaying',
+    'export function skipSummonReveal',
+    'export function getHighestRarity',
+    'export function getRevealPetFromResults',
+    'export function shouldPlayReveal',
+    'export function createSummonRevealOverlay',
+    'export function removeSummonRevealOverlay',
+    'export function pickDebugPetByRarity',
+  ];
+  for (const sig of requiredApis) {
+    if (!svcText.includes(sig)) throw new Error(`summonRevealService 缺少 ${sig}`);
+  }
+  stats.push('summonReveal API=ok');
+
+  // 2. SSR / UR class
+  if (!cssText.includes('.summon-reveal-overlay.is-ssr')) throw new Error('缺少 SSR class');
+  if (!cssText.includes('.summon-reveal-overlay.is-ur')) throw new Error('缺少 UR class');
+  stats.push('SSR/UR class=ok');
+
+  // 3. skip button
+  if (!svcText.includes('summon-reveal-skip') || !cssText.includes('.summon-reveal-skip')) {
+    throw new Error('缺少跳過按鈕 (skip)');
+  }
+  if (!/min-height:\s*44px/.test(cssText.slice(cssText.indexOf('.summon-reveal-skip'), cssText.indexOf('.summon-reveal-skip') + 400))) {
+    notes.push('skip button 高度可能不足 44px');
+  }
+  stats.push('skip button=ok');
+
+  // 4. overlay 結束後會移除
+  if (!/removeSummonRevealOverlay[\s\S]{0,300}removeChild/.test(svcText)
+    && !svcText.includes("querySelectorAll('.summon-reveal-overlay')")) {
+    notes.push('overlay 可能未確保移除');
+  } else {
+    stats.push('overlay remove=ok');
+  }
+  if (!/finally\s*\{[\s\S]{0,200}removeSummonRevealOverlay/.test(svcText)) {
+    notes.push('playSummonReveal finally 可能未移除 overlay');
+  }
+
+  // 5. Debug mode 判斷
+  if (!devText.includes('export function isDebugMode')) throw new Error('缺少 isDebugMode');
+  if (!devText.includes("params.get('debug')") || !devText.includes('questnote_debug')) {
+    notes.push('isDebugMode 可能未支援 ?debug=1 / localStorage');
+  }
+  stats.push('isDebugMode=ok');
+
+  // 6. Debug 測試按鈕放在設定頁開發測試區，且只在 dev / debug mode 顯示
+  if (!indexText.includes('id="btn-test-ssr-reveal"') || !indexText.includes('id="btn-test-ur-reveal"')) {
+    throw new Error('設定頁缺少 SSR / UR 演出測試按鈕');
+  }
+  if (!indexText.includes('id="dev-reveal-tests"')) {
+    throw new Error('設定頁缺少 dev-reveal-tests 群組');
+  }
+  if (!/dev-reveal-tests['"]\)[\s\S]{0,120}hidden\s*=\s*!debugOn/.test(uiText)) {
+    notes.push('dev-reveal-tests 顯示可能未以 debugOn 控制');
+  }
+  if (!/btn-test-ssr-reveal[\s\S]{0,120}testSummonReveal\('SSR'\)/.test(uiText)
+    || !/btn-test-ur-reveal[\s\S]{0,120}testSummonReveal\('UR'\)/.test(uiText)) {
+    throw new Error('演出測試按鈕未綁定 testSummonReveal');
+  }
+  stats.push('設定頁演出測試按鈕受 dev/debug 控制=ok');
+
+  // 7. 測試按鈕不呼叫正式抽卡 / 寫入資料 function
+  const testFnIdx = uiText.indexOf('async function testSummonReveal');
+  if (testFnIdx === -1) throw new Error('缺少 testSummonReveal');
+  const testFnBlock = uiText.slice(testFnIdx, testFnIdx + 600);
+  const forbidden = ['pullOnce', 'performTenPull', 'addPetToCollection', 'addFragments', 'updateGachaStats', 'spendStardust'];
+  for (const fn of forbidden) {
+    if (testFnBlock.includes(fn)) {
+      throw new Error(`testSummonReveal 不應呼叫 ${fn}`);
+    }
+  }
+  stats.push('測試按鈕不觸碰正式抽卡=ok');
+
+  // 8. Reduce Motion 支援
+  if (!svcText.includes('prefers-reduced-motion') && !svcText.includes('reduceMotion')) {
+    throw new Error('summonRevealService 未支援 reduce motion');
+  }
+  if (!cssText.includes('@media (prefers-reduced-motion: reduce)')
+    || !cssText.includes('.summon-reveal-overlay.is-reduced')) {
+    notes.push('CSS reduce motion 支援可能不完整');
+  }
+  stats.push('reduce motion=ok');
+
+  // 9. 單抽 / 十連整合
+  if (!/shouldPlayReveal\(result\.rarity\)[\s\S]{0,200}playSummonReveal/.test(uiText)) {
+    notes.push('單抽演出整合可能缺失');
+  }
+  if (!/getHighestRarity\(result\.results\)[\s\S]{0,300}playSummonReveal/.test(uiText)) {
+    notes.push('十連演出整合可能缺失');
+  }
+
+  // 10. SW 是否 precache 新檔
+  if (!swText.includes('src/summonRevealService.js')) {
+    notes.push('service-worker 未 precache summonRevealService.js');
+  } else {
+    stats.push('SW precache=ok');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) {
+    return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  }
+  return summary;
+}
+
+/**
+ * V2.5.0 — 每日 / 每週任務系統檢查（靜態 + 執行期）
+ * 只檢查與回報，不會自動清除資料。
+ */
+async function checkQuestSystem() {
+  const [svcRes, uiRes, indexRes, backupRes, swRes] = await Promise.all([
+    fetch('./src/questService.js'),
+    fetch('./src/ui.js'),
+    fetch('./index.html'),
+    fetch('./src/backupService.js'),
+    fetch('./service-worker.js'),
+  ]);
+  if (!svcRes.ok) throw new Error('無法讀取 questService.js');
+  if (!uiRes.ok || !indexRes.ok || !backupRes.ok || !swRes.ok) {
+    throw new Error('無法讀取 ui / index / backup / service-worker');
+  }
+
+  const svcText = await svcRes.text();
+  const uiText = await uiRes.text();
+  const indexText = await indexRes.text();
+  const backupText = await backupRes.text();
+  const swText = await swRes.text();
+  const notes = [];
+  const stats = [];
+
+  // 1. 必要 API 存在
+  const requiredApis = [
+    'export function normalizeQuestProgress',
+    'export function initQuestProgress',
+    'export function getTodayKey',
+    'export function getWeekKey',
+    'export function rolloverQuestProgress',
+    'export async function updateQuestProgress',
+    'export async function claimQuestReward',
+    'export async function getQuestSummary',
+  ];
+  for (const sig of requiredApis) {
+    if (!svcText.includes(sig)) throw new Error(`questService 缺少 ${sig}`);
+  }
+  stats.push('quest API=ok');
+
+  // 8/9. claimQuestReward / updateQuestProgress 是否被 UI 使用
+  if (!uiText.includes('claimQuestReward')) throw new Error('ui.js 未使用 claimQuestReward');
+  if (!uiText.includes('updateQuestProgress')) throw new Error('ui.js 未使用 updateQuestProgress');
+  stats.push('ui 事件接入=ok');
+
+  // 12. quest UI 渲染容器
+  if (!indexText.includes('id="quest-panel"')) throw new Error('index.html 缺少 quest-panel 容器');
+  if (!uiText.includes('function renderQuestPanel')) throw new Error('ui.js 缺少 renderQuestPanel');
+  stats.push('quest UI 容器=ok');
+
+  // 10/11. backup 是否包含 questProgress 且 migration 支援
+  if (!backupText.includes('questProgress')) throw new Error('backupService 未包含 questProgress');
+  if (!backupText.includes('normalizeQuestProgress')) throw new Error('backupService 未使用 normalizeQuestProgress');
+  stats.push('backup questProgress=ok');
+
+  if (!swText.includes('src/questService.js')) {
+    notes.push('service-worker 未 precache questService.js');
+  } else {
+    stats.push('SW precache=ok');
+  }
+
+  // 執行期：questProgress 結構、rollover、資料合理性
+  const qp = await getQuestProgress();
+  if (!qp || typeof qp !== 'object') throw new Error('questProgress 不存在');
+  if (qp.daily?.dateKey !== getTodayKey()) {
+    throw new Error(`daily.dateKey 非今天（${qp.daily?.dateKey} != ${getTodayKey()}）`);
+  }
+  if (qp.weekly?.weekKey !== getWeekKey()) {
+    throw new Error(`weekly.weekKey 非本週（${qp.weekly?.weekKey} != ${getWeekKey()}）`);
+  }
+
+  const dailyQuests = qp.daily?.quests || {};
+  const weeklyQuests = qp.weekly?.quests || {};
+  if (Object.keys(dailyQuests).length < DAILY_QUEST_DEFS.length) {
+    throw new Error('daily quests 數量不足');
+  }
+  if (Object.keys(weeklyQuests).length < WEEKLY_QUEST_DEFS.length) {
+    throw new Error('weekly quests 數量不足');
+  }
+
+  for (const quest of [...Object.values(dailyQuests), ...Object.values(weeklyQuests)]) {
+    if (typeof quest.current !== 'number' || typeof quest.target !== 'number') {
+      throw new Error(`quest ${quest.id} current/target 型別錯誤`);
+    }
+    if (quest.target <= 0 || quest.current < 0 || quest.current > quest.target) {
+      throw new Error(`quest ${quest.id} current/target 不合理（${quest.current}/${quest.target}）`);
+    }
+    if (typeof quest.claimed !== 'boolean' || typeof quest.completed !== 'boolean') {
+      throw new Error(`quest ${quest.id} claimed/completed 非 boolean`);
+    }
+  }
+  stats.push(`daily=${Object.keys(dailyQuests).length} weekly=${Object.keys(weeklyQuests).length}`);
+
+  if (typeof qp.stats?.totalDailyQuestsClaimed !== 'number'
+    || typeof qp.stats?.totalWeeklyQuestsClaimed !== 'number') {
+    notes.push('stats 領取次數型別可能錯誤');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.5.0 — 冒險任務可讀性檢查（sweet / default 對比度）
+ */
+async function checkQuestContrast() {
+  const cssRes = await fetch('./src/styles.css');
+  if (!cssRes.ok) throw new Error('無法讀取 styles.css');
+  const cssText = await cssRes.text();
+  const stats = [];
+  const notes = [];
+
+  const requiredPairs = [
+    ['sweet quest-card bg', 'body[data-theme="sweet"] .quest-card {', '#FFF8FC'],
+    ['sweet quest-card title', 'body[data-theme="sweet"] .quest-card__title {', '#3D2633'],
+    ['sweet reward chip stardust bg', 'body[data-theme="sweet"] .quest-reward-chip[data-reward-type="stardust"]', '#FFF1D8'],
+    ['sweet reward chip stardust text', 'body[data-theme="sweet"] .quest-reward-chip[data-reward-type="stardust"]', '#8A4F10'],
+    ['sweet claim button bg', 'body[data-theme="sweet"] .quest-claim-button {', '#C73578'],
+    ['sweet claim button text', 'body[data-theme="sweet"] .quest-claim-button {', '#FFFFFF'],
+    ['sweet daily tab text', 'body[data-theme="sweet"] .quest-tab.is-active[data-scope="daily"]', '#B83274'],
+    ['default quest-card bg', 'body[data-theme="default"] .quest-card {', '#1B2542'],
+    ['default quest-card title', 'body[data-theme="default"] .quest-card__title {', '#F4F7FF'],
+    ['default reward chip stardust text', 'body[data-theme="default"] .quest-reward-chip[data-reward-type="stardust"]', '#FDE68A'],
+  ];
+
+  for (const [label, selector, color] of requiredPairs) {
+    const idx = cssText.indexOf(selector);
+    if (idx === -1) throw new Error(`缺少 ${selector}`);
+    const block = cssText.slice(idx, idx + 220);
+    if (!block.includes(color)) throw new Error(`${label} 未使用 ${color}`);
+    stats.push(`${label}=ok`);
+  }
+
+  // 淺底白字 / 粉底淡粉字風險（限 V2.5.0 quest 區塊）
+  const blockIdx = cssText.indexOf('V2.5.0 — 冒險任務');
+  if (blockIdx === -1) {
+    notes.push('styles.css 缺少 V2.5.0 冒險任務區塊標記');
+  } else {
+    const questBlock = cssText.slice(blockIdx);
+    if (/body\[data-theme="sweet"\] \.quest-card__title \{[^}]*#FFF/i.test(questBlock)) {
+      notes.push('sweet quest 卡片標題疑似白字（淺底風險）');
+    }
+    if (/body\[data-theme="sweet"\] \.quest-card__description \{[^}]*#FFC/i.test(questBlock)) {
+      notes.push('sweet quest 描述疑似淡色（粉底風險）');
+    }
+    stats.push('sweet quest contrast 區塊=ok');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.6.0 — 寵物羈絆解放系統檢查（靜態 + 執行期）
+ * 只檢查與回報，不會自動清除資料。
+ */
+async function checkBondSystem() {
+  const [collectionRes, dialogueRes, uiRes, backupRes] = await Promise.all([
+    fetch('./src/collectionService.js'),
+    fetch('./src/companionDialogueService.js'),
+    fetch('./src/ui.js'),
+    fetch('./src/backupService.js'),
+  ]);
+  if (!collectionRes.ok || !dialogueRes.ok || !uiRes.ok || !backupRes.ok) {
+    throw new Error('無法讀取 collection / dialogue / ui / backup');
+  }
+
+  const collectionText = await collectionRes.text();
+  const dialogueText = await dialogueRes.text();
+  const uiText = await uiRes.text();
+  const backupText = await backupRes.text();
+  const notes = [];
+  const stats = [];
+
+  // 3/4/8. 必要 API 存在
+  const requiredApis = [
+    'export function normalizeBondUnlocks',
+    'export async function updatePetBondUnlocks',
+    'export async function getPetBondUnlockStatus',
+    'export function getBondUnlocksByLevel',
+    'export async function hasBondLiberated',
+  ];
+  for (const sig of requiredApis) {
+    if (!collectionText.includes(sig)) throw new Error(`collectionService 缺少 ${sig}`);
+  }
+  stats.push('bond API=ok');
+
+  // normalizeEntry 是否整合 bondUnlocks（migration 支援）
+  if (!/normalizeEntry[\s\S]{0,600}bondUnlocks:\s*normalizeBondUnlocks/.test(collectionText)) {
+    throw new Error('normalizeEntry 未整合 normalizeBondUnlocks（舊資料 migration 可能失效）');
+  }
+  stats.push('normalizeEntry 補 bondUnlocks=ok');
+
+  // 9. companion dialogue 是否支援 bond lines
+  if (!dialogueText.includes('BOND_DIALOGUES') || !dialogueText.includes('getBondDialogueLine')) {
+    throw new Error('companionDialogueService 缺少羈絆台詞（BOND_DIALOGUES / getBondDialogueLine）');
+  }
+  stats.push('bond dialogue=ok');
+
+  // 10. UI 是否有 bond-section 容器與徽章
+  if (!uiText.includes('bond-section')) throw new Error('ui.js 缺少 bond-section 容器');
+  if (!uiText.includes('bond-badge')) throw new Error('ui.js 缺少 bond-badge');
+  if (!uiText.includes('updatePetBondUnlocks')) throw new Error('ui.js 未使用 updatePetBondUnlocks');
+  stats.push('bond UI=ok');
+
+  // 7. backup 是否包含 bondUnlocks（collection 走 normalizeCollectionItem→normalizeEntry）
+  if (!backupText.includes('normalizeCollectionItem')) {
+    throw new Error('backupService 未使用 normalizeCollectionItem');
+  }
+  stats.push('backup bondUnlocks=ok');
+
+  // 執行期：collection item bondUnlocks 完整性、與 bondLevel 一致性、Lv.5 解放
+  const items = await dbGetAll(STORES.COLLECTION);
+  const requiredFields = ['dialogueLv2', 'badgeLv3', 'homeEffectLv4', 'bondFrameLv5', 'bondStoryLv5', 'bondLiberated', 'notifiedLevels'];
+  let liberatedCount = 0;
+  let inconsistent = 0;
+  for (const raw of items) {
+    const item = normalizeCollectionItem(raw);
+    const bu = item.bondUnlocks;
+    if (!bu || typeof bu !== 'object') {
+      throw new Error(`圖鑑 ${item.petId} 缺少 bondUnlocks`);
+    }
+    for (const field of requiredFields) {
+      if (!(field in bu)) {
+        throw new Error(`圖鑑 ${item.petId} bondUnlocks 缺少欄位 ${field}`);
+      }
+    }
+    if (!Array.isArray(bu.notifiedLevels)) {
+      throw new Error(`圖鑑 ${item.petId} notifiedLevels 必須為陣列`);
+    }
+    const lv = item.bondLevel ?? 1;
+    // 6. bondLevel 與 bondUnlocks 一致
+    const expect = {
+      dialogueLv2: lv >= 2,
+      badgeLv3: lv >= 3,
+      homeEffectLv4: lv >= 4,
+      bondFrameLv5: lv >= 5,
+      bondStoryLv5: lv >= 5,
+      bondLiberated: lv >= 5,
+    };
+    for (const [k, v] of Object.entries(expect)) {
+      if (bu[k] !== v) inconsistent += 1;
+    }
+    // 5. Lv.5 標示
+    if (lv >= 5) {
+      liberatedCount += 1;
+      if (!bu.bondLiberated) {
+        throw new Error(`圖鑑 ${item.petId} 已達 Lv.5 但未標示 bondLiberated`);
+      }
+    }
+  }
+  if (inconsistent > 0) {
+    notes.push(`${inconsistent} 個旗標與 bondLevel 不一致（重新開啟 App 會 normalize 修正）`);
+  }
+  stats.push(`collection=${items.length} 已解放=${liberatedCount}`);
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.6.0 — 羈絆 UI 可讀性檢查（sweet / default 對比度）
+ */
+async function checkBondContrast() {
+  const cssRes = await fetch('./src/styles.css');
+  if (!cssRes.ok) throw new Error('無法讀取 styles.css');
+  const cssText = await cssRes.text();
+  const stats = [];
+  const notes = [];
+
+  const requiredPairs = [
+    ['sweet bond badge bg', 'body[data-theme="sweet"] .bond-badge {', '#EEE9FF'],
+    ['sweet bond badge text', 'body[data-theme="sweet"] .bond-badge {', '#4E3BA8'],
+    ['sweet bond story bg', 'body[data-theme="sweet"] .bond-story {', '#FFF8FC'],
+    ['sweet bond story text', 'body[data-theme="sweet"] .bond-story {', '#3D2633'],
+    ['sweet bond liberated label', 'body[data-theme="sweet"] .bond-liberated-label {', '#FFF1D8'],
+    ['sweet bond liberated text', 'body[data-theme="sweet"] .bond-liberated-label {', '#8A4F10'],
+    ['default bond badge text', 'body[data-theme="default"] .bond-badge {', '#DDD6FE'],
+    ['default bond story text', 'body[data-theme="default"] .bond-story {', '#F4F7FF'],
+  ];
+
+  for (const [label, selector, color] of requiredPairs) {
+    const idx = cssText.indexOf(selector);
+    if (idx === -1) throw new Error(`缺少 ${selector}`);
+    const block = cssText.slice(idx, idx + 260);
+    if (!block.includes(color)) throw new Error(`${label} 未使用 ${color}`);
+    stats.push(`${label}=ok`);
+  }
+
+  // 淺底白字 / 粉底淡粉字風險（限 V2.6.0 羈絆區塊）
+  const blockIdx = cssText.indexOf('V2.6.0 — 寵物羈絆解放系統');
+  if (blockIdx === -1) {
+    notes.push('styles.css 缺少 V2.6.0 羈絆區塊標記');
+  } else {
+    const bondBlock = cssText.slice(blockIdx);
+    if (/body\[data-theme="sweet"\] \.bond-badge \{[^}]*color:\s*#FFF/i.test(bondBlock)) {
+      notes.push('sweet 羈絆徽章疑似白字（淺底風險）');
+    }
+    if (/body\[data-theme="sweet"\] \.bond-story \{[^}]*color:\s*#FFC/i.test(bondBlock)) {
+      notes.push('sweet 羈絆故事疑似淡色（粉底風險）');
+    }
+    stats.push('sweet bond contrast 區塊=ok');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.6.1 — 寵物原圖放大檢視器檢查（靜態）
+ * 檢查 openPetImageViewer / closePetImageViewer / 三處入口 / 關閉方式 / z-index。
+ */
+async function checkPetImageViewer() {
+  const [uiRes, swRes] = await Promise.all([
+    fetch('./src/ui.js'),
+    fetch('./service-worker.js'),
+  ]);
+  if (!uiRes.ok) throw new Error('無法讀取 ui.js');
+  const uiText = await uiRes.text();
+  const stats = [];
+  const notes = [];
+
+  // 1/2/4/5. 核心 API
+  const requiredApis = [
+    'export function openPetImageViewer',
+    'export function openPetImageViewerBySrc',
+    'export function closePetImageViewer',
+  ];
+  for (const sig of requiredApis) {
+    if (!uiText.includes(sig)) throw new Error(`ui.js 缺少 ${sig}`);
+  }
+  stats.push('viewer API=ok');
+
+  // 直接點圖片開原圖（撫摸頁面 / 陪伴預覽）
+  if (!uiText.includes('openPetImageViewer(companion.id)')) {
+    throw new Error('撫摸頁面圖片缺少開啟原圖入口（openPetImageViewer(companion.id)）');
+  }
+  // 詳情頁點圖片入口
+  if (!uiText.includes('detail-view-image')) {
+    throw new Error('寵物詳情頁缺少開啟原圖入口（detail-view-image）');
+  }
+  stats.push('點圖片入口（撫摸頁 / 詳情頁）=ok');
+
+  // 6. 關閉按鈕 7. 背景關閉
+  if (!uiText.includes('pet-image-viewer__close')) throw new Error('viewer 缺少關閉按鈕');
+  if (!uiText.includes('data-viewer-close')) throw new Error('viewer 缺少背景/關閉點擊機制');
+  // 8. Escape 關閉
+  if (!uiText.includes('handlePetImageViewerKeydown')) {
+    throw new Error('viewer 缺少 Escape 關閉支援');
+  }
+  stats.push('關閉方式（X/背景/Escape）=ok');
+
+  // 9. z-index 高於一般 modal（透過 SW 版本 + CSS 檢查於 contrast 檢查中補充）
+  if (swRes.ok) {
+    const swText = await swRes.text();
+    if (!swText.includes('v261')) notes.push('service-worker CACHE_NAME 可能未更新為 v261');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.6.1 — 原圖檢視器可讀性與 z-index 檢查（sweet / default）
+ */
+async function checkPetImageViewerContrast() {
+  const cssRes = await fetch('./src/styles.css');
+  if (!cssRes.ok) throw new Error('無法讀取 styles.css');
+  const cssText = await cssRes.text();
+  const stats = [];
+  const notes = [];
+
+  // 9. z-index 高於一般 modal（modal-overlay = 200）
+  const zIdx = cssText.match(/\.pet-image-viewer\s*\{[^}]*z-index:\s*(\d+)/);
+  if (!zIdx) throw new Error('缺少 .pet-image-viewer z-index');
+  if (Number(zIdx[1]) <= 200) throw new Error(`viewer z-index (${zIdx[1]}) 未高於一般 modal(200)`);
+  stats.push(`z-index=${zIdx[1]}`);
+
+  // 10/11. sweet / default viewer 有明確 background + color
+  const requiredPairs = [
+    ['sweet viewer content bg', 'body[data-theme="sweet"] .pet-image-viewer__content {', '#FFFFFF'],
+    ['sweet viewer content text', 'body[data-theme="sweet"] .pet-image-viewer__content {', '#3D2633'],
+    ['sweet viewer close text', 'body[data-theme="sweet"] .pet-image-viewer__close {', '#B83274'],
+    ['default viewer content bg', 'body[data-theme="default"] .pet-image-viewer__content {', '#141A2E'],
+    ['default viewer content text', 'body[data-theme="default"] .pet-image-viewer__content {', '#F4F7FF'],
+  ];
+  for (const [label, selector, color] of requiredPairs) {
+    const idx = cssText.indexOf(selector);
+    if (idx === -1) throw new Error(`缺少 ${selector}`);
+    const block = cssText.slice(idx, idx + 220);
+    if (!block.includes(color)) throw new Error(`${label} 未使用 ${color}`);
+    stats.push(`${label}=ok`);
+  }
+
+  // 12/13. 淺底白字 / 粉底淡粉字風險（限 V2.6.1 viewer 區塊）
+  const blockIdx = cssText.indexOf('V2.6.1 — 寵物原圖放大檢視器');
+  if (blockIdx === -1) {
+    notes.push('styles.css 缺少 V2.6.1 viewer 區塊標記');
+  } else {
+    const vb = cssText.slice(blockIdx);
+    if (/body\[data-theme="sweet"\] \.pet-image-viewer__content \{[^}]*color:\s*#FFF/i.test(vb)) {
+      notes.push('sweet viewer 內容疑似白字（淺底風險）');
+    }
+    if (/body\[data-theme="sweet"\] \.pet-image-viewer__hint \{[^}]*color:\s*#FFC/i.test(vb)) {
+      notes.push('sweet viewer 提示疑似淡色（粉底風險）');
+    }
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
  * 執行健康檢查並輸出結果至 console
  * @returns {Promise<{ ok: boolean, results: Record<string, string>, errors: string[] }>}
  */
@@ -715,6 +1393,15 @@ export async function runAppHealthCheck() {
   await runCheck('pet images', checkPetImageSystem);
   await runCheck('version info', checkVersionInfo);
   await runCheck('sweet toast contrast', checkSweetToastContrast);
+  await runCheck('gacha sync', checkGachaSync);
+  await runCheck('sweet contrast', checkSweetContrast);
+  await runCheck('summon reveal', checkSummonReveal);
+  await runCheck('quest system', checkQuestSystem);
+  await runCheck('quest contrast', checkQuestContrast);
+  await runCheck('bond system', checkBondSystem);
+  await runCheck('bond contrast', checkBondContrast);
+  await runCheck('pet image viewer', checkPetImageViewer);
+  await runCheck('pet image viewer contrast', checkPetImageViewerContrast);
   await runCheck('service worker', checkServiceWorker);
 
   console.log('QuestNote Health Check:');

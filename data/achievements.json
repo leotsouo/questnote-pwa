@@ -204,6 +204,36 @@
     "titleReward": "羈絆締結者"
   },
   {
+    "id": "ach_first_bond_badge",
+    "name": "第一份羈絆",
+    "description": "任一寵物解鎖 Lv.3 羈絆徽章。",
+    "category": "bond",
+    "conditionType": "bond_badge_unlocked",
+    "target": 1,
+    "reward": { "stardust": 100, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "羈絆初醒者"
+  },
+  {
+    "id": "ach_first_bond_liberation",
+    "name": "羈絆解放",
+    "description": "任一寵物達到 Lv.5 並完成羈絆解放。",
+    "category": "bond",
+    "conditionType": "bond_liberated_count",
+    "target": 1,
+    "reward": { "stardust": 200, "adventureEnergy": 0, "materials": { "star_shard": 1 } },
+    "titleReward": "羈絆同行者"
+  },
+  {
+    "id": "ach_bond_liberation_3",
+    "name": "三位同行者",
+    "description": "累積 3 隻寵物完成羈絆解放。",
+    "category": "bond",
+    "conditionType": "bond_liberated_count",
+    "target": 3,
+    "reward": { "stardust": 300, "adventureEnergy": 0, "materials": {}, "items": { "item_stardust_candy": 1 } },
+    "titleReward": "靈獸摯友"
+  },
+  {
     "id": "ach_active_7_days",
     "name": "持續前進",
     "description": "有任務完成紀錄的日期累積 7 天。",
@@ -432,5 +462,45 @@
     "target": 20,
     "reward": { "stardust": 300, "adventureEnergy": 0, "materials": { "star_shard": 1 } },
     "titleReward": "幸運常客"
+  },
+  {
+    "id": "ach_first_daily_quest",
+    "name": "今日冒險開始",
+    "description": "領取第一個每日任務獎勵。",
+    "category": "quest",
+    "conditionType": "quest_daily_claimed_total",
+    "target": 1,
+    "reward": { "stardust": 50, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "今日啟程者"
+  },
+  {
+    "id": "ach_daily_quest_10",
+    "name": "每日任務熟手",
+    "description": "累積領取 10 個每日任務獎勵。",
+    "category": "quest",
+    "conditionType": "quest_daily_claimed_total",
+    "target": 10,
+    "reward": { "stardust": 150, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "每日冒險家"
+  },
+  {
+    "id": "ach_first_weekly_quest",
+    "name": "每週挑戰開始",
+    "description": "領取第一個每週任務獎勵。",
+    "category": "quest",
+    "conditionType": "quest_weekly_claimed_total",
+    "target": 1,
+    "reward": { "stardust": 100, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "週任務挑戰者"
+  },
+  {
+    "id": "ach_weekly_quest_10",
+    "name": "穩定挑戰者",
+    "description": "累積領取 10 個每週任務獎勵。",
+    "category": "quest",
+    "conditionType": "quest_weekly_claimed_total",
+    "target": 10,
+    "reward": { "stardust": 300, "adventureEnergy": 0, "materials": { "star_shard": 1 } },
+    "titleReward": "穩定挑戰者"
   }
 ]

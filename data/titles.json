@@ -20,6 +20,9 @@
     { "id": "title_astral_traveler", "name": "星界旅人", "sourceAchievementId": "ach_astral_rift_3" },
     { "id": "title_reliable_partner", "name": "可靠夥伴", "sourceAchievementId": "ach_first_bond_lv3" },
     { "id": "title_bond_binder", "name": "羈絆締結者", "sourceAchievementId": "ach_first_bond_lv5" },
+    { "id": "title_bond_awakener", "name": "羈絆初醒者", "sourceAchievementId": "ach_first_bond_badge" },
+    { "id": "title_bond_companion", "name": "羈絆同行者", "sourceAchievementId": "ach_first_bond_liberation" },
+    { "id": "title_beast_soulmate", "name": "靈獸摯友", "sourceAchievementId": "ach_bond_liberation_3" },
     { "id": "title_persistent", "name": "持續前進者", "sourceAchievementId": "ach_active_7_days" },
     { "id": "title_data_guardian", "name": "資料守護者", "sourceAchievementId": "ach_first_export" },
     { "id": "title_today_planner", "name": "今日規劃者", "sourceAchievementId": "ach_plan_today_first" },
@@ -42,6 +45,10 @@
     { "id": "title_check_in_3", "name": "三日同行者", "sourceAchievementId": "ach_check_in_3_streak" },
     { "id": "title_check_in_7", "name": "七日守約者", "sourceAchievementId": "ach_check_in_7_streak" },
     { "id": "title_first_wheel", "name": "幸運初醒者", "sourceAchievementId": "ach_first_wheel_spin" },
-    { "id": "title_wheel_20", "name": "幸運常客", "sourceAchievementId": "ach_wheel_spin_20" }
+    { "id": "title_wheel_20", "name": "幸運常客", "sourceAchievementId": "ach_wheel_spin_20" },
+    { "id": "title_daily_quest_starter", "name": "今日啟程者", "sourceAchievementId": "ach_first_daily_quest" },
+    { "id": "title_daily_adventurer", "name": "每日冒險家", "sourceAchievementId": "ach_daily_quest_10" },
+    { "id": "title_weekly_challenger", "name": "週任務挑戰者", "sourceAchievementId": "ach_first_weekly_quest" },
+    { "id": "title_steady_challenger", "name": "穩定挑戰者", "sourceAchievementId": "ach_weekly_quest_10" }
   ]
 }

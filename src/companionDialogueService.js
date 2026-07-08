@@ -191,6 +191,42 @@ const DIALOGUES = {
   },
 };
 
+/**
+ * V2.6.0 羈絆解放：專屬羈絆台詞
+ * Lv.2 解鎖親近台詞、Lv.5 解鎖羈絆台詞（通用，不需每隻客製）。
+ */
+export const BOND_DIALOGUES = {
+  lv2: [
+    '牠似乎越來越習慣待在你身邊了。',
+    '牠輕輕靠近你，像是在替你加油。',
+    '今天也一起完成一點小目標吧。',
+  ],
+  lv5: [
+    '你們之間的羈絆已經非常深了。',
+    '牠看著你，像是早就明白你的心情。',
+    '無論今天任務多難，牠都會陪你走完。',
+  ],
+};
+
+/**
+ * 取得羈絆台詞（若寵物已解鎖）。
+ * bondLiberated（Lv.5）時優先抽 Lv.5 台詞，否則若已解鎖 Lv.2 親近台詞則抽 Lv.2。
+ * @param {object|null} companion - 需含 bondUnlockState
+ * @returns {string|null}
+ */
+export function getBondDialogueLine(companion) {
+  const state = companion?.bondUnlockState;
+  if (!state) return null;
+  let pool = null;
+  if (state.bondLiberated) {
+    pool = BOND_DIALOGUES.lv5;
+  } else if (state.dialogueLv2) {
+    pool = BOND_DIALOGUES.lv2;
+  }
+  if (!pool || pool.length === 0) return null;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 /** 自動選擇情境的優先順序 */
 const SCENARIO_PRIORITY = [
   'expedition_done',
@@ -346,9 +382,29 @@ export function getDialogueForScenario(scenario, companion) {
 /**
  * 取得陪伴寵物台詞（寵物專屬 lore 優先，否則用情境台詞）
  */
+/** 不應被羈絆台詞插隊的行動導向情境 */
+const BOND_DIALOGUE_BLOCKED_SCENARIOS = new Set([
+  'expedition_done',
+  'check_in_available',
+  'wheel_available',
+  'urgent_task',
+  'important_task',
+  'has_overdue',
+  'subtasks_all_done',
+]);
+
 export function getCompanionDialogue(ctx, forceScenario = null) {
   const { tasks, todayCompleted, companion } = ctx;
   const scenario = forceScenario || resolveScenario(ctx);
+
+  // 羈絆台詞：在非行動導向情境下，依解鎖狀態有機率插入
+  if (!BOND_DIALOGUE_BLOCKED_SCENARIOS.has(scenario)) {
+    const bondLine = getBondDialogueLine(companion);
+    if (bondLine) {
+      const chance = companion?.bondUnlockState?.bondLiberated ? 0.35 : 0.2;
+      if (Math.random() < chance) return bondLine;
+    }
+  }
 
   const scenarioList = ['expedition_done', 'check_in_available', 'wheel_available', 'check_in_done', 'stardust_ready', 'ten_pull_ready', 'expedition_ready', 'workshop_materials_ready', 'gift_available', 'companion_likes_gift', 'no_materials', 'idle', 'welcome', 'no_plan_today', 'plan_focused', 'plan_heavy', 'has_overdue', 'subtasks_all_done', 'habit_none', 'habit_today_remaining', 'habit_today_done', 'habit_streak_7', 'habit_weekly_near_goal'];
   if (scenarioList.includes(scenario)) {

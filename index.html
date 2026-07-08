@@ -59,6 +59,8 @@
 
       <section id="homeDailyBlessingContainer" class="daily-blessing-section daily-blessing-section--home" aria-label="每日祝福"></section>
 
+      <section id="quest-panel" class="quest-panel" aria-label="冒險任務"></section>
+
       <section id="achievement-strip" class="achievement-strip card" data-action="go-achievements" role="button" tabindex="0"></section>
 
       <section id="companion-section" class="companion-section"></section>
@@ -505,12 +507,23 @@
 
       <section id="dev-tools-section" class="card dev-tools" hidden>
         <h2 class="section-title">開發測試用</h2>
-        <p class="dev-tools__note">僅在本機開發環境顯示，GitHub Pages 正式版不會出現。</p>
-        <button id="btn-dev-unlock" class="btn btn--dev btn--block">測試：解鎖 8 隻高稀有寵物</button>
-        <button id="btn-dev-unlock-all" class="btn btn--dev btn--block">測試：解鎖全圖鑑</button>
-        <button id="btn-dev-stardust" class="btn btn--dev btn--block">測試：獲得 100,000 星塵</button>
-        <button id="btn-dev-expedition" class="btn btn--dev btn--block">測試：立即結束派遣探險</button>
-        <button id="btn-dev-daily-blessing" class="btn btn--dev btn--block">測試：重置每日祝福</button>
+
+        <div id="dev-cheat-tools" class="dev-tools__group" hidden>
+          <p class="dev-tools__note">僅在本機開發環境顯示，GitHub Pages 正式版不會出現。</p>
+          <button id="btn-dev-unlock" class="btn btn--dev btn--block">測試：解鎖 8 隻高稀有寵物</button>
+          <button id="btn-dev-unlock-all" class="btn btn--dev btn--block">測試：解鎖全圖鑑</button>
+          <button id="btn-dev-stardust" class="btn btn--dev btn--block">測試：獲得 100,000 星塵</button>
+          <button id="btn-dev-companion-bond" class="btn btn--dev btn--block">測試：陪伴寵物親密度 +1 等</button>
+          <button id="btn-dev-expedition" class="btn btn--dev btn--block">測試：立即結束派遣探險</button>
+          <button id="btn-dev-daily-blessing" class="btn btn--dev btn--block">測試：重置每日祝福</button>
+        </div>
+
+        <div id="dev-reveal-tests" class="dev-tools__group" hidden>
+          <h3 class="dev-tools__subtitle">抽卡演出測試</h3>
+          <p class="dev-tools__note">僅測試 SSR / UR 演出，不會消耗星塵或獲得寵物。</p>
+          <button id="btn-test-ssr-reveal" class="btn btn--dev btn--block">測試 SSR 演出</button>
+          <button id="btn-test-ur-reveal" class="btn btn--dev btn--block">測試 UR 演出</button>
+        </div>
       </section>
 
       <p class="settings-note" id="settings-footer-note">QuestNote — 離線個人任務記事 App</p>

@@ -76,6 +76,7 @@ import {
 
 import { initHabits, getAllHabits, getHabitPageStats } from './habitService.js';
 import { initDailyCheckIn, getDailyCheckIn, loadWheelRewards } from './dailyCheckInService.js';
+import { initQuestProgress, getQuestSummary } from './questService.js';
 
 import {
   initWorkshop,
@@ -152,6 +153,8 @@ const appState = {
   craftablesCatalog: [],
 
   dailyCheckIn: null,
+
+  questSummary: null,
 
   onReset: resetAllData,
 
@@ -372,6 +375,11 @@ async function refreshState(options = {}) {
 
   appState.achievementSummary = await getAchievementSummary(appState.allPets);
 
+  appState.questSummary = await getQuestSummary().catch((err) => {
+    console.error('[QuestNote] 冒險任務載入失敗:', err);
+    return null;
+  });
+
 
 
   await renderAfterRefresh(options.renderMode ?? 'current');
@@ -395,6 +403,8 @@ async function resetAllData() {
   await initAchievements();
 
   await initDailyCheckIn();
+
+  await initQuestProgress();
 
   await initWorkshop();
 
@@ -602,6 +612,8 @@ async function initApp() {
   await initAchievements();
 
   await initDailyCheckIn();
+
+  await initQuestProgress();
 
   try {
     await loadWheelRewards();

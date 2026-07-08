@@ -44,6 +44,8 @@ import {
   canPetCompanion,
   getPetCooldownRemaining,
   formatCooldown,
+  updatePetBondUnlocks,
+  getBondUnlocksByLevel,
 } from './collectionService.js';
 import { getBondUpLine } from './companionService.js';
 import {
@@ -93,7 +95,15 @@ import {
   CATEGORY_ICONS,
   formatAchievementReward,
 } from './achievementService.js';
-import { isDevMode, unlockDevTestPets, unlockAllDevPets, grantDevStardust, devForceCompleteExpedition, resetDevDailyBlessing } from './devService.js';
+import { isDevMode, isDebugMode, unlockDevTestPets, unlockAllDevPets, grantDevStardust, devForceCompleteExpedition, resetDevDailyBlessing, raiseDevCompanionBond } from './devService.js';
+import {
+  playSummonReveal,
+  shouldPlayReveal,
+  getHighestRarity,
+  getRevealPetFromResults,
+  isSummonRevealPlaying,
+  pickDebugPetByRarity,
+} from './summonRevealService.js';
 import {
   escapeHtml,
   emptyStateHtml,
@@ -159,6 +169,7 @@ import {
   isYesterday,
 } from './dailyCheckInService.js';
 import { MATERIAL_LABELS } from './expeditionService.js';
+import { updateQuestProgress, claimQuestReward } from './questService.js';
 
 /** 稀有度中文與色彩 */
 export const RARITY_LABELS = {
@@ -187,6 +198,7 @@ let expeditionStatusTimer = null;
 let expeditionStatusIndex = -1;
 let companionDialogueTimer = null;
 let lastCompanionId = null;
+let lastCompanionBondLevel = null;
 let lastUserActivity = Date.now();
 let currentTasksView = 'tasks';
 let selectedExpeditionAreaId = null;
@@ -201,6 +213,8 @@ let completedSectionCollapsed = true;
 let completedRangeFilter = 'completed_1_month';
 let archivedHabitsCollapsed = true;
 let workshopTab = 'materials';
+let questPanelTab = 'daily';
+let questPanelCollapsed = false;
 let dailyWheelRewards = null;
 let dailyBlessingCollapsed = true;
 let dailyBlessingCollapseDay = null;
@@ -429,6 +443,41 @@ function bindDelegatedEvents() {
     const id = card?.dataset.id;
     const action = target.dataset.action;
 
+    if (action === 'quest-toggle-collapse') {
+      questPanelCollapsed = !questPanelCollapsed;
+      renderQuestPanel();
+      return;
+    }
+
+    if (action === 'quest-tab') {
+      const scope = target.dataset.scope;
+      if (scope && scope !== questPanelTab) {
+        questPanelTab = scope;
+        renderQuestPanel();
+      }
+      return;
+    }
+
+    if (action === 'claim-quest') {
+      const questCard = target.closest('.quest-card');
+      const questId = questCard?.dataset.questId;
+      const scope = questCard?.dataset.scope;
+      if (!questId || !scope || target.disabled) return;
+      target.disabled = true;
+      const result = await claimQuestReward(questId, scope);
+      if (!result.success) {
+        showToast(result.error || '領取失敗', 'warning');
+        await onRefresh({ renderMode: ['tasks'] });
+        return;
+      }
+      const rewardText = formatDailyRewardBundle(result.reward) || '獎勵';
+      const label = scope === 'weekly' ? '每週任務' : '每日任務';
+      showToast(`已領取${label}獎勵：${rewardText}`, 'reward', 3200);
+      await onRefresh({ renderMode: ['tasks'] });
+      await handleAchievementCheckAfterAction();
+      return;
+    }
+
     if (action === 'toggle' && id) {
       const cardEl = target.closest('.task-card');
       const taskBefore = state.tasks.find((t) => t.id === id);
@@ -459,6 +508,10 @@ function bindDelegatedEvents() {
         }
       }
 
+      if (isCompleting) {
+        await trackQuest('complete_task');
+      }
+
       await onRefresh();
 
       if (isCompleting && taskViewMode === 'today') {
@@ -471,6 +524,9 @@ function bindDelegatedEvents() {
       if (result.reward?.bond?.leveledUp) {
         const bondLine = getBondUpLine(state.companion);
         showBondLevelUpToast(result.reward.bond.newLevel, bondLine);
+      }
+      if (result.reward?.bond) {
+        await notifyBondUnlocks(state.companion?.id);
       }
       await handleAchievementCheckAfterAction();
     } else if (action === 'toggle-subtask' && id) {
@@ -650,9 +706,13 @@ function bindDelegatedEvents() {
   document.getElementById('btn-dev-unlock-all')?.addEventListener('click', handleDevUnlockAll);
 
   document.getElementById('btn-dev-stardust')?.addEventListener('click', handleDevStardust);
+  document.getElementById('btn-dev-companion-bond')?.addEventListener('click', handleDevCompanionBond);
 
   document.getElementById('btn-dev-expedition')?.addEventListener('click', handleDevExpedition);
   document.getElementById('btn-dev-daily-blessing')?.addEventListener('click', handleDevResetDailyBlessing);
+
+  document.getElementById('btn-test-ssr-reveal')?.addEventListener('click', () => testSummonReveal('SSR'));
+  document.getElementById('btn-test-ur-reveal')?.addEventListener('click', () => testSummonReveal('UR'));
 
   document.getElementById('view-expedition')?.addEventListener('click', (e) => {
     const emptyBtn = e.target.closest('[data-action="empty-go-gacha"]');
@@ -775,6 +835,7 @@ function bindDelegatedEvents() {
       cardEl?.classList.add('habit-card--completing');
       const result = await completeHabitToday(id);
       if (result.success) {
+        await trackQuest('complete_habit');
         await onRefresh({ renderMode: ['habits', 'tasks'] });
         renderHabitsView();
         const parts = [];
@@ -787,6 +848,9 @@ function bindDelegatedEvents() {
           showToast('今日習慣星塵已達上限，仍已記錄完成。', 'warning');
         } else {
           showToast('習慣已記錄完成', 'success');
+        }
+        if (result.bondGiven > 0) {
+          await notifyBondUnlocks(state.companion?.id);
         }
         await handleAchievementCheckAfterAction();
       } else {
@@ -874,6 +938,10 @@ export function switchView(viewName) {
     renderWorkshopView();
   }
 
+  if (viewName === 'gacha') {
+    renderGachaView();
+  }
+
   if (viewName === 'settings') {
     renderSettingsView();
   }
@@ -922,6 +990,124 @@ export function openModal(contentHtml) {
 export function closeModal() {
   document.getElementById('modal-overlay')?.classList.remove('open');
   document.body.classList.remove('modal-open');
+}
+
+/* ─── V2.6.1 寵物原圖放大檢視器（獨立 overlay，可疊在其他 modal 之上） ─── */
+
+let petImageViewerLastFocus = null;
+
+/**
+ * 依 petId 開啟寵物原圖檢視器（自 enrichedCollection / allPets / companion 取資料）。
+ * 僅對已獲得且有圖片的寵物開啟。
+ * @param {string} petId
+ */
+export function openPetImageViewer(petId) {
+  if (!petId) return;
+  const pet =
+    (state.enrichedCollection || []).find((p) => p.id === petId) ||
+    (state.companion?.id === petId ? state.companion : null) ||
+    (state.allPets || []).find((p) => p.id === petId);
+  if (!pet) return;
+  if (pet.owned === false) {
+    showToast('尚未獲得此寵物', 'info');
+    return;
+  }
+  const src = getPetImageSrc(pet);
+  if (!src) {
+    showToast('這隻寵物沒有可顯示的原圖', 'info');
+    return;
+  }
+  const original = pet.nickname ? petOriginalName(pet) : '';
+  openPetImageViewerBySrc(src, petDisplayName(pet), pet.rarity, original);
+}
+
+/**
+ * 直接以圖片來源開啟寵物原圖檢視器。
+ * @param {string} imageSrc 圖片來源
+ * @param {string} petName 主名稱（有暱稱時顯示暱稱）
+ * @param {string} rarity 稀有度
+ * @param {string} [originalName] 副名稱（原名，僅有暱稱時顯示）
+ */
+export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName = '') {
+  const resolved = getPetImageSrc({ image: imageSrc }) || imageSrc;
+  if (!resolved) return;
+
+  // 確保單一實例，先清掉任何殘留的檢視器
+  closePetImageViewer();
+  petImageViewerLastFocus = document.activeElement;
+
+  const rarityClass = rarity ? `rarity-${rarity}` : '';
+  const safeName = escapeHtml(petName || '寵物原圖');
+  const overlay = document.createElement('div');
+  overlay.className = 'pet-image-viewer';
+  overlay.id = 'pet-image-viewer';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', `${petName || '寵物'} 原圖`);
+  overlay.innerHTML = `
+    <div class="pet-image-viewer__backdrop" data-viewer-close></div>
+    <div class="pet-image-viewer__content ${rarityClass}">
+      <button class="pet-image-viewer__close" type="button" aria-label="關閉原圖檢視" data-viewer-close>×</button>
+      <div class="pet-image-viewer__header">
+        <div class="pet-image-viewer__title">${safeName}</div>
+        ${originalName ? `<div class="pet-image-viewer__subtitle">原名：${escapeHtml(originalName)}</div>` : ''}
+        ${rarity ? `<div class="pet-image-viewer__meta">${escapeHtml(rarity)}</div>` : ''}
+      </div>
+      <div class="pet-image-viewer__image-frame is-loading">
+        <div class="pet-image-viewer__loading" aria-hidden="true">圖片載入中…</div>
+        <div class="pet-image-viewer__error" role="alert">圖片暫時無法載入</div>
+        <img
+          class="pet-image-viewer__image"
+          src="${resolved}"
+          alt="${safeName}"
+          decoding="async"
+          onload="var f=this.closest('.pet-image-viewer__image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-loaded');}"
+          onerror="this.onerror=null;var f=this.closest('.pet-image-viewer__image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}"
+        />
+      </div>
+      <div class="pet-image-viewer__hint">點擊背景或按關閉返回</div>
+    </div>`;
+
+  // 只有背景與關閉鈕會關閉；點圖片本身不關閉，避免誤觸
+  overlay.addEventListener('click', (e) => {
+    if (e.target.closest('[data-viewer-close]')) {
+      closePetImageViewer();
+    }
+  });
+
+  document.body.appendChild(overlay);
+  document.body.classList.add('is-pet-image-viewer-open');
+  // 用 capture 攔截 Escape，確保只關閉 viewer 而不會連帶關掉底層 modal
+  document.addEventListener('keydown', handlePetImageViewerKeydown, true);
+  warmPetImageCache(resolved).catch(() => {});
+
+  requestAnimationFrame(() => {
+    overlay.classList.add('is-open');
+    overlay.querySelector('.pet-image-viewer__close')?.focus();
+  });
+}
+
+function handlePetImageViewerKeydown(e) {
+  if (e.key !== 'Escape') return;
+  if (!document.getElementById('pet-image-viewer')) return;
+  e.stopPropagation();
+  closePetImageViewer();
+}
+
+/** 關閉寵物原圖檢視器並清理 DOM / body class / 事件 / 焦點 */
+export function closePetImageViewer() {
+  document.removeEventListener('keydown', handlePetImageViewerKeydown, true);
+  const overlay = document.getElementById('pet-image-viewer');
+  if (overlay) overlay.remove();
+  document.body.classList.remove('is-pet-image-viewer-open');
+  if (petImageViewerLastFocus && typeof petImageViewerLastFocus.focus === 'function') {
+    try {
+      petImageViewerLastFocus.focus();
+    } catch {
+      /* 元素可能已不存在 */
+    }
+  }
+  petImageViewerLastFocus = null;
 }
 
 /** 確認彈窗 */
@@ -1027,6 +1213,7 @@ export function renderSharedUI() {
   setText('settings-energy', wallet.adventureEnergy ?? 0);
   renderAchievementStrip();
   renderNavBadges();
+  updateGachaAffordability();
   renderGachaDailyBlessingEntry();
   maybeRefreshExpeditionBubble();
 }
@@ -1172,6 +1359,7 @@ function renderTasksView() {
 
   renderAchievementStrip();
   renderDailyBlessingSection();
+  renderQuestPanel();
   renderCompanionSection(companion, companionLine);
   renderTodayPlanSummary(tasks, today);
   renderHabitSummary();
@@ -1456,6 +1644,162 @@ function buildDailyBlessingCardData() {
   return { html, hasPending, allDone, checkedIn, spun, compactSummary, statusBadgeText };
 }
 
+/* ─── 冒險任務（每日 / 每週） ─── */
+
+/** 依獎勵 bundle 建立顯示用 chip 清單 */
+function buildQuestRewardChips(reward) {
+  const chips = [];
+  if (!reward) return chips;
+  if (reward.stardust > 0) {
+    chips.push({ type: 'stardust', label: `星塵 +${reward.stardust}` });
+  }
+  if (reward.adventureEnergy > 0) {
+    chips.push({ type: 'energy', label: `冒險能量 +${reward.adventureEnergy}` });
+  }
+  if (reward.materials) {
+    for (const [id, amt] of Object.entries(reward.materials)) {
+      if (amt > 0) {
+        chips.push({ type: 'material', label: `${getMaterialName(id) || MATERIAL_LABELS[id] || id} +${amt}` });
+      }
+    }
+  }
+  if (reward.items) {
+    for (const [id, amt] of Object.entries(reward.items)) {
+      if (amt > 0) {
+        const info = getCraftableInfo(id);
+        chips.push({ type: 'item', label: `${info?.name || id} +${amt}` });
+      }
+    }
+  }
+  return chips;
+}
+
+function buildQuestCardHtml(quest) {
+  const percent = quest.target > 0
+    ? Math.min(100, Math.round((quest.current / quest.target) * 100))
+    : 0;
+
+  let cardStateClass = '';
+  let badgeClass = 'quest-status-badge--progress';
+  let badgeText = '進行中';
+  let btnText = '進行中';
+  let btnDisabled = true;
+  if (quest.status === 'claimable') {
+    cardStateClass = ' is-complete';
+    badgeClass = 'quest-status-badge--claimable';
+    badgeText = '可領取';
+    btnText = '領取';
+    btnDisabled = false;
+  } else if (quest.status === 'claimed') {
+    cardStateClass = ' is-claimed';
+    badgeClass = 'quest-status-badge--claimed';
+    badgeText = '已領取';
+    btnText = '已領取';
+    btnDisabled = true;
+  }
+
+  const chips = buildQuestRewardChips(quest.reward)
+    .map((chip) => `<span class="quest-reward-chip" data-reward-type="${chip.type}">${escapeHtml(chip.label)}</span>`)
+    .join('');
+
+  return `
+    <div class="quest-card${cardStateClass}" data-quest-id="${escapeHtml(quest.id)}" data-scope="${escapeHtml(quest.scope)}">
+      <div class="quest-card__head">
+        <span class="quest-card__title">${escapeHtml(quest.title)}</span>
+        <span class="quest-status-badge ${badgeClass}">${badgeText}</span>
+      </div>
+      <p class="quest-card__description">${escapeHtml(quest.description)}</p>
+      <div class="quest-card__progress">
+        <div class="quest-card__progress-bar">
+          <div class="quest-card__progress-fill" style="width:${percent}%"></div>
+        </div>
+        <span class="quest-card__progress-text">${quest.current} / ${quest.target}</span>
+      </div>
+      ${chips ? `<div class="quest-card__rewards">${chips}</div>` : ''}
+      <button
+        type="button"
+        class="quest-claim-button"
+        data-action="claim-quest"
+        ${btnDisabled ? 'disabled' : ''}
+      >${btnText}</button>
+    </div>`;
+}
+
+function renderQuestPanel() {
+  const el = document.getElementById('quest-panel');
+  if (!el) return;
+
+  const summary = state.questSummary;
+  if (!summary) {
+    el.hidden = true;
+    el.innerHTML = '';
+    return;
+  }
+  el.hidden = false;
+
+  const scope = questPanelTab === 'weekly' ? 'weekly' : 'daily';
+  const activeData = scope === 'weekly' ? summary.weekly : summary.daily;
+
+  const totalClaimable = summary.totalClaimable ?? 0;
+  const rewardBadge = totalClaimable > 0
+    ? `<span class="quest-panel__reward-badge">有獎勵可領</span>`
+    : '';
+
+  const collapsed = questPanelCollapsed;
+  el.classList.toggle('quest-panel--collapsed', collapsed);
+
+  const listHtml = activeData.items.length > 0
+    ? activeData.items.map(buildQuestCardHtml).join('')
+    : '<p class="quest-empty">目前沒有可顯示的任務。</p>';
+
+  el.innerHTML = `
+    <div class="quest-panel__inner card">
+      <button
+        type="button"
+        class="quest-panel__header"
+        data-action="quest-toggle-collapse"
+        aria-expanded="${!collapsed}"
+        aria-controls="quest-panel-body"
+      >
+        <span class="quest-panel__title">冒險任務</span>
+        ${rewardBadge}
+        <span class="quest-panel__collapse-icon" aria-hidden="true">${collapsed ? '▾' : '▴'}</span>
+      </button>
+      <div class="quest-summary">
+        <span class="quest-summary__item">每日完成：${summary.daily.completedCount} / ${summary.daily.total}</span>
+        <span class="quest-summary__item">每週完成：${summary.weekly.completedCount} / ${summary.weekly.total}</span>
+      </div>
+      <div class="quest-panel__body" id="quest-panel-body" ${collapsed ? 'hidden' : ''}>
+        <div class="quest-panel__tabs" role="tablist" aria-label="冒險任務分頁">
+          <button type="button" class="quest-tab${scope === 'daily' ? ' is-active' : ''}" data-action="quest-tab" data-scope="daily" role="tab" aria-selected="${scope === 'daily'}">
+            每日${summary.daily.claimableCount > 0 ? ` <span class="quest-tab__dot" aria-hidden="true"></span>` : ''}
+          </button>
+          <button type="button" class="quest-tab${scope === 'weekly' ? ' is-active' : ''}" data-action="quest-tab" data-scope="weekly" role="tab" aria-selected="${scope === 'weekly'}">
+            每週${summary.weekly.claimableCount > 0 ? ` <span class="quest-tab__dot" aria-hidden="true"></span>` : ''}
+          </button>
+        </div>
+        <div class="quest-list">${listHtml}</div>
+      </div>
+    </div>`;
+}
+
+/**
+ * 依行為事件更新冒險任務進度，並於任務完成時提示。
+ * 失敗時不影響原本操作（僅 console warn）。
+ */
+async function trackQuest(eventType, amount = 1) {
+  try {
+    const result = await updateQuestProgress(eventType, amount);
+    if (result?.newlyCompleted?.length) {
+      for (const { quest } of result.newlyCompleted) {
+        showToast(`冒險任務完成：${quest.title}`, 'success', 2600);
+      }
+    }
+  } catch (err) {
+    console.warn('[QuestNote] 冒險任務進度更新失敗:', err);
+  }
+}
+
 function renderDailyBlessingSection() {
   const homeEl = document.getElementById('homeDailyBlessingContainer');
   if (!homeEl) return;
@@ -1513,6 +1857,7 @@ async function handleDailyCheckIn() {
     today
   );
   if (willBeAllDone) dailyBlessingCollapsed = true;
+  await trackQuest('daily_checkin');
   await onRefresh({ renderMode: ['tasks', 'gacha'] });
   showDailyBlessingRewardToast(`簽到成功！獲得 ${rewardText}`);
   if (result.streak >= 3) {
@@ -2397,7 +2742,11 @@ async function handleCompanionPet() {
       }, 400);
     }
 
+    await trackQuest('pet_companion');
     await onRefresh();
+    if (result.leveledUp) {
+      await notifyBondUnlocks(state.companion?.id);
+    }
     const comfortLine = getPetComfortLine(state.companion);
     setCompanionBubbleText(comfortLine, true);
   } catch (err) {
@@ -2412,6 +2761,7 @@ function renderCompanionSection(companion, defaultLine) {
 
   if (!companion) {
     lastCompanionId = null;
+    lastCompanionBondLevel = null;
     stopCompanionDialogueTimer();
     section.innerHTML = emptyStateHtml(
       '🐾',
@@ -2423,8 +2773,12 @@ function renderCompanionSection(companion, defaultLine) {
     return;
   }
 
-  const sameCompanion = lastCompanionId === companion.id && section.querySelector('.companion-card');
+  const sameCompanion =
+    lastCompanionId === companion.id &&
+    lastCompanionBondLevel === (companion.bondLevel ?? 1) &&
+    section.querySelector('.companion-card');
   lastCompanionId = companion.id;
+  lastCompanionBondLevel = companion.bondLevel ?? 1;
 
   if (sameCompanion) {
     updateCompanionBondDisplay(companion);
@@ -2442,14 +2796,26 @@ function renderCompanionSection(companion, defaultLine) {
     : '';
   const petBtnHtml = renderCompanionPetButton(companion);
 
+  const bondState = companion.bondUnlockState || {};
+  const bondCardClasses = [
+    bondState.homeEffectLv4 ? 'has-bond-effect' : '',
+    bondState.bondLiberated ? 'is-bond-liberated' : '',
+  ].filter(Boolean).join(' ');
+  const bondEffectHtml = bondState.homeEffectLv4
+    ? '<div class="companion-bond-effect is-active" aria-hidden="true"></div>'
+    : '';
+  const bondBadge = bondBadgeHtml(companion);
+
   section.innerHTML = `
     <div class="companion-wrap">
       <div class="companion-bubble companion-bubble--visible" id="companion-bubble" aria-live="polite">
         <p class="companion-bubble__text" id="companion-bubble-text">${escapeHtml(defaultLine)}</p>
       </div>
-      <article class="companion-card card ${rarityClass} companion-card--breathe">
+      <article class="companion-card card ${rarityClass} companion-card--breathe ${bondCardClasses}">
         <div class="companion-card__glow"></div>
-        <button type="button" class="companion-card__image" data-action="companion-view-image" aria-label="放大查看 ${escapeHtml(petDisplayName(companion))}">
+        ${bondEffectHtml}
+        ${bondBadge ? `<div class="companion-card__bond-badge">${bondBadge}</div>` : ''}
+        <button type="button" class="companion-card__image companion-pet-image-button" data-action="companion-view-image" aria-label="查看 ${escapeHtml(petDisplayName(companion))}">
           ${petImageHtml(companion, { size: 'lg', loading: 'eager', eager: true, framed: true })}
         </button>
         <div class="companion-card__body" data-action="companion-talk" role="button" tabindex="0">
@@ -2596,7 +2962,11 @@ function bindCompanionPreviewInteractions(companion) {
       if (result.leveledUp) {
         setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
       }
+      await trackQuest('pet_companion');
       await onRefresh({ renderMode: ['tasks'] });
+      if (result.leveledUp) {
+        await notifyBondUnlocks(companion.id);
+      }
       const updated = state.companion;
       if (updated) {
         openCompanionImageModal(updated);
@@ -2608,9 +2978,10 @@ function bindCompanionPreviewInteractions(companion) {
     }
   };
 
+  // 點圖片放大原圖；撫摸改由下方「撫摸」按鈕觸發
   img?.addEventListener('click', (e) => {
     e.stopPropagation();
-    onPet(e);
+    openPetImageViewer(companion.id);
   });
   petBtn?.addEventListener('click', onPet);
 
@@ -2630,6 +3001,7 @@ function bindCompanionPreviewInteractions(companion) {
         return;
       }
       playCompanionComfortEffect();
+      await trackQuest('gift_pet');
       await onRefresh({ renderMode: ['tasks', 'workshop'] });
       const updated = state.companion;
       if (updated) {
@@ -2642,6 +3014,7 @@ function bindCompanionPreviewInteractions(companion) {
       }
       if (result.leveledUp) {
         setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
+        await notifyBondUnlocks(companion.id);
       }
       await handleAchievementCheckAfterAction();
     } catch (err) {
@@ -2688,7 +3061,7 @@ function openCompanionImageModal(companion) {
         ${buildCompanionPetButtonHtml(companion)}
       </div>
       ${feedSection}
-      <p class="companion-image-preview__hint">點擊夥伴或按撫摸 · 餵食使用工坊食物</p>
+      <p class="companion-image-preview__hint">點圖片放大原圖 · 按撫摸與夥伴互動 · 餵食使用工坊食物</p>
     </div>
   `);
 
@@ -2967,6 +3340,96 @@ function showBondLevelUpToast(level, customLine = null) {
   }, 3000);
 }
 
+/* ─── V2.6.0 寵物羈絆解放 ─── */
+
+/** 各等級解鎖提示文字 */
+const BOND_UNLOCK_MESSAGES = {
+  2: '羈絆提升！解鎖親近台詞',
+  3: '羈絆提升！解鎖羈絆徽章',
+  4: '羈絆提升！解鎖首頁陪伴特效',
+  5: '羈絆解放！解鎖羈絆外框與故事',
+};
+
+/** 下一個解鎖提示文字 */
+const BOND_NEXT_UNLOCK = {
+  1: '下一個解鎖：Lv.2 親近台詞',
+  2: '下一個解鎖：Lv.3 羈絆徽章',
+  3: '下一個解鎖：Lv.4 首頁陪伴特效',
+  4: '下一個解鎖：Lv.5 羈絆外框與故事',
+  5: '羈絆已完全解放',
+};
+
+/** 已解鎖項目顯示名稱 */
+const BOND_UNLOCK_ITEM_LABELS = {
+  dialogueLv2: '親近台詞',
+  badgeLv3: '羈絆徽章',
+  homeEffectLv4: '首頁陪伴特效',
+  bondFrameLv5: '羈絆外框',
+  bondStoryLv5: '羈絆故事',
+};
+
+/** 羈絆故事：通用開頭 + 依稀有度段落 */
+const BOND_STORY_INTRO =
+  '經過長時間的陪伴，牠已經不只是被召喚而來的夥伴，而是願意與你一起完成每一天目標的同行者。';
+
+const BOND_STORY_BY_RARITY = {
+  N: '牠在日常陪伴中慢慢信任你，成為最穩定的小夥伴。',
+  R: '牠在日常陪伴中慢慢信任你，成為最穩定的小夥伴。',
+  SR: '牠開始主動回應你的努力，像是在提醒你不要放棄。',
+  SSR: '牠身上的力量因你們的羈絆而更加穩定，彷彿願意守護你的每個重要時刻。',
+  UR: '傳說級靈獸真正認可了你。從此，牠不只是被召喚的存在，而是與你並肩前行的命運夥伴。',
+};
+
+function getBondStoryText(rarity) {
+  return BOND_STORY_BY_RARITY[rarity] || BOND_STORY_BY_RARITY.N;
+}
+
+/** 取得羈絆徽章 HTML（Lv.3 以上顯示；Lv.5 顯示羈絆解放） */
+function bondBadgeHtml(pet) {
+  const bondLevel = pet?.bondLevel ?? 0;
+  if (!pet?.owned || bondLevel < 3) return '';
+  if (bondLevel >= 5) {
+    return '<span class="bond-badge is-liberated" aria-label="羈絆解放">羈絆解放</span>';
+  }
+  return `<span class="bond-badge" aria-label="羈絆 Lv.${bondLevel}">羈絆 Lv.${bondLevel}</span>`;
+}
+
+/** 顯示羈絆解鎖提示（Lv.5 使用更醒目樣式，皆為輕量 toast，不干擾操作） */
+function showBondUnlockToast(level) {
+  const message = BOND_UNLOCK_MESSAGES[level];
+  if (!message) return;
+  const liberated = level >= 5;
+  const toast = document.createElement('div');
+  toast.className = `bond-unlock-toast${liberated ? ' bond-unlock-toast--liberated' : ''}`;
+  toast.setAttribute('role', 'status');
+  const icon = liberated ? '🌟' : '💠';
+  toast.innerHTML = `<span class="bond-unlock-toast__icon" aria-hidden="true">${icon}</span><span class="bond-unlock-toast__text">${escapeHtml(message)}</span>`;
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('show'));
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 320);
+  }, liberated ? 3800 : 3000);
+}
+
+/**
+ * 檢查指定寵物是否有新的羈絆解鎖，並依序顯示提示。
+ * notifiedLevels 由 updatePetBondUnlocks 維護，不會重複彈出。
+ * @param {string} petId
+ */
+async function notifyBondUnlocks(petId) {
+  if (!petId) return;
+  try {
+    const { newlyUnlockedLevels } = await updatePetBondUnlocks(petId);
+    if (!newlyUnlockedLevels?.length) return;
+    newlyUnlockedLevels.forEach((lv, i) => {
+      setTimeout(() => showBondUnlockToast(lv), 700 + i * 800);
+    });
+  } catch (err) {
+    console.warn('[QuestNote] 羈絆解鎖檢查失敗:', err);
+  }
+}
+
 function showRewardToast(amount, energy = 0) {
   const toast = document.createElement('div');
   toast.className = 'reward-toast reward-toast--reward';
@@ -3009,24 +3472,62 @@ function renderGachaView() {
     ratesEl.innerHTML = Object.entries(pool.rates)
       .map(
         ([r, rate]) =>
-          `<span class="rate-tag rate-${r}">${RARITY_LABELS[r]} ${(rate * 100).toFixed(0)}%</span>`
+          `<span class="rate-tag rate-${r}" data-rarity="${r}"><span class="rate-tag__label">${RARITY_LABELS[r]}</span> <span class="rate-tag__value">${(rate * 100).toFixed(0)}%</span></span>`
       )
       .join('');
   }
 
+  updateGachaAffordability();
+
+  renderGachaDailyBlessingEntry();
+}
+
+/**
+ * Debug：保證播放指定稀有度演出，且不影響任何正式抽卡資料。
+ * 不呼叫 draw / gacha / addPetToCollection / addFragments / updateGachaStats / spendStardust。
+ * @param {'SSR'|'UR'} rarity
+ */
+async function testSummonReveal(rarity) {
+  if (isSummonRevealPlaying()) return;
+  const pet = pickDebugPetByRarity(rarity, state?.allPets);
+  await playSummonReveal({
+    rarity,
+    pet,
+    mode: 'debug',
+    results: [],
+    reduceMotion: state?.userPreferences?.reduceMotion ?? false,
+  });
+  showToast(`${rarity} 演出測試完成，未消耗星塵`, 'info');
+}
+
+/**
+ * 依最新 state.wallet 更新召喚按鈕狀態與星塵顯示（不重建召喚頁）。
+ * 找不到召喚按鈕（不在召喚頁 / DOM 未就緒）時安全 return。
+ */
+export function updateGachaAffordability() {
+  if (!state?.wallet) return;
+
   const btnSingle = document.getElementById('btn-pull');
   const btnTen = document.getElementById('btn-pull-ten');
-  const hintSingle = document.getElementById('gacha-hint-single');
-  const hintTen = document.getElementById('gacha-hint-ten');
+  if (!btnSingle && !btnTen) return;
 
+  const pool = getActivePool(state.poolsData);
+  const singleCost = pool?.cost ?? GACHA_COST;
+  const stardust = state.wallet.stardust ?? 0;
   const canSingle = stardust >= singleCost;
   const canTen = stardust >= GACHA_TEN_COST;
 
-  if (btnSingle) {
+  setText('gacha-stardust', stardust);
+
+  const hintSingle = document.getElementById('gacha-hint-single');
+  const hintTen = document.getElementById('gacha-hint-ten');
+
+  // 抽卡進行中時（按鈕標記 pulling）不覆蓋「召喚中…」狀態
+  if (btnSingle && btnSingle.dataset.pulling !== '1') {
     btnSingle.disabled = !canSingle;
     btnSingle.textContent = '召喚 1 次';
   }
-  if (btnTen) {
+  if (btnTen && btnTen.dataset.pulling !== '1') {
     btnTen.disabled = !canTen;
     btnTen.textContent = '召喚 10 次';
   }
@@ -3048,21 +3549,25 @@ function renderGachaView() {
       hintTen.hidden = true;
     }
   }
-
-  renderGachaDailyBlessingEntry();
 }
 
 async function handlePull() {
   const pool = getActivePool(state.poolsData);
   const cost = pool.cost ?? GACHA_COST;
 
+  // 依最新 state.wallet 重新判斷，不依賴按鈕 disabled 快照
   if ((state.wallet.stardust ?? 0) < cost) {
     showToast('星塵不足，完成任務可以獲得星塵', 'warning');
+    updateGachaAffordability();
     return;
   }
 
+  // 演出播放中禁止再次抽卡
+  if (isSummonRevealPlaying()) return;
+
   const btn = document.getElementById('btn-pull');
   if (btn) {
+    btn.dataset.pulling = '1';
     btn.disabled = true;
     btn.textContent = '召喚中…';
   }
@@ -3074,24 +3579,42 @@ async function handlePull() {
       onRefresh({ renderMode: ['gacha', 'collection'] }),
       waitForPreloadWithTimeout(preloadPromise, 600),
     ]);
+    // 結果 Modal 前的 SSR / UR 演出（不影響已產生的結果）
+    if (shouldPlayReveal(result.rarity)) {
+      await playSummonReveal({
+        rarity: result.rarity,
+        pet: result.pet,
+        mode: 'single',
+        results: [result],
+        reduceMotion: state.userPreferences?.reduceMotion ?? false,
+      });
+    }
     showPullResult(result);
     showToast('召喚成功！', 'success', 2000);
     await handleAchievementCheckAfterAction();
   } catch (err) {
     showToast(err.message || '召喚失敗', 'error');
   } finally {
+    const btn = document.getElementById('btn-pull');
+    if (btn) delete btn.dataset.pulling;
     renderGachaView();
   }
 }
 
 async function handleTenPull() {
+  // 依最新 state.wallet 重新判斷，不依賴按鈕 disabled 快照
   if ((state.wallet.stardust ?? 0) < GACHA_TEN_COST) {
     showToast('10 連抽需要 1000 星塵', 'warning');
+    updateGachaAffordability();
     return;
   }
 
+  // 演出播放中禁止再次抽卡
+  if (isSummonRevealPlaying()) return;
+
   const btn = document.getElementById('btn-pull-ten');
   if (btn) {
+    btn.dataset.pulling = '1';
     btn.disabled = true;
     btn.textContent = '召喚中…';
   }
@@ -3107,12 +3630,26 @@ async function handleTenPull() {
       onRefresh({ renderMode: ['gacha', 'collection'] }),
       waitForPreloadWithTimeout(preloadPromise, 600),
     ]);
+    // 依最高稀有度播放一次演出（十連中有 UR 播 UR，否則有 SSR 播 SSR）
+    const highestRarity = getHighestRarity(result.results);
+    if (shouldPlayReveal(highestRarity)) {
+      const revealPet = getRevealPetFromResults(result.results, highestRarity);
+      await playSummonReveal({
+        rarity: highestRarity,
+        pet: revealPet,
+        mode: 'ten',
+        results: result.results,
+        reduceMotion: state.userPreferences?.reduceMotion ?? false,
+      });
+    }
     showTenPullResult(result);
     showToast('10 連抽完成！', 'success', 2000);
     await handleAchievementCheckAfterAction();
   } catch (err) {
     showToast(err.message || '10 連抽失敗', 'error');
   } finally {
+    const btn = document.getElementById('btn-pull-ten');
+    if (btn) delete btn.dataset.pulling;
     renderGachaView();
   }
 }
@@ -3485,6 +4022,7 @@ function renderCollectionView() {
           <p class="collection-companion__label">目前陪伴寵物</p>
           <p class="collection-companion__name">${escapeHtml(petDisplayName(state.companion))}</p>
           ${state.companion.nickname ? `<p class="pet-original-name pet-original-name--sm">原名：${escapeHtml(petOriginalName(state.companion))}</p>` : ''}
+          ${bondBadgeHtml(state.companion)}
         </div>
         <span class="badge badge--rarity rarity-${state.companion.rarity}">${state.companion.rarity}</span>`;
       companionEl.classList.remove('collection-companion--empty');
@@ -3508,7 +4046,7 @@ function renderCollectionView() {
       grid.innerHTML = emptyStateHtml('🔍', '沒有符合的寵物', '試試其他稀有度或獲得狀態篩選。');
       lastCollectionGridKey = null;
     } else {
-      const gridKey = `${collectionFilter}|${filtered.map((p) => `${p.id}:${p.owned}:${p.fragments}:${p.stars}:${p.isCompanion}:${p.nickname || ''}`).join(',')}`;
+      const gridKey = `${collectionFilter}|${filtered.map((p) => `${p.id}:${p.owned}:${p.fragments}:${p.stars}:${p.isCompanion}:${p.bondLevel || 0}:${p.nickname || ''}`).join(',')}`;
       if (gridKey !== lastCollectionGridKey || !grid.querySelector('.collection-card')) {
         let ownedEagerCount = 0;
         grid.innerHTML = filtered
@@ -3532,11 +4070,14 @@ function renderCollectionCard(pet, imageOptions = {}) {
   const imgOpts = owned
     ? { size: 'md', loading: eager ? 'eager' : 'lazy', eager }
     : { size: 'md', preview: true, loading: 'lazy' };
+  const liberated = owned && (pet.bondLevel ?? 0) >= 5;
+  const bondBadge = bondBadgeHtml(pet);
   return `
-    <article class="collection-card ${owned ? '' : 'collection-card--locked'} ${rarityClass}" data-pet-id="${pet.id}">
+    <article class="collection-card ${owned ? '' : 'collection-card--locked'} ${rarityClass} ${liberated ? 'is-bond-liberated' : ''}" data-pet-id="${pet.id}">
       <button class="collection-card__tap" data-action="view-detail" aria-label="查看詳情">
         <div class="collection-card__image">
           ${petImageHtml(pet, imgOpts)}
+          ${bondBadge ? `<div class="collection-card__bond-badge">${bondBadge}</div>` : ''}
         </div>
         <div class="collection-card__info">
           ${petNameBlockHtml(pet, { owned, heading: 'h3', className: 'collection-card__name' })}
@@ -3570,6 +4111,42 @@ function openPetDetailModal(petId) {
   const owned = pet.owned;
   const rarityClass = `rarity-${pet.rarity}`;
   const bondLevel = pet.bondLevel ?? 0;
+  const bondLiberated = owned && bondLevel >= 5;
+
+  let bondStatusSection = '';
+  if (owned) {
+    const st = pet.bondUnlockState || {};
+    const unlockedItems = getBondUnlocksByLevel(bondLevel)
+      .filter((k) => BOND_UNLOCK_ITEM_LABELS[k])
+      .map((k) => BOND_UNLOCK_ITEM_LABELS[k]);
+    const unlockedHtml = unlockedItems.length
+      ? unlockedItems.map((t) => `<span class="bond-status-card__chip">${escapeHtml(t)}</span>`).join('')
+      : '<span class="bond-status-card__chip bond-status-card__chip--none">尚未解鎖羈絆內容</span>';
+    const nextHint = BOND_NEXT_UNLOCK[Math.min(Math.max(bondLevel, 1), 5)];
+    const liberatedLabel = st.bondLiberated
+      ? '<span class="bond-liberated-label">羈絆解放</span>'
+      : '';
+    const storyHtml = bondLevel >= 5
+      ? `<div class="bond-story is-unlocked">
+           <p class="bond-story__intro">${escapeHtml(BOND_STORY_INTRO)}</p>
+           <p class="bond-story__rarity">${escapeHtml(getBondStoryText(pet.rarity))}</p>
+         </div>`
+      : '<div class="bond-story is-locked"><p>親密度達到 Lv.5 後解鎖羈絆故事。</p></div>';
+    bondStatusSection = `
+      <section class="bond-section">
+        <div class="bond-section__title-row">
+          <h3 class="bond-section__title">羈絆狀態</h3>
+          ${liberatedLabel}
+        </div>
+        <div class="bond-status-card ${st.bondLiberated ? 'is-unlocked' : 'is-locked'}">
+          <p class="bond-status-card__level">目前親密度 Lv.${bondLevel || 1}</p>
+          <div class="bond-status-card__chips">${unlockedHtml}</div>
+          <p class="bond-status-card__next">${escapeHtml(nextHint)}</p>
+        </div>
+        <h3 class="bond-section__title bond-section__title--story">羈絆故事</h3>
+        ${storyHtml}
+      </section>`;
+  }
 
   let bondSection = '';
   if (owned && pet.bondUnlocks && Object.keys(pet.bondUnlocks).length > 0) {
@@ -3617,10 +4194,15 @@ function openPetDetailModal(petId) {
     : '';
 
   openModal(`
-    <div class="pet-detail ${rarityClass}">
+    <div class="pet-detail pet-detail-card ${rarityClass} ${bondLiberated ? 'is-bond-liberated' : ''}">
       <div class="pet-detail__hero">
-        ${owned ? petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true }) : petImageHtml(pet, { size: 'lg', preview: true, loading: 'lazy' })}
+        ${owned
+          ? `<button type="button" class="pet-detail-image-button" data-action="detail-view-image" data-pet-id="${pet.id}" aria-label="查看 ${escapeHtml(petDisplayName(pet))} 原圖">
+               ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true })}
+             </button>`
+          : petImageHtml(pet, { size: 'lg', preview: true, loading: 'lazy' })}
       </div>
+      ${owned ? '<p class="pet-detail__image-hint">點擊圖片查看原圖</p>' : ''}
       <h2 class="pet-detail__name">${owned ? escapeHtml(petDisplayName(pet)) : '???'}</h2>
       ${owned && pet.nickname ? `<p class="pet-original-name pet-original-name--center">原名：${escapeHtml(petOriginalName(pet))}</p>` : ''}
       ${owned && !pet.nickname ? '<p class="pet-detail__nickname-empty pet-detail__nickname-empty--center">尚未設定暱稱</p>' : ''}
@@ -3635,6 +4217,7 @@ function openPetDetailModal(petId) {
       <p class="pet-detail__desc">${escapeHtml(pet.description)}</p>
       ${owned && pet.lore ? `<p class="pet-detail__lore">${escapeHtml(pet.lore)}</p>` : ''}
       ${!owned ? '<p class="pet-detail__locked">召喚解鎖後，可閱讀完整背景與親密度故事。</p>' : ''}
+      ${bondStatusSection}
       ${bondSection}
       ${nicknameSection}
       ${
@@ -3645,6 +4228,11 @@ function openPetDetailModal(petId) {
       ${owned && pet.isCompanion ? '<p class="companion-badge companion-badge--detail">目前陪伴中</p>' : ''}
     </div>
   `);
+
+  document.querySelector('[data-action="detail-view-image"]')?.addEventListener('click', (e) => {
+    const id = e.currentTarget.dataset.petId;
+    if (id) openPetImageViewer(id);
+  });
 
   document.querySelector('[data-action="set-companion-detail"]')?.addEventListener('click', async (e) => {
     const id = e.target.dataset.petId;
@@ -4003,6 +4591,7 @@ async function handleExpeditionClick(e) {
       );
       selectedExpeditionAreaId = null;
       selectedExpeditionPetId = null;
+      await trackQuest('start_expedition');
       await onRefresh({ renderMode: ['expedition', 'tasks'] });
       startExpeditionTimer();
       showToast('探險已開始！', 'success');
@@ -4014,13 +4603,18 @@ async function handleExpeditionClick(e) {
 
   if (action === 'claim-expedition') {
     const expId = target.dataset.id;
+    const expeditionPetId = state.activeExpedition?.petId ?? null;
     try {
       const result = await claimExpeditionRewards(
         expId,
         state.expeditionAreas,
         state.allPets
       );
-      await onRefresh({ renderMode: ['expedition', 'tasks'] });
+      await trackQuest('complete_expedition');
+      await onRefresh({ renderMode: ['expedition', 'tasks', 'collection'] });
+      if (expeditionPetId) {
+        await notifyBondUnlocks(expeditionPetId);
+      }
       showExpeditionRewardModal(result);
       const matEntries = Object.entries(result.rewards.materials || {}).filter(([, amt]) => amt > 0);
       if (matEntries.length > 0) {
@@ -4045,19 +4639,19 @@ function showExpeditionRewardModal(result) {
 
   openModal(`
     <div class="expedition-reward-modal expedition-reward-modal--animate">
-      <h2 class="modal-title">探險歸來！</h2>
+      <h2 class="modal-title expedition-reward-modal__title">探險歸來！</h2>
       <div class="expedition-reward-modal__pet">
         ${petImageHtml(displayPet, { size: 'md' })}
-        <p>${escapeHtml(petDisplayName(displayPet))}</p>
+        <p class="expedition-reward-modal__pet-name">${escapeHtml(petDisplayName(displayPet))}</p>
         ${displayPet.nickname ? `<p class="pet-original-name pet-original-name--sm">原名：${escapeHtml(petOriginalName(displayPet))}</p>` : ''}
       </div>
       <ul class="expedition-reward-list">
-        <li>✦ 星塵 <strong>+${rewards.stardust}</strong>
+        <li class="expedition-reward-item" data-reward-type="stardust">✦ 星塵 <strong class="expedition-reward-value">+${rewards.stardust}</strong>
           ${rewards.bonusStardust > 0 ? `<span class="expedition-bonus">（基礎 ${rewards.baseStardust} + 加成 ${rewards.bonusStardust}）</span>` : ''}
         </li>
-        ${matEntries.map(([id, amt]) => `<li>📦 ${escapeHtml(getMaterialName(id))} <strong>+${amt}</strong></li>`).join('')}
-        <li>💜 親密度 <strong>+${rewards.bondExp}</strong></li>
-        ${rewards.fragmentGained > 0 ? `<li>💫 寵物碎片 <strong>+${rewards.fragmentGained}</strong></li>` : ''}
+        ${matEntries.map(([id, amt]) => `<li class="expedition-reward-item" data-reward-type="material">📦 ${escapeHtml(getMaterialName(id))} <strong class="expedition-reward-value">+${amt}</strong></li>`).join('')}
+        <li class="expedition-reward-item" data-reward-type="bond">💜 親密度 <strong class="expedition-reward-value">+${rewards.bondExp}</strong></li>
+        ${rewards.fragmentGained > 0 ? `<li class="expedition-reward-item" data-reward-type="fragment">💫 寵物碎片 <strong class="expedition-reward-value">+${rewards.fragmentGained}</strong></li>` : ''}
       </ul>
       <p class="expedition-reward-modal__workshop-hint">可在工坊製作親密度道具。</p>
       ${
@@ -4066,7 +4660,7 @@ function showExpeditionRewardModal(result) {
           : ''
       }
       ${bond?.leveledUp ? `<p class="expedition-levelup">親密度提升至 Lv.${bond.newLevel}！</p>` : ''}
-      <button class="btn btn--primary btn--block" id="expedition-reward-close">確認</button>
+      <button class="btn btn--primary btn--block expedition-confirm-button" id="expedition-reward-close">確認</button>
     </div>
   `);
 
@@ -4526,6 +5120,7 @@ function renderWorkshopView() {
                     <span class="workshop-gift-pet__name">${escapeHtml(petDisplayName(pet))}</span>
                     ${pet.nickname ? `<span class="pet-original-name pet-original-name--xs">原名：${escapeHtml(petOriginalName(pet))}</span>` : ''}
                     <span class="workshop-gift-pet__meta">Lv.${pet.bondLevel ?? 1} · 今日 ${used}/${DAILY_BOND_ITEM_LIMIT}</span>
+                    ${(pet.bondLevel ?? 0) >= 5 ? '<span class="workshop-gift-pet__liberated">羈絆解放</span>' : ''}
                     ${pet.isCompanion ? '<span class="workshop-gift-pet__companion">陪伴中</span>' : ''}
                   </div>
                 </button>`;
@@ -4603,6 +5198,7 @@ async function handleWorkshopClick(e) {
         showToast(result.message, 'warning');
         return;
       }
+      await trackQuest('craft');
       await onRefresh({ renderMode: ['workshop', 'tasks'] });
       renderWorkshopView();
       showToast(result.message, 'success');
@@ -4628,6 +5224,7 @@ async function handleWorkshopClick(e) {
         showToast(result.message, 'warning');
         return;
       }
+      await trackQuest('gift_pet');
       await onRefresh({ renderMode: ['workshop', 'tasks', 'collection'] });
       renderWorkshopView();
       if (result.isFavorite) {
@@ -4637,6 +5234,7 @@ async function handleWorkshopClick(e) {
       }
       if (result.leveledUp) {
         setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
+        await notifyBondUnlocks(petId);
       }
       const petCard = document.querySelector(`.workshop-gift-pet[data-pet-id="${petId}"]`);
       if (petCard && !state.userPreferences?.reduceMotion) {
@@ -5343,8 +5941,16 @@ function renderSettingsView() {
 
   renderThemePickerState(userPreferences?.theme ?? 'default');
 
+  // 開發測試區：本機 dev 或 ?debug=1 / localStorage 皆可顯示
+  const devOn = isDevMode();
+  const debugOn = devOn || isDebugMode();
   const devSection = document.getElementById('dev-tools-section');
-  if (devSection) devSection.hidden = !isDevMode();
+  if (devSection) devSection.hidden = !debugOn;
+  // 作弊類工具僅限本機 dev；演出測試在 debug 模式也可用（供 iPhone PWA 測試）
+  const cheatTools = document.getElementById('dev-cheat-tools');
+  if (cheatTools) cheatTools.hidden = !devOn;
+  const revealTests = document.getElementById('dev-reveal-tests');
+  if (revealTests) revealTests.hidden = !debugOn;
 }
 
 async function updateServiceWorkerStatusDisplay() {
@@ -5412,6 +6018,26 @@ async function handleDevStardust() {
   const total = await grantDevStardust();
   await onRefresh({ renderMode: ['tasks', 'gacha'] });
   alert(`已獲得 100,000 星塵！目前共 ${total.toLocaleString()} 星塵`);
+}
+
+async function handleDevCompanionBond() {
+  if (!isDevMode()) return;
+
+  const result = await raiseDevCompanionBond();
+  if (!result.success) {
+    alert(result.message);
+    return;
+  }
+
+  await onRefresh({ renderMode: ['tasks', 'collection'] });
+
+  if (result.maxed) {
+    showToast('陪伴寵物親密度已滿級 Lv.5', 'info');
+    return;
+  }
+
+  await notifyBondUnlocks(result.petId);
+  showToast(`陪伴寵物親密度提升到 Lv.${result.newLevel}`, 'success');
 }
 
 async function handleDevExpedition() {

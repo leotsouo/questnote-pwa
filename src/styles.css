@@ -1280,6 +1280,7 @@ button.companion-card__image:active {
 }
 
 .collection-card {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1588,6 +1589,17 @@ button.companion-card__image:active {
   height: min(280px, 72vw);
   object-fit: contain;
   border-radius: var(--radius);
+}
+
+/* 撫摸頁面：讓容器尺寸與圖片一致，圖片填滿容器（修正圖片比容器小） */
+.companion-image-preview__frame.pet-image-frame--lg {
+  width: min(300px, 80vw);
+  height: min(300px, 80vw);
+  padding: 8px;
+}
+.companion-image-preview__frame .companion-image-preview__img {
+  width: 100%;
+  height: 100%;
 }
 
 .companion-image-preview__img--error {
@@ -5839,6 +5851,10 @@ body[data-theme="default"] .bond-unlock--open {
   border-color: rgba(167, 139, 250, 0.32);
 }
 
+body[data-theme="default"] .bond-unlock__lv {
+  color: #DDD6FE;
+}
+
 body[data-theme="default"] .bond-unlock__text {
   color: var(--color-text-secondary);
 }
@@ -6807,6 +6823,25 @@ body[data-theme="sweet"] .pet-detail__bond-lv {
 
 body[data-theme="sweet"] .pet-detail__locked {
   color: var(--color-text-muted);
+}
+
+/* V2.6.0 — 親密度解鎖台詞配色（sweet，深色文字確保清楚可讀） */
+body[data-theme="sweet"] .bond-unlock {
+  background: #F3F4F6;
+  border: 1px solid #D4D7DE;
+}
+body[data-theme="sweet"] .bond-unlock--open {
+  background: #FFF8FC;
+  border-color: #F0C9DA;
+}
+body[data-theme="sweet"] .bond-unlock__lv {
+  color: #4E3BA8;
+}
+body[data-theme="sweet"] .bond-unlock__text {
+  color: #616977;
+}
+body[data-theme="sweet"] .bond-unlock--open .bond-unlock__text {
+  color: #3D2633;
 }
 
 body[data-theme="sweet"] .tag {
@@ -9815,5 +9850,1528 @@ body.reduce-motion[data-theme="default"] .default-summon-badge--new {
   animation: none !important;
   opacity: 1 !important;
   transform: none !important;
+}
+
+/* =========================
+   V2.3.8 — Sweet 顯示可讀性與召喚星塵同步修正
+   僅限 body[data-theme="sweet"]，不影響 default 主題
+   ========================= */
+
+/* ── Sweet 召喚頁機率文字可讀性 ── */
+body[data-theme="sweet"] .gacha-rates {
+  background: #FFFFFF;
+  border: 1px solid #F0C9DA;
+  border-radius: 16px;
+  padding: 10px 12px;
+  box-shadow: 0 8px 20px rgba(199, 53, 120, 0.10);
+}
+
+body[data-theme="sweet"] .rate-tag {
+  background: #FFF8FC;
+  border: 1px solid #F7DDEA;
+  color: #3D2633;
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] .rate-tag .rate-tag__label {
+  color: #3D2633;
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] .rate-tag .rate-tag__value {
+  color: #4E3BA8;
+  font-weight: 900;
+}
+
+body[data-theme="sweet"] .rate-tag.rate-N,
+body[data-theme="sweet"] .rate-tag[data-rarity="N"] {
+  background: #F3F4F6;
+  border-color: #D9DDE4;
+  color: #616977;
+}
+body[data-theme="sweet"] .rate-tag.rate-N .rate-tag__label,
+body[data-theme="sweet"] .rate-tag.rate-N .rate-tag__value {
+  color: #616977;
+}
+
+body[data-theme="sweet"] .rate-tag.rate-R,
+body[data-theme="sweet"] .rate-tag[data-rarity="R"] {
+  background: #EAF3FF;
+  border-color: #B7D6F5;
+  color: #2E6FBE;
+}
+body[data-theme="sweet"] .rate-tag.rate-R .rate-tag__label,
+body[data-theme="sweet"] .rate-tag.rate-R .rate-tag__value {
+  color: #2E6FBE;
+}
+
+body[data-theme="sweet"] .rate-tag.rate-SR,
+body[data-theme="sweet"] .rate-tag[data-rarity="SR"] {
+  background: #EEE9FF;
+  border-color: #CFC3F6;
+  color: #4E3BA8;
+}
+body[data-theme="sweet"] .rate-tag.rate-SR .rate-tag__label,
+body[data-theme="sweet"] .rate-tag.rate-SR .rate-tag__value {
+  color: #4E3BA8;
+  font-weight: 900;
+}
+
+body[data-theme="sweet"] .rate-tag.rate-SSR,
+body[data-theme="sweet"] .rate-tag[data-rarity="SSR"] {
+  background: #FFF1D8;
+  border-color: #F0C878;
+  color: #8A4F10;
+}
+body[data-theme="sweet"] .rate-tag.rate-SSR .rate-tag__label,
+body[data-theme="sweet"] .rate-tag.rate-SSR .rate-tag__value {
+  color: #8A4F10;
+  font-weight: 900;
+}
+
+body[data-theme="sweet"] .rate-tag.rate-UR,
+body[data-theme="sweet"] .rate-tag[data-rarity="UR"] {
+  background: #FFE3F0;
+  border-color: #F3A8C7;
+  color: #9F2F67;
+}
+body[data-theme="sweet"] .rate-tag.rate-UR .rate-tag__label,
+body[data-theme="sweet"] .rate-tag.rate-UR .rate-tag__value {
+  color: #9F2F67;
+  font-weight: 900;
+}
+
+/* ── Sweet 探險歸來確認頁面可讀性 ── */
+body[data-theme="sweet"] .modal:has(.expedition-reward-modal) {
+  background: #FFFFFF;
+  border: 1px solid #F0C9DA;
+  box-shadow: 0 18px 44px rgba(199, 53, 120, 0.18);
+  color: #3D2633;
+}
+
+body[data-theme="sweet"] .expedition-reward-modal {
+  background: #FFFFFF;
+  color: #3D2633;
+}
+
+body[data-theme="sweet"] .expedition-reward-modal__title,
+body[data-theme="sweet"] .expedition-reward-modal .modal-title {
+  color: #B83274;
+  font-weight: 900;
+}
+
+body[data-theme="sweet"] .expedition-reward-modal__pet-name {
+  color: #3D2633;
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] .expedition-reward-modal .pet-original-name {
+  color: #6F4C5E;
+}
+
+body[data-theme="sweet"] .expedition-reward-list {
+  background: #FFF8FC;
+  border: 1px solid #F0C9DA;
+  border-radius: 16px;
+  color: #3D2633;
+}
+
+body[data-theme="sweet"] .expedition-reward-item {
+  background: #FFFFFF;
+  border: 1px solid #F7DDEA;
+  color: #3D2633;
+}
+
+body[data-theme="sweet"] .expedition-reward-item .expedition-reward-value {
+  color: inherit;
+  font-weight: 900;
+}
+
+body[data-theme="sweet"] .expedition-reward-item[data-reward-type="stardust"] {
+  background: #FFF1D8;
+  border-color: #F0C878;
+  color: #8A4F10;
+}
+
+body[data-theme="sweet"] .expedition-reward-item[data-reward-type="material"] {
+  background: #E7F6F1;
+  border-color: #8FCDBD;
+  color: #1F5C4D;
+}
+
+body[data-theme="sweet"] .expedition-reward-item[data-reward-type="bond"] {
+  background: #EEE9FF;
+  border-color: #CFC3F6;
+  color: #4E3BA8;
+}
+
+body[data-theme="sweet"] .expedition-reward-item[data-reward-type="fragment"] {
+  background: #FFE3F0;
+  border-color: #F3A8C7;
+  color: #9F2F67;
+}
+
+body[data-theme="sweet"] .expedition-reward-item .expedition-bonus {
+  color: #6F4C5E;
+  font-weight: 600;
+}
+
+body[data-theme="sweet"] .expedition-reward-modal__workshop-hint,
+body[data-theme="sweet"] .expedition-bonus-detail {
+  color: #6F4C5E;
+}
+
+body[data-theme="sweet"] .expedition-levelup {
+  color: #B83274;
+  font-weight: 800;
+}
+
+body[data-theme="sweet"] .expedition-confirm-button,
+body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
+  background: linear-gradient(135deg, #D44786 0%, #C73578 100%);
+  color: #FFFFFF;
+  border: none;
+  font-weight: 800;
+}
+
+/* ============================================================
+   V2.4.0 — SSR / UR 抽卡演出特效
+   全螢幕召喚演出，統一風格（不分 default / sweet），z-index 高於 Modal。
+   ============================================================ */
+.summon-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4000; /* 高於 modal-overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  overflow: hidden;
+  animation: summonRevealFadeIn 260ms ease-out forwards;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.summon-reveal-overlay.is-ssr .summon-reveal-bg {
+  background: radial-gradient(circle at 50% 45%, rgba(167, 139, 250, 0.28) 0%, rgba(8, 11, 22, 0.88) 62%);
+  background-color: rgba(8, 11, 22, 0.88);
+}
+.summon-reveal-overlay.is-ur .summon-reveal-bg {
+  background: radial-gradient(circle at 50% 45%, rgba(139, 92, 246, 0.32) 0%, rgba(5, 8, 18, 0.92) 60%);
+  background-color: rgba(5, 8, 18, 0.92);
+}
+
+.summon-reveal-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.summon-reveal-stage {
+  position: relative;
+  width: min(88vw, 420px);
+  height: min(88vw, 420px);
+  max-height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 光圈 */
+.summon-reveal-aura {
+  position: absolute;
+  width: 62%;
+  height: 62%;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.4);
+  animation: summonAuraPulse 1300ms ease-out 120ms both;
+}
+.summon-reveal-overlay.is-ssr .summon-reveal-aura {
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.55) 0%, rgba(167, 139, 250, 0.35) 45%, transparent 72%);
+}
+.summon-reveal-overlay.is-ur .summon-reveal-aura {
+  background: radial-gradient(circle,
+    rgba(251, 191, 36, 0.5) 0%,
+    rgba(244, 114, 182, 0.42) 32%,
+    rgba(34, 211, 238, 0.34) 56%,
+    transparent 74%);
+}
+
+/* 擴散光環 */
+.summon-reveal-ring {
+  position: absolute;
+  width: 34%;
+  height: 34%;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.3);
+}
+.summon-reveal-overlay.is-ssr .summon-reveal-ring {
+  border: 2px solid rgba(251, 191, 36, 0.56);
+  animation: summonRingBurst 1300ms ease-out 200ms both;
+}
+.summon-reveal-overlay.is-ur .summon-reveal-ring {
+  border: 3px solid rgba(244, 114, 182, 0.62);
+  animation: summonURRingBurst 1800ms cubic-bezier(0.16, 0.8, 0.3, 1) 220ms both;
+}
+
+/* UR 短暫爆光 */
+.summon-reveal-overlay.is-ur::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  animation: summonURFlash 720ms ease-out 620ms both;
+}
+
+/* 粒子 */
+.summon-reveal-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.summon-reveal-particle {
+  position: absolute;
+  bottom: 42%;
+  width: var(--p-size, 6px);
+  height: var(--p-size, 6px);
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: summonParticleDrift var(--p-dur, 1200ms) ease-out var(--p-delay, 0ms) both;
+}
+.summon-reveal-overlay.is-ssr .summon-reveal-particle {
+  background: #FBBF24;
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.8);
+}
+.summon-reveal-overlay.is-ur .summon-reveal-particle:nth-child(3n) { background: #F472B6; box-shadow: 0 0 6px rgba(244, 114, 182, 0.8); }
+.summon-reveal-overlay.is-ur .summon-reveal-particle:nth-child(3n+1) { background: #22D3EE; box-shadow: 0 0 6px rgba(34, 211, 238, 0.8); }
+.summon-reveal-overlay.is-ur .summon-reveal-particle:nth-child(3n+2) { background: #FBBF24; box-shadow: 0 0 6px rgba(251, 191, 36, 0.8); }
+
+/* 卡片 */
+.summon-reveal-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(26px) scale(0.94);
+  animation: summonCardRise 900ms cubic-bezier(0.16, 0.8, 0.3, 1) 260ms both;
+}
+.summon-reveal-overlay.is-ur .summon-reveal-card {
+  animation-delay: 620ms;
+}
+
+.summon-reveal-rarity {
+  font-weight: 900;
+  letter-spacing: 4px;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.5);
+  animation: summonRarityPop 620ms cubic-bezier(0.2, 1.2, 0.4, 1) 360ms both;
+}
+.summon-reveal-overlay.is-ssr .summon-reveal-rarity {
+  font-size: clamp(46px, 15vw, 82px);
+  color: #FDE68A;
+  text-shadow: 0 0 18px rgba(251, 191, 36, 0.7), 0 0 34px rgba(167, 139, 250, 0.5);
+}
+.summon-reveal-overlay.is-ur .summon-reveal-rarity {
+  font-size: clamp(58px, 19vw, 108px);
+  color: #FFFFFF;
+  text-shadow: 0 0 20px rgba(244, 114, 182, 0.8), 0 0 40px rgba(34, 211, 238, 0.6);
+  animation-delay: 720ms;
+}
+
+.summon-reveal-pet-frame {
+  width: clamp(120px, 42vw, 190px);
+  height: clamp(120px, 42vw, 190px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.summon-reveal-pet-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+  transition: opacity 400ms ease-out;
+}
+.summon-reveal-pet-image.is-loaded {
+  opacity: 1;
+}
+
+.summon-reveal-caption {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.summon-reveal-overlay.is-ssr .summon-reveal-caption { color: #FDE68A; }
+.summon-reveal-overlay.is-ur .summon-reveal-caption { color: #FBCFE8; }
+
+/* 動畫播完後的「點擊繼續」提示（等待使用者截圖 / 手動關閉） */
+.summon-reveal-continue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(84px, calc(env(safe-area-inset-bottom) + 76px));
+  text-align: center;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  letter-spacing: 1px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+.summon-reveal-overlay.is-ready .summon-reveal-continue {
+  opacity: 1;
+  animation: summonContinueHint 1.8s ease-in-out infinite;
+}
+
+@keyframes summonContinueHint {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+/* 跳過按鈕 */
+.summon-reveal-skip {
+  position: absolute;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px));
+  min-height: 44px;
+  min-width: 88px;
+  padding: 0 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 2;
+}
+.summon-reveal-skip:active {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+@keyframes summonRevealFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes summonAuraPulse {
+  0% { opacity: 0; transform: scale(0.4); }
+  40% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.65; transform: scale(1.25); }
+}
+@keyframes summonRingBurst {
+  0% { opacity: 0; transform: scale(0.3); }
+  30% { opacity: 0.9; }
+  100% { opacity: 0; transform: scale(1.9); }
+}
+@keyframes summonURRingBurst {
+  0% { opacity: 0; transform: scale(0.25) rotate(0deg); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: scale(2.4) rotate(140deg); }
+}
+@keyframes summonURFlash {
+  0% { opacity: 0; }
+  20% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+@keyframes summonParticleDrift {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--p-dx, 0), calc(var(--p-dy, 0) - 60px)) scale(1); }
+}
+@keyframes summonCardRise {
+  0% { opacity: 0; transform: translateY(26px) scale(0.94); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes summonRarityPop {
+  0% { opacity: 0; transform: scale(0.5); }
+  60% { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Reduce Motion：僅顯示靜態稀有度畫面，不播粒子 / 爆光 / 震動 */
+.summon-reveal-overlay.is-reduced .summon-reveal-particles,
+.summon-reveal-overlay.is-reduced .summon-reveal-ring,
+.summon-reveal-overlay.is-reduced::after {
+  display: none;
+}
+.summon-reveal-overlay.is-reduced .summon-reveal-aura {
+  animation: none;
+  opacity: 0.5;
+  transform: scale(1);
+}
+.summon-reveal-overlay.is-reduced .summon-reveal-card,
+.summon-reveal-overlay.is-reduced .summon-reveal-rarity {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+.summon-reveal-overlay.is-reduced .summon-reveal-pet-image {
+  opacity: 1;
+  transition: none;
+}
+
+body.reduce-motion .summon-reveal-overlay .summon-reveal-particles,
+body.reduce-motion .summon-reveal-overlay .summon-reveal-ring,
+body.reduce-motion .summon-reveal-overlay::after {
+  display: none;
+}
+body.reduce-motion .summon-reveal-overlay * {
+  animation-duration: 0.001ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summon-reveal-overlay,
+  .summon-reveal-overlay *,
+  .summon-reveal-overlay::before,
+  .summon-reveal-overlay::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+  }
+  .summon-reveal-overlay .summon-reveal-particles,
+  .summon-reveal-overlay .summon-reveal-ring,
+  .summon-reveal-overlay::after {
+    display: none;
+  }
+  .summon-reveal-overlay .summon-reveal-card,
+  .summon-reveal-overlay .summon-reveal-rarity,
+  .summon-reveal-overlay .summon-reveal-aura,
+  .summon-reveal-overlay .summon-reveal-pet-image {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── 開發測試區：抽卡演出測試群組 ── */
+.dev-tools__group + .dev-tools__group {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(148, 163, 184, 0.5);
+}
+.dev-tools__subtitle {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+.btn--dev {
+  min-height: 44px;
+}
+
+/* ============================================================
+   V2.5.0 — 冒險任務（每日 / 每週）Daily & Weekly Quests
+   顏色與可讀性：sweet 與 default 分開設計，避免淺底白字 / 粉底淡粉字。
+   ============================================================ */
+.quest-panel {
+  display: block;
+  margin: 0 0 16px;
+}
+.quest-panel[hidden] {
+  display: none;
+}
+.quest-panel__inner {
+  padding: 16px;
+  border-radius: 16px;
+}
+.quest-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  min-height: 44px;
+  font: inherit;
+  color: inherit;
+}
+.quest-panel__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.quest-panel__collapse-icon {
+  margin-left: auto;
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.quest-panel__body {
+  display: block;
+}
+.quest-panel__body[hidden] {
+  display: none;
+}
+.quest-panel__reward-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.quest-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 10px;
+}
+.quest-summary__item {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.quest-panel__tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.quest-tab {
+  flex: 1;
+  min-height: 44px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.quest-tab__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+.quest-card {
+  border-radius: 14px;
+  padding: 14px;
+  border: 1px solid transparent;
+}
+.quest-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.quest-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.quest-status-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.quest-card__description {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin: 8px 0 10px;
+}
+.quest-card__progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.quest-card__progress-bar {
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.quest-card__progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+  min-width: 2px;
+}
+.quest-card__progress-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  min-width: 48px;
+  text-align: right;
+}
+.quest-card__rewards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.quest-reward-chip {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.quest-claim-button {
+  margin-top: 12px;
+  width: 100%;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+.quest-claim-button:disabled {
+  cursor: default;
+}
+.quest-empty {
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 18px 8px;
+}
+
+/* ─── Sweet 主題 ─── */
+body[data-theme="sweet"] .quest-panel__inner {
+  background: #FFFFFF;
+  border: 1px solid #F0C9DA;
+  box-shadow: 0 4px 16px rgba(199, 53, 120, 0.08);
+}
+body[data-theme="sweet"] .quest-panel__title {
+  color: #3D2633;
+}
+body[data-theme="sweet"] .quest-panel__collapse-icon {
+  color: #6F4C5E;
+}
+body[data-theme="sweet"] .quest-summary__item {
+  color: #6F4C5E;
+}
+body[data-theme="sweet"] .quest-panel__reward-badge {
+  background: #E7F6F1;
+  color: #1F5C4D;
+  border-color: #8FCDBD;
+}
+body[data-theme="sweet"] .quest-tab {
+  background: #FFF8FC;
+  color: #6F4C5E;
+  border-color: #F0C9DA;
+}
+body[data-theme="sweet"] .quest-tab.is-active[data-scope="daily"] {
+  background: #FFF0F7;
+  color: #B83274;
+  border-color: #E7AFC8;
+}
+body[data-theme="sweet"] .quest-tab.is-active[data-scope="weekly"] {
+  background: #EEE9FF;
+  color: #4E3BA8;
+  border-color: #CFC3F6;
+}
+body[data-theme="sweet"] .quest-tab__dot {
+  background: #C73578;
+}
+body[data-theme="sweet"] .quest-card {
+  background: #FFF8FC;
+  border-color: #F0C9DA;
+}
+body[data-theme="sweet"] .quest-card.is-claimed {
+  background: #F7F1F5;
+}
+body[data-theme="sweet"] .quest-card__title {
+  color: #3D2633;
+}
+body[data-theme="sweet"] .quest-card__description {
+  color: #6F4C5E;
+}
+body[data-theme="sweet"] .quest-card__progress-text {
+  color: #3D2633;
+}
+body[data-theme="sweet"] .quest-card__progress-bar {
+  background: #F3DDEA;
+}
+body[data-theme="sweet"] .quest-card__progress-fill {
+  background: #C73578;
+}
+body[data-theme="sweet"] .quest-status-badge--progress {
+  background: #FFF0F7;
+  color: #B83274;
+  border-color: #E7AFC8;
+}
+body[data-theme="sweet"] .quest-status-badge--claimable {
+  background: #E7F6F1;
+  color: #1F5C4D;
+  border-color: #8FCDBD;
+}
+body[data-theme="sweet"] .quest-status-badge--claimed {
+  background: #F3F4F6;
+  color: #616977;
+  border-color: #D4D7DE;
+}
+body[data-theme="sweet"] .quest-reward-chip[data-reward-type="stardust"] {
+  background: #FFF1D8;
+  color: #8A4F10;
+  border-color: #F0C878;
+}
+body[data-theme="sweet"] .quest-reward-chip[data-reward-type="energy"] {
+  background: #EAF3FF;
+  color: #2E6FBE;
+  border-color: #B7D4F6;
+}
+body[data-theme="sweet"] .quest-reward-chip[data-reward-type="material"] {
+  background: #E7F6F1;
+  color: #1F5C4D;
+  border-color: #8FCDBD;
+}
+body[data-theme="sweet"] .quest-reward-chip[data-reward-type="item"] {
+  background: #EEE9FF;
+  color: #4E3BA8;
+  border-color: #CFC3F6;
+}
+body[data-theme="sweet"] .quest-claim-button {
+  background: #C73578;
+  color: #FFFFFF;
+}
+body[data-theme="sweet"] .quest-claim-button:disabled {
+  background: #F3F4F6;
+  color: #616977;
+  border-color: #D4D7DE;
+}
+body[data-theme="sweet"] .quest-empty {
+  color: #86677A;
+}
+
+/* ─── Default 深色幻想主題 ─── */
+body[data-theme="default"] .quest-panel__inner {
+  background: #141A2E;
+  border: 1px solid rgba(167, 139, 250, 0.28);
+}
+body[data-theme="default"] .quest-panel__title {
+  color: #F4F7FF;
+}
+body[data-theme="default"] .quest-panel__collapse-icon {
+  color: #C7D2EA;
+}
+body[data-theme="default"] .quest-summary__item {
+  color: #C7D2EA;
+}
+body[data-theme="default"] .quest-panel__reward-badge {
+  background: rgba(52, 211, 153, 0.16);
+  color: #6EE7B7;
+  border-color: rgba(52, 211, 153, 0.36);
+}
+body[data-theme="default"] .quest-tab {
+  background: #1B2542;
+  color: #C7D2EA;
+  border-color: rgba(167, 139, 250, 0.28);
+}
+body[data-theme="default"] .quest-tab.is-active[data-scope="daily"] {
+  background: rgba(139, 92, 246, 0.18);
+  color: #DDD6FE;
+  border-color: rgba(167, 139, 250, 0.42);
+}
+body[data-theme="default"] .quest-tab.is-active[data-scope="weekly"] {
+  background: rgba(34, 211, 238, 0.14);
+  color: #7DD3FC;
+  border-color: rgba(34, 211, 238, 0.36);
+}
+body[data-theme="default"] .quest-tab__dot {
+  background: #22D3EE;
+}
+body[data-theme="default"] .quest-card {
+  background: #1B2542;
+  border-color: rgba(167, 139, 250, 0.28);
+}
+body[data-theme="default"] .quest-card.is-claimed {
+  background: rgba(27, 37, 66, 0.6);
+}
+body[data-theme="default"] .quest-card__title {
+  color: #F4F7FF;
+}
+body[data-theme="default"] .quest-card__description {
+  color: #C7D2EA;
+}
+body[data-theme="default"] .quest-card__progress-text {
+  color: #F4F7FF;
+}
+body[data-theme="default"] .quest-card__progress-bar {
+  background: rgba(148, 163, 184, 0.16);
+}
+body[data-theme="default"] .quest-card__progress-fill {
+  background: #8B5CF6;
+}
+body[data-theme="default"] .quest-card[data-scope="weekly"] .quest-card__progress-fill {
+  background: #22D3EE;
+}
+body[data-theme="default"] .quest-status-badge--progress {
+  background: rgba(139, 92, 246, 0.18);
+  color: #DDD6FE;
+  border-color: rgba(167, 139, 250, 0.42);
+}
+body[data-theme="default"] .quest-status-badge--claimable {
+  background: rgba(52, 211, 153, 0.16);
+  color: #6EE7B7;
+  border-color: rgba(52, 211, 153, 0.36);
+}
+body[data-theme="default"] .quest-status-badge--claimed {
+  background: rgba(148, 163, 184, 0.12);
+  color: #CBD5E1;
+  border-color: rgba(148, 163, 184, 0.26);
+}
+body[data-theme="default"] .quest-reward-chip[data-reward-type="stardust"] {
+  background: rgba(251, 191, 36, 0.16);
+  color: #FDE68A;
+  border-color: rgba(251, 191, 36, 0.36);
+}
+body[data-theme="default"] .quest-reward-chip[data-reward-type="energy"] {
+  background: rgba(56, 189, 248, 0.14);
+  color: #7DD3FC;
+  border-color: rgba(56, 189, 248, 0.34);
+}
+body[data-theme="default"] .quest-reward-chip[data-reward-type="material"] {
+  background: rgba(52, 211, 153, 0.14);
+  color: #6EE7B7;
+  border-color: rgba(52, 211, 153, 0.34);
+}
+body[data-theme="default"] .quest-reward-chip[data-reward-type="item"] {
+  background: rgba(167, 139, 250, 0.16);
+  color: #DDD6FE;
+  border-color: rgba(167, 139, 250, 0.36);
+}
+body[data-theme="default"] .quest-claim-button {
+  background: #8B5CF6;
+  color: #FFFFFF;
+}
+body[data-theme="default"] .quest-claim-button:disabled {
+  background: rgba(148, 163, 184, 0.12);
+  color: #CBD5E1;
+  border-color: rgba(148, 163, 184, 0.26);
+}
+body[data-theme="default"] .quest-empty {
+  color: #9BA8C7;
+}
+
+/* =====================================================================
+   V2.6.0 — 寵物羈絆解放系統（羈絆徽章 / 外框 / 首頁特效 / 故事）
+   可讀性硬性要求：主要文字一律深色（sweet）/ 明亮（default），
+   徽章、標籤、故事區塊都確保足夠對比，裝飾光效不蓋過文字。
+   ===================================================================== */
+
+/* ── 羈絆狀態區塊（寵物詳情頁） ── */
+.bond-section {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(148, 163, 184, 0.08);
+}
+.bond-section__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.bond-section__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+.bond-section__title--story {
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+.bond-status-card {
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+.bond-status-card__level {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.bond-status-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.bond-status-card__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.bond-status-card__next {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ── 羈絆徽章 ── */
+.bond-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.4;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+/* ── 羈絆解放標籤 ── */
+.bond-liberated-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+/* ── 羈絆故事 ── */
+.bond-story {
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+.bond-story p {
+  margin: 0 0 8px;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+.bond-story p:last-child {
+  margin-bottom: 0;
+}
+.bond-story__rarity {
+  font-weight: 600;
+}
+.bond-story.is-locked p {
+  font-weight: 600;
+}
+
+/* ── 卡片羈絆徽章定位（首頁陪伴卡 / 圖鑑卡） ── */
+.companion-card__bond-badge,
+.collection-card__bond-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 3;
+}
+.collection-card__bond-badge .bond-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+}
+.collection-card__image {
+  position: relative;
+}
+
+/* ── 首頁陪伴特效（Lv.4+ 輕量光暈） ── */
+.companion-bond-effect {
+  position: absolute;
+  inset: -6% 8% auto 8%;
+  top: 6%;
+  height: 62%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+}
+.companion-bond-effect.is-active {
+  opacity: 1;
+  animation: bondGlowPulse 3.6s ease-in-out infinite;
+}
+@keyframes bondGlowPulse {
+  0%, 100% { transform: scale(0.96); opacity: 0.45; }
+  50% { transform: scale(1.04); opacity: 0.8; }
+}
+
+/* ── 羈絆解鎖提示 toast ── */
+.bond-unlock-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 16px);
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 88vw;
+  padding: 11px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  border: 1px solid transparent;
+}
+.bond-unlock-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.bond-unlock-toast__icon {
+  font-size: 18px;
+  flex: 0 0 auto;
+}
+.bond-unlock-toast__text {
+  flex: 1 1 auto;
+}
+
+/* ── Lv.5 羈絆外框 ── */
+.pet-card.is-bond-liberated,
+.collection-card.is-bond-liberated,
+.companion-card.is-bond-liberated,
+.pet-detail-card.is-bond-liberated {
+  position: relative;
+}
+
+/* =========================== Sweet 主題 =========================== */
+body[data-theme="sweet"] .bond-section {
+  background: #FFF8FC;
+  border-color: #F0C9DA;
+}
+body[data-theme="sweet"] .bond-section__title { color: #3D2633; }
+body[data-theme="sweet"] .bond-status-card {
+  background: #FFFFFF;
+  border-color: #F0C9DA;
+}
+body[data-theme="sweet"] .bond-status-card__level { color: #3D2633; }
+body[data-theme="sweet"] .bond-status-card__next { color: #6F4C5E; }
+body[data-theme="sweet"] .bond-status-card__chip {
+  background: #EEE9FF;
+  color: #4E3BA8;
+  border: 1px solid #CFC3F6;
+}
+body[data-theme="sweet"] .bond-status-card__chip--none {
+  background: #F3F4F6;
+  color: #616977;
+  border-color: #D4D7DE;
+}
+
+body[data-theme="sweet"] .bond-badge {
+  background: #EEE9FF;
+  color: #4E3BA8;
+  border-color: #CFC3F6;
+}
+body[data-theme="sweet"] .bond-badge.is-liberated,
+body[data-theme="sweet"] .bond-liberated-label {
+  background: #FFF1D8;
+  color: #8A4F10;
+  border-color: #F0C878;
+}
+
+body[data-theme="sweet"] .bond-story {
+  background: #FFF8FC;
+  border-color: #F0C9DA;
+  color: #3D2633;
+}
+body[data-theme="sweet"] .bond-story p { color: #3D2633; }
+body[data-theme="sweet"] .bond-story__rarity { color: #6F4C5E; }
+body[data-theme="sweet"] .bond-story.is-locked {
+  background: #F3F4F6;
+  border-color: #D4D7DE;
+}
+body[data-theme="sweet"] .bond-story.is-locked p { color: #616977; }
+
+body[data-theme="sweet"] .bond-unlock-toast {
+  background: #EEE9FF;
+  color: #4E3BA8;
+  border-color: #CFC3F6;
+}
+body[data-theme="sweet"] .bond-unlock-toast--liberated {
+  background: #FFF1D8;
+  color: #8A4F10;
+  border-color: #F0C878;
+}
+
+body[data-theme="sweet"] .companion-bond-effect {
+  background: radial-gradient(closest-side, rgba(199, 53, 120, 0.22), transparent 72%);
+}
+body[data-theme="sweet"] .collection-card.is-bond-liberated,
+body[data-theme="sweet"] .pet-detail-card.is-bond-liberated {
+  border-color: #C73578;
+  box-shadow: 0 0 0 1px #C73578, 0 6px 20px rgba(199, 53, 120, 0.22);
+}
+body[data-theme="sweet"] .companion-card.is-bond-liberated {
+  box-shadow: 0 0 0 2px #C73578, 0 10px 30px rgba(199, 53, 120, 0.22);
+}
+body[data-theme="sweet"] .workshop-gift-pet__liberated {
+  color: #8A4F10;
+  background: #FFF1D8;
+  border: 1px solid #F0C878;
+  border-radius: 999px;
+  padding: 1px 7px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* =========================== Default 主題 =========================== */
+body[data-theme="default"] .bond-section {
+  background: #141A2E;
+  border-color: rgba(167, 139, 250, 0.28);
+}
+body[data-theme="default"] .bond-section__title { color: #F4F7FF; }
+body[data-theme="default"] .bond-status-card {
+  background: #1B2542;
+  border-color: rgba(167, 139, 250, 0.28);
+}
+body[data-theme="default"] .bond-status-card__level { color: #F4F7FF; }
+body[data-theme="default"] .bond-status-card__next { color: #C7D2EA; }
+body[data-theme="default"] .bond-status-card__chip {
+  background: rgba(167, 139, 250, 0.18);
+  color: #DDD6FE;
+  border: 1px solid rgba(167, 139, 250, 0.42);
+}
+body[data-theme="default"] .bond-status-card__chip--none {
+  background: rgba(148, 163, 184, 0.14);
+  color: #9BA8C7;
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+body[data-theme="default"] .bond-badge {
+  background: rgba(167, 139, 250, 0.18);
+  color: #DDD6FE;
+  border-color: rgba(167, 139, 250, 0.42);
+}
+body[data-theme="default"] .bond-badge.is-liberated,
+body[data-theme="default"] .bond-liberated-label {
+  background: rgba(251, 191, 36, 0.16);
+  color: #FDE68A;
+  border-color: rgba(251, 191, 36, 0.36);
+}
+
+body[data-theme="default"] .bond-story {
+  background: #141A2E;
+  border-color: rgba(167, 139, 250, 0.28);
+  color: #F4F7FF;
+}
+body[data-theme="default"] .bond-story p { color: #F4F7FF; }
+body[data-theme="default"] .bond-story__rarity { color: #C7D2EA; }
+body[data-theme="default"] .bond-story.is-locked {
+  background: rgba(148, 163, 184, 0.1);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+body[data-theme="default"] .bond-story.is-locked p { color: #9BA8C7; }
+
+body[data-theme="default"] .bond-unlock-toast {
+  background: #1B2542;
+  color: #DDD6FE;
+  border-color: rgba(167, 139, 250, 0.42);
+}
+body[data-theme="default"] .bond-unlock-toast--liberated {
+  background: #23213f;
+  color: #FDE68A;
+  border-color: rgba(251, 191, 36, 0.36);
+}
+
+body[data-theme="default"] .companion-bond-effect {
+  background: radial-gradient(closest-side, rgba(139, 92, 246, 0.28), transparent 72%);
+}
+body[data-theme="default"] .collection-card.is-bond-liberated,
+body[data-theme="default"] .pet-detail-card.is-bond-liberated {
+  border-color: #A78BFA;
+  box-shadow: 0 0 0 1px #A78BFA, 0 6px 20px rgba(139, 92, 246, 0.28);
+}
+body[data-theme="default"] .companion-card.is-bond-liberated {
+  box-shadow: 0 0 0 2px #A78BFA, 0 10px 30px rgba(139, 92, 246, 0.28);
+}
+body[data-theme="default"] .workshop-gift-pet__liberated {
+  color: #FDE68A;
+  background: rgba(251, 191, 36, 0.16);
+  border: 1px solid rgba(251, 191, 36, 0.36);
+  border-radius: 999px;
+  padding: 1px 7px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* ── Reduce Motion：關閉光暈與浮動動畫，保留靜態外框與徽章 ── */
+body.reduce-motion .companion-bond-effect.is-active {
+  animation: none;
+  opacity: 0.55;
+}
+body.reduce-motion .bond-unlock-toast {
+  transition: opacity 0.2s ease;
+  transform: translate(-50%, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .companion-bond-effect.is-active {
+    animation: none;
+    opacity: 0.55;
+  }
+}
+
+/* ═══════════════════════════════════════
+   V2.6.1 — 寵物原圖放大檢視器 pet-image-viewer
+   獨立 overlay，z-index 高於一般 modal（modal-overlay=200）
+   ═══════════════════════════════════════ */
+
+body.is-pet-image-viewer-open {
+  overflow: hidden;
+}
+
+.pet-image-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 16px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.pet-image-viewer.is-open {
+  opacity: 1;
+}
+
+.pet-image-viewer__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 18, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pet-image-viewer__content {
+  position: relative;
+  width: min(92vw, 520px);
+  max-height: min(86vh, 720px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid transparent;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  transform: scale(0.96);
+  transition: transform 0.2s ease;
+  background: #141A2E;
+  color: #F4F7FF;
+}
+.pet-image-viewer.is-open .pet-image-viewer__content {
+  transform: scale(1);
+}
+
+.pet-image-viewer__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 4;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pet-image-viewer__header {
+  padding: 16px 56px 12px 20px;
+  text-align: left;
+}
+.pet-image-viewer__title {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.pet-image-viewer__subtitle {
+  font-size: 0.8125rem;
+  margin-top: 2px;
+}
+.pet-image-viewer__meta {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.pet-image-viewer__image-frame {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.pet-image-viewer__image {
+  width: 100%;
+  height: 100%;
+  max-height: 64vh;
+  object-fit: contain;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.pet-image-viewer__image-frame.is-loaded .pet-image-viewer__image {
+  opacity: 1;
+}
+.pet-image-viewer__image-frame.is-error .pet-image-viewer__image {
+  display: none;
+}
+
+.pet-image-viewer__loading,
+.pet-image-viewer__error {
+  display: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+.pet-image-viewer__image-frame.is-loading .pet-image-viewer__loading {
+  display: block;
+}
+.pet-image-viewer__image-frame.is-error .pet-image-viewer__error {
+  display: block;
+}
+
+.pet-image-viewer__hint {
+  padding: 10px 20px 16px;
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* 點圖片開原圖：詳情頁主圖與陪伴預覽圖皆為可點按鈕 */
+.pet-detail-image-button {
+  position: relative;
+  display: inline-block;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.pet-detail__image-hint {
+  font-size: 0.75rem;
+  text-align: center;
+  margin: 6px 0 0;
+}
+
+/* ── Sweet 主題 viewer 配色 ── */
+body[data-theme="sweet"] .pet-image-viewer__content {
+  background: #FFFFFF;
+  border-color: #F0C9DA;
+  color: #3D2633;
+}
+body[data-theme="sweet"] .pet-image-viewer__header {
+  background: linear-gradient(135deg, #FFF0F7 0%, #F9F3FF 100%);
+  border-bottom: 1px solid #F0C9DA;
+}
+body[data-theme="sweet"] .pet-image-viewer__title {
+  color: #B83274;
+}
+body[data-theme="sweet"] .pet-image-viewer__subtitle {
+  color: #6F4C5E;
+}
+body[data-theme="sweet"] .pet-image-viewer__meta {
+  color: #4E3BA8;
+}
+body[data-theme="sweet"] .pet-image-viewer__close {
+  background: #FFF0F7;
+  color: #B83274;
+  border-color: #E7AFC8;
+}
+body[data-theme="sweet"] .pet-image-viewer__image-frame {
+  background: #FFF8FC;
+  border-top: 1px solid #F0C9DA;
+  border-bottom: 1px solid #F0C9DA;
+}
+body[data-theme="sweet"] .pet-image-viewer__loading {
+  color: #6F4C5E;
+}
+body[data-theme="sweet"] .pet-image-viewer__error {
+  background: #FFE3EA;
+  color: #9F263F;
+  border: 1px solid #F3A8B8;
+}
+body[data-theme="sweet"] .pet-image-viewer__hint {
+  color: #6F4C5E;
+}
+
+/* ── Default 主題 viewer 配色 ── */
+body[data-theme="default"] .pet-image-viewer__content {
+  background: #141A2E;
+  border-color: rgba(167, 139, 250, 0.28);
+  color: #F4F7FF;
+}
+body[data-theme="default"] .pet-image-viewer__header {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.20), rgba(34, 211, 238, 0.12));
+  border-bottom: 1px solid rgba(167, 139, 250, 0.28);
+}
+body[data-theme="default"] .pet-image-viewer__title {
+  color: #F4F7FF;
+}
+body[data-theme="default"] .pet-image-viewer__subtitle {
+  color: #C7D2EA;
+}
+body[data-theme="default"] .pet-image-viewer__meta {
+  color: #DDD6FE;
+}
+body[data-theme="default"] .pet-image-viewer__close {
+  background: rgba(148, 163, 184, 0.14);
+  color: #F4F7FF;
+  border-color: rgba(148, 163, 184, 0.28);
+}
+body[data-theme="default"] .pet-image-viewer__image-frame {
+  background: #101628;
+  border-top: 1px solid rgba(167, 139, 250, 0.22);
+  border-bottom: 1px solid rgba(167, 139, 250, 0.22);
+}
+body[data-theme="default"] .pet-image-viewer__loading {
+  color: #C7D2EA;
+}
+body[data-theme="default"] .pet-image-viewer__error {
+  background: rgba(159, 38, 63, 0.24);
+  color: #FECDD3;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+body[data-theme="default"] .pet-image-viewer__hint {
+  color: #C7D2EA;
+}
+
+/* Reduce Motion：關閉 viewer 動畫但保留可讀性 */
+body.reduce-motion .pet-image-viewer,
+body.reduce-motion .pet-image-viewer__content,
+body.reduce-motion .pet-image-viewer__image {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pet-image-viewer,
+  .pet-image-viewer__content,
+  .pet-image-viewer__image {
+    transition: none;
+  }
 }
 
