@@ -170,6 +170,12 @@ import {
 } from './dailyCheckInService.js';
 import { MATERIAL_LABELS } from './expeditionService.js';
 import { updateQuestProgress, claimQuestReward } from './questService.js';
+import {
+  updateAreaExplorationProgress,
+  getAreaExplorationIncrement,
+  claimExplorationMilestone,
+  AREA_EXPLORATION_DEFS,
+} from './explorationService.js';
 
 /** 稀有度中文與色彩 */
 export const RARITY_LABELS = {
@@ -201,8 +207,10 @@ let lastCompanionId = null;
 let lastCompanionBondLevel = null;
 let lastUserActivity = Date.now();
 let currentTasksView = 'tasks';
-let selectedExpeditionAreaId = null;
-let selectedExpeditionPetId = null;
+// V2.7.2 派遣 Modal 狀態
+let dispatchAreaId = null;
+let dispatchSelectedPetId = null;
+let dispatchKeydownHandler = null;
 let achievementFilter = 'all';
 let collectionFilter = 'all';
 let lastCollectionGridKey = null;
@@ -214,10 +222,16 @@ let completedRangeFilter = 'completed_1_month';
 let archivedHabitsCollapsed = true;
 let workshopTab = 'materials';
 let questPanelTab = 'daily';
-let questPanelCollapsed = false;
+let questPanelCollapsed = true;
+const explorationStoryCollapsed = {};
+const explorationMilestonesCollapsed = {};
+// 地區探索度整體區塊：預設收起（類似首頁功能，保持頁面整潔）
+let explorationPanelCollapsed = true;
 let dailyWheelRewards = null;
 let dailyBlessingCollapsed = true;
 let dailyBlessingCollapseDay = null;
+// 首頁功能中樞：null | 'blessing' | 'quest' | 'titles'（預設全部收合，只顯示圖示）
+let homeHubActive = null;
 let selectedGiftPetId = null;
 let selectedGiftItemId = null;
 const expandedTaskIds = new Set();
@@ -443,6 +457,22 @@ function bindDelegatedEvents() {
     const id = card?.dataset.id;
     const action = target.dataset.action;
 
+    if (action === 'home-hub') {
+      const hub = target.dataset.hub;
+      const willOpen = homeHubActive !== hub;
+      homeHubActive = willOpen ? hub : null;
+      if (willOpen && hub === 'blessing') {
+        dailyBlessingCollapsed = false;
+        renderDailyBlessingSection();
+      }
+      if (willOpen && hub === 'quest') {
+        questPanelCollapsed = false;
+        renderQuestPanel();
+      }
+      renderHomeHub();
+      return;
+    }
+
     if (action === 'quest-toggle-collapse') {
       questPanelCollapsed = !questPanelCollapsed;
       renderQuestPanel();
@@ -621,8 +651,12 @@ function bindDelegatedEvents() {
     if (!target) return;
     const action = target.dataset.action;
     if (action === 'go-home-daily-blessing') {
+      homeHubActive = 'blessing';
+      dailyBlessingCollapsed = false;
       switchView('tasks');
       requestAnimationFrame(() => {
+        renderDailyBlessingSection();
+        renderHomeHub();
         document.getElementById('homeDailyBlessingContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     } else if (action === 'daily-open-wheel') {
@@ -728,7 +762,11 @@ function bindDelegatedEvents() {
     if (!item) return;
     switchView(item.dataset.goto);
     if (item.hasAttribute('data-scroll-daily-blessing')) {
+      homeHubActive = 'blessing';
+      dailyBlessingCollapsed = false;
       requestAnimationFrame(() => {
+        renderDailyBlessingSection();
+        renderHomeHub();
         document.getElementById('homeDailyBlessingContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
@@ -1212,6 +1250,7 @@ export function renderSharedUI() {
   setText('settings-stardust', wallet.stardust ?? 0);
   setText('settings-energy', wallet.adventureEnergy ?? 0);
   renderAchievementStrip();
+  renderHomeHub();
   renderNavBadges();
   updateGachaAffordability();
   renderGachaDailyBlessingEntry();
@@ -1360,6 +1399,7 @@ function renderTasksView() {
   renderAchievementStrip();
   renderDailyBlessingSection();
   renderQuestPanel();
+  renderHomeHub();
   renderCompanionSection(companion, companionLine);
   renderTodayPlanSummary(tasks, today);
   renderHabitSummary();
@@ -1517,7 +1557,8 @@ function showDailyBlessingRewardToast(text) {
 function resolveDailyBlessingCollapsed(allDone, today) {
   if (dailyBlessingCollapseDay !== today) {
     dailyBlessingCollapseDay = today;
-    dailyBlessingCollapsed = allDone;
+    // 預設一律折疊，保持頁面整潔（使用者可自行展開）
+    dailyBlessingCollapsed = true;
   }
   return dailyBlessingCollapsed;
 }
@@ -1741,9 +1782,17 @@ function renderQuestPanel() {
   const activeData = scope === 'weekly' ? summary.weekly : summary.daily;
 
   const totalClaimable = summary.totalClaimable ?? 0;
-  const rewardBadge = totalClaimable > 0
-    ? `<span class="quest-panel__reward-badge">有獎勵可領</span>`
-    : '';
+
+  // 狀態 badge：有獎勵可領 / 今日已完成 / 今日進行中
+  let statusText = '今日進行中';
+  let statusClass = 'quest-panel__status-badge--progress';
+  if (totalClaimable > 0) {
+    statusText = '有獎勵可領';
+    statusClass = 'quest-panel__status-badge--claimable';
+  } else if (summary.daily.total > 0 && summary.daily.completedCount >= summary.daily.total) {
+    statusText = '今日已完成';
+    statusClass = 'quest-panel__status-badge--done';
+  }
 
   const collapsed = questPanelCollapsed;
   el.classList.toggle('quest-panel--collapsed', collapsed);
@@ -1753,23 +1802,40 @@ function renderQuestPanel() {
     : '<p class="quest-empty">目前沒有可顯示的任務。</p>';
 
   el.innerHTML = `
-    <div class="quest-panel__inner card">
-      <button
-        type="button"
-        class="quest-panel__header"
-        data-action="quest-toggle-collapse"
-        aria-expanded="${!collapsed}"
-        aria-controls="quest-panel-body"
-      >
-        <span class="quest-panel__title">冒險任務</span>
-        ${rewardBadge}
-        <span class="quest-panel__collapse-icon" aria-hidden="true">${collapsed ? '▾' : '▴'}</span>
-      </button>
-      <div class="quest-summary">
-        <span class="quest-summary__item">每日完成：${summary.daily.completedCount} / ${summary.daily.total}</span>
-        <span class="quest-summary__item">每週完成：${summary.weekly.completedCount} / ${summary.weekly.total}</span>
-      </div>
+    <div class="quest-panel__inner${collapsed ? ' quest-panel--collapsed' : ''}${totalClaimable > 0 ? ' quest-panel--pending' : ''}">
+      <header class="quest-panel__header-wrap">
+        <button
+          type="button"
+          class="quest-panel__header"
+          data-action="quest-toggle-collapse"
+          aria-expanded="${!collapsed}"
+          aria-controls="quest-panel-body"
+        >
+          <span class="quest-panel__icon" aria-hidden="true">🗺️</span>
+          <span class="quest-panel__header-main">
+            <span class="quest-panel__eyebrow">每日 / 每週挑戰</span>
+            <span class="quest-panel__title">冒險任務</span>
+            <span class="quest-panel__subtitle">完成每日與每週挑戰，累積冒險獎勵</span>
+          </span>
+          <span class="quest-panel__status-badge ${statusClass}">${statusText}</span>
+          <span class="quest-panel__collapse-icon" aria-hidden="true">${collapsed ? '▼' : '▲'}</span>
+        </button>
+      </header>
       <div class="quest-panel__body" id="quest-panel-body" ${collapsed ? 'hidden' : ''}>
+        <div class="quest-panel__summary">
+          <div class="quest-panel__summary-item">
+            <span class="quest-panel__summary-label">每日完成</span>
+            <span class="quest-panel__summary-value">${summary.daily.completedCount} / ${summary.daily.total}</span>
+          </div>
+          <div class="quest-panel__summary-item">
+            <span class="quest-panel__summary-label">每週完成</span>
+            <span class="quest-panel__summary-value">${summary.weekly.completedCount} / ${summary.weekly.total}</span>
+          </div>
+          <div class="quest-panel__summary-item">
+            <span class="quest-panel__summary-label">可領取</span>
+            <span class="quest-panel__summary-value">${totalClaimable}</span>
+          </div>
+        </div>
         <div class="quest-panel__tabs" role="tablist" aria-label="冒險任務分頁">
           <button type="button" class="quest-tab${scope === 'daily' ? ' is-active' : ''}" data-action="quest-tab" data-scope="daily" role="tab" aria-selected="${scope === 'daily'}">
             每日${summary.daily.claimableCount > 0 ? ` <span class="quest-tab__dot" aria-hidden="true"></span>` : ''}
@@ -1778,7 +1844,8 @@ function renderQuestPanel() {
             每週${summary.weekly.claimableCount > 0 ? ` <span class="quest-tab__dot" aria-hidden="true"></span>` : ''}
           </button>
         </div>
-        <div class="quest-list">${listHtml}</div>
+        <div class="quest-list quest-panel__list">${listHtml}</div>
+        <p class="quest-panel__footer-hint">完成挑戰可以獲得星塵、材料與道具</p>
       </div>
     </div>`;
 }
@@ -2628,6 +2695,51 @@ function openTaskForm(taskId = null) {
       showToast(err.message || '儲存失敗', 'error');
     }
   });
+}
+
+/** 設定首頁中樞圖示的提示紅點 */
+function setHomeHubDot(hub, on) {
+  const dot = document.querySelector(`[data-hub-dot="${hub}"]`);
+  if (dot) dot.hidden = !on;
+}
+
+/**
+ * 渲染首頁功能中樞（每日祝福 / 冒險任務 / 稱號）。
+ * 以圖示代表三塊功能，點開才展開對應區塊，預設全部收合以節省首頁空間。
+ * 需在 renderDailyBlessingSection / renderQuestPanel / renderAchievementStrip 之後呼叫，
+ * 以便最後套用各區塊的顯示 / 隱藏。
+ */
+function renderHomeHub() {
+  const hub = document.getElementById('home-hub');
+  if (!hub) return;
+
+  hub.dataset.active = homeHubActive || '';
+
+  // 提示紅點：每日祝福待完成 / 冒險任務可領 / 稱號有可領成就
+  let blessingPending = false;
+  try {
+    blessingPending = buildDailyBlessingCardData().hasPending;
+  } catch {
+    blessingPending = false;
+  }
+  const questClaimable = (state?.questSummary?.totalClaimable ?? 0) > 0;
+  const titlesClaimable = (state?.achievementSummary?.claimable ?? 0) > 0;
+  setHomeHubDot('blessing', blessingPending);
+  setHomeHubDot('quest', questClaimable);
+  setHomeHubDot('titles', titlesClaimable);
+
+  hub.querySelectorAll('.home-hub__icon').forEach((btn) => {
+    const isActive = btn.dataset.hub === homeHubActive;
+    btn.classList.toggle('is-active', isActive);
+    btn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+  });
+
+  const blessingEl = document.getElementById('homeDailyBlessingContainer');
+  const questEl = document.getElementById('quest-panel');
+  const stripEl = document.getElementById('achievement-strip');
+  if (blessingEl) blessingEl.style.display = homeHubActive === 'blessing' ? '' : 'none';
+  if (questEl) questEl.style.display = homeHubActive === 'quest' ? '' : 'none';
+  if (stripEl) stripEl.style.display = homeHubActive === 'titles' ? '' : 'none';
 }
 
 /** 渲染首頁成就 / 稱號摘要條 */
@@ -4364,110 +4476,113 @@ function renderExpeditionView() {
     }
   }
 
-  // 探險地區
+  // 探索地圖探索度面板
+  renderExplorationPanel();
+
+  // 探險地區（V2.7.2：先選地區，點派遣開 Modal）
   const areasEl = document.getElementById('expedition-areas');
   if (areasEl) {
+    const explorationMap = {};
+    for (const a of state.explorationSummary?.areas || []) {
+      explorationMap[a.areaId] = a;
+    }
+
     areasEl.innerHTML = `
       <h2 class="section-title">探險地區</h2>
-      <div class="expedition-area-list">
+      <p class="expedition-map__hint">選擇想探索的地區，點「派遣探險」挑選夥伴出發。</p>
+      <div class="expedition-map expedition-area-grid">
         ${expeditionAreas
-          .map((area) => {
-            const { unlocked, hint } = checkAreaUnlock(area, ownedPets);
-            const selected = selectedExpeditionAreaId === area.id;
-            const mat = area.rewards.material;
-            const locked = !unlocked;
-            const disabled = hasActive || locked;
-
-            return `
-              <article class="expedition-area-card card expedition-area-card--${area.id} ${locked ? 'expedition-area-card--locked' : ''} ${selected ? 'expedition-area-card--selected' : ''}" data-area-id="${area.id}">
-                <div class="expedition-area-card__header">
-                  <h3>${escapeHtml(area.name)}</h3>
-                  ${locked ? '<span class="expedition-lock">🔒</span>' : ''}
-                </div>
-                <p class="expedition-area-card__desc">${escapeHtml(area.description)}</p>
-                <div class="expedition-area-card__meta">
-                  <span>⚡ ${area.energyCost}</span>
-                  <span>⏱ ${formatDuration(area.durationMinutes)}</span>
-                </div>
-                <p class="expedition-area-card__rewards">
-                  星塵 ${area.rewards.stardust.min}～${area.rewards.stardust.max}
-                  · ${escapeHtml(getMaterialName(mat.id))} ${mat.min}～${mat.max}
-                  · 親密度 +${area.rewards.bondExp}
-                </p>
-                ${locked ? `<p class="expedition-area-card__unlock">${escapeHtml(hint)}</p>` : ''}
-                <button
-                  class="btn btn--secondary btn--sm btn--block"
-                  data-action="select-area"
-                  data-area-id="${area.id}"
-                  ${disabled ? 'disabled' : ''}
-                >${selected ? '已選擇' : locked ? '未解鎖' : '選擇地區'}</button>
-              </article>`;
-          })
+          .map((area) => renderExpeditionAreaCard(area, {
+            hasActive,
+            energy,
+            ownedPets,
+            exploration: explorationMap[area.id] || null,
+          }))
           .join('')}
       </div>`;
   }
 
-  // 寵物選擇
+  // 寵物選擇已移至派遣 Modal，清空舊容器
   const petsEl = document.getElementById('expedition-pets');
-  if (petsEl) {
-    if (ownedPets.length === 0) {
-      petsEl.innerHTML = `
-        <h2 class="section-title">派遣寵物</h2>
-        ${emptyStateHtml(
-          '🗺️',
-          '還沒有可以派遣的寵物',
-          '先去召喚夥伴，再讓牠出發探險。',
-          '前往召喚',
-          'empty-go-gacha'
-        )}`;
-    } else {
-      petsEl.innerHTML = `
-        <h2 class="section-title">派遣寵物</h2>
-        <div class="expedition-pet-grid">
-          ${ownedPets
-            .map((pet) => {
-              const onExp = isPetOnExpedition(pet.id, activeExpedition);
-              const selected = selectedExpeditionPetId === pet.id;
-              const rarityClass = `rarity-${pet.rarity}`;
-              return `
-                <button
-                  class="expedition-pet-card ${rarityClass} ${selected ? 'expedition-pet-card--selected' : ''} ${onExp ? 'expedition-pet-card--busy' : ''}"
-                  data-action="select-pet"
-                  data-pet-id="${pet.id}"
-                  ${hasActive || onExp ? 'disabled' : ''}
-                >
-                  ${petImageHtml(pet, { size: 'sm' })}
-                  <span class="expedition-pet-card__name">${escapeHtml(petDisplayName(pet))}</span>
-                  ${pet.nickname ? `<span class="pet-original-name pet-original-name--xs">原名：${escapeHtml(petOriginalName(pet))}</span>` : ''}
-                  <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
-                  <span class="expedition-pet-card__bond">Lv.${pet.bondLevel || 1}</span>
-                  ${onExp ? '<span class="expedition-pet-card__status">探險中</span>' : ''}
-                </button>`;
-            })
-            .join('')}
-        </div>
-        ${
-          !hasActive
-            ? `<button
-                class="btn btn--primary btn--block expedition-start-btn"
-                data-action="start-expedition"
-                ${!selectedExpeditionAreaId || !selectedExpeditionPetId ? 'disabled' : ''}
-              >開始探險</button>
-              ${
-                !selectedExpeditionAreaId || !selectedExpeditionPetId
-                  ? `<p class="expedition-start-hint" id="expedition-start-hint">${
-                      !selectedExpeditionAreaId && !selectedExpeditionPetId
-                        ? '請先選擇探險地區與派遣寵物'
-                        : !selectedExpeditionAreaId
-                          ? '請先選擇探險地區'
-                          : '請先選擇派遣寵物'
-                    }</p>`
-                  : ''
-              }`
-            : ''
-        }`;
-    }
+  if (petsEl) petsEl.innerHTML = '';
+}
+
+/** V2.7.2 探險地區卡片（含探索度、派遣按鈕，點按鈕開派遣 Modal） */
+function renderExpeditionAreaCard(area, { hasActive, energy, ownedPets, exploration }) {
+  const { unlocked, hint } = checkAreaUnlock(area, ownedPets);
+  const locked = !unlocked;
+  const mat = area.rewards.material;
+  const lowEnergy = energy < area.energyCost;
+
+  let statusLabel = '可派遣';
+  let statusClass = 'expedition-area-card__status--ready';
+  let btnLabel = '派遣探險';
+  let btnDisabled = false;
+  if (locked) {
+    statusLabel = '未解鎖';
+    statusClass = 'expedition-area-card__status--locked';
+    btnLabel = '未解鎖';
+    btnDisabled = true;
+  } else if (hasActive) {
+    statusLabel = '探險進行中';
+    statusClass = 'expedition-area-card__status--busy';
+    btnLabel = '探險進行中';
+    btnDisabled = true;
+  } else if (lowEnergy) {
+    statusLabel = '能量不足';
+    statusClass = 'expedition-area-card__status--locked';
+    btnLabel = '能量不足';
+    btnDisabled = true;
   }
+
+  const exploreBadge = exploration
+    ? `<span class="expedition-explore-badge">探索度 ${exploration.progress}%</span>`
+    : '';
+
+  const progressBlock = exploration
+    ? `<div class="expedition-area-card__progress">
+         <div class="expedition-area-progress-bar" role="progressbar" aria-valuenow="${exploration.progress}" aria-valuemin="0" aria-valuemax="100">
+           <div class="expedition-area-progress-fill" style="width: ${exploration.progress}%;"></div>
+           <span class="expedition-area-progress-text">${exploration.progress}%</span>
+         </div>
+         <p class="expedition-area-card__next">${
+           exploration.fullyExplored
+             ? '已完全探索'
+             : exploration.nextMilestone
+               ? `下一個里程碑：${exploration.nextMilestone.percent}% ${escapeHtml(exploration.nextMilestone.title)}`
+               : '—'
+         }</p>
+       </div>`
+    : '';
+
+  return `
+    <article class="expedition-area-card card expedition-area-card--${area.id} ${locked ? 'expedition-area-card--locked' : ''}" data-area-id="${area.id}">
+      <div class="expedition-area-card__header">
+        <h3 class="expedition-area-card__title">${escapeHtml(area.name)}</h3>
+        ${exploreBadge}
+        <span class="expedition-area-card__status ${statusClass}">${statusLabel}</span>
+      </div>
+      <p class="expedition-area-card__desc">${escapeHtml(area.description)}</p>
+      <div class="expedition-area-card__meta">
+        <span class="expedition-area-card__meta-item">⏱ ${formatDuration(area.durationMinutes)}</span>
+        <span class="expedition-area-card__meta-item">⚡ 冒險能量 ${area.energyCost}</span>
+      </div>
+      <div class="expedition-area-card__rewards">
+        <span class="expedition-reward-chip" data-reward-type="stardust">✦ 星塵 ${area.rewards.stardust.min}～${area.rewards.stardust.max}</span>
+        <span class="expedition-reward-chip" data-reward-type="material">📦 ${escapeHtml(getMaterialName(mat.id))} ${mat.min}～${mat.max}</span>
+        <span class="expedition-reward-chip" data-reward-type="bond">💜 親密度 +${area.rewards.bondExp}</span>
+      </div>
+      ${progressBlock}
+      ${locked ? `<p class="expedition-area-card__unlock">${escapeHtml(hint)}</p>` : ''}
+      <div class="expedition-area-card__actions">
+        <button
+          class="expedition-dispatch-button"
+          data-action="open-dispatch"
+          data-area-id="${area.id}"
+          ${btnDisabled ? 'disabled' : ''}
+        >${btnLabel}</button>
+      </div>
+    </article>`;
 }
 
 function startExpeditionTimer() {
@@ -4550,60 +4665,26 @@ async function handleExpeditionClick(e) {
 
   const action = target.dataset.action;
 
-  if (action === 'select-area') {
+  if (action === 'open-dispatch') {
     const areaId = target.dataset.areaId;
-    const area = state.expeditionAreas.find((a) => a.id === areaId);
-    const { unlocked, hint } = checkAreaUnlock(area, getOwnedPets());
     if (state.activeExpedition) {
-      showToast('已有探險進行中', 'warning');
+      showToast('目前已有探險進行中', 'warning');
       return;
     }
+    const area = state.expeditionAreas.find((a) => a.id === areaId);
+    const { unlocked, hint } = checkAreaUnlock(area, getOwnedPets());
     if (!unlocked) {
       showToast(hint || '此地區尚未解鎖', 'warning');
       return;
     }
-    selectedExpeditionAreaId = areaId;
-    renderExpeditionView();
-    return;
-  }
-
-  if (action === 'select-pet') {
-    if (state.activeExpedition) {
-      showToast('已有探險進行中', 'warning');
-      return;
-    }
-    selectedExpeditionPetId = target.dataset.petId;
-    renderExpeditionView();
-    return;
-  }
-
-  if (action === 'start-expedition') {
-    if (!selectedExpeditionAreaId || !selectedExpeditionPetId) {
-      showToast('請先選擇探險地區與寵物', 'warning');
-      return;
-    }
-    try {
-      await startExpedition(
-        selectedExpeditionPetId,
-        selectedExpeditionAreaId,
-        state.expeditionAreas,
-        state.allPets
-      );
-      selectedExpeditionAreaId = null;
-      selectedExpeditionPetId = null;
-      await trackQuest('start_expedition');
-      await onRefresh({ renderMode: ['expedition', 'tasks'] });
-      startExpeditionTimer();
-      showToast('探險已開始！', 'success');
-    } catch (err) {
-      showToast(err.message || '無法開始探險', 'warning');
-    }
+    openExpeditionDispatchModal(areaId);
     return;
   }
 
   if (action === 'claim-expedition') {
     const expId = target.dataset.id;
     const expeditionPetId = state.activeExpedition?.petId ?? null;
+    const expeditionAreaId = state.activeExpedition?.areaId ?? null;
     try {
       const result = await claimExpeditionRewards(
         expId,
@@ -4611,6 +4692,8 @@ async function handleExpeditionClick(e) {
         state.allPets
       );
       await trackQuest('complete_expedition');
+      // 探險成功領獎後才推進探索度（不影響原本收益 / 倒數邏輯）
+      const exploration = await applyExplorationOnClaim(expeditionAreaId);
       await onRefresh({ renderMode: ['expedition', 'tasks', 'collection'] });
       if (expeditionPetId) {
         await notifyBondUnlocks(expeditionPetId);
@@ -4623,10 +4706,58 @@ async function handleExpeditionClick(e) {
       } else {
         showToast('探險獎勵已領取', 'success', 2000);
       }
+      if (exploration) {
+        showToast(`${exploration.areaName}探索度 +${exploration.increment}%`, 'reward', 2600);
+        for (const milestone of exploration.newlyReachedMilestones || []) {
+          showToast(`探索里程碑達成：${milestone.title}`, 'info', 2800);
+        }
+      }
       await handleAchievementCheckAfterAction();
     } catch (err) {
       showToast(err.message || '領取失敗', 'error');
     }
+    return;
+  }
+
+  if (action === 'toggle-exploration-panel') {
+    explorationPanelCollapsed = !explorationPanelCollapsed;
+    renderExplorationPanel();
+    return;
+  }
+
+  if (action === 'toggle-exploration-story') {
+    const areaId = target.dataset.areaId;
+    // 值為 false 代表展開；預設（undefined）視為折疊
+    explorationStoryCollapsed[areaId] = explorationStoryCollapsed[areaId] === false ? true : false;
+    renderExplorationPanel();
+    return;
+  }
+
+  if (action === 'toggle-exploration-milestones') {
+    const areaId = target.dataset.areaId;
+    explorationMilestonesCollapsed[areaId] = explorationMilestonesCollapsed[areaId] === false ? true : false;
+    renderExplorationPanel();
+    return;
+  }
+
+  if (action === 'claim-exploration-milestone') {
+    const areaId = target.dataset.areaId;
+    const percent = Number(target.dataset.percent);
+    target.disabled = true;
+    try {
+      const result = await claimExplorationMilestone(areaId, percent);
+      if (!result.success) {
+        showToast(result.error || '領取失敗', 'warning');
+        return;
+      }
+      await onRefresh({ renderMode: ['expedition'] });
+      renderExplorationPanel();
+      showToast(`已領取探索獎勵：${result.rewardText}`, 'reward', 3000);
+      await handleAchievementCheckAfterAction();
+    } catch (err) {
+      showToast(err.message || '領取失敗', 'error');
+    }
+    return;
   }
 }
 
@@ -4665,6 +4796,431 @@ function showExpeditionRewardModal(result) {
   `);
 
   document.getElementById('expedition-reward-close')?.addEventListener('click', closeModal);
+}
+
+/* ─── 探索地圖探索度（V2.7.0） ─── */
+
+const MILESTONE_STATUS_LABEL = {
+  claimable: '可領取',
+  claimed: '已領取',
+  locked: '未達成',
+};
+
+/** 渲染探索度面板（位於探險頁，介於進行中探險與探險地區之間） */
+function renderExplorationPanel() {
+  const panelEl = document.getElementById('exploration-panel');
+  if (!panelEl) return;
+
+  const summary = state?.explorationSummary;
+  if (!summary || !Array.isArray(summary.areas) || summary.areas.length === 0) {
+    panelEl.innerHTML = '';
+    return;
+  }
+
+  const collapsed = explorationPanelCollapsed;
+  const cards = summary.areas.map((area) => renderExplorationAreaCard(area)).join('');
+
+  panelEl.innerHTML = `
+    <div class="exploration-panel__wrap card ${collapsed ? 'is-collapsed' : ''}">
+      <button type="button" class="exploration-panel__toggle" data-action="toggle-exploration-panel" aria-expanded="${!collapsed}">
+        <span class="exploration-panel__toggle-main">
+          <span class="exploration-panel__toggle-icon" aria-hidden="true">🗺️</span>
+          <span class="exploration-panel__toggle-title">地區探索度</span>
+          ${
+            summary.totalClaimable > 0
+              ? `<span class="exploration-panel__claimable">可領取 ${summary.totalClaimable}</span>`
+              : ''
+          }
+        </span>
+        <span class="exploration-panel__toggle-chevron">${collapsed ? '▸' : '▾'}</span>
+      </button>
+      ${
+        collapsed
+          ? ''
+          : `<div class="exploration-panel__body">
+               <p class="exploration-panel__hint">完成探險並領獎，即可推進各地區探索度，解鎖故事、徽章與稱號。</p>
+               <div class="exploration-area-list">${cards}</div>
+             </div>`
+      }
+    </div>`;
+}
+
+function renderExplorationAreaCard(area) {
+  const { areaId } = area;
+  const progress = area.progress;
+  // 預設折疊：只有明確設為 false 才展開，保持頁面整潔
+  const storyOpen = explorationStoryCollapsed[areaId] === false;
+  const milestonesOpen = explorationMilestonesCollapsed[areaId] === false;
+
+  const nextText = area.fullyExplored
+    ? '已完全探索'
+    : area.nextMilestone
+      ? `下一個里程碑：${area.nextMilestone.percent}% ${escapeHtml(area.nextMilestone.title)}`
+      : '—';
+
+  const storyBlock = area.hasStory
+    ? `<div class="exploration-story is-unlocked">
+         ${area.stories.map((s) => `<p class="exploration-story__text">${escapeHtml(s.text)}</p>`).join('')}
+       </div>`
+    : `<div class="exploration-story is-locked">
+         <p class="exploration-story__text">探索度達到 ${area.storyLockedPercent}% 後解鎖地區故事。</p>
+       </div>`;
+
+  const milestoneCards = area.milestones.map((m) => renderExplorationMilestoneCard(areaId, m)).join('');
+
+  // 已獲得徽章 / 稱號提示（來自已領取里程碑）
+  const earned = [];
+  for (const m of area.milestones) {
+    if (m.status !== 'claimed' || !m.reward) continue;
+    if (m.reward.title) earned.push(`已獲得稱號：${m.reward.title}`);
+    if (m.reward.badgeId) earned.push(`已獲得徽章：${m.title}`);
+  }
+  const earnedBlock = earned.length
+    ? `<div class="exploration-area-card__earned">
+         ${earned.map((t) => `<span class="exploration-reward-chip" data-reward-type="title">${escapeHtml(t)}</span>`).join('')}
+       </div>`
+    : '';
+
+  return `
+    <article class="exploration-area-card" data-area-id="${areaId}">
+      <div class="exploration-area-card__header">
+        <h3 class="exploration-area-title">${escapeHtml(area.name)}</h3>
+        <span class="exploration-progress-label">探索度 ${progress}%</span>
+      </div>
+      <div class="exploration-progress-bar" role="progressbar" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100">
+        <div class="exploration-progress-fill" style="width: ${progress}%;"></div>
+        <span class="exploration-progress-bar__text">${progress}%</span>
+      </div>
+      <div class="exploration-area-card__stats">
+        <span class="exploration-area-card__runs">已完成探險 ${area.completedRuns} 次</span>
+        ${area.claimableCount > 0 ? `<span class="exploration-status-badge exploration-status-badge--claimable">可領取 ${area.claimableCount}</span>` : ''}
+        ${area.fullyExplored ? '<span class="exploration-status-badge exploration-status-badge--done">完全探索</span>' : ''}
+      </div>
+      <p class="exploration-next-milestone">${escapeHtml(nextText)}</p>
+      ${earnedBlock}
+
+      <button type="button" class="exploration-collapse-toggle" data-action="toggle-exploration-story" data-area-id="${areaId}" aria-expanded="${storyOpen}">
+        <span>地區故事</span>
+        <span class="exploration-collapse-toggle__icon">${storyOpen ? '▾' : '▸'}</span>
+      </button>
+      ${storyOpen ? storyBlock : ''}
+
+      <button type="button" class="exploration-collapse-toggle" data-action="toggle-exploration-milestones" data-area-id="${areaId}" aria-expanded="${milestonesOpen}">
+        <span>里程碑</span>
+        <span class="exploration-collapse-toggle__icon">${milestonesOpen ? '▾' : '▸'}</span>
+      </button>
+      ${milestonesOpen ? `<div class="exploration-milestone-list">${milestoneCards}</div>` : ''}
+    </article>`;
+}
+
+function renderExplorationMilestoneCard(areaId, milestone) {
+  const { status, percent } = milestone;
+  const chips = (milestone.rewardChips || [])
+    .map(
+      (chip) =>
+        `<span class="exploration-reward-chip" data-reward-type="${chip.type}">${escapeHtml(chip.label)}</span>`
+    )
+    .join('');
+
+  let button;
+  if (status === 'claimable') {
+    button = `<button type="button" class="exploration-claim-button" data-action="claim-exploration-milestone" data-area-id="${areaId}" data-percent="${percent}">領取</button>`;
+  } else if (status === 'claimed') {
+    button = `<button type="button" class="exploration-claim-button" disabled>已領取</button>`;
+  } else {
+    button = `<button type="button" class="exploration-claim-button" disabled>未達成</button>`;
+  }
+
+  return `
+    <div class="exploration-milestone-card is-${status}">
+      <div class="exploration-milestone-card__head">
+        <span class="exploration-milestone-card__percent">${percent}%</span>
+        <span class="exploration-milestone-card__title">${escapeHtml(milestone.title)}</span>
+        <span class="exploration-status-badge exploration-status-badge--${status}">${MILESTONE_STATUS_LABEL[status]}</span>
+      </div>
+      <p class="exploration-milestone-card__desc">${escapeHtml(milestone.description)}</p>
+      <div class="exploration-milestone-card__rewards">${chips}</div>
+      ${button}
+    </div>`;
+}
+
+/**
+ * 探險成功領獎後，推進對應地區探索度並回傳提示資訊。
+ * 不改動原本探險收益；僅疊加探索度成長層。
+ */
+async function applyExplorationOnClaim(areaId) {
+  if (!areaId || !AREA_EXPLORATION_DEFS[areaId]) return null;
+  try {
+    const increment = getAreaExplorationIncrement(areaId);
+    const result = await updateAreaExplorationProgress(areaId, increment);
+    if (!result?.success) return null;
+    return result;
+  } catch (err) {
+    console.warn('[QuestNote] 探索度更新失敗:', err);
+    return null;
+  }
+}
+
+/* ─── V2.7.2 派遣選單 Modal ─── */
+
+const DISPATCH_RARITY_RANK = { UR: 5, SSR: 4, SR: 3, R: 2, N: 1 };
+
+/**
+ * 取得已擁有寵物並依推薦排序（僅影響顯示，不改資料）：
+ * 陪伴寵物 > 高稀有度 > 高親密度 > 名稱。
+ */
+function getDispatchablePetsSorted() {
+  const companionId = state?.companion?.id;
+  const pets = getOwnedPets().slice();
+  pets.sort((a, b) => {
+    const ca = a.id === companionId ? 1 : 0;
+    const cb = b.id === companionId ? 1 : 0;
+    if (ca !== cb) return cb - ca;
+    const ra = DISPATCH_RARITY_RANK[a.rarity] ?? 0;
+    const rb = DISPATCH_RARITY_RANK[b.rarity] ?? 0;
+    if (ra !== rb) return rb - ra;
+    const la = a.bondLevel ?? 1;
+    const lb = b.bondLevel ?? 1;
+    if (la !== lb) return lb - la;
+    return petDisplayName(a).localeCompare(petDisplayName(b), 'zh-Hant');
+  });
+  return pets;
+}
+
+/** 開啟派遣選單 Modal */
+function openExpeditionDispatchModal(areaId) {
+  const area = state.expeditionAreas.find((a) => a.id === areaId);
+  if (!area) {
+    showToast('找不到地區資料', 'error');
+    return;
+  }
+  dispatchAreaId = areaId;
+
+  // 預設選中：只有一隻可派遣寵物→自動選；否則優先陪伴寵物
+  const pets = getDispatchablePetsSorted();
+  const selectable = pets.filter((p) => !isPetOnExpedition(p.id, state.activeExpedition));
+  const companionId = state?.companion?.id;
+  dispatchSelectedPetId = null;
+  if (selectable.length === 1) {
+    dispatchSelectedPetId = selectable[0].id;
+  } else if (companionId && selectable.some((p) => p.id === companionId)) {
+    dispatchSelectedPetId = companionId;
+  }
+
+  let overlay = document.getElementById('expedition-dispatch-modal');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'expedition-dispatch-modal';
+    overlay.className = 'expedition-dispatch-modal';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', handleDispatchModalClick);
+  }
+  document.body.classList.add('expedition-dispatch-open');
+  dispatchKeydownHandler = (e) => {
+    if (e.key === 'Escape') closeExpeditionDispatchModal();
+  };
+  document.addEventListener('keydown', dispatchKeydownHandler);
+
+  renderExpeditionDispatchModal();
+}
+
+/** 關閉派遣選單 Modal */
+function closeExpeditionDispatchModal() {
+  const overlay = document.getElementById('expedition-dispatch-modal');
+  if (overlay) overlay.remove();
+  document.body.classList.remove('expedition-dispatch-open');
+  if (dispatchKeydownHandler) {
+    document.removeEventListener('keydown', dispatchKeydownHandler);
+    dispatchKeydownHandler = null;
+  }
+  dispatchAreaId = null;
+  dispatchSelectedPetId = null;
+}
+
+/** 派遣 Modal 點擊委派（背景 / 關閉 / 選寵物 / 確認） */
+function handleDispatchModalClick(e) {
+  const overlay = document.getElementById('expedition-dispatch-modal');
+  if (
+    e.target === overlay ||
+    e.target.classList.contains('expedition-dispatch-modal__backdrop')
+  ) {
+    closeExpeditionDispatchModal();
+    return;
+  }
+  const t = e.target.closest('[data-action]');
+  if (!t) return;
+  const action = t.dataset.action;
+  if (action === 'dispatch-close') {
+    closeExpeditionDispatchModal();
+    return;
+  }
+  if (action === 'dispatch-select-pet') {
+    if (t.disabled) return;
+    dispatchSelectedPetId = t.dataset.petId;
+    renderExpeditionDispatchModal();
+    return;
+  }
+  if (action === 'dispatch-confirm') {
+    confirmExpeditionDispatch(dispatchAreaId, dispatchSelectedPetId);
+    return;
+  }
+}
+
+/** 渲染派遣 Modal 內容 */
+function renderExpeditionDispatchModal() {
+  const overlay = document.getElementById('expedition-dispatch-modal');
+  if (!overlay) return;
+  const area = state.expeditionAreas.find((a) => a.id === dispatchAreaId);
+  if (!area) {
+    closeExpeditionDispatchModal();
+    return;
+  }
+
+  const mat = area.rewards.material;
+  const energy = state.wallet.adventureEnergy ?? 0;
+  const lowEnergy = energy < area.energyCost;
+  const exploration = (state.explorationSummary?.areas || []).find(
+    (a) => a.areaId === dispatchAreaId
+  );
+  const pets = getDispatchablePetsSorted();
+  const selectedPet = pets.find((p) => p.id === dispatchSelectedPetId) || null;
+
+  const petListHtml =
+    pets.length === 0
+      ? '<p class="expedition-dispatch-empty">目前還沒有可派遣的寵物，先去召喚夥伴吧。</p>'
+      : pets.map((p) => buildDispatchPetOptionHtml(p)).join('');
+
+  const canConfirm = !!selectedPet && !lowEnergy && !state.activeExpedition;
+
+  const previewHtml = selectedPet
+    ? `你將派遣：<strong>${escapeHtml(petDisplayName(selectedPet))}</strong>　前往：<strong>${escapeHtml(area.name)}</strong><br>消耗：冒險能量 ${area.energyCost}　預計時間：${formatDuration(area.durationMinutes)}`
+    : '請先選擇出發寵物';
+
+  overlay.innerHTML = `
+    <div class="expedition-dispatch-modal__backdrop"></div>
+    <div class="expedition-dispatch-modal__content" role="dialog" aria-modal="true" aria-label="派遣探險">
+      <div class="expedition-dispatch-modal__header">
+        <h2 class="expedition-dispatch-modal__title">派遣探險</h2>
+        <button type="button" class="expedition-dispatch-modal__close" data-action="dispatch-close" aria-label="關閉">✕</button>
+      </div>
+      <div class="expedition-dispatch-modal__body">
+        <div class="expedition-dispatch-modal__area-summary">
+          <h3 class="expedition-dispatch-area__name">${escapeHtml(area.name)}</h3>
+          <p class="expedition-dispatch-area__desc">${escapeHtml(area.description)}</p>
+          <div class="expedition-dispatch-area__meta">
+            <span class="expedition-dispatch-area__meta-item">⏱ ${formatDuration(area.durationMinutes)}</span>
+            <span class="expedition-dispatch-area__meta-item ${lowEnergy ? 'is-low' : ''}">⚡ 消耗 ${area.energyCost}（目前 ${energy}）</span>
+          </div>
+          <div class="expedition-dispatch-area__rewards">
+            <span class="expedition-reward-chip" data-reward-type="stardust">✦ 星塵 ${area.rewards.stardust.min}～${area.rewards.stardust.max}</span>
+            <span class="expedition-reward-chip" data-reward-type="material">📦 ${escapeHtml(getMaterialName(mat.id))} ${mat.min}～${mat.max}</span>
+            <span class="expedition-reward-chip" data-reward-type="bond">💜 親密度 +${area.rewards.bondExp}</span>
+          </div>
+          ${
+            exploration
+              ? `<p class="expedition-dispatch-area__explore">探索度 ${exploration.progress}%${
+                  exploration.fullyExplored
+                    ? '（已完全探索）'
+                    : exploration.nextMilestone
+                      ? ` · 下一個里程碑 ${exploration.nextMilestone.percent}%`
+                      : ''
+                }</p>`
+              : ''
+          }
+        </div>
+        <div class="expedition-dispatch-modal__pet-section">
+          <h3 class="expedition-dispatch-modal__pet-title">選擇出發寵物</h3>
+          <div class="expedition-dispatch-modal__pet-list">
+            ${petListHtml}
+          </div>
+        </div>
+      </div>
+      <div class="expedition-dispatch-modal__preview">${previewHtml}</div>
+      <div class="expedition-dispatch-modal__footer">
+        <button type="button" class="expedition-dispatch-cancel-button" data-action="dispatch-close">取消</button>
+        <button type="button" class="expedition-dispatch-confirm-button" data-action="dispatch-confirm" ${canConfirm ? '' : 'disabled'}>確認派遣</button>
+      </div>
+    </div>`;
+}
+
+/** 派遣 Modal 內單一寵物選項 */
+function buildDispatchPetOptionHtml(pet) {
+  const onExp = isPetOnExpedition(pet.id, state.activeExpedition);
+  const selected = dispatchSelectedPetId === pet.id;
+  const rarityClass = `rarity-${pet.rarity}`;
+  const liberated = pet.bondLiberated;
+  return `
+    <button type="button"
+      class="expedition-pet-option ${selected ? 'is-selected' : ''} ${onExp ? 'is-disabled' : ''}"
+      data-action="dispatch-select-pet"
+      data-pet-id="${pet.id}"
+      ${onExp ? 'disabled' : ''}
+    >
+      <span class="expedition-pet-option__img">${petImageHtml(pet, { size: 'sm' })}</span>
+      <span class="expedition-pet-option__info">
+        <span class="expedition-pet-option__name">${escapeHtml(petDisplayName(pet))}</span>
+        ${pet.nickname ? `<span class="expedition-pet-option__original">原名：${escapeHtml(petOriginalName(pet))}</span>` : ''}
+        <span class="expedition-pet-option__tags">
+          <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
+          <span class="expedition-pet-option__bond">親密 Lv.${pet.bondLevel || 1}</span>
+          ${liberated ? '<span class="expedition-pet-option__liberated">羈絆解放</span>' : ''}
+          ${onExp ? '<span class="expedition-pet-option__busy">探險中</span>' : ''}
+        </span>
+      </span>
+      ${selected ? '<span class="expedition-pet-option__check" aria-hidden="true">✓</span>' : ''}
+    </button>`;
+}
+
+/** 確認派遣：完整檢查後呼叫原本 startExpedition 邏輯 */
+async function confirmExpeditionDispatch(areaId, petId) {
+  if (!areaId) {
+    showToast('找不到地區資料', 'error');
+    return;
+  }
+  if (!petId) {
+    showToast('請先選擇出發寵物。', 'warning');
+    return;
+  }
+  const area = state.expeditionAreas.find((a) => a.id === areaId);
+  if (!area) {
+    showToast('找不到地區資料', 'error');
+    return;
+  }
+  const pet = getOwnedPets().find((p) => p.id === petId);
+  if (!pet) {
+    showToast('找不到這隻寵物資料。', 'error');
+    return;
+  }
+  if (state.activeExpedition) {
+    showToast('目前已有探險進行中。', 'warning');
+    return;
+  }
+  if ((state.wallet.adventureEnergy ?? 0) < area.energyCost) {
+    showToast('冒險能量不足。', 'warning');
+    return;
+  }
+  if (isPetOnExpedition(petId, state.activeExpedition)) {
+    showToast('這隻寵物正在探險中。', 'warning');
+    return;
+  }
+
+  const confirmBtn = document.querySelector(
+    '#expedition-dispatch-modal [data-action="dispatch-confirm"]'
+  );
+  if (confirmBtn) confirmBtn.disabled = true;
+
+  try {
+    // 呼叫原本探險開始邏輯（扣能量、建立 expedition 狀態、倒數）
+    await startExpedition(petId, areaId, state.expeditionAreas, state.allPets);
+    await trackQuest('start_expedition');
+    closeExpeditionDispatchModal();
+    await onRefresh({ renderMode: ['expedition', 'tasks'] });
+    startExpeditionTimer();
+    showToast(`已派遣 ${petDisplayName(pet)} 前往${area.name}`, 'success');
+  } catch (err) {
+    if (confirmBtn) confirmBtn.disabled = false;
+    showToast(err.message || '無法開始探險', 'warning');
+  }
 }
 
 /* ─── 習慣頁 ─── */

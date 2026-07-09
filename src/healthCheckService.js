@@ -19,6 +19,10 @@ import {
   DAILY_QUEST_DEFS,
   WEEKLY_QUEST_DEFS,
 } from './questService.js';
+import {
+  getExplorationProgress,
+  EXPLORATION_AREA_IDS,
+} from './explorationService.js';
 
 const DATA_FILES = [
   { path: './data/pets.json', label: 'pets.json' },
@@ -1050,14 +1054,15 @@ async function checkQuestContrast() {
   const notes = [];
 
   const requiredPairs = [
-    ['sweet quest-card bg', 'body[data-theme="sweet"] .quest-card {', '#FFF8FC'],
+    ['sweet quest-card bg', 'body[data-theme="sweet"] .quest-card {', 'rgba(255, 255, 255, 0.84)'],
     ['sweet quest-card title', 'body[data-theme="sweet"] .quest-card__title {', '#3D2633'],
     ['sweet reward chip stardust bg', 'body[data-theme="sweet"] .quest-reward-chip[data-reward-type="stardust"]', '#FFF1D8'],
     ['sweet reward chip stardust text', 'body[data-theme="sweet"] .quest-reward-chip[data-reward-type="stardust"]', '#8A4F10'],
     ['sweet claim button bg', 'body[data-theme="sweet"] .quest-claim-button {', '#C73578'],
     ['sweet claim button text', 'body[data-theme="sweet"] .quest-claim-button {', '#FFFFFF'],
-    ['sweet daily tab text', 'body[data-theme="sweet"] .quest-tab.is-active[data-scope="daily"]', '#B83274'],
-    ['default quest-card bg', 'body[data-theme="default"] .quest-card {', '#1B2542'],
+    ['sweet active tab bg', 'body[data-theme="sweet"] .quest-tab.is-active {', '#C73578'],
+    ['sweet active tab text', 'body[data-theme="sweet"] .quest-tab.is-active {', '#FFFFFF'],
+    ['default quest-card bg', 'body[data-theme="default"] .quest-card {', 'rgba(20, 26, 46, 0.78)'],
     ['default quest-card title', 'body[data-theme="default"] .quest-card__title {', '#F4F7FF'],
     ['default reward chip stardust text', 'body[data-theme="default"] .quest-reward-chip[data-reward-type="stardust"]', '#FDE68A'],
   ];
@@ -1083,6 +1088,98 @@ async function checkQuestContrast() {
       notes.push('sweet quest 描述疑似淡色（粉底風險）');
     }
     stats.push('sweet quest contrast 區塊=ok');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.7.1 — 冒險任務容器視覺統一檢查（參考每日祝福卡片設計語言）
+ * 只檢查與回報，不會自動改資料。
+ */
+async function checkQuestPanelVisual() {
+  const [cssRes, indexRes, uiRes] = await Promise.all([
+    fetch('./src/styles.css'),
+    fetch('./index.html'),
+    fetch('./src/ui.js'),
+  ]);
+  if (!cssRes.ok || !indexRes.ok || !uiRes.ok) {
+    throw new Error('無法讀取 styles.css / index.html / ui.js');
+  }
+  const cssText = await cssRes.text();
+  const indexText = await indexRes.text();
+  const uiText = await uiRes.text();
+  const stats = [];
+  const notes = [];
+
+  // 1. quest-panel 容器存在
+  if (!indexText.includes('id="quest-panel"')) throw new Error('index.html 缺少 quest-panel 容器');
+  stats.push('quest-panel 容器=ok');
+
+  // 新結構 class 是否已在 ui.js 產出
+  const requiredClasses = [
+    'quest-panel__eyebrow',
+    'quest-panel__subtitle',
+    'quest-panel__status-badge',
+    'quest-panel__summary',
+    'quest-panel__footer-hint',
+  ];
+  for (const cls of requiredClasses) {
+    if (!uiText.includes(cls)) throw new Error(`ui.js 缺少 ${cls}`);
+  }
+  stats.push('quest-panel 新結構 class=ok');
+
+  // 區塊定位輔助
+  const slice = (selector, len = 260) => {
+    const idx = cssText.indexOf(selector);
+    if (idx === -1) throw new Error(`缺少 ${selector}`);
+    return cssText.slice(idx, idx + len);
+  };
+
+  // 2. sweet quest-panel 外層卡：漸層光暈 + 圓角 + 深色文字
+  const sweetPanel = slice('body[data-theme="sweet"] .quest-panel__inner {', 420);
+  if (!sweetPanel.includes('radial-gradient')) throw new Error('sweet quest-panel 缺少漸層光暈');
+  if (!sweetPanel.includes('26px')) throw new Error('sweet quest-panel 缺少圓角 26px');
+  if (!sweetPanel.includes('#3D2633')) throw new Error('sweet quest-panel 缺少深色文字 #3D2633');
+  stats.push('sweet 外層卡漸層/圓角/文字=ok');
+
+  // 3. sweet summary 小卡背景 / 數字強調
+  const sweetSummary = slice('body[data-theme="sweet"] .quest-panel__summary-value {', 120);
+  if (!sweetSummary.includes('#B83274')) throw new Error('sweet summary 數字未強調 #B83274');
+  stats.push('sweet summary 數字強調=ok');
+
+  // 4. sweet disabled 領取按鈕仍可辨識（深字非白字）
+  const sweetDisabled = slice('body[data-theme="sweet"] .quest-claim-button:disabled {', 160);
+  if (!sweetDisabled.includes('#616977')) throw new Error('sweet disabled 按鈕文字不可辨識');
+  stats.push('sweet disabled 按鈕=ok');
+
+  // 5. default quest-panel 外層卡：漸層光暈 + 圓角 + 淺色文字
+  const defaultPanel = slice('body[data-theme="default"] .quest-panel__inner {', 480);
+  if (!defaultPanel.includes('radial-gradient')) throw new Error('default quest-panel 缺少漸層光暈');
+  if (!defaultPanel.includes('24px')) throw new Error('default quest-panel 缺少圓角 24px');
+  if (!defaultPanel.includes('#F4F7FF')) throw new Error('default quest-panel 缺少文字 #F4F7FF');
+  stats.push('default 外層卡漸層/圓角/文字=ok');
+
+  // 6. 與每日祝福圓角一致性（daily-blessing-card 24px；quest 26/24px 屬同一區間）
+  const dbCard = slice('.daily-blessing-card {', 120);
+  if (!dbCard.includes('border-radius')) {
+    notes.push('daily-blessing-card 未偵測到 border-radius，無法比對圓角一致性');
+  } else {
+    stats.push('與每日祝福圓角一致性=ok');
+  }
+
+  // 7. 白字放淺底風險（quest 區塊內）
+  const blockIdx = cssText.indexOf('V2.5.0 — 冒險任務');
+  if (blockIdx !== -1) {
+    const questBlock = cssText.slice(blockIdx);
+    if (/body\[data-theme="sweet"\] \.quest-panel__title \{[^}]*#FFF/i.test(questBlock)) {
+      notes.push('sweet quest-panel 標題疑似白字（淺底風險）');
+    }
+    if (/body\[data-theme="sweet"\] \.quest-panel__subtitle \{[^}]*#F[0-9A-F]C/i.test(questBlock)) {
+      notes.push('sweet quest-panel 副標疑似淡粉字（粉底風險）');
+    }
   }
 
   const summary = stats.join(' | ');
@@ -1355,6 +1452,436 @@ async function checkPetImageViewerContrast() {
 }
 
 /**
+ * V2.7.2 — 探險派遣流程直覺化檢查（靜態）
+ * 只檢查與回報，不會自動改資料。
+ */
+async function checkExpeditionDispatchUX() {
+  const [uiRes, cssRes] = await Promise.all([
+    fetch('./src/ui.js'),
+    fetch('./src/styles.css'),
+  ]);
+  if (!uiRes.ok || !cssRes.ok) throw new Error('無法讀取 ui.js / styles.css');
+  const uiText = await uiRes.text();
+  const cssText = await cssRes.text();
+  const stats = [];
+  const notes = [];
+
+  // 1-3. 三個核心函式存在
+  for (const fn of [
+    'function openExpeditionDispatchModal',
+    'function closeExpeditionDispatchModal',
+    'async function confirmExpeditionDispatch',
+  ]) {
+    if (!uiText.includes(fn)) throw new Error(`ui.js 缺少 ${fn}`);
+  }
+  stats.push('dispatch 函式=ok');
+
+  // 4. 地區卡片有派遣按鈕
+  if (!uiText.includes('expedition-dispatch-button') || !uiText.includes("data-action=\"open-dispatch\"")) {
+    throw new Error('地區卡片缺少派遣按鈕（open-dispatch）');
+  }
+  stats.push('派遣按鈕=ok');
+
+  // 5. Modal 能取得 areaId
+  if (!uiText.includes('dispatchAreaId')) throw new Error('派遣 Modal 未追蹤 areaId');
+  stats.push('areaId=ok');
+
+  // 6. 只顯示已擁有寵物
+  if (!uiText.includes('getDispatchablePetsSorted') || !uiText.includes('getOwnedPets')) {
+    throw new Error('派遣 Modal 未從已擁有寵物篩選');
+  }
+  stats.push('已擁有寵物=ok');
+
+  // 7-9. 確認派遣時的檢查
+  const confirmIdx = uiText.indexOf('async function confirmExpeditionDispatch');
+  const confirmBody = confirmIdx === -1 ? '' : uiText.slice(confirmIdx, confirmIdx + 1400);
+  if (!confirmBody.includes('請先選擇出發寵物')) throw new Error('confirm 未檢查 petId');
+  if (!confirmBody.includes('冒險能量不足')) throw new Error('confirm 未檢查冒險能量');
+  if (!confirmBody.includes('目前已有探險進行中')) throw new Error('confirm 未檢查進行中探險');
+  stats.push('confirm 檢查=ok');
+
+  // 10. 仍使用原本 startExpedition
+  if (!confirmBody.includes('startExpedition(petId, areaId')) {
+    throw new Error('confirm 未使用原本 startExpedition 邏輯');
+  }
+  stats.push('startExpedition=ok');
+
+  // 11. 更新 daily / weekly quest progress
+  if (!confirmBody.includes("trackQuest('start_expedition')")) {
+    throw new Error('派遣成功未更新每日任務進度');
+  }
+  if (!uiText.includes("trackQuest('complete_expedition')")) {
+    throw new Error('探險完成未更新每週任務進度');
+  }
+  stats.push('quest 進度=ok');
+
+  // 12. 探險完成後仍更新探索度
+  if (!uiText.includes('applyExplorationOnClaim')) {
+    throw new Error('探險完成後未更新探索度');
+  }
+  stats.push('探索度整合=ok');
+
+  // 13-14. Modal 主題背景 / 文字
+  const sweetModal = (() => {
+    const i = cssText.indexOf('body[data-theme="sweet"] .expedition-dispatch-modal__content {');
+    return i === -1 ? '' : cssText.slice(i, i + 200);
+  })();
+  if (!sweetModal.includes('#FFFFFF') || !sweetModal.includes('#3D2633')) {
+    throw new Error('sweet dispatch modal 缺少明確 background / color');
+  }
+  const defaultModal = (() => {
+    const i = cssText.indexOf('body[data-theme="default"] .expedition-dispatch-modal__content {');
+    return i === -1 ? '' : cssText.slice(i, i + 220);
+  })();
+  if (!defaultModal.includes('#141A2E') || !defaultModal.includes('#F4F7FF')) {
+    throw new Error('default dispatch modal 缺少明確 background / color');
+  }
+  stats.push('modal 主題色=ok');
+
+  // 15-16. 白字放淺底 / 淡粉字放粉底風險（限 V2.7.2 區塊）
+  const blockIdx = cssText.indexOf('V2.7.2 — 探險派遣流程直覺化');
+  if (blockIdx !== -1) {
+    const block = cssText.slice(blockIdx);
+    if (/body\[data-theme="sweet"\] \.expedition-pet-option__name \{[^}]*#FFF/i.test(block)) {
+      notes.push('sweet 寵物名稱疑似白字（淺底風險）');
+    }
+    if (/body\[data-theme="sweet"\] \.expedition-dispatch-area__name \{[^}]*#F[0-9A-F]C/i.test(block)) {
+      notes.push('sweet 地區名稱疑似淡粉字（粉底風險）');
+    }
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.7.0 — 探險地圖探索度系統檢查（靜態 + 執行期）
+ * 只檢查與回報，不會自動清除資料。
+ */
+async function checkExplorationSystem() {
+  const [svcRes, uiRes, indexRes, backupRes, achRes, swRes] = await Promise.all([
+    fetch('./src/explorationService.js'),
+    fetch('./src/ui.js'),
+    fetch('./index.html'),
+    fetch('./src/backupService.js'),
+    fetch('./data/achievements.json'),
+    fetch('./service-worker.js'),
+  ]);
+  if (!svcRes.ok) throw new Error('無法讀取 explorationService.js');
+  if (!uiRes.ok || !indexRes.ok || !backupRes.ok || !achRes.ok || !swRes.ok) {
+    throw new Error('無法讀取 ui / index / backup / achievements / service-worker');
+  }
+
+  const svcText = await svcRes.text();
+  const uiText = await uiRes.text();
+  const indexText = await indexRes.text();
+  const backupText = await backupRes.text();
+  const achievements = await achRes.json();
+  const swText = await swRes.text();
+  const notes = [];
+  const stats = [];
+
+  // 6/7. 必要 API 存在
+  const requiredApis = [
+    'export function normalizeExplorationProgress',
+    'export async function initExplorationProgress',
+    'export async function getAreaExploration',
+    'export function getExplorationMilestones',
+    'export async function getUnlockedAreaStories',
+    'export async function updateAreaExplorationProgress',
+    'export async function claimExplorationMilestone',
+    'export async function isAreaFullyExplored',
+  ];
+  for (const sig of requiredApis) {
+    if (!svcText.includes(sig)) throw new Error(`explorationService 缺少 ${sig}`);
+  }
+  stats.push('exploration API=ok');
+
+  // 8. 探險完成領獎是否會更新 explorationProgress
+  if (!uiText.includes('applyExplorationOnClaim') || !uiText.includes('updateAreaExplorationProgress')) {
+    throw new Error('ui.js 探險領獎未接入探索度更新');
+  }
+  if (!/claim-expedition[\s\S]{0,600}applyExplorationOnClaim/.test(uiText)) {
+    notes.push('claim-expedition 流程可能未呼叫 applyExplorationOnClaim');
+  }
+  if (!uiText.includes('claimExplorationMilestone')) {
+    throw new Error('ui.js 未使用 claimExplorationMilestone');
+  }
+  stats.push('ui 領獎接入探索度=ok');
+
+  // 11. 探險頁 exploration-panel 容器
+  if (!indexText.includes('id="exploration-panel"')) {
+    throw new Error('index.html 缺少 exploration-panel 容器');
+  }
+  if (!uiText.includes('function renderExplorationPanel')) {
+    throw new Error('ui.js 缺少 renderExplorationPanel');
+  }
+  stats.push('exploration UI 容器=ok');
+
+  // 9/10. backup 是否包含 explorationProgress 且 migration 支援
+  if (!backupText.includes('explorationProgress')) {
+    throw new Error('backupService 未包含 explorationProgress');
+  }
+  if (!backupText.includes('normalizeExplorationProgress')) {
+    throw new Error('backupService 未使用 normalizeExplorationProgress');
+  }
+  stats.push('backup explorationProgress=ok');
+
+  // 12. 成就是否支援探索成就
+  const explorationAch = achievements.filter((a) =>
+    typeof a.conditionType === 'string' && a.conditionType.startsWith('exploration_')
+  );
+  if (explorationAch.length < 5) {
+    throw new Error(`探索成就數量不足（${explorationAch.length}/5）`);
+  }
+  stats.push(`探索成就=${explorationAch.length}`);
+
+  if (!swText.includes('src/explorationService.js')) {
+    notes.push('service-worker 未 precache explorationService.js');
+  } else {
+    stats.push('SW precache=ok');
+  }
+
+  // 執行期：explorationProgress 結構與資料合理性
+  const ep = await getExplorationProgress();
+  if (!ep || typeof ep !== 'object') throw new Error('explorationProgress 不存在');
+  // 1/2. explorationProgress 與四個 area 是否存在
+  for (const areaId of EXPLORATION_AREA_IDS) {
+    const area = ep.areas?.[areaId];
+    if (!area) throw new Error(`探索地區缺少: ${areaId}`);
+    // 3. progress 0～100
+    if (typeof area.progress !== 'number' || area.progress < 0 || area.progress > 100) {
+      throw new Error(`${areaId} progress 不合理: ${area.progress}`);
+    }
+    // 4. completedRuns 數字
+    if (typeof area.completedRuns !== 'number') {
+      throw new Error(`${areaId} completedRuns 型別錯誤`);
+    }
+    // 5. claimedMilestones array
+    if (!Array.isArray(area.claimedMilestones)) {
+      throw new Error(`${areaId} claimedMilestones 必須為陣列`);
+    }
+  }
+  if (typeof ep.stats?.totalExplorationRuns !== 'number'
+    || typeof ep.stats?.totalMilestonesClaimed !== 'number') {
+    notes.push('exploration stats 型別可能錯誤');
+  }
+  stats.push(`areas=${EXPLORATION_AREA_IDS.length}`);
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.7.0 — 探索度 UI 可讀性檢查（sweet / default 對比度）
+ */
+async function checkExplorationContrast() {
+  const cssRes = await fetch('./src/styles.css');
+  if (!cssRes.ok) throw new Error('無法讀取 styles.css');
+  const cssText = await cssRes.text();
+  const stats = [];
+  const notes = [];
+
+  const requiredPairs = [
+    // 1. sweet area card 明確 background / color
+    ['sweet exploration area card bg', 'body[data-theme="sweet"] .exploration-area-card {', '#FFFFFF'],
+    ['sweet exploration area card text', 'body[data-theme="sweet"] .exploration-area-card {', '#3D2633'],
+    // 2. sweet milestone 明確 background / color
+    ['sweet exploration milestone bg', 'body[data-theme="sweet"] .exploration-milestone-card {', '#FFF8FC'],
+    ['sweet exploration milestone text', 'body[data-theme="sweet"] .exploration-milestone-card {', '#3D2633'],
+    // 3. sweet reward chip 明確 background / color
+    ['sweet exploration chip stardust bg', 'body[data-theme="sweet"] .exploration-reward-chip[data-reward-type="stardust"]', '#FFF1D8'],
+    ['sweet exploration chip stardust text', 'body[data-theme="sweet"] .exploration-reward-chip[data-reward-type="stardust"]', '#8A4F10'],
+    // 4. sweet claim button 白字配深色背景
+    ['sweet exploration claim button bg', 'body[data-theme="sweet"] .exploration-claim-button {', '#C73578'],
+    ['sweet exploration claim button text', 'body[data-theme="sweet"] .exploration-claim-button {', '#FFFFFF'],
+    // 8. sweet 進度條文字對比
+    ['sweet exploration progress bar text', 'body[data-theme="sweet"] .exploration-progress-bar__text {', '#3D2633'],
+    // 5. default exploration card 清楚
+    ['default exploration area card bg', 'body[data-theme="default"] .exploration-area-card {', '#141A2E'],
+    ['default exploration area card text', 'body[data-theme="default"] .exploration-area-card {', '#F4F7FF'],
+    ['default exploration chip stardust text', 'body[data-theme="default"] .exploration-reward-chip[data-reward-type="stardust"]', '#FDE68A'],
+    ['default exploration progress bar text', 'body[data-theme="default"] .exploration-progress-bar__text {', '#F4F7FF'],
+  ];
+
+  for (const [label, selector, color] of requiredPairs) {
+    const idx = cssText.indexOf(selector);
+    if (idx === -1) throw new Error(`缺少 ${selector}`);
+    const block = cssText.slice(idx, idx + 240);
+    if (!block.includes(color)) throw new Error(`${label} 未使用 ${color}`);
+    stats.push(`${label}=ok`);
+  }
+
+  // 6/7. 淺底白字 / 粉底淡粉字風險（限 V2.7.0 探索度區塊）
+  const blockIdx = cssText.indexOf('V2.7.0 — 探險地圖探索度系統');
+  if (blockIdx === -1) {
+    notes.push('styles.css 缺少 V2.7.0 探索度區塊標記');
+  } else {
+    const block = cssText.slice(blockIdx);
+    if (/body\[data-theme="sweet"\] \.exploration-area-card \{[^}]*color:\s*#FFF/i.test(block)) {
+      notes.push('sweet 探索地區卡片疑似白字（淺底風險）');
+    }
+    if (/body\[data-theme="sweet"\] \.exploration-milestone-card__title \{[^}]*color:\s*#FFC/i.test(block)) {
+      notes.push('sweet 里程碑標題疑似淡粉字（粉底風險）');
+    }
+    stats.push('sweet exploration contrast 區塊=ok');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.7.3 — 全站字體大小與排版比例統一檢查（靜態分析 styles.css）
+ * 只檢查與回報，不會自動清除或修改任何資料。
+ */
+async function checkTypographyScale() {
+  const cssRes = await fetch('./src/styles.css');
+  if (!cssRes.ok) throw new Error('無法讀取 styles.css');
+  const cssText = await cssRes.text();
+  const notes = [];
+  const stats = [];
+
+  // 1. 是否定義 typography tokens
+  const requiredTokens = [
+    '--font-size-xs', '--font-size-sm', '--font-size-md', '--font-size-base',
+    '--font-size-lg', '--font-size-xl', '--font-size-2xl', '--font-size-3xl',
+    '--line-height-tight', '--line-height-snug', '--line-height-normal', '--line-height-relaxed',
+    '--font-weight-regular', '--font-weight-medium', '--font-weight-bold',
+    '--font-weight-heavy', '--font-weight-black',
+  ];
+  for (const token of requiredTokens) {
+    if (!cssText.includes(token)) throw new Error(`typography token 缺少 ${token}`);
+  }
+  stats.push(`tokens=${requiredTokens.length}`);
+
+  // xs token 不得小於 0.7rem（手機可讀性下限）
+  const xsMatch = cssText.match(/--font-size-xs:\s*([0-9.]+)rem/);
+  if (xsMatch && Number(xsMatch[1]) < 0.7) {
+    throw new Error(`--font-size-xs (${xsMatch[1]}rem) 小於 0.7rem`);
+  }
+  if (xsMatch) stats.push(`xs=${xsMatch[1]}rem`);
+
+  // 2. V2.7.3 統一區塊標記
+  const blockIdx = cssText.indexOf('V2.7.3 — 全站字體大小與排版比例統一');
+  if (blockIdx === -1) throw new Error('styles.css 缺少 V2.7.3 typography 區塊標記');
+  const block = cssText.slice(blockIdx);
+  stats.push('V2.7.3 typography 區塊=ok');
+
+  // 區塊內定位輔助
+  const blockSlice = (selector, len = 240) => {
+    const i = block.indexOf(selector);
+    if (i === -1) throw new Error(`V2.7.3 區塊缺少 ${selector}`);
+    return block.slice(i, i + len);
+  };
+
+  // 4. 按鈕文字使用 token（不小於 0.88rem → 使用 --font-size-md=0.92rem）
+  const btnBlock = blockSlice('.btn {');
+  if (!btnBlock.includes('var(--font-size-md)')) {
+    throw new Error('按鈕文字未使用 --font-size-md');
+  }
+  stats.push('button=md');
+
+  // 5. badge / chip 不小於 0.72rem（使用 0.76rem）
+  const badgeBlock = blockSlice('.badge,', 900);
+  const badgeSizeMatch = badgeBlock.match(/font-size:\s*([0-9.]+)rem/);
+  if (!badgeSizeMatch || Number(badgeSizeMatch[1]) < 0.72) {
+    throw new Error('badge / chip font-size 小於 0.72rem');
+  }
+  stats.push(`badge=${badgeSizeMatch[1]}rem`);
+
+  // 6. toast 文字不小於 0.82rem（md=0.92rem）
+  const toastBlock = blockSlice('.toast,');
+  if (!toastBlock.includes('var(--font-size-md)')) {
+    notes.push('toast 可能未使用 --font-size-md');
+  } else {
+    stats.push('toast=md');
+  }
+
+  // 7. modal 標題使用 xl；modal 內文使用 md
+  const modalTitleBlock = blockSlice('.modal-title,');
+  if (!modalTitleBlock.includes('var(--font-size-xl)')) {
+    notes.push('modal 標題可能未使用 --font-size-xl');
+  } else {
+    stats.push('modal-title=xl');
+  }
+  const modalBodyBlock = blockSlice('.modal-body {');
+  if (!modalBodyBlock.includes('var(--font-size-md)')) {
+    notes.push('modal 內文可能未使用 --font-size-md');
+  } else {
+    stats.push('modal-body=md');
+  }
+
+  // 8. bottom nav label 不過小（xs=0.72rem ≥ 0.68rem）
+  const navBlock = blockSlice('.nav-label {');
+  if (!navBlock.includes('var(--font-size-xs)')) {
+    notes.push('底部導航 label 可能未使用 --font-size-xs');
+  } else {
+    stats.push('nav-label=xs');
+  }
+
+  // 頁面 / 卡片標題層級
+  const pageTitleBlock = blockSlice('.page-title {');
+  if (!pageTitleBlock.includes('var(--font-size-2xl)')) {
+    notes.push('頁面標題可能未使用 --font-size-2xl');
+  } else {
+    stats.push('page-title=2xl');
+  }
+
+  // 3. 是否仍存在 font-size < 0.7rem 或 9/10/11px 的過小字（全域掃描 → 回報）
+  const sizeRegex = /font-size:\s*([0-9.]+)(px|rem)/g;
+  let m;
+  let tinyPx = 0;
+  let tinyRem = 0;
+  const tinySamples = [];
+  while ((m = sizeRegex.exec(cssText)) !== null) {
+    const value = Number(m[1]);
+    const unit = m[2];
+    if (unit === 'px' && value <= 11) {
+      tinyPx += 1;
+      if (tinySamples.length < 6) tinySamples.push(`${value}px`);
+    } else if (unit === 'rem' && value < 0.7) {
+      tinyRem += 1;
+      if (tinySamples.length < 6) tinySamples.push(`${value}rem`);
+    }
+  }
+  stats.push(`剩餘 ≤11px=${tinyPx} / <0.7rem=${tinyRem}`);
+  if (tinyPx + tinyRem > 0) {
+    notes.push(`仍有過小字 ${tinyPx + tinyRem} 處（例: ${tinySamples.join(', ')}）— 多為裝飾/轉盤標籤，請確認未承載重要資訊`);
+  }
+
+  // 9/10. sweet / default 主題主要文字對比色仍存在
+  if (!cssText.includes('#3D2633')) {
+    throw new Error('sweet 主題主文字色 #3D2633 缺失（低對比風險）');
+  }
+  if (!cssText.includes('#F4F7FF')) {
+    throw new Error('default 主題主文字色 #F4F7FF 缺失（低對比風險）');
+  }
+  stats.push('sweet #3D2633 / default #F4F7FF=ok');
+
+  // 11. reward chip 是否有清楚 font-size / color（沿用既有 quest / exploration reward chip）
+  if (!cssText.includes('.quest-reward-chip') || !cssText.includes('.exploration-reward-chip')) {
+    notes.push('reward chip selector 可能缺失');
+  } else {
+    stats.push('reward chip=ok');
+  }
+
+  // 12. disabled 狀態文字顏色（sweet 保留可辨識深字 #616977）
+  if (!cssText.includes('#616977') && !cssText.includes('#777F8D')) {
+    notes.push('sweet disabled 文字可辨識色可能缺失');
+  } else {
+    stats.push('disabled 可辨識=ok');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
  * 執行健康檢查並輸出結果至 console
  * @returns {Promise<{ ok: boolean, results: Record<string, string>, errors: string[] }>}
  */
@@ -1398,10 +1925,15 @@ export async function runAppHealthCheck() {
   await runCheck('summon reveal', checkSummonReveal);
   await runCheck('quest system', checkQuestSystem);
   await runCheck('quest contrast', checkQuestContrast);
+  await runCheck('quest panel visual', checkQuestPanelVisual);
   await runCheck('bond system', checkBondSystem);
   await runCheck('bond contrast', checkBondContrast);
   await runCheck('pet image viewer', checkPetImageViewer);
   await runCheck('pet image viewer contrast', checkPetImageViewerContrast);
+  await runCheck('exploration system', checkExplorationSystem);
+  await runCheck('exploration contrast', checkExplorationContrast);
+  await runCheck('expedition dispatch UX', checkExpeditionDispatchUX);
+  await runCheck('typography scale', checkTypographyScale);
   await runCheck('service worker', checkServiceWorker);
 
   console.log('QuestNote Health Check:');

@@ -1,9 +1,9 @@
 /**
- * QuestNote Service Worker — V2.6.1 寵物原圖放大檢視功能恢復
+ * QuestNote Service Worker — V2.7.3 全站字體大小與排版比例統一
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v261-pet-image-viewer';
+const CACHE_NAME = 'questnote-cache-v273-typography-scale-polish';
 const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
@@ -32,6 +32,7 @@ const PRECACHE_URLS = [
   'src/loreService.js',
   'src/devService.js',
   'src/expeditionService.js',
+  'src/explorationService.js',
   'src/workshopService.js',
   'src/ui.js',
   'src/version.js',

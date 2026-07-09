@@ -77,6 +77,7 @@ import {
 import { initHabits, getAllHabits, getHabitPageStats } from './habitService.js';
 import { initDailyCheckIn, getDailyCheckIn, loadWheelRewards } from './dailyCheckInService.js';
 import { initQuestProgress, getQuestSummary } from './questService.js';
+import { initExplorationProgress, getExplorationSummary } from './explorationService.js';
 
 import {
   initWorkshop,
@@ -155,6 +156,8 @@ const appState = {
   dailyCheckIn: null,
 
   questSummary: null,
+
+  explorationSummary: null,
 
   onReset: resetAllData,
 
@@ -380,6 +383,11 @@ async function refreshState(options = {}) {
     return null;
   });
 
+  appState.explorationSummary = await getExplorationSummary().catch((err) => {
+    console.error('[QuestNote] 探索度載入失敗:', err);
+    return null;
+  });
+
 
 
   await renderAfterRefresh(options.renderMode ?? 'current');
@@ -405,6 +413,8 @@ async function resetAllData() {
   await initDailyCheckIn();
 
   await initQuestProgress();
+
+  await initExplorationProgress();
 
   await initWorkshop();
 
@@ -614,6 +624,8 @@ async function initApp() {
   await initDailyCheckIn();
 
   await initQuestProgress();
+
+  await initExplorationProgress();
 
   try {
     await loadWheelRewards();

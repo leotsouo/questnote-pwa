@@ -26,6 +26,7 @@ import { getWorkshopStats } from './workshopService.js';
 import { getTodayDateString, isCompletedToday, getLocalDateStringFromIso } from './taskFilterService.js';
 import { getDailyCheckIn } from './dailyCheckInService.js';
 import { getQuestProgress } from './questService.js';
+import { getExplorationProgress, EXPLORATION_AREA_IDS } from './explorationService.js';
 
 const ACHIEVEMENTS_KEY = 'achievements';
 
@@ -176,7 +177,7 @@ function isTaskCompleted(task) {
  * 建立成就條件計算用的上下文
  */
 export async function buildAchievementContext(allPets = []) {
-  const [tasks, gachaStats, collection, expeditions, achState, taskStats, habits, workshopStats, dailyCheckIn, questProgress] = await Promise.all([
+  const [tasks, gachaStats, collection, expeditions, achState, taskStats, habits, workshopStats, dailyCheckIn, questProgress, explorationProgress] = await Promise.all([
     getAllTasks(),
     getGachaStats(),
     getCollection(),
@@ -187,6 +188,7 @@ export async function buildAchievementContext(allPets = []) {
     getWorkshopStats(),
     getDailyCheckIn(),
     getQuestProgress(),
+    getExplorationProgress(),
   ]);
 
   const completedTasks = tasks.filter(isTaskCompleted);
@@ -232,6 +234,18 @@ export async function buildAchievementContext(allPets = []) {
     (c) => typeof c.nickname === 'string' && c.nickname.trim()
   );
 
+  // V2.7.0 探索地圖探索度
+  const explorationAreas = explorationProgress?.areas || {};
+  const explorationAreaValues = EXPLORATION_AREA_IDS.map(
+    (id) => explorationAreas[id]?.progress ?? 0
+  );
+  const explorationAreaProgressMax = explorationAreaValues.length
+    ? Math.max(...explorationAreaValues)
+    : 0;
+  const explorationAreasAt50 = explorationAreaValues.filter((p) => p >= 50).length;
+  const explorationAreasAt100 = explorationAreaValues.filter((p) => p >= 100).length;
+  const explorationMilestonesClaimedTotal = explorationProgress?.stats?.totalMilestonesClaimed ?? 0;
+
   return {
     completedTasksTotal: completedTasks.length,
     completedTasksToday: completedToday,
@@ -263,6 +277,10 @@ export async function buildAchievementContext(allPets = []) {
     totalWheelSpins: dailyCheckIn.totalWheelSpins ?? 0,
     totalDailyQuestsClaimed: questProgress?.stats?.totalDailyQuestsClaimed ?? 0,
     totalWeeklyQuestsClaimed: questProgress?.stats?.totalWeeklyQuestsClaimed ?? 0,
+    explorationMilestonesClaimedTotal,
+    explorationAreaProgressMax,
+    explorationAreasAt50,
+    explorationAreasAt100,
   };
 }
 
@@ -337,6 +355,14 @@ export function getAchievementProgress(achievement, context) {
       return context.totalDailyQuestsClaimed;
     case 'quest_weekly_claimed_total':
       return context.totalWeeklyQuestsClaimed;
+    case 'exploration_milestone_claimed_total':
+      return context.explorationMilestonesClaimedTotal;
+    case 'exploration_area_progress_max':
+      return context.explorationAreaProgressMax;
+    case 'exploration_areas_at_50':
+      return context.explorationAreasAt50;
+    case 'exploration_areas_at_100':
+      return context.explorationAreasAt100;
     default:
       return 0;
   }

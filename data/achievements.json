@@ -502,5 +502,55 @@
     "target": 10,
     "reward": { "stardust": 300, "adventureEnergy": 0, "materials": { "star_shard": 1 } },
     "titleReward": "穩定挑戰者"
+  },
+  {
+    "id": "ach_first_exploration_milestone",
+    "name": "初次探索突破",
+    "description": "領取第一個探索里程碑。",
+    "category": "expedition",
+    "conditionType": "exploration_milestone_claimed_total",
+    "target": 1,
+    "reward": { "stardust": 100, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "探索新手"
+  },
+  {
+    "id": "ach_first_area_50",
+    "name": "半程探索者",
+    "description": "任一地區探索度達到 50%。",
+    "category": "expedition",
+    "conditionType": "exploration_area_progress_max",
+    "target": 50,
+    "reward": { "stardust": 150, "adventureEnergy": 0, "materials": {} },
+    "titleReward": "半程探索者"
+  },
+  {
+    "id": "ach_first_area_100",
+    "name": "完全探索",
+    "description": "任一地區探索度達到 100%。",
+    "category": "expedition",
+    "conditionType": "exploration_area_progress_max",
+    "target": 100,
+    "reward": { "stardust": 250, "adventureEnergy": 0, "materials": { "star_shard": 1 } },
+    "titleReward": "完全探索者"
+  },
+  {
+    "id": "ach_all_areas_50",
+    "name": "四域熟悉者",
+    "description": "四個地區探索度都達到 50%。",
+    "category": "expedition",
+    "conditionType": "exploration_areas_at_50",
+    "target": 4,
+    "reward": { "stardust": 400, "adventureEnergy": 0, "materials": {}, "items": { "item_stardust_candy": 1 } },
+    "titleReward": "四域旅人"
+  },
+  {
+    "id": "ach_all_areas_100",
+    "name": "世界探索者",
+    "description": "四個地區探索度都達到 100%。",
+    "category": "expedition",
+    "conditionType": "exploration_areas_at_100",
+    "target": 4,
+    "reward": { "stardust": 800, "adventureEnergy": 0, "materials": { "star_shard": 3 } },
+    "titleReward": "世界探索者"
   }
 ]

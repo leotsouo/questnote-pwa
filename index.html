@@ -57,17 +57,34 @@
         </div>
       </section>
 
-      <section id="homeDailyBlessingContainer" class="daily-blessing-section daily-blessing-section--home" aria-label="每日祝福"></section>
-
-      <section id="quest-panel" class="quest-panel" aria-label="冒險任務"></section>
-
-      <section id="achievement-strip" class="achievement-strip card" data-action="go-achievements" role="button" tabindex="0"></section>
-
       <section id="companion-section" class="companion-section"></section>
 
-      <section id="today-plan-summary" class="today-plan-summary card"></section>
+      <section id="home-hub" class="home-hub" aria-label="首頁功能選單">
+        <div class="home-hub__icons" role="tablist" aria-label="每日祝福、冒險任務、稱號">
+          <button type="button" class="home-hub__icon" data-action="home-hub" data-hub="blessing" role="tab" aria-expanded="false" aria-label="每日祝福">
+            <span class="home-hub__emoji" aria-hidden="true">🌸</span>
+            <span class="home-hub__name">每日祝福</span>
+            <span class="home-hub__dot" data-hub-dot="blessing" hidden></span>
+          </button>
+          <button type="button" class="home-hub__icon" data-action="home-hub" data-hub="quest" role="tab" aria-expanded="false" aria-label="冒險任務">
+            <span class="home-hub__emoji" aria-hidden="true">🗺️</span>
+            <span class="home-hub__name">冒險任務</span>
+            <span class="home-hub__dot" data-hub-dot="quest" hidden></span>
+          </button>
+          <button type="button" class="home-hub__icon" data-action="home-hub" data-hub="titles" role="tab" aria-expanded="false" aria-label="稱號">
+            <span class="home-hub__emoji" aria-hidden="true">🏆</span>
+            <span class="home-hub__name">稱號</span>
+            <span class="home-hub__dot" data-hub-dot="titles" hidden></span>
+          </button>
+        </div>
+        <div class="home-hub__panel">
+          <section id="homeDailyBlessingContainer" class="daily-blessing-section daily-blessing-section--home" aria-label="每日祝福"></section>
 
-      <section id="habit-summary" class="habit-summary card" data-action="go-habits" role="button" tabindex="0"></section>
+          <section id="quest-panel" class="quest-panel" aria-label="冒險任務"></section>
+
+          <section id="achievement-strip" class="achievement-strip card" data-action="go-achievements" role="button" tabindex="0"></section>
+        </div>
+      </section>
 
       <div class="task-view-tabs segmented-control" id="task-view-tabs" role="tablist" aria-label="任務視圖">
         <button type="button" class="segmented-control__btn active" data-task-view="today" role="tab" aria-selected="true">今日</button>
@@ -78,6 +95,10 @@
       <div class="filter-bar filter-bar--categories" id="task-category-filters" hidden></div>
 
       <div id="task-view-content" class="task-view-content"></div>
+
+      <section id="today-plan-summary" class="today-plan-summary card"></section>
+
+      <section id="habit-summary" class="habit-summary card" data-action="go-habits" role="button" tabindex="0"></section>
 
       <button id="btn-add-task" class="fab" aria-label="新增任務">＋</button>
     </main>
@@ -175,6 +196,7 @@
       <section id="expedition-energy" class="expedition-energy card"></section>
       <section id="expedition-active" class="expedition-active"></section>
       <section id="expedition-areas" class="expedition-areas"></section>
+      <section id="exploration-panel" class="exploration-panel"></section>
       <section id="expedition-pets" class="expedition-pets"></section>
     </main>
 

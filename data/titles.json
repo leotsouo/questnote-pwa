@@ -49,6 +49,11 @@
     { "id": "title_daily_quest_starter", "name": "今日啟程者", "sourceAchievementId": "ach_first_daily_quest" },
     { "id": "title_daily_adventurer", "name": "每日冒險家", "sourceAchievementId": "ach_daily_quest_10" },
     { "id": "title_weekly_challenger", "name": "週任務挑戰者", "sourceAchievementId": "ach_first_weekly_quest" },
-    { "id": "title_steady_challenger", "name": "穩定挑戰者", "sourceAchievementId": "ach_weekly_quest_10" }
+    { "id": "title_steady_challenger", "name": "穩定挑戰者", "sourceAchievementId": "ach_weekly_quest_10" },
+    { "id": "title_exploration_novice", "name": "探索新手", "sourceAchievementId": "ach_first_exploration_milestone" },
+    { "id": "title_half_explorer", "name": "半程探索者", "sourceAchievementId": "ach_first_area_50" },
+    { "id": "title_full_explorer", "name": "完全探索者", "sourceAchievementId": "ach_first_area_100" },
+    { "id": "title_four_realm_traveler", "name": "四域旅人", "sourceAchievementId": "ach_all_areas_50" },
+    { "id": "title_world_explorer", "name": "世界探索者", "sourceAchievementId": "ach_all_areas_100" }
   ]
 }

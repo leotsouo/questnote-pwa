@@ -25,11 +25,12 @@ import { normalizeTask, migrateTasks } from './taskMigration.js';
 import { getTodayDateString } from './taskFilterService.js';
 import { exportDailyCheckIn, normalizeDailyCheckIn } from './dailyCheckInService.js';
 import { exportQuestProgress, normalizeQuestProgress, rolloverQuestProgress } from './questService.js';
+import { exportExplorationProgress, normalizeExplorationProgress } from './explorationService.js';
 import { APP_VERSION } from './version.js';
 
 export { APP_VERSION };
 const APP_NAME = 'QuestNote';
-const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2', '2.2.7', '2.3.0', '2.3.1', '2.3.2', '2.3.3', '2.3.4', '2.3.5', '2.3.6', '2.3.7', '2.3.8', '2.4.0', '2.5.0', '2.6.0', '2.6.1'];
+const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2', '2.2.7', '2.3.0', '2.3.1', '2.3.2', '2.3.3', '2.3.4', '2.3.5', '2.3.6', '2.3.7', '2.3.8', '2.4.0', '2.5.0', '2.6.0', '2.6.1', '2.7.0', '2.7.1', '2.7.2', '2.7.3'];
 const WALLET_KEY = 'wallet';
 const GACHA_STATS_KEY = 'gachaStats';
 const ACHIEVEMENTS_KEY = 'achievements';
@@ -53,6 +54,7 @@ const DATA_KEYS = [
   'workshopStats',
   'dailyCheckIn',
   'questProgress',
+  'explorationProgress',
 ];
 
 /**
@@ -102,6 +104,7 @@ function buildDataPayload({
   workshopStats,
   dailyCheckIn,
   questProgress,
+  explorationProgress,
 }) {
   const walletData = {
     stardust: wallet.stardust ?? 0,
@@ -144,6 +147,7 @@ function buildDataPayload({
     workshopStats,
     dailyCheckIn,
     questProgress,
+    explorationProgress,
   };
 }
 
@@ -166,6 +170,7 @@ export async function exportBackup() {
     workshopStats,
     dailyCheckIn,
     questProgress,
+    explorationProgress,
   ] = await Promise.all([
     exportTasks(),
     getWallet(),
@@ -180,6 +185,7 @@ export async function exportBackup() {
     exportWorkshopStats(),
     exportDailyCheckIn(),
     exportQuestProgress(),
+    exportExplorationProgress(),
   ]);
 
   const data = buildDataPayload({
@@ -196,6 +202,7 @@ export async function exportBackup() {
     workshopStats,
     dailyCheckIn,
     questProgress,
+    explorationProgress,
   });
 
   return {
@@ -466,6 +473,7 @@ export function normalizeBackupPayload(rawBackup) {
     workshopStats: normalizeWorkshopStats(data.workshopStats),
     dailyCheckIn: normalizeDailyCheckIn(data.dailyCheckIn),
     questProgress: normalizeQuestProgress(data.questProgress),
+    explorationProgress: normalizeExplorationProgress(data.explorationProgress),
   };
 }
 
@@ -532,6 +540,7 @@ export function migrateImportedData(normalizedBackup) {
   const questProgress = rolloverQuestProgress(
     normalizeQuestProgress(normalizedBackup.questProgress)
   ).questProgress;
+  const explorationProgress = normalizeExplorationProgress(normalizedBackup.explorationProgress);
 
   return {
     ...normalizedBackup,
@@ -549,6 +558,7 @@ export function migrateImportedData(normalizedBackup) {
     workshopStats,
     dailyCheckIn,
     questProgress,
+    explorationProgress,
   };
 }
 
@@ -637,6 +647,7 @@ export async function safeReplaceAllData(migratedData) {
     workshopStats: migratedData.workshopStats,
     dailyCheckIn: migratedData.dailyCheckIn,
     questProgress: migratedData.questProgress,
+    explorationProgress: migratedData.explorationProgress,
   });
 }
 
