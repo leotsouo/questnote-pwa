@@ -2644,17 +2644,17 @@ async function checkAdventureHandbook() {
   if (!swText.includes('src/adventureHandbookService.js')) {
     throw new Error('service-worker 未 precache adventureHandbookService.js');
   }
-  if (!versionText.includes("APP_VERSION = '3.4.3'")) {
-    notes.push('version.js APP_VERSION 非 3.4.3');
+  if (!versionText.includes("APP_VERSION = '3.4.4'")) {
+    notes.push('version.js APP_VERSION 非 3.4.4');
   }
-  if (!versionText.includes('questnote-cache-v343-reveal-flow-verification')) {
+  if (!versionText.includes('questnote-cache-v344-pool-intro-polish')) {
     notes.push('version.js CACHE_NAME 未更新為 v343');
   }
-  if (!swText.includes('questnote-cache-v343-reveal-flow-verification')) {
+  if (!swText.includes('questnote-cache-v344-pool-intro-polish')) {
     notes.push('service-worker CACHE_NAME 未更新為 v343');
   }
-  if (!backupText.includes("'3.4.3'")) {
-    notes.push('backupService 未加入 3.4.3 支援版本');
+  if (!backupText.includes("'3.4.4'")) {
+    notes.push('backupService 未加入 3.4.4 支援版本');
   }
 
   const summary = stats.join(' | ');
@@ -2963,11 +2963,11 @@ async function checkGlobalMailbox() {
   stats.push('ui=ok');
 
   // 7. 版本／備份／SW -----------------------------------------------
-  if (!versionText.includes("APP_VERSION = '3.4.3'")) {
-    throw new Error('APP_VERSION 應為 3.4.3');
+  if (!versionText.includes("APP_VERSION = '3.4.4'")) {
+    throw new Error('APP_VERSION 應為 3.4.4');
   }
-  if (!versionText.includes('questnote-cache-v343-reveal-flow-verification')) {
-    throw new Error('CACHE_NAME 應為 v343-reveal-flow-verification');
+  if (!versionText.includes('questnote-cache-v344-pool-intro-polish')) {
+    throw new Error('CACHE_NAME 應為 v344-pool-intro-polish');
   }
   if (!swText.includes('src/mailboxService.js')) {
     throw new Error('service-worker 未 precache mailboxService.js');
@@ -2978,8 +2978,8 @@ async function checkGlobalMailbox() {
   if (!swText.includes('questnote-mailbox-runtime-v1') && MAILBOX_RUNTIME_CACHE !== 'questnote-mailbox-runtime-v1') {
     throw new Error('MAILBOX_RUNTIME_CACHE 名稱不符');
   }
-  if (!backupText.includes('globalMailboxState') || !backupText.includes("'3.4.3'")) {
-    throw new Error('backupService 未支援 globalMailboxState / 3.4.3');
+  if (!backupText.includes('globalMailboxState') || !backupText.includes("'3.4.4'")) {
+    throw new Error('backupService 未支援 globalMailboxState / 3.4.4');
   }
   if (!backupText.includes('normalizeGlobalMailboxState')) {
     throw new Error('舊版備份應可正規化空 mailbox state');
@@ -3429,11 +3429,11 @@ async function checkPetSeriesBuilder() {
   if (backupText.includes('pet-series.json') && /DATA_KEYS[\s\S]*pet-series/.test(backupText)) {
     throw new Error('pet-series.json 不應進入使用者備份');
   }
-  if (!versionText.includes("APP_VERSION = '3.4.3'")) {
-    throw new Error('APP_VERSION 應為 3.4.3');
+  if (!versionText.includes("APP_VERSION = '3.4.4'")) {
+    throw new Error('APP_VERSION 應為 3.4.4');
   }
-  if (!backupText.includes("'3.4.3'")) {
-    throw new Error('backupService 應支援 3.4.3');
+  if (!backupText.includes("'3.4.4'")) {
+    throw new Error('backupService 應支援 3.4.4');
   }
   if (!swText.includes('PET_IMAGE_CACHE') || !swText.includes('MAILBOX_RUNTIME_CACHE')) {
     throw new Error('應保留 PET_IMAGE_CACHE 與 MAILBOX_RUNTIME_CACHE');
@@ -3528,9 +3528,9 @@ async function checkMorningGardenAwakening() {
   if (unlockedEligible !== 16) throw new Error('已解鎖候選應為 16');
   stats.push('eligible=12/16');
 
-  if (!versionText.includes("APP_VERSION = '3.4.3'")) throw new Error('APP_VERSION 應為 3.4.3');
-  if (!versionText.includes('questnote-cache-v343-reveal-flow-verification')) {
-    throw new Error('CACHE_NAME 應為 v343-reveal-flow-verification');
+  if (!versionText.includes("APP_VERSION = '3.4.4'")) throw new Error('APP_VERSION 應為 3.4.4');
+  if (!versionText.includes('questnote-cache-v344-pool-intro-polish')) {
+    throw new Error('CACHE_NAME 應為 v344-pool-intro-polish');
   }
   if (!swText.includes('poolUnlockService.js') || !swText.includes('poolAwakeningController.js')) {
     throw new Error('SW 應 precache 解鎖模組');
@@ -3608,14 +3608,14 @@ async function checkRevealFlowV343() {
   const loreData = await loreRes.json();
   const poolsData = await poolsRes.json();
 
-  if (!versionText.includes("APP_VERSION = '3.4.3'")) {
-    throw new Error('APP_VERSION 應為 3.4.3');
+  if (!versionText.includes("APP_VERSION = '3.4.4'")) {
+    throw new Error('APP_VERSION 應為 3.4.4');
   }
-  if (!versionText.includes('questnote-cache-v343-reveal-flow-verification')) {
-    throw new Error('CACHE_NAME 應為 v343-reveal-flow-verification');
+  if (!versionText.includes('questnote-cache-v344-pool-intro-polish')) {
+    throw new Error('CACHE_NAME 應為 v344-pool-intro-polish');
   }
-  if (!swText.includes('questnote-cache-v343-reveal-flow-verification')) {
-    throw new Error('service-worker CACHE_NAME 應為 v343');
+  if (!swText.includes('questnote-cache-v344-pool-intro-polish')) {
+    throw new Error('service-worker CACHE_NAME 應為 v344');
   }
   if (!swText.includes("src/summonRevealService.js")) {
     throw new Error('summonRevealService 必須加入 App Shell precache');
@@ -3688,6 +3688,121 @@ async function checkRevealFlowV343() {
   return summary;
 }
 
+/**
+ * V3.4.4 永眠花海卡池入場動畫優化健康檢查
+ * 不改 rates／pity／cost／DB_VERSION；僅驗證 presentation／debut 模組與版本一致。
+ */
+async function checkPoolIntroPolishV344() {
+  const stats = [];
+  const notes = [];
+
+  const [versionRes, swRes, themedRes, cssRes, presentationRes, debutRes, poolsRes, dbRes, backupRes] = await Promise.all([
+    fetch('./src/version.js'),
+    fetch('./service-worker.js'),
+    fetch('./src/themedSummonController.js'),
+    fetch('./src/styles.css'),
+    fetch('./src/poolPresentation.js'),
+    fetch('./src/poolDebutService.js'),
+    fetch('./data/pools.json'),
+    fetch('./src/db.js'),
+    fetch('./src/backupService.js'),
+  ]);
+
+  if (!versionRes.ok || !swRes.ok || !themedRes.ok || !cssRes.ok || !presentationRes.ok || !debutRes.ok || !dbRes.ok) {
+    throw new Error('無法讀取 V3.4.4 入場動畫必要檔案');
+  }
+
+  const versionText = await versionRes.text();
+  const swText = await swRes.text();
+  const themedText = await themedRes.text();
+  const cssText = await cssRes.text();
+  const presentationText = await presentationRes.text();
+  const debutText = await debutRes.text();
+  const poolsData = await poolsRes.json();
+  const dbText = await dbRes.text();
+  const backupText = await backupRes.text();
+
+  if (!versionText.includes("APP_VERSION = '3.4.4'")) {
+    throw new Error('APP_VERSION 應為 3.4.4');
+  }
+  if (!versionText.includes('questnote-cache-v344-pool-intro-polish')) {
+    throw new Error('CACHE_NAME 應為 v344-pool-intro-polish');
+  }
+  if (!swText.includes('questnote-cache-v344-pool-intro-polish')) {
+    throw new Error('service-worker CACHE_NAME 應為 v344');
+  }
+  if (!backupText.includes("'3.4.4'")) {
+    throw new Error('backupService 應支援 3.4.4');
+  }
+  if (!dbText.includes('const DB_VERSION = 3')) {
+    throw new Error('DB_VERSION 必須維持 3');
+  }
+  stats.push('version/sw/db=ok');
+
+  if (!presentationText.includes('eternal_slumber_bloom') || !presentationText.includes('dream_bloom')) {
+    throw new Error('poolPresentation 缺少永眠花海 theme／animation');
+  }
+  const pool = (poolsData.pools || []).find((p) => p.id === 'eternal_slumber_bloom');
+  const std = (poolsData.pools || []).find((p) => p.id === 'standard');
+  if (!pool?.presentation || pool.presentation.themeKey !== 'eternal_slumber_bloom') {
+    throw new Error('永眠花海 presentation 異常');
+  }
+  if (!std) throw new Error('缺少 standard 池');
+  stats.push('presentation=ok');
+
+  if (!themedText.includes('playPoolDebutPresentation')) {
+    throw new Error('缺少入場動畫函式 playPoolDebutPresentation');
+  }
+  if (!themedText.includes('is-phase-bloom') || !themedText.includes('is-phase-reveal')) {
+    throw new Error('入場動畫缺少分鏡 phase class');
+  }
+  if (!themedText.includes('月皇花') || !themedText.includes('已於長夜中') || !themedText.includes('甦醒')) {
+    throw new Error('入場台詞分段缺失');
+  }
+  if (!themedText.includes('is-exiting') || !themedText.includes('is-skipped')) {
+    throw new Error('入場略過／結束狀態缺失');
+  }
+  if (!debutText.includes('poolDebutSeen') || !debutText.includes('hasSeenPoolDebut')) {
+    throw new Error('poolDebutSeen 狀態服務缺失');
+  }
+  stats.push('debut-module=ok');
+
+  const requiredCss = [
+    '.dream-debut-overlay',
+    '.dream-debut-mirror',
+    '.dream-debut-flower',
+    '.dream-debut-line__seg',
+    '.is-pool-debut-veil',
+    '.is-pool-debut-reveal',
+    'dreamDebutPetalOpen',
+  ];
+  for (const token of requiredCss) {
+    if (!cssText.includes(token)) {
+      throw new Error(`缺少入場動畫 CSS: ${token}`);
+    }
+  }
+  if (!cssText.includes('is-reduced') || !cssText.includes('prefers-reduced-motion')) {
+    notes.push('請確認 reduced motion 分支仍存在');
+  }
+  stats.push('debut-css=ok');
+
+  if (!swText.includes('src/themedSummonController.js') || !swText.includes('src/poolDebutService.js')) {
+    throw new Error('入場相關模組必須在 App Shell precache');
+  }
+  if (swText.includes('devtools/pool-debut-preview.html')) {
+    throw new Error('devtools 預覽頁不得加入 App Shell');
+  }
+  stats.push('app-shell=ok');
+
+  if (pool.cost !== 100 || std.cost !== 100) throw new Error('抽卡成本被改動');
+  if (pool.pity?.ssr !== 30 || pool.pity?.ur !== 100) throw new Error('pity 被改動');
+  stats.push('rates-untouched=ok');
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
 export async function runAppHealthCheck() {
   const results = {};
   const errors = [];
@@ -3746,6 +3861,7 @@ export async function runAppHealthCheck() {
   await runCheck('pet series builder', checkPetSeriesBuilder);
   await runCheck('morning garden awakening', checkMorningGardenAwakening);
   await runCheck('reveal flow v343', checkRevealFlowV343);
+  await runCheck('pool intro polish v344', checkPoolIntroPolishV344);
   await runCheck('service worker', checkServiceWorker);
 
   console.log('QuestNote Health Check:');

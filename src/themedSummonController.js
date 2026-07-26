@@ -568,15 +568,24 @@ export function skipThemedSummon() {
   }
 }
 
+const DEBUT_DUST_COUNT = { full: 8, short: 3, reduced: 0 };
+
 /**
- * 卡池登場演出：動畫播完後需使用者點擊才關閉（不自動消失）
+ * 永眠花海卡池入場演出
+ * 流程：長夜沉幕 → 鏡池微光 → 月皇花甦醒 → 台詞 → 停在完整畫面等待點擊 → 關閉時化開成主畫面
+ * 動畫播完後需使用者點擊／Esc／繼續才關閉；略過可提早結束。
  * @param {{ reduceMotion?: boolean, full?: boolean }} options
  */
 export async function playPoolDebutPresentation(options = {}) {
   const reduce = isReduceMotion(options.reduceMotion);
   const full = options.full !== false;
-  // 僅控制「進入可關閉狀態」前的最短演出時間；關閉一律等使用者
-  const introMs = reduce ? 350 : full ? 3600 : 700;
+  // 進入「可關閉」狀態前的演出時長（不含等待點擊）
+  const readyMs = reduce ? (full ? 1400 : 820) : full ? 3400 : 900;
+  const dissolveMs = reduce ? 240 : full ? 550 : 360;
+
+  const panel = document.getElementById('gacha-panel');
+  panel?.classList.add('is-pool-debut-veil');
+  panel?.classList.remove('is-pool-debut-reveal');
 
   const overlay = document.createElement('div');
   overlay.className = 'dream-debut-overlay';
@@ -586,105 +595,176 @@ export async function playPoolDebutPresentation(options = {}) {
   overlay.setAttribute('aria-modal', 'true');
   overlay.setAttribute('aria-label', '永眠花海登場');
   overlay.innerHTML = `
-    <div class="dream-debut-bg" aria-hidden="true"></div>
-    <div class="dream-debut-pool" aria-hidden="true"></div>
-    <div class="dream-debut-dust" aria-hidden="true"></div>
-    <div class="dream-debut-ripples" aria-hidden="true"></div>
-    <div class="dream-debut-petals" aria-hidden="true"></div>
-    <div class="dream-debut-silhouette" aria-hidden="true"></div>
-    <p class="dream-debut-line" data-role="line"></p>
-    <p class="dream-debut-continue" data-role="continue" hidden>點擊畫面繼續</p>
+    <div class="dream-debut-stage" aria-hidden="true">
+      <div class="dream-debut-bg"></div>
+      <div class="dream-debut-mist"></div>
+      <div class="dream-debut-dust" data-role="dust"></div>
+      <div class="dream-debut-mirror">
+        <div class="dream-debut-mirror__glow"></div>
+        <div class="dream-debut-mirror__ripple dream-debut-mirror__ripple--1"></div>
+        <div class="dream-debut-mirror__ripple dream-debut-mirror__ripple--2"></div>
+      </div>
+      <div class="dream-debut-flower">
+        <div class="dream-debut-flower__aura"></div>
+        <span class="dream-debut-flower__petal dream-debut-flower__petal--1"></span>
+        <span class="dream-debut-flower__petal dream-debut-flower__petal--2"></span>
+        <span class="dream-debut-flower__petal dream-debut-flower__petal--3"></span>
+        <span class="dream-debut-flower__petal dream-debut-flower__petal--4"></span>
+        <span class="dream-debut-flower__petal dream-debut-flower__petal--5"></span>
+        <span class="dream-debut-flower__core"></span>
+      </div>
+    </div>
+    <div class="dream-debut-copy">
+      <p class="dream-debut-line" data-role="line">
+        <span class="dream-debut-line__seg" data-seg="a">月皇花</span>
+        <span class="dream-debut-line__seg" data-seg="b">已於長夜中</span>
+        <span class="dream-debut-line__seg" data-seg="c">甦醒</span>
+      </p>
+      <p class="dream-debut-continue" data-role="continue" hidden>點擊畫面繼續</p>
+    </div>
     <button type="button" class="dream-debut-skip" data-role="skip" aria-label="略過登場演出">略過</button>
   `;
-  const line = overlay.querySelector('[data-role="line"]');
-  if (line) line.textContent = '月皇花已於長夜中甦醒';
-  const continueEl = overlay.querySelector('[data-role="continue"]');
+
+  const dustHost = overlay.querySelector('[data-role="dust"]');
+  const dustCount = reduce
+    ? DEBUT_DUST_COUNT.reduced
+    : full
+      ? DEBUT_DUST_COUNT.full
+      : DEBUT_DUST_COUNT.short;
+  if (dustHost && dustCount > 0) {
+    dustHost.appendChild(createParticles(dustCount, 'dream-debut-dust__mote'));
+  }
+
   const skipBtn = overlay.querySelector('[data-role="skip"]');
-
-  lockScroll();
-  document.body.appendChild(overlay);
-  void overlay.offsetWidth;
-  overlay.classList.add('is-active');
-
+  const continueEl = overlay.querySelector('[data-role="continue"]');
+  const timers = new Set();
   let ready = false;
-  let closed = false;
-  let resolveClose = null;
-  const closedPromise = new Promise((resolve) => {
-    resolveClose = resolve;
+  let finished = false;
+  let resolveDone = null;
+  const donePromise = new Promise((resolve) => {
+    resolveDone = resolve;
   });
 
-  const close = () => {
-    if (closed) return;
-    closed = true;
-    resolveClose?.();
+  const clearTimers = () => {
+    timers.forEach((id) => clearTimeout(id));
+    timers.clear();
   };
 
-  const onSkipClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    close();
+  const schedule = (fn, ms) => {
+    const id = setTimeout(() => {
+      timers.delete(id);
+      fn();
+    }, ms);
+    timers.add(id);
+    return id;
   };
 
-  const onOverlayClick = (e) => {
-    if (!ready || closed) return;
+  const beginRevealBridge = () => {
+    overlay.classList.add('is-phase-reveal');
+    panel?.classList.remove('is-pool-debut-veil');
+    panel?.classList.add('is-pool-debut-reveal');
+  };
+
+  const markReady = () => {
+    if (finished || ready) return;
+    ready = true;
+    overlay.classList.add('is-ready');
+    // 等待點擊期間維持完整夜幕；關閉時才淡出銜接主畫面
+    if (continueEl) continueEl.hidden = false;
+    if (skipBtn) {
+      skipBtn.textContent = '繼續';
+      skipBtn.setAttribute('aria-label', '繼續');
+      try {
+        skipBtn.focus();
+      } catch {
+        /* ignore */
+      }
+    }
+  };
+
+  const finish = (fromSkip = false) => {
+    if (finished) return;
+    finished = true;
+    clearTimers();
+    if (fromSkip && !ready) {
+      overlay.classList.add('is-skipped');
+      // 確保略過時台詞與花立刻到位
+      overlay.classList.add('is-phase-pool', 'is-phase-bloom', 'is-phase-line');
+    }
+    beginRevealBridge();
+    overlay.classList.add('is-exiting');
+    overlay.classList.remove('is-active');
+    const exitWait = fromSkip && !ready ? Math.min(280, dissolveMs) : dissolveMs;
+    schedule(() => resolveDone?.(), exitWait);
+  };
+
+  // 避免開啟卡池的殘留 click 立刻關閉；略過鈕不受此限
+  let armPointerClose = false;
+  schedule(() => {
+    armPointerClose = true;
+  }, 420);
+
+  const onSkip = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    finish(!ready);
+  };
+
+  const onOverlayPointer = (e) => {
+    if (finished || !armPointerClose) return;
     if (e.target.closest('[data-role="skip"]')) return;
-    close();
+    // 演出中僅略過／Esc 可提早結束；播完後點擊畫面才關閉
+    if (!ready) return;
+    finish(false);
   };
 
   const onKey = (e) => {
     if (e.key === 'Escape') {
       e.preventDefault();
-      close();
+      finish(!ready);
       return;
     }
-    // 開場期間不回應 Enter，避免卡池 <select> 確認鍵把演出立刻關掉
     if ((e.key === 'Enter' || e.key === ' ') && ready) {
       e.preventDefault();
-      close();
+      finish(false);
     }
   };
 
-  skipBtn?.addEventListener('click', onSkipClick);
-  overlay.addEventListener('click', onOverlayClick);
+  skipBtn?.addEventListener('click', onSkip);
+  overlay.addEventListener('click', onOverlayPointer);
   document.addEventListener('keydown', onKey, true);
 
-  try {
-    if (!closed) {
-      await new Promise((resolve) => {
-        const timer = setTimeout(() => {
-          clearInterval(watch);
-          resolve();
-        }, introMs);
-        const watch = setInterval(() => {
-          if (closed) {
-            clearTimeout(timer);
-            clearInterval(watch);
-            resolve();
-          }
-        }, 40);
-      });
-    }
+  lockScroll();
+  document.body.appendChild(overlay);
+  void overlay.offsetWidth;
+  overlay.classList.add('is-active', 'is-phase-night');
 
-    if (!closed) {
-      ready = true;
-      overlay.classList.add('is-ready');
-      if (continueEl) continueEl.hidden = false;
-      if (skipBtn) {
-        skipBtn.textContent = '繼續';
-        skipBtn.setAttribute('aria-label', '繼續');
-        try {
-          skipBtn.focus();
-        } catch {
-          /* ignore */
-        }
-      }
-      await closedPromise;
-    }
+  // 分鏡節奏：台詞完整顯現後進入可關閉狀態，等待使用者點擊
+  // full line CSS：a 0–0.7s、b 0.28–0.98s、c 0.55–1.3s → 約 1.3s 跑完
+  if (!reduce && full) {
+    schedule(() => overlay.classList.add('is-phase-pool'), 400);
+    schedule(() => overlay.classList.add('is-phase-bloom'), 1000);
+    schedule(() => overlay.classList.add('is-phase-line'), 1800);
+  } else if (!reduce && !full) {
+    schedule(() => overlay.classList.add('is-phase-pool', 'is-phase-bloom'), 120);
+    schedule(() => overlay.classList.add('is-phase-line'), 280);
+  } else {
+    schedule(() => overlay.classList.add('is-phase-pool', 'is-phase-bloom', 'is-phase-line'), 80);
+  }
+
+  schedule(() => {
+    if (!finished) markReady();
+  }, readyMs);
+
+  try {
+    await donePromise;
   } finally {
-    skipBtn?.removeEventListener('click', onSkipClick);
-    overlay.removeEventListener('click', onOverlayClick);
+    clearTimers();
+    skipBtn?.removeEventListener('click', onSkip);
+    overlay.removeEventListener('click', onOverlayPointer);
     document.removeEventListener('keydown', onKey, true);
     overlay.remove();
+    panel?.classList.remove('is-pool-debut-veil', 'is-pool-debut-reveal');
     unlockScroll();
   }
 }
