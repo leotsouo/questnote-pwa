@@ -168,6 +168,10 @@
         </div>
       </header>
 
+      <section id="collection-progress-summary" class="collection-progress-summary card" aria-label="收藏進度"></section>
+
+      <section id="collection-milestones-panel" class="collection-milestones-panel card" aria-label="收藏里程碑"></section>
+
       <section id="collection-companion" class="collection-companion card"></section>
 
       <div class="filter-bar" id="collection-filters">
@@ -210,6 +214,14 @@
       </header>
 
       <section class="more-menu card">
+        <button class="more-menu-item" data-goto="handbook" type="button">
+          <span class="more-menu-icon">📖</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">冒險手冊</span>
+            <span class="more-menu-desc">查看你的任務、收藏與探險成長</span>
+          </span>
+          <span class="more-menu-arrow">›</span>
+        </button>
         <button class="more-menu-item" data-goto="tasks" data-scroll-daily-blessing type="button">
           <span class="more-menu-icon">🌙</span>
           <span class="more-menu-text">
@@ -258,6 +270,19 @@
       <section class="card more-version-section" aria-label="版本資訊">
         <div class="version-info-card version-info-card--compact" data-version-info data-version-info-compact></div>
       </section>
+    </main>
+
+    <!-- 冒險手冊頁 -->
+    <main id="view-handbook" class="view">
+      <header class="page-header page-header--with-back">
+        <button class="page-back-btn" data-goto="more" type="button" aria-label="返回更多">‹</button>
+        <div class="page-header__inner">
+          <h1 class="page-title">冒險手冊</h1>
+          <p class="page-subtitle">你的任務、收藏與探險成長總覽</p>
+        </div>
+      </header>
+
+      <div id="handbook-content" class="handbook-content"></div>
     </main>
 
     <!-- 習慣頁 -->

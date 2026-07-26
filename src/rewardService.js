@@ -1,7 +1,7 @@
 /**
  * 星塵獎勵計算與發放
  */
-import { dbGet, dbPut, STORES } from './db.js';
+import { openDB, dbGet, dbPut, STORES } from './db.js';
 import { updateTask } from './taskService.js';
 import { addBondExpToCompanion } from './collectionService.js';
 
@@ -267,4 +267,68 @@ export async function applyRewardBundle(bundle) {
       if (amt > 0) await addInventoryItem(id, amt);
     }
   }
+}
+
+/**
+ * 以單一 IndexedDB transaction 發放星塵並更新同一個 meta 狀態。
+ * updateState 回傳 null 代表狀態已處理，transaction 不寫入也不發獎。
+ * 適用於需要防止跨頁／快速連點重複領取的里程碑。
+ * @param {{ stardust: number, stateKey: string, updateState: (rawState: object|null) => object|null }} options
+ * @returns {Promise<object|null>}
+ */
+export async function applyStardustRewardAndUpdateMeta(options) {
+  const amount = Math.max(0, Number(options?.stardust) || 0);
+  const stateKey = options?.stateKey;
+  const updateState = options?.updateState;
+  if (!stateKey || typeof updateState !== 'function') {
+    throw new Error('獎勵狀態更新參數無效');
+  }
+
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORES.META, 'readwrite');
+    const store = tx.objectStore(STORES.META);
+    const walletRequest = store.get(WALLET_KEY);
+    const stateRequest = store.get(stateKey);
+    let walletReady = false;
+    let stateReady = false;
+    let resultState = null;
+    let pendingError = null;
+    let processed = false;
+
+    const processRecords = () => {
+      if (processed || !walletReady || !stateReady) return;
+      processed = true;
+      try {
+        const nextState = updateState(stateRequest.result ?? null);
+        if (!nextState) return;
+        const wallet = normalizeWallet(walletRequest.result);
+        wallet.stardust = (wallet.stardust || 0) + amount;
+        store.put(wallet);
+        store.put(nextState);
+        resultState = nextState;
+      } catch (error) {
+        pendingError = error;
+        tx.abort();
+      }
+    };
+
+    walletRequest.onsuccess = () => {
+      walletReady = true;
+      processRecords();
+    };
+    stateRequest.onsuccess = () => {
+      stateReady = true;
+      processRecords();
+    };
+    walletRequest.onerror = () => {
+      pendingError = walletRequest.error;
+    };
+    stateRequest.onerror = () => {
+      pendingError = stateRequest.error;
+    };
+    tx.oncomplete = () => resolve(resultState);
+    tx.onerror = () => reject(pendingError || tx.error || new Error('獎勵 transaction 失敗'));
+    tx.onabort = () => reject(pendingError || tx.error || new Error('獎勵 transaction 已中止'));
+  });
 }

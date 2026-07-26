@@ -1,9 +1,9 @@
 /**
- * QuestNote Service Worker — V2.7.3 全站字體大小與排版比例統一
+ * QuestNote Service Worker — V2.9.0 冒險手冊與成長總覽
  * 快取 App Shell 與靜態資源，支援離線使用
  */
 
-const CACHE_NAME = 'questnote-cache-v273-typography-scale-polish';
+const CACHE_NAME = 'questnote-cache-v290-adventure-handbook';
 const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
@@ -22,6 +22,7 @@ const PRECACHE_URLS = [
   'src/gachaService.js',
   'src/summonRevealService.js',
   'src/collectionService.js',
+  'src/collectionMilestoneService.js',
   'src/backupService.js',
   'src/companionService.js',
   'src/companionDialogueService.js',
@@ -40,6 +41,7 @@ const PRECACHE_URLS = [
   'src/healthCheckService.js',
   'src/dailyCheckInService.js',
   'src/questService.js',
+  'src/adventureHandbookService.js',
   'src/imagePreloadService.js',
   'data/dailyWheelRewards.json',
   'data/pets.json',

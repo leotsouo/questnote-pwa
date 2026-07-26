@@ -1,7 +1,8 @@
 /**
  * 陪伴寵物 — 互動台詞（通用 fallback + 寵物專屬）
  *
- * TODO: V2.3.3 或 V2.3.4 再評估 companionService 與 companionDialogueService 合併。
+ * 備註：companionService 與 companionDialogueService 暫維持分離；
+ * 未來若要合併需另開版本評估，本版不合併。
  */
 import {
   getDialogueContext,

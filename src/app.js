@@ -45,6 +45,10 @@ import {
   migrateCollectionNicknames,
 
 } from './collectionService.js';
+import {
+  initCollectionMilestones,
+  getCollectionMilestoneSummary,
+} from './collectionMilestoneService.js';
 
 import { getWelcomeCompanionLine } from './companionDialogueService.js';
 
@@ -120,6 +124,8 @@ const appState = {
   collectionProgress: { owned: 0, total: 0 },
 
   enrichedCollection: [],
+
+  collectionMilestoneSummary: null,
 
   companion: null,
 
@@ -335,6 +341,8 @@ async function refreshState(options = {}) {
 
   appState.enrichedCollection = await getEnrichedCollection(appState.allPets);
 
+  appState.collectionMilestoneSummary = await getCollectionMilestoneSummary(appState.allPets);
+
   appState.companion = await getCompanion(appState.allPets);
 
   appState.activeExpedition = await getActiveExpedition();
@@ -415,6 +423,8 @@ async function resetAllData() {
   await initQuestProgress();
 
   await initExplorationProgress();
+
+  await initCollectionMilestones();
 
   await initWorkshop();
 
@@ -626,6 +636,8 @@ async function initApp() {
   await initQuestProgress();
 
   await initExplorationProgress();
+
+  await initCollectionMilestones();
 
   try {
     await loadWheelRewards();

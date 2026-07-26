@@ -23,6 +23,19 @@ import {
   getExplorationProgress,
   EXPLORATION_AREA_IDS,
 } from './explorationService.js';
+import {
+  COLLECTION_MILESTONE_DEFINITIONS,
+  COLLECTION_MILESTONE_CONDITION_TYPES,
+  normalizeCollectionMilestoneState,
+  resolveCollectionMilestoneDefinitions,
+  buildCollectionMilestoneContext,
+  getCollectionMilestoneProgress,
+} from './collectionMilestoneService.js';
+import {
+  buildAdventureHandbookModel,
+  buildNextGoals,
+  scoreGoal,
+} from './adventureHandbookService.js';
 
 const DATA_FILES = [
   { path: './data/pets.json', label: 'pets.json' },
@@ -1370,15 +1383,21 @@ async function checkPetImageViewer() {
   }
   stats.push('viewer API=ok');
 
-  // 直接點圖片開原圖（撫摸頁面 / 陪伴預覽）
-  if (!uiText.includes('openPetImageViewer(companion.id)')) {
-    throw new Error('撫摸頁面圖片缺少開啟原圖入口（openPetImageViewer(companion.id)）');
+  // 直接點圖片開原圖（首頁陪伴 / 撫摸預覽 / 圖鑑）
+  if (!uiText.includes('openPetImageViewer(companion.id)') && !uiText.includes('openPetImageViewer(state.companion.id)')) {
+    throw new Error('首頁／撫摸頁面圖片缺少開啟原圖入口');
+  }
+  if (!uiText.includes("data-action=\"view-pet-image\"") && !uiText.includes("data-action='view-pet-image'")) {
+    throw new Error('圖鑑缺少寵物原圖入口（view-pet-image）');
+  }
+  if (!uiText.includes('stopPropagation')) {
+    notes.push('圖鑑原圖入口可能缺少 stopPropagation');
   }
   // 詳情頁點圖片入口
   if (!uiText.includes('detail-view-image')) {
     throw new Error('寵物詳情頁缺少開啟原圖入口（detail-view-image）');
   }
-  stats.push('點圖片入口（撫摸頁 / 詳情頁）=ok');
+  stats.push('點圖片入口（首頁 / 圖鑑 / 詳情頁）=ok');
 
   // 6. 關閉按鈕 7. 背景關閉
   if (!uiText.includes('pet-image-viewer__close')) throw new Error('viewer 缺少關閉按鈕');
@@ -1389,10 +1408,12 @@ async function checkPetImageViewer() {
   }
   stats.push('關閉方式（X/背景/Escape）=ok');
 
-  // 9. z-index 高於一般 modal（透過 SW 版本 + CSS 檢查於 contrast 檢查中補充）
+  // 9. 版本一致性改由 version.js / CACHE_NAME 檢查，不再硬編碼過時 v261
   if (swRes.ok) {
     const swText = await swRes.text();
-    if (!swText.includes('v261')) notes.push('service-worker CACHE_NAME 可能未更新為 v261');
+    if (/v261/.test(swText) && !/v274|2\.7\.4/.test(swText)) {
+      notes.push('service-worker 可能仍殘留過時 v261 註記');
+    }
   }
 
   const summary = stats.join(' | ');
@@ -1549,6 +1570,15 @@ async function checkExpeditionDispatchUX() {
       notes.push('sweet 地區名稱疑似淡粉字（粉底風險）');
     }
   }
+
+  // V2.7.4：陪伴中標籤與說明
+  if (!uiText.includes('expedition-pet-option__companion') || !uiText.includes('陪伴中')) {
+    throw new Error('派遣 Modal 缺少「陪伴中」標示');
+  }
+  if (!uiText.includes('陪伴中的寵物也可以派遣')) {
+    throw new Error('派遣 Modal 缺少陪伴中可派遣說明');
+  }
+  stats.push('陪伴中標示=ok');
 
   const summary = stats.join(' | ');
   if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
@@ -1882,9 +1912,721 @@ async function checkTypographyScale() {
 }
 
 /**
+ * V2.7.4 — 穩定性／可讀性／既有功能補完檢查（靜態，不寫入 IndexedDB）
+ */
+async function checkStabilityReadabilityPolish() {
+  const [uiRes, cssRes, versionRes] = await Promise.all([
+    fetch('./src/ui.js'),
+    fetch('./src/styles.css'),
+    fetch('./src/version.js'),
+  ]);
+  if (!uiRes.ok || !cssRes.ok || !versionRes.ok) {
+    throw new Error('無法讀取 ui.js / styles.css / version.js');
+  }
+  const uiText = await uiRes.text();
+  const cssText = await cssRes.text();
+  const versionText = await versionRes.text();
+  const notes = [];
+  const stats = [];
+
+  // 1. initUI 重入防護
+  if (!uiText.includes('uiInitialized')) {
+    throw new Error('initUI 缺少 uiInitialized guard');
+  }
+  if (!/export function initUI[\s\S]{0,400}if\s*\(\s*uiInitialized\s*\)/.test(uiText)) {
+    throw new Error('initUI 未在綁定前檢查 uiInitialized');
+  }
+  if (!/uiInitialized\s*=\s*false/.test(uiText)) {
+    throw new Error('initUI 失敗時未還原 uiInitialized');
+  }
+  stats.push('initUI guard=ok');
+
+  // 2. 探險 timer：完成後停止 interval，不每秒 renderExpeditionView
+  const timerIdx = uiText.indexOf('function startExpeditionTimer');
+  if (timerIdx === -1) throw new Error('缺少 startExpeditionTimer');
+  const timerBody = uiText.slice(timerIdx, timerIdx + 900);
+  if (!timerBody.includes('stopExpeditionTimer()')) {
+    throw new Error('探險完成後未停止 timer');
+  }
+  if (!timerBody.includes('isExpeditionTimeComplete')) {
+    throw new Error('探險 timer 未檢查完成狀態');
+  }
+  // 完成分支應先 stop 再 render 一次；倒數中只更新 #expedition-countdown
+  if (!timerBody.includes("getElementById('expedition-countdown')")) {
+    throw new Error('探險倒數未只更新 countdown DOM');
+  }
+  stats.push('expedition timer=ok');
+
+  // 3. 圖鑑 filter selector 限定範圍
+  if (uiText.includes("querySelectorAll('.filter-btn')")) {
+    throw new Error('圖鑑仍使用全域 .filter-btn selector');
+  }
+  if (!uiText.includes("querySelectorAll('#collection-filters .filter-btn')")) {
+    throw new Error('圖鑑 filter 未限定在 #collection-filters');
+  }
+  stats.push('collection filter selector=ok');
+
+  // 4. Overlay 判斷
+  if (!uiText.includes('function isAnyOverlayOpen') && !uiText.includes('export function isAnyOverlayOpen')) {
+    throw new Error('缺少 isAnyOverlayOpen');
+  }
+  if (!uiText.includes('pet-image-viewer') || !uiText.includes('expedition-dispatch-modal')) {
+    throw new Error('Overlay 判斷未涵蓋原圖／派遣 Modal');
+  }
+  stats.push('overlay guard=ok');
+
+  // 5. 召喚 pulling 殘留恢復
+  if (!uiText.includes('resetStaleGachaPullState') || !uiText.includes('gachaPullInProgress')) {
+    throw new Error('缺少召喚 pulling 殘留恢復機制');
+  }
+  stats.push('gacha pull safety=ok');
+
+  // 6. Sweet 可讀性：指定 selector 有覆寫，且避免淡底淡字
+  const sweetBlockIdx = cssText.indexOf('V2.7.4 — 穩定性');
+  if (sweetBlockIdx === -1) throw new Error('styles.css 缺少 V2.7.4 可讀性區塊');
+  const sweetBlock = cssText.slice(sweetBlockIdx);
+  const requiredSweet = [
+    'body[data-theme="sweet"] .badge--category-purple',
+    'body[data-theme="sweet"] .badge--date-today',
+    'body[data-theme="sweet"] .badge--today-plan',
+    'body[data-theme="sweet"] .tag-chip--selected',
+    'body[data-theme="sweet"] .gacha-stardust__value',
+    'body[data-theme="sweet"] .stat-card--energy .stat-value',
+    'body[data-theme="sweet"] .btn--dev',
+    'body[data-theme="sweet"] .btn--danger',
+    'body[data-theme="sweet"] .rarity-SSR',
+    'body[data-theme="sweet"] .rarity-N',
+  ];
+  for (const sel of requiredSweet) {
+    if (!cssText.includes(sel)) throw new Error(`Sweet 可讀性缺少 ${sel}`);
+  }
+  if (!cssText.includes('--sweet-text-berry') || !cssText.includes('--color-primary-light')) {
+    throw new Error('缺少 Sweet 語意文字色或 --color-primary-light');
+  }
+  // 風險掃描（限 V2.7.4 區塊）：白底淺黃字 / 淡紫底淡紫字 / 淡綠底亮綠字
+  if (/body\[data-theme="sweet"\][^{]*\{[^}]*background:[^;]*#FFF[^;]*;[^}]*color:\s*#(FFF|FFE|FFD)/i.test(sweetBlock)) {
+    notes.push('V2.7.4 區塊疑似白底淺字');
+  }
+  stats.push('sweet contrast overrides=ok');
+
+  // 7. Typography：核心 selector 不再使用過小時級
+  const tinySelectors = [
+    ['.sweet-summon-badge--pity', sweetBlock],
+    ['.daily-wheel-label__amount', sweetBlock],
+    ['.expedition-area-progress-text', sweetBlock],
+    ['.quest-panel__eyebrow', sweetBlock],
+    ['.stat-label', sweetBlock],
+    ['.task-reward-tag', sweetBlock],
+  ];
+  for (const [sel, block] of tinySelectors) {
+    const i = block.indexOf(sel);
+    if (i === -1) {
+      notes.push(`typography 區塊可能缺少 ${sel}`);
+      continue;
+    }
+    const snippet = block.slice(i, i + 160);
+    if (/font-size:\s*(0\.625rem|0\.66rem|0\.6875rem|10px|11px)\b/.test(snippet)) {
+      throw new Error(`${sel} 仍使用過小字級`);
+    }
+  }
+  stats.push('core typography=ok');
+
+  // 8. 版本來自 version.js，不在此寫死 cache name
+  const ver = versionText.match(/APP_VERSION\s*=\s*['"]([^'"]+)['"]/);
+  if (ver) stats.push(`APP_VERSION=${ver[1]}`);
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.7.5 — 首頁陪伴卡片互動 + Sweet 每日轉盤視覺重設計（靜態，不寫入 IndexedDB）
+ */
+async function checkCompanionWheelHotfix() {
+  const [uiRes, cssRes, versionRes] = await Promise.all([
+    fetch('./src/ui.js'),
+    fetch('./src/styles.css'),
+    fetch('./src/version.js'),
+  ]);
+  if (!uiRes.ok || !cssRes.ok || !versionRes.ok) {
+    throw new Error('無法讀取 ui.js / styles.css / version.js');
+  }
+  const uiText = await uiRes.text();
+  const cssText = await cssRes.text();
+  const versionText = await versionRes.text();
+  const notes = [];
+  const stats = [];
+
+  // ── 1. 首頁陪伴卡片：圖片與詳情分離（勿誤查圖鑑） ──
+  const companionRenderIdx = uiText.indexOf('function renderCompanionSection');
+  if (companionRenderIdx === -1) throw new Error('缺少 renderCompanionSection');
+  const companionRender = uiText.slice(companionRenderIdx, companionRenderIdx + 2800);
+
+  if (!companionRender.includes('data-action="companion-view-image"')) {
+    throw new Error('首頁陪伴卡片缺少 companion-view-image');
+  }
+  if (!companionRender.includes('data-action="companion-view-detail"')) {
+    throw new Error('首頁陪伴卡片缺少 companion-view-detail');
+  }
+  if (companionRender.includes('data-action="companion-talk"')) {
+    throw new Error('首頁陪伴資訊區仍綁定 companion-talk，無法開啟詳情');
+  }
+  if (!companionRender.includes('companion-card__detail-button')) {
+    throw new Error('首頁陪伴缺少獨立詳情按鈕');
+  }
+  if (!uiText.includes('data-action="companion-pet"') || !uiText.includes('function renderCompanionPetButton')) {
+    throw new Error('首頁陪伴缺少撫摸按鈕');
+  }
+  // 圖片與詳情不可共用同一 action
+  if (companionRender.includes('data-action="companion-view-image"') &&
+      companionRender.includes('data-action="companion-view-detail"')) {
+    stats.push('companion image/detail actions=split');
+  }
+
+  const imageActionIdx = uiText.indexOf("action === 'companion-view-image'");
+  if (imageActionIdx === -1) throw new Error('缺少 companion-view-image 事件處理');
+  const imageActionBody = uiText.slice(imageActionIdx, imageActionIdx + 450);
+  if (!imageActionBody.includes('stopPropagation')) {
+    throw new Error('companion-view-image 未 stopPropagation');
+  }
+  if (!imageActionBody.includes('openPetImageViewer')) {
+    throw new Error('companion-view-image 未呼叫 openPetImageViewer');
+  }
+  if (imageActionBody.includes('openPetDetailModal')) {
+    throw new Error('companion-view-image 不應同時開詳情');
+  }
+
+  const detailActionIdx = uiText.indexOf("action === 'companion-view-detail'");
+  if (detailActionIdx === -1) throw new Error('缺少 companion-view-detail 事件處理');
+  const detailActionBody = uiText.slice(detailActionIdx, detailActionIdx + 450);
+  if (!detailActionBody.includes('openPetDetailModal')) {
+    throw new Error('companion-view-detail 未呼叫 openPetDetailModal');
+  }
+  if (!detailActionBody.includes('dataset.petId') && !detailActionBody.includes('data-pet-id')) {
+    // 檢查 petId 取得
+    if (!detailActionBody.includes('petId')) {
+      throw new Error('companion-view-detail 無法取得 petId');
+    }
+  }
+  if (!detailActionBody.includes('closest')) {
+    notes.push('companion-view-detail 可能未使用 closest 後備取得 petId');
+  }
+
+  const petActionIdx = uiText.indexOf("action === 'companion-pet'");
+  if (petActionIdx === -1) throw new Error('缺少 companion-pet 事件處理');
+  const petActionBody = uiText.slice(petActionIdx, petActionIdx + 200);
+  if (!petActionBody.includes('stopPropagation')) {
+    throw new Error('companion-pet 未 stopPropagation，可能誤開詳情');
+  }
+  stats.push('home companion card interaction=ok');
+
+  // 確認圖鑑仍使用獨立 action（不受本次污染）
+  if (!uiText.includes('data-action="view-pet-image"') || !uiText.includes('data-action="view-detail"')) {
+    throw new Error('圖鑑原圖／詳情 action 缺失');
+  }
+  stats.push('collection actions preserved=ok');
+
+  // ── 2. Sweet 轉盤專屬覆寫（須在 sweet scope） ──
+  const sweetWheelBlockIdx = cssText.indexOf('V2.7.5 — 首頁陪伴卡片互動');
+  if (sweetWheelBlockIdx === -1) throw new Error('styles.css 缺少 V2.7.5 轉盤重設計區塊');
+  const sweetWheelBlock = cssText.slice(sweetWheelBlockIdx);
+
+  const requiredSweetWheel = [
+    'body[data-theme="sweet"] .modal:has(.daily-wheel-modal-body)',
+    'body[data-theme="sweet"] .daily-wheel-modal-body .modal-title',
+    'body[data-theme="sweet"] .wheel-modal__status',
+    'body[data-theme="sweet"] .wheel-modal__status--available',
+    'body[data-theme="sweet"] .wheel-modal__hint',
+    'body[data-theme="sweet"] .daily-wheel-label__name',
+    'body[data-theme="sweet"] .daily-wheel-label__amount',
+    'body[data-theme="sweet"] .daily-wheel-center-button',
+    'body[data-theme="sweet"] .daily-wheel-center-button:disabled',
+  ];
+  for (const sel of requiredSweetWheel) {
+    if (!cssText.includes(sel)) {
+      throw new Error(`Sweet 轉盤缺少覆寫：${sel}`);
+    }
+  }
+  if (!sweetWheelBlock.includes('--wheel-sweet-title') && !cssText.includes('--wheel-sweet-title')) {
+    throw new Error('缺少 Sweet 轉盤語意色 --wheel-sweet-title');
+  }
+  if (!cssText.includes('--wheel-sweet-primary')) {
+    throw new Error('缺少 Sweet 轉盤語意色 --wheel-sweet-primary');
+  }
+  stats.push('sweet wheel overrides=ok');
+
+  // 扇區色票不可再是過淡奶油白
+  if (uiText.includes("WHEEL_COLORS_SWEET = [\n  '#FFF0F7'")) {
+    throw new Error('Sweet 轉盤扇區仍使用過淡色票');
+  }
+  if (!uiText.includes('WHEEL_LABEL_COLORS_SWEET')) {
+    throw new Error('缺少 Sweet 扇區標籤深色文字色票');
+  }
+  stats.push('sweet wheel sector colors=ok');
+
+  // ── 3. 轉盤主要文字不可過大縮小 ──
+  const wheelLabelSnippets = [
+    cssText.slice(cssText.indexOf('.daily-wheel-label__name'), cssText.indexOf('.daily-wheel-label__name') + 120),
+    cssText.slice(cssText.lastIndexOf('.daily-wheel-label__amount'), cssText.lastIndexOf('.daily-wheel-label__amount') + 120),
+  ];
+  for (const snippet of wheelLabelSnippets) {
+    if (/font-size:\s*(0\.625rem|0\.6875rem|10px|11px)\b/.test(snippet)) {
+      throw new Error('轉盤標籤仍使用過小字級（10px/11px/<0.75rem）');
+    }
+  }
+  // 小螢幕 media 覆寫也不可回到 10px
+  const mediaIdx = cssText.indexOf('@media (max-width: 380px)');
+  if (mediaIdx !== -1) {
+    const mediaBlock = cssText.slice(mediaIdx, mediaIdx + 900);
+    if (mediaBlock.includes('.daily-wheel-label') && /font-size:\s*10px/.test(mediaBlock)) {
+      throw new Error('小螢幕轉盤標籤仍強制 10px');
+    }
+  }
+  stats.push('wheel label size=ok');
+
+  const ver = versionText.match(/APP_VERSION\s*=\s*['"]([^'"]+)['"]/);
+  if (ver) stats.push(`APP_VERSION=${ver[1]}`);
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V2.8.0 — 收藏里程碑定義、動態進度、領獎安全與收合 UI（唯讀）
+ */
+async function checkCollectionMilestones() {
+  const [petsRes, serviceRes, rewardRes, uiRes, indexRes, cssRes, backupRes, swRes] = await Promise.all([
+    fetch('./data/pets.json'),
+    fetch('./src/collectionMilestoneService.js'),
+    fetch('./src/rewardService.js'),
+    fetch('./src/ui.js'),
+    fetch('./index.html'),
+    fetch('./src/styles.css'),
+    fetch('./src/backupService.js'),
+    fetch('./service-worker.js'),
+  ]);
+  if (![petsRes, serviceRes, rewardRes, uiRes, indexRes, cssRes, backupRes, swRes].every((res) => res.ok)) {
+    throw new Error('無法讀取收藏里程碑檢查所需檔案');
+  }
+
+  const pets = (await petsRes.json()).pets || [];
+  const serviceText = await serviceRes.text();
+  const rewardText = await rewardRes.text();
+  const uiText = await uiRes.text();
+  const indexText = await indexRes.text();
+  const cssText = await cssRes.text();
+  const backupText = await backupRes.text();
+  const swText = await swRes.text();
+  const stats = [];
+
+  const ids = COLLECTION_MILESTONE_DEFINITIONS.map((item) => item.id);
+  if (new Set(ids).size !== ids.length) throw new Error('收藏里程碑 ID 重複');
+  const orders = COLLECTION_MILESTONE_DEFINITIONS.map((item) => item.order);
+  if (orders.some((order) => !Number.isFinite(order) || order < 0)) {
+    throw new Error('收藏里程碑 order 無效');
+  }
+  for (const item of COLLECTION_MILESTONE_DEFINITIONS) {
+    if (!COLLECTION_MILESTONE_CONDITION_TYPES.includes(item.conditionType)) {
+      throw new Error(`conditionType 無效: ${item.id}`);
+    }
+    const dynamic = item.targetMode === 'dynamic';
+    if (!dynamic && (!Number.isFinite(item.target) || item.target <= 0)) {
+      throw new Error(`target 無效: ${item.id}`);
+    }
+    if (!item.reward || !Number.isFinite(item.reward.stardust) || item.reward.stardust < 0) {
+      throw new Error(`reward 格式無效: ${item.id}`);
+    }
+    if (!item.reward.badgeId || item.reward.badgeId !== item.badge?.badgeId) {
+      throw new Error(`badge 格式無效: ${item.id}`);
+    }
+  }
+  stats.push(`definitions=${ids.length}`);
+
+  const normalized = normalizeCollectionMilestoneState({
+    claimedIds: [ids[0], ids[0], 'removed_id', 123],
+  });
+  if (normalized.claimedIds.length !== 1 || normalized.claimedIds[0] !== ids[0]) {
+    throw new Error('claimedIds 正規化失敗');
+  }
+
+  const resolved = resolveCollectionMilestoneDefinitions(pets);
+  const allPetsTarget = resolved.find((item) => item.id === 'collection_all')?.target;
+  const nTarget = resolved.find((item) => item.id === 'rarity_all_n')?.target;
+  const rTarget = resolved.find((item) => item.id === 'rarity_all_r')?.target;
+  const actualN = pets.filter((pet) => pet.rarity === 'N').length;
+  const actualR = pets.filter((pet) => pet.rarity === 'R').length;
+  if (allPetsTarget !== pets.length || nTarget !== actualN || rTarget !== actualR) {
+    throw new Error('全部寵物或 N/R 動態 target 未取自 pets catalog');
+  }
+  const dynamicDefsText = serviceText.slice(
+    serviceText.indexOf('export const COLLECTION_MILESTONE_DEFINITIONS'),
+    serviceText.indexOf('const validMilestoneIds')
+  );
+  if (/collection_all[\s\S]{0,180}target:\s*56/.test(dynamicDefsText)
+    || /rarity_all_n[\s\S]{0,180}target:\s*16/.test(dynamicDefsText)
+    || /rarity_all_r[\s\S]{0,180}target:\s*12/.test(dynamicDefsText)) {
+    throw new Error('動態 target 被寫死');
+  }
+  stats.push(`dynamic=${pets.length}/${actualN}/${actualR}`);
+
+  const samplePets = [
+    { id: 'n1', rarity: 'N' },
+    { id: 'r1', rarity: 'R' },
+    { id: 'sr1', rarity: 'SR' },
+  ];
+  const sampleCollection = [
+    { petId: 'n1', stars: 5, bondLevel: 5, bondUnlocks: { bondLiberated: true } },
+    { petId: 'sr1', stars: 3, bondLevel: 3, bondUnlocks: { bondLiberated: false } },
+    { petId: 'unknown', stars: 5, bondLevel: 5, bondUnlocks: { bondLiberated: true } },
+  ];
+  const context = buildCollectionMilestoneContext(samplePets, sampleCollection);
+  const progressCases = [
+    [{ conditionType: 'owned_count' }, 2],
+    [{ conditionType: 'rarity_owned_count', rarity: 'SR' }, 1],
+    [{ conditionType: 'all_rarity', rarity: 'N' }, 1],
+    [{ conditionType: 'star_count', minStars: 3 }, 2],
+    [{ conditionType: 'bond_level_count', minBondLevel: 3 }, 2],
+    [{ conditionType: 'bond_liberated_count' }, 1],
+    [{ conditionType: 'all_pets' }, 2],
+  ];
+  for (const [definition, expected] of progressCases) {
+    if (getCollectionMilestoneProgress(definition, context) !== expected) {
+      throw new Error(`進度計算失敗: ${definition.conditionType}`);
+    }
+  }
+  stats.push('progress types=7');
+
+  for (const required of [
+    'const claimingIds = new Set()',
+    'claimingIds.has(milestoneId)',
+    'getCollectionMilestoneState()',
+    'getCollectionMilestoneProgress(definition, context)',
+    'currentState.claimedIds.includes(milestoneId)',
+    'applyStardustRewardAndUpdateMeta',
+  ]) {
+    if (!serviceText.includes(required)) throw new Error(`領獎安全缺少: ${required}`);
+  }
+  if (!rewardText.includes("db.transaction(STORES.META, 'readwrite')")
+    || !rewardText.includes('wallet.stardust')
+    || !rewardText.includes('store.put(nextState)')) {
+    throw new Error('Reward service 未以同一 transaction 更新星塵與 claimedIds');
+  }
+  if (!/if\s*\(definition\.target\s*<=\s*0\s*\|\|\s*progress\s*<\s*definition\.target\)/.test(serviceText)) {
+    throw new Error('未完成里程碑缺少 service 層阻擋');
+  }
+  stats.push('claim safety=atomic');
+
+  if (!indexText.includes('id="collection-progress-summary"')
+    || !indexText.includes('id="collection-milestones-panel"')) {
+    throw new Error('圖鑑頁缺少收藏摘要／里程碑容器');
+  }
+  if (!uiText.includes('let collectionMilestonesExpanded = false')) {
+    throw new Error('里程碑未預設收合');
+  }
+  if (!uiText.includes('aria-expanded="${collectionMilestonesExpanded}"')
+    || !uiText.includes('aria-controls="collection-milestones-content"')
+    || !uiText.includes('完成 ${summary.metCount} / ${summary.total}')
+    || !uiText.includes('可領取 ${summary.claimableCount}')) {
+    throw new Error('收合列 aria 或摘要資訊不完整');
+  }
+  if (!uiText.includes('collectionMilestonesExpanded = !collectionMilestonesExpanded')
+    || !uiText.includes('renderCollectionMilestones();')) {
+    throw new Error('局部 render 無法保留展開狀態');
+  }
+  stats.push('collapse UI=ok');
+
+  const requiredSweetSelectors = [
+    'body[data-theme="sweet"] .collection-progress-summary',
+    'body[data-theme="sweet"] .collection-summary__count strong',
+    'body[data-theme="sweet"] .collection-rarity-chip',
+    'body[data-theme="sweet"] .collection-milestone__status',
+    'body[data-theme="sweet"] .collection-milestone__claim',
+    'body[data-theme="sweet"] .collection-milestone__status--claimed',
+  ];
+  for (const selector of requiredSweetSelectors) {
+    if (!cssText.includes(selector)) throw new Error(`Sweet 收藏可讀性缺少 ${selector}`);
+  }
+  stats.push('sweet selectors=6');
+
+  if (!backupText.includes('collectionMilestones')
+    || !backupText.includes('normalizeCollectionMilestoneState')
+    || !backupText.includes("'2.8.0'")) {
+    throw new Error('備份未完整支援 collectionMilestones / 2.8.0');
+  }
+  if (!swText.includes('src/collectionMilestoneService.js')) {
+    throw new Error('Service Worker 未 precache collectionMilestoneService.js');
+  }
+
+  return stats.join(' | ');
+}
+
+/**
  * 執行健康檢查並輸出結果至 console
  * @returns {Promise<{ ok: boolean, results: Record<string, string>, errors: string[] }>}
  */
+/**
+ * V2.9.0 — 冒險手冊與成長總覽檢查（靜態 + 純函式執行期）。
+ * 只讀取原始碼與呼叫純函式，不寫入任何資料、不領取獎勵、不清除 IndexedDB。
+ */
+async function checkAdventureHandbook() {
+  const [svcRes, uiRes, indexRes, cssRes, swRes, backupRes, versionRes] = await Promise.all([
+    fetch('./src/adventureHandbookService.js'),
+    fetch('./src/ui.js'),
+    fetch('./index.html'),
+    fetch('./src/styles.css'),
+    fetch('./service-worker.js'),
+    fetch('./src/backupService.js'),
+    fetch('./src/version.js'),
+  ]);
+  if (!svcRes.ok) throw new Error('無法讀取 adventureHandbookService.js');
+  if (!uiRes.ok || !indexRes.ok || !cssRes.ok || !swRes.ok || !backupRes.ok || !versionRes.ok) {
+    throw new Error('無法讀取 ui / index / styles / service-worker / backup / version');
+  }
+
+  const svcText = await svcRes.text();
+  const uiText = await uiRes.text();
+  const indexText = await indexRes.text();
+  const cssText = await cssRes.text();
+  const swText = await swRes.text();
+  const backupText = await backupRes.text();
+  const versionText = await versionRes.text();
+  const notes = [];
+  const stats = [];
+
+  // 1. 入口與 View --------------------------------------------------
+  if (!indexText.includes('data-goto="handbook"')) {
+    throw new Error('更多頁缺少冒險手冊入口 (data-goto="handbook")');
+  }
+  if (!indexText.includes('id="view-handbook"')) {
+    throw new Error('index.html 缺少 view-handbook 容器');
+  }
+  if (!indexText.includes('id="handbook-content"')) {
+    throw new Error('index.html 缺少 handbook-content 容器');
+  }
+  // 返回操作：view-handbook 內需有 data-goto="more" 的返回鈕
+  if (!/id="view-handbook"[\s\S]{0,400}data-goto="more"/.test(indexText)) {
+    throw new Error('冒險手冊缺少返回更多頁的操作');
+  }
+  // renderView 需能分派 handbook
+  if (!/case 'handbook':/.test(uiText) || !uiText.includes('renderHandbookView')) {
+    throw new Error('ui.js renderView 未分派 handbook');
+  }
+  if (!uiText.includes("viewName === 'handbook'")) {
+    throw new Error('switchView 未處理 handbook 子頁');
+  }
+  // 不新增底部導覽按鈕：nav-item 仍為 5 個主項
+  const navItemCount = (indexText.match(/class="nav-item[ "]/g) || []).length;
+  if (navItemCount !== 5) {
+    notes.push(`底部導覽項目數為 ${navItemCount}（預期 5，未新增手冊按鈕）`);
+  }
+  stats.push('入口/View=ok');
+
+  // 2. 現有服務重用 -------------------------------------------------
+  const requiredReuse = [
+    { pattern: "from './questService.js'", label: 'quest service' },
+    { pattern: "from './explorationService.js'", label: 'exploration service' },
+    { pattern: "from './expeditionService.js'", label: 'expedition service' },
+    { pattern: "from './collectionService.js'", label: 'collection/bond service' },
+    { pattern: 'getQuestSummary', label: 'getQuestSummary()' },
+    { pattern: 'getExplorationSummary', label: 'getExplorationSummary()' },
+    { pattern: 'getAllExpeditions', label: 'getAllExpeditions()' },
+    { pattern: 'getBondProgress', label: 'getBondProgress()' },
+    { pattern: 'collectionMilestoneSummary', label: '收藏 summary 重用' },
+    { pattern: 'workshopStats', label: 'workshopStats 重用' },
+  ];
+  for (const { pattern, label } of requiredReuse) {
+    if (!svcText.includes(pattern)) {
+      throw new Error(`adventureHandbookService 未重用 ${label}`);
+    }
+  }
+  stats.push('服務重用=ok');
+
+  // 3. 資料可信 -----------------------------------------------------
+  // 不得出現自行加權的綜合分數關鍵字
+  const forbiddenScoreWords = ['冒險力', '玩家總評', '成長分數', '綜合等級', '戰力', '總評分'];
+  for (const word of forbiddenScoreWords) {
+    if (svcText.includes(word) || uiText.includes(`>${word}`)) {
+      throw new Error(`偵測到不允許的綜合分數: ${word}`);
+    }
+  }
+  // 缺失資料一致格式：available 旗標
+  if (!svcText.includes('available: false') || !svcText.includes('available: true')) {
+    throw new Error('adventureHandbookService 缺少 available 缺失資料格式');
+  }
+  // 長期紀錄需以歷史累積來源計算（value>0 才渲染）
+  if (!svcText.includes('buildLongTermRecords')) {
+    throw new Error('缺少長期紀錄建構函式');
+  }
+  stats.push('資料可信=ok');
+
+  // 4. 收合 UI ------------------------------------------------------
+  if (!uiText.includes('handbookSectionState')) {
+    throw new Error('ui.js 缺少 handbookSectionState');
+  }
+  // 四個詳細區塊預設收合（模組級狀態初始為 false）
+  const sectionStateMatch = uiText.match(/const handbookSectionState = \{([\s\S]*?)\};/);
+  if (!sectionStateMatch) {
+    throw new Error('找不到 handbookSectionState 定義');
+  }
+  const sectionBody = sectionStateMatch[1];
+  for (const key of ['weekly', 'records', 'companions', 'expedition']) {
+    if (!new RegExp(`${key}\\s*:\\s*false`).test(sectionBody)) {
+      throw new Error(`詳細區塊 ${key} 預設不是收合 (false)`);
+    }
+  }
+  if (!uiText.includes('aria-expanded') || !uiText.includes('aria-controls="${bodyId}"')) {
+    throw new Error('收合區塊缺少 aria-expanded / aria-controls');
+  }
+  // 整條標題列可點擊（header 為 button 且帶 data-action="handbook-toggle"）
+  if (!/handbook-section__header[\s\S]{0,200}data-action="handbook-toggle"/.test(uiText)) {
+    throw new Error('收合標題列非整條可點擊的 button');
+  }
+  stats.push('收合 UI=ok');
+
+  // 5. 下一步目標規則 ----------------------------------------------
+  if (!svcText.includes('MAX_NEXT_GOALS = 3')) {
+    throw new Error('下一步目標未限制最多 3 項');
+  }
+  if (!svcText.includes('MAX_GOALS_PER_CATEGORY = 2')) {
+    throw new Error('下一步目標未限制單一類別最多 2 項');
+  }
+  if (!/status === 'claimable'\) priority \+= 1000/.test(svcText)) {
+    throw new Error('可領取目標未取得最高優先度');
+  }
+  stats.push('目標規則=ok');
+
+  // 6. 純函式：缺失資料不報錯、不出現 NaN / undefined --------------
+  const legalActionViews = new Set(['tasks', 'gacha', 'collection', 'expedition', 'achievements']);
+  const scenarios = [
+    { name: 'empty', ctx: {} },
+    { name: 'no-gacha-no-workshop', ctx: { collectionProgress: { owned: 0, total: 56 } } },
+    {
+      name: 'partial',
+      ctx: {
+        collectionProgress: { owned: 3, total: 56 },
+        enrichedCollection: [],
+        questSummary: {
+          daily: { items: [], total: 6, completedCount: 2, claimableCount: 1 },
+          weekly: { items: [], total: 5, completedCount: 3, claimableCount: 0 },
+          stats: {},
+        },
+        explorationSummary: { areas: [], stats: {} },
+      },
+    },
+    {
+      name: 'no-companion-no-expedition',
+      ctx: {
+        collectionProgress: { owned: 10, total: 56 },
+        enrichedCollection: [{ id: 'p1', owned: true, bondLevel: 3, stars: 2 }],
+        companion: null,
+        activeExpedition: null,
+        gachaStats: { totalPulls: 0 },
+        workshopStats: { craftCount: 0, giftCount: 0 },
+        dailyCheckIn: { totalCheckIns: 0, bestStreak: 0 },
+      },
+    },
+  ];
+
+  for (const { name, ctx } of scenarios) {
+    let model;
+    try {
+      model = buildAdventureHandbookModel(ctx);
+    } catch (err) {
+      throw new Error(`缺失資料情境 ${name} 拋錯: ${err.message}`);
+    }
+    const serialized = JSON.stringify(model);
+    if (serialized.includes('NaN') || serialized.includes('undefined')) {
+      throw new Error(`情境 ${name} 產生 NaN / undefined`);
+    }
+    // quickStats 每項 available 且 value 為非空字串
+    for (const s of model.quickStats) {
+      if (!s.available || typeof s.value !== 'string' || !s.value) {
+        throw new Error(`情境 ${name} quickStats 值不可靠`);
+      }
+    }
+    if (model.quickStats.length > 4) throw new Error(`情境 ${name} quickStats 超過 4 項`);
+    // 下一步目標：最多 3 項、單一類別最多 2 項、actionView 合法
+    if (model.nextGoals.length > 3) throw new Error(`情境 ${name} 下一步目標超過 3 項`);
+    const perCat = {};
+    for (const g of model.nextGoals) {
+      perCat[g.category] = (perCat[g.category] || 0) + 1;
+      if (perCat[g.category] > 2) throw new Error(`情境 ${name} 單一類別目標超過 2 項`);
+      if (!legalActionViews.has(g.actionView)) {
+        throw new Error(`情境 ${name} 目標 actionView 非法: ${g.actionView}`);
+      }
+    }
+    // 長期紀錄：只保留 available=true 項
+    for (const item of model.records.items) {
+      if (item.available !== true) throw new Error(`情境 ${name} 長期紀錄含 available=false 項`);
+    }
+  }
+  stats.push('純函式缺失資料=ok');
+
+  // 可領取目標優先度需高於一般進行中目標
+  const claimablePriority = scoreGoal({ status: 'claimable', progress: 0, remaining: 99 });
+  const inProgressPriority = scoreGoal({ status: 'in_progress', progress: 0.95, remaining: 1 });
+  if (claimablePriority <= inProgressPriority) {
+    throw new Error('可領取目標優先度未高於進行中目標');
+  }
+
+  // 去重規則：三項來自同類時最多保留 2 項
+  const dedupModelGoals = buildNextGoals({
+    collectionMilestoneSummary: {
+      items: [
+        { id: 'a', status: 'claimable', title: 'A', progress: 5, target: 5, badge: {} },
+        { id: 'b', status: 'claimable', title: 'B', progress: 5, target: 5, badge: {} },
+        { id: 'c', status: 'claimable', title: 'C', progress: 5, target: 5, badge: {} },
+      ],
+      nextMilestone: null,
+    },
+  });
+  const collectionGoals = dedupModelGoals.filter((g) => g.category === 'collection').length;
+  if (collectionGoals > 2) {
+    throw new Error('下一步目標去重失效（同類超過 2 項）');
+  }
+  stats.push('去重/優先=ok');
+
+  // 7. Sweet 可讀性 -------------------------------------------------
+  const sweetSelectors = [
+    'body[data-theme="sweet"] .handbook-stat',
+    'body[data-theme="sweet"] .handbook-goal__count',
+    'body[data-theme="sweet"] .handbook-chip--claimable',
+    'body[data-theme="sweet"] .handbook-chip--info',
+    'body[data-theme="sweet"] .handbook-progress',
+    'body[data-theme="sweet"] .handbook-rarity-chip',
+    'body[data-theme="sweet"] #view-handbook .page-back-btn',
+  ];
+  for (const sel of sweetSelectors) {
+    if (!cssText.includes(sel)) {
+      throw new Error(`Sweet 主題缺少手冊可讀性樣式: ${sel}`);
+    }
+  }
+  stats.push('Sweet 可讀性=ok');
+
+  // 8. PWA / 版本一致 ----------------------------------------------
+  if (!swText.includes('src/adventureHandbookService.js')) {
+    throw new Error('service-worker 未 precache adventureHandbookService.js');
+  }
+  if (!versionText.includes("APP_VERSION = '2.9.0'")) {
+    notes.push('version.js APP_VERSION 非 2.9.0');
+  }
+  if (!versionText.includes('questnote-cache-v290-adventure-handbook')) {
+    notes.push('version.js CACHE_NAME 未更新為 v290');
+  }
+  if (!swText.includes('questnote-cache-v290-adventure-handbook')) {
+    notes.push('service-worker CACHE_NAME 未更新為 v290');
+  }
+  if (!backupText.includes("'2.9.0'")) {
+    notes.push('backupService 未加入 2.9.0 支援版本');
+  }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
 export async function runAppHealthCheck() {
   const results = {};
   const errors = [];
@@ -1934,6 +2676,10 @@ export async function runAppHealthCheck() {
   await runCheck('exploration contrast', checkExplorationContrast);
   await runCheck('expedition dispatch UX', checkExpeditionDispatchUX);
   await runCheck('typography scale', checkTypographyScale);
+  await runCheck('stability readability polish', checkStabilityReadabilityPolish);
+  await runCheck('companion wheel hotfix', checkCompanionWheelHotfix);
+  await runCheck('collection milestones', checkCollectionMilestones);
+  await runCheck('adventure handbook', checkAdventureHandbook);
   await runCheck('service worker', checkServiceWorker);
 
   console.log('QuestNote Health Check:');

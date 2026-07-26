@@ -47,6 +47,10 @@ import {
   updatePetBondUnlocks,
   getBondUnlocksByLevel,
 } from './collectionService.js';
+import {
+  COLLECTION_RARITY_ORDER,
+  claimCollectionMilestone,
+} from './collectionMilestoneService.js';
 import { getBondUpLine } from './companionService.js';
 import {
   getCompanionDialogue,
@@ -176,6 +180,7 @@ import {
   claimExplorationMilestone,
   AREA_EXPLORATION_DEFS,
 } from './explorationService.js';
+import { getAdventureHandbookSummary } from './adventureHandbookService.js';
 
 /** 稀有度中文與色彩 */
 export const RARITY_LABELS = {
@@ -199,6 +204,10 @@ let pendingImportFileName = '';
 let pendingImportWarnings = [];
 let onRefresh = null;
 let onAchievementCheck = null;
+/** initUI 模組級重入防護：成功綁定後不可重複 addEventListener */
+let uiInitialized = false;
+/** 抽卡請求／演出進行中（比 dataset.pulling 更可靠，避免殘留鎖定） */
+let gachaPullInProgress = false;
 let expeditionTimer = null;
 let expeditionStatusTimer = null;
 let expeditionStatusIndex = -1;
@@ -214,6 +223,9 @@ let dispatchKeydownHandler = null;
 let achievementFilter = 'all';
 let collectionFilter = 'all';
 let lastCollectionGridKey = null;
+let collectionMilestonesExpanded = false;
+let collectionMilestoneFilter = 'claimable';
+let collectionMilestonesShowAll = false;
 let taskViewMode = 'today';
 let activeSmartListId = null;
 let taskCategoryFilter = 'all';
@@ -227,6 +239,26 @@ const explorationStoryCollapsed = {};
 const explorationMilestonesCollapsed = {};
 // 地區探索度整體區塊：預設收起（類似首頁功能，保持頁面整潔）
 let explorationPanelCollapsed = true;
+
+/** 正式版僅在 debug / localhost 輸出高頻 debug log */
+function isUiDebugEnabled() {
+  try {
+    if (typeof location !== 'undefined') {
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return true;
+      if (new URLSearchParams(location.search).get('debug') === '1') return true;
+    }
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('questnote-debug') === '1') {
+      return true;
+    }
+  } catch {
+    /* ignore */
+  }
+  return false;
+}
+
+function uiDebugLog(...args) {
+  if (isUiDebugEnabled()) console.debug(...args);
+}
 let dailyWheelRewards = null;
 let dailyBlessingCollapsed = true;
 let dailyBlessingCollapseDay = null;
@@ -390,61 +422,74 @@ function bindSweetToastDevTest() {
 }
 
 export function initUI(appState, refreshCallback, achievementCheckCallback) {
+  // 狀態參考可更新；事件綁定只允許成功完成一次
   state = appState;
   onRefresh = refreshCallback;
   onAchievementCheck = achievementCheckCallback;
-  bindNavigation();
-  bindModals();
-  bindDelegatedEvents();
-  bindActivityTracking();
-  bindAchievementClaimAll();
 
-  document.getElementById('collection-filters')?.addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    collectionFilter = btn.dataset.filter;
-    renderCollectionView();
-  });
+  if (uiInitialized) {
+    console.warn('[UI] initUI skipped: already initialized');
+    return;
+  }
 
-  document.getElementById('achievement-filters')?.addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    achievementFilter = btn.dataset.achFilter;
-    renderAchievementsView();
-  });
+  uiInitialized = true;
+  try {
+    bindNavigation();
+    bindModals();
+    bindDelegatedEvents();
+    bindActivityTracking();
+    bindAchievementClaimAll();
 
-  document.getElementById('task-view-tabs')?.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-task-view]');
-    if (!btn) return;
-    taskViewMode = btn.dataset.taskView;
-    activeSmartListId = null;
-    document.querySelectorAll('#task-view-tabs .segmented-control__btn').forEach((b) => {
-      b.classList.toggle('active', b.dataset.taskView === taskViewMode);
-      b.setAttribute('aria-selected', b.dataset.taskView === taskViewMode ? 'true' : 'false');
+    document.getElementById('collection-filters')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      collectionFilter = btn.dataset.filter;
+      renderCollectionView();
     });
-    renderTasksView();
-  });
 
-  document.getElementById('task-category-filters')?.addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    taskCategoryFilter = btn.dataset.catFilter;
-    renderTasksView();
-  });
-
-  document.getElementById('workshop-tabs')?.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-workshop-tab]');
-    if (!btn) return;
-    workshopTab = btn.dataset.workshopTab;
-    document.querySelectorAll('#workshop-tabs .segmented-control__btn').forEach((b) => {
-      b.classList.toggle('active', b.dataset.workshopTab === workshopTab);
-      b.setAttribute('aria-selected', b.dataset.workshopTab === workshopTab ? 'true' : 'false');
+    document.getElementById('achievement-filters')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      achievementFilter = btn.dataset.achFilter;
+      renderAchievementsView();
     });
-    renderWorkshopView();
-  });
 
-  renderVersionInfo();
-  bindSweetToastDevTest();
+    document.getElementById('task-view-tabs')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-task-view]');
+      if (!btn) return;
+      taskViewMode = btn.dataset.taskView;
+      activeSmartListId = null;
+      document.querySelectorAll('#task-view-tabs .segmented-control__btn').forEach((b) => {
+        b.classList.toggle('active', b.dataset.taskView === taskViewMode);
+        b.setAttribute('aria-selected', b.dataset.taskView === taskViewMode ? 'true' : 'false');
+      });
+      renderTasksView();
+    });
+
+    document.getElementById('task-category-filters')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      taskCategoryFilter = btn.dataset.catFilter;
+      renderTasksView();
+    });
+
+    document.getElementById('workshop-tabs')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-workshop-tab]');
+      if (!btn) return;
+      workshopTab = btn.dataset.workshopTab;
+      document.querySelectorAll('#workshop-tabs .segmented-control__btn').forEach((b) => {
+        b.classList.toggle('active', b.dataset.workshopTab === workshopTab);
+        b.setAttribute('aria-selected', b.dataset.workshopTab === workshopTab ? 'true' : 'false');
+      });
+      renderWorkshopView();
+    });
+
+    renderVersionInfo();
+    bindSweetToastDevTest();
+  } catch (error) {
+    uiInitialized = false;
+    throw error;
+  }
 }
 
 /** 使用事件委派，避免重複渲染後按鈕失效 */
@@ -619,12 +664,25 @@ function bindDelegatedEvents() {
     } else if (action === 'daily-open-wheel') {
       await openDailyWheelModal();
     } else if (action === 'companion-view-image') {
-      if (state?.companion) {
-        openCompanionImageModal(state.companion);
-      }
-    } else if (action === 'companion-talk') {
-      showCompanionDialogue();
+      // 首頁陪伴寵物主圖：直接開原圖 viewer，不開詳情
+      e.preventDefault();
+      e.stopPropagation();
+      const petId =
+        target.dataset.petId ||
+        target.closest('[data-pet-id]')?.dataset.petId ||
+        state?.companion?.id;
+      if (petId) openPetImageViewer(petId);
+    } else if (action === 'companion-view-detail') {
+      // 首頁陪伴卡片非圖片區：開啟寵物詳情
+      e.preventDefault();
+      e.stopPropagation();
+      const petId =
+        target.dataset.petId ||
+        target.closest('[data-pet-id]')?.dataset.petId ||
+        state?.companion?.id;
+      if (petId) openPetDetailModal(petId);
     } else if (action === 'companion-pet') {
+      e.preventDefault();
       e.stopPropagation();
       await handleCompanionPet();
     } else if (action === 'empty-add-task') {
@@ -640,7 +698,7 @@ function bindDelegatedEvents() {
         await deleteTask(id);
         await onRefresh();
         showToast('任務已刪除', 'success');
-      });
+      }, { danger: true, confirmLabel: '刪除' });
     }
   });
 
@@ -668,9 +726,61 @@ function bindDelegatedEvents() {
   document.getElementById('btn-pull-ten')?.addEventListener('click', handleTenPull);
 
   document.getElementById('view-collection')?.addEventListener('click', async (e) => {
+    const milestoneAction = e.target.closest('[data-collection-milestone-action]');
+    if (milestoneAction) {
+      const action = milestoneAction.dataset.collectionMilestoneAction;
+      if (action === 'toggle') {
+        collectionMilestonesExpanded = !collectionMilestonesExpanded;
+        collectionMilestonesShowAll = false;
+        if (collectionMilestonesExpanded) {
+          collectionMilestoneFilter =
+            (state.collectionMilestoneSummary?.claimableCount ?? 0) > 0
+              ? 'claimable'
+              : 'in_progress';
+        }
+        renderCollectionMilestones();
+        return;
+      }
+      if (action === 'filter') {
+        collectionMilestoneFilter = milestoneAction.dataset.filter || 'in_progress';
+        collectionMilestonesShowAll = false;
+        renderCollectionMilestones();
+        return;
+      }
+      if (action === 'show-all') {
+        collectionMilestonesShowAll = true;
+        renderCollectionMilestones();
+        return;
+      }
+      if (action === 'claim') {
+        const milestoneId = milestoneAction.dataset.milestoneId;
+        if (!milestoneId || milestoneAction.disabled) return;
+        milestoneAction.disabled = true;
+        const result = await claimCollectionMilestone(milestoneId, state.allPets || []);
+        if (!result.success) {
+          showToast(result.error || '收藏里程碑領取失敗', 'warning');
+          await onRefresh({ renderMode: ['collection'] });
+          return;
+        }
+        showToast(`已領取「${result.milestone.title}」：星塵 +${result.reward.stardust}`, 'reward', 3200);
+        await onRefresh({ renderMode: ['collection', 'tasks'] });
+        return;
+      }
+    }
+
     const emptyBtn = e.target.closest('[data-action="empty-go-gacha"]');
     if (emptyBtn) {
       switchView('gacha');
+      return;
+    }
+
+    // 圖鑑寵物圖片 → 原圖 viewer（需擋冒泡，避免同時開詳情）
+    const imageBtn = e.target.closest('[data-action="view-pet-image"]');
+    if (imageBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const petId = imageBtn.dataset.petId || imageBtn.closest('.collection-card')?.dataset.petId;
+      if (petId) openPetImageViewer(petId);
       return;
     }
 
@@ -774,6 +884,10 @@ function bindDelegatedEvents() {
 
   document.getElementById('view-workshop')?.addEventListener('click', (e) => {
     handleWorkshopClick(e);
+  });
+
+  document.getElementById('view-handbook')?.addEventListener('click', (e) => {
+    handleHandbookClick(e);
   });
 
   document.getElementById('view-achievements')?.addEventListener('click', async (e) => {
@@ -938,7 +1052,7 @@ export function switchView(viewName) {
   document.querySelectorAll('.nav-item').forEach((n) => n.classList.remove('active'));
 
   const view = document.getElementById(`view-${viewName}`);
-  const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' ? 'more' : viewName;
+  const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' ? 'more' : viewName;
   const nav = document.querySelector(`.nav-item[data-view="${navView}"]`);
   if (view) view.classList.add('active');
   if (nav) nav.classList.add('active');
@@ -988,6 +1102,10 @@ export function switchView(viewName) {
     renderMoreView();
   }
 
+  if (viewName === 'handbook') {
+    renderHandbookView();
+  }
+
   if (viewName === 'collection') {
     preloadOwnedPetImages(state?.enrichedCollection, state?.allPets, 12).catch(() => {});
   }
@@ -996,7 +1114,7 @@ export function switchView(viewName) {
     preloadCompanionImage(state).catch(() => {});
   }
 
-  currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'more'
+  currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'more'
     ? currentTasksView
     : viewName;
   if (viewName === 'tasks' || viewName === 'gacha' || viewName === 'collection' || viewName === 'expedition' || viewName === 'more') {
@@ -1152,7 +1270,7 @@ export function closePetImageViewer() {
 function openConfirmModal(title, message, onConfirm, options = {}) {
   const { confirmLabel = '確定', danger = false, onCancel = null } = options;
   openModal(`
-    <div class="confirm-modal">
+    <div class="confirm-modal${danger ? ' confirm-modal--danger' : ''}">
       <div class="confirm-modal__icon">${danger ? '⚠️' : '❓'}</div>
       <h2 class="modal-title">${escapeHtml(title)}</h2>
       <p class="confirm-modal__text">${escapeHtml(message)}</p>
@@ -1234,7 +1352,7 @@ function getCurrentViewName() {
 export function renderSharedUI() {
   if (!state) return;
   if (isWheelSpinning()) return;
-  console.debug('[Render] renderSharedUI');
+  uiDebugLog('[Render] renderSharedUI');
   const { wallet, todayCompleted, availablePulls, achievementSummary } = state;
   setText('stat-stardust', wallet.stardust ?? 0);
   setText('stat-energy', wallet.adventureEnergy ?? 0);
@@ -1261,7 +1379,7 @@ export function renderSharedUI() {
 export function renderView(viewName) {
   if (!state) return;
   if (isWheelSpinning()) return;
-  console.debug('[Render] renderView:', viewName);
+  uiDebugLog('[Render] renderView:', viewName);
   switch (viewName) {
     case 'tasks':
       renderTasksView();
@@ -1290,8 +1408,11 @@ export function renderView(viewName) {
     case 'more':
       renderMoreView();
       break;
+    case 'handbook':
+      renderHandbookView();
+      break;
     default:
-      console.debug('[Render] renderAll fallback (unknown view:', viewName, ')');
+      uiDebugLog('[Render] renderAll fallback (unknown view:', viewName, ')');
       renderAll();
   }
 }
@@ -1300,11 +1421,11 @@ export function renderView(viewName) {
 export function renderCurrentView() {
   if (!state) return;
   if (isWheelSpinning()) {
-    console.debug('[Render] renderCurrentView skipped (wheel spinning)');
+    uiDebugLog('[Render] renderCurrentView skipped (wheel spinning)');
     return;
   }
   const viewName = getCurrentViewName();
-  console.debug('[Render] renderCurrentView:', viewName);
+  uiDebugLog('[Render] renderCurrentView:', viewName);
   if (isModalOpen()) {
     renderSharedUI();
     return;
@@ -1317,7 +1438,7 @@ export function renderCurrentView() {
 export function renderViews(viewNames) {
   if (!state || isWheelSpinning()) return;
   if (isModalOpen()) {
-    console.debug('[Render] renderViews skipped view rebuild (modal open)');
+    uiDebugLog('[Render] renderViews skipped view rebuild (modal open)');
     renderSharedUI();
     return;
   }
@@ -1350,10 +1471,10 @@ export async function renderAfterRefresh(mode = 'current') {
 export async function renderAll() {
   if (!state) return;
   if (isWheelSpinning()) {
-    console.debug('[Render] renderAll skipped (wheel spinning)');
+    uiDebugLog('[Render] renderAll skipped (wheel spinning)');
     return;
   }
-  console.debug('[Render] renderAll fallback');
+  uiDebugLog('[Render] renderAll fallback');
   applyThemeToDocument(state.userPreferences?.theme ?? 'default');
   applyReduceMotionClass(state.userPreferences?.reduceMotion ?? false);
   renderTasksView();
@@ -1362,6 +1483,7 @@ export async function renderAll() {
   renderExpeditionView();
   renderSettingsView();
   renderMoreView();
+  renderHandbookView();
   renderWorkshopView();
   renderHabitsView();
   if (document.getElementById('view-achievements')?.classList.contains('active')) {
@@ -1943,9 +2065,16 @@ const WHEEL_COLORS_DEFAULT = [
   '#1F3A35', '#251F3F', '#18364A', '#3A2030',
 ];
 
+/** Sweet 轉盤扇區：交錯莓果／金／紫／薄荷／藍／珊瑚，避免整盤淡粉 */
 const WHEEL_COLORS_SWEET = [
-  '#FFF0F7', '#EEE9FF', '#FFF1D8', '#E7F6F1',
-  '#EAF3FF', '#FFE3EA', '#F9F3FF', '#FFF8EF',
+  '#E8A6BE', '#F3C979', '#B9A6E8', '#9ECFBE',
+  '#9FC4DF', '#ECA5A5', '#E8B8D0', '#D4C4F0',
+];
+
+/** Sweet 扇區標籤文字色（依扇區明度選擇深色） */
+const WHEEL_LABEL_COLORS_SWEET = [
+  '#4A2E3B', '#684516', '#3F315F', '#245547',
+  '#294E68', '#4A2E3B', '#4A2E3B', '#3F315F',
 ];
 
 function polarToCartesian(cx, cy, r, angleDeg) {
@@ -2013,7 +2142,12 @@ function getWheelSectorColors() {
 }
 
 function getWheelSectorStroke() {
-  return isSweetTheme() ? '#F0C9DA' : 'rgba(244, 247, 255, 0.16)';
+  return isSweetTheme() ? '#D4A0B8' : 'rgba(244, 247, 255, 0.16)';
+}
+
+function getWheelLabelFill(index) {
+  if (!isSweetTheme()) return '';
+  return WHEEL_LABEL_COLORS_SWEET[index % WHEEL_LABEL_COLORS_SWEET.length];
 }
 
 function buildWheelSvgHtml(rewards) {
@@ -2033,11 +2167,13 @@ function buildWheelSvgHtml(rewards) {
     if (midAngle > 90 && midAngle < 270) {
       textRotation = midAngle + 180;
     }
+    const labelFill = getWheelLabelFill(i);
+    const fillAttr = labelFill ? ` fill="${labelFill}"` : '';
 
     return `
       <path class="daily-wheel-sector" d="${path}" fill="${colors[i % colors.length]}" stroke="${stroke}" stroke-width="1.5"/>
       <g class="daily-wheel-label-group" transform="translate(${labelPoint.x.toFixed(2)}, ${labelPoint.y.toFixed(2)}) rotate(${textRotation.toFixed(2)})">
-        <text class="daily-wheel-label" text-anchor="middle" dominant-baseline="middle">
+        <text class="daily-wheel-label" text-anchor="middle" dominant-baseline="middle"${fillAttr}>
           <tspan x="0" dy="-0.35em" class="daily-wheel-label__name">${escapeHtml(short.name)}</tspan>
           <tspan x="0" dy="1.15em" class="daily-wheel-label__amount">${escapeHtml(short.amount)}</tspan>
         </text>
@@ -2063,7 +2199,7 @@ function buildWheelDiscHtml(rewards) {
         <div class="daily-wheel-rotor" id="daily-wheel-rotor">
           ${buildWheelSvgHtml(rewards)}
         </div>
-        <button type="button" class="daily-wheel-center-button" id="daily-wheel-start" aria-label="開始轉盤">開始</button>
+        <button type="button" class="daily-wheel-center-button" id="daily-wheel-start" aria-label="轉動轉盤">開始</button>
       </div>
     </div>
     <ul class="daily-wheel-preview" aria-label="轉盤獎勵清單">
@@ -2141,7 +2277,7 @@ async function openDailyWheelModal() {
   openModal(`
     <div class="wheel-modal daily-wheel-modal-body">
       <h2 class="modal-title">每日幸運轉盤</h2>
-      <p class="wheel-modal__status">${canSpin ? '今天還可以轉 1 次' : '今天已經轉過了'}</p>
+      <p class="wheel-modal__status ${canSpin ? 'wheel-modal__status--available' : 'wheel-modal__status--done'}">${canSpin ? '今天還可以轉 1 次' : '今天已經轉過了'}</p>
       <div class="wheel-container" id="daily-wheel-container">
         ${buildWheelDiscHtml(rewards)}
       </div>
@@ -2923,34 +3059,37 @@ function renderCompanionSection(companion, defaultLine) {
       <div class="companion-bubble companion-bubble--visible" id="companion-bubble" aria-live="polite">
         <p class="companion-bubble__text" id="companion-bubble-text">${escapeHtml(defaultLine)}</p>
       </div>
-      <article class="companion-card card ${rarityClass} companion-card--breathe ${bondCardClasses}">
+      <article class="companion-card card ${rarityClass} companion-card--breathe ${bondCardClasses}" data-pet-id="${escapeHtml(companion.id)}">
         <div class="companion-card__glow"></div>
         ${bondEffectHtml}
         ${bondBadge ? `<div class="companion-card__bond-badge">${bondBadge}</div>` : ''}
-        <button type="button" class="companion-card__image companion-pet-image-button" data-action="companion-view-image" aria-label="查看 ${escapeHtml(petDisplayName(companion))}">
+        <button type="button" class="companion-card__image companion-pet-image-button" data-action="companion-view-image" data-pet-id="${escapeHtml(companion.id)}" aria-label="查看 ${escapeHtml(petDisplayName(companion))} 原圖">
           ${petImageHtml(companion, { size: 'lg', loading: 'eager', eager: true, framed: true })}
         </button>
-        <div class="companion-card__body" data-action="companion-talk" role="button" tabindex="0">
-          <div class="companion-card__header">
-            <div class="companion-card__name-wrap">
-              <h2 class="companion-card__name">${escapeHtml(petDisplayName(companion))}</h2>
-              ${petOriginalNameHtml(companion)}
+        <div class="companion-card__body">
+          <button type="button" class="companion-card__detail-button" data-action="companion-view-detail" data-pet-id="${escapeHtml(companion.id)}" aria-label="查看陪伴寵物詳情">
+            <div class="companion-card__header">
+              <div class="companion-card__name-wrap">
+                <span class="companion-card__name">${escapeHtml(petDisplayName(companion))}</span>
+                ${petOriginalNameHtml(companion)}
+              </div>
+              <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
             </div>
-            <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
-          </div>
-          ${titleHtml}
-          ${renderStars(companion.stars ?? 1)}
-          <div class="companion-bond">
-            <div class="companion-bond__label">
-              <span>親密度 Lv.${companion.bondLevel ?? 1}</span>
-              <span>${progress.current}/${progress.max || 'MAX'}</span>
+            ${titleHtml}
+            ${renderStars(companion.stars ?? 1)}
+            <div class="companion-bond">
+              <div class="companion-bond__label">
+                <span>親密度 Lv.${companion.bondLevel ?? 1}</span>
+                <span>${progress.current}/${progress.max || 'MAX'}</span>
+              </div>
+              <div class="progress-bar progress-bar--bond">
+                <div class="progress-bar__fill" style="width:${progress.percent}%"></div>
+              </div>
             </div>
-            <div class="progress-bar progress-bar--bond">
-              <div class="progress-bar__fill" style="width:${progress.percent}%"></div>
-            </div>
-          </div>
+            <p class="companion-card__detail-hint">查看詳情</p>
+          </button>
           ${petBtnHtml}
-          <p class="companion-card__hint">點擊與夥伴互動 · 點圖片可放大</p>
+          <p class="companion-card__hint">點資訊區看詳情 · 點圖片可看原圖</p>
         </div>
       </article>
     </div>`;
@@ -3260,8 +3399,23 @@ function buildDialogueContext(overrides = {}) {
   };
 }
 
+/**
+ * 是否有任何全畫面 Modal / Overlay 開啟（含寵物原圖、派遣選單）。
+ * 局部渲染遇到 Overlay 時應跳過重建目前 view。
+ */
+export function isAnyOverlayOpen() {
+  return Boolean(
+    document.querySelector('#modal-overlay.open') ||
+    document.querySelector('#pet-image-viewer') ||
+    document.querySelector('#expedition-dispatch-modal') ||
+    document.body.classList.contains('is-pet-image-viewer-open') ||
+    document.body.classList.contains('expedition-dispatch-open')
+  );
+}
+
+/** @deprecated 名稱保留相容；實際等同 isAnyOverlayOpen() */
 function isModalOpen() {
-  return document.getElementById('modal-overlay')?.classList.contains('open') ?? false;
+  return isAnyOverlayOpen();
 }
 
 function setCompanionBubbleText(text, animate = true) {
@@ -3589,6 +3743,7 @@ function renderGachaView() {
       .join('');
   }
 
+  resetStaleGachaPullState();
   updateGachaAffordability();
 
   renderGachaDailyBlessingEntry();
@@ -3612,6 +3767,27 @@ async function testSummonReveal(rarity) {
   showToast(`${rarity} 演出測試完成，未消耗星塵`, 'info');
 }
 
+/** 是否有真正進行中的抽卡（模組旗標或 SSR/UR 演出） */
+function isGachaPullInProgress() {
+  return gachaPullInProgress || isSummonRevealPlaying();
+}
+
+/**
+ * 進入召喚頁／render 時清除殘留 pulling 鎖定。
+ * 不可在真正抽卡進行中強制解除。
+ */
+function resetStaleGachaPullState() {
+  if (isGachaPullInProgress()) return;
+  const btnSingle = document.getElementById('btn-pull');
+  const btnTen = document.getElementById('btn-pull-ten');
+  if (btnSingle?.dataset.pulling === '1') {
+    delete btnSingle.dataset.pulling;
+  }
+  if (btnTen?.dataset.pulling === '1') {
+    delete btnTen.dataset.pulling;
+  }
+}
+
 /**
  * 依最新 state.wallet 更新召喚按鈕狀態與星塵顯示（不重建召喚頁）。
  * 找不到召喚按鈕（不在召喚頁 / DOM 未就緒）時安全 return。
@@ -3622,6 +3798,8 @@ export function updateGachaAffordability() {
   const btnSingle = document.getElementById('btn-pull');
   const btnTen = document.getElementById('btn-pull-ten');
   if (!btnSingle && !btnTen) return;
+
+  resetStaleGachaPullState();
 
   const pool = getActivePool(state.poolsData);
   const singleCost = pool?.cost ?? GACHA_COST;
@@ -3674,10 +3852,11 @@ async function handlePull() {
     return;
   }
 
-  // 演出播放中禁止再次抽卡
-  if (isSummonRevealPlaying()) return;
+  // 演出播放中或抽卡進行中禁止再次抽卡
+  if (isGachaPullInProgress()) return;
 
   const btn = document.getElementById('btn-pull');
+  gachaPullInProgress = true;
   if (btn) {
     btn.dataset.pulling = '1';
     btn.disabled = true;
@@ -3707,6 +3886,7 @@ async function handlePull() {
   } catch (err) {
     showToast(err.message || '召喚失敗', 'error');
   } finally {
+    gachaPullInProgress = false;
     const btn = document.getElementById('btn-pull');
     if (btn) delete btn.dataset.pulling;
     renderGachaView();
@@ -3721,10 +3901,11 @@ async function handleTenPull() {
     return;
   }
 
-  // 演出播放中禁止再次抽卡
-  if (isSummonRevealPlaying()) return;
+  // 演出播放中或抽卡進行中禁止再次抽卡
+  if (isGachaPullInProgress()) return;
 
   const btn = document.getElementById('btn-pull-ten');
+  gachaPullInProgress = true;
   if (btn) {
     btn.dataset.pulling = '1';
     btn.disabled = true;
@@ -3760,6 +3941,7 @@ async function handleTenPull() {
   } catch (err) {
     showToast(err.message || '10 連抽失敗', 'error');
   } finally {
+    gachaPullInProgress = false;
     const btn = document.getElementById('btn-pull-ten');
     if (btn) delete btn.dataset.pulling;
     renderGachaView();
@@ -4102,8 +4284,136 @@ function showTenPullResult(result) {
 
 /* ─── 圖鑑頁 ─── */
 
+function renderCollectionProgressSummary() {
+  const container = document.getElementById('collection-progress-summary');
+  if (!container) return;
+  const summary = state.collectionMilestoneSummary;
+  const context = summary?.context;
+  if (!summary || !context) {
+    container.innerHTML = '<p class="collection-summary__empty">收藏進度載入中…</p>';
+    return;
+  }
+
+  const owned = Math.max(0, context.ownedCount ?? 0);
+  const total = Math.max(0, context.totalPets ?? 0);
+  const percent = Math.min(100, Math.max(0, summary.completionRate ?? 0));
+  const next = summary.nextMilestone;
+  const nextText = next
+    ? `下一目標：收集 ${next.target} 隻寵物`
+    : '下一目標：已完成全部收藏目標';
+  const remainingText = next ? `還差 ${Math.max(0, next.target - owned)} 隻` : '完整圖鑑已達成';
+  const rarityChips = COLLECTION_RARITY_ORDER.map((rarity) => {
+    const rarityOwned = context.rarityOwned?.[rarity] ?? 0;
+    const rarityTotal = context.rarityTotals?.[rarity] ?? 0;
+    return `<span class="collection-rarity-chip collection-rarity-chip--${rarity.toLowerCase()}">
+      <strong>${rarity}</strong> ${rarityOwned}/${rarityTotal}
+    </span>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="collection-summary__header">
+      <div>
+        <h2 class="collection-summary__title">收藏進度</h2>
+        <p class="collection-summary__count"><strong>${owned} / ${total}</strong><span>完成 ${percent}%</span></p>
+      </div>
+      <span class="collection-summary__icon" aria-hidden="true">📖</span>
+    </div>
+    <div class="collection-summary__progress" role="progressbar" aria-label="總收藏完成率 ${percent}%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}">
+      <span class="collection-summary__progress-fill" style="width:${percent}%"></span>
+    </div>
+    <div class="collection-summary__next">
+      <span>${escapeHtml(nextText)}</span>
+      <strong>${escapeHtml(remainingText)}</strong>
+    </div>
+    <div class="collection-summary__rarities" aria-label="各稀有度收藏數">${rarityChips}</div>`;
+}
+
+function sortCollectionMilestones(items) {
+  const statusRank = { claimable: 0, in_progress: 1, claimed: 2 };
+  return [...items].sort((a, b) => {
+    const rankDiff = (statusRank[a.status] ?? 9) - (statusRank[b.status] ?? 9);
+    if (rankDiff !== 0) return rankDiff;
+    if (a.status === 'in_progress' && b.status === 'in_progress' && a.percent !== b.percent) {
+      return b.percent - a.percent;
+    }
+    return a.order - b.order;
+  });
+}
+
+function collectionMilestoneCardHtml(item) {
+  const statusLabel = item.status === 'claimable'
+    ? '可領取'
+    : item.status === 'claimed'
+      ? '✓ 已完成'
+      : '進行中';
+  const actionHtml = item.status === 'claimable'
+    ? `<button type="button" class="collection-milestone__claim" data-collection-milestone-action="claim" data-milestone-id="${escapeHtml(item.id)}">領取</button>`
+    : `<span class="collection-milestone__status collection-milestone__status--${item.status}">${statusLabel}</span>`;
+  return `
+    <article class="collection-milestone collection-milestone--${item.status}" data-milestone-id="${escapeHtml(item.id)}">
+      <span class="collection-milestone__icon" aria-hidden="true">${escapeHtml(item.badge?.icon || '🏅')}</span>
+      <div class="collection-milestone__body">
+        <h3 class="collection-milestone__title">${escapeHtml(item.title)}</h3>
+        <p class="collection-milestone__description">${escapeHtml(item.description)}</p>
+        <p class="collection-milestone__progress">${item.progress} / ${item.target}<span>星塵 +${item.reward?.stardust ?? 0}</span></p>
+      </div>
+      <div class="collection-milestone__action">${actionHtml}</div>
+    </article>`;
+}
+
+function renderCollectionMilestones() {
+  const panel = document.getElementById('collection-milestones-panel');
+  if (!panel) return;
+  const summary = state.collectionMilestoneSummary;
+  if (!summary) {
+    panel.innerHTML = '<p class="collection-summary__empty">收藏里程碑載入中…</p>';
+    return;
+  }
+
+  const filterLabels = {
+    in_progress: '進行中',
+    claimable: '可領取',
+    claimed: '已完成',
+  };
+  const items = sortCollectionMilestones(summary.items || []);
+  const filtered = items.filter((item) => item.status === collectionMilestoneFilter);
+  const visible = collectionMilestonesShowAll ? filtered : filtered.slice(0, 5);
+  const emptyText = collectionMilestoneFilter === 'claimable'
+    ? '目前沒有可領取的里程碑'
+    : collectionMilestoneFilter === 'claimed'
+      ? '目前還沒有已領取的里程碑'
+      : '目前沒有進行中的里程碑';
+  const filterButtons = Object.entries(filterLabels).map(([filter, label]) => {
+    const count = items.filter((item) => item.status === filter).length;
+    const selected = filter === collectionMilestoneFilter;
+    return `<button type="button" class="collection-milestone-filter${selected ? ' is-active' : ''}" data-collection-milestone-action="filter" data-filter="${filter}" role="tab" aria-selected="${selected}">${label} ${count}</button>`;
+  }).join('');
+
+  panel.innerHTML = `
+    <button type="button" class="collection-milestones-toggle" data-collection-milestone-action="toggle" aria-expanded="${collectionMilestonesExpanded}" aria-controls="collection-milestones-content">
+      <span class="collection-milestones-toggle__title">收藏里程碑</span>
+      <span class="collection-milestones-toggle__meta">完成 ${summary.metCount} / ${summary.total}　可領取 ${summary.claimableCount}</span>
+      <span class="collection-milestones-toggle__arrow" aria-hidden="true">⌄</span>
+    </button>
+    <div id="collection-milestones-content" class="collection-milestones-content" ${collectionMilestonesExpanded ? '' : 'hidden'}>
+      <div class="collection-milestone-filters" role="tablist" aria-label="里程碑狀態">${filterButtons}</div>
+      <div class="collection-milestone-list">
+        ${visible.length
+          ? visible.map(collectionMilestoneCardHtml).join('')
+          : `<div class="collection-milestone-empty"><strong>${emptyText}</strong><span>繼續抽卡與培養寵物吧</span></div>`}
+      </div>
+      ${filtered.length > 5 && !collectionMilestonesShowAll
+        ? `<button type="button" class="collection-milestones-more" data-collection-milestone-action="show-all">顯示更多（${filtered.length - 5}）</button>`
+        : ''}
+    </div>`;
+}
+
 function renderCollectionView() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
+  renderCollectionProgressSummary();
+  renderCollectionMilestones();
+
+  // 限定 #collection-filters，避免清掉成就／任務分類 filter 的 active
+  const filterBtns = document.querySelectorAll('#collection-filters .filter-btn');
   filterBtns.forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.filter === collectionFilter);
   });
@@ -4184,13 +4494,23 @@ function renderCollectionCard(pet, imageOptions = {}) {
     : { size: 'md', preview: true, loading: 'lazy' };
   const liberated = owned && (pet.bondLevel ?? 0) >= 5;
   const bondBadge = bondBadgeHtml(pet);
+  // 已獲得：圖片獨立 button 開原圖；資訊區獨立 button 開詳情（避免巢狀 button）
+  const imageBlock = owned
+    ? `<button type="button" class="collection-card__image-btn" data-action="view-pet-image" data-pet-id="${pet.id}" aria-label="查看 ${escapeHtml(petDisplayName(pet))} 原圖">
+         <div class="collection-card__image">
+           ${petImageHtml(pet, imgOpts)}
+           ${bondBadge ? `<div class="collection-card__bond-badge">${bondBadge}</div>` : ''}
+         </div>
+         <span class="collection-card__image-hint">點圖看原圖</span>
+       </button>`
+    : `<div class="collection-card__image">
+         ${petImageHtml(pet, imgOpts)}
+       </div>`;
   return `
     <article class="collection-card ${owned ? '' : 'collection-card--locked'} ${rarityClass} ${liberated ? 'is-bond-liberated' : ''}" data-pet-id="${pet.id}">
-      <button class="collection-card__tap" data-action="view-detail" aria-label="查看詳情">
-        <div class="collection-card__image">
-          ${petImageHtml(pet, imgOpts)}
-          ${bondBadge ? `<div class="collection-card__bond-badge">${bondBadge}</div>` : ''}
-        </div>
+      ${owned ? imageBlock : ''}
+      <button type="button" class="collection-card__tap" data-action="view-detail" aria-label="查看詳情">
+        ${owned ? '' : imageBlock}
         <div class="collection-card__info">
           ${petNameBlockHtml(pet, { owned, heading: 'h3', className: 'collection-card__name' })}
           ${owned && pet.title ? `<p class="collection-card__title">${escapeHtml(pet.title)}</p>` : ''}
@@ -4204,12 +4524,12 @@ function renderCollectionCard(pet, imageOptions = {}) {
       </button>
       ${
         owned && !pet.isCompanion
-          ? `<button class="btn btn--sm btn--companion" data-action="set-companion">設為陪伴</button>`
+          ? `<button type="button" class="btn btn--sm btn--companion" data-action="set-companion">設為陪伴</button>`
           : ''
       }
       ${
         owned && pet.stars < 5
-          ? `<button class="btn btn--sm btn--upgrade" data-action="upgrade">升星</button>`
+          ? `<button type="button" class="btn btn--sm btn--upgrade" data-action="upgrade">升星</button>`
           : ''
       }
     </article>`;
@@ -4587,16 +4907,29 @@ function renderExpeditionAreaCard(area, { hasActive, energy, ownedPets, explorat
 
 function startExpeditionTimer() {
   stopExpeditionTimer();
+  const activeNow = state?.activeExpedition;
+  // 已完成待領取：不啟動每秒 interval，避免整頁重繪
+  if (!activeNow || isExpeditionTimeComplete(activeNow)) {
+    return;
+  }
+
   expeditionTimer = setInterval(() => {
     const active = state?.activeExpedition;
-    if (!active) return;
+    if (!active) {
+      stopExpeditionTimer();
+      return;
+    }
 
     if (isExpeditionTimeComplete(active)) {
+      // 剛完成：停止 timer，只渲染一次切換成可領取狀態
+      stopExpeditionTimer();
+      stopExpeditionStatusRotation();
       renderExpeditionView();
       renderNavBadges();
       return;
     }
 
+    // 倒數中：只更新倒數文字，不重建整頁
     const el = document.getElementById('expedition-countdown');
     if (el) {
       el.textContent = formatRemainingTime(getRemainingMs(active));
@@ -5130,6 +5463,7 @@ function renderExpeditionDispatchModal() {
         </div>
         <div class="expedition-dispatch-modal__pet-section">
           <h3 class="expedition-dispatch-modal__pet-title">選擇出發寵物</h3>
+          <p class="expedition-dispatch-modal__pet-note">陪伴中的寵物也可以派遣，不會取消目前的陪伴設定。</p>
           <div class="expedition-dispatch-modal__pet-list">
             ${petListHtml}
           </div>
@@ -5149,6 +5483,7 @@ function buildDispatchPetOptionHtml(pet) {
   const selected = dispatchSelectedPetId === pet.id;
   const rarityClass = `rarity-${pet.rarity}`;
   const liberated = pet.bondLiberated;
+  const isCompanion = !!pet.isCompanion || pet.id === state?.companion?.id;
   return `
     <button type="button"
       class="expedition-pet-option ${selected ? 'is-selected' : ''} ${onExp ? 'is-disabled' : ''}"
@@ -5163,6 +5498,7 @@ function buildDispatchPetOptionHtml(pet) {
         <span class="expedition-pet-option__tags">
           <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
           <span class="expedition-pet-option__bond">親密 Lv.${pet.bondLevel || 1}</span>
+          ${isCompanion ? '<span class="expedition-pet-option__companion">陪伴中</span>' : ''}
           ${liberated ? '<span class="expedition-pet-option__liberated">羈絆解放</span>' : ''}
           ${onExp ? '<span class="expedition-pet-option__busy">探險中</span>' : ''}
         </span>
@@ -5832,6 +6168,300 @@ function renderMoreView() {
   }
 }
 
+/* ============================================================ *
+ * 冒險手冊 View（V2.9.0）
+ * 唯讀整合現有資料，詳細區塊預設收合。
+ * ============================================================ */
+
+/** 詳細區塊展開狀態（模組級，不入 IndexedDB / 備份；重啟 PWA 後回到預設收合） */
+const handbookSectionState = {
+  weekly: false,
+  records: false,
+  companions: false,
+  expedition: false,
+};
+
+/** 最近一次計算出的手冊模型（同一 App session 內快取，供回到手冊時即時顯示） */
+let handbookModel = null;
+let handbookRefreshing = false;
+
+function isHandbookActive() {
+  return document.getElementById('view-handbook')?.classList.contains('active') ?? false;
+}
+
+/** 進入手冊或需要刷新時呼叫：先以現有模型即時渲染，再抓最新時效資料局部刷新 */
+function renderHandbookView() {
+  const container = document.getElementById('handbook-content');
+  if (!container) return;
+  if (handbookModel) {
+    container.innerHTML = buildHandbookHtml(handbookModel);
+  } else {
+    container.innerHTML = '<p class="handbook-loading">整理你的冒險成果中…</p>';
+  }
+  // 只在使用者正停留於手冊、且無 Overlay 時重新生成摘要，避免不必要的背景 render
+  if (isHandbookActive() && !isAnyOverlayOpen()) {
+    refreshHandbookModel();
+  }
+}
+
+/** 僅重繪目前模型（不重新抓資料），用於收合切換等純 UI 操作 */
+function rerenderHandbookContent() {
+  const container = document.getElementById('handbook-content');
+  if (!container || !handbookModel) return;
+  container.innerHTML = buildHandbookHtml(handbookModel);
+}
+
+async function refreshHandbookModel() {
+  if (handbookRefreshing) return;
+  handbookRefreshing = true;
+  try {
+    const model = await getAdventureHandbookSummary(state || {});
+    handbookModel = model;
+    if (isHandbookActive() && !isAnyOverlayOpen()) {
+      const container = document.getElementById('handbook-content');
+      if (container) container.innerHTML = buildHandbookHtml(model);
+    }
+  } catch (err) {
+    uiDebugLog('[Handbook] refresh failed:', err);
+  } finally {
+    handbookRefreshing = false;
+  }
+}
+
+function handleHandbookClick(e) {
+  const backBtn = e.target.closest('[data-goto]');
+  if (backBtn) {
+    switchView(backBtn.dataset.goto);
+    return;
+  }
+  const toggle = e.target.closest('[data-action="handbook-toggle"]');
+  if (toggle) {
+    const key = toggle.dataset.section;
+    if (key && key in handbookSectionState) {
+      handbookSectionState[key] = !handbookSectionState[key];
+      rerenderHandbookContent();
+    }
+    return;
+  }
+  const goto = e.target.closest('[data-action="handbook-goto"]');
+  if (goto?.dataset.view) {
+    switchView(goto.dataset.view);
+  }
+}
+
+/* ---------- HTML builders ---------- */
+
+function handbookProgressBar(percent) {
+  const pct = Math.max(0, Math.min(100, Math.round(percent)));
+  return `<span class="handbook-progress" role="presentation"><span class="handbook-progress__fill" style="width:${pct}%"></span></span>`;
+}
+
+function buildHandbookQuickStats(quickStats) {
+  if (!Array.isArray(quickStats) || quickStats.length === 0) {
+    return `<section class="handbook-summary card" aria-label="成長摘要">
+      <p class="handbook-empty">開始完成任務與收集夥伴，這裡就會顯示你的成長摘要。</p>
+    </section>`;
+  }
+  const cards = quickStats.map((s) => `
+    <button class="handbook-stat" type="button" data-action="handbook-goto" data-view="${escapeHtml(s.actionView || 'tasks')}">
+      <span class="handbook-stat__icon" aria-hidden="true">${escapeHtml(s.icon || '✦')}</span>
+      <span class="handbook-stat__label">${escapeHtml(s.label)}</span>
+      <span class="handbook-stat__value">${escapeHtml(String(s.value))}</span>
+    </button>`).join('');
+  return `<section class="handbook-summary card" aria-label="成長摘要">
+    <div class="handbook-summary__grid">${cards}</div>
+  </section>`;
+}
+
+function buildHandbookGoals(goals) {
+  const head = '<h2 class="handbook-goals__title">下一步目標</h2>';
+  if (!Array.isArray(goals) || goals.length === 0) {
+    return `<section class="handbook-goals card" aria-label="下一步目標">
+      ${head}
+      <p class="handbook-empty">目前沒有進行中的目標，繼續你的冒險就會出現新的挑戰！</p>
+    </section>`;
+  }
+  const cards = goals.map((g) => {
+    const unit = g.unit || '';
+    const pct = g.target > 0 ? (g.current / g.target) * 100 : (g.status === 'claimable' ? 100 : 0);
+    const claimable = g.status === 'claimable';
+    const chip = claimable
+      ? '<span class="handbook-chip handbook-chip--claimable"><span aria-hidden="true">✓</span> 可領取</span>'
+      : '';
+    const curDisp = Number.isFinite(g.current) ? Math.min(g.current, g.target) : g.current;
+    const count = Number.isFinite(g.current) && Number.isFinite(g.target) && g.target > 0
+      ? `<span class="handbook-goal__count">${escapeHtml(String(curDisp))}${escapeHtml(unit)} / ${escapeHtml(String(g.target))}${escapeHtml(unit)}</span>`
+      : '';
+    return `
+    <button class="handbook-goal${claimable ? ' handbook-goal--claimable' : ''}" type="button" data-action="handbook-goto" data-view="${escapeHtml(g.actionView || 'tasks')}">
+      <span class="handbook-goal__icon" aria-hidden="true">${escapeHtml(g.icon || '✦')}</span>
+      <span class="handbook-goal__body">
+        <span class="handbook-goal__title-row">
+          <span class="handbook-goal__name">${escapeHtml(g.title || '目標')}</span>
+          ${chip}
+        </span>
+        <span class="handbook-goal__meta">
+          ${handbookProgressBar(pct)}
+          ${count}
+        </span>
+        <span class="handbook-goal__hint">${escapeHtml(g.hint || '')}</span>
+      </span>
+    </button>`;
+  }).join('');
+  return `<section class="handbook-goals card" aria-label="下一步目標">
+    ${head}
+    <div class="handbook-goals__list">${cards}</div>
+  </section>`;
+}
+
+function handbookSection(key, title, collapsedSummary, bodyHtml, available) {
+  if (!available) return '';
+  const expanded = !!handbookSectionState[key];
+  const bodyId = `handbook-section-${key}`;
+  return `
+  <section class="handbook-section card${expanded ? ' is-expanded' : ''}">
+    <button class="handbook-section__header" type="button"
+      data-action="handbook-toggle" data-section="${key}"
+      aria-expanded="${expanded ? 'true' : 'false'}" aria-controls="${bodyId}">
+      <span class="handbook-section__title">${escapeHtml(title)}</span>
+      <span class="handbook-section__summary">${collapsedSummary}</span>
+      <span class="handbook-section__chevron" aria-hidden="true">▾</span>
+    </button>
+    <div class="handbook-section__body" id="${bodyId}"${expanded ? '' : ' hidden'}>
+      ${bodyHtml}
+    </div>
+  </section>`;
+}
+
+function handbookRow(label, value, chip = '') {
+  return `<div class="handbook-row">
+    <span class="handbook-row__label">${escapeHtml(label)}</span>
+    <span class="handbook-row__value">${value}${chip}</span>
+  </div>`;
+}
+
+function buildHandbookWeekly(weekly) {
+  const parts = [];
+  if (weekly.daily.available) parts.push(`每日 ${weekly.daily.completed}/${weekly.daily.total}`);
+  if (weekly.weekly.available) parts.push(`每週 ${weekly.weekly.completed}/${weekly.weekly.total}`);
+  const summary = parts.length ? escapeHtml(parts.join('・')) : '本週進度';
+
+  const rows = [];
+  const claimChip = (n) => n > 0 ? `<span class="handbook-chip handbook-chip--info">可領取 ${n}</span>` : '';
+  if (weekly.daily.available) {
+    rows.push(handbookRow('每日任務', `${weekly.daily.completed} / ${weekly.daily.total}`, claimChip(weekly.daily.claimable)));
+  }
+  if (weekly.weekly.available) {
+    rows.push(handbookRow('每週任務', `${weekly.weekly.completed} / ${weekly.weekly.total}`, claimChip(weekly.weekly.claimable)));
+  }
+  if (weekly.habits.available) {
+    rows.push(handbookRow('今日習慣', `${weekly.habits.completed} / ${weekly.habits.total}`));
+  }
+  return handbookSection('weekly', '本週狀態', summary, rows.join(''), weekly.available);
+}
+
+function buildHandbookRecords(records) {
+  const summary = escapeHtml(`已追蹤 ${records.items.length} 項`);
+  const rows = records.items.map((item) => {
+    const val = item.note ? `${item.value} ${item.note}` : `${item.value}`;
+    return handbookRow(`${item.icon ? item.icon + ' ' : ''}${item.label}`, escapeHtml(String(val)));
+  }).join('');
+  return handbookSection('records', '長期紀錄', summary, rows, records.available);
+}
+
+function buildHandbookCompanions(collection) {
+  const c = collection;
+  const collSummaryParts = [];
+  if (c.collection.available) collSummaryParts.push(`${c.collection.owned}/${c.collection.total}`);
+  if (c.maxBond.available) collSummaryParts.push(`最高羈絆 Lv.${c.maxBond.value}`);
+  const summary = collSummaryParts.length ? escapeHtml(collSummaryParts.join('・')) : '收藏與夥伴';
+
+  const rows = [];
+  if (c.collection.available) rows.push(handbookRow('圖鑑收藏', `${c.collection.owned} / ${c.collection.total}`));
+  if (c.milestonesClaimed.available) rows.push(handbookRow('收藏里程碑', `${c.milestonesClaimed.claimed} / ${c.milestonesClaimed.total}`));
+  if (c.maxStar.available) rows.push(handbookRow('最高星級', `${'★'.repeat(Math.min(5, c.maxStar.value))}`));
+  if (c.maxBond.available) rows.push(handbookRow('最高羈絆', `Lv.${c.maxBond.value}`));
+  if (c.bondLiberated.available) rows.push(handbookRow('羈絆解放', `${c.bondLiberated.value} 隻`));
+
+  let rarityHtml = '';
+  if (Array.isArray(c.rarities) && c.rarities.length) {
+    const chips = c.rarities.map((r) =>
+      `<span class="handbook-rarity-chip handbook-rarity-chip--${r.rarity.toLowerCase()}">${r.rarity} ${r.owned}/${r.total}</span>`
+    ).join('');
+    rarityHtml = `<div class="handbook-rarity-chips">${chips}</div>`;
+  }
+
+  let petsHtml = '';
+  const petCards = [];
+  if (c.companion) {
+    petCards.push(`
+      <div class="handbook-pet">
+        ${petImageHtml(c.companion, { size: 'md', loading: 'lazy' })}
+        <span class="handbook-pet__role">陪伴夥伴</span>
+        <span class="handbook-pet__name">${escapeHtml(c.companion.displayName || c.companion.name || '夥伴')}</span>
+        <span class="handbook-pet__bond">羈絆 Lv.${c.companion.bondLevel ?? 1}</span>
+      </div>`);
+  }
+  if (c.bondPet) {
+    petCards.push(`
+      <div class="handbook-pet">
+        ${petImageHtml(c.bondPet, { size: 'md', loading: 'lazy' })}
+        <span class="handbook-pet__role">最高羈絆</span>
+        <span class="handbook-pet__name">${escapeHtml(c.bondPet.displayName || c.bondPet.name || '夥伴')}</span>
+        <span class="handbook-pet__bond">羈絆 Lv.${c.bondPet.bondLevel ?? 1}</span>
+      </div>`);
+  }
+  if (petCards.length) petsHtml = `<div class="handbook-pets">${petCards.join('')}</div>`;
+
+  const body = `${rows.join('')}${rarityHtml}${petsHtml}`;
+  return handbookSection('companions', '收藏與夥伴', summary, body, c.available);
+}
+
+function buildHandbookExpedition(exp) {
+  const summary = exp.averageExploration != null
+    ? escapeHtml(`平均探索度 ${exp.averageExploration}%`)
+    : '探險與工坊';
+
+  const areaRows = (exp.areas || []).map((a) => {
+    const target = a.nextMilestonePercent ?? 100;
+    return `<div class="handbook-area">
+      <div class="handbook-area__head">
+        <span class="handbook-area__name">${escapeHtml(a.icon)} ${escapeHtml(a.name)}</span>
+        <span class="handbook-area__pct">${a.progress}%${a.claimableCount > 0 ? ' <span class="handbook-chip handbook-chip--info">可領取</span>' : ''}</span>
+      </div>
+      ${handbookProgressBar(a.progress)}
+    </div>`;
+  }).join('');
+
+  const extraRows = [];
+  if (exp.closestArea) {
+    extraRows.push(handbookRow('最接近里程碑', `${escapeHtml(exp.closestArea.name)}（${exp.closestArea.percent}%）`));
+  }
+  if (exp.active) {
+    const activeText = `${escapeHtml(exp.active.areaName)}・${escapeHtml(exp.active.petName)}`;
+    extraRows.push(handbookRow('進行中探險', activeText));
+  } else {
+    extraRows.push(handbookRow('進行中探險', '目前沒有派遣'));
+  }
+  if (exp.craftCount.available) extraRows.push(handbookRow('工坊製作', `${exp.craftCount.value} 次`));
+  if (exp.materialKinds.available) extraRows.push(handbookRow('材料種類', `${exp.materialKinds.value} 種`));
+
+  const body = `${areaRows}<div class="handbook-area-extra">${extraRows.join('')}</div>`;
+  return handbookSection('expedition', '探險與工坊', summary, body, exp.available);
+}
+
+function buildHandbookHtml(model) {
+  if (!model) return '<p class="handbook-loading">整理你的冒險成果中…</p>';
+  return [
+    buildHandbookQuickStats(model.quickStats),
+    buildHandbookGoals(model.nextGoals),
+    buildHandbookWeekly(model.weekly),
+    buildHandbookRecords(model.records),
+    buildHandbookCompanions(model.collection),
+    buildHandbookExpedition(model.expedition),
+  ].join('');
+}
+
 function bindAchievementClaimAll() {
   document.getElementById('achievement-summary')?.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-action="claim-all-achievements"]');
@@ -6445,7 +7075,7 @@ function updateVersionInfoServiceWorkerStatus(status) {
 /** 同步渲染版本資訊，再非同步更新 Service Worker 狀態 */
 export function renderVersionInfo() {
   const containers = document.querySelectorAll('[data-version-info]');
-  console.debug('[VersionInfo] render', {
+  uiDebugLog('[VersionInfo] render', {
     appVersion: APP_VERSION,
     cacheName: CACHE_NAME,
     buildTime: BUILD_TIME,
