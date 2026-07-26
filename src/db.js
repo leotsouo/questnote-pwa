@@ -198,6 +198,9 @@ export async function replaceAllStores(payload) {
     if (payload.explorationProgress) metaStore.put(payload.explorationProgress);
     if (payload.collectionMilestones) metaStore.put(payload.collectionMilestones);
     if (payload.globalMailboxState) metaStore.put(payload.globalMailboxState);
+    if (payload.poolDebutSeen) metaStore.put(payload.poolDebutSeen);
+    if (payload.poolUnlockState) metaStore.put(payload.poolUnlockState);
+    if (payload.idempotentGrants) metaStore.put(payload.idempotentGrants);
   });
 }
 

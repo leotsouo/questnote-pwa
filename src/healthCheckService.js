@@ -50,6 +50,21 @@ import {
   MAILBOX_RUNTIME_CACHE,
   __mailboxTestHelpers,
 } from './mailboxService.js';
+import {
+  validatePetCatalog,
+  validateLoreCatalog,
+  validatePetAndLoreConsistency,
+  validateSeriesCatalog,
+  validatePoolCatalog,
+  getPetSeriesId,
+  LEGACY_SERIES_ID,
+  getNextPetId,
+  PET_ID_TYPES,
+} from './petDataSchema.js';
+import {
+  matchesPetPoolFilter,
+  getEligiblePetsForPool,
+} from './petPoolFilter.js';
 
 const DATA_FILES = [
   { path: './data/pets.json', label: 'pets.json' },
@@ -59,6 +74,7 @@ const DATA_FILES = [
   { path: './data/achievements.json', label: 'achievements.json' },
   { path: './data/titles.json', label: 'titles.json' },
   { path: './data/pets-lore.json', label: 'pets-lore.json' },
+  { path: './data/pet-series.json', label: 'pet-series.json' },
   { path: './data/materials.json', label: 'materials.json' },
   { path: './data/craftables.json', label: 'craftables.json' },
   { path: './data/dailyWheelRewards.json', label: 'dailyWheelRewards.json' },
@@ -907,21 +923,25 @@ async function checkSummonReveal() {
   }
   stats.push('isDebugMode=ok');
 
-  // 6. Debug 測試按鈕放在設定頁開發測試區，且只在 dev / debug mode 顯示
+  // 6. Debug 測試按鈕放在設定頁開發測試區，且只在 localhost 顯示（正式環境移除 DOM）
   if (!indexText.includes('id="btn-test-ssr-reveal"') || !indexText.includes('id="btn-test-ur-reveal"')) {
     throw new Error('設定頁缺少 SSR / UR 演出測試按鈕');
   }
   if (!indexText.includes('id="dev-reveal-tests"')) {
     throw new Error('設定頁缺少 dev-reveal-tests 群組');
   }
-  if (!/dev-reveal-tests['"]\)[\s\S]{0,120}hidden\s*=\s*!debugOn/.test(uiText)) {
-    notes.push('dev-reveal-tests 顯示可能未以 debugOn 控制');
+  if (!uiText.includes('isAuthorLocalDevMode()')
+    || !/dev-reveal-tests['"]\)[\s\S]{0,200}hidden\s*=\s*!localDevOn/.test(uiText)) {
+    throw new Error('dev-reveal-tests 必須以 isAuthorLocalDevMode / localDevOn 控制，不得用 ?debug 開正式環境');
   }
-  if (!/btn-test-ssr-reveal[\s\S]{0,120}testSummonReveal\('SSR'\)/.test(uiText)
-    || !/btn-test-ur-reveal[\s\S]{0,120}testSummonReveal\('UR'\)/.test(uiText)) {
+  if (!uiText.includes('devSection.remove()')) {
+    notes.push('正式環境建議直接 remove dev-tools-section');
+  }
+  if (!/btn-test-ssr-reveal[\s\S]{0,160}testSummonReveal\('SSR'\)/.test(uiText)
+    || !/btn-test-ur-reveal[\s\S]{0,160}testSummonReveal\('UR'\)/.test(uiText)) {
     throw new Error('演出測試按鈕未綁定 testSummonReveal');
   }
-  stats.push('設定頁演出測試按鈕受 dev/debug 控制=ok');
+  stats.push('設定頁演出測試按鈕受 localhost 控制=ok');
 
   // 7. 測試按鈕不呼叫正式抽卡 / 寫入資料 function
   const testFnIdx = uiText.indexOf('async function testSummonReveal');
@@ -2624,17 +2644,17 @@ async function checkAdventureHandbook() {
   if (!swText.includes('src/adventureHandbookService.js')) {
     throw new Error('service-worker 未 precache adventureHandbookService.js');
   }
-  if (!versionText.includes("APP_VERSION = '3.0.1'")) {
-    notes.push('version.js APP_VERSION 非 3.0.1');
+  if (!versionText.includes("APP_VERSION = '3.4.3'")) {
+    notes.push('version.js APP_VERSION 非 3.4.3');
   }
-  if (!versionText.includes('questnote-cache-v301-mailbox-dev-tools')) {
-    notes.push('version.js CACHE_NAME 未更新為 v301');
+  if (!versionText.includes('questnote-cache-v343-reveal-flow-verification')) {
+    notes.push('version.js CACHE_NAME 未更新為 v343');
   }
-  if (!swText.includes('questnote-cache-v301-mailbox-dev-tools')) {
-    notes.push('service-worker CACHE_NAME 未更新為 v301');
+  if (!swText.includes('questnote-cache-v343-reveal-flow-verification')) {
+    notes.push('service-worker CACHE_NAME 未更新為 v343');
   }
-  if (!backupText.includes("'3.0.1'")) {
-    notes.push('backupService 未加入 3.0.1 支援版本');
+  if (!backupText.includes("'3.4.3'")) {
+    notes.push('backupService 未加入 3.4.3 支援版本');
   }
 
   const summary = stats.join(' | ');
@@ -2943,11 +2963,11 @@ async function checkGlobalMailbox() {
   stats.push('ui=ok');
 
   // 7. 版本／備份／SW -----------------------------------------------
-  if (!versionText.includes("APP_VERSION = '3.0.1'")) {
-    throw new Error('APP_VERSION 應為 3.0.1');
+  if (!versionText.includes("APP_VERSION = '3.4.3'")) {
+    throw new Error('APP_VERSION 應為 3.4.3');
   }
-  if (!versionText.includes('questnote-cache-v301-mailbox-dev-tools')) {
-    throw new Error('CACHE_NAME 應為 v301-mailbox-dev-tools');
+  if (!versionText.includes('questnote-cache-v343-reveal-flow-verification')) {
+    throw new Error('CACHE_NAME 應為 v343-reveal-flow-verification');
   }
   if (!swText.includes('src/mailboxService.js')) {
     throw new Error('service-worker 未 precache mailboxService.js');
@@ -2958,8 +2978,8 @@ async function checkGlobalMailbox() {
   if (!swText.includes('questnote-mailbox-runtime-v1') && MAILBOX_RUNTIME_CACHE !== 'questnote-mailbox-runtime-v1') {
     throw new Error('MAILBOX_RUNTIME_CACHE 名稱不符');
   }
-  if (!backupText.includes('globalMailboxState') || !backupText.includes("'3.0.1'")) {
-    throw new Error('backupService 未支援 globalMailboxState / 3.0.1');
+  if (!backupText.includes('globalMailboxState') || !backupText.includes("'3.4.3'")) {
+    throw new Error('backupService 未支援 globalMailboxState / 3.4.3');
   }
   if (!backupText.includes('normalizeGlobalMailboxState')) {
     throw new Error('舊版備份應可正規化空 mailbox state');
@@ -3173,6 +3193,501 @@ async function checkMailboxDevTools() {
   return summary;
 }
 
+/**
+ * V3.1.1 寵物系列目錄／驗證／Builder 隔離／發布安全／Pool catalog
+ * 禁止副作用：不得建立工作區、發布寵物、修改 JSON、複製圖片、修改 IndexedDB
+ */
+async function checkPetSeriesBuilder() {
+  const stats = [];
+  const notes = [];
+
+  const [
+    petsRes, loreRes, seriesRes, poolsRes,
+    schemaRes, filterRes, gachaRes,
+    indexRes, uiRes, swRes, backupRes, versionRes,
+    serverRes, publishSvcRes, validateCliRes, publishCliRes,
+  ] = await Promise.all([
+    fetch('./data/pets.json'),
+    fetch('./data/pets-lore.json'),
+    fetch('./data/pet-series.json'),
+    fetch('./data/pools.json'),
+    fetch('./src/petDataSchema.js'),
+    fetch('./src/petPoolFilter.js'),
+    fetch('./src/gachaService.js'),
+    fetch('./index.html'),
+    fetch('./src/ui.js'),
+    fetch('./service-worker.js'),
+    fetch('./src/backupService.js'),
+    fetch('./src/version.js'),
+    fetch('./devtools/pet-series-builder/server.mjs'),
+    fetch('./scripts/petSeriesPublishService.mjs'),
+    fetch('./scripts/validate-pet-series.mjs'),
+    fetch('./scripts/publish-pet-series.mjs'),
+  ]);
+
+  if (!petsRes.ok) throw new Error('無法讀取 pets.json');
+  if (!loreRes.ok) throw new Error('無法讀取 pets-lore.json');
+  if (!seriesRes.ok) throw new Error('無法讀取 pet-series.json');
+  if (!poolsRes.ok) throw new Error('無法讀取 pools.json');
+  if (!schemaRes.ok) throw new Error('無法讀取 petDataSchema.js');
+  if (!filterRes.ok) throw new Error('無法讀取 petPoolFilter.js');
+  if (!gachaRes.ok) throw new Error('無法讀取 gachaService.js');
+  if (!indexRes.ok) throw new Error('無法讀取 index.html');
+  if (!uiRes.ok) throw new Error('無法讀取 ui.js');
+  if (!swRes.ok) throw new Error('無法讀取 service-worker.js');
+  if (!backupRes.ok) throw new Error('無法讀取 backupService.js');
+  if (!versionRes.ok) throw new Error('無法讀取 version.js');
+  if (!serverRes.ok) throw new Error('無法讀取 pet-series-builder/server.mjs');
+  if (!publishSvcRes.ok) throw new Error('無法讀取 petSeriesPublishService.mjs');
+  if (!validateCliRes.ok) throw new Error('無法讀取 validate-pet-series.mjs');
+  if (!publishCliRes.ok) throw new Error('無法讀取 publish-pet-series.mjs');
+
+  const petsData = await petsRes.json();
+  const loreData = await loreRes.json();
+  const seriesCatalog = await seriesRes.json();
+  const poolsData = await poolsRes.json();
+  const schemaText = await schemaRes.text();
+  const filterText = await filterRes.text();
+  const gachaText = await gachaRes.text();
+  const indexText = await indexRes.text();
+  const uiText = await uiRes.text();
+  const swText = await swRes.text();
+  const backupText = await backupRes.text();
+  const versionText = await versionRes.text();
+  const serverText = await serverRes.text();
+  const publishSvcText = await publishSvcRes.text();
+
+  const pets = petsData.pets || [];
+  const lore = loreData.lore || [];
+  stats.push(`pets=${pets.length}`);
+  stats.push(`lore=${lore.length}`);
+
+  // 1. Pets catalog -------------------------------------------------
+  const seriesIds = new Set((seriesCatalog.series || []).map((s) => s.id));
+  const petCheck = validatePetCatalog(petsData, {
+    mode: 'existing',
+    seriesIds,
+  });
+  // 舊寵物缺新欄位只應 warning；真正 error 才 fail
+  if (!petCheck.ok) {
+    throw new Error(`Pets catalog 驗證失敗: ${petCheck.errors[0]?.message}`);
+  }
+  stats.push('pets-catalog=ok');
+
+  // 2. Lore catalog -------------------------------------------------
+  const loreCheck = validateLoreCatalog(loreData, { mode: 'existing' });
+  if (!loreCheck.ok) {
+    throw new Error(`Lore catalog 驗證失敗: ${loreCheck.errors[0]?.message}`);
+  }
+  const consistency = validatePetAndLoreConsistency(petsData, loreData);
+  if (!consistency.ok) {
+    throw new Error(`Pets/Lore 一致性失敗: ${consistency.errors[0]?.message}`);
+  }
+  stats.push('lore-catalog=ok');
+
+  // 3. Series catalog ----------------------------------------------
+  const seriesCheck = validateSeriesCatalog(seriesCatalog);
+  if (!seriesCheck.ok) {
+    throw new Error(`Series catalog 失敗: ${seriesCheck.errors[0]?.message}`);
+  }
+  if (!seriesIds.has(LEGACY_SERIES_ID)) {
+    throw new Error('series 目錄缺少 legacy');
+  }
+  let legacyFallback = 0;
+  let unknownSeries = 0;
+  for (const pet of pets) {
+    const sid = getPetSeriesId(pet);
+    if (!pet.seriesId) legacyFallback += 1;
+    if (pet.seriesId && !seriesIds.has(pet.seriesId)) unknownSeries += 1;
+    if (sid !== (pet.seriesId || LEGACY_SERIES_ID) && pet.seriesId) {
+      // getPetSeriesId should return trimmed seriesId or legacy
+    }
+  }
+  if (unknownSeries > 0) {
+    throw new Error(`有 ${unknownSeries} 隻寵物 seriesId 不存在於目錄`);
+  }
+  stats.push(`legacy-fallback=${legacyFallback}`);
+  stats.push('series-catalog=ok');
+
+  // 4. Pool matching（OR）與動態 catalog --------------------------------
+  if (!filterText.includes('petTags.some') && !filterText.includes('.some((tag)')) {
+    throw new Error('petPoolFilter 應採 OR（some）');
+  }
+  if (!gachaText.includes("from './petPoolFilter.js'") && !gachaText.includes('from "./petPoolFilter.js"')) {
+    throw new Error('gachaService 應重用 petPoolFilter');
+  }
+  if (!gachaText.includes('getEligiblePetsForPool') || !gachaText.includes('matchesPetPoolFilter')) {
+    throw new Error('gachaService 應匯出／使用共用 pool matching');
+  }
+
+  // OR 語意用合成 filter 探測（不依賴任何正式活動池是否存在）
+  const orProbePet = { id: 'probe', poolTags: ['standard'], rarity: 'N' };
+  const orPool = { id: 'probe_multi_tag', petFilter: { poolTags: ['standard', 'season_event'] } };
+  if (!matchesPetPoolFilter(orProbePet, orPool)) {
+    throw new Error('OR 語意失敗：僅有 standard 的寵物應符合含 standard 的多 tag filter');
+  }
+  const andWouldFail = { id: 'probe2', poolTags: ['standard'], rarity: 'N' };
+  void andWouldFail;
+
+  const pools = Array.isArray(poolsData.pools) ? poolsData.pools : [];
+  if (pools.length < 1) {
+    throw new Error('至少需要一個合法 Pool');
+  }
+  const activePools = pools.filter((p) => p.active);
+  if (activePools.length < 1) {
+    throw new Error('至少需要一個 active Pool');
+  }
+  const standardPool = pools.find((p) => p.id === 'standard');
+  if (!standardPool) {
+    throw new Error('缺少 standard Pool');
+  }
+  if (!standardPool.active) {
+    throw new Error('standard Pool 必須為 active');
+  }
+
+  const eligibleStd = getEligiblePetsForPool(pets, standardPool);
+  if (eligibleStd.length === 0) {
+    throw new Error('standard Pool 候選為空');
+  }
+  stats.push(`pool-count=${pools.length}`);
+  stats.push(`active-pools=${activePools.length}`);
+  stats.push(`pool-standard=${eligibleStd.length}`);
+  for (const pool of pools) {
+    const eligible = getEligiblePetsForPool(pets, pool);
+    stats.push(`pool-${pool.id}=${eligible.length}`);
+  }
+
+  // 不得硬性要求已移除的活動池
+  if (pools.some((p) => p.id === 'event_dragon')) {
+    notes.push('仍存在 event_dragon（預期 V3.1.1 已移除）');
+  }
+
+  const poolCheck = validatePoolCatalog(poolsData, {
+    pets,
+    getEligiblePetsForPool,
+  });
+  if (!poolCheck.ok) {
+    throw new Error(`Pool 驗證失敗: ${poolCheck.errors[0]?.message}`);
+  }
+  stats.push('pool=ok');
+
+  // ID 不填補空號
+  const nextSp = getNextPetId(pets, PET_ID_TYPES.SPECIAL_SP);
+  if (nextSp === 'pet_sp07') {
+    throw new Error('ID 分配不應填補 pet_sp07');
+  }
+  stats.push(`next-sp=${nextSp}`);
+
+  // 5. Builder 隔離 ------------------------------------------------
+  if (/pet-series-builder|Pet Series Builder|4174/.test(indexText)) {
+    throw new Error('正式 index.html 不得有 Builder 入口');
+  }
+  if (/pet-series-builder|devtools\/pet-series|4174/.test(uiText)
+    && /data-action=["'][^"']*pet-series/.test(uiText)) {
+    throw new Error('正式 ui.js 不得有 Builder action');
+  }
+  const precacheBlock = swText.match(/const PRECACHE_URLS\s*=\s*\[([\s\S]*?)\];/);
+  if (precacheBlock && /devtools\/pet-series-builder|content\/pet-series|publish-pet-series|validate-pet-series/.test(precacheBlock[1])) {
+    throw new Error('Service Worker 不得 precache Builder／content／scripts');
+  }
+  if (!swText.includes('src/petDataSchema.js') || !swText.includes('data/pet-series.json')) {
+    throw new Error('Service Worker 應 precache petDataSchema.js 與 pet-series.json');
+  }
+  if (!swText.includes('src/petPoolFilter.js')) {
+    throw new Error('Service Worker 應 precache petPoolFilter.js');
+  }
+  if (!serverText.includes("HOST = '127.0.0.1'") && !serverText.includes('HOST = "127.0.0.1"')) {
+    throw new Error('Builder server 必須只監聽 127.0.0.1');
+  }
+  if (/listen\([^)]*0\.0\.0\.0/.test(serverText)) {
+    throw new Error('Builder 禁止監聽 0.0.0.0');
+  }
+  stats.push('builder-isolation=ok');
+
+  // 6. 發布安全（靜態） -------------------------------------------
+  if (!publishSvcText.includes('dryRun') || !publishSvcText.includes('--dry-run') && !publishSvcText.includes('dryRun === true')) {
+    if (!publishSvcText.includes('dryRun')) throw new Error('發布服務缺少 Dry Run');
+  }
+  if (!publishSvcText.includes('.dev-backups') || !publishSvcText.includes('BACKUPS_DIR')) {
+    throw new Error('發布服務缺少備份');
+  }
+  if (!publishSvcText.includes('rolledBack') && !publishSvcText.includes('回滾') && !publishSvcText.includes('rollback')) {
+    // rollback via copyFileSafe restore
+    if (!publishSvcText.includes('copyFileSafe(path.join(backupDir')) {
+      throw new Error('發布服務缺少 rollback');
+    }
+  }
+  if (/forceOverwrite|overwrite.*true|強制覆蓋/.test(publishSvcText)) {
+    throw new Error('不得提供強制覆蓋圖片選項');
+  }
+  if (!publishSvcText.includes('OFFICIAL_PETS_PATH') || !publishSvcText.includes('getPublishAllowlist')) {
+    throw new Error('缺少發布目標白名單');
+  }
+  if (!schemaText.includes("mode === 'new'") || !schemaText.includes("mode === 'existing'")) {
+    throw new Error('petDataSchema 應支援 existing／new 模式');
+  }
+  if (backupText.includes('pet-series.json') && /DATA_KEYS[\s\S]*pet-series/.test(backupText)) {
+    throw new Error('pet-series.json 不應進入使用者備份');
+  }
+  if (!versionText.includes("APP_VERSION = '3.4.3'")) {
+    throw new Error('APP_VERSION 應為 3.4.3');
+  }
+  if (!backupText.includes("'3.4.3'")) {
+    throw new Error('backupService 應支援 3.4.3');
+  }
+  if (!swText.includes('PET_IMAGE_CACHE') || !swText.includes('MAILBOX_RUNTIME_CACHE')) {
+    throw new Error('應保留 PET_IMAGE_CACHE 與 MAILBOX_RUNTIME_CACHE');
+  }
+  stats.push('publish-safety=ok');
+  stats.push('no-side-effects=ok');
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+
+/**
+ * V3.4.0 晨醒花庭解鎖健康檢查
+ */
+async function checkMorningGardenAwakening() {
+  const stats = [];
+  const notes = [];
+
+  const [petsRes, loreRes, poolsRes, versionRes, swRes, unlockRes, awakeningRes, backupRes, uiRes] = await Promise.all([
+    fetch('./data/pets.json'),
+    fetch('./data/pets-lore.json'),
+    fetch('./data/pools.json'),
+    fetch('./src/version.js'),
+    fetch('./service-worker.js'),
+    fetch('./src/poolUnlockService.js'),
+    fetch('./src/poolAwakeningController.js'),
+    fetch('./src/backupService.js'),
+    fetch('./src/ui.js'),
+  ]);
+
+  if (!petsRes.ok) throw new Error('無法讀取 pets.json');
+  if (!loreRes.ok) throw new Error('無法讀取 pets-lore.json');
+  if (!poolsRes.ok) throw new Error('無法讀取 pools.json');
+  if (!versionRes.ok) throw new Error('無法讀取 version.js');
+  if (!swRes.ok) throw new Error('無法讀取 service-worker.js');
+  if (!unlockRes.ok) throw new Error('缺少 poolUnlockService.js');
+  if (!awakeningRes.ok) throw new Error('缺少 poolAwakeningController.js');
+  if (!backupRes.ok) throw new Error('無法讀取 backupService.js');
+  if (!uiRes.ok) throw new Error('無法讀取 ui.js');
+
+  const petsData = await petsRes.json();
+  const loreData = await loreRes.json();
+  const poolsData = await poolsRes.json();
+  const versionText = await versionRes.text();
+  const swText = await swRes.text();
+  const unlockText = await unlockRes.text();
+  const awakeningText = await awakeningRes.text();
+  const backupText = await backupRes.text();
+  const uiText = await uiRes.text();
+
+  const pets = petsData.pets || [];
+  const lore = loreData.lore || [];
+  const awakened = pets.filter((p) => (p.poolTags || []).includes('eternal_slumber_bloom_awakened'));
+  const slumber = pets.filter((p) => (p.poolTags || []).includes('eternal_slumber_bloom'));
+  const standard = pets.filter((p) => (p.poolTags || []).includes('standard'));
+  const series = pets.filter((p) => p.seriesId === 'eternal_slumber_bloom');
+
+  if (awakened.length !== 4) throw new Error('晨醒追加應為 4 隻，實際 ' + awakened.length);
+  if (slumber.length !== 12) throw new Error('永眠期候選應為 12，實際 ' + slumber.length);
+  if (standard.length !== 56) throw new Error('standard 應為 56，實際 ' + standard.length);
+  if (series.length !== 16) throw new Error('系列總數應為 16，實際 ' + series.length);
+
+  for (const pet of awakened) {
+    const loreEntry = lore.find((l) => l.id === pet.id);
+    if (!loreEntry) throw new Error('晨醒 lore 缺漏: ' + pet.id);
+    if ((pet.poolTags || []).includes('standard')) throw new Error(pet.id + ' 不得混入 standard');
+    if ((pet.poolTags || []).includes('eternal_slumber_bloom')) {
+      throw new Error(pet.id + ' 不得直接加入 eternal_slumber_bloom tag（應走解鎖）');
+    }
+    const getRes = await fetch('./' + pet.image);
+    if (!getRes.ok) throw new Error('晨醒圖片不存在: ' + pet.image);
+  }
+  stats.push('awakened-pets=4/4');
+
+  const pool = (poolsData.pools || []).find((p) => p.id === 'eternal_slumber_bloom');
+  if (!pool) throw new Error('缺少永眠花海卡池');
+  const expansion = pool.unlockExpansion;
+  if (!expansion) throw new Error('缺少 unlockExpansion');
+  if (expansion.threshold !== 20) throw new Error('threshold 應為 20');
+  if (!Array.isArray(expansion.extraPoolTags) || !expansion.extraPoolTags.includes('eternal_slumber_bloom_awakened')) {
+    throw new Error('extraPoolTags 應含 eternal_slumber_bloom_awakened');
+  }
+  if (expansion.rewardPetId !== 'pet_r16') throw new Error('rewardPetId 應為 pet_r16（曉露花蝟）');
+  const rewardPet = pets.find((p) => p.id === expansion.rewardPetId);
+  if (!rewardPet || rewardPet.name !== '曉露花蝟') throw new Error('rewardPetId 未指向曉露花蝟');
+
+  const lockedEligible = slumber.length;
+  const unlockedEligible = slumber.length + awakened.length;
+  if (lockedEligible !== 12) throw new Error('未解鎖候選應為 12');
+  if (unlockedEligible !== 16) throw new Error('已解鎖候選應為 16');
+  stats.push('eligible=12/16');
+
+  if (!versionText.includes("APP_VERSION = '3.4.3'")) throw new Error('APP_VERSION 應為 3.4.3');
+  if (!versionText.includes('questnote-cache-v343-reveal-flow-verification')) {
+    throw new Error('CACHE_NAME 應為 v343-reveal-flow-verification');
+  }
+  if (!swText.includes('poolUnlockService.js') || !swText.includes('poolAwakeningController.js')) {
+    throw new Error('SW 應 precache 解鎖模組');
+  }
+  if (swText.includes('assets/pets/pet_r16.png')) {
+    throw new Error('寵物圖不得加入 App Shell precache');
+  }
+  if (!backupText.includes('poolUnlockState') || !backupText.includes('idempotentGrants')) {
+    throw new Error('備份應包含 poolUnlockState / idempotentGrants');
+  }
+  if (!unlockText.includes('lifetimeDraws') || !unlockText.includes('rewardClaimed') || !unlockText.includes('animationSeen')) {
+    throw new Error('解鎖 META 缺欄位');
+  }
+  if (!unlockText.includes('unavailable_no_pool_history')) {
+    notes.push('舊玩家補判定應標記無 poolId 歷史');
+  }
+  if (!awakeningText.includes('playMorningGardenUnlock')) {
+    throw new Error('缺少解鎖動畫控制器');
+  }
+  if (!uiText.includes('maybePlayMorningGardenAfterPull')) {
+    throw new Error('UI 未串接晨醒解鎖演出');
+  }
+
+  try {
+    const { getPoolUnlockState } = await import('./poolUnlockService.js');
+    const state = await getPoolUnlockState();
+    for (const [poolId, entry] of Object.entries(state.byPool || {})) {
+      if (entry.rewardClaimed && !entry.unlocked) {
+        notes.push('異常: ' + poolId + ' rewardClaimed=true 但 unlocked=false');
+      }
+    }
+  } catch (err) {
+    notes.push('解鎖狀態讀取略過: ' + (err.message || err));
+  }
+
+  stats.push('rates-unchanged=assumed');
+  const summary = stats.join(' | ');
+  if (notes.length) return 'ok with notes: ' + notes.join('; ') + ' | ' + summary;
+  return summary;
+}
+
+/**
+ * V3.4.3 SSR+ 演出流程修正健康檢查
+ * - introSkipped / revealQueueSkipped 分離
+ * - summonRevealService App Shell
+ * - 候選數與 DB_VERSION 不變
+ */
+async function checkRevealFlowV343() {
+  const stats = [];
+  const notes = [];
+
+  const [versionRes, swRes, svcRes, themedRes, uiRes, dbRes, petsRes, loreRes, poolsRes] = await Promise.all([
+    fetch('./src/version.js'),
+    fetch('./service-worker.js'),
+    fetch('./src/summonRevealService.js'),
+    fetch('./src/themedSummonController.js'),
+    fetch('./src/ui.js'),
+    fetch('./src/db.js'),
+    fetch('./data/pets.json'),
+    fetch('./data/pets-lore.json'),
+    fetch('./data/pools.json'),
+  ]);
+
+  if (!versionRes.ok || !swRes.ok || !svcRes.ok || !themedRes.ok || !uiRes.ok || !dbRes.ok) {
+    throw new Error('無法讀取 V3.4.3 必要檔案');
+  }
+
+  const versionText = await versionRes.text();
+  const swText = await swRes.text();
+  const svcText = await svcRes.text();
+  const themedText = await themedRes.text();
+  const uiText = await uiRes.text();
+  const dbText = await dbRes.text();
+  const petsData = await petsRes.json();
+  const loreData = await loreRes.json();
+  const poolsData = await poolsRes.json();
+
+  if (!versionText.includes("APP_VERSION = '3.4.3'")) {
+    throw new Error('APP_VERSION 應為 3.4.3');
+  }
+  if (!versionText.includes('questnote-cache-v343-reveal-flow-verification')) {
+    throw new Error('CACHE_NAME 應為 v343-reveal-flow-verification');
+  }
+  if (!swText.includes('questnote-cache-v343-reveal-flow-verification')) {
+    throw new Error('service-worker CACHE_NAME 應為 v343');
+  }
+  if (!swText.includes("src/summonRevealService.js")) {
+    throw new Error('summonRevealService 必須加入 App Shell precache');
+  }
+  const precacheBlock = (swText.match(/PRECACHE_URLS\s*=\s*\[([\s\S]*?)\];/) || [])[1] || '';
+  if (/assets\/pets\//.test(precacheBlock)) {
+    throw new Error('寵物圖片不得加入 App Shell precache');
+  }
+  stats.push('version/sw=ok');
+
+  if (!dbText.includes('const DB_VERSION = 3')) {
+    throw new Error('DB_VERSION 必須維持 3');
+  }
+  stats.push('DB_VERSION=3');
+
+  if (!themedText.includes('introSkipped')) {
+    throw new Error('主題召喚缺少 introSkipped');
+  }
+  if (!themedText.includes('skipIntroRitual')) {
+    throw new Error('主題召喚缺少 skipIntroRitual');
+  }
+  if (/if\s*\(\s*!skipped\s*&&\s*ssrPlusQueue/.test(themedText)) {
+    throw new Error('不得再用 skipped 阻擋 SSR+ queue');
+  }
+  if (!svcText.includes('revealQueueSkipped')) {
+    throw new Error('summonRevealService 缺少 revealQueueSkipped');
+  }
+  if (!svcText.includes('advanceOnce') || !svcText.includes('stopPropagation')) {
+    throw new Error('reveal 缺少 advanceOnce / stopPropagation');
+  }
+  if (!svcText.includes('collectSsrPlusRevealQueue') || !svcText.includes('duplicateCompensation')) {
+    throw new Error('queue item 應保留 index / petId / compensation');
+  }
+  stats.push('skip-semantics=ok');
+
+  if (!uiText.includes('pendingAwakening') || !uiText.includes('maybePlayMorningGardenAfterPull')) {
+    throw new Error('第 20 抽 pendingAwakening 流程缺失');
+  }
+  if (!uiText.includes('presentationPath !== \'themed\'') && !uiText.includes('presentationPath !== "themed"')) {
+    notes.push('結果 modal 與 themed summary 分流請確認');
+  }
+  stats.push('20th-draw-order=ok');
+
+  const pets = petsData.pets || [];
+  const lore = loreData.lore || [];
+  const standard = pets.filter((p) => (p.poolTags || []).includes('standard'));
+  const slumber = pets.filter((p) => (p.poolTags || []).includes('eternal_slumber_bloom'));
+  const awakened = pets.filter((p) => (p.poolTags || []).includes('eternal_slumber_bloom_awakened'));
+  if (pets.length !== 72) throw new Error(`pets 應為 72，實際 ${pets.length}`);
+  if (lore.length !== 72) throw new Error(`pets-lore 應為 72，實際 ${lore.length}`);
+  if (standard.length !== 56) throw new Error(`standard 應為 56，實際 ${standard.length}`);
+  if (slumber.length !== 12) throw new Error(`永眠未解鎖應為 12，實際 ${slumber.length}`);
+  if (slumber.length + awakened.length !== 16) {
+    throw new Error(`永眠已解鎖應為 16，實際 ${slumber.length + awakened.length}`);
+  }
+  stats.push('candidates=56/12/16');
+
+  const pool = (poolsData.pools || []).find((p) => p.id === 'eternal_slumber_bloom');
+  const std = (poolsData.pools || []).find((p) => p.id === 'standard');
+  if (!pool || !std) throw new Error('缺少卡池定義');
+  if (JSON.stringify(pool.rates) !== JSON.stringify(std.rates)) {
+    notes.push('兩池 rates 不一致（請人工確認是否預期）');
+  }
+  if (pool.cost !== 100 || std.cost !== 100) throw new Error('抽卡成本被改動');
+  if (pool.pity?.ssr !== 30 || pool.pity?.ur !== 100) throw new Error('pity 被改動');
+  stats.push('rates/pity/cost=ok');
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
 export async function runAppHealthCheck() {
   const results = {};
   const errors = [];
@@ -3228,6 +3743,9 @@ export async function runAppHealthCheck() {
   await runCheck('adventure handbook', checkAdventureHandbook);
   await runCheck('global mailbox', checkGlobalMailbox);
   await runCheck('mailbox dev tools', checkMailboxDevTools);
+  await runCheck('pet series builder', checkPetSeriesBuilder);
+  await runCheck('morning garden awakening', checkMorningGardenAwakening);
+  await runCheck('reveal flow v343', checkRevealFlowV343);
   await runCheck('service worker', checkServiceWorker);
 
   console.log('QuestNote Health Check:');

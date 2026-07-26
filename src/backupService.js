@@ -16,6 +16,17 @@ import { exportTaskStats, normalizeTaskStats } from './taskStatsService.js';
 import { exportHabits, normalizeHabit } from './habitService.js';
 import { getUserPreferences, normalizeUserPreferences } from './preferencesService.js';
 import {
+  exportPoolDebutSeen,
+  normalizePoolDebutSeen,
+} from './poolDebutService.js';
+import {
+  exportPoolUnlockState,
+  exportIdempotentGrants,
+  normalizePoolUnlockState,
+  normalizeIdempotentGrants,
+  mergeLifetimeDraws,
+} from './poolUnlockService.js';
+import {
   exportInventory,
   exportWorkshopStats,
   normalizeInventory,
@@ -38,7 +49,7 @@ import { APP_VERSION } from './version.js';
 
 export { APP_VERSION };
 const APP_NAME = 'QuestNote';
-const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2', '2.2.7', '2.3.0', '2.3.1', '2.3.2', '2.3.3', '2.3.4', '2.3.5', '2.3.6', '2.3.7', '2.3.8', '2.4.0', '2.5.0', '2.6.0', '2.6.1', '2.7.0', '2.7.1', '2.7.2', '2.7.3', '2.7.4', '2.7.5', '2.8.0', '2.9.0', '3.0.0', '3.0.1'];
+const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2', '2.2.7', '2.3.0', '2.3.1', '2.3.2', '2.3.3', '2.3.4', '2.3.5', '2.3.6', '2.3.7', '2.3.8', '2.4.0', '2.5.0', '2.6.0', '2.6.1', '2.7.0', '2.7.1', '2.7.2', '2.7.3', '2.7.4', '2.7.5', '2.8.0', '2.9.0', '3.0.0', '3.0.1', '3.1.0', '3.1.1', '3.2.0', '3.3.0', '3.4.0', '3.4.1', '3.4.2', '3.4.3'];
 const WALLET_KEY = 'wallet';
 const GACHA_STATS_KEY = 'gachaStats';
 const ACHIEVEMENTS_KEY = 'achievements';
@@ -65,6 +76,9 @@ const DATA_KEYS = [
   'explorationProgress',
   'collectionMilestones',
   'globalMailboxState',
+  'poolDebutSeen',
+  'poolUnlockState',
+  'idempotentGrants',
 ];
 
 /**
@@ -117,6 +131,9 @@ function buildDataPayload({
   explorationProgress,
   collectionMilestones,
   globalMailboxState,
+  poolDebutSeen,
+  poolUnlockState,
+  idempotentGrants,
 }) {
   const walletData = {
     stardust: wallet.stardust ?? 0,
@@ -129,6 +146,8 @@ function buildDataPayload({
     urPity: gachaStats.urPity ?? 0,
     totalPulls: gachaStats.totalPulls ?? 0,
     tenPullCount: gachaStats.tenPullCount ?? 0,
+    selectedPoolId: gachaStats.selectedPoolId ?? null,
+    poolPity: gachaStats.poolPity ?? undefined,
   };
 
   const titles = {
@@ -164,6 +183,9 @@ function buildDataPayload({
     // 備份含 readIds / claimedIds；不含遠端信件正文或 mailbox cache
     // once per local profile：匯入後已領補償不可再領
     globalMailboxState,
+    poolDebutSeen,
+    poolUnlockState,
+    idempotentGrants,
   };
 }
 
@@ -188,6 +210,9 @@ export async function exportBackup() {
     questProgress,
     explorationProgress,
     collectionMilestones,
+    poolDebutSeen,
+    poolUnlockState,
+    idempotentGrants,
   ] = await Promise.all([
     exportTasks(),
     getWallet(),
@@ -204,6 +229,9 @@ export async function exportBackup() {
     exportQuestProgress(),
     exportExplorationProgress(),
     exportCollectionMilestoneState(),
+    exportPoolDebutSeen(),
+    exportPoolUnlockState(),
+    exportIdempotentGrants(),
   ]);
 
   const globalMailboxState = await exportGlobalMailboxState();
@@ -225,6 +253,9 @@ export async function exportBackup() {
     explorationProgress,
     collectionMilestones,
     globalMailboxState,
+    poolDebutSeen,
+    poolUnlockState,
+    idempotentGrants,
   });
 
   return {
@@ -499,6 +530,9 @@ export function normalizeBackupPayload(rawBackup) {
     collectionMilestones: normalizeCollectionMilestoneState(data.collectionMilestones),
     // 舊版備份缺少 mailbox state 時建立空的 readIds / claimedIds
     globalMailboxState: normalizeGlobalMailboxState(data.globalMailboxState),
+    poolDebutSeen: normalizePoolDebutSeen(data.poolDebutSeen),
+    poolUnlockState: normalizePoolUnlockState(data.poolUnlockState),
+    idempotentGrants: normalizeIdempotentGrants(data.idempotentGrants),
   };
 }
 
@@ -568,6 +602,15 @@ export function migrateImportedData(normalizedBackup) {
   const explorationProgress = normalizeExplorationProgress(normalizedBackup.explorationProgress);
   const collectionMilestones = normalizeCollectionMilestoneState(normalizedBackup.collectionMilestones);
   const globalMailboxState = normalizeGlobalMailboxState(normalizedBackup.globalMailboxState);
+  const poolDebutSeen = normalizePoolDebutSeen(normalizedBackup.poolDebutSeen);
+  const poolUnlockState = normalizePoolUnlockState(normalizedBackup.poolUnlockState);
+  // 恢復時 lifetimeDraws 取較大值語意已由 normalize 保留；布林狀態以備份為準
+  const idempotentGrants = normalizeIdempotentGrants(normalizedBackup.idempotentGrants);
+  // 確保 byPool lifetimeDraws 不會在 merge 過程被壓低（自我 max）
+  for (const [poolId, entry] of Object.entries(poolUnlockState.byPool || {})) {
+    entry.lifetimeDraws = mergeLifetimeDraws(entry.lifetimeDraws, entry.lifetimeDraws);
+    poolUnlockState.byPool[poolId] = entry;
+  }
 
   return {
     ...normalizedBackup,
@@ -588,6 +631,9 @@ export function migrateImportedData(normalizedBackup) {
     explorationProgress,
     collectionMilestones,
     globalMailboxState,
+    poolDebutSeen,
+    poolUnlockState,
+    idempotentGrants,
   };
 }
 
@@ -679,6 +725,9 @@ export async function safeReplaceAllData(migratedData) {
     explorationProgress: migratedData.explorationProgress,
     collectionMilestones: migratedData.collectionMilestones,
     globalMailboxState: migratedData.globalMailboxState,
+    poolDebutSeen: migratedData.poolDebutSeen,
+    poolUnlockState: migratedData.poolUnlockState,
+    idempotentGrants: migratedData.idempotentGrants,
   });
 }
 

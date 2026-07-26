@@ -1,11 +1,12 @@
 /**
- * QuestNote Service Worker — V3.0.1 開發者信箱測試與本機發布工具隔離
+ * QuestNote Service Worker — V3.4.3 SSR+ 演出流程修正與驗證
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
- * 作者本機發布工具原始碼不得加入 App Shell precache
+ * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
+ * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-cache-v301-mailbox-dev-tools';
+const CACHE_NAME = 'questnote-cache-v343-reveal-flow-verification';
 const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -24,7 +25,13 @@ const PRECACHE_URLS = [
   'src/categoryService.js',
   'src/rewardService.js',
   'src/gachaService.js',
+  'src/petPoolFilter.js',
   'src/summonRevealService.js',
+  'src/poolPresentation.js',
+  'src/poolDebutService.js',
+  'src/poolUnlockService.js',
+  'src/poolAwakeningController.js',
+  'src/themedSummonController.js',
   'src/collectionService.js',
   'src/collectionMilestoneService.js',
   'src/backupService.js',
@@ -48,11 +55,13 @@ const PRECACHE_URLS = [
   'src/adventureHandbookService.js',
   'src/mailboxService.js',
   'src/mailboxSchema.js',
+  'src/petDataSchema.js',
   'src/imagePreloadService.js',
   'data/dailyWheelRewards.json',
   'data/pets.json',
   'data/pools.json',
   'data/pets-lore.json',
+  'data/pet-series.json',
   'data/expeditions.json',
   'data/achievements.json',
   'data/titles.json',

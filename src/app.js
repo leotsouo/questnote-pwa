@@ -34,6 +34,14 @@ import {
 
 import {
 
+  getPoolUnlockState,
+
+  ensurePoolUnlockLegacyBackfillMarked,
+
+} from './poolUnlockService.js';
+
+import {
+
   syncWithPetDatabase,
 
   getCollectionProgress,
@@ -117,6 +125,10 @@ const appState = {
 
   poolsData: { pools: [] },
 
+  poolUnlockState: { key: 'poolUnlockState', schemaVersion: 1, byPool: {} },
+
+  seriesCatalog: { series: [] },
+
   expeditionAreas: [],
 
   activeExpedition: null,
@@ -179,7 +191,7 @@ let lastKnownDate = getTodayDateString();
 
 async function loadGameData() {
 
-  const [petsRes, poolsRes, loreRes, expeditionsRes] = await Promise.all([
+  const [petsRes, poolsRes, loreRes, expeditionsRes, seriesRes] = await Promise.all([
 
     fetch('./data/pets.json'),
 
@@ -188,6 +200,8 @@ async function loadGameData() {
     fetch('./data/pets-lore.json'),
 
     fetch('./data/expeditions.json'),
+
+    fetch('./data/pet-series.json'),
 
   ]);
 
@@ -207,11 +221,15 @@ async function loadGameData() {
 
   const loreData = loreRes.ok ? await loreRes.json() : { lore: [] };
 
+  const seriesCatalog = seriesRes.ok ? await seriesRes.json() : { series: [] };
+
 
 
   appState.allPets = mergeAllPetsWithLore(petsData.pets || [], loreData);
 
   appState.poolsData = poolsData;
+
+  appState.seriesCatalog = seriesCatalog;
 
 
 
@@ -333,6 +351,14 @@ async function refreshState(options = {}) {
 
   appState.gachaStats = gachaStats;
 
+  appState.poolUnlockState = await getPoolUnlockState().catch((err) => {
+
+    console.error('[QuestNote] poolUnlockState 載入失敗:', err);
+
+    return { key: 'poolUnlockState', schemaVersion: 1, byPool: {} };
+
+  });
+
   appState.todayCompleted = todayCompleted;
 
   appState.availablePulls = availablePulls;
@@ -413,6 +439,8 @@ async function resetAllData() {
   await initWallet();
 
   await initGachaStats();
+
+  await ensurePoolUnlockLegacyBackfillMarked();
 
   await initUserPreferences();
 
@@ -630,6 +658,8 @@ async function initApp() {
     await initWallet();
 
     await initGachaStats();
+
+  await ensurePoolUnlockLegacyBackfillMarked();
 
   await initAchievements();
 

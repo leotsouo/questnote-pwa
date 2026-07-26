@@ -133,7 +133,59 @@
 
       <section id="gacha-daily-blessing-entry" class="daily-blessing-gacha-entry" aria-label="每日祝福入口"></section>
 
-      <section class="gacha-panel card">
+      <section class="gacha-panel card" id="gacha-panel" data-pool-theme="">
+        <div class="gacha-pool-switcher" id="gacha-pool-switcher" hidden>
+          <label class="gacha-pool-switcher__label" for="gacha-pool-select">選擇卡池</label>
+          <select id="gacha-pool-select" class="gacha-pool-select" aria-label="選擇召喚卡池"></select>
+        </div>
+
+        <div id="gacha-theme-stage" class="gacha-theme-stage" hidden>
+          <div class="gacha-theme-stage__atmosphere" aria-hidden="true">
+            <span class="gacha-theme-stage__mist"></span>
+            <span class="gacha-theme-stage__pool"></span>
+            <span class="gacha-theme-stage__petals"></span>
+            <span class="gacha-theme-stage__dust"></span>
+            <span class="gacha-theme-stage__arch"></span>
+            <span class="gacha-theme-stage__moon"></span>
+          </div>
+          <p class="gacha-theme-stage__badge" id="gacha-theme-badge"></p>
+          <h2 class="gacha-theme-stage__name" id="gacha-theme-name"></h2>
+          <p class="gacha-theme-stage__eyebrow" id="gacha-theme-eyebrow"></p>
+          <p class="gacha-theme-stage__tagline" id="gacha-theme-tagline"></p>
+          <div class="gacha-theme-stage__heroes">
+            <figure class="gacha-theme-hero" id="gacha-theme-hero">
+              <div class="gacha-theme-hero__frame">
+                <img id="gacha-theme-hero-img" class="gacha-theme-hero__img" alt="" decoding="async" width="240" height="240">
+              </div>
+              <figcaption class="gacha-theme-hero__cap">
+                <span class="gacha-theme-hero__rarity" id="gacha-theme-hero-rarity"></span>
+                <span class="gacha-theme-hero__name" id="gacha-theme-hero-name"></span>
+                <span class="gacha-theme-hero__title" id="gacha-theme-hero-title"></span>
+              </figcaption>
+            </figure>
+            <div class="gacha-theme-featured" id="gacha-theme-featured" aria-label="焦點夥伴"></div>
+          </div>
+          <p class="gacha-theme-stage__meta" id="gacha-theme-meta"></p>
+          <div id="gacha-theme-dual-hero" class="gacha-theme-dual" hidden></div>
+          <details id="gacha-awakening-panel" class="gacha-awakening-panel" hidden>
+            <summary class="gacha-awakening-panel__summary">
+              <span id="gacha-awakening-title">晨醒花庭</span>
+              <span id="gacha-awakening-progress">夢塵共鳴 0／20</span>
+            </summary>
+            <div class="gacha-awakening-panel__body">
+              <div class="gacha-awakening-bar" aria-hidden="true">
+                <span id="gacha-awakening-fill" class="gacha-awakening-bar__fill"></span>
+              </div>
+              <p id="gacha-awakening-desc" class="gacha-awakening-panel__desc"></p>
+              <p id="gacha-awakening-counts" class="gacha-awakening-panel__counts"></p>
+              <div id="gacha-awakening-preview" class="gacha-awakening-preview" aria-label="晨醒角色預覽"></div>
+              <p id="gacha-awakening-rate-note" class="gacha-awakening-panel__note"></p>
+            </div>
+          </details>
+          <button type="button" class="gacha-theme-details-btn" id="gacha-theme-details-btn" aria-expanded="false" aria-controls="gacha-theme-details">卡池詳情</button>
+          <div class="gacha-theme-details" id="gacha-theme-details" hidden></div>
+        </div>
+
         <h2 class="gacha-pool" id="gacha-pool-name">標準召喚</h2>
 
         <div class="gacha-stardust">
@@ -187,6 +239,8 @@
       <section id="collection-milestones-panel" class="collection-milestones-panel card" aria-label="收藏里程碑"></section>
 
       <section id="collection-companion" class="collection-companion card"></section>
+
+      <div class="filter-bar" id="collection-series-filters" aria-label="系列篩選"></div>
 
       <div class="filter-bar" id="collection-filters">
         <button class="filter-btn active" data-filter="all">全部</button>
@@ -587,9 +641,11 @@
 
         <div id="dev-reveal-tests" class="dev-tools__group" hidden>
           <h3 class="dev-tools__subtitle">抽卡演出測試</h3>
-          <p class="dev-tools__note">僅測試 SSR / UR 演出，不會消耗星塵或獲得寵物。</p>
+          <p class="dev-tools__note">僅 localhost／127.0.0.1。純展示，不會消耗星塵或獲得寵物。正式環境會移除整個開發區塊。</p>
           <button id="btn-test-ssr-reveal" class="btn btn--dev btn--block">測試 SSR 演出</button>
           <button id="btn-test-ur-reveal" class="btn btn--dev btn--block">測試 UR 演出</button>
+          <button id="btn-test-ur05-reveal" class="btn btn--dev btn--block" type="button">測試 UR：永眠花皇兔（月亮）</button>
+          <button id="btn-test-ur06-reveal" class="btn btn--dev btn--block" type="button">測試 UR：曙綻花后兔（花瓣）</button>
         </div>
       </section>
 

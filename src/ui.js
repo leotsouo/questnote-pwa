@@ -29,7 +29,17 @@ import {
   validateDateRange,
 } from './taskFilterService.js';
 import { GACHA_COST, GACHA_TEN_COST, calculateRewardAmount, calculateAdventureEnergyAmount } from './rewardService.js';
-import { pullOnce, performTenPull, getActivePool } from './gachaService.js';
+import {
+  pullOnce,
+  performTenPull,
+  getActivePool,
+  getActivePools,
+  resolveSelectedPoolId,
+  setSelectedPoolId,
+  getPoolPityCounters,
+  ensurePoolPity,
+  getPoolPets,
+} from './gachaService.js';
 import {
   upgradeStar,
   setCompanion,
@@ -87,6 +97,7 @@ import {
   preloadGachaResultImages,
   preloadOwnedPetImages,
   waitForPreloadWithTimeout,
+  preloadImage,
 } from './imagePreloadService.js';
 import {
   claimAchievementReward,
@@ -99,15 +110,44 @@ import {
   CATEGORY_ICONS,
   formatAchievementReward,
 } from './achievementService.js';
-import { isDevMode, isDebugMode, isAuthorLocalDevMode, unlockDevTestPets, unlockAllDevPets, grantDevStardust, devForceCompleteExpedition, resetDevDailyBlessing, raiseDevCompanionBond } from './devService.js';
+import { isDevMode, isAuthorLocalDevMode, unlockDevTestPets, unlockAllDevPets, grantDevStardust, devForceCompleteExpedition, resetDevDailyBlessing, raiseDevCompanionBond } from './devService.js';
 import {
   playSummonReveal,
+  playSsrPlusRevealQueue,
   shouldPlayReveal,
   getHighestRarity,
   getRevealPetFromResults,
   isSummonRevealPlaying,
   pickDebugPetByRarity,
 } from './summonRevealService.js';
+import {
+  normalizePoolPresentation,
+  shouldUseThemedSummon,
+  getPoolThemeAttr,
+  resolvePresentationPets,
+} from './poolPresentation.js';
+import {
+  hasSeenPoolDebut,
+  markPoolDebutSeen,
+} from './poolDebutService.js';
+import {
+  playDreamBloomSummon,
+  playPoolDebutPresentation,
+  isThemedSummonPlaying,
+} from './themedSummonController.js';
+import {
+  normalizeUnlockExpansion,
+  getPoolUnlockEntry,
+  ensureUnlockRewardClaimed,
+  ensurePoolUnlockLegacyBackfillMarked,
+  markUnlockAnimationSeen,
+  emptyPoolUnlockEntry,
+} from './poolUnlockService.js';
+import {
+  playMorningGardenUnlock,
+  isPoolAwakeningPlaying,
+  AWAKENING_PETS,
+} from './poolAwakeningController.js';
 import {
   escapeHtml,
   emptyStateHtml,
@@ -225,6 +265,70 @@ let onAchievementCheck = null;
 let uiInitialized = false;
 /** 抽卡請求／演出進行中（比 dataset.pulling 更可靠，避免殘留鎖定） */
 let gachaPullInProgress = false;
+
+/** 抽卡／解鎖視覺流程 session（不寫入 IndexedDB） */
+const gachaSessionUi = {
+  /** @type {'slumber'|null} 結果關閉前強制永眠期畫面 */
+  visualPhaseLock: null,
+  pendingAwakening: false,
+  pendingAwakeningPoolId: null,
+  /** @type {object|null} */
+  pendingUnlockProgress: null,
+};
+
+/** @type {null|((value?: unknown) => void)} */
+let gachaResultCloseResolver = null;
+
+function resolveGachaResultWait() {
+  if (typeof gachaResultCloseResolver === 'function') {
+    const resolve = gachaResultCloseResolver;
+    gachaResultCloseResolver = null;
+    resolve();
+  }
+}
+
+function waitNextFrame() {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  });
+}
+
+/**
+ * 畫面是否顯示晨醒期（與資料 unlocked 分離）
+ * @param {object|null|undefined} unlockEntry
+ */
+function shouldShowAwakenedPresentation(unlockEntry) {
+  if (gachaSessionUi.visualPhaseLock === 'slumber') return false;
+  if (gachaSessionUi.pendingAwakening) return false;
+  if (!unlockEntry?.unlocked) return false;
+  if (!unlockEntry.animationSeen) return false;
+  return true;
+}
+
+function beginPullVisualLock(poolId) {
+  const entry = getUnlockEntryForPool(poolId);
+  // 尚未看過解鎖動畫時，整段抽卡／結果維持永眠期畫面
+  if (!entry.animationSeen) {
+    gachaSessionUi.visualPhaseLock = 'slumber';
+  }
+}
+
+function markPendingAwakening(poolId, unlockProgress) {
+  const entry = unlockProgress?.entry || getUnlockEntryForPool(poolId);
+  if (!entry?.unlocked || entry.animationSeen) return false;
+  gachaSessionUi.pendingAwakening = true;
+  gachaSessionUi.pendingAwakeningPoolId = poolId;
+  gachaSessionUi.pendingUnlockProgress = unlockProgress || { entry };
+  gachaSessionUi.visualPhaseLock = 'slumber';
+  return true;
+}
+
+function clearPendingAwakening() {
+  gachaSessionUi.pendingAwakening = false;
+  gachaSessionUi.pendingAwakeningPoolId = null;
+  gachaSessionUi.pendingUnlockProgress = null;
+  gachaSessionUi.visualPhaseLock = null;
+}
 let expeditionTimer = null;
 let expeditionStatusTimer = null;
 let expeditionStatusIndex = -1;
@@ -239,6 +343,7 @@ let dispatchSelectedPetId = null;
 let dispatchKeydownHandler = null;
 let achievementFilter = 'all';
 let collectionFilter = 'all';
+let collectionSeriesFilter = 'all';
 let lastCollectionGridKey = null;
 let collectionMilestonesExpanded = false;
 let collectionMilestoneFilter = 'claimable';
@@ -474,6 +579,39 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
       if (!btn) return;
       collectionFilter = btn.dataset.filter;
       renderCollectionView();
+    });
+
+    document.getElementById('collection-series-filters')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      collectionSeriesFilter = btn.dataset.seriesFilter || 'all';
+      renderCollectionView();
+    });
+
+    document.getElementById('gacha-pool-select')?.addEventListener('change', async (e) => {
+      const poolId = e.target.value;
+      if (!poolId || isGachaPullInProgress()) {
+        renderGachaPoolSwitcher();
+        return;
+      }
+      try {
+        state.gachaStats = await setSelectedPoolId(poolId);
+        renderGachaView();
+        maybePlayPoolDebut._fromSwitcher = true;
+        await maybePlayPoolDebut(poolId);
+      } catch (err) {
+        showToast(err.message || '切換卡池失敗', 'error');
+      }
+    });
+
+    document.getElementById('gacha-theme-details-btn')?.addEventListener('click', () => {
+      const details = document.getElementById('gacha-theme-details');
+      const btn = document.getElementById('gacha-theme-details-btn');
+      if (!details || !btn) return;
+      const open = details.hidden;
+      details.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? '收合詳情' : '卡池詳情';
     });
 
     document.getElementById('achievement-filters')?.addEventListener('click', (e) => {
@@ -887,8 +1025,13 @@ function bindDelegatedEvents() {
   document.getElementById('btn-dev-mailbox-compensation')?.addEventListener('click', handleDevMailboxCompensation);
   document.getElementById('btn-dev-mailbox-clear')?.addEventListener('click', handleDevMailboxClear);
 
-  document.getElementById('btn-test-ssr-reveal')?.addEventListener('click', () => testSummonReveal('SSR'));
-  document.getElementById('btn-test-ur-reveal')?.addEventListener('click', () => testSummonReveal('UR'));
+  // 演出測試僅本機綁定；正式環境即使殘留 DOM 也不掛 listener
+  if (isAuthorLocalDevMode()) {
+    document.getElementById('btn-test-ssr-reveal')?.addEventListener('click', () => testSummonReveal('SSR'));
+    document.getElementById('btn-test-ur-reveal')?.addEventListener('click', () => testSummonReveal('UR'));
+    document.getElementById('btn-test-ur05-reveal')?.addEventListener('click', () => testSummonRevealByPetId('pet_ur05'));
+    document.getElementById('btn-test-ur06-reveal')?.addEventListener('click', () => testSummonRevealByPetId('pet_ur06'));
+  }
 
   document.getElementById('view-expedition')?.addEventListener('click', (e) => {
     const emptyBtn = e.target.closest('[data-action="empty-go-gacha"]');
@@ -1124,6 +1267,12 @@ export function switchView(viewName) {
 
   if (viewName === 'gacha') {
     renderGachaView();
+    const pool = getSelectedGachaPool();
+    if (pool?.id) {
+      // 進入召喚頁：僅在尚未看過時播完整登場；短轉場留給手動切換
+      maybePlayPoolDebut._fromSwitcher = false;
+      maybePlayPoolDebut(pool.id).catch(() => {});
+    }
   }
 
   if (viewName === 'settings') {
@@ -1178,6 +1327,9 @@ export function openModal(contentHtml) {
 export function closeModal() {
   document.getElementById('modal-overlay')?.classList.remove('open');
   document.body.classList.remove('modal-open');
+  if (typeof resolveGachaResultWait === 'function') {
+    resolveGachaResultWait();
+  }
 }
 
 /* ─── V2.6.1 寵物原圖放大檢視器（獨立 overlay，可疊在其他 modal 之上） ─── */
@@ -4423,24 +4575,52 @@ function showRewardToast(amount, energy = 0) {
 
 /* ─── 召喚頁 ─── */
 
+function getSelectedGachaPool() {
+  const selectedId = resolveSelectedPoolId(state.poolsData, state.gachaStats?.selectedPoolId);
+  return getActivePool(state.poolsData, selectedId);
+}
+
+function renderGachaPoolSwitcher() {
+  const switcher = document.getElementById('gacha-pool-switcher');
+  const select = document.getElementById('gacha-pool-select');
+  if (!switcher || !select) return;
+
+  const activePools = getActivePools(state.poolsData);
+  if (activePools.length <= 1) {
+    switcher.hidden = true;
+    return;
+  }
+
+  const selectedId = resolveSelectedPoolId(state.poolsData, state.gachaStats?.selectedPoolId);
+  switcher.hidden = false;
+  select.innerHTML = activePools
+    .map((pool) => `<option value="${escapeHtml(pool.id)}" ${pool.id === selectedId ? 'selected' : ''}>${escapeHtml(pool.name)}</option>`)
+    .join('');
+}
+
 function renderGachaView() {
-  const pool = getActivePool(state.poolsData);
-  const stats = state.gachaStats;
+  const pool = getSelectedGachaPool();
+  if (!pool) return;
+
+  const stats = ensurePoolPity(state.gachaStats || {}, pool.id);
+  const pityCounters = getPoolPityCounters(stats, pool.id);
   const pity = pool.pity || { ssr: 30, ur: 100 };
   const stardust = state.wallet.stardust ?? 0;
   const singleCost = pool.cost ?? GACHA_COST;
 
+  renderGachaPoolSwitcher();
+  renderGachaThemeStage(pool);
   setText('gacha-pool-name', pool.name);
   setText('gacha-stardust', stardust);
   setText('gacha-cost', singleCost);
   setText('gacha-ten-cost', GACHA_TEN_COST);
-  setText('gacha-ssr-pity', `${stats.ssrPity}/${pity.ssr}`);
-  setText('gacha-ur-pity', `${stats.urPity}/${pity.ur}`);
+  setText('gacha-ssr-pity', `${pityCounters.ssrPity}/${pity.ssr}`);
+  setText('gacha-ur-pity', `${pityCounters.urPity}/${pity.ur}`);
 
   const ssrBar = document.getElementById('gacha-ssr-bar');
   const urBar = document.getElementById('gacha-ur-bar');
-  if (ssrBar) ssrBar.style.width = `${Math.min(100, (stats.ssrPity / pity.ssr) * 100)}%`;
-  if (urBar) urBar.style.width = `${Math.min(100, (stats.urPity / pity.ur) * 100)}%`;
+  if (ssrBar) ssrBar.style.width = `${Math.min(100, (pityCounters.ssrPity / pity.ssr) * 100)}%`;
+  if (urBar) urBar.style.width = `${Math.min(100, (pityCounters.urPity / pity.ur) * 100)}%`;
 
   const ratesEl = document.getElementById('gacha-rates');
   if (ratesEl && pool.rates) {
@@ -4464,6 +4644,7 @@ function renderGachaView() {
  * @param {'SSR'|'UR'} rarity
  */
 async function testSummonReveal(rarity) {
+  if (!isAuthorLocalDevMode()) return;
   if (isSummonRevealPlaying()) return;
   const pet = pickDebugPetByRarity(rarity, state?.allPets);
   await playSummonReveal({
@@ -4476,9 +4657,462 @@ async function testSummonReveal(rarity) {
   showToast(`${rarity} 演出測試完成，未消耗星塵`, 'info');
 }
 
-/** 是否有真正進行中的抽卡（模組旗標或 SSR/UR 演出） */
+/**
+ * Debug：依寵物 ID 播放 SSR+ 出場（雙 UR 專屬動畫驗證）。
+ * 不消耗星塵、不寫入收藏／保底。
+ * @param {string} petId
+ */
+async function testSummonRevealByPetId(petId) {
+  if (!isAuthorLocalDevMode()) return;
+  if (isSummonRevealPlaying() || isThemedSummonPlaying()) return;
+  const pet = (state?.allPets || []).find((p) => p?.id === petId) || null;
+  if (!pet) {
+    showToast(`找不到寵物 ${petId}`, 'warning');
+    return;
+  }
+  const rarity = pet.rarity === 'SSR' || pet.rarity === 'UR' ? pet.rarity : 'UR';
+  await playSummonReveal({
+    rarity,
+    pet,
+    mode: 'debug',
+    results: [],
+    reduceMotion: state?.userPreferences?.reduceMotion ?? false,
+  });
+  showToast(`${pet.name || petId} 演出測試完成，未消耗星塵`, 'info');
+}
+
+/** 是否有真正進行中的抽卡（模組旗標或演出） */
 function isGachaPullInProgress() {
-  return gachaPullInProgress || isSummonRevealPlaying();
+  return gachaPullInProgress || isSummonRevealPlaying() || isThemedSummonPlaying() || isPoolAwakeningPlaying();
+}
+
+function getUnlockEntryForPool(poolId) {
+  const byPool = state.poolUnlockState?.byPool || {};
+  return byPool[poolId] || emptyPoolUnlockEntry(poolId);
+}
+
+/**
+ * 抽卡結果確認後：若剛解鎖或尚有未播放解鎖動畫，播放晨醒花庭演出。
+ */
+async function maybePlayMorningGardenAfterPull(pool, unlockProgress) {
+  const expansion = normalizeUnlockExpansion(pool);
+  if (!expansion || pool?.id !== 'eternal_slumber_bloom') return;
+
+  const entry = unlockProgress?.entry || getUnlockEntryForPool(pool.id);
+  if (!entry?.unlocked) return;
+  if (entry.animationSeen) {
+    clearPendingAwakening();
+    return;
+  }
+
+  const rewardPet = state.allPets.find((p) => p.id === expansion.rewardPetId) || null;
+  const reduceMotion = state.userPreferences?.reduceMotion ?? false;
+
+  try {
+    await ensureUnlockRewardClaimed(pool.id, expansion);
+    await waitNextFrame();
+    const outcome = await playMorningGardenUnlock({
+      allPets: state.allPets,
+      expansion,
+      rewardPet,
+      reduceMotion,
+    });
+    if (outcome?.seen) {
+      await markUnlockAnimationSeen(pool.id);
+      state.poolUnlockState = {
+        ...(state.poolUnlockState || {}),
+        byPool: {
+          ...(state.poolUnlockState?.byPool || {}),
+          [pool.id]: {
+            ...entry,
+            animationSeen: true,
+            unlocked: true,
+            rewardClaimed: true,
+          },
+        },
+      };
+    }
+  } catch (err) {
+    console.warn('[PoolAwakening] 解鎖演出略過', err);
+    try {
+      await markUnlockAnimationSeen(pool.id);
+      state.poolUnlockState = {
+        ...(state.poolUnlockState || {}),
+        byPool: {
+          ...(state.poolUnlockState?.byPool || {}),
+          [pool.id]: {
+            ...entry,
+            animationSeen: true,
+            unlocked: true,
+            rewardClaimed: true,
+          },
+        },
+      };
+    } catch {
+      /* ignore */
+    }
+  } finally {
+    clearPendingAwakening();
+  }
+}
+
+/**
+ * 進入永眠花海時：補發獎／補播解鎖動畫（不重播 debut）。
+ */
+async function maybeResumeMorningGarden(poolId) {
+  if (poolId !== 'eternal_slumber_bloom') return;
+  if (isGachaPullInProgress()) return;
+  const pool = getActivePool(state.poolsData, poolId);
+  const expansion = normalizeUnlockExpansion(pool);
+  if (!expansion) return;
+
+  try {
+    await ensurePoolUnlockLegacyBackfillMarked();
+    const reward = await ensureUnlockRewardClaimed(poolId, expansion);
+    const entry = reward?.entry || await getPoolUnlockEntry(poolId);
+    state.poolUnlockState = {
+      ...(state.poolUnlockState || { key: 'poolUnlockState', schemaVersion: 1, byPool: {} }),
+      byPool: {
+        ...(state.poolUnlockState?.byPool || {}),
+        [poolId]: entry,
+      },
+    };
+    if (entry.unlocked && !entry.animationSeen) {
+      gachaSessionUi.visualPhaseLock = 'slumber';
+      gachaSessionUi.pendingAwakening = true;
+      await maybePlayMorningGardenAfterPull(pool, { entry });
+      renderGachaView();
+    }
+  } catch (err) {
+    console.warn('[PoolAwakening] resume 略過', err);
+  }
+}
+
+/**
+ * 主題卡池首次／短轉場登場演出（純 UI，不抽卡）
+ * @param {string} poolId
+ */
+async function maybePlayPoolDebut(poolId) {
+  const pool = getActivePool(state.poolsData, poolId);
+  const presentation = normalizePoolPresentation(pool);
+  if (!presentation || presentation.themeKey !== 'eternal_slumber_bloom') return;
+  if (isGachaPullInProgress()) return;
+  if (maybePlayPoolDebut._inflight) return;
+  maybePlayPoolDebut._inflight = true;
+
+  try {
+    const seen = await hasSeenPoolDebut(poolId);
+    const reduceMotion = state.userPreferences?.reduceMotion ?? false;
+    // 已看過：不在每次 render 重複短轉場；短轉場只在手動切換卡池時播放
+    if (seen && !maybePlayPoolDebut._fromSwitcher) return;
+
+    await playPoolDebutPresentation({
+      full: !seen,
+      reduceMotion,
+    });
+    if (!seen) {
+      await markPoolDebutSeen(poolId);
+    }
+    // debut 與晨醒解鎖狀態分離；進入卡池時可補播解鎖動畫
+    await maybeResumeMorningGarden(poolId);
+  } catch (err) {
+    console.warn('[PoolDebut] 登場演出略過', err);
+  } finally {
+    maybePlayPoolDebut._inflight = false;
+    maybePlayPoolDebut._fromSwitcher = false;
+  }
+}
+
+/**
+ * 渲染主題卡池主畫面（無 presentation 時隱藏）
+ * @param {object} pool
+ */
+function renderGachaThemeStage(pool) {
+  const panel = document.getElementById('gacha-panel');
+  const stage = document.getElementById('gacha-theme-stage');
+  const poolNameEl = document.getElementById('gacha-pool-name');
+  const presentation = normalizePoolPresentation(pool);
+  const themeAttr = getPoolThemeAttr(pool);
+  const expansion = normalizeUnlockExpansion(pool);
+  const unlockEntry = getUnlockEntryForPool(pool?.id);
+  // 畫面 phase 與資料 unlocked 分離：結果／動畫完成前維持永眠期
+  const awakened = !!(expansion && shouldShowAwakenedPresentation(unlockEntry));
+
+  if (panel) {
+    if (themeAttr) panel.dataset.poolTheme = themeAttr;
+    else panel.removeAttribute('data-pool-theme');
+    if (awakened) panel.dataset.poolPhase = 'awakened';
+    else if (themeAttr) panel.dataset.poolPhase = 'slumber';
+    else panel.removeAttribute('data-pool-phase');
+  }
+
+  if (!stage) return;
+
+  if (!presentation) {
+    stage.hidden = true;
+    if (poolNameEl) poolNameEl.hidden = false;
+    return;
+  }
+
+  stage.hidden = false;
+  stage.classList.toggle('is-awakened', awakened);
+  if (poolNameEl) poolNameEl.hidden = true;
+
+  const setElText = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text || '';
+  };
+
+  setElText('gacha-theme-badge', presentation.badge);
+  setElText('gacha-theme-name', pool.name || '');
+  if (awakened) {
+    setElText('gacha-theme-eyebrow', expansion?.title ? `${expansion.title}已解鎖` : '晨醒花庭已解鎖');
+    setElText('gacha-theme-tagline', expansion?.unlockMessage || '沉眠有歸，甦醒有時。');
+  } else {
+    setElText('gacha-theme-eyebrow', presentation.eyebrow);
+    setElText('gacha-theme-tagline', presentation.tagline);
+  }
+
+  const { hero, featured } = resolvePresentationPets(presentation, state.allPets);
+  const dawnHero = state.allPets.find((p) => p.id === 'pet_ur06') || null;
+  const heroImg = document.getElementById('gacha-theme-hero-img');
+  const dualHost = document.getElementById('gacha-theme-dual-hero');
+  if (awakened && dualHost && hero && dawnHero) {
+    dualHost.hidden = false;
+    dualHost.replaceChildren();
+    for (const pet of [hero, dawnHero]) {
+      const fig = document.createElement('figure');
+      fig.className = 'gacha-theme-dual__item';
+      const img = document.createElement('img');
+      img.alt = pet.title || pet.name || '';
+      img.decoding = 'async';
+      const src = getPetImageSrc(pet);
+      if (src) {
+        img.src = src;
+        preloadImage(src, { eager: true }).catch(() => {});
+      }
+      const cap = document.createElement('figcaption');
+      cap.textContent = pet.title || pet.name || '';
+      fig.append(img, cap);
+      dualHost.appendChild(fig);
+    }
+    if (heroImg) heroImg.closest('.gacha-theme-hero')?.classList.add('is-dimmed');
+  } else if (dualHost) {
+    dualHost.hidden = true;
+    dualHost.replaceChildren();
+    if (heroImg) heroImg.closest('.gacha-theme-hero')?.classList.remove('is-dimmed');
+  }
+
+  if (hero && heroImg) {
+    const src = getPetImageSrc(hero);
+    if (src && heroImg.dataset.src !== src) {
+      heroImg.dataset.src = src;
+      heroImg.src = src;
+      preloadImage(src, { eager: true }).catch(() => {});
+    }
+    heroImg.classList.add('is-silhouette');
+    heroImg.alt = hero.title || hero.rarity || '限定大獎';
+  }
+  setElText('gacha-theme-hero-rarity', hero?.rarity || 'UR');
+  setElText('gacha-theme-hero-name', hero?.title || '');
+  setElText('gacha-theme-hero-title', '');
+  const heroTitleEl = document.getElementById('gacha-theme-hero-title');
+  if (heroTitleEl) heroTitleEl.hidden = true;
+
+  const featuredHost = document.getElementById('gacha-theme-featured');
+  if (featuredHost) {
+    featuredHost.replaceChildren();
+    const featureList = awakened
+      ? [
+          state.allPets.find((p) => p.id === 'pet_ssr07'),
+          state.allPets.find((p) => p.id === 'pet_sr12'),
+          state.allPets.find((p) => p.id === 'pet_r16'),
+        ].filter(Boolean)
+      : featured;
+    featureList.forEach((pet) => {
+      const item = document.createElement('div');
+      item.className = 'gacha-theme-featured__item';
+      const img = document.createElement('img');
+      img.className = 'gacha-theme-featured__img is-silhouette';
+      img.alt = pet.title || pet.rarity || '焦點夥伴';
+      img.decoding = 'async';
+      const src = getPetImageSrc(pet);
+      if (src) {
+        img.src = src;
+        preloadImage(src, { eager: true }).catch(() => {});
+      }
+      const meta = document.createElement('div');
+      const rarity = document.createElement('span');
+      rarity.className = 'gacha-theme-featured__rarity';
+      rarity.textContent = pet.rarity || 'SSR';
+      const title = document.createElement('span');
+      title.className = 'gacha-theme-featured__name';
+      title.textContent = pet.title || pet.name || '';
+      meta.append(rarity, title);
+      item.append(img, meta);
+      featuredHost.appendChild(item);
+    });
+  }
+
+  const eligible = getPoolPets(state.allPets, pool, unlockEntry);
+  setElText(
+    'gacha-theme-meta',
+    awakened
+      ? `候選角色 ${eligible.length} 隻 · 晨醒花庭已解鎖`
+      : `候選角色 ${eligible.length} 隻 · 限定池不含標準召喚寵物`,
+  );
+
+  // 晨醒花庭進度／鎖定預覽
+  const awakening = document.getElementById('gacha-awakening-panel');
+  if (awakening && expansion) {
+    awakening.hidden = false;
+    const threshold = expansion.threshold;
+    const draws = unlockEntry.lifetimeDraws || 0;
+    const pct = Math.min(100, Math.round((draws / threshold) * 100));
+    setElText('gacha-awakening-title', expansion.title || '晨醒花庭');
+    if (awakened) {
+      setElText('gacha-awakening-progress', '晨醒花庭已解鎖');
+      setElText('gacha-awakening-desc', expansion.unlockMessage || '沉眠有歸，甦醒有時。');
+      setElText('gacha-awakening-counts', `候選角色：${eligible.length}`);
+    } else {
+      setElText('gacha-awakening-progress', `夢塵共鳴 ${draws}／${threshold}`);
+      setElText(
+        'gacha-awakening-desc',
+        `完成 ${threshold} 次永眠花海召喚，解鎖 4 位晨醒角色，並固定獲得曉露花蝟。`,
+      );
+      setElText('gacha-awakening-counts', `目前候選：${eligible.length}　解鎖後候選：16`);
+    }
+    const fill = document.getElementById('gacha-awakening-fill');
+    if (fill) {
+      fill.style.width = `${awakened ? 100 : pct}%`;
+      fill.classList.toggle('is-complete', awakened);
+    }
+    const preview = document.getElementById('gacha-awakening-preview');
+    if (preview) {
+      preview.replaceChildren();
+      for (const meta of AWAKENING_PETS) {
+        const pet = state.allPets.find((p) => p.id === meta.id);
+        const item = document.createElement('div');
+        item.className = 'gacha-awakening-preview__item' + (awakened ? ' is-unlocked' : ' is-locked');
+        const img = document.createElement('img');
+        img.alt = `${meta.rarity} ${meta.name}`;
+        img.decoding = 'async';
+        if (pet) {
+          const src = getPetImageSrc(pet);
+          if (src) img.src = src;
+        }
+        const label = document.createElement('span');
+        label.textContent = `${meta.rarity} ${meta.name}`;
+        item.append(img, label);
+        preview.appendChild(item);
+      }
+    }
+    const rateNote = document.getElementById('gacha-awakening-rate-note');
+    if (rateNote) {
+      rateNote.textContent = awakened
+        ? '解鎖後各稀有度總機率不變。新增角色會與同稀有度角色依現行規則共同分配該稀有度機率。'
+        : '解鎖後各稀有度總機率不變。新增角色會與同稀有度角色依現行規則共同分配該稀有度機率。固定贈送曉露花蝟不算抽卡、不推進保底。';
+    }
+  } else if (awakening) {
+    awakening.hidden = true;
+  }
+
+  const details = document.getElementById('gacha-theme-details');
+  const detailsBtn = document.getElementById('gacha-theme-details-btn');
+  if (details) {
+    details.hidden = true;
+    const pity = pool.pity || { ssr: 30, ur: 100 };
+    const stats = ensurePoolPity(state.gachaStats || {}, pool.id);
+    const counters = getPoolPityCounters(stats, pool.id);
+    const rates = pool.rates || {};
+    const rateText = ['N', 'R', 'SR', 'SSR', 'UR']
+      .map((r) => `${r} ${((rates[r] || 0) * 100).toFixed(0)}%`)
+      .join(' · ');
+
+    details.replaceChildren();
+    const dl = document.createElement('dl');
+    const rows = [
+      ['單抽成本', `${pool.cost ?? GACHA_COST} 星塵`],
+      ['十連成本', `${GACHA_TEN_COST} 星塵`],
+      ['稀有度機率', rateText],
+      ['SSR 保底', `${pity.ssr} 抽`],
+      ['UR 保底', `${pity.ur} 抽`],
+      ['目前 SSR 保底進度', `${counters.ssrPity}/${pity.ssr}`],
+      ['目前 UR 保底進度', `${counters.urPity}/${pity.ur}`],
+      ['候選角色', `${eligible.length} 隻`],
+      ['池別說明', awakened ? '永眠＋晨醒候選（不含 standard）' : '限定池不含 standard 寵物'],
+      ['重複補償', '沿用現行碎片規則'],
+      ['解鎖後機率', '各稀有度總機率不變；同稀有度依現行規則共同分配'],
+    ];
+    rows.forEach(([dtText, ddText]) => {
+      const dt = document.createElement('dt');
+      dt.textContent = dtText;
+      const dd = document.createElement('dd');
+      dd.textContent = ddText;
+      dl.append(dt, dd);
+    });
+    details.appendChild(dl);
+  }
+  if (detailsBtn) {
+    detailsBtn.setAttribute('aria-expanded', 'false');
+    detailsBtn.textContent = '卡池詳情';
+  }
+}
+
+/**
+ * 抽卡後播放展示層（主題動畫或 SSR+ reveal queue）；失敗則 fallback。
+ * 不得重抽或再次扣款。
+ * @returns {Promise<'themed'|'legacy'|'none'>} 實際走的展示路徑
+ */
+async function playPostPullPresentation({ pool, mode, results, singleResult }) {
+  const reduceMotion = state.userPreferences?.reduceMotion ?? false;
+  const list = Array.isArray(results) ? results : singleResult ? [singleResult] : [];
+
+  if (shouldUseThemedSummon(pool)) {
+    try {
+      const outcome = await playDreamBloomSummon({
+        results: list,
+        mode,
+        reduceMotion,
+      });
+      if (outcome?.ok && !outcome.fallback) {
+        return 'themed';
+      }
+      // 主題動畫失敗：退回 SSR+ queue（若有）再進結果 modal
+      try {
+        await playSsrPlusRevealQueue({ results: list, reduceMotion });
+      } catch (revealErr) {
+        console.warn('[ThemedSummon] SSR+ reveal fallback skipped', revealErr);
+      }
+      return 'legacy';
+    } catch (err) {
+      console.warn('[ThemedSummon] fallback to legacy reveal/modal', err);
+    }
+  }
+
+  // standard 池：有 SSR+ 則依原始順序自動播完整 queue
+  try {
+    const queueOutcome = await playSsrPlusRevealQueue({
+      results: list,
+      reduceMotion,
+    });
+    if (queueOutcome?.played > 0) return 'legacy';
+  } catch (err) {
+    console.warn('[SummonReveal] queue fallback，改播最高稀有單張', err);
+    const highestRarity = singleResult?.rarity ?? getHighestRarity(list);
+    if (shouldPlayReveal(highestRarity)) {
+      const revealPet = singleResult?.pet ?? getRevealPetFromResults(list, highestRarity);
+      await playSummonReveal({
+        rarity: highestRarity,
+        pet: revealPet,
+        mode,
+        results: list,
+        reduceMotion,
+      });
+      return 'legacy';
+    }
+  }
+  return 'none';
 }
 
 /**
@@ -4510,7 +5144,7 @@ export function updateGachaAffordability() {
 
   resetStaleGachaPullState();
 
-  const pool = getActivePool(state.poolsData);
+  const pool = getSelectedGachaPool();
   const singleCost = pool?.cost ?? GACHA_COST;
   const stardust = state.wallet.stardust ?? 0;
   const canSingle = stardust >= singleCost;
@@ -4522,13 +5156,19 @@ export function updateGachaAffordability() {
   const hintTen = document.getElementById('gacha-hint-ten');
 
   // 抽卡進行中時（按鈕標記 pulling）不覆蓋「召喚中…」狀態
+  const pulling = isGachaPullInProgress();
   if (btnSingle && btnSingle.dataset.pulling !== '1') {
-    btnSingle.disabled = !canSingle;
+    btnSingle.disabled = pulling || !canSingle;
     btnSingle.textContent = '召喚 1 次';
   }
   if (btnTen && btnTen.dataset.pulling !== '1') {
-    btnTen.disabled = !canTen;
+    btnTen.disabled = pulling || !canTen;
     btnTen.textContent = '召喚 10 次';
+  }
+
+  const poolSelect = document.getElementById('gacha-pool-select');
+  if (poolSelect && poolSelect.dataset.pulling !== '1') {
+    poolSelect.disabled = pulling;
   }
 
   if (hintSingle) {
@@ -4551,109 +5191,155 @@ export function updateGachaAffordability() {
 }
 
 async function handlePull() {
-  const pool = getActivePool(state.poolsData);
-  const cost = pool.cost ?? GACHA_COST;
+  const pool = getSelectedGachaPool();
+  const cost = pool?.cost ?? GACHA_COST;
 
-  // 依最新 state.wallet 重新判斷，不依賴按鈕 disabled 快照
   if ((state.wallet.stardust ?? 0) < cost) {
     showToast('星塵不足，完成任務可以獲得星塵', 'warning');
     updateGachaAffordability();
     return;
   }
 
-  // 演出播放中或抽卡進行中禁止再次抽卡
   if (isGachaPullInProgress()) return;
 
   const btn = document.getElementById('btn-pull');
+  const poolSelect = document.getElementById('gacha-pool-select');
   gachaPullInProgress = true;
+  beginPullVisualLock(pool?.id);
   if (btn) {
     btn.dataset.pulling = '1';
     btn.disabled = true;
     btn.textContent = '召喚中…';
   }
+  if (poolSelect) poolSelect.disabled = true;
 
   try {
-    const result = await pullOnce(state.allPets, state.poolsData);
+    const result = await pullOnce(state.allPets, state.poolsData, pool?.id);
+    if (result.unlockProgress?.entry) {
+      state.poolUnlockState = {
+        ...(state.poolUnlockState || { key: 'poolUnlockState', schemaVersion: 1, byPool: {} }),
+        byPool: {
+          ...(state.poolUnlockState?.byPool || {}),
+          [pool.id]: result.unlockProgress.entry,
+        },
+      };
+      markPendingAwakening(pool.id, result.unlockProgress);
+    }
+
     const preloadPromise = preloadGachaResultImages(result);
     await Promise.all([
       onRefresh({ renderMode: ['gacha', 'collection'] }),
       waitForPreloadWithTimeout(preloadPromise, 600),
     ]);
-    // 結果 Modal 前的 SSR / UR 演出（不影響已產生的結果）
-    if (shouldPlayReveal(result.rarity)) {
-      await playSummonReveal({
-        rarity: result.rarity,
-        pet: result.pet,
-        mode: 'single',
-        results: [result],
-        reduceMotion: state.userPreferences?.reduceMotion ?? false,
-      });
+
+    const presentationPath = await playPostPullPresentation({
+      pool,
+      mode: 'single',
+      singleResult: result,
+      results: [result],
+    });
+
+    const pending = gachaSessionUi.pendingAwakening;
+    if (presentationPath !== 'themed') {
+      await showPullResultAndWait(result, { pendingAwakening: pending });
     }
-    showPullResult(result);
+
+    if (pending) {
+      await maybePlayMorningGardenAfterPull(pool, result.unlockProgress);
+    } else {
+      clearPendingAwakening();
+    }
+
     showToast('召喚成功！', 'success', 2000);
     await handleAchievementCheckAfterAction();
   } catch (err) {
+    clearPendingAwakening();
     showToast(err.message || '召喚失敗', 'error');
   } finally {
     gachaPullInProgress = false;
     const btn = document.getElementById('btn-pull');
     if (btn) delete btn.dataset.pulling;
+    if (poolSelect) poolSelect.disabled = false;
     renderGachaView();
+    btn?.focus?.();
   }
 }
 
 async function handleTenPull() {
-  // 依最新 state.wallet 重新判斷，不依賴按鈕 disabled 快照
   if ((state.wallet.stardust ?? 0) < GACHA_TEN_COST) {
     showToast('10 連抽需要 1000 星塵', 'warning');
     updateGachaAffordability();
     return;
   }
 
-  // 演出播放中或抽卡進行中禁止再次抽卡
   if (isGachaPullInProgress()) return;
 
   const btn = document.getElementById('btn-pull-ten');
+  const poolSelect = document.getElementById('gacha-pool-select');
+  const pool = getSelectedGachaPool();
   gachaPullInProgress = true;
+  beginPullVisualLock(pool?.id);
   if (btn) {
     btn.dataset.pulling = '1';
     btn.disabled = true;
     btn.textContent = '召喚中…';
   }
+  if (poolSelect) poolSelect.disabled = true;
 
   try {
-    const result = await performTenPull(state.allPets, state.poolsData);
+    const result = await performTenPull(state.allPets, state.poolsData, pool?.id);
     if (!result.success) {
+      clearPendingAwakening();
       showToast(result.error || '10 連抽失敗', 'warning');
       return;
     }
+
+    if (result.unlockProgress?.entry) {
+      state.poolUnlockState = {
+        ...(state.poolUnlockState || { key: 'poolUnlockState', schemaVersion: 1, byPool: {} }),
+        byPool: {
+          ...(state.poolUnlockState?.byPool || {}),
+          [pool.id]: result.unlockProgress.entry,
+        },
+      };
+      markPendingAwakening(pool.id, result.unlockProgress);
+    }
+
     const preloadPromise = preloadGachaResultImages(result.results);
     await Promise.all([
       onRefresh({ renderMode: ['gacha', 'collection'] }),
       waitForPreloadWithTimeout(preloadPromise, 600),
     ]);
-    // 依最高稀有度播放一次演出（十連中有 UR 播 UR，否則有 SSR 播 SSR）
-    const highestRarity = getHighestRarity(result.results);
-    if (shouldPlayReveal(highestRarity)) {
-      const revealPet = getRevealPetFromResults(result.results, highestRarity);
-      await playSummonReveal({
-        rarity: highestRarity,
-        pet: revealPet,
-        mode: 'ten',
-        results: result.results,
-        reduceMotion: state.userPreferences?.reduceMotion ?? false,
-      });
+
+    const presentationPath = await playPostPullPresentation({
+      pool,
+      mode: 'ten',
+      results: result.results,
+    });
+
+    const pending = gachaSessionUi.pendingAwakening;
+    if (presentationPath !== 'themed') {
+      await showTenPullResultAndWait(result, { pendingAwakening: pending });
     }
-    showTenPullResult(result);
+
+    if (pending) {
+      await maybePlayMorningGardenAfterPull(pool, result.unlockProgress);
+    } else {
+      clearPendingAwakening();
+    }
+
     showToast('10 連抽完成！', 'success', 2000);
     await handleAchievementCheckAfterAction();
   } catch (err) {
+    clearPendingAwakening();
     showToast(err.message || '10 連抽失敗', 'error');
   } finally {
     gachaPullInProgress = false;
     const btn = document.getElementById('btn-pull-ten');
     if (btn) delete btn.dataset.pulling;
+    if (poolSelect) poolSelect.disabled = false;
     renderGachaView();
+    btn?.focus?.();
   }
 }
 
@@ -4662,8 +5348,8 @@ function isSweetTheme() {
 }
 
 function getGachaAffordability() {
-  const pool = getActivePool(state.poolsData);
-  const singleCost = pool.cost ?? GACHA_COST;
+  const pool = getSelectedGachaPool();
+  const singleCost = pool?.cost ?? GACHA_COST;
   const stardust = state.wallet.stardust ?? 0;
   return {
     singleCost,
@@ -4689,63 +5375,51 @@ function sweetSummonRarityDesc(rarity) {
   return labels[rarity] || rarity;
 }
 
-function renderSweetSinglePullResult(result) {
+function renderSweetSinglePullResult(result, options = {}) {
   const { pet, isNew, fragmentsGained, rarity, triggeredPity } = result;
   const { canSingle, canTen } = getGachaAffordability();
+  const pendingAwakening = !!options.pendingAwakening;
+  const title = pet.title ? escapeHtml(pet.title) : '';
+  const statusLabel = isNew ? '初次相遇' : '再次相遇';
 
   openModal(`
-    <div class="sweet-summon-result sweet-summon-result--single" data-rarity="${rarity}">
-      <header class="sweet-summon-result__header">
-        <div class="sweet-summon-result__header-row">
-          <p class="sweet-summon-result__eyebrow">召喚結果</p>
-          ${sweetSummonRarityBadge(rarity)}
-        </div>
-        <h2 class="sweet-summon-result__title">${isNew ? '新夥伴加入' : '獲得寵物'}</h2>
+    <div class="sweet-summon-result sweet-summon-result--single summon-result-single" data-rarity="${rarity}" data-pending-awakening="${pendingAwakening ? '1' : '0'}">
+      <header class="sweet-summon-result__header summon-result-single__header">
+        <p class="sweet-summon-result__eyebrow">召喚結果</p>
+        ${sweetSummonRarityBadge(rarity)}
         ${triggeredPity ? '<p class="sweet-summon-result__pity">保底觸發</p>' : ''}
       </header>
 
-      <div class="sweet-summon-result__scroll">
-        <section class="sweet-summon-showcase" data-rarity="${rarity}" aria-label="召喚寵物展示">
-          <div class="sweet-summon-showcase__frame">
+      <div class="sweet-summon-result__scroll summon-result-single__body">
+        <section class="sweet-summon-showcase summon-result-single__showcase" data-rarity="${rarity}" aria-label="召喚寵物展示">
+          <div class="sweet-summon-showcase__frame summon-result-single__frame">
             ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true })}
           </div>
-          <h3 class="sweet-summon-showcase__name">${escapeHtml(pet.name)}</h3>
-          <div class="sweet-summon-showcase__badges">
-            ${sweetSummonStatusBadge(isNew, fragmentsGained)}
-            ${isNew ? '<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-new">新夥伴加入</span>' : '<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-dup">重複轉化</span>'}
+          <p class="summon-result-single__status">${statusLabel}</p>
+          <h3 class="sweet-summon-showcase__name summon-result-single__name">${escapeHtml(pet.name)}</h3>
+          ${title ? `<p class="summon-result-single__title">${title}</p>` : ''}
+          <div class="sweet-summon-showcase__badges summon-result-single__badges">
+            ${isNew
+              ? '<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-new">NEW</span>'
+              : `<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-dup">碎片 +${fragmentsGained}</span>`}
           </div>
           ${pet.summonLine ? `<p class="sweet-summon-showcase__line">「${escapeHtml(pet.summonLine)}」</p>` : ''}
-          <p class="sweet-summon-showcase__desc">${escapeHtml(pet.description)}</p>
-        </section>
-
-        <section class="sweet-summon-info" aria-label="召喚結果資訊">
-          ${
-            isNew
-              ? `<div class="sweet-summon-info__row">
-                  <span class="sweet-summon-info__label">圖鑑狀態</span>
-                  <span class="sweet-summon-info__value sweet-summon-info__value--success">已加入圖鑑</span>
-                </div>`
-              : `<div class="sweet-summon-info__row">
-                  <span class="sweet-summon-info__label">轉化結果</span>
-                  <span class="sweet-summon-info__value sweet-summon-info__value--fragment">碎片 +${fragmentsGained}</span>
-                </div>`
-          }
-          <div class="sweet-summon-info__row">
-            <span class="sweet-summon-info__label">稀有度</span>
-            <span class="sweet-summon-info__value">${sweetSummonRarityDesc(rarity)}</span>
-          </div>
         </section>
       </div>
 
-      <footer class="sweet-summon-result__actions">
-        <button type="button" class="sweet-summon-btn sweet-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>再召喚 1 次</button>
-        <button type="button" class="sweet-summon-btn sweet-summon-btn--secondary" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>召喚 10 次</button>
-        <button type="button" class="sweet-summon-btn sweet-summon-btn--ghost" id="pull-close">關閉</button>
-      </footer>
+      ${pendingAwakening
+        ? `<footer class="sweet-summon-result__actions sweet-summon-result__actions--continue">
+            <button type="button" class="sweet-summon-btn sweet-summon-btn--primary" id="pull-close" data-action="result-continue">繼續</button>
+          </footer>`
+        : `<footer class="sweet-summon-result__actions">
+            <button type="button" class="sweet-summon-btn sweet-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>再召喚 1 次</button>
+            <button type="button" class="sweet-summon-btn sweet-summon-btn--secondary" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>召喚 10 次</button>
+            <button type="button" class="sweet-summon-btn sweet-summon-btn--ghost" id="pull-close">關閉</button>
+          </footer>`}
     </div>
   `);
 
-  bindGachaResultButtons('pull-close');
+  bindGachaResultButtons('pull-close', { pendingAwakening });
 }
 
 function renderSweetTenPullResult(result) {
@@ -4835,65 +5509,53 @@ function defaultSummonRarityHint(rarity) {
   return '';
 }
 
-function renderDefaultSinglePullResult(result) {
+function renderDefaultSinglePullResult(result, options = {}) {
   const { pet, isNew, fragmentsGained, rarity, triggeredPity } = result;
   const { canSingle, canTen } = getGachaAffordability();
+  const pendingAwakening = !!options.pendingAwakening;
+  const title = pet.title ? escapeHtml(pet.title) : '';
+  const statusLabel = isNew ? '初次相遇' : '再次相遇';
 
   openModal(`
-    <div class="default-summon-result default-summon-result--single" data-rarity="${rarity}">
-      <header class="default-summon-result__header">
-        <div class="default-summon-result__header-row">
-          <p class="default-summon-result__eyebrow">召喚結果</p>
-          ${defaultSummonRarityBadge(rarity)}
-        </div>
-        <h2 class="default-summon-result__title">${isNew ? '新夥伴降臨' : '召喚完成'}</h2>
+    <div class="default-summon-result default-summon-result--single summon-result-single" data-rarity="${rarity}" data-pending-awakening="${pendingAwakening ? '1' : '0'}">
+      <header class="default-summon-result__header summon-result-single__header">
+        <p class="default-summon-result__eyebrow">召喚結果</p>
+        ${defaultSummonRarityBadge(rarity)}
         ${triggeredPity ? '<p class="default-summon-result__pity">保底觸發</p>' : ''}
       </header>
 
-      <div class="default-summon-result__scroll">
-        <section class="default-summon-showcase" data-rarity="${rarity}" aria-label="召喚祭壇展示">
+      <div class="default-summon-result__scroll summon-result-single__body">
+        <section class="default-summon-showcase summon-result-single__showcase" data-rarity="${rarity}" aria-label="召喚祭壇展示">
           <div class="default-summon-showcase__altar" aria-hidden="true"></div>
           ${defaultSummonRarityHint(rarity)}
-          <div class="default-summon-showcase__frame">
+          <div class="default-summon-showcase__frame summon-result-single__frame">
             ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true })}
           </div>
-          <h3 class="default-summon-showcase__name">${escapeHtml(pet.name)}</h3>
-          <div class="default-summon-showcase__badges">
-            ${defaultSummonStatusBadge(isNew, fragmentsGained)}
-            ${isNew ? '<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-new">新夥伴加入</span>' : '<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-dup">重複轉化</span>'}
+          <p class="summon-result-single__status">${statusLabel}</p>
+          <h3 class="default-summon-showcase__name summon-result-single__name">${escapeHtml(pet.name)}</h3>
+          ${title ? `<p class="summon-result-single__title">${title}</p>` : ''}
+          <div class="default-summon-showcase__badges summon-result-single__badges">
+            ${isNew
+              ? '<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-new">NEW</span>'
+              : `<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-dup">碎片 +${fragmentsGained}</span>`}
           </div>
           ${pet.summonLine ? `<p class="default-summon-showcase__line">「${escapeHtml(pet.summonLine)}」</p>` : ''}
-          <p class="default-summon-showcase__desc">${escapeHtml(pet.description)}</p>
-        </section>
-
-        <section class="default-summon-info" aria-label="召喚結果資訊">
-          ${
-            isNew
-              ? `<div class="default-summon-info__row">
-                  <span class="default-summon-info__label">圖鑑狀態</span>
-                  <span class="default-summon-info__value default-summon-info__value--success">已加入圖鑑</span>
-                </div>`
-              : `<div class="default-summon-info__row">
-                  <span class="default-summon-info__label">轉化結果</span>
-                  <span class="default-summon-info__value default-summon-info__value--fragment">碎片 +${fragmentsGained}</span>
-                </div>`
-          }
-          <div class="default-summon-info__row">
-            <span class="default-summon-info__label">稀有度</span>
-            <span class="default-summon-info__value">${defaultSummonRarityDesc(rarity)}</span>
-          </div>
         </section>
       </div>
 
-      <footer class="default-summon-result__actions">
-        <button type="button" class="default-summon-btn default-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>再召喚 1 次</button>
-        <button type="button" class="default-summon-btn default-summon-btn--ten" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>召喚 10 次</button>
-        <button type="button" class="default-summon-btn default-summon-btn--ghost" id="pull-close">關閉</button>
-      </footer>
+      ${pendingAwakening
+        ? `<footer class="default-summon-result__actions default-summon-result__actions--continue">
+            <button type="button" class="default-summon-btn default-summon-btn--primary" id="pull-close" data-action="result-continue">繼續</button>
+          </footer>`
+        : `<footer class="default-summon-result__actions">
+            <button type="button" class="default-summon-btn default-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>再召喚 1 次</button>
+            <button type="button" class="default-summon-btn default-summon-btn--ten" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>召喚 10 次</button>
+            <button type="button" class="default-summon-btn default-summon-btn--ghost" id="pull-close">關閉</button>
+          </footer>`}
     </div>
   `);
 
-  bindGachaResultButtons('pull-close');
+  bindGachaResultButtons('pull-close', { pendingAwakening });
 }
 
 function renderDefaultTenPullResult(result) {
@@ -4961,34 +5623,89 @@ function renderDefaultTenPullResult(result) {
   bindGachaResultButtons('ten-pull-close');
 }
 
-function bindGachaResultButtons(closeId = 'pull-close') {
-  document.getElementById(closeId)?.addEventListener('click', closeModal);
+function bindGachaResultButtons(closeId = 'pull-close', options = {}) {
+  const pendingAwakening = !!options.pendingAwakening;
+
+  const finish = () => {
+    closeModal();
+  };
+
+  document.getElementById(closeId)?.addEventListener('click', (e) => {
+    e.preventDefault();
+    finish();
+  });
+
+  document.querySelector('[data-action="result-continue"]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    finish();
+  });
 
   document.querySelector('[data-action="result-single-pull"]')?.addEventListener('click', async () => {
+    if (pendingAwakening || gachaSessionUi.pendingAwakening) {
+      finish();
+      return;
+    }
     closeModal();
     await handlePull();
   });
 
   document.querySelector('[data-action="result-ten-pull"]')?.addEventListener('click', async () => {
+    if (pendingAwakening || gachaSessionUi.pendingAwakening) {
+      finish();
+      return;
+    }
     closeModal();
     await handleTenPull();
   });
 }
 
-function showPullResult(result) {
+function showPullResult(result, options = {}) {
   if (isSweetTheme()) {
-    renderSweetSinglePullResult(result);
+    renderSweetSinglePullResult(result, options);
     return;
   }
-  renderDefaultSinglePullResult(result);
+  renderDefaultSinglePullResult(result, options);
 }
 
-function showTenPullResult(result) {
+function showTenPullResult(result, options = {}) {
   if (isSweetTheme()) {
     renderSweetTenPullResult(result);
-    return;
+  } else {
+    renderDefaultTenPullResult(result);
   }
-  renderDefaultTenPullResult(result);
+  if (options.pendingAwakening) {
+    const footer = document.querySelector('.sweet-summon-result__actions, .default-summon-result__actions');
+    if (footer) {
+      footer.classList.add('summon-result-actions--continue');
+      footer.replaceChildren();
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = 'ten-pull-close';
+      btn.dataset.action = 'result-continue';
+      btn.className = isSweetTheme()
+        ? 'sweet-summon-btn sweet-summon-btn--primary'
+        : 'default-summon-btn default-summon-btn--primary';
+      btn.textContent = '繼續';
+      footer.appendChild(btn);
+      bindGachaResultButtons('ten-pull-close', { pendingAwakening: true });
+    }
+  }
+}
+
+/** 開啟單抽結果並等待使用者關閉／繼續 */
+function showPullResultAndWait(result, options = {}) {
+  return new Promise((resolve) => {
+    gachaResultCloseResolver = resolve;
+    showPullResult(result, options);
+  });
+}
+
+/** 開啟十連結果並等待使用者關閉／繼續 */
+function showTenPullResultAndWait(result, options = {}) {
+  return new Promise((resolve) => {
+    gachaResultCloseResolver = resolve;
+    showTenPullResult(result, options);
+  });
 }
 
 /* ─── 圖鑑頁 ─── */
@@ -5117,9 +5834,40 @@ function renderCollectionMilestones() {
     </div>`;
 }
 
+function getPetSeriesKey(pet) {
+  return (typeof pet?.seriesId === 'string' && pet.seriesId.trim()) ? pet.seriesId.trim() : 'legacy';
+}
+
+function renderCollectionSeriesFilters() {
+  const bar = document.getElementById('collection-series-filters');
+  if (!bar) return;
+
+  const seriesList = [...(state.seriesCatalog?.series || [])]
+    .filter((s) => s && s.enabled !== false)
+    .sort((a, b) => (a.order ?? 100) - (b.order ?? 100));
+
+  const enriched = state.enrichedCollection || [];
+  const buttons = [
+    { id: 'all', name: '全部系列' },
+    ...seriesList.map((s) => ({ id: s.id, name: s.name })),
+  ];
+
+  bar.innerHTML = buttons.map((item) => {
+    let label = item.name;
+    if (item.id !== 'all') {
+      const seriesPets = enriched.filter((p) => getPetSeriesKey(p) === item.id);
+      const owned = seriesPets.filter((p) => p.owned).length;
+      label = `${item.name} ${owned}/${seriesPets.length}`;
+    }
+    const active = collectionSeriesFilter === item.id ? 'active' : '';
+    return `<button type="button" class="filter-btn ${active}" data-series-filter="${escapeHtml(item.id)}">${escapeHtml(label)}</button>`;
+  }).join('');
+}
+
 function renderCollectionView() {
   renderCollectionProgressSummary();
   renderCollectionMilestones();
+  renderCollectionSeriesFilters();
 
   // 限定 #collection-filters，避免清掉成就／任務分類 filter 的 active
   const filterBtns = document.querySelectorAll('#collection-filters .filter-btn');
@@ -5130,12 +5878,16 @@ function renderCollectionView() {
   const enriched = state.enrichedCollection || [];
   let filtered = enriched;
 
+  if (collectionSeriesFilter !== 'all') {
+    filtered = filtered.filter((p) => getPetSeriesKey(p) === collectionSeriesFilter);
+  }
+
   if (collectionFilter === 'owned') {
-    filtered = enriched.filter((p) => p.owned);
+    filtered = filtered.filter((p) => p.owned);
   } else if (collectionFilter === 'unowned') {
-    filtered = enriched.filter((p) => !p.owned);
+    filtered = filtered.filter((p) => !p.owned);
   } else if (collectionFilter !== 'all') {
-    filtered = enriched.filter((p) => p.rarity === collectionFilter);
+    filtered = filtered.filter((p) => p.rarity === collectionFilter);
   }
 
   const { owned, total } = state.collectionProgress;
@@ -5164,7 +5916,7 @@ function renderCollectionView() {
 
   const grid = document.getElementById('collection-grid');
   if (grid) {
-    if (owned === 0 && (collectionFilter === 'all' || collectionFilter === 'unowned')) {
+    if (owned === 0 && (collectionFilter === 'all' || collectionFilter === 'unowned') && collectionSeriesFilter === 'all') {
       grid.innerHTML = emptyStateHtml(
         '📖',
         '圖鑑還是空的',
@@ -5174,10 +5926,10 @@ function renderCollectionView() {
       );
       lastCollectionGridKey = null;
     } else if (filtered.length === 0) {
-      grid.innerHTML = emptyStateHtml('🔍', '沒有符合的寵物', '試試其他稀有度或獲得狀態篩選。');
+      grid.innerHTML = emptyStateHtml('🔍', '沒有符合的寵物', '試試其他稀有度、系列或獲得狀態篩選。');
       lastCollectionGridKey = null;
     } else {
-      const gridKey = `${collectionFilter}|${filtered.map((p) => `${p.id}:${p.owned}:${p.fragments}:${p.stars}:${p.isCompanion}:${p.bondLevel || 0}:${p.nickname || ''}`).join(',')}`;
+      const gridKey = `${collectionSeriesFilter}|${collectionFilter}|${filtered.map((p) => `${p.id}:${p.owned}:${p.fragments}:${p.stars}:${p.isCompanion}:${p.bondLevel || 0}:${p.nickname || ''}`).join(',')}`;
       if (gridKey !== lastCollectionGridKey || !grid.querySelector('.collection-card')) {
         let ownedEagerCount = 0;
         grid.innerHTML = filtered
@@ -7836,16 +8588,21 @@ function renderSettingsView() {
 
   renderThemePickerState(userPreferences?.theme ?? 'default');
 
-  // 開發測試區：本機 dev 或 ?debug=1 / localStorage 皆可顯示
-  const devOn = isDevMode();
-  const debugOn = devOn || isDebugMode();
+  // 開發測試區：正式環境不可見；僅 localhost／127.0.0.1／::1（不得僅靠 CSS、不得用 ?debug 開正式 PWA）
+  const localDevOn = isAuthorLocalDevMode();
   const devSection = document.getElementById('dev-tools-section');
-  if (devSection) devSection.hidden = !debugOn;
-  // 作弊類工具僅限本機 dev；演出測試在 debug 模式也可用（供 iPhone PWA 測試）
+  if (devSection) {
+    if (localDevOn) {
+      devSection.hidden = false;
+    } else {
+      // 正式環境：直接從 DOM 移除，避免 hidden／CSS 被繞過
+      devSection.remove();
+    }
+  }
   const cheatTools = document.getElementById('dev-cheat-tools');
-  if (cheatTools) cheatTools.hidden = !devOn;
+  if (cheatTools) cheatTools.hidden = !localDevOn;
   const revealTests = document.getElementById('dev-reveal-tests');
-  if (revealTests) revealTests.hidden = !debugOn;
+  if (revealTests) revealTests.hidden = !localDevOn;
 }
 
 async function updateServiceWorkerStatusDisplay() {
