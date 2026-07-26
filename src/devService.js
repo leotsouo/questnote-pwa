@@ -35,13 +35,31 @@ export const DEV_TEST_PET_IDS = [
 
 /** 是否為開發模式（Live Server / 本機） */
 export function isDevMode() {
-  const host = window.location.hostname;
-  return host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+  return isAuthorLocalDevMode();
+}
+
+/**
+ * 作者本機開發模式 — 信箱測試工具專用，比一般 Debug 更嚴格。
+ * 僅 localhost / 127.0.0.1 / [::1]。
+ * 正式 GitHub Pages 即使 ?debug=1 或 localStorage debug 也不得通過。
+ */
+export function isAuthorLocalDevMode() {
+  try {
+    const hostname = window.location.hostname;
+    return (
+      hostname === 'localhost'
+      || hostname === '127.0.0.1'
+      || hostname === '[::1]'
+    );
+  } catch {
+    return false;
+  }
 }
 
 /**
  * 是否為 Debug 模式（供演出測試按鈕等使用）。
  * 條件：網址帶 ?debug=1 或 localStorage.questnote_debug === '1'。
+ * 注意：不得單獨用來顯示信箱測試／作者發信工具。
  * @returns {boolean}
  */
 export function isDebugMode() {

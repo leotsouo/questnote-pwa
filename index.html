@@ -22,10 +22,24 @@
   <div id="app" class="app">
     <!-- 任務頁 -->
     <main id="view-tasks" class="view active">
-      <header class="page-header">
-        <div class="page-header__inner">
-          <h1 class="page-title">任務</h1>
-          <p class="page-subtitle">完成任務獲得星塵與冒險能量</p>
+      <header class="page-header page-header--tasks">
+        <div class="page-header__row">
+          <div class="page-header__inner">
+            <h1 class="page-title">任務</h1>
+            <p class="page-subtitle">完成任務獲得星塵與冒險能量</p>
+          </div>
+          <button
+            type="button"
+            id="btn-global-mailbox"
+            class="mailbox-entry-btn"
+            aria-label="開啟信箱"
+            aria-haspopup="dialog"
+            data-action="open-mailbox"
+          >
+            <span class="mailbox-entry-btn__icon" aria-hidden="true">📮</span>
+            <span class="mailbox-entry-btn__badge" id="mailbox-entry-badge" hidden></span>
+            <span class="mailbox-entry-btn__gift" id="mailbox-entry-gift" hidden aria-hidden="true">🎁</span>
+          </button>
         </div>
       </header>
 
@@ -563,6 +577,12 @@
           <button id="btn-dev-companion-bond" class="btn btn--dev btn--block">測試：陪伴寵物親密度 +1 等</button>
           <button id="btn-dev-expedition" class="btn btn--dev btn--block">測試：立即結束派遣探險</button>
           <button id="btn-dev-daily-blessing" class="btn btn--dev btn--block">測試：重置每日祝福</button>
+
+          <h3 class="dev-tools__subtitle">信箱流程測試</h3>
+          <p class="dev-tools__note">僅 localhost。測試信件不寫入遠端 JSON／runtime cache／備份。清除測試信件不會清除已領狀態。</p>
+          <button type="button" id="btn-dev-mailbox-announcement" class="btn btn--dev btn--block">📨 測試公告</button>
+          <button type="button" id="btn-dev-mailbox-compensation" class="btn btn--dev btn--block">🎁 測試補償（星塵 ×1）</button>
+          <button type="button" id="btn-dev-mailbox-clear" class="btn btn--dev btn--block">🧹 清除測試信件</button>
         </div>
 
         <div id="dev-reveal-tests" class="dev-tools__group" hidden>

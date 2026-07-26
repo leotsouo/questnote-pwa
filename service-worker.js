@@ -1,10 +1,14 @@
 /**
- * QuestNote Service Worker — V2.9.0 冒險手冊與成長總覽
+ * QuestNote Service Worker — V3.0.1 開發者信箱測試與本機發布工具隔離
  * 快取 App Shell 與靜態資源，支援離線使用
+ * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
+ * 作者本機發布工具原始碼不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-cache-v290-adventure-handbook';
+const CACHE_NAME = 'questnote-cache-v301-mailbox-dev-tools';
 const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
+const MAILBOX_RUNTIME_CACHE = 'questnote-mailbox-runtime-v1';
+const MAILBOX_FETCH_TIMEOUT_MS = 7000;
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
 const PRECACHE_URLS = [
@@ -42,6 +46,8 @@ const PRECACHE_URLS = [
   'src/dailyCheckInService.js',
   'src/questService.js',
   'src/adventureHandbookService.js',
+  'src/mailboxService.js',
+  'src/mailboxSchema.js',
   'src/imagePreloadService.js',
   'data/dailyWheelRewards.json',
   'data/pets.json',
@@ -59,6 +65,15 @@ const PRECACHE_URLS = [
 
 function resolveUrl(path) {
   return new URL(path, self.location.href).href;
+}
+
+function isGlobalMailboxRequest(url) {
+  return url.pathname.endsWith('/data/global-mailbox.json')
+    || url.pathname.endsWith('data/global-mailbox.json');
+}
+
+function getMailboxCacheRequest() {
+  return new Request(resolveUrl('data/global-mailbox.json'));
 }
 
 /** 快取比對（忽略 URL query，避免 ?v= 導致離線載入失敗） */
@@ -91,6 +106,47 @@ function isPetImagePath(pathname) {
 function isImageAsset(pathname) {
   return /\.(png|jpg|jpeg|gif|webp|svg|ico)$/i.test(pathname)
     || pathname.includes('/assets/');
+}
+
+async function fetchWithTimeout(request, ms) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  try {
+    return await fetch(request, { signal: controller.signal, cache: 'no-store' });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/**
+ * 全域信箱 JSON：Network First + timeout + runtime cache fallback
+ * 寫入時使用固定 URL key，避免 ?t= 造成無限 cache key
+ */
+async function networkFirstMailbox(request) {
+  const cache = await caches.open(MAILBOX_RUNTIME_CACHE);
+  const cacheKey = getMailboxCacheRequest();
+
+  try {
+    const response = await fetchWithTimeout(request, MAILBOX_FETCH_TIMEOUT_MS);
+    if (response.ok) {
+      cache.put(cacheKey, response.clone());
+    }
+    return response;
+  } catch {
+    const cached = await cache.match(cacheKey)
+      || await matchCached(request, MAILBOX_RUNTIME_CACHE)
+      || await cache.match(request);
+    if (cached) return cached;
+    return new Response(JSON.stringify({
+      schemaVersion: 1,
+      generatedAt: null,
+      messages: [],
+    }), {
+      status: 503,
+      statusText: 'Mailbox Offline',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 }
 
 /** 有網路時優先取新版，離線時 fallback 快取 */
@@ -178,7 +234,11 @@ self.addEventListener('activate', (event) => {
       const keys = await caches.keys();
       await Promise.all(
         keys
-          .filter((key) => key !== CACHE_NAME && key !== PET_IMAGE_CACHE)
+          .filter((key) => (
+            key !== CACHE_NAME
+            && key !== PET_IMAGE_CACHE
+            && key !== MAILBOX_RUNTIME_CACHE
+          ))
           .map((key) => caches.delete(key))
       );
       await self.clients.claim();
@@ -191,6 +251,11 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
+
+  if (isGlobalMailboxRequest(url)) {
+    event.respondWith(networkFirstMailbox(request));
+    return;
+  }
 
   if (request.mode === 'navigate') {
     event.respondWith(networkFirstWithCache(request));

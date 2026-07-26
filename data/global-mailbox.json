@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-26T09:51:21.849Z",
+  "messages": [
+    {
+      "id": "2026-07-v300-launch",
+      "type": "update",
+      "title": "QuestNote V3.0.0 更新",
+      "body": "全域信箱與補償中心正式上線。\n\n開發者可透過遠端公告向所有裝置發送更新說明與補償。\n補償為每份本機資料領取一次（once per local profile）。",
+      "publishedAt": "2026-07-26T12:00:00+08:00",
+      "expiresAt": null,
+      "priority": "normal",
+      "enabled": true,
+      "minAppVersion": "3.0.0",
+      "maxAppVersion": null,
+      "icon": "📮",
+      "reward": null,
+      "action": {
+        "type": "view",
+        "view": "handbook",
+        "label": "查看冒險手冊"
+      }
+    },
+    {
+      "id": "2026-07-v300-compensation",
+      "type": "compensation",
+      "title": "版本更新補償",
+      "body": "感謝你持續使用 QuestNote，請收下本次更新補償。\n\n此補償為每份本機資料領取一次。",
+      "publishedAt": "2026-07-26T12:00:00+08:00",
+      "expiresAt": "2026-08-31T23:59:59+08:00",
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.0.0",
+      "maxAppVersion": null,
+      "icon": "🎁",
+      "reward": {
+        "stardust": 100,
+        "adventureEnergy": 3,
+        "materials": {},
+        "items": {}
+      },
+      "action": null
+    },
+    {
+      "id": "2026-07-welcome-10pull",
+      "type": "compensation",
+      "title": "歡迎使用 QuestNote！",
+      "body": "歡迎來到 QuestNote！\n\n感謝你下載並開始這段冒險。為了歡迎大家，送上等同 10 抽的星塵補償，祝召喚順利、旅途愉快！\n\n此補償為每份本機資料可領取一次。",
+      "publishedAt": "2026-07-26T17:51:21+08:00",
+      "expiresAt": null,
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.0.0",
+      "maxAppVersion": null,
+      "icon": "🎉",
+      "reward": {
+        "adventureEnergy": 0,
+        "stardust": 1000,
+        "materials": {},
+        "items": {}
+      },
+      "action": null
+    }
+  ]
+}

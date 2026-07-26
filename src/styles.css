@@ -1,10 +1,10 @@
-/* ═══════════════════════════════════════
-   QuestNote v1.6 — Design System
-   深色幻想任務手帳 · 幻獸召喚 · 放置 RPG
-   ═══════════════════════════════════════ */
+/* ???????????????????????????????????????
+   QuestNote v1.6 ? Design System
+   ???????? ? ???? ? ?? RPG
+   ??????????????????????????????????????? */
 
 :root {
-  /* background — 星夜深藍黑 */
+  /* background ? ????? */
   --color-bg-main: #080B16;
   --color-bg-surface: #0E1324;
   --color-bg-card: #141A2E;
@@ -19,7 +19,7 @@
   --color-text-disabled: #5F6B86;
   --color-text-inverse: #080B16;
 
-  /* brand — 皇家紫 · 奧術青藍 · 星金 */
+  /* brand ? ??? ? ???? ? ?? */
   --color-primary: #8B5CF6;
   --color-primary-hover: #7C3AED;
   --color-primary-soft: rgba(139, 92, 246, 0.18);
@@ -88,7 +88,7 @@
   --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.46);
   --shadow-glow: 0 0 28px rgba(139, 92, 246, 0.32);
 
-  /* typography — V2.7.3 全站字體大小系統（統一字級 / 行高 / 字重） */
+  /* typography ? V2.7.3 ????????????? / ?? / ??? */
   --font-size-xs: 0.72rem;
   --font-size-sm: 0.82rem;
   --font-size-md: 0.92rem;
@@ -122,7 +122,7 @@
   --safe-top: env(safe-area-inset-top, 0px);
   --tap-min: 44px;
 
-  /* 相容舊變數名稱 */
+  /* ??????? */
   --bg-main: var(--color-bg-main);
   --bg-card: var(--color-bg-card);
   --bg-card-soft: var(--color-bg-card-soft);
@@ -230,7 +230,7 @@ body::before {
   text-align: center;
 }
 
-/* ─── 頁面 ─── */
+/* ??? ?? ??? */
 
 .view {
   display: none;
@@ -298,7 +298,7 @@ body::before {
   margin-bottom: var(--space-3);
 }
 
-/* ─── 卡片 ─── */
+/* ??? ?? ??? */
 
 .card {
   background: var(--color-bg-card);
@@ -309,7 +309,7 @@ body::before {
   margin-bottom: var(--space-4);
 }
 
-/* ─── 統計列 ─── */
+/* ??? ??? ??? */
 
 .stats-bar {
   display: flex;
@@ -372,7 +372,7 @@ body::before {
   color: var(--accent);
 }
 
-/* ─── V2.7.1 首頁功能中樞（圖示：每日祝福 / 冒險任務 / 稱號） ─── */
+/* ??? V2.7.1 ?????????????? / ???? / ??? ??? */
 .home-hub {
   margin-bottom: 16px;
 }
@@ -434,7 +434,7 @@ body::before {
   margin-top: 0;
 }
 
-/* Default 星夜主題 */
+/* Default ???? */
 body[data-theme="default"] .home-hub__icon {
   background: rgba(20, 26, 46, 0.72);
   border-color: rgba(167, 139, 250, 0.24);
@@ -453,7 +453,7 @@ body[data-theme="default"] .home-hub__dot {
   box-shadow: 0 0 0 2px #101628;
 }
 
-/* Sweet 手帳主題 */
+/* Sweet ???? */
 body[data-theme="sweet"] .home-hub__icon {
   background: rgba(255, 255, 255, 0.9);
   border-color: #F0C9DA;
@@ -474,7 +474,7 @@ body[data-theme="sweet"] .home-hub__dot {
   box-shadow: 0 0 0 2px #FFFFFF;
 }
 
-/* ─── 陪伴寵物 ─── */
+/* ??? ???? ??? */
 
 .companion-section {
   margin-bottom: 20px;
@@ -484,7 +484,7 @@ body[data-theme="sweet"] .home-hub__dot {
   position: relative;
 }
 
-/* ─── 聊天泡泡 ─── */
+/* ??? ???? ??? */
 
 .companion-bubble {
   position: relative;
@@ -802,7 +802,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   margin-top: 4px;
 }
 
-/* ─── 進度條 ─── */
+/* ??? ??? ??? */
 
 .progress-bar {
   height: 6px;
@@ -829,7 +829,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   background: linear-gradient(90deg, var(--rarity-ssr), var(--rarity-ur));
 }
 
-/* ─── 任務卡片 ─── */
+/* ??? ???? ??? */
 
 .task-section {
   margin-bottom: 24px;
@@ -958,7 +958,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   font-size: 0.875rem;
 }
 
-/* ─── 徽章 ─── */
+/* ??? ?? ??? */
 
 .badge {
   display: inline-block;
@@ -990,7 +990,7 @@ body.reduce-motion button.companion-card__detail-button:active {
 .rarity-SSR { background: rgba(251, 191, 36, 0.15); color: var(--rarity-ssr); }
 .rarity-UR { background: rgba(244, 114, 182, 0.15); color: var(--rarity-ur); }
 
-/* ─── 按鈕 ─── */
+/* ??? ?? ??? */
 
 .btn {
   display: inline-flex;
@@ -1115,7 +1115,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   width: 100%;
 }
 
-/* ─── FAB ─── */
+/* ??? FAB ??? */
 
 .fab {
   position: fixed;
@@ -1143,7 +1143,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   .fab { right: 16px; }
 }
 
-/* ─── 底部導航 ─── */
+/* ??? ???? ??? */
 
 .bottom-nav {
   position: fixed;
@@ -1218,7 +1218,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   transition: transform 0.15s;
 }
 
-/* ─── 召喚頁 ─── */
+/* ??? ??? ??? */
 
 .gacha-panel {
   text-align: center;
@@ -1292,9 +1292,9 @@ body.reduce-motion button.companion-card__detail-button:active {
    Legacy Summon Result - Deprecated
    =========================
    Deprecated:
-   保留供舊路徑相容。
-   不要再新增樣式到這裡。
-   新版請使用 sweet-summon-result / default-summon-result 相關 class。
+   ?????????
+   ???????????
+   ????? sweet-summon-result / default-summon-result ?? class?
    ========================= */
 
 .pull-result {
@@ -1406,7 +1406,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   z-index: 1;
 }
 
-/* ─── 圖鑑 ─── */
+/* ??? ?? ??? */
 
 .filter-bar {
   display: flex;
@@ -1553,7 +1553,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   color: var(--text-muted);
 }
 
-/* ─── 圖鑑詳情 ─── */
+/* ??? ???? ??? */
 
 .pet-detail {
   text-align: center;
@@ -1699,7 +1699,7 @@ body.reduce-motion button.companion-card__detail-button:active {
 .pet-detail.rarity-UR .pet-detail__name { color: var(--rarity-ur); }
 .pet-detail.rarity-SSR .pet-detail__name { color: var(--rarity-ssr); }
 
-/* ─── 陪伴寵物圖片放大預覽 ─── */
+/* ??? ?????????? ??? */
 
 .companion-image-preview {
   text-align: center;
@@ -1795,7 +1795,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   border-radius: var(--radius);
 }
 
-/* 撫摸頁面：讓容器尺寸與圖片一致，圖片填滿容器（修正圖片比容器小） */
+/* ???????????????????????????????? */
 .companion-image-preview__frame.pet-image-frame--lg {
   width: min(300px, 80vw);
   height: min(300px, 80vw);
@@ -1901,7 +1901,7 @@ body.reduce-motion .companion-image-preview__frame--comfort {
   animation: none;
 }
 
-/* ─── 寵物圖片 ─── */
+/* ??? ???? ??? */
 
 .pet-image-frame {
   position: relative;
@@ -1987,7 +1987,7 @@ body.reduce-motion .pet-image-frame img {
   font-weight: 700;
 }
 
-/* 未獲得寵物：顯示原圖但模糊黑白 */
+/* ??????????????? */
 .pet-img-wrap {
   position: relative;
   display: inline-flex;
@@ -2022,7 +2022,7 @@ body.reduce-motion .pet-image-frame img {
   opacity: 0.9;
 }
 
-/* ─── 星級 ─── */
+/* ??? ?? ??? */
 
 .stars {
   display: inline-flex;
@@ -2039,7 +2039,7 @@ body.reduce-motion .pet-image-frame img {
   text-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
 }
 
-/* ─── 設定頁 ─── */
+/* ??? ??? ??? */
 
 .stats-list {
   display: flex;
@@ -2177,7 +2177,7 @@ body.reduce-motion .pet-image-frame img {
   }
 }
 
-/* ─── 開發測試工具（僅 localhost） ─── */
+/* ??? ???????? localhost? ??? */
 
 .dev-tools {
   border-color: rgba(251, 191, 36, 0.3);
@@ -2200,7 +2200,7 @@ body.reduce-motion .pet-image-frame img {
   border: 1px dashed rgba(251, 191, 36, 0.4);
 }
 
-/* ─── 彈窗 ─── */
+/* ??? ?? ??? */
 
 .modal-overlay {
   position: fixed;
@@ -2270,7 +2270,7 @@ body.reduce-motion .pet-image-frame img {
   margin-bottom: 20px;
 }
 
-/* ─── 表單 ─── */
+/* ??? ?? ??? */
 
 .form {
   display: flex;
@@ -2311,7 +2311,7 @@ body.reduce-motion .pet-image-frame img {
   margin-top: 8px;
 }
 
-/* ─── Toast ─── */
+/* ??? Toast ??? */
 
 .reward-toast {
   position: fixed;
@@ -2363,7 +2363,7 @@ body.reduce-motion .pet-image-frame img {
   color: var(--success);
 }
 
-/* ─── 探險頁 ─── */
+/* ??? ??? ??? */
 
 .expedition-energy {
   margin-bottom: 16px;
@@ -2863,7 +2863,7 @@ body.reduce-motion .pet-image-frame img {
   text-align: center;
 }
 
-/* ─── 更新橫幅 ─── */
+/* ??? ???? ??? */
 
 .update-banner {
   position: fixed;
@@ -2897,11 +2897,11 @@ body.reduce-motion .pet-image-frame img {
   font-weight: 600;
 }
 
-/* ═══════════════════════════════════════
-   v1.3 新增樣式
-   ═══════════════════════════════════════ */
+/* ???????????????????????????????????????
+   v1.3 ????
+   ??????????????????????????????????????? */
 
-/* ─── Toast 系統 ─── */
+/* ??? Toast ?? ??? */
 
 .toast-container {
   position: fixed;
@@ -2948,7 +2948,7 @@ body.reduce-motion .pet-image-frame img {
 .toast__icon { font-size: 1.125rem; flex-shrink: 0; }
 .toast__message { line-height: 1.5; }
 
-/* ─── 空狀態 ─── */
+/* ??? ??? ??? */
 
 .empty-state {
   text-align: center;
@@ -2980,7 +2980,7 @@ body.reduce-motion .pet-image-frame img {
   margin-bottom: 16px;
 }
 
-/* ─── 任務卡片獎勵 ─── */
+/* ??? ?????? ??? */
 
 .task-card__rewards {
   display: flex;
@@ -3011,7 +3011,7 @@ body.reduce-motion .pet-image-frame img {
   margin-left: auto;
 }
 
-/* ─── Segmented Control ─── */
+/* ??? Segmented Control ??? */
 
 .segmented-control {
   display: flex;
@@ -3056,7 +3056,7 @@ body.reduce-motion .pet-image-frame img {
   margin-top: -4px;
 }
 
-/* ─── 召喚頁提示 ─── */
+/* ??? ????? ??? */
 
 .gacha-hint {
   font-size: 0.8125rem;
@@ -3069,7 +3069,7 @@ body.reduce-motion .pet-image-frame img {
   margin-top: 6px;
 }
 
-/* Legacy Summon Result - Deprecated（10 連抽舊版 UI） */
+/* Legacy Summon Result - Deprecated?10 ???? UI? */
 
 .ten-pull-result {
   text-align: center;
@@ -3182,7 +3182,7 @@ body.reduce-motion .pet-image-frame img {
   margin-bottom: 8px;
 }
 
-/* ─── 圖鑑陪伴摘要 ─── */
+/* ??? ?????? ??? */
 
 .collection-companion {
   display: flex;
@@ -3209,7 +3209,7 @@ body.reduce-motion .pet-image-frame img {
   font-size: 0.8125rem;
 }
 
-/* ─── 探險地區主題 ─── */
+/* ??? ?????? ??? */
 
 .expedition-area-card--mist_forest {
   background: linear-gradient(145deg, var(--bg-card), rgba(52, 211, 153, 0.06));
@@ -3271,7 +3271,7 @@ body.reduce-motion .pet-image-frame img {
   margin-top: 8px;
 }
 
-/* ─── 設定頁區塊 ─── */
+/* ??? ????? ??? */
 
 .section-title--danger { color: var(--accent-danger); }
 
@@ -3393,7 +3393,7 @@ body.reduce-motion .pet-image-frame img {
   line-height: 1.5;
 }
 
-/* ─── 設定：減少動畫開關 ─── */
+/* ??? ????????? ??? */
 
 .settings-toggle {
   display: flex;
@@ -3465,7 +3465,7 @@ body.reduce-motion .pet-image-frame img {
   background: var(--primary);
 }
 
-/* ─── 確認彈窗 ─── */
+/* ??? ???? ??? */
 
 .confirm-modal {
   text-align: center;
@@ -3490,7 +3490,7 @@ body.reduce-motion .pet-image-frame img {
 
 .confirm-modal__actions .btn { flex: 1; }
 
-/* ─── 寵物圖片 contain 模式 ─── */
+/* ??? ???? contain ?? ??? */
 
 .companion-card__image .pet-img,
 .companion-card__image .pet-img-wrap {
@@ -3537,7 +3537,7 @@ body.reduce-motion .pet-image-frame img {
   transform: scale(0.98);
 }
 
-/* ─── 減少動畫模式 ─── */
+/* ??? ?????? ??? */
 
 body.reduce-motion .companion-card--breathe,
 body.reduce-motion .expedition-active-card--glow,
@@ -3552,7 +3552,7 @@ body.reduce-motion .expedition-active-card__fx::after,
 body.reduce-motion .card-animate,
 body.reduce-motion .card,
 body.reduce-motion .btn--gacha,
-/* Legacy Summon Result - Deprecated（reduce-motion） */
+/* Legacy Summon Result - Deprecated?reduce-motion? */
 body.reduce-motion .pull-result--animate,
 body.reduce-motion .ten-pull-card {
   animation: none !important;
@@ -3583,7 +3583,7 @@ body.reduce-motion * {
   }
 }
 
-/* ─── 成就 / 稱號系統 ─── */
+/* ??? ?? / ???? ??? */
 
 .page-header--with-back {
   display: flex;
@@ -4007,9 +4007,9 @@ body.reduce-motion .achievement-strip:active {
   transform: none;
 }
 
-/* ═══════════════════════════════════════
-   v1.6 — 狀態元件 · 召喚儀式 · 強化
-   ═══════════════════════════════════════ */
+/* ???????????????????????????????????????
+   v1.6 ? ???? ? ???? ? ??
+   ??????????????????????????????????????? */
 
 body.modal-open {
   overflow: hidden;
@@ -4024,7 +4024,7 @@ body.modal-open .modal-overlay {
   pointer-events: auto;
 }
 
-/* 錯誤狀態 */
+/* ???? */
 .error-state {
   text-align: center;
   padding: var(--space-6) var(--space-5);
@@ -4054,7 +4054,7 @@ body.modal-open .modal-overlay {
   margin-bottom: var(--space-4);
 }
 
-/* 載入狀態 */
+/* ???? */
 .loading-state {
   display: flex;
   flex-direction: column;
@@ -4102,7 +4102,7 @@ body.reduce-motion .loading-state__spinner {
   animation: none !important;
 }
 
-/* 通知紅點（通用） */
+/* ???????? */
 .notification-dot {
   width: 7px;
   height: 7px;
@@ -4117,7 +4117,7 @@ body.reduce-motion .loading-state__spinner {
   box-shadow: 0 0 5px rgba(167, 139, 250, 0.4);
 }
 
-/* 統計列強化 */
+/* ????? */
 .stat-card--claimable {
   border-color: rgba(52, 211, 153, 0.25);
   background: linear-gradient(145deg, var(--color-bg-card), rgba(52, 211, 153, 0.06));
@@ -4131,7 +4131,7 @@ body.reduce-motion .loading-state__spinner {
   box-shadow: 0 0 12px rgba(52, 211, 153, 0.15);
 }
 
-/* 召喚頁儀式感 */
+/* ?????? */
 .gacha-hero {
   text-align: center;
   padding: var(--space-4) 0 var(--space-2);
@@ -4169,7 +4169,7 @@ body.reduce-motion .loading-state__spinner {
   z-index: 1;
 }
 
-/* 底部導航強化 */
+/* ?????? */
 .bottom-nav {
   background: rgba(22, 22, 37, 0.96);
   box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.35);
@@ -4186,13 +4186,13 @@ body.reduce-motion .loading-state__spinner {
   outline-offset: -2px;
 }
 
-/* 任務完成按鈕 */
+/* ?????? */
 .task-card__complete-btn.btn--primary {
   min-height: 40px;
   padding: var(--space-2) var(--space-4);
 }
 
-/* 探險開始提示 */
+/* ?????? */
 .expedition-start-hint {
   font-size: var(--font-size-sm);
   color: var(--color-warning);
@@ -4201,13 +4201,13 @@ body.reduce-motion .loading-state__spinner {
   line-height: 1.45;
 }
 
-/* 設定統計強化 */
+/* ?????? */
 .settings-stats .stats-row dd {
   color: var(--color-text-main);
   font-variant-numeric: tabular-nums;
 }
 
-/* Toast 強化（僅 default 主題，避免覆蓋 sweet） */
+/* Toast ???? default ??????? sweet? */
 body[data-theme="default"] .toast--success {
   background: linear-gradient(135deg, var(--color-bg-card), rgba(52, 211, 153, 0.06));
 }
@@ -4224,7 +4224,7 @@ body[data-theme="default"] .toast--info {
   background: linear-gradient(135deg, var(--color-bg-card), rgba(124, 92, 255, 0.06));
 }
 
-/* 探險地區 token 對應 */
+/* ???? token ?? */
 .expedition-area-card--mist_forest {
   border-color: color-mix(in srgb, var(--expedition-forest) 25%, transparent);
 }
@@ -4241,13 +4241,13 @@ body[data-theme="default"] .toast--info {
   border-color: color-mix(in srgb, var(--expedition-astral) 30%, transparent);
 }
 
-/* 字級工具類 */
+/* ????? */
 .text-caption { font-size: var(--font-size-xs); color: var(--color-text-muted); }
 .text-body { font-size: var(--font-size-md); line-height: 1.5; }
 .text-card-title { font-size: var(--font-size-lg); font-weight: 600; }
 .text-stat { font-size: var(--font-size-xl); font-weight: 700; font-variant-numeric: tabular-nums; }
 
-/* ═══ QuestNote v1.7 任務管理升級 ═══ */
+/* ??? QuestNote v1.7 ?????? ??? */
 
 .task-view-tabs {
   margin: var(--space-3) 0 var(--space-2);
@@ -4267,7 +4267,7 @@ body[data-theme="default"] .toast--info {
   font-weight: 500;
 }
 
-/* 今日計畫摘要 */
+/* ?????? */
 .today-plan-summary {
   margin: 0 0 var(--space-3);
   padding: var(--space-3) var(--space-4);
@@ -4300,7 +4300,7 @@ body[data-theme="default"] .toast--info {
   color: var(--color-danger);
 }
 
-/* 分類 badge */
+/* ?? badge */
 .badge--category {
   font-size: var(--font-size-xs);
   font-weight: 600;
@@ -4313,7 +4313,7 @@ body[data-theme="default"] .toast--info {
 .badge--category-red { background: rgba(248, 113, 113, 0.15); color: #f87171; }
 .badge--category-gold { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
 
-/* 日期 badge */
+/* ?? badge */
 .badge--date {
   font-size: var(--font-size-xs);
   font-weight: 600;
@@ -4334,7 +4334,7 @@ body[data-theme="default"] .toast--info {
   font-weight: 700;
 }
 
-/* 子任務 */
+/* ??? */
 .task-card__subtasks {
   margin: var(--space-2) 0;
 }
@@ -4404,7 +4404,7 @@ body[data-theme="default"] .toast--info {
   text-decoration: line-through;
 }
 
-/* 智慧清單 */
+/* ???? */
 .smart-list-hub {
   display: flex;
   flex-direction: column;
@@ -4474,7 +4474,7 @@ body[data-theme="default"] .toast--info {
   margin-bottom: var(--space-1);
 }
 
-/* 表單擴充 */
+/* ???? */
 .form-select {
   width: 100%;
   padding: var(--space-3);
@@ -4551,7 +4551,7 @@ body[data-theme="default"] .toast--info {
   gap: var(--space-2);
 }
 
-/* ─── 習慣追蹤 ─── */
+/* ??? ???? ??? */
 
 .habit-summary {
   margin: 0 0 var(--space-3);
@@ -4829,7 +4829,7 @@ body.reduce-motion .task-card--completing {
   }
 }
 
-/* ─── V1.9 搜尋、標籤、Quick Add ─── */
+/* ??? V1.9 ??????Quick Add ??? */
 
 .task-action-bar {
   margin: 0 0 var(--space-3);
@@ -5083,7 +5083,7 @@ body.reduce-motion .task-card--completing {
   border-radius: var(--radius-full);
 }
 
-/* ─── 材料工坊 ─── */
+/* ??? ???? ??? */
 
 .workshop-summary {
   margin-bottom: var(--space-3);
@@ -5347,7 +5347,7 @@ body.reduce-motion .workshop-gift-pet--bounce {
   animation: none;
 }
 
-/* ─── 寵物暱稱 ─── */
+/* ??? ???? ??? */
 
 .pet-original-name {
   margin: 0;
@@ -5486,10 +5486,10 @@ body.reduce-motion .collection-card--nickname-glow {
   animation: none;
 }
 
-/* ═══════════════════════════════════════
-   V2.1.4 — Default 深色主題 UI 潤色
-   僅作用於 body[data-theme="default"] 與 :root 基底
-   ═══════════════════════════════════════ */
+/* ???????????????????????????????????????
+   V2.1.4 ? Default ???? UI ??
+   ???? body[data-theme="default"] ? :root ??
+   ??????????????????????????????????????? */
 
 body[data-theme="default"] {
   --color-bg-main: #080B16;
@@ -5543,7 +5543,7 @@ body[data-theme="default"] {
   --border-glow: rgba(167, 139, 250, 0.28);
   --primary-glow: rgba(139, 92, 246, 0.34);
 
-  /* V2.2.4 召喚結果專用色彩 */
+  /* V2.2.4 ???????? */
   --default-result-bg-main: #080B16;
   --default-result-bg-surface: #101628;
   --default-result-bg-card: #151D34;
@@ -5595,7 +5595,7 @@ body[data-theme="default"] {
   --default-rarity-ur-border: rgba(244, 114, 182, 0.48);
 }
 
-/* ─── 全域卡片層級 ─── */
+/* ??? ?????? ??? */
 
 body[data-theme="default"] .card,
 body[data-theme="default"] .task-card,
@@ -5653,7 +5653,7 @@ body[data-theme="default"] .section-title {
   color: var(--color-text-muted);
 }
 
-/* ─── 文字可讀性 ─── */
+/* ??? ????? ??? */
 
 body[data-theme="default"] .task-card__title,
 body[data-theme="default"] .habit-card__name,
@@ -5745,7 +5745,7 @@ body[data-theme="default"] .btn--ghost {
   color: var(--color-text-muted);
 }
 
-/* ─── 空狀態 ─── */
+/* ??? ??? ??? */
 
 body[data-theme="default"] .empty-state,
 body[data-theme="default"] .companion-empty {
@@ -5771,7 +5771,7 @@ body[data-theme="default"] .empty-state__icon {
   opacity: 0.75;
 }
 
-/* ─── 召喚頁：星夜祭壇 ─── */
+/* ??? ???????? ??? */
 
 body[data-theme="default"] .gacha-hero__symbol {
   filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.38));
@@ -5858,7 +5858,7 @@ body[data-theme="default"] .rate-tag {
   color: var(--color-text-secondary);
 }
 
-/* ─── 圖鑑：暗色幻獸收藏冊 ─── */
+/* ??? ?????????? ??? */
 
 body[data-theme="default"] .collection-card,
 body[data-theme="default"] .pet-card {
@@ -5940,7 +5940,7 @@ body[data-theme="default"] button[data-action="set-companion-detail"]:disabled {
   opacity: 1;
 }
 
-/* ─── 寵物詳情 Modal：深色魔法圖鑑 ─── */
+/* ??? ???? Modal??????? ??? */
 
 body[data-theme="default"] .modal-overlay {
   background: rgba(8, 11, 22, 0.72);
@@ -6042,7 +6042,7 @@ body[data-theme="default"] .bond-unlock--open .bond-unlock__text {
   color: var(--color-text-main);
 }
 
-/* ─── 探險地區卡片 ─── */
+/* ??? ?????? ??? */
 
 body[data-theme="default"] .expedition-area-card {
   border: 1px solid rgba(148, 163, 184, 0.18);
@@ -6163,7 +6163,7 @@ body[data-theme="default"] .expedition-energy__value {
   color: var(--color-success);
 }
 
-/* ─── 工坊 ─── */
+/* ??? ?? ??? */
 
 body[data-theme="default"] .workshop-material-card__qty {
   color: var(--color-accent);
@@ -6202,7 +6202,7 @@ body[data-theme="default"] .workshop-gift-item__effect {
   color: var(--color-text-secondary);
 }
 
-/* ─── 成就與更多頁 ─── */
+/* ??? ?????? ??? */
 
 body[data-theme="default"] .more-menu {
   background: linear-gradient(180deg, #18203A 0%, #11182B 100%);
@@ -6304,7 +6304,7 @@ body[data-theme="default"] .rarity-SR { background: rgba(167, 139, 250, 0.16); c
 body[data-theme="default"] .rarity-SSR { background: rgba(251, 191, 36, 0.16); color: var(--rarity-ssr); }
 body[data-theme="default"] .rarity-UR { background: rgba(244, 114, 182, 0.16); color: var(--rarity-ur); }
 
-/* ─── 底部導航 ─── */
+/* ??? ???? ??? */
 
 body[data-theme="default"] .bottom-nav {
   background: rgba(14, 19, 36, 0.92);
@@ -6328,7 +6328,7 @@ body[data-theme="default"] .nav-item.active {
   margin: 4px 2px;
 }
 
-/* ─── Modal / Toast ─── */
+/* ??? Modal / Toast ??? */
 
 body[data-theme="default"] .toast {
   background: linear-gradient(180deg, #18203A 0%, #141A2E 100%);
@@ -6364,7 +6364,7 @@ body[data-theme="default"] .reward-toast {
   color: var(--color-text-main);
 }
 
-/* Legacy Summon Result - Deprecated（default 主題覆寫） */
+/* Legacy Summon Result - Deprecated?default ????? */
 body[data-theme="default"] .pull-result__desc,
 body[data-theme="default"] .pull-result__detail,
 body[data-theme="default"] .ten-pull-summary {
@@ -6403,7 +6403,7 @@ body[data-theme="default"] .fab {
   box-shadow: 0 8px 24px rgba(109, 40, 217, 0.36);
 }
 
-/* ─── Reduce Motion（default）─── */
+/* ??? Reduce Motion?default???? */
 
 body.reduce-motion[data-theme="default"]::before {
   background-image: none;
@@ -6433,9 +6433,9 @@ body.reduce-motion[data-theme="default"] .gacha-title {
   text-shadow: none;
 }
 
-/* ═══════════════════════════════════════
-   V2.1.2 — 美術風格主題：甜美可愛粉彩風
-   ═══════════════════════════════════════ */
+/* ???????????????????????????????????????
+   V2.1.2 ? ??????????????
+   ??????????????????????????????????????? */
 
 body[data-theme="sweet"] {
   --color-bg-main: #FFF7FB;
@@ -6475,7 +6475,7 @@ body[data-theme="sweet"] {
   --color-danger: #C93E5D;
   --color-warning: #B66A1E;
 
-  /* V2.7.4 Sweet 語意文字色（淡底配深字） */
+  /* V2.7.4 Sweet ???????????? */
   --sweet-text-berry: #8B2E5A;
   --sweet-text-purple: #4A3580;
   --sweet-text-blue: #2A5A8C;
@@ -6483,7 +6483,7 @@ body[data-theme="sweet"] {
   --sweet-text-gold: #8A5514;
   --sweet-text-danger: #9B2D45;
 
-  /* V2.7.5 Sweet 每日轉盤語意色 */
+  /* V2.7.5 Sweet ??????? */
   --wheel-sweet-card-bg: #FFF9FC;
   --wheel-sweet-card-border: #E7B8CC;
   --wheel-sweet-title: #6F2947;
@@ -6544,7 +6544,7 @@ body[data-theme="sweet"] {
   --text-main: var(--color-text-main);
   --text-muted: var(--color-text-muted);
 
-  /* V2.2.3 召喚結果專用色彩 */
+  /* V2.2.3 ???????? */
   --sweet-result-bg-main: #FFF8FC;
   --sweet-result-bg-surface: #FFFFFF;
   --sweet-result-bg-soft: #FFF1F7;
@@ -7044,7 +7044,7 @@ body[data-theme="sweet"] .pet-detail__locked {
   color: var(--color-text-muted);
 }
 
-/* V2.6.0 — 親密度解鎖台詞配色（sweet，深色文字確保清楚可讀） */
+/* V2.6.0 ? ??????????sweet???????????? */
 body[data-theme="sweet"] .bond-unlock {
   background: #F3F4F6;
   border: 1px solid #D4D7DE;
@@ -7322,9 +7322,9 @@ body[data-theme="sweet"] .expedition-energy__warning {
   color: var(--color-danger);
 }
 
-/* ═══════════════════════════════════════
-   V2.3.7 — Sweet 主題 Toast 可讀性修正
-   ═══════════════════════════════════════ */
+/* ???????????????????????????????????????
+   V2.3.7 ? Sweet ?? Toast ?????
+   ??????????????????????????????????????? */
 
 body[data-theme="sweet"] .toast,
 body[data-theme="sweet"] .reward-toast {
@@ -7486,7 +7486,7 @@ body.reduce-motion[data-theme="sweet"] .collection-card.rarity-UR {
   box-shadow: var(--shadow-md);
 }
 
-/* V2.1.6 — Sweet 主題新增／編輯任務表單 */
+/* V2.1.6 ? Sweet ??????????? */
 
 body[data-theme="sweet"] .modal:has(#task-form) {
   background: linear-gradient(180deg, #FFFFFF 0%, #FFF8FC 100%);
@@ -7512,7 +7512,7 @@ body[data-theme="sweet"] #task-form.task-form {
   color: #3D2633;
 }
 
-/* V2.2 — Sweet 主題新增／編輯習慣表單（對齊新增任務表單風格） */
+/* V2.2 ? Sweet ??????????????????????? */
 
 body[data-theme="sweet"] .modal:has(#habit-form) {
   background: linear-gradient(180deg, #FFFFFF 0%, #FFF8FC 100%);
@@ -7598,7 +7598,7 @@ body[data-theme="sweet"] #habit-form .form-actions .btn--ghost {
   color: #7A4E62;
 }
 
-/* V2.2 — Sweet 主題稱號管理（對齊表單視覺） */
+/* V2.2 ? Sweet ?????????????? */
 
 body[data-theme="sweet"] .modal:has(.title-modal) {
   background: linear-gradient(180deg, #FFFFFF 0%, #FFF8FC 100%);
@@ -7883,7 +7883,7 @@ body[data-theme="sweet"] #task-form #form-cancel:active:not(:disabled) {
   background: #FFE0EE;
 }
 
-/* V2.1.5 — Sweet 主題全域輸入可讀性（非任務表單區域） */
+/* V2.1.5 ? Sweet ?????????????????? */
 body[data-theme="sweet"] input,
 body[data-theme="sweet"] textarea,
 body[data-theme="sweet"] select,
@@ -7946,7 +7946,7 @@ body[data-theme="sweet"] .form-select:disabled {
   border-color: #E9CEDA;
 }
 
-/* ─── 設定頁：主題選擇 ─── */
+/* ??? ???????? ??? */
 
 .settings-theme {
   margin-bottom: var(--space-4);
@@ -8474,10 +8474,10 @@ body.reduce-motion .daily-blessing-section--pending .daily-blessing-card {
   border: 1px solid rgba(167, 139, 250, 0.12);
 }
 
-/* ─── Default 星夜主題 ─── */
+/* ??? Default ???? ??? */
 
 /* =========================
-   Daily Blessing — 主題覆寫（default / sweet）
+   Daily Blessing ? ?????default / sweet?
    ========================= */
 
 body[data-theme="default"] .daily-blessing-card,
@@ -8593,7 +8593,7 @@ body[data-theme="default"] .daily-milestone-progress__fill {
   box-shadow: 0 0 10px rgba(251, 191, 36, 0.35);
 }
 
-/* ─── Sweet 甜美主題 ─── */
+/* ??? Sweet ???? ??? */
 
 body[data-theme="sweet"] .daily-blessing-card__icon--default {
   display: none;
@@ -9004,18 +9004,18 @@ body.reduce-motion .daily-wheel-rotor {
   }
 }
 
-/* Daily Wheel — 區塊結束 */
+/* Daily Wheel ? ???? */
 
 .reward-toast--daily {
   max-width: min(92vw, 360px);
   text-align: center;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   V2.2.3 Sweet 主題 — 召喚結果畫面重製（僅 sweet theme）
-   ═══════════════════════════════════════════════════════════ */
+/* ???????????????????????????????????????????????????????????
+   V2.2.3 Sweet ?? ? ?????????? sweet theme?
+   ??????????????????????????????????????????????????????????? */
 
-/* ─── Modal 外殼 ─── */
+/* ??? Modal ?? ??? */
 
 body[data-theme="sweet"] .modal:has(.sweet-summon-result) {
   width: min(92vw, 440px);
@@ -9032,7 +9032,7 @@ body[data-theme="sweet"] .modal:has(.sweet-summon-result) .modal-close {
   display: none;
 }
 
-/* ─── 共用：結果 Modal 骨架 ─── */
+/* ??? ????? Modal ?? ??? */
 
 body[data-theme="sweet"] .sweet-summon-result {
   background: var(--sweet-result-bg-surface);
@@ -9105,7 +9105,7 @@ body[data-theme="sweet"] .sweet-summon-result__actions {
   flex-shrink: 0;
 }
 
-/* ─── 共用：Badge / Chip ─── */
+/* ??? ???Badge / Chip ??? */
 
 body[data-theme="sweet"] .sweet-summon-badge {
   display: inline-flex;
@@ -9195,7 +9195,7 @@ body[data-theme="sweet"] .sweet-summon-badge--highest {
   padding: 5px 12px;
 }
 
-/* ─── 單抽：主展示區 ─── */
+/* ??? ??????? ??? */
 
 body[data-theme="sweet"] .sweet-summon-showcase {
   background: linear-gradient(180deg, #FFFFFF 0%, var(--sweet-result-bg-main) 100%);
@@ -9262,7 +9262,7 @@ body[data-theme="sweet"] .sweet-summon-showcase__desc {
   text-align: left;
 }
 
-/* ─── 單抽：結果資訊區 ─── */
+/* ??? ???????? ??? */
 
 body[data-theme="sweet"] .sweet-summon-info {
   margin-top: 12px;
@@ -9307,7 +9307,7 @@ body[data-theme="sweet"] .sweet-summon-info__value--fragment {
   color: var(--sweet-rarity-ssr-text);
 }
 
-/* ─── 十連：Summary 2×2 ─── */
+/* ??? ???Summary 2?2 ??? */
 
 body[data-theme="sweet"] .sweet-summon-summary {
   display: grid;
@@ -9357,7 +9357,7 @@ body[data-theme="sweet"] .sweet-summon-summary__item--highest .sweet-summon-summ
   color: var(--sweet-rarity-ssr-text);
 }
 
-/* ─── 十連：Grid 收藏卡 ─── */
+/* ??? ???Grid ??? ??? */
 
 body[data-theme="sweet"] .sweet-summon-grid {
   display: grid;
@@ -9437,7 +9437,7 @@ body[data-theme="sweet"] .sweet-summon-grid-card__footer {
   padding-top: 4px;
 }
 
-/* ─── 操作按鈕 ─── */
+/* ??? ???? ??? */
 
 body[data-theme="sweet"] .sweet-summon-btn {
   width: 100%;
@@ -9478,7 +9478,7 @@ body[data-theme="sweet"] .sweet-summon-btn--secondary:disabled {
   cursor: not-allowed;
 }
 
-/* ─── 動畫（輕量） ─── */
+/* ??? ?????? ??? */
 
 @keyframes sweetSummonFadeUp {
   from { opacity: 0; transform: translateY(10px); }
@@ -9513,9 +9513,9 @@ body.reduce-motion[data-theme="sweet"] .sweet-summon-badge--new {
   transform: none !important;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   V2.2.4 Default 主題 — 召喚結果畫面重製（僅 default theme）
-   ═══════════════════════════════════════════════════════════ */
+/* ???????????????????????????????????????????????????????????
+   V2.2.4 Default ?? ? ?????????? default theme?
+   ??????????????????????????????????????????????????????????? */
 
 body[data-theme="default"] .modal:has(.default-summon-result) {
   width: min(92vw, 440px);
@@ -9532,7 +9532,7 @@ body[data-theme="default"] .modal:has(.default-summon-result) .modal-close {
   display: none;
 }
 
-/* ─── 共用：結果 Modal 骨架 ─── */
+/* ??? ????? Modal ?? ??? */
 
 body[data-theme="default"] .default-summon-result {
   background:
@@ -9611,7 +9611,7 @@ body[data-theme="default"] .default-summon-result__actions {
   flex-shrink: 0;
 }
 
-/* ─── 共用：Badge ─── */
+/* ??? ???Badge ??? */
 
 body[data-theme="default"] .default-summon-badge {
   display: inline-flex;
@@ -9702,7 +9702,7 @@ body[data-theme="default"] .default-summon-badge--highest {
   padding: 5px 12px;
 }
 
-/* ─── 單抽：召喚祭壇展示區 ─── */
+/* ??? ?????????? ??? */
 
 body[data-theme="default"] .default-summon-showcase {
   position: relative;
@@ -9823,7 +9823,7 @@ body[data-theme="default"] .default-summon-showcase__desc {
   text-align: left;
 }
 
-/* ─── 單抽：結果資訊區 ─── */
+/* ??? ???????? ??? */
 
 body[data-theme="default"] .default-summon-info {
   margin-top: 12px;
@@ -9868,7 +9868,7 @@ body[data-theme="default"] .default-summon-info__value--fragment {
   color: var(--default-rarity-ssr-text);
 }
 
-/* ─── 十連：Summary 2×2 ─── */
+/* ??? ???Summary 2?2 ??? */
 
 body[data-theme="default"] .default-summon-summary {
   display: grid;
@@ -9925,7 +9925,7 @@ body[data-theme="default"] .default-summon-summary__item--highest .default-summo
   color: var(--default-rarity-ssr-text);
 }
 
-/* ─── 十連：Grid 收藏卡 ─── */
+/* ??? ???Grid ??? ??? */
 
 body[data-theme="default"] .default-summon-grid {
   display: grid;
@@ -10007,7 +10007,7 @@ body[data-theme="default"] .default-summon-grid-card__footer {
   padding-top: 4px;
 }
 
-/* ─── 操作按鈕 ─── */
+/* ??? ???? ??? */
 
 body[data-theme="default"] .default-summon-btn {
   width: 100%;
@@ -10050,7 +10050,7 @@ body[data-theme="default"] .default-summon-btn--ten:disabled {
   cursor: not-allowed;
 }
 
-/* ─── 動畫（輕量） ─── */
+/* ??? ?????? ??? */
 
 @keyframes defaultSummonModalIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -10100,11 +10100,11 @@ body.reduce-motion[data-theme="default"] .default-summon-badge--new {
 }
 
 /* =========================
-   V2.3.8 — Sweet 顯示可讀性與召喚星塵同步修正
-   僅限 body[data-theme="sweet"]，不影響 default 主題
+   V2.3.8 ? Sweet ??????????????
+   ?? body[data-theme="sweet"]???? default ??
    ========================= */
 
-/* ── Sweet 召喚頁機率文字可讀性 ── */
+/* ?? Sweet ?????????? ?? */
 body[data-theme="sweet"] .gacha-rates {
   background: #FFFFFF;
   border: 1px solid #F0C9DA;
@@ -10188,7 +10188,7 @@ body[data-theme="sweet"] .rate-tag.rate-UR .rate-tag__value {
   font-weight: 900;
 }
 
-/* ── Sweet 探險歸來確認頁面可讀性 ── */
+/* ?? Sweet ??????????? ?? */
 body[data-theme="sweet"] .modal:has(.expedition-reward-modal) {
   background: #FFFFFF;
   border: 1px solid #F0C9DA;
@@ -10282,13 +10282,13 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
 }
 
 /* ============================================================
-   V2.4.0 — SSR / UR 抽卡演出特效
-   全螢幕召喚演出，統一風格（不分 default / sweet），z-index 高於 Modal。
+   V2.4.0 ? SSR / UR ??????
+   ??????????????? default / sweet??z-index ?? Modal?
    ============================================================ */
 .summon-reveal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 4000; /* 高於 modal-overlay */
+  z-index: 4000; /* ?? modal-overlay */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10322,7 +10322,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
   justify-content: center;
 }
 
-/* 光圈 */
+/* ?? */
 .summon-reveal-aura {
   position: absolute;
   width: 62%;
@@ -10343,7 +10343,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
     transparent 74%);
 }
 
-/* 擴散光環 */
+/* ???? */
 .summon-reveal-ring {
   position: absolute;
   width: 34%;
@@ -10361,7 +10361,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
   animation: summonURRingBurst 1800ms cubic-bezier(0.16, 0.8, 0.3, 1) 220ms both;
 }
 
-/* UR 短暫爆光 */
+/* UR ???? */
 .summon-reveal-overlay.is-ur::after {
   content: '';
   position: absolute;
@@ -10372,7 +10372,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
   animation: summonURFlash 720ms ease-out 620ms both;
 }
 
-/* 粒子 */
+/* ?? */
 .summon-reveal-particles {
   position: absolute;
   inset: 0;
@@ -10396,7 +10396,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
 .summon-reveal-overlay.is-ur .summon-reveal-particle:nth-child(3n+1) { background: #22D3EE; box-shadow: 0 0 6px rgba(34, 211, 238, 0.8); }
 .summon-reveal-overlay.is-ur .summon-reveal-particle:nth-child(3n+2) { background: #FBBF24; box-shadow: 0 0 6px rgba(251, 191, 36, 0.8); }
 
-/* 卡片 */
+/* ?? */
 .summon-reveal-card {
   position: relative;
   display: flex;
@@ -10458,7 +10458,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
 .summon-reveal-overlay.is-ssr .summon-reveal-caption { color: #FDE68A; }
 .summon-reveal-overlay.is-ur .summon-reveal-caption { color: #FBCFE8; }
 
-/* 動畫播完後的「點擊繼續」提示（等待使用者截圖 / 手動關閉） */
+/* ?????????????????????? / ????? */
 .summon-reveal-continue {
   position: absolute;
   left: 0;
@@ -10482,7 +10482,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
   50% { opacity: 1; }
 }
 
-/* 跳過按鈕 */
+/* ???? */
 .summon-reveal-skip {
   position: absolute;
   right: max(16px, env(safe-area-inset-right));
@@ -10544,7 +10544,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* Reduce Motion：僅顯示靜態稀有度畫面，不播粒子 / 爆光 / 震動 */
+/* Reduce Motion???????????????? / ?? / ?? */
 .summon-reveal-overlay.is-reduced .summon-reveal-particles,
 .summon-reveal-overlay.is-reduced .summon-reveal-ring,
 .summon-reveal-overlay.is-reduced::after {
@@ -10598,7 +10598,7 @@ body.reduce-motion .summon-reveal-overlay * {
   }
 }
 
-/* ── 開發測試區：抽卡演出測試群組 ── */
+/* ?? ?????????????? ?? */
 .dev-tools__group + .dev-tools__group {
   margin-top: 14px;
   padding-top: 14px;
@@ -10614,9 +10614,9 @@ body.reduce-motion .summon-reveal-overlay * {
 }
 
 /* ============================================================
-   V2.5.0 — 冒險任務（每日 / 每週）Daily & Weekly Quests
-   V2.7.1 — 容器視覺統一：參考每日祝福卡片設計語言（漸層光暈 / 手帳與星夜風）
-   顏色與可讀性：sweet 與 default 分開設計，避免淺底白字 / 粉底淡粉字。
+   V2.5.0 ? ??????? / ???Daily & Weekly Quests
+   V2.7.1 ? ???????????????????????? / ???????
+   ???????sweet ? default ??????????? / ??????
    ============================================================ */
 .quest-panel {
   display: block;
@@ -10701,7 +10701,7 @@ body.reduce-motion .summon-reveal-overlay * {
 .quest-panel__body[hidden] {
   display: none;
 }
-/* 舊版相容：保留 reward-badge 供仍引用處，樣式沿用 status-badge */
+/* ??????? reward-badge ?????????? status-badge */
 .quest-panel__reward-badge {
   font-size: 0.76rem;
   font-weight: 700;
@@ -10738,7 +10738,7 @@ body.reduce-motion .summon-reveal-overlay * {
   margin: 14px 0 0;
   text-align: center;
 }
-/* 舊版相容：保留 quest-summary 樣式（若他處引用） */
+/* ??????? quest-summary ????????? */
 .quest-summary {
   display: flex;
   flex-wrap: wrap;
@@ -10866,7 +10866,7 @@ body.reduce-motion .summon-reveal-overlay * {
   padding: 18px 8px;
 }
 
-/* ─── Sweet 主題（療癒手帳卡片 + 粉彩光暈） ─── */
+/* ??? Sweet ????????? + ????? ??? */
 body[data-theme="sweet"] .quest-panel__inner {
   background:
     radial-gradient(circle at top right, rgba(199, 53, 120, 0.14), transparent 34%),
@@ -11018,7 +11018,7 @@ body[data-theme="sweet"] .quest-empty {
   color: #86677A;
 }
 
-/* ─── Default 深色幻想主題（星夜冒險任務卡 + 紫藍光暈） ─── */
+/* ??? Default ?????????????? + ????? ??? */
 body[data-theme="default"] .quest-panel__inner {
   background:
     radial-gradient(circle at top right, rgba(139, 92, 246, 0.24), transparent 34%),
@@ -11175,7 +11175,7 @@ body[data-theme="default"] .quest-empty {
   color: #9BA8C7;
 }
 
-/* ─── V2.7.1 手機版：與每日祝福卡片一致的間距與換行 ─── */
+/* ??? V2.7.1 ??????????????????? ??? */
 @media (max-width: 430px) {
   .quest-panel__summary {
     grid-template-columns: 1fr;
@@ -11186,12 +11186,12 @@ body[data-theme="default"] .quest-empty {
 }
 
 /* =====================================================================
-   V2.6.0 — 寵物羈絆解放系統（羈絆徽章 / 外框 / 首頁特效 / 故事）
-   可讀性硬性要求：主要文字一律深色（sweet）/ 明亮（default），
-   徽章、標籤、故事區塊都確保足夠對比，裝飾光效不蓋過文字。
+   V2.6.0 ? ????????????? / ?? / ???? / ???
+   ?????????????????sweet?/ ???default??
+   ????????????????????????????
    ===================================================================== */
 
-/* ── 羈絆狀態區塊（寵物詳情頁） ── */
+/* ?? ????????????? ?? */
 .bond-section {
   margin-top: 16px;
   padding: 14px;
@@ -11247,7 +11247,7 @@ body[data-theme="default"] .quest-empty {
   font-weight: 600;
 }
 
-/* ── 羈絆徽章 ── */
+/* ?? ???? ?? */
 .bond-badge {
   display: inline-flex;
   align-items: center;
@@ -11260,7 +11260,7 @@ body[data-theme="default"] .quest-empty {
   border: 1px solid transparent;
 }
 
-/* ── 羈絆解放標籤 ── */
+/* ?? ?????? ?? */
 .bond-liberated-label {
   display: inline-flex;
   align-items: center;
@@ -11273,7 +11273,7 @@ body[data-theme="default"] .quest-empty {
   border: 1px solid transparent;
 }
 
-/* ── 羈絆故事 ── */
+/* ?? ???? ?? */
 .bond-story {
   border-radius: 12px;
   padding: 12px 14px;
@@ -11294,7 +11294,7 @@ body[data-theme="default"] .quest-empty {
   font-weight: 600;
 }
 
-/* ── 卡片羈絆徽章定位（首頁陪伴卡 / 圖鑑卡） ── */
+/* ?? ?????????????? / ???? ?? */
 .companion-card__bond-badge,
 .collection-card__bond-badge {
   position: absolute;
@@ -11310,7 +11310,7 @@ body[data-theme="default"] .quest-empty {
   position: relative;
 }
 
-/* ── 首頁陪伴特效（Lv.4+ 輕量光暈） ── */
+/* ?? ???????Lv.4+ ????? ?? */
 .companion-bond-effect {
   position: absolute;
   inset: -6% 8% auto 8%;
@@ -11330,7 +11330,7 @@ body[data-theme="default"] .quest-empty {
   50% { transform: scale(1.04); opacity: 0.8; }
 }
 
-/* ── 羈絆解鎖提示 toast ── */
+/* ?? ?????? toast ?? */
 .bond-unlock-toast {
   position: fixed;
   left: 50%;
@@ -11363,7 +11363,7 @@ body[data-theme="default"] .quest-empty {
   flex: 1 1 auto;
 }
 
-/* ── Lv.5 羈絆外框 ── */
+/* ?? Lv.5 ???? ?? */
 .pet-card.is-bond-liberated,
 .collection-card.is-bond-liberated,
 .companion-card.is-bond-liberated,
@@ -11371,7 +11371,7 @@ body[data-theme="default"] .quest-empty {
   position: relative;
 }
 
-/* =========================== Sweet 主題 =========================== */
+/* =========================== Sweet ?? =========================== */
 body[data-theme="sweet"] .bond-section {
   background: #FFF8FC;
   border-color: #F0C9DA;
@@ -11451,7 +11451,7 @@ body[data-theme="sweet"] .workshop-gift-pet__liberated {
   font-weight: 800;
 }
 
-/* =========================== Default 主題 =========================== */
+/* =========================== Default ?? =========================== */
 body[data-theme="default"] .bond-section {
   background: #141A2E;
   border-color: rgba(167, 139, 250, 0.28);
@@ -11531,7 +11531,7 @@ body[data-theme="default"] .workshop-gift-pet__liberated {
   font-weight: 800;
 }
 
-/* ── Reduce Motion：關閉光暈與浮動動畫，保留靜態外框與徽章 ── */
+/* ?? Reduce Motion???????????????????? ?? */
 body.reduce-motion .companion-bond-effect.is-active {
   animation: none;
   opacity: 0.55;
@@ -11547,10 +11547,10 @@ body.reduce-motion .bond-unlock-toast {
   }
 }
 
-/* ═══════════════════════════════════════
-   V2.6.1 — 寵物原圖放大檢視器 pet-image-viewer
-   獨立 overlay，z-index 高於一般 modal（modal-overlay=200）
-   ═══════════════════════════════════════ */
+/* ???????????????????????????????????????
+   V2.6.1 ? ????????? pet-image-viewer
+   ?? overlay?z-index ???? modal?modal-overlay=200?
+   ??????????????????????????????????????? */
 
 body.is-pet-image-viewer-open {
   overflow: hidden;
@@ -11683,7 +11683,7 @@ body.is-pet-image-viewer-open {
   text-align: center;
 }
 
-/* 點圖片開原圖：詳情頁主圖與陪伴預覽圖皆為可點按鈕 */
+/* ???????????????????????? */
 .pet-detail-image-button {
   position: relative;
   display: inline-block;
@@ -11698,7 +11698,7 @@ body.is-pet-image-viewer-open {
   margin: 6px 0 0;
 }
 
-/* ── Sweet 主題 viewer 配色 ── */
+/* ?? Sweet ?? viewer ?? ?? */
 body[data-theme="sweet"] .pet-image-viewer__content {
   background: #FFFFFF;
   border-color: #F0C9DA;
@@ -11739,7 +11739,7 @@ body[data-theme="sweet"] .pet-image-viewer__hint {
   color: #6F4C5E;
 }
 
-/* ── Default 主題 viewer 配色 ── */
+/* ?? Default ?? viewer ?? ?? */
 body[data-theme="default"] .pet-image-viewer__content {
   background: #141A2E;
   border-color: rgba(167, 139, 250, 0.28);
@@ -11780,7 +11780,7 @@ body[data-theme="default"] .pet-image-viewer__hint {
   color: #C7D2EA;
 }
 
-/* Reduce Motion：關閉 viewer 動畫但保留可讀性 */
+/* Reduce Motion??? viewer ???????? */
 body.reduce-motion .pet-image-viewer,
 body.reduce-motion .pet-image-viewer__content,
 body.reduce-motion .pet-image-viewer__image {
@@ -11795,12 +11795,12 @@ body.reduce-motion .pet-image-viewer__image {
 }
 
 /* ============================================================
-   V2.7.0 — 探險地圖探索度系統
-   可讀性硬性要求：深色文字、chip / 進度條 / 按鈕文字皆需足夠對比。
-   顏色依主題分開，避免全域樣式破壞另一主題。
+   V2.7.0 ? ?????????
+   ?????????????chip / ??? / ???????????
+   ?????????????????????
    ============================================================ */
 
-/* ── 結構（不含顏色，兩主題共用） ── */
+/* ?? ?????????????? ?? */
 .exploration-panel {
   display: block;
   margin-bottom: 16px;
@@ -11823,7 +11823,7 @@ body.reduce-motion .pet-image-viewer__image {
   line-height: 1.5;
   margin: 0 0 12px;
 }
-/* V2.7.2 — 地區探索度可收合區塊（類似首頁功能） */
+/* V2.7.2 ? ?????????????????? */
 .exploration-panel__wrap {
   padding: 4px;
 }
@@ -12050,7 +12050,7 @@ body[data-theme="default"] .exploration-panel__toggle-chevron {
   white-space: nowrap;
 }
 
-/* ── Sweet 主題 ── */
+/* ?? Sweet ?? ?? */
 body[data-theme="sweet"] .exploration-area-card {
   background: #FFFFFF;
   color: #3D2633;
@@ -12090,7 +12090,7 @@ body[data-theme="sweet"] .exploration-collapse-toggle {
   color: #3D2633;
   border-color: #F0C9DA;
 }
-/* 地區故事：解鎖用深色清楚文字，未解鎖用弱化但仍可讀 */
+/* ????????????????????????? */
 body[data-theme="sweet"] .exploration-story.is-unlocked {
   background: #FFF8FC;
   border-color: #F0C9DA;
@@ -12178,7 +12178,7 @@ body[data-theme="sweet"] .exploration-claim-button:disabled {
   border-color: #D4D7DE;
 }
 
-/* ── Default 深色幻想主題 ── */
+/* ?? Default ?????? ?? */
 body[data-theme="default"] .exploration-area-card {
   background: #141A2E;
   color: #F4F7FF;
@@ -12305,7 +12305,7 @@ body[data-theme="default"] .exploration-claim-button:disabled {
   border-color: rgba(148, 163, 184, 0.26);
 }
 
-/* Reduce Motion：關閉進度條動畫但保留靜態進度與可讀性 */
+/* Reduce Motion??????????????????? */
 body.reduce-motion .exploration-progress-fill {
   transition: none;
 }
@@ -12316,11 +12316,11 @@ body.reduce-motion .exploration-progress-fill {
 }
 
 /* ============================================================
-   V2.7.2 — 探險派遣流程直覺化：地區卡片 + 派遣 Modal
-   sweet / default 分開設計，確保文字清楚可讀。
+   V2.7.2 ? ?????????????? + ?? Modal
+   sweet / default ??????????????
    ============================================================ */
 
-/* ─── 地區卡片列表 ─── */
+/* ??? ?????? ??? */
 .expedition-map__hint {
   font-size: 0.8rem;
   margin: 4px 0 10px;
@@ -12421,7 +12421,7 @@ body.reduce-motion .exploration-progress-fill {
   cursor: default;
 }
 
-/* ─── 派遣 Modal ─── */
+/* ??? ?? Modal ??? */
 body.expedition-dispatch-open {
   overflow: hidden;
 }
@@ -12638,7 +12638,7 @@ body.expedition-dispatch-open {
   cursor: default;
 }
 
-/* ─── Sweet 主題 ─── */
+/* ??? Sweet ?? ??? */
 body[data-theme="sweet"] .expedition-map__hint,
 body[data-theme="sweet"] .expedition-area-card__next {
   color: #6F4C5E;
@@ -12789,7 +12789,7 @@ body[data-theme="sweet"] .expedition-dispatch-cancel-button {
   border-color: #E7AFC8;
 }
 
-/* ─── Default 深色幻想主題 ─── */
+/* ??? Default ?????? ??? */
 body[data-theme="default"] .expedition-map__hint,
 body[data-theme="default"] .expedition-area-card__next {
   color: #C7D2EA;
@@ -12958,27 +12958,27 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
 }
 
 /* ============================================================
-   V2.7.3 — 全站字體大小與排版比例統一（Typography Scale Polish）
-   目標：統一字級 / 行高 / 字重比例，提升手機可讀性。
-   限制：不改功能、不改資料結構、不改主題色，僅整理 typography。
-   只調整 font-size / line-height / font-weight 與必要 spacing。
+   V2.7.3 ? ??????????????Typography Scale Polish?
+   ??????? / ?? / ?????????????
+   ???????????????????????? typography?
+   ??? font-size / line-height / font-weight ??? spacing?
    ============================================================ */
 
-/* ── 1. 頁面主標題 ── */
+/* ?? 1. ????? ?? */
 .page-title {
   font-size: var(--font-size-2xl);
   line-height: var(--line-height-tight);
   font-weight: var(--font-weight-black);
 }
 
-/* ── 3. 區塊副標（頁面副標） ── */
+/* ?? 3. ?????????? ?? */
 .page-subtitle {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-snug);
   font-weight: var(--font-weight-medium);
 }
 
-/* ── 2. 卡片主標題（每日祝福 / 冒險任務 / 探險地區 / 工坊卡 / 成就卡） ── */
+/* ?? 2. ?????????? / ???? / ???? / ??? / ???? ?? */
 .card-title,
 .task-card__title,
 .quest-card__title,
@@ -12998,7 +12998,7 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   font-weight: var(--font-weight-heavy);
 }
 
-/* ── 4. 一般內文 / 描述 ── */
+/* ?? 4. ???? / ?? ?? */
 .card-description,
 .quest-card__description,
 .expedition-area-card__meta,
@@ -13010,7 +13010,7 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   font-weight: var(--font-weight-regular);
 }
 
-/* ── 5. 輔助文字（提示 / 日期 / 冷卻 / 次要資訊） ── */
+/* ?? 5. ??????? / ?? / ?? / ????? ?? */
 .expedition-energy__label,
 .expedition-countdown__label,
 .collection-companion__label,
@@ -13023,8 +13023,8 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   font-weight: var(--font-weight-medium);
 }
 
-/* ── 6. badge / chip（稀有度 / 獎勵 / 狀態 / 探索度 / 羈絆標籤） ──
-   手機最小 0.76rem，字重 bold，行高 1.2 */
+/* ?? 6. badge / chip???? / ?? / ?? / ??? / ????? ??
+   ???? 0.76rem??? bold??? 1.2 */
 .badge,
 .tag,
 .tag-chip--card,
@@ -13045,12 +13045,12 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   line-height: var(--line-height-tight);
   font-weight: var(--font-weight-bold);
 }
-/* 圖鑑格內的羈絆徽章（較密集）維持稍小但仍可讀 */
+/* ?????????????????????? */
 .collection-card__bond-badge .bond-badge {
   font-size: var(--font-size-xs);
 }
 
-/* ── 7. 按鈕文字（主/次/確認/領取/派遣/召喚），最小 0.88rem，行高 1.2 ── */
+/* ?? 7. ??????/?/??/??/??/?????? 0.88rem??? 1.2 ?? */
 .btn {
   font-size: var(--font-size-md);
   line-height: var(--line-height-tight);
@@ -13065,7 +13065,7 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   font-size: var(--font-size-lg);
 }
 
-/* ── 8. Modal 標題 ── */
+/* ?? 8. Modal ?? ?? */
 .modal-title,
 .expedition-dispatch-modal__title {
   font-size: var(--font-size-xl);
@@ -13073,13 +13073,13 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   font-weight: var(--font-weight-black);
 }
 
-/* Modal 內文 */
+/* Modal ?? */
 .modal-body {
   font-size: var(--font-size-md);
   line-height: var(--line-height-normal);
 }
 
-/* ── 9. Toast / 通知 ── */
+/* ?? 9. Toast / ?? ?? */
 .toast,
 .toast__message {
   font-size: var(--font-size-md);
@@ -13087,15 +13087,15 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   font-weight: var(--font-weight-bold);
 }
 
-/* ── 底部導航 label（≥ 0.68rem，維持清楚） ── */
+/* ?? ???? label?? 0.68rem?????? ?? */
 .nav-label {
   font-size: var(--font-size-xs);
   line-height: var(--line-height-tight);
   font-weight: var(--font-weight-medium);
 }
 
-/* ── 修正過小字：名稱 / 狀態 / 原名等承載資訊的文字 ──
-   避免 9px / 10px / 11px 與 < 0.72rem 承載重要資訊 */
+/* ?? ???????? / ?? / ?????????? ??
+   ?? 9px / 10px / 11px ? < 0.72rem ?????? */
 .workshop-gift-pet__companion,
 .collection-card__title {
   font-size: var(--font-size-xs);
@@ -13121,13 +13121,13 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   font-size: var(--font-size-sm);
 }
 
-/* ── 手機版（iPhone）字體規範 ── */
+/* ?? ????iPhone????? ?? */
 @media (max-width: 430px) {
-  /* 主標題在窄螢幕改用 xl，避免換行破版 */
+  /* ????????? xl??????? */
   .page-title {
     font-size: var(--font-size-xl);
   }
-  /* 主要內容文字至少 ~0.9rem，次要至少 0.82rem */
+  /* ???????? ~0.9rem????? 0.82rem */
   .card-description,
   .quest-card__description,
   .workshop-item__description,
@@ -13135,7 +13135,7 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
     font-size: var(--font-size-md);
     line-height: var(--line-height-normal);
   }
-  /* badge / chip 手機仍維持 ≥ 0.76rem */
+  /* badge / chip ????? ? 0.76rem */
   .badge,
   .tag,
   .companion-badge,
@@ -13145,17 +13145,17 @@ body[data-theme="default"] .expedition-dispatch-cancel-button {
   .expedition-area-card__status {
     font-size: 0.76rem;
   }
-  /* 按鈕文字 ≥ 0.88rem */
+  /* ???? ? 0.88rem */
   .btn {
     font-size: var(--font-size-md);
   }
 }
 
 /* ============================================================
-   V2.7.4 — 穩定性／可讀性／既有功能補完（Sweet contrast + core typography）
+   V2.7.4 ? ???????????????Sweet contrast + core typography?
    ============================================================ */
 
-/* ── 核心過小字級補強（不暴力全站替換）── */
+/* ?? ??????????????????? */
 .stat-label {
   font-size: var(--font-size-xs);
   line-height: var(--line-height-tight);
@@ -13215,7 +13215,7 @@ body[data-theme="sweet"] .sweet-summon-badge--pity {
   font-size: var(--font-size-xs);
 }
 
-/* ── 派遣 Modal：陪伴中標籤與說明 ── */
+/* ?? ?? Modal????????? ?? */
 .expedition-dispatch-modal__pet-note {
   margin: 0 0 10px;
   font-size: var(--font-size-sm);
@@ -13258,7 +13258,7 @@ body[data-theme="sweet"] .collection-card__image-hint {
   color: var(--color-text-muted);
 }
 
-/* ── Sweet：badge / chip / 數值可讀性覆寫（淡底配深字）── */
+/* ?? Sweet?badge / chip / ???????????????? */
 body[data-theme="sweet"] .badge--category-gray {
   background: #F1F3F5;
   color: #4B5563;
@@ -13355,7 +13355,7 @@ body[data-theme="sweet"] .confirm-modal .btn--danger:active:not(:disabled) {
   color: #FFFFFF;
 }
 
-/* 危險確認表單：使用較明亮的莓果層級，避免文字顯得灰暗沉重 */
+/* ???????????????????????????? */
 body[data-theme="sweet"] .modal:has(.confirm-modal--danger) {
   background: linear-gradient(160deg, #FFFFFF 0%, #FFF7F9 58%, #FDECF1 100%);
   border-color: #E8A0B0;
@@ -13422,7 +13422,7 @@ body[data-theme="sweet"] .badge.rarity-SSR {
   color: var(--sweet-rarity-ssr-text);
 }
 
-/* 進行中任務獎勵標籤：淡底＋深字膠囊，避免奶油底只剩淡色字 */
+/* ???????????????????????????? */
 body[data-theme="sweet"] .task-reward-tag {
   background: #FFF5F9;
   color: #60404F;
@@ -13445,11 +13445,11 @@ body[data-theme="sweet"] .task-reward-tag--energy {
   border-color: rgba(40, 94, 78, 0.24);
 }
 
-/* ═══════════════════════════════════════════════════════════
-   V2.7.5 — 首頁陪伴卡片互動 + Sweet 每日轉盤視覺重設計
-   ═══════════════════════════════════════════════════════════ */
+/* ???????????????????????????????????????????????????????????
+   V2.7.5 ? ???????? + Sweet ?????????
+   ??????????????????????????????????????????????????????????? */
 
-/* Sweet：每日幸運轉盤 Modal 主容器 */
+/* Sweet??????? Modal ??? */
 body[data-theme="sweet"] .modal:has(.daily-wheel-modal-body) {
   background:
     radial-gradient(circle at 15% 10%, rgba(255, 222, 235, 0.72), transparent 38%),
@@ -13535,16 +13535,16 @@ body[data-theme="sweet"] .daily-wheel-preview__item {
   border: 1px solid var(--wheel-sweet-card-border, #E7B8CC);
 }
 
-/* 轉盤結果／獎勵提示（僅轉盤相關 toast 外觀語意補強時可沿用既有 reward toast） */
+/* ??????????????? toast ???????????? reward toast? */
 body[data-theme="sweet"] .reward-toast--daily {
   background: var(--wheel-sweet-gold-bg, #FFF0CF);
   color: var(--wheel-sweet-gold-text, #75450D);
   border: 1px solid rgba(117, 69, 13, 0.22);
 }
 
-/* ═══════════════════════════════════════════════════════════
-   V2.8.0 — 圖鑑收藏進度與可收合里程碑
-   ═══════════════════════════════════════════════════════════ */
+/* ???????????????????????????????????????????????????????????
+   V2.8.0 ? ?????????????
+   ??????????????????????????????????????????????????????????? */
 
 .collection-progress-summary,
 .collection-milestones-panel {
@@ -13995,9 +13995,9 @@ body[data-theme="sweet"] .collection-milestones-more {
 }
 
 /* ============================================================ *
- * 冒險手冊 — V2.9.0
- * 以既有 design tokens 為主，淺色主題自動適配；
- * 另針對 Sweet 主題補強 chip / 進度條 / 稀有度可讀性。
+ * ???? ? V2.9.0
+ * ??? design tokens ????????????
+ * ??? Sweet ???? chip / ??? / ???????
  * ============================================================ */
 .handbook-content {
   display: flex;
@@ -14014,7 +14014,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   color: var(--color-text-muted);
 }
 
-/* --- 精簡成長摘要（常駐） --- */
+/* --- ?????????? --- */
 .handbook-summary {
   padding: var(--space-4);
 }
@@ -14056,7 +14056,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   overflow-wrap: anywhere;
 }
 
-/* --- 下一步目標（常駐） --- */
+/* --- ????????? --- */
 .handbook-goals {
   padding: var(--space-4);
 }
@@ -14138,7 +14138,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   color: var(--color-text-muted);
 }
 
-/* --- 進度條 --- */
+/* --- ??? --- */
 .handbook-progress {
   display: block;
   flex: 1;
@@ -14156,7 +14156,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
 }
 
-/* --- 狀態 chip（同時使用文字＋圖示＋背景/邊框，不只靠顏色） --- */
+/* --- ?? chip?????????????/????????? --- */
 .handbook-chip {
   display: inline-flex;
   align-items: center;
@@ -14181,7 +14181,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   border-color: var(--color-primary-border);
 }
 
-/* --- 可收合區塊 --- */
+/* --- ????? --- */
 .handbook-section {
   padding: 0;
   overflow: hidden;
@@ -14239,7 +14239,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   gap: var(--space-1);
 }
 
-/* --- 通用資料列 --- */
+/* --- ????? --- */
 .handbook-row {
   display: flex;
   align-items: center;
@@ -14268,7 +14268,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   text-align: right;
 }
 
-/* --- 稀有度 chips --- */
+/* --- ??? chips --- */
 .handbook-rarity-chips {
   display: flex;
   flex-wrap: wrap;
@@ -14286,7 +14286,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   border: 1px solid var(--color-border);
 }
 
-/* --- 寵物展示 --- */
+/* --- ???? --- */
 .handbook-pets {
   display: flex;
   gap: var(--space-3);
@@ -14321,7 +14321,7 @@ body[data-theme="sweet"] .collection-milestones-more {
   color: var(--color-text-secondary);
 }
 
-/* --- 探索地區 --- */
+/* --- ???? --- */
 .handbook-area {
   padding: var(--space-2) 0;
 }
@@ -14365,7 +14365,7 @@ body.reduce-motion .handbook-section__chevron {
   }
 }
 
-/* ---- Sweet 主題可讀性補強（淺底禁止淡字） ---- */
+/* ---- Sweet ??????????????? ---- */
 body[data-theme="sweet"] .handbook-stat,
 body[data-theme="sweet"] .handbook-goal {
   border-color: var(--color-border);
@@ -14396,7 +14396,7 @@ body[data-theme="sweet"] .handbook-section__summary {
   color: var(--color-text-muted);
 }
 
-/* Sweet 進度條：淺底需要看得見的軌道與深色填充 */
+/* Sweet ??????????????????? */
 body[data-theme="sweet"] .handbook-progress {
   background: rgba(199, 53, 120, 0.16);
 }
@@ -14405,7 +14405,7 @@ body[data-theme="sweet"] .handbook-progress__fill {
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
 }
 
-/* Sweet chip：淺底配深字（達 WCAG AA） */
+/* Sweet chip???????? WCAG AA? */
 body[data-theme="sweet"] .handbook-chip--claimable {
   background: var(--color-accent-soft);
   color: var(--sweet-text-gold);
@@ -14428,8 +14428,678 @@ body[data-theme="sweet"] .handbook-goal--claimable {
   border-color: var(--color-accent);
 }
 
-/* Sweet 返回按鈕（沿用 page-back-btn，補強對比） */
+/* Sweet ??????? page-back-btn?????? */
 body[data-theme="sweet"] #view-handbook .page-back-btn {
   color: var(--color-primary);
 }
 
+
+/* ??????????????????????????????????????????????????????????????????????????????
+   V3.0.0 ????H?c
+   ?????????????????????????????????????????????????????????????????????????????? */
+
+.page-header--tasks .page-header__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.page-header--tasks .page-header__inner {
+  flex: 1;
+  min-width: 0;
+}
+
+.mailbox-entry-btn {
+  position: relative;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-main);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mailbox-entry-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.mailbox-entry-btn__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.mailbox-entry-btn__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: var(--radius-pill);
+  background: var(--color-danger);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--color-bg-main);
+}
+
+.mailbox-entry-btn__badge[hidden] {
+  display: none !important;
+}
+
+.mailbox-entry-btn__gift {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-bg-main);
+}
+
+/* display:inline-flex ????? hidden??????? */
+.mailbox-entry-btn__gift[hidden] {
+  display: none !important;
+}
+
+.mailbox-entry-btn__gift--pulse {
+  animation: mailbox-gift-pulse 0.9s ease-out 1;
+}
+
+@keyframes mailbox-gift-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+body.reduce-motion .mailbox-entry-btn__gift--pulse {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mailbox-entry-btn__gift--pulse {
+    animation: none;
+  }
+}
+
+body.global-mailbox-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+.global-mailbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3600;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.global-mailbox-modal.open {
+  display: flex;
+  pointer-events: auto;
+}
+
+.global-mailbox-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 8, 20, 0.62);
+}
+
+.global-mailbox-modal__sheet {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 520px);
+  max-height: min(92vh, 900px);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  box-shadow: var(--shadow-md);
+  padding-top: max(12px, var(--safe-top));
+  padding-bottom: max(12px, var(--safe-bottom));
+  overflow: hidden;
+}
+
+.global-mailbox-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 4px 16px 10px;
+}
+
+.global-mailbox-modal__title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.global-mailbox-modal__title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.global-mailbox-modal__unread {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.global-mailbox-modal__actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.global-mailbox-modal__icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-main);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.global-mailbox-modal__icon-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.global-mailbox-modal__icon-btn:disabled,
+.global-mailbox-modal__icon-btn.is-loading {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.global-mailbox-modal__offline {
+  margin: 0 16px 8px;
+  font-size: var(--font-size-sm);
+  color: var(--color-warning);
+}
+
+.global-mailbox-modal__filters {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 10px;
+  overflow-x: auto;
+}
+
+.mailbox-filter-chip {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.mailbox-filter-chip.is-active {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary-border);
+  color: var(--color-primary-light);
+  font-weight: 600;
+}
+
+.global-mailbox-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 16px 16px;
+  overscroll-behavior: contain;
+}
+
+.mailbox-empty {
+  text-align: center;
+  padding: 48px 16px;
+}
+
+.mailbox-empty__icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.mailbox-empty__title {
+  margin: 0 0 6px;
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.mailbox-empty__desc {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.mailbox-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mailbox-list-item__btn {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 10px;
+  align-items: start;
+  text-align: left;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card-soft);
+  color: var(--color-text-main);
+  cursor: pointer;
+}
+
+.mailbox-list-item.is-unread .mailbox-list-item__btn {
+  border-color: var(--color-primary-border);
+}
+
+.mailbox-list-item.is-claimable .mailbox-list-item__btn {
+  border-color: rgba(251, 191, 36, 0.55);
+}
+
+.mailbox-list-item__icon {
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.mailbox-list-item__main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.mailbox-list-item__title {
+  font-size: var(--font-size-md);
+  font-weight: 650;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.mailbox-list-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.mailbox-list-item__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.mailbox-list-item__marks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.mailbox-list-item__unread-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-danger);
+}
+
+.mailbox-list-item__gift {
+  font-size: 0.85rem;
+}
+
+.mailbox-type-chip,
+.mailbox-claim-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.mailbox-type-chip--update,
+.mailbox-type-chip--announcement {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-light);
+  border-color: var(--color-primary-border);
+}
+
+.mailbox-type-chip--maintenance {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+  border-color: rgba(245, 158, 11, 0.45);
+}
+
+.mailbox-type-chip--compensation {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
+.mailbox-type-chip--local-dev {
+  background: rgba(148, 163, 184, 0.18);
+  color: var(--color-text-secondary);
+  border-color: rgba(148, 163, 184, 0.4);
+  border-style: dashed;
+}
+
+.mailbox-claim-chip--claimable {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border-color: rgba(251, 191, 36, 0.55);
+}
+
+.mailbox-claim-chip--claimed {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+  border-color: rgba(52, 211, 153, 0.45);
+}
+
+.mailbox-claim-chip--expired,
+.mailbox-claim-chip--unavailable {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--color-text-muted);
+}
+
+.mailbox-claim-chip--version_mismatch,
+.mailbox-claim-chip--invalid {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  border-color: rgba(251, 113, 133, 0.4);
+}
+
+.mailbox-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.mailbox-detail__back {
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  color: var(--color-primary-light);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.mailbox-detail__back:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.mailbox-detail__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.mailbox-detail__icon {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.mailbox-detail__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.mailbox-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.mailbox-detail__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.mailbox-detail__body {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.mailbox-reward-preview {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+  padding: 12px 14px;
+}
+
+.mailbox-reward-preview__title {
+  margin: 0 0 8px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.mailbox-reward-preview__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.mailbox-reward-preview__error {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+.mailbox-reward-preview__empty {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.mailbox-detail__claim-btn,
+.mailbox-detail__action-btn {
+  width: 100%;
+  min-height: 44px;
+  font-size: var(--font-size-md);
+}
+
+.mailbox-detail__claim-note {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* Default?G?`???Q?H?c */
+body[data-theme="default"] .mailbox-entry-btn {
+  background: #18203A;
+  border-color: rgba(167, 139, 250, 0.35);
+}
+
+body[data-theme="default"] .global-mailbox-modal__sheet {
+  background: linear-gradient(180deg, #141A2E 0%, #0E1324 100%);
+  border-color: rgba(167, 139, 250, 0.28);
+}
+
+body[data-theme="default"] .global-mailbox-modal__title {
+  color: #F4F7FF;
+}
+
+body[data-theme="default"] .mailbox-list-item__btn {
+  background: #18203A;
+}
+
+body[data-theme="default"] .mailbox-type-chip--compensation,
+body[data-theme="default"] .mailbox-claim-chip--claimable {
+  color: #FBBF24;
+}
+
+body[data-theme="default"] .mailbox-claim-chip--claimed {
+  color: #34D399;
+}
+
+/* Sweet?G???o?H??P */
+body[data-theme="sweet"] .mailbox-entry-btn {
+  background: #FFF7FB;
+  border-color: rgba(199, 53, 120, 0.28);
+  color: #6B2148;
+}
+
+body[data-theme="sweet"] .mailbox-entry-btn__badge {
+  color: #fff;
+}
+
+body[data-theme="sweet"] .mailbox-entry-btn__gift {
+  background: #FFF3D6;
+  border-color: #C48A1A;
+  color: #6B4A12;
+}
+
+body[data-theme="sweet"] .global-mailbox-modal__backdrop {
+  background: rgba(84, 40, 58, 0.35);
+}
+
+body[data-theme="sweet"] .global-mailbox-modal__sheet {
+  background: #FFF9F4;
+  border-color: rgba(199, 53, 120, 0.22);
+}
+
+body[data-theme="sweet"] .global-mailbox-modal__title,
+body[data-theme="sweet"] .mailbox-list-item__title,
+body[data-theme="sweet"] .mailbox-detail__title,
+body[data-theme="sweet"] .mailbox-empty__title,
+body[data-theme="sweet"] .mailbox-reward-preview__title {
+  color: #6B2148;
+}
+
+body[data-theme="sweet"] .global-mailbox-modal__unread,
+body[data-theme="sweet"] .mailbox-list-item__date,
+body[data-theme="sweet"] .mailbox-detail__date,
+body[data-theme="sweet"] .mailbox-empty__desc,
+body[data-theme="sweet"] .mailbox-detail__claim-note {
+  color: #8A5070;
+}
+
+body[data-theme="sweet"] .mailbox-detail__body,
+body[data-theme="sweet"] .mailbox-reward-preview__list {
+  color: #5C2A44;
+}
+
+body[data-theme="sweet"] .global-mailbox-modal__icon-btn,
+body[data-theme="sweet"] .mailbox-filter-chip,
+body[data-theme="sweet"] .mailbox-list-item__btn,
+body[data-theme="sweet"] .mailbox-reward-preview {
+  background: #FFF1F6;
+  border-color: rgba(199, 53, 120, 0.22);
+  color: #6B2148;
+}
+
+body[data-theme="sweet"] .mailbox-filter-chip.is-active {
+  background: #F3E8FF;
+  color: #5B21B6;
+  border-color: #7C3AED;
+}
+
+body[data-theme="sweet"] .mailbox-type-chip--update,
+body[data-theme="sweet"] .mailbox-type-chip--announcement {
+  background: #F3E8FF;
+  color: #5B21B6;
+  border-color: #7C3AED;
+}
+
+body[data-theme="sweet"] .mailbox-type-chip--compensation,
+body[data-theme="sweet"] .mailbox-claim-chip--claimable {
+  background: #FFF3D6;
+  color: #6B4A12;
+  border-color: #C48A1A;
+}
+
+body[data-theme="sweet"] .mailbox-type-chip--local-dev {
+  background: #F3E8FF;
+  color: #5B21B6;
+  border-color: #7C3AED;
+  border-style: dashed;
+}
+
+body[data-theme="sweet"] .mailbox-claim-chip--claimed {
+  background: #D1FAE5;
+  color: #065F46;
+  border-color: #059669;
+}
+
+body[data-theme="sweet"] .mailbox-claim-chip--invalid,
+body[data-theme="sweet"] .mailbox-claim-chip--version_mismatch,
+body[data-theme="sweet"] .mailbox-reward-preview__error {
+  color: #9F1239;
+}
+
+body[data-theme="sweet"] .mailbox-detail__back {
+  color: #7C3AED;
+}
+
+body[data-theme="sweet"] .mailbox-detail__claim-btn:disabled {
+  opacity: 0.55;
+}
+
+@media (min-width: 720px) {
+  .global-mailbox-modal {
+    align-items: center;
+  }
+
+  .global-mailbox-modal__sheet {
+    border-radius: var(--radius-xl);
+    border-bottom: 1px solid var(--color-border);
+    max-height: min(86vh, 820px);
+  }
+}

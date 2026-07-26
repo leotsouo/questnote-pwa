@@ -197,6 +197,7 @@ export async function replaceAllStores(payload) {
     if (payload.questProgress) metaStore.put(payload.questProgress);
     if (payload.explorationProgress) metaStore.put(payload.explorationProgress);
     if (payload.collectionMilestones) metaStore.put(payload.collectionMilestones);
+    if (payload.globalMailboxState) metaStore.put(payload.globalMailboxState);
   });
 }
 

@@ -30,11 +30,15 @@ import {
   exportCollectionMilestoneState,
   normalizeCollectionMilestoneState,
 } from './collectionMilestoneService.js';
+import {
+  exportGlobalMailboxState,
+  normalizeGlobalMailboxState,
+} from './mailboxService.js';
 import { APP_VERSION } from './version.js';
 
 export { APP_VERSION };
 const APP_NAME = 'QuestNote';
-const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2', '2.2.7', '2.3.0', '2.3.1', '2.3.2', '2.3.3', '2.3.4', '2.3.5', '2.3.6', '2.3.7', '2.3.8', '2.4.0', '2.5.0', '2.6.0', '2.6.1', '2.7.0', '2.7.1', '2.7.2', '2.7.3', '2.7.4', '2.7.5', '2.8.0', '2.9.0'];
+const SUPPORTED_VERSIONS = ['1.8', '1.8.1', '1.8.2', '2.0', '2.0.0', '2.1', '2.1.1', '2.1.2', '2.1.4', '2.1.5', '2.2', '2.2.7', '2.3.0', '2.3.1', '2.3.2', '2.3.3', '2.3.4', '2.3.5', '2.3.6', '2.3.7', '2.3.8', '2.4.0', '2.5.0', '2.6.0', '2.6.1', '2.7.0', '2.7.1', '2.7.2', '2.7.3', '2.7.4', '2.7.5', '2.8.0', '2.9.0', '3.0.0', '3.0.1'];
 const WALLET_KEY = 'wallet';
 const GACHA_STATS_KEY = 'gachaStats';
 const ACHIEVEMENTS_KEY = 'achievements';
@@ -60,6 +64,7 @@ const DATA_KEYS = [
   'questProgress',
   'explorationProgress',
   'collectionMilestones',
+  'globalMailboxState',
 ];
 
 /**
@@ -111,6 +116,7 @@ function buildDataPayload({
   questProgress,
   explorationProgress,
   collectionMilestones,
+  globalMailboxState,
 }) {
   const walletData = {
     stardust: wallet.stardust ?? 0,
@@ -155,6 +161,9 @@ function buildDataPayload({
     questProgress,
     explorationProgress,
     collectionMilestones,
+    // 備份含 readIds / claimedIds；不含遠端信件正文或 mailbox cache
+    // once per local profile：匯入後已領補償不可再領
+    globalMailboxState,
   };
 }
 
@@ -197,6 +206,8 @@ export async function exportBackup() {
     exportCollectionMilestoneState(),
   ]);
 
+  const globalMailboxState = await exportGlobalMailboxState();
+
   const data = buildDataPayload({
     tasks,
     wallet,
@@ -213,6 +224,7 @@ export async function exportBackup() {
     questProgress,
     explorationProgress,
     collectionMilestones,
+    globalMailboxState,
   });
 
   return {
@@ -485,6 +497,8 @@ export function normalizeBackupPayload(rawBackup) {
     questProgress: normalizeQuestProgress(data.questProgress),
     explorationProgress: normalizeExplorationProgress(data.explorationProgress),
     collectionMilestones: normalizeCollectionMilestoneState(data.collectionMilestones),
+    // 舊版備份缺少 mailbox state 時建立空的 readIds / claimedIds
+    globalMailboxState: normalizeGlobalMailboxState(data.globalMailboxState),
   };
 }
 
@@ -553,6 +567,7 @@ export function migrateImportedData(normalizedBackup) {
   ).questProgress;
   const explorationProgress = normalizeExplorationProgress(normalizedBackup.explorationProgress);
   const collectionMilestones = normalizeCollectionMilestoneState(normalizedBackup.collectionMilestones);
+  const globalMailboxState = normalizeGlobalMailboxState(normalizedBackup.globalMailboxState);
 
   return {
     ...normalizedBackup,
@@ -572,6 +587,7 @@ export function migrateImportedData(normalizedBackup) {
     questProgress,
     explorationProgress,
     collectionMilestones,
+    globalMailboxState,
   };
 }
 
@@ -662,6 +678,7 @@ export async function safeReplaceAllData(migratedData) {
     questProgress: migratedData.questProgress,
     explorationProgress: migratedData.explorationProgress,
     collectionMilestones: migratedData.collectionMilestones,
+    globalMailboxState: migratedData.globalMailboxState,
   });
 }
 

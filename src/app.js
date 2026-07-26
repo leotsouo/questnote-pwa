@@ -96,7 +96,7 @@ import {
   hasLowMaterials,
 } from './workshopService.js';
 
-import { initUI, renderAfterRefresh, applyReduceMotionClass } from './ui.js';
+import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox } from './ui.js';
 import { runAppHealthCheck } from './healthCheckService.js';
 import { getServiceWorkerRegisterUrl } from './version.js';
 import { preloadCompanionImage, preloadOwnedPetImages } from './imagePreloadService.js';
@@ -512,6 +512,8 @@ async function registerServiceWorker() {
 
         }
 
+        // 信箱前景檢查改由 UI 層 visibility listener + 節流處理
+
       }
 
     });
@@ -748,6 +750,12 @@ async function initApp() {
     }
 
 
+
+    // 信箱：主要初始化完成後非阻塞取得（不得阻塞啟動畫面）
+    // once per local profile 狀態會在背景同步至 badge
+    void syncGlobalMailbox({ force: true, silent: true }).catch((err) => {
+      console.warn('[QuestNote] 啟動信箱同步失敗（不影響 App）:', err);
+    });
 
     registerServiceWorker().catch((err) => {
 

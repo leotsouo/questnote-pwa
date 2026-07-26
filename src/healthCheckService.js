@@ -36,6 +36,20 @@ import {
   buildNextGoals,
   scoreGoal,
 } from './adventureHandbookService.js';
+import {
+  normalizeGlobalMailboxState,
+  normalizeMailboxPayload,
+  normalizeMailboxMessage,
+  normalizeMailboxAction,
+  validateMailboxReward,
+  compareAppVersions,
+  buildMailboxViewModel,
+  resolveMailboxMessageStatus,
+  MAILBOX_REWARD_LIMITS,
+  MAILBOX_ACTION_VIEWS,
+  MAILBOX_RUNTIME_CACHE,
+  __mailboxTestHelpers,
+} from './mailboxService.js';
 
 const DATA_FILES = [
   { path: './data/pets.json', label: 'pets.json' },
@@ -48,6 +62,7 @@ const DATA_FILES = [
   { path: './data/materials.json', label: 'materials.json' },
   { path: './data/craftables.json', label: 'craftables.json' },
   { path: './data/dailyWheelRewards.json', label: 'dailyWheelRewards.json' },
+  { path: './data/global-mailbox.json', label: 'global-mailbox.json' },
 ];
 
 const PROBE_KEY = '_healthCheckProbe';
@@ -2609,18 +2624,549 @@ async function checkAdventureHandbook() {
   if (!swText.includes('src/adventureHandbookService.js')) {
     throw new Error('service-worker 未 precache adventureHandbookService.js');
   }
-  if (!versionText.includes("APP_VERSION = '2.9.0'")) {
-    notes.push('version.js APP_VERSION 非 2.9.0');
+  if (!versionText.includes("APP_VERSION = '3.0.1'")) {
+    notes.push('version.js APP_VERSION 非 3.0.1');
   }
-  if (!versionText.includes('questnote-cache-v290-adventure-handbook')) {
-    notes.push('version.js CACHE_NAME 未更新為 v290');
+  if (!versionText.includes('questnote-cache-v301-mailbox-dev-tools')) {
+    notes.push('version.js CACHE_NAME 未更新為 v301');
   }
-  if (!swText.includes('questnote-cache-v290-adventure-handbook')) {
-    notes.push('service-worker CACHE_NAME 未更新為 v290');
+  if (!swText.includes('questnote-cache-v301-mailbox-dev-tools')) {
+    notes.push('service-worker CACHE_NAME 未更新為 v301');
   }
-  if (!backupText.includes("'2.9.0'")) {
-    notes.push('backupService 未加入 2.9.0 支援版本');
+  if (!backupText.includes("'3.0.1'")) {
+    notes.push('backupService 未加入 3.0.1 支援版本');
   }
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V3.0.0 全域信箱健康檢查
+ * 禁止副作用：不得領取補償、寫入 claimedIds、增加星塵／能量／inventory、標記全部已讀、清除 cache
+ */
+async function checkGlobalMailbox() {
+  const stats = [];
+  const notes = [];
+  const helpers = __mailboxTestHelpers();
+
+  const [mailboxRes, mailboxServiceRes, uiRes, swRes, versionRes, backupRes, cssRes, indexRes] = await Promise.all([
+    fetch('./data/global-mailbox.json'),
+    fetch('./src/mailboxService.js'),
+    fetch('./src/ui.js'),
+    fetch('./service-worker.js'),
+    fetch('./src/version.js'),
+    fetch('./src/backupService.js'),
+    fetch('./src/styles.css'),
+    fetch('./index.html'),
+  ]);
+
+  if (!mailboxRes.ok) throw new Error('無法讀取 global-mailbox.json');
+  if (!mailboxServiceRes.ok) throw new Error('無法讀取 mailboxService.js');
+  if (!uiRes.ok) throw new Error('無法讀取 ui.js');
+  if (!swRes.ok) throw new Error('無法讀取 service-worker.js');
+  if (!versionRes.ok) throw new Error('無法讀取 version.js');
+  if (!backupRes.ok) throw new Error('無法讀取 backupService.js');
+  if (!cssRes.ok) throw new Error('無法讀取 styles.css');
+  if (!indexRes.ok) throw new Error('無法讀取 index.html');
+
+  const rawMailbox = await mailboxRes.json();
+  const serviceText = await mailboxServiceRes.text();
+  const uiText = await uiRes.text();
+  const swText = await swRes.text();
+  const versionText = await versionRes.text();
+  const backupText = await backupRes.text();
+  const cssText = await cssRes.text();
+  const indexText = await indexRes.text();
+
+  // 1. Schema -------------------------------------------------------
+  if (rawMailbox.schemaVersion !== 1 && Number(rawMailbox.schemaVersion) !== 1) {
+    throw new Error('schemaVersion 不合法');
+  }
+  if (!Array.isArray(rawMailbox.messages)) {
+    throw new Error('messages 必須為陣列');
+  }
+  // 空信箱不得失敗
+  stats.push(`messages=${rawMailbox.messages.length}`);
+
+  const ids = new Set();
+  const allowedTypes = new Set(helpers.ALLOWED_TYPES);
+  const allowedPriorities = new Set(helpers.ALLOWED_PRIORITIES);
+  for (const msg of rawMailbox.messages) {
+    if (!msg?.id || typeof msg.id !== 'string') throw new Error('信件缺少 id');
+    if (ids.has(msg.id)) throw new Error(`重複 message id: ${msg.id}`);
+    ids.add(msg.id);
+    if (msg.type && !allowedTypes.has(msg.type)) {
+      notes.push(`未知 type（應可正規化）: ${msg.type}`);
+    }
+    if (msg.priority && !allowedPriorities.has(msg.priority)) {
+      notes.push(`未知 priority: ${msg.priority}`);
+    }
+    if (msg.publishedAt && Number.isNaN(Date.parse(msg.publishedAt))) {
+      throw new Error(`publishedAt 無法解析: ${msg.id}`);
+    }
+    if (msg.expiresAt != null && Number.isNaN(Date.parse(msg.expiresAt))) {
+      throw new Error(`expiresAt 無法解析: ${msg.id}`);
+    }
+    if (msg.type === 'compensation' && msg.reward) {
+      const validated = validateMailboxReward(msg.reward);
+      if (!validated.ok) {
+        notes.push(`補償 ${msg.id} reward 驗證失敗（正式環境會顯示資料錯誤）`);
+      }
+    }
+  }
+  const normalized = normalizeMailboxPayload(rawMailbox);
+  stats.push(`normalized=${normalized.messages.length}`);
+  stats.push('schema=ok');
+
+  // 2. XSS ----------------------------------------------------------
+  if (!uiText.includes('body.textContent = msg.body') && !uiText.includes('body.textContent = msg.body ||')) {
+    // 檢查 textContent 用法
+    if (!uiText.includes('.textContent = msg.body') && !uiText.includes('textContent = msg.body')) {
+      throw new Error('UI 可能未以 textContent 渲染遠端 body');
+    }
+  }
+  if (!uiText.includes('title.textContent = msg.title')) {
+    throw new Error('UI 可能未以 textContent 渲染遠端 title');
+  }
+  // 禁止明顯把遠端 body 塞進 innerHTML
+  if (/innerHTML\s*=\s*[^\n]*msg\.body/.test(uiText) || /innerHTML\s*=\s*[^\n]*message\.body/.test(uiText)) {
+    throw new Error('禁止 innerHTML 直接渲染遠端 body');
+  }
+  if (/innerHTML\s*=\s*[^\n]*msg\.title/.test(uiText)) {
+    throw new Error('禁止 innerHTML 直接渲染遠端 title');
+  }
+  // 白名單已抽至 mailboxSchema.js；以 runtime 常數驗證（勿只掃 mailboxService 原文）
+  const requiredActionViews = [
+    'tasks', 'gacha', 'collection', 'expedition',
+    'workshop', 'achievements', 'settings', 'handbook',
+  ];
+  for (const view of requiredActionViews) {
+    if (!MAILBOX_ACTION_VIEWS.includes(view)) {
+      throw new Error(`Action View 白名單缺少 ${view}`);
+    }
+  }
+  const badAction = normalizeMailboxAction({ type: 'view', view: 'evil', label: 'x' });
+  if (badAction) throw new Error('非法 view action 不應通過');
+  const jsAction = normalizeMailboxAction({ type: 'javascript', code: 'alert(1)' });
+  if (jsAction) throw new Error('javascript action 不應通過');
+  stats.push('xss=ok');
+
+  // 3. Fetch 策略 ---------------------------------------------------
+  const precacheBlock = swText.match(/const PRECACHE_URLS\s*=\s*\[([\s\S]*?)\];/);
+  if (precacheBlock && /global-mailbox\.json/.test(precacheBlock[1])) {
+    throw new Error('global-mailbox.json 不應在 App Shell PRECACHE_URLS');
+  }
+  if (!swText.includes('MAILBOX_RUNTIME_CACHE') && !swText.includes('questnote-mailbox-runtime-v1')) {
+    throw new Error('缺少 MAILBOX_RUNTIME_CACHE');
+  }
+  if (!swText.includes('networkFirstMailbox') && !swText.includes('isGlobalMailboxRequest')) {
+    throw new Error('缺少 global-mailbox Network First 特殊路由');
+  }
+  if (!swText.includes('MAILBOX_FETCH_TIMEOUT_MS') && !swText.includes('7000')) {
+    notes.push('mailbox timeout 可能未設定');
+  }
+  if (!swText.includes('getMailboxCacheRequest') && !swText.includes("resolveUrl('data/global-mailbox.json')")) {
+    throw new Error('缺少固定 cache key 正規化（避免無限 query cache）');
+  }
+  if (!swText.includes('PET_IMAGE_CACHE') || !swText.includes('MAILBOX_RUNTIME_CACHE')) {
+    throw new Error('activate 清理應保留 PET_IMAGE_CACHE 與 MAILBOX_RUNTIME_CACHE');
+  }
+  if (!versionText.includes('questnote-mailbox-runtime-v1') && !versionText.includes('MAILBOX_RUNTIME_CACHE')) {
+    notes.push('version.js 可匯出 MAILBOX_RUNTIME_CACHE');
+  }
+  stats.push('fetch=ok');
+
+  // 4. State --------------------------------------------------------
+  if (!serviceText.includes('normalizeGlobalMailboxState')) {
+    throw new Error('缺少 normalizeGlobalMailboxState');
+  }
+  if (!serviceText.includes('readIds') || !serviceText.includes('claimedIds')) {
+    throw new Error('readIds 與 claimedIds 必須分開');
+  }
+  const broken = normalizeGlobalMailboxState({
+    readIds: ['a', 'a', 1, null, 'b'],
+    claimedIds: 'nope',
+  });
+  if (broken.readIds.length !== 2 || broken.readIds.includes('a') === false) {
+    throw new Error('normalizeGlobalMailboxState 未正確過濾 readIds');
+  }
+  if (!Array.isArray(broken.claimedIds) || broken.claimedIds.length !== 0) {
+    throw new Error('normalizeGlobalMailboxState 未正確處理無效 claimedIds');
+  }
+  const empty = normalizeGlobalMailboxState(null);
+  if (!Array.isArray(empty.readIds) || !Array.isArray(empty.claimedIds)) {
+    throw new Error('空狀態正規化失敗');
+  }
+  stats.push('state=ok');
+
+  // 5. Claim 安全（純函式，無副作用） --------------------------------
+  if (!serviceText.includes('mailboxClaimInProgress')) {
+    throw new Error('缺少 claim guard');
+  }
+  if (!serviceText.includes('getGlobalMailboxState') || !serviceText.includes('claimedIds.includes')) {
+    throw new Error('領取前應重新讀取 persisted claimedIds');
+  }
+  if (!serviceText.includes('MAILBOX_REWARD_LIMITS') && !serviceText.includes('stardust: 5000')) {
+    throw new Error('缺少 reward 安全上限');
+  }
+  if (MAILBOX_REWARD_LIMITS.stardust !== 5000 || MAILBOX_REWARD_LIMITS.adventureEnergy !== 100) {
+    throw new Error('reward 安全上限數值不符');
+  }
+
+  const badRewards = [
+    { stardust: -1 },
+    { stardust: 1.5 },
+    { stardust: NaN },
+    { stardust: '100' },
+    { stardust: 5001 },
+    { adventureEnergy: 101 },
+    { materials: { unknown_mat: 1 } },
+    { items: { unknown_item: 1 } },
+    { pets: 1 },
+    { titles: ['x'] },
+  ];
+  for (const reward of badRewards) {
+    const r = validateMailboxReward(reward);
+    if (r.ok) throw new Error(`異常 reward 不應通過: ${JSON.stringify(reward)}`);
+  }
+
+  const good = validateMailboxReward({
+    stardust: 100,
+    adventureEnergy: 3,
+    materials: { forest_leaf: 2 },
+    items: { item_small_spirit_food: 1 },
+  });
+  if (!good.ok) throw new Error('合法 reward 驗證失敗');
+
+  // 版本比較不可用字串比較
+  if (compareAppVersions('3.0.10', '3.0.2') <= 0) {
+    throw new Error('semantic version 比較錯誤（3.0.10 應 > 3.0.2）');
+  }
+  if (compareAppVersions('3.0.0', '2.9.9') <= 0) {
+    throw new Error('semantic version 比較錯誤（3.0.0 應 > 2.9.9）');
+  }
+
+  const futureMsg = normalizeMailboxMessage({
+    id: 'hc-future',
+    type: 'announcement',
+    title: '未來',
+    body: 'x',
+    publishedAt: '2099-01-01T00:00:00+08:00',
+    enabled: true,
+  }, {}, Date.parse('2026-07-26T12:00:00+08:00'));
+  const futureStatus = resolveMailboxMessageStatus(
+    futureMsg,
+    normalizeGlobalMailboxState(null),
+    '3.0.0',
+    Date.parse('2026-07-26T12:00:00+08:00'),
+  );
+  if (futureStatus.visible) throw new Error('未來信件不應顯示');
+
+  const expiredMsg = normalizeMailboxMessage({
+    id: 'hc-expired',
+    type: 'compensation',
+    title: '過期',
+    body: 'x',
+    publishedAt: '2026-01-01T00:00:00+08:00',
+    expiresAt: '2026-01-02T00:00:00+08:00',
+    enabled: true,
+    reward: { stardust: 1 },
+  }, {}, Date.parse('2026-07-26T12:00:00+08:00'));
+  const expiredStatus = resolveMailboxMessageStatus(
+    expiredMsg,
+    normalizeGlobalMailboxState(null),
+    '3.0.0',
+    Date.parse('2026-07-26T12:00:00+08:00'),
+  );
+  if (expiredStatus.visible || expiredStatus.claimable) {
+    throw new Error('過期信件不應顯示／可領');
+  }
+
+  const claimedState = normalizeGlobalMailboxState({ claimedIds: ['hc-claimed'], readIds: [] });
+  const claimableMsg = normalizeMailboxMessage({
+    id: 'hc-claimed',
+    type: 'compensation',
+    title: '已領',
+    body: 'x',
+    publishedAt: '2026-01-01T00:00:00+08:00',
+    expiresAt: null,
+    enabled: true,
+    minAppVersion: '3.0.0',
+    reward: { stardust: 10 },
+  }, {}, Date.parse('2026-07-26T12:00:00+08:00'));
+  const claimedStatus = resolveMailboxMessageStatus(
+    claimableMsg,
+    claimedState,
+    '3.0.0',
+    Date.parse('2026-07-26T12:00:00+08:00'),
+  );
+  if (claimedStatus.claimable) throw new Error('已領補償不應可再領');
+
+  const lowVer = resolveMailboxMessageStatus(
+    claimableMsg,
+    normalizeGlobalMailboxState(null),
+    '2.9.0',
+    Date.parse('2026-07-26T12:00:00+08:00'),
+  );
+  if (lowVer.visible || lowVer.claimable) throw new Error('版本不符信件不應顯示／可領');
+
+  // 本檢查不得呼叫 claimMailboxReward（靜態確認函式內無領取副作用）
+  stats.push('claim=ok');
+
+  // 6. UI -----------------------------------------------------------
+  if (!indexText.includes('btn-global-mailbox') && !indexText.includes('id="btn-global-mailbox"')) {
+    throw new Error('首頁缺少信箱入口');
+  }
+  if (!indexText.includes('mailbox-entry-badge')) {
+    throw new Error('缺少未讀 badge 容器');
+  }
+  if (!uiText.includes('global-mailbox-modal') || !uiText.includes('ensureGlobalMailboxModal')) {
+    throw new Error('缺少信箱 Modal');
+  }
+  if (!uiText.includes('global-mailbox-modal') || !/isAnyOverlayOpen[\s\S]*global-mailbox/.test(uiText)) {
+    throw new Error('Overlay guard 未包含 mailbox');
+  }
+  if (!cssText.includes('var(--safe-top)') || !cssText.includes('global-mailbox-modal__sheet')) {
+    throw new Error('信箱 Modal 缺少 Safe Area');
+  }
+  if (!cssText.includes('body[data-theme="sweet"] .global-mailbox-modal__sheet')) {
+    throw new Error('缺少 Sweet 信箱配色');
+  }
+  if (!cssText.includes('body[data-theme="default"] .global-mailbox-modal__sheet')) {
+    throw new Error('缺少 Default 信箱配色');
+  }
+  if (!cssText.includes('prefers-reduced-motion') || !cssText.includes('mailbox-entry-btn__gift--pulse')) {
+    notes.push('Reduce Motion 樣式請確認');
+  }
+  stats.push('ui=ok');
+
+  // 7. 版本／備份／SW -----------------------------------------------
+  if (!versionText.includes("APP_VERSION = '3.0.1'")) {
+    throw new Error('APP_VERSION 應為 3.0.1');
+  }
+  if (!versionText.includes('questnote-cache-v301-mailbox-dev-tools')) {
+    throw new Error('CACHE_NAME 應為 v301-mailbox-dev-tools');
+  }
+  if (!swText.includes('src/mailboxService.js')) {
+    throw new Error('service-worker 未 precache mailboxService.js');
+  }
+  if (!swText.includes('src/mailboxSchema.js')) {
+    throw new Error('service-worker 未 precache mailboxSchema.js');
+  }
+  if (!swText.includes('questnote-mailbox-runtime-v1') && MAILBOX_RUNTIME_CACHE !== 'questnote-mailbox-runtime-v1') {
+    throw new Error('MAILBOX_RUNTIME_CACHE 名稱不符');
+  }
+  if (!backupText.includes('globalMailboxState') || !backupText.includes("'3.0.1'")) {
+    throw new Error('backupService 未支援 globalMailboxState / 3.0.1');
+  }
+  if (!backupText.includes('normalizeGlobalMailboxState')) {
+    throw new Error('舊版備份應可正規化空 mailbox state');
+  }
+  stats.push('version=ok');
+
+  // view model 分組
+  const vm = buildMailboxViewModel(
+    {
+      messages: [
+        normalizeMailboxMessage({
+          id: 'vm-claim',
+          type: 'compensation',
+          title: '可領',
+          body: 'a',
+          publishedAt: '2026-01-01T00:00:00+08:00',
+          enabled: true,
+          reward: { stardust: 1 },
+        }, {}, Date.parse('2026-07-26T12:00:00+08:00')),
+      ],
+    },
+    normalizeGlobalMailboxState(null),
+    { appVersion: '3.0.0', now: Date.parse('2026-07-26T12:00:00+08:00'), filter: 'all' },
+  );
+  if (vm.claimableCount !== 1) throw new Error('view model claimable 計算錯誤');
+  stats.push('viewModel=ok');
+  stats.push('no-side-effects=ok');
+
+  const summary = stats.join(' | ');
+  if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
+  return summary;
+}
+
+/**
+ * V3.0.1 信箱開發工具／作者發布工具隔離檢查
+ * 禁止副作用：不得啟動 publisher、寫入 JSON、執行 Git、發放獎勵
+ */
+async function checkMailboxDevTools() {
+  const stats = [];
+  const notes = [];
+
+  const [devRes, uiRes, indexRes, swRes, schemaRes, serviceRes, serverRes, pubHtmlRes, pubJsRes, backupRes] = await Promise.all([
+    fetch('./src/devService.js'),
+    fetch('./src/ui.js'),
+    fetch('./index.html'),
+    fetch('./service-worker.js'),
+    fetch('./src/mailboxSchema.js'),
+    fetch('./src/mailboxService.js'),
+    fetch('./scripts/mailbox-publisher-server.mjs'),
+    fetch('./scripts/mailbox-publisher-ui.html'),
+    fetch('./scripts/mailbox-publisher-ui.js'),
+    fetch('./src/backupService.js'),
+  ]);
+
+  if (!devRes.ok) throw new Error('無法讀取 devService.js');
+  if (!uiRes.ok) throw new Error('無法讀取 ui.js');
+  if (!indexRes.ok) throw new Error('無法讀取 index.html');
+  if (!swRes.ok) throw new Error('無法讀取 service-worker.js');
+  if (!schemaRes.ok) throw new Error('無法讀取 mailboxSchema.js');
+  if (!serviceRes.ok) throw new Error('無法讀取 mailboxService.js');
+  if (!serverRes.ok) throw new Error('無法讀取 mailbox-publisher-server.mjs');
+  if (!pubHtmlRes.ok) throw new Error('無法讀取 mailbox-publisher-ui.html');
+  if (!pubJsRes.ok) throw new Error('無法讀取 mailbox-publisher-ui.js');
+
+  const devText = await devRes.text();
+  const uiText = await uiRes.text();
+  const indexText = await indexRes.text();
+  const swText = await swRes.text();
+  const schemaText = await schemaRes.text();
+  const serviceText = await serviceRes.text();
+  const serverText = await serverRes.text();
+  const pubHtml = await pubHtmlRes.text();
+  const pubJs = await pubJsRes.text();
+  const backupText = await backupRes.text();
+
+  // 1. 本機開發模式 -----------------------------------------------
+  if (!devText.includes('export function isAuthorLocalDevMode')) {
+    throw new Error('缺少 isAuthorLocalDevMode');
+  }
+  if (!devText.includes("hostname === 'localhost'")
+    || !devText.includes("hostname === '127.0.0.1'")
+    || !devText.includes("hostname === '[::1]'")) {
+    throw new Error('isAuthorLocalDevMode 未限制 localhost / 127.0.0.1 / ::1');
+  }
+  if (!uiText.includes('isAuthorLocalDevMode()')) {
+    throw new Error('信箱測試按鈕未使用 isAuthorLocalDevMode');
+  }
+  if (!uiText.includes('btn-dev-mailbox-announcement')
+    || !uiText.includes('btn-dev-mailbox-compensation')
+    || !uiText.includes('btn-dev-mailbox-clear')) {
+    throw new Error('缺少本機信箱測試按鈕綁定');
+  }
+  if (!indexText.includes('btn-dev-mailbox-announcement')) {
+    throw new Error('index.html 缺少信箱測試按鈕');
+  }
+  // 不得只用 debug 顯示信箱測試
+  if (/isDebugMode\(\)[\s\S]{0,80}btn-dev-mailbox/.test(uiText)) {
+    notes.push('請確認信箱測試未僅依 isDebugMode 顯示');
+  }
+  stats.push('local-mode=ok');
+
+  // 2. 測試信件 ---------------------------------------------------
+  if (!serviceText.includes('DEV_MAILBOX_SESSION_KEY')
+    || !serviceText.includes('questnote_dev_mailbox_messages')) {
+    throw new Error('缺少本機測試信件 sessionStorage key');
+  }
+  if (!serviceText.includes("source: 'local-dev'") && !serviceText.includes("source = 'local-dev'")) {
+    throw new Error('缺少 local-dev source');
+  }
+  if (!serviceText.includes('mergeRemoteAndLocalDevMessages')) {
+    throw new Error('缺少 remote/local-dev 合併');
+  }
+  if (!serviceText.includes('clearLocalDevMailboxMessages')) {
+    throw new Error('缺少清除測試信件');
+  }
+  if (/clearLocalDevMailboxMessages[\s\S]{0,800}claimedIds\s*=/.test(serviceText)) {
+    throw new Error('清除測試信件不應清除 claimedIds');
+  }
+  if (backupText.includes('questnote_dev_mailbox_messages')
+    || backupText.includes('DEV_MAILBOX_SESSION_KEY')) {
+    throw new Error('測試信件不應加入備份');
+  }
+  if (serviceText.includes('putMailboxRuntimeCache')
+    && /injectLocalDev[\s\S]{0,400}putMailboxRuntimeCache/.test(serviceText)) {
+    throw new Error('測試信件不應寫入 runtime cache');
+  }
+  stats.push('local-messages=ok');
+
+  // 3. 測試補償 ---------------------------------------------------
+  if (!serviceText.includes('DEV_LOCAL_COMPENSATION_ID')
+    || !serviceText.includes('dev-local-compensation-v301')) {
+    throw new Error('缺少固定測試補償 ID');
+  }
+  if (!serviceText.includes('stardust: 1')) {
+    throw new Error('測試補償應固定星塵 ×1');
+  }
+  if (!serviceText.includes('claimMailboxReward') || !serviceText.includes('mailboxClaimInProgress')) {
+    throw new Error('應使用正式 claim 流程／guard');
+  }
+  if (!uiText.includes('injectLocalDevCompensation') || !uiText.includes('claimMailboxReward')) {
+    throw new Error('UI 應走正式 claimMailboxReward');
+  }
+  stats.push('local-compensation=ok');
+
+  // 4. 作者工具隔離 -----------------------------------------------
+  if (indexText.includes('mailbox-publisher') || indexText.includes('Mailbox Publisher')) {
+    throw new Error('正式 index.html 不應有 publisher 入口');
+  }
+  if (uiText.includes('mailbox-publisher-server') || uiText.includes('/api/git-publish')) {
+    throw new Error('正式 ui.js 不應匯入／呼叫 publisher');
+  }
+  if (/PRECACHE_URLS[\s\S]*mailbox-publisher/.test(swText)) {
+    throw new Error('Service Worker 不應 precache publisher');
+  }
+  const precacheUrlsBlock = swText.match(/const PRECACHE_URLS\s*=\s*\[([\s\S]*?)\];/);
+  if (precacheUrlsBlock && /publisher/i.test(precacheUrlsBlock[1])) {
+    throw new Error('PRECACHE_URLS 不得包含 publisher');
+  }
+  stats.push('publisher-isolation=ok');
+
+  // 5. 發布安全（靜態） -------------------------------------------
+  if (/ghp_[A-Za-z0-9]+|github_pat_[A-Za-z0-9_]+|GITHUB_TOKEN\s*=\s*['"][^'"]+['"]/.test(serverText + pubJs + pubHtml)) {
+    throw new Error('偵測到疑似 hardcoded Token');
+  }
+  if (/localStorage\.(setItem\()?['"]?(github|token|pat)/i.test(pubJs + serverText)) {
+    throw new Error('不得將 Token 存入 localStorage');
+  }
+  if (!serverText.includes("HOST = '127.0.0.1'") && !serverText.includes('127.0.0.1')) {
+    throw new Error('Publisher server 應只監聽 127.0.0.1');
+  }
+  if (serverText.includes('0.0.0.0')) {
+    throw new Error('Publisher server 不得監聽 0.0.0.0');
+  }
+  if (!serverText.includes("path.join('data', 'global-mailbox.json')")
+    && !serverText.includes('data/global-mailbox.json')) {
+    throw new Error('Publisher 應限制寫入 global-mailbox.json');
+  }
+  if (serverText.includes('git add .') || serverText.includes("git', ['add', '-A']") || serverText.includes("['add', '.']")) {
+    throw new Error('禁止 git add . / -A');
+  }
+  if (serverText.includes('--force') || serverText.includes('force-with-lease')) {
+    throw new Error('禁止 force push');
+  }
+  if (!serverText.includes("['add', '--', MAILBOX_REL]") && !serverText.includes('git add --')) {
+    notes.push('請確認 git stage 僅限 mailbox JSON');
+  }
+  stats.push('git-safety=ok');
+
+  // 6. Schema 共用 ------------------------------------------------
+  if (!schemaText.includes('export function validateMailboxDocument')
+    || !schemaText.includes('export function validateMailboxReward')
+    || !schemaText.includes('MAILBOX_REWARD_LIMITS')
+    || !schemaText.includes('MAILBOX_ACTION_VIEW_ALLOWLIST')
+    || !schemaText.includes('MAILBOX_MESSAGE_TYPES')) {
+    throw new Error('mailboxSchema.js 缺少必要共用匯出');
+  }
+  if (!serviceText.includes("from './mailboxSchema.js'")) {
+    throw new Error('mailboxService 未共用 mailboxSchema');
+  }
+  if (!serverText.includes("from '../src/mailboxSchema.js'")) {
+    throw new Error('Publisher server 未共用 mailboxSchema');
+  }
+  if (!schemaText.includes('stardust: 5000') || !schemaText.includes('adventureEnergy: 100')) {
+    throw new Error('Schema reward 上限不一致');
+  }
+  stats.push('schema-shared=ok');
+  stats.push('no-side-effects=ok');
 
   const summary = stats.join(' | ');
   if (notes.length) return `ok with notes: ${notes.join('; ')} | ${summary}`;
@@ -2680,6 +3226,8 @@ export async function runAppHealthCheck() {
   await runCheck('companion wheel hotfix', checkCompanionWheelHotfix);
   await runCheck('collection milestones', checkCollectionMilestones);
   await runCheck('adventure handbook', checkAdventureHandbook);
+  await runCheck('global mailbox', checkGlobalMailbox);
+  await runCheck('mailbox dev tools', checkMailboxDevTools);
   await runCheck('service worker', checkServiceWorker);
 
   console.log('QuestNote Health Check:');
