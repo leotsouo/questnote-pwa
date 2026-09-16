@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 import {
   getPetImageSrc,
   preloadImage,
@@ -82,4 +83,61 @@ test('collection redraw is deferred once and remains dirty if rendering throws',
   assert.equal(rendered, 1);
   assert.equal(gate.flush(() => { rendered += 1; }), false);
   assert.equal(rendered, 1);
+});
+
+test('preview Pages uses a separate IndexedDB from the live Pages app', async () => {
+  const previousLocation = globalThis.location;
+  const previousIndexedDB = globalThis.indexedDB;
+  try {
+    for (const [path, expected] of [
+      ['/questnote-pwa-preview/index.html', 'QuestNotePreviewDB'],
+      ['/questnote-pwa/index.html', 'QuestNoteDB'],
+    ]) {
+      globalThis.location = { hostname: 'leotsouo.github.io', pathname: path };
+      let openedName;
+      globalThis.indexedDB = {
+        open(name) {
+          openedName = name;
+          const request = { result: {} };
+          queueMicrotask(() => request.onsuccess?.());
+          return request;
+        },
+      };
+      const { openDB } = await import(`../src/db.js?path=${encodeURIComponent(path)}`);
+      await openDB();
+      assert.equal(openedName, expected);
+    }
+  } finally {
+    if (previousLocation === undefined) delete globalThis.location;
+    else globalThis.location = previousLocation;
+    if (previousIndexedDB === undefined) delete globalThis.indexedDB;
+    else globalThis.indexedDB = previousIndexedDB;
+  }
+});
+
+test('preview service worker leaves live Pages caches intact', async () => {
+  const workerSource = readFileSync(new URL('../service-worker.js', import.meta.url), 'utf8');
+  const handlers = {};
+  const deleted = [];
+  const self = {
+    addEventListener(type, handler) { handlers[type] = handler; },
+    clients: { claim: async () => {} },
+  };
+  runInNewContext(workerSource, {
+    self,
+    caches: {
+      keys: async () => [
+        'questnote-cache-v344-pool-intro-polish',
+        'questnote-preview-cache-v344-old',
+        'questnote-preview-cache-v344-summon-perf-candidate',
+        'questnote-preview-pet-images-v235',
+        'questnote-preview-mailbox-runtime-v1',
+      ],
+      delete: async (key) => { deleted.push(key); },
+    },
+  });
+  let activation;
+  handlers.activate({ waitUntil(promise) { activation = promise; } });
+  await activation;
+  assert.deepEqual(deleted, ['questnote-preview-cache-v344-old']);
 });
