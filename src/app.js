@@ -767,6 +767,13 @@ async function initApp() {
 
     await refreshState({ renderMode: 'full' });
 
+    if (location.hostname === 'leotsouo.github.io'
+      && location.pathname.startsWith('/questnote-pwa-preview/')
+      && new URLSearchParams(location.search).get('perf') === '1') {
+      const { startPerfDiagnostics } = await import('./perfDiagnostics.js');
+      startPerfDiagnostics(appState, refreshState);
+    }
+
 
 
     const startupAchievements = await checkAndUnlockAchievements(appState.allPets);

@@ -57,6 +57,7 @@ const PRECACHE_URLS = [
   'src/mailboxSchema.js',
   'src/petDataSchema.js',
   'src/imagePreloadService.js',
+  'src/perfDiagnostics.js',
   'data/dailyWheelRewards.json',
   'data/pets.json',
   'data/pools.json',
