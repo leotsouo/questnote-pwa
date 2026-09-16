@@ -64,6 +64,35 @@ test('first reveal image starts before ten-pull card thumbnails', async () => {
   assert.ok(requested.indexOf('rare-card.webp') > 0);
 });
 
+test('slow stage image does not hold up rare ten-pull thumbnail requests', async () => {
+  const previousImage = globalThis.Image;
+  requested.length = 0;
+  let releaseStage;
+  globalThis.Image = class {
+    set src(value) {
+      requested.push(value);
+      if (value === 'slow-stage.webp') releaseStage = () => this.onload?.();
+      else queueMicrotask(() => this.onload?.());
+    }
+  };
+  try {
+    const pending = preloadGachaResultImages([
+      { pet: { image: 'common.png', imageVariants: { card: 'common-card.webp' }, rarity: 'N' } },
+      { pet: { image: 'rare.png', imageVariants: { card: 'rare-card-slow.webp', stage: 'slow-stage.webp' }, rarity: 'UR' } },
+    ]);
+    await Promise.resolve();
+    assert.deepEqual(requested.slice(0, 3), [
+      'slow-stage.webp',
+      'rare-card-slow.webp',
+      'common-card.webp',
+    ]);
+    releaseStage();
+    await pending;
+  } finally {
+    globalThis.Image = previousImage;
+  }
+});
+
 test('a failed sized asset retries the original PNG', async () => {
   requested.length = 0;
   const result = await preloadPetImage({ image: 'fallback-original.png', imageVariants: { card: 'broken-card.webp' } }, 'card');

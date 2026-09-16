@@ -116,9 +116,15 @@ export function preloadGachaResultImages(results) {
   if (!firstReveal) return Promise.resolve([]);
   // The first on-stage image gets the network slot before any ten-pull thumbnails.
   const stage = preloadPetImage(firstReveal, 'stage');
+  // Do not block the summary thumbnails on a slow stage request. The browser can
+  // fetch the small rare-card assets while the reveal animation is playing.
+  const rarePets = pets.filter((pet) => pet.rarity === 'SSR' || pet.rarity === 'UR');
+  const otherPets = pets.filter((pet) => pet.rarity !== 'SSR' && pet.rarity !== 'UR');
+  const cardSrcs = [...rarePets, ...otherPets]
+    .map((pet) => getPetImageSrc(pet, 'card'))
+    .filter(Boolean);
+  void preloadImages(cardSrcs, 4);
   stage.finally(() => {
-    const cardSrcs = pets.map((pet) => getPetImageSrc(pet, 'card')).filter(Boolean);
-    void preloadImages(cardSrcs, 4);
     for (const pet of pets) {
       if (pet !== firstReveal && (pet.rarity === 'SSR' || pet.rarity === 'UR')) {
         void preloadPetImage(pet, 'stage');
