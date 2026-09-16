@@ -281,6 +281,7 @@ const gachaSessionUi = {
 
 /** @type {null|((value?: unknown) => void)} */
 let gachaResultCloseResolver = null;
+let queuedGachaResultPull = null;
 
 function resolveGachaResultWait() {
   if (typeof gachaResultCloseResolver === 'function') {
@@ -288,6 +289,13 @@ function resolveGachaResultWait() {
     gachaResultCloseResolver = null;
     resolve();
   }
+}
+
+function runQueuedGachaResultPull() {
+  const nextPull = queuedGachaResultPull;
+  queuedGachaResultPull = null;
+  if (nextPull === 'single') void handlePull();
+  if (nextPull === 'ten') void handleTenPull();
 }
 
 function waitNextFrame() {
@@ -5285,7 +5293,8 @@ async function handlePull() {
     if (btn) delete btn.dataset.pulling;
     if (poolSelect) poolSelect.disabled = false;
     renderGachaView();
-    btn?.focus?.();
+    if (queuedGachaResultPull) runQueuedGachaResultPull();
+    else btn?.focus?.();
   }
 }
 
@@ -5364,7 +5373,8 @@ async function handleTenPull() {
     if (btn) delete btn.dataset.pulling;
     if (poolSelect) poolSelect.disabled = false;
     renderGachaView();
-    btn?.focus?.();
+    if (queuedGachaResultPull) runQueuedGachaResultPull();
+    else btn?.focus?.();
   }
 }
 
@@ -5648,6 +5658,55 @@ function renderDefaultTenPullResult(result) {
   bindGachaResultButtons('ten-pull-close');
 }
 
+function requestGachaResultPull(mode) {
+  if (queuedGachaResultPull) return;
+  queuedGachaResultPull = mode;
+  closeModal();
+  if (!gachaPullInProgress) runQueuedGachaResultPull();
+}
+
+function showTenPullConfirmationFromResult(trigger) {
+  const { canTen, stardust } = getGachaAffordability();
+  if (!canTen) {
+    showToast('10 連抽需要 1000 星塵', 'warning');
+    return;
+  }
+
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  if (body.querySelector('#ten-pull-confirm-ok')) return;
+  const resultContent = document.createDocumentFragment();
+  while (body.firstChild) resultContent.appendChild(body.firstChild);
+  const poolName = getSelectedGachaPool()?.name || '目前卡池';
+  body.innerHTML = `
+    <div class="confirm-modal" role="alertdialog" aria-labelledby="ten-pull-confirm-title" aria-describedby="ten-pull-confirm-text">
+      <div class="confirm-modal__icon">❓</div>
+      <h2 class="modal-title" id="ten-pull-confirm-title">再次召喚 10 次？</h2>
+      <p class="confirm-modal__text" id="ten-pull-confirm-text">確定消耗 ${GACHA_TEN_COST} 星塵，在「${escapeHtml(poolName)}」召喚 10 次嗎？目前有 ${stardust} 星塵。</p>
+      <div class="confirm-modal__actions">
+        <button type="button" class="btn btn--ghost" id="ten-pull-confirm-cancel">取消</button>
+        <button type="button" class="btn btn--primary" id="ten-pull-confirm-ok">確認召喚</button>
+      </div>
+    </div>
+  `;
+
+  const restoreResult = () => {
+    body.replaceChildren(resultContent);
+    trigger.focus();
+  };
+  document.getElementById('ten-pull-confirm-cancel')?.addEventListener('click', restoreResult);
+  document.getElementById('ten-pull-confirm-ok')?.addEventListener('click', (event) => {
+    event.currentTarget.disabled = true;
+    if (!getGachaAffordability().canTen) {
+      restoreResult();
+      showToast('10 連抽需要 1000 星塵', 'warning');
+      return;
+    }
+    requestGachaResultPull('ten');
+  });
+  document.getElementById('ten-pull-confirm-cancel')?.focus();
+}
+
 function bindGachaResultButtons(closeId = 'pull-close', options = {}) {
   const pendingAwakening = !!options.pendingAwakening;
 
@@ -5665,22 +5724,20 @@ function bindGachaResultButtons(closeId = 'pull-close', options = {}) {
     finish();
   });
 
-  document.querySelector('[data-action="result-single-pull"]')?.addEventListener('click', async () => {
+  document.querySelector('[data-action="result-single-pull"]')?.addEventListener('click', () => {
     if (pendingAwakening || gachaSessionUi.pendingAwakening) {
       finish();
       return;
     }
-    closeModal();
-    await handlePull();
+    requestGachaResultPull('single');
   });
 
-  document.querySelector('[data-action="result-ten-pull"]')?.addEventListener('click', async () => {
+  document.querySelector('[data-action="result-ten-pull"]')?.addEventListener('click', (event) => {
     if (pendingAwakening || gachaSessionUi.pendingAwakening) {
       finish();
       return;
     }
-    closeModal();
-    await handleTenPull();
+    showTenPullConfirmationFromResult(event.currentTarget);
   });
 }
 
