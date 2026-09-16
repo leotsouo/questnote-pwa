@@ -24,18 +24,20 @@ export function startPerfDiagnostics(state, refreshState) {
     cancelAnimationFrame(frameId);
     overlayObserver?.disconnect();
     const end = performance.now();
-    const phases = run.phases.map((phase, i) => {
-      const next = run.phases[i + 1]?.at ?? end;
+    const ready = run.ready ?? end;
+    const activePhases = run.phases.filter((phase) => phase.at < ready);
+    const phases = activePhases.map((phase, i) => {
+      const next = activePhases[i + 1]?.at ?? ready;
       return `${phase.name}: ${Math.round(next - phase.at)} ms`;
     });
-    const report = `${run.label}\n點擊→演出: ${run.appear === null ? '未出現' : `${Math.round(run.appear - run.start)} ms`}\n演出總長: ${run.appear === null ? '—' : `${Math.round(end - run.appear)} ms`}\n>50 ms 影格: ${run.longFrames.length}（最長 ${Math.round(Math.max(0, ...run.longFrames))} ms）\n${phases.join('\n')}`;
+    const report = `${run.label}\n點擊→演出: ${run.appear === null ? '未出現' : `${Math.round(run.appear - run.start)} ms`}\n演出至可關閉: ${run.appear === null ? '—' : `${Math.round(Math.max(0, ready - run.appear))} ms`}\n>50 ms 影格: ${run.longFrames.length}（最長 ${Math.round(Math.max(0, ...run.longFrames))} ms）\n${phases.join('\n')}\n等待操作: ${Math.round(end - ready)} ms`;
     output.textContent = report;
     window.questnotePerfLastResult = { ...run, end, report };
     run = null;
   };
 
   const watchFrames = (now) => {
-    if (!run) return;
+    if (!run || run.ready !== null) return;
     if (run.previousFrame !== null) {
       const gap = now - run.previousFrame;
       if (gap > 50) run.longFrames.push(gap);
@@ -44,8 +46,18 @@ export function startPerfDiagnostics(state, refreshState) {
     frameId = requestAnimationFrame(watchFrames);
   };
 
+  const markReady = () => {
+    if (!run || run.ready !== null) return;
+    run.ready = performance.now();
+    cancelAnimationFrame(frameId);
+  };
+
   const markOverlay = (overlay) => {
     if (!run || run.overlay === overlay) return;
+    if (run.overlay?.isConnected) {
+      run.phases.push({ name: overlay.className, at: performance.now() });
+      return;
+    }
     run.overlay = overlay;
     run.phases.push({ name: overlay.className, at: performance.now() });
     requestAnimationFrame((now) => {
@@ -60,8 +72,12 @@ export function startPerfDiagnostics(state, refreshState) {
       if (!overlay.isConnected || (overlay.id === 'modal-overlay' && !overlay.classList.contains('open'))) { finish(); return; }
       const phase = overlay.dataset.state || overlay.dataset.phase || overlay.className;
       if (phase !== run.phases.at(-1)?.name) run.phases.push({ name: phase, at: performance.now() });
+      if (overlay.classList.contains('is-ready') || overlay.dataset.state === 'summary') markReady();
     });
     overlayObserver.observe(overlay, { attributes: true, attributeFilter: ['class', 'data-state', 'data-phase'] });
+    if (overlay.id === 'modal-overlay') setTimeout(() => {
+      if (run?.overlay === overlay) markReady();
+    }, 800);
   };
 
   const bodyObserver = new MutationObserver((records) => {
@@ -87,7 +103,7 @@ export function startPerfDiagnostics(state, refreshState) {
 
   const begin = (label) => {
     finish();
-    run = { label, start: performance.now(), appear: null, previousFrame: null, longFrames: [], phases: [], overlay: null };
+    run = { label, start: performance.now(), appear: null, ready: null, previousFrame: null, longFrames: [], phases: [], overlay: null };
     output.textContent = `${label}：記錄中…`;
     const existing = document.querySelector(OVERLAY_SELECTOR);
     if (existing) markOverlay(existing);
