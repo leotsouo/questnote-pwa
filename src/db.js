@@ -1,7 +1,12 @@
 /**
  * IndexedDB 封裝 — 所有資料持久化操作
  */
-const DB_NAME = 'QuestNoteDB';
+// GitHub project Pages share an origin; keep preview data separate from the live PWA.
+const DB_NAME = typeof location !== 'undefined'
+  && location.hostname === 'leotsouo.github.io'
+  && location.pathname.startsWith('/questnote-pwa-preview/')
+  ? 'QuestNotePreviewDB'
+  : 'QuestNoteDB';
 const DB_VERSION = 3;
 
 const STORES = {

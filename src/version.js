@@ -3,9 +3,9 @@
  * 發佈新版時請同步更新 service-worker.js 的 CACHE_NAME
  */
 export const APP_VERSION = '3.4.4';
-export const CACHE_NAME = 'questnote-cache-v344-summon-perf-candidate';
-export const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
-export const MAILBOX_RUNTIME_CACHE = 'questnote-mailbox-runtime-v1';
+export const CACHE_NAME = 'questnote-preview-cache-v344-summon-perf-candidate';
+export const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
+export const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */
 export const BUILD_TIME = '2026-09-16T22:00:00+08:00';
 
