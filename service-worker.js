@@ -6,9 +6,9 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-cache-v344-pool-intro-polish';
-const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
-const MAILBOX_RUNTIME_CACHE = 'questnote-mailbox-runtime-v1';
+const CACHE_NAME = 'questnote-preview-cache-v344-baseline';
+const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
+const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
@@ -245,7 +245,8 @@ self.addEventListener('activate', (event) => {
       await Promise.all(
         keys
           .filter((key) => (
-            key !== CACHE_NAME
+            key.startsWith('questnote-preview-')
+            && key !== CACHE_NAME
             && key !== PET_IMAGE_CACHE
             && key !== MAILBOX_RUNTIME_CACHE
           ))
