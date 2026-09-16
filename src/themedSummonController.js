@@ -109,25 +109,24 @@ function wait(ms, signal) {
   });
 }
 
-async function safeDecode(img) {
-  if (!img || typeof img.decode !== 'function') return;
-  try {
-    await img.decode();
-  } catch {
-    /* ignore */
-  }
-}
-
 /**
  * @param {HTMLImageElement} img
  * @param {string} src
  */
-async function assignPetImage(img, src) {
+function assignPetImage(img, src, original) {
   if (!img || !src) return false;
+  img.classList.remove('is-loaded');
+  img.onload = () => img.classList.add('is-loaded');
+  img.onerror = () => {
+    if (original && img.src !== new URL(original, location.href).href) {
+      img.src = original;
+    } else {
+      img.onerror = null;
+      img.classList.add('is-error');
+    }
+  };
   img.src = src;
   img.decoding = 'async';
-  await safeDecode(img);
-  img.classList.add('is-loaded');
   return true;
 }
 
@@ -259,9 +258,9 @@ function fillSeal(overlay, item) {
   if (img) {
     img.alt = pet?.name ? String(pet.name) : '';
     img.classList.remove('is-loaded');
-    const src = getPetImageSrc(pet);
+    const src = getPetImageSrc(pet, 'stage');
     if (src) {
-      assignPetImage(img, src);
+      assignPetImage(img, src, getPetImageSrc(pet));
     } else {
       img.removeAttribute('src');
     }
@@ -282,8 +281,8 @@ function buildSummaryCards(grid, results) {
     const img = document.createElement('img');
     img.alt = pet?.name ? String(pet.name) : '';
     img.decoding = 'async';
-    const src = getPetImageSrc(pet);
-    if (src) img.src = src;
+    const src = getPetImageSrc(pet, 'card');
+    if (src) assignPetImage(img, src, getPetImageSrc(pet));
     media.appendChild(img);
 
     const rarityEl = document.createElement('span');
@@ -361,18 +360,18 @@ export async function playDreamBloomSummon(options = {}) {
     setState(STATES.PREPARING, null);
 
     // 預載本次結果圖片（不預載全池）
-    const srcs = results.map((r) => getPetImageSrc(r?.pet || r)).filter(Boolean);
+    const firstPet = results.find((r) => ['SSR', 'UR'].includes(r?.rarity))?.pet || results[0]?.pet;
+    const firstSrc = getPetImageSrc(firstPet, 'stage');
     await Promise.race([
-      Promise.all(srcs.slice(0, 10).map((src) => preloadImage(src, { eager: true }))),
-      delay(reduce ? 200 : 500),
+      firstSrc ? preloadImage(firstSrc, { eager: true }) : Promise.resolve(),
+      delay(reduce ? 100 : 200),
     ]);
 
     overlay = createOverlay({ mode, reduceMotion: reduce, highestRarity });
     activeOverlay = overlay;
     lockScroll();
     document.body.appendChild(overlay);
-    void overlay.offsetWidth;
-    overlay.classList.add('is-active');
+    requestAnimationFrame(() => overlay?.isConnected && overlay.classList.add('is-active'));
 
     const liveEl = overlay.querySelector('[data-role="live"]');
     const particlesHost = overlay.querySelector('[data-role="particles"]');
@@ -736,8 +735,7 @@ export async function playPoolDebutPresentation(options = {}) {
 
   lockScroll();
   document.body.appendChild(overlay);
-  void overlay.offsetWidth;
-  overlay.classList.add('is-active', 'is-phase-night');
+  requestAnimationFrame(() => overlay?.isConnected && overlay.classList.add('is-active', 'is-phase-night'));
 
   // 分鏡節奏：台詞完整顯現後進入可關閉狀態，等待使用者點擊
   // full line CSS：a 0–0.7s、b 0.28–0.98s、c 0.55–1.3s → 約 1.3s 跑完

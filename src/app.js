@@ -426,7 +426,9 @@ async function refreshState(options = {}) {
 
   await renderAfterRefresh(options.renderMode ?? 'current');
 
-  warmCriticalPetImages();
+  if (!Array.isArray(options.renderMode) || !options.renderMode.includes('gacha')) {
+    warmCriticalPetImages();
+  }
 
 }
 

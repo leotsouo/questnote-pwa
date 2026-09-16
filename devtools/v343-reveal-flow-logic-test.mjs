@@ -1,5 +1,5 @@
 /**
- * V3.4.3 邏輯單元測試（Node）
+ * 召喚流程邏輯單元測試（Node，支援目前版本）
  * 不寫入 IndexedDB、不呼叫正式 draw。
  */
 import { readFileSync } from 'fs';
@@ -28,9 +28,11 @@ function assert(cond, msg) {
 }
 
 // --- Version ---
-assert(versionText.includes("APP_VERSION = '3.4.3'"), 'APP_VERSION 3.4.3');
-assert(versionText.includes('questnote-cache-v343-reveal-flow-verification'), 'CACHE_NAME v343');
-assert(swText.includes('questnote-cache-v343-reveal-flow-verification'), 'SW CACHE_NAME v343');
+const declaredVersion = versionText.match(/APP_VERSION = '([^']+)'/)?.[1];
+const declaredCache = versionText.match(/CACHE_NAME = '([^']+)'/)?.[1];
+assert(/^\d+\.\d+\.\d+$/.test(declaredVersion || ''), 'semantic APP_VERSION');
+assert(Boolean(declaredCache), 'CACHE_NAME declared');
+assert(swText.includes(`const CACHE_NAME = '${declaredCache}'`), 'SW CACHE_NAME matches app');
 assert(swText.includes('src/summonRevealService.js'), 'SW precache summonRevealService');
 const precacheBlock = (swText.match(/PRECACHE_URLS\s*=\s*\[([\s\S]*?)\];/) || [])[1] || '';
 assert(!/assets\/pets\//.test(precacheBlock), '寵物圖未進 precache');
@@ -118,9 +120,9 @@ assert(shouldPlayReveal('SR') === false && shouldPlayReveal('SSR') === true, 'sh
 const { APP_VERSION, CACHE_NAME, getServiceWorkerRegisterUrl } = await import(
   pathToFileURL(`${root}/src/version.js`).href
 );
-assert(APP_VERSION === '3.4.3', 'runtime APP_VERSION');
-assert(CACHE_NAME === 'questnote-cache-v343-reveal-flow-verification', 'runtime CACHE_NAME');
-assert(getServiceWorkerRegisterUrl() === './service-worker.js?v=343', 'SW URL v=343');
+assert(APP_VERSION === declaredVersion, 'runtime APP_VERSION');
+assert(CACHE_NAME === declaredCache, 'runtime CACHE_NAME');
+assert(getServiceWorkerRegisterUrl() === `./service-worker.js?v=${APP_VERSION.replace(/\./g, '')}`, 'SW URL matches version');
 
 console.log('\n---');
 if (failed) {

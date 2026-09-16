@@ -99,6 +99,7 @@ import {
   waitForPreloadWithTimeout,
   preloadImage,
 } from './imagePreloadService.js';
+import { createDeferredRenderGate } from './deferredRenderGate.js';
 import {
   claimAchievementReward,
   claimAllAchievementRewards,
@@ -265,6 +266,8 @@ let onAchievementCheck = null;
 let uiInitialized = false;
 /** 抽卡請求／演出進行中（比 dataset.pulling 更可靠，避免殘留鎖定） */
 let gachaPullInProgress = false;
+/** Data is refreshed after a pull, but the hidden collection DOM can wait until entry. */
+const collectionRenderGate = createDeferredRenderGate();
 
 /** 抽卡／解鎖視覺流程 session（不寫入 IndexedDB） */
 const gachaSessionUi = {
@@ -1261,6 +1264,8 @@ export function switchView(viewName) {
     renderHabitsView();
   }
 
+  if (viewName === 'collection') collectionRenderGate.flush(renderCollectionView);
+
   if (viewName === 'workshop') {
     renderWorkshopView();
   }
@@ -1485,10 +1490,13 @@ export function petImageHtml(pet, options = {}) {
     framed = true,
   } = options;
   const cls = `pet-img pet-img--${size}`;
-  const src = getPetImageSrc(pet);
+  const variant = size === 'lg' ? 'stage' : 'card';
+  const src = getPetImageSrc(pet, variant);
+  const originalSrc = getPetImageSrc(pet);
   const loadAttr = eager || loading === 'eager' ? 'eager' : loading;
   const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
-  const onerror = "this.onerror=null;this.classList.add('is-error');var f=this.closest('.pet-image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}";
+  const onerror = "if(this.dataset.originalSrc&&this.src!==new URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.classList.add('is-error');var f=this.closest('.pet-image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}";
+  const fallbackAttr = originalSrc ? ` data-original-src="${escapeHtml(originalSrc)}"` : '';
   const placeholder = framed
     ? `<div class="pet-image-frame pet-image-frame--${size} is-error" role="img" aria-label="圖片暫時無法載入"><span class="pet-image-frame__fallback" aria-hidden="true">?</span></div>`
     : `<div class="${cls} pet-img--placeholder"><span>?</span></div>`;
@@ -1497,18 +1505,18 @@ export function petImageHtml(pet, options = {}) {
 
   if (preview) {
     return `<div class="pet-img-wrap pet-img-wrap--preview pet-img-wrap--${size} pet-image-frame pet-image-frame--${size} is-loading">
-      <img class="${cls} pet-img--preview is-loading" src="${src}" alt="" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
+      <img class="${cls} pet-img--preview is-loading" src="${escapeHtml(src)}"${fallbackAttr} alt="" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
       <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
     </div>`;
   }
 
   if (!framed) {
-    const onErrorLegacy = `this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} pet-img--placeholder',innerHTML:'<span>?</span>'}))`;
-    return `<img class="${cls} is-loading" src="${src}" alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="this.classList.add('is-loaded')" onerror="${onErrorLegacy}" />`;
+    const onErrorLegacy = `if(this.dataset.originalSrc&&this.src!==new URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} pet-img--placeholder',innerHTML:'<span>?</span>'}))`;
+    return `<img class="${cls} is-loading" src="${escapeHtml(src)}"${fallbackAttr} alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="this.classList.add('is-loaded')" onerror="${onErrorLegacy}" />`;
   }
 
   return `<div class="pet-image-frame pet-image-frame--${size} is-loading">
-    <img class="${cls} is-loading" src="${src}" alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
+    <img class="${cls} is-loading" src="${escapeHtml(src)}"${fallbackAttr} alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
     <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
   </div>`;
 }
@@ -4886,8 +4894,13 @@ function renderGachaThemeStage(pool) {
       const img = document.createElement('img');
       img.alt = pet.title || pet.name || '';
       img.decoding = 'async';
-      const src = getPetImageSrc(pet);
+      const src = getPetImageSrc(pet, 'stage');
       if (src) {
+        img.onerror = () => {
+          img.onerror = null;
+          const original = getPetImageSrc(pet);
+          if (original && original !== src) img.src = original;
+        };
         img.src = src;
         preloadImage(src, { eager: true }).catch(() => {});
       }
@@ -4904,9 +4917,14 @@ function renderGachaThemeStage(pool) {
   }
 
   if (hero && heroImg) {
-    const src = getPetImageSrc(hero);
+    const src = getPetImageSrc(hero, 'stage');
     if (src && heroImg.dataset.src !== src) {
       heroImg.dataset.src = src;
+      heroImg.onerror = () => {
+        heroImg.onerror = null;
+        const original = getPetImageSrc(hero);
+        if (original && original !== src) heroImg.src = original;
+      };
       heroImg.src = src;
       preloadImage(src, { eager: true }).catch(() => {});
     }
@@ -4936,8 +4954,13 @@ function renderGachaThemeStage(pool) {
       img.className = 'gacha-theme-featured__img is-silhouette';
       img.alt = pet.title || pet.rarity || '焦點夥伴';
       img.decoding = 'async';
-      const src = getPetImageSrc(pet);
+      const src = getPetImageSrc(pet, 'card');
       if (src) {
+        img.onerror = () => {
+          img.onerror = null;
+          const original = getPetImageSrc(pet);
+          if (original && original !== src) img.src = original;
+        };
         img.src = src;
         preloadImage(src, { eager: true }).catch(() => {});
       }
@@ -5227,8 +5250,9 @@ async function handlePull() {
     }
 
     const preloadPromise = preloadGachaResultImages(result);
+    collectionRenderGate.markDirty();
     await Promise.all([
-      onRefresh({ renderMode: ['gacha', 'collection'] }),
+      onRefresh({ renderMode: ['gacha'] }),
       waitForPreloadWithTimeout(preloadPromise, 600),
     ]);
 
@@ -5306,8 +5330,9 @@ async function handleTenPull() {
     }
 
     const preloadPromise = preloadGachaResultImages(result.results);
+    collectionRenderGate.markDirty();
     await Promise.all([
-      onRefresh({ renderMode: ['gacha', 'collection'] }),
+      onRefresh({ renderMode: ['gacha'] }),
       waitForPreloadWithTimeout(preloadPromise, 600),
     ]);
 
@@ -5944,6 +5969,7 @@ function renderCollectionView() {
       }
     }
   }
+  collectionRenderGate.clear();
 }
 
 function renderCollectionCard(pet, imageOptions = {}) {

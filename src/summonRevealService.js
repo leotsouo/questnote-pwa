@@ -8,7 +8,7 @@
  * 4. 只要結果含 SSR+，依原始順序自動播放完整 queue，再交回結果畫面。
  * 5. 主動畫略過 ≠ SSR+ queue 略過（由呼叫端區分；本模組只處理 reveal queue skip）。
  */
-import { getPetImageSrc, preloadImage, delay } from './imagePreloadService.js';
+import { getPetImageSrc, preloadPetImage, delay } from './imagePreloadService.js';
 
 const RARITY_RANK = { N: 0, R: 1, SR: 2, SSR: 3, UR: 4 };
 
@@ -284,7 +284,7 @@ export function createSummonRevealOverlay({ rarity, pet, reduceMotion, theme, pr
   const caption = fallback ? '演出簡化展示' : themeCaption(resolvedTheme);
   const petName = pet?.name ? String(pet.name) : '';
   const petTitle = pet?.title ? String(pet.title) : '';
-  const imgSrc = fallback ? '' : getPetImageSrc(pet);
+  const imgSrc = fallback ? '' : getPetImageSrc(pet, 'stage');
   const particlesHtml = fallback ? '' : buildParticlesHtml(resolvedTheme, reduceMotion);
   const petalsHtml = !fallback && resolvedTheme === 'petal' ? buildFallingPetalsHtml(reduceMotion) : '';
   const moonHtml = !fallback && resolvedTheme === 'moon'
@@ -334,6 +334,11 @@ export function createSummonRevealOverlay({ rarity, pet, reduceMotion, theme, pr
     img.loading = 'eager';
     img.addEventListener('load', () => img.classList.add('is-loaded'));
     img.addEventListener('error', () => {
+      const original = getPetImageSrc(pet);
+      if (original && img.src !== new URL(original, location.href).href) {
+        img.src = original;
+        return;
+      }
       img.remove();
       frame.classList.add('is-missing');
       if (!frame.querySelector('.summon-reveal-fallback-label')) {
@@ -441,10 +446,10 @@ export async function playSummonReveal({
 
   try {
     if (!useFallback) {
-      const src = getPetImageSrc(pet);
+      const src = getPetImageSrc(pet, 'stage');
       if (src) {
         try {
-          await Promise.race([preloadImage(src, { eager: true }), delay(PRELOAD_TIMEOUT)]);
+          await Promise.race([preloadPetImage(pet, 'stage'), delay(PRELOAD_TIMEOUT)]);
         } catch {
           useFallback = true;
         }
@@ -479,8 +484,7 @@ export async function playSummonReveal({
     document.body.appendChild(overlay);
     document.body.classList.add('summon-reveal-active');
 
-    void overlay.offsetWidth;
-    overlay.classList.add('is-active');
+    requestAnimationFrame(() => overlay?.isConnected && overlay.classList.add('is-active'));
 
     const duration = useFallback
       ? DURATION.fallbackReady
@@ -714,4 +718,3 @@ export {
   UR_DAWN_ID,
   DURATION as SUMMON_REVEAL_DURATION,
 };
-

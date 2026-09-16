@@ -129,6 +129,7 @@ export function normalizePetForValidation(pet) {
     name: typeof pet.name === 'string' ? pet.name.trim() : pet.name,
     rarity: typeof pet.rarity === 'string' ? pet.rarity.trim() : pet.rarity,
     image: typeof pet.image === 'string' ? pet.image.trim().replace(/\\/g, '/') : pet.image,
+    imageVariants: pet.imageVariants,
     description: typeof pet.description === 'string' ? pet.description.trim() : pet.description,
     poolTags: Array.isArray(pet.poolTags) ? pet.poolTags.map((t) => (typeof t === 'string' ? t.trim() : t)) : pet.poolTags,
     seriesId: typeof pet.seriesId === 'string' ? pet.seriesId.trim() : pet.seriesId,
@@ -280,6 +281,22 @@ export function validatePet(pet, options = {}) {
           `圖片檔名必須與 id 相同（期望 ${expected}）`,
           `${prefix}.image`,
         ));
+      }
+    }
+  }
+
+  // Sized display assets are optional so older pet packages remain valid.
+  if (p.imageVariants !== undefined) {
+    if (!p.imageVariants || typeof p.imageVariants !== 'object' || Array.isArray(p.imageVariants)) {
+      result.errors.push(createIssue('error', 'PET_IMAGE_VARIANTS_INVALID', 'imageVariants 必須是物件', `${prefix}.imageVariants`));
+    } else {
+      for (const [kind, size] of [['card', 384], ['stage', 960]]) {
+        const path = p.imageVariants[kind];
+        if (path === undefined) continue;
+        const pattern = new RegExp(`^assets/pets/variants/${p.id}-${kind}-${size}-[a-f0-9]{12}\\.webp$`, 'i');
+        if (typeof path !== 'string' || !pattern.test(path)) {
+          result.errors.push(createIssue('error', 'PET_IMAGE_VARIANT_PATH', `${kind} 圖片路徑格式錯誤`, `${prefix}.imageVariants.${kind}`));
+        }
       }
     }
   }

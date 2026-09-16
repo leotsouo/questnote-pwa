@@ -1,5 +1,7 @@
 # QuestNote 寵物系列製作 SOP（V3.1.0）
 
+> 發布寵物原圖後，在專案根目錄執行 `npm ci`、`npm run images:build`、`npm run images:check`。前者以原 PNG 產生 384 px 卡片與 960 px 演出 WebP，並更新 `data/pets.json` 的可選 `imageVariants` 路徑；後者檢查來源雜湊、尺寸與檔案存在。原 PNG 須保留供放大檢視和載入失敗時備援。新生成的 `assets/pets/variants/` 應隨寵物資料一同提交，圖片不加入 Service Worker 預快取。
+
 本文件供作者本機依照固定流程製作與發布寵物系列。  
 **第一個正式新系列請在 V3.2.0 使用本工具發布；V3.1.0 只提供工具與規範，不正式新增寵物。**
 

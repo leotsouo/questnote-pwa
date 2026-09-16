@@ -1,3 +1,5 @@
 # 本機／產生檔（勿提交）
 .dev-backups/
 *.publish.tmp
+node_modules/
+.npm-cache/

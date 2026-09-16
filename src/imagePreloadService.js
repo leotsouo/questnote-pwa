@@ -4,15 +4,18 @@
 
 const loadedUrls = new Set();
 const failedUrls = new Set();
+const inFlight = new Map();
 
 /**
  * 取得寵物圖片 URL（與 img src 一致）
- * @param {{ image?: string } | null | undefined} pet
+ * @param {{ image?: string, imageVariants?: { card?: string, stage?: string } } | null | undefined} pet
+ * @param {'original'|'card'|'stage'} [variant]
  * @returns {string | null}
  */
-export function getPetImageSrc(pet) {
-  if (!pet?.image) return null;
-  const raw = String(pet.image).trim();
+export function getPetImageSrc(pet, variant = 'original') {
+  const selected = variant === 'original' ? pet?.image : (pet?.imageVariants?.[variant] || pet?.image);
+  if (!selected) return null;
+  const raw = String(selected).trim();
   if (!raw) return null;
   if (raw.startsWith('http://') || raw.startsWith('https://') || raw.startsWith('data:')) {
     return raw;
@@ -29,21 +32,11 @@ export function getPetImageSrc(pet) {
  */
 export function preloadImage(src, options = {}) {
   const { eager = false } = options;
-  return new Promise((resolve) => {
-    const resolved = getPetImageSrc({ image: src });
-    if (!resolved) {
-      resolve({ src: '', ok: false });
-      return;
-    }
-    if (loadedUrls.has(resolved)) {
-      resolve({ src: resolved, ok: true, cached: true });
-      return;
-    }
-    if (failedUrls.has(resolved)) {
-      resolve({ src: resolved, ok: false });
-      return;
-    }
-
+  const resolved = getPetImageSrc({ image: src });
+  if (!resolved) return Promise.resolve({ src: '', ok: false });
+  if (loadedUrls.has(resolved)) return Promise.resolve({ src: resolved, ok: true, cached: true });
+  if (inFlight.has(resolved)) return inFlight.get(resolved);
+  const request = new Promise((resolve) => {
     const img = new Image();
     img.decoding = 'async';
     if (eager) {
@@ -51,6 +44,7 @@ export function preloadImage(src, options = {}) {
     }
     img.onload = () => {
       loadedUrls.add(resolved);
+      failedUrls.delete(resolved);
       resolve({ src: resolved, ok: true });
     };
     img.onerror = () => {
@@ -59,6 +53,18 @@ export function preloadImage(src, options = {}) {
     };
     img.src = resolved;
   });
+  inFlight.set(resolved, request);
+  request.finally(() => inFlight.delete(resolved));
+  return request;
+}
+
+/** Try the sized asset first; a missing derivative falls back to the original PNG. */
+export async function preloadPetImage(pet, variant = 'card') {
+  const src = getPetImageSrc(pet, variant);
+  const result = await preloadImage(src, { eager: true });
+  if (result.ok || variant === 'original') return result;
+  const original = getPetImageSrc(pet);
+  return original && original !== src ? preloadImage(original, { eager: true }) : result;
 }
 
 /**
@@ -105,13 +111,21 @@ export function preloadCompanionImage(state) {
  */
 export function preloadGachaResultImages(results) {
   const list = Array.isArray(results) ? results : [results];
-  const srcs = list
-    .map((item) => {
-      const pet = item?.pet ?? item;
-      return getPetImageSrc(pet);
-    })
-    .filter(Boolean);
-  return preloadImages(srcs, 4);
+  const pets = list.map((item) => item?.pet ?? item).filter(Boolean);
+  const firstReveal = pets.find((pet) => pet.rarity === 'SSR' || pet.rarity === 'UR') || pets[0];
+  if (!firstReveal) return Promise.resolve([]);
+  // The first on-stage image gets the network slot before any ten-pull thumbnails.
+  const stage = preloadPetImage(firstReveal, 'stage');
+  stage.finally(() => {
+    const cardSrcs = pets.map((pet) => getPetImageSrc(pet, 'card')).filter(Boolean);
+    void preloadImages(cardSrcs, 4);
+    for (const pet of pets) {
+      if (pet !== firstReveal && (pet.rarity === 'SSR' || pet.rarity === 'UR')) {
+        void preloadPetImage(pet, 'stage');
+      }
+    }
+  });
+  return stage.then((result) => [result]);
 }
 
 /**
@@ -121,7 +135,7 @@ export function preloadGachaResultImages(results) {
  */
 export function preloadOwnedPetImages(collection, _pets, limit = 12) {
   const owned = (collection || []).filter((p) => p.owned);
-  const srcs = owned.slice(0, limit).map((p) => getPetImageSrc(p)).filter(Boolean);
+  const srcs = owned.slice(0, limit).map((p) => getPetImageSrc(p, 'card')).filter(Boolean);
   return preloadImages(srcs, 4);
 }
 
@@ -152,5 +166,5 @@ export function isImagePreloaded(src) {
 }
 
 export function getPreloadStats() {
-  return { loaded: loadedUrls.size, failed: failedUrls.size };
+  return { loaded: loadedUrls.size, failed: failedUrls.size, inFlight: inFlight.size };
 }
