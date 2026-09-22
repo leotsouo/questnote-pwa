@@ -11,6 +11,7 @@ import {
   toggleSubtaskComplete,
 } from './taskService.js';
 import { getCategoryById } from './categoryService.js';
+import { bindDialogFocus, isTopDialog, rememberDialogFocus, focusDialog, restoreDialogFocus } from './dialogFocus.js';
 import {
   getTodayDateString,
   isInTodayPlan,
@@ -1318,28 +1319,48 @@ export function switchView(viewName) {
 }
 
 function bindModals() {
+  bindDialogFocus();
   document.getElementById('modal-overlay')?.addEventListener('click', (e) => {
-    if (e.target.id === 'modal-overlay') closeModal();
+    if (e.target.id === 'modal-overlay') dismissModal();
   });
-  document.getElementById('modal-close')?.addEventListener('click', closeModal);
+  document.getElementById('modal-close')?.addEventListener('click', dismissModal);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && document.getElementById('modal-overlay')?.classList.contains('open')) {
-      closeModal();
+    if (e.key === 'Escape' && isTopDialog(document.getElementById('modal-overlay'))) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      dismissModal();
     }
   });
+}
+
+function dismissModal() {
+  const overlay = document.getElementById('modal-overlay');
+  if (!isTopDialog(overlay)) return;
+  // Cancel retains existing restore-preview and repeat-ten callbacks / DOM.
+  const cancel = overlay.querySelector('#ten-pull-confirm-cancel, #confirm-cancel');
+  if (cancel) cancel.click();
+  else closeModal();
 }
 
 export function openModal(contentHtml) {
   const overlay = document.getElementById('modal-overlay');
   const body = document.getElementById('modal-body');
+  if (!overlay?.classList.contains('open')) rememberDialogFocus(overlay);
   if (body) body.innerHTML = contentHtml;
   overlay?.classList.add('open');
   document.body.classList.add('modal-open');
+  if (body) body.scrollTop = 0;
+  focusDialog(overlay);
 }
 
 export function closeModal() {
-  document.getElementById('modal-overlay')?.classList.remove('open');
-  document.body.classList.remove('modal-open');
+  const overlay = document.getElementById('modal-overlay');
+  const wasOpen = overlay?.classList.contains('open');
+  overlay?.classList.remove('open');
+  if (!document.getElementById('global-mailbox-modal')?.classList.contains('open')) {
+    document.body.classList.remove('modal-open');
+  }
+  if (wasOpen) restoreDialogFocus(overlay);
   if (typeof resolveGachaResultWait === 'function') {
     resolveGachaResultWait();
   }
@@ -1353,8 +1374,9 @@ let petImageViewerLastFocus = null;
  * 依 petId 開啟寵物原圖檢視器（自 enrichedCollection / allPets / companion 取資料）。
  * 僅對已獲得且有圖片的寵物開啟。
  * @param {string} petId
+ * @param {HTMLElement} [opener] 實際觸發按鈕，供關閉後返回焦點。
  */
-export function openPetImageViewer(petId) {
+export function openPetImageViewer(petId, opener) {
   if (!petId) return;
   const pet =
     (state.enrichedCollection || []).find((p) => p.id === petId) ||
@@ -1371,7 +1393,7 @@ export function openPetImageViewer(petId) {
     return;
   }
   const original = pet.nickname ? petOriginalName(pet) : '';
-  openPetImageViewerBySrc(src, petDisplayName(pet), pet.rarity, original);
+  openPetImageViewerBySrc(src, petDisplayName(pet), pet.rarity, original, opener);
 }
 
 /**
@@ -1380,14 +1402,15 @@ export function openPetImageViewer(petId) {
  * @param {string} petName 主名稱（有暱稱時顯示暱稱）
  * @param {string} rarity 稀有度
  * @param {string} [originalName] 副名稱（原名，僅有暱稱時顯示）
+ * @param {HTMLElement} [opener] 未指定時沿用目前焦點。
  */
-export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName = '') {
+export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName = '', opener) {
   const resolved = getPetImageSrc({ image: imageSrc }) || imageSrc;
   if (!resolved) return;
 
   // 確保單一實例，先清掉任何殘留的檢視器
   closePetImageViewer();
-  petImageViewerLastFocus = document.activeElement;
+  petImageViewerLastFocus = opener || document.activeElement;
 
   const rarityClass = rarity ? `rarity-${rarity}` : '';
   const safeName = escapeHtml(petName || '寵物原圖');
@@ -1442,8 +1465,9 @@ export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName 
 
 function handlePetImageViewerKeydown(e) {
   if (e.key !== 'Escape') return;
-  if (!document.getElementById('pet-image-viewer')) return;
-  e.stopPropagation();
+  if (!isTopDialog(document.getElementById('pet-image-viewer'))) return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
   closePetImageViewer();
 }
 
@@ -1451,15 +1475,17 @@ function handlePetImageViewerKeydown(e) {
 export function closePetImageViewer() {
   document.removeEventListener('keydown', handlePetImageViewerKeydown, true);
   const overlay = document.getElementById('pet-image-viewer');
+  if (overlay) rememberDialogFocus(overlay, petImageViewerLastFocus);
   if (overlay) overlay.remove();
   document.body.classList.remove('is-pet-image-viewer-open');
-  if (petImageViewerLastFocus && typeof petImageViewerLastFocus.focus === 'function') {
+  if (petImageViewerLastFocus?.isConnected && typeof petImageViewerLastFocus.focus === 'function') {
     try {
-      petImageViewerLastFocus.focus();
+      petImageViewerLastFocus.focus({ preventScroll: true });
     } catch {
       /* 元素可能已不存在 */
     }
   }
+  if (overlay) restoreDialogFocus(overlay);
   petImageViewerLastFocus = null;
 }
 
@@ -2783,6 +2809,8 @@ function renderTaskCard(task) {
     ? `<button class="btn btn--ghost btn--sm" data-action="toggle-expand">${isExpanded ? '收合' : '展開'}</button>`
     : '';
 
+  const preview = task.content.split('\n').slice(1).filter((line) => line.trim()).slice(0, 2).join(' ');
+
   return `
     <article class="task-card card-animate ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
       <div class="task-card__header">
@@ -2797,7 +2825,7 @@ function renderTaskCard(task) {
         </div>
       </div>
       <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
-      <p class="task-card__preview">${escapeHtml(task.content.split('\n').slice(0, 2).join(' '))}</p>
+      ${preview ? `<p class="task-card__preview">${escapeHtml(preview)}</p>` : ''}
       ${subtasksHtml}
       ${
         !task.completed
@@ -3870,16 +3898,19 @@ export async function openGlobalMailbox() {
   }
 
   const modal = document.getElementById('global-mailbox-modal');
+  rememberDialogFocus(modal);
   modal?.classList.add('open');
   document.body.classList.add('global-mailbox-open', 'modal-open');
   renderGlobalMailboxModal();
 
   mailboxKeydownHandler = (e) => {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && isTopDialog(modal)) {
       e.preventDefault();
+      e.stopImmediatePropagation();
       if (mailboxSelectedId) {
         mailboxSelectedId = null;
         renderGlobalMailboxModal();
+        focusDialog(modal);
       } else {
         closeGlobalMailbox();
       }
@@ -3911,6 +3942,7 @@ export function closeGlobalMailbox() {
     try { mailboxLastFocus.focus(); } catch { /* ignore */ }
   }
   mailboxLastFocus = null;
+  restoreDialogFocus(modal);
   updateMailboxEntryBadge();
 }
 
@@ -5792,7 +5824,6 @@ function renderCollectionProgressSummary() {
   }
 
   const owned = Math.max(0, context.ownedCount ?? 0);
-  const total = Math.max(0, context.totalPets ?? 0);
   const percent = Math.min(100, Math.max(0, summary.completionRate ?? 0));
   const next = summary.nextMilestone;
   const nextText = next
@@ -5809,11 +5840,7 @@ function renderCollectionProgressSummary() {
 
   container.innerHTML = `
     <div class="collection-summary__header">
-      <div>
-        <h2 class="collection-summary__title">收藏進度</h2>
-        <p class="collection-summary__count"><strong>${owned} / ${total}</strong><span>完成 ${percent}%</span></p>
-      </div>
-      <span class="collection-summary__icon" aria-hidden="true">📖</span>
+      <h2 class="collection-summary__title">下一個收藏目標</h2>
     </div>
     <div class="collection-summary__progress" role="progressbar" aria-label="總收藏完成率 ${percent}%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}">
       <span class="collection-summary__progress-fill" style="width:${percent}%"></span>
@@ -6034,7 +6061,6 @@ function renderCollectionCard(pet, imageOptions = {}) {
            ${petImageHtml(pet, imgOpts)}
            ${bondBadge ? `<div class="collection-card__bond-badge">${bondBadge}</div>` : ''}
          </div>
-         <span class="collection-card__image-hint">點圖看原圖</span>
        </button>`
     : `<div class="collection-card__image">
          ${petImageHtml(pet, imgOpts)}
@@ -6050,21 +6076,23 @@ function renderCollectionCard(pet, imageOptions = {}) {
           <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
           ${
             owned
-              ? `${renderStars(pet.stars)}<span class="fragments">碎片 ${pet.fragments}</span><span class="fragments">親密度 Lv.${pet.bondLevel || 1}</span>${pet.isCompanion ? '<span class="companion-badge">陪伴中</span>' : ''}`
+              ? `${renderStars(pet.stars)}<div class="collection-card__meta"><span class="fragments">碎片 ${pet.fragments}</span><span class="fragments">親密度 Lv.${pet.bondLevel || 1}</span></div>`
               : '<span class="locked-label">未獲得 · 點擊預覽</span>'
           }
         </div>
       </button>
+      ${owned ? '<div class="collection-card__actions">' : ''}
       ${
         owned && !pet.isCompanion
           ? `<button type="button" class="btn btn--sm btn--companion" data-action="set-companion">設為陪伴</button>`
-          : ''
+          : owned ? '<span class="collection-card__state">陪伴中</span>' : ''
       }
       ${
         owned && pet.stars < 5
           ? `<button type="button" class="btn btn--sm btn--upgrade" data-action="upgrade">升星</button>`
-          : ''
+          : owned ? '<span class="collection-card__state">已達最高星級</span>' : ''
       }
+      ${owned ? '</div>' : ''}
     </article>`;
 }
 
@@ -6170,7 +6198,6 @@ function openPetDetailModal(petId) {
       ${owned ? '<p class="pet-detail__image-hint">點擊圖片查看原圖</p>' : ''}
       <h2 class="pet-detail__name">${owned ? escapeHtml(petDisplayName(pet)) : '???'}</h2>
       ${owned && pet.nickname ? `<p class="pet-original-name pet-original-name--center">原名：${escapeHtml(petOriginalName(pet))}</p>` : ''}
-      ${owned && !pet.nickname ? '<p class="pet-detail__nickname-empty pet-detail__nickname-empty--center">尚未設定暱稱</p>' : ''}
       ${owned && pet.title ? `<p class="pet-detail__title">${escapeHtml(pet.title)}</p>` : ''}
       <div class="pet-detail__badges">
         <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
@@ -6196,7 +6223,7 @@ function openPetDetailModal(petId) {
 
   document.querySelector('[data-action="detail-view-image"]')?.addEventListener('click', (e) => {
     const id = e.currentTarget.dataset.petId;
-    if (id) openPetImageViewer(id);
+    if (id) openPetImageViewer(id, e.currentTarget);
   });
 
   document.querySelector('[data-action="set-companion-detail"]')?.addEventListener('click', async (e) => {
@@ -6881,13 +6908,19 @@ function openExpeditionDispatchModal(areaId) {
     document.body.appendChild(overlay);
     overlay.addEventListener('click', handleDispatchModalClick);
   }
+  rememberDialogFocus(overlay);
   document.body.classList.add('expedition-dispatch-open');
   dispatchKeydownHandler = (e) => {
-    if (e.key === 'Escape') closeExpeditionDispatchModal();
+    if (e.key === 'Escape' && isTopDialog(overlay)) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      closeExpeditionDispatchModal();
+    }
   };
   document.addEventListener('keydown', dispatchKeydownHandler);
 
   renderExpeditionDispatchModal();
+  focusDialog(overlay);
 }
 
 /** 關閉派遣選單 Modal */
@@ -6895,6 +6928,7 @@ function closeExpeditionDispatchModal() {
   const overlay = document.getElementById('expedition-dispatch-modal');
   if (overlay) overlay.remove();
   document.body.classList.remove('expedition-dispatch-open');
+  if (overlay) restoreDialogFocus(overlay);
   if (dispatchKeydownHandler) {
     document.removeEventListener('keydown', dispatchKeydownHandler);
     dispatchKeydownHandler = null;
@@ -6922,8 +6956,12 @@ function handleDispatchModalClick(e) {
   }
   if (action === 'dispatch-select-pet') {
     if (t.disabled) return;
+    const scrollTop = overlay.querySelector('.expedition-dispatch-modal__body')?.scrollTop || 0;
     dispatchSelectedPetId = t.dataset.petId;
     renderExpeditionDispatchModal();
+    const scrollBody = overlay.querySelector('.expedition-dispatch-modal__body');
+    if (scrollBody) scrollBody.scrollTop = scrollTop;
+    overlay.querySelector('.expedition-pet-option.is-selected')?.focus({ preventScroll: true });
     return;
   }
   if (action === 'dispatch-confirm') {
@@ -7022,6 +7060,7 @@ function buildDispatchPetOptionHtml(pet) {
       class="expedition-pet-option ${selected ? 'is-selected' : ''} ${onExp ? 'is-disabled' : ''}"
       data-action="dispatch-select-pet"
       data-pet-id="${pet.id}"
+      aria-pressed="${selected}"
       ${onExp ? 'disabled' : ''}
     >
       <span class="expedition-pet-option__img">${petImageHtml(pet, { size: 'sm' })}</span>

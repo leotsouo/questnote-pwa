@@ -1,0 +1,48 @@
+VP-02 · 真實 App 390 × 844 · 2026-09-22T18:06:30.646Z
+
+[default]
+PASS · 有陪伴：首個今日任務標題在 nav 上方 · bottom=482.8; limit=780.0
+PASS · 有陪伴：首個完成操作在 nav 上方 · bottom=576.7
+PASS · 有陪伴：390 viewport 無橫溢 · scrollWidth=375
+PASS · 編輯按鈕開啟原內容
+PASS · 取消編輯不變更任務內容
+PASS · 子任務切換展開狀態
+PASS · 子任務再次切換回原狀態
+PASS · 任務 all tab 切換
+PASS · 任務 smart tab 切換
+PASS · 任務 today tab 切換
+PASS · 無陪伴 fixture 實際生效
+PASS · 無陪伴：首個今日任務標題在 nav 上方 · bottom=482.8; limit=780.0
+PASS · 無陪伴：首個完成操作在 nav 上方 · bottom=576.7
+PASS · 無陪伴：390 viewport 無橫溢 · scrollWidth=375
+PASS · 原陪伴已透過 service 恢復
+PASS · 完成後顯示已完成狀態
+PASS · 首次完成只發放應得獎勵 · stardust +0; energy +0; alreadyClaimed=true
+PASS · 可由勾選按鈕取消完成
+PASS · 再次完成不重複發星塵／能量／親密度
+PASS · 保留未完成 fixture 與已領獎防刷狀態
+
+[sweet]
+PASS · 有陪伴：首個今日任務標題在 nav 上方 · bottom=484.2; limit=780.0
+PASS · 有陪伴：首個完成操作在 nav 上方 · bottom=581.2
+PASS · 有陪伴：390 viewport 無橫溢 · scrollWidth=375
+PASS · 編輯按鈕開啟原內容
+PASS · 取消編輯不變更任務內容
+PASS · 子任務切換展開狀態
+PASS · 子任務再次切換回原狀態
+PASS · 任務 all tab 切換
+PASS · 任務 smart tab 切換
+PASS · 任務 today tab 切換
+PASS · 無陪伴 fixture 實際生效
+PASS · 無陪伴：首個今日任務標題在 nav 上方 · bottom=484.2; limit=780.0
+PASS · 無陪伴：首個完成操作在 nav 上方 · bottom=581.2
+PASS · 無陪伴：390 viewport 無橫溢 · scrollWidth=375
+PASS · 原陪伴已透過 service 恢復
+PASS · 完成後顯示已完成狀態
+PASS · 首次完成只發放應得獎勵 · stardust +0; energy +0; alreadyClaimed=true
+PASS · 可由勾選按鈕取消完成
+PASS · 再次完成不重複發星塵／能量／親密度
+PASS · 保留未完成 fixture 與已領獎防刷狀態
+PASS · Sweet 與 default 使用相同任務 interaction semantics
+
+檢查結束。FAIL 不視為通過；仍需人工視覺、原生鍵盤、捲動與點擊驗收。

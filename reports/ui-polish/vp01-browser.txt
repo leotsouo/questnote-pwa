@@ -1,0 +1,17 @@
+VP-01 · 真實 App 390 × 844 · 2026-09-22T18:16:19.798Z
+
+[default]
+PASS · 單行任務不重複標題
+PASS · 緊急任務 3px priority border（縮放容差 >= 2.5） · 2.66667px; rgb(251, 113, 133)
+PASS · 首次圖鑑空狀態全欄 · {"width":342.66668701171875,"gridWidth":342.66668701171875}
+PASS · 未 restore 不顯示成功狀態
+
+[sweet]
+PASS · 單行任務不重複標題
+PASS · 緊急任務 3px priority border（縮放容差 >= 2.5） · 2.66667px; rgb(201, 62, 93)
+PASS · 首次圖鑑空狀態全欄 · {"width":342.66668701171875,"gridWidth":342.66668701171875}
+PASS · 未 restore 不顯示成功狀態
+PASS · Sweet UR 淺色 surface · rgb(255, 248, 252)
+PASS · Sweet UR 名稱對比 >= 4.5（solid base） · 13.18:1; 漸層另需視覺確認
+
+檢查結束。FAIL 不視為通過；仍需人工視覺、原生鍵盤、捲動與點擊驗收。

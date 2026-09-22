@@ -1,0 +1,65 @@
+VP-05 · 真實 App 390 × 844 · 2026-09-22T18:30:37.147Z
+
+[default]
+PASS · Modal 開啟 focus 在 dialog 內
+PASS · Modal 不阻止觸控捲動 · auto
+PASS · Tab 尾端返回首項（handler）
+PASS · Shift+Tab 首端返回尾項（handler）
+PASS · 日期沿用表單 border / radius · date=12px; select=12px
+PASS · Modal 界限在 844 viewport · 99.9..844.0
+PASS · Escape 關閉
+PASS · 關閉後 focus 返回開啟按鈕
+PASS · 詳情內原圖形成兩層 dialog
+PASS · 原圖不阻止觸控捲動 · auto
+PASS · 第一次 Escape 只關閉原圖、保留詳情 DOM
+PASS · 巢狀原圖返回詳情中的原開啟按鈕 · BUTTON.pet-detail-image-button
+PASS · 第二次 Escape 關閉詳情並返回卡片
+PASS · 刪除開啟既有 generic confirm
+PASS · 取消不執行刪除 callback、任務內容完全保留
+PASS · 取消確認返回原按鈕
+PASS · 信箱標頭按鈕 44px 點擊區（縮放容差 0.5） · 44.00×44.00, 44.00×44.00
+PASS · 信箱不阻止觸控捲動 · auto
+PASS · 信箱開啟 focus 在信箱內
+PASS · Escape 關閉信箱並返回入口
+PASS · 由探險入口開派遣 dialog 並移入 focus
+PASS · 派遣不阻止觸控捲動 · auto
+PASS · 選寵物後保持 selected focus 與唯一 aria-pressed
+PASS · 派遣選擇重繪保留實際捲動位置 · 246.67 → 246.67
+PASS · 派遣預覽反映所選角色
+PASS · Escape 關閉派遣並回原入口
+PASS · 選擇及關閉不建立探險或消耗能量
+SKIP · 十連 repeat-confirm DOM/resolver：ui.js 沒有既有 export 或公開展示測試入口；此 harness 不抽卡、不改寫私有模組。
+SKIP · generic confirm 自訂 onCancel callback：唯一產品路徑會下載備份；此處只驗證取消不執行刪除 callback。
+
+[sweet]
+PASS · Modal 開啟 focus 在 dialog 內
+PASS · Modal 不阻止觸控捲動 · auto
+PASS · Tab 尾端返回首項（handler）
+PASS · Shift+Tab 首端返回尾項（handler）
+PASS · 日期沿用表單 border / radius · date=18px; select=18px
+PASS · Modal 界限在 844 viewport · 99.9..844.0
+PASS · Escape 關閉
+PASS · 關閉後 focus 返回開啟按鈕
+PASS · 詳情內原圖形成兩層 dialog
+PASS · 原圖不阻止觸控捲動 · auto
+PASS · 第一次 Escape 只關閉原圖、保留詳情 DOM
+PASS · 巢狀原圖返回詳情中的原開啟按鈕 · BUTTON.pet-detail-image-button
+PASS · 第二次 Escape 關閉詳情並返回卡片
+PASS · 刪除開啟既有 generic confirm
+PASS · 取消不執行刪除 callback、任務內容完全保留
+PASS · 取消確認返回原按鈕
+PASS · 信箱標頭按鈕 44px 點擊區（縮放容差 0.5） · 44.00×44.00, 44.00×44.00
+PASS · 信箱不阻止觸控捲動 · auto
+PASS · 信箱開啟 focus 在信箱內
+PASS · Escape 關閉信箱並返回入口
+PASS · 由探險入口開派遣 dialog 並移入 focus
+PASS · 派遣不阻止觸控捲動 · auto
+PASS · 選寵物後保持 selected focus 與唯一 aria-pressed
+PASS · 派遣選擇重繪保留實際捲動位置 · 246.67 → 246.67
+PASS · 派遣預覽反映所選角色
+PASS · Escape 關閉派遣並回原入口
+PASS · 選擇及關閉不建立探險或消耗能量
+SKIP · 十連 repeat-confirm DOM/resolver：ui.js 沒有既有 export 或公開展示測試入口；此 harness 不抽卡、不改寫私有模組。
+SKIP · generic confirm 自訂 onCancel callback：唯一產品路徑會下載備份；此處只驗證取消不執行刪除 callback。
+
+檢查結束。FAIL 不視為通過；仍需人工視覺、原生鍵盤、捲動與點擊驗收。

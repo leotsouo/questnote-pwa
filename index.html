@@ -12,6 +12,7 @@
   <link rel="icon" href="assets/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
   <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="src/ui-polish.css" />
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -71,6 +72,17 @@
         </div>
       </section>
 
+      <div class="task-view-tabs segmented-control" id="task-view-tabs" role="tablist" aria-label="任務視圖">
+        <button type="button" class="segmented-control__btn active" data-task-view="today" role="tab" aria-selected="true">今日</button>
+        <button type="button" class="segmented-control__btn" data-task-view="all" role="tab" aria-selected="false">全部</button>
+        <button type="button" class="segmented-control__btn" data-task-view="smart" role="tab" aria-selected="false">智慧</button>
+      </div>
+
+      <div class="filter-bar filter-bar--categories" id="task-category-filters" hidden></div>
+      <div id="task-view-content" class="task-view-content"></div>
+      <section id="today-plan-summary" class="today-plan-summary card"></section>
+      <section id="habit-summary" class="habit-summary card" data-action="go-habits" role="button" tabindex="0"></section>
+
       <section id="companion-section" class="companion-section"></section>
 
       <section id="home-hub" class="home-hub" aria-label="首頁功能選單">
@@ -99,20 +111,6 @@
           <section id="achievement-strip" class="achievement-strip card" data-action="go-achievements" role="button" tabindex="0"></section>
         </div>
       </section>
-
-      <div class="task-view-tabs segmented-control" id="task-view-tabs" role="tablist" aria-label="任務視圖">
-        <button type="button" class="segmented-control__btn active" data-task-view="today" role="tab" aria-selected="true">今日</button>
-        <button type="button" class="segmented-control__btn" data-task-view="all" role="tab" aria-selected="false">全部</button>
-        <button type="button" class="segmented-control__btn" data-task-view="smart" role="tab" aria-selected="false">智慧</button>
-      </div>
-
-      <div class="filter-bar filter-bar--categories" id="task-category-filters" hidden></div>
-
-      <div id="task-view-content" class="task-view-content"></div>
-
-      <section id="today-plan-summary" class="today-plan-summary card"></section>
-
-      <section id="habit-summary" class="habit-summary card" data-action="go-habits" role="button" tabindex="0"></section>
 
       <button id="btn-add-task" class="fab" aria-label="新增任務">＋</button>
     </main>
@@ -255,6 +253,7 @@
         <button class="filter-btn" data-filter="unowned">未獲得</button>
       </div>
 
+      <p class="collection-browse-hint">點圖片看原圖，點名稱看詳情</p>
       <div id="collection-grid" class="collection-grid"></div>
     </main>
 
