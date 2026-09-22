@@ -158,7 +158,7 @@ test('preview service worker leaves live Pages caches intact', async () => {
       keys: async () => [
         'questnote-cache-v344-pool-intro-polish',
         'questnote-preview-cache-v344-old',
-        'questnote-preview-cache-v344-repeat-pull-confirm',
+        workerSource.match(/const CACHE_NAME = '([^']+)'/)[1],
         'questnote-preview-pet-images-v235',
         'questnote-preview-mailbox-runtime-v1',
       ],

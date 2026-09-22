@@ -85,8 +85,9 @@ export async function dbPut(storeName, value) {
     const tx = db.transaction(storeName, 'readwrite');
     const store = tx.objectStore(storeName);
     const request = store.put(value);
-    request.onsuccess = () => resolve(value);
-    request.onerror = () => reject(request.error);
+    tx.oncomplete = () => resolve(value);
+    tx.onerror = () => reject(tx.error || request.error);
+    tx.onabort = () => reject(tx.error || new Error('IndexedDB transaction aborted'));
   });
 }
 
@@ -99,8 +100,9 @@ export async function dbDelete(storeName, key) {
     const tx = db.transaction(storeName, 'readwrite');
     const store = tx.objectStore(storeName);
     const request = store.delete(key);
-    request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error || request.error);
+    tx.onabort = () => reject(tx.error || new Error('IndexedDB transaction aborted'));
   });
 }
 
@@ -127,8 +129,9 @@ export async function dbClear(storeName) {
     const tx = db.transaction(storeName, 'readwrite');
     const store = tx.objectStore(storeName);
     const request = store.clear();
-    request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error || request.error);
+    tx.onabort = () => reject(tx.error || new Error('IndexedDB transaction aborted'));
   });
 }
 
@@ -151,6 +154,22 @@ const ALL_STORE_NAMES = [
   STORES.HABITS,
 ];
 
+/** Read a single committed database snapshot without running service migrations. */
+export async function readAllStoresSnapshot() {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(ALL_STORE_NAMES, 'readonly');
+    const snapshot = {};
+    tx.oncomplete = () => resolve(snapshot);
+    tx.onerror = () => reject(tx.error || new Error('Snapshot read failed'));
+    tx.onabort = () => reject(tx.error || new Error('Snapshot read aborted'));
+    for (const name of ALL_STORE_NAMES) {
+      const request = tx.objectStore(name).getAll();
+      request.onsuccess = () => { snapshot[name] = request.result; };
+    }
+  });
+}
+
 /**
  * 以單一 transaction 安全覆蓋全部 stores（匯入恢復用）
  * transaction 失敗時會自動 rollback，不會留下半套資料
@@ -161,51 +180,58 @@ export async function replaceAllStores(payload) {
 
   return new Promise((resolve, reject) => {
     const tx = db.transaction(ALL_STORE_NAMES, 'readwrite');
+    let writeError = null;
 
     tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error || new Error('IndexedDB transaction failed'));
-    tx.onabort = () => reject(tx.error || new Error('IndexedDB transaction aborted'));
+    tx.onerror = () => reject(writeError || tx.error || new Error('IndexedDB transaction failed'));
+    tx.onabort = () => reject(writeError || tx.error || new Error('IndexedDB transaction aborted'));
 
-    for (const storeName of ALL_STORE_NAMES) {
-      tx.objectStore(storeName).clear();
+    // A synchronous DataError/DataCloneError must abort the queued clears too.
+    try {
+      for (const storeName of ALL_STORE_NAMES) {
+        tx.objectStore(storeName).clear();
+      }
+
+      const tasksStore = tx.objectStore(STORES.TASKS);
+      for (const task of payload.tasks || []) {
+        tasksStore.put(task);
+      }
+
+      const collectionStore = tx.objectStore(STORES.COLLECTION);
+      for (const item of payload.collection || []) {
+        collectionStore.put(item);
+      }
+
+      const expeditionsStore = tx.objectStore(STORES.EXPEDITIONS);
+      for (const expedition of payload.expeditions || []) {
+        expeditionsStore.put(expedition);
+      }
+
+      const habitsStore = tx.objectStore(STORES.HABITS);
+      for (const habit of payload.habits || []) {
+        habitsStore.put(habit);
+      }
+
+      const metaStore = tx.objectStore(STORES.META);
+      if (payload.wallet) metaStore.put(payload.wallet);
+      if (payload.gachaStats) metaStore.put(payload.gachaStats);
+      if (payload.achievements) metaStore.put(payload.achievements);
+      if (payload.taskStats) metaStore.put(payload.taskStats);
+      if (payload.userPreferences) metaStore.put(payload.userPreferences);
+      if (payload.inventory) metaStore.put(payload.inventory);
+      if (payload.workshopStats) metaStore.put(payload.workshopStats);
+      if (payload.dailyCheckIn) metaStore.put(payload.dailyCheckIn);
+      if (payload.questProgress) metaStore.put(payload.questProgress);
+      if (payload.explorationProgress) metaStore.put(payload.explorationProgress);
+      if (payload.collectionMilestones) metaStore.put(payload.collectionMilestones);
+      if (payload.globalMailboxState) metaStore.put(payload.globalMailboxState);
+      if (payload.poolDebutSeen) metaStore.put(payload.poolDebutSeen);
+      if (payload.poolUnlockState) metaStore.put(payload.poolUnlockState);
+      if (payload.idempotentGrants) metaStore.put(payload.idempotentGrants);
+    } catch (error) {
+      writeError = error;
+      tx.abort();
     }
-
-    const tasksStore = tx.objectStore(STORES.TASKS);
-    for (const task of payload.tasks || []) {
-      tasksStore.put(task);
-    }
-
-    const collectionStore = tx.objectStore(STORES.COLLECTION);
-    for (const item of payload.collection || []) {
-      collectionStore.put(item);
-    }
-
-    const expeditionsStore = tx.objectStore(STORES.EXPEDITIONS);
-    for (const expedition of payload.expeditions || []) {
-      expeditionsStore.put(expedition);
-    }
-
-    const habitsStore = tx.objectStore(STORES.HABITS);
-    for (const habit of payload.habits || []) {
-      habitsStore.put(habit);
-    }
-
-    const metaStore = tx.objectStore(STORES.META);
-    if (payload.wallet) metaStore.put(payload.wallet);
-    if (payload.gachaStats) metaStore.put(payload.gachaStats);
-    if (payload.achievements) metaStore.put(payload.achievements);
-    if (payload.taskStats) metaStore.put(payload.taskStats);
-    if (payload.userPreferences) metaStore.put(payload.userPreferences);
-    if (payload.inventory) metaStore.put(payload.inventory);
-    if (payload.workshopStats) metaStore.put(payload.workshopStats);
-    if (payload.dailyCheckIn) metaStore.put(payload.dailyCheckIn);
-    if (payload.questProgress) metaStore.put(payload.questProgress);
-    if (payload.explorationProgress) metaStore.put(payload.explorationProgress);
-    if (payload.collectionMilestones) metaStore.put(payload.collectionMilestones);
-    if (payload.globalMailboxState) metaStore.put(payload.globalMailboxState);
-    if (payload.poolDebutSeen) metaStore.put(payload.poolDebutSeen);
-    if (payload.poolUnlockState) metaStore.put(payload.poolUnlockState);
-    if (payload.idempotentGrants) metaStore.put(payload.idempotentGrants);
   });
 }
 

@@ -481,8 +481,9 @@ export async function getCompanion(allPets) {
   if (!pet) return null;
 
   return {
-    ...pet,
+    // Catalog identity and presentation cannot be overridden by stored user state.
     ...companionEntry,
+    ...pet,
     // 保留 lore 的 bondUnlocks（等級→台詞文字），避免被收藏項目的解鎖旗標覆蓋
     bondUnlocks: pet.bondUnlocks ?? {},
     bondUnlockState: companionEntry.bondUnlocks ?? normalizeBondUnlocks(null, companionEntry.bondLevel ?? 1),

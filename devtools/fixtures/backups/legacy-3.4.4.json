@@ -1,0 +1,883 @@
+{
+  "appName": "QuestNote",
+  "app": "QuestNote",
+  "appVersion": "3.4.4",
+  "exportedAt": "2026-09-22T04:00:00.000Z",
+  "version": 2,
+  "tasks": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "content": "Synthetic recovery task\nVerify historical snapshot restoration.",
+      "title": "Synthetic recovery task",
+      "priority": "important",
+      "type": "one_time",
+      "completed": true,
+      "rewardClaimed": true,
+      "lastRewardClaimedAt": "2026-09-22T04:00:00.000Z",
+      "createdAt": "2026-09-22T04:00:00.000Z",
+      "updatedAt": "2026-09-22T04:00:00.000Z",
+      "completedAt": "2026-09-22T04:00:00.000Z",
+      "categoryId": "general",
+      "startDate": "2026-09-22",
+      "dueDate": "2026-09-22",
+      "isPlannedToday": true,
+      "plannedDate": "2026-09-22",
+      "subtasks": [
+        {
+          "id": "synthetic-subtask-1",
+          "text": "Synthetic completed subtask",
+          "completed": true,
+          "createdAt": "2026-09-22T04:00:00.000Z",
+          "completedAt": "2026-09-22T04:00:00.000Z"
+        }
+      ]
+    }
+  ],
+  "wallet": {
+    "stardust": 2450,
+    "adventureEnergy": 14,
+    "materials": {
+      "forest_leaf": 4,
+      "lava_core": 0,
+      "machine_part": 0,
+      "star_shard": 0,
+      "aurora_ice": 0,
+      "harvest_charm": 0
+    }
+  },
+  "collection": [
+    {
+      "petId": "pet_n01",
+      "stars": 1,
+      "fragments": 7,
+      "bondExp": 76,
+      "bondLevel": 2,
+      "isCompanion": true,
+      "nickname": null,
+      "lastPettedAt": null,
+      "obtainedAt": "2026-09-22T04:00:00.000Z",
+      "bondUnlocks": {
+        "dialogueLv2": true,
+        "badgeLv3": false,
+        "homeEffectLv4": false,
+        "bondFrameLv5": false,
+        "bondStoryLv5": false,
+        "bondLiberated": false,
+        "notifiedLevels": []
+      }
+    },
+    {
+      "petId": "pet_r16",
+      "stars": 1,
+      "fragments": 0,
+      "bondExp": 0,
+      "bondLevel": 1,
+      "isCompanion": false,
+      "nickname": null,
+      "lastPettedAt": null,
+      "obtainedAt": "2026-09-22T04:00:00.000Z",
+      "bondUnlocks": {
+        "dialogueLv2": false,
+        "badgeLv3": false,
+        "homeEffectLv4": false,
+        "bondFrameLv5": false,
+        "bondStoryLv5": false,
+        "bondLiberated": false,
+        "notifiedLevels": []
+      }
+    }
+  ],
+  "gachaStats": {
+    "ssrPity": 7,
+    "urPity": 27,
+    "totalPulls": 47,
+    "tenPullCount": 3,
+    "selectedPoolId": "eternal_slumber_bloom",
+    "poolPity": {
+      "standard": {
+        "ssrPity": 7,
+        "urPity": 27
+      },
+      "eternal_slumber_bloom": {
+        "ssrPity": 3,
+        "urPity": 20
+      }
+    }
+  },
+  "expeditions": [],
+  "materials": {
+    "forest_leaf": 4,
+    "lava_core": 0,
+    "machine_part": 0,
+    "star_shard": 0,
+    "aurora_ice": 0,
+    "harvest_charm": 0
+  },
+  "achievements": {
+    "key": "achievements",
+    "unlockedAchievementIds": [
+      "synthetic-achievement-claimed"
+    ],
+    "claimedAchievementIds": [
+      "synthetic-achievement-claimed"
+    ],
+    "unlockedTitleIds": [
+      "synthetic-title"
+    ],
+    "equippedTitleId": "synthetic-title",
+    "hasExportedBackup": true,
+    "unseenTitleIds": []
+  },
+  "titles": {
+    "unlockedTitleIds": [
+      "synthetic-title"
+    ],
+    "equippedTitleId": "synthetic-title"
+  },
+  "habits": [
+    {
+      "id": "habit_1790049600000",
+      "name": "Synthetic daily habit",
+      "description": "Fixture only",
+      "frequency": "daily",
+      "targetPerWeek": null,
+      "categoryId": "general",
+      "isActive": true,
+      "createdAt": "2026-09-22T04:00:00.000Z",
+      "updatedAt": "2026-09-22T04:00:00.000Z",
+      "archivedAt": null,
+      "logs": {
+        "2026-09-22": {
+          "completed": true,
+          "completedAt": "2026-09-22T04:00:00.000Z",
+          "rewardClaimed": true,
+          "stardustGiven": 5,
+          "bondGiven": 1
+        }
+      }
+    }
+  ],
+  "userPreferences": {
+    "key": "userPreferences",
+    "reduceMotion": false,
+    "theme": "default"
+  },
+  "settings": {
+    "key": "userPreferences",
+    "reduceMotion": false,
+    "theme": "default"
+  },
+  "taskStats": {
+    "key": "taskStats",
+    "hasPlannedTodayEver": true,
+    "hasCreatedSubtaskEver": true,
+    "subtasksCompletedTotal": 1,
+    "completedBeforeDueTotal": 1
+  },
+  "unlockedAchievementIds": [
+    "synthetic-achievement-claimed"
+  ],
+  "claimedAchievementIds": [
+    "synthetic-achievement-claimed"
+  ],
+  "unlockedTitleIds": [
+    "synthetic-title"
+  ],
+  "equippedTitleId": "synthetic-title",
+  "hasExportedBackup": true,
+  "adventureEnergy": 14,
+  "inventory": {
+    "key": "inventory",
+    "items": {},
+    "itemUsageLogs": {}
+  },
+  "workshopStats": {
+    "key": "workshopStats",
+    "craftCount": 0,
+    "giftCount": 0,
+    "favoriteGiftCount": 0,
+    "firstCraftAt": null,
+    "firstGiftAt": null,
+    "firstFavoriteGiftAt": null
+  },
+  "dailyCheckIn": {
+    "key": "dailyCheckIn",
+    "lastCheckInDate": "2026-09-22",
+    "lastCheckInAt": "2026-09-22T04:00:00.000Z",
+    "streak": 3,
+    "bestStreak": 3,
+    "totalCheckIns": 3,
+    "lastWheelSpinDate": "2026-09-22",
+    "lastWheelSpinAt": "2026-09-22T04:00:00.000Z",
+    "totalWheelSpins": 2,
+    "history": []
+  },
+  "questProgress": {
+    "key": "questProgress",
+    "daily": {
+      "dateKey": "2026-09-22",
+      "quests": {
+        "daily_complete_tasks_3": {
+          "id": "daily_complete_tasks_3",
+          "type": "complete_tasks",
+          "title": "完成 3 個任務",
+          "description": "今天完成 3 個任務。",
+          "current": 3,
+          "target": 3,
+          "completed": true,
+          "claimed": true
+        },
+        "daily_complete_habit_1": {
+          "id": "daily_complete_habit_1",
+          "type": "complete_habits",
+          "title": "完成 1 個習慣",
+          "description": "今天完成 1 個習慣打卡。",
+          "current": 0,
+          "target": 1,
+          "completed": false,
+          "claimed": false
+        },
+        "daily_pet_companion_1": {
+          "id": "daily_pet_companion_1",
+          "type": "pet_companion",
+          "title": "關心陪伴寵物",
+          "description": "今天撫摸陪伴寵物 1 次。",
+          "current": 0,
+          "target": 1,
+          "completed": false,
+          "claimed": false
+        },
+        "daily_checkin_1": {
+          "id": "daily_checkin_1",
+          "type": "daily_checkin",
+          "title": "領取每日祝福",
+          "description": "今天完成每日簽到。",
+          "current": 0,
+          "target": 1,
+          "completed": false,
+          "claimed": false
+        },
+        "daily_start_expedition_1": {
+          "id": "daily_start_expedition_1",
+          "type": "start_expedition",
+          "title": "派遣 1 次探險",
+          "description": "今天派遣寵物進行 1 次探險。",
+          "current": 0,
+          "target": 1,
+          "completed": false,
+          "claimed": false
+        },
+        "daily_craft_or_gift_1": {
+          "id": "daily_craft_or_gift_1",
+          "type": "craft_or_gift",
+          "title": "完成 1 次工坊互動",
+          "description": "今天製作道具或贈送寵物禮物 1 次。",
+          "current": 0,
+          "target": 1,
+          "completed": false,
+          "claimed": false
+        }
+      }
+    },
+    "weekly": {
+      "weekKey": "2026-W39",
+      "quests": {
+        "weekly_complete_tasks_20": {
+          "id": "weekly_complete_tasks_20",
+          "type": "complete_tasks",
+          "title": "本週完成 20 個任務",
+          "description": "本週累積完成 20 個任務。",
+          "current": 0,
+          "target": 20,
+          "completed": false,
+          "claimed": false
+        },
+        "weekly_complete_habits_10": {
+          "id": "weekly_complete_habits_10",
+          "type": "complete_habits",
+          "title": "本週完成 10 次習慣",
+          "description": "本週累積完成 10 次習慣打卡。",
+          "current": 0,
+          "target": 10,
+          "completed": false,
+          "claimed": false
+        },
+        "weekly_checkin_5": {
+          "id": "weekly_checkin_5",
+          "type": "daily_checkin",
+          "title": "本週簽到 5 天",
+          "description": "本週完成 5 天每日簽到。",
+          "current": 0,
+          "target": 5,
+          "completed": false,
+          "claimed": false
+        },
+        "weekly_expedition_5": {
+          "id": "weekly_expedition_5",
+          "type": "complete_expedition",
+          "title": "本週完成 5 次探險",
+          "description": "本週完成 5 次寵物探險。",
+          "current": 0,
+          "target": 5,
+          "completed": false,
+          "claimed": false
+        },
+        "weekly_gift_5": {
+          "id": "weekly_gift_5",
+          "type": "gift_pet",
+          "title": "本週贈送 5 次禮物",
+          "description": "本週贈送寵物親密度道具 5 次。",
+          "current": 0,
+          "target": 5,
+          "completed": false,
+          "claimed": false
+        }
+      }
+    },
+    "stats": {
+      "totalDailyQuestsClaimed": 1,
+      "totalWeeklyQuestsClaimed": 0,
+      "lastUpdatedAt": null
+    }
+  },
+  "explorationProgress": {
+    "key": "explorationProgress",
+    "areas": {
+      "mist_forest": {
+        "areaId": "mist_forest",
+        "progress": 0,
+        "completedRuns": 0,
+        "claimedMilestones": [],
+        "unlockedStories": [],
+        "completedAt": null,
+        "lastExploredAt": null
+      },
+      "lava_rift": {
+        "areaId": "lava_rift",
+        "progress": 0,
+        "completedRuns": 0,
+        "claimedMilestones": [],
+        "unlockedStories": [],
+        "completedAt": null,
+        "lastExploredAt": null
+      },
+      "machine_ruins": {
+        "areaId": "machine_ruins",
+        "progress": 0,
+        "completedRuns": 0,
+        "claimedMilestones": [],
+        "unlockedStories": [],
+        "completedAt": null,
+        "lastExploredAt": null
+      },
+      "astral_rift": {
+        "areaId": "astral_rift",
+        "progress": 0,
+        "completedRuns": 0,
+        "claimedMilestones": [],
+        "unlockedStories": [],
+        "completedAt": null,
+        "lastExploredAt": null
+      }
+    },
+    "unlockedBadges": [],
+    "unlockedTitles": [],
+    "stats": {
+      "totalExplorationRuns": 0,
+      "totalMilestonesClaimed": 0,
+      "fullyExploredAreas": 0,
+      "lastUpdatedAt": null
+    }
+  },
+  "collectionMilestones": {
+    "key": "collectionMilestones",
+    "version": 1,
+    "claimedIds": [
+      "collection_005"
+    ],
+    "lastUpdatedAt": "2026-09-22T04:00:00.000Z"
+  },
+  "globalMailboxState": {
+    "key": "globalMailboxState",
+    "version": 1,
+    "readIds": [
+      "synthetic-mail-claimed"
+    ],
+    "claimedIds": [
+      "synthetic-mail-claimed"
+    ],
+    "lastFetchedAt": "2026-09-22T04:00:00.000Z",
+    "lastSeenGeneratedAt": null
+  },
+  "poolDebutSeen": {
+    "key": "poolDebutSeen",
+    "seenPoolIds": [
+      "eternal_slumber_bloom"
+    ]
+  },
+  "poolUnlockState": {
+    "key": "poolUnlockState",
+    "schemaVersion": 1,
+    "byPool": {
+      "eternal_slumber_bloom": {
+        "schemaVersion": 1,
+        "poolId": "eternal_slumber_bloom",
+        "lifetimeDraws": 20,
+        "unlocked": true,
+        "rewardClaimed": true,
+        "animationSeen": true,
+        "unlockedAt": "2026-09-22T04:00:00.000Z"
+      }
+    },
+    "legacyBackfill": {
+      "attempted": true,
+      "status": "unavailable_no_pool_history",
+      "note": "抽卡歷史未保存 poolId，已停止舊玩家自動補判定；lifetimeDraws 僅自 V3.4.0 起累積。"
+    }
+  },
+  "idempotentGrants": {
+    "key": "idempotentGrants",
+    "claimedIds": [
+      "awakening_reward:eternal_slumber_bloom:20"
+    ]
+  },
+  "data": {
+    "tasks": [
+      {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "content": "Synthetic recovery task\nVerify historical snapshot restoration.",
+        "title": "Synthetic recovery task",
+        "priority": "important",
+        "type": "one_time",
+        "completed": true,
+        "rewardClaimed": true,
+        "lastRewardClaimedAt": "2026-09-22T04:00:00.000Z",
+        "createdAt": "2026-09-22T04:00:00.000Z",
+        "updatedAt": "2026-09-22T04:00:00.000Z",
+        "completedAt": "2026-09-22T04:00:00.000Z",
+        "categoryId": "general",
+        "startDate": "2026-09-22",
+        "dueDate": "2026-09-22",
+        "isPlannedToday": true,
+        "plannedDate": "2026-09-22",
+        "subtasks": [
+          {
+            "id": "synthetic-subtask-1",
+            "text": "Synthetic completed subtask",
+            "completed": true,
+            "createdAt": "2026-09-22T04:00:00.000Z",
+            "completedAt": "2026-09-22T04:00:00.000Z"
+          }
+        ]
+      }
+    ],
+    "wallet": {
+      "stardust": 2450,
+      "adventureEnergy": 14,
+      "materials": {
+        "forest_leaf": 4,
+        "lava_core": 0,
+        "machine_part": 0,
+        "star_shard": 0,
+        "aurora_ice": 0,
+        "harvest_charm": 0
+      }
+    },
+    "collection": [
+      {
+        "petId": "pet_n01",
+        "stars": 1,
+        "fragments": 7,
+        "bondExp": 76,
+        "bondLevel": 2,
+        "isCompanion": true,
+        "nickname": null,
+        "lastPettedAt": null,
+        "obtainedAt": "2026-09-22T04:00:00.000Z",
+        "bondUnlocks": {
+          "dialogueLv2": true,
+          "badgeLv3": false,
+          "homeEffectLv4": false,
+          "bondFrameLv5": false,
+          "bondStoryLv5": false,
+          "bondLiberated": false,
+          "notifiedLevels": []
+        }
+      },
+      {
+        "petId": "pet_r16",
+        "stars": 1,
+        "fragments": 0,
+        "bondExp": 0,
+        "bondLevel": 1,
+        "isCompanion": false,
+        "nickname": null,
+        "lastPettedAt": null,
+        "obtainedAt": "2026-09-22T04:00:00.000Z",
+        "bondUnlocks": {
+          "dialogueLv2": false,
+          "badgeLv3": false,
+          "homeEffectLv4": false,
+          "bondFrameLv5": false,
+          "bondStoryLv5": false,
+          "bondLiberated": false,
+          "notifiedLevels": []
+        }
+      }
+    ],
+    "gachaStats": {
+      "ssrPity": 7,
+      "urPity": 27,
+      "totalPulls": 47,
+      "tenPullCount": 3,
+      "selectedPoolId": "eternal_slumber_bloom",
+      "poolPity": {
+        "standard": {
+          "ssrPity": 7,
+          "urPity": 27
+        },
+        "eternal_slumber_bloom": {
+          "ssrPity": 3,
+          "urPity": 20
+        }
+      }
+    },
+    "expeditions": [],
+    "materials": {
+      "forest_leaf": 4,
+      "lava_core": 0,
+      "machine_part": 0,
+      "star_shard": 0,
+      "aurora_ice": 0,
+      "harvest_charm": 0
+    },
+    "achievements": {
+      "key": "achievements",
+      "unlockedAchievementIds": [
+        "synthetic-achievement-claimed"
+      ],
+      "claimedAchievementIds": [
+        "synthetic-achievement-claimed"
+      ],
+      "unlockedTitleIds": [
+        "synthetic-title"
+      ],
+      "equippedTitleId": "synthetic-title",
+      "hasExportedBackup": true,
+      "unseenTitleIds": []
+    },
+    "titles": {
+      "unlockedTitleIds": [
+        "synthetic-title"
+      ],
+      "equippedTitleId": "synthetic-title"
+    },
+    "habits": [
+      {
+        "id": "habit_1790049600000",
+        "name": "Synthetic daily habit",
+        "description": "Fixture only",
+        "frequency": "daily",
+        "targetPerWeek": null,
+        "categoryId": "general",
+        "isActive": true,
+        "createdAt": "2026-09-22T04:00:00.000Z",
+        "updatedAt": "2026-09-22T04:00:00.000Z",
+        "archivedAt": null,
+        "logs": {
+          "2026-09-22": {
+            "completed": true,
+            "completedAt": "2026-09-22T04:00:00.000Z",
+            "rewardClaimed": true,
+            "stardustGiven": 5,
+            "bondGiven": 1
+          }
+        }
+      }
+    ],
+    "userPreferences": {
+      "key": "userPreferences",
+      "reduceMotion": false,
+      "theme": "default"
+    },
+    "settings": {
+      "key": "userPreferences",
+      "reduceMotion": false,
+      "theme": "default"
+    },
+    "taskStats": {
+      "key": "taskStats",
+      "hasPlannedTodayEver": true,
+      "hasCreatedSubtaskEver": true,
+      "subtasksCompletedTotal": 1,
+      "completedBeforeDueTotal": 1
+    },
+    "unlockedAchievementIds": [
+      "synthetic-achievement-claimed"
+    ],
+    "claimedAchievementIds": [
+      "synthetic-achievement-claimed"
+    ],
+    "unlockedTitleIds": [
+      "synthetic-title"
+    ],
+    "equippedTitleId": "synthetic-title",
+    "hasExportedBackup": true,
+    "adventureEnergy": 14,
+    "inventory": {
+      "key": "inventory",
+      "items": {},
+      "itemUsageLogs": {}
+    },
+    "workshopStats": {
+      "key": "workshopStats",
+      "craftCount": 0,
+      "giftCount": 0,
+      "favoriteGiftCount": 0,
+      "firstCraftAt": null,
+      "firstGiftAt": null,
+      "firstFavoriteGiftAt": null
+    },
+    "dailyCheckIn": {
+      "key": "dailyCheckIn",
+      "lastCheckInDate": "2026-09-22",
+      "lastCheckInAt": "2026-09-22T04:00:00.000Z",
+      "streak": 3,
+      "bestStreak": 3,
+      "totalCheckIns": 3,
+      "lastWheelSpinDate": "2026-09-22",
+      "lastWheelSpinAt": "2026-09-22T04:00:00.000Z",
+      "totalWheelSpins": 2,
+      "history": []
+    },
+    "questProgress": {
+      "key": "questProgress",
+      "daily": {
+        "dateKey": "2026-09-22",
+        "quests": {
+          "daily_complete_tasks_3": {
+            "id": "daily_complete_tasks_3",
+            "type": "complete_tasks",
+            "title": "完成 3 個任務",
+            "description": "今天完成 3 個任務。",
+            "current": 3,
+            "target": 3,
+            "completed": true,
+            "claimed": true
+          },
+          "daily_complete_habit_1": {
+            "id": "daily_complete_habit_1",
+            "type": "complete_habits",
+            "title": "完成 1 個習慣",
+            "description": "今天完成 1 個習慣打卡。",
+            "current": 0,
+            "target": 1,
+            "completed": false,
+            "claimed": false
+          },
+          "daily_pet_companion_1": {
+            "id": "daily_pet_companion_1",
+            "type": "pet_companion",
+            "title": "關心陪伴寵物",
+            "description": "今天撫摸陪伴寵物 1 次。",
+            "current": 0,
+            "target": 1,
+            "completed": false,
+            "claimed": false
+          },
+          "daily_checkin_1": {
+            "id": "daily_checkin_1",
+            "type": "daily_checkin",
+            "title": "領取每日祝福",
+            "description": "今天完成每日簽到。",
+            "current": 0,
+            "target": 1,
+            "completed": false,
+            "claimed": false
+          },
+          "daily_start_expedition_1": {
+            "id": "daily_start_expedition_1",
+            "type": "start_expedition",
+            "title": "派遣 1 次探險",
+            "description": "今天派遣寵物進行 1 次探險。",
+            "current": 0,
+            "target": 1,
+            "completed": false,
+            "claimed": false
+          },
+          "daily_craft_or_gift_1": {
+            "id": "daily_craft_or_gift_1",
+            "type": "craft_or_gift",
+            "title": "完成 1 次工坊互動",
+            "description": "今天製作道具或贈送寵物禮物 1 次。",
+            "current": 0,
+            "target": 1,
+            "completed": false,
+            "claimed": false
+          }
+        }
+      },
+      "weekly": {
+        "weekKey": "2026-W39",
+        "quests": {
+          "weekly_complete_tasks_20": {
+            "id": "weekly_complete_tasks_20",
+            "type": "complete_tasks",
+            "title": "本週完成 20 個任務",
+            "description": "本週累積完成 20 個任務。",
+            "current": 0,
+            "target": 20,
+            "completed": false,
+            "claimed": false
+          },
+          "weekly_complete_habits_10": {
+            "id": "weekly_complete_habits_10",
+            "type": "complete_habits",
+            "title": "本週完成 10 次習慣",
+            "description": "本週累積完成 10 次習慣打卡。",
+            "current": 0,
+            "target": 10,
+            "completed": false,
+            "claimed": false
+          },
+          "weekly_checkin_5": {
+            "id": "weekly_checkin_5",
+            "type": "daily_checkin",
+            "title": "本週簽到 5 天",
+            "description": "本週完成 5 天每日簽到。",
+            "current": 0,
+            "target": 5,
+            "completed": false,
+            "claimed": false
+          },
+          "weekly_expedition_5": {
+            "id": "weekly_expedition_5",
+            "type": "complete_expedition",
+            "title": "本週完成 5 次探險",
+            "description": "本週完成 5 次寵物探險。",
+            "current": 0,
+            "target": 5,
+            "completed": false,
+            "claimed": false
+          },
+          "weekly_gift_5": {
+            "id": "weekly_gift_5",
+            "type": "gift_pet",
+            "title": "本週贈送 5 次禮物",
+            "description": "本週贈送寵物親密度道具 5 次。",
+            "current": 0,
+            "target": 5,
+            "completed": false,
+            "claimed": false
+          }
+        }
+      },
+      "stats": {
+        "totalDailyQuestsClaimed": 1,
+        "totalWeeklyQuestsClaimed": 0,
+        "lastUpdatedAt": null
+      }
+    },
+    "explorationProgress": {
+      "key": "explorationProgress",
+      "areas": {
+        "mist_forest": {
+          "areaId": "mist_forest",
+          "progress": 0,
+          "completedRuns": 0,
+          "claimedMilestones": [],
+          "unlockedStories": [],
+          "completedAt": null,
+          "lastExploredAt": null
+        },
+        "lava_rift": {
+          "areaId": "lava_rift",
+          "progress": 0,
+          "completedRuns": 0,
+          "claimedMilestones": [],
+          "unlockedStories": [],
+          "completedAt": null,
+          "lastExploredAt": null
+        },
+        "machine_ruins": {
+          "areaId": "machine_ruins",
+          "progress": 0,
+          "completedRuns": 0,
+          "claimedMilestones": [],
+          "unlockedStories": [],
+          "completedAt": null,
+          "lastExploredAt": null
+        },
+        "astral_rift": {
+          "areaId": "astral_rift",
+          "progress": 0,
+          "completedRuns": 0,
+          "claimedMilestones": [],
+          "unlockedStories": [],
+          "completedAt": null,
+          "lastExploredAt": null
+        }
+      },
+      "unlockedBadges": [],
+      "unlockedTitles": [],
+      "stats": {
+        "totalExplorationRuns": 0,
+        "totalMilestonesClaimed": 0,
+        "fullyExploredAreas": 0,
+        "lastUpdatedAt": null
+      }
+    },
+    "collectionMilestones": {
+      "key": "collectionMilestones",
+      "version": 1,
+      "claimedIds": [
+        "collection_005"
+      ],
+      "lastUpdatedAt": "2026-09-22T04:00:00.000Z"
+    },
+    "globalMailboxState": {
+      "key": "globalMailboxState",
+      "version": 1,
+      "readIds": [
+        "synthetic-mail-claimed"
+      ],
+      "claimedIds": [
+        "synthetic-mail-claimed"
+      ],
+      "lastFetchedAt": "2026-09-22T04:00:00.000Z",
+      "lastSeenGeneratedAt": null
+    },
+    "poolDebutSeen": {
+      "key": "poolDebutSeen",
+      "seenPoolIds": [
+        "eternal_slumber_bloom"
+      ]
+    },
+    "poolUnlockState": {
+      "key": "poolUnlockState",
+      "schemaVersion": 1,
+      "byPool": {
+        "eternal_slumber_bloom": {
+          "schemaVersion": 1,
+          "poolId": "eternal_slumber_bloom",
+          "lifetimeDraws": 20,
+          "unlocked": true,
+          "rewardClaimed": true,
+          "animationSeen": true,
+          "unlockedAt": "2026-09-22T04:00:00.000Z"
+        }
+      },
+      "legacyBackfill": {
+        "attempted": true,
+        "status": "unavailable_no_pool_history",
+        "note": "抽卡歷史未保存 poolId，已停止舊玩家自動補判定；lifetimeDraws 僅自 V3.4.0 起累積。"
+      }
+    },
+    "idempotentGrants": {
+      "key": "idempotentGrants",
+      "claimedIds": [
+        "awakening_reward:eternal_slumber_bloom:20"
+      ]
+    }
+  }
+}

@@ -2,12 +2,12 @@
  * QuestNote 版本資訊 — 單一來源
  * 發佈新版時請同步更新 service-worker.js 的 CACHE_NAME
  */
-export const APP_VERSION = '3.4.4';
-export const CACHE_NAME = 'questnote-preview-cache-v344-repeat-pull-confirm';
+export const APP_VERSION = '3.4.5';
+export const CACHE_NAME = 'questnote-preview-cache-v345-data-recovery';
 export const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 export const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */
-export const BUILD_TIME = '2026-09-17T00:00:00+08:00';
+export const BUILD_TIME = '2026-09-22T16:07:40Z';
 
 export function formatDisplayVersion() {
   return `V${APP_VERSION}`;

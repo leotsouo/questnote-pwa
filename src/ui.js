@@ -525,7 +525,7 @@ function openNicknameModal(petId) {
     openPetDetailModal(petId);
     showToast(result.cleared ? '暱稱已清除' : '暱稱已更新', 'success');
     if (!result.cleared) {
-      const card = document.querySelector(`.collection-card[data-pet-id="${petId}"]`);
+      const card = document.querySelector(`.collection-card[data-pet-id="${CSS.escape(String(petId))}"]`);
       if (card && !state.userPreferences?.reduceMotion) {
         card.classList.add('collection-card--nickname-glow');
         setTimeout(() => card.classList.remove('collection-card--nickname-glow'), 800);
@@ -769,7 +769,7 @@ function bindDelegatedEvents() {
 
       if (isCompleting && taskViewMode === 'today') {
         requestAnimationFrame(() => {
-          document.querySelector(`.task-card[data-id="${id}"]`)
+          document.querySelector(`.task-card[data-id="${CSS.escape(String(id))}"]`)
             ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
       }
@@ -2758,7 +2758,7 @@ function renderTaskCard(task) {
         <ul class="subtask-list">
           ${(task.subtasks || []).map((s) => `
             <li class="subtask-item ${s.completed ? 'subtask-item--done' : ''}">
-              <button type="button" class="subtask-check ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${s.id}" aria-label="完成子任務">
+              <button type="button" class="subtask-check ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${escapeHtml(s.id)}" aria-label="完成子任務">
                 ${s.completed ? '✓' : ''}
               </button>
               <span class="subtask-text">${escapeHtml(s.text)}</span>
@@ -2784,7 +2784,7 @@ function renderTaskCard(task) {
     : '';
 
   return `
-    <article class="task-card card-animate ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${task.id}">
+    <article class="task-card card-animate ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
       <div class="task-card__header">
         <button class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" aria-label="完成任務">
           ${task.completed ? '✓' : ''}
@@ -2862,11 +2862,11 @@ function openTaskForm(taskId = null) {
       <div class="form-row">
         <div class="form-field">
           <label class="form-label" for="task-start-date">開始日</label>
-          <input type="date" id="task-start-date" class="form-input" value="${task?.startDate || ''}" />
+          <input type="date" id="task-start-date" class="form-input" value="${escapeHtml(task?.startDate || '')}" />
         </div>
         <div class="form-field">
           <label class="form-label" for="task-due-date">截止日</label>
-          <input type="date" id="task-due-date" class="form-input" value="${task?.dueDate || ''}" />
+          <input type="date" id="task-due-date" class="form-input" value="${escapeHtml(task?.dueDate || '')}" />
         </div>
       </div>
       <p class="form-error" id="task-date-error" hidden>開始日不可晚於截止日</p>
@@ -3238,7 +3238,7 @@ function renderCompanionSection(companion, defaultLine) {
   warmPetImageCache(getPetImageSrc(companion)).catch(() => {});
 
   const progress = getBondProgress(companion.bondExp ?? 0, companion.bondLevel ?? 1);
-  const rarityClass = `rarity-${companion.rarity}`;
+  const rarityClass = escapeHtml(`rarity-${companion.rarity}`);
   const equippedTitle = state.achievementSummary?.equippedTitle;
   const titleHtml = equippedTitle
     ? `<p class="companion-card__player-title">稱號：${escapeHtml(equippedTitle.name)}</p>`
@@ -3274,7 +3274,7 @@ function renderCompanionSection(companion, defaultLine) {
                 <span class="companion-card__name">${escapeHtml(petDisplayName(companion))}</span>
                 ${petOriginalNameHtml(companion)}
               </div>
-              <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
+              <span class="badge badge--rarity ${rarityClass}">${escapeHtml(companion.rarity)}</span>
             </div>
             ${titleHtml}
             ${renderStars(companion.stars ?? 1)}
@@ -6321,7 +6321,7 @@ function renderExpeditionView() {
             ${
               complete
                 ? `<p class="expedition-complete-msg">${EXPEDITION_COMPLETE_MSG}</p>
-                   <button class="btn btn--primary btn--block expedition-claim-btn expedition-claim-btn--glow" data-action="claim-expedition" data-id="${activeExpedition.id}">領取獎勵</button>`
+                   <button class="btn btn--primary btn--block expedition-claim-btn expedition-claim-btn--glow" data-action="claim-expedition" data-id="${escapeHtml(activeExpedition.id)}">領取獎勵</button>`
                 : `<p class="expedition-status-log" id="expedition-status-log"></p>
                    <div class="expedition-countdown-row">
                      <span class="expedition-pulse-dot" aria-hidden="true"></span>
@@ -8517,8 +8517,8 @@ async function proceedRestoreAfterFirstConfirm(hasNewerVersionWarning) {
   setImportElementHidden('import-restoring-hint', true);
 
   const secondMessage = hasNewerVersionWarning
-    ? '系統已自動下載目前資料備份。此備份來自較新版本，可能無法完全相容。請再次確認你選擇的是正確備份檔。'
-    : '系統已自動下載目前資料備份。請確認你選擇的是正確備份檔，再執行恢復。';
+    ? '已發起目前資料備份下載，請確認檔案已儲存且可以讀取。此備份來自較新版本，可能無法完全相容。請再次確認你選擇的是正確備份檔。'
+    : '已發起目前資料備份下載，請確認檔案已儲存且可以讀取，再執行恢復。';
 
   openConfirmModal(
     '最後確認',

@@ -5,7 +5,8 @@
   "scripts": {
     "images:build": "node devtools/build-pet-images.mjs build",
     "images:check": "node devtools/build-pet-images.mjs check",
-    "test": "node --test devtools/summon-perf.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs"
+    "test": "node --test devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs",
+    "test:browser": "node devtools/browser-test-server.mjs"
   },
   "devDependencies": {
     "sharp": "0.35.4"
