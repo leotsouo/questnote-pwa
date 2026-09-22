@@ -6,10 +6,13 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v345-data-recovery';
+const CACHE_NAME = 'questnote-preview-cache-v346-pool-contract';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
+// Filled by the release assembler. Source checkouts are not release artifacts.
+const BUILD_PROFILE = null;
+const PRECACHE_HASHES = null;
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
 const PRECACHE_URLS = [
@@ -17,6 +20,10 @@ const PRECACHE_URLS = [
   'manifest.webmanifest',
   'src/styles.css',
   'src/app.js',
+  'src/bootstrap.js',
+  'src/releaseCatalog.js',
+  'src/releaseProfile.js',
+  'src/poolContentContract.js',
   'src/db.js',
   'src/taskService.js',
   'src/taskMigration.js',
@@ -25,6 +32,8 @@ const PRECACHE_URLS = [
   'src/categoryService.js',
   'src/rewardService.js',
   'src/gachaService.js',
+  'src/gachaTransactionCore.js',
+  'src/poolUnlockCore.js',
   'src/petPoolFilter.js',
   'src/summonRevealService.js',
   'src/poolPresentation.js',
@@ -80,8 +89,8 @@ function resolveUrl(path) {
 }
 
 function isGlobalMailboxRequest(url) {
-  return url.pathname.endsWith('/data/global-mailbox.json')
-    || url.pathname.endsWith('data/global-mailbox.json');
+  const expected = new URL(resolveUrl('data/global-mailbox.json'));
+  return url.origin === expected.origin && url.pathname === expected.pathname;
 }
 
 function getMailboxCacheRequest() {
@@ -99,7 +108,8 @@ async function matchCached(request, cacheName = CACHE_NAME) {
 
   const requests = await cache.keys();
   for (const req of requests) {
-    if (new URL(req.url).pathname === url.pathname) {
+    const stored = new URL(req.url);
+    if (stored.origin === url.origin && stored.pathname === url.pathname) {
       return cache.match(req);
     }
   }
@@ -141,9 +151,10 @@ async function networkFirstMailbox(request) {
   try {
     const response = await fetchWithTimeout(request, MAILBOX_FETCH_TIMEOUT_MS);
     if (response.ok) {
-      cache.put(cacheKey, response.clone());
+      await cache.put(cacheKey, response.clone());
+      return response;
     }
-    return response;
+    throw new Error(`Mailbox HTTP ${response.status}`);
   } catch {
     const cached = await cache.match(cacheKey)
       || await matchCached(request, MAILBOX_RUNTIME_CACHE)
@@ -167,14 +178,16 @@ async function networkFirstWithCache(request) {
     const response = await fetch(request);
     if (response.ok) {
       const cache = await caches.open(CACHE_NAME);
-      cache.put(request, response.clone());
+      await cache.put(request, response.clone());
+      return response;
     }
-    return response;
+    throw new Error(`HTTP ${response.status}`);
   } catch {
     const cached = await matchCached(request, CACHE_NAME);
     if (cached) return cached;
     if (request.destination === 'document') {
-      return caches.match(resolveUrl('index.html'));
+      const page = await matchCached(new Request(resolveUrl('index.html')));
+      if (page) return page;
     }
     return new Response('', { status: 503, statusText: 'Offline' });
   }
@@ -219,26 +232,29 @@ async function cacheFirst(request) {
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
+      if (BUILD_PROFILE && new URL('./', self.location.href).pathname !== BUILD_PROFILE.scopePath) {
+        throw new Error('Release scope mismatch');
+      }
+      // Do not touch the cache until every required file has been fetched and verified.
+      const entries = await Promise.all(PRECACHE_URLS.map(async (path) => {
+        const url = resolveUrl(path);
+        const response = await fetch(url, { cache: 'reload' });
+        if (!response.ok) throw new Error(`Required asset unavailable: ${path} (${response.status})`);
+        if (PRECACHE_HASHES) {
+          const digest = await crypto.subtle.digest('SHA-256', await response.clone().arrayBuffer());
+          const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+          if (hash !== PRECACHE_HASHES[path]) throw new Error(`Required asset mismatch: ${path}`);
+        }
+        return [url, response];
+      }));
       const cache = await caches.open(CACHE_NAME);
-      await Promise.all(
-        PRECACHE_URLS.map(async (path) => {
-          try {
-            await cache.add(resolveUrl(path));
-          } catch (err) {
-            console.warn('[QuestNote SW] 預快取失敗:', path, err);
-          }
-        })
-      );
-      await self.skipWaiting();
+      await Promise.all(entries.map(([url, response]) => cache.put(url, response)));
+      // Natural activation waits until the previous worker has no clients.
     })()
   );
 });
 
-self.addEventListener('message', (event) => {
-  if (event.data?.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-});
+// Deliberately ignore legacy SKIP_WAITING messages from older open tabs.
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
@@ -247,14 +263,14 @@ self.addEventListener('activate', (event) => {
       await Promise.all(
         keys
           .filter((key) => (
-            key.startsWith('questnote-preview-')
+            key.startsWith(BUILD_PROFILE?.cacheNamespace || 'questnote-preview-')
             && key !== CACHE_NAME
             && key !== PET_IMAGE_CACHE
             && key !== MAILBOX_RUNTIME_CACHE
           ))
           .map((key) => caches.delete(key))
       );
-      await self.clients.claim();
+      // Do not claim already-open uncontrolled pages in the middle of an operation.
     })()
   );
 });
@@ -264,6 +280,10 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
+  const base = new URL('./', self.location.href);
+  if (url.origin !== base.origin || !url.pathname.startsWith(base.pathname)) return;
+  const relativePath = url.pathname.slice(base.pathname.length);
+  if (/^(devtools|scripts|content|reports|docs)\//.test(relativePath)) return;
 
   if (isGlobalMailboxRequest(url)) {
     event.respondWith(networkFirstMailbox(request));
@@ -271,12 +291,20 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (request.mode === 'navigate') {
-    event.respondWith(networkFirstWithCache(request));
+    event.respondWith((async () => (await matchCached(new Request(resolveUrl('index.html'))))
+      || new Response('Application unavailable offline', { status: 503 }))());
     return;
   }
 
-  if (isMutableAppAsset(url.pathname)) {
-    event.respondWith(networkFirstWithCache(request));
+  if (PRECACHE_URLS.includes(relativePath)) {
+    // A verified application generation is immutable; online requests must not mix releases.
+    event.respondWith((async () => (await matchCached(request))
+      || new Response('Required cached asset unavailable', { status: 503 }))());
+    return;
+  }
+
+  if (BUILD_PROFILE && isMutableAppAsset(url.pathname)) {
+    event.respondWith(Promise.resolve(new Response('Asset is outside this release', { status: 503 })));
     return;
   }
 

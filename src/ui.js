@@ -28,17 +28,13 @@ import {
   getTodayViewSections,
   validateDateRange,
 } from './taskFilterService.js';
-import { GACHA_COST, GACHA_TEN_COST, calculateRewardAmount, calculateAdventureEnergyAmount } from './rewardService.js';
+import { calculateRewardAmount, calculateAdventureEnergyAmount } from './rewardService.js';
 import {
   pullOnce,
   performTenPull,
-  getActivePool,
-  getActivePools,
-  resolveSelectedPoolId,
   setSelectedPoolId,
   getPoolPityCounters,
   ensurePoolPity,
-  getPoolPets,
 } from './gachaService.js';
 import {
   upgradeStar,
@@ -100,6 +96,7 @@ import {
   preloadImage,
 } from './imagePreloadService.js';
 import { createDeferredRenderGate } from './deferredRenderGate.js';
+import { resolveActivePool, resolveDrawCost, normalizeUnlockExpansion, resolvePoolPresentationModel, validatePoolContent } from './poolContentContract.js';
 import {
   claimAchievementReward,
   claimAllAchievementRewards,
@@ -124,8 +121,6 @@ import {
 import {
   normalizePoolPresentation,
   shouldUseThemedSummon,
-  getPoolThemeAttr,
-  resolvePresentationPets,
 } from './poolPresentation.js';
 import {
   hasSeenPoolDebut,
@@ -137,7 +132,6 @@ import {
   isThemedSummonPlaying,
 } from './themedSummonController.js';
 import {
-  normalizeUnlockExpansion,
   getPoolUnlockEntry,
   ensureUnlockRewardClaimed,
   ensurePoolUnlockLegacyBackfillMarked,
@@ -145,9 +139,8 @@ import {
   emptyPoolUnlockEntry,
 } from './poolUnlockService.js';
 import {
-  playMorningGardenUnlock,
+  playPoolUnlock,
   isPoolAwakeningPlaying,
-  AWAKENING_PETS,
 } from './poolAwakeningController.js';
 import {
   escapeHtml,
@@ -294,8 +287,15 @@ function resolveGachaResultWait() {
 function runQueuedGachaResultPull() {
   const nextPull = queuedGachaResultPull;
   queuedGachaResultPull = null;
-  if (nextPull === 'single') void handlePull();
-  if (nextPull === 'ten') void handleTenPull();
+  if (!nextPull) return;
+  const current = getGachaAffordability();
+  const cost = nextPull.mode === 'ten' ? current.tenCost : current.singleCost;
+  if (current.pool?.id !== nextPull.poolId || cost !== nextPull.cost) {
+    showToast('卡池已變更，請重新確認召喚', 'warning');
+    return;
+  }
+  if (nextPull.mode === 'single') void handlePull();
+  if (nextPull.mode === 'ten') void handleTenPull();
 }
 
 function waitNextFrame() {
@@ -1553,11 +1553,11 @@ export function renderSharedUI() {
   if (!state) return;
   if (isWheelSpinning()) return;
   uiDebugLog('[Render] renderSharedUI');
-  const { wallet, todayCompleted, availablePulls, achievementSummary } = state;
+  const { wallet, todayCompleted, achievementSummary } = state;
   setText('stat-stardust', wallet.stardust ?? 0);
   setText('stat-energy', wallet.adventureEnergy ?? 0);
   setText('stat-today', todayCompleted);
-  setText('stat-pulls', availablePulls);
+  setText('stat-pulls', getAvailablePullsForSelectedPool());
   const claimable = achievementSummary?.claimable ?? 0;
   setText('stat-claimable', claimable);
   const claimableCard = document.getElementById('stat-claimable-card');
@@ -1704,13 +1704,13 @@ function maybeRefreshExpeditionBubble() {
 /* ─── 任務頁 ─── */
 
 function renderTasksView() {
-  const { tasks, wallet, todayCompleted, availablePulls, companion, companionLine, achievementSummary, categories } = state;
+  const { tasks, wallet, todayCompleted, companion, companionLine, achievementSummary, categories } = state;
   const today = getTodayDateString();
 
   setText('stat-stardust', wallet.stardust ?? 0);
   setText('stat-energy', wallet.adventureEnergy ?? 0);
   setText('stat-today', todayCompleted);
-  setText('stat-pulls', availablePulls);
+  setText('stat-pulls', getAvailablePullsForSelectedPool());
 
   const claimable = achievementSummary?.claimable ?? 0;
   setText('stat-claimable', claimable);
@@ -4434,7 +4434,7 @@ function renderNavBadges() {
   const habitNearGoal = hasWeeklyNearGoal(state.habits || []);
 
   setNavBadge('expedition', !!expeditionComplete, 'alert');
-  setNavBadge('gacha', stardust >= GACHA_TEN_COST, 'hint');
+  setNavBadge('gacha', getGachaAffordability().canTen, 'hint');
   setNavBadge('collection', !companion, 'hint');
   setNavBadge('more', claimable > 0 || hasUnseenTitles || habitIncomplete || habitNearGoal, 'alert');
 
@@ -4592,8 +4592,46 @@ function showRewardToast(amount, energy = 0) {
 /* ─── 召喚頁 ─── */
 
 function getSelectedGachaPool() {
-  const selectedId = resolveSelectedPoolId(state.poolsData, state.gachaStats?.selectedPoolId);
-  return getActivePool(state.poolsData, selectedId);
+  try {
+    const pool = resolveActivePool(state?.poolsData, state?.gachaStats?.selectedPoolId);
+    if (!pool) return null;
+    return validatePoolContent({ pools: [pool] }, { pets: state?.allPets || [] }).ok ? pool : null;
+  } catch {
+    return null;
+  }
+}
+
+function getAvailablePullsForSelectedPool() {
+  const pool = getSelectedGachaPool();
+  return pool ? Math.floor((state?.wallet?.stardust || 0) / resolveDrawCost(pool, 1)) : 0;
+}
+
+function renderGachaUnavailable() {
+  for (const id of ['gacha-pool-content', 'gacha-theme-stage', 'gacha-awakening-panel', 'gacha-theme-details', 'gacha-theme-details-btn']) {
+    const element = document.getElementById(id);
+    if (element) element.hidden = true;
+  }
+  const panel = document.getElementById('gacha-panel');
+  panel?.removeAttribute('data-pool-theme');
+  panel?.removeAttribute('data-pool-phase');
+  const name = document.getElementById('gacha-pool-name');
+  if (name) { name.hidden = false; name.textContent = '目前沒有可用的召喚卡池'; }
+  for (const id of ['gacha-cost', 'gacha-ten-cost', 'gacha-ssr-pity', 'gacha-ur-pity']) setText(id, '—');
+  setText('gacha-stardust', state?.wallet?.stardust ?? 0);
+  document.getElementById('gacha-rates')?.replaceChildren();
+  for (const id of ['gacha-ssr-bar', 'gacha-ur-bar']) {
+    const bar = document.getElementById(id);
+    if (bar) bar.style.width = '0%';
+  }
+  for (const [id, label] of [['btn-pull', '召喚 1 次'], ['btn-pull-ten', '召喚 10 次']]) {
+    const button = document.getElementById(id);
+    if (button) { button.disabled = true; button.textContent = label; delete button.dataset.pulling; }
+  }
+  for (const id of ['gacha-hint-single', 'gacha-hint-ten']) {
+    const hint = document.getElementById(id);
+    if (hint) hint.hidden = true;
+  }
+  renderGachaPoolSwitcher();
 }
 
 function renderGachaPoolSwitcher() {
@@ -4601,13 +4639,13 @@ function renderGachaPoolSwitcher() {
   const select = document.getElementById('gacha-pool-select');
   if (!switcher || !select) return;
 
-  const activePools = getActivePools(state.poolsData);
+  const activePools = (Array.isArray(state?.poolsData?.pools) ? state.poolsData.pools : []).filter((pool) => pool?.active === true && typeof pool.id === 'string');
   if (activePools.length <= 1) {
     switcher.hidden = true;
     return;
   }
 
-  const selectedId = resolveSelectedPoolId(state.poolsData, state.gachaStats?.selectedPoolId);
+  const selectedId = getSelectedGachaPool()?.id;
   switcher.hidden = false;
   select.innerHTML = activePools
     .map((pool) => `<option value="${escapeHtml(pool.id)}" ${pool.id === selectedId ? 'selected' : ''}>${escapeHtml(pool.name)}</option>`)
@@ -4616,20 +4654,20 @@ function renderGachaPoolSwitcher() {
 
 function renderGachaView() {
   const pool = getSelectedGachaPool();
-  if (!pool) return;
+  if (!pool) { renderGachaUnavailable(); return; }
 
   const stats = ensurePoolPity(state.gachaStats || {}, pool.id);
   const pityCounters = getPoolPityCounters(stats, pool.id);
   const pity = pool.pity || { ssr: 30, ur: 100 };
   const stardust = state.wallet.stardust ?? 0;
-  const singleCost = pool.cost ?? GACHA_COST;
+  const singleCost = resolveDrawCost(pool, 1);
 
   renderGachaPoolSwitcher();
   renderGachaThemeStage(pool);
   setText('gacha-pool-name', pool.name);
   setText('gacha-stardust', stardust);
   setText('gacha-cost', singleCost);
-  setText('gacha-ten-cost', GACHA_TEN_COST);
+  setText('gacha-ten-cost', resolveDrawCost(pool, 10));
   setText('gacha-ssr-pity', `${pityCounters.ssrPity}/${pity.ssr}`);
   setText('gacha-ur-pity', `${pityCounters.urPity}/${pity.ur}`);
 
@@ -4712,90 +4750,41 @@ function getUnlockEntryForPool(poolId) {
  */
 async function maybePlayMorningGardenAfterPull(pool, unlockProgress) {
   const expansion = normalizeUnlockExpansion(pool);
-  if (!expansion || pool?.id !== 'eternal_slumber_bloom') return;
-
-  const entry = unlockProgress?.entry || getUnlockEntryForPool(pool.id);
-  if (!entry?.unlocked) return;
-  if (entry.animationSeen) {
-    clearPendingAwakening();
-    return;
-  }
-
-  const rewardPet = state.allPets.find((p) => p.id === expansion.rewardPetId) || null;
-  const reduceMotion = state.userPreferences?.reduceMotion ?? false;
-
+  if (!expansion) return;
+  let entry = unlockProgress?.entry || getUnlockEntryForPool(pool.id);
+  if (!entry?.unlocked) { clearPendingAwakening(); return; }
   try {
-    await ensureUnlockRewardClaimed(pool.id, expansion);
+    const reward = await ensureUnlockRewardClaimed(pool.id, expansion, state.allPets);
+    if (!reward?.ok) throw new Error(reward?.error || '無法確認解鎖獎勵');
+    entry = reward.entry || await getPoolUnlockEntry(pool.id);
+    state.poolUnlockState = { ...(state.poolUnlockState || {}), byPool: { ...(state.poolUnlockState?.byPool || {}), [pool.id]: entry } };
+    if (!entry.unlocked || !entry.rewardClaimed || entry.animationSeen) return;
     await waitNextFrame();
-    const outcome = await playMorningGardenUnlock({
-      allPets: state.allPets,
-      expansion,
-      rewardPet,
-      reduceMotion,
-    });
+    const model = resolvePoolPresentationModel(pool, state.allPets, entry);
+    const outcome = await playPoolUnlock({ model, reduceMotion: state.userPreferences?.reduceMotion ?? false });
     if (outcome?.seen) {
-      await markUnlockAnimationSeen(pool.id);
-      state.poolUnlockState = {
-        ...(state.poolUnlockState || {}),
-        byPool: {
-          ...(state.poolUnlockState?.byPool || {}),
-          [pool.id]: {
-            ...entry,
-            animationSeen: true,
-            unlocked: true,
-            rewardClaimed: true,
-          },
-        },
-      };
+      const latest = await markUnlockAnimationSeen(pool.id);
+      state.poolUnlockState = { ...(state.poolUnlockState || {}), byPool: { ...(state.poolUnlockState?.byPool || {}), [pool.id]: latest } };
     }
   } catch (err) {
-    console.warn('[PoolAwakening] 解鎖演出略過', err);
-    try {
-      await markUnlockAnimationSeen(pool.id);
-      state.poolUnlockState = {
-        ...(state.poolUnlockState || {}),
-        byPool: {
-          ...(state.poolUnlockState?.byPool || {}),
-          [pool.id]: {
-            ...entry,
-            animationSeen: true,
-            unlocked: true,
-            rewardClaimed: true,
-          },
-        },
-      };
-    } catch {
-      /* ignore */
-    }
+    console.warn('[PoolAwakening] 解鎖狀態尚未完成，可重新進入卡池重試', err);
+    showToast('解鎖獎勵確認失敗，稍後可重新進入卡池重試', 'warning');
   } finally {
     clearPendingAwakening();
   }
 }
 
-/**
- * 進入永眠花海時：補發獎／補播解鎖動畫（不重播 debut）。
- */
+/** Resume is independent of theme and debut state. */
 async function maybeResumeMorningGarden(poolId) {
-  if (poolId !== 'eternal_slumber_bloom') return;
   if (isGachaPullInProgress()) return;
-  const pool = getActivePool(state.poolsData, poolId);
-  const expansion = normalizeUnlockExpansion(pool);
-  if (!expansion) return;
-
+  const pool = getSelectedGachaPool();
+  if (!pool || pool.id !== poolId || !normalizeUnlockExpansion(pool)) return;
   try {
     await ensurePoolUnlockLegacyBackfillMarked();
-    const reward = await ensureUnlockRewardClaimed(poolId, expansion);
-    const entry = reward?.entry || await getPoolUnlockEntry(poolId);
-    state.poolUnlockState = {
-      ...(state.poolUnlockState || { key: 'poolUnlockState', schemaVersion: 1, byPool: {} }),
-      byPool: {
-        ...(state.poolUnlockState?.byPool || {}),
-        [poolId]: entry,
-      },
-    };
-    if (entry.unlocked && !entry.animationSeen) {
-      gachaSessionUi.visualPhaseLock = 'slumber';
-      gachaSessionUi.pendingAwakening = true;
+    const entry = await getPoolUnlockEntry(poolId);
+    state.poolUnlockState = { ...(state.poolUnlockState || {}), byPool: { ...(state.poolUnlockState?.byPool || {}), [poolId]: entry } };
+    if (entry.unlocked && (!entry.rewardClaimed || !entry.animationSeen)) {
+      markPendingAwakening(poolId, { entry });
       await maybePlayMorningGardenAfterPull(pool, { entry });
       renderGachaView();
     }
@@ -4809,34 +4798,28 @@ async function maybeResumeMorningGarden(poolId) {
  * @param {string} poolId
  */
 async function maybePlayPoolDebut(poolId) {
-  const pool = getActivePool(state.poolsData, poolId);
+  const pool = getSelectedGachaPool();
+  if (!pool || pool.id !== poolId || isGachaPullInProgress() || maybePlayPoolDebut._inflight) return;
   const presentation = normalizePoolPresentation(pool);
-  if (!presentation || presentation.themeKey !== 'eternal_slumber_bloom') return;
-  if (isGachaPullInProgress()) return;
-  if (maybePlayPoolDebut._inflight) return;
   maybePlayPoolDebut._inflight = true;
-
   try {
-    const seen = await hasSeenPoolDebut(poolId);
-    const reduceMotion = state.userPreferences?.reduceMotion ?? false;
-    // 已看過：不在每次 render 重複短轉場；短轉場只在手動切換卡池時播放
-    if (seen && !maybePlayPoolDebut._fromSwitcher) return;
-
-    await playPoolDebutPresentation({
-      full: !seen,
-      reduceMotion,
-    });
-    if (!seen) {
-      await markPoolDebutSeen(poolId);
+    if (presentation?.animationKey === 'dream_bloom') {
+      const seen = await hasSeenPoolDebut(poolId);
+      if (!seen || maybePlayPoolDebut._fromSwitcher) {
+        await playPoolDebutPresentation({
+          poolName: pool.name, presentation,
+          full: !seen, reduceMotion: state.userPreferences?.reduceMotion ?? false,
+        });
+        if (!seen) await markPoolDebutSeen(poolId);
+      }
     }
-    // debut 與晨醒解鎖狀態分離；進入卡池時可補播解鎖動畫
-    await maybeResumeMorningGarden(poolId);
   } catch (err) {
     console.warn('[PoolDebut] 登場演出略過', err);
   } finally {
     maybePlayPoolDebut._inflight = false;
     maybePlayPoolDebut._fromSwitcher = false;
   }
+  await maybeResumeMorningGarden(poolId);
 }
 
 /**
@@ -4847,12 +4830,13 @@ function renderGachaThemeStage(pool) {
   const panel = document.getElementById('gacha-panel');
   const stage = document.getElementById('gacha-theme-stage');
   const poolNameEl = document.getElementById('gacha-pool-name');
-  const presentation = normalizePoolPresentation(pool);
-  const themeAttr = getPoolThemeAttr(pool);
-  const expansion = normalizeUnlockExpansion(pool);
   const unlockEntry = getUnlockEntryForPool(pool?.id);
+  const model = resolvePoolPresentationModel(pool, state.allPets, unlockEntry, { visualLocked: !shouldShowAwakenedPresentation(unlockEntry) });
+  const presentation = model.presentation;
+  const themeAttr = model.cssTheme;
+  const expansion = model.unlock?.expansion;
   // 畫面 phase 與資料 unlocked 分離：結果／動畫完成前維持永眠期
-  const awakened = !!(expansion && shouldShowAwakenedPresentation(unlockEntry));
+  const awakened = model.awakened;
 
   if (panel) {
     if (themeAttr) panel.dataset.poolTheme = themeAttr;
@@ -4864,34 +4848,33 @@ function renderGachaThemeStage(pool) {
 
   if (!stage) return;
 
-  if (!presentation) {
-    stage.hidden = true;
-    if (poolNameEl) poolNameEl.hidden = false;
-    return;
-  }
-
-  stage.hidden = false;
+  const content = document.getElementById('gacha-pool-content');
+  if (content) content.hidden = !presentation && !expansion;
+  stage.hidden = !presentation;
   stage.classList.toggle('is-awakened', awakened);
-  if (poolNameEl) poolNameEl.hidden = true;
+  if (poolNameEl) poolNameEl.hidden = !!presentation;
 
   const setElText = (id, text) => {
     const el = document.getElementById(id);
     if (el) el.textContent = text || '';
   };
 
-  setElText('gacha-theme-badge', presentation.badge);
+  setElText('gacha-theme-badge', presentation?.badge);
   setElText('gacha-theme-name', pool.name || '');
   if (awakened) {
-    setElText('gacha-theme-eyebrow', expansion?.title ? `${expansion.title}已解鎖` : '晨醒花庭已解鎖');
-    setElText('gacha-theme-tagline', expansion?.unlockMessage || '沉眠有歸，甦醒有時。');
+    setElText('gacha-theme-eyebrow', `${expansion.title}已解鎖`);
+    setElText('gacha-theme-tagline', expansion?.unlockMessage);
   } else {
-    setElText('gacha-theme-eyebrow', presentation.eyebrow);
-    setElText('gacha-theme-tagline', presentation.tagline);
+    setElText('gacha-theme-eyebrow', presentation?.eyebrow);
+    setElText('gacha-theme-tagline', presentation?.tagline);
   }
 
-  const { hero, featured } = resolvePresentationPets(presentation, state.allPets);
-  const dawnHero = state.allPets.find((p) => p.id === 'pet_ur06') || null;
+  const { hero } = model;
+  const dawnHero = model.heroes.find((pet) => pet.id !== hero?.id) || null;
   const heroImg = document.getElementById('gacha-theme-hero-img');
+  const heroFigure = document.getElementById('gacha-theme-hero');
+  if (heroFigure) heroFigure.hidden = !hero;
+  if (!hero && heroImg) { heroImg.removeAttribute('src'); delete heroImg.dataset.src; }
   const dualHost = document.getElementById('gacha-theme-dual-hero');
   if (awakened && dualHost && hero && dawnHero) {
     dualHost.hidden = false;
@@ -4948,13 +4931,7 @@ function renderGachaThemeStage(pool) {
   const featuredHost = document.getElementById('gacha-theme-featured');
   if (featuredHost) {
     featuredHost.replaceChildren();
-    const featureList = awakened
-      ? [
-          state.allPets.find((p) => p.id === 'pet_ssr07'),
-          state.allPets.find((p) => p.id === 'pet_sr12'),
-          state.allPets.find((p) => p.id === 'pet_r16'),
-        ].filter(Boolean)
-      : featured;
+    const featureList = model.featured;
     featureList.forEach((pet) => {
       const item = document.createElement('div');
       item.className = 'gacha-theme-featured__item';
@@ -4985,12 +4962,12 @@ function renderGachaThemeStage(pool) {
     });
   }
 
-  const eligible = getPoolPets(state.allPets, pool, unlockEntry);
+  const eligible = model.eligiblePets;
   setElText(
     'gacha-theme-meta',
     awakened
-      ? `候選角色 ${eligible.length} 隻 · 晨醒花庭已解鎖`
-      : `候選角色 ${eligible.length} 隻 · 限定池不含標準召喚寵物`,
+      ? `候選角色 ${eligible.length} 隻 · ${expansion.title}已解鎖`
+      : `候選角色 ${eligible.length} 隻${presentation?.candidateNote ? ' · ' + presentation.candidateNote : ''}`,
   );
 
   // 晨醒花庭進度／鎖定預覽
@@ -5000,18 +4977,18 @@ function renderGachaThemeStage(pool) {
     const threshold = expansion.threshold;
     const draws = unlockEntry.lifetimeDraws || 0;
     const pct = Math.min(100, Math.round((draws / threshold) * 100));
-    setElText('gacha-awakening-title', expansion.title || '晨醒花庭');
+    setElText('gacha-awakening-title', expansion.title);
     if (awakened) {
-      setElText('gacha-awakening-progress', '晨醒花庭已解鎖');
-      setElText('gacha-awakening-desc', expansion.unlockMessage || '沉眠有歸，甦醒有時。');
+      setElText('gacha-awakening-progress', model.unlock.progressText);
+      setElText('gacha-awakening-desc', expansion.unlockMessage);
       setElText('gacha-awakening-counts', `候選角色：${eligible.length}`);
     } else {
-      setElText('gacha-awakening-progress', `夢塵共鳴 ${draws}／${threshold}`);
+      setElText('gacha-awakening-progress', model.unlock.progressText);
       setElText(
         'gacha-awakening-desc',
-        `完成 ${threshold} 次永眠花海召喚，解鎖 4 位晨醒角色，並固定獲得曉露花蝟。`,
+        model.unlock.description,
       );
-      setElText('gacha-awakening-counts', `目前候選：${eligible.length}　解鎖後候選：16`);
+      setElText('gacha-awakening-counts', model.unlock.countsText);
     }
     const fill = document.getElementById('gacha-awakening-fill');
     if (fill) {
@@ -5021,8 +4998,9 @@ function renderGachaThemeStage(pool) {
     const preview = document.getElementById('gacha-awakening-preview');
     if (preview) {
       preview.replaceChildren();
-      for (const meta of AWAKENING_PETS) {
-        const pet = state.allPets.find((p) => p.id === meta.id);
+      preview.setAttribute('aria-label', `${expansion.presentation.candidateLabel}預覽`);
+      for (const pet of model.unlock.previewPets) {
+        const meta = pet;
         const item = document.createElement('div');
         item.className = 'gacha-awakening-preview__item' + (awakened ? ' is-unlocked' : ' is-locked');
         const img = document.createElement('img');
@@ -5042,7 +5020,7 @@ function renderGachaThemeStage(pool) {
     if (rateNote) {
       rateNote.textContent = awakened
         ? '解鎖後各稀有度總機率不變。新增角色會與同稀有度角色依現行規則共同分配該稀有度機率。'
-        : '解鎖後各稀有度總機率不變。新增角色會與同稀有度角色依現行規則共同分配該稀有度機率。固定贈送曉露花蝟不算抽卡、不推進保底。';
+        : `解鎖後各稀有度總機率不變。新增角色會與同稀有度角色依現行規則共同分配該稀有度機率。固定贈送${model.unlock.rewardPet.name}不算抽卡、不推進保底。`;
     }
   } else if (awakening) {
     awakening.hidden = true;
@@ -5063,15 +5041,15 @@ function renderGachaThemeStage(pool) {
     details.replaceChildren();
     const dl = document.createElement('dl');
     const rows = [
-      ['單抽成本', `${pool.cost ?? GACHA_COST} 星塵`],
-      ['十連成本', `${GACHA_TEN_COST} 星塵`],
+      ['單抽成本', `${model.costs.single} 星塵`],
+      ['十連成本', `${model.costs.ten} 星塵`],
       ['稀有度機率', rateText],
       ['SSR 保底', `${pity.ssr} 抽`],
       ['UR 保底', `${pity.ur} 抽`],
       ['目前 SSR 保底進度', `${counters.ssrPity}/${pity.ssr}`],
       ['目前 UR 保底進度', `${counters.urPity}/${pity.ur}`],
       ['候選角色', `${eligible.length} 隻`],
-      ['池別說明', awakened ? '永眠＋晨醒候選（不含 standard）' : '限定池不含 standard 寵物'],
+      ['池別說明', (awakened ? expansion.presentation.detailsNote : presentation?.detailsNote) || '依卡池設定篩選候選角色'],
       ['重複補償', '沿用現行碎片規則'],
       ['解鎖後機率', '各稀有度總機率不變；同稀有度依現行規則共同分配'],
     ];
@@ -5085,6 +5063,7 @@ function renderGachaThemeStage(pool) {
     details.appendChild(dl);
   }
   if (detailsBtn) {
+    detailsBtn.hidden = !presentation;
     detailsBtn.setAttribute('aria-expanded', 'false');
     detailsBtn.textContent = '卡池詳情';
   }
@@ -5102,6 +5081,7 @@ async function playPostPullPresentation({ pool, mode, results, singleResult }) {
   if (shouldUseThemedSummon(pool)) {
     try {
       const outcome = await playDreamBloomSummon({
+        poolName: pool.name,
         results: list,
         mode,
         reduceMotion,
@@ -5176,10 +5156,12 @@ export function updateGachaAffordability() {
   resetStaleGachaPullState();
 
   const pool = getSelectedGachaPool();
-  const singleCost = pool?.cost ?? GACHA_COST;
+  if (!pool) { renderGachaUnavailable(); return; }
+  const singleCost = resolveDrawCost(pool, 1);
+  const tenCost = resolveDrawCost(pool, 10);
   const stardust = state.wallet.stardust ?? 0;
   const canSingle = stardust >= singleCost;
-  const canTen = stardust >= GACHA_TEN_COST;
+  const canTen = stardust >= tenCost;
 
   setText('gacha-stardust', stardust);
 
@@ -5213,7 +5195,7 @@ export function updateGachaAffordability() {
 
   if (hintTen) {
     if (!canTen) {
-      hintTen.textContent = '10 連抽需要 1000 星塵。';
+      hintTen.textContent = `10 連抽需要 ${tenCost} 星塵。`;
       hintTen.hidden = false;
     } else {
       hintTen.hidden = true;
@@ -5223,7 +5205,8 @@ export function updateGachaAffordability() {
 
 async function handlePull() {
   const pool = getSelectedGachaPool();
-  const cost = pool?.cost ?? GACHA_COST;
+  if (!pool) { renderGachaUnavailable(); return; }
+  const cost = resolveDrawCost(pool, 1);
 
   if ((state.wallet.stardust ?? 0) < cost) {
     showToast('星塵不足，完成任務可以獲得星塵', 'warning');
@@ -5299,8 +5282,11 @@ async function handlePull() {
 }
 
 async function handleTenPull() {
-  if ((state.wallet.stardust ?? 0) < GACHA_TEN_COST) {
-    showToast('10 連抽需要 1000 星塵', 'warning');
+  const pool = getSelectedGachaPool();
+  if (!pool) { renderGachaUnavailable(); return; }
+  const tenCost = resolveDrawCost(pool, 10);
+  if ((state.wallet.stardust ?? 0) < tenCost) {
+    showToast(`10 連抽需要 ${tenCost} 星塵`, 'warning');
     updateGachaAffordability();
     return;
   }
@@ -5309,7 +5295,6 @@ async function handleTenPull() {
 
   const btn = document.getElementById('btn-pull-ten');
   const poolSelect = document.getElementById('gacha-pool-select');
-  const pool = getSelectedGachaPool();
   gachaPullInProgress = true;
   beginPullVisualLock(pool?.id);
   if (btn) {
@@ -5384,14 +5369,10 @@ function isSweetTheme() {
 
 function getGachaAffordability() {
   const pool = getSelectedGachaPool();
-  const singleCost = pool?.cost ?? GACHA_COST;
-  const stardust = state.wallet.stardust ?? 0;
-  return {
-    singleCost,
-    stardust,
-    canSingle: stardust >= singleCost,
-    canTen: stardust >= GACHA_TEN_COST,
-  };
+  const stardust = state?.wallet?.stardust ?? 0;
+  const singleCost = pool ? resolveDrawCost(pool, 1) : null;
+  const tenCost = pool ? resolveDrawCost(pool, 10) : null;
+  return { pool, singleCost, tenCost, stardust, canSingle: !!pool && stardust >= singleCost, canTen: !!pool && stardust >= tenCost };
 }
 
 function sweetSummonRarityBadge(rarity, extraClass = '') {
@@ -5660,15 +5641,17 @@ function renderDefaultTenPullResult(result) {
 
 function requestGachaResultPull(mode) {
   if (queuedGachaResultPull) return;
-  queuedGachaResultPull = mode;
+  const current = getGachaAffordability();
+  if (!current.pool) return;
+  queuedGachaResultPull = { mode, poolId: current.pool.id, cost: mode === 'ten' ? current.tenCost : current.singleCost };
   closeModal();
   if (!gachaPullInProgress) runQueuedGachaResultPull();
 }
 
 function showTenPullConfirmationFromResult(trigger) {
-  const { canTen, stardust } = getGachaAffordability();
+  const { pool: quotedPool, canTen, stardust, tenCost } = getGachaAffordability();
   if (!canTen) {
-    showToast('10 連抽需要 1000 星塵', 'warning');
+    showToast(tenCost === null ? '目前沒有可用的召喚卡池' : `10 連抽需要 ${tenCost} 星塵`, 'warning');
     return;
   }
 
@@ -5682,7 +5665,7 @@ function showTenPullConfirmationFromResult(trigger) {
     <div class="confirm-modal" role="alertdialog" aria-labelledby="ten-pull-confirm-title" aria-describedby="ten-pull-confirm-text">
       <div class="confirm-modal__icon">❓</div>
       <h2 class="modal-title" id="ten-pull-confirm-title">再次召喚 10 次？</h2>
-      <p class="confirm-modal__text" id="ten-pull-confirm-text">確定消耗 ${GACHA_TEN_COST} 星塵，在「${escapeHtml(poolName)}」召喚 10 次嗎？目前有 ${stardust} 星塵。</p>
+      <p class="confirm-modal__text" id="ten-pull-confirm-text">確定消耗 ${tenCost} 星塵，在「${escapeHtml(poolName)}」召喚 10 次嗎？目前有 ${stardust} 星塵。</p>
       <div class="confirm-modal__actions">
         <button type="button" class="btn btn--ghost" id="ten-pull-confirm-cancel">取消</button>
         <button type="button" class="btn btn--primary" id="ten-pull-confirm-ok">確認召喚</button>
@@ -5697,9 +5680,15 @@ function showTenPullConfirmationFromResult(trigger) {
   document.getElementById('ten-pull-confirm-cancel')?.addEventListener('click', restoreResult);
   document.getElementById('ten-pull-confirm-ok')?.addEventListener('click', (event) => {
     event.currentTarget.disabled = true;
-    if (!getGachaAffordability().canTen) {
+    const current = getGachaAffordability();
+    if (current.pool?.id !== quotedPool.id || current.tenCost !== tenCost) {
       restoreResult();
-      showToast('10 連抽需要 1000 星塵', 'warning');
+      showToast('卡池已變更，請重新確認召喚', 'warning');
+      return;
+    }
+    if (!current.canTen) {
+      restoreResult();
+      showToast(tenCost === null ? '目前沒有可用的召喚卡池' : `10 連抽需要 ${tenCost} 星塵`, 'warning');
       return;
     }
     requestGachaResultPull('ten');

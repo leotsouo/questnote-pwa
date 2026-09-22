@@ -17318,3 +17318,21 @@ body[data-theme="sweet"] .dream-bloom-btn--ghost {
     font-size: 0.8125rem;
   }
 }
+
+/* Pool content has independent visual and unlock sections. Legacy order is retained. */
+.gacha-pool-content { margin: 0 0 1rem; padding-bottom: 0.25rem; }
+.gacha-pool-content > .gacha-theme-stage { margin-bottom: 0; padding-bottom: 0; }
+.gacha-pool-content > .gacha-awakening-panel { position: relative; z-index: 1; }
+.gacha-panel:not([data-pool-theme]) .gacha-awakening-panel {
+  background: var(--color-bg-card-soft);
+  border-color: var(--color-border);
+  color: var(--color-text-main);
+}
+.gacha-panel:not([data-pool-theme]) .gacha-awakening-panel__desc,
+.gacha-panel:not([data-pool-theme]) .gacha-awakening-panel__counts,
+.gacha-panel:not([data-pool-theme]) .gacha-awakening-panel__note,
+.gacha-panel:not([data-pool-theme]) .gacha-awakening-preview__item {
+  color: var(--color-text-secondary);
+}
+.gacha-pool-content .gacha-theme-details-btn[hidden],
+.gacha-pool-content .gacha-theme-hero[hidden] { display: none; }

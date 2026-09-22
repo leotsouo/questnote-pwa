@@ -118,25 +118,16 @@
   </div>
 
   <script type="module">
-    import { playMorningGardenUnlock, skipPoolAwakening } from '../src/poolAwakeningController.js';
+    import { playPoolUnlock, skipPoolAwakening } from '../src/poolAwakeningController.js';
+    import { resolvePoolPresentationModel } from '../src/poolContentContract.js';
 
-    const MOCK_PETS = [
-      { id: 'pet_ur05', name: '永眠花皇兔', rarity: 'UR', title: '永眠花海的月皇', image: 'assets/pets/pet_ur05.png' },
-      { id: 'pet_r16', name: '曉露花蝟', rarity: 'R', title: '晨露啟花者', image: 'assets/pets/pet_r16.png' },
-      { id: 'pet_sr12', name: '晨鈴花雀', rarity: 'SR', title: '枝冠初鳴者', image: 'assets/pets/pet_sr12.png' },
-      { id: 'pet_ssr07', name: '曦幕雲鶴', rarity: 'SSR', title: '夢幕開曦者', image: 'assets/pets/pet_ssr07.png' },
-      { id: 'pet_ur06', name: '曙綻花后兔', rarity: 'UR', title: '甦醒花庭的晨曦主人', image: 'assets/pets/pet_ur06.png' },
-    ];
-
-    const expansion = {
-      key: 'morning_garden',
-      threshold: 20,
-      title: '晨醒花庭',
-      unlockMessage: '沉眠有歸，甦醒有時。',
-      rewardPetId: 'pet_r16',
-      animationKey: 'morning_garden_unlock',
-      extraPoolTags: ['eternal_slumber_bloom_awakened'],
-    };
+    const contentReady = Promise.all([
+      fetch('../data/pools.json').then((response) => response.json()),
+      fetch('../data/pets.json').then((response) => response.json()),
+    ]).then(([catalog, data]) => ({
+      pool: catalog.pools.find((pool) => pool.unlockExpansion),
+      pets: data.pets.map((pet) => ({ ...pet, image: new URL('../' + pet.image, location.href).href })),
+    }));
 
     function readMockState() {
       return {
@@ -157,7 +148,8 @@
       const reduceMotion = document.getElementById('motion').value === 'true';
       const forceFallback = document.getElementById('fallback').value === 'true';
       const pendingMode = document.getElementById('pending').value;
-      const rewardPet = MOCK_PETS.find((p) => p.id === 'pet_r16');
+      const { pool, pets } = await contentReady;
+      const model = resolvePoolPresentationModel(pool, pets, { ...mock, unlocked: true });
       renderState('playing…');
 
       if (pendingMode === 'after-result') {
@@ -173,10 +165,8 @@
         await new Promise((resolve) => btn.addEventListener('click', () => { gate.remove(); resolve(); }, { once: true }));
       }
 
-      const outcome = await playMorningGardenUnlock({
-        allPets: MOCK_PETS,
-        expansion,
-        rewardPet,
+      const outcome = await playPoolUnlock({
+        model,
         reduceMotion,
         forceFallback,
       });

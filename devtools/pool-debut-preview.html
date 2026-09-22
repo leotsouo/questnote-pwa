@@ -127,6 +127,8 @@
 
   <script type="module">
     import { playPoolDebutPresentation } from '../src/themedSummonController.js';
+    import { normalizePoolDefinition } from '../src/poolContentContract.js';
+    const poolReady = fetch('../data/pools.json').then((response) => response.json()).then((data) => normalizePoolDefinition(data.pools.find((pool) => pool.presentation)));
 
     const logEl = document.getElementById('log');
     const panel = document.getElementById('gacha-panel');
@@ -169,7 +171,8 @@
       const beforeNodes = document.querySelectorAll('.dream-debut-overlay').length;
       try {
         log(`${label} 開始 full=${full} reduce=${reduceMotion}`);
-        await playPoolDebutPresentation({ full, reduceMotion });
+        const pool = await poolReady;
+        await playPoolDebutPresentation({ full, reduceMotion, poolName: pool.name, presentation: pool.presentation });
         const afterNodes = document.querySelectorAll('.dream-debut-overlay').length;
         const veil = panel.classList.contains('is-pool-debut-veil');
         const reveal = panel.classList.contains('is-pool-debut-reveal');

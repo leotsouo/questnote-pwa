@@ -434,6 +434,8 @@ async function refreshPoolPreview() {
     const ar = pool.after.byRarity;
     return [
       `${pool.name} (${pool.id})${pool.active ? ' [active]' : ''}`,
+      ...(pool.errors?.length ? pool.errors.map((error) => `  錯誤：${error.message}`) : []),
+      ...(pool.unlocked ? [`  解鎖後候選：${pool.unlocked.before.total} → ${pool.unlocked.after.total}`, `  解鎖後新進：${pool.unlocked.addedIds.join(', ') || '（無）'}`] : []),
       `  新增前：N ${br.N} R ${br.R} SR ${br.SR} SSR ${br.SSR} UR ${br.UR} 總計 ${pool.before.total}`,
       `  新增後：N ${ar.N} R ${ar.R} SR ${ar.SR} SSR ${ar.SSR} UR ${ar.UR} 總計 ${pool.after.total}`,
       pool.addedIds?.length ? `  新進：${pool.addedIds.join(', ')}` : '  新進：（無）',

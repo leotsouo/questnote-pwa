@@ -1,6 +1,6 @@
 # Pool Content Contract v1
 
-Status: pure contract and fixtures only. Existing runtime, catalogs, publisher, and UI do not import this module yet. No persistent schema changes or new dependencies are included.
+Status: contract, UI/presentation/reveal adapters, shared schema validation, read-only CLI, and browser harness implemented. No persistent schema changes, production catalog changes, or new dependencies are included. Payment/transaction integration belongs to M2A and browser acceptance is run by the lead engineer after integration.
 
 ## Inputs and validation
 
@@ -16,7 +16,7 @@ Optional `previousPoolsData` rejects removal of an existing pool and changes to 
 
 Required: `id`, nonempty `name`, boolean `active`, `cost`, `rates.{N,R,SR,SSR,UR}`, `pity.{ssr,ur}`, and nonempty `petFilter.poolTags`. Tags retain OR semantics. There is no implicit all-pets pool. Candidate arrays do not duplicate a pet when multiple tags match.
 
-Optional `presentation` is null when absent. It supports `themeKey`, `animationKey`, `badge`, `eyebrow`, `tagline`, `heroPetId`, up to four `featuredPetIds`, up to three `debutLines`, and `candidateNote`. Default theme is `default`, animation `none`, badge `限定系列`, and other copy empty. Hero is optional. IDs for hero and featured must be available before unlock. Strings remain plain strings; consumers MUST use textContent or proper escaping, never raw HTML.
+Optional `presentation` is null when absent. It supports `themeKey`, `animationKey`, `badge`, `eyebrow`, `tagline`, `heroPetId`, up to four `featuredPetIds`, up to three `debutLines`, optional `debutLabel`, and `candidateNote` / `detailsNote`. Default theme is `default`, animation `none`, badge `限定系列`, and other copy empty. Hero is optional. IDs for hero and featured must be available before unlock. Strings remain plain strings; consumers MUST use textContent or proper escaping, never raw HTML.
 
 Optional `unlockExpansion` is null when absent. It supports:
 
@@ -31,6 +31,7 @@ Optional `unlockExpansion` is null when absent. It supports:
 - `presentation.featuredPetIds`: up to four unlocked candidates.
 - `presentation.previewPetIds`: added candidates in display order. Missing or null derives all additions in catalog order; [] deliberately hides the preview cards.
 - `presentation.progressLabel` / `candidateLabel`: default `累積召喚` / `解鎖角色`.
+- `presentation.detailsNote`: optional plain text for pool details; legacy adapter preserves existing wording.
 
 There is one expansion per pool in v1. Existing byPool storage remains suitable; multi-stage expansion is out of scope.
 
@@ -45,7 +46,7 @@ Exported frozen registries enumerate keys; they are metadata, not executable UI 
 
 The runtime integration must bind only these keys to owned rendering functions. New pool IDs do not require new handlers. An additional visual template is a code change with separate tests, never arbitrary script or HTML in content.
 
-Pet `presentation.revealKey` is optional. SSR supports `ssr`; UR supports `ur/moon/petal`. Lower rarities have no SSR+ reveal. Existing pet validation must preserve this metadata when integrated.
+Pet `presentation.revealKey` and plain-text `presentation.revealCaption` are optional. SSR supports `ssr`; UR supports `ur/moon/petal`. Lower rarities have no SSR+ reveal. Shared pet validation preserves and validates this metadata.
 
 ## Pure API
 
@@ -63,6 +64,8 @@ Pet `presentation.revealKey` is optional. SSR supports `ssr`; UR supports `ur/mo
 
 `resolvePetRevealKey(pet)` returns the explicit supported key, legacy override, or rarity default. It returns null for low rarities and throws on explicit incompatible/unknown keys.
 
+`resolvePetRevealPresentation(pet)` returns `{ key, caption }`, retaining the two legacy captions and using a general rarity caption for new pets unless explicit plain text is supplied.
+
 `resolvePoolPresentationModel(pool, allPets, unlockEntry?, { visualLocked? })` fully validates pool references and returns:
 
 - poolId/poolName, costs.single/ten, canonical presentation, cssTheme.
@@ -77,10 +80,26 @@ Pet `presentation.revealKey` is optional. SSR supports `ssr`; UR supports `ur/mo
 
 The single legacy identity adapter preserves eternal_slumber_bloom + morning_garden grant `awakening_reward:eternal_slumber_bloom:20` and source `morning_garden_unlock_reward`, independent of threshold. It supplies existing debut text, dawn hero, featured/preview order, labels, and copy. Old theme key `eternal_slumber_bloom` normalizes to `dream_bloom` without changing its CSS attribute. Pet IDs pet_ur05/pet_ur06 retain moon/petal reveals unless explicit compatible metadata is present. Do not add future pool identities to this adapter.
 
-M2A integrates pure costs/eligibility/identity inside its existing transaction design. M4 later replaces current hardcoded UI/normalizers and delegates existing validators. M5 supplies complete merged catalogs and uses the validation result for staging. No formal catalogs are modified by these files.
+M2A integrates pure costs/eligibility/identity inside its transaction design. The UI uses pool-specific costs throughout and consumes the presentation model; existing schema validators delegate all pool errors without filtering. M5 supplies complete merged catalogs and uses the validation result for staging. No formal catalogs are modified by these files.
 
 ## Validation
 
 Run `node --test devtools/pool-content-contract.test.mjs`. Tests cover actual legacy catalogs, two synthetic pools, differing cost and gift rarity, stable independent identities, malformed schema/economics/references, deep-frozen inputs, phase separation, and inactive fallback. Fixtures live in devtools/fixtures and never enter production catalogs.
 
-Not yet covered or delivered: DOM template handlers, browser rendering/escaping, IndexedDB atomicity or reward payment, actual RNG/pity transactions, publication/rollback, or runtime integration. Passing pure tests alone does not satisfy the entire M4 milestone.
+Not delivered here: IndexedDB atomicity/reward payment, actual transaction tests, publication/rollback, or M5 candidate assembly. Browser cases are provided but must be executed after the lead integrates the M1 baseline and this change. Passing Node tests alone does not satisfy the entire M4 milestone.
+
+## Runtime and browser integration
+
+UI/service boundary: ensureUnlockRewardClaimed(poolId, expansion, allPets) must resolve actual gift rarity and return the latest entry. markUnlockAnimationSeen(poolId) returns the latest entry. The UI never synthesizes rewardClaimed=true on failure. M2A owns those services. A single or ten-pull result retains unlockProgress.entry/justUnlocked/reward.
+
+The existing themed stage and independent unlock/details section remain in the same visual order. Standard hides the wrapper. Unthemed pools can show unlock progress. Debut's seen check does not bypass unlock resume. The legacy animation function name remains a compatibility alias, but developer preview callers now supply a validated model. Registry keys bind only owned controllers; no code is loaded from content.
+
+Repeat-ten confirmation captures pool identity and price, and rechecks both before enqueuing and executing. A changed quote restores the result for a new confirmation. All-inactive or invalid selected content disables gacha without preventing task rendering.
+
+Run read-only validation with node scripts/validate-pool-content.mjs [pools.json] [pets.json] [previous-pools.json]. It prints JSON and exits 1 on errors. Builder preview retains before/after/addedIds and adds unlocked.before/after/addedIds plus preview errors.
+
+Serve the fully integrated repository on a fresh localhost port and open devtools/pool-content-browser-test.html. The harness intercepts every QuestNote database open and redirects it to a random QuestNoteTest-M4 name, checks the name, and deletes only that generated database at completion. It refuses a controlling service worker. It imports the real UI with an isolated fixture DOM and tests independent unlock rendering, legacy copy/phase, plain-text safety, unavailable controls, actual SSR reward overlay/fallback, reveal metadata, and pending resume after an already-seen debut. These default cases exercise an already-paid gift, not reward transaction correctness.
+
+After M2A is integrated, add ?draws=1 to exercise a real fixture single draw followed by cancel/changed-quote repeat-ten confirmation, asserting no additional writes. The final result is JSON in #test-results with a PASS/FAIL document title. Browser and visual validation results are owned by the lead, not inferred from the presence of this harness.
+
+Follow-up: legacy healthCheckService source-string assertions still expect caption/theme literals in old modules and old version/cache names. They should later use behavior/contract checks. This change does not perform a full health-check rewrite.

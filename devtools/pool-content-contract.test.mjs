@@ -51,6 +51,7 @@ test('legacy presentation preserves identity, heroes, cast order, and Chinese co
   const before = resolvePoolPresentationModel(eternal, officialPets, { lifetimeDraws: 19 });
   assert.equal(before.presentation.themeKey, 'dream_bloom');
   assert.equal(before.cssTheme, 'eternal_slumber_bloom');
+  assert.equal(before.presentation.debutLabel, '永眠花海登場');
   assert.deepEqual(before.presentation.debutLines, ['月皇花', '已於長夜中', '甦醒']);
   assert.equal(before.hero.id, 'pet_ur05');
   assert.deepEqual(before.featured.map((pet) => pet.id), ['pet_ssr05', 'pet_ssr06']);
@@ -263,4 +264,66 @@ test('an unused tag is an error even when another tag supplies valid candidates'
   alpha.petFilter.poolTags.pop();
   alpha.unlockExpansion.extraPoolTags.push('misspelled_expansion');
   expectCode(catalog, pets, 'POOL_TAG_UNUSED');
+});
+
+// Integration boundaries: these tests exercise the real schema/CLI/controller exports.
+const schema = await import('../src/petDataSchema.js');
+const presentation = await import('../src/poolPresentation.js');
+const reveal = await import('../src/summonRevealService.js');
+const { resolvePetRevealPresentation } = await import('../src/poolContentContract.js');
+
+test('legacy presentation adapters use canonical registry and reject unknown content', () => {
+  assert.equal(presentation.normalizePoolPresentation(eternal).themeKey, 'dream_bloom');
+  assert.equal(presentation.getPoolThemeAttr(eternal), 'eternal_slumber_bloom');
+  assert.equal(presentation.shouldUseThemedSummon(eternal), true);
+  assert.equal(presentation.normalizePoolPresentation(standard), null);
+  assert.equal(presentation.normalizePoolPresentation({ ...eternal, cost: -1 }), null);
+});
+
+test('reveal controller reuses explicit metadata and preserves legacy captions', () => {
+  const pet = { id: 'pet_ur900', rarity: 'UR', presentation: { revealKey: 'moon', revealCaption: '<b>新月</b>' } };
+  assert.equal(reveal.resolveRevealTheme(pet, { pet, rarity: 'UR' }), 'moon');
+  assert.deepEqual(resolvePetRevealPresentation(pet), { key: 'moon', caption: '<b>新月</b>' });
+  assert.equal(resolvePetRevealPresentation({ id: 'pet_ur05', rarity: 'UR' }).caption, '月下沉眠 · 花庭主人');
+  assert.equal(resolvePetRevealPresentation({ id: 'pet_ur06', rarity: 'UR' }).caption, '晨曦綻放 · 花庭主人');
+  assert.equal(resolvePetRevealPresentation({ id: 'pet_ur900', rarity: 'UR', presentation: { revealKey: 'petal' } }).caption, '傳說夥伴降臨');
+  assert.throws(() => resolvePetRevealPresentation({ ...pet, presentation: { revealKey: 'moon', revealCaption: {} } }), PoolContentError);
+});
+
+test('shared schema forwards all pool contract errors and preserves pet reveal metadata', () => {
+  const { catalog, pets, alpha } = createPoolContentFixtures();
+  alpha.cost = 0;
+  assert.ok(schema.validatePoolCatalog(catalog, { pets }).errors.some((error) => error.code === 'POOL_COST_INVALID'));
+  const result = schema.validatePetPackage({
+    seriesMeta: { seriesId: 'fixture', seriesName: 'Fixture' }, petsData: { pets: [] }, loreData: { lore: [] },
+    officialPets: pets, officialLore: [], poolsData: catalog,
+  });
+  assert.ok(result.errors.some((error) => error.code === 'POOL_COST_INVALID'), 'Package validation dropped a contract error when no legacy matching callback was supplied');
+  const pet = { ...officialPets.find((item) => item.rarity === 'UR'), presentation: { revealKey: 'moon', revealCaption: 'Moon' } };
+  assert.deepEqual(schema.normalizePetForValidation(pet).presentation, pet.presentation);
+  assert.equal(schema.validatePet(pet).ok, true);
+  assert.equal(schema.validatePet({ ...pet, presentation: { revealKey: 'unknown' } }).ok, false);
+});
+
+test('Builder preview keeps legacy shape and adds effective unlocked counts without throwing on errors', () => {
+  const preview = schema.buildPoolPreview(official, officialPets, officialPets, getEligiblePetsForPool);
+  assert.equal(preview[1].before.total, 12);
+  assert.equal(preview[1].unlocked.before.total, 16);
+  assert.equal(preview[1].unlocked.after.total, 16);
+  const malformed = clone(official);
+  malformed.pools[1].cost = -1;
+  const invalid = schema.buildPoolPreview(malformed, officialPets, officialPets, getEligiblePetsForPool);
+  assert.ok(invalid[1].errors.some((error) => error.code === 'POOL_COST_INVALID'));
+});
+
+test('read-only pool CLI reports valid official content and exits nonzero for wrong catalog shape', async () => {
+  const { spawnSync } = await import('node:child_process');
+  const { fileURLToPath } = await import('node:url');
+  const cli = fileURLToPath(new URL('../scripts/validate-pool-content.mjs', import.meta.url));
+  const valid = spawnSync(process.execPath, [cli], { encoding: 'utf8' });
+  assert.equal(valid.status, 0, valid.stderr);
+  assert.equal(JSON.parse(valid.stdout).ok, true);
+  const invalid = spawnSync(process.execPath, [cli, fileURLToPath(new URL('../data/pets.json', import.meta.url))], { encoding: 'utf8' });
+  assert.equal(invalid.status, 1);
+  assert.equal(JSON.parse(invalid.stdout).ok, false);
 });

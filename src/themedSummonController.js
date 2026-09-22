@@ -169,7 +169,7 @@ function createParticles(count, className) {
  * 建立主題召喚 overlay（文字一律 textContent）
  * @param {{ mode: string, reduceMotion: boolean, highestRarity: string }} opts
  */
-function createOverlay({ mode, reduceMotion, highestRarity }) {
+function createOverlay({ mode, reduceMotion, highestRarity, poolName }) {
   const overlay = document.createElement('div');
   overlay.className = 'dream-bloom-overlay';
   overlay.dataset.mode = mode;
@@ -178,7 +178,7 @@ function createOverlay({ mode, reduceMotion, highestRarity }) {
   if (reduceMotion) overlay.classList.add('is-reduced');
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
-  overlay.setAttribute('aria-label', '永眠花海召喚演出');
+  overlay.setAttribute('aria-label', `${poolName || '召喚'}演出`);
 
   overlay.innerHTML = `
     <div class="dream-bloom-bg" aria-hidden="true">
@@ -323,6 +323,7 @@ function setupBuds(container, count, reduceMotion) {
  * 播放永眠花海主題召喚（純展示）
  * @param {{
  *   results: Array,
+ *   poolName?: string,
  *   mode?: 'single'|'ten'|'preview',
  *   reduceMotion?: boolean,
  *   skipRitual?: boolean,
@@ -367,7 +368,7 @@ export async function playDreamBloomSummon(options = {}) {
       delay(reduce ? 100 : 200),
     ]);
 
-    overlay = createOverlay({ mode, reduceMotion: reduce, highestRarity });
+    overlay = createOverlay({ mode, reduceMotion: reduce, highestRarity, poolName: options.poolName });
     activeOverlay = overlay;
     lockScroll();
     document.body.appendChild(overlay);
@@ -573,7 +574,7 @@ const DEBUT_DUST_COUNT = { full: 8, short: 3, reduced: 0 };
  * 永眠花海卡池入場演出
  * 流程：長夜沉幕 → 鏡池微光 → 月皇花甦醒 → 台詞 → 停在完整畫面等待點擊 → 關閉時化開成主畫面
  * 動畫播完後需使用者點擊／Esc／繼續才關閉；略過可提早結束。
- * @param {{ reduceMotion?: boolean, full?: boolean }} options
+ * @param {{ poolName?: string, presentation?: object, reduceMotion?: boolean, full?: boolean }} options
  */
 export async function playPoolDebutPresentation(options = {}) {
   const reduce = isReduceMotion(options.reduceMotion);
@@ -592,7 +593,7 @@ export async function playPoolDebutPresentation(options = {}) {
   if (!full) overlay.classList.add('is-short');
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
-  overlay.setAttribute('aria-label', '永眠花海登場');
+  overlay.setAttribute('aria-label', options.presentation?.debutLabel || `${options.poolName || '卡池'}登場`);
   overlay.innerHTML = `
     <div class="dream-debut-stage" aria-hidden="true">
       <div class="dream-debut-bg"></div>
@@ -615,14 +616,19 @@ export async function playPoolDebutPresentation(options = {}) {
     </div>
     <div class="dream-debut-copy">
       <p class="dream-debut-line" data-role="line">
-        <span class="dream-debut-line__seg" data-seg="a">月皇花</span>
-        <span class="dream-debut-line__seg" data-seg="b">已於長夜中</span>
-        <span class="dream-debut-line__seg" data-seg="c">甦醒</span>
+        <span class="dream-debut-line__seg" data-seg="a"></span>
+        <span class="dream-debut-line__seg" data-seg="b"></span>
+        <span class="dream-debut-line__seg" data-seg="c"></span>
       </p>
       <p class="dream-debut-continue" data-role="continue" hidden>點擊畫面繼續</p>
     </div>
     <button type="button" class="dream-debut-skip" data-role="skip" aria-label="略過登場演出">略過</button>
   `;
+
+  const lines = options.presentation?.debutLines || [];
+  overlay.querySelectorAll('.dream-debut-line__seg').forEach((element, index) => {
+    element.textContent = lines[index] || '';
+  });
 
   const dustHost = overlay.querySelector('[data-role="dust"]');
   const dustCount = reduce

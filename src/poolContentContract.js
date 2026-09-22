@@ -36,9 +36,11 @@ const LEGACY_POOL = Object.freeze({
     previewPetIds: Object.freeze(['pet_r16', 'pet_sr12', 'pet_ssr07', 'pet_ur06']),
     progressLabel: '夢塵共鳴',
     candidateLabel: '晨醒角色',
+    detailsNote: '永眠＋晨醒候選（不含 standard）',
   }),
 });
 const LEGACY_REVEALS = Object.freeze({ pet_ur05: 'moon', pet_ur06: 'petal' });
+const LEGACY_REVEAL_CAPTIONS = Object.freeze({ pet_ur05: '月下沉眠 · 花庭主人', pet_ur06: '晨曦綻放 · 花庭主人' });
 const isLegacyExpansion = (id, expansion) => id === LEGACY_POOL.id && expansion?.key === LEGACY_POOL.key;
 
 export class PoolContentError extends Error {
@@ -94,6 +96,8 @@ function normalizePresentation(raw, id, errors, path) {
     tagline: checkText(raw.tagline, `${path}.tagline`, errors),
     featuredPetIds: checkList(raw.featuredPetIds, `${path}.featuredPetIds`, errors, petId, { limit: 4 }),
     debutLines,
+    debutLabel: checkText(raw.debutLabel, `${path}.debutLabel`, errors) || (id === LEGACY_POOL.id ? '永眠花海登場' : ''),
+    detailsNote: checkText(raw.detailsNote, `${path}.detailsNote`, errors) || (id === LEGACY_POOL.id ? '限定池不含 standard 寵物' : ''),
     candidateNote: checkText(raw.candidateNote, `${path}.candidateNote`, errors)
       || (id === LEGACY_POOL.id ? '限定池不含標準召喚寵物' : ''),
   };
@@ -130,6 +134,7 @@ function normalizeExpansion(raw, id, errors, path) {
       // null means derive every added candidate; [] deliberately displays no preview.
       previewPetIds: view.previewPetIds == null ? null : checkList(view.previewPetIds, `${path}.presentation.previewPetIds`, errors, petId),
       progressLabel: checkText(view.progressLabel, `${path}.presentation.progressLabel`, errors) || '累積召喚',
+      detailsNote: checkText(view.detailsNote, `${path}.presentation.detailsNote`, errors),
       candidateLabel: checkText(view.candidateLabel, `${path}.presentation.candidateLabel`, errors) || '解鎖角色',
     },
   };
@@ -298,6 +303,7 @@ export function validatePoolContent(poolsData, { pets, previousPoolsData } = {})
     checkList(pet?.poolTags, `pets[${index}].poolTags`, errors, token, { required: true });
     if (!POOL_RARITIES.includes(pet?.rarity)) errors.push(issue('POOL_PET_RARITY', 'Invalid pet rarity', `pets[${index}].rarity`));
     if (pet?.presentation !== undefined && !record(pet.presentation)) errors.push(issue('PET_PRESENTATION_INVALID', 'Expected an object', `pets[${index}].presentation`));
+    checkText(pet?.presentation?.revealCaption, `pets[${index}].presentation.revealCaption`, errors);
     const key = pet?.presentation?.revealKey;
     if (key !== undefined && (!own(PET_REVEAL_REGISTRY, key) || (pet.rarity !== 'UR' && key !== 'ssr') || (key === 'ssr' && pet.rarity !== 'SSR'))) {
       errors.push(issue('PET_REVEAL_INVALID', 'Reveal template does not match rarity', `pets[${index}].presentation.revealKey`));
@@ -333,6 +339,19 @@ export function resolvePetRevealKey(pet) {
   if (pet?.rarity === 'SSR') return 'ssr';
   if (pet?.rarity !== 'UR') return null;
   return own(LEGACY_REVEALS, pet.id) ? LEGACY_REVEALS[pet.id] : 'ur';
+}
+
+/** Safe presentation metadata; callers render caption with textContent. */
+export function resolvePetRevealPresentation(pet) {
+  const key = resolvePetRevealKey(pet);
+  const errors = [];
+  const explicit = checkText(pet?.presentation?.revealCaption, 'pet.presentation.revealCaption', errors);
+  if (errors.length) throw new PoolContentError(errors);
+  const legacy = own(LEGACY_REVEALS, pet?.id) && LEGACY_REVEALS[pet.id] === key;
+  return {
+    key,
+    caption: explicit || (legacy ? LEGACY_REVEAL_CAPTIONS[pet.id] : key === 'ssr' ? '稀有夥伴降臨' : key ? '傳說夥伴降臨' : ''),
+  };
 }
 
 /** Pure view model. visualLocked delays presentation only, never candidate eligibility. */
@@ -376,5 +395,3 @@ export function resolvePoolPresentationModel(rawPool, allPets, unlockEntry = {},
     } : null,
   };
 }
-
-
