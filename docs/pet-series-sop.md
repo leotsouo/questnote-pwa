@@ -1,5 +1,7 @@
 # QuestNote 寵物系列製作 SOP（V3.1.0）
 
+> 新增完整卡池請改用 [Card Pool Pipeline v1](card-pool-pipeline.md)，依序核准 brief、plan、content、prompts、images，產出 staging candidate，再交給 [release assembler](release-artifacts.md)。以下為既有寵物系列工具的操作記錄；它的 publisher 不涵蓋完整卡池、版本化 catalog 與發布保障。
+
 > 發布寵物原圖後，在專案根目錄執行 `npm ci`、`npm run images:build`、`npm run images:check`。前者以原 PNG 產生 384 px 卡片與 960 px 演出 WebP，並更新 `data/pets.json` 的可選 `imageVariants` 路徑；後者檢查來源雜湊、尺寸與檔案存在。原 PNG 須保留供放大檢視和載入失敗時備援。新生成的 `assets/pets/variants/` 應隨寵物資料一同提交，圖片不加入 Service Worker 預快取。
 
 本文件供作者本機依照固定流程製作與發布寵物系列。  
