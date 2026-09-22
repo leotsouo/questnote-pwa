@@ -1,0 +1,4 @@
+# Release compatibility fixtures are exact historical Git blobs; never rewrite EOLs.
+content/release-compatibility/v3.4.4/*.json -text
+# The deployed pools blob contains historical CRCRLF; preserve its verified bytes.
+content/release-compatibility/v3.4.4/pools.json -whitespace
