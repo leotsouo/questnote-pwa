@@ -154,6 +154,25 @@ async function vp01(value) {
   check('首次圖鑑空狀態全欄', !!empty && empty.width >= empty.gridWidth - 2 && empty.width > 300, JSON.stringify(empty));
   await navigate('settings');
   check('未 restore 不顯示成功狀態', !visible(doc().querySelector('#import-success-panel')));
+  const versionCard = doc().querySelector('.settings-version-card');
+  const versionTitle = versionCard?.querySelector('.section-title');
+  const cacheValue = versionCard?.querySelector('[data-version-cache-value]');
+  if (versionCard && versionTitle && cacheValue) {
+    const originalCache = cacheValue.textContent;
+    cacheValue.textContent = `questnote-preview-app-${'a'.repeat(64)}`;
+    const cardBounds = rect(versionCard);
+    const inset = rect(versionTitle).left - cardBounds.left;
+    const cacheBounds = rect(cacheValue);
+    check('版本資訊保留卡片內距', inset >= 16 && cacheBounds.left >= cardBounds.left + 16,
+      `title inset=${inset.toFixed(1)}; cache inset=${(cacheBounds.left - cardBounds.left).toFixed(1)}`);
+    check('長 Cache 名稱不超出卡片', cacheBounds.right <= cardBounds.right - 16
+      && cacheValue.scrollWidth <= cacheValue.clientWidth + 1
+      && parseFloat(css(cacheValue).fontSize) < 13,
+    `right=${cacheBounds.right.toFixed(1)}; card right=${cardBounds.right.toFixed(1)}; font=${css(cacheValue).fontSize}`);
+    cacheValue.textContent = originalCache;
+  } else {
+    check('版本資訊存在', false);
+  }
   await navigate('collection');
   const ur = doc().querySelector('.collection-card.rarity-UR:not(.collection-card--locked)');
   if (value === 'sweet') {

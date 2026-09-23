@@ -6,7 +6,7 @@ Preview：https://leotsouo.github.io/questnote-pwa-preview/
 
 每項標記 **PASS / FAIL**。Preview 使用獨立測試存檔；若之前使用過此 Preview，會保留舊測試資料。請勿匯入唯一一份正式備份，也不要清除網站資料。
 
-1. PASS / FAIL — Safari 首次開啟正常，版本為 V3.4.10，三個卡池包含「霜誓峽灣」。
+1. PASS / FAIL — Safari 首次開啟正常，版本為 V3.4.11，三個卡池包含「霜誓峽灣」。
 2. PASS / FAIL — 分享 → 加入主畫面，名稱清楚標示預覽。
 3. PASS / FAIL — 從主畫面啟動，無 Safari 網址列，底部選單正常。
 4. PASS / FAIL — Preview 測試資料合理，正式站原有資料未改變。
