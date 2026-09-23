@@ -16,7 +16,7 @@ export function hasPoolPresentation(pool) {
 }
 
 export function shouldUseThemedSummon(pool) {
-  return normalizePoolPresentation(pool)?.animationKey === 'dream_bloom';
+  return ['dream_bloom', 'glacier_arrival'].includes(normalizePoolPresentation(pool)?.animationKey);
 }
 
 /** Canonical dream_bloom retains the existing eternal_slumber_bloom CSS theme. */

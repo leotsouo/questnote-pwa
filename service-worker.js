@@ -44,6 +44,7 @@ const PRECACHE_URLS = [
   'src/poolUnlockService.js',
   'src/poolAwakeningController.js',
   'src/themedSummonController.js',
+  'src/glacierArrivalScene.js',
   'src/collectionService.js',
   'src/collectionMilestoneService.js',
   'src/backupService.js',

@@ -97,6 +97,23 @@ async function assertValidationError(root, id, code) {
   assert.ok(result.errors.some((error) => error.code === code), json(result.errors));
 }
 
+test('glacier scaffold carries its reviewed animation and no expansion through staging', async (t) => {
+  const root = await setup(t);
+  const definition = { ...brief('fixture_glacier'), presentationTemplate: 'glacier_arrival', unlock: null };
+  const { dir } = await fill(root, definition);
+  const pool = await read(path.join(dir, 'pool.json'));
+  assert.equal(pool.presentation.themeKey, 'glacier_arrival');
+  assert.equal(pool.presentation.animationKey, 'glacier_arrival');
+  assert.equal(pool.unlockExpansion, undefined);
+  assert.ok((await read(path.join(dir, 'plan.json'))).pets.every((pet) => pet.phase === 'base'));
+  assert.equal((await validatePipelineWorkspace(root, definition.seriesId)).ok, true);
+  await approveAll(root, definition.seriesId);
+  const staged = await stagePoolCandidate(root, definition.seriesId);
+  assert.equal(staged.releaseReady, false);
+  const catalog = await read(path.join(staged.candidateDir, 'catalog.json'));
+  assert.equal(catalog.poolsData.pools.at(-1).presentation.animationKey, 'glacier_arrival');
+});
+
 test('synthetic pool SOP approves exact bytes, stages all catalogs and 512px variants, and deterministically resumes', async (t) => {
   const root = await setup(t);
   const officialBefore = await snapshot(path.join(root, 'data'));

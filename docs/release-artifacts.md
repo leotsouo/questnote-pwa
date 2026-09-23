@@ -148,6 +148,14 @@ Focused verification: `node --test devtools/release-artifact.test.mjs`. This tes
 uses an isolated temporary Git project and synthetic tiny image bytes, never user
 IndexedDB. The assembler deliberately does not run `npm test` itself.
 
+The native `release-artifact-browser-server.mjs` harness accepts the scopes recorded
+in the supplied production/preview artifacts, including the verified hosting path.
+It rejects root scopes, overlapping scopes and overlap with its own `/test/` path.
+It binds a fresh loopback port and verifies all artifact file hashes before serving.
+Only visit `/test/` on a fresh test origin: the suite creates and cleans its own
+test saves. A separate server instance can serve `/preview/` for manual review.
+These local scopes do not establish a publicly configured preview host.
+
 ## Deployment evidence collected during implementation
 
 Read-only GitHub API verification on 2026-09-23 (Asia/Taipei): the latest repository

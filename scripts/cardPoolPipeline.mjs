@@ -243,7 +243,7 @@ export async function createPipelineWorkspace(root, brief) {
     const pool = { id: brief.poolId, name: brief.seriesName, active: true, cost: brief.cost,
       rates: brief.rates, pity: brief.pity, petFilter: { poolTags: [brief.poolId] } };
     if ((brief.presentationTemplate || 'default') !== 'default') pool.presentation = {
-      themeKey: brief.presentationTemplate, animationKey: brief.presentationTemplate === 'dream_bloom' ? 'dream_bloom' : 'none',
+      themeKey: brief.presentationTemplate, animationKey: brief.presentationTemplate,
       heroPetId: null, featuredPetIds: [],
     };
     if (brief.unlock) pool.unlockExpansion = { key: brief.unlock.key, threshold: brief.unlock.threshold,

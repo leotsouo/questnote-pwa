@@ -6,8 +6,9 @@ export const POOL_RARITIES = Object.freeze(['N', 'R', 'SR', 'SSR', 'UR']);
 export const POOL_THEME_REGISTRY = Object.freeze({
   default: Object.freeze({ cssTheme: null }),
   dream_bloom: Object.freeze({ cssTheme: 'eternal_slumber_bloom' }),
+  glacier_arrival: Object.freeze({ cssTheme: 'glacier_arrival' }),
 });
-export const POOL_SUMMON_REGISTRY = Object.freeze({ none: true, dream_bloom: true });
+export const POOL_SUMMON_REGISTRY = Object.freeze({ none: true, dream_bloom: true, glacier_arrival: true });
 export const POOL_UNLOCK_REGISTRY = Object.freeze({ pool_unlock: true, morning_garden_unlock: true });
 export const PET_REVEAL_REGISTRY = Object.freeze({ ssr: true, ur: true, moon: true, petal: true });
 

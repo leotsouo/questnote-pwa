@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="../">
+  <title>冰河抵達演出工程預覽</title>
+  <link rel="stylesheet" href="src/styles.css">
+  <style>
+    body { padding: 24px; background: #0c2634; color: #edf7fa; }
+    main { max-width: 720px; margin: auto; }
+    h1 { font-size: 24px; }
+    button { padding: 12px 16px; margin: 4px; color: #102d38; background: #f4ca8b; border: 0; border-radius: 8px; }
+    label { display: block; margin: 16px 0; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>冰河抵達演出工程預覽</h1>
+    <p>只驗證呈現模板，使用既有寵物作為演出樣本。霜誓峽灣尚未發布；此頁不開啟資料庫、不扣款。</p>
+    <label><input id="reduced" type="checkbox"> 減少動態效果</label>
+    <button id="debut">播放冰河抵達</button>
+    <button id="single">播放單抽樣本</button>
+    <button id="ten">播放十連樣本</button>
+    <button id="tests">執行自動驗證</button>
+    <pre id="test-results" aria-live="polite">預覽就緒</pre>
+    <section id="gacha-panel" class="gacha-panel" hidden></section>
+  </main>
+  <script type="module" src="devtools/glacier-arrival-preview.js"></script>
+</body>
+</html>

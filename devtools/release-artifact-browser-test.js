@@ -36,7 +36,7 @@ async function control(profile, fault) {
 }
 function directClient(profile) {
   const frame = document.createElement('iframe');
-  frame.title = `Synthetic ${profile} artifact client`;
+  frame.title = `Isolated ${profile} artifact client`;
   frame.style.cssText = 'width:390px;height:740px;border:1px solid #888';
   frame.src = configuration.profiles[profile].profile.scopePath;
   frames.add(frame);
@@ -150,8 +150,9 @@ try {
   await test('known legacy network-first controller cannot start the new app before every legacy client closes', async () => {
     await control('production', 'legacy');
     try {
-      const registration = await navigator.serviceWorker.register('/production/service-worker.js?v=344', {
-        scope: '/production/', updateViaCache: 'none',
+      const productionScope = configuration.profiles.production.profile.scopePath;
+      const registration = await navigator.serviceWorker.register(`${productionScope}service-worker.js?v=344`, {
+        scope: productionScope, updateViaCache: 'none',
       });
       await until(() => registration.active?.state === 'activated', 'legacy fixture activation');
       const first = directClient('production');
@@ -159,7 +160,7 @@ try {
       await until(() => first.contentWindow?.legacyHarness && second.contentWindow?.legacyHarness, 'two legacy clients');
       assert(first.contentWindow.navigator.serviceWorker.controller?.scriptURL.endsWith('?v=344'), 'Fixture did not use the known legacy controller');
       await control('production', 'none');
-      first.src = '/production/index.html?transition=' + configuration.runId;
+      first.src = `${productionScope}index.html?transition=${configuration.runId}`;
       await until(() => first.contentDocument?.getElementById('app-loader')?.querySelector('button')
         && /關閉/.test(first.contentDocument.getElementById('app-loader').textContent), 'safe legacy-transition waiting message');
       assert(typeof first.contentWindow.runAppHealthCheck === 'undefined', 'New app executed under the legacy controller');

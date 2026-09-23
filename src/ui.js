@@ -128,7 +128,7 @@ import {
   markPoolDebutSeen,
 } from './poolDebutService.js';
 import {
-  playDreamBloomSummon,
+  playThemedSummon,
   playPoolDebutPresentation,
   isThemedSummonPlaying,
 } from './themedSummonController.js';
@@ -4835,7 +4835,7 @@ async function maybePlayPoolDebut(poolId) {
   const presentation = normalizePoolPresentation(pool);
   maybePlayPoolDebut._inflight = true;
   try {
-    if (presentation?.animationKey === 'dream_bloom') {
+    if (shouldUseThemedSummon(pool)) {
       const seen = await hasSeenPoolDebut(poolId);
       if (!seen || maybePlayPoolDebut._fromSwitcher) {
         await playPoolDebutPresentation({
@@ -5112,7 +5112,8 @@ async function playPostPullPresentation({ pool, mode, results, singleResult }) {
 
   if (shouldUseThemedSummon(pool)) {
     try {
-      const outcome = await playDreamBloomSummon({
+      const outcome = await playThemedSummon({
+        animationKey: normalizePoolPresentation(pool).animationKey,
         poolName: pool.name,
         results: list,
         mode,

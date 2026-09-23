@@ -39,12 +39,14 @@ There is one expansion per pool in v1. Existing byPool storage remains suitable;
 
 Exported frozen registries enumerate keys; they are metadata, not executable UI handlers:
 
-- POOL_THEME_REGISTRY: `default` (no CSS theme), `dream_bloom` (existing `eternal_slumber_bloom` CSS theme).
-- POOL_SUMMON_REGISTRY: `none`, `dream_bloom`.
+- POOL_THEME_REGISTRY: `default` (no CSS theme), `dream_bloom` (existing `eternal_slumber_bloom` CSS theme), `glacier_arrival` (ice fjord with warm beacons).
+- POOL_SUMMON_REGISTRY: `none`, `dream_bloom`, `glacier_arrival`.
 - POOL_UNLOCK_REGISTRY: `pool_unlock`, `morning_garden_unlock`.
 - PET_REVEAL_REGISTRY: `ssr`, `ur`, `moon`, `petal`.
 
 The runtime integration must bind only these keys to owned rendering functions. New pool IDs do not require new handlers. An additional visual template is a code change with separate tests, never arbitrary script or HTML in content.
+
+`glacier_arrival` uses an owned SVG/CSS scene in `glacierArrivalScene.js` with six beacons, finite transform/opacity animations, and static reduced-motion composition. The shared `playThemedSummon` lifecycle preserves already-committed results, intro skip versus rare-reveal skip, ordered SSR/UR reveals and explicit result dismissal. The legacy `playDreamBloomSummon` entry point remains available. Both templates support first-visit debut; content copy remains inert text. Preview and presentation-only acceptance: `devtools/glacier-arrival-preview.html?auto=1` on a fresh loopback origin. This page opens no database and displays existing pets only as engineering samples.
 
 Pet `presentation.revealKey` and plain-text `presentation.revealCaption` are optional. SSR supports `ssr`; UR supports `ur/moon/petal`. Lower rarities have no SSR+ reveal. Shared pet validation preserves and validates this metadata.
 

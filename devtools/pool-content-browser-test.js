@@ -34,8 +34,11 @@ try {
   parsed.querySelectorAll('script, #app-loader').forEach((node) => node.remove());
   document.getElementById('app-fixture').append(...parsed.body.childNodes);
   const fixture = createPoolContentFixtures();
+  const glacier = { ...structuredClone(fixture.alpha), id: 'fixture_glacier', name: 'Glacier test', unlockExpansion: null,
+    presentation: { ...structuredClone(fixture.alpha.presentation), themeKey: 'glacier_arrival', animationKey: 'glacier_arrival',
+      debutLabel: '冰河測試', debutLines: ['冰壁', '誓火', '抵達'] } };
   const allPets = [...petsData.pets, ...fixture.pets];
-  const poolsData = { schemaVersion: 1, pools: [...catalog.pools, ...fixture.catalog.pools] };
+  const poolsData = { schemaVersion: 1, pools: [...catalog.pools, ...fixture.catalog.pools, glacier] };
   const state = {
     allPets, poolsData, tasks: [], habits: [], categories: [], enrichedCollection: [],
     todayCompleted: 0, achievementSummary: {}, habitSummary: {}, questSummary: null,
@@ -174,6 +177,33 @@ try {
     });
   }
   if (new URL(location.href).searchParams.has('draws')) {
+    await test('glacier UI dispatches debut and a paid draw with no repeat charge or unlock gift', async () => {
+      state.wallet.stardust = 1500;
+      state.gachaStats.selectedPoolId = glacier.id;
+      await storage.dbPut(storage.STORES.META, state.wallet);
+      await storage.dbPut(storage.STORES.META, state.gachaStats);
+      ui.switchView('gacha');
+      await waitFor(() => document.querySelector('.dream-debut-overlay[data-animation="glacier_arrival"]'), 'glacier debut');
+      document.querySelector('.dream-debut-overlay [data-role="skip"]').click();
+      await waitFor(() => !document.querySelector('.dream-debut-overlay'), 'debut cleanup');
+      assert(document.getElementById('gacha-panel').dataset.poolTheme === 'glacier_arrival', 'Wrong panel theme');
+      assert(document.getElementById('gacha-awakening-panel').hidden, 'Unexpected unlock panel');
+      const random = Math.random;
+      Math.random = () => 0.1;
+      try {
+        document.getElementById('btn-pull').click();
+        await waitFor(() => document.querySelector('.dream-bloom-overlay[data-animation="glacier_arrival"][data-state="summary"]'), 'glacier paid summary');
+        const afterPayment = await storage.readAllStoresSnapshot();
+        assert((await storage.dbGet(storage.STORES.META, 'wallet')).stardust === 1400, 'Incorrect charge');
+        const progress = (await storage.dbGet(storage.STORES.META, 'poolUnlockState'))?.byPool?.[glacier.id];
+        assert(!progress?.unlocked && !progress?.rewardClaimed, 'Unexpected expansion or gift');
+        document.querySelector('.dream-bloom-overlay [data-action="close"]').click();
+        await waitFor(() => !document.getElementById('btn-pull').dataset.pulling, 'paid draw completion');
+        assert(JSON.stringify(afterPayment) === JSON.stringify(await storage.readAllStoresSnapshot()), 'Presentation mutated transaction state');
+        assert(!document.querySelector('.dream-bloom-overlay'), 'Presentation remained open');
+        assert(document.documentElement.scrollWidth <= innerWidth, 'Glacier panel horizontal overflow');
+      } finally { Math.random = random; }
+    });
     await test('M2A integration: repeat-ten confirmation preserves the quoted pool and price', async () => {
       state.wallet.stardust = 1500;
       await storage.dbPut(storage.STORES.META, state.wallet);

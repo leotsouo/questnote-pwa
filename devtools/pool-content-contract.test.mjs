@@ -280,6 +280,23 @@ test('legacy presentation adapters use canonical registry and reject unknown con
   assert.equal(presentation.normalizePoolPresentation({ ...eternal, cost: -1 }), null);
 });
 
+test('glacier template validates independently of pool identity and preserves all base candidates', () => {
+  const pool = { ...clone(standard), id: 'fixture_glacier', presentation: {
+    themeKey: 'glacier_arrival', animationKey: 'glacier_arrival', heroPetId: 'pet_ur01',
+  } };
+  const model = resolvePoolPresentationModel(pool, officialPets);
+  assert.equal(model.cssTheme, 'glacier_arrival');
+  assert.equal(model.unlock, null);
+  assert.equal(model.counts.effective, 56);
+  assert.equal(model.hero.id, 'pet_ur01');
+  assert.equal(presentation.shouldUseThemedSummon(pool), true);
+  assert.equal(presentation.getPoolThemeAttr(pool), 'glacier_arrival');
+  assert.deepEqual(normalizePoolDefinition(normalizePoolDefinition(pool)), normalizePoolDefinition(pool));
+  pool.presentation.animationKey = 'glacier_custom_script';
+  assert.equal(presentation.shouldUseThemedSummon(pool), false);
+  assert.throws(() => normalizePoolDefinition(pool), PoolContentError);
+});
+
 test('reveal controller reuses explicit metadata and preserves legacy captions', () => {
   const pet = { id: 'pet_ur900', rarity: 'UR', presentation: { revealKey: 'moon', revealCaption: '<b>新月</b>' } };
   assert.equal(reveal.resolveRevealTheme(pet, { pet, rarity: 'UR' }), 'moon');

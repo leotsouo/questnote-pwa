@@ -25,7 +25,7 @@ v1 提供 AI handoff scaffold、資料契約、審核與組裝流程。**AI 企�
 }
 ```
 
-不解鎖時明確使用 `"unlock": null`。`presentationTemplate` 使用受控 registry 的 `default` 或 `dream_bloom`。每個非零機率及保底可達 rarity 必須在 locked、unlocked 階段都有候選；不能把唯一 UR 放到解鎖後。總寵物數為 1–100。
+不解鎖時明確使用 `"unlock": null`。`presentationTemplate` 使用受控 registry 的 `default`、`dream_bloom` 或 `glacier_arrival`。冰河模板供霜誓峽灣及未來適合的卡池使用，不綁定 pool ID；新增模板必須先完成 runtime、契約與呈現驗證，再鎖定 authoring 輸入。每個非零機率及保底可達 rarity 必須在 locked、unlocked 階段都有候選；不能把唯一 UR 放到解鎖後。總寵物數為 1–100。
 
 `rewardDraftId` 使用分 rarity 的穩定 roster slot：`n_1`、`r_1`、`r_2`、`sr_1` 等。`init` 在全域 authoring lock 下，從官方與所有工作區的現有 ID 後接續配置 pet ID；同時保留未發布 pool ID。**配置發生於尚未核准的 scaffold 建立階段，approve 不會修改 plan 或重配 ID。** 所以人工核准的 plan hash 已涵蓋實際 `draftId → petId` mapping。
 

@@ -44,11 +44,12 @@ for (const name of ['production', 'preview']) {
   const root = await fs.realpath(options[`--${name}`]);
   const manifest = JSON.parse(await readInside(root, 'release-artifact.json'));
   const profile = manifest.profile;
-  if (manifest.schemaVersion !== 1 || profile?.profile !== name || profile.scopePath !== `/${name}/`
+  if (manifest.schemaVersion !== 1 || profile?.profile !== name
+    || typeof profile.scopePath !== 'string' || !/^\/(?:[a-zA-Z0-9_-]+\/)+$/.test(profile.scopePath)
     || profile.dbName !== (name === 'production' ? 'QuestNoteDB' : 'QuestNotePreviewDB')
     || !/^[a-f0-9]{64}$/.test(profile.artifactId) || profile.artifactId !== manifest.artifactId
     || profile.contentBundleUrl !== `data/releases/${profile.contentBundleSha256}/catalog.json`) {
-    throw new Error(`Wrong ${name} assembled artifact or scope; expected /${name}/`);
+    throw new Error(`Wrong ${name} assembled artifact or non-root scope`);
   }
   // Refuse stale or edited directories before any browser state is created.
   for (const [relative, entry] of Object.entries(manifest.files || {})) {
@@ -68,6 +69,14 @@ for (const name of ['production', 'preview']) {
   artifacts.set(name, { root, manifest, profile, cacheNames, fault: 'none', requests: [],
     expected: { petCount: bundle.petsData.pets.length, seriesCount: bundle.seriesCatalog.series.length,
       firstPool: bundle.poolsData.pools.find((pool) => pool.active === true) || null } });
+}
+
+// Use the artifact's reviewed scope, including the real hosting path. Keep the
+// harness outside both workers and reject scopes that could intercept each other.
+const scopes = [...artifacts.values()].map((artifact) => artifact.profile.scopePath);
+if (scopes[0].startsWith(scopes[1]) || scopes[1].startsWith(scopes[0])
+  || scopes.some((scope) => scope.startsWith('/test/') || '/test/'.startsWith(scope))) {
+  throw new Error('Artifact scopes must be separate and must not overlap /test/');
 }
 
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
@@ -95,7 +104,7 @@ const server = http.createServer(async (request, response) => {
     if (request.method !== 'GET') { response.writeHead(405).end(); return; }
     if (url.pathname === '/test/') {
       response.setHeader('Content-Type', MIME['.html']);
-      response.end('<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><title>Assembled artifact acceptance</title><h1>QuestNote assembled artifact acceptance</h1><p>Fresh loopback origin. Synthetic local data only. No deployment.</p><pre id="results">Running…</pre><div id="clients"></div><script type="module" src="./suite.js"></script></html>'); return;
+      response.end('<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><title>Assembled artifact acceptance</title><h1>QuestNote assembled artifact acceptance</h1><p>Fresh loopback origin. Isolated test saves with the supplied content artifact. No deployment.</p><pre id="results">Running…</pre><div id="clients"></div><script type="module" src="./suite.js"></script></html>'); return;
     }
     if (url.pathname === '/test/suite.js') {
       response.setHeader('Content-Type', MIME['.js']);
@@ -110,10 +119,11 @@ const server = http.createServer(async (request, response) => {
       response.setHeader('Content-Type', MIME['.json']);
       response.end(JSON.stringify(Object.fromEntries([...artifacts].map(([name, artifact]) => [name, artifact.requests])))); return;
     }
-    const match = /^\/(production|preview)\/(.*)$/.exec(decodeURIComponent(url.pathname));
+    const pathname = decodeURIComponent(url.pathname);
+    const match = [...artifacts].find(([, value]) => pathname.startsWith(value.profile.scopePath));
     if (!match) { response.writeHead(404).end(); return; }
-    const [, name, rawRelative] = match;
-    const artifact = artifacts.get(name);
+    const [name, artifact] = match;
+    const rawRelative = pathname.slice(artifact.profile.scopePath.length);
     const relative = rawRelative || 'index.html';
     artifact.requests.push({ path: relative, destination: request.headers['sec-fetch-dest'] || '', fault: artifact.fault });
     if (artifact.requests.length > 2500) artifact.requests.shift();
