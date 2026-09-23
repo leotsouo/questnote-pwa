@@ -1,0 +1,26 @@
+Render-only checks · 2026-09-23T08:36:33.281Z
+
+[dream-locked / sweet / 1280×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=192.3 bottom=216.9 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=224.9 bottom=255.6 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=272.3 bottom=289.6 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=272.3 bottom=289.6 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=299.3 bottom=347.3 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=299.3 bottom=347.3 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=1212
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+21 PASS / 0 FAIL。已還原原始預覽；未抽卡、未扣款、未改收藏。

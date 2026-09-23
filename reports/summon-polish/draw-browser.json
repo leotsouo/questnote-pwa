@@ -1,0 +1,74 @@
+{
+  "expected": 16,
+  "passed": 16,
+  "failed": 0,
+  "complete": true,
+  "databaseName": "QuestNoteTest-SummonDraw-bf7a5e48-d265-45d8-b303-6364f6340dfd",
+  "serverInstance": "5a0b5e5a-711b-489e-8158-171df439dd0d",
+  "results": [
+    {
+      "name": "default: rapid single click charges exactly 75 once",
+      "ok": true
+    },
+    {
+      "name": "default: Cancel restores exact result and state",
+      "ok": true
+    },
+    {
+      "name": "default: Escape restores exact result and state",
+      "ok": true
+    },
+    {
+      "name": "default: close restores exact result and state",
+      "ok": true
+    },
+    {
+      "name": "default: backdrop restores exact result and state",
+      "ok": true
+    },
+    {
+      "name": "default: same-pool price change aborts quoted ten pull",
+      "ok": true
+    },
+    {
+      "name": "default: confirmed ten draws charge 750 and compensate ten N duplicates",
+      "ok": true
+    },
+    {
+      "name": "default: closing result releases pull locks without further writes",
+      "ok": true
+    },
+    {
+      "name": "sweet: rapid single click charges exactly 75 once",
+      "ok": true
+    },
+    {
+      "name": "sweet: Cancel restores exact result and state",
+      "ok": true
+    },
+    {
+      "name": "sweet: Escape restores exact result and state",
+      "ok": true
+    },
+    {
+      "name": "sweet: close restores exact result and state",
+      "ok": true
+    },
+    {
+      "name": "sweet: backdrop restores exact result and state",
+      "ok": true
+    },
+    {
+      "name": "sweet: same-pool price change aborts quoted ten pull",
+      "ok": true
+    },
+    {
+      "name": "sweet: confirmed ten draws charge 750 and compensate ten N duplicates",
+      "ok": true
+    },
+    {
+      "name": "sweet: closing result releases pull locks without further writes",
+      "ok": true
+    }
+  ]
+}

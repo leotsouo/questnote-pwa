@@ -4884,7 +4884,7 @@ function renderGachaThemeStage(pool) {
   if (content) content.hidden = !presentation && !expansion;
   stage.hidden = !presentation;
   stage.classList.toggle('is-awakened', awakened);
-  if (poolNameEl) poolNameEl.hidden = !!presentation;
+  if (poolNameEl) poolNameEl.hidden = false;
 
   const setElText = (id, text) => {
     const el = document.getElementById(id);

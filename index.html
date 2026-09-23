@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
   <link rel="stylesheet" href="src/styles.css" />
   <link rel="stylesheet" href="src/ui-polish.css" />
+  <link rel="stylesheet" href="src/summon-polish.css" />
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -124,20 +125,70 @@
         </div>
       </header>
 
-      <div class="gacha-hero" aria-hidden="true">
-        <span class="gacha-hero__symbol">✦</span>
-        <p class="gacha-hero__tagline">星塵匯聚，幻獸降臨</p>
-      </div>
-
-      <section id="gacha-daily-blessing-entry" class="daily-blessing-gacha-entry" aria-label="每日祝福入口"></section>
-
       <section class="gacha-panel card" id="gacha-panel" data-pool-theme="">
         <div class="gacha-pool-switcher" id="gacha-pool-switcher" hidden>
           <label class="gacha-pool-switcher__label" for="gacha-pool-select">選擇卡池</label>
           <select id="gacha-pool-select" class="gacha-pool-select" aria-label="選擇召喚卡池"></select>
         </div>
 
+        <h2 class="gacha-pool" id="gacha-pool-name">標準召喚</h2>
+
+        <div class="gacha-stardust">
+          <span class="gacha-stardust__label">目前星塵</span>
+          <span class="gacha-stardust__value" id="gacha-stardust">0</span>
+        </div>
+
+        <div class="gacha-info">
+          <p id="gacha-single-price">單次消耗：<strong id="gacha-cost">100</strong> 星塵</p>
+          <p id="gacha-ten-price">10 連抽消耗：<strong id="gacha-ten-cost">1000</strong> 星塵</p>
+        </div>
+
+        <div class="gacha-actions" role="group" aria-label="召喚操作">
+          <div class="gacha-action">
+            <button id="btn-pull" class="btn btn--gacha btn--block" aria-describedby="gacha-single-price">召喚 1 次</button>
+            <p class="gacha-hint" id="gacha-hint-single" hidden></p>
+          </div>
+          <div class="gacha-action">
+            <button id="btn-pull-ten" class="btn btn--gacha btn--gacha-ten btn--block" aria-describedby="gacha-ten-price">召喚 10 次</button>
+            <p class="gacha-hint" id="gacha-hint-ten" hidden></p>
+          </div>
+        </div>
+
+        <div class="pity-bars">
+          <div class="pity-item">
+            <div class="pity-item__header">
+              <span class="pity-label">SSR 保底</span>
+              <span class="pity-value" id="gacha-ssr-pity">0/30</span>
+            </div>
+            <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--ssr" id="gacha-ssr-bar"></div></div>
+          </div>
+          <div class="pity-item">
+            <div class="pity-item__header">
+              <span class="pity-label">UR 保底</span>
+              <span class="pity-value" id="gacha-ur-pity">0/100</span>
+            </div>
+            <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--ur" id="gacha-ur-bar"></div></div>
+          </div>
+        </div>
+
+        <div class="gacha-rates" id="gacha-rates"></div>
+
         <div id="gacha-pool-content" class="gacha-pool-content" hidden>
+          <details id="gacha-awakening-panel" class="gacha-awakening-panel" hidden>
+            <summary class="gacha-awakening-panel__summary">
+              <span id="gacha-awakening-title">晨醒花庭</span>
+              <span id="gacha-awakening-progress">夢塵共鳴 0／20</span>
+            </summary>
+            <div class="gacha-awakening-panel__body">
+              <div class="gacha-awakening-bar" aria-hidden="true">
+                <span id="gacha-awakening-fill" class="gacha-awakening-bar__fill"></span>
+              </div>
+              <p id="gacha-awakening-desc" class="gacha-awakening-panel__desc"></p>
+              <p id="gacha-awakening-counts" class="gacha-awakening-panel__counts"></p>
+              <div id="gacha-awakening-preview" class="gacha-awakening-preview" aria-label="晨醒角色預覽"></div>
+              <p id="gacha-awakening-rate-note" class="gacha-awakening-panel__note"></p>
+            </div>
+          </details>
         <div id="gacha-theme-stage" class="gacha-theme-stage" hidden>
           <div class="gacha-theme-stage__atmosphere" aria-hidden="true">
             <span class="gacha-theme-stage__mist"></span>
@@ -167,62 +218,12 @@
           <p class="gacha-theme-stage__meta" id="gacha-theme-meta"></p>
           <div id="gacha-theme-dual-hero" class="gacha-theme-dual" hidden></div>
         </div>
-          <details id="gacha-awakening-panel" class="gacha-awakening-panel" hidden>
-            <summary class="gacha-awakening-panel__summary">
-              <span id="gacha-awakening-title">晨醒花庭</span>
-              <span id="gacha-awakening-progress">夢塵共鳴 0／20</span>
-            </summary>
-            <div class="gacha-awakening-panel__body">
-              <div class="gacha-awakening-bar" aria-hidden="true">
-                <span id="gacha-awakening-fill" class="gacha-awakening-bar__fill"></span>
-              </div>
-              <p id="gacha-awakening-desc" class="gacha-awakening-panel__desc"></p>
-              <p id="gacha-awakening-counts" class="gacha-awakening-panel__counts"></p>
-              <div id="gacha-awakening-preview" class="gacha-awakening-preview" aria-label="晨醒角色預覽"></div>
-              <p id="gacha-awakening-rate-note" class="gacha-awakening-panel__note"></p>
-            </div>
-          </details>
           <button type="button" class="gacha-theme-details-btn" id="gacha-theme-details-btn" aria-expanded="false" aria-controls="gacha-theme-details">卡池詳情</button>
           <div class="gacha-theme-details" id="gacha-theme-details" hidden></div>
         </div>
-
-        <h2 class="gacha-pool" id="gacha-pool-name">標準召喚</h2>
-
-        <div class="gacha-stardust">
-          <span class="gacha-stardust__label">目前星塵</span>
-          <span class="gacha-stardust__value" id="gacha-stardust">0</span>
-        </div>
-
-        <div class="gacha-info">
-          <p>單次消耗：<strong id="gacha-cost">100</strong> 星塵</p>
-          <p>10 連抽消耗：<strong id="gacha-ten-cost">1000</strong> 星塵</p>
-        </div>
-
-        <div class="pity-bars">
-          <div class="pity-item">
-            <div class="pity-item__header">
-              <span class="pity-label">SSR 保底</span>
-              <span class="pity-value" id="gacha-ssr-pity">0/30</span>
-            </div>
-            <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--ssr" id="gacha-ssr-bar"></div></div>
-          </div>
-          <div class="pity-item">
-            <div class="pity-item__header">
-              <span class="pity-label">UR 保底</span>
-              <span class="pity-value" id="gacha-ur-pity">0/100</span>
-            </div>
-            <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--ur" id="gacha-ur-bar"></div></div>
-          </div>
-        </div>
-
-        <div class="gacha-rates" id="gacha-rates"></div>
-
-        <p class="gacha-hint" id="gacha-hint-single" hidden></p>
-        <button id="btn-pull" class="btn btn--gacha btn--block">召喚 1 次</button>
-
-        <p class="gacha-hint" id="gacha-hint-ten" hidden></p>
-        <button id="btn-pull-ten" class="btn btn--gacha btn--gacha-ten btn--block">召喚 10 次</button>
       </section>
+
+      <section id="gacha-daily-blessing-entry" class="daily-blessing-gacha-entry" aria-label="每日祝福入口"></section>
     </main>
 
     <!-- 圖鑑頁 -->

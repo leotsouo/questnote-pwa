@@ -1,0 +1,771 @@
+Render-only checks · 2026-09-23T08:25:33.097Z
+
+[standard / default / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=320
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[standard / default / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=390
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[standard / default / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=430
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[standard / sweet / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=320
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[standard / sweet / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=390
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[standard / sweet / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=430
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-locked / default / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=305
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-locked / default / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=375
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-locked / default / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=415
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-locked / sweet / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=305
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-locked / sweet / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=375
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-locked / sweet / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=415
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-awakened / default / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=305
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 晨醒 phase 保留
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-awakened / default / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=375
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 晨醒 phase 保留
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-awakened / default / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=415
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 晨醒 phase 保留
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-awakened / sweet / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=305
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 晨醒 phase 保留
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-awakened / sweet / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=375
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 晨醒 phase 保留
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[dream-awakened / sweet / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=415
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · 晨醒 phase 保留
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[unthemed-unlock / default / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=305
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · Synthetic 無主題仍有 75 / 750 成本與解鎖
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[unthemed-unlock / default / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=390
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · Synthetic 無主題仍有 75 / 750 成本與解鎖
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[unthemed-unlock / default / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=430
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · Synthetic 無主題仍有 75 / 750 成本與解鎖
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[unthemed-unlock / sweet / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=305
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · Synthetic 無主題仍有 75 / 750 成本與解鎖
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[unthemed-unlock / sweet / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=390
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · Synthetic 無主題仍有 75 / 750 成本與解鎖
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[unthemed-unlock / sweet / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=430
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 無主題卡池沒有多餘主題詳情入口
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PASS · Synthetic 無主題仍有 75 / 750 成本與解鎖
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[synthetic-token / default / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=305
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PROBE · 合法dream model + synthetic DOM token／theme供應tokens與solid panel；不是有效新pool或真glacier，不驗證舊stage的任意無token配色。
+PASS · 未知 CSS token不隱藏召喚操作或stage
+PASS · Synthetic token #gacha-pool-name 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-stardust 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-stardust__label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ten-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-info p 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token .pity-label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ssr-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ur-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-pool-select 對比 >= 4.5 · 13.68:1; color=rgb(243, 247, 255); bg=rgb(23, 41, 65)
+PASS · Synthetic token #btn-pull-ten 對比 >= 4.5 · 11.70:1; color=rgb(243, 247, 255); bg=rgb(32, 52, 81)
+PASS · Synthetic panel、select與十連採用theme surface
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · Synthetic disabled btn-pull token 對比 >= 4.5 · 8.58:1
+PASS · Synthetic disabled btn-pull-ten token 對比 >= 4.5 · 8.58:1
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[synthetic-token / default / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=375
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PROBE · 合法dream model + synthetic DOM token／theme供應tokens與solid panel；不是有效新pool或真glacier，不驗證舊stage的任意無token配色。
+PASS · 未知 CSS token不隱藏召喚操作或stage
+PASS · Synthetic token #gacha-pool-name 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-stardust 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-stardust__label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ten-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-info p 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token .pity-label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ssr-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ur-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-pool-select 對比 >= 4.5 · 13.68:1; color=rgb(243, 247, 255); bg=rgb(23, 41, 65)
+PASS · Synthetic token #btn-pull-ten 對比 >= 4.5 · 11.70:1; color=rgb(243, 247, 255); bg=rgb(32, 52, 81)
+PASS · Synthetic panel、select與十連採用theme surface
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · Synthetic disabled btn-pull token 對比 >= 4.5 · 8.58:1
+PASS · Synthetic disabled btn-pull-ten token 對比 >= 4.5 · 8.58:1
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[synthetic-token / default / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=415
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PROBE · 合法dream model + synthetic DOM token／theme供應tokens與solid panel；不是有效新pool或真glacier，不驗證舊stage的任意無token配色。
+PASS · 未知 CSS token不隱藏召喚操作或stage
+PASS · Synthetic token #gacha-pool-name 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-stardust 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-stardust__label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ten-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-info p 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token .pity-label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ssr-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ur-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-pool-select 對比 >= 4.5 · 13.68:1; color=rgb(243, 247, 255); bg=rgb(23, 41, 65)
+PASS · Synthetic token #btn-pull-ten 對比 >= 4.5 · 11.70:1; color=rgb(243, 247, 255); bg=rgb(32, 52, 81)
+PASS · Synthetic panel、select與十連採用theme surface
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · Synthetic disabled btn-pull token 對比 >= 4.5 · 8.58:1
+PASS · Synthetic disabled btn-pull-ten token 對比 >= 4.5 · 8.58:1
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[synthetic-token / sweet / 320×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=184.5 bottom=209.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=217.0 bottom=247.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=264.4 bottom=281.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=311.1 bottom=359.1 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=305
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PROBE · 合法dream model + synthetic DOM token／theme供應tokens與solid panel；不是有效新pool或真glacier，不驗證舊stage的任意無token配色。
+PASS · 未知 CSS token不隱藏召喚操作或stage
+PASS · Synthetic token #gacha-pool-name 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-stardust 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-stardust__label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ten-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-info p 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token .pity-label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ssr-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ur-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-pool-select 對比 >= 4.5 · 13.68:1; color=rgb(243, 247, 255); bg=rgb(23, 41, 65)
+PASS · Synthetic token #btn-pull-ten 對比 >= 4.5 · 11.70:1; color=rgb(243, 247, 255); bg=rgb(32, 52, 81)
+PASS · Synthetic panel、select與十連採用theme surface
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · Synthetic disabled btn-pull token 對比 >= 4.5 · 8.58:1
+PASS · Synthetic disabled btn-pull-ten token 對比 >= 4.5 · 8.58:1
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[synthetic-token / sweet / 390×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=375
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PROBE · 合法dream model + synthetic DOM token／theme供應tokens與solid panel；不是有效新pool或真glacier，不驗證舊stage的任意無token配色。
+PASS · 未知 CSS token不隱藏召喚操作或stage
+PASS · Synthetic token #gacha-pool-name 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-stardust 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-stardust__label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ten-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-info p 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token .pity-label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ssr-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ur-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-pool-select 對比 >= 4.5 · 13.68:1; color=rgb(243, 247, 255); bg=rgb(23, 41, 65)
+PASS · Synthetic token #btn-pull-ten 對比 >= 4.5 · 11.70:1; color=rgb(243, 247, 255); bg=rgb(32, 52, 81)
+PASS · Synthetic panel、select與十連採用theme surface
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · Synthetic disabled btn-pull token 對比 >= 4.5 · 8.58:1
+PASS · Synthetic disabled btn-pull-ten token 對比 >= 4.5 · 8.58:1
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+[synthetic-token / sweet / 430×844 / dust 2000]
+PASS · 卡池名称在首屏 nav 上方 · visible=true top=188.5 bottom=213.0 limit=780.0
+PASS · 目前星塵在首屏 nav 上方 · visible=true top=221.0 bottom=251.8 limit=780.0
+PASS · 單抽成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 十連成本在首屏 nav 上方 · visible=true top=268.4 bottom=285.8 limit=780.0
+PASS · 單抽操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 十連操作在首屏 nav 上方 · visible=true top=295.4 bottom=343.4 limit=780.0
+PASS · 顯示目前卡池、成本與資源
+PASS · 沒有橫向溢出 · scrollWidth=415
+PASS · 只有召喚 view active
+PASS · 成本決定 disabled 語意
+PASS · DOM 中成本與抽卡操作早於內容展示
+PASS · 可用主要操作依 DOM tab 順序早於詳情、解鎖
+PASS · 詳情可展開且 aria-expanded 正確
+PASS · 詳情可收合且 aria-expanded 正確
+PASS · 解鎖資訊可見且不依附隱藏 theme stage
+PASS · 解鎖 details 可展開
+PASS · 解鎖 details 可收合
+PROBE · 合法dream model + synthetic DOM token／theme供應tokens與solid panel；不是有效新pool或真glacier，不驗證舊stage的任意無token配色。
+PASS · 未知 CSS token不隱藏召喚操作或stage
+PASS · Synthetic token #gacha-pool-name 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-stardust 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-stardust__label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ten-cost 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token .gacha-info p 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token .pity-label 對比 >= 4.5 · 11.74:1; color=rgb(197, 215, 239); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ssr-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-ur-pity 對比 >= 4.5 · 16.01:1; color=rgb(243, 247, 255); bg=rgb(16, 27, 48)
+PASS · Synthetic token #gacha-pool-select 對比 >= 4.5 · 13.68:1; color=rgb(243, 247, 255); bg=rgb(23, 41, 65)
+PASS · Synthetic token #btn-pull-ten 對比 >= 4.5 · 11.70:1; color=rgb(243, 247, 255); bg=rgb(32, 52, 81)
+PASS · Synthetic panel、select與十連採用theme surface
+PASS · 不足單抽成本：disabled + 可讀提示
+PASS · 不足單抽狀態停用按鈕仍保留文字可讀性
+PASS · Synthetic disabled btn-pull token 對比 >= 4.5 · 8.58:1
+PASS · Synthetic disabled btn-pull-ten token 對比 >= 4.5 · 8.58:1
+PASS · 不足十連成本：保留單抽與當前池提示
+PASS · 單一 active pool 隱藏 switcher且保留選池名稱
+
+702 PASS / 0 FAIL。已還原原始預覽；未抽卡、未扣款、未改收藏。

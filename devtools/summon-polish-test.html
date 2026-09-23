@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuestNote summon polish · render only</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 18px; background: #111827; color: #f8fafc; font: 14px/1.5 system-ui; }
+  h1 { margin: 0; font-size: 22px; } p { max-width: 960px; }
+  button, select, input { padding: 8px 10px; color: inherit; background: #24324b; border: 1px solid #94a3b8; border-radius: 8px; font: inherit; }
+  button { cursor: pointer; } button:disabled { opacity: .45; } input[type="number"] { width: 110px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 12px 0; }
+  .workspace { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; }
+  iframe { box-sizing: content-box; width: 390px; height: 844px; border: 1px solid #94a3b8; background: #080b16; }
+  pre { margin: 0; flex: 1; min-width: 290px; max-width: 750px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  body.capture-mode { padding: 0; width: var(--preview-width, 390px); }
+  body.capture-mode > :is(h1, p, .controls), body.capture-mode #results { display: none; }
+  body.capture-mode .workspace { display: block; }
+  body.capture-mode iframe { display: block; border: 0; }
+</style>
+<h1>VP-03 · 召喚 layout / interaction</h1>
+<p>使用現有 <code>node devtools/ui-polish-server.mjs</code>。初始化後保留穩定初始畫面，方便 Before／After 截圖。真實 index DOM、styles、UI renderer；資料只存在獨立 QuestNoteTest-Summon DB 與記憶體。抽卡按鈕保留真實可用狀態，但提交被阻擋；這裡不執行抽卡、登場或解鎖動畫。</p>
+<div class="controls"><button id="initialize">初始化專用預覽</button><button id="render" disabled>重新渲染目前畫面</button><button id="test" disabled>檢查目前場景</button><button id="matrix" disabled>全場景 × 兩主題 × 三寬度</button><button id="poor-preview" disabled>固定不足單抽預覽</button><button id="capture" disabled>純畫面截圖（Escape 返回）</button></div>
+<div class="controls">
+  <label>場景 <select id="scene" disabled><option value="standard">一般卡池</option><option value="dream-locked">永眠花海・未解鎖</option><option value="dream-awakened">永眠花海・晨醒</option><option value="unthemed-unlock">Synthetic・無主題解鎖</option><option value="synthetic-token">Synthetic・未知 CSS token 深色 stage</option></select></label>
+  <label>主題 <select id="theme" disabled><option value="default">Default</option><option value="sweet">Sweet</option></select></label>
+  <label>寬度 <select id="width" disabled><option>320</option><option selected>390</option><option>430</option><option>1280</option></select></label>
+  <label>星塵 <input id="dust" type="number" min="0" step="1" value="2000" disabled></label>
+  <label><input id="single-active" type="checkbox" disabled>僅目前池 active</label>
+</div>
+<div class="workspace"><iframe id="preview" title="QuestNote summon render-only preview" src="about:blank"></iframe><pre id="results" aria-live="polite">尚未初始化。兩份新測試檔可在召喚新 CSS 加入前執行；不會自動把未通過的 baseline 視為成功。</pre></div>
+<script type="module" src="./summon-polish-test.js"></script>
+</html>
