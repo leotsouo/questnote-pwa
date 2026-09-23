@@ -1,0 +1,17 @@
+{
+  "repository": "leotsouo/questnote-pwa-preview",
+  "oldCommit": "a1a0030974761861dc1221e52aad4d0563bfc342",
+  "previewCommit": "689a4a0582d8fd45e2747fb927b55cb5f63eec2c",
+  "artifactId": "1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8",
+  "manifestSha256": "a1d642a5aa164d07c30df47c371a0a7b409c6ca628d6c772a51850fd51da1238",
+  "sourceCommit": "5eb3d55c7e4be854a3531314ed349d55b913d8d9",
+  "verifiedGitFiles": 331,
+  "remotePush": true,
+  "pagesBuild": "built",
+  "pagesRunId": 35859738328,
+  "pagesRunUrl": "https://github.com/leotsouo/questnote-pwa-preview/actions/runs/35859738328",
+  "pagesConclusion": "success",
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/",
+  "httpsEnforced": true,
+  "productionChanged": false
+}

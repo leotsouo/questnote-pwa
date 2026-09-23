@@ -1,0 +1,64 @@
+[
+  {
+    "profile": "preview",
+    "artifactId": "1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8",
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\final-preview-artifacts\\1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8",
+    "manifestSha256": "a1d642a5aa164d07c30df47c371a0a7b409c6ca628d6c772a51850fd51da1238",
+    "sourceCommit": "5eb3d55c7e4be854a3531314ed349d55b913d8d9",
+    "scopePath": "/questnote-pwa-preview/",
+    "dbName": "QuestNotePreviewDB",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\final-preview-artifacts\\1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8",
+      "artifactId": "1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8",
+      "manifestSha256": "a1d642a5aa164d07c30df47c371a0a7b409c6ca628d6c772a51850fd51da1238",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 331
+    },
+    "images": {
+      "count": 84,
+      "mode": "check"
+    },
+    "poolIds": [
+      "standard",
+      "eternal_slumber_bloom",
+      "frost_oath_fjord"
+    ],
+    "petCount": 84,
+    "catalogSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+    "deterministicRepeat": true,
+    "dryRun": true
+  },
+  {
+    "profile": "production",
+    "artifactId": "42941a1386c00b8b7e632554b47f741bfedaf9d58c426219694c7d46e11c41d4",
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\final-preview-artifacts\\42941a1386c00b8b7e632554b47f741bfedaf9d58c426219694c7d46e11c41d4",
+    "manifestSha256": "7a29d75fa9ca30d3e6283570df61f1b8bf4487467bf16567c83bcff593c791da",
+    "sourceCommit": "5eb3d55c7e4be854a3531314ed349d55b913d8d9",
+    "scopePath": "/questnote-pwa/",
+    "dbName": "QuestNoteDB",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\final-preview-artifacts\\42941a1386c00b8b7e632554b47f741bfedaf9d58c426219694c7d46e11c41d4",
+      "artifactId": "42941a1386c00b8b7e632554b47f741bfedaf9d58c426219694c7d46e11c41d4",
+      "manifestSha256": "7a29d75fa9ca30d3e6283570df61f1b8bf4487467bf16567c83bcff593c791da",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 331
+    },
+    "images": {
+      "count": 84,
+      "mode": "check"
+    },
+    "poolIds": [
+      "standard",
+      "eternal_slumber_bloom",
+      "frost_oath_fjord"
+    ],
+    "petCount": 84,
+    "catalogSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+    "deterministicRepeat": true,
+    "dryRun": true
+  }
+]

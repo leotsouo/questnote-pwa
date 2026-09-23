@@ -1,0 +1,42 @@
+{
+  "url": "https://leotsouo.github.io/questnote-pwa-preview/",
+  "artifactId": "1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8",
+  "appVersion": "3.4.9",
+  "serviceWorkerUi": "enabled",
+  "update": "Old controller prompted close-all; agent-owned tab closed then reopened successfully without storage deletion",
+  "poolNames": [
+    "標準召喚",
+    "永眠花海召喚",
+    "霜誓峽灣召喚"
+  ],
+  "collectionCapacity": 84,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "themes": {
+    "default": {
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "ctaTop": 296,
+      "ctaHeight": 48,
+      "navTop": 780,
+      "navBottom": 844
+    },
+    "sweet": {
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "ctaTop": 295,
+      "ctaHeight": 48,
+      "desktopScrollbarWidth": 15
+    }
+  },
+  "frostHeroAndFeaturedImagesLoaded": 4,
+  "diagnosticPanel": false,
+  "consoleErrors": [],
+  "reloadPreservedTheme": true,
+  "originalDefaultThemeRestored": true,
+  "liveResourceGrants": false,
+  "productionTouched": false,
+  "physicalIphone": "NOT_TESTED"
+}

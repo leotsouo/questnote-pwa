@@ -1,0 +1,105 @@
+{
+  "runtimeCommit": "5eb3d55c7e4be854a3531314ed349d55b913d8d9",
+  "suites": [
+    {
+      "suite": "Node tests",
+      "passed": 141,
+      "failed": 0
+    },
+    {
+      "suite": "Node logic assertions",
+      "passed": 34,
+      "failed": 0
+    },
+    {
+      "suite": "Native M1 backup/restore",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "suite": "Native M2A transaction",
+      "passed": 25,
+      "failed": 0
+    },
+    {
+      "suite": "M4 DOM with draws=1",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "suite": "Summon paid/repeat draw",
+      "passed": 16,
+      "failed": 0
+    },
+    {
+      "suite": "Glacier reveal",
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "suite": "UI VP01",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "suite": "UI VP02",
+      "passed": 41,
+      "failed": 0
+    },
+    {
+      "suite": "UI VP04",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "suite": "UI VP05",
+      "passed": 54,
+      "failed": 0,
+      "skipped": 4
+    },
+    {
+      "suite": "Summon matrix (5 scenes,2 themes,320/390/430px)",
+      "passed": 702,
+      "failed": 0
+    },
+    {
+      "suite": "Final user 390x844 workflow (including cleanup)",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "suite": "Legacy reveal auto-test",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "suite": "Native SW lifecycle",
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "suite": "Final immutable release artifact browser",
+      "passed": 11,
+      "failed": 0
+    }
+  ],
+  "previewArtifact": "1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8",
+  "validationNotes": [
+    "M1/M2A/M4/UI/summon suites ran on integrated source before final release-only guards; transaction, contract, DOM and styles did not change afterwards. Final141 Node tests and immutable11 native cases cover the final runtime.",
+    "VP05 delegates4 mutating draw/import cases; these are covered by dedicated summon16 and final-user10 suites, not counted as visual passes.",
+    "Final user harness uses an ephemeral localhost origin and UUID IndexedDB installed before unchanged app imports. Real DOM handlers, native IndexedDB, File/FileReader and export Blob are exercised.",
+    "Windows scrollbar consumes15px in some390px views. Corrected initial clientWidth===390 assumption to innerWidth390 and verified scrollWidth<=clientWidth.",
+    "An interrupted harness correctly refused a previous database. A fresh origin passed10/10 without clearing unknown data.",
+    "Artifact debug test initially resolved a relative module under /test/. Corrected to its artifact-scope URL; whole suite rerun11/11.",
+    "Legacy fixed V3.4.3 assertion updated to actual version/cache/precache consistency. G/H/I now inspect actual UI wiring, not an unconditional PASS. Native M2A/M4 test actual unlock behavior.",
+    "An assembly invocation used candidateDirs instead of candidateDir and produced a baseline-only output; explicit84-pet/3-pool check rejected it. Only the verified pin is published.",
+    "331 files per artifact verified.84 PNGs and168 WebP variants validated. Source catalogs/images unchanged. Real Frost merges from approved candidate; synthetic78-pet rehearsal stays in OS temp.",
+    "Synthetic repeat/dry-run/planner succeeds. Node negative cases cover missing images, invalid rates, ID collisions and unlock references."
+  ],
+  "limitations": [
+    "Physical iPhone Safari, installation/standalone, touch, safe area and software keyboard await device acceptance.",
+    "Backup checks verify actual export Blob and native FileReader, not OS download persistence/file picker.",
+    "Closing/recreating iframe plus reload checks storage persistence, not iOS process eviction.",
+    "Offline fixtures return503 for every network response. Unseen pet images are not required shell precache."
+  ]
+}
