@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuestNote final user acceptance</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 20px; background: #111827; color: #f8fafc; font: 15px/1.5 system-ui; }
+  h1 { margin: 0 0 8px; font-size: 22px; }
+  p { max-width: 880px; }
+  button { padding: 10px 14px; background: #24324b; border: 1px solid #94a3b8; border-radius: 8px; color: inherit; font: inherit; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: default; }
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 14px 0; }
+  .workspace { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  iframe { box-sizing: content-box; width: 390px; height: 844px; border: 1px solid #94a3b8; background: #080b16; }
+  pre { margin: 0; min-width: 310px; max-width: 900px; flex: 1; white-space: pre-wrap; overflow-wrap: anywhere; }
+</style>
+<h1>Final user acceptance · 390 × 844</h1>
+<p>以 <code>node devtools/final-user-browser-server.mjs</code> 在新 port 啟動。安全檢查通過後才載入 App；所有 IndexedDB open 由測試 HTTP bootstrap 重導至伺服器 UUID 資料庫。沒有 dev seed、正式資料、SW 或抽卡測試。</p>
+<p>使用真實 DOM 新增／完成任務與子任務、每日習慣、圖鑑、主題及備份匯入。備份使用 App 實際產生的 Blob 與原生 FileReader；不驗證作業系統檔案選擇器或下載落盤。鍵盘測試限 focus 與 Tab／Escape handler，實機鍵盤、觸控、safe-area、PWA 安裝仍須另驗。</p>
+<div class="controls">
+  <button id="run">執行完整使用者驗收</button>
+  <label><input type="checkbox" id="keep-preview"> 保留最後畫面供人工檢查（結束後必須清理）</label>
+  <button id="cleanup" disabled>清理此 UUID 測試資料</button>
+</div>
+<div class="workspace"><iframe id="preview" title="QuestNote 隔離使用者流程，390 × 844" src="about:blank"></iframe><pre id="results" aria-live="polite">尚未執行。所有測試服務只在 origin／UUID guard 通過後匯入。</pre></div>
+<script type="module" src="./final-user-browser-test.js"></script>
+</html>

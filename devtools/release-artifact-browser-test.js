@@ -231,12 +231,12 @@ try {
     const before = await previewTransactionSnapshot();
     const flagged = directClient('preview', '?perf=1&debug=1');
     const client = await waitForStarted(flagged, 'preview');
-    const dev = await client.eval("import('./src/devService.js')");
+    const dev = await client.eval('import(' + JSON.stringify(new URL('src/devService.js', client.location.href).href) + ')');
     assert(!dev.isDevMode() && !dev.isDebugMode() && !dev.isAuthorLocalDevMode(), 'Released debug entry enabled');
     let rejected = false;
     try { await dev.grantDevStardust(); } catch { rejected = true; }
     assert(rejected, 'Release accepted test currency');
-    const perf = await client.eval("import('./src/perfDiagnostics.js')");
+    const perf = await client.eval('import(' + JSON.stringify(new URL('src/perfDiagnostics.js', client.location.href).href) + ')');
     perf.startPerfDiagnostics(null, null);
     assert(!flagged.contentDocument.getElementById('questnote-perf'), 'Release exposed diagnostics panel');
     flagged.contentDocument.querySelector('[data-view="more"]').click();
