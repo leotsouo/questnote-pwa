@@ -1,0 +1,55 @@
+{
+  "passed": 12,
+  "failed": 0,
+  "databaseName": "QuestNoteTest-M4-9dbe54b1-93bd-4f6b-bd58-061eb50e6f0d",
+  "results": [
+    {
+      "name": "unthemed pool renders independent unlock panel with selected-pool prices",
+      "ok": true
+    },
+    {
+      "name": "legacy locked and awakened presentation retains exact content and CSS identity",
+      "ok": true
+    },
+    {
+      "name": "content text is escaped by the real pool DOM renderer",
+      "ok": true
+    },
+    {
+      "name": "all inactive pools remove stale enabled controls without breaking task rendering",
+      "ok": true
+    },
+    {
+      "name": "generic SSR gift overlay uses actual rarity and cleans up (fallback=false)",
+      "ok": true
+    },
+    {
+      "name": "generic SSR gift overlay uses actual rarity and cleans up (fallback=true)",
+      "ok": true
+    },
+    {
+      "name": "new pet IDs reuse moon/petal safely and preserve legacy captions",
+      "ok": true
+    },
+    {
+      "name": "debut uses safe content copy and waits for an explicit close",
+      "ok": true
+    },
+    {
+      "name": "seen debut does not block pending unlock resume: eternal_slumber_bloom",
+      "ok": true
+    },
+    {
+      "name": "seen debut does not block pending unlock resume: fixture_beta",
+      "ok": true
+    },
+    {
+      "name": "glacier UI dispatches debut and a paid draw with no repeat charge or unlock gift",
+      "ok": true
+    },
+    {
+      "name": "M2A integration: repeat-ten confirmation preserves the quoted pool and price",
+      "ok": true
+    }
+  ]
+}

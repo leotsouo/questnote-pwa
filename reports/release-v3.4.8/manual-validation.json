@@ -1,0 +1,111 @@
+{
+  "recordedAt": "2026-09-23T09:13:35.480Z",
+  "sourceCommit": "b588cd97094c1dbca7fca73cef7918166023f29b",
+  "previewArtifactId": "0b97a80a824cd1713c57c2edbf80b6e5930c987a81253ea3279053d556341f29",
+  "origin": "http://127.0.0.1:54881/preview/",
+  "physicalDevice": false,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "themes": [
+    "default",
+    "sweet"
+  ],
+  "checks": [
+    {
+      "name": "Today task hierarchy and priority",
+      "ok": true,
+      "headingTopPx": 455.958,
+      "priorityBorder": "rgb(251, 191, 36)",
+      "horizontalOverflow": false
+    },
+    {
+      "name": "Task creation and completion through real UI",
+      "ok": true,
+      "title": "檢查 V3.4.8 發布預覽",
+      "stardustDelta": 45,
+      "energyDelta": 2,
+      "todayCompleted": 1
+    },
+    {
+      "name": "Glacier primary action inside initial viewport",
+      "ok": true,
+      "topPx": 296.028,
+      "heightPx": 48
+    },
+    {
+      "name": "Sweet real Glacier ten pull",
+      "ok": true,
+      "walletBefore": 100045,
+      "walletAfter": 99045,
+      "results": 10,
+      "uniquePets": 5,
+      "randomness": "unmodified"
+    },
+    {
+      "name": "Sweet Glacier result close contrast and focus",
+      "ok": true,
+      "text": "#172a32",
+      "background": "#d8a469",
+      "contrastRatio": 6.673352769049283,
+      "beforeContrastRatio": 2.077063889958248,
+      "heightPx": 44,
+      "bottomPx": 832,
+      "focused": true
+    },
+    {
+      "name": "Default real Glacier single with reduced motion",
+      "ok": true,
+      "walletBefore": 99045,
+      "walletAfter": 98945,
+      "pet": "鍛火獠豬",
+      "duplicateFragments": 2,
+      "reducedClass": true,
+      "activeSceneryAnimations": false,
+      "closeHeightPx": 44
+    },
+    {
+      "name": "Reload persistence",
+      "ok": true,
+      "wallet": 98945,
+      "todayCompleted": 1,
+      "ownedGlacierPets": 5,
+      "boarFragmentsAfter": 6
+    },
+    {
+      "name": "Collection series and owned filters, Lore in both themes",
+      "ok": true
+    },
+    {
+      "name": "Pet modal Escape from close button returns focus to card",
+      "ok": true,
+      "note": "Keyboard action targeted a focusable close button; generic dialog locator could not synthesize key press."
+    },
+    {
+      "name": "Desktop layout",
+      "ok": true,
+      "width": 1280,
+      "height": 720,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "Final preview console inspection",
+      "ok": true,
+      "warnings": 0,
+      "errors": 0
+    }
+  ],
+  "testSave": {
+    "funding": "Existing localhost-only development button added 100000 test stardust; task added 45. No live save accessed.",
+    "finalStardust": 98945,
+    "finalTheme": "default",
+    "finalReducedMotion": false
+  },
+  "notRun": [
+    "physical installed iOS/Android PWA",
+    "live CDN byte comparison",
+    "post-publication smoke",
+    "full old-runtime rollback against new saved pets"
+  ]
+}

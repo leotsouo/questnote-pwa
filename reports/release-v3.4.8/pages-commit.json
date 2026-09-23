@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca2b-5107-7b60-9728-a226c5cd348c\\questnote-v3.4.8-releases\\artifacts\\2c3a9312a4cac620c1982bc90c884da6b0db3c35acd41cfe3b682d440c3fb6ad",
+  "artifactId": "2c3a9312a4cac620c1982bc90c884da6b0db3c35acd41cfe3b682d440c3fb6ad",
+  "manifestSha256": "524d9ad830aa6a670d25e15ad96491c9965db4f43da05fda6194f112b37eaba5",
+  "profile": "production",
+  "scopePath": "/questnote-pwa/",
+  "fileCount": 331,
+  "sourceCommit": "b588cd97094c1dbca7fca73cef7918166023f29b",
+  "branch": "codex/pages-v3.4.8",
+  "commit": "0e35485d35f908f702baf7f5590c225fec71ebd0",
+  "tree": "328ac6b7c398f424c49856f38c150553fdaa4213",
+  "archive": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca2b-5107-7b60-9728-a226c5cd348c\\questnote-v3.4.8-releases\\questnote-v3.4.8-pages.zip",
+  "remoteMutations": false,
+  "userPublicationApproval": "PENDING",
+  "archiveSha256": "b395e2109b273872c1e9fccd44098482caeba9f28f98000b5d24ba78dbea603f",
+  "archiveExtraction": "C:/Users/User/.codex/visualizations/2026/09/22/01a0ca2b-5107-7b60-9728-a226c5cd348c/questnote-v3.4.8-releases/pages-archive-verified",
+  "archiveVerification": {
+    "ok": true,
+    "fileCount": 331,
+    "autocrlf": false,
+    "manifestSha256": "524d9ad830aa6a670d25e15ad96491c9965db4f43da05fda6194f112b37eaba5"
+  }
+}
