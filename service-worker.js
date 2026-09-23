@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.4.4 永眠花海卡池入場動畫優化
+ * QuestNote Service Worker — V3.4.9 verified preview cache recovery
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v348-ui-polish';
+const CACHE_NAME = 'questnote-preview-cache-v349-final-integration';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -233,6 +233,28 @@ async function cacheFirst(request) {
   }
 }
 
+async function verifiedPrecacheResponse(path) {
+  const request = new Request(resolveUrl(path));
+  const cached = await matchCached(request);
+  if (cached) return cached;
+  // Older workers on a sibling scope and browser eviction can remove our cache.
+  // Recover only bytes belonging to this exact release; never trust the live URL alone.
+  const expected = PRECACHE_HASHES?.[path];
+  if (BUILD_PROFILE && /^[a-f0-9]{64}$/.test(expected || '')) {
+    try {
+      const response = await fetch(request, { cache: 'no-store' });
+      if (!response.ok) throw new Error('Required asset unavailable');
+      const digest = await crypto.subtle.digest('SHA-256', await response.clone().arrayBuffer());
+      const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+      if (hash !== expected) throw new Error('Required asset belongs to another release');
+      const cache = await caches.open(CACHE_NAME);
+      await cache.put(request, response.clone());
+      return response;
+    } catch { /* Keep missing, offline or mixed-generation responses out of the cache. */ }
+  }
+  return new Response('Verified application cache unavailable. Reconnect, close all QuestNote windows, and reopen.', { status: 503 });
+}
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
@@ -295,15 +317,13 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (request.mode === 'navigate') {
-    event.respondWith((async () => (await matchCached(new Request(resolveUrl('index.html'))))
-      || new Response('Application unavailable offline', { status: 503 }))());
+    event.respondWith(verifiedPrecacheResponse('index.html'));
     return;
   }
 
   if (PRECACHE_URLS.includes(relativePath)) {
     // A verified application generation is immutable; online requests must not mix releases.
-    event.respondWith((async () => (await matchCached(request))
-      || new Response('Required cached asset unavailable', { status: 503 }))());
+    event.respondWith(verifiedPrecacheResponse(relativePath));
     return;
   }
 

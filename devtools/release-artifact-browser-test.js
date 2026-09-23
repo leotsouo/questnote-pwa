@@ -28,6 +28,28 @@ async function databaseNames() {
   assert(typeof indexedDB.databases === 'function', 'This harness needs IndexedDB.databases() to verify ownership');
   return (await indexedDB.databases()).map((entry) => entry.name).sort();
 }
+async function previewTransactionSnapshot() {
+  assert(storageOwnershipEstablished, 'Read requires owned test origin');
+  const name = configuration.profiles.preview.profile.dbName;
+  assert((await databaseNames()).includes(name), 'Existing preview database required');
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(name);
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const database = request.result;
+      const transaction = database.transaction(['meta', 'collection'], 'readonly');
+      const values = {};
+      for (const key of ['wallet', 'gachaStats', 'poolUnlockState']) {
+        const read = transaction.objectStore('meta').get(key);
+        read.onsuccess = () => { values[key] = read.result; };
+      }
+      const collection = transaction.objectStore('collection').getAll();
+      collection.onsuccess = () => { values.collection = collection.result; };
+      transaction.oncomplete = () => { database.close(); resolve(JSON.stringify(values)); };
+      transaction.onabort = () => { database.close(); reject(transaction.error); };
+    };
+  });
+}
 async function control(profile, fault) {
   const response = await fetch('./control', { method: 'POST', headers: {
     'Content-Type': 'application/json', 'X-Harness-Token': configuration.token,
@@ -204,6 +226,43 @@ try {
     assert(!navigator.serviceWorker.controller, 'Artifact worker claimed the parent harness');
     const names = await caches.keys();
     for (const profile of ['production', 'preview']) assert(names.includes(configuration.profiles[profile].cacheNames[0]), `${profile} shell was deleted by the other environment`);
+  });
+  await test('evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state', async () => {
+    const item = configuration.profiles.preview;
+    const cache = await caches.open(item.cacheNames[0]);
+    const before = await previewTransactionSnapshot();
+    for (const [fault, path] of [['missing503', 'src/app.js'], ['corrupt', item.profile.contentBundleUrl]]) {
+      const url = new URL(item.profile.scopePath + path, location.origin).href;
+      await cache.delete(url);
+      await control('preview', fault);
+      const response = await previewFrame.contentWindow.fetch(url + '?recovery-check=1');
+      assert(response.status === 503 && !(await cache.match(url)), 'Unverified network response entered cache');
+      await control('preview', 'none');
+      assert((await previewFrame.contentWindow.fetch(url)).ok && await cache.match(url), 'Valid bytes did not repair the missing asset');
+    }
+    assert(await previewTransactionSnapshot() === before, 'Recovery changed wallet, pity, unlock or collection');
+  });
+  await test('cleared preview shell rebuilds verified bytes while two clients and persisted state survive', async () => {
+    const item = configuration.profiles.preview;
+    const second = directClient('preview');
+    await waitForStarted(second, 'preview');
+    const before = await previewTransactionSnapshot();
+    const firstStart = previewFrame.contentWindow.performance.timeOrigin;
+    const secondStart = second.contentWindow.performance.timeOrigin;
+    // Reproduce the cache loss caused by the deployed legacy production worker.
+    await caches.delete(item.cacheNames[0]);
+    await Promise.all([previewFrame, second].map(async (frame) => {
+      const response = await frame.contentWindow.fetch(item.profile.scopePath + 'src/app.js?repair=1');
+      assert(response.ok, 'Concurrent verified repair failed');
+    }));
+    const reopened = directClient('preview');
+    await waitForStarted(reopened, 'preview');
+    await checkCatalogAndUi(reopened, 'preview');
+    assert(previewFrame.contentWindow.performance.timeOrigin === firstStart
+      && second.contentWindow.performance.timeOrigin === secondStart, 'Repair reloaded an active client');
+    assert(await previewTransactionSnapshot() === before, 'Rebuilt cache changed persistent transaction state');
+    assert((await caches.keys()).includes(configuration.profiles.production.cacheNames[0]), 'Repair changed production cache');
+    second.remove(); frames.delete(second); reopened.remove(); frames.delete(reopened);
   });
   await test('both fully assembled cached apps and catalogs boot while all artifact HTTP responses are 503', async () => {
     closeClients();
