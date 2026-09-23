@@ -276,19 +276,24 @@
 
       // Flow order markers for G/H/I (logic presence — full awakening needs app state)
       {
-        const hasPending = true; // verified in node static + ui wiring; mark as PASS with note
-        record('Case G/H/I 20抽順序（程式串接）', 'PASS', 'pendingAwakening→結果→maybePlayMorningGardenAfterPull；完整狀態機需 App mock');
-        void hasPending;
+        const ui = await fetch('../src/ui.js').then((r) => { if (!r.ok) throw new Error('UI source unavailable'); return r.text(); });
+        const ordered = ['showPullResultAndWait', 'showTenPullResultAndWait'].every((name) =>
+          new RegExp('await ' + name + '[\\s\\S]{0,350}await maybePlayMorningGardenAfterPull').test(ui));
+        record('Case G/H/I 20抽順序（靜態程式串接）', ordered ? 'PASS' : 'FAIL', '執行順序只驗證程式接線；真正交易與解鎖另由 M2A/M4 native tests 覆蓋');
       }
 
       // Case O SW static
       {
-        const ver = await fetch('../src/version.js').then((r) => r.text());
-        const sw = await fetch('../service-worker.js').then((r) => r.text());
-        const ok = ver.includes("APP_VERSION = '3.4.3'")
-          && sw.includes('questnote-cache-v343-reveal-flow-verification')
-          && sw.includes('src/summonRevealService.js');
-        record('Case O SW 靜態', ok ? 'PASS' : 'FAIL', '離線接管需人工關閉網路驗證');
+        const [ver, sw] = await Promise.all(['../src/version.js', '../service-worker.js'].map(async (url) => {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error('Static source unavailable: ' + url + ' (' + response.status + ')');
+          return response.text();
+        }));
+        const cache = (text) => text.match(/(?:export )?const CACHE_NAME = '([^']+)'/)?.[1];
+        const version = ver.match(/APP_VERSION = '(\d+\.\d+\.\d+)'/)?.[1];
+        const ok = !!version && !!cache(ver) && cache(ver) === cache(sw)
+          && sw.includes('src/summonRevealService.js') && sw.includes('src/releaseProfile.js');
+        record('Case O SW 靜態', ok ? 'PASS' : 'FAIL', '目前版本／cache 同步與 precache 接線；離線與更新另由 native SW tests 覆蓋');
       }
 
       window.__V343_RESULTS__ = results;

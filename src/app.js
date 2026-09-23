@@ -5,6 +5,7 @@
  */
 
 import { openDB, clearAllData } from './db.js';
+import { RELEASE_PROFILE } from './releaseProfile.js';
 
 import { getAllTasks } from './taskService.js';
 
@@ -681,7 +682,7 @@ async function initApp() {
 
     await refreshState({ renderMode: 'full' });
 
-    if (location.hostname === 'leotsouo.github.io'
+    if (!RELEASE_PROFILE && location.hostname === 'leotsouo.github.io'
       && location.pathname.startsWith('/questnote-pwa-preview/')
       && new URLSearchParams(location.search).get('perf') === '1') {
       const { startPerfDiagnostics } = await import('./perfDiagnostics.js');

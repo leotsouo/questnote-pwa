@@ -199,3 +199,41 @@ test('mailbox HTTP 503 falls back only to the exact current-scope cache entry', 
   const unavailable = await withoutOwn.dispatch('fetch', { request: new Request('https://test.invalid/preview/data/global-mailbox.json') });
   assert.equal(unavailable.status, 503); assert.deepEqual((await unavailable.json()).messages, []);
 });
+
+test('assembled releases reject debug query, local flags and test currency before any write', async () => {
+  const source = readFileSync(new URL('../src/devService.js', import.meta.url), 'utf8')
+    .replace(/^import[\s\S]*?;\r?\n/gm, '').replace(/^export /gm, '');
+  for (const profile of [{ profile: 'preview' }, { profile: 'production' }]) {
+    for (const hostname of ['localhost', 'leotsouo.github.io']) {
+      let writes = 0;
+      const context = { RELEASE_PROFILE: profile, window: { location: { hostname } },
+        location: { hostname, search: '?perf=1&debug=1' }, localStorage: { getItem: () => '1' }, URLSearchParams,
+        addStardust: async () => { writes++; }, getWallet: async () => ({ stardust: writes * 100000 }) };
+      const api = runInNewContext(source + '\n({ isDevMode, isDebugMode, isAuthorLocalDevMode, grantDevStardust })', context);
+      assert.equal(api.isDevMode(), false); assert.equal(api.isDebugMode(), false); assert.equal(api.isAuthorLocalDevMode(), false);
+      await assert.rejects(api.grantDevStardust(), /local source checkout/);
+      assert.equal(writes, 0);
+    }
+  }
+  let writes = 0;
+  const local = runInNewContext(source + '\n({ isDevMode, grantDevStardust })', {
+    RELEASE_PROFILE: null, window: { location: { hostname: 'localhost' } },
+    addStardust: async (amount) => { writes += amount; }, getWallet: async () => ({ stardust: writes }),
+  });
+  assert.equal(local.isDevMode(), true);
+  assert.equal(await local.grantDevStardust(), 100000, 'Source-only tools remain usable for local development');
+});
+
+test('legacy perf shortcut cannot create a diagnostic panel in assembled releases', () => {
+  const source = readFileSync(new URL('../src/perfDiagnostics.js', import.meta.url), 'utf8')
+    .replace(/^import[\s\S]*?;\r?\n/gm, '').replace(/^export /gm, '');
+  for (const profile of ['preview', 'production']) {
+    let touchedDom = false;
+    const start = runInNewContext(source + '\nstartPerfDiagnostics', {
+      RELEASE_PROFILE: { profile }, location: { hostname: 'leotsouo.github.io', pathname: '/questnote-pwa-preview/', search: '?perf=1' },
+      URLSearchParams, document: { createElement: () => { touchedDom = true; throw new Error('Unexpected panel'); } },
+    });
+    start(null, null);
+    assert.equal(touchedDom, false);
+  }
+});

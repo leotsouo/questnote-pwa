@@ -97,7 +97,7 @@ export async function verifyReleaseArtifact({ artifactDir, artifactId, manifestS
   requireValue(/<script\b[^>]*\bsrc=["']src\/bootstrap\.js["'][^>]*>/.test(index), 'Artifact bootstrap entry missing');
   const webmanifest = JSON.parse(text('manifest.webmanifest'));
   requireValue(webmanifest.id === scopePath && webmanifest.scope === scopePath
-    && webmanifest.start_url === `${scopePath}index.html${profile === 'preview' ? '?perf=1' : ''}`
+    && webmanifest.start_url === `${scopePath}index.html`
     && webmanifest.name === (profile === 'production' ? 'QuestNote' : 'QuestNote 預覽')
     && webmanifest.short_name === (profile === 'production' ? 'QN' : 'QN 預覽'), 'Webmanifest deployment identity mismatch');
   const worker = text('service-worker.js');

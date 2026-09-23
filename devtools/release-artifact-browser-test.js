@@ -56,11 +56,11 @@ async function control(profile, fault) {
   }, body: JSON.stringify({ profile, fault }) });
   assert(response.ok, 'Fixture control failed');
 }
-function directClient(profile) {
+function directClient(profile, query = '') {
   const frame = document.createElement('iframe');
   frame.title = `Isolated ${profile} artifact client`;
   frame.style.cssText = 'width:390px;height:740px;border:1px solid #888';
-  frame.src = configuration.profiles[profile].profile.scopePath;
+  frame.src = configuration.profiles[profile].profile.scopePath + query;
   frames.add(frame);
   document.getElementById('clients').appendChild(frame);
   return frame;
@@ -226,6 +226,25 @@ try {
     assert(!navigator.serviceWorker.controller, 'Artifact worker claimed the parent harness');
     const names = await caches.keys();
     for (const profile of ['production', 'preview']) assert(names.includes(configuration.profiles[profile].cacheNames[0]), `${profile} shell was deleted by the other environment`);
+  });
+  await test('old perf/debug shortcuts cannot expose diagnostics or grant test currency', async () => {
+    const before = await previewTransactionSnapshot();
+    const flagged = directClient('preview', '?perf=1&debug=1');
+    const client = await waitForStarted(flagged, 'preview');
+    const dev = await client.eval("import('./src/devService.js')");
+    assert(!dev.isDevMode() && !dev.isDebugMode() && !dev.isAuthorLocalDevMode(), 'Released debug entry enabled');
+    let rejected = false;
+    try { await dev.grantDevStardust(); } catch { rejected = true; }
+    assert(rejected, 'Release accepted test currency');
+    const perf = await client.eval("import('./src/perfDiagnostics.js')");
+    perf.startPerfDiagnostics(null, null);
+    assert(!flagged.contentDocument.getElementById('questnote-perf'), 'Release exposed diagnostics panel');
+    flagged.contentDocument.querySelector('[data-view="more"]').click();
+    flagged.contentDocument.querySelector('[data-goto="settings"]').click();
+    await until(() => flagged.contentDocument.getElementById('view-settings').classList.contains('active'), 'released settings');
+    assert(!flagged.contentDocument.getElementById('dev-tools-section'), 'Release exposed settings debug tools');
+    assert(await previewTransactionSnapshot() === before, 'Debug shortcut changed persistent state');
+    flagged.remove(); frames.delete(flagged);
   });
   await test('evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state', async () => {
     const item = configuration.profiles.preview;

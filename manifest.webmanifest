@@ -2,7 +2,7 @@
   "name": "QuestNote 預覽",
   "short_name": "QN 預覽",
   "description": "個人任務記事 App — 完成任務獲得星塵，召喚幻獸！",
-  "start_url": "./index.html?perf=1",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

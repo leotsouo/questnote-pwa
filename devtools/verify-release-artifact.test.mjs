@@ -128,6 +128,12 @@ test('strict verifier accepts assembler output and rejects unsafe or inconsisten
       const webmanifest = await copy();
       await rewrite(webmanifest, 'manifest.webmanifest', (value) => json({ ...JSON.parse(value), scope: '/wrong/' }));
       await assert.rejects(verifyReleaseArtifact(webmanifest), /Webmanifest deployment identity/);
+      const diagnostics = await copy();
+      await rewrite(diagnostics, 'manifest.webmanifest', (value) => {
+        const manifest = JSON.parse(value);
+        return json({ ...manifest, start_url: manifest.start_url + '?perf=1' });
+      });
+      await assert.rejects(verifyReleaseArtifact(diagnostics), /Webmanifest deployment identity/);
     });
     await t.test('rehashed SW descriptor, cache identity and registration changes fail', async () => {
       const worker = await copy();

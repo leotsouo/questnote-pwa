@@ -1,5 +1,7 @@
 # iPhone 召喚效能驗收
 
+> Historical V3.4.4 source-preview instructions. Superseded for current releases by `docs/iphone-final-acceptance.md`. V3.4.9 assembled Preview/production artifacts disable diagnostics and test currency, including old `?perf=1` shortcuts. The steps below document the earlier experiment only.
+
 預覽站：`https://leotsouo.github.io/questnote-pwa-preview/?perf=1`。它使用獨立資料庫 `QuestNotePreviewDB`；只按「測試星塵」建立合成測試資源，不匯入個人備份。效能面板只在此預覽網址加 `?perf=1` 時出現。
 
 預覽站安裝到 iPhone 主畫面後會顯示為「QN 預覽」，啟動網址會保留 `?perf=1`。若曾在此修改前安裝預覽 PWA，請先移除舊的主畫面捷徑，再從預覽網址加入一次。正式站發佈時須將 manifest 名稱與 `start_url` 還原為正式設定。

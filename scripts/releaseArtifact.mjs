@@ -330,7 +330,7 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   const manifest = JSON.parse(source.get('manifest.webmanifest'));
   Object.assign(manifest, { name: profile === 'production' ? 'QuestNote' : 'QuestNote 預覽',
     short_name: profile === 'production' ? 'QN' : 'QN 預覽', id: scopePath, scope: scopePath,
-    start_url: `${scopePath}index.html${profile === 'preview' ? '?perf=1' : ''}` });
+    start_url: `${scopePath}index.html` });
   files.set('manifest.webmanifest', jsonBytes(manifest));
   let version = source.get('src/version.js').toString('utf8');
   let worker = source.get('service-worker.js').toString('utf8');

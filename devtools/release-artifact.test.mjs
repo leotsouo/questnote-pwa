@@ -99,7 +99,7 @@ test('release artifact preparation is immutable, isolated and content complete',
       assert.equal(preview.descriptor.cacheNamespace, 'questnote-preview-');
       const manifest = JSON.parse(await fs.readFile(path.join(preview.artifactDir, 'manifest.webmanifest')));
       assert.equal(manifest.short_name, 'QN 預覽'); assert.equal(manifest.scope, '/review/');
-      assert.equal(manifest.start_url, '/review/index.html?perf=1');
+      assert.equal(manifest.start_url, '/review/index.html');
     });
     await t.test('recursive literal imports are discovered and missing imports fail before writes', async () => {
       const entry = path.join(projectRoot, 'src/app.js'); const original = await fs.readFile(entry);
