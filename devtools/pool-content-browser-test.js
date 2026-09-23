@@ -37,7 +37,10 @@ try {
   const glacier = { ...structuredClone(fixture.alpha), id: 'fixture_glacier', name: 'Glacier test', unlockExpansion: null,
     presentation: { ...structuredClone(fixture.alpha.presentation), themeKey: 'glacier_arrival', animationKey: 'glacier_arrival',
       debutLabel: '冰河測試', debutLines: ['冰壁', '誓火', '抵達'] } };
-  const allPets = [...petsData.pets, ...fixture.pets];
+  const heroImageFixture = petsData.pets.find((pet) => pet.id === 'pet_ur01');
+  const allPets = [...petsData.pets, ...fixture.pets.map((pet) => pet.id === glacier.presentation.heroPetId
+    ? { ...pet, image: heroImageFixture.image, imageVariants: heroImageFixture.imageVariants }
+    : pet)];
   const poolsData = { schemaVersion: 1, pools: [...catalog.pools, ...fixture.catalog.pools, glacier] };
   const state = {
     allPets, poolsData, tasks: [], habits: [], categories: [], enrichedCollection: [],
@@ -177,13 +180,26 @@ try {
     });
   }
   if (new URL(location.href).searchParams.has('draws')) {
+    await test('switching pools never shows the previous hero under new pool copy', async () => {
+      choose('eternal_slumber_bloom');
+      const heroImg = document.getElementById('gacha-theme-hero-img');
+      const oldSrc = heroImg.dataset.src;
+      choose(glacier.id);
+      assert(heroImg.dataset.src && heroImg.dataset.src !== oldSrc, 'Hero source did not change with pool');
+      assert(document.getElementById('gacha-pool-name').textContent === glacier.name, 'Pool copy did not switch');
+      assert(heroImg.classList.contains('is-loading') || heroImg.complete && heroImg.naturalWidth > 0,
+        'Previous hero remains visible while the new source is loading');
+    });
     await test('glacier UI dispatches debut and a paid draw with no repeat charge or unlock gift', async () => {
       state.wallet.stardust = 1500;
       state.gachaStats.selectedPoolId = glacier.id;
       await storage.dbPut(storage.STORES.META, state.wallet);
       await storage.dbPut(storage.STORES.META, state.gachaStats);
+      const navBottom = document.querySelector('.bottom-nav').getBoundingClientRect().bottom;
       ui.switchView('gacha');
       await waitFor(() => document.querySelector('.dream-debut-overlay[data-animation="glacier_arrival"]'), 'glacier debut');
+      assert(document.body.style.position !== 'fixed', 'Debut moved the whole body and fixed bottom navigation');
+      assert(Math.abs(document.querySelector('.bottom-nav').getBoundingClientRect().bottom - navBottom) <= 1, 'Bottom navigation shifted during debut');
       document.querySelector('.dream-debut-overlay [data-role="skip"]').click();
       await waitFor(() => !document.querySelector('.dream-debut-overlay'), 'debut cleanup');
       assert(document.getElementById('gacha-panel').dataset.poolTheme === 'glacier_arrival', 'Wrong panel theme');
@@ -204,7 +220,7 @@ try {
         assert(document.documentElement.scrollWidth <= innerWidth, 'Glacier panel horizontal overflow');
       } finally { Math.random = random; }
     });
-    await test('M2A integration: repeat-ten confirmation preserves the quoted pool and price', async () => {
+    await test('M2A integration: close result before a main-page ten pull at the selected pool price', async () => {
       state.wallet.stardust = 1500;
       await storage.dbPut(storage.STORES.META, state.wallet);
       state.gachaStats.selectedPoolId = 'fixture_beta';
@@ -214,20 +230,18 @@ try {
       Math.random = () => 0.2;
       try {
         document.getElementById('btn-pull').click();
-        await waitFor(() => document.querySelector('[data-action="result-ten-pull"]'), 'single result modal');
+        await waitFor(() => document.getElementById('pull-close'), 'single result modal');
         const before = await storage.readAllStoresSnapshot();
-        document.querySelector('[data-action="result-ten-pull"]').click();
-        assert(document.getElementById('ten-pull-confirm-text').textContent.includes('750'), 'Confirmation did not quote selected-pool price');
-        document.getElementById('ten-pull-confirm-cancel').click();
-        assert(JSON.stringify(before) === JSON.stringify(await storage.readAllStoresSnapshot()), 'Cancel changed product state');
-        document.querySelector('[data-action="result-ten-pull"]').click();
-        state.gachaStats.selectedPoolId = 'fixture_alpha';
-        document.getElementById('ten-pull-confirm-ok').click();
-        assert(!document.getElementById('ten-pull-confirm-ok'), 'Changed quote did not restore the result');
-        assert(JSON.stringify(before) === JSON.stringify(await storage.readAllStoresSnapshot()), 'Changed quote performed a draw');
-        state.gachaStats.selectedPoolId = 'fixture_beta';
-        ui.closeModal();
+        assert(!document.querySelector('[data-action="result-ten-pull"], [data-action="result-single-pull"]'), 'Result still offers repeat draw');
+        document.getElementById('pull-close').click();
         await waitFor(() => !document.getElementById('btn-pull').dataset.pulling, 'pull finally cleanup');
+        assert(JSON.stringify(before) === JSON.stringify(await storage.readAllStoresSnapshot()), 'Closing result changed product state');
+        assert(document.getElementById('gacha-ten-cost').textContent === '750', 'Selected-pool price changed');
+        document.getElementById('btn-pull-ten').click();
+        await waitFor(() => document.querySelector('.default-summon-result--ten'), 'main-page ten result');
+        assert((await storage.dbGet(storage.STORES.META, 'wallet')).stardust === 675, 'Main ten did not charge 750');
+        document.getElementById('ten-pull-close').click();
+        await waitFor(() => !document.getElementById('btn-pull-ten').dataset.pulling, 'ten pull cleanup');
       } finally { Math.random = originalRandom; ui.closeModal(); }
     });
   }

@@ -28,7 +28,7 @@ function render() {
     database: marker?.databaseName, results, diagnostics, cleanupPending: owned,
     limitations: ['Synthetic DOM events do not prove trusted keyboard or touch behavior.',
       'Export captures the real Blob; OS download persistence and file chooser are not exercised.',
-      'Reduced motion covers the app preference. OS media preference, safe-area and installation need device checks.',
+      'System reduced-motion, safe-area and installation need device checks.',
       'SW is blocked on this origin. Dedicated release/PWA suites cover updates and offline behavior.'] }, null, 2);
 }
 async function check(name, run) {
@@ -167,7 +167,7 @@ async function persistentAssertions(expectedTheme = 'sweet') {
   requireTrue(services.habitService.isCompletedToday(habit), 'Daily habit completion missing');
   requireTrue((await services.collectionService.getCompanionPet())?.petId === petId, 'Companion selection missing');
   const prefs = await services.preferencesService.getUserPreferences();
-  requireTrue(prefs.theme === expectedTheme && prefs.reduceMotion && doc().body.classList.contains('reduce-motion'), 'Theme/motion preference missing');
+  requireTrue(prefs.theme === expectedTheme && !prefs.reduceMotion && !doc().body.classList.contains('reduce-motion'), 'Theme or retired animation preference changed');
 }
 async function cleanup() {
   if (!owned && sessionStorage.getItem(ownershipKey) !== marker?.instance) return;
@@ -262,19 +262,19 @@ async function run() {
       await until(async () => (await services.collectionService.getCompanionPet())?.petId === petId, 'companion saved');
       return { petId };
     });
-    await check('390 × 844 geometry, modal focus handlers and app reduced-motion work in both themes', async () => {
+    await check('390 × 844 geometry and modal focus handlers work in both themes', async () => {
       const evidence = {};
       for (const theme of ['default', 'sweet']) {
         await setTheme(theme);
-        if (!find('#toggle-reduce-motion').checked) await click('#toggle-reduce-motion');
-        await until(() => doc().body.classList.contains('reduce-motion'), 'reduce-motion class');
+        requireTrue(!doc().querySelector('#toggle-reduce-motion') && !doc().body.classList.contains('reduce-motion'), 'Retired animation toggle remains active');
         evidence[theme] = {};
         for (const view of ['tasks', 'habits', 'collection', 'settings']) { await navigate(view); evidence[theme][view] = geometry(); }
         await revealCompletedTask();
-        requireTrue(win().getComputedStyle(taskCard()).animationName === 'none', 'Task still animates with app reduced-motion');
-        requireTrue(win().getComputedStyle(taskCard()).transitionDuration.split(',').every((duration) => parseFloat(duration) <= .001), 'Reduced transition duration not applied');
         const opener = find('#btn-add-task'); await click(opener);
         const overlay = find('#modal-overlay'); const modal = find('#modal-overlay .modal');
+        await until(() => overlay.contains(doc().activeElement), 'modal focus after entrance animation');
+        await Promise.allSettled(modal.getAnimations().filter((animation) =>
+          Number.isFinite(animation.effect?.getComputedTiming().endTime)).map((animation) => animation.finished));
         requireTrue(overlay.contains(doc().activeElement), 'Modal did not receive focus');
         const box = modal.getBoundingClientRect();
         requireTrue(box.left >= -1 && box.right <= 391 && box.top >= -1 && box.bottom <= 845, 'Modal exceeds phone viewport');
@@ -289,7 +289,7 @@ async function run() {
       }
       return evidence;
     });
-    await check('Reload and a reopened browsing context retain task, habit, companion, theme and motion preference', async () => {
+    await check('Reload and a reopened browsing context retain task, habit, companion and theme', async () => {
       await loadApp(); await persistentAssertions();
       await loadApp({ reopen: true }); await persistentAssertions();
       await revealCompletedTask(); requireTrue(taskCard().textContent.includes('已完成'), 'Persisted task not rendered');

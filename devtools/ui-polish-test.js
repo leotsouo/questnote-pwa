@@ -147,7 +147,9 @@ async function vp01(value) {
   check('單行任務不重複標題', !!card && !card.querySelector('.task-card__preview'));
   const border = card ? parseFloat(css(card).borderLeftWidth) : 0;
   const borderColor = card ? css(card).borderLeftColor : '';
-  check('緊急任務 3px priority border（縮放容差 >= 2.5）', border >= 2.5 && !['transparent', 'rgba(0, 0, 0, 0)'].includes(borderColor), `${border}px; ${borderColor}`);
+  // A 3px CSS border can rasterize to 3 physical pixels (2.4 CSS px at DPR 1.25).
+  check('緊急任務 priority border 至少 3 實體像素', border * win().devicePixelRatio >= 2.99
+    && !['transparent', 'rgba(0, 0, 0, 0)'].includes(borderColor), `${border}px; DPR ${win().devicePixelRatio}; ${borderColor}`);
   const empty = session.empty[value];
   check('首次圖鑑空狀態全欄', !!empty && empty.width >= empty.gridWidth - 2 && empty.width > 300, JSON.stringify(empty));
   await navigate('settings');
@@ -345,6 +347,14 @@ async function vp04() {
   check('點卡片圖片開原圖且不另開詳情', !!doc().querySelector('#pet-image-viewer')
     && doc().querySelector('.pet-image-viewer__title')?.textContent.trim() === expectedName
     && !doc().querySelector('#modal-overlay').classList.contains('open'));
+  const viewerFrame = doc().querySelector('.pet-image-viewer__image-frame');
+  const viewerLoading = doc().querySelector('.pet-image-viewer__loading');
+  check('原圖載入提示橫向置中且不被圖片擠壓', css(viewerLoading).position === 'absolute'
+    && css(viewerLoading).textAlign === 'center'
+    && (!visible(viewerLoading) || rect(viewerLoading).width >= rect(viewerFrame).width - 2));
+  await until(() => viewerFrame.classList.contains('is-loaded')
+    && doc().querySelector('.pet-image-viewer__image')?.naturalWidth > 0, 'viewer image displayed');
+  check('原圖檢視器可顯示圖片', viewerFrame.classList.contains('is-loaded'));
   doc().querySelector('.pet-image-viewer__close')?.click();
   await settle();
   check('原圖關閉返回圖片按鈕', !doc().querySelector('#pet-image-viewer') && doc().activeElement === imageButton);
@@ -518,7 +528,7 @@ async function vp05() {
   }
   await navigate('tasks');
 
-  log('SKIP · 十連 repeat-confirm DOM/resolver：ui.js 沒有既有 export 或公開展示測試入口；此 harness 不抽卡、不改寫私有模組。');
+  log('INFO · 結果頁再次召喚入口已移除；主頁單抽／十連由獨立 summon-polish-draw-test 驗證。');
   log('SKIP · generic confirm 自訂 onCancel callback：唯一產品路徑會下載備份；此處只驗證取消不執行刪除 callback。');
 }
 

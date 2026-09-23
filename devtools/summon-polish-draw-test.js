@@ -114,47 +114,29 @@ try {
       node('btn-pull').click(); node('btn-pull').click();
       await waitFor(() => node('modal-overlay').classList.contains('open')
         && node('modal-body').firstElementChild !== previousResult
-        && document.querySelector(`.${theme}-summon-result--single [data-action="result-ten-pull"]`), 'fresh open single result');
+        && document.querySelector(`.${theme}-summon-result--single #pull-close`), 'fresh open single result');
       assert(state.wallet.stardust === 1925 && state.gachaStats.totalPulls === 1,
         `Rapid click totals incorrect: stardust=${state.wallet.stardust}, totalPulls=${state.gachaStats.totalPulls}`);
       assert(document.querySelector(`.${theme}-summon-result--single`), 'Wrong theme result');
       const pet = await storage.dbGet(storage.STORES.COLLECTION, 'pet_n910');
       assert(pet && pet.fragments === 0, 'First N draw or duplicate compensation incorrect');
     });
-    const body = node('modal-body');
-    const originalNodes = [...body.childNodes];
-    const originalHtml = body.innerHTML;
-    const unchanged = await snapshot();
-    const assertRestored = async () => {
-      assert(node('modal-overlay').classList.contains('open'), 'Result closed instead of restored');
-      assert(originalNodes.length === body.childNodes.length && originalNodes.every((element, index) => element === body.childNodes[index]), 'Original result DOM identity lost');
-      assert(body.innerHTML === originalHtml, 'Result content changed');
-      assert(await snapshot() === unchanged, 'Dismissal changed persisted state');
-      assert(document.activeElement === body.querySelector('[data-action="result-ten-pull"]'), 'Result trigger focus not restored');
-    };
-    const confirm = () => {
-      body.querySelector('[data-action="result-ten-pull"]').click();
-      assert(node('ten-pull-confirm-text')?.textContent.includes('750'), 'Actual pool price not quoted');
-    };
-    for (const dismissal of ['Cancel', 'Escape', 'close', 'backdrop']) {
-      await test(prefix + `${dismissal} restores exact result and state`, async () => {
-        confirm();
-        if (dismissal === 'Cancel') node('ten-pull-confirm-cancel').click();
-        if (dismissal === 'Escape') document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
-        if (dismissal === 'close') node('modal-close').click();
-        if (dismissal === 'backdrop') node('modal-overlay').click();
-        await assertRestored();
-      });
-    }
-    await test(prefix + 'same-pool price change aborts quoted ten pull', async () => {
-      confirm();
-      pool.cost = 80;
-      try { node('ten-pull-confirm-ok').click(); await assertRestored(); }
-      finally { pool.cost = 75; }
+    await test(prefix + 'result offers close only and displays a small card image first', async () => {
+      assert(!document.querySelector('[data-action="result-single-pull"], [data-action="result-ten-pull"]'), 'Repeat summon action remains');
+      assert(document.querySelectorAll(`.${theme}-summon-result--single footer button`).length === 1, 'Result footer has extra actions');
+      const image = document.querySelector('.summon-result-single__frame .pet-img');
+      assert(image?.getAttribute('src')?.includes('card') || image?.complete, 'First result image did not start loading');
     });
-    await test(prefix + 'confirmed ten draws charge 750 and compensate ten N duplicates', async () => {
+    await test(prefix + 'close returns to main summon controls without changing saved state', async () => {
+      const before = await snapshot();
+      node('pull-close').click();
+      await settlePull();
+      assert(await snapshot() === before, 'Closing result changed saved state');
+      assert(!node('btn-pull-ten').disabled, 'Main ten-pull action unavailable after close');
+    });
+    await test(prefix + 'main-page ten draws charge 750 and compensate ten N duplicates', async () => {
       const previousResult = node('modal-body').firstElementChild;
-      confirm(); node('ten-pull-confirm-ok').click();
+      node('btn-pull-ten').click();
       await waitFor(() => node('modal-overlay').classList.contains('open')
         && node('modal-body').firstElementChild !== previousResult
         && document.querySelector(`.${theme}-summon-result--ten`), 'fresh open ten result');
@@ -192,6 +174,6 @@ try {
   indexedDB.open = nativeOpen;
   const passed = results.filter((result) => result.ok).length;
   const failed = results.filter((result) => !result.ok).length;
-  output.textContent = JSON.stringify({ expected: 16, passed, failed, complete: passed === 16 && failed === 0, databaseName, serverInstance, results }, null, 2);
-  document.title = passed === 16 && failed === 0 ? 'PASS — summon polish draws' : 'FAIL — summon polish draws';
+  output.textContent = JSON.stringify({ expected: 10, passed, failed, complete: passed === 10 && failed === 0, databaseName, serverInstance, results }, null, 2);
+  document.title = passed === 10 && failed === 0 ? 'PASS — summon polish draws' : 'FAIL — summon polish draws';
 }

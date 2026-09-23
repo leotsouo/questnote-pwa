@@ -11,9 +11,15 @@ import {
 } from '../src/imagePreloadService.js';
 import { createDeferredRenderGate } from '../src/deferredRenderGate.js';
 import { validatePet } from '../src/petDataSchema.js';
+import { normalizeUserPreferences } from '../src/preferencesService.js';
 
 const pets = JSON.parse(readFileSync(new URL('../data/pets.json', import.meta.url), 'utf8')).pets;
 const requested = [];
+
+test('retired App animation setting does not leave old profiles in reduced mode', () => {
+  assert.equal(normalizeUserPreferences({ theme: 'sweet', reduceMotion: true }).reduceMotion, false);
+  assert.equal(normalizeUserPreferences({ theme: 'sweet', reduceMotion: true }).theme, 'sweet');
+});
 globalThis.Image = class {
   set src(value) {
     requested.push(value);
@@ -51,7 +57,7 @@ test('preloads with the same URL share one in-flight Image and retry failures', 
   assert.equal(getPreloadStats().inFlight, 0);
 });
 
-test('first reveal image starts before ten-pull card thumbnails', async () => {
+test('first reveal card loads before its stage upgrade and ten-pull thumbnails', async () => {
   requested.length = 0;
   const results = [
     { pet: { image: 'first.png', imageVariants: { card: 'first-card.webp', stage: 'first-stage.webp' }, rarity: 'N' }, rarity: 'N' },
@@ -59,12 +65,13 @@ test('first reveal image starts before ten-pull card thumbnails', async () => {
   ];
   await preloadGachaResultImages(results);
   await new Promise((resolve) => setTimeout(resolve, 0));
-  assert.equal(requested[0], 'rare-stage.webp');
-  assert.ok(requested.indexOf('first-card.webp') > 0);
-  assert.ok(requested.indexOf('rare-card.webp') > 0);
+  assert.equal(requested[0], 'rare-card.webp');
+  assert.ok(requested.includes('rare-stage.webp'));
+  assert.ok(requested.includes('first-card.webp'));
+  assert.ok(requested.indexOf('rare-stage.webp') > requested.indexOf('rare-card.webp'));
 });
 
-test('slow stage image does not hold up rare ten-pull thumbnail requests', async () => {
+test('slow stage image does not hold up the first card or other ten-pull thumbnails', async () => {
   const previousImage = globalThis.Image;
   requested.length = 0;
   let releaseStage;
@@ -80,13 +87,12 @@ test('slow stage image does not hold up rare ten-pull thumbnail requests', async
       { pet: { image: 'common.png', imageVariants: { card: 'common-card.webp' }, rarity: 'N' } },
       { pet: { image: 'rare.png', imageVariants: { card: 'rare-card-slow.webp', stage: 'slow-stage.webp' }, rarity: 'UR' } },
     ]);
-    await Promise.resolve();
-    assert.deepEqual(requested.slice(0, 3), [
-      'slow-stage.webp',
-      'rare-card-slow.webp',
-      'common-card.webp',
-    ]);
-    releaseStage();
+    await pending;
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    assert.equal(requested[0], 'rare-card-slow.webp');
+    assert.ok(requested.includes('common-card.webp'));
+    assert.ok(requested.includes('slow-stage.webp'));
+    releaseStage?.();
     await pending;
   } finally {
     globalThis.Image = previousImage;
