@@ -1,0 +1,151 @@
+{
+  "pets": [
+    {
+      "id": "pet_n20",
+      "name": "燼囊旅鼠",
+      "rarity": "N",
+      "image": "assets/pets/pet_n20.png",
+      "description": "背著陶製火種罐的小旅鼠，總在出航前穿過結霜棧橋，把第一點暖光送上航標。牠跑得又快又緊張，卻從未因害怕而忘記答應夥伴的事。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "lemming",
+      "element": "oath_ember",
+      "visualTheme": "fjord_ember_courier"
+    },
+    {
+      "id": "pet_n21",
+      "name": "纜結海鸚",
+      "rarity": "N",
+      "image": "assets/pets/pet_n21.png",
+      "description": "橙喙黑羽的船岸傳訊員，胸前航繩結總繫得整整齊齊。牠叼著赭紅訊旗迎風起落，讓高空守望與甲板上的每次行動接得上彼此。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "puffin",
+      "element": "fjord_wind",
+      "visualTheme": "fjord_signal_puffin"
+    },
+    {
+      "id": "pet_n22",
+      "name": "鉚殼岸蟹",
+      "rarity": "N",
+      "image": "assets/pets/pet_n22.png",
+      "description": "背著船木小匣的霧藍岸蟹，守著船塢裡最容易被忽略的鉚釘與鐵件。當冰水拍上修船台，牠總是先扣住那枚不能少的零件，再挪回安全處。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "shore_crab",
+      "element": "shore_stone",
+      "visualTheme": "fjord_rivet_crab"
+    },
+    {
+      "id": "pet_r17",
+      "name": "槳歌斑海豹",
+      "rarity": "R",
+      "image": "assets/pets/pet_r17.png",
+      "description": "穿梭船舷與浮冰的斑海豹，胸側帶著隨時可用的救援繩環。牠用拍水聲替槳手打節拍，也會立刻轉身，接回任何跟不上隊伍的夥伴。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "spotted_seal",
+      "element": "fjord_water",
+      "visualTheme": "fjord_oarsong_rescuer"
+    },
+    {
+      "id": "pet_r18",
+      "name": "鍛火獠豬",
+      "rarity": "R",
+      "image": "assets/pets/pet_r18.png",
+      "description": "石爐前的赭鬃野豬，以強健前蹄踏動鍛錘，替長船打出可靠的鐵件。牠說話直、動作快，卻會為一枚不夠牢的船釘重新升火。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "wild_boar",
+      "element": "forge_fire",
+      "visualTheme": "fjord_tusk_forge"
+    },
+    {
+      "id": "pet_r19",
+      "name": "織帆雪貂",
+      "rarity": "R",
+      "image": "assets/pets/pet_r19.png",
+      "description": "白毛深尾的靈巧帆手，沿著桅桿收緊補線，讓破帆重新接住海風。牠總說修補只是小事，卻記得每位夥伴需要什麼樣的風。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "ferret",
+      "element": "sail_wind",
+      "visualTheme": "fjord_sailweaver"
+    },
+    {
+      "id": "pet_sr13",
+      "name": "刻潮築舟狸",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr13.png",
+      "description": "以寬尾壓穩船材的築船師，能從木料的回聲聽出承重的薄弱處。牠最得意的作品從不只屬於自己，每根樑上都有夥伴一同修正的痕跡。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "beaver",
+      "element": "resonant_wood",
+      "visualTheme": "fjord_keelwright"
+    },
+    {
+      "id": "pet_sr14",
+      "name": "霜途馴鹿",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr14.png",
+      "description": "佩著航向石的高腿馴鹿，會停下來聽冰岸的振動，再以角尖微光標出下一處落腳點。牠探路時常常回首，確認隊伍看清方向才踏出下一步。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "reindeer",
+      "element": "ice_path",
+      "visualTheme": "fjord_frost_pathfinder"
+    },
+    {
+      "id": "pet_sr15",
+      "name": "峽歌雷鳥",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr15.png",
+      "description": "站上木桶便昂首領唱的白羽雷鳥，歌聲能穿過峽灣風聲，將凌亂槳拍匯成同一節奏。牠也會害怕，但總願意替全船先唱出那一句。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "rock_ptarmigan",
+      "element": "oath_song",
+      "visualTheme": "fjord_deck_chorister"
+    },
+    {
+      "id": "pet_ssr08",
+      "name": "風眼誓鴉",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr08.png",
+      "description": "展翼穿過暴風雲牆的渡鴉，墨羽邊緣亮著細銅色誓紋。牠讀出亂流間短暫的通道，將前進的時機傳向甲板，然後回到風最急的高處。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "raven",
+      "element": "storm_wind",
+      "visualTheme": "fjord_stormwatch_raven",
+      "presentation": { "revealKey": "ssr", "revealCaption": "穿雲守望 · 把握前行之刻" }
+    },
+    {
+      "id": "pet_ssr09",
+      "name": "深潮領航鯨",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr09.png",
+      "description": "寬闊弓額與淺色下頷映著深水微光，低沉鯨鳴沿冰壁根部迴盪。牠辨認冰下暗流，為船隊指出能通行的水線，也替匆忙的心留出換氣的餘裕。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "bowhead_whale",
+      "element": "deep_current",
+      "visualTheme": "fjord_deepwater_guide",
+      "presentation": { "revealKey": "ssr", "revealCaption": "深潮回聲 · 引舟穿越冰灣" }
+    },
+    {
+      "id": "pet_ur07",
+      "name": "破曉誓角麝牛",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur07.png",
+      "description": "肩覆霜雪、巨角映火的遠航領袖，總在逆風最強時率先踏上岩脊。牠把夥伴付諸行動的承諾匯成航光，讓每一點微火都成為全隊看得見的路。",
+      "poolTags": ["frost_oath_fjord"],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "muskox",
+      "element": "dawn_oathfire",
+      "visualTheme": "fjord_dawnbreak_oathleader",
+      "presentation": { "revealKey": "ur", "revealCaption": "眾誓破曉 · 一同迎風啟航" }
+    }
+  ]
+}

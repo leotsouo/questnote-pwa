@@ -1,0 +1,397 @@
+{
+  "checkedAt": "2026-09-22T18:22:58.805Z",
+  "seriesId": "frost_oath_fjord",
+  "status": "content-awaiting-user-review",
+  "contentOutputHash": "cd5c1eb74b1b481f223fba86147fddd82532ff34c33f893779f3f89519735a97",
+  "scope": "Read-only validation and pure in-memory draws; no product database, source promotion, images, staging or release.",
+  "checks": {
+    "petCount": 12,
+    "loreCount": 12,
+    "uniqueDialogueLines": 312,
+    "bondEntries": 48,
+    "verbatimOfficialDialogueMatches": 0,
+    "firstDrawReachableIds": [
+      "pet_n20",
+      "pet_n21",
+      "pet_n22",
+      "pet_r17",
+      "pet_r18",
+      "pet_r19",
+      "pet_sr13",
+      "pet_sr14",
+      "pet_sr15",
+      "pet_ssr08",
+      "pet_ssr09",
+      "pet_ur07"
+    ],
+    "costs": {
+      "single": 100,
+      "ten": 1000
+    },
+    "heroId": "pet_ur07",
+    "featuredIds": [
+      "pet_ssr08",
+      "pet_ssr09",
+      "pet_n20"
+    ],
+    "unlock": null,
+    "tenDrawCount": 10,
+    "tenDuplicates": 9,
+    "tenDuplicateFragments": 9,
+    "inputUnchanged": true,
+    "existingCatalogChanges": 0,
+    "existingCatalogRemovals": 0
+  },
+  "validation": {
+    "ok": false,
+    "errors": [
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_n20"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_n21"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_n22"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_r17"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_r18"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_r19"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_sr13"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_sr14"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_sr15"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_ssr08"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_ssr09"
+      },
+      {
+        "level": "error",
+        "code": "PROMPT_REQUIRED",
+        "message": "Every pet needs prompt and negativePrompt strings",
+        "path": "pet_ur07"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_n20.png'",
+        "path": "images/pet_n20.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_n21.png'",
+        "path": "images/pet_n21.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_n22.png'",
+        "path": "images/pet_n22.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_r17.png'",
+        "path": "images/pet_r17.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_r18.png'",
+        "path": "images/pet_r18.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_r19.png'",
+        "path": "images/pet_r19.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_sr13.png'",
+        "path": "images/pet_sr13.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_sr14.png'",
+        "path": "images/pet_sr14.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_sr15.png'",
+        "path": "images/pet_sr15.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_ssr08.png'",
+        "path": "images/pet_ssr08.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_ssr09.png'",
+        "path": "images/pet_ssr09.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_ur07.png'",
+        "path": "images/pet_ur07.png"
+      }
+    ],
+    "warnings": [
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[0].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[1].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[2].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[3].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[4].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[5].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[6].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[7].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[8].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[9].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[10].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[11].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_n20 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_n21 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_n22 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_r17 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_r18 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_r19 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_sr13 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_sr14 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_sr15 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ssr08 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ssr09 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ur07 缺少 prompt 紀錄"
+      }
+    ],
+    "previews": [
+      {
+        "poolId": "standard",
+        "locked": 56,
+        "unlocked": 56
+      },
+      {
+        "poolId": "eternal_slumber_bloom",
+        "locked": 12,
+        "unlocked": 16
+      },
+      {
+        "poolId": "frost_oath_fjord",
+        "locked": 12,
+        "unlocked": 12
+      }
+    ],
+    "changes": {
+      "pets": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "pools": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "lore": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "series": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      }
+    }
+  }
+}

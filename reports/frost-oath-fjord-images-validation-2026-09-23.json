@@ -1,0 +1,657 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-23",
+  "timezone": "Asia/Taipei",
+  "seriesId": "frost_oath_fjord",
+  "scope": "Generated images awaiting human approval; no staging or release",
+  "status": {
+    "schemaVersion": 1,
+    "seriesId": "frost_oath_fjord",
+    "toolsHash": "09b569be007620bd04e7d8ca5c3fda610c93349b0e99a9be1373639a00cd5a7b",
+    "baselineHash": "7fc0939c4d680b3a95ca902a0792e15dfa838d6f080c167bc67fb63e2d92606d",
+    "errors": [],
+    "stages": [
+      {
+        "stage": "brief",
+        "inputHash": "91257bcc3fe4001d48d998b9a329189f68b8538d457d306a54f0b5ed07bbc6be",
+        "outputHash": "a55283d88b59c30c2169a3a4fff2a5ef0ac81cd922dfc12d575146b1e6b776ad",
+        "files": {
+          "brief.json": "c52e765c4b2736c9e566ff0fc0a62caf69b102153c844d92036f17f39d433c5b"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "plan",
+        "inputHash": "a55283d88b59c30c2169a3a4fff2a5ef0ac81cd922dfc12d575146b1e6b776ad",
+        "outputHash": "9cc9098621403aedda8abd272044eac3d055580db5dace27cd59fd9ed6b463f4",
+        "files": {
+          "plan.json": "0906bc8bc4b80033fd763c999ca25223fcbf55d352463f483d3f2df240e2dc64"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "content",
+        "inputHash": "9cc9098621403aedda8abd272044eac3d055580db5dace27cd59fd9ed6b463f4",
+        "outputHash": "cd5c1eb74b1b481f223fba86147fddd82532ff34c33f893779f3f89519735a97",
+        "files": {
+          "series.json": "7e82a459dc9fb288c9f05d00f39da434e35cfa8355d748341ff4b5cfe8ef5599",
+          "pets.json": "e7a3db027a4a7c41b8162d3c001819467634e7e47abed2e9463e1475e3bc6be7",
+          "pets-lore.json": "4389eb0c1a5c0ca22c7018268850e0526666308e054d9d6e05722436fa9b6d4e",
+          "pool.json": "2525ebc105d845d37f2318870383d2a78342836d899a101a53cb8372ca076e9b"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "prompts",
+        "inputHash": "cd5c1eb74b1b481f223fba86147fddd82532ff34c33f893779f3f89519735a97",
+        "outputHash": "a5ea5c0e2112ae6f3bcb6a68e14e0b82c6e2049c552cda7fde1a74e5a5efb58f",
+        "files": {
+          "prompts.json": "84e83ed86e72c5e828ce7af53999392e588685557ecc89ab6f875e55a89fca74"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "images",
+        "inputHash": "a5ea5c0e2112ae6f3bcb6a68e14e0b82c6e2049c552cda7fde1a74e5a5efb58f",
+        "outputHash": "2dfdd2dbfe88da5fa42a0eefb8e422d5961dbbe0ab05964fa893b0a0ed740493",
+        "files": {
+          "images/pet_n20.png": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+          "images/pet_n21.png": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+          "images/pet_n22.png": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+          "images/pet_r17.png": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+          "images/pet_r18.png": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+          "images/pet_r19.png": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+          "images/pet_sr13.png": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+          "images/pet_sr14.png": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+          "images/pet_sr15.png": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+          "images/pet_ssr08.png": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+          "images/pet_ssr09.png": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+          "images/pet_ur07.png": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9"
+        },
+        "missing": [],
+        "approved": false,
+        "status": "awaiting_review"
+      }
+    ],
+    "nextStage": "images",
+    "readyToStage": false
+  },
+  "pipelineValidation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[0].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[1].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[2].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[3].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[4].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[5].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[6].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[7].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[8].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[9].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[10].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[11].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n20.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n21.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n22.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r17.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r18.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r19.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr13.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr14.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr15.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr08.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr09.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ur07.png"
+      }
+    ],
+    "previews": [
+      {
+        "poolId": "standard",
+        "locked": 56,
+        "unlocked": 56
+      },
+      {
+        "poolId": "eternal_slumber_bloom",
+        "locked": 12,
+        "unlocked": 16
+      },
+      {
+        "poolId": "frost_oath_fjord",
+        "locked": 12,
+        "unlocked": 12
+      }
+    ],
+    "changes": {
+      "pets": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "pools": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "lore": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "series": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      }
+    }
+  },
+  "imageIntegrityAudit": {
+    "pets": [
+      {
+        "petId": "pet_n20",
+        "name": "燼囊旅鼠",
+        "rarity": "N",
+        "path": "images/pet_n20.png",
+        "selectedAttempt": 1,
+        "sha256": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+        "bytes": 2496562,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "0ece5e9bebf2db6c1cf990d905eb5a3b55f4dd89174581043356fb4e2b91a7c6",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_n20-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-77af3168-608e-4d4e-9b45-a84ca4dd22a6.png",
+            "sha256": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_n21",
+        "name": "纜結海鸚",
+        "rarity": "N",
+        "path": "images/pet_n21.png",
+        "selectedAttempt": 1,
+        "sha256": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+        "bytes": 2726779,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "b4974011729291ad40fa46e374aefd874e4743af3831979165e7139941e0325d",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_n21-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-3eb21950-00fa-4736-9af5-338c44f3e07f.png",
+            "sha256": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_n22",
+        "name": "鉚殼岸蟹",
+        "rarity": "N",
+        "path": "images/pet_n22.png",
+        "selectedAttempt": 1,
+        "sha256": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+        "bytes": 2724132,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "5a1960e367652d46496ccf728e6edf5243c639962bbb31181e65fc79b2f4492f",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_n22-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-ee125449-2079-4d33-b168-ae28519a90e9.png",
+            "sha256": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_r17",
+        "name": "槳歌斑海豹",
+        "rarity": "R",
+        "path": "images/pet_r17.png",
+        "selectedAttempt": 1,
+        "sha256": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+        "bytes": 2954888,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "f373216a19e3dac13d73eb0e5cd322eb33a808a5bd6a280c72c83ebadd40389b",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_r17-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-4423681b-fc06-4db0-950f-93232834ccbb.png",
+            "sha256": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_r18",
+        "name": "鍛火獠豬",
+        "rarity": "R",
+        "path": "images/pet_r18.png",
+        "selectedAttempt": 1,
+        "sha256": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+        "bytes": 2917760,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "2bc0fe4fbb1bdc190e8126974129e965efd6778837a221c5cd413159e07dd607",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_r18-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-2e06c418-0b58-424f-81b9-61a2f9a10d67.png",
+            "sha256": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_r19",
+        "name": "織帆雪貂",
+        "rarity": "R",
+        "path": "images/pet_r19.png",
+        "selectedAttempt": 1,
+        "sha256": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+        "bytes": 2827254,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "955c9a71de59015f600f53ddef5e654fed19ff529be4b331fddaf47b01bc2a9c",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_r19-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-8c1ae76b-bb8a-4377-a8a6-408d26749fa9.png",
+            "sha256": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_sr13",
+        "name": "刻潮築舟狸",
+        "rarity": "SR",
+        "path": "images/pet_sr13.png",
+        "selectedAttempt": 1,
+        "sha256": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+        "bytes": 2910199,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "b0d6707a06d75d7d22c5a06541d7a719eb0890f754069fd206c8fa494fd8f132",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_sr13-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-89476de8-6a9d-439d-afda-ce8c6d3cc662.png",
+            "sha256": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_sr14",
+        "name": "霜途馴鹿",
+        "rarity": "SR",
+        "path": "images/pet_sr14.png",
+        "selectedAttempt": 2,
+        "sha256": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+        "bytes": 2970581,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "e76bd5f5319f50de77adf066f98dcd448a27148093b86ff097fa4cd21cbab343",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_sr14-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-8f3fc7b8-e57e-458f-8f9e-ffcd9d9601ff.png",
+            "sha256": "22664a588fd3e3a08abf60326405cbb054c5eeb1a22b01caca3959ca8d597709",
+            "selected": false
+          },
+          {
+            "attempt": 2,
+            "record": "generation/pet_sr14-v2.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-8185c5ce-1a9e-4ac9-a366-34d1dd3d9fa7.png",
+            "sha256": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_sr15",
+        "name": "峽歌雷鳥",
+        "rarity": "SR",
+        "path": "images/pet_sr15.png",
+        "selectedAttempt": 1,
+        "sha256": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+        "bytes": 2629572,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "1643fd8c6b0847c846cc096585d96feff7fc7940632577807609ed327c9893cc",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_sr15-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-3e31d113-2885-43c8-95c7-a588a7641eaf.png",
+            "sha256": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_ssr08",
+        "name": "風眼誓鴉",
+        "rarity": "SSR",
+        "path": "images/pet_ssr08.png",
+        "selectedAttempt": 1,
+        "sha256": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+        "bytes": 2506464,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "997c75daa6c865e892f6c518ed81b26f9af5cef51f9e9180f7c5d3daaeca9e65",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_ssr08-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-dba874da-a88a-4c3f-a81b-4ed489f824df.png",
+            "sha256": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_ssr09",
+        "name": "深潮領航鯨",
+        "rarity": "SSR",
+        "path": "images/pet_ssr09.png",
+        "selectedAttempt": 1,
+        "sha256": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+        "bytes": 2651770,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "60311d5067b826433d7a63640c20023a783738496382434962b7a42cb7f94e50",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_ssr09-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-21b0e9d3-2710-44ee-880e-5be46f069ae0.png",
+            "sha256": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "petId": "pet_ur07",
+        "name": "破曉誓角麝牛",
+        "rarity": "UR",
+        "path": "images/pet_ur07.png",
+        "selectedAttempt": 1,
+        "sha256": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9",
+        "bytes": 3154540,
+        "width": 1254,
+        "height": 1254,
+        "format": "png",
+        "opaque": true,
+        "requestMatchesApprovedPrompt": true,
+        "selectedBytesMatchRaw": true,
+        "requestSha256": "77ca5dd0410826298dc48f019cba712d2cbee556309a5b2005654bac2f5ae84b",
+        "attempts": [
+          {
+            "attempt": 1,
+            "record": "generation/pet_ur07-v1.json",
+            "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-e65cab06-1d3a-43e1-ae82-afe4bf1508fd.png",
+            "sha256": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9",
+            "selected": true
+          }
+        ]
+      }
+    ],
+    "totalBytes": 33470501,
+    "minBytes": 2496562,
+    "maxBytes": 3154540,
+    "totalGenerationCalls": 13
+  },
+  "browserPreviewCheck": {
+    "url": "http://127.0.0.1:8129/IMAGE-REVIEW.html",
+    "cards": 12,
+    "imageElements": 48,
+    "loadedAt1254": 48,
+    "viewportWidth": 1280,
+    "documentWidth": 1265,
+    "viewportOverride": false,
+    "inspectedSizes": [
+      48,
+      80,
+      96
+    ],
+    "circleSize": 96,
+    "urFilterCards": 1,
+    "zoomDialogVerified": true,
+    "formalAppTest": false
+  },
+  "visualReview": {
+    "reviewer": "assistant-content-lead",
+    "humanApproved": false,
+    "notes": {
+      "pet_n20": "陶罐暖光與躍過棧橋裂縫清楚；小圓耳、短腿與金褐毛保留。",
+      "pet_n21": "橙喙叼旗、胸前繩結與訊旗筒可辨；雙翼自由，沒有文字旗號。",
+      "pet_n22": "大小螯、霧藍甲殼與木匣清楚；較大螯扣住平台邊鐵件。",
+      "pet_r17": "銀灰斑點、繩環與拍水表情清楚；短鰭與連續身軀保留。",
+      "pet_r18": "四個獸蹄與短獠牙可辨，以前蹄操作槓桿；錘頭落點與爐火均可見。",
+      "pet_r19": "細長身軀、深色尾尖及骨梭可辨；嘴銜梭具，前爪扶住帆縫。",
+      "pet_sr13": "槳尾、門齒、量繩、木楔與船體骨架可辨；暖光集中於接點木紋。",
+      "pet_sr14": "採第二版，角尖與蹄部均在畫內；回首、航向石與近處三段落腳光點可見。",
+      "pet_sr15": "白色圓胸、紅眼冠與覆羽足清楚；立於繫牢木桶，冰晶音浪呈現領唱。",
+      "pet_ssr08": "黑羽保留藍綠亮面；楔尾、鐵環與短旗帶清楚，完整展翼穿過雲隙。",
+      "pet_ssr09": "光滑深藍身體、淺下頷與無背鰭輪廓清楚；水線上下連續，尾鰭完整。",
+      "pet_ur07": "天然粗角、寬肩垂地毛與胸前誓環清楚；迎風踏岩，航標和長船交代旅程。"
+    }
+  }
+}

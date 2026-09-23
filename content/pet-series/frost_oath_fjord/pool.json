@@ -1,0 +1,35 @@
+{
+  "id": "frost_oath_fjord",
+  "name": "霜誓峽灣召喚",
+  "active": true,
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "petFilter": {
+    "poolTags": [
+      "frost_oath_fjord"
+    ]
+  },
+  "presentation": {
+    "themeKey": "glacier_arrival",
+    "animationKey": "glacier_arrival",
+    "heroPetId": "pet_ur07",
+    "featuredPetIds": ["pet_ssr08", "pet_ssr09", "pet_n20"],
+    "badge": "北境新地域",
+    "eyebrow": "循著誓火，抵達冰河盡頭的船港。",
+    "tagline": "風雪越烈，誓約越亮。",
+    "debutLines": ["冰壁之間", "誓火引路", "霜誓峽灣"],
+    "debutLabel": "抵達霜誓峽灣",
+    "detailsNote": "十二隻遠航夥伴從第一抽起皆可抽取；無抽數解鎖或額外贈寵。主打角色不另加權。",
+    "candidateNote": "僅含霜誓峽灣 12 隻夥伴，不含其他系列寵物。"
+  }
+}

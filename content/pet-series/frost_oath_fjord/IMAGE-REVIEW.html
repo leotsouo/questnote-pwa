@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>霜誓峽灣｜12 張原圖審閱</title>
+<style>
+:root { color-scheme: dark; font-family: system-ui, "Microsoft JhengHei", sans-serif; background: #101a21; color: #ecf2f4; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+header, main, footer { max-width: 1480px; margin: auto; padding: 24px; }
+header { padding-bottom: 12px; border-bottom: 1px solid #34434c; }
+h1 { margin: 8px 0 12px; font-size: 28px; }
+p { line-height: 1.7; }
+.eyebrow { color: #e8ad75; letter-spacing: .14em; font-size: 13px; }
+.subtle { color: #afbdc5; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 22px 0 12px; }
+button, select, a { font: inherit; }
+button, select { background: #20313b; color: inherit; padding: 9px 14px; border: 1px solid #566b77; border-radius: 6px; cursor: pointer; }
+button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid #f0b574; outline-offset: 3px; }
+button[aria-pressed="true"] { background: #dcc6aa; color: #14212a; }
+a { color: #a5dced; }
+.grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px 22px; }
+article { min-width: 0; border-bottom: 1px solid #34434c; padding-bottom: 16px; }
+.open { display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; background: none; border-radius: 0; }
+.art { display: block; width: 100%; height: 100%; object-fit: contain; }
+h2 { display: flex; align-items: baseline; gap: 10px; margin: 15px 0 6px; font-size: 20px; }
+.rarity { color: #e8ad75; font-size: 14px; }
+.caption { min-height: 3.5em; margin: 8px 0; font-size: 14px; color: #c1ccd2; }
+.samples { display: flex; gap: 18px; align-items: end; padding: 12px 0 4px; flex-wrap: wrap; }
+.sample { text-align: center; font-size: 11px; color: #aebdc6; }
+.sample img { display: block; object-fit: cover; margin: 0 auto 7px; }
+.s48 { width: 48px; height: 48px; border-radius: 7px; }
+.s80 { width: 80px; height: 80px; border-radius: 9px; }
+.circle { width: 96px; height: 96px; border-radius: 50%; }
+.meta { font-size: 12px; color: #96a9b4; }
+[data-mode="thumbs"] .open { display: none; }
+[data-mode="thumbs"] .caption { display: none; }
+[data-mode="thumbs"] .grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px 22px; }
+dialog { background: #14212a; color: #eef5f8; border: 1px solid #526570; max-width: min(96vw,1000px); max-height: 96vh; padding: 16px; }
+dialog::backdrop { background: #000d; }
+dialog img { display: block; max-width: 100%; max-height: 76vh; margin: 10px auto; object-fit: contain; }
+.dialog-head { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+footer { border-top: 1px solid #34434c; padding-bottom: 36px; }
+@media(max-width:950px) { .grid, [data-mode="thumbs"] .grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:620px) { header,main,footer { padding: 18px; } h1 { font-size: 24px; } .grid, [data-mode="thumbs"] .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-mode="art">
+<header>
+<div class="eyebrow">QUESTNOTE · 霜誓峽灣</div>
+<h1>風雪越烈，誓約越亮。</h1>
+<p>12 張原圖已核准，Staging 已完成。此頁保留已核准 PNG 原圖；卡池尚未發布。<a href="STAGING-REVIEW.html">查看候選 WebP</a></p>
+<p class="subtle">每張 1254×1254 PNG · N 3 / R 3 / SR 3 / SSR 2 / UR 1 · 全部第一抽開放<br>點圖放大；縮圖為 CSS 顯示，未修改原圖。圓形模式模擬中心裁切，並非正式 App 驗收。</p>
+<div class="toolbar">
+<button id="art-mode" aria-pressed="true">原圖與縮圖</button>
+<button id="thumb-mode" aria-pressed="false">縮圖檢查</button>
+<label for="rarity-filter">稀有度</label>
+<select id="rarity-filter"><option value="all">全部 12 隻</option><option>N</option><option>R</option><option>SR</option><option>SSR</option><option>UR</option></select>
+<span id="count" class="subtle">12 隻</span>
+</div>
+</header>
+<main><div class="grid" id="gallery"></div></main>
+<footer>
+<p>完整 Pipeline validation：通過，0 errors。12 個 IMAGE_LARGE 與 12 個 PET_NO_STANDARD 已在圖片核准紀錄中確認。原圖供品質保存，staging 已產生 384／960 px WebP；尚未發布。</p>
+<p><a href="IMAGES-REVIEW.md">圖片審閱與核准範圍</a> · <a href="PROMPTS-REVIEW.md">已核准提示詞</a></p>
+</footer>
+<dialog id="detail"><div class="dialog-head"><strong id="detail-title"></strong><button id="close-detail">關閉</button></div><img id="detail-image" alt=""><a id="original-link" target="_blank" rel="noopener">開啟原始 PNG</a></dialog>
+<script>
+const pets = [{"id":"pet_n20","name":"燼囊旅鼠","rarity":"N","src":"images/pet_n20.png","notes":"陶罐暖光與躍過棧橋裂縫清楚；小圓耳、短腿與金褐毛保留。","size":"2.38 MiB","revision":1},{"id":"pet_n21","name":"纜結海鸚","rarity":"N","src":"images/pet_n21.png","notes":"橙喙叼旗、胸前繩結與訊旗筒可辨；雙翼自由，沒有文字旗號。","size":"2.60 MiB","revision":1},{"id":"pet_n22","name":"鉚殼岸蟹","rarity":"N","src":"images/pet_n22.png","notes":"大小螯、霧藍甲殼與木匣清楚；較大螯扣住平台邊鐵件。","size":"2.60 MiB","revision":1},{"id":"pet_r17","name":"槳歌斑海豹","rarity":"R","src":"images/pet_r17.png","notes":"銀灰斑點、繩環與拍水表情清楚；短鰭與連續身軀保留。","size":"2.82 MiB","revision":1},{"id":"pet_r18","name":"鍛火獠豬","rarity":"R","src":"images/pet_r18.png","notes":"四個獸蹄與短獠牙可辨，以前蹄操作槓桿；錘頭落點與爐火均可見。","size":"2.78 MiB","revision":1},{"id":"pet_r19","name":"織帆雪貂","rarity":"R","src":"images/pet_r19.png","notes":"細長身軀、深色尾尖及骨梭可辨；嘴銜梭具，前爪扶住帆縫。","size":"2.70 MiB","revision":1},{"id":"pet_sr13","name":"刻潮築舟狸","rarity":"SR","src":"images/pet_sr13.png","notes":"槳尾、門齒、量繩、木楔與船體骨架可辨；暖光集中於接點木紋。","size":"2.78 MiB","revision":1},{"id":"pet_sr14","name":"霜途馴鹿","rarity":"SR","src":"images/pet_sr14.png","notes":"採第二版，角尖與蹄部均在畫內；回首、航向石與近處三段落腳光點可見。","size":"2.83 MiB","revision":2},{"id":"pet_sr15","name":"峽歌雷鳥","rarity":"SR","src":"images/pet_sr15.png","notes":"白色圓胸、紅眼冠與覆羽足清楚；立於繫牢木桶，冰晶音浪呈現領唱。","size":"2.51 MiB","revision":1},{"id":"pet_ssr08","name":"風眼誓鴉","rarity":"SSR","src":"images/pet_ssr08.png","notes":"黑羽保留藍綠亮面；楔尾、鐵環與短旗帶清楚，完整展翼穿過雲隙。","size":"2.39 MiB","revision":1},{"id":"pet_ssr09","name":"深潮領航鯨","rarity":"SSR","src":"images/pet_ssr09.png","notes":"光滑深藍身體、淺下頷與無背鰭輪廓清楚；水線上下連續，尾鰭完整。","size":"2.53 MiB","revision":1},{"id":"pet_ur07","name":"破曉誓角麝牛","rarity":"UR","src":"images/pet_ur07.png","notes":"天然粗角、寬肩垂地毛與胸前誓環清楚；迎風踏岩，航標和長船交代旅程。","size":"3.01 MiB","revision":1}];
+const gallery = document.querySelector('#gallery');
+const filter = document.querySelector('#rarity-filter');
+const detail = document.querySelector('#detail');
+function render() {
+ const shown = pets.filter(p => filter.value === 'all' || p.rarity === filter.value);
+ document.querySelector('#count').textContent = shown.length + ' 隻';
+ gallery.replaceChildren();
+ for (const p of shown) {
+  const article = document.createElement('article');
+  article.dataset.petId = p.id;
+  article.innerHTML = '<button class="open" aria-label="放大 ' + p.name + '"><img class="art" src="' + p.src + '" alt="' + p.name + ' 原圖"></button>'
+   + '<h2><span class="rarity">' + p.rarity + '</span>' + p.name + '</h2>'
+   + '<p class="caption">' + p.notes + '</p>'
+   + '<div class="samples"><div class="sample"><img class="s48" src="' + p.src + '" alt="' + p.name + ' 48px">48 px</div><div class="sample"><img class="s80" src="' + p.src + '" alt="' + p.name + ' 80px">80 px</div><div class="sample"><img class="circle" src="' + p.src + '" alt="' + p.name + ' 圓形 96px">圓形 96 px</div></div>'
+   + '<p class="meta">' + p.id + ' · ' + p.size + ' · 第 ' + p.revision + ' 版</p>';
+  article.querySelector('.open').addEventListener('click', () => {
+   document.querySelector('#detail-title').textContent = p.rarity + '｜' + p.name;
+   document.querySelector('#detail-image').src = p.src;
+   document.querySelector('#detail-image').alt = p.name;
+   document.querySelector('#original-link').href = p.src;
+   detail.showModal();
+  });
+  gallery.append(article);
+ }
+}
+filter.addEventListener('change',render);
+for (const [id,mode] of [['art-mode','art'],['thumb-mode','thumbs']]) {
+ document.querySelector('#'+id).addEventListener('click', () => {
+  document.body.dataset.mode = mode;
+  document.querySelector('#art-mode').setAttribute('aria-pressed', String(mode==='art'));
+  document.querySelector('#thumb-mode').setAttribute('aria-pressed', String(mode==='thumbs'));
+ });
+}
+document.querySelector('#close-detail').addEventListener('click', () => detail.close());
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "frost_oath_fjord",
+  "date": "2026-09-23",
+  "generator": "built-in image_gen",
+  "approvedPromptOutputHash": "a5ea5c0e2112ae6f3bcb6a68e14e0b82c6e2049c552cda7fde1a74e5a5efb58f",
+  "imagesOutputHash": "2dfdd2dbfe88da5fa42a0eefb8e422d5961dbbe0ab05964fa893b0a0ed740493",
+  "imagesApproved": true,
+  "pets": [
+    {
+      "petId": "pet_n20",
+      "name": "燼囊旅鼠",
+      "rarity": "N",
+      "path": "images/pet_n20.png",
+      "selectedAttempt": 1,
+      "sha256": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+      "bytes": 2496562,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "0ece5e9bebf2db6c1cf990d905eb5a3b55f4dd89174581043356fb4e2b91a7c6",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_n20-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-77af3168-608e-4d4e-9b45-a84ca4dd22a6.png",
+          "sha256": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_n21",
+      "name": "纜結海鸚",
+      "rarity": "N",
+      "path": "images/pet_n21.png",
+      "selectedAttempt": 1,
+      "sha256": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+      "bytes": 2726779,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "b4974011729291ad40fa46e374aefd874e4743af3831979165e7139941e0325d",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_n21-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-3eb21950-00fa-4736-9af5-338c44f3e07f.png",
+          "sha256": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_n22",
+      "name": "鉚殼岸蟹",
+      "rarity": "N",
+      "path": "images/pet_n22.png",
+      "selectedAttempt": 1,
+      "sha256": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+      "bytes": 2724132,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "5a1960e367652d46496ccf728e6edf5243c639962bbb31181e65fc79b2f4492f",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_n22-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-ee125449-2079-4d33-b168-ae28519a90e9.png",
+          "sha256": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_r17",
+      "name": "槳歌斑海豹",
+      "rarity": "R",
+      "path": "images/pet_r17.png",
+      "selectedAttempt": 1,
+      "sha256": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+      "bytes": 2954888,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "f373216a19e3dac13d73eb0e5cd322eb33a808a5bd6a280c72c83ebadd40389b",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_r17-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-4423681b-fc06-4db0-950f-93232834ccbb.png",
+          "sha256": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_r18",
+      "name": "鍛火獠豬",
+      "rarity": "R",
+      "path": "images/pet_r18.png",
+      "selectedAttempt": 1,
+      "sha256": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+      "bytes": 2917760,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "2bc0fe4fbb1bdc190e8126974129e965efd6778837a221c5cd413159e07dd607",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_r18-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-2e06c418-0b58-424f-81b9-61a2f9a10d67.png",
+          "sha256": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_r19",
+      "name": "織帆雪貂",
+      "rarity": "R",
+      "path": "images/pet_r19.png",
+      "selectedAttempt": 1,
+      "sha256": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+      "bytes": 2827254,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "955c9a71de59015f600f53ddef5e654fed19ff529be4b331fddaf47b01bc2a9c",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_r19-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-8c1ae76b-bb8a-4377-a8a6-408d26749fa9.png",
+          "sha256": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_sr13",
+      "name": "刻潮築舟狸",
+      "rarity": "SR",
+      "path": "images/pet_sr13.png",
+      "selectedAttempt": 1,
+      "sha256": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+      "bytes": 2910199,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "b0d6707a06d75d7d22c5a06541d7a719eb0890f754069fd206c8fa494fd8f132",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_sr13-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-89476de8-6a9d-439d-afda-ce8c6d3cc662.png",
+          "sha256": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_sr14",
+      "name": "霜途馴鹿",
+      "rarity": "SR",
+      "path": "images/pet_sr14.png",
+      "selectedAttempt": 2,
+      "sha256": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+      "bytes": 2970581,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "e76bd5f5319f50de77adf066f98dcd448a27148093b86ff097fa4cd21cbab343",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_sr14-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-8f3fc7b8-e57e-458f-8f9e-ffcd9d9601ff.png",
+          "sha256": "22664a588fd3e3a08abf60326405cbb054c5eeb1a22b01caca3959ca8d597709",
+          "selected": false
+        },
+        {
+          "attempt": 2,
+          "record": "generation/pet_sr14-v2.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-8185c5ce-1a9e-4ac9-a366-34d1dd3d9fa7.png",
+          "sha256": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_sr15",
+      "name": "峽歌雷鳥",
+      "rarity": "SR",
+      "path": "images/pet_sr15.png",
+      "selectedAttempt": 1,
+      "sha256": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+      "bytes": 2629572,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "1643fd8c6b0847c846cc096585d96feff7fc7940632577807609ed327c9893cc",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_sr15-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-3e31d113-2885-43c8-95c7-a588a7641eaf.png",
+          "sha256": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_ssr08",
+      "name": "風眼誓鴉",
+      "rarity": "SSR",
+      "path": "images/pet_ssr08.png",
+      "selectedAttempt": 1,
+      "sha256": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+      "bytes": 2506464,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "997c75daa6c865e892f6c518ed81b26f9af5cef51f9e9180f7c5d3daaeca9e65",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_ssr08-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-dba874da-a88a-4c3f-a81b-4ed489f824df.png",
+          "sha256": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_ssr09",
+      "name": "深潮領航鯨",
+      "rarity": "SSR",
+      "path": "images/pet_ssr09.png",
+      "selectedAttempt": 1,
+      "sha256": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+      "bytes": 2651770,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "60311d5067b826433d7a63640c20023a783738496382434962b7a42cb7f94e50",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_ssr09-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-21b0e9d3-2710-44ee-880e-5be46f069ae0.png",
+          "sha256": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "petId": "pet_ur07",
+      "name": "破曉誓角麝牛",
+      "rarity": "UR",
+      "path": "images/pet_ur07.png",
+      "selectedAttempt": 1,
+      "sha256": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9",
+      "bytes": 3154540,
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "opaque": true,
+      "requestMatchesApprovedPrompt": true,
+      "selectedBytesMatchRaw": true,
+      "requestSha256": "77ca5dd0410826298dc48f019cba712d2cbee556309a5b2005654bac2f5ae84b",
+      "attempts": [
+        {
+          "attempt": 1,
+          "record": "generation/pet_ur07-v1.json",
+          "rawOutputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-e65cab06-1d3a-43e1-ae82-afe4bf1508fd.png",
+          "sha256": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9",
+          "selected": true
+        }
+      ]
+    }
+  ],
+  "totalBytes": 33470501,
+  "minBytes": 2496562,
+  "maxBytes": 3154540,
+  "totalGenerationCalls": 13,
+  "imagesApproval": {
+    "outputHash": "2dfdd2dbfe88da5fa42a0eefb8e422d5961dbbe0ab05964fa893b0a0ed740493",
+    "reviewer": "user-via-chat-images-2026-09-23",
+    "approvedAt": "2026-09-23T04:11:12.417Z",
+    "snapshot": "approvals/2dfdd2dbfe88da5fa42a0eefb8e422d5961dbbe0ab05964fa893b0a0ed740493"
+  }
+}

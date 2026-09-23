@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-23",
+  "timezone": "Asia/Taipei",
+  "seriesId": "frost_oath_fjord",
+  "synthetic": false,
+  "releaseReady": false,
+  "approvedStatus": {
+    "schemaVersion": 1,
+    "seriesId": "frost_oath_fjord",
+    "toolsHash": "09b569be007620bd04e7d8ca5c3fda610c93349b0e99a9be1373639a00cd5a7b",
+    "baselineHash": "7fc0939c4d680b3a95ca902a0792e15dfa838d6f080c167bc67fb63e2d92606d",
+    "errors": [],
+    "stages": [
+      {
+        "stage": "brief",
+        "inputHash": "91257bcc3fe4001d48d998b9a329189f68b8538d457d306a54f0b5ed07bbc6be",
+        "outputHash": "a55283d88b59c30c2169a3a4fff2a5ef0ac81cd922dfc12d575146b1e6b776ad",
+        "files": {
+          "brief.json": "c52e765c4b2736c9e566ff0fc0a62caf69b102153c844d92036f17f39d433c5b"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "plan",
+        "inputHash": "a55283d88b59c30c2169a3a4fff2a5ef0ac81cd922dfc12d575146b1e6b776ad",
+        "outputHash": "9cc9098621403aedda8abd272044eac3d055580db5dace27cd59fd9ed6b463f4",
+        "files": {
+          "plan.json": "0906bc8bc4b80033fd763c999ca25223fcbf55d352463f483d3f2df240e2dc64"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "content",
+        "inputHash": "9cc9098621403aedda8abd272044eac3d055580db5dace27cd59fd9ed6b463f4",
+        "outputHash": "cd5c1eb74b1b481f223fba86147fddd82532ff34c33f893779f3f89519735a97",
+        "files": {
+          "series.json": "7e82a459dc9fb288c9f05d00f39da434e35cfa8355d748341ff4b5cfe8ef5599",
+          "pets.json": "e7a3db027a4a7c41b8162d3c001819467634e7e47abed2e9463e1475e3bc6be7",
+          "pets-lore.json": "4389eb0c1a5c0ca22c7018268850e0526666308e054d9d6e05722436fa9b6d4e",
+          "pool.json": "2525ebc105d845d37f2318870383d2a78342836d899a101a53cb8372ca076e9b"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "prompts",
+        "inputHash": "cd5c1eb74b1b481f223fba86147fddd82532ff34c33f893779f3f89519735a97",
+        "outputHash": "a5ea5c0e2112ae6f3bcb6a68e14e0b82c6e2049c552cda7fde1a74e5a5efb58f",
+        "files": {
+          "prompts.json": "84e83ed86e72c5e828ce7af53999392e588685557ecc89ab6f875e55a89fca74"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "images",
+        "inputHash": "a5ea5c0e2112ae6f3bcb6a68e14e0b82c6e2049c552cda7fde1a74e5a5efb58f",
+        "outputHash": "2dfdd2dbfe88da5fa42a0eefb8e422d5961dbbe0ab05964fa893b0a0ed740493",
+        "files": {
+          "images/pet_n20.png": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+          "images/pet_n21.png": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+          "images/pet_n22.png": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+          "images/pet_r17.png": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+          "images/pet_r18.png": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+          "images/pet_r19.png": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+          "images/pet_sr13.png": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+          "images/pet_sr14.png": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+          "images/pet_sr15.png": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+          "images/pet_ssr08.png": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+          "images/pet_ssr09.png": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+          "images/pet_ur07.png": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      }
+    ],
+    "nextStage": "stage_candidate",
+    "readyToStage": true
+  },
+  "validationBeforeApproval": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[0].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[1].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[2].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[3].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[4].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[5].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[6].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[7].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[8].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[9].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[10].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[11].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n20.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n21.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n22.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r17.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r18.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r19.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr13.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr14.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr15.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr08.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr09.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ur07.png"
+      }
+    ],
+    "previews": [
+      {
+        "poolId": "standard",
+        "locked": 56,
+        "unlocked": 56
+      },
+      {
+        "poolId": "eternal_slumber_bloom",
+        "locked": 12,
+        "unlocked": 16
+      },
+      {
+        "poolId": "frost_oath_fjord",
+        "locked": 12,
+        "unlocked": 12
+      }
+    ],
+    "changes": {
+      "pets": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "pools": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "lore": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "series": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      }
+    }
+  },
+  "dryRun": {
+    "candidateId": "697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\staging\\697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+    "releaseReady": false,
+    "baselineHash": "7fc0939c4d680b3a95ca902a0792e15dfa838d6f080c167bc67fb63e2d92606d",
+    "warnings": [
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[0].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[1].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[2].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[3].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[4].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[5].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[6].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[7].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[8].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[9].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[10].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[11].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n20.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n21.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n22.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r17.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r18.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r19.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr13.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr14.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr15.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr08.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr09.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ur07.png"
+      }
+    ],
+    "previews": [
+      {
+        "poolId": "standard",
+        "locked": 56,
+        "unlocked": 56
+      },
+      {
+        "poolId": "eternal_slumber_bloom",
+        "locked": 12,
+        "unlocked": 16
+      },
+      {
+        "poolId": "frost_oath_fjord",
+        "locked": 12,
+        "unlocked": 12
+      }
+    ],
+    "changes": {
+      "pets": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "pools": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "lore": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "series": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      }
+    },
+    "dryRun": true,
+    "stagingDirectoryExistedAfterDryRun": false
+  },
+  "stageResult": {
+    "candidateId": "697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\staging\\697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+    "releaseReady": false,
+    "baselineHash": "7fc0939c4d680b3a95ca902a0792e15dfa838d6f080c167bc67fb63e2d92606d",
+    "warnings": [
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[0].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[1].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[2].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[3].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[4].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[5].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[6].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[7].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[8].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[9].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[10].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[11].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n20.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n21.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n22.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r17.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r18.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r19.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr13.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr14.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr15.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr08.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr09.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ur07.png"
+      }
+    ],
+    "previews": [
+      {
+        "poolId": "standard",
+        "locked": 56,
+        "unlocked": 56
+      },
+      {
+        "poolId": "eternal_slumber_bloom",
+        "locked": 12,
+        "unlocked": 16
+      },
+      {
+        "poolId": "frost_oath_fjord",
+        "locked": 12,
+        "unlocked": 12
+      }
+    ],
+    "changes": {
+      "pets": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "pools": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "lore": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "series": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      }
+    },
+    "reused": false,
+    "manifest": {
+      "schemaVersion": 1,
+      "candidateId": "697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+      "releaseReady": false,
+      "baselineHash": "7fc0939c4d680b3a95ca902a0792e15dfa838d6f080c167bc67fb63e2d92606d",
+      "files": {
+        "approvals.json": "d6add2772f5e0c069db5a34e7404df2a4e059e4c7d02bde5a7231aeef507d2dd",
+        "assets/pets/pet_n20.png": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+        "assets/pets/pet_n21.png": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+        "assets/pets/pet_n22.png": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+        "assets/pets/pet_r17.png": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+        "assets/pets/pet_r18.png": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+        "assets/pets/pet_r19.png": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+        "assets/pets/pet_sr13.png": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+        "assets/pets/pet_sr14.png": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+        "assets/pets/pet_sr15.png": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+        "assets/pets/pet_ssr08.png": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+        "assets/pets/pet_ssr09.png": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+        "assets/pets/pet_ur07.png": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9",
+        "assets/pets/variants/pet_n20-card-384-a3accd064e77.webp": "d0f3f48ea0c7a475e1546765d891882c25aada2f65098ab251fcf55c1375a2e9",
+        "assets/pets/variants/pet_n20-stage-960-a3accd064e77.webp": "376aa1eb12bd796e2c7f03c2ffba9e0fa73b92439ac054452c6457c6f4841217",
+        "assets/pets/variants/pet_n21-card-384-fe35c6c3aec7.webp": "05f4f1b2a3c44e1bdc6adda868ff6bff3ace9f0a64efb1228a0eb28d5887e8dd",
+        "assets/pets/variants/pet_n21-stage-960-fe35c6c3aec7.webp": "9ee0bc8db80dd633ec3d295b9906e1e0721d74e593d10255c3dab8417688dd81",
+        "assets/pets/variants/pet_n22-card-384-217c5b56309b.webp": "3bb6245e6df30d627ebcdd17fd58537d33b9bcc418636a58cf28629e930e15f7",
+        "assets/pets/variants/pet_n22-stage-960-217c5b56309b.webp": "282922317214d85d0f55f4b4e5bc4b2897ce5cbc37c1dcd4b0edf4b0f8983b39",
+        "assets/pets/variants/pet_r17-card-384-4a61cde73a55.webp": "7802e532164876e609ba88986945b384c777b705355029b757c94a388e6a8d31",
+        "assets/pets/variants/pet_r17-stage-960-4a61cde73a55.webp": "4c57e7838a275183036bcec0d4bbd7a8f6efef62a649c8fda490aeb91c56068e",
+        "assets/pets/variants/pet_r18-card-384-13f5763d98a2.webp": "fab65cebf7391b09c1ebbdf1d315a1d727f4aea6cf4932fba0daaf622ba2212d",
+        "assets/pets/variants/pet_r18-stage-960-13f5763d98a2.webp": "ce6ec3c4753f4c3534b436d8fe4b5a83791ad7857f6caa3810048a969b483404",
+        "assets/pets/variants/pet_r19-card-384-bfab16af79e6.webp": "96c7c13ccc8ac4b7c142c3f30babaa4ec4c5986eff6c5a11568d658d333d7f96",
+        "assets/pets/variants/pet_r19-stage-960-bfab16af79e6.webp": "edb9874a3e4b1498718192e03aec875450887bb9347685177405957aac947bf0",
+        "assets/pets/variants/pet_sr13-card-384-4a69722de81b.webp": "aba4b087c8c0462025a08612fafeb12252b415225fcd6ca5f98f4b38d0b7037f",
+        "assets/pets/variants/pet_sr13-stage-960-4a69722de81b.webp": "499fbed72ac2c4ccf47b8633d3aaad8917953403111d7d7fdb946c4250bbd170",
+        "assets/pets/variants/pet_sr14-card-384-c749636bc89a.webp": "b1b6f641bff991d8d07e070d9cee83a80af1133d53d10c91fb93f11d41444360",
+        "assets/pets/variants/pet_sr14-stage-960-c749636bc89a.webp": "90d48fec9253e7068ed7d1b67d0421a990bcfc38f155db99704c9f0d120f952b",
+        "assets/pets/variants/pet_sr15-card-384-26ff3776714d.webp": "74f757e7ef6c1effc5b232a49348c876855a7ee0b4767d0908df031ab40e91d1",
+        "assets/pets/variants/pet_sr15-stage-960-26ff3776714d.webp": "3d90d5007563a2562b7d2bd04098321fd35f497bef0069d0655fcbfc4a6ddf1f",
+        "assets/pets/variants/pet_ssr08-card-384-2ce7d7ec4f2d.webp": "11ebcff5bf2587ca11a2b547f8c99c87548e722724d9ef47faf4e2df7211dbc6",
+        "assets/pets/variants/pet_ssr08-stage-960-2ce7d7ec4f2d.webp": "76d2a411c2bcef29177003be4abc9b1f604a007a0353866d047801c8250e9992",
+        "assets/pets/variants/pet_ssr09-card-384-3a92a1c066ba.webp": "f257baaf7f7b21dc6ab8a56334d3a5c1b6902f9e4fab77ac2d4031331ddab3e4",
+        "assets/pets/variants/pet_ssr09-stage-960-3a92a1c066ba.webp": "ad037afa4607a1af40705b7ad65e229d4d65307d48fc636fcc56876b976d44d5",
+        "assets/pets/variants/pet_ur07-card-384-223687e6afa8.webp": "8dfb03cdde924af1f4509dfb34f773fe72c4babfb74184c4750883d4593d917d",
+        "assets/pets/variants/pet_ur07-stage-960-223687e6afa8.webp": "f0f587ce40753a39e65ebb62384937c440c7e9681519f1ca48db79aadbe5d6ff",
+        "catalog.json": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+        "validation.json": "651c22e930355b5a6b372319b3883bb45f631c9605d76ac4ca70eb8607335371"
+      }
+    }
+  },
+  "rebuild": {
+    "candidateId": "697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+    "reused": true,
+    "manifestIdentical": true
+  },
+  "candidateAudit": {
+    "ok": true,
+    "candidateId": "697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+    "candidateJsonSha256": "7a21bd41a69224604638f4daa319ce30300a3647809e2602d05cbc187d774ff8",
+    "catalogJsonSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+    "manifestFilesVerified": 39,
+    "totalFiles": 40,
+    "preservedOfficialEntries": {
+      "pets": 72,
+      "lore": 72,
+      "pools": 2,
+      "series": 2
+    },
+    "counts": {
+      "pets": 84,
+      "lore": 84,
+      "pools": 3,
+      "series": 3
+    },
+    "newPetCount": 12,
+    "originalCount": 12,
+    "webpCount": 24,
+    "assets": [
+      {
+        "petId": "pet_n20",
+        "name": "燼囊旅鼠",
+        "rarity": "N",
+        "pngBytes": 2496562,
+        "originalSha256": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_n20-card-384-a3accd064e77.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 42432,
+            "sha256": "d0f3f48ea0c7a475e1546765d891882c25aada2f65098ab251fcf55c1375a2e9"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_n20-stage-960-a3accd064e77.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 156890,
+            "sha256": "376aa1eb12bd796e2c7f03c2ffba9e0fa73b92439ac054452c6457c6f4841217"
+          }
+        }
+      },
+      {
+        "petId": "pet_n21",
+        "name": "纜結海鸚",
+        "rarity": "N",
+        "pngBytes": 2726779,
+        "originalSha256": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_n21-card-384-fe35c6c3aec7.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 43372,
+            "sha256": "05f4f1b2a3c44e1bdc6adda868ff6bff3ace9f0a64efb1228a0eb28d5887e8dd"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_n21-stage-960-fe35c6c3aec7.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 184252,
+            "sha256": "9ee0bc8db80dd633ec3d295b9906e1e0721d74e593d10255c3dab8417688dd81"
+          }
+        }
+      },
+      {
+        "petId": "pet_n22",
+        "name": "鉚殼岸蟹",
+        "rarity": "N",
+        "pngBytes": 2724132,
+        "originalSha256": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_n22-card-384-217c5b56309b.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 49460,
+            "sha256": "3bb6245e6df30d627ebcdd17fd58537d33b9bcc418636a58cf28629e930e15f7"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_n22-stage-960-217c5b56309b.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 201866,
+            "sha256": "282922317214d85d0f55f4b4e5bc4b2897ce5cbc37c1dcd4b0edf4b0f8983b39"
+          }
+        }
+      },
+      {
+        "petId": "pet_r17",
+        "name": "槳歌斑海豹",
+        "rarity": "R",
+        "pngBytes": 2954888,
+        "originalSha256": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_r17-card-384-4a61cde73a55.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 52212,
+            "sha256": "7802e532164876e609ba88986945b384c777b705355029b757c94a388e6a8d31"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_r17-stage-960-4a61cde73a55.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 227148,
+            "sha256": "4c57e7838a275183036bcec0d4bbd7a8f6efef62a649c8fda490aeb91c56068e"
+          }
+        }
+      },
+      {
+        "petId": "pet_r18",
+        "name": "鍛火獠豬",
+        "rarity": "R",
+        "pngBytes": 2917760,
+        "originalSha256": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_r18-card-384-13f5763d98a2.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 51446,
+            "sha256": "fab65cebf7391b09c1ebbdf1d315a1d727f4aea6cf4932fba0daaf622ba2212d"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_r18-stage-960-13f5763d98a2.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 223324,
+            "sha256": "ce6ec3c4753f4c3534b436d8fe4b5a83791ad7857f6caa3810048a969b483404"
+          }
+        }
+      },
+      {
+        "petId": "pet_r19",
+        "name": "織帆雪貂",
+        "rarity": "R",
+        "pngBytes": 2827254,
+        "originalSha256": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_r19-card-384-bfab16af79e6.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 41436,
+            "sha256": "96c7c13ccc8ac4b7c142c3f30babaa4ec4c5986eff6c5a11568d658d333d7f96"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_r19-stage-960-bfab16af79e6.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 182788,
+            "sha256": "edb9874a3e4b1498718192e03aec875450887bb9347685177405957aac947bf0"
+          }
+        }
+      },
+      {
+        "petId": "pet_sr13",
+        "name": "刻潮築舟狸",
+        "rarity": "SR",
+        "pngBytes": 2910199,
+        "originalSha256": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_sr13-card-384-4a69722de81b.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 46354,
+            "sha256": "aba4b087c8c0462025a08612fafeb12252b415225fcd6ca5f98f4b38d0b7037f"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_sr13-stage-960-4a69722de81b.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 215080,
+            "sha256": "499fbed72ac2c4ccf47b8633d3aaad8917953403111d7d7fdb946c4250bbd170"
+          }
+        }
+      },
+      {
+        "petId": "pet_sr14",
+        "name": "霜途馴鹿",
+        "rarity": "SR",
+        "pngBytes": 2970581,
+        "originalSha256": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_sr14-card-384-c749636bc89a.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 46276,
+            "sha256": "b1b6f641bff991d8d07e070d9cee83a80af1133d53d10c91fb93f11d41444360"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_sr14-stage-960-c749636bc89a.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 215124,
+            "sha256": "90d48fec9253e7068ed7d1b67d0421a990bcfc38f155db99704c9f0d120f952b"
+          }
+        }
+      },
+      {
+        "petId": "pet_sr15",
+        "name": "峽歌雷鳥",
+        "rarity": "SR",
+        "pngBytes": 2629572,
+        "originalSha256": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_sr15-card-384-26ff3776714d.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 39932,
+            "sha256": "74f757e7ef6c1effc5b232a49348c876855a7ee0b4767d0908df031ab40e91d1"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_sr15-stage-960-26ff3776714d.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 162058,
+            "sha256": "3d90d5007563a2562b7d2bd04098321fd35f497bef0069d0655fcbfc4a6ddf1f"
+          }
+        }
+      },
+      {
+        "petId": "pet_ssr08",
+        "name": "風眼誓鴉",
+        "rarity": "SSR",
+        "pngBytes": 2506464,
+        "originalSha256": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_ssr08-card-384-2ce7d7ec4f2d.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 32488,
+            "sha256": "11ebcff5bf2587ca11a2b547f8c99c87548e722724d9ef47faf4e2df7211dbc6"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_ssr08-stage-960-2ce7d7ec4f2d.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 133984,
+            "sha256": "76d2a411c2bcef29177003be4abc9b1f604a007a0353866d047801c8250e9992"
+          }
+        }
+      },
+      {
+        "petId": "pet_ssr09",
+        "name": "深潮領航鯨",
+        "rarity": "SSR",
+        "pngBytes": 2651770,
+        "originalSha256": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_ssr09-card-384-3a92a1c066ba.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 30994,
+            "sha256": "f257baaf7f7b21dc6ab8a56334d3a5c1b6902f9e4fab77ac2d4031331ddab3e4"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_ssr09-stage-960-3a92a1c066ba.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 150750,
+            "sha256": "ad037afa4607a1af40705b7ad65e229d4d65307d48fc636fcc56876b976d44d5"
+          }
+        }
+      },
+      {
+        "petId": "pet_ur07",
+        "name": "破曉誓角麝牛",
+        "rarity": "UR",
+        "pngBytes": 3154540,
+        "originalSha256": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9",
+        "variants": {
+          "card": {
+            "path": "assets/pets/variants/pet_ur07-card-384-223687e6afa8.webp",
+            "width": 384,
+            "height": 384,
+            "bytes": 49758,
+            "sha256": "8dfb03cdde924af1f4509dfb34f773fe72c4babfb74184c4750883d4593d917d"
+          },
+          "stage": {
+            "path": "assets/pets/variants/pet_ur07-stage-960-223687e6afa8.webp",
+            "width": 960,
+            "height": 960,
+            "bytes": 246380,
+            "sha256": "f0f587ce40753a39e65ebb62384937c440c7e9681519f1ca48db79aadbe5d6ff"
+          }
+        }
+      }
+    ],
+    "totalPngBytes": 33470501,
+    "totalCardBytes": 526160,
+    "totalStageBytes": 2299644,
+    "gachaPlanner": {
+      "firstDrawReachableIds": [
+        "pet_n20",
+        "pet_n21",
+        "pet_n22",
+        "pet_r17",
+        "pet_r18",
+        "pet_r19",
+        "pet_sr13",
+        "pet_sr14",
+        "pet_sr15",
+        "pet_ssr08",
+        "pet_ssr09",
+        "pet_ur07"
+      ],
+      "singleCost": 100,
+      "tenCost": 1000,
+      "tenResults": 10,
+      "duplicateCount": 9,
+      "ssrPityAt": 30,
+      "urPityAt": 100,
+      "noUnlockOrGift": true,
+      "insufficientFundsRejected": true,
+      "inputsUnchanged": true,
+      "method": "Deterministic candidate reachability and boundary checks; not probability sampling; no IndexedDB"
+    },
+    "releaseReady": false,
+    "approvalStages": [
+      "brief",
+      "plan",
+      "content",
+      "prompts",
+      "images"
+    ]
+  },
+  "browserAssetPreview": {
+    "url": "http://127.0.0.1:8129/STAGING-REVIEW.html",
+    "cards": 12,
+    "cardImageElements": 48,
+    "loaded384WebpElements": 48,
+    "urFilterCount": 1,
+    "urDialogLoaded": true,
+    "urDialogNaturalWidth": 960,
+    "originalLinkMatchesCandidate": true,
+    "fullApplicationTest": false,
+    "playerDatabaseTouched": false,
+    "viewportOverride": false
+  },
+  "scope": {
+    "officialCatalogsModified": false,
+    "officialAssetsModified": false,
+    "legacyCompatibilityModified": false,
+    "sourcePromotion": false,
+    "commit": false,
+    "push": false,
+    "merge": false,
+    "deploy": false
+  }
+}

@@ -1,5 +1,7 @@
 # QuestNote roadmap execution
 
+> Current source of truth: [final integration](final-integration.md) on `codex/final-integration`. The user has authorized deployment to the separate HTTPS Preview, not production. The older statuses below are retained as milestone history and are superseded for branch/version/deployment status by the final integration record.
+
 Baseline: `a1a0030` (`codex/summon-perf`); local main `aada9a7` is its ancestor.
 Implementation branch: `codex/card-pool-pipeline`. No deployment is authorized.
 

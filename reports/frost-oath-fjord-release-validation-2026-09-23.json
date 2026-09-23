@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-23T08:03:39.033Z",
+  "seriesId": "frost_oath_fjord",
+  "releaseReady": false,
+  "sourceCommit": "95a4f5d70233195050f1f0fce2eee3d9945c2b32",
+  "sourceWorkingTree": "dirty; manifests record actual bytes",
+  "approvals": [
+    {
+      "stage": "brief",
+      "outputHash": "a55283d88b59c30c2169a3a4fff2a5ef0ac81cd922dfc12d575146b1e6b776ad",
+      "approved": true
+    },
+    {
+      "stage": "plan",
+      "outputHash": "9cc9098621403aedda8abd272044eac3d055580db5dace27cd59fd9ed6b463f4",
+      "approved": true
+    },
+    {
+      "stage": "content",
+      "outputHash": "cd5c1eb74b1b481f223fba86147fddd82532ff34c33f893779f3f89519735a97",
+      "approved": true
+    },
+    {
+      "stage": "prompts",
+      "outputHash": "a5ea5c0e2112ae6f3bcb6a68e14e0b82c6e2049c552cda7fde1a74e5a5efb58f",
+      "approved": true
+    },
+    {
+      "stage": "images",
+      "outputHash": "2dfdd2dbfe88da5fa42a0eefb8e422d5961dbbe0ab05964fa893b0a0ed740493",
+      "approved": true
+    }
+  ],
+  "candidateId": "697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+  "candidateManifestSha256": "7a21bd41a69224604638f4daa319ce30300a3647809e2602d05cbc187d774ff8",
+  "artifacts": [
+    {
+      "label": "production",
+      "artifactId": "a8c5117b44ac36342cf00aef0b2770848239c6b6e78efaef86767db06d798c64",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-frost-oath-release-20260923\\a8c5117b44ac36342cf00aef0b2770848239c6b6e78efaef86767db06d798c64",
+      "manifestSha256": "db10a813b593214bf0422d659a37d6c16657b3acfaa1b53d106704262cee7961",
+      "filesVerified": 327,
+      "totalFileCount": 328,
+      "sourceFileCount": 287,
+      "profile": {
+        "schemaVersion": 1,
+        "profile": "production",
+        "artifactId": "a8c5117b44ac36342cf00aef0b2770848239c6b6e78efaef86767db06d798c64",
+        "sourceCommit": "95a4f5d70233195050f1f0fce2eee3d9945c2b32",
+        "scopePath": "/questnote-pwa/",
+        "runtimeContentSchema": 1,
+        "dbName": "QuestNoteDB",
+        "cacheNamespace": "questnote-production-",
+        "contentBundleSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+        "contentBundleUrl": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json"
+      },
+      "localValidations": {
+        "catalogContract": "PASS",
+        "imageReferences": "PASS",
+        "importClosure": "PASS",
+        "profileAndCacheConfiguration": "PASS",
+        "immutablePrecacheHashes": "PASS"
+      },
+      "dryRunPassed": true,
+      "buildPassed": true,
+      "reused": true,
+      "releaseReady": false
+    },
+    {
+      "label": "preview",
+      "artifactId": "79b630eaeae4f4610a9b5d19b0d9bc1051a72248e9ef30e73385d943c6fbfca6",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-frost-oath-release-20260923\\79b630eaeae4f4610a9b5d19b0d9bc1051a72248e9ef30e73385d943c6fbfca6",
+      "manifestSha256": "63dafa5d799c981d6bf2ff939ac038636f0887fe881c6e7aae1a08393238a122",
+      "filesVerified": 327,
+      "totalFileCount": 328,
+      "sourceFileCount": 287,
+      "profile": {
+        "schemaVersion": 1,
+        "profile": "preview",
+        "artifactId": "79b630eaeae4f4610a9b5d19b0d9bc1051a72248e9ef30e73385d943c6fbfca6",
+        "sourceCommit": "95a4f5d70233195050f1f0fce2eee3d9945c2b32",
+        "scopePath": "/preview/",
+        "runtimeContentSchema": 1,
+        "dbName": "QuestNotePreviewDB",
+        "cacheNamespace": "questnote-preview-",
+        "contentBundleSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+        "contentBundleUrl": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json"
+      },
+      "localValidations": {
+        "catalogContract": "PASS",
+        "imageReferences": "PASS",
+        "importClosure": "PASS",
+        "profileAndCacheConfiguration": "PASS",
+        "immutablePrecacheHashes": "PASS"
+      },
+      "dryRunPassed": true,
+      "buildPassed": true,
+      "reused": true,
+      "releaseReady": false
+    }
+  ],
+  "backup": {
+    "directory": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-frost-oath-release-20260923\\authoring-snapshot-2026-09-23T08-03-38-443Z",
+    "fileCount": 105,
+    "totalBytes": 110228564,
+    "manifestSha256": "74a9d9cd1fafa72125e5c18bd40006cd8f74c2fe8b4e26a289fb26668add8e20",
+    "copiedBytesVerified": true,
+    "persistence": "local TEMP; transfer to approved durable storage before release"
+  },
+  "node": {
+    "command": "npm test",
+    "passed": 115,
+    "failed": 0,
+    "logicAssertionsPassed": 34,
+    "timing": "Before browser-harness-only changes; corresponding native and syntax checks ran afterward"
+  },
+  "nativeBrowser": {
+    "evidenceSource": "Counts and observations read from browser DOM via CUA; summary rather than a raw full log",
+    "m1": {
+      "passed": 14,
+      "failed": 0,
+      "database": "QuestNoteTest-M1-5a5b52ae-e16f-49db-9b72-0c9e6c9f8f29"
+    },
+    "m2a": {
+      "passed": 25,
+      "failed": 0,
+      "database": "QuestNoteTest-M2A-512308e6-53ce-4f8a-a201-92c37a232ce7"
+    },
+    "m4": {
+      "passed": 10,
+      "failed": 0,
+      "database": "QuestNoteTest-M4-5d7d1900-cfc8-4262-b0cc-255471901ef4"
+    },
+    "workerLifecycle": {
+      "passed": 6,
+      "failed": 0
+    },
+    "glacier": {
+      "passed": 7,
+      "failed": 0
+    },
+    "assembledLocalScopes": {
+      "passed": 8,
+      "failed": 0,
+      "runId": "9677f1bc-fb8b-4544-b20e-d4205348f421",
+      "origin": "http://127.0.0.1:57433",
+      "ownedOriginCleaned": true
+    },
+    "assembledProductionScope": {
+      "passed": 8,
+      "failed": 0,
+      "runId": "03aecf6d-054e-4dda-8049-db5cb3ccbc9a",
+      "origin": "http://127.0.0.1:57614",
+      "productionScope": "/questnote-pwa/",
+      "previewScope": "/preview/",
+      "ownedOriginCleaned": true,
+      "verifiedCatalogSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+      "petCount": 84,
+      "legacyBaselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+      "legacyWaitedForAllClients": true,
+      "failedBootstrapDatabaseNames": []
+    }
+  },
+  "scopeGuardChecks": {
+    "passed": 4,
+    "cases": [
+      "root",
+      "equal",
+      "nested",
+      "harness-overlap"
+    ],
+    "fixtureRoot": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-scope-guards-B4gRYj"
+  },
+  "manualPreview": {
+    "url": "http://127.0.0.1:50345/preview/",
+    "databaseProfile": "preview",
+    "walletSource": "Two existing 1000-stardust mailbox rewards through actual UI",
+    "walletSequence": [
+      2000,
+      1900,
+      900
+    ],
+    "singlePetId": "pet_n21",
+    "tenPetIds": [
+      "pet_n20",
+      "pet_r19",
+      "pet_r18",
+      "pet_n21",
+      "pet_ssr09",
+      "pet_r18",
+      "pet_n20",
+      "pet_n20",
+      "pet_n20",
+      "pet_n21"
+    ],
+    "tenResultWebpLoaded": 10,
+    "tenResultImageWidth": 384,
+    "ownedSpecies": 5,
+    "totalCatalog": 84,
+    "fragments": {
+      "pet_n20": 3,
+      "pet_n21": 2,
+      "pet_r18": 2
+    },
+    "postReload": {
+      "wallet": 900,
+      "ssrCounter": 5,
+      "urCounter": 11,
+      "selectedPool": "frost_oath_fjord",
+      "debutNotRepeated": true
+    },
+    "loreInspected": "pet_ssr09",
+    "consoleErrorsObserved": 0,
+    "interactionViewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "embeddedStartupViewport": {
+      "width": 390,
+      "height": 844,
+      "clientWidth": 375,
+      "scrollWidth": 375
+    },
+    "limitation": "Embedded frame input controls unavailable through browser tool; full summon flow tested in direct tab, not on physical mobile"
+  },
+  "deploymentEvidence": {
+    "pages": {
+      "url": "https://leotsouo.github.io/questnote-pwa/",
+      "scope": "/questnote-pwa/",
+      "build_type": "legacy",
+      "source": {
+        "branch": "main",
+        "path": "/"
+      },
+      "status": "built",
+      "https_enforced": true
+    },
+    "latestWorkflow": {
+      "id": 30220073263,
+      "conclusion": "success",
+      "head_sha": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+      "updated_at": "2026-07-26T20:58:27Z",
+      "url": "https://github.com/leotsouo/questnote-pwa/actions/runs/30220073263"
+    },
+    "liveFiles": {
+      "status": "UNVERIFIED",
+      "methods": [
+        "Node fetch",
+        "PowerShell Invoke-WebRequest"
+      ],
+      "error": "TLS certificate validation failure; verification was not disabled",
+      "paths": [
+        "index.html",
+        "src/version.js",
+        "service-worker.js",
+        "data/pools.json"
+      ]
+    }
+  },
+  "outstandingReleaseGates": [
+    "Artifact-based deployment configuration",
+    "Live CDN byte identity",
+    "Public preview hosting/scope",
+    "Physical installed PWA and active client coverage",
+    "Durable source/artifact archive and traceable integration revision",
+    "Separate source promotion, merge and deployment approvals"
+  ],
+  "nonBlockingObservations": [
+    "Shared pool details still show a generic post-unlock-rates label for this unlock:null pool; actual no-unlock economics and candidate set pass"
+  ],
+  "performed": {
+    "officialCatalogWrites": false,
+    "officialAssetWrites": false,
+    "legacySnapshotWrites": false,
+    "sourcePromotion": false,
+    "commit": false,
+    "push": false,
+    "merge": false,
+    "deploy": false
+  }
+}

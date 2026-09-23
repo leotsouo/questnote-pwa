@@ -1,0 +1,444 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-23",
+  "timezone": "Asia/Taipei",
+  "seriesId": "frost_oath_fjord",
+  "scope": "Prompts authored for human review; content approved, no image generation",
+  "status": {
+    "schemaVersion": 1,
+    "seriesId": "frost_oath_fjord",
+    "toolsHash": "09b569be007620bd04e7d8ca5c3fda610c93349b0e99a9be1373639a00cd5a7b",
+    "baselineHash": "7fc0939c4d680b3a95ca902a0792e15dfa838d6f080c167bc67fb63e2d92606d",
+    "errors": [],
+    "stages": [
+      {
+        "stage": "brief",
+        "inputHash": "91257bcc3fe4001d48d998b9a329189f68b8538d457d306a54f0b5ed07bbc6be",
+        "outputHash": "a55283d88b59c30c2169a3a4fff2a5ef0ac81cd922dfc12d575146b1e6b776ad",
+        "files": {
+          "brief.json": "c52e765c4b2736c9e566ff0fc0a62caf69b102153c844d92036f17f39d433c5b"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "plan",
+        "inputHash": "a55283d88b59c30c2169a3a4fff2a5ef0ac81cd922dfc12d575146b1e6b776ad",
+        "outputHash": "9cc9098621403aedda8abd272044eac3d055580db5dace27cd59fd9ed6b463f4",
+        "files": {
+          "plan.json": "0906bc8bc4b80033fd763c999ca25223fcbf55d352463f483d3f2df240e2dc64"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "content",
+        "inputHash": "9cc9098621403aedda8abd272044eac3d055580db5dace27cd59fd9ed6b463f4",
+        "outputHash": "cd5c1eb74b1b481f223fba86147fddd82532ff34c33f893779f3f89519735a97",
+        "files": {
+          "series.json": "7e82a459dc9fb288c9f05d00f39da434e35cfa8355d748341ff4b5cfe8ef5599",
+          "pets.json": "e7a3db027a4a7c41b8162d3c001819467634e7e47abed2e9463e1475e3bc6be7",
+          "pets-lore.json": "4389eb0c1a5c0ca22c7018268850e0526666308e054d9d6e05722436fa9b6d4e",
+          "pool.json": "2525ebc105d845d37f2318870383d2a78342836d899a101a53cb8372ca076e9b"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "prompts",
+        "inputHash": "cd5c1eb74b1b481f223fba86147fddd82532ff34c33f893779f3f89519735a97",
+        "outputHash": "a5ea5c0e2112ae6f3bcb6a68e14e0b82c6e2049c552cda7fde1a74e5a5efb58f",
+        "files": {
+          "prompts.json": "84e83ed86e72c5e828ce7af53999392e588685557ecc89ab6f875e55a89fca74"
+        },
+        "missing": [],
+        "approved": false,
+        "status": "awaiting_review"
+      },
+      {
+        "stage": "images",
+        "inputHash": "a5ea5c0e2112ae6f3bcb6a68e14e0b82c6e2049c552cda7fde1a74e5a5efb58f",
+        "outputHash": null,
+        "files": {},
+        "missing": [
+          "images/pet_n20.png",
+          "images/pet_n21.png",
+          "images/pet_n22.png",
+          "images/pet_r17.png",
+          "images/pet_r18.png",
+          "images/pet_r19.png",
+          "images/pet_sr13.png",
+          "images/pet_sr14.png",
+          "images/pet_sr15.png",
+          "images/pet_ssr08.png",
+          "images/pet_ssr09.png",
+          "images/pet_ur07.png"
+        ],
+        "approved": false,
+        "status": "missing"
+      }
+    ],
+    "nextStage": "prompts",
+    "readyToStage": false
+  },
+  "pipelineValidation": {
+    "ok": false,
+    "errors": [
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_n20.png'",
+        "path": "images/pet_n20.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_n21.png'",
+        "path": "images/pet_n21.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_n22.png'",
+        "path": "images/pet_n22.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_r17.png'",
+        "path": "images/pet_r17.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_r18.png'",
+        "path": "images/pet_r18.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_r19.png'",
+        "path": "images/pet_r19.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_sr13.png'",
+        "path": "images/pet_sr13.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_sr14.png'",
+        "path": "images/pet_sr14.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_sr15.png'",
+        "path": "images/pet_sr15.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_ssr08.png'",
+        "path": "images/pet_ssr08.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_ssr09.png'",
+        "path": "images/pet_ssr09.png"
+      },
+      {
+        "level": "error",
+        "code": "ENOENT",
+        "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\OneDrive\\questnote-pwa\\content\\pet-series\\frost_oath_fjord\\images\\pet_ur07.png'",
+        "path": "images/pet_ur07.png"
+      }
+    ],
+    "warnings": [
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[0].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[1].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[2].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[3].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[4].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[5].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[6].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[7].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[8].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[9].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[10].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[11].poolTags"
+      }
+    ],
+    "previews": [
+      {
+        "poolId": "standard",
+        "locked": 56,
+        "unlocked": 56
+      },
+      {
+        "poolId": "eternal_slumber_bloom",
+        "locked": 12,
+        "unlocked": 16
+      },
+      {
+        "poolId": "frost_oath_fjord",
+        "locked": 12,
+        "unlocked": 12
+      }
+    ],
+    "changes": {
+      "pets": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "pools": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "lore": {
+        "added": [
+          "pet_n20",
+          "pet_n21",
+          "pet_n22",
+          "pet_r17",
+          "pet_r18",
+          "pet_r19",
+          "pet_sr13",
+          "pet_sr14",
+          "pet_sr15",
+          "pet_ssr08",
+          "pet_ssr09",
+          "pet_ur07"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "series": {
+        "added": [
+          "frost_oath_fjord"
+        ],
+        "changed": [],
+        "removed": []
+      }
+    }
+  },
+  "promptIntegrityAudit": {
+    "ok": true,
+    "rosterIdsExact": true,
+    "promptCount": 12,
+    "uniquePrompts": 12,
+    "referenceFilesVerified": [
+      {
+        "path": "assets/pets/pet_r16.png",
+        "sha256": "9a699476de1ca3bda8448086f7b7f3283921436798f0dbda8096c92d2d050ace"
+      },
+      {
+        "path": "assets/pets/pet_sp09.png",
+        "sha256": "e4ea720a4777b3dcc042cd9751785d4793e29a566083bfe19a1aa6500ef79ede"
+      },
+      {
+        "path": "assets/pets/pet_sr12.png",
+        "sha256": "8ed787ead176f3af3faf9e8be846c96dfa1b5978561ef1187d4124e7e5a5d8cd"
+      },
+      {
+        "path": "assets/pets/pet_ur05.png",
+        "sha256": "39292d46cb7313aac0e46c4bdeab34e066bc971bed9cc7cc32a8baedf2c8bf48"
+      },
+      {
+        "path": "assets/pets/pet_sp08.png",
+        "sha256": "384abc56db353c62a5552cd955ab65c3412fc442c168f19858c610c015c28217"
+      }
+    ],
+    "upstreamFileHashesUnchanged": {
+      "brief.json": "c52e765c4b2736c9e566ff0fc0a62caf69b102153c844d92036f17f39d433c5b",
+      "plan.json": "0906bc8bc4b80033fd763c999ca25223fcbf55d352463f483d3f2df240e2dc64",
+      "series.json": "7e82a459dc9fb288c9f05d00f39da434e35cfa8355d748341ff4b5cfe8ef5599",
+      "pets.json": "e7a3db027a4a7c41b8162d3c001819467634e7e47abed2e9463e1475e3bc6be7",
+      "pets-lore.json": "4389eb0c1a5c0ca22c7018268850e0526666308e054d9d6e05722436fa9b6d4e",
+      "pool.json": "2525ebc105d845d37f2318870383d2a78342836d899a101a53cb8372ca076e9b"
+    },
+    "imageCount": 0,
+    "stagingExists": false,
+    "promptStats": [
+      {
+        "petId": "pet_n20",
+        "name": "燼囊旅鼠",
+        "rarity": "N",
+        "promptWords": 372,
+        "negativePromptWords": 75
+      },
+      {
+        "petId": "pet_n21",
+        "name": "纜結海鸚",
+        "rarity": "N",
+        "promptWords": 359,
+        "negativePromptWords": 77
+      },
+      {
+        "petId": "pet_n22",
+        "name": "鉚殼岸蟹",
+        "rarity": "N",
+        "promptWords": 375,
+        "negativePromptWords": 76
+      },
+      {
+        "petId": "pet_r17",
+        "name": "槳歌斑海豹",
+        "rarity": "R",
+        "promptWords": 366,
+        "negativePromptWords": 77
+      },
+      {
+        "petId": "pet_r18",
+        "name": "鍛火獠豬",
+        "rarity": "R",
+        "promptWords": 367,
+        "negativePromptWords": 85
+      },
+      {
+        "petId": "pet_r19",
+        "name": "織帆雪貂",
+        "rarity": "R",
+        "promptWords": 365,
+        "negativePromptWords": 81
+      },
+      {
+        "petId": "pet_sr13",
+        "name": "刻潮築舟狸",
+        "rarity": "SR",
+        "promptWords": 377,
+        "negativePromptWords": 77
+      },
+      {
+        "petId": "pet_sr14",
+        "name": "霜途馴鹿",
+        "rarity": "SR",
+        "promptWords": 369,
+        "negativePromptWords": 84
+      },
+      {
+        "petId": "pet_sr15",
+        "name": "峽歌雷鳥",
+        "rarity": "SR",
+        "promptWords": 363,
+        "negativePromptWords": 82
+      },
+      {
+        "petId": "pet_ssr08",
+        "name": "風眼誓鴉",
+        "rarity": "SSR",
+        "promptWords": 392,
+        "negativePromptWords": 82
+      },
+      {
+        "petId": "pet_ssr09",
+        "name": "深潮領航鯨",
+        "rarity": "SSR",
+        "promptWords": 392,
+        "negativePromptWords": 85
+      },
+      {
+        "petId": "pet_ur07",
+        "name": "破曉誓角麝牛",
+        "rarity": "UR",
+        "promptWords": 422,
+        "negativePromptWords": 87
+      }
+    ]
+  },
+  "officialPathsGitCheck": {
+    "trackedChanges": [],
+    "untrackedFiles": [],
+    "paths": [
+      "data",
+      "assets",
+      "content/release-compatibility"
+    ]
+  },
+  "visualQa": {
+    "performed": false,
+    "reason": "Images not generated; prompt intent is not visual QA"
+  }
+}

@@ -175,3 +175,6 @@ disabled. CDN byte identity, preview hosting configuration and the range of
 still-installed client/SW versions remain external release checks. The bootstrap
 explicitly refuses to start a new artifact under an incompatible legacy controller;
 it prepares the update and asks that all old clients close naturally.
+# Current integration and Preview
+
+See [final integration](final-integration.md) for the authoritative branch, reviewed real candidate, Preview destination and cache-recovery fix. The existing HTTPS Preview is the separate `leotsouo/questnote-pwa-preview` repository, scope `/questnote-pwa-preview/`, using only the assembled `preview` profile. Historical production deployment examples below do not authorize a production push.
