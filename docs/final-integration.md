@@ -30,19 +30,16 @@ Final review also found that the old preview manifest enabled ?perf=1 and its te
 
 ## Validation and current state
 
-Local automated acceptance is complete:141 Node tests,34 logic assertions,98 JavaScript syntax checks, native backup/gacha/UI workflows, synthetic pipeline, and11 final immutable artifact browser cases passed. Detailed results and artifact/deployment pins are saved under `reports/final-integration/`; the iPhone checklist is `docs/iphone-final-acceptance.md`. Physical iPhone Safari, keyboard, standalone and safe-area behavior require the user's device check and are never inferred from a desktop viewport.
+The initial integration passed 141 Node tests, 34 logic assertions, 98 JavaScript syntax checks, native backup/gacha/UI workflows, the synthetic pipeline, and 11 immutable artifact browser cases. The subsequent V3.4.10 iPhone fixes passed 142 Node tests, 34 logic assertions, image and content validation, the synthetic pipeline, 10 summon, 13 pool-content, and 11 release-artifact browser cases. The task/habit/collection/theme/reload/backup browser flow also passed. Detailed initial evidence is under `reports/final-integration/`; the current iPhone checklist is `docs/iphone-final-acceptance.md`. Physical iPhone Safari, keyboard, standalone and safe-area behavior require the user's device check and are never inferred from a desktop viewport.
 
 The canonical source catalogs intentionally remain the original 72 pets/two pools. The release assembler merges the approved real candidate into the versioned 84-pet/three-pool bundle and keeps frozen legacy catalogs for old clients. Synthetic test pools stay in temporary fixtures.
 
-## Published Preview
+## Preview history and current release
 
-- Runtime/source commit: `5eb3d55c7e4be854a3531314ed349d55b913d8d9` (V3.4.9). Later integration commits contain tests/reports only.
-- Preview artifact: `1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8`.
-- Preview repository commit: `689a4a0582d8fd45e2747fb927b55cb5f63eec2c`, a non-force descendant of the original preview main.
-- [Pages deployment](https://github.com/leotsouo/questnote-pwa-preview/actions/runs/35859738328) completed successfully.
-- All331 live HTTPS files match the pinned artifact. Production manifest, SW and version still match aada9a7. TLS verification remained enabled using Windows system CAs.
-- Actual hosted app safely requested all old Preview clients to close; closing the agent-owned Preview tab and reopening completed update without deleting storage. Settings show V3.4.9 and the pinned preview cache; collection capacity is84, all three pool choices are visible. Frost hero/featured images loaded.
-- Actual hosted default/sweet views were checked at390x844: no horizontal overflow, CTA above themed art, bottom nav within viewport, details show100/1000 cost and30/100 pity. Reload preserves sweet preference; returned to original default theme afterwards. No console errors were recorded. No resource grants, task mutations or save imports were performed on the live host.
+- V3.4.9 was published from source commit `5eb3d55c7e4be854a3531314ed349d55b913d8d9` as artifact `1a23fcd14d8ba55372636ad3c09a0316b504bd81f496d46fee3ceda5bcf274e8`, Preview commit `689a4a0582d8fd45e2747fb927b55cb5f63eec2c`. Its [Pages deployment](https://github.com/leotsouo/questnote-pwa-preview/actions/runs/35859738328) completed successfully, and the hosted default/sweet views were checked at 390x844.
+- The V3.4.10 source commit `99510064dce30e63c8055f1022b9ad52552d05be` fixes pool hero swaps and bottom-nav motion, uses small pet images first for summon and collection, removes result-screen repeat draws, and removes the app-level reduced-animation setting while preserving the system preference.
+- The V3.4.10 Preview artifact `ac75c41f18d2e46d1ed769dbba1a32319b1fae1da6178cdea199079f2a0f4a34` was assembled from that commit with preview scope `/questnote-pwa-preview/`, `QuestNotePreviewDB`, and 84 pets / three pools. Its manifest SHA-256 is `db865baa424d26cc0737fa21d4806d512218972ba76c4c63fb0b4b21a5f1edec`. The separate Preview repository commit is `d2c8d33905e4140eafd88c7380db8798aa9378c6`.
+- The V3.4.10 [Pages deployment](https://github.com/leotsouo/questnote-pwa-preview/actions/runs/35868716778) completed successfully. Live HTTPS serves the pinned artifact ID and source commit; all 11 checked runtime/catalog files matched the local artifact SHA-256 values. Closing and reopening the agent-owned Preview tab completed the safe SW update without clearing storage. At 390×844, live Bloom/Frost switching updated the pool title and hero asset together, hid the previous hero during loading, kept the bottom navigation at the same position, and produced no horizontal overflow. Other iPhone-specific behavior remains for physical-device acceptance.
 
 ## Main merge gate and remaining risks
 
