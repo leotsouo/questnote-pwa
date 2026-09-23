@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-27T04:23:00+08:00",
+  "messages": [
+    {
+      "id": "system_mail_v342_eternal_slumber_launch",
+      "type": "compensation",
+      "title": "V3.4.2 更新紀念｜永眠花海召喚正式開放",
+      "body": "親愛的旅人：\n\n沉睡於長夜深處的花庭，現在已經在鏡池彼端悄然甦醒。\n\n「永眠花海召喚」正式開放。新的相遇正在花海之中等候；隨著你在此地的旅程推進，或許還會聽見更深一層的晨光低語。\n\n本次更新也調整了召喚相關的演出與結果畫面，希望每一次相遇都能被好好看見。其餘細節，就留給你親自去發現吧。\n\n感謝你一直陪伴 QuestNote 成長。\n\n請收下相當於一次十連召喚的 1,000 星塵，願這份夢塵能替你帶來新的相遇。\n\n沉眠有歸，甦醒有時。\n\nQuestNote 開發團隊",
+      "publishedAt": "2026-07-27T04:00:00+08:00",
+      "expiresAt": null,
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.0.0",
+      "maxAppVersion": null,
+      "icon": "🌙",
+      "reward": {
+        "stardust": 1000,
+        "adventureEnergy": 0,
+        "materials": {},
+        "items": {}
+      },
+      "action": {
+        "type": "view",
+        "view": "gacha",
+        "label": "前往召喚"
+      }
+    },
+    {
+      "id": "2026-07-v300-launch",
+      "type": "update",
+      "title": "QuestNote V3.0.0 更新",
+      "body": "全域信箱與補償中心正式上線。\n\n開發者可透過遠端公告向所有裝置發送更新說明與補償。\n補償為每份本機資料領取一次（once per local profile）。",
+      "publishedAt": "2026-07-26T12:00:00+08:00",
+      "expiresAt": null,
+      "priority": "normal",
+      "enabled": true,
+      "minAppVersion": "3.0.0",
+      "maxAppVersion": null,
+      "icon": "📮",
+      "reward": null,
+      "action": {
+        "type": "view",
+        "view": "handbook",
+        "label": "查看冒險手冊"
+      }
+    },
+    {
+      "id": "2026-07-v300-compensation",
+      "type": "compensation",
+      "title": "版本更新補償",
+      "body": "感謝你持續使用 QuestNote，請收下本次更新補償。\n\n此補償為每份本機資料領取一次。",
+      "publishedAt": "2026-07-26T12:00:00+08:00",
+      "expiresAt": "2026-08-31T23:59:59+08:00",
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.0.0",
+      "maxAppVersion": null,
+      "icon": "🎁",
+      "reward": {
+        "stardust": 100,
+        "adventureEnergy": 3,
+        "materials": {},
+        "items": {}
+      },
+      "action": null
+    },
+    {
+      "id": "2026-07-welcome-10pull",
+      "type": "compensation",
+      "title": "歡迎使用 QuestNote！",
+      "body": "歡迎來到 QuestNote！\n\n感謝你下載並開始這段冒險。為了歡迎大家，送上等同 10 抽的星塵補償，祝召喚順利、旅途愉快！\n\n此補償為每份本機資料可領取一次。",
+      "publishedAt": "2026-07-26T17:51:21+08:00",
+      "expiresAt": null,
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.0.0",
+      "maxAppVersion": null,
+      "icon": "🎉",
+      "reward": {
+        "adventureEnergy": 0,
+        "stardust": 1000,
+        "materials": {},
+        "items": {}
+      },
+      "action": null
+    }
+  ]
+}

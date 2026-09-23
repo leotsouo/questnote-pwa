@@ -1,0 +1,33 @@
+{
+  "name": "QuestNote",
+  "short_name": "QN",
+  "description": "個人任務記事 App — 完成任務獲得星塵，召喚幻獸！",
+  "start_url": "/questnote-pwa/index.html",
+  "scope": "/questnote-pwa/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f0f1a",
+  "theme_color": "#0f0f1a",
+  "lang": "zh-Hant",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "/questnote-pwa/"
+}

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080B16" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QuestNote" />
+  <title>QuestNote</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="src/ui-polish.css" />
+  <link rel="stylesheet" href="src/summon-polish.css" />
+  <meta name="questnote-artifact" content="2c3a9312a4cac620c1982bc90c884da6b0db3c35acd41cfe3b682d440c3fb6ad">
+</head>
+<body data-theme="default">
+  <div id="app-loader" class="app-loader">
+    <div class="loader-spinner"></div>
+    <p>載入 QuestNote…</p>
+  </div>
+
+  <div id="app" class="app">
+    <!-- 任務頁 -->
+    <main id="view-tasks" class="view active">
+      <header class="page-header page-header--tasks">
+        <div class="page-header__row">
+          <div class="page-header__inner">
+            <h1 class="page-title">任務</h1>
+            <p class="page-subtitle">完成任務獲得星塵與冒險能量</p>
+          </div>
+          <button
+            type="button"
+            id="btn-global-mailbox"
+            class="mailbox-entry-btn"
+            aria-label="開啟信箱"
+            aria-haspopup="dialog"
+            data-action="open-mailbox"
+          >
+            <span class="mailbox-entry-btn__icon" aria-hidden="true">📮</span>
+            <span class="mailbox-entry-btn__badge" id="mailbox-entry-badge" hidden></span>
+            <span class="mailbox-entry-btn__gift" id="mailbox-entry-gift" hidden aria-hidden="true">🎁</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="stats-bar" aria-label="資源統計">
+        <div class="stat-card stat-card--stardust">
+          <span class="stat-icon" aria-hidden="true">✦</span>
+          <span class="stat-label">星塵</span>
+          <span class="stat-value" id="stat-stardust">0</span>
+        </div>
+        <div class="stat-card stat-card--energy">
+          <span class="stat-icon" aria-hidden="true">⚡</span>
+          <span class="stat-label">冒險能量</span>
+          <span class="stat-value" id="stat-energy">0</span>
+        </div>
+        <div class="stat-card stat-card--today">
+          <span class="stat-icon" aria-hidden="true">✓</span>
+          <span class="stat-label">今日完成</span>
+          <span class="stat-value" id="stat-today">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon" aria-hidden="true">✨</span>
+          <span class="stat-label">可抽卡</span>
+          <span class="stat-value" id="stat-pulls">0</span>
+        </div>
+        <div class="stat-card stat-card--claimable" id="stat-claimable-card">
+          <span class="stat-icon" aria-hidden="true">🏅</span>
+          <span class="stat-label">可領成就</span>
+          <span class="stat-value" id="stat-claimable">0</span>
+        </div>
+      </section>
+
+      <div class="task-view-tabs segmented-control" id="task-view-tabs" role="tablist" aria-label="任務視圖">
+        <button type="button" class="segmented-control__btn active" data-task-view="today" role="tab" aria-selected="true">今日</button>
+        <button type="button" class="segmented-control__btn" data-task-view="all" role="tab" aria-selected="false">全部</button>
+        <button type="button" class="segmented-control__btn" data-task-view="smart" role="tab" aria-selected="false">智慧</button>
+      </div>
+
+      <div class="filter-bar filter-bar--categories" id="task-category-filters" hidden></div>
+      <div id="task-view-content" class="task-view-content"></div>
+      <section id="today-plan-summary" class="today-plan-summary card"></section>
+      <section id="habit-summary" class="habit-summary card" data-action="go-habits" role="button" tabindex="0"></section>
+
+      <section id="companion-section" class="companion-section"></section>
+
+      <section id="home-hub" class="home-hub" aria-label="首頁功能選單">
+        <div class="home-hub__icons" role="tablist" aria-label="每日祝福、冒險任務、稱號">
+          <button type="button" class="home-hub__icon" data-action="home-hub" data-hub="blessing" role="tab" aria-expanded="false" aria-label="每日祝福">
+            <span class="home-hub__emoji" aria-hidden="true">🌸</span>
+            <span class="home-hub__name">每日祝福</span>
+            <span class="home-hub__dot" data-hub-dot="blessing" hidden></span>
+          </button>
+          <button type="button" class="home-hub__icon" data-action="home-hub" data-hub="quest" role="tab" aria-expanded="false" aria-label="冒險任務">
+            <span class="home-hub__emoji" aria-hidden="true">🗺️</span>
+            <span class="home-hub__name">冒險任務</span>
+            <span class="home-hub__dot" data-hub-dot="quest" hidden></span>
+          </button>
+          <button type="button" class="home-hub__icon" data-action="home-hub" data-hub="titles" role="tab" aria-expanded="false" aria-label="稱號">
+            <span class="home-hub__emoji" aria-hidden="true">🏆</span>
+            <span class="home-hub__name">稱號</span>
+            <span class="home-hub__dot" data-hub-dot="titles" hidden></span>
+          </button>
+        </div>
+        <div class="home-hub__panel">
+          <section id="homeDailyBlessingContainer" class="daily-blessing-section daily-blessing-section--home" aria-label="每日祝福"></section>
+
+          <section id="quest-panel" class="quest-panel" aria-label="冒險任務"></section>
+
+          <section id="achievement-strip" class="achievement-strip card" data-action="go-achievements" role="button" tabindex="0"></section>
+        </div>
+      </section>
+
+      <button id="btn-add-task" class="fab" aria-label="新增任務">＋</button>
+    </main>
+
+    <!-- 召喚頁 -->
+    <main id="view-gacha" class="view">
+      <header class="page-header">
+        <div class="page-header__inner">
+          <h1 class="page-title">召喚</h1>
+          <p class="page-subtitle">消耗星塵召喚幻獸夥伴</p>
+        </div>
+      </header>
+
+      <section class="gacha-panel card" id="gacha-panel" data-pool-theme="">
+        <div class="gacha-pool-switcher" id="gacha-pool-switcher" hidden>
+          <label class="gacha-pool-switcher__label" for="gacha-pool-select">選擇卡池</label>
+          <select id="gacha-pool-select" class="gacha-pool-select" aria-label="選擇召喚卡池"></select>
+        </div>
+
+        <h2 class="gacha-pool" id="gacha-pool-name">標準召喚</h2>
+
+        <div class="gacha-stardust">
+          <span class="gacha-stardust__label">目前星塵</span>
+          <span class="gacha-stardust__value" id="gacha-stardust">0</span>
+        </div>
+
+        <div class="gacha-info">
+          <p id="gacha-single-price">單次消耗：<strong id="gacha-cost">100</strong> 星塵</p>
+          <p id="gacha-ten-price">10 連抽消耗：<strong id="gacha-ten-cost">1000</strong> 星塵</p>
+        </div>
+
+        <div class="gacha-actions" role="group" aria-label="召喚操作">
+          <div class="gacha-action">
+            <button id="btn-pull" class="btn btn--gacha btn--block" aria-describedby="gacha-single-price">召喚 1 次</button>
+            <p class="gacha-hint" id="gacha-hint-single" hidden></p>
+          </div>
+          <div class="gacha-action">
+            <button id="btn-pull-ten" class="btn btn--gacha btn--gacha-ten btn--block" aria-describedby="gacha-ten-price">召喚 10 次</button>
+            <p class="gacha-hint" id="gacha-hint-ten" hidden></p>
+          </div>
+        </div>
+
+        <div class="pity-bars">
+          <div class="pity-item">
+            <div class="pity-item__header">
+              <span class="pity-label">SSR 保底</span>
+              <span class="pity-value" id="gacha-ssr-pity">0/30</span>
+            </div>
+            <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--ssr" id="gacha-ssr-bar"></div></div>
+          </div>
+          <div class="pity-item">
+            <div class="pity-item__header">
+              <span class="pity-label">UR 保底</span>
+              <span class="pity-value" id="gacha-ur-pity">0/100</span>
+            </div>
+            <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--ur" id="gacha-ur-bar"></div></div>
+          </div>
+        </div>
+
+        <div class="gacha-rates" id="gacha-rates"></div>
+
+        <div id="gacha-pool-content" class="gacha-pool-content" hidden>
+          <details id="gacha-awakening-panel" class="gacha-awakening-panel" hidden>
+            <summary class="gacha-awakening-panel__summary">
+              <span id="gacha-awakening-title">晨醒花庭</span>
+              <span id="gacha-awakening-progress">夢塵共鳴 0／20</span>
+            </summary>
+            <div class="gacha-awakening-panel__body">
+              <div class="gacha-awakening-bar" aria-hidden="true">
+                <span id="gacha-awakening-fill" class="gacha-awakening-bar__fill"></span>
+              </div>
+              <p id="gacha-awakening-desc" class="gacha-awakening-panel__desc"></p>
+              <p id="gacha-awakening-counts" class="gacha-awakening-panel__counts"></p>
+              <div id="gacha-awakening-preview" class="gacha-awakening-preview" aria-label="晨醒角色預覽"></div>
+              <p id="gacha-awakening-rate-note" class="gacha-awakening-panel__note"></p>
+            </div>
+          </details>
+        <div id="gacha-theme-stage" class="gacha-theme-stage" hidden>
+          <div class="gacha-theme-stage__atmosphere" aria-hidden="true">
+            <span class="gacha-theme-stage__mist"></span>
+            <span class="gacha-theme-stage__pool"></span>
+            <span class="gacha-theme-stage__petals"></span>
+            <span class="gacha-theme-stage__dust"></span>
+            <span class="gacha-theme-stage__arch"></span>
+            <span class="gacha-theme-stage__moon"></span>
+          </div>
+          <p class="gacha-theme-stage__badge" id="gacha-theme-badge"></p>
+          <h2 class="gacha-theme-stage__name" id="gacha-theme-name"></h2>
+          <p class="gacha-theme-stage__eyebrow" id="gacha-theme-eyebrow"></p>
+          <p class="gacha-theme-stage__tagline" id="gacha-theme-tagline"></p>
+          <div class="gacha-theme-stage__heroes">
+            <figure class="gacha-theme-hero" id="gacha-theme-hero">
+              <div class="gacha-theme-hero__frame">
+                <img id="gacha-theme-hero-img" class="gacha-theme-hero__img" alt="" decoding="async" width="240" height="240">
+              </div>
+              <figcaption class="gacha-theme-hero__cap">
+                <span class="gacha-theme-hero__rarity" id="gacha-theme-hero-rarity"></span>
+                <span class="gacha-theme-hero__name" id="gacha-theme-hero-name"></span>
+                <span class="gacha-theme-hero__title" id="gacha-theme-hero-title"></span>
+              </figcaption>
+            </figure>
+            <div class="gacha-theme-featured" id="gacha-theme-featured" aria-label="焦點夥伴"></div>
+          </div>
+          <p class="gacha-theme-stage__meta" id="gacha-theme-meta"></p>
+          <div id="gacha-theme-dual-hero" class="gacha-theme-dual" hidden></div>
+        </div>
+          <button type="button" class="gacha-theme-details-btn" id="gacha-theme-details-btn" aria-expanded="false" aria-controls="gacha-theme-details">卡池詳情</button>
+          <div class="gacha-theme-details" id="gacha-theme-details" hidden></div>
+        </div>
+      </section>
+
+      <section id="gacha-daily-blessing-entry" class="daily-blessing-gacha-entry" aria-label="每日祝福入口"></section>
+    </main>
+
+    <!-- 圖鑑頁 -->
+    <main id="view-collection" class="view">
+      <header class="page-header">
+        <div class="page-header__inner">
+          <h1 class="page-title">圖鑑</h1>
+          <p class="page-subtitle">已收集 <span id="collection-count">0/0</span> · 收集率 <span id="collection-rate">0%</span></p>
+        </div>
+      </header>
+
+      <section id="collection-progress-summary" class="collection-progress-summary card" aria-label="收藏進度"></section>
+
+      <section id="collection-milestones-panel" class="collection-milestones-panel card" aria-label="收藏里程碑"></section>
+
+      <section id="collection-companion" class="collection-companion card"></section>
+
+      <div class="filter-bar" id="collection-series-filters" aria-label="系列篩選"></div>
+
+      <div class="filter-bar" id="collection-filters">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="N">N</button>
+        <button class="filter-btn" data-filter="R">R</button>
+        <button class="filter-btn" data-filter="SR">SR</button>
+        <button class="filter-btn" data-filter="SSR">SSR</button>
+        <button class="filter-btn" data-filter="UR">UR</button>
+        <button class="filter-btn" data-filter="owned">已獲得</button>
+        <button class="filter-btn" data-filter="unowned">未獲得</button>
+      </div>
+
+      <p class="collection-browse-hint">點圖片看原圖，點名稱看詳情</p>
+      <div id="collection-grid" class="collection-grid"></div>
+    </main>
+
+    <!-- 探險頁 -->
+    <main id="view-expedition" class="view">
+      <header class="page-header">
+        <div class="page-header__inner">
+          <h1 class="page-title">探險</h1>
+          <p class="page-subtitle">派遣夥伴遠征，獲得獎勵與親密度</p>
+        </div>
+      </header>
+
+      <section id="expedition-energy" class="expedition-energy card"></section>
+      <section id="expedition-active" class="expedition-active"></section>
+      <section id="expedition-areas" class="expedition-areas"></section>
+      <section id="exploration-panel" class="exploration-panel"></section>
+      <section id="expedition-pets" class="expedition-pets"></section>
+    </main>
+
+    <!-- 更多頁 -->
+    <main id="view-more" class="view">
+      <header class="page-header">
+        <div class="page-header__inner">
+          <h1 class="page-title">更多</h1>
+          <p class="page-subtitle">成就、習慣、工坊、設定與資料管理</p>
+        </div>
+      </header>
+
+      <section class="more-menu card">
+        <button class="more-menu-item" data-goto="handbook" type="button">
+          <span class="more-menu-icon">📖</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">冒險手冊</span>
+            <span class="more-menu-desc">查看你的任務、收藏與探險成長</span>
+          </span>
+          <span class="more-menu-arrow">›</span>
+        </button>
+        <button class="more-menu-item" data-goto="tasks" data-scroll-daily-blessing type="button">
+          <span class="more-menu-icon">🌙</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">每日祝福</span>
+            <span class="more-menu-desc">每日簽到與幸運轉盤</span>
+          </span>
+          <span class="more-menu-badge" id="more-daily-blessing-badge" hidden aria-hidden="true"></span>
+          <span class="more-menu-arrow">›</span>
+        </button>
+        <button class="more-menu-item" data-goto="achievements" type="button">
+          <span class="more-menu-icon">🏅</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">成就</span>
+            <span class="more-menu-desc">查看進度、領取獎勵與管理稱號</span>
+          </span>
+          <span class="more-menu-badge" id="more-achievements-badge" hidden aria-hidden="true"></span>
+          <span class="more-menu-arrow">›</span>
+        </button>
+        <button class="more-menu-item" data-goto="habits" type="button">
+          <span class="more-menu-icon">🔄</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">習慣</span>
+            <span class="more-menu-desc">每日與每週習慣追蹤</span>
+          </span>
+          <span class="more-menu-badge" id="more-habits-badge" hidden aria-hidden="true"></span>
+          <span class="more-menu-arrow">›</span>
+        </button>
+        <button class="more-menu-item" data-goto="workshop" type="button">
+          <span class="more-menu-icon">🔨</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">工坊</span>
+            <span class="more-menu-desc">使用探險材料製作親密度道具</span>
+          </span>
+          <span class="more-menu-arrow">›</span>
+        </button>
+        <button class="more-menu-item" data-goto="settings" type="button">
+          <span class="more-menu-icon">⚙️</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">設定</span>
+            <span class="more-menu-desc">備份、統計與顯示偏好</span>
+          </span>
+          <span class="more-menu-arrow">›</span>
+        </button>
+      </section>
+
+      <section class="card more-version-section" aria-label="版本資訊">
+        <div class="version-info-card version-info-card--compact" data-version-info data-version-info-compact></div>
+      </section>
+    </main>
+
+    <!-- 冒險手冊頁 -->
+    <main id="view-handbook" class="view">
+      <header class="page-header page-header--with-back">
+        <button class="page-back-btn" data-goto="more" type="button" aria-label="返回更多">‹</button>
+        <div class="page-header__inner">
+          <h1 class="page-title">冒險手冊</h1>
+          <p class="page-subtitle">你的任務、收藏與探險成長總覽</p>
+        </div>
+      </header>
+
+      <div id="handbook-content" class="handbook-content"></div>
+    </main>
+
+    <!-- 習慣頁 -->
+    <main id="view-habits" class="view">
+      <header class="page-header page-header--with-back">
+        <button class="page-back-btn" data-goto="more" type="button" aria-label="返回更多">‹</button>
+        <div class="page-header__inner">
+          <h1 class="page-title">習慣</h1>
+          <p class="page-subtitle">養成穩定的每日節奏</p>
+        </div>
+      </header>
+
+      <section id="habit-stats" class="habit-stats"></section>
+      <div id="habit-view-content" class="habit-view-content"></div>
+
+      <button id="btn-add-habit" class="fab" aria-label="新增習慣">＋</button>
+    </main>
+
+    <!-- 成就頁 -->
+    <main id="view-achievements" class="view">
+      <header class="page-header page-header--with-back">
+        <button class="page-back-btn" data-goto="more" type="button" aria-label="返回更多">‹</button>
+        <div class="page-header__inner">
+          <h1 class="page-title">成就</h1>
+          <p class="page-subtitle">冒險紀錄、獎勵與稱號</p>
+        </div>
+      </header>
+
+      <section id="achievement-summary" class="achievement-summary card"></section>
+      <section id="achievement-title-bar" class="achievement-title-bar card"></section>
+
+      <div class="filter-bar filter-bar--achievements" id="achievement-filters">
+        <button class="filter-btn active" data-ach-filter="all">全部</button>
+        <button class="filter-btn" data-ach-filter="task">任務</button>
+        <button class="filter-btn" data-ach-filter="habit">習慣</button>
+        <button class="filter-btn" data-ach-filter="gacha">召喚</button>
+        <button class="filter-btn" data-ach-filter="collection">圖鑑</button>
+        <button class="filter-btn" data-ach-filter="expedition">探險</button>
+        <button class="filter-btn" data-ach-filter="bond">親密度</button>
+        <button class="filter-btn" data-ach-filter="workshop">工坊</button>
+        <button class="filter-btn" data-ach-filter="daily">每日</button>
+        <button class="filter-btn" data-ach-filter="special">特殊</button>
+        <button class="filter-btn" data-ach-filter="done">已完成</button>
+        <button class="filter-btn" data-ach-filter="pending">未完成</button>
+        <button class="filter-btn" data-ach-filter="claimable">可領取</button>
+      </div>
+
+      <div id="achievement-list" class="achievement-list"></div>
+    </main>
+
+    <!-- 工坊頁 -->
+    <main id="view-workshop" class="view">
+      <header class="page-header page-header--with-back">
+        <button class="page-back-btn" data-goto="more" type="button" aria-label="返回更多">‹</button>
+        <div class="page-header__inner">
+          <h1 class="page-title">材料工坊</h1>
+          <p class="page-subtitle">使用探險取得的材料製作禮物，提升寵物親密度。</p>
+        </div>
+      </header>
+
+      <section id="workshop-summary" class="workshop-summary card"></section>
+
+      <div class="segmented-control segmented-control--workshop" id="workshop-tabs" role="tablist" aria-label="工坊分頁">
+        <button class="segmented-control__btn active" data-workshop-tab="materials" type="button" role="tab" aria-selected="true">材料</button>
+        <button class="segmented-control__btn" data-workshop-tab="craft" type="button" role="tab" aria-selected="false">製作</button>
+        <button class="segmented-control__btn" data-workshop-tab="gift" type="button" role="tab" aria-selected="false">贈送</button>
+      </div>
+
+      <div id="workshop-content" class="workshop-content"></div>
+    </main>
+
+    <!-- 設定頁 -->
+    <main id="view-settings" class="view">
+      <header class="page-header page-header--with-back">
+        <button class="page-back-btn" data-goto="more" type="button" aria-label="返回更多">‹</button>
+        <div class="page-header__inner">
+          <h1 class="page-title">設定</h1>
+          <p class="page-subtitle">備份、統計與顯示偏好</p>
+        </div>
+      </header>
+
+      <section class="card settings-theme">
+        <h2 class="section-title">美術風格</h2>
+        <p class="settings-section-note">
+          選擇你喜歡的 QuestNote 介面風格。這只會改變畫面外觀，不會影響任務、寵物、抽卡或資料。
+        </p>
+        <div class="theme-picker" role="radiogroup" aria-label="美術風格">
+          <button type="button" class="theme-card" data-action="select-theme" data-theme="default" role="radio" aria-checked="false">
+            <div class="theme-card__header">
+              <span class="theme-card__title">深色幻想風</span>
+              <span class="theme-card__badge" data-theme-badge="default" hidden>使用中</span>
+            </div>
+            <p class="theme-card__desc">目前預設風格，適合任務、冒險與幻獸收藏。</p>
+            <div class="theme-card__preview" aria-hidden="true">
+              <div class="theme-card__preview-frame theme-card__preview-frame--default">
+                <span class="theme-card__preview-btn theme-card__preview-btn--default"></span>
+                <span class="theme-card__swatch theme-card__swatch--accent-default"></span>
+              </div>
+              <span class="theme-card__swatch theme-card__swatch--primary-default"></span>
+            </div>
+          </button>
+          <button type="button" class="theme-card" data-action="select-theme" data-theme="sweet" role="radio" aria-checked="false">
+            <div class="theme-card__header">
+              <span class="theme-card__title">甜美可愛風</span>
+              <span class="theme-card__badge" data-theme-badge="sweet" hidden>使用中</span>
+            </div>
+            <p class="theme-card__desc">柔和粉彩、明亮可愛，適合喜歡輕鬆療癒感的介面。</p>
+            <div class="theme-card__preview" aria-hidden="true">
+              <div class="theme-card__preview-frame theme-card__preview-frame--sweet">
+                <span class="theme-card__preview-btn theme-card__preview-btn--sweet"></span>
+                <span class="theme-card__swatch theme-card__swatch--accent-sweet"></span>
+              </div>
+              <span class="theme-card__swatch theme-card__swatch--primary-sweet"></span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="card settings-preferences">
+        <h2 class="section-title">顯示偏好</h2>
+        <label class="settings-toggle" for="toggle-reduce-motion">
+          <span class="settings-toggle__text">
+            <span class="settings-toggle__label">減少動畫</span>
+            <span class="settings-toggle__desc">降低光暈與動態效果，讓畫面更安定。</span>
+          </span>
+          <input type="checkbox" id="toggle-reduce-motion" class="settings-toggle__input" />
+          <span class="settings-toggle__switch" aria-hidden="true"></span>
+        </label>
+      </section>
+
+      <section class="card settings-backup">
+        <h2 class="section-title">備份與恢復</h2>
+        <p class="settings-section-note settings-backup__intro">
+          匯入備份會用備份檔內容覆蓋目前資料。匯入前系統會先自動下載一份目前資料備份，以避免誤操作。
+        </p>
+
+        <div class="settings-backup__actions">
+          <button id="btn-export" class="btn btn--secondary btn--block" type="button">匯出 JSON 備份</button>
+        </div>
+
+        <div class="settings-backup__import">
+          <p id="import-idle-hint" class="settings-backup__hint">選擇之前匯出的 QuestNote JSON 備份檔。</p>
+          <p id="import-loading-hint" class="settings-backup__hint settings-backup__hint--loading" hidden>正在讀取備份檔...</p>
+          <p id="import-error-hint" class="settings-backup__hint settings-backup__hint--error" hidden></p>
+
+          <input type="file" id="import-file-input" accept=".json,application/json" hidden />
+
+          <button id="btn-import-select" class="btn btn--secondary btn--block" type="button">選擇備份檔</button>
+
+          <div id="import-preview" class="import-preview" hidden>
+            <p class="import-preview__warning" id="import-preview-warning" hidden></p>
+            <dl class="import-preview__list">
+              <div class="import-preview__row">
+                <dt>檔案名稱</dt>
+                <dd id="import-preview-filename">—</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>備份版本</dt>
+                <dd id="import-preview-version">—</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>備份建立時間</dt>
+                <dd id="import-preview-exported-at">—</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>任務數</dt>
+                <dd id="import-preview-tasks">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>已完成任務</dt>
+                <dd id="import-preview-completed-tasks">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>習慣數</dt>
+                <dd id="import-preview-habits">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>寵物收集數</dt>
+                <dd id="import-preview-collection">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>總寵物數</dt>
+                <dd id="import-preview-total-pets">—</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>星塵</dt>
+                <dd id="import-preview-stardust">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>冒險能量</dt>
+                <dd id="import-preview-energy">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>探險紀錄數</dt>
+                <dd id="import-preview-expeditions">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>已解鎖成就</dt>
+                <dd id="import-preview-achievements">0</dd>
+              </div>
+              <div class="import-preview__row">
+                <dt>已解鎖稱號</dt>
+                <dd id="import-preview-titles">0</dd>
+              </div>
+            </dl>
+
+            <p class="import-preview__danger-note">恢復備份會覆蓋目前資料，請先確認備份內容正確。</p>
+
+            <button id="btn-import-restore" class="btn btn--danger btn--block" type="button">恢復此備份</button>
+          </div>
+
+          <p id="import-restoring-hint" class="settings-backup__hint settings-backup__hint--loading" hidden>正在恢復資料，請不要關閉 App。</p>
+
+          <div id="import-success-panel" class="import-success-panel" hidden>
+            <p class="import-success-panel__text">備份恢復完成。</p>
+            <p class="import-success-panel__subtext">建議重新整理 App，確認資料已完整載入。</p>
+            <button id="btn-import-reload" class="btn btn--primary btn--block" type="button">重新整理 App</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card settings-stats">
+        <h2 class="section-title">資料統計</h2>
+        <dl class="stats-list">
+          <div class="stats-row">
+            <dt>任務總數</dt>
+            <dd id="settings-task-count">0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>已完成任務</dt>
+            <dd id="settings-completed-count">0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>已收集寵物</dt>
+            <dd id="settings-collection">0/0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>星塵</dt>
+            <dd id="settings-stardust">0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>冒險能量</dt>
+            <dd id="settings-energy">0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>進行中探險</dt>
+            <dd id="settings-active-expedition">0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>成就完成</dt>
+            <dd id="settings-achievements">0/0</dd>
+          </div>
+          <div class="stats-row">
+            <dt>累計召喚</dt>
+            <dd id="settings-total-pulls">0</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="card settings-version settings-version-card" aria-label="版本資訊">
+        <h2 class="section-title">版本資訊</h2>
+        <div class="version-info-card" data-version-info></div>
+      </section>
+
+      <section class="card settings-danger">
+        <h2 class="section-title section-title--danger">危險操作</h2>
+        <button id="btn-reset" class="btn btn--danger btn--block">重置所有資料</button>
+      </section>
+
+      <section id="dev-tools-section" class="card dev-tools" hidden>
+        <h2 class="section-title">開發測試用</h2>
+
+        <div id="dev-cheat-tools" class="dev-tools__group" hidden>
+          <p class="dev-tools__note">僅在本機開發環境顯示，GitHub Pages 正式版不會出現。</p>
+          <button id="btn-dev-unlock" class="btn btn--dev btn--block">測試：解鎖 8 隻高稀有寵物</button>
+          <button id="btn-dev-unlock-all" class="btn btn--dev btn--block">測試：解鎖全圖鑑</button>
+          <button id="btn-dev-stardust" class="btn btn--dev btn--block">測試：獲得 100,000 星塵</button>
+          <button id="btn-dev-companion-bond" class="btn btn--dev btn--block">測試：陪伴寵物親密度 +1 等</button>
+          <button id="btn-dev-expedition" class="btn btn--dev btn--block">測試：立即結束派遣探險</button>
+          <button id="btn-dev-daily-blessing" class="btn btn--dev btn--block">測試：重置每日祝福</button>
+
+          <h3 class="dev-tools__subtitle">信箱流程測試</h3>
+          <p class="dev-tools__note">僅 localhost。測試信件不寫入遠端 JSON／runtime cache／備份。清除測試信件不會清除已領狀態。</p>
+          <button type="button" id="btn-dev-mailbox-announcement" class="btn btn--dev btn--block">📨 測試公告</button>
+          <button type="button" id="btn-dev-mailbox-compensation" class="btn btn--dev btn--block">🎁 測試補償（星塵 ×1）</button>
+          <button type="button" id="btn-dev-mailbox-clear" class="btn btn--dev btn--block">🧹 清除測試信件</button>
+        </div>
+
+        <div id="dev-reveal-tests" class="dev-tools__group" hidden>
+          <h3 class="dev-tools__subtitle">抽卡演出測試</h3>
+          <p class="dev-tools__note">僅 localhost／127.0.0.1。純展示，不會消耗星塵或獲得寵物。正式環境會移除整個開發區塊。</p>
+          <button id="btn-test-ssr-reveal" class="btn btn--dev btn--block">測試 SSR 演出</button>
+          <button id="btn-test-ur-reveal" class="btn btn--dev btn--block">測試 UR 演出</button>
+          <button id="btn-test-ur05-reveal" class="btn btn--dev btn--block" type="button">測試 UR：永眠花皇兔（月亮）</button>
+          <button id="btn-test-ur06-reveal" class="btn btn--dev btn--block" type="button">測試 UR：曙綻花后兔（花瓣）</button>
+        </div>
+      </section>
+
+      <p class="settings-note" id="settings-footer-note">QuestNote — 離線個人任務記事 App</p>
+    </main>
+
+    <!-- 底部導航 -->
+    <nav class="bottom-nav" aria-label="主選單">
+      <button class="nav-item active" data-view="tasks" aria-label="任務">
+        <span class="nav-icon">📋</span>
+        <span class="nav-label">任務</span>
+      </button>
+      <button class="nav-item" data-view="gacha" aria-label="召喚">
+        <span class="nav-icon">✨</span>
+        <span class="nav-label">召喚</span>
+      </button>
+      <button class="nav-item" data-view="collection" aria-label="圖鑑">
+        <span class="nav-icon">📖</span>
+        <span class="nav-label">圖鑑</span>
+      </button>
+      <button class="nav-item" data-view="expedition" aria-label="探險">
+        <span class="nav-icon">🗺️</span>
+        <span class="nav-label">探險</span>
+      </button>
+      <button class="nav-item" data-view="more" aria-label="更多">
+        <span class="nav-icon">⋯</span>
+        <span class="nav-label">更多</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Toast 容器 -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- 通用彈窗 -->
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button id="modal-close" class="modal-close" aria-label="關閉">×</button>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script type="module" src="src/bootstrap.js"></script>
+</body>
+</html>
