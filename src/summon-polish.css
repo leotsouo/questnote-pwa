@@ -1,5 +1,12 @@
 /* VP-03: decision first, collection art second. Pool/reveal contracts stay in
    styles.css and the service modules. Pool tokens also support future themes. */
+/* The result overlay is outside #view-gacha. Keep its close target reachable,
+   and keep Glacier's gold button paired with dark text in both app themes. */
+.dream-bloom-overlay .dream-bloom-btn { min-height: var(--tap-min, 44px); }
+body[data-theme] [data-animation='glacier_arrival'] .dream-bloom-btn--primary {
+  color: #172a32;
+}
+
 body[data-theme] #view-gacha .page-title {
   color: var(--color-text-main);
   background: none;

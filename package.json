@@ -5,7 +5,7 @@
   "scripts": {
     "images:build": "node devtools/build-pet-images.mjs build",
     "images:check": "node devtools/build-pet-images.mjs check",
-    "test": "node --test devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs devtools/gacha-transaction.test.mjs devtools/release-safety.test.mjs devtools/release-artifact.test.mjs devtools/card-pool-pipeline.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs",
+    "test": "node --test devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs devtools/gacha-transaction.test.mjs devtools/release-safety.test.mjs devtools/release-artifact.test.mjs devtools/card-pool-pipeline.test.mjs devtools/verify-release-artifact.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs",
     "pools:validate": "node scripts/validate-pool-content.mjs",
     "release:prepare": "node scripts/prepare-release.mjs",
     "card-pool": "node scripts/card-pool.mjs",

@@ -8635,7 +8635,7 @@ function buildVersionInfoHtml({ compact = false, serviceWorkerStatus = '檢查�
       </div>
     </dl>
     <p class="settings-version__note version-info-note" data-version-update-hint>
-      若手機仍看到舊版，請移除主畫面 App 後重新加入，或清除 Safari 網站資料。
+      若仍看到舊版，請先匯出 JSON 備份，再關閉所有 QuestNote 分頁與主畫面 App 後重新開啟。請勿為了更新而清除網站資料。
     </p>`;
 }
 
