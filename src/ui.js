@@ -11,6 +11,7 @@ import {
   toggleSubtaskComplete,
 } from './taskService.js';
 import { getCategoryById } from './categoryService.js';
+import { bindDialogFocus, isTopDialog, rememberDialogFocus, focusDialog, restoreDialogFocus } from './dialogFocus.js';
 import {
   getTodayDateString,
   isInTodayPlan,
@@ -28,17 +29,13 @@ import {
   getTodayViewSections,
   validateDateRange,
 } from './taskFilterService.js';
-import { GACHA_COST, GACHA_TEN_COST, calculateRewardAmount, calculateAdventureEnergyAmount } from './rewardService.js';
+import { calculateRewardAmount, calculateAdventureEnergyAmount } from './rewardService.js';
 import {
   pullOnce,
   performTenPull,
-  getActivePool,
-  getActivePools,
-  resolveSelectedPoolId,
   setSelectedPoolId,
   getPoolPityCounters,
   ensurePoolPity,
-  getPoolPets,
 } from './gachaService.js';
 import {
   upgradeStar,
@@ -67,7 +64,7 @@ import {
   randomBubbleInterval,
   IDLE_THRESHOLD_MS,
 } from './companionDialogueService.js';
-import { setReduceMotion, setTheme, applyThemeToDocument, normalizeTheme } from './preferencesService.js';
+import { setTheme, applyThemeToDocument, normalizeTheme } from './preferencesService.js';
 import {
   pickStatusLine,
   randomStatusInterval,
@@ -99,6 +96,8 @@ import {
   waitForPreloadWithTimeout,
   preloadImage,
 } from './imagePreloadService.js';
+import { createDeferredRenderGate } from './deferredRenderGate.js';
+import { resolveActivePool, resolveDrawCost, normalizeUnlockExpansion, resolvePoolPresentationModel, validatePoolContent } from './poolContentContract.js';
 import {
   claimAchievementReward,
   claimAllAchievementRewards,
@@ -123,20 +122,17 @@ import {
 import {
   normalizePoolPresentation,
   shouldUseThemedSummon,
-  getPoolThemeAttr,
-  resolvePresentationPets,
 } from './poolPresentation.js';
 import {
   hasSeenPoolDebut,
   markPoolDebutSeen,
 } from './poolDebutService.js';
 import {
-  playDreamBloomSummon,
+  playThemedSummon,
   playPoolDebutPresentation,
   isThemedSummonPlaying,
 } from './themedSummonController.js';
 import {
-  normalizeUnlockExpansion,
   getPoolUnlockEntry,
   ensureUnlockRewardClaimed,
   ensurePoolUnlockLegacyBackfillMarked,
@@ -144,9 +140,8 @@ import {
   emptyPoolUnlockEntry,
 } from './poolUnlockService.js';
 import {
-  playMorningGardenUnlock,
+  playPoolUnlock,
   isPoolAwakeningPlaying,
-  AWAKENING_PETS,
 } from './poolAwakeningController.js';
 import {
   escapeHtml,
@@ -265,6 +260,8 @@ let onAchievementCheck = null;
 let uiInitialized = false;
 /** 抽卡請求／演出進行中（比 dataset.pulling 更可靠，避免殘留鎖定） */
 let gachaPullInProgress = false;
+/** Data is refreshed after a pull, but the hidden collection DOM can wait until entry. */
+const collectionRenderGate = createDeferredRenderGate();
 
 /** 抽卡／解鎖視覺流程 session（不寫入 IndexedDB） */
 const gachaSessionUi = {
@@ -278,6 +275,7 @@ const gachaSessionUi = {
 
 /** @type {null|((value?: unknown) => void)} */
 let gachaResultCloseResolver = null;
+let latestPoolSelection = 0;
 
 function resolveGachaResultWait() {
   if (typeof gachaResultCloseResolver === 'function') {
@@ -514,7 +512,7 @@ function openNicknameModal(petId) {
     openPetDetailModal(petId);
     showToast(result.cleared ? '暱稱已清除' : '暱稱已更新', 'success');
     if (!result.cleared) {
-      const card = document.querySelector(`.collection-card[data-pet-id="${petId}"]`);
+      const card = document.querySelector(`.collection-card[data-pet-id="${CSS.escape(String(petId))}"]`);
       if (card && !state.userPreferences?.reduceMotion) {
         card.classList.add('collection-card--nickname-glow');
         setTimeout(() => card.classList.remove('collection-card--nickname-glow'), 800);
@@ -590,16 +588,20 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
 
     document.getElementById('gacha-pool-select')?.addEventListener('change', async (e) => {
       const poolId = e.target.value;
+      const selection = ++latestPoolSelection;
       if (!poolId || isGachaPullInProgress()) {
         renderGachaPoolSwitcher();
         return;
       }
       try {
-        state.gachaStats = await setSelectedPoolId(poolId);
+        const stats = await setSelectedPoolId(poolId);
+        if (selection !== latestPoolSelection) return;
+        state.gachaStats = stats;
         renderGachaView();
         maybePlayPoolDebut._fromSwitcher = true;
         await maybePlayPoolDebut(poolId);
       } catch (err) {
+        if (selection !== latestPoolSelection) return;
         showToast(err.message || '切換卡池失敗', 'error');
       }
     });
@@ -758,7 +760,7 @@ function bindDelegatedEvents() {
 
       if (isCompleting && taskViewMode === 'today') {
         requestAnimationFrame(() => {
-          document.querySelector(`.task-card[data-id="${id}"]`)
+          document.querySelector(`.task-card[data-id="${CSS.escape(String(id))}"]`)
             ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
       }
@@ -1003,14 +1005,6 @@ function bindDelegatedEvents() {
   initImportBackupHandlers();
 
   document.getElementById('btn-reset')?.addEventListener('click', handleReset);
-
-  document.getElementById('toggle-reduce-motion')?.addEventListener('change', async (e) => {
-    const enabled = e.target.checked;
-    const prefs = await setReduceMotion(enabled);
-    if (state) state.userPreferences = prefs;
-    applyReduceMotionClass(enabled);
-    showToast(enabled ? '已開啟減少動畫' : '已恢復動畫效果', 'info');
-  });
 
   document.getElementById('btn-dev-unlock')?.addEventListener('click', handleDevUnlock);
 
@@ -1261,6 +1255,8 @@ export function switchView(viewName) {
     renderHabitsView();
   }
 
+  if (viewName === 'collection') collectionRenderGate.flush(renderCollectionView);
+
   if (viewName === 'workshop') {
     renderWorkshopView();
   }
@@ -1305,28 +1301,48 @@ export function switchView(viewName) {
 }
 
 function bindModals() {
+  bindDialogFocus();
   document.getElementById('modal-overlay')?.addEventListener('click', (e) => {
-    if (e.target.id === 'modal-overlay') closeModal();
+    if (e.target.id === 'modal-overlay') dismissModal();
   });
-  document.getElementById('modal-close')?.addEventListener('click', closeModal);
+  document.getElementById('modal-close')?.addEventListener('click', dismissModal);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && document.getElementById('modal-overlay')?.classList.contains('open')) {
-      closeModal();
+    if (e.key === 'Escape' && isTopDialog(document.getElementById('modal-overlay'))) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      dismissModal();
     }
   });
+}
+
+function dismissModal() {
+  const overlay = document.getElementById('modal-overlay');
+  if (!isTopDialog(overlay)) return;
+  // Cancel retains the existing restore-preview callback and DOM.
+  const cancel = overlay.querySelector('#confirm-cancel');
+  if (cancel) cancel.click();
+  else closeModal();
 }
 
 export function openModal(contentHtml) {
   const overlay = document.getElementById('modal-overlay');
   const body = document.getElementById('modal-body');
+  if (!overlay?.classList.contains('open')) rememberDialogFocus(overlay);
   if (body) body.innerHTML = contentHtml;
   overlay?.classList.add('open');
   document.body.classList.add('modal-open');
+  if (body) body.scrollTop = 0;
+  focusDialog(overlay);
 }
 
 export function closeModal() {
-  document.getElementById('modal-overlay')?.classList.remove('open');
-  document.body.classList.remove('modal-open');
+  const overlay = document.getElementById('modal-overlay');
+  const wasOpen = overlay?.classList.contains('open');
+  overlay?.classList.remove('open');
+  if (!document.getElementById('global-mailbox-modal')?.classList.contains('open')) {
+    document.body.classList.remove('modal-open');
+  }
+  if (wasOpen) restoreDialogFocus(overlay);
   if (typeof resolveGachaResultWait === 'function') {
     resolveGachaResultWait();
   }
@@ -1340,8 +1356,9 @@ let petImageViewerLastFocus = null;
  * 依 petId 開啟寵物原圖檢視器（自 enrichedCollection / allPets / companion 取資料）。
  * 僅對已獲得且有圖片的寵物開啟。
  * @param {string} petId
+ * @param {HTMLElement} [opener] 實際觸發按鈕，供關閉後返回焦點。
  */
-export function openPetImageViewer(petId) {
+export function openPetImageViewer(petId, opener) {
   if (!petId) return;
   const pet =
     (state.enrichedCollection || []).find((p) => p.id === petId) ||
@@ -1358,7 +1375,7 @@ export function openPetImageViewer(petId) {
     return;
   }
   const original = pet.nickname ? petOriginalName(pet) : '';
-  openPetImageViewerBySrc(src, petDisplayName(pet), pet.rarity, original);
+  openPetImageViewerBySrc(src, petDisplayName(pet), pet.rarity, original, opener, getPetImageSrc(pet, 'stage'));
 }
 
 /**
@@ -1367,14 +1384,15 @@ export function openPetImageViewer(petId) {
  * @param {string} petName 主名稱（有暱稱時顯示暱稱）
  * @param {string} rarity 稀有度
  * @param {string} [originalName] 副名稱（原名，僅有暱稱時顯示）
+ * @param {HTMLElement} [opener] 未指定時沿用目前焦點。
  */
-export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName = '') {
+export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName = '', opener, previewSrc = '') {
   const resolved = getPetImageSrc({ image: imageSrc }) || imageSrc;
   if (!resolved) return;
 
   // 確保單一實例，先清掉任何殘留的檢視器
   closePetImageViewer();
-  petImageViewerLastFocus = document.activeElement;
+  petImageViewerLastFocus = opener || document.activeElement;
 
   const rarityClass = rarity ? `rarity-${rarity}` : '';
   const safeName = escapeHtml(petName || '寵物原圖');
@@ -1398,12 +1416,10 @@ export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName 
         <div class="pet-image-viewer__error" role="alert">圖片暫時無法載入</div>
         <img
           class="pet-image-viewer__image"
-          src="${resolved}"
           alt="${safeName}"
           decoding="async"
-          onload="var f=this.closest('.pet-image-viewer__image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-loaded');}"
-          onerror="this.onerror=null;var f=this.closest('.pet-image-viewer__image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}"
         />
+        <div class="pet-image-viewer__preview-note" role="status" aria-live="polite"></div>
       </div>
       <div class="pet-image-viewer__hint">點擊背景或按關閉返回</div>
     </div>`;
@@ -1415,11 +1431,43 @@ export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName 
     }
   });
 
+  const frame = overlay.querySelector('.pet-image-viewer__image-frame');
+  const image = overlay.querySelector('.pet-image-viewer__image');
+  const note = overlay.querySelector('.pet-image-viewer__preview-note');
+  const preview = previewSrc && previewSrc !== resolved ? previewSrc : resolved;
+  let originalStarted = false;
+  const loadOriginal = () => {
+    if (originalStarted || preview === resolved) return;
+    originalStarted = true;
+    void preloadImage(resolved, { eager: true }).then(({ ok }) => {
+      if (!overlay.isConnected) return;
+      if (ok) image.src = resolved;
+      else note.textContent = '原圖暫時無法載入，仍可查看預覽圖';
+    });
+  };
+  image.onload = () => {
+    frame.classList.remove('is-loading', 'is-error');
+    frame.classList.add('is-loaded');
+    if (image.src === new URL(resolved, location.href).href) note.textContent = '';
+    else loadOriginal();
+  };
+  image.onerror = () => {
+    if (image.src !== new URL(resolved, location.href).href) {
+      image.src = resolved;
+      return;
+    }
+    frame.classList.remove('is-loading', 'is-loaded');
+    frame.classList.add('is-error');
+  };
+  image.src = preview;
+  if (preview !== resolved) {
+    note.textContent = '顯示預覽圖，原圖載入中…';
+  }
+
   document.body.appendChild(overlay);
   document.body.classList.add('is-pet-image-viewer-open');
   // 用 capture 攔截 Escape，確保只關閉 viewer 而不會連帶關掉底層 modal
   document.addEventListener('keydown', handlePetImageViewerKeydown, true);
-  warmPetImageCache(resolved).catch(() => {});
 
   requestAnimationFrame(() => {
     overlay.classList.add('is-open');
@@ -1429,8 +1477,9 @@ export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName 
 
 function handlePetImageViewerKeydown(e) {
   if (e.key !== 'Escape') return;
-  if (!document.getElementById('pet-image-viewer')) return;
-  e.stopPropagation();
+  if (!isTopDialog(document.getElementById('pet-image-viewer'))) return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
   closePetImageViewer();
 }
 
@@ -1438,15 +1487,17 @@ function handlePetImageViewerKeydown(e) {
 export function closePetImageViewer() {
   document.removeEventListener('keydown', handlePetImageViewerKeydown, true);
   const overlay = document.getElementById('pet-image-viewer');
+  if (overlay) rememberDialogFocus(overlay, petImageViewerLastFocus);
   if (overlay) overlay.remove();
   document.body.classList.remove('is-pet-image-viewer-open');
-  if (petImageViewerLastFocus && typeof petImageViewerLastFocus.focus === 'function') {
+  if (petImageViewerLastFocus?.isConnected && typeof petImageViewerLastFocus.focus === 'function') {
     try {
-      petImageViewerLastFocus.focus();
+      petImageViewerLastFocus.focus({ preventScroll: true });
     } catch {
       /* 元素可能已不存在 */
     }
   }
+  if (overlay) restoreDialogFocus(overlay);
   petImageViewerLastFocus = null;
 }
 
@@ -1483,12 +1534,15 @@ export function petImageHtml(pet, options = {}) {
     loading = 'lazy',
     eager = false,
     framed = true,
+    imageVariant = size === 'lg' ? 'stage' : 'card',
   } = options;
   const cls = `pet-img pet-img--${size}`;
-  const src = getPetImageSrc(pet);
+  const src = getPetImageSrc(pet, imageVariant);
+  const originalSrc = getPetImageSrc(pet);
   const loadAttr = eager || loading === 'eager' ? 'eager' : loading;
   const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
-  const onerror = "this.onerror=null;this.classList.add('is-error');var f=this.closest('.pet-image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}";
+  const onerror = "if(this.dataset.originalSrc&&this.src!==new URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.classList.add('is-error');var f=this.closest('.pet-image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}";
+  const fallbackAttr = originalSrc ? ` data-original-src="${escapeHtml(originalSrc)}"` : '';
   const placeholder = framed
     ? `<div class="pet-image-frame pet-image-frame--${size} is-error" role="img" aria-label="圖片暫時無法載入"><span class="pet-image-frame__fallback" aria-hidden="true">?</span></div>`
     : `<div class="${cls} pet-img--placeholder"><span>?</span></div>`;
@@ -1497,18 +1551,18 @@ export function petImageHtml(pet, options = {}) {
 
   if (preview) {
     return `<div class="pet-img-wrap pet-img-wrap--preview pet-img-wrap--${size} pet-image-frame pet-image-frame--${size} is-loading">
-      <img class="${cls} pet-img--preview is-loading" src="${src}" alt="" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
+      <img class="${cls} pet-img--preview is-loading" src="${escapeHtml(src)}"${fallbackAttr} alt="" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
       <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
     </div>`;
   }
 
   if (!framed) {
-    const onErrorLegacy = `this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} pet-img--placeholder',innerHTML:'<span>?</span>'}))`;
-    return `<img class="${cls} is-loading" src="${src}" alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="this.classList.add('is-loaded')" onerror="${onErrorLegacy}" />`;
+    const onErrorLegacy = `if(this.dataset.originalSrc&&this.src!==new URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} pet-img--placeholder',innerHTML:'<span>?</span>'}))`;
+    return `<img class="${cls} is-loading" src="${escapeHtml(src)}"${fallbackAttr} alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="this.classList.add('is-loaded')" onerror="${onErrorLegacy}" />`;
   }
 
   return `<div class="pet-image-frame pet-image-frame--${size} is-loading">
-    <img class="${cls} is-loading" src="${src}" alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
+    <img class="${cls} is-loading" src="${escapeHtml(src)}"${fallbackAttr} alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
     <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
   </div>`;
 }
@@ -1537,11 +1591,11 @@ export function renderSharedUI() {
   if (!state) return;
   if (isWheelSpinning()) return;
   uiDebugLog('[Render] renderSharedUI');
-  const { wallet, todayCompleted, availablePulls, achievementSummary } = state;
+  const { wallet, todayCompleted, achievementSummary } = state;
   setText('stat-stardust', wallet.stardust ?? 0);
   setText('stat-energy', wallet.adventureEnergy ?? 0);
   setText('stat-today', todayCompleted);
-  setText('stat-pulls', availablePulls);
+  setText('stat-pulls', getAvailablePullsForSelectedPool());
   const claimable = achievementSummary?.claimable ?? 0;
   setText('stat-claimable', claimable);
   const claimableCard = document.getElementById('stat-claimable-card');
@@ -1688,13 +1742,13 @@ function maybeRefreshExpeditionBubble() {
 /* ─── 任務頁 ─── */
 
 function renderTasksView() {
-  const { tasks, wallet, todayCompleted, availablePulls, companion, companionLine, achievementSummary, categories } = state;
+  const { tasks, wallet, todayCompleted, companion, companionLine, achievementSummary, categories } = state;
   const today = getTodayDateString();
 
   setText('stat-stardust', wallet.stardust ?? 0);
   setText('stat-energy', wallet.adventureEnergy ?? 0);
   setText('stat-today', todayCompleted);
-  setText('stat-pulls', availablePulls);
+  setText('stat-pulls', getAvailablePullsForSelectedPool());
 
   const claimable = achievementSummary?.claimable ?? 0;
   setText('stat-claimable', claimable);
@@ -2742,7 +2796,7 @@ function renderTaskCard(task) {
         <ul class="subtask-list">
           ${(task.subtasks || []).map((s) => `
             <li class="subtask-item ${s.completed ? 'subtask-item--done' : ''}">
-              <button type="button" class="subtask-check ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${s.id}" aria-label="完成子任務">
+              <button type="button" class="subtask-check ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${escapeHtml(s.id)}" aria-label="完成子任務">
                 ${s.completed ? '✓' : ''}
               </button>
               <span class="subtask-text">${escapeHtml(s.text)}</span>
@@ -2767,8 +2821,10 @@ function renderTaskCard(task) {
     ? `<button class="btn btn--ghost btn--sm" data-action="toggle-expand">${isExpanded ? '收合' : '展開'}</button>`
     : '';
 
+  const preview = task.content.split('\n').slice(1).filter((line) => line.trim()).slice(0, 2).join(' ');
+
   return `
-    <article class="task-card card-animate ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${task.id}">
+    <article class="task-card card-animate ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
       <div class="task-card__header">
         <button class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" aria-label="完成任務">
           ${task.completed ? '✓' : ''}
@@ -2781,7 +2837,7 @@ function renderTaskCard(task) {
         </div>
       </div>
       <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
-      <p class="task-card__preview">${escapeHtml(task.content.split('\n').slice(0, 2).join(' '))}</p>
+      ${preview ? `<p class="task-card__preview">${escapeHtml(preview)}</p>` : ''}
       ${subtasksHtml}
       ${
         !task.completed
@@ -2846,11 +2902,11 @@ function openTaskForm(taskId = null) {
       <div class="form-row">
         <div class="form-field">
           <label class="form-label" for="task-start-date">開始日</label>
-          <input type="date" id="task-start-date" class="form-input" value="${task?.startDate || ''}" />
+          <input type="date" id="task-start-date" class="form-input" value="${escapeHtml(task?.startDate || '')}" />
         </div>
         <div class="form-field">
           <label class="form-label" for="task-due-date">截止日</label>
-          <input type="date" id="task-due-date" class="form-input" value="${task?.dueDate || ''}" />
+          <input type="date" id="task-due-date" class="form-input" value="${escapeHtml(task?.dueDate || '')}" />
         </div>
       </div>
       <p class="form-error" id="task-date-error" hidden>開始日不可晚於截止日</p>
@@ -3219,10 +3275,10 @@ function renderCompanionSection(companion, defaultLine) {
     return;
   }
 
-  warmPetImageCache(getPetImageSrc(companion)).catch(() => {});
+  warmPetImageCache(getPetImageSrc(companion, 'stage')).catch(() => {});
 
   const progress = getBondProgress(companion.bondExp ?? 0, companion.bondLevel ?? 1);
-  const rarityClass = `rarity-${companion.rarity}`;
+  const rarityClass = escapeHtml(`rarity-${companion.rarity}`);
   const equippedTitle = state.achievementSummary?.equippedTitle;
   const titleHtml = equippedTitle
     ? `<p class="companion-card__player-title">稱號：${escapeHtml(equippedTitle.name)}</p>`
@@ -3258,7 +3314,7 @@ function renderCompanionSection(companion, defaultLine) {
                 <span class="companion-card__name">${escapeHtml(petDisplayName(companion))}</span>
                 ${petOriginalNameHtml(companion)}
               </div>
-              <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
+              <span class="badge badge--rarity ${rarityClass}">${escapeHtml(companion.rarity)}</span>
             </div>
             ${titleHtml}
             ${renderStars(companion.stars ?? 1)}
@@ -3507,7 +3563,7 @@ function openCompanionImageModal(companion) {
 /** 陪伴寵物未變時只更新圖片 src（避免整卡重建） */
 function updateCompanionImageIfNeeded(companion) {
   const img = document.querySelector('.companion-card__image img');
-  const src = getPetImageSrc(companion);
+  const src = getPetImageSrc(companion, 'stage');
   if (!img || !src) return;
 
   const currentSrc = img.getAttribute('src') || '';
@@ -3854,16 +3910,19 @@ export async function openGlobalMailbox() {
   }
 
   const modal = document.getElementById('global-mailbox-modal');
+  rememberDialogFocus(modal);
   modal?.classList.add('open');
   document.body.classList.add('global-mailbox-open', 'modal-open');
   renderGlobalMailboxModal();
 
   mailboxKeydownHandler = (e) => {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && isTopDialog(modal)) {
       e.preventDefault();
+      e.stopImmediatePropagation();
       if (mailboxSelectedId) {
         mailboxSelectedId = null;
         renderGlobalMailboxModal();
+        focusDialog(modal);
       } else {
         closeGlobalMailbox();
       }
@@ -3895,6 +3954,7 @@ export function closeGlobalMailbox() {
     try { mailboxLastFocus.focus(); } catch { /* ignore */ }
   }
   mailboxLastFocus = null;
+  restoreDialogFocus(modal);
   updateMailboxEntryBadge();
 }
 
@@ -4418,7 +4478,7 @@ function renderNavBadges() {
   const habitNearGoal = hasWeeklyNearGoal(state.habits || []);
 
   setNavBadge('expedition', !!expeditionComplete, 'alert');
-  setNavBadge('gacha', stardust >= GACHA_TEN_COST, 'hint');
+  setNavBadge('gacha', getGachaAffordability().canTen, 'hint');
   setNavBadge('collection', !companion, 'hint');
   setNavBadge('more', claimable > 0 || hasUnseenTitles || habitIncomplete || habitNearGoal, 'alert');
 
@@ -4576,8 +4636,46 @@ function showRewardToast(amount, energy = 0) {
 /* ─── 召喚頁 ─── */
 
 function getSelectedGachaPool() {
-  const selectedId = resolveSelectedPoolId(state.poolsData, state.gachaStats?.selectedPoolId);
-  return getActivePool(state.poolsData, selectedId);
+  try {
+    const pool = resolveActivePool(state?.poolsData, state?.gachaStats?.selectedPoolId);
+    if (!pool) return null;
+    return validatePoolContent({ pools: [pool] }, { pets: state?.allPets || [] }).ok ? pool : null;
+  } catch {
+    return null;
+  }
+}
+
+function getAvailablePullsForSelectedPool() {
+  const pool = getSelectedGachaPool();
+  return pool ? Math.floor((state?.wallet?.stardust || 0) / resolveDrawCost(pool, 1)) : 0;
+}
+
+function renderGachaUnavailable() {
+  for (const id of ['gacha-pool-content', 'gacha-theme-stage', 'gacha-awakening-panel', 'gacha-theme-details', 'gacha-theme-details-btn']) {
+    const element = document.getElementById(id);
+    if (element) element.hidden = true;
+  }
+  const panel = document.getElementById('gacha-panel');
+  panel?.removeAttribute('data-pool-theme');
+  panel?.removeAttribute('data-pool-phase');
+  const name = document.getElementById('gacha-pool-name');
+  if (name) { name.hidden = false; name.textContent = '目前沒有可用的召喚卡池'; }
+  for (const id of ['gacha-cost', 'gacha-ten-cost', 'gacha-ssr-pity', 'gacha-ur-pity']) setText(id, '—');
+  setText('gacha-stardust', state?.wallet?.stardust ?? 0);
+  document.getElementById('gacha-rates')?.replaceChildren();
+  for (const id of ['gacha-ssr-bar', 'gacha-ur-bar']) {
+    const bar = document.getElementById(id);
+    if (bar) bar.style.width = '0%';
+  }
+  for (const [id, label] of [['btn-pull', '召喚 1 次'], ['btn-pull-ten', '召喚 10 次']]) {
+    const button = document.getElementById(id);
+    if (button) { button.disabled = true; button.textContent = label; delete button.dataset.pulling; }
+  }
+  for (const id of ['gacha-hint-single', 'gacha-hint-ten']) {
+    const hint = document.getElementById(id);
+    if (hint) hint.hidden = true;
+  }
+  renderGachaPoolSwitcher();
 }
 
 function renderGachaPoolSwitcher() {
@@ -4585,13 +4683,13 @@ function renderGachaPoolSwitcher() {
   const select = document.getElementById('gacha-pool-select');
   if (!switcher || !select) return;
 
-  const activePools = getActivePools(state.poolsData);
+  const activePools = (Array.isArray(state?.poolsData?.pools) ? state.poolsData.pools : []).filter((pool) => pool?.active === true && typeof pool.id === 'string');
   if (activePools.length <= 1) {
     switcher.hidden = true;
     return;
   }
 
-  const selectedId = resolveSelectedPoolId(state.poolsData, state.gachaStats?.selectedPoolId);
+  const selectedId = getSelectedGachaPool()?.id;
   switcher.hidden = false;
   select.innerHTML = activePools
     .map((pool) => `<option value="${escapeHtml(pool.id)}" ${pool.id === selectedId ? 'selected' : ''}>${escapeHtml(pool.name)}</option>`)
@@ -4600,20 +4698,20 @@ function renderGachaPoolSwitcher() {
 
 function renderGachaView() {
   const pool = getSelectedGachaPool();
-  if (!pool) return;
+  if (!pool) { renderGachaUnavailable(); return; }
 
   const stats = ensurePoolPity(state.gachaStats || {}, pool.id);
   const pityCounters = getPoolPityCounters(stats, pool.id);
   const pity = pool.pity || { ssr: 30, ur: 100 };
   const stardust = state.wallet.stardust ?? 0;
-  const singleCost = pool.cost ?? GACHA_COST;
+  const singleCost = resolveDrawCost(pool, 1);
 
   renderGachaPoolSwitcher();
   renderGachaThemeStage(pool);
   setText('gacha-pool-name', pool.name);
   setText('gacha-stardust', stardust);
   setText('gacha-cost', singleCost);
-  setText('gacha-ten-cost', GACHA_TEN_COST);
+  setText('gacha-ten-cost', resolveDrawCost(pool, 10));
   setText('gacha-ssr-pity', `${pityCounters.ssrPity}/${pity.ssr}`);
   setText('gacha-ur-pity', `${pityCounters.urPity}/${pity.ur}`);
 
@@ -4696,90 +4794,41 @@ function getUnlockEntryForPool(poolId) {
  */
 async function maybePlayMorningGardenAfterPull(pool, unlockProgress) {
   const expansion = normalizeUnlockExpansion(pool);
-  if (!expansion || pool?.id !== 'eternal_slumber_bloom') return;
-
-  const entry = unlockProgress?.entry || getUnlockEntryForPool(pool.id);
-  if (!entry?.unlocked) return;
-  if (entry.animationSeen) {
-    clearPendingAwakening();
-    return;
-  }
-
-  const rewardPet = state.allPets.find((p) => p.id === expansion.rewardPetId) || null;
-  const reduceMotion = state.userPreferences?.reduceMotion ?? false;
-
+  if (!expansion) return;
+  let entry = unlockProgress?.entry || getUnlockEntryForPool(pool.id);
+  if (!entry?.unlocked) { clearPendingAwakening(); return; }
   try {
-    await ensureUnlockRewardClaimed(pool.id, expansion);
+    const reward = await ensureUnlockRewardClaimed(pool.id, expansion, state.allPets);
+    if (!reward?.ok) throw new Error(reward?.error || '無法確認解鎖獎勵');
+    entry = reward.entry || await getPoolUnlockEntry(pool.id);
+    state.poolUnlockState = { ...(state.poolUnlockState || {}), byPool: { ...(state.poolUnlockState?.byPool || {}), [pool.id]: entry } };
+    if (!entry.unlocked || !entry.rewardClaimed || entry.animationSeen) return;
     await waitNextFrame();
-    const outcome = await playMorningGardenUnlock({
-      allPets: state.allPets,
-      expansion,
-      rewardPet,
-      reduceMotion,
-    });
+    const model = resolvePoolPresentationModel(pool, state.allPets, entry);
+    const outcome = await playPoolUnlock({ model, reduceMotion: state.userPreferences?.reduceMotion ?? false });
     if (outcome?.seen) {
-      await markUnlockAnimationSeen(pool.id);
-      state.poolUnlockState = {
-        ...(state.poolUnlockState || {}),
-        byPool: {
-          ...(state.poolUnlockState?.byPool || {}),
-          [pool.id]: {
-            ...entry,
-            animationSeen: true,
-            unlocked: true,
-            rewardClaimed: true,
-          },
-        },
-      };
+      const latest = await markUnlockAnimationSeen(pool.id);
+      state.poolUnlockState = { ...(state.poolUnlockState || {}), byPool: { ...(state.poolUnlockState?.byPool || {}), [pool.id]: latest } };
     }
   } catch (err) {
-    console.warn('[PoolAwakening] 解鎖演出略過', err);
-    try {
-      await markUnlockAnimationSeen(pool.id);
-      state.poolUnlockState = {
-        ...(state.poolUnlockState || {}),
-        byPool: {
-          ...(state.poolUnlockState?.byPool || {}),
-          [pool.id]: {
-            ...entry,
-            animationSeen: true,
-            unlocked: true,
-            rewardClaimed: true,
-          },
-        },
-      };
-    } catch {
-      /* ignore */
-    }
+    console.warn('[PoolAwakening] 解鎖狀態尚未完成，可重新進入卡池重試', err);
+    showToast('解鎖獎勵確認失敗，稍後可重新進入卡池重試', 'warning');
   } finally {
     clearPendingAwakening();
   }
 }
 
-/**
- * 進入永眠花海時：補發獎／補播解鎖動畫（不重播 debut）。
- */
+/** Resume is independent of theme and debut state. */
 async function maybeResumeMorningGarden(poolId) {
-  if (poolId !== 'eternal_slumber_bloom') return;
   if (isGachaPullInProgress()) return;
-  const pool = getActivePool(state.poolsData, poolId);
-  const expansion = normalizeUnlockExpansion(pool);
-  if (!expansion) return;
-
+  const pool = getSelectedGachaPool();
+  if (!pool || pool.id !== poolId || !normalizeUnlockExpansion(pool)) return;
   try {
     await ensurePoolUnlockLegacyBackfillMarked();
-    const reward = await ensureUnlockRewardClaimed(poolId, expansion);
-    const entry = reward?.entry || await getPoolUnlockEntry(poolId);
-    state.poolUnlockState = {
-      ...(state.poolUnlockState || { key: 'poolUnlockState', schemaVersion: 1, byPool: {} }),
-      byPool: {
-        ...(state.poolUnlockState?.byPool || {}),
-        [poolId]: entry,
-      },
-    };
-    if (entry.unlocked && !entry.animationSeen) {
-      gachaSessionUi.visualPhaseLock = 'slumber';
-      gachaSessionUi.pendingAwakening = true;
+    const entry = await getPoolUnlockEntry(poolId);
+    state.poolUnlockState = { ...(state.poolUnlockState || {}), byPool: { ...(state.poolUnlockState?.byPool || {}), [poolId]: entry } };
+    if (entry.unlocked && (!entry.rewardClaimed || !entry.animationSeen)) {
+      markPendingAwakening(poolId, { entry });
       await maybePlayMorningGardenAfterPull(pool, { entry });
       renderGachaView();
     }
@@ -4793,34 +4842,28 @@ async function maybeResumeMorningGarden(poolId) {
  * @param {string} poolId
  */
 async function maybePlayPoolDebut(poolId) {
-  const pool = getActivePool(state.poolsData, poolId);
+  const pool = getSelectedGachaPool();
+  if (!pool || pool.id !== poolId || isGachaPullInProgress() || maybePlayPoolDebut._inflight) return;
   const presentation = normalizePoolPresentation(pool);
-  if (!presentation || presentation.themeKey !== 'eternal_slumber_bloom') return;
-  if (isGachaPullInProgress()) return;
-  if (maybePlayPoolDebut._inflight) return;
   maybePlayPoolDebut._inflight = true;
-
   try {
-    const seen = await hasSeenPoolDebut(poolId);
-    const reduceMotion = state.userPreferences?.reduceMotion ?? false;
-    // 已看過：不在每次 render 重複短轉場；短轉場只在手動切換卡池時播放
-    if (seen && !maybePlayPoolDebut._fromSwitcher) return;
-
-    await playPoolDebutPresentation({
-      full: !seen,
-      reduceMotion,
-    });
-    if (!seen) {
-      await markPoolDebutSeen(poolId);
+    if (shouldUseThemedSummon(pool)) {
+      const seen = await hasSeenPoolDebut(poolId);
+      if (!seen || maybePlayPoolDebut._fromSwitcher) {
+        await playPoolDebutPresentation({
+          poolName: pool.name, presentation,
+          full: !seen, reduceMotion: state.userPreferences?.reduceMotion ?? false,
+        });
+        if (!seen) await markPoolDebutSeen(poolId);
+      }
     }
-    // debut 與晨醒解鎖狀態分離；進入卡池時可補播解鎖動畫
-    await maybeResumeMorningGarden(poolId);
   } catch (err) {
     console.warn('[PoolDebut] 登場演出略過', err);
   } finally {
     maybePlayPoolDebut._inflight = false;
     maybePlayPoolDebut._fromSwitcher = false;
   }
+  await maybeResumeMorningGarden(poolId);
 }
 
 /**
@@ -4831,12 +4874,13 @@ function renderGachaThemeStage(pool) {
   const panel = document.getElementById('gacha-panel');
   const stage = document.getElementById('gacha-theme-stage');
   const poolNameEl = document.getElementById('gacha-pool-name');
-  const presentation = normalizePoolPresentation(pool);
-  const themeAttr = getPoolThemeAttr(pool);
-  const expansion = normalizeUnlockExpansion(pool);
   const unlockEntry = getUnlockEntryForPool(pool?.id);
+  const model = resolvePoolPresentationModel(pool, state.allPets, unlockEntry, { visualLocked: !shouldShowAwakenedPresentation(unlockEntry) });
+  const presentation = model.presentation;
+  const themeAttr = model.cssTheme;
+  const expansion = model.unlock?.expansion;
   // 畫面 phase 與資料 unlocked 分離：結果／動畫完成前維持永眠期
-  const awakened = !!(expansion && shouldShowAwakenedPresentation(unlockEntry));
+  const awakened = model.awakened;
 
   if (panel) {
     if (themeAttr) panel.dataset.poolTheme = themeAttr;
@@ -4848,34 +4892,37 @@ function renderGachaThemeStage(pool) {
 
   if (!stage) return;
 
-  if (!presentation) {
-    stage.hidden = true;
-    if (poolNameEl) poolNameEl.hidden = false;
-    return;
-  }
-
-  stage.hidden = false;
+  const content = document.getElementById('gacha-pool-content');
+  if (content) content.hidden = !presentation && !expansion;
+  stage.hidden = !presentation;
   stage.classList.toggle('is-awakened', awakened);
-  if (poolNameEl) poolNameEl.hidden = true;
+  if (poolNameEl) poolNameEl.hidden = false;
 
   const setElText = (id, text) => {
     const el = document.getElementById(id);
     if (el) el.textContent = text || '';
   };
 
-  setElText('gacha-theme-badge', presentation.badge);
+  setElText('gacha-theme-badge', presentation?.badge);
   setElText('gacha-theme-name', pool.name || '');
   if (awakened) {
-    setElText('gacha-theme-eyebrow', expansion?.title ? `${expansion.title}已解鎖` : '晨醒花庭已解鎖');
-    setElText('gacha-theme-tagline', expansion?.unlockMessage || '沉眠有歸，甦醒有時。');
+    setElText('gacha-theme-eyebrow', `${expansion.title}已解鎖`);
+    setElText('gacha-theme-tagline', expansion?.unlockMessage);
   } else {
-    setElText('gacha-theme-eyebrow', presentation.eyebrow);
-    setElText('gacha-theme-tagline', presentation.tagline);
+    setElText('gacha-theme-eyebrow', presentation?.eyebrow);
+    setElText('gacha-theme-tagline', presentation?.tagline);
   }
 
-  const { hero, featured } = resolvePresentationPets(presentation, state.allPets);
-  const dawnHero = state.allPets.find((p) => p.id === 'pet_ur06') || null;
+  const { hero } = model;
+  const dawnHero = model.heroes.find((pet) => pet.id !== hero?.id) || null;
   const heroImg = document.getElementById('gacha-theme-hero-img');
+  const heroFigure = document.getElementById('gacha-theme-hero');
+  if (heroFigure) heroFigure.hidden = !hero;
+  if (!hero && heroImg) {
+    heroImg.classList.add('is-loading');
+    heroImg.removeAttribute('src');
+    delete heroImg.dataset.src;
+  }
   const dualHost = document.getElementById('gacha-theme-dual-hero');
   if (awakened && dualHost && hero && dawnHero) {
     dualHost.hidden = false;
@@ -4886,8 +4933,13 @@ function renderGachaThemeStage(pool) {
       const img = document.createElement('img');
       img.alt = pet.title || pet.name || '';
       img.decoding = 'async';
-      const src = getPetImageSrc(pet);
+      const src = getPetImageSrc(pet, 'stage');
       if (src) {
+        img.onerror = () => {
+          img.onerror = null;
+          const original = getPetImageSrc(pet);
+          if (original && original !== src) img.src = original;
+        };
         img.src = src;
         preloadImage(src, { eager: true }).catch(() => {});
       }
@@ -4904,11 +4956,28 @@ function renderGachaThemeStage(pool) {
   }
 
   if (hero && heroImg) {
-    const src = getPetImageSrc(hero);
+    const src = getPetImageSrc(hero, 'stage');
     if (src && heroImg.dataset.src !== src) {
+      // The same element serves every pool. Hide its previous decoded bitmap
+      // before updating the copy, then reveal only the current request.
+      heroImg.classList.add('is-loading');
       heroImg.dataset.src = src;
+      heroImg.onload = () => {
+        if (heroImg.dataset.src === src) heroImg.classList.remove('is-loading');
+      };
+      heroImg.onerror = () => {
+        if (heroImg.dataset.src !== src) return;
+        heroImg.onerror = null;
+        const original = getPetImageSrc(hero);
+        if (original && original !== src) heroImg.src = original;
+        else heroImg.classList.add('is-loading');
+      };
       heroImg.src = src;
       preloadImage(src, { eager: true }).catch(() => {});
+    } else if (!src) {
+      heroImg.classList.add('is-loading');
+      heroImg.removeAttribute('src');
+      delete heroImg.dataset.src;
     }
     heroImg.classList.add('is-silhouette');
     heroImg.alt = hero.title || hero.rarity || '限定大獎';
@@ -4922,13 +4991,7 @@ function renderGachaThemeStage(pool) {
   const featuredHost = document.getElementById('gacha-theme-featured');
   if (featuredHost) {
     featuredHost.replaceChildren();
-    const featureList = awakened
-      ? [
-          state.allPets.find((p) => p.id === 'pet_ssr07'),
-          state.allPets.find((p) => p.id === 'pet_sr12'),
-          state.allPets.find((p) => p.id === 'pet_r16'),
-        ].filter(Boolean)
-      : featured;
+    const featureList = model.featured;
     featureList.forEach((pet) => {
       const item = document.createElement('div');
       item.className = 'gacha-theme-featured__item';
@@ -4936,8 +4999,13 @@ function renderGachaThemeStage(pool) {
       img.className = 'gacha-theme-featured__img is-silhouette';
       img.alt = pet.title || pet.rarity || '焦點夥伴';
       img.decoding = 'async';
-      const src = getPetImageSrc(pet);
+      const src = getPetImageSrc(pet, 'card');
       if (src) {
+        img.onerror = () => {
+          img.onerror = null;
+          const original = getPetImageSrc(pet);
+          if (original && original !== src) img.src = original;
+        };
         img.src = src;
         preloadImage(src, { eager: true }).catch(() => {});
       }
@@ -4954,12 +5022,12 @@ function renderGachaThemeStage(pool) {
     });
   }
 
-  const eligible = getPoolPets(state.allPets, pool, unlockEntry);
+  const eligible = model.eligiblePets;
   setElText(
     'gacha-theme-meta',
     awakened
-      ? `候選角色 ${eligible.length} 隻 · 晨醒花庭已解鎖`
-      : `候選角色 ${eligible.length} 隻 · 限定池不含標準召喚寵物`,
+      ? `候選角色 ${eligible.length} 隻 · ${expansion.title}已解鎖`
+      : `候選角色 ${eligible.length} 隻${presentation?.candidateNote ? ' · ' + presentation.candidateNote : ''}`,
   );
 
   // 晨醒花庭進度／鎖定預覽
@@ -4969,18 +5037,18 @@ function renderGachaThemeStage(pool) {
     const threshold = expansion.threshold;
     const draws = unlockEntry.lifetimeDraws || 0;
     const pct = Math.min(100, Math.round((draws / threshold) * 100));
-    setElText('gacha-awakening-title', expansion.title || '晨醒花庭');
+    setElText('gacha-awakening-title', expansion.title);
     if (awakened) {
-      setElText('gacha-awakening-progress', '晨醒花庭已解鎖');
-      setElText('gacha-awakening-desc', expansion.unlockMessage || '沉眠有歸，甦醒有時。');
+      setElText('gacha-awakening-progress', model.unlock.progressText);
+      setElText('gacha-awakening-desc', expansion.unlockMessage);
       setElText('gacha-awakening-counts', `候選角色：${eligible.length}`);
     } else {
-      setElText('gacha-awakening-progress', `夢塵共鳴 ${draws}／${threshold}`);
+      setElText('gacha-awakening-progress', model.unlock.progressText);
       setElText(
         'gacha-awakening-desc',
-        `完成 ${threshold} 次永眠花海召喚，解鎖 4 位晨醒角色，並固定獲得曉露花蝟。`,
+        model.unlock.description,
       );
-      setElText('gacha-awakening-counts', `目前候選：${eligible.length}　解鎖後候選：16`);
+      setElText('gacha-awakening-counts', model.unlock.countsText);
     }
     const fill = document.getElementById('gacha-awakening-fill');
     if (fill) {
@@ -4990,8 +5058,9 @@ function renderGachaThemeStage(pool) {
     const preview = document.getElementById('gacha-awakening-preview');
     if (preview) {
       preview.replaceChildren();
-      for (const meta of AWAKENING_PETS) {
-        const pet = state.allPets.find((p) => p.id === meta.id);
+      preview.setAttribute('aria-label', `${expansion.presentation.candidateLabel}預覽`);
+      for (const pet of model.unlock.previewPets) {
+        const meta = pet;
         const item = document.createElement('div');
         item.className = 'gacha-awakening-preview__item' + (awakened ? ' is-unlocked' : ' is-locked');
         const img = document.createElement('img');
@@ -5011,7 +5080,7 @@ function renderGachaThemeStage(pool) {
     if (rateNote) {
       rateNote.textContent = awakened
         ? '解鎖後各稀有度總機率不變。新增角色會與同稀有度角色依現行規則共同分配該稀有度機率。'
-        : '解鎖後各稀有度總機率不變。新增角色會與同稀有度角色依現行規則共同分配該稀有度機率。固定贈送曉露花蝟不算抽卡、不推進保底。';
+        : `解鎖後各稀有度總機率不變。新增角色會與同稀有度角色依現行規則共同分配該稀有度機率。固定贈送${model.unlock.rewardPet.name}不算抽卡、不推進保底。`;
     }
   } else if (awakening) {
     awakening.hidden = true;
@@ -5032,15 +5101,15 @@ function renderGachaThemeStage(pool) {
     details.replaceChildren();
     const dl = document.createElement('dl');
     const rows = [
-      ['單抽成本', `${pool.cost ?? GACHA_COST} 星塵`],
-      ['十連成本', `${GACHA_TEN_COST} 星塵`],
+      ['單抽成本', `${model.costs.single} 星塵`],
+      ['十連成本', `${model.costs.ten} 星塵`],
       ['稀有度機率', rateText],
       ['SSR 保底', `${pity.ssr} 抽`],
       ['UR 保底', `${pity.ur} 抽`],
       ['目前 SSR 保底進度', `${counters.ssrPity}/${pity.ssr}`],
       ['目前 UR 保底進度', `${counters.urPity}/${pity.ur}`],
       ['候選角色', `${eligible.length} 隻`],
-      ['池別說明', awakened ? '永眠＋晨醒候選（不含 standard）' : '限定池不含 standard 寵物'],
+      ['池別說明', (awakened ? expansion.presentation.detailsNote : presentation?.detailsNote) || '依卡池設定篩選候選角色'],
       ['重複補償', '沿用現行碎片規則'],
       ['解鎖後機率', '各稀有度總機率不變；同稀有度依現行規則共同分配'],
     ];
@@ -5054,6 +5123,7 @@ function renderGachaThemeStage(pool) {
     details.appendChild(dl);
   }
   if (detailsBtn) {
+    detailsBtn.hidden = !presentation;
     detailsBtn.setAttribute('aria-expanded', 'false');
     detailsBtn.textContent = '卡池詳情';
   }
@@ -5070,7 +5140,9 @@ async function playPostPullPresentation({ pool, mode, results, singleResult }) {
 
   if (shouldUseThemedSummon(pool)) {
     try {
-      const outcome = await playDreamBloomSummon({
+      const outcome = await playThemedSummon({
+        animationKey: normalizePoolPresentation(pool).animationKey,
+        poolName: pool.name,
         results: list,
         mode,
         reduceMotion,
@@ -5145,10 +5217,12 @@ export function updateGachaAffordability() {
   resetStaleGachaPullState();
 
   const pool = getSelectedGachaPool();
-  const singleCost = pool?.cost ?? GACHA_COST;
+  if (!pool) { renderGachaUnavailable(); return; }
+  const singleCost = resolveDrawCost(pool, 1);
+  const tenCost = resolveDrawCost(pool, 10);
   const stardust = state.wallet.stardust ?? 0;
   const canSingle = stardust >= singleCost;
-  const canTen = stardust >= GACHA_TEN_COST;
+  const canTen = stardust >= tenCost;
 
   setText('gacha-stardust', stardust);
 
@@ -5182,7 +5256,7 @@ export function updateGachaAffordability() {
 
   if (hintTen) {
     if (!canTen) {
-      hintTen.textContent = '10 連抽需要 1000 星塵。';
+      hintTen.textContent = `10 連抽需要 ${tenCost} 星塵。`;
       hintTen.hidden = false;
     } else {
       hintTen.hidden = true;
@@ -5192,7 +5266,8 @@ export function updateGachaAffordability() {
 
 async function handlePull() {
   const pool = getSelectedGachaPool();
-  const cost = pool?.cost ?? GACHA_COST;
+  if (!pool) { renderGachaUnavailable(); return; }
+  const cost = resolveDrawCost(pool, 1);
 
   if ((state.wallet.stardust ?? 0) < cost) {
     showToast('星塵不足，完成任務可以獲得星塵', 'warning');
@@ -5227,8 +5302,9 @@ async function handlePull() {
     }
 
     const preloadPromise = preloadGachaResultImages(result);
+    collectionRenderGate.markDirty();
     await Promise.all([
-      onRefresh({ renderMode: ['gacha', 'collection'] }),
+      onRefresh({ renderMode: ['gacha'] }),
       waitForPreloadWithTimeout(preloadPromise, 600),
     ]);
 
@@ -5266,8 +5342,11 @@ async function handlePull() {
 }
 
 async function handleTenPull() {
-  if ((state.wallet.stardust ?? 0) < GACHA_TEN_COST) {
-    showToast('10 連抽需要 1000 星塵', 'warning');
+  const pool = getSelectedGachaPool();
+  if (!pool) { renderGachaUnavailable(); return; }
+  const tenCost = resolveDrawCost(pool, 10);
+  if ((state.wallet.stardust ?? 0) < tenCost) {
+    showToast(`10 連抽需要 ${tenCost} 星塵`, 'warning');
     updateGachaAffordability();
     return;
   }
@@ -5276,7 +5355,6 @@ async function handleTenPull() {
 
   const btn = document.getElementById('btn-pull-ten');
   const poolSelect = document.getElementById('gacha-pool-select');
-  const pool = getSelectedGachaPool();
   gachaPullInProgress = true;
   beginPullVisualLock(pool?.id);
   if (btn) {
@@ -5306,8 +5384,9 @@ async function handleTenPull() {
     }
 
     const preloadPromise = preloadGachaResultImages(result.results);
+    collectionRenderGate.markDirty();
     await Promise.all([
-      onRefresh({ renderMode: ['gacha', 'collection'] }),
+      onRefresh({ renderMode: ['gacha'] }),
       waitForPreloadWithTimeout(preloadPromise, 600),
     ]);
 
@@ -5349,14 +5428,10 @@ function isSweetTheme() {
 
 function getGachaAffordability() {
   const pool = getSelectedGachaPool();
-  const singleCost = pool?.cost ?? GACHA_COST;
-  const stardust = state.wallet.stardust ?? 0;
-  return {
-    singleCost,
-    stardust,
-    canSingle: stardust >= singleCost,
-    canTen: stardust >= GACHA_TEN_COST,
-  };
+  const stardust = state?.wallet?.stardust ?? 0;
+  const singleCost = pool ? resolveDrawCost(pool, 1) : null;
+  const tenCost = pool ? resolveDrawCost(pool, 10) : null;
+  return { pool, singleCost, tenCost, stardust, canSingle: !!pool && stardust >= singleCost, canTen: !!pool && stardust >= tenCost };
 }
 
 function sweetSummonRarityBadge(rarity, extraClass = '') {
@@ -5375,9 +5450,20 @@ function sweetSummonRarityDesc(rarity) {
   return labels[rarity] || rarity;
 }
 
+function upgradeSingleResultImage(pet) {
+  const image = document.querySelector('.summon-result-single__frame .pet-img');
+  const stageSrc = getPetImageSrc(pet, 'stage');
+  const cardSrc = getPetImageSrc(pet, 'card');
+  if (!image || !stageSrc || stageSrc === cardSrc) return;
+  void preloadImage(stageSrc, { eager: true }).then(({ ok }) => {
+    if (ok && image.isConnected && document.querySelector('.summon-result-single__frame .pet-img') === image) {
+      image.src = stageSrc;
+    }
+  });
+}
+
 function renderSweetSinglePullResult(result, options = {}) {
   const { pet, isNew, fragmentsGained, rarity, triggeredPity } = result;
-  const { canSingle, canTen } = getGachaAffordability();
   const pendingAwakening = !!options.pendingAwakening;
   const title = pet.title ? escapeHtml(pet.title) : '';
   const statusLabel = isNew ? '初次相遇' : '再次相遇';
@@ -5393,7 +5479,7 @@ function renderSweetSinglePullResult(result, options = {}) {
       <div class="sweet-summon-result__scroll summon-result-single__body">
         <section class="sweet-summon-showcase summon-result-single__showcase" data-rarity="${rarity}" aria-label="召喚寵物展示">
           <div class="sweet-summon-showcase__frame summon-result-single__frame">
-            ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true })}
+            ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true, imageVariant: 'card' })}
           </div>
           <p class="summon-result-single__status">${statusLabel}</p>
           <h3 class="sweet-summon-showcase__name summon-result-single__name">${escapeHtml(pet.name)}</h3>
@@ -5412,19 +5498,17 @@ function renderSweetSinglePullResult(result, options = {}) {
             <button type="button" class="sweet-summon-btn sweet-summon-btn--primary" id="pull-close" data-action="result-continue">繼續</button>
           </footer>`
         : `<footer class="sweet-summon-result__actions">
-            <button type="button" class="sweet-summon-btn sweet-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>再召喚 1 次</button>
-            <button type="button" class="sweet-summon-btn sweet-summon-btn--secondary" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>召喚 10 次</button>
             <button type="button" class="sweet-summon-btn sweet-summon-btn--ghost" id="pull-close">關閉</button>
           </footer>`}
     </div>
   `);
 
-  bindGachaResultButtons('pull-close', { pendingAwakening });
+  upgradeSingleResultImage(pet);
+  bindGachaResultButtons('pull-close');
 }
 
 function renderSweetTenPullResult(result) {
   const { results, summary } = result;
-  const { canSingle, canTen } = getGachaAffordability();
 
   const cardsHtml = results
     .map(
@@ -5477,8 +5561,6 @@ function renderSweetTenPullResult(result) {
       </div>
 
       <footer class="sweet-summon-result__actions">
-        <button type="button" class="sweet-summon-btn sweet-summon-btn--secondary" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>再召喚 10 次</button>
-        <button type="button" class="sweet-summon-btn sweet-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>召喚 1 次</button>
         <button type="button" class="sweet-summon-btn sweet-summon-btn--ghost" id="ten-pull-close">關閉</button>
       </footer>
     </div>
@@ -5511,7 +5593,6 @@ function defaultSummonRarityHint(rarity) {
 
 function renderDefaultSinglePullResult(result, options = {}) {
   const { pet, isNew, fragmentsGained, rarity, triggeredPity } = result;
-  const { canSingle, canTen } = getGachaAffordability();
   const pendingAwakening = !!options.pendingAwakening;
   const title = pet.title ? escapeHtml(pet.title) : '';
   const statusLabel = isNew ? '初次相遇' : '再次相遇';
@@ -5529,7 +5610,7 @@ function renderDefaultSinglePullResult(result, options = {}) {
           <div class="default-summon-showcase__altar" aria-hidden="true"></div>
           ${defaultSummonRarityHint(rarity)}
           <div class="default-summon-showcase__frame summon-result-single__frame">
-            ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true })}
+            ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true, imageVariant: 'card' })}
           </div>
           <p class="summon-result-single__status">${statusLabel}</p>
           <h3 class="default-summon-showcase__name summon-result-single__name">${escapeHtml(pet.name)}</h3>
@@ -5548,19 +5629,17 @@ function renderDefaultSinglePullResult(result, options = {}) {
             <button type="button" class="default-summon-btn default-summon-btn--primary" id="pull-close" data-action="result-continue">繼續</button>
           </footer>`
         : `<footer class="default-summon-result__actions">
-            <button type="button" class="default-summon-btn default-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>再召喚 1 次</button>
-            <button type="button" class="default-summon-btn default-summon-btn--ten" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>召喚 10 次</button>
             <button type="button" class="default-summon-btn default-summon-btn--ghost" id="pull-close">關閉</button>
           </footer>`}
     </div>
   `);
 
-  bindGachaResultButtons('pull-close', { pendingAwakening });
+  upgradeSingleResultImage(pet);
+  bindGachaResultButtons('pull-close');
 }
 
 function renderDefaultTenPullResult(result) {
   const { results, summary } = result;
-  const { canSingle, canTen } = getGachaAffordability();
 
   const cardsHtml = results
     .map(
@@ -5613,8 +5692,6 @@ function renderDefaultTenPullResult(result) {
       </div>
 
       <footer class="default-summon-result__actions">
-        <button type="button" class="default-summon-btn default-summon-btn--ten" data-action="result-ten-pull"${canTen ? '' : ' disabled'}>再召喚 10 次</button>
-        <button type="button" class="default-summon-btn default-summon-btn--primary" data-action="result-single-pull"${canSingle ? '' : ' disabled'}>召喚 1 次</button>
         <button type="button" class="default-summon-btn default-summon-btn--ghost" id="ten-pull-close">關閉</button>
       </footer>
     </div>
@@ -5623,9 +5700,7 @@ function renderDefaultTenPullResult(result) {
   bindGachaResultButtons('ten-pull-close');
 }
 
-function bindGachaResultButtons(closeId = 'pull-close', options = {}) {
-  const pendingAwakening = !!options.pendingAwakening;
-
+function bindGachaResultButtons(closeId = 'pull-close') {
   const finish = () => {
     closeModal();
   };
@@ -5640,23 +5715,6 @@ function bindGachaResultButtons(closeId = 'pull-close', options = {}) {
     finish();
   });
 
-  document.querySelector('[data-action="result-single-pull"]')?.addEventListener('click', async () => {
-    if (pendingAwakening || gachaSessionUi.pendingAwakening) {
-      finish();
-      return;
-    }
-    closeModal();
-    await handlePull();
-  });
-
-  document.querySelector('[data-action="result-ten-pull"]')?.addEventListener('click', async () => {
-    if (pendingAwakening || gachaSessionUi.pendingAwakening) {
-      finish();
-      return;
-    }
-    closeModal();
-    await handleTenPull();
-  });
 }
 
 function showPullResult(result, options = {}) {
@@ -5687,7 +5745,7 @@ function showTenPullResult(result, options = {}) {
         : 'default-summon-btn default-summon-btn--primary';
       btn.textContent = '繼續';
       footer.appendChild(btn);
-      bindGachaResultButtons('ten-pull-close', { pendingAwakening: true });
+      bindGachaResultButtons('ten-pull-close');
     }
   }
 }
@@ -5721,7 +5779,6 @@ function renderCollectionProgressSummary() {
   }
 
   const owned = Math.max(0, context.ownedCount ?? 0);
-  const total = Math.max(0, context.totalPets ?? 0);
   const percent = Math.min(100, Math.max(0, summary.completionRate ?? 0));
   const next = summary.nextMilestone;
   const nextText = next
@@ -5738,11 +5795,7 @@ function renderCollectionProgressSummary() {
 
   container.innerHTML = `
     <div class="collection-summary__header">
-      <div>
-        <h2 class="collection-summary__title">收藏進度</h2>
-        <p class="collection-summary__count"><strong>${owned} / ${total}</strong><span>完成 ${percent}%</span></p>
-      </div>
-      <span class="collection-summary__icon" aria-hidden="true">📖</span>
+      <h2 class="collection-summary__title">下一個收藏目標</h2>
     </div>
     <div class="collection-summary__progress" role="progressbar" aria-label="總收藏完成率 ${percent}%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}">
       <span class="collection-summary__progress-fill" style="width:${percent}%"></span>
@@ -5944,6 +5997,7 @@ function renderCollectionView() {
       }
     }
   }
+  collectionRenderGate.clear();
 }
 
 function renderCollectionCard(pet, imageOptions = {}) {
@@ -5962,7 +6016,6 @@ function renderCollectionCard(pet, imageOptions = {}) {
            ${petImageHtml(pet, imgOpts)}
            ${bondBadge ? `<div class="collection-card__bond-badge">${bondBadge}</div>` : ''}
          </div>
-         <span class="collection-card__image-hint">點圖看原圖</span>
        </button>`
     : `<div class="collection-card__image">
          ${petImageHtml(pet, imgOpts)}
@@ -5978,21 +6031,23 @@ function renderCollectionCard(pet, imageOptions = {}) {
           <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
           ${
             owned
-              ? `${renderStars(pet.stars)}<span class="fragments">碎片 ${pet.fragments}</span><span class="fragments">親密度 Lv.${pet.bondLevel || 1}</span>${pet.isCompanion ? '<span class="companion-badge">陪伴中</span>' : ''}`
+              ? `${renderStars(pet.stars)}<div class="collection-card__meta"><span class="fragments">碎片 ${pet.fragments}</span><span class="fragments">親密度 Lv.${pet.bondLevel || 1}</span></div>`
               : '<span class="locked-label">未獲得 · 點擊預覽</span>'
           }
         </div>
       </button>
+      ${owned ? '<div class="collection-card__actions">' : ''}
       ${
         owned && !pet.isCompanion
           ? `<button type="button" class="btn btn--sm btn--companion" data-action="set-companion">設為陪伴</button>`
-          : ''
+          : owned ? '<span class="collection-card__state">陪伴中</span>' : ''
       }
       ${
         owned && pet.stars < 5
           ? `<button type="button" class="btn btn--sm btn--upgrade" data-action="upgrade">升星</button>`
-          : ''
+          : owned ? '<span class="collection-card__state">已達最高星級</span>' : ''
       }
+      ${owned ? '</div>' : ''}
     </article>`;
 }
 
@@ -6098,7 +6153,6 @@ function openPetDetailModal(petId) {
       ${owned ? '<p class="pet-detail__image-hint">點擊圖片查看原圖</p>' : ''}
       <h2 class="pet-detail__name">${owned ? escapeHtml(petDisplayName(pet)) : '???'}</h2>
       ${owned && pet.nickname ? `<p class="pet-original-name pet-original-name--center">原名：${escapeHtml(petOriginalName(pet))}</p>` : ''}
-      ${owned && !pet.nickname ? '<p class="pet-detail__nickname-empty pet-detail__nickname-empty--center">尚未設定暱稱</p>' : ''}
       ${owned && pet.title ? `<p class="pet-detail__title">${escapeHtml(pet.title)}</p>` : ''}
       <div class="pet-detail__badges">
         <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
@@ -6124,7 +6178,7 @@ function openPetDetailModal(petId) {
 
   document.querySelector('[data-action="detail-view-image"]')?.addEventListener('click', (e) => {
     const id = e.currentTarget.dataset.petId;
-    if (id) openPetImageViewer(id);
+    if (id) openPetImageViewer(id, e.currentTarget);
   });
 
   document.querySelector('[data-action="set-companion-detail"]')?.addEventListener('click', async (e) => {
@@ -6238,7 +6292,7 @@ function renderExpeditionView() {
             ${
               complete
                 ? `<p class="expedition-complete-msg">${EXPEDITION_COMPLETE_MSG}</p>
-                   <button class="btn btn--primary btn--block expedition-claim-btn expedition-claim-btn--glow" data-action="claim-expedition" data-id="${activeExpedition.id}">領取獎勵</button>`
+                   <button class="btn btn--primary btn--block expedition-claim-btn expedition-claim-btn--glow" data-action="claim-expedition" data-id="${escapeHtml(activeExpedition.id)}">領取獎勵</button>`
                 : `<p class="expedition-status-log" id="expedition-status-log"></p>
                    <div class="expedition-countdown-row">
                      <span class="expedition-pulse-dot" aria-hidden="true"></span>
@@ -6809,13 +6863,19 @@ function openExpeditionDispatchModal(areaId) {
     document.body.appendChild(overlay);
     overlay.addEventListener('click', handleDispatchModalClick);
   }
+  rememberDialogFocus(overlay);
   document.body.classList.add('expedition-dispatch-open');
   dispatchKeydownHandler = (e) => {
-    if (e.key === 'Escape') closeExpeditionDispatchModal();
+    if (e.key === 'Escape' && isTopDialog(overlay)) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      closeExpeditionDispatchModal();
+    }
   };
   document.addEventListener('keydown', dispatchKeydownHandler);
 
   renderExpeditionDispatchModal();
+  focusDialog(overlay);
 }
 
 /** 關閉派遣選單 Modal */
@@ -6823,6 +6883,7 @@ function closeExpeditionDispatchModal() {
   const overlay = document.getElementById('expedition-dispatch-modal');
   if (overlay) overlay.remove();
   document.body.classList.remove('expedition-dispatch-open');
+  if (overlay) restoreDialogFocus(overlay);
   if (dispatchKeydownHandler) {
     document.removeEventListener('keydown', dispatchKeydownHandler);
     dispatchKeydownHandler = null;
@@ -6850,8 +6911,12 @@ function handleDispatchModalClick(e) {
   }
   if (action === 'dispatch-select-pet') {
     if (t.disabled) return;
+    const scrollTop = overlay.querySelector('.expedition-dispatch-modal__body')?.scrollTop || 0;
     dispatchSelectedPetId = t.dataset.petId;
     renderExpeditionDispatchModal();
+    const scrollBody = overlay.querySelector('.expedition-dispatch-modal__body');
+    if (scrollBody) scrollBody.scrollTop = scrollTop;
+    overlay.querySelector('.expedition-pet-option.is-selected')?.focus({ preventScroll: true });
     return;
   }
   if (action === 'dispatch-confirm') {
@@ -6950,6 +7015,7 @@ function buildDispatchPetOptionHtml(pet) {
       class="expedition-pet-option ${selected ? 'is-selected' : ''} ${onExp ? 'is-disabled' : ''}"
       data-action="dispatch-select-pet"
       data-pet-id="${pet.id}"
+      aria-pressed="${selected}"
       ${onExp ? 'disabled' : ''}
     >
       <span class="expedition-pet-option__img">${petImageHtml(pet, { size: 'sm' })}</span>
@@ -8434,8 +8500,8 @@ async function proceedRestoreAfterFirstConfirm(hasNewerVersionWarning) {
   setImportElementHidden('import-restoring-hint', true);
 
   const secondMessage = hasNewerVersionWarning
-    ? '系統已自動下載目前資料備份。此備份來自較新版本，可能無法完全相容。請再次確認你選擇的是正確備份檔。'
-    : '系統已自動下載目前資料備份。請確認你選擇的是正確備份檔，再執行恢復。';
+    ? '已發起目前資料備份下載，請確認檔案已儲存且可以讀取。此備份來自較新版本，可能無法完全相容。請再次確認你選擇的是正確備份檔。'
+    : '已發起目前資料備份下載，請確認檔案已儲存且可以讀取，再執行恢復。';
 
   openConfirmModal(
     '最後確認',
@@ -8523,7 +8589,7 @@ function buildVersionInfoHtml({ compact = false, serviceWorkerStatus = '檢查�
       </div>
     </dl>
     <p class="settings-version__note version-info-note" data-version-update-hint>
-      若手機仍看到舊版，請移除主畫面 App 後重新加入，或清除 Safari 網站資料。
+      若仍看到舊版，請先匯出 JSON 備份，再關閉所有 QuestNote 分頁與主畫面 App 後重新開啟。請勿為了更新而清除網站資料。
     </p>`;
 }
 
@@ -8580,11 +8646,6 @@ function renderSettingsView() {
   const achUnlocked = achievementSummary?.unlocked ?? 0;
   const achTotal = achievementSummary?.total ?? 0;
   setText('settings-achievements', `${achUnlocked}/${achTotal}`);
-
-  const reduceMotionToggle = document.getElementById('toggle-reduce-motion');
-  if (reduceMotionToggle) {
-    reduceMotionToggle.checked = userPreferences?.reduceMotion ?? false;
-  }
 
   renderThemePickerState(userPreferences?.theme ?? 'default');
 

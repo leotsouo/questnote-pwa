@@ -2,12 +2,14 @@
  * QuestNote 版本資訊 — 單一來源
  * 發佈新版時請同步更新 service-worker.js 的 CACHE_NAME
  */
-export const APP_VERSION = '3.4.4';
-export const CACHE_NAME = 'questnote-cache-v344-pool-intro-polish';
-export const PET_IMAGE_CACHE = 'questnote-pet-images-v235';
-export const MAILBOX_RUNTIME_CACHE = 'questnote-mailbox-runtime-v1';
+import { RELEASE_PROFILE } from './releaseProfile.js';
+
+export const APP_VERSION = '3.4.11';
+export const CACHE_NAME = 'questnote-production-app-8f856947cadaae13d87f761dadba2dfceb59d4711f8ff7fb5f2dc68404a67936';
+export const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
+export const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */
-export const BUILD_TIME = '2026-07-27T05:10:00+08:00';
+export const BUILD_TIME = '2026-09-23T14:17:14Z';
 
 export function formatDisplayVersion() {
   return `V${APP_VERSION}`;
@@ -29,6 +31,5 @@ export function formatBuildTimeLocal() {
 }
 
 export function getServiceWorkerRegisterUrl() {
-  const buildTag = APP_VERSION.replace(/\./g, '');
-  return `./service-worker.js?v=${buildTag}`;
+  return './service-worker.js?artifact=8f856947cadaae13d87f761dadba2dfceb59d4711f8ff7fb5f2dc68404a67936';
 }
