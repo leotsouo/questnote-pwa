@@ -2,6 +2,8 @@
 
 本文件說明如何透過 `data/global-mailbox.json` 向所有 QuestNote 裝置發布公告與補償。
 
+目前正式站由 `gh-pages` 根目錄發布已組裝的 production artifact；`main` 保存來源與公告版本。發布信件時，先在 `main` 更新並驗證 JSON，再將**同一份檔案**提交到 `gh-pages`，等待 Pages 部署並讀回正式 HTTPS URL 驗證。不要把整個 source tree 推到 `gh-pages`，也不要為一封信重新組裝卡池 artifact。最新版本與分支狀態見 [最終整合紀錄](final-integration.md)。
+
 ## 現實限制（請務必理解）
 
 - 本系統是 **每份本機資料領取一次**（once per local profile）
@@ -19,7 +21,7 @@
 
 1. 編輯 `data/global-mailbox.json`
 2. 新增一封具有**全新唯一 ID** 的信件
-3. Commit 並部署 GitHub Pages
+3. 將驗證後的同一份 JSON commit 到來源 `main` 與正式站 `gh-pages`，再等待 GitHub Pages 部署
 4. 使用者下次開啟 App、回到前景（超過節流時間）或手動刷新信箱時取得
 
 原則上：
@@ -29,6 +31,8 @@
 - **不需要**發布新的 JavaScript
 
 只更新 `data/global-mailbox.json` 即可。
+
+信箱採 Network First，不屬於必要 precache。已驗證的 release manifest 記錄的是**初次發布的 artifact bytes**；其後信箱單獨更新，不應被誤解為 App Shell 或 catalog 內容變動。每次信箱發布都要另外驗證 JSON schema、message ID 唯一、版本條件、正式站回傳內容與 Pages 部署結果。
 
 除非信件格式本身升級（schemaVersion 變更），否則不要因每封新信都更新 App 版本。
 
@@ -258,10 +262,10 @@ YYYY-MM-用途-簡稱
 
 ## 部署到 GitHub Pages
 
-1. 修改並 commit `data/global-mailbox.json`
-2. Push 到 GitHub Pages 對應分支
-3. 等待 Pages 部署完成
-4. 在 App 內開啟信箱並點「刷新」，或稍後重新開啟 App
+1. 在來源 `main` 修改 `data/global-mailbox.json`，執行 `validateMailboxDocument()`，確認沒有重複 ID、無效 reward 或錯誤版本條件。
+2. Commit 並 push `main`；只把**相同的 JSON bytes**複製、commit 並 push 到正式站的 `gh-pages`。不要修改 `release-artifact.json`、SW、catalog 或已發布寵物 ID。
+3. 等待 `gh-pages` 的 Pages 部署成功，以 HTTPS 讀回 `https://leotsouo.github.io/questnote-pwa/data/global-mailbox.json`，確認 message ID、內容與來源檔案 hash。
+4. 在 V3.4.11 App 內開啟信箱並點「刷新」，或稍後重新開啟 App。舊版本若不符合 `minAppVersion`，不應看到新版公告。
 
 不要把動態信箱 JSON 放進 App Shell precache；它由 Network First 動態取得。
 

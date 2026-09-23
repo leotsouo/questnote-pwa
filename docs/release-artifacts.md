@@ -1,5 +1,9 @@
 # Local release artifacts
 
+Current deployment status and artifact IDs are in [final integration](final-integration.md). The dated deployment evidence near the end of this document records the pre-integration baseline, not the live V3.4.11 release. Production Pages now deploys the assembled artifact from `gh-pages`; source `main` is not the Pages publishing branch.
+
+`data/global-mailbox.json` is a separately published, network-first message feed. It is intentionally excluded from required precache. A mailbox-only update changes that live file after the immutable release artifact was verified; the original `release-artifact.json` remains a record of the app release, not a claim that the later mailbox bytes are unchanged. Validate the message document and deployed mailbox separately.
+
 `prepare-release.mjs` assembles a complete, immutable directory for review. It does
 not commit, push, upload, deploy, run the application, or authorize a release.
 No production dependencies are added. Node and a source Git checkout with a real
