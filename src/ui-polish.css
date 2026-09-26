@@ -1,6 +1,63 @@
 /* UI workstream: task, collection and dialog polish only.
    Keep pool stages/reveal selectors in styles.css owned by the pool workstream. */
 
+/* Task feedback stays in the page: no focus trap, timer, or blocking celebration. */
+#task-completion-status.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+#task-completion-feedback[hidden] { display: none; }
+.journey-feedback, .journey-log {
+  padding: 18px;
+  margin: 12px 0 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-main);
+  background: var(--color-bg-card);
+  overflow-wrap: anywhere;
+}
+.journey-feedback { border-left: 3px solid var(--color-success); }
+.journey-feedback--celebrate {
+  border-color: var(--color-primary-border);
+  background: linear-gradient(145deg, var(--color-primary-soft), transparent), var(--color-bg-card);
+  animation: journey-arrive 420ms ease-out;
+}
+.journey-feedback__heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.journey-eyebrow, .journey-badge { color: var(--color-primary-light); font-size: 0.78rem; }
+.journey-feedback h3, .journey-log h2 { font-size: 1.08rem; line-height: 1.5; margin: 6px 0 12px; }
+.journey-feedback__task { font-weight: 700; line-height: 1.6; margin: 4px 0 12px; }
+.journey-feedback__companion { display: flex; align-items: center; gap: 12px; }
+.journey-feedback__companion > div:last-child { min-width: 0; }
+.journey-feedback__portrait { flex: 0 0 52px; width: 52px; }
+.journey-feedback__portrait .pet-image-frame { width: 52px; height: 52px; border-radius: 12px; }
+.journey-feedback__portrait img { width: 100%; height: 100%; object-fit: cover; }
+.journey-feedback__line { font-size: 0.88rem; line-height: 1.65; margin: 4px 0; color: var(--color-text-secondary); }
+.journey-feedback__progress { margin-top: 14px; font-size: 0.8rem; }
+.journey-feedback__progress progress { display: block; width: 100%; height: 6px; accent-color: var(--color-primary); margin: 8px 0; border: 0; border-radius: 10px; overflow: hidden; }
+.journey-feedback__progress progress::-webkit-progress-bar { background: var(--color-bg-elevated); }
+.journey-feedback__progress progress::-webkit-progress-value { background: var(--color-primary); }
+.journey-feedback__progress p, .journey-feedback__rewards, .journey-feedback__saved, .journey-log__intro {
+  color: var(--color-text-secondary); font-size: 0.8rem; line-height: 1.6; margin: 8px 0 0;
+}
+.journey-feedback__saved { color: var(--color-text-muted); }
+.journey-memories { list-style: none; padding: 0; margin: 12px 0 0; }
+.journey-memory { border-top: 1px solid var(--color-border-soft); padding: 12px 0; }
+.journey-memory__meta { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.72rem; color: var(--color-text-muted); }
+.journey-memory__meta span { color: var(--color-primary-light); }
+.journey-memory__title { font-weight: 600; line-height: 1.55; margin: 6px 0; }
+.journey-memory__companion { font-size: 0.8rem; color: var(--color-text-secondary); margin: 0; }
+.journey-log summary { cursor: pointer; color: var(--color-text-secondary); padding: 12px 0; min-height: 44px; }
+.journey-log summary:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+@keyframes journey-arrive { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .journey-feedback--celebrate { animation: none; } }
+body.reduce-motion .journey-feedback--celebrate { animation: none; }
+
 /* VP-01: semantic state, readable surfaces and native task inputs. */
 body[data-theme="sweet"] #view-collection .collection-card.rarity-UR {
   background: var(--color-bg-card-soft);

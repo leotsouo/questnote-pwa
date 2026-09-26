@@ -1,20 +1,18 @@
 /**
  * 任務 CRUD、子任務、今日計畫與完成邏輯
  */
-import { dbGetAll, dbPut, dbDelete, STORES } from './db.js';
+import { dbGetAll, dbPut, dbDelete, dbUpdateRecord, STORES } from './db.js';
 import { claimTaskReward } from './rewardService.js';
 import { normalizeTask } from './taskMigration.js';
 import {
   getTodayDateString,
   validateDateRange,
-  isCompletedBeforeDue,
   isCompletedToday,
 } from './taskFilterService.js';
 import {
   recordPlanToday,
   recordSubtaskCreated,
   recordSubtaskCompleted,
-  recordCompletedBeforeDue,
 } from './taskStatsService.js';
 
 /** 從 content 第一行擷取標題 */
@@ -84,6 +82,7 @@ export async function createTask(data) {
     content: data.content.trim(),
     title: extractTitle(data.content),
     priority: data.priority || 'normal',
+    worthRemembering: data.worthRemembering === true,
     type: 'one_time',
     completed: false,
     rewardClaimed: false,
@@ -125,6 +124,10 @@ export async function updateTask(id, updates) {
   if (updates.content !== undefined) {
     updated.content = updates.content.trim();
     updated.title = extractTitle(updated.content);
+  }
+
+  if (updates.worthRemembering !== undefined && task.completionMemory) {
+    updated.completionMemory = { ...task.completionMemory, meaningful: updates.worthRemembering === true };
   }
 
   if (updates.subtasks !== undefined) {
@@ -206,34 +209,26 @@ export async function toggleSubtaskComplete(taskId, subtaskId) {
 /**
  * 切換任務完成狀態，完成時自動發放獎勵
  */
-export async function toggleTaskComplete(id) {
+export async function toggleTaskComplete(id, { completed } = {}) {
   const task = await getTaskById(id);
   if (!task) throw new Error('任務不存在');
 
   const now = new Date().toISOString();
 
-  if (task.completed) {
-    const updated = await updateTask(id, {
-      completed: false,
-      completedAt: null,
+  const shouldComplete = completed ?? !task.completed;
+  if (!shouldComplete) {
+    const updated = await dbUpdateRecord(STORES.TASKS, id, (freshTask) => {
+      if (!freshTask) throw new Error('任務不存在');
+      return { ...freshTask, completed: false, completedAt: null, updatedAt: now };
     });
     return { task: updated, reward: null, justCompleted: false };
   }
 
-  const updated = await updateTask(id, {
-    completed: true,
-    completedAt: now,
-  });
-
-  if (isCompletedBeforeDue(updated)) {
-    await recordCompletedBeforeDue();
-  }
-
-  const reward = await claimTaskReward(updated);
+  const reward = await claimTaskReward(task);
   if (reward.amount > 0 || reward.energy > 0) {
-    return { task: reward.task, reward, justCompleted: true };
+    return { task: reward.task, reward, justCompleted: reward.justCompleted };
   }
-  return { task: reward.task, reward: null, justCompleted: true };
+  return { task: reward.task, reward: null, justCompleted: reward.justCompleted };
 }
 
 /** 今日完成的任務數 */

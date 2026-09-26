@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3416-mailbox-layout';
+const CACHE_NAME = 'questnote-preview-cache-v3417-companion-journey-r2';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -52,6 +52,8 @@ const PRECACHE_URLS = [
   'src/collectionMilestoneService.js',
   'src/backupService.js',
   'src/companionService.js',
+  'src/companionJourneyService.js',
+  'src/companionJourneyView.js',
   'src/companionDialogueService.js',
   'src/expeditionStatusService.js',
   'src/preferencesService.js',

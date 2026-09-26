@@ -60,6 +60,11 @@ import {
   claimCollectionMilestone,
 } from './collectionMilestoneService.js';
 import { getBondUpLine } from './companionService.js';
+import { buildCompletionFeedback, buildJourneyHtml } from './companionJourneyView.js';
+import { getMemoryHeading } from './companionJourneyService.js';
+
+let latestTaskFeedback = null;
+const completingTaskIds = new Set();
 import {
   getCompanionDialogue,
   randomBubbleInterval,
@@ -680,6 +685,13 @@ function bindDelegatedEvents() {
     const id = card?.dataset.id;
     const action = target.dataset.action;
 
+    if (action === 'dismiss-task-feedback') {
+      latestTaskFeedback = null;
+      renderTaskJourney();
+      document.getElementById('btn-add-task')?.focus({ preventScroll: true });
+      return;
+    }
+
     if (action === 'home-hub') {
       const hub = target.dataset.hub;
       const willOpen = homeHubActive !== hub;
@@ -732,58 +744,72 @@ function bindDelegatedEvents() {
     }
 
     if (action === 'toggle' && id) {
-      const cardEl = target.closest('.task-card');
-      const taskBefore = state.tasks.find((t) => t.id === id);
-      const isCompleting = taskBefore && !taskBefore.completed;
+      if (completingTaskIds.has(id)) return;
+      completingTaskIds.add(id);
+      try {
+        const cardEl = target.closest('.task-card');
+        const taskBefore = state.tasks.find((t) => t.id === id);
+        const isCompleting = taskBefore && !taskBefore.completed;
 
-      if (cardEl && isCompleting) {
-        cardEl.classList.add('task-card--completing');
-        cardEl.classList.add('task-card--done');
-        const check = cardEl.querySelector('.task-check');
-        if (check) {
-          check.classList.add('checked');
-          check.textContent = '✓';
+        if (cardEl && isCompleting) {
+          cardEl.classList.add('task-card--completing');
+          cardEl.classList.add('task-card--done');
+          const check = cardEl.querySelector('.task-check');
+          if (check) {
+            check.classList.add('checked');
+            check.textContent = '✓';
+          }
+          cardEl.querySelector('.task-card__complete-btn')?.remove();
+          cardEl.querySelector('.task-card__rewards')?.remove();
         }
-        cardEl.querySelector('.task-card__complete-btn')?.remove();
-        cardEl.querySelector('.task-card__rewards')?.remove();
-      }
 
-      const result = await toggleTaskComplete(id);
+        const result = await toggleTaskComplete(id, { completed: isCompleting });
 
-      if (isCompleting) {
-        recentlyCompletedTaskIds.add(id);
-        setTimeout(() => recentlyCompletedTaskIds.delete(id), 2500);
+        if (isCompleting) {
+          recentlyCompletedTaskIds.add(id);
+          setTimeout(() => recentlyCompletedTaskIds.delete(id), 2500);
 
-        if (result.reward) {
-          showRewardToast(result.reward.amount, result.reward.energy);
-        } else {
-          showToast('任務已完成', 'success');
+          if (!result.reward && result.justCompleted) {
+            showToast('任務已完成', 'success');
+          }
         }
-      }
 
-      if (isCompleting) {
-        await trackQuest('complete_task');
-      }
+        if (isCompleting && result.reward) {
+          await trackQuest('complete_task', 1, { quiet: true });
+        }
 
-      await onRefresh();
+        if (result.reward?.memory) {
+          latestTaskFeedback = { taskId: id, reward: result.reward };
+        } else if (!isCompleting && latestTaskFeedback?.taskId === id) {
+          latestTaskFeedback = null;
+        }
 
-      if (isCompleting && taskViewMode === 'today') {
-        requestAnimationFrame(() => {
-          document.querySelector(`.task-card[data-id="${CSS.escape(String(id))}"]`)
-            ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        });
-      }
+        await onRefresh();
 
-      if (result.reward?.bond?.leveledUp) {
-        const bondLine = getBondUpLine(state.companion);
-        showBondLevelUpToast(result.reward.bond.newLevel, bondLine);
-      }
-      if (result.reward?.bond) {
-        await notifyBondUnlocks(state.companion?.id);
-      }
-      await handleAchievementCheckAfterAction();
-      if (isCompleting && result.justCompleted) {
-        void recordOnboardingEvent('task-completed', { taskId: id });
+        if (isCompleting && taskViewMode === 'today') {
+          requestAnimationFrame(() => {
+            const feedback = document.getElementById('task-completion-feedback');
+            const completedCard = document.querySelector(`.task-card[data-id="${CSS.escape(String(id))}"]`);
+            (feedback && !feedback.hidden ? feedback : completedCard)
+              ?.scrollIntoView({ behavior: state.userPreferences?.reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+          });
+        }
+
+        if (result.reward?.bond) {
+          await notifyBondUnlocks(result.reward.bond.petId, { quiet: true });
+        }
+        await handleAchievementCheckAfterAction({ quiet: !!result.reward });
+        if (isCompleting && result.justCompleted) {
+          void recordOnboardingEvent('task-completed', { taskId: id });
+        }
+        if (result.reward?.memory) {
+          setText('task-completion-status', `完成「${result.reward.memory.taskTitle}」。${getMemoryHeading(result.reward.memory)}。星塵增加 ${result.reward.amount}，冒險能量增加 ${result.reward.energy}${result.reward.bond ? `，親密度增加 ${result.reward.bond.expGained}` : ''}。`);
+        }
+      } catch (error) {
+        await onRefresh();
+        showToast(error.message || '任務狀態暫時無法更新，請稍後再試。', 'error');
+      } finally {
+        completingTaskIds.delete(id);
       }
     } else if (action === 'toggle-subtask' && id) {
       const subtaskId = target.dataset.subtaskId;
@@ -1821,6 +1847,7 @@ function renderTasksView() {
   renderTodayPlanSummary(tasks, today);
   renderHabitSummary();
   renderCategoryFilters(categories);
+  renderTaskJourney();
 
   const catFilterEl = document.getElementById('task-category-filters');
   if (catFilterEl) {
@@ -1839,6 +1866,24 @@ function renderTasksView() {
       ? renderSmartListDetail(tasks, activeSmartListId, today)
       : renderSmartListHub(tasks, today);
   }
+}
+
+function renderTaskJourney() {
+  const feedback = document.getElementById('task-completion-feedback');
+  const task = state.tasks.find((item) => item.id === latestTaskFeedback?.taskId);
+  if (feedback) {
+    feedback.hidden = !task?.completed || !latestTaskFeedback;
+    if (!feedback.hidden) {
+      const memory = task.completionMemory || latestTaskFeedback.reward.memory;
+      const pet = state.enrichedCollection.find((item) => item.id === memory.petId);
+      feedback.innerHTML = buildCompletionFeedback(memory, pet, latestTaskFeedback.reward,
+        pet ? petImageHtml(pet, { size: 'sm', loading: 'eager' }) : '');
+    } else {
+      feedback.innerHTML = '';
+    }
+  }
+  const log = document.getElementById('task-journey-log');
+  if (log) log.innerHTML = buildJourneyHtml(state.tasks, state.enrichedCollection);
 }
 
 function renderHabitSummary() {
@@ -2271,10 +2316,10 @@ function renderQuestPanel() {
  * 依行為事件更新冒險任務進度，並於任務完成時提示。
  * 失敗時不影響原本操作（僅 console warn）。
  */
-async function trackQuest(eventType, amount = 1) {
+async function trackQuest(eventType, amount = 1, { quiet = false } = {}) {
   try {
     const result = await updateQuestProgress(eventType, amount);
-    if (result?.newlyCompleted?.length) {
+    if (!quiet && result?.newlyCompleted?.length) {
       for (const { quest } of result.newlyCompleted) {
         showToast(`冒險任務完成：${quest.title}`, 'success', 2600);
       }
@@ -2890,6 +2935,7 @@ function renderTaskCard(task) {
           <span class="badge ${priorityClass}">${PRIORITY_LABELS[task.priority]}</span>
           <span class="badge ${dateClass}">${escapeHtml(dateText)}</span>
           ${planBadge}
+          ${task.worthRemembering ? '<span class="badge journey-badge">值得紀念</span>' : ''}
         </div>
       </div>
       <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
@@ -2976,6 +3022,14 @@ function openTaskForm(taskId = null) {
         <span class="settings-toggle__switch" aria-hidden="true"></span>
       </label>
 
+      <label class="settings-toggle form-toggle" for="task-worth-remembering">
+        <span class="settings-toggle__text">
+          <span class="settings-toggle__label">這件事值得紀念</span>
+          <span class="settings-toggle__desc">完成時好好慶祝，留下特別的回憶</span>
+        </span>
+        <input type="checkbox" id="task-worth-remembering" class="settings-toggle__input" ${task?.worthRemembering ? 'checked' : ''} />
+        <span class="settings-toggle__switch" aria-hidden="true"></span>
+      </label>
       <label class="form-label">子任務</label>
       <div id="subtask-form-list" class="subtask-form-list">${subtaskListHtml}</div>
       <p class="form-hint subtask-form-empty" id="subtask-form-empty" ${subtasks.length ? 'hidden' : ''}>這個任務還沒有子任務，可以把大型任務拆成幾個小步驟。</p>
@@ -3100,6 +3154,7 @@ function openTaskForm(taskId = null) {
       startDate,
       dueDate,
       planToday,
+      worthRemembering: document.getElementById('task-worth-remembering').checked,
       subtasks: finalSubtasks,
     };
 
@@ -4683,11 +4738,11 @@ function showBondUnlockToast(level) {
  * notifiedLevels 由 updatePetBondUnlocks 維護，不會重複彈出。
  * @param {string} petId
  */
-async function notifyBondUnlocks(petId) {
+async function notifyBondUnlocks(petId, { quiet = false } = {}) {
   if (!petId) return;
   try {
     const { newlyUnlockedLevels } = await updatePetBondUnlocks(petId);
-    if (!newlyUnlockedLevels?.length) return;
+    if (quiet || !newlyUnlockedLevels?.length) return;
     newlyUnlockedLevels.forEach((lv, i) => {
       setTimeout(() => showBondUnlockToast(lv), 700 + i * 800);
     });
@@ -6246,6 +6301,7 @@ function openPetDetailModal(petId) {
       ${owned && pet.lore ? `<p class="pet-detail__lore">${escapeHtml(pet.lore)}</p>` : ''}
       ${!owned ? '<p class="pet-detail__locked">召喚解鎖後，可閱讀完整背景與親密度故事。</p>' : ''}
       ${bondStatusSection}
+      ${owned ? buildJourneyHtml(state.tasks, state.enrichedCollection, pet.id) : ''}
       ${bondSection}
       ${nicknameSection}
       ${
@@ -8067,6 +8123,7 @@ function buildHandbookExpedition(exp) {
 function buildHandbookHtml(model) {
   if (!model) return '<p class="handbook-loading">整理你的冒險成果中…</p>';
   return [
+    buildJourneyHtml(state.tasks, state.enrichedCollection),
     buildHandbookQuickStats(model.quickStats),
     buildHandbookGoals(model.nextGoals),
     buildHandbookWeekly(model.weekly),
@@ -8338,11 +8395,11 @@ function openTitleManagementModal() {
   });
 }
 
-async function handleAchievementCheckAfterAction() {
+async function handleAchievementCheckAfterAction({ quiet = false } = {}) {
   if (!onAchievementCheck) return;
   const result = await onAchievementCheck();
   if (result.newlyUnlocked.length > 0) {
-    showAchievementUnlockNotifications(result);
+    if (!quiet) showAchievementUnlockNotifications(result);
     if (isModalOpen()) {
       await onRefresh();
       return;

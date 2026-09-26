@@ -19,7 +19,7 @@ const FORBIDDEN_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
 // obtainedSource is written by the V3.4 unlock gift, owned/id by legacy adapters.
 const COLLECTION_FIELDS = new Set(['petId', 'id', 'owned', 'stars', 'fragments',
   'bondExp', 'bondLevel', 'isCompanion', 'obtainedAt', 'nickname', 'lastPettedAt',
-  'bondUnlocks', 'obtainedSource']);
+  'bondUnlocks', 'obtainedSource', 'journeyTaskCount']);
 const OLD_COLLECTION_PROFILES = new Set(['1.8.1', '2.1.1', '2.1.2', '2.1.4',
   '2.2', '2.2.7', '2.3.5', '2.3.7']);
 // These keys/targets are serialized by every recorded quest/exploration exporter.
@@ -119,11 +119,14 @@ export function validateSnapshotData(data, requiredKeys = SNAPSHOT_KEYS, profile
     bondFrameLv5: bool, bondStoryLv5: bool, bondLiberated: bool,
     notifiedLevels: list(oneOf([2, 3, 4, 5]), true) });
   const subtask = shape({ id, text, completed: bool, createdAt: timestamp, completedAt: nullable(timestamp) });
+  const completionMemory = shape({ petId: nullable(petId), taskTitle: text, completedAt: timestamp,
+    ordinal: integer, meaningful: bool, milestone: bool, bondBefore: integer, bondAfter: integer });
   const task = shape({ id, content: text, title: text, priority: oneOf(['normal', 'important', 'urgent']),
     type: oneOf(['one_time', 'repeatable']), categoryId: id, startDate: nullable(dateKey),
     dueDate: nullable(dateKey), isPlannedToday: bool, plannedDate: nullable(dateKey),
     subtasks: list(subtask), completed: bool, rewardClaimed: bool, createdAt: timestamp,
-    updatedAt: timestamp, completedAt: nullable(timestamp), lastRewardClaimedAt: nullable(timestamp) });
+    updatedAt: timestamp, completedAt: nullable(timestamp), lastRewardClaimedAt: nullable(timestamp) },
+  { worthRemembering: bool, completionMemory });
   const habitLog = (value, path, key) => {
     if (key.startsWith('week_')) {
       dateKey(key.slice(5), path);
@@ -148,7 +151,7 @@ export function validateSnapshotData(data, requiredKeys = SNAPSHOT_KEYS, profile
     if (!['1.8.1', '2.1.1', '2.1.2', '2.1.4'].includes(profile)) fields.lastPettedAt = nullable(timestamp);
     if (!OLD_COLLECTION_PROFILES.has(profile)) fields.bondUnlocks = bondUnlocks;
     shape(fields, { petId, id: petId, owned: bool, nickname: nullable(text),
-      lastPettedAt: nullable(timestamp), bondUnlocks, obtainedSource: text })(value, path);
+      lastPettedAt: nullable(timestamp), bondUnlocks, obtainedSource: text, journeyTaskCount: integer })(value, path);
     if (isRecord(value)) {
       for (const key of Object.keys(value)) if (!COLLECTION_FIELDS.has(key)) fail(`${path}.${key}`, '收藏不可覆寫 catalog 或包含未知欄位');
     }

@@ -1,9 +1,12 @@
 /**
  * 星塵獎勵計算與發放
  */
-import { openDB, dbGet, dbPut, dbUpdateRecord, STORES } from './db.js';
-import { updateTask } from './taskService.js';
-import { addBondExpToCompanion } from './collectionService.js';
+import { openDB, dbGet, dbPut, dbUpdateRecord, dbMutateRecords, STORES } from './db.js';
+import { normalizeEntry, getBondLevelFromExp } from './collectionService.js';
+import { normalizeTask } from './taskMigration.js';
+import { isCompletedBeforeDue } from './taskFilterService.js';
+import { normalizeTaskStats } from './taskStatsService.js';
+import { createTaskMemory } from './companionJourneyService.js';
 
 const WALLET_KEY = 'wallet';
 const INVENTORY_KEY = 'inventory';
@@ -175,32 +178,56 @@ export async function spendStardust(amount) {
  * 完成任務後領取獎勵（星塵 + 冒險能量 + 陪伴寵物親密度）
  * @returns {{ task: object, amount: number, energy: number, bond: object|null }}
  */
-export async function claimTaskReward(task) {
-  if (!canClaimReward(task)) {
-    return { task, amount: 0, energy: 0, bond: null };
+export function planTaskCompletion(rawTask, rawWallet, collection, rawStats, now) {
+  if (!rawTask) throw new Error('任務不存在');
+  const task = normalizeTask(rawTask);
+  const justCompleted = !task.completed;
+  const updated = { ...task, completed: true, completedAt: task.completedAt || now, updatedAt: now };
+  if (task.rewardClaimed) {
+    return {
+      puts: justCompleted ? [{ store: STORES.TASKS, value: updated }] : [],
+      result: { task: updated, amount: 0, energy: 0, bond: null, justCompleted },
+    };
   }
-
   const amount = calculateRewardAmount(task);
   const energy = calculateAdventureEnergyAmount(task);
-
-  await addStardust(amount);
-  if (energy > 0) {
-    await addAdventureEnergy(energy);
+  const wallet = normalizeWallet(rawWallet);
+  wallet.stardust += amount;
+  wallet.adventureEnergy += energy;
+  const companion = collection.map(normalizeEntry).find((entry) => entry.isCompanion);
+  const memory = createTaskMemory(updated, companion, now);
+  const puts = [{ store: STORES.META, value: wallet }];
+  let bond = null;
+  if (companion) {
+    const expGained = calculateBondAmount(task);
+    const oldLevel = companion.bondLevel;
+    companion.bondExp += expGained;
+    companion.bondLevel = getBondLevelFromExp(companion.bondExp);
+    companion.journeyTaskCount = memory.ordinal;
+    memory.bondAfter = companion.bondExp;
+    bond = { petId: companion.petId, expGained, oldLevel, newLevel: companion.bondLevel,
+      leveledUp: companion.bondLevel > oldLevel };
+    puts.push({ store: STORES.COLLECTION, value: normalizeEntry(companion) });
   }
+  Object.assign(updated, { rewardClaimed: true, lastRewardClaimedAt: now, completionMemory: memory });
+  puts.push({ store: STORES.TASKS, value: updated });
+  if (isCompletedBeforeDue(updated)) {
+    const stats = normalizeTaskStats(rawStats);
+    stats.completedBeforeDueTotal += 1;
+    puts.push({ store: STORES.META, value: stats });
+  }
+  return { puts, result: { task: updated, amount, energy, bond, justCompleted, memory } };
+}
 
-  const now = new Date().toISOString();
-  const updates = {
-    rewardClaimed: true,
-    lastRewardClaimedAt: now,
-  };
-
-  const updatedTask = await updateTask(task.id, updates);
-
-  // 陪伴寵物親密度（與星塵共用防刷規則）
-  const bondAmount = calculateBondAmount(task);
-  const bond = await addBondExpToCompanion(bondAmount);
-
-  return { task: updatedTask, amount, energy, bond };
+export async function claimTaskReward(task) {
+  // Commit task, rewards, actual companion and memory together; a retry cannot award twice.
+  return dbMutateRecords([
+    { store: STORES.TASKS, key: task.id },
+    { store: STORES.META, key: WALLET_KEY },
+    { store: STORES.COLLECTION, all: true },
+    { store: STORES.META, key: 'taskStats' },
+  ], ([freshTask, wallet, collection, stats]) =>
+    planTaskCompletion(freshTask, wallet, collection, stats, new Date().toISOString()));
 }
 
 /** 計算目前可抽卡次數 */
