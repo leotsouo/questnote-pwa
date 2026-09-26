@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuestNote 分章教學驗收</title>
+<style>
+  body { background:#111827; color:#f4f7ff; font:15px/1.5 system-ui; padding:20px; }
+  button { padding:12px; font:inherit; }
+  .workspace { display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap; margin-top:16px; }
+  iframe { width:390px; height:844px; border:1px solid #64748b; }
+  pre { flex:1; min-width:300px; white-space:pre-wrap; overflow-wrap:anywhere; }
+</style>
+<h1>分章教學：隔離資料驗收</h1>
+<p>只允許專用 localhost 伺服器、全新 origin 與 UUID 測試資料庫。實際 DOM 操作搭配合成資源；探險時間以測試服務推進，Service Worker 由獨立發佈驗收覆蓋。</p>
+<button id="run">執行教學驗收</button>
+<button id="cleanup" disabled>清除此 UUID 測試資料</button>
+<div class="workspace"><iframe id="preview" title="教學手機驗收 390 × 844" src="about:blank"></iframe><pre id="results" aria-live="polite">尚未執行</pre></div>
+<script type="module" src="./onboarding-browser-test.js"></script>
+</html>

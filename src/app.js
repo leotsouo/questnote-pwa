@@ -105,7 +105,7 @@ import {
   hasLowMaterials,
 } from './workshopService.js';
 
-import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus } from './ui.js';
+import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget } from './ui.js';
 import { prepareOnboarding, resetOnboardingState } from './onboardingService.js';
 import { initOnboarding } from './onboardingController.js';
 import { runAppHealthCheck } from './healthCheckService.js';
@@ -713,7 +713,7 @@ async function initApp() {
 
     }
 
-    initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus }, onboardingAtStartup);
+    initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget }, onboardingAtStartup);
 
 
 

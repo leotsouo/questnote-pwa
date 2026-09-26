@@ -290,6 +290,27 @@ try {
     await waitForStarted(productionFrame, 'production'); await waitForStarted(previewFrame, 'preview');
     await checkCatalogAndUi(productionFrame, 'production'); await checkCatalogAndUi(previewFrame, 'preview');
   });
+  await test('growth chapters remain usable and resume the saved step without the network', async () => {
+    let document = productionFrame.contentDocument;
+    document.querySelector('[data-onboarding-action="skip"]')?.click();
+    await until(() => !document.querySelector('[data-onboarding-action="start"]'), 'welcome dismissed');
+    document.querySelector('[data-view="more"]').click();
+    document.querySelector('[data-goto="guide"]').click();
+    await until(() => document.querySelectorAll('#guide-chapters article').length === 4, 'four offline chapters');
+    document.querySelector('[data-onboarding-action="lesson:workshop"]').click();
+    await until(() => document.querySelector('[data-onboarding-action="lesson-next"]'), 'offline chapter started');
+    document.querySelector('[data-onboarding-action="lesson-next"]').click();
+    await until(() => document.querySelector('.onboarding-dock')?.textContent.includes('看懂配方'), 'craft step persisted');
+    productionFrame.remove(); frames.delete(productionFrame);
+    productionFrame = directClient('production');
+    await waitForStarted(productionFrame, 'production');
+    document = productionFrame.contentDocument;
+    await until(() => document.querySelector('.onboarding-dock')?.textContent.includes('看懂配方'), 'offline chapter resumes');
+    document.querySelector('[data-onboarding-action="lesson-locate"]').click();
+    await until(() => document.getElementById('view-workshop').classList.contains('active')
+      && document.querySelector('[data-action="craft-item"]'), 'offline recipe navigation');
+    observations.offlineGrowthLesson = { chapter: 'workshop', step: 'craft', resumed: true };
+  });
 } catch (error) {
   results.push({ name: 'harness setup', ok: false, error: error.stack || error.message });
 } finally {

@@ -993,13 +993,21 @@ function bindDelegatedEvents() {
     const nextStar = (pet?.stars || 1) + 1;
     const cost = STAR_UPGRADE_COST[nextStar];
 
-    const result = await upgradeStar(petId);
-    if (result.success) {
-      await onRefresh({ renderMode: ['collection', 'tasks'] });
-      showToast(`${petDisplayName(pet)} 升級至 ${result.entry.stars} 星！`, 'success');
-    } else {
-      showToast(result.message || `升星需要 ${cost} 碎片`, 'warning');
+    if (!cost || (pet?.fragments || 0) < cost) {
+      showToast(cost ? `升星需要 ${cost} 個這隻夥伴的碎片，目前有 ${pet?.fragments || 0} 個。` : '已達最高星級', 'warning');
+      return;
     }
+    openConfirmModal('確認升星', `將消耗「${petDisplayName(pet)}」的 ${cost} 個碎片，從 ${pet.stars} 星升到 ${nextStar} 星。`, async () => {
+      try {
+        const result = await upgradeStar(petId);
+        if (!result.success) { showToast(result.message, 'warning'); return; }
+        void recordOnboardingEvent('star-upgraded', { petId });
+        await onRefresh({ renderMode: ['collection', 'tasks'] });
+        showToast(`${petDisplayName(pet)} 升級至 ${result.entry.stars} 星！`, 'success');
+      } catch (error) {
+        showToast(error.message || '升星失敗，請稍後再試', 'error');
+      }
+    }, { confirmLabel: `花費 ${cost} 碎片升星` });
   });
 
   document.getElementById('btn-export')?.addEventListener('click', async () => {
@@ -1318,6 +1326,28 @@ export function switchView(viewName) {
   }
   renderNavBadges();
   void recordOnboardingEvent('view-changed', { viewName });
+}
+
+/** Teaching links only navigate and select filters; product controls own every write. */
+export async function openTeachingTarget({ view, filter, tab, hub, petId } = {}) {
+  if (view === 'collection' && filter === 'owned') {
+    collectionFilter = 'owned';
+    collectionSeriesFilter = 'all';
+  }
+  if (view === 'workshop' && ['materials', 'craft', 'gift'].includes(tab)) {
+    workshopTab = tab;
+    if (petId) selectedGiftPetId = petId;
+    document.querySelectorAll('[data-workshop-tab]').forEach((button) => {
+      const active = button.dataset.workshopTab === tab;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-selected', String(active));
+    });
+  }
+  if (view === 'tasks' && ['blessing', 'quest', 'titles'].includes(hub)) homeHubActive = hub;
+  switchView(view);
+  if (view === 'collection') renderCollectionView();
+  if (view === 'tasks' && hub) renderHomeHub();
+  await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 }
 
 function bindModals() {
@@ -3251,6 +3281,7 @@ async function handleCompanionPet() {
     }
 
     playHomeCompanionPetEffect();
+    void recordOnboardingEvent('companion-petted', { petId: state.companion.id });
     showToast('你輕輕摸了摸牠，親密度 +5', 'success', 2800);
     if (result.leveledUp) {
       setTimeout(() => {
@@ -3478,6 +3509,7 @@ function bindCompanionPreviewInteractions(companion) {
         return;
       }
       playCompanionComfortEffect();
+      void recordOnboardingEvent('companion-petted', { petId: companion.id });
       showToast('你輕輕摸了摸牠，親密度 +5', 'success', 2800);
       if (result.leveledUp) {
         setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
@@ -3521,6 +3553,7 @@ function bindCompanionPreviewInteractions(companion) {
         return;
       }
       playCompanionComfortEffect();
+      void recordOnboardingEvent('gift-given', { petId: companion.id, itemId });
       await trackQuest('gift_pet');
       await onRefresh({ renderMode: ['tasks', 'workshop'] });
       const updated = state.companion;
@@ -6488,6 +6521,7 @@ function startExpeditionTimer() {
       stopExpeditionStatusRotation();
       renderExpeditionView();
       renderNavBadges();
+      refreshOnboarding();
       return;
     }
 
@@ -6586,6 +6620,7 @@ async function handleExpeditionClick(e) {
         state.expeditionAreas,
         state.allPets
       );
+      void recordOnboardingEvent('expedition-claimed', { expeditionId: expId, petId: expeditionPetId });
       await trackQuest('complete_expedition');
       // 探險成功領獎後才推進探索度（不影響原本收益 / 倒數邏輯）
       const exploration = await applyExplorationOnClaim(expeditionAreaId);
@@ -7665,6 +7700,7 @@ async function handleWorkshopClick(e) {
         showToast(result.message, 'warning');
         return;
       }
+      void recordOnboardingEvent('item-crafted', { itemId });
       await trackQuest('craft');
       await onRefresh({ renderMode: ['workshop', 'tasks'] });
       renderWorkshopView();
@@ -7691,6 +7727,7 @@ async function handleWorkshopClick(e) {
         showToast(result.message, 'warning');
         return;
       }
+      void recordOnboardingEvent('gift-given', { petId, itemId });
       await trackQuest('gift_pet');
       await onRefresh({ renderMode: ['workshop', 'tasks', 'collection'] });
       renderWorkshopView();

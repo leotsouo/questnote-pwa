@@ -365,7 +365,7 @@
         <h2 id="guide-overview-title">讓任務帶著夥伴一起成長</h2>
         <ol class="guide-steps">
           <li><b class="guide-step-number" aria-hidden="true">1</b><strong>記下任務</strong><span>按任務頁右下角「＋」；今天要做的事可加入今日計畫。</span></li>
-          <li><b class="guide-step-number" aria-hidden="true">2</b><strong>完成並領資源</strong><span>做完後點「完成」，獲得星塵與冒險能量。</span></li>
+          <li><b class="guide-step-number" aria-hidden="true">2</b><strong>完成並領資源</strong><span>做完後點「完成」，獲得星塵、冒險能量與陪伴夥伴的親密度。</span></li>
           <li><b class="guide-step-number" aria-hidden="true">3</b><strong>召喚夥伴</strong><span>用星塵召喚；星塵不足時看看信箱、任務與每日祝福。</span></li>
           <li><b class="guide-step-number" aria-hidden="true">4</b><strong>收藏與陪伴</strong><span>到圖鑑切換「已獲得」，選一隻設為陪伴。</span></li>
           <li><b class="guide-step-number" aria-hidden="true">5</b><strong>派遣探險</strong><span>有寵物與足夠能量時選擇地區，派遣後回來領獎。</span></li>
@@ -374,13 +374,20 @@
         <button id="guide-tutorial-button" class="btn btn--primary btn--block" type="button" data-onboarding-action="replay">重新體驗引導</button>
       </section>
 
+      <section class="guide-growth" aria-labelledby="guide-growth-title">
+        <h2 id="guide-growth-title">帶著夥伴繼續成長</h2>
+        <p>建議依序閱讀，也能自由選章。每章約 1–2 分鐘；等待探險與累積資源的時間另計。先了解或自願實作，進度都會保留。</p>
+        <div id="guide-chapters" class="guide-chapters"></div>
+      </section>
+
       <section class="guide-more card" aria-labelledby="guide-more-title">
-        <h2 id="guide-more-title">其他功能</h2>
-        <details><summary>每日祝福與信箱</summary><p>任務首頁可每日簽到並轉動幸運轉盤；右上角信箱可查看公告與領取可用補償。</p></details>
-        <details><summary>習慣與冒險任務</summary><p>在「更多 → 習慣」追蹤每日或每週習慣；任務首頁的冒險任務可查看每日、每週挑戰與可領獎勵。</p></details>
-        <details><summary>成就與稱號</summary><p>在「更多 → 成就」查看進度、領取已解鎖獎勵，並選擇喜歡的稱號。</p></details>
-        <details><summary>工坊與親密度</summary><p>探險帶回材料後，可在「更多 → 工坊」製作禮物並贈送寵物；完成任務也能提升陪伴寵物的親密度。</p></details>
-        <details><summary>資料備份與設定</summary><p>在「更多 → 設定」匯出 JSON 備份、恢復資料，以及調整主題和動畫偏好。資料主要保存在目前裝置的瀏覽器中。</p></details>
+        <h2 id="guide-more-title">日常功能速查</h2>
+        <details><summary>每日祝福與幸運轉盤</summary><p>入口：任務首頁的「每日祝福」。每天可簽到、查看獎勵，再依頁面狀態轉動幸運轉盤；已領取的項目會顯示今日狀態。每天開始安排任務時，可以順手查看。</p><button type="button" class="btn btn--ghost btn--sm" data-onboarding-action="quick:blessing">查看每日祝福</button></details>
+        <details><summary>習慣與冒險任務</summary><p>「更多 → 習慣」適合固定重複的事，可設定每日或每週頻率，實際做到後再記錄完成。首頁「冒險任務」則是系統的每日／每週挑戰，操作會累積進度，達成後記得領取獎勵。</p><div class="guide-quick-actions"><button type="button" class="btn btn--ghost btn--sm" data-onboarding-action="quick:habits">查看習慣</button><button type="button" class="btn btn--ghost btn--sm" data-onboarding-action="quick:quest">查看冒險任務</button></div></details>
+        <details><summary>成就、稱號與收藏里程</summary><p>「更多 → 成就」可以篩選「可領取」、查看條件並領獎，再挑選已獲得的稱號。圖鑑與探險頁也有各自的里程獎勵；進度達成後請到對應頁面領取。</p><button type="button" class="btn btn--ghost btn--sm" data-onboarding-action="quick:achievements">查看成就與稱號</button></details>
+        <details><summary>信箱與公告</summary><p>入口：任務首頁右上角信箱。開啟信件閱讀更新與活動資訊；有附件且仍可領取時，才會出現領獎操作。已領取或過期的贈禮無法重複領取。</p><button type="button" class="btn btn--ghost btn--sm" data-onboarding-action="quick:mailbox">開啟信箱</button></details>
+        <details><summary>資料備份與設定</summary><p>資料保存在目前裝置的瀏覽器。換裝置或清理瀏覽器前，請到「更多 → 設定」匯出 JSON 備份；恢復時先閱讀資料預覽與確認內容。這裡也能調整主題，動畫會配合系統的減少動態效果偏好。</p><button type="button" class="btn btn--ghost btn--sm" data-onboarding-action="quick:settings">查看備份與設定</button></details>
+        <details><summary>冒險手冊</summary><p>「更多 → 冒險手冊」整理任務、收藏、陪伴與探險的成長紀錄。想學操作時回到使用教學；想回顧自己的累積成果時查看手冊。</p><button type="button" class="btn btn--ghost btn--sm" data-onboarding-action="quick:handbook">查看成長紀錄</button></details>
       </section>
     </main>
 
