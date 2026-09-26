@@ -1,0 +1,22 @@
+[
+  {
+    "ok": true,
+    "artifactId": "f1303e2e3365ae59fb8a9e87c535d2a8a9e318fe8fb18b5e8cb88cb2c08e4ffd",
+    "manifestSha256": "e1d96a89836ab7b51e9040450ed3e12d87917ebcc8985d6c329cdd077b5ea00d",
+    "profile": "production",
+    "scopePath": "/questnote-pwa/",
+    "fileCount": 337,
+    "feedbackIncluded": true,
+    "privateToolingExcluded": true
+  },
+  {
+    "ok": true,
+    "artifactId": "6c1d4789bc6b175123d2e1c829461845cfe6367fa8967e8e4d8b064a627c7a85",
+    "manifestSha256": "067b844abc930f430e29568998159ab125293704f36c8e439874f34e6cd65be4",
+    "profile": "preview",
+    "scopePath": "/questnote-pwa-preview/",
+    "fileCount": 337,
+    "feedbackIncluded": true,
+    "privateToolingExcluded": true
+  }
+]

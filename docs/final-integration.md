@@ -1,6 +1,6 @@
 # QuestNote final integration
 
-This is the current integration record. Earlier `reports/release-v3.4.8/` and authoring handoffs remain historical evidence, not the current deployment status.
+This is the release history; later dated entries supersede earlier deployment states. Current branch roles and responsibilities are in [project governance](project-governance.md). Earlier `reports/release-v3.4.8/` and authoring handoffs remain historical evidence, not the current deployment status.
 
 ## Source and ownership
 
@@ -71,3 +71,10 @@ Production now runs V3.4.13 from source `2a6290086e116747d4fd73582339213dbf75790
 Production artifact: `50d28286fbd64c66ed3842d058b3d428bd21afff169bd2715aed18d7aa647acb`; manifest SHA-256: `db82b85059b089a3d36b043595727a85a536b5d356c2dd3ec064b7cb0033dead`. All 334 published files match reviewed Git blob bytes. The 84-pet/three-pool content bundle and dynamic mailbox are unchanged. The separate live Preview was not updated.
 
 154 Node tests, 34 summon assertions, 10 isolated chapter browser cases, and 12 assembled-artifact browser cases passed. Fourteen live HTTPS file hashes match the release. The hosted browser shows V3.4.13 and all four chapters after safe close/reopen activation, with existing resources retained. Physical iOS and actual screen-reader acceptance remain outside this desktop run. See [detailed acceptance](../reports/v3413-growth-lessons.md).
+
+
+## V3.4.15 source consolidation — 2026-09-27
+
+The feedback UI, private Worker/D1 source, export tooling and focused tests have been reconciled onto the V3.4.13 main baseline. Existing onboarding, UI polish, current announcements and verified service-worker recovery are preserved. Retired feature branches are historical inputs; main is the sole source integration line. See the [consolidation audit](../reports/branch-consolidation-2026-09-27.md).
+
+This is source integration, not a website deployment. Production remains V3.4.13; the latest mailbox-only gh-pages commit at audit time is `95b28b76346ee1e8b72af171aa091f971e7115ff`. The feedback backend was already deployed by its prior task. This consolidation does not redeploy it or change Cloudflare/GitHub access grants.

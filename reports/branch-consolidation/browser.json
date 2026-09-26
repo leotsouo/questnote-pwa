@@ -1,0 +1,29 @@
+{
+  "browser": "Headless Microsoft Edge",
+  "viewport": "390x844 and 1280x900",
+  "checks": [
+    "app boot",
+    "More entry and navigation highlight",
+    "draft survives reload",
+    "preview excludes unselected diagnostics",
+    "lost receipt retry stores exactly once",
+    "receipt matches stored ID",
+    "offline draft and disabled send",
+    "no mobile horizontal overflow",
+    "existing guide navigation",
+    "Settings entry",
+    "no uncaught page errors",
+    "no external requests"
+  ],
+  "geometry": {
+    "width": 390,
+    "scrollWidth": 390
+  },
+  "pageErrors": [],
+  "externalRequests": [],
+  "productionWrites": 0,
+  "limitations": [
+    "No physical iPhone or installed-PWA validation",
+    "Service worker intentionally blocked by isolated feedback harness"
+  ]
+}
