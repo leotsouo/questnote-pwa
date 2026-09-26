@@ -62,3 +62,12 @@ V3.4.12 adds first-run onboarding, resumable in-app guidance, the More → 使�
 - Both manifests’ 332 file entries were checked against the exact Git blob bytes before push. All 11 assembled-artifact browser cases passed; all 147 Node tests and 5 onboarding-state tests passed.
 - Manual preview acceptance covered welcome, a real test task in today’s plan, task reward, the existing claimable welcome gift, one summon, the user-selected 已獲得 filter, companion selection and the insufficient-energy expedition path. Pausing, continuing from the guide page, skip persistence, task/step reload persistence and the More guide were checked. The hosted Preview and Production pages both displayed V3.4.12 and the new guide entry after the safe service-worker transition.
 - Device-specific physical iOS Safari and standalone/offline relaunch checks remain outside this desktop browser run.
+
+
+## V3.4.13 growth lessons release — 2026-09-27
+
+Production now runs V3.4.13 from source `2a6290086e116747d4fd73582339213dbf757900`, gh-pages `179d4ca72df46509ff853a05616d255b617aa442`. [Pages run 36260266663](https://github.com/leotsouo/questnote-pwa/actions/runs/36260266663) succeeded. Four resumable chapters teach stars/fragments, bond/unlocks, expedition rewards, and workshop crafting/gifting, with separate understood/practiced progress and no teaching rewards or automatic spending. Existing onboarding decisions are preserved.
+
+Production artifact: `50d28286fbd64c66ed3842d058b3d428bd21afff169bd2715aed18d7aa647acb`; manifest SHA-256: `db82b85059b089a3d36b043595727a85a536b5d356c2dd3ec064b7cb0033dead`. All 334 published files match reviewed Git blob bytes. The 84-pet/three-pool content bundle and dynamic mailbox are unchanged. The separate live Preview was not updated.
+
+154 Node tests, 34 summon assertions, 10 isolated chapter browser cases, and 12 assembled-artifact browser cases passed. Fourteen live HTTPS file hashes match the release. The hosted browser shows V3.4.13 and all four chapters after safe close/reopen activation, with existing resources retained. Physical iOS and actual screen-reader acceptance remain outside this desktop run. See [detailed acceptance](../reports/v3413-growth-lessons.md).
