@@ -14862,9 +14862,17 @@ body.global-mailbox-open {
   border: 1px solid var(--color-border);
   border-bottom: none;
   box-shadow: var(--shadow-md);
-  padding-top: max(12px, var(--safe-top));
+  /* The sheet already sits below the viewport's top safe area. */
+  padding-top: 12px;
   padding-bottom: max(12px, var(--safe-bottom));
   overflow: hidden;
+}
+
+.global-mailbox-modal__header,
+.global-mailbox-modal__offline,
+.global-mailbox-modal__filters {
+  /* Long letters scroll in the body; toolbar rows must keep their height. */
+  flex-shrink: 0;
 }
 
 .global-mailbox-modal__header {
@@ -14957,6 +14965,7 @@ body.global-mailbox-open {
 
 .global-mailbox-modal__body {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 0 16px 16px;
