@@ -17490,7 +17490,8 @@ body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene__beacons i 
 
 /* First-use teaching uses the existing palette and leaves product controls interactive. */
 body.onboarding-dialog-open { overflow: hidden; }
-body.onboarding-active .view.active { padding-bottom: calc(var(--page-padding-bottom) + 250px); }
+body.onboarding-active .view.active { padding-bottom: calc(var(--page-padding-bottom) + var(--onboarding-coach-space, 330px)); }
+html:has(body.onboarding-active) { scroll-padding-bottom: calc(var(--nav-height) + var(--onboarding-coach-space, 330px)); }
 
 .more-menu-icon--image {
   display: flex;
@@ -17539,6 +17540,28 @@ body.onboarding-active .view.active { padding-bottom: calc(var(--page-padding-bo
 .guide-more details { border-top: 1px solid var(--color-border-soft); padding: var(--space-3) 0; }
 .guide-more summary { cursor: pointer; font-weight: 600; }
 .guide-more details p { margin: var(--space-2) 0 0; color: var(--color-text-secondary); font-size: 0.85rem; }
+
+.guide-growth { margin: var(--space-4); }
+.guide-growth > h2 { font-size: 1.15rem; margin-bottom: var(--space-2); }
+.guide-growth > p { color: var(--color-text-secondary); font-size: .85rem; line-height: 1.6; margin-bottom: var(--space-4); }
+.guide-chapters { display: grid; gap: var(--space-3); }
+.guide-chapter { padding: var(--space-5); margin: 0; min-width: 0; }
+.guide-chapter__top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2); font-size: .75rem; color: var(--color-primary-light); }
+.guide-chapter__status { color: var(--color-text-secondary); }
+.guide-chapter__status[data-status='practiced'] { color: var(--color-success); }
+.guide-chapter h3 { font-size: 1.05rem; margin: var(--space-3) 0 var(--space-2); }
+.guide-chapter p { color: var(--color-text-secondary); line-height: 1.6; font-size: .85rem; }
+.guide-chapter__condition { padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-bg-card-soft); }
+.guide-chapter__resume { color: var(--color-primary-light) !important; }
+.guide-chapter .btn { min-height: 44px; width: 100%; }
+.guide-growth :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+.guide-quick-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.guide-more details .btn { margin-top: var(--space-3); min-height: 44px; }
+.onboarding-dock__top button { min-height: 32px; }
+.onboarding-dock .onboarding-practice-note { color: var(--color-text-muted); font-size: .75rem; }
+.onboarding-dock__skip:disabled { opacity: .5; cursor: default; }
+.onboarding-target { scroll-margin-top: 90px; }
+@media (min-width: 720px) { .guide-chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 .onboarding-scrim {
   position: fixed;
