@@ -52,6 +52,9 @@ GitHub collaborators API 只回傳 `leotsouo`，角色 ADMIN；四個遠端分�
 - `npm run pools:validate`：0 errors/warnings；`npm run images:check`：72 隻 × 2 尺寸通過。
 - 本機 Edge 390×844/1280×900：App 啟動、更多/設定入口、導覽 highlight、重新整理保留草稿、診斷 opt-in、回條遺失後重試僅存一筆、收件 ID、離線禁止送出、教學頁導覽、無水平溢出。0 uncaught page errors、0 外部請求、0 正式回報寫入。[瀏覽器結果](branch-consolidation/browser.json)、[手機截圖](branch-consolidation/feedback-mobile.png)、[桌面截圖](branch-consolidation/feedback-desktop.png)。
 - 本機 `agent-browser` 未安裝，內建瀏覽器啟動失敗，改用 bundled Playwright 驅動本機 Edge。沒有據此宣稱通過實機 iPhone 或 installed-PWA 驗收。
+- 從來源提交 `88dbcb9` 組裝 production/preview，各 337 個檔案，嚴格 verifier 全部通過；84 隻/三池 bundle hash 保持 `3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32`。三個 feedback 模組在產物內，backend/scripts/docs/reports/content 草稿均排除。[產物 pins](branch-consolidation/artifacts.json)。
+- 實際組裝產物的 12 項 Edge browser cases 全數通過，包含舊 Worker 轉換、preview/production 隔離、503/錯誤 hash 拒絕、快取清除後驗證重建、離線教學恢復與禁用測試發幣。[結果](branch-consolidation/artifact-browser.json)。
+- 首次 GitHub CI 揭露預設 shallow checkout 不含測試依賴的歷史 `aada9a7` Worker。已將 checkout 改為完整歷史，保留原有相容性測試，不刪除或略過檢查。
 
 ## 發布狀態
 

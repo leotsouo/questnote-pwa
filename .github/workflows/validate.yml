@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Cache recovery tests execute the real historical aada9a7 worker.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
