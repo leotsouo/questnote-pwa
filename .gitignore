@@ -4,3 +4,6 @@
 node_modules/
 .npm-cache/
 .worktrees/
+
+.wrangler/
+backend/feedback/.dev.vars

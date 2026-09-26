@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-23T23:13:22+08:00",
+  "messages": [
+    {
+      "id": "2026-09-v3411-update-gift",
+      "type": "compensation",
+      "title": "V3.4.11 更新紀念｜霜誓峽灣正式開放",
+      "body": "親愛的旅人：\n\n冰霧散去，遠方的港灣亮起了引路的燈火。全新主題「霜誓峽灣」正式開放！\n\n沿著冰河駛入峽灣，與守候於寒潮之中的新夥伴相遇。這次旅程帶來全新的主題召喚演出、夥伴與圖鑑故事，等待你親自揭開冰雪之下的誓約。\n\n近期更新也持續改善召喚流程與結果顯示，並加強資源扣除、獎勵保存及備份復原保護，讓每一次珍貴的相遇都能更安心地留下。\n\n感謝你一直陪伴 QuestNote 成長。為了慶祝霜誓峽灣開放，請收下 1,000 星塵，為新的旅程獻上一次十連召喚的祝福！\n\n請在本信領取獎勵後，前往召喚頁探索霜誓峽灣。本信獎勵無領取期限，每份本機資料可領取一次。\n\n願港灣的燈火為你指路，願每一份努力都迎來溫柔的回響。\n\nQuestNote 開發團隊",
+      "publishedAt": "2026-09-23T23:13:22+08:00",
+      "expiresAt": null,
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.4.11",
+      "maxAppVersion": null,
+      "icon": "🎁",
+      "reward": {
+        "stardust": 1000,
+        "adventureEnergy": 0,
+        "materials": {},
+        "items": {}
+      },
+      "action": {
+        "type": "view",
+        "view": "gacha",
+        "label": "前往召喚"
+      }
+    }
+  ]
+}

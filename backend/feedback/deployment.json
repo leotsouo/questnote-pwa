@@ -1,0 +1,21 @@
+{
+  "accountId": "c759449ca02c133f573e85d838b8e960",
+  "workerName": "questnote-feedback",
+  "databaseName": "questnote-feedback",
+  "databaseId": "30add4ca-d433-46b7-b4dc-f17252e8d981",
+  "deployedVersionId": "4e14f3f0-c952-42c1-bddb-dec1793409e1",
+  "endpoint": "https://questnote-feedback.werewolf-private-room-7e22.workers.dev/v1/feedback",
+  "metadata": {
+    "main_module": "worker.js",
+    "compatibility_date": "2026-09-26",
+    "bindings": [
+      { "type": "plain_text", "name": "ALLOWED_ORIGINS", "text": "https://leotsouo.github.io" },
+      { "type": "ratelimit", "name": "INTAKE_RATE", "namespace_id": "209341515", "simple": { "limit": 60, "period": 60 } }
+    ],
+    "observability": {
+      "enabled": true,
+      "logs": { "enabled": true, "invocation_logs": true, "head_sampling_rate": 0.1 },
+      "traces": { "enabled": true, "head_sampling_rate": 0.01 }
+    }
+  }
+}

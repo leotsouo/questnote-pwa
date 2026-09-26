@@ -1,0 +1,42 @@
+{
+	"$schema": "../../node_modules/wrangler/config-schema.json",
+	"name": "questnote-feedback",
+	"account_id": "c759449ca02c133f573e85d838b8e960",
+	"main": "worker.js",
+	"compatibility_date": "2026-09-26",
+	"workers_dev": true,
+	"preview_urls": false,
+	"vars": {
+		"ALLOWED_ORIGINS": "https://leotsouo.github.io"
+	},
+	// Private intake database; public access is available only through the write-only Worker.
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "questnote-feedback",
+			"database_id": "30add4ca-d433-46b7-b4dc-f17252e8d981"
+		}
+	],
+	"ratelimits": [
+		{
+			"name": "INTAKE_RATE",
+			"namespace_id": "209341515",
+			"simple": {
+				"limit": 60,
+				"period": 60
+			}
+		}
+	],
+	"observability": {
+		"enabled": true,
+		"logs": {
+			"enabled": true,
+			"invocation_logs": true,
+			"head_sampling_rate": 0.1
+		},
+		"traces": {
+			"enabled": true,
+			"head_sampling_rate": 0.01
+		}
+	}
+}

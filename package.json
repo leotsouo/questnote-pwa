@@ -5,15 +5,19 @@
   "scripts": {
     "images:build": "node devtools/build-pet-images.mjs build",
     "images:check": "node devtools/build-pet-images.mjs check",
-    "test": "node --test devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs devtools/gacha-transaction.test.mjs devtools/release-safety.test.mjs devtools/release-artifact.test.mjs devtools/card-pool-pipeline.test.mjs devtools/verify-release-artifact.test.mjs devtools/preview-cache-recovery.test.mjs devtools/onboarding-flow.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs",
+    "test": "node --test devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs devtools/gacha-transaction.test.mjs devtools/release-safety.test.mjs devtools/release-artifact.test.mjs devtools/card-pool-pipeline.test.mjs devtools/verify-release-artifact.test.mjs devtools/preview-cache-recovery.test.mjs devtools/onboarding-flow.test.mjs devtools/feedback.test.mjs devtools/feedback-backend.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs",
     "pools:validate": "node scripts/validate-pool-content.mjs",
     "release:prepare": "node scripts/prepare-release.mjs",
     "card-pool": "node scripts/card-pool.mjs",
     "test:pool:release": "node devtools/card-pool-release-smoke.mjs",
     "test:browser": "node devtools/browser-test-server.mjs",
-    "test:sw:browser": "node devtools/release-browser-server.mjs"
+    "test:sw:browser": "node devtools/release-browser-server.mjs",
+    "test:feedback": "node --test devtools/feedback.test.mjs devtools/feedback-backend.test.mjs",
+    "test:feedback:browser": "node devtools/feedback-browser-server.mjs",
+    "feedback:read": "node --use-system-ca scripts/read-feedback.mjs"
   },
   "devDependencies": {
-    "sharp": "0.35.4"
+    "sharp": "0.35.4",
+    "wrangler": "4.141.0"
   }
 }

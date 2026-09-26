@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "frost_oath_fjord",
+  "poolId": "frost_oath_fjord",
+  "seriesName": "霜誓峽灣",
+  "concept": "QuestNote 同一世界的新北境地域，冰河入海的峽灣聚落以遠航、鍛造、戰歌與彼此守護維繫生活。北歐維京文化轉化為獸形船員、船木、圓盾、織物與航繩的奇幻設計，核心情緒為勇敢、熱血。承諾化為暖色誓火，屬敘事意象而非新遊戲資源。12 隻寵物皆從第一抽開放，無特殊解鎖或贈寵；代表角色採 UR 破曉誓角麝牛，巨大天然角、深褐長毛與誓火引領遠航。美術延續高細節奇幻獸形插畫及完整方形場景，以冰藍、深海青、雪白搭配焦橙誓火和紅褐帆布；使用者未指定題材禁區。卡池展示名為霜誓峽灣召喚，宣傳句為『風雪越烈，誓約越亮。』；冰河抵達演出使用受控 glacier_arrival 模板。",
+  "rarityPlan": { "N": 3, "R": 3, "SR": 3, "SSR": 2, "UR": 1 },
+  "cost": 100,
+  "rates": { "N": 0.55, "R": 0.3, "SR": 0.1, "SSR": 0.03, "UR": 0.02 },
+  "pity": { "ssr": 30, "ur": 100 },
+  "presentationTemplate": "glacier_arrival",
+  "unlock": null,
+  "releaseVersion": "3.4.7"
+}

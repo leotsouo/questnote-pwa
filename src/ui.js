@@ -11,6 +11,7 @@ import {
   toggleSubtaskComplete,
 } from './taskService.js';
 import { getCategoryById } from './categoryService.js';
+import { initFeedback } from './feedbackController.js';
 import { bindDialogFocus, isTopDialog, rememberDialogFocus, focusDialog, restoreDialogFocus } from './dialogFocus.js';
 import {
   getTodayDateString,
@@ -577,6 +578,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     bindActivityTracking();
     bindAchievementClaimAll();
     bindGlobalMailboxEntry();
+    initFeedback({ navigate: switchView });
 
     document.getElementById('collection-filters')?.addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
@@ -1245,7 +1247,7 @@ export function switchView(viewName) {
   document.querySelectorAll('.nav-item').forEach((n) => n.classList.remove('active'));
 
   const view = document.getElementById(`view-${viewName}`);
-  const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' ? 'more' : viewName;
+  const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'feedback' ? 'more' : viewName;
   const nav = document.querySelector(`.nav-item[data-view="${navView}"]`);
   if (view) view.classList.add('active');
   if (nav) nav.classList.add('active');
@@ -1318,7 +1320,7 @@ export function switchView(viewName) {
     preloadCompanionImage(state).catch(() => {});
   }
 
-  currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'more'
+  currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'feedback' || viewName === 'more'
     ? currentTasksView
     : viewName;
   if (viewName === 'tasks' || viewName === 'gacha' || viewName === 'collection' || viewName === 'expedition' || viewName === 'more') {

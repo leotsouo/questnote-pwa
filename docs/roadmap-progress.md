@@ -1,6 +1,6 @@
 # QuestNote roadmap execution
 
-> Historical M1–M5 execution log. For the current V3.4.11 production and Preview status, use [final integration](final-integration.md). The milestone notes and old release evidence below describe their original dates; they are not current deployment instructions.
+> Historical M1–M5 execution log. For deployed versions, use [final integration](final-integration.md); for current responsibilities and branch roles, use [project governance](project-governance.md). The milestone notes and old release evidence below describe their original dates; they are not current deployment instructions.
 
 Baseline: `a1a0030` (`codex/summon-perf`); local main `aada9a7` is its ancestor.
 Implementation branch at the time: `codex/card-pool-pipeline`. The reviewed integration was subsequently merged to source `main` and published as a separate production artifact; see the current record above.

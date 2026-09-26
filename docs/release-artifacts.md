@@ -160,7 +160,7 @@ Only visit `/test/` on a fresh test origin: the suite creates and cleans its own
 test saves. A separate server instance can serve `/preview/` for manual review.
 These local scopes do not establish a publicly configured preview host.
 
-## Deployment evidence collected during implementation
+## Historical deployment evidence collected during implementation
 
 Read-only GitHub API verification on 2026-09-23 (Asia/Taipei): the latest repository
 workflow is [Pages run 30220073263](https://github.com/leotsouo/questnote-pwa/actions/runs/30220073263),
@@ -181,4 +181,4 @@ explicitly refuses to start a new artifact under an incompatible legacy controll
 it prepares the update and asks that all old clients close naturally.
 # Current integration and Preview
 
-See [final integration](final-integration.md) for the authoritative branch, reviewed real candidate, Preview destination and cache-recovery fix. The existing HTTPS Preview is the separate `leotsouo/questnote-pwa-preview` repository, scope `/questnote-pwa-preview/`, using only the assembled `preview` profile. Historical production deployment examples below do not authorize a production push.
+See [final integration](final-integration.md) for the authoritative branch, reviewed real candidate, Preview destination and cache-recovery fix. The existing HTTPS Preview is the separate `leotsouo/questnote-pwa-preview` repository, scope `/questnote-pwa-preview/`, using only the assembled `preview` profile. Historical production deployment examples above do not authorize a production push.
