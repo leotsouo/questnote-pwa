@@ -88,3 +88,12 @@ V3.4.15 is now published at `https://leotsouo.github.io/questnote-pwa/`. The rel
 - Pages commit: `8c5e0944819cc8a04c9ce8a84cbd9cf41f3685a1`. [Pages run 36268999571](https://github.com/leotsouo/questnote-pwa/actions/runs/36268999571) completed successfully.
 - All 337 committed Git blobs match the artifact manifest. The 12 assembled-artifact browser cases passed. Ten live HTTPS files, including the manifest, app shell, service worker, feedback modules, mailbox and catalog, matched the artifact hashes.
 - The Worker/D1 backend was not redeployed. Users with an older open App should close QuestNote tabs and standalone windows, then reopen while online so the verified worker can activate; do not clear site data. Physical iOS standalone, keyboard and offline-relaunch acceptance remains device-specific.
+
+## V3.4.16 mailbox layout release — 2026-09-27
+
+Long mailbox letters compressed the filter row below its chips' height, while the sheet repeated the top safe inset. The repair preserves toolbar heights, limits scrolling to the letter body and restores 12px top spacing. Message content, reward identities and saved data are unchanged. [PR #2](https://github.com/leotsouo/questnote-pwa/pull/2) merged as `51dd5cdfc109ad5e7548db3b184a1d83fe6b3406` after CI passed.
+
+- Production artifact: `3dba10dfa01bf6ee47f7e01b8dc88cea48b3499ced5b0a3af7339c9adb4e474f`; manifest SHA-256: `9647a8449309a0e496f9030c2604bf2bd66a42ff44163cce412b2e83d3db3dc3`.
+- Pages commit: `642e0a5f5007b4a2899746287341df09142fbcf6`; [deployment run](https://github.com/leotsouo/questnote-pwa/actions/runs/36271493656) completed successfully. Nine live HTTPS files, including the version, stylesheets, service worker, mailbox and catalog, match the pinned artifact hashes.
+- 169 Node tests, 34 summon assertions, 16 mailbox browser cases and 12 assembled-artifact cases passed. All 337 committed files match the pinned artifact. The existing production mailbox bytes and 84-pet/three-pool catalog were preserved.
+- [Before/after screenshots and reproduction](../reports/mailbox-layout/acceptance.md). Safe-area values were simulated in desktop Chromium; physical iPhone Safari remains device-specific acceptance. The preview artifact was used only for isolated tests and was not published.
