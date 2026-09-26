@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-50d28286fbd64c66ed3842d058b3d428bd21afff169bd2715aed18d7aa647acb';
+const CACHE_NAME = 'questnote-production-app-fb10929a204ec94c11ad380c1af9e8170ea2dc5f8ba85174221b75ef85fa4084';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -14,8 +14,8 @@ const MAILBOX_FETCH_TIMEOUT_MS = 7000;
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "50d28286fbd64c66ed3842d058b3d428bd21afff169bd2715aed18d7aa647acb",
-  "sourceCommit": "2a6290086e116747d4fd73582339213dbf757900",
+  "artifactId": "fb10929a204ec94c11ad380c1af9e8170ea2dc5f8ba85174221b75ef85fa4084",
+  "sourceCommit": "ec1267966d763dbc506c4f869c5a719ea92dd055",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -38,7 +38,7 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "a41768b61eca61e8a64c13879f759f62eda3b5a6ce94cb28dab9b4392d756e05",
+  "index.html": "92a5e6aa45f7d5333968de0dbce815d152915aee81dbaeb812fc097961e8d815",
   "manifest.webmanifest": "044a5f22c568ec5dab4f2a1f0cce9a9a26ed70f2320a0e5a6c1c9f06b7cd2591",
   "src/achievementService.js": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
   "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
@@ -59,6 +59,9 @@ const PRECACHE_HASHES = {
   "src/expeditionService.js": "b54bd5306e1d3b91eafe42de553cd1730df3c3a36cf57868d28c1e29b07d6096",
   "src/expeditionStatusService.js": "6e45a6ec8e7b3bfa6018b431991b5540cc214e582e1113fe7636da2f95e141e9",
   "src/explorationService.js": "bde22bcbfefbf28926b2a412630d4061fcce52ef8dcceae05e076ac3b1cf84d5",
+  "src/feedbackConfig.js": "77e9eda8efe76ad2ea3d1d216d10be01bb219c954c6c619e925d8e2aeafe49f7",
+  "src/feedbackController.js": "2d1d4956ba24a114bae0fffbe504ab83a55c58194dbf0a83dd3c0d5d774b757e",
+  "src/feedbackService.js": "f96898f3d97d6dc86157f65aae8e8f2b763f222b04bf778aab386276d8bb9310",
   "src/gachaService.js": "d631816bfcb980ecbe502cbecf867e0adf65871d00d6ef4e70adce22df9c9bf9",
   "src/gachaTransactionCore.js": "ac2b5db58e2cdec942bb28e0e7b8dae446282fd45518bdf6666fafdc6d579dde",
   "src/glacierArrivalScene.js": "bb3d646a9faaece23f41d29f6248b682fb67e3851e702ac3667f006c02d8b2bb",
@@ -68,8 +71,8 @@ const PRECACHE_HASHES = {
   "src/loreService.js": "2beab9e2c2ab3418b16e638e247d1976c916b537e6a7a21d754751c54336541c",
   "src/mailboxSchema.js": "070e2c731ac75a6bdbecfc24afad986d0357e440d1449c374d898d7e0b0ccd15",
   "src/mailboxService.js": "9e2b08feedc9dc73beb9d18bcff62fd722af276c57ab4f79f9bc8d20eccfa0d0",
-  "src/onboardingController.js": "5edb4258bc794c0904234250fe86f375e00c1a20f87efd62570c6b9e2bdf593e",
-  "src/onboardingLessons.js": "f4ce109126fb17e6d23859ff3c22cc236ea0c813fca0d0de97c822e6217f8f7b",
+  "src/onboardingController.js": "3ef30e152ad2ca2b7b64bf3a398f5113ec5606461bc3e9b190b63a4f09f4891f",
+  "src/onboardingLessons.js": "e4eb75c367c03dc417fd2e4cd018ec3a248415b3dd17ea3f3ebb43a68f0f5d7b",
   "src/onboardingService.js": "4289008c57efc95843d141a33cb2333c0d9af8c1188a3ba4157e2ab2dfd49a6a",
   "src/perfDiagnostics.js": "e6e5e3a4fe72ec00df1bd5469147b07d3d6cf8377e9ec691b2908af2cfd494d7",
   "src/petDataSchema.js": "157323ee04b497c281cb5a5371b298e0e9af40761f3d35a6c303b868698db73b",
@@ -83,9 +86,9 @@ const PRECACHE_HASHES = {
   "src/preferencesService.js": "b80fb8fffcc45ebd5692610885304298b82e19b1478711c3bf4f0bf42804e27d",
   "src/questService.js": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "5b7d70a4fae686925e25e3023320a00e830dca36f52e4814a70dcdffae46baf3",
+  "src/releaseProfile.js": "bf85e6013baabcb9f519d77eb5841d33f1b2d8a27f967e1f277b92969fdcaea7",
   "src/rewardService.js": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
-  "src/styles.css": "5b3c98e90f8c467ca6cee4942bb5e5b243f3d69d07d27ff9b25a7d495da91acf",
+  "src/styles.css": "2cc8d576b1a47e2fa58f88a47b1aef7239c1a01d45013747163634cc78f04063",
   "src/summon-polish.css": "0d3cbae026034e11034be8ecabc6ff9613a461fbaee616376a26f90f4b924bda",
   "src/summonRevealService.js": "71d4828b6e0c4a89285f63a2781c67e7b96b7966c3e0c98312c4c037c1c1bed4",
   "src/taskFilterService.js": "687858edc36119afcb388fc3fd75ebd058d0a93117da42740c8a1f18d4b00471",
@@ -94,9 +97,9 @@ const PRECACHE_HASHES = {
   "src/taskStatsService.js": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
   "src/themedSummonController.js": "f2bcd1b922da8dee874ee5c2a678378f23841f44287b44b8d2b8f14014b3af6f",
   "src/ui-polish.css": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
-  "src/ui.js": "b32bc6a5b1fad76f04fd2b959a8e69b06e40fee4aaf9344d9138def0f97655be",
+  "src/ui.js": "709367043718fa716703f95af9384a1e1ec3117c67b6a2a203b10129efe22f94",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
-  "src/version.js": "7af38bcf679f92f413960ef62695a42b838f914a2739714ebee52130145071cb",
+  "src/version.js": "f41cc081de75c4fe3dd774aaa3a27dac2cdf0d10bc3d12c6fa60487c5dd7117e",
   "src/workshopService.js": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69"
 };
 
@@ -137,6 +140,9 @@ const PRECACHE_URLS = [
   "src/expeditionService.js",
   "src/expeditionStatusService.js",
   "src/explorationService.js",
+  "src/feedbackConfig.js",
+  "src/feedbackController.js",
+  "src/feedbackService.js",
   "src/gachaService.js",
   "src/gachaTransactionCore.js",
   "src/glacierArrivalScene.js",

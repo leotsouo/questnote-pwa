@@ -17638,3 +17638,33 @@ body.is-pet-image-viewer-open .onboarding-dock { visibility: hidden; }
   .onboarding-dialog,
   .onboarding-target { animation: none !important; transition: none !important; }
 }
+
+/* Private feedback */
+.feedback-form { display: grid; gap: 10px; }
+.feedback-card { display: grid; gap: 16px; }
+.feedback-card[hidden] { display: none; }
+.feedback-card input:not([type="checkbox"]), .feedback-card select, .feedback-card textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-main);
+  background: var(--color-bg-surface);
+  font: inherit;
+}
+.feedback-card textarea { resize: vertical; }
+.feedback-card :is(input, select, textarea, a, button):focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 3px;
+}
+.feedback-note { color: var(--color-text-secondary); font-size: var(--font-size-sm); line-height: 1.7; }
+.feedback-note a { color: var(--color-primary-light); }
+.feedback-check { display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+.feedback-check input { margin-top: 6px; flex-shrink: 0; }
+.feedback-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.feedback-diagnostics { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--font-size-sm); }
+#feedback-report-title { overflow-wrap: anywhere; }
+#feedback-send:disabled { opacity: 0.5; cursor: not-allowed; }
+.feedback-receipt { background: var(--color-success-soft); padding: 14px; border-radius: var(--radius-sm); overflow-wrap: anywhere; line-height: 1.7; }
