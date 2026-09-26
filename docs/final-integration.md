@@ -78,3 +78,13 @@ Production artifact: `50d28286fbd64c66ed3842d058b3d428bd21afff169bd2715aed18d7aa
 The feedback UI, private Worker/D1 source, export tooling and focused tests have been reconciled onto the V3.4.13 main baseline. Existing onboarding, UI polish, current announcements and verified service-worker recovery are preserved. Retired feature branches are historical inputs; main is the sole source integration line. See the [consolidation audit](../reports/branch-consolidation-2026-09-27.md).
 
 This is source integration, not a website deployment. Production remains V3.4.13; the latest mailbox-only gh-pages commit at audit time is `95b28b76346ee1e8b72af171aa091f971e7115ff`. The feedback backend was already deployed by its prior task. This consolidation does not redeploy it or change Cloudflare/GitHub access grants.
+
+## V3.4.15 feedback production release — 2026-09-27
+
+V3.4.15 is now published at `https://leotsouo.github.io/questnote-pwa/`. The release adds the anonymous feedback form and connects it to the already deployed private Cloudflare Worker/D1 backend. Existing production mailbox bytes and the approved 84-pet/three-pool catalog were preserved; the preview artifact was built only for isolated acceptance and was not published.
+
+- Source commit: `ec1267966d763dbc506c4f869c5a719ea92dd055`.
+- Production artifact: `fb10929a204ec94c11ad380c1af9e8170ea2dc5f8ba85174221b75ef85fa4084`, manifest SHA-256 `bffd0bc0945ddd78eee0f2e92113586201352afa5af4d2ba0235a92d09acd1db`, 337 files, scope `/questnote-pwa/`.
+- Pages commit: `8c5e0944819cc8a04c9ce8a84cbd9cf41f3685a1`. [Pages run 36268999571](https://github.com/leotsouo/questnote-pwa/actions/runs/36268999571) completed successfully.
+- All 337 committed Git blobs match the artifact manifest. The 12 assembled-artifact browser cases passed. Ten live HTTPS files, including the manifest, app shell, service worker, feedback modules, mailbox and catalog, matched the artifact hashes.
+- The Worker/D1 backend was not redeployed. Users with an older open App should close QuestNote tabs and standalone windows, then reopen while online so the verified worker can activate; do not clear site data. Physical iOS standalone, keyboard and offline-relaunch acceptance remains device-specific.
