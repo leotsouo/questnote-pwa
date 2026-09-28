@@ -866,6 +866,10 @@ function bindDelegatedEvents() {
       e.preventDefault();
       e.stopPropagation();
       await handleCompanionPet();
+    } else if (action === 'companion-feed') {
+      e.preventDefault();
+      e.stopPropagation();
+      if (state?.companion) openPetFeedModal(state.companion);
     } else if (action === 'empty-add-task') {
       openTaskForm();
     } else if (action === 'empty-go-gacha') {
@@ -3236,7 +3240,10 @@ function renderCompanionPetButton(companion) {
 
   return `
     <div class="companion-card__pet-row">
-      <button type="button" class="btn btn--secondary btn--sm companion-pet-btn" data-action="companion-pet" ${canPet ? '' : 'disabled'}>${escapeHtml(btnLabel)}</button>
+      <div class="companion-card__actions">
+        <button type="button" class="btn btn--secondary btn--sm companion-pet-btn" data-action="companion-pet" ${canPet ? '' : 'disabled'}>${escapeHtml(btnLabel)}</button>
+        <button type="button" class="btn btn--secondary btn--sm companion-feed-btn" data-action="companion-feed" aria-label="餵食 ${escapeHtml(petDisplayName(companion))}">餵食</button>
+      </div>
       ${cooldownHint}
     </div>`;
 }
@@ -3439,7 +3446,7 @@ function playCompanionComfortEffect() {
   }
 }
 
-function buildCompanionFeedSection(companion) {
+function buildPetFeedSection(companion) {
   const inventory = state.inventory || { items: {} };
   const itemCounts = getItemInventory(inventory);
   const bondItems = (state.craftablesCatalog || []).filter(
@@ -3457,6 +3464,7 @@ function buildCompanionFeedSection(companion) {
       <section class="companion-preview-feed card">
         <h3 class="companion-preview-feed__title">餵食</h3>
         <p class="companion-preview-feed__empty">目前沒有親密度道具。<br>可到「更多 → 工坊」用探險材料製作。</p>
+        <button type="button" class="btn btn--secondary btn--block companion-preview-feed__workshop" id="companion-feed-workshop-btn">前往工坊製作</button>
       </section>
       <p class="companion-preview-bond">親密度 Lv.${companion.bondLevel ?? 1} · ${progress.current}/${progress.max || 'MAX'}</p>`;
   }
@@ -3484,60 +3492,21 @@ function buildCompanionFeedSection(companion) {
     <p class="companion-preview-bond">親密度 Lv.${companion.bondLevel ?? 1} · ${progress.current}/${progress.max || 'MAX'}</p>`;
 }
 
-function buildCompanionPetButtonHtml(companion) {
-  const canPet = canPetCompanion(companion);
-  const remaining = getPetCooldownRemaining(companion);
-  const btnLabel = canPet ? '撫摸' : (remaining > 0 ? `還要 ${formatCooldown(remaining)}` : '冷卻中');
-  return `<button type="button" class="btn btn--secondary btn--block" id="companion-pet-btn" ${canPet ? '' : 'disabled'}>${escapeHtml(btnLabel)}</button>`;
-}
-
-function bindCompanionPreviewInteractions(companion) {
+function bindPetFeedInteractions(companion) {
   const stage = document.getElementById('companion-preview-stage');
   const img = stage?.querySelector('.companion-image-preview__img--interactive');
-  const petBtn = document.getElementById('companion-pet-btn');
   const feedBtn = document.getElementById('companion-feed-btn');
 
-  const onPet = async (e) => {
-    e?.stopPropagation();
-    if (!canPetCompanion(companion)) {
-      const remaining = getPetCooldownRemaining(companion);
-      showToast(`牠剛剛已經被摸過了，還要 ${formatCooldown(remaining)}才能再次撫摸。`, 'warning', 3500);
-      return;
-    }
-    try {
-      const result = await petCompanion();
-      if (!result.success) {
-        showToast(result.message, 'warning', 3500);
-        return;
-      }
-      playCompanionComfortEffect();
-      void recordOnboardingEvent('companion-petted', { petId: companion.id });
-      showToast('你輕輕摸了摸牠，親密度 +5', 'success', 2800);
-      if (result.leveledUp) {
-        setTimeout(() => showToast(`親密度提升到 Lv.${result.newLevel}`, 'success', 2800), 400);
-      }
-      await trackQuest('pet_companion');
-      await onRefresh({ renderMode: ['tasks'] });
-      if (result.leveledUp) {
-        await notifyBondUnlocks(companion.id);
-      }
-      const updated = state.companion;
-      if (updated) {
-        openCompanionImageModal(updated);
-      }
-      const comfortLine = getPetComfortLine(updated || companion);
-      setCompanionBubbleText(comfortLine, true);
-    } catch (err) {
-      showToast(err.message || '撫摸失敗', 'error');
-    }
-  };
-
-  // 點圖片放大原圖；撫摸改由下方「撫摸」按鈕觸發
+  // 點圖片仍可查看原圖，不會誤觸消耗道具。
   img?.addEventListener('click', (e) => {
     e.stopPropagation();
     openPetImageViewer(companion.id);
   });
-  petBtn?.addEventListener('click', onPet);
+
+  document.getElementById('companion-feed-workshop-btn')?.addEventListener('click', () => {
+    closeModal();
+    void openTeachingTarget({ view: 'workshop', tab: 'craft' });
+  });
 
   feedBtn?.addEventListener('click', async (e) => {
     e.stopPropagation();
@@ -3548,19 +3517,24 @@ function bindCompanionPreviewInteractions(companion) {
       showToast('請先選擇要餵食的食物', 'warning');
       return;
     }
+    feedBtn.disabled = true;
+    let consumed = false;
     try {
       const result = await useBondItem(itemId, companion.id, state.allPets);
       if (!result.success) {
         showToast(result.message, 'warning');
+        feedBtn.disabled = false;
         return;
       }
-      playCompanionComfortEffect();
+      consumed = true;
       void recordOnboardingEvent('gift-given', { petId: companion.id, itemId });
       await trackQuest('gift_pet');
-      await onRefresh({ renderMode: ['tasks', 'workshop'] });
-      const updated = state.companion;
+      closeModal();
+      await onRefresh({ renderMode: ['tasks', 'collection', 'workshop'] });
+      const updated = state.enrichedCollection.find((pet) => pet.id === companion.id);
       if (updated) {
-        openCompanionImageModal(updated);
+        openPetFeedModal(updated);
+        playCompanionComfortEffect();
       }
       if (result.isFavorite) {
         showToast(`牠很喜歡這份禮物！親密度 +${result.bondExp}`, 'success', 3200);
@@ -3573,30 +3547,30 @@ function bindCompanionPreviewInteractions(companion) {
       }
       await handleAchievementCheckAfterAction();
     } catch (err) {
-      showToast(err.message || '餵食失敗', 'error');
+      closeModal();
+      console.warn('[QuestNote] 餵食後處理失敗:', err);
+      showToast(consumed
+        ? '餵食已完成，畫面暫時無法更新，請重新開啟 App'
+        : '餵食狀態無法確認，請重新開啟 App 檢查庫存', 'warning', 4000);
     }
   });
 }
 
-function openCompanionImageModal(companion) {
-  if (!companion?.image) return;
+function openPetFeedModal(companion) {
+  if (!companion?.id || companion.owned === false) return;
 
   const src = getPetImageSrc(companion);
-  warmPetImageCache(src).catch(() => {});
+  if (src) warmPetImageCache(src).catch(() => {});
 
   const rarityClass = `rarity-${companion.rarity}`;
   const onError = `this.onerror=null;this.classList.add('companion-image-preview__img--error')`;
   const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
-  const feedSection = buildCompanionFeedSection(companion);
-
-  openModal(`
-    <div class="companion-image-preview ${rarityClass}">
-      <div class="companion-image-preview__stage" id="companion-preview-stage">
-        <div class="companion-preview-hearts" id="companion-preview-hearts" aria-hidden="true"></div>
-        <div class="companion-image-preview__frame pet-image-frame pet-image-frame--lg is-loading">
+  const feedSection = buildPetFeedSection(companion);
+  const imageHtml = src
+    ? `<div class="companion-image-preview__frame pet-image-frame pet-image-frame--lg is-loading">
           <img
             class="companion-image-preview__img companion-image-preview__img--interactive is-loading"
-            src="${src}"
+            src="${escapeHtml(src)}"
             alt="${escapeHtml(petDisplayName(companion))}"
             loading="eager"
             decoding="async"
@@ -3604,7 +3578,14 @@ function openCompanionImageModal(companion) {
             onerror="${onError}"
           />
           <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
-        </div>
+        </div>`
+    : '<div class="companion-image-preview__frame pet-image-frame pet-image-frame--lg is-error" role="img" aria-label="圖片暫時無法載入"><span class="pet-image-frame__fallback">圖片暫時無法載入</span></div>';
+
+  openModal(`
+    <div class="companion-image-preview companion-image-preview--feed ${rarityClass}">
+      <div class="companion-image-preview__stage" id="companion-preview-stage">
+        <div class="companion-preview-hearts" id="companion-preview-hearts" aria-hidden="true"></div>
+        ${imageHtml}
       </div>
       <h2 class="companion-image-preview__name">${escapeHtml(petDisplayName(companion))}</h2>
       ${petOriginalNameHtml(companion)}
@@ -3612,15 +3593,12 @@ function openCompanionImageModal(companion) {
         <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
         ${renderStars(companion.stars ?? 1)}
       </div>
-      <div class="companion-preview-actions">
-        ${buildCompanionPetButtonHtml(companion)}
-      </div>
       ${feedSection}
-      <p class="companion-image-preview__hint">點圖片放大原圖 · 按撫摸與夥伴互動 · 餵食使用工坊食物</p>
+      <p class="companion-image-preview__hint">點圖片可看原圖 · 餵食會消耗一份工坊道具</p>
     </div>
   `);
 
-  bindCompanionPreviewInteractions(companion);
+  bindPetFeedInteractions(companion);
 }
 
 /** 陪伴寵物未變時只更新圖片 src（避免整卡重建） */
@@ -6242,6 +6220,7 @@ function openPetDetailModal(petId) {
       ${personalityTags ? `<div class="pet-detail__tags">${personalityTags}</div>` : ''}
       ${owned ? renderStars(pet.stars) : ''}
       ${owned ? `<p class="pet-detail__bond-lv">親密度 Lv.${bondLevel || 1}</p>` : ''}
+      ${owned ? `<button type="button" class="btn btn--primary btn--block pet-detail__feed-button" data-action="detail-feed-pet" data-pet-id="${escapeHtml(pet.id)}">餵食</button>` : ''}
       <p class="pet-detail__desc">${escapeHtml(pet.description)}</p>
       ${owned && pet.lore ? `<p class="pet-detail__lore">${escapeHtml(pet.lore)}</p>` : ''}
       ${!owned ? '<p class="pet-detail__locked">召喚解鎖後，可閱讀完整背景與親密度故事。</p>' : ''}
@@ -6260,6 +6239,10 @@ function openPetDetailModal(petId) {
   document.querySelector('[data-action="detail-view-image"]')?.addEventListener('click', (e) => {
     const id = e.currentTarget.dataset.petId;
     if (id) openPetImageViewer(id, e.currentTarget);
+  });
+
+  document.querySelector('[data-action="detail-feed-pet"]')?.addEventListener('click', () => {
+    openPetFeedModal(pet);
   });
 
   document.querySelector('[data-action="set-companion-detail"]')?.addEventListener('click', async (e) => {
