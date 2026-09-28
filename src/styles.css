@@ -753,9 +753,15 @@ body.reduce-motion button.companion-card__detail-button:active {
   gap: 6px;
 }
 
-.companion-pet-btn {
-  align-self: flex-start;
+.companion-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.companion-card__actions .btn {
   min-width: 88px;
+  min-height: 44px;
 }
 
 .companion-card__cooldown {
@@ -1632,6 +1638,11 @@ body.reduce-motion button.companion-card__detail-button:active {
   margin: 8px 0;
 }
 
+.pet-detail__feed-button {
+  min-height: 44px;
+  margin: var(--space-3) 0;
+}
+
 .pet-detail__desc {
   font-size: 0.8125rem;
   color: var(--text-muted);
@@ -1735,6 +1746,10 @@ body.reduce-motion button.companion-card__detail-button:active {
   margin-bottom: 16px;
 }
 
+.companion-image-preview--feed .companion-image-preview__stage {
+  margin-bottom: var(--space-2);
+}
+
 .companion-preview-hearts {
   position: absolute;
   inset: 0;
@@ -1825,6 +1840,10 @@ body.reduce-motion button.companion-card__detail-button:active {
   height: min(300px, 80vw);
   padding: 8px;
 }
+.companion-image-preview--feed .companion-image-preview__frame.pet-image-frame--lg {
+  width: min(164px, 48vw);
+  height: min(164px, 48vw);
+}
 .companion-image-preview__frame .companion-image-preview__img {
   width: 100%;
   height: 100%;
@@ -1885,6 +1904,10 @@ body.reduce-motion button.companion-card__detail-button:active {
   line-height: 1.5;
 }
 
+.companion-preview-feed__workshop {
+  margin-top: var(--space-3);
+}
+
 .companion-preview-feed__picker {
   display: flex;
   flex-direction: column;
@@ -1903,9 +1926,9 @@ body.reduce-motion button.companion-card__detail-button:active {
   padding: 10px 12px;
   font-size: 16px;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(0, 0, 0, 0.25);
-  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-main);
 }
 
 .companion-preview-feed__limit {
