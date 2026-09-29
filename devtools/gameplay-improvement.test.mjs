@@ -21,8 +21,10 @@ test('one-star ordinary pet is useful and objectives make recognizable differenc
   const explore = planExpeditionResult(area, [forestPet], 'explore', random);
   const gather = planExpeditionResult(area, [forestPet], 'gather', random);
   const bond = planExpeditionResult(area, [forestPet], 'bond', random);
+  const untrainedGatherer = planExpeditionResult(area, [{ ...forestPet, element: '火' }], 'gather', random);
   assert.ok(explore.rewards.materials.forest_leaf >= 1);
   assert.ok(gather.rewards.materials.forest_leaf > explore.rewards.materials.forest_leaf);
+  assert.ok(gather.rewards.materials.forest_leaf > untrainedGatherer.rewards.materials.forest_leaf);
   assert.ok(bond.rewards.bondExp > explore.rewards.bondExp);
   assert.ok(explore.explorationGain > gather.explorationGain);
   assert.equal(explore.rewards.fragmentGained, 0);

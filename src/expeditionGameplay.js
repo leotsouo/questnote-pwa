@@ -65,7 +65,7 @@ export function planExpeditionResult(area, pets, objective = 'explore', random =
   const bonusStardust = Math.floor(baseStardust * totalBonus) + guardianPower * 2 + starPower;
   const material = area.rewards.material;
   const baseMaterial = roll(Math.max(1, material.min), Math.max(1, material.max));
-  const extraMaterial = (objective === 'gather' ? 1 : 0) + Math.floor(rolePower / 2) * (objective === 'gather' ? 1 : 0);
+  const extraMaterial = objective === 'gather' ? 1 + Math.ceil(rolePower / 2) : 0;
   const bondExp = area.rewards.bondExp + (objective === 'bond' ? 4 + rolePower * 2 : 0);
   const explorationBonus = (objective === 'explore' ? 2 + rolePower : Math.floor(scholarPower / 2));
   const eventChance = Math.min(0.85, 0.18 + 0.07 * variety + 0.05 * rolePower + 0.03 * scholarPower + 0.01 * starPower);
