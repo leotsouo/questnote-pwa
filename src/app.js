@@ -86,6 +86,8 @@ import {
   getActiveExpedition,
 
 } from './expeditionService.js';
+import { getRecentExpeditions, isFirstJourneyAvailable } from './expeditionService.js';
+import { getCampProgress } from './campService.js';
 
 import { initHabits, getAllHabits, getHabitPageStats } from './habitService.js';
 import { initDailyCheckIn, getDailyCheckIn, loadWheelRewards } from './dailyCheckInService.js';
@@ -136,6 +138,9 @@ const appState = {
   expeditionAreas: [],
 
   activeExpedition: null,
+  recentExpeditions: [],
+  campProgress: { level: 0 },
+  firstJourneyAvailable: false,
 
   collectionProgress: { owned: 0, total: 0 },
 
@@ -324,6 +329,9 @@ async function refreshState(options = {}) {
   appState.companion = await getCompanion(appState.allPets);
 
   appState.activeExpedition = await getActiveExpedition();
+  appState.recentExpeditions = await getRecentExpeditions();
+  appState.campProgress = await getCampProgress();
+  appState.firstJourneyAvailable = await isFirstJourneyAvailable('mist_forest');
 
   appState.userPreferences = await getUserPreferences();
 

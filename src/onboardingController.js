@@ -6,6 +6,7 @@ import {
   startLesson, pauseLesson, advanceLesson, previousLessonStep,
 } from './onboardingService.js';
 import { resolveActivePool, resolveDrawCost } from './poolContentContract.js';
+import { getDispatchTerms } from './expeditionGameplay.js';
 import { LESSONS, LESSON_STATUS_LABELS, getLesson, getLessonStepContent, getLessonAvailability } from './onboardingLessons.js';
 
 const STEP_NUMBER = { task: 1, reward: 2, summon: 3, collection: 4, expedition: 5 };
@@ -50,8 +51,9 @@ function singleCost() {
   return pool ? resolveDrawCost(pool, 1) : 100;
 }
 
-function expeditionCost() {
-  return appState?.expeditionAreas?.find((area) => area.id === 'mist_forest')?.energyCost ?? 3;
+function expeditionTerms() {
+  const area = appState?.expeditionAreas?.find((entry) => entry.id === 'mist_forest');
+  return getDispatchTerms(area || { id: 'mist_forest', energyCost: 3, durationMinutes: 15 }, appState?.firstJourneyAvailable === true);
 }
 
 function currentView() {
@@ -123,13 +125,15 @@ function stepContent() {
         primary: ['前往圖鑑', 'locate-collection'],
         secondary: ['稍後再選夥伴', 'later-collection'],
       };
-    case 'expedition':
+    case 'expedition': {
+      const terms = expeditionTerms();
       return {
         title: '帶夥伴去探險',
-        body: `迷霧森林需要一隻已獲得的寵物和 ${expeditionCost()} 點冒險能量；你目前有 ${energy} 點。派遣後會倒數，結束時回來領取星塵、材料與親密度。${ownedPets().length && energy >= expeditionCost() ? '現在就可以試著派遣。' : '條件不足也可以先完成教學。'}`,
+        body: `迷霧森林${terms.firstJourney ? '首次短程' : '行程'}消耗 ${terms.energyCost} 點冒險能量、歷時 ${terms.durationMinutes} 分鐘；你目前有 ${energy} 點。選 1～3 隻夥伴，再選探索、採集或羈絆目標；一隻也能出發。回來後閱讀旅程報告並領取獎勵，沒有逾期損失。${ownedPets().length && energy >= terms.energyCost ? '現在就可以試著派遣。' : '條件不足也可以先完成教學。'}`,
         primary: ['查看探險', 'locate-expedition'],
         secondary: ['完成教學', 'finish'],
       };
+    }
     default:
       return null;
   }
