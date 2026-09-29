@@ -6,13 +6,14 @@ import {
 } from './collectionService.js';
 import { canCraft, DAILY_BOND_ITEM_LIMIT } from './workshopService.js';
 import { isExpeditionTimeComplete } from './expeditionService.js';
+import { getDispatchTerms } from './expeditionGameplay.js';
 
 export const LESSONS = Object.freeze([
   { id: 'stars', title: '升星與寵物碎片', summary: '從重複召喚到升星，看懂每隻夥伴的成長。',
     steps: ['fragments', 'cost', 'upgrade'], practice: { upgrade: 'star-upgraded' } },
   { id: 'bond', title: '陪伴與親密度', summary: '撫摸、一起完成任務，逐步解鎖羈絆內容。',
     steps: ['sources', 'pet', 'unlocks'], practice: { pet: 'companion-petted' } },
-  { id: 'expedition', title: '探險與領取材料', summary: '從派遣、等待到領獎，為工坊準備材料。',
+  { id: 'expedition', title: '組隊探險與旅程報告', summary: '認識隊伍專長、三種目標與領獎，帶回材料升級營地。',
     steps: ['prepare', 'dispatch', 'claim'], practice: { dispatch: 'expedition-started', claim: 'expedition-claimed' } },
   { id: 'workshop', title: '工坊製作與送禮', summary: '查看配方、製作一份禮物，再選擇夥伴贈送。',
     steps: ['materials', 'craft', 'gift'], practice: { craft: 'item-crafted', gift: 'gift-given' } },
@@ -65,8 +66,9 @@ export function getLessonContext(state = {}) {
     return { id, name: material?.name || id, source: material?.sourceArea, need, have: materials[id] || 0 };
   });
   const area = state.expeditionAreas?.find((item) => item.id === 'mist_forest');
+  const expeditionTerms = area ? getDispatchTerms(area, state.firstJourneyAvailable === true) : null;
   return { pets, starPet, craftable, recipe, area, companion: state.companion,
-    active: state.activeExpedition, energy: state.wallet?.adventureEnergy || 0 };
+    expeditionTerms, active: state.activeExpedition, energy: state.wallet?.adventureEnergy || 0 };
 }
 
 export function getLessonAvailability(id, state) {
@@ -84,7 +86,7 @@ export function getLessonAvailability(id, state) {
   }
   if (id === 'expedition') {
     if (c.active) return isExpeditionTimeComplete(c.active) ? '探險已結束，可以練習領獎。' : '夥伴正在探險，結束後再回來練習領獎。';
-    return c.pets.length && c.area && c.energy >= c.area.energyCost
+    return c.pets.length && c.expeditionTerms && c.energy >= c.expeditionTerms.energyCost
       ? '已有寵物與足夠能量，可以練習派遣。' : '派遣需要已獲得的寵物與足夠冒險能量。';
   }
   const hasGift = Object.values(state.inventory?.items || {}).some((count) => count > 0);
@@ -144,18 +146,18 @@ export function getLessonStepContent(id, step, state = {}) {
       target: { view: 'collection', filter: 'owned', petId: c.companion?.id }, selector: '.collection-card [data-action="view-detail"]', action: '查看夥伴詳情入口',
     },
     'expedition/prepare': {
-      title: '先確認夥伴、能量與地區',
-      body: c.area ? `${c.area.name}需要 ${c.area.energyCost} 點能量，歷時 ${c.area.durationMinutes} 分鐘；目前有 ${c.energy} 點。先看地區解鎖條件，再選出發夥伴。陪伴中的寵物也能派遣，同時只能有一趟尚未領獎的探險。` : '前往探險頁，查看地區條件、消耗能量與時間。完成真實任務可以累積冒險能量。',
+      title: '先確認地區與首次短程行程',
+      body: c.area ? `${c.area.name}${c.expeditionTerms.firstJourney ? '首次短程' : '行程'}需要 ${c.expeditionTerms.energyCost} 點能量，歷時 ${c.expeditionTerms.durationMinutes} 分鐘；目前有 ${c.energy} 點。地圖一次顯示一個地區，點「查看地區」可看路線、獎勵與解鎖條件。只要一隻已獲得的夥伴就能出發；同時只能有一趟尚未領獎的探險。` : '前往探險頁，查看地區條件、消耗能量與時間。完成真實任務可以累積冒險能量。',
       target: { view: 'expedition' }, selector: '#expedition-areas', action: '查看探險地區',
     },
     'expedition/dispatch': {
-      title: '選擇夥伴，再確認派遣',
-      body: `${getLessonAvailability('expedition', state)} 點地區的「派遣」，選擇夥伴，確認能量花費與預期獎勵後才出發。已有探險時可往下了解領獎。`,
+      title: '組隊並選擇探險目標',
+      body: `${getLessonAvailability('expedition', state)} 點「查看地區」後，選 1～3 隻夥伴，再選探索、採集或羈絆目標。展開「專長是什麼？」可比較夥伴的隊伍作用；一星也有專長。確認能量花費後才會出發，途中不用操作。`,
       target: { view: 'expedition' }, selector: c.active ? '#expedition-active' : '#expedition-areas [data-area-id="mist_forest"]', action: '查看派遣操作',
     },
     'expedition/claim': {
-      title: '倒數結束後，記得回來領獎',
-      body: `${c.active ? isExpeditionTimeComplete(c.active) ? '目前探險已結束，可以領取。' : '目前探險仍在進行；可以先去處理自己的事情。' : '派遣後會顯示倒數，時間到才可領獎。'} 領取後星塵進錢包、材料進工坊，親密度給出發的夥伴。領完才能開始下一趟；領獎畫面也會顯示探索度進展。`,
+      title: '閱讀旅程報告並領獎',
+      body: `${c.active ? isExpeditionTimeComplete(c.active) ? '目前探險已結束，可以閱讀報告並領獎。' : '目前探險仍在進行；可以先去處理自己的事情。' : '派遣後會顯示倒數，時間到才可閱讀報告並領獎。'} 每趟都有基本收穫，晚點領也不會失去獎勵。材料可投入共用營地，領過的旅程報告會保留在探險頁；探索度與地區里程碑也是下一個目標。`,
       target: { view: 'expedition' }, selector: c.active && isExpeditionTimeComplete(c.active) ? '[data-action="claim-expedition"]' : '#expedition-active', action: '查看倒數與領獎',
     },
     'workshop/materials': {

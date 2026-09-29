@@ -11,7 +11,8 @@ const flat = () => { const data = fixture('3.4.4'); delete data.data; return dat
 const canonical = () => {
   const raw = fixture('3.4.4');
   return { app: 'QuestNote', version: 2, appVersion: '3.4.4', exportedAt: raw.exportedAt,
-    data: Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key, raw.data[key]])) };
+    data: Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key,
+      key === 'campProgress' ? { key, level: 0, upgradedAt: null } : raw.data[key]])) };
 };
 // Serialized fields match startExpedition/claimExpeditionRewards at a0936fc and
 // current HEAD; reward values come from the actual calculator, with fixed ranges.
@@ -36,6 +37,15 @@ test('verified historical exporters remain valid and migrate to complete snapsho
     assert.equal(normalized.wallet.stardust, raw.data.wallet.stardust);
     assert.equal(normalized.tasks[0].id, raw.data.tasks[0].id);
   }
+});
+
+test('pre-camp V3.4.17 backup remains importable without camp or new region fields', () => {
+  const raw = fixture('3.4.4');
+  raw.appVersion = '3.4.17';
+  assert.equal(validateBackup(raw).valid, true);
+  const migrated = migrateImportedData(normalizeBackupPayload(raw));
+  assert.equal(migrated.campProgress.level, 0);
+  assert.equal(Object.keys(migrated.explorationProgress.areas).length, 6);
 });
 
 test('partial current backup cannot masquerade as an older complete shape', () => {
