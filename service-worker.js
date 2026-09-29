@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3421-gameplay-ui';
+const CACHE_NAME = 'questnote-preview-cache-v3422-user-sharing';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -65,6 +65,7 @@ const PRECACHE_URLS = [
   'src/explorationService.js',
   'src/workshopService.js',
   'src/ui.js',
+  'src/shareService.js',
   'src/feedbackService.js',
   'src/feedbackConfig.js',
   'src/feedbackController.js',

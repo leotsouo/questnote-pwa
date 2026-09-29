@@ -65,6 +65,8 @@ test('release artifact preparation is immutable, isolated and content complete',
       assert.equal(production.releaseReady, false);
       const html = await fs.readFile(path.join(production.artifactDir, 'index.html'), 'utf8');
       assert.ok(html.includes(`<meta name="questnote-artifact" content="${production.artifactId}">`));
+      assert.ok(html.includes('<meta property="og:url" content="https://leotsouo.github.io/questnote/" />'));
+      assert.ok(html.includes('<meta property="og:image" content="https://leotsouo.github.io/questnote/assets/icons/icon-512.png" />'));
       const manifest = JSON.parse(await fs.readFile(path.join(production.artifactDir, 'manifest.webmanifest')));
       assert.equal(manifest.name, 'QuestNote'); assert.equal(manifest.short_name, 'QN');
       assert.equal(manifest.id, '/questnote/'); assert.equal(manifest.scope, '/questnote/');
@@ -95,6 +97,10 @@ test('release artifact preparation is immutable, isolated and content complete',
       assert.equal(again.artifactId, production.artifactId); assert.equal(again.reused, true);
       const preview = await prepareReleaseArtifact({ ...options, profile: 'preview', scopePath: '/review/' });
       assert.notEqual(preview.artifactId, production.artifactId);
+      const previewHtml = await fs.readFile(path.join(preview.artifactDir, 'index.html'), 'utf8');
+      assert.ok(previewHtml.includes('<meta property="og:title" content="QuestNote 預覽" />'));
+      assert.ok(previewHtml.includes('<meta property="og:url" content="https://leotsouo.github.io/review/" />'));
+      assert.ok(previewHtml.includes('<meta property="og:image" content="https://leotsouo.github.io/review/assets/icons/icon-512.png" />'));
       assert.equal(preview.descriptor.dbName, 'QuestNotePreviewDB');
       assert.equal(preview.descriptor.cacheNamespace, 'questnote-preview-');
       const manifest = JSON.parse(await fs.readFile(path.join(preview.artifactDir, 'manifest.webmanifest')));

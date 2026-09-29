@@ -323,8 +323,16 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   files.set(descriptor.contentBundleUrl, bundleBytes);
   files.set('src/releaseProfile.js', Buffer.from('/** Generated immutable release descriptor. */\nexport const RELEASE_PROFILE = '
     + JSON.stringify(descriptor, null, 2) + ';\n'));
-  const sourceHtml = source.get('index.html').toString('utf8');
+  let sourceHtml = source.get('index.html').toString('utf8');
   if (/\bname\s*=\s*['"]questnote-artifact['"]/i.test(sourceHtml)) throw new Error('Source index already has an artifact marker');
+  const publicUrl = new URL(scopePath, 'https://leotsouo.github.io').href;
+  const publicImageUrl = new URL('assets/icons/icon-512.png', publicUrl).href;
+  sourceHtml = replaceOne(sourceHtml, /<meta property="og:title" content="[^"]+" \/>/,
+    `<meta property="og:title" content="${profile === 'production' ? 'QuestNote' : 'QuestNote 預覽'}" />`, 'OG title');
+  sourceHtml = replaceOne(sourceHtml, /<meta property="og:url" content="[^"]+" \/>/,
+    `<meta property="og:url" content="${publicUrl}" />`, 'OG URL');
+  sourceHtml = replaceOne(sourceHtml, /<meta property="og:image" content="[^"]+" \/>/,
+    `<meta property="og:image" content="${publicImageUrl}" />`, 'OG image');
   files.set('index.html', Buffer.from(replaceOne(sourceHtml, /<\/head>/,
     `  <meta name="questnote-artifact" content="${artifactId}">\n</head>`, 'HTML closing head')));
   const manifest = JSON.parse(source.get('manifest.webmanifest'));
