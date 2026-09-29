@@ -17700,3 +17700,20 @@ body.is-pet-image-viewer-open .onboarding-dock { visibility: hidden; }
 #feedback-report-title { overflow-wrap: anywhere; }
 #feedback-send:disabled { opacity: 0.5; cursor: not-allowed; }
 .feedback-receipt { background: var(--color-success-soft); padding: 14px; border-radius: var(--radius-sm); overflow-wrap: anywhere; line-height: 1.7; }
+.expedition-camp, .expedition-archive { margin: 1rem 0; }
+.camp-card, .journey-archive { padding: 1.2rem; }
+.camp-card p, .journey-archive p { line-height: 1.6; }
+.camp-unlocks, .camp-costs { display: flex; flex-wrap: wrap; gap: .5rem; margin: .8rem 0; }
+.camp-unlock, .camp-cost { padding: .35rem .65rem; border-radius: 999px; background: rgba(128,128,128,.14); font-size: .85rem; }
+.camp-unlock.is-open { background: rgba(90,170,120,.2); }
+.camp-cost.is-missing { color: #b84646; }
+.journey-list { display: grid; gap: .5rem; }
+.journey-list button { width: 100%; display: flex; justify-content: space-between; gap: .5rem; text-align: left; padding: .75rem; border: 1px solid currentColor; border-radius: .7rem; background: transparent; color: inherit; cursor: pointer; }
+.journey-list span { opacity: .75; }
+.expedition-objectives { display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem; margin: 1rem 0; }
+.expedition-objective { display: grid; gap: .2rem; padding: .6rem; border: 1px solid currentColor; border-radius: .7rem; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+.expedition-objective span { font-size: .78rem; opacity: .75; }
+.expedition-objective.is-selected { outline: 2px solid #8d78cf; }
+.expedition-pet-option__specialty { font-size: .78rem; }
+.expedition-report-event { line-height: 1.6; }
+@media (max-width: 520px) { .expedition-objectives { grid-template-columns: 1fr; } .journey-list button { display: grid; } }
