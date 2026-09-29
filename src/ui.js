@@ -12,6 +12,7 @@ import {
 } from './taskService.js';
 import { getCategoryById } from './categoryService.js';
 import { initFeedback } from './feedbackController.js';
+import { shareQuestNote, copyQuestNoteUrl } from './shareService.js';
 import { bindDialogFocus, isTopDialog, rememberDialogFocus, focusDialog, restoreDialogFocus } from './dialogFocus.js';
 import {
   getTodayDateString,
@@ -1077,6 +1078,24 @@ function bindDelegatedEvents() {
     }
   });
 
+  document.getElementById('view-share')?.addEventListener('click', (e) => {
+    const backBtn = e.target.closest('[data-goto]');
+    if (backBtn) switchView(backBtn.dataset.goto);
+  });
+  document.getElementById('btn-share-app')?.addEventListener('click', async () => {
+    const result = await shareQuestNote();
+    if (result === 'unsupported') {
+      const copied = await copyQuestNoteUrl();
+      showToast(copied ? '正式版連結已複製' : '無法自動複製，請長按下方連結', copied ? 'success' : 'warning');
+    } else if (result === 'failed') {
+      showToast('無法開啟分享，請使用複製連結', 'warning');
+    }
+  });
+  document.getElementById('btn-copy-app-link')?.addEventListener('click', async () => {
+    const copied = await copyQuestNoteUrl();
+    showToast(copied ? '正式版連結已複製' : '無法自動複製，請長按下方連結', copied ? 'success' : 'warning');
+  });
+
   document.getElementById('view-workshop')?.addEventListener('click', (e) => {
     handleWorkshopClick(e);
   });
@@ -1252,7 +1271,7 @@ export function switchView(viewName) {
   document.querySelectorAll('.nav-item').forEach((n) => n.classList.remove('active'));
 
   const view = document.getElementById(`view-${viewName}`);
-  const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'feedback' ? 'more' : viewName;
+  const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'feedback' || viewName === 'share' ? 'more' : viewName;
   const nav = document.querySelector(`.nav-item[data-view="${navView}"]`);
   if (view) view.classList.add('active');
   if (nav) nav.classList.add('active');
@@ -1325,7 +1344,7 @@ export function switchView(viewName) {
     preloadCompanionImage(state).catch(() => {});
   }
 
-  currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'feedback' || viewName === 'more'
+  currentTasksView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'feedback' || viewName === 'share' || viewName === 'more'
     ? currentTasksView
     : viewName;
   if (viewName === 'tasks' || viewName === 'gacha' || viewName === 'collection' || viewName === 'expedition' || viewName === 'more') {
@@ -1710,6 +1729,8 @@ export function renderView(viewName) {
       break;
     case 'guide':
       refreshOnboarding();
+      break;
+    case 'share':
       break;
     default:
       uiDebugLog('[Render] renderAll fallback (unknown view:', viewName, ')');

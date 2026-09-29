@@ -8,13 +8,22 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="QuestNote" />
   <title>QuestNote</title>
+  <meta name="description" content="QuestNote 是個人任務記事 App：記錄任務、養成習慣，和幻獸一起冒險。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:title" content="QuestNote" />
+  <meta property="og:description" content="記錄任務、養成習慣，和幻獸一起冒險。" />
+  <meta property="og:url" content="https://leotsouo.github.io/questnote-pwa/" />
+  <meta property="og:image" content="https://leotsouo.github.io/questnote-pwa/assets/icons/icon-512.png" />
+  <meta property="og:image:alt" content="QuestNote App 圖示" />
+  <meta name="twitter:card" content="summary" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="assets/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
   <link rel="stylesheet" href="src/styles.css" />
   <link rel="stylesheet" href="src/ui-polish.css" />
   <link rel="stylesheet" href="src/summon-polish.css" />
-  <meta name="questnote-artifact" content="d6ba79aa78e1599ddf4e4f814de4426b665274a205f9904d48ebedc56ea7ef33">
+  <meta name="questnote-artifact" content="5c631c0c80b7442d24ae1cf32a56ef4457d0ad0d1e463190a3efffeb9ec4b017">
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -287,6 +296,14 @@
       </header>
 
       <section class="more-menu card">
+        <button class="more-menu-item" data-goto="share" type="button">
+          <span class="more-menu-icon" aria-hidden="true">🔗</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">分享 QuestNote</span>
+            <span class="more-menu-desc">傳送正式版連結給朋友</span>
+          </span>
+          <span class="more-menu-arrow" aria-hidden="true">›</span>
+        </button>
         <button class="more-menu-item" data-feedback-open type="button">
           <span class="more-menu-icon" aria-hidden="true">💬</span>
           <span class="more-menu-text">
@@ -358,6 +375,32 @@
 
       <section class="card more-version-section" aria-label="版本資訊">
         <div class="version-info-card version-info-card--compact" data-version-info data-version-info-compact></div>
+      </section>
+    </main>
+
+    <main id="view-share" class="view">
+      <header class="page-header page-header--with-back">
+        <button class="page-back-btn" data-goto="more" type="button" aria-label="返回更多">‹</button>
+        <div class="page-header__inner">
+          <h1 class="page-title">分享 QuestNote</h1>
+          <p class="page-subtitle">邀請朋友一起展開任務冒險</p>
+        </div>
+      </header>
+      <section class="card share-card" aria-labelledby="share-card-title">
+        <h2 id="share-card-title" class="section-title">分享正式版</h2>
+        <p class="settings-section-note">傳送的是 App 連結。每個人的任務和收藏保存在自己的瀏覽器，分享連結不會傳送你的資料。</p>
+        <div class="share-actions">
+          <button id="btn-share-app" class="btn btn--primary btn--block" type="button">分享 App</button>
+          <button id="btn-copy-app-link" class="btn btn--secondary btn--block" type="button">複製連結</button>
+        </div>
+        <a class="share-link" href="https://leotsouo.github.io/questnote-pwa/">https://leotsouo.github.io/questnote-pwa/</a>
+      </section>
+      <section class="card share-install" aria-labelledby="share-install-title">
+        <h2 id="share-install-title" class="section-title">加入主畫面</h2>
+        <p>不用安裝也能直接在瀏覽器使用。</p>
+        <p><strong>iPhone／iPad：</strong>用 Safari 開啟連結，點「分享」，再選「加入主畫面」。</p>
+        <p><strong>Android：</strong>用 Chrome 開啟連結，從瀏覽器選單選「安裝應用程式」或「加入主畫面」。</p>
+        <p class="share-install__note">換裝置前，請到「更多 → 設定」匯出 JSON 備份；新裝置可從同一處恢復。</p>
       </section>
     </main>
 
