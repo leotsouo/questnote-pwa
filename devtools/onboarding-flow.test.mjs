@@ -130,8 +130,13 @@ test('teaching previews handle absent resources, full stars, cooldown and changi
   assert.match(getLessonStepContent('workshop', 'craft', state).body, /還差 3/);
   assert.match(getLessonStepContent('workshop', 'craft', state).body, /測試地區/);
   assert.match(getLessonStepContent('expedition', 'prepare', state).body, /9 點能量.*23 分鐘/);
-  for (const lesson of LESSONS) for (const step of lesson.steps) assert.ok(getLessonStepContent(lesson.id, step, {}).body);
   assert.equal(JSON.stringify(state), before);
+  state.firstJourneyAvailable = true;
+  const beforeFirstJourney = JSON.stringify(state);
+  assert.match(getLessonStepContent('expedition', 'prepare', state).body, /首次短程.*1 點能量.*3 分鐘/);
+  assert.match(getLessonAvailability('expedition', state), /足夠能量/);
+  for (const lesson of LESSONS) for (const step of lesson.steps) assert.ok(getLessonStepContent(lesson.id, step, {}).body);
+  assert.equal(JSON.stringify(state), beforeFirstJourney);
   state.enrichedCollection[0].stars = 5;
   assert.match(getLessonAvailability('stars', state), /滿星/);
   state.companion = { lastPettedAt: new Date().toISOString() };
