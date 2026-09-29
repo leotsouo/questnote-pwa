@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3418-gameplay';
+const CACHE_NAME = 'questnote-preview-cache-v3419-gameplay-ui';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -94,6 +94,12 @@ const PRECACHE_URLS = [
   'data/craftables.json',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',
+  'assets/expeditions/mist_forest.webp',
+  'assets/expeditions/lava_rift.webp',
+  'assets/expeditions/machine_ruins.webp',
+  'assets/expeditions/astral_rift.webp',
+  'assets/expeditions/polar_shore.webp',
+  'assets/expeditions/harvest_fields.webp',
 ];
 
 function resolveUrl(path) {

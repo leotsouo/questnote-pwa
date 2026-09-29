@@ -6346,7 +6346,7 @@ function renderExpeditionView() {
         <article class="expedition-active-card card expedition-active-card--area-${area?.id || 'mist_forest'} ${complete ? 'expedition-active-card--ready' : 'expedition-active-card--glow'}">
           <div class="expedition-active-card__fx" aria-hidden="true"></div>
           <span class="expedition-status-badge ${complete ? 'expedition-status-badge--ready' : 'expedition-status-badge--active'}">${complete ? '可領取' : '進行中'}</span>
-          <h2 class="section-title">進行中探險</h2>
+          <h2 class="section-title">${complete ? '探險歸來' : '進行中探險'}</h2>
           <div class="expedition-active-card__body">
             <div class="expedition-active-card__pet">
               <div class="expedition-active-card__pet-img ${complete ? 'expedition-pet-img--complete' : 'expedition-pet-img--float'}">
@@ -6397,7 +6397,7 @@ function renderExpeditionView() {
 
     areasEl.innerHTML = `
       <h2 class="section-title">探險地區</h2>
-      <p class="expedition-map__hint">選擇想探索的地區，點「派遣探險」挑選夥伴出發。</p>
+      <p class="expedition-map__hint">${hasActive ? '領取目前旅程的獎勵後可再出發；現在仍可查看地區情報。' : '選擇地區查看路線與收穫，再組隊出發。'}</p>
       <div class="expedition-map expedition-area-grid">
         ${expeditionAreas
           .map((area) => renderExpeditionAreaCard(area, {
@@ -6416,9 +6416,13 @@ function renderExpeditionView() {
   if (petsEl) petsEl.innerHTML = '';
 }
 
-/** V2.7.2 探險地區卡片（含探索度、派遣按鈕，點按鈕開派遣 Modal） */
+function expeditionAreaImageUrl(areaId) {
+  return `./assets/expeditions/${encodeURIComponent(areaId)}.webp`;
+}
+
+/** 地區小卡保留派遣所需的資訊，完整路線與收穫放在派遣視窗。 */
 function renderExpeditionAreaCard(area, { hasActive, energy, ownedPets, exploration, firstJourney }) {
-  const { unlocked, hint } = checkAreaUnlock(area, ownedPets);
+  const { unlocked } = checkAreaUnlock(area, ownedPets);
   const locked = !unlocked;
   const mat = area.rewards.material;
   const terms = getDispatchTerms(area, firstJourney);
@@ -6426,71 +6430,43 @@ function renderExpeditionAreaCard(area, { hasActive, energy, ownedPets, explorat
 
   let statusLabel = '可派遣';
   let statusClass = 'expedition-area-card__status--ready';
-  let btnLabel = '派遣探險';
-  let btnDisabled = false;
+  let btnLabel = '選隊出發';
   if (locked) {
     statusLabel = '未解鎖';
     statusClass = 'expedition-area-card__status--locked';
-    btnLabel = '未解鎖';
-    btnDisabled = true;
+    btnLabel = '解鎖條件';
   } else if (hasActive) {
-    statusLabel = '探險進行中';
+    statusLabel = '';
     statusClass = 'expedition-area-card__status--busy';
-    btnLabel = '探險進行中';
-    btnDisabled = true;
+    btnLabel = '查看地區';
   } else if (lowEnergy) {
     statusLabel = '能量不足';
     statusClass = 'expedition-area-card__status--locked';
-    btnLabel = '能量不足';
-    btnDisabled = true;
+    btnLabel = '查看地區';
   }
 
-  const exploreBadge = exploration
-    ? `<span class="expedition-explore-badge">探索度 ${exploration.progress}%</span>`
-    : '';
-
-  const progressBlock = exploration
-    ? `<div class="expedition-area-card__progress">
-         <div class="expedition-area-progress-bar" role="progressbar" aria-valuenow="${exploration.progress}" aria-valuemin="0" aria-valuemax="100">
-           <div class="expedition-area-progress-fill" style="width: ${exploration.progress}%;"></div>
-           <span class="expedition-area-progress-text">${exploration.progress}%</span>
-         </div>
-         <p class="expedition-area-card__next">${
-           exploration.fullyExplored
-             ? '已完全探索'
-             : exploration.nextMilestone
-               ? `下一個里程碑：${exploration.nextMilestone.percent}% ${escapeHtml(exploration.nextMilestone.title)}`
-               : '—'
-         }</p>
-       </div>`
-    : '';
+  const progress = exploration?.progress ?? 0;
 
   return `
     <article class="expedition-area-card card expedition-area-card--${area.id} ${locked ? 'expedition-area-card--locked' : ''}" data-area-id="${area.id}">
-      <div class="expedition-area-card__header">
-        <h3 class="expedition-area-card__title">${escapeHtml(area.name)}</h3>
-        ${exploreBadge}
-        <span class="expedition-area-card__status ${statusClass}">${statusLabel}</span>
+      <div class="expedition-area-card__art">
+        <img src="${expeditionAreaImageUrl(area.id)}" alt="" loading="lazy" decoding="async">
+        ${statusLabel ? `<span class="expedition-area-card__status ${statusClass}">${statusLabel}</span>` : ''}
       </div>
-      <p class="expedition-area-card__desc">${escapeHtml(area.description)}</p>
-      <div class="expedition-area-card__meta">
-        <span class="expedition-area-card__meta-item">⏱ ${formatDuration(terms.durationMinutes)}</span>
-        <span class="expedition-area-card__meta-item">⚡ 冒險能量 ${terms.energyCost}${firstJourney ? ' · 首次短程' : ''}</span>
-      </div>
-      <div class="expedition-area-card__rewards">
-        <span class="expedition-reward-chip" data-reward-type="stardust">✦ 星塵 ${area.rewards.stardust.min}～${area.rewards.stardust.max}</span>
-        <span class="expedition-reward-chip" data-reward-type="material">📦 ${escapeHtml(getMaterialName(mat.id))} ${mat.min}～${mat.max}</span>
-        <span class="expedition-reward-chip" data-reward-type="bond">💜 親密度 +${area.rewards.bondExp}</span>
-      </div>
-      ${progressBlock}
-      ${locked ? `<p class="expedition-area-card__unlock">${escapeHtml(hint)}</p>` : ''}
-      <div class="expedition-area-card__actions">
-        <button
-          class="expedition-dispatch-button"
-          data-action="open-dispatch"
-          data-area-id="${area.id}"
-          ${btnDisabled ? 'disabled' : ''}
-        >${btnLabel}</button>
+      <div class="expedition-area-card__content">
+        <div class="expedition-area-card__header">
+          <h3 class="expedition-area-card__title">${escapeHtml(area.name)}</h3>
+          <span class="expedition-explore-badge">${progress}%</span>
+        </div>
+        <div class="expedition-area-card__meta">
+          <span>⏱ ${formatDuration(terms.durationMinutes)}</span>
+          <span>⚡ ${terms.energyCost}${firstJourney ? ' · 首次' : ''}</span>
+        </div>
+        <div class="expedition-area-card__progress" role="progressbar" aria-label="${escapeHtml(area.name)}探索度" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100">
+          <span class="expedition-area-progress-fill" style="width: ${progress}%;"></span>
+        </div>
+        <p class="expedition-area-card__material">📦 ${escapeHtml(getMaterialName(mat.id))}</p>
+        <button type="button" class="expedition-dispatch-button" data-action="open-dispatch" data-area-id="${area.id}" aria-label="${escapeHtml(area.name)}：${btnLabel}">${btnLabel}</button>
       </div>
     </article>`;
 }
@@ -6498,6 +6474,7 @@ function renderExpeditionAreaCard(area, { hasActive, energy, ownedPets, explorat
 function renderCampPanel() {
   const el = document.getElementById('expedition-camp');
   if (!el) return;
+  const wasOpen = el.querySelector('.camp-card__details')?.open ?? false;
   const level = state.campProgress?.level || 0;
   const next = CAMP_UPGRADES[level];
   const materials = state.wallet?.materials || {};
@@ -6507,10 +6484,14 @@ function renderCampPanel() {
   }).join('') : '';
   const affordable = next && Object.entries(next.materials).every(([id, amount]) => (materials[id] || 0) >= amount);
   el.innerHTML = `<article class="card camp-card">
-    <h2 class="section-title">共用營地 · Lv.${level}</h2>
-    <p>六區素材一起建設營地，升級會永久保留。</p>
-    <div class="camp-unlocks">${CAMP_UPGRADES.map((entry) => `<span class="camp-unlock ${level >= entry.level ? 'is-open' : ''}">${level >= entry.level ? '✓' : '○'} ${entry.name}</span>`).join('')}</div>
-    ${next ? `<h3>下一步：${next.name}</h3><p>${next.description}</p><div class="camp-costs">${costs}</div><button type="button" class="btn btn--primary" data-action="upgrade-camp" ${affordable ? '' : 'disabled'}>投入素材升級</button>` : '<p>營地已完成全部建設。</p>'}
+    <details class="camp-card__details" ${wasOpen ? 'open' : ''}>
+      <summary class="camp-card__summary"><span><strong>共用營地 · Lv.${level}</strong><small>${next ? `下一步：${next.name}` : '全部建設完成'}</small></span><span class="camp-card__summary-action">${affordable ? '可升級' : '查看'}</span></summary>
+      <div class="camp-card__content">
+        <p>六區素材一起建設營地，升級會永久保留。</p>
+        <div class="camp-unlocks">${CAMP_UPGRADES.map((entry) => `<span class="camp-unlock ${level >= entry.level ? 'is-open' : ''}">${level >= entry.level ? '✓' : '○'} ${entry.name}</span>`).join('')}</div>
+        ${next ? `<p>${next.description}</p><div class="camp-costs">${costs}</div><button type="button" class="btn btn--primary" data-action="upgrade-camp" ${affordable ? '' : 'disabled'}>投入素材升級</button>` : '<p>營地已完成全部建設。</p>'}
+      </div>
+    </details>
   </article>`;
 }
 
@@ -6518,13 +6499,19 @@ function renderJourneyArchive() {
   const el = document.getElementById('expedition-archive');
   if (!el) return;
   const journeys = state.recentExpeditions || [];
-  el.innerHTML = `<article class="card journey-archive"><h2 class="section-title">旅程報告</h2>
-    <p>完成後由你決定何時領獎；領取後仍可重讀。</p>
-    ${journeys.length ? `<div class="journey-list">${journeys.slice(0, journeyArchiveExpanded ? journeys.length : 5).map((journey) => {
+  if (!journeys.length) {
+    el.innerHTML = '';
+    return;
+  }
+  const wasOpen = el.querySelector('.journey-archive__details')?.open ?? false;
+  el.innerHTML = `<article class="card journey-archive"><details class="journey-archive__details" ${wasOpen ? 'open' : ''}>
+    <summary class="journey-archive__summary"><strong>旅程檔案</strong><span>${journeys.length} 份報告 · 查看</span></summary>
+    <div class="journey-archive__content"><p>已領取的旅程會留在這裡，隨時可以重讀。</p>
+    <div class="journey-list">${journeys.slice(0, journeyArchiveExpanded ? journeys.length : 5).map((journey) => {
       const area = state.expeditionAreas.find((entry) => entry.id === journey.areaId);
       return `<button type="button" data-action="read-journey" data-id="${escapeHtml(journey.id)}"><strong>${escapeHtml(area?.name || journey.areaId)}</strong><span>${escapeHtml(journey.report?.event?.title || '過往旅程')} · ${escapeHtml(formatDateTime(journey.startedAt))}</span></button>`;
-    }).join('')}</div>${journeys.length > 5 ? `<button type="button" class="btn btn--ghost" data-action="toggle-journey-archive">${journeyArchiveExpanded ? '收起舊報告' : `查看全部 ${journeys.length} 份報告`}</button>` : ''}` : '<p>第一趟探險完成後，報告會留在這裡。</p>'}
-  </article>`;
+    }).join('')}</div>${journeys.length > 5 ? `<button type="button" class="btn btn--ghost" data-action="toggle-journey-archive">${journeyArchiveExpanded ? '收起舊報告' : `查看全部 ${journeys.length} 份報告`}</button>` : ''}
+    </div></details></article>`;
 }
 
 function showJourneyReport(journey) {
@@ -6642,16 +6629,6 @@ async function handleExpeditionClick(e) {
 
   if (action === 'open-dispatch') {
     const areaId = target.dataset.areaId;
-    if (state.activeExpedition) {
-      showToast('目前已有探險進行中', 'warning');
-      return;
-    }
-    const area = state.expeditionAreas.find((a) => a.id === areaId);
-    const { unlocked, hint } = checkAreaUnlock(area, getOwnedPets());
-    if (!unlocked) {
-      showToast(hint || '此地區尚未解鎖', 'warning');
-      return;
-    }
     openExpeditionDispatchModal(areaId);
     return;
   }
@@ -7080,6 +7057,7 @@ function handleDispatchModalClick(e) {
 function renderExpeditionDispatchModal() {
   const overlay = document.getElementById('expedition-dispatch-modal');
   if (!overlay) return;
+  const specialtyHelpOpen = overlay.querySelector('.expedition-specialty-help')?.open ?? false;
   const area = state.expeditionAreas.find((a) => a.id === dispatchAreaId);
   if (!area) {
     closeExpeditionDispatchModal();
@@ -7090,6 +7068,7 @@ function renderExpeditionDispatchModal() {
   const energy = state.wallet.adventureEnergy ?? 0;
   const terms = getDispatchTerms(area, state.firstJourneyAvailable && area.id === 'mist_forest');
   const lowEnergy = energy < terms.energyCost;
+  const { unlocked, hint } = checkAreaUnlock(area, getOwnedPets());
   const exploration = (state.explorationSummary?.areas || []).find(
     (a) => a.areaId === dispatchAreaId
   );
@@ -7101,7 +7080,10 @@ function renderExpeditionDispatchModal() {
       ? '<p class="expedition-dispatch-empty">目前還沒有可派遣的寵物，先去召喚夥伴吧。</p>'
       : pets.map((p) => buildDispatchPetOptionHtml(p)).join('');
 
-  const canConfirm = selectedPets.length > 0 && !lowEnergy && !state.activeExpedition;
+  const canConfirm = selectedPets.length > 0 && unlocked && !lowEnergy && !state.activeExpedition;
+  const confirmLabel = !unlocked ? '尚未解鎖'
+    : state.activeExpedition ? '探險進行中'
+      : lowEnergy ? '能量不足' : '確認派遣';
 
   const previewHtml = selectedPets.length
     ? `隊伍：<strong>${selectedPets.map((pet) => escapeHtml(petDisplayName(pet))).join('、')}</strong>　目標：${EXPEDITION_OBJECTIVES[dispatchObjective].label}<br>消耗：冒險能量 ${terms.energyCost}　預計時間：${formatDuration(terms.durationMinutes)}<br>保證帶回星塵、親密度與至少 1 份${escapeHtml(getMaterialName(mat.id))}；額外發現由隊伍專長決定。${state.campProgress?.level >= 1 ? `<br>地圖桌情報：${selectedPets.map((pet) => `${escapeHtml(petDisplayName(pet))}（${getPetSpecialty(pet).label} Lv.${getPetSpecialty(pet).level}）`).join('、')}。` : ''}`
@@ -7116,6 +7098,7 @@ function renderExpeditionDispatchModal() {
       </div>
       <div class="expedition-dispatch-modal__body">
         <div class="expedition-dispatch-modal__area-summary">
+          <img class="expedition-dispatch-area__image" src="${expeditionAreaImageUrl(area.id)}" alt="">
           <h3 class="expedition-dispatch-area__name">${escapeHtml(area.name)}</h3>
           <p class="expedition-dispatch-area__desc">${escapeHtml(area.description)}</p>
           <div class="expedition-dispatch-area__meta">
@@ -7127,21 +7110,24 @@ function renderExpeditionDispatchModal() {
             <span class="expedition-reward-chip" data-reward-type="material">📦 ${escapeHtml(getMaterialName(mat.id))} ${mat.min}～${mat.max}</span>
             <span class="expedition-reward-chip" data-reward-type="bond">💜 親密度 +${area.rewards.bondExp}</span>
           </div>
-          ${
-            exploration
-              ? `<p class="expedition-dispatch-area__explore">探索度 ${exploration.progress}%${
-                  exploration.fullyExplored
-                    ? '（已完全探索）'
-                    : exploration.nextMilestone
-                      ? ` · 下一個里程碑 ${exploration.nextMilestone.percent}%`
-                      : ''
-                }</p>`
-              : ''
-          }
+          ${exploration ? `<p class="expedition-dispatch-area__explore">探索度 ${exploration.progress}%${exploration.fullyExplored ? ' · 已完全探索' : exploration.nextMilestone ? ` · 下一個里程碑：${exploration.nextMilestone.percent}% ${escapeHtml(exploration.nextMilestone.title)}` : ''}</p>` : ''}
+          ${!unlocked ? `<p class="expedition-dispatch-area__unlock">解鎖條件：${escapeHtml(hint)}</p>` : ''}
+          ${state.activeExpedition ? '<p class="expedition-dispatch-area__unlock">領取目前旅程的獎勵後，就能再次派遣。</p>' : ''}
         </div>
         <div class="expedition-dispatch-modal__pet-section">
           <h3 class="expedition-dispatch-modal__pet-title">選擇 1～3 隻出發寵物</h3>
           <p class="expedition-dispatch-modal__pet-note">陪伴中的寵物也可以派遣，不會取消目前的陪伴設定。</p>
+          <details class="expedition-specialty-help" ${specialtyHelpOpen ? 'open' : ''}>
+            <summary>專長是什麼？看隊伍如何影響收穫</summary>
+            <p>一星就能發揮專長，升星會讓效果更強。不同專長同行，也更容易遇見額外事件。</p>
+            <ul>
+              <li><strong>探路</strong>：選探索目標時，增加地區探索進度。</li>
+              <li><strong>採集</strong>：選採集目標時，多帶回地區素材。</li>
+              <li><strong>同行</strong>：選羈絆目標時，增加隊伍親密度。</li>
+              <li><strong>解讀</strong>：提高額外發現機會，帶回更多線索。</li>
+              <li><strong>守護</strong>：帶回額外星塵。</li>
+            </ul>
+          </details>
           <div class="expedition-dispatch-modal__pet-list">
             ${petListHtml}
           </div>
@@ -7153,7 +7139,7 @@ function renderExpeditionDispatchModal() {
       <div class="expedition-dispatch-modal__preview">${previewHtml}</div>
       <div class="expedition-dispatch-modal__footer">
         <button type="button" class="expedition-dispatch-cancel-button" data-action="dispatch-close">取消</button>
-        <button type="button" class="expedition-dispatch-confirm-button" data-action="dispatch-confirm" ${canConfirm ? '' : 'disabled'}>確認派遣</button>
+        <button type="button" class="expedition-dispatch-confirm-button" data-action="dispatch-confirm" ${canConfirm ? '' : 'disabled'}>${confirmLabel}</button>
       </div>
     </div>`;
 }
