@@ -57,6 +57,7 @@ try {
   assert.ok(boundaries.body<=width,'No page-wide horizontal overflow');
   assert.equal(boundaries.touch,'pan-x pan-y');
   await fs.mkdir('reports/collection-swipe',{recursive:true});
+  await page.waitForTimeout(250);
   await page.screenshot({path:`reports/collection-swipe/collection-${width}.png`});
   const beforeScroll=await page.evaluate(()=>scrollY);
   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:width-2,y}]});
