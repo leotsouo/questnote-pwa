@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-09-30T21:23:27.812Z",
+  "version": "1.0",
+  "effectiveDate": "2026-10-01",
+  "source": "d3034d52b369d596579c3e3944db7cbe0cd70f79",
+  "authorization": "Owner requested policies following comparable app norms; existing public website publishing authorization applies.",
+  "urls": {
+    "privacy": "https://questnote.taste-compare.com/privacy",
+    "terms": "https://questnote.taste-compare.com/terms",
+    "support": "https://questnote.taste-compare.com/support"
+  },
+  "deployments": [
+    {
+      "id": "66531ae2-7c7e-487d-915e-16d77cd9a76e",
+      "url": "https://66531ae2.questnote-marketing.pages.dev",
+      "environment": "preview",
+      "source": {
+        "branch": "codex-questnote-marketing",
+        "commit_hash": "d3034d52b369d596579c3e3944db7cbe0cd70f79",
+        "commit_message": "Publish owner-authorized privacy policy and terms v1.0",
+        "commit_dirty": false
+      },
+      "stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-30T21:15:23.207953Z",
+        "status": "success"
+      },
+      "functions": false
+    },
+    {
+      "id": "a21b342e-b1ed-4d3f-8d47-85e984677c48",
+      "url": "https://a21b342e.questnote-marketing.pages.dev",
+      "environment": "production",
+      "source": {
+        "branch": "main",
+        "commit_hash": "d3034d52b369d596579c3e3944db7cbe0cd70f79",
+        "commit_message": "Publish approved QuestNote privacy policy and terms v1.0",
+        "commit_dirty": false
+      },
+      "stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-30T21:18:35.522438Z",
+        "status": "success"
+      },
+      "functions": false
+    }
+  ],
+  "validation": {
+    "build": "pass",
+    "lint": "pass",
+    "typecheck": "pass",
+    "marketingContractTests": 4,
+    "ci": "https://github.com/leotsouo/questnote-pwa/actions/runs/36778172905",
+    "preview": {
+      "browserChecks": 9,
+      "verifiedFiles": 27,
+      "axeViolations": 0
+    },
+    "production": {
+      "browserChecks": 9,
+      "verifiedFiles": 27,
+      "axeViolations": 0
+    }
+  },
+  "scope": "Updated privacy, terms and support HTML only; homepage/runtime/assets unchanged; no App, backend, analytics configuration or DNS mutation.",
+  "basis": "docs/legal-policy-basis.md"
+}

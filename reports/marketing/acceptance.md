@@ -1,5 +1,11 @@
 # QuestNote Marketing Website — acceptance / deployment receipt
 
+Policy update, 2026-10-01: the owner authorized policies using comparable App
+norms. Privacy and terms v1.0 are now published, replacing the legal draft / owner
+review status in this original website-release receipt. See
+[policy basis](../../docs/legal-policy-basis.md) and
+[the new verified deployment](legal-v1/deployment.json).
+
 Date: 2026-10-01 (Asia/Taipei). This report separates source, Preview, production,
 and owner review. The App runtime and preserved root drafts were not changed.
 

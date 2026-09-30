@@ -21,12 +21,12 @@
     "/demo.js": "420ea5b5a90ad91e388e196189c10667",
     "/index.html": "43a9af472bc6879c7d10437312cfb6e6",
     "/main.js": "979e47b153cc7ac64b14cbf52d9ea86f",
-    "/privacy/index.html": "149c165c3ef13a4aeb929de1c9d05328",
+    "/privacy/index.html": "2f3c48cc02d2382ddb6ec87bc7520d75",
     "/robots.txt": "52ec998eed869d763ff3f565b336e21f",
     "/sitemap.xml": "4c9c52168356828e077d125493afb5b5",
     "/styles.css": "2dafb395a588a9fccc9c4e1fa06d2729",
-    "/support/index.html": "3a424eb26a8691841723aedc9d3fb54d",
-    "/terms/index.html": "49d8307fbbe07455c66372685d8eba1f"
+    "/support/index.html": "1ae09370eecc9fb4a1a9426460fb5fa4",
+    "/terms/index.html": "a19901a239c740ace93421f0d7582119"
   },
   "special": {
     "_headers": "/*\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: DENY\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'\n/assets/*\n  Cache-Control: public, max-age=3600, no-transform\n"
