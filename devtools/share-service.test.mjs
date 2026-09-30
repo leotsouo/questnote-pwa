@@ -1,16 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { APP_SHARE_URL, shareQuestNote, copyQuestNoteUrl } from '../src/shareService.js';
+import { APP_SHARE_URL, WEBSITE_SHARE_URL, APP_SHARE_TEXT, APP_SHARE_MESSAGE, shareQuestNote, copyQuestNoteInvitation } from '../src/shareService.js';
 
-test('share sends only the public production link and app description', async () => {
+test('native share includes the official website once and the direct app once', async () => {
   let payload;
   const result = await shareQuestNote({ share: async (data) => { payload = data; } });
   assert.equal(result, 'shared');
   assert.deepEqual(payload, {
     title: 'QuestNote',
-    text: '用 QuestNote 記錄任務、養成習慣，和幻獸一起冒險。',
-    url: APP_SHARE_URL,
+    text: APP_SHARE_TEXT,
+    url: WEBSITE_SHARE_URL,
   });
+  assert.equal(payload.text.split(APP_SHARE_URL).length - 1, 1);
+  assert.equal(payload.text.includes(WEBSITE_SHARE_URL), false);
+  assert.match(payload.text, /與夥伴一起成長/);
 });
 
 test('unsupported sharing and user cancellation remain distinct', async () => {
@@ -25,8 +28,10 @@ test('unsupported sharing and user cancellation remain distinct', async () => {
 
 test('copy uses Clipboard API and falls back when permission is denied', async () => {
   let copied = '';
-  assert.equal(await copyQuestNoteUrl({ clipboard: { writeText: async (value) => { copied = value; } } }), true);
-  assert.equal(copied, APP_SHARE_URL);
+  assert.equal(await copyQuestNoteInvitation({ clipboard: { writeText: async (value) => { copied = value; } } }), true);
+  assert.equal(copied, APP_SHARE_MESSAGE);
+  assert.equal(copied.split(APP_SHARE_URL).length - 1, 1);
+  assert.equal(copied.split(WEBSITE_SHARE_URL).length - 1, 1);
 
   let removed = false;
   const field = {
@@ -40,7 +45,7 @@ test('copy uses Clipboard API and falls back when permission is denied', async (
     createElement(name) { assert.equal(name, 'textarea'); return field; },
     execCommand(command) { assert.equal(command, 'copy'); return true; },
   };
-  assert.equal(await copyQuestNoteUrl({ clipboard: { writeText: async () => { throw new Error('Denied'); } } }, documentLike), true);
-  assert.equal(field.value, APP_SHARE_URL);
+  assert.equal(await copyQuestNoteInvitation({ clipboard: { writeText: async () => { throw new Error('Denied'); } } }, documentLike), true);
+  assert.equal(field.value, APP_SHARE_MESSAGE);
   assert.equal(removed, true);
 });
