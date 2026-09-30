@@ -91,6 +91,26 @@ async function approveAll(root, id, start = 0) {
   }
   assert.equal((await loadPipelineStatus(root, id)).readyToStage, true);
 }
+
+test('reviewed animation choice is hash-bound and cannot silently fall back to none', async (t) => {
+  const root = await setup(t);
+  try {
+    const definition = { ...brief(), presentationTemplate: 'honeylight_sugar', animationPlan: {
+      decision: 'dedicated', storyboard: 'Sugar gate, then cream bloom', rarityNotes: 'Two distinct UR reveals', motionNotes: 'Skippable; reduced motion stays static',
+    } };
+    const { dir } = await fill(root, definition);
+    await approveAll(root, definition.seriesId);
+    const poolPath = path.join(dir, 'pool.json');
+    const pool = await read(poolPath); pool.presentation.animationKey = 'none'; await write(poolPath, pool);
+    await assertValidationError(root, definition.seriesId, 'CONTENT_BRIEF_MISMATCH');
+    const status = await loadPipelineStatus(root, definition.seriesId);
+    assert.equal(status.stages.find((stage) => stage.stage === 'content').approved, false);
+    await assert.rejects(createPipelineWorkspace(root, { ...brief('bad_animation'), animationPlan: { decision: 'dedicated', storyboard: 'Incomplete' } }), /Animation decision/);
+    const reused = { ...brief('default_reuse'), animationPlan: { decision: 'reuse', storyboard: 'Reuse the generic reveal', rarityNotes: 'Existing SSR/UR queue', motionNotes: 'Existing reduced motion' } };
+    await fill(root, reused);
+    await approveAll(root, reused.seriesId);
+  } finally { /* setup registers checked temporary-root cleanup with the test runner. */ }
+});
 async function assertValidationError(root, id, code) {
   const result = await validatePipelineWorkspace(root, id);
   assert.equal(result.ok, false);

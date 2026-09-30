@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-09-30T20:56:36.101Z",
+  "previewUrl": "http://127.0.0.1:50316/questnote-pwa-preview/",
+  "artifactId": "f9d4f6f8b0541481b00f30c728f281e008d8084f7456a111b494cbd356477873",
+  "single": {
+    "walletBefore": 3000,
+    "walletAfter": 2900,
+    "role": "千層奶霜天鵝",
+    "rarity": "UR",
+    "duplicateCompensation": 20
+  },
+  "ten": {
+    "layout": {
+      "height": 852,
+      "scrollWidth": 393,
+      "width": 393
+    },
+    "names": [
+      "可可熔心龍",
+      "蜜曦盛宴小熊貓",
+      "薄荷拐杖鼬",
+      "薄荷拐杖鼬",
+      "奶油曲奇刺蝟",
+      "跳跳果凍蛙",
+      "奶油曲奇刺蝟",
+      "奶油曲奇刺蝟",
+      "方糖絨兔",
+      "奶油曲奇刺蝟"
+    ],
+    "rareSequence": [
+      "蜜曦盛宴小熊貓"
+    ],
+    "walletAfter": 1900,
+    "walletBefore": 2900
+  }
+}

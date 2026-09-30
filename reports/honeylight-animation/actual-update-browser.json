@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "name": "Downloaded generation waits; no forced refresh during use",
+      "ok": true
+    },
+    {
+      "name": "An incomplete asynchronous UI operation vetoes activation",
+      "ok": true
+    },
+    {
+      "name": "Unsaved task text and the open editor survive a blocked update",
+      "ok": true
+    },
+    {
+      "name": "A second app window vetoes activation and the first window unlocks",
+      "ok": true
+    },
+    {
+      "name": "One click activates/reloads fully cached new bytes with all artifact HTTP requests returning 503; same window, all five stores and theme retained",
+      "ok": true
+    },
+    {
+      "name": "Checking the latest generation reports success without a reload loop",
+      "ok": true
+    },
+    {
+      "name": "Real icon decodes; backup settings opens without reset, reinstall or changing app identity",
+      "ok": true
+    },
+    {
+      "name": "Actual V3.4.35 84-pet release updates to V3.4.36 96-pet release; all old saved rows survive and the dual-UR Honeylight pool is available",
+      "ok": true
+    }
+  ]
+}

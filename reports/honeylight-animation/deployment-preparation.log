@@ -1,0 +1,99 @@
+Preparing worktree (new branch 'codex/honeylight-animation-production-v3434')
+Updating files:  26% (97/372)
+Updating files:  27% (101/372)
+Updating files:  28% (105/372)
+Updating files:  29% (108/372)
+Updating files:  30% (112/372)
+Updating files:  31% (116/372)
+Updating files:  32% (120/372)
+Updating files:  33% (123/372)
+Updating files:  34% (127/372)
+Updating files:  35% (131/372)
+Updating files:  36% (134/372)
+Updating files:  37% (138/372)
+Updating files:  38% (142/372)
+Updating files:  39% (146/372)
+Updating files:  40% (149/372)
+Updating files:  41% (153/372)
+Updating files:  42% (157/372)
+Updating files:  43% (160/372)
+Updating files:  44% (164/372)
+Updating files:  45% (168/372)
+Updating files:  46% (172/372)
+Updating files:  47% (175/372)
+Updating files:  48% (179/372)
+Updating files:  49% (183/372)
+Updating files:  50% (186/372)
+Updating files:  51% (190/372)
+Updating files:  52% (194/372)
+Updating files:  53% (198/372)
+Updating files:  54% (201/372)
+Updating files:  55% (205/372)
+Updating files:  56% (209/372)
+Updating files:  57% (213/372)
+Updating files:  58% (216/372)
+Updating files:  59% (220/372)
+Updating files:  60% (224/372)
+Updating files:  61% (227/372)
+Updating files:  62% (231/372)
+Updating files:  63% (235/372)
+Updating files:  64% (239/372)
+Updating files:  65% (242/372)
+Updating files:  66% (246/372)
+Updating files:  67% (250/372)
+Updating files:  68% (253/372)
+Updating files:  69% (257/372)
+Updating files:  70% (261/372)
+Updating files:  71% (265/372)
+Updating files:  72% (268/372)
+Updating files:  73% (272/372)
+Updating files:  74% (276/372)
+Updating files:  75% (279/372)
+Updating files:  76% (283/372)
+Updating files:  77% (287/372)
+Updating files:  78% (291/372)
+Updating files:  79% (294/372)
+Updating files:  80% (298/372)
+Updating files:  81% (302/372)
+Updating files:  82% (306/372)
+Updating files:  83% (309/372)
+Updating files:  84% (313/372)
+Updating files:  85% (317/372)
+Updating files:  86% (320/372)
+Updating files:  87% (324/372)
+Updating files:  88% (328/372)
+Updating files:  89% (332/372)
+Updating files:  90% (335/372)
+Updating files:  91% (339/372)
+Updating files:  92% (343/372)
+Updating files:  93% (346/372)
+Updating files:  94% (350/372)
+Updating files:  95% (354/372)
+Updating files:  96% (358/372)
+Updating files:  97% (361/372)
+Updating files:  98% (365/372)
+Updating files:  99% (369/372)
+Updating files: 100% (372/372)
+Updating files: 100% (372/372), done.
+{
+  "preparedAt": "2026-09-30T20:23:47.891Z",
+  "branch": "codex/honeylight-animation-production-v3434",
+  "deploymentRoot": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-animation-production-v3434",
+  "deploymentCommit": "77ab1b5d0c2e450d0ebc9a4809cbdc16ff67f609",
+  "parentCommit": "3942a7f35287a0aa2c3ac343b45115ec4948a380",
+  "sourceCommit": "e209c1e65130c25f356f52f67011f29274f93323",
+  "candidateId": "e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
+  "artifactId": "621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+  "manifestSha256": "4e93bdd443fdf234d18cd68fff1547a0d79488f5fdd4fded7d58ac8197fa1eb4",
+  "catalogSha256": "67fb0ef59d21ba0310292f7bc6b861644256ae2eabc41ff03e7042c7bf210005",
+  "stagedFileCount": 410,
+  "committedFileCount": 410,
+  "everyGitBlobMatchesReviewedArtifact": true,
+  "removedSupersededArtifactFiles": [
+    "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json"
+  ],
+  "productionPushed": false,
+  "productionApproval": "PENDING_USER_FINAL_GO_AHEAD",
+  "finalActionAfterApproval": "Recheck origin/gh-pages and current HTTPS baseline, then fast-forward push the prepared commit to gh-pages; verify Pages build and HTTPS artifact bytes.",
+  "withdrawal": "Keep all published 96 pet identities, Lore and assets. Disable this new pool in a reviewed forward release if necessary; do not restore the 84-pet catalog or reset player saves."
+}

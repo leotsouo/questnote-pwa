@@ -1,0 +1,31 @@
+
+> pools:validate
+> node scripts/validate-pool-content.mjs
+
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "previews": [
+    {
+      "poolId": "standard",
+      "locked": 56,
+      "unlocked": 56
+    },
+    {
+      "poolId": "eternal_slumber_bloom",
+      "locked": 12,
+      "unlocked": 16
+    },
+    {
+      "poolId": "frost_oath_fjord",
+      "locked": 12,
+      "unlocked": 12
+    },
+    {
+      "poolId": "honeylight_sugar_garden_v2",
+      "locked": 12,
+      "unlocked": 12
+    }
+  ]
+}

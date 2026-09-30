@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3435-workshop';
+const CACHE_NAME = 'questnote-preview-cache-v3436-honeylight-animation';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -47,6 +47,7 @@ const PRECACHE_URLS = [
   'src/styles.css',
   'src/ui-polish.css',
   'src/summon-polish.css',
+  'src/honeylight-sugar.css',
   'src/themeTokens.css',
   'src/theme-system.css',
   'src/theme-refinements.css',
@@ -97,6 +98,7 @@ const PRECACHE_URLS = [
   'src/poolAwakeningController.js',
   'src/themedSummonController.js',
   'src/glacierArrivalScene.js',
+  'src/honeylightSugarScene.js',
   'src/collectionService.js',
   'src/collectionMilestoneService.js',
   'src/backupService.js',

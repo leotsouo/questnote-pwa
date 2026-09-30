@@ -1,0 +1,62 @@
+{
+  "passed": 14,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "unsupported template fails closed",
+      "ok": true
+    },
+    {
+      "name": "full debut is skippable and restores focus",
+      "ok": true
+    },
+    {
+      "name": "short debut is skippable and restores focus",
+      "ok": true
+    },
+    {
+      "name": "double skip at dreamDust gives the same result",
+      "ok": true
+    },
+    {
+      "name": "double skip at mirrorRipple gives the same result",
+      "ok": true
+    },
+    {
+      "name": "double skip at rarityOmen gives the same result",
+      "ok": true
+    },
+    {
+      "name": "double skip at bloom gives the same result",
+      "ok": true
+    },
+    {
+      "name": "ten-pull intro skip preserves SSR, both URs and duplicates in order",
+      "ok": true
+    },
+    {
+      "name": "queue skip from UR ends presentation without dropping summary results",
+      "ok": true
+    },
+    {
+      "name": "caramel full-motion UR has owned bounded ornament",
+      "ok": true
+    },
+    {
+      "name": "cream full-motion UR has owned bounded ornament",
+      "ok": true
+    },
+    {
+      "name": "missing image reveals a readable fallback and remains closable",
+      "ok": true
+    },
+    {
+      "name": "render failure cleans scroll and permits the next summon",
+      "ok": true
+    },
+    {
+      "name": "legacy dream remains the dream scene",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "previewUrl": "http://127.0.0.1:60619/questnote-pwa-preview/",
+  "artifactId": "9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+  "single": {
+    "rarity": "UR",
+    "petName": "千層奶霜天鵝",
+    "initialWallet": 3000,
+    "walletAfter": 2900,
+    "urPityBefore": 99,
+    "urPityAfter": 0
+  },
+  "responsive": {
+    "width": 393,
+    "height": 852,
+    "overlayWidth": 393.3333435058594,
+    "overlayHeight": 852,
+    "scrollWidth": 393
+  },
+  "productionPushed": false,
+  "ten": {
+    "walletAfter": 1900,
+    "names": [
+      "奶油曲奇刺蝟",
+      "方糖絨兔",
+      "泡芙栗鼠",
+      "跳跳果凍蛙",
+      "莓糖卷尾松鼠",
+      "奶油曲奇刺蝟",
+      "薄荷拐杖鼬",
+      "方糖絨兔",
+      "馬卡龍錦羽孔雀",
+      "泡芙栗鼠"
+    ],
+    "layout": {
+      "scrollWidth": 393,
+      "summaryWidth": 377.59375,
+      "width": 393
+    }
+  }
+}

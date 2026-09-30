@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-09-30T20:05:12.718Z",
+  "originalAuthoringRoot": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\card-pool-honeylight\\.dev-backups\\honeylight-authoring",
+  "authoringRoot": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-animation\\.dev-backups\\honeylight-authoring",
+  "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
+  "oldCandidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
+  "productionBaseline": "3942a7f35287a0aa2c3ac343b45115ec4948a380",
+  "sourceBaseline": "23d8cdcdfbb20d2a8199b04c3f45995bf5e1a996",
+  "originalImageFiles": {
+    "images/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
+    "images/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
+    "images/pet_n28.png": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
+    "images/pet_r23.png": "7888936777327f49c8a2c15fca04eb03244486f9f1c6d054d47209097f2cc159",
+    "images/pet_r24.png": "c6173cdc592be2030d72d77a7a2fc257df1593eb343b2fa9f727ff325a2c8b5a",
+    "images/pet_r25.png": "70530265c2f2f91bf8662210496f83584004aea2f4c165fee13f8dd1bf37977c",
+    "images/pet_sr19.png": "0b56c8aaaf55b785c6a66635959080c16d4200cdb3e29a4d57e49179e984b90d",
+    "images/pet_sr20.png": "536044295f302ebce8808ef56718b2cf8c8f1c1961356de09a4519f560323859",
+    "images/pet_ssr12.png": "1cbe693844ebdef76a2030c3c62f120428b2a1f5b5181ff01972aa7c242ce54d",
+    "images/pet_ssr13.png": "f22e689544f68a44f67890cf8da6ea689aa7a1358e8a7e82bcfa359fcb149b61",
+    "images/pet_ur09.png": "57693be9d2b4a69859fc6bb9f38a3b6c1b689e4909dcc6690dd3f2c61e7f0717",
+    "images/pet_ur10.png": "20684b478872287c38db5dab58d0d74d7335ac8d2cc8c77bc7c9dfc4ed1c2526"
+  },
+  "userApproval": "User requested implementation of the complete Honeylight animation plan; previous card-image approval remains valid only for byte-identical PNGs.",
+  "productionPushed": false,
+  "animationPlan": {
+    "decision": "dedicated",
+    "storyboard": "糖晶溫室亮起、拱門開啟，奶霜花與糖果浮現。首次入場3.4秒、短入場0.9秒；抽卡糖晶聚集→糖紙旋轉→奶霜花開→夥伴登場，約3–4秒，十連只播一次。",
+    "rarityNotes": "SSR糖晶暖金盛宴；海獺UR焦糖糖殼裂開與漣漪，天鵝UR千層奶霜與柔軟羽光。全部SSR+依已提交結果原順序逐一播放，保留重複角色。",
+    "motionNotes": "前奏略過不略過SSR+ queue；稀有角色另有略過操作。減少動態停用粒子、旋轉、縮放；失敗只退回原結果，清場並恢復焦點捲動。本地CSS/SVG，無音效或額外費用。"
+  }
+}

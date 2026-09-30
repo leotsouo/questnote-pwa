@@ -1582,6 +1582,10 @@
       "speciesType": "sea_otter",
       "element": "caramel_glow",
       "visualTheme": "brulee_amber_otter",
+      "presentation": {
+        "revealKey": "caramel",
+        "revealCaption": "焦糖漣漪 · 暖甜相遇"
+      },
       "imageVariants": {
         "card": "assets/pets/variants/pet_ur09-card-384-57693be9d2b4.webp",
         "stage": "assets/pets/variants/pet_ur09-stage-960-57693be9d2b4.webp"
@@ -1600,6 +1604,10 @@
       "speciesType": "swan",
       "element": "millefeuille_cream",
       "visualTheme": "cute_millefeuille_swan",
+      "presentation": {
+        "revealKey": "cream",
+        "revealCaption": "奶霜羽光 · 甜夢輕降"
+      },
       "imageVariants": {
         "card": "assets/pets/variants/pet_ur10-card-384-20684b478872.webp",
         "stage": "assets/pets/variants/pet_ur10-stage-960-20684b478872.webp"

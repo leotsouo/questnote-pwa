@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-09-30T20:48:26.878Z",
+  "deploymentCommit": "77d30b869ca69cdf5a9b56b127ab13d5e2e6056b",
+  "version": "3.4.35",
+  "originMain": "2342f6d04ca3687b2de6de1cd016ad718c0a651c",
+  "productionUnchanged": true,
+  "files": [
+    {
+      "path": "release-artifact.json",
+      "sha256": "5dbecc343374f7e4ee72eb36aa34c399288e96dba25cd23972e8dce5c7ca981d",
+      "bytes": 114730
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "db137c6223aaee51ed0b8260175b9bb2a577cbce05889e79288109c966346a54",
+      "bytes": 1154
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "sha256": "3a58f78d76cdd6850a781a5e49828307ec1f9fd2fb65640cc094ddde1ee28f63",
+      "bytes": 622
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "fbb7e6abc44fa5f13e0700f43c6bec5b9e4717201ab04921a06ed176fdf7e82e",
+      "bytes": 28707
+    }
+  ]
+}
