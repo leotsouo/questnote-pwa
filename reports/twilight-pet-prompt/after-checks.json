@@ -1,0 +1,251 @@
+{
+  "phase": "after",
+  "ready": {
+    "scene": {
+      "top": 123,
+      "bottom": 373,
+      "left": 0,
+      "right": 430,
+      "width": 430,
+      "height": 250
+    },
+    "button": {
+      "top": 388,
+      "bottom": 432,
+      "left": 257,
+      "right": 405,
+      "width": 148,
+      "height": 44
+    },
+    "voice": {
+      "top": 388,
+      "bottom": 429.375,
+      "left": 25,
+      "right": 243,
+      "width": 218,
+      "height": 41.375
+    },
+    "label": {
+      "top": 403.46875,
+      "bottom": 416.515625,
+      "left": 291,
+      "right": 354,
+      "width": 63,
+      "height": 13.046875
+    },
+    "overflow": false,
+    "disabled": false,
+    "text": "輕觸，打個招呼",
+    "footer": true
+  },
+  "cooldown": {
+    "scene": {
+      "top": 123,
+      "bottom": 373,
+      "left": 0,
+      "right": 430,
+      "width": 430,
+      "height": 250
+    },
+    "button": {
+      "top": 388,
+      "bottom": 432,
+      "left": 257,
+      "right": 405,
+      "width": 148,
+      "height": 44
+    },
+    "voice": {
+      "top": 388,
+      "bottom": 422,
+      "left": 25,
+      "right": 243,
+      "width": 218,
+      "height": 34
+    },
+    "label": {
+      "top": 403.46875,
+      "bottom": 416.515625,
+      "left": 287.734375,
+      "right": 357.25,
+      "width": 69.515625,
+      "height": 13.046875
+    },
+    "overflow": false,
+    "disabled": true,
+    "text": "撫摸冷卻 · 4 小時",
+    "footer": true
+  },
+  "cases": [
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "scene": {
+        "top": 123,
+        "bottom": 373,
+        "left": 0,
+        "right": 430,
+        "width": 430,
+        "height": 250
+      },
+      "button": {
+        "top": 388,
+        "bottom": 432,
+        "left": 257,
+        "right": 405,
+        "width": 148,
+        "height": 44
+      },
+      "voice": {
+        "top": 388,
+        "bottom": 429.375,
+        "left": 25,
+        "right": 243,
+        "width": 218,
+        "height": 41.375
+      },
+      "label": {
+        "top": 403.46875,
+        "bottom": 416.515625,
+        "left": 271.234375,
+        "right": 373.75,
+        "width": 102.515625,
+        "height": 13.046875
+      },
+      "overflow": false,
+      "disabled": true,
+      "text": "撫摸冷卻 · 3 小時 59 分鐘",
+      "footer": true
+    },
+    {
+      "viewport": {
+        "width": 393,
+        "height": 852
+      },
+      "scene": {
+        "top": 123,
+        "bottom": 373,
+        "left": 0,
+        "right": 393,
+        "width": 393,
+        "height": 250
+      },
+      "button": {
+        "top": 388,
+        "bottom": 432,
+        "left": 220,
+        "right": 368,
+        "width": 148,
+        "height": 44
+      },
+      "voice": {
+        "top": 388,
+        "bottom": 429.375,
+        "left": 25,
+        "right": 206,
+        "width": 181,
+        "height": 41.375
+      },
+      "label": {
+        "top": 403.46875,
+        "bottom": 416.515625,
+        "left": 234.234375,
+        "right": 336.75,
+        "width": 102.515625,
+        "height": 13.046875
+      },
+      "overflow": false,
+      "disabled": true,
+      "text": "撫摸冷卻 · 3 小時 59 分鐘",
+      "footer": true
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "scene": {
+        "top": 115,
+        "bottom": 300,
+        "left": 0,
+        "right": 320,
+        "width": 320,
+        "height": 185
+      },
+      "button": {
+        "top": 308,
+        "bottom": 352,
+        "left": 151,
+        "right": 299,
+        "width": 148,
+        "height": 44
+      },
+      "voice": {
+        "top": 308,
+        "bottom": 358,
+        "left": 21,
+        "right": 141,
+        "width": 120,
+        "height": 50
+      },
+      "label": {
+        "top": 323.46875,
+        "bottom": 336.515625,
+        "left": 165.234375,
+        "right": 267.75,
+        "width": 102.515625,
+        "height": 13.046875
+      },
+      "overflow": false,
+      "disabled": true,
+      "text": "撫摸冷卻 · 3 小時 59 分鐘",
+      "footer": true
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "scene": {
+        "top": 123,
+        "bottom": 373,
+        "left": 425,
+        "right": 855,
+        "width": 430,
+        "height": 250
+      },
+      "button": {
+        "top": 388,
+        "bottom": 432,
+        "left": 682,
+        "right": 830,
+        "width": 148,
+        "height": 44
+      },
+      "voice": {
+        "top": 388,
+        "bottom": 429.375,
+        "left": 450,
+        "right": 668,
+        "width": 218,
+        "height": 41.375
+      },
+      "label": {
+        "top": 403.46875,
+        "bottom": 416.515625,
+        "left": 696.234375,
+        "right": 798.75,
+        "width": 102.515625,
+        "height": 13.046875
+      },
+      "overflow": false,
+      "disabled": true,
+      "text": "撫摸冷卻 · 3 小時 59 分鐘",
+      "footer": true
+    }
+  ],
+  "errors": [],
+  "storage": "Disposable loopback context; no user data or external writes"
+}
