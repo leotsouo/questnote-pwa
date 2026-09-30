@@ -4,12 +4,12 @@
  */
 import { RELEASE_PROFILE } from './releaseProfile.js';
 
-export const APP_VERSION = '3.4.28';
-export const CACHE_NAME = 'questnote-preview-cache-v3428-twilight-pet-prompt';
+export const APP_VERSION = '3.4.29';
+export const CACHE_NAME = 'questnote-preview-cache-v3429-reminder-settings';
 export const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 export const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */
-export const BUILD_TIME = '2026-09-30T16:00:00.000Z';
+export const BUILD_TIME = '2026-09-30T16:10:00.000Z';
 
 export function formatDisplayVersion() {
   return `V${APP_VERSION}`;
