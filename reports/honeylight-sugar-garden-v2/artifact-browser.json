@@ -1,6 +1,6 @@
 {
   "running": false,
-  "runId": "d2810e47-2e2e-4fe4-817f-6c2e256ee90e",
+  "runId": "4f9a6d82-7dc1-4f49-a33a-d4a6f9bc3fd2",
   "passed": 12,
   "failed": 0,
   "results": [
@@ -75,22 +75,22 @@
       "databaseNames": []
     },
     "production": {
-      "artifactId": "f39848aca7e754de7e4342b8b3936906bc5a4f4febd15c382e5fe5b9c57eb934",
-      "catalogSha256": "97988eb829be2e775d8c6586b0e66fb49f54448c81db31eb11251bb8f0024305",
+      "artifactId": "ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e",
+      "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
       "petCount": 96,
-      "controller": "http://127.0.0.1:59334/questnote-pwa/service-worker.js?artifact=f39848aca7e754de7e4342b8b3936906bc5a4f4febd15c382e5fe5b9c57eb934"
+      "controller": "http://127.0.0.1:65064/questnote-pwa/service-worker.js?artifact=ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e"
     },
     "legacyTransition": {
       "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
       "waitingBeforeClose": true,
       "zeroDatabasesBeforeClose": true,
-      "newArtifact": "f39848aca7e754de7e4342b8b3936906bc5a4f4febd15c382e5fe5b9c57eb934"
+      "newArtifact": "ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e"
     },
     "preview": {
-      "artifactId": "3df7af73d6ab601da93cb610e39429d19a2418e9d2b7a5cbbb9c1d31bf6340b7",
-      "catalogSha256": "97988eb829be2e775d8c6586b0e66fb49f54448c81db31eb11251bb8f0024305",
+      "artifactId": "04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071",
+      "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
       "petCount": 96,
-      "controller": "http://127.0.0.1:59334/questnote-pwa-preview/service-worker.js?artifact=3df7af73d6ab601da93cb610e39429d19a2418e9d2b7a5cbbb9c1d31bf6340b7"
+      "controller": "http://127.0.0.1:65064/questnote-pwa-preview/service-worker.js?artifact=04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071"
     },
     "offlineGrowthLesson": {
       "chapter": "workshop",
