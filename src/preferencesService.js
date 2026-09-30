@@ -40,6 +40,8 @@ export function normalizeUserPreferences(prefs) {
  */
 export function applyThemeToDocument(theme) {
   const valid = normalizeTheme(theme);
+  // Root styling controls browser chrome; body styling keeps forms theme-specific.
+  document.documentElement.dataset.theme = valid;
   document.body.dataset.theme = valid;
   const metaTheme = document.querySelector('meta[name="theme-color"]');
   if (metaTheme) {
