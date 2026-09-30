@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "a63513a696737209d41aa8ec6a1d7f1c1540b390b7e893beaa9c0b19f2a6c1f5",
-  "sourceCommit": "704896b876b0316b4182da7052b36ffc5c464a31",
+  "artifactId": "23317a83166f1f1ea528420d23583b03815e935949c4c769529a7fb1a82010a6",
+  "sourceCommit": "62574b696b614211e1876a2fed159137a58ed6f3",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "a63513a696737209d41aa8ec6a1d7f1c1540b390b7e893beaa9c0b19f2a6c1f5",
-    "sourceCommit": "704896b876b0316b4182da7052b36ffc5c464a31",
+    "artifactId": "23317a83166f1f1ea528420d23583b03815e935949c4c769529a7fb1a82010a6",
+    "sourceCommit": "62574b696b614211e1876a2fed159137a58ed6f3",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -347,9 +347,9 @@
     "data/pets.json": "cc7d6c893111eba8c3ea9887bb74569cbb5acf1060dcfe9981953d650253ffaf",
     "data/pools.json": "2e00dba2363d089880ba6d20845355eac56ba4a7a16e7e65bf83943215ef84f1",
     "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-    "index.html": "cbd442954211392658a063b55a79cbeb0b07ff49694b42c76231c970781e79ee",
+    "index.html": "069b210f21a492a44e526c03503d8803bab65af1dba4ce1c070a42a71b59823c",
     "manifest.webmanifest": "9045e56d30d015634a8d68a5b6b3cd60d813c500150fea0d48b08b4eefcb45ba",
-    "service-worker.js": "1c620751f308d33adf8b18e29560167fdeed1f04098c6adde4504ee2c4509b2d",
+    "service-worker.js": "38d5cea056991bddb1361e579cf226efc551435892afd39fe7b25020d3448524",
     "src/achievementService.js": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
     "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
     "src/app.js": "8f6542048464d35370fe041e4d48bbcf6c76fe60525d881e0025b80bb9657794",
@@ -410,8 +410,8 @@
     "src/reminderRules.js": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
     "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
     "src/rewardService.js": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
-    "src/shareService.js": "04705dbca03c699f62781606b45d8bf483acb7463358750d6c9c4c0da47bcad1",
-    "src/styles.css": "f1d34077e7c61d09112f5c7ead8216e6e3ef27275c9dc2106a81dad0fee6e2c0",
+    "src/shareService.js": "75ead4836f271321b0e9b971cb32d7d384a7960caf936bd3b02c6c9decd98ba4",
+    "src/styles.css": "89ee71cfb683efa31f63f94256b07f1aa926f00ac05e6678603e20f22782faaf",
     "src/summon-polish.css": "0d3cbae026034e11034be8ecabc6ff9613a461fbaee616376a26f90f4b924bda",
     "src/summonRevealService.js": "d99bc30aee107f5ec8a2df2f1387c92b80304ab9f653e9acea521321355b3223",
     "src/taskFilterService.js": "687858edc36119afcb388fc3fd75ebd058d0a93117da42740c8a1f18d4b00471",
@@ -425,12 +425,12 @@
     "src/themeTokens.css": "7a898e987663c925e1913aafaa318d352048b294553affa068360f2d4ec3a596",
     "src/twilightPresentation.js": "f5868b44baea107e67d6673ce2e6db31c0c6b9da4f2fa9265746e233194cb6d2",
     "src/ui-polish.css": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
-    "src/ui.js": "2ea9c1a4a91e9f4a2b2ccc2f3fc898ddc7ac5d0713271e0a0002b3da73f52add",
+    "src/ui.js": "370b3d545eeacb490e250c49f9802239989edab3aec7d6f4bae6060a79500a91",
     "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
     "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
     "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
     "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-    "src/version.js": "b7986d7ae81b3a3eb36a4656d9f8396e4b26848175ee5e228b4f8b88871f1c73",
+    "src/version.js": "45dcf9dc6959f9ec8c91e720ab13eef3bc9f82b528ba797a97f7cacd009729f2",
     "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
     "src/workshopService.js": "5c1940a3116e93e8e9376a102621f02ff3a58c9d575491e875420dd4890b9480"
   },
@@ -1731,8 +1731,8 @@
       "bytes": 6119
     },
     "index.html": {
-      "sha256": "1466e6516c895f6cd2117313ced4394085b77549b4b8a6a8cb8f31dd83b28333",
-      "bytes": 57655
+      "sha256": "b97ed14a7bf602471fa36bb1f8c48fa5d86bd58e66b28e41cb34fc735696c5ba",
+      "bytes": 58269
     },
     "manifest.webmanifest": {
       "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
@@ -1751,8 +1751,8 @@
       "bytes": 6513
     },
     "service-worker.js": {
-      "sha256": "7ca607e84640b96196c10857a841dc2ac4793a8069b0a13055332030c146c764",
-      "bytes": 29101
+      "sha256": "0bf6887e4289c223f4be43b70e65286d652956155bf7f7ef15405b1f4c37e53e",
+      "bytes": 29100
     },
     "src/achievementService.js": {
       "sha256": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
@@ -1971,7 +1971,7 @@
       "bytes": 4727
     },
     "src/releaseProfile.js": {
-      "sha256": "bcf97dc5bf1a99117f2aa6825220a8ed2fbf0b2481b2d23904cf8c1c751622c4",
+      "sha256": "d520155e9c4fd434c77de90a04fc98e19be48bfeea057648648ebed558f55d56",
       "bytes": 622
     },
     "src/reminder-settings.css": {
@@ -1995,12 +1995,12 @@
       "bytes": 9635
     },
     "src/shareService.js": {
-      "sha256": "04705dbca03c699f62781606b45d8bf483acb7463358750d6c9c4c0da47bcad1",
-      "bytes": 1577
+      "sha256": "75ead4836f271321b0e9b971cb32d7d384a7960caf936bd3b02c6c9decd98ba4",
+      "bytes": 1929
     },
     "src/styles.css": {
-      "sha256": "f1d34077e7c61d09112f5c7ead8216e6e3ef27275c9dc2106a81dad0fee6e2c0",
-      "bytes": 463184
+      "sha256": "89ee71cfb683efa31f63f94256b07f1aa926f00ac05e6678603e20f22782faaf",
+      "bytes": 463996
     },
     "src/summon-polish.css": {
       "sha256": "0d3cbae026034e11034be8ecabc6ff9613a461fbaee616376a26f90f4b924bda",
@@ -2055,8 +2055,8 @@
       "bytes": 13817
     },
     "src/ui.js": {
-      "sha256": "2ea9c1a4a91e9f4a2b2ccc2f3fc898ddc7ac5d0713271e0a0002b3da73f52add",
-      "bytes": 370430
+      "sha256": "370b3d545eeacb490e250c49f9802239989edab3aec7d6f4bae6060a79500a91",
+      "bytes": 370909
     },
     "src/uiHelpers.js": {
       "sha256": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
@@ -2075,8 +2075,8 @@
       "bytes": 695
     },
     "src/version.js": {
-      "sha256": "7f2e1e3cf8ee2d6474f70a1fb3ff01c5f07e62a87954401e255bc27f564adfad",
-      "bytes": 1154
+      "sha256": "146351a15f25bb52e3fbf7e41e91eaa8dec4363e6295dd4f64a8fa310b27c16a",
+      "bytes": 1151
     },
     "src/workshopGiftView.js": {
       "sha256": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",

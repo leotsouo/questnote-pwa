@@ -3823,6 +3823,24 @@ body.reduce-motion * {
   line-height: 1.6;
 }
 
+.share-invitation {
+  margin: 16px 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-card-soft);
+}
+
+.share-invitation img { border-radius: 12px; }
+.share-invitation__name { margin: 12px 0 8px; font-weight: 700; }
+.share-invitation__description { font-size: 1.125rem; line-height: 1.65; }
+.share-destinations { display: grid; gap: 10px; margin-top: 20px; }
+.share-destinations .share-link { font-size: 0.875rem; text-decoration: none; }
+.share-link strong, .share-link span { display: block; }
+.share-link span { margin-top: 6px; color: var(--text-secondary); line-height: 1.6; }
+.share-message summary { cursor: pointer; min-height: 44px; padding: 12px 0; }
+.share-message p { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.7; user-select: text; }
+
 .share-actions {
   display: grid;
   gap: 10px;
