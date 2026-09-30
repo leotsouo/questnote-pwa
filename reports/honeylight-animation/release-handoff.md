@@ -1,3 +1,5 @@
+> 已正式發布 V3.4.36，Pages及HTTPS驗證成功。最新狀態見 [production-release.md](production-release.md)；以下保留為發布前交接歷史，待發布／未推送敘述已被本次發布紀錄取代。
+
 > 最新文案修訂：入場台詞改為「糖庭亮起／甜蜜相遇」，共8字。新 candidate／artifact／本機發布提交如下。runtime、圖片及抽卡機制逐 bytes 相同；舊完整 App、更新與真實抽卡驗收沿用為歷史回歸證據，未冒充本次重跑。本次重新完成候選核准、catalog驗證、5項動畫邏輯、14項瀏覽器動畫驗證及412檔產物驗證；見 short-copy-review.json。舊65b9755部署提交已被取代，不可推送。
 
 # 蜜光糖庭動畫發布交接 — 2026-10-01（Asia/Taipei）

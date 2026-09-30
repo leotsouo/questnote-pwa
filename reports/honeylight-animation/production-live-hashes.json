@@ -1,0 +1,174 @@
+{
+  "verifiedAt": "2026-09-30T21:13:25.103Z",
+  "site": "https://leotsouo.github.io/questnote-pwa/",
+  "version": "3.4.36",
+  "artifactId": "7daeef4fe3eea6370c7a1ce6fa5045089a221a7c7624ee5c7a010fee7fb33b2c",
+  "manifestSha256": "c79adaf819c1258c556daacff0e352626a862872fb840fb1bf39dce3b8279e0b",
+  "catalogSha256": "f00f02ed3dc6414a7bdc41b1032d1f021e6a19edd1b1f5792f27725ec07abc45",
+  "reviewedSourceCommit": "43680ad3ad5d7309f368c180847f7d64b612384e",
+  "mergedSourceCommit": "2dd6bd88ecc7d0737b2e3fb971c3d2c8e574fe48",
+  "deploymentCommit": "9e815676db8ff3e203391894090a52b1d5090129",
+  "candidateId": "73f205a59d5b2cccd37fcf82aef2fa705bf19d1164bf493d5d1f9a267e87a0a0",
+  "changedArtifactFileCount": 14,
+  "allChangedFilesVerified": true,
+  "verifiedFileCount": 30,
+  "petCount": 96,
+  "poolCount": 4,
+  "pool": {
+    "id": "honeylight_sugar_garden_v2",
+    "debutLines": [
+      "糖庭亮起",
+      "甜蜜相遇"
+    ],
+    "animationKey": "honeylight_sugar",
+    "petCount": 12,
+    "urCount": 2
+  },
+  "files": [
+    {
+      "path": "assets/pets/pet_n26.png",
+      "sha256": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
+      "bytes": 2762050
+    },
+    {
+      "path": "assets/pets/pet_n27.png",
+      "sha256": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
+      "bytes": 2551833
+    },
+    {
+      "path": "assets/pets/pet_n28.png",
+      "sha256": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
+      "bytes": 2659012
+    },
+    {
+      "path": "assets/pets/pet_r23.png",
+      "sha256": "7888936777327f49c8a2c15fca04eb03244486f9f1c6d054d47209097f2cc159",
+      "bytes": 2683517
+    },
+    {
+      "path": "assets/pets/pet_r24.png",
+      "sha256": "c6173cdc592be2030d72d77a7a2fc257df1593eb343b2fa9f727ff325a2c8b5a",
+      "bytes": 2676214
+    },
+    {
+      "path": "assets/pets/pet_r25.png",
+      "sha256": "70530265c2f2f91bf8662210496f83584004aea2f4c165fee13f8dd1bf37977c",
+      "bytes": 3016981
+    },
+    {
+      "path": "assets/pets/pet_sr19.png",
+      "sha256": "0b56c8aaaf55b785c6a66635959080c16d4200cdb3e29a4d57e49179e984b90d",
+      "bytes": 3063364
+    },
+    {
+      "path": "assets/pets/pet_sr20.png",
+      "sha256": "536044295f302ebce8808ef56718b2cf8c8f1c1961356de09a4519f560323859",
+      "bytes": 2609482
+    },
+    {
+      "path": "assets/pets/pet_ssr12.png",
+      "sha256": "1cbe693844ebdef76a2030c3c62f120428b2a1f5b5181ff01972aa7c242ce54d",
+      "bytes": 2991174
+    },
+    {
+      "path": "assets/pets/pet_ssr13.png",
+      "sha256": "f22e689544f68a44f67890cf8da6ea689aa7a1358e8a7e82bcfa359fcb149b61",
+      "bytes": 3025536
+    },
+    {
+      "path": "assets/pets/pet_ur09.png",
+      "sha256": "57693be9d2b4a69859fc6bb9f38a3b6c1b689e4909dcc6690dd3f2c61e7f0717",
+      "bytes": 2779122
+    },
+    {
+      "path": "assets/pets/pet_ur10.png",
+      "sha256": "20684b478872287c38db5dab58d0d74d7335ac8d2cc8c77bc7c9dfc4ed1c2526",
+      "bytes": 2456465
+    },
+    {
+      "path": "data/craftables.json",
+      "sha256": "bb66e4a8b11327f6b0016c1df1b38a35820329daa41c5d53f42c369e09d286ae",
+      "bytes": 4793
+    },
+    {
+      "path": "data/gift-affinities.json",
+      "sha256": "6ba487beaa8d99d9cd26a83a5e3412c147caeafc40894338e378f00ca6472ffe",
+      "bytes": 2757
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "bytes": 8404
+    },
+    {
+      "path": "data/releases/f00f02ed3dc6414a7bdc41b1032d1f021e6a19edd1b1f5792f27725ec07abc45/catalog.json",
+      "sha256": "f00f02ed3dc6414a7bdc41b1032d1f021e6a19edd1b1f5792f27725ec07abc45",
+      "bytes": 331807
+    },
+    {
+      "path": "index.html",
+      "sha256": "44f5d41a57448d64efe25908bd2c53a68727927d79588fe0bfb9941426d4a17b",
+      "bytes": 56407
+    },
+    {
+      "path": "release-input/approvals.json",
+      "sha256": "7bb8adf513b74359f3c1a785e64c89a1e7af4b12f2b55f1416ae302acd843cd6",
+      "bytes": 1190936
+    },
+    {
+      "path": "release-input/candidate.json",
+      "sha256": "6b6aa4d9babafa3d78af37ee32edddf0eb71d83ea90d55886154ce44164e3fe7",
+      "bytes": 4875
+    },
+    {
+      "path": "release-input/validation.json",
+      "sha256": "60426e2983b2a37794b8baeb8ab8bda4abc217c8756d366539b2541ad2515c3a",
+      "bytes": 6513
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "21c3d8e0d09a45a86f6e3ffcd30be9cbbdf8ec9fd3898ede8ad3858d8c3db2c0",
+      "bytes": 28631
+    },
+    {
+      "path": "src/honeylight-sugar.css",
+      "sha256": "5255d8f40152e53c13d9549dda2fe7e26337fb9ddeb98f6cf2e957c34c83be22",
+      "bytes": 10704
+    },
+    {
+      "path": "src/honeylightSugarScene.js",
+      "sha256": "c67111490307d36ee858219603f0012ecd633e32f07775983325210466b59562",
+      "bytes": 2321
+    },
+    {
+      "path": "src/poolContentContract.js",
+      "sha256": "3c0553261ac787350bd3b552ae3dc228a685a7e5122bc4837ae1b47892d7c48d",
+      "bytes": 23631
+    },
+    {
+      "path": "src/poolPresentation.js",
+      "sha256": "e0ceef497a5fb191bb88f84f03ad4e241d44d737dae8f1d91a83fd93b38aa9e9",
+      "bytes": 1300
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "sha256": "0aabd69489893f0f862400a1c705446854638d2e282b490cbf4e028bc5c63692",
+      "bytes": 622
+    },
+    {
+      "path": "src/summonRevealService.js",
+      "sha256": "d99bc30aee107f5ec8a2df2f1387c92b80304ab9f653e9acea521321355b3223",
+      "bytes": 25220
+    },
+    {
+      "path": "src/themedSummonController.js",
+      "sha256": "9ef5d0a3bbaddfd7aea6716cb2162f0ee05a79fa2fe5b95b8e3a010b2868c2a7",
+      "bytes": 31855
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "21078666a4e5422dc65f73760d57bb1169d87c5a386c9d546b38001c40dc1cf2",
+      "bytes": 1121
+    }
+  ]
+}
