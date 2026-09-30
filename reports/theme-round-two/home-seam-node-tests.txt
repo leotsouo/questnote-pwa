@@ -1,0 +1,257 @@
+
+> test
+> node --test devtools/gameplay-improvement.test.mjs devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs devtools/gacha-transaction.test.mjs devtools/release-safety.test.mjs devtools/release-artifact.test.mjs devtools/card-pool-pipeline.test.mjs devtools/verify-release-artifact.test.mjs devtools/preview-cache-recovery.test.mjs devtools/onboarding-flow.test.mjs devtools/feedback.test.mjs devtools/feedback-backend.test.mjs devtools/share-service.test.mjs devtools/reminders.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs && node --test devtools/theme-preferences.test.mjs devtools/theme-design.test.mjs
+
+✔ verified historical exporters remain valid and migrate to complete snapshots (44.1182ms)
+✔ pre-camp V3.4.17 backup remains importable without camp or new region fields (1.7605ms)
+✔ partial current backup cannot masquerade as an older complete shape (1.4269ms)
+✔ every current core field is required before normalization (7.8975ms)
+✔ top-level/data and projected aliases must agree (3.7832ms)
+✔ duplicate persistent keys and malformed nested records are rejected (34.6611ms)
+✔ money, counters, booleans and dangerous object keys fail closed (6.5025ms)
+✔ future/unknown partial formats are rejected with a compatibility explanation (2.3386ms)
+✔ snapshot restoration does not roll historical quest dates forward or maximize draws (4.2944ms)
+✔ empty nested state and ID-only rows cannot be silently normalized into defaults (41.4545ms)
+✔ every serialized nested state field is required before legacy normalization (112.4274ms)
+✔ malformed nested maps, date/counter values and missing fixed entries fail closed (14.1328ms)
+✔ collection state cannot override trusted catalog presentation through companion merge (6.3696ms)
+✔ valid daily, cancelled and weekly habit logs and item usage variants remain accepted (1.0298ms)
+✔ active/completed expeditions preserve full reward records and reject partial rewards (19.8128ms)
+✔ daily history supports check-in, wheel-only and combined persisted variants (2.9813ms)
+✔ export preflight permits fresh/mixed legacy stores but refuses existing malformed state (5.8409ms)
+✔ claim markers that normalizers would discard or rewrite are rejected (4.7491ms)
+✔ glacier scaffold carries its reviewed animation and no expansion through staging (2096.5245ms)
+✔ synthetic pool SOP approves exact bytes, stages all catalogs and 512px variants, and deterministically resumes (3684.0904ms)
+✔ hash approval requires ordered reviews, preserves history and invalidates changed downstream content (4525.5297ms)
+✔ missing or modified approval snapshot blocks staging and is never silently recreated or overwritten (1258.4753ms)
+✔ invalid economics, missing unlock, wrong gift, conflicting tags and pet IDs block approval (221.4033ms)
+✔ unreachable rarity, missing Lore and incomplete prompts block the candidate (274.8761ms)
+✔ assets require real complete square PNGs at least 512px and image changes revoke approval (1521.9165ms)
+✔ pool and pet reservations survive separate drafts and concurrent init; dead lock is never stolen (362.9768ms)
+✔ baseline drift blocks stale workspaces and a reviewed source promotion preserves first pool in the next candidate (4356.1791ms)
+✔ reused candidate must match reproduced approved bytes, even if an altered catalog updates its self-hashes (4335.9291ms)
+✔ interrupted staging leaves approved sources usable and does not reuse a partial directory (1895.0367ms)
+✔ authoring and image writers reject external and internal junctions without modifying their targets (87.2805ms)
+✔ CLI status, validation and dry-run use explicit fixture root and do not write reports or production files (2120.9312ms)
+✔ anonymous report is durably inserted, retry is idempotent, altered payload cannot overwrite (78.2562ms)
+✔ there is no public list or read endpoint; disallowed origins cannot send (4.2743ms)
+✔ validation and streamed size limits reject bad input before database writes (14.8343ms)
+✔ diagnostics allowlist and parameter binding prevent extra private fields and SQL injection (22.8688ms)
+{"event":"feedback_intake_failed"}
+✔ rate limit and database failure return retryable errors without false success (16.6054ms)
+✔ daily cap prevents additional inserts but still acknowledges retries (17.6757ms)
+✔ required fields reject whitespace and malformed persisted drafts recover safely (2.8482ms)
+✔ drafts survive reload, can be cleared, and storage failures are reported (0.7575ms)
+✔ diagnostics contain useful environment data without URLs, tasks or account data (0.3776ms)
+✔ environment diagnostics require opt-in; reports have stable structure and an ID (4.968ms)
+✔ direct POST preserves special characters, omits credentials and verifies receipt (21.669ms)
+✔ long Chinese reports are submitted intact without URL length limits (0.4791ms)
+✔ offline shell caches feedback modules and matches current version cache (27.186ms)
+✔ failed, rate-limited and malformed replies never count as accepted (13.4238ms)
+✔ uncertain submissions reuse the exact payload after reload; receipt clears the draft (0.5983ms)
+✔ single and ten preserve public result shapes, wallet fields, and within-ten duplicates (5.4057ms)
+✔ SSR and UR pity boundaries, resets, legacy standard mirrors, and other pools stay independent (0.8677ms)
+✔ every rarity uses its existing duplicate compensation without erasing progression fields (1.408ms)
+✔ threshold single is locked; the next single can select an expanded candidate (2.6437ms)
+✔ ten freezes every candidate before unlock and grants one actual-rarity gift after its results (0.5396ms)
+✔ two new pools sharing expansion key keep separate gifts and preserve the legacy grant identity (23.9205ms)
+✔ gift recovery reconciles markers once, repairs only missing pets, and never guesses lost fragments (0.9927ms)
+✔ rejected content, insufficient money, overflow and bad RNG never mutate planner inputs (2.249ms)
+✔ planner accepts deeply frozen snapshots and changes no original counters, catalog or collection (0.3747ms)
+✔ first forest journey uses one energy and three minutes only once (1.6313ms)
+✔ one-star ordinary pet is useful and objectives make recognizable differences (1.5327ms)
+✔ stars and team specialties improve the result without requiring high rarity (0.4175ms)
+✔ six regions have the same milestone ladder and camp materials span all regions (1.9694ms)
+✔ first-use eligibility requires an entirely empty profile before normal initialization (1.3135ms)
+✔ saved step and practice task survive normalization for resume (0.5131ms)
+✔ existing users retain core decisions and receive unstarted chapters without a welcome (1.5222ms)
+✔ chapters preserve reading position and practice evidence independently of core progress (0.5389ms)
+✔ understanding a chapter does not claim practice or complete other chapters (0.3192ms)
+✔ only the matching successful action at the practice step counts (0.7291ms)
+✔ switching chapters pauses the old one; back and replay retain completed practice (0.301ms)
+✔ malformed chapter data cannot activate multiple coaches or invent practice (0.1337ms)
+✔ teaching previews handle absent resources, full stars, cooldown and changing catalogs without writes (16.223ms)
+✔ guide advances only from successful matching product actions (0.702ms)
+✔ creating a task after choosing to continue later attaches it to the reward step (0.2044ms)
+✔ dismissed and paused guides never advance from background actions (0.2764ms)
+✔ legacy golden economics and locked/unlocked candidates are unchanged (3.1736ms)
+✔ legacy presentation preserves identity, heroes, cast order, and Chinese copy (2.8595ms)
+✔ two unpublished pools with the same expansion key have independent grants and economics (0.9009ms)
+✔ identity survives threshold changes and different pools cannot inherit legacy grants (6.8296ms)
+✔ effective filtering is OR with no duplicates and never changes the input snapshot (0.4894ms)
+✔ visual lock delays only presentation after a committed unlock (0.4655ms)
+✔ zero active pools do not fall back to inactive content (0.3556ms)
+✔ legacy special reveals and explicit templates are reusable without pool identity (0.6133ms)
+✔ malformed pool 1: POOL_COST_INVALID (0.3112ms)
+✔ malformed pool 2: POOL_COST_INVALID (0.3305ms)
+✔ malformed pool 3: POOL_COST_INVALID (0.5721ms)
+✔ malformed pool 4: POOL_COST_INVALID (0.2068ms)
+✔ malformed pool 5: POOL_RATE_INVALID (0.1158ms)
+✔ malformed pool 6: POOL_RATE_INVALID (0.1208ms)
+✔ malformed pool 7: POOL_RATE_SUM (0.1211ms)
+✔ malformed pool 8: POOL_RATE_SUM (1.1872ms)
+✔ malformed pool 9: POOL_PITY_INVALID (0.1612ms)
+✔ malformed pool 10: POOL_PITY_INVALID (0.1076ms)
+✔ malformed pool 11: POOL_ACTIVE_INVALID (0.0633ms)
+✔ malformed pool 12: POOL_ID_INVALID (0.0533ms)
+✔ malformed pool 13: POOL_LIST_INVALID (0.0768ms)
+✔ malformed pool 14: POOL_LIST_DUPLICATE (0.0769ms)
+✔ malformed pool 15: POOL_LIST_ENTRY (0.0566ms)
+✔ malformed pool 16: POOL_THEME_UNKNOWN (0.0507ms)
+✔ malformed pool 17: POOL_ANIMATION_UNKNOWN (0.0457ms)
+✔ malformed pool 18: POOL_THRESHOLD_INVALID (0.0669ms)
+✔ malformed pool 19: POOL_PROGRESS_SCOPE (0.0715ms)
+✔ malformed pool 20: POOL_EXPANSION_KEY (0.0647ms)
+✔ malformed pool 21: POOL_UNLOCK_ANIMATION (0.0836ms)
+✔ malformed pool 22: POOL_REFERENCE_MISSING (0.1213ms)
+✔ malformed pool 23: POOL_REFERENCE_PHASE (0.0875ms)
+✔ malformed pool 24: POOL_REFERENCE_PHASE (0.0834ms)
+✔ malformed pool 25: POOL_EXPANSION_EMPTY (0.0954ms)
+✔ draw count, malformed direct normalization, schema version, and catalog failures (0.4443ms)
+✔ normal rates and pity reachable rarities each need valid candidates, including inactive pools (0.2488ms)
+✔ presentation input remains inert plain text and unknown pet reveal templates are rejected (0.3248ms)
+✔ published identity cannot disappear or silently change its gift; disabling is allowed (0.5936ms)
+✔ all public model builders accept deeply frozen content and leave original catalog unchanged (1.0035ms)
+✔ validator returns issues, without throwing, for malformed JSON-shaped field types (2.6212ms)
+✔ an unused tag is an error even when another tag supplies valid candidates (0.2481ms)
+✔ legacy presentation adapters use canonical registry and reject unknown content (0.2421ms)
+✔ glacier template validates independently of pool identity and preserves all base candidates (0.4599ms)
+✔ reveal controller reuses explicit metadata and preserves legacy captions (0.2503ms)
+✔ shared schema forwards all pool contract errors and preserves pet reveal metadata (1.5545ms)
+✔ Builder preview keeps legacy shape and adds effective unlocked counts without throwing on errors (0.5737ms)
+✔ read-only pool CLI reports valid official content and exits nonzero for wrong catalog shape (344.1373ms)
+✔ actual legacy activation evicts preview; verified navigation, module and versioned bundle recover without lifecycle or DB effects (37.6936ms)
+✔ legacy eviction followed by bad-hash never publishes unverified navigation, module or catalog bytes (8.5131ms)
+✔ legacy eviction followed by http-503 never publishes unverified navigation, module or catalog bytes (2.4475ms)
+✔ legacy eviction followed by offline never publishes unverified navigation, module or catalog bytes (1.885ms)
+✔ partial eviction repairs only the missing canonical asset and ignores caller query versions (2.9318ms)
+✔ recovery never borrows another namespace or touches an out-of-scope URL (4.8445ms)
+✔ two concurrent clients independently receive complete verified bytes and leave one canonical cache entry (10.7175ms)
+✔ a racing wrong-generation response cannot overwrite another client’s verified repair (18.6653ms)
+✔ source checkout has no profile or hashes: a cache miss fails closed without trusting a live URL (2.2193ms)
+✔ release descriptor has no hash manifest: a cache miss fails closed without trusting a live URL (4.1846ms)
+✔ release hash manifest omits this asset: a cache miss fails closed without trusting a live URL (1.7517ms)
+✔ source checkout must not recover using stray hashes: a cache miss fails closed without trusting a live URL (4.1321ms)
+▶ release artifact preparation is immutable, isolated and content complete
+  ✔ dry-run validates without creating output or modifying source (790.2545ms)
+  ✔ production config, final-byte precache hashes and baseline files agree (2570.5563ms)
+  ✔ identical inputs reuse identical artifact and preview is isolated (4608.8197ms)
+  ✔ recursive literal imports are discovered and missing imports fail before writes (1336.1307ms)
+  ✔ another runtime validator cannot be certified using this checkout contract (613.7727ms)
+  ✔ later authoring promotion never changes the legacy URLs served to old clients (2465.8471ms)
+  ✔ bootstrap entrypoint and its dynamic app import are included in precache (643.1682ms)
+  ✔ missing image references and unsafe output roots are rejected (632.2395ms)
+  ✔ candidate hashes, additive identities and unchanged legacy catalogs are enforced (5448.819ms)
+  ✔ existing artifact corruption and missing files are never overwritten (2658.5437ms)
+  ✔ junction/symlink inputs and output roots are refused (135.8994ms)
+✔ release artifact preparation is immutable, isolated and content complete (23291.6642ms)
+✔ release bootstrap opens no product code until controlled and refuses partial profiles or reload loops (1.4924ms)
+✔ legacy or mismatched controlling worker cannot execute a new runtime before all old clients close (0.2117ms)
+✔ first release installation failure and timeout reject without importing app or reloading (14.8855ms)
+✔ release loader accepts exactly one hash-verified complete catalog generation (73.5017ms)
+✔ incompatible, corrupt, partial and unavailable releases never fall back to mutable catalogs (35.6048ms)
+✔ required precache 503 and digest mismatch abort installation before cache publication (28.1151ms)
+✔ successful installation does not force activation, claim clients or honor old skip messages (15.2074ms)
+✔ both production and preview activation preserve every other cache namespace (19.9337ms)
+✔ verified shell serves one generation online/offline and never reads another scope (4.3259ms)
+✔ mailbox HTTP 503 falls back only to the exact current-scope cache entry (4.7261ms)
+✔ assembled releases reject debug query, local flags and test currency before any write (6.3021ms)
+✔ legacy perf shortcut cannot create a diagnostic panel in assembled releases (3.8905ms)
+✔ tomorrow crosses month/year, next local reminder respects current time and DST gaps/folds (51.7178ms)
+✔ projection excludes completed/archive/private text and titles require explicit opt-in (2.5669ms)
+✔ digest deduplicates date conditions, excludes completed habits and resets weekly goals across weeks (3.5838ms)
+✔ subscription validation blocks arbitrary URL fetches and strips private payload fields (1.6867ms)
+✔ anonymous credential protects state; sync is monotonic, idempotent and CORS is restricted (57.0284ms)
+✔ parallel scheduler claims once, sends the current day and advances without a second notification (11.8793ms)
+✔ empty and expired summaries do not send; subscription expiry disables reminders (19.1016ms)
+✔ temporary failures retry at most three times and do not block the next day (6.5331ms)
+✔ Web Push payload is encrypted and decrypts using only the receiving device key (6.0334ms)
+✔ share sends only the public production link and app description (1.7013ms)
+✔ unsupported sharing and user cancellation remain distinct (0.4425ms)
+✔ copy uses Clipboard API and falls back when permission is denied (0.4538ms)
+✔ retired App animation setting does not leave old profiles in reduced mode (1.8485ms)
+✔ sized image paths are optional and originals remain the fallback (1.2011ms)
+✔ preloads with the same URL share one in-flight Image and retry failures (0.4657ms)
+✔ first reveal card loads before its stage upgrade and ten-pull thumbnails (3.1912ms)
+✔ slow stage image does not hold up the first card or other ten-pull thumbnails (9.4587ms)
+✔ a failed sized asset retries the original PNG (1.0603ms)
+✔ collection redraw is deferred once and remains dirty if rendering throws (1.0009ms)
+✔ preview Pages uses a separate IndexedDB from the live Pages app (6.4629ms)
+✔ preview service worker leaves live Pages caches intact (6.4339ms)
+▶ strict verifier accepts assembler output and rejects unsafe or inconsistent deployment bytes
+  ✔ genuine production and preview assembler output and CLI pass (5569.6745ms)
+  ✔ all caller pins are mandatory and binding (15.0849ms)
+  ✔ extra, missing and untracked empty directories fail (2033.0491ms)
+  ✔ nojekyll must be in both actual and pinned inventory (542.2166ms)
+  ✔ tampered bytes and forged byte counts fail (2005.2681ms)
+  ✔ manifest traversal, Windows path aliases and self-inventory fail before use (4445.796ms)
+  ✔ directory symlinks/junctions and linked ancestor roots fail (614.8428ms)
+  ✔ rehashed inconsistent runtime descriptor is rejected without executing it (1149.1218ms)
+  ✔ rehashed index and webmanifest deployment changes fail (4916.5834ms)
+  ✔ rehashed SW descriptor, cache identity and registration changes fail (3858.5736ms)
+  ✔ rehashed precache digest or catalog edits cannot pass (2590.2493ms)
+✔ strict verifier accepts assembler output and rejects unsafe or inconsistent deployment bytes (31333.2874ms)
+ℹ tests 186
+ℹ suites 0
+ℹ pass 186
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31761.9241
+PASS: semantic APP_VERSION
+PASS: CACHE_NAME declared
+PASS: SW CACHE_NAME matches app
+PASS: SW precache summonRevealService
+PASS: 寵物圖未進 precache
+PASS: DB_VERSION=3
+PASS: pets=72 (got 72)
+PASS: lore=72 (got 72)
+PASS: standard=56 (got 56)
+PASS: eternal locked=12 (got 12)
+PASS: eternal unlocked=16
+PASS: cost=100
+PASS: pity unchanged
+PASS: rates unchanged
+PASS: introSkipped flag
+PASS: skipIntroRitual
+PASS: no skipped&&queue gate
+PASS: revealQueueSkipped
+PASS: advanceOnce
+PASS: stopPropagation
+PASS: queue keeps compensation
+PASS: localhost guard
+PASS: prod removes dev section
+PASS: pendingAwakening
+PASS: awakening after result
+PASS: queue length 3 (got 3)
+PASS: duplicate petId preserved
+PASS: UR third
+PASS: original order indices
+PASS: compensation retained
+PASS: shouldPlayReveal
+PASS: runtime APP_VERSION
+PASS: runtime CACHE_NAME
+PASS: SW URL matches version
+
+---
+All Node logic assertions passed.
+✔ three save-compatible worlds only use authored wolf scenes for the actual wolf (1.0715ms)
+✔ text, status and action tokens retain AA contrast on their solid surfaces (4.2017ms)
+✔ three mobile scene assets decode, preserve 3:2 composition and fit the offline art budget (7.1579ms)
+✔ one fixed primary icon has a real 1024 master and separate maskable safe margin (20.3318ms)
+✔ new presentation dependencies and home art are included in the verified offline closure (1.6603ms)
+✔ all three user themes survive preference normalization; legacy and unknown values fall back (0.6253ms)
+✔ third theme backup restore preserves tasks, wallet, collection and progression exactly (14.7188ms)
+✔ journey counts only actual today plans and today completions, including the empty state (0.3035ms)
+✔ companion presentation escapes user names and does not pretend an empty collection owns a pet (0.4075ms)
+✔ owned pets without a companion lead to collection instead of another summon (0.4712ms)
+✔ home refresh replaces the empty summon entry when the first pet becomes owned (16.5109ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 220.376

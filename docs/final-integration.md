@@ -1,5 +1,9 @@
 # QuestNote final integration
 
+## V3.4.31 continuous home corner — 2026-10-01
+
+The rounded scene/task transition now has full 24px scene backing instead of a 3px overlap. PR #15 merged at 66d0500; Pages commit 52c12fd / run 36756137394 succeeded. Artifact 566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f. 197 Node, 210 phone-layout and 12 assembled browser cases pass; ten live hashes match. Content, player schema and old design rollback tags are preserved. [Repair evidence](../reports/theme-round-two/home-seam-release.md).
+
 ## V3.4.30 three-world design upgrade — 2026-10-01
 
 Production is V3.4.30 at https://leotsouo.github.io/questnote-pwa/. All three existing themes are upgraded; preference IDs and gameplay rules are unchanged. PR #14 merged at 30a842f, production Pages commit be4fd23, artifact 1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247. Pages deployment succeeded and 21 live hashes match. The approved 84-pet/three-pool content and mailbox bytes were preserved. Old source and complete V3.4.29 production are retained as remote codex/design-backup-v3.4.29-source and codex/design-backup-v3.4.29-pages tags. Isolated actual update/rollback testing preserved player data and restored the old design. [Release and rollback evidence](../reports/theme-round-two/production-release.md).

@@ -1,0 +1,11 @@
+# V3.4.31 home seam repair
+
+The user reported the phone screenshot's stepped transition between the scene and task paper. The 24px rounded sheet previously overlapped the dark scene by only 3px; the remainder of both corners was composited against the paper page background. The scene now reserves 24px and the sheet overlaps by the same radius, so the whole curve is backed by the scene. Shared CSS fixes all three themes. No gameplay, data or backend change.
+
+[PR #15](https://github.com/leotsouo/questnote-pwa/pull/15) merged at 66d0500516a05d94635317187a4491d123377ec7. Reviewed source aaf9b5488326fa9a62a349b76cf769b77489b890 equals the integrated runtime. PR and main CI passed. npm test: 197 cases plus maintained summon assertions pass. The source harness passed 210 checks at 320×693 and 393×852, including all six complete-corner overlap checks. Additional 430×932 viewport inspection showed exactly 24px overlap and no page overflow. [Phone screenshot](home-seam-after-430.jpg). These are browser checks, not physical Safari acceptance.
+
+Strict production and preview artifact verification passed; all 12 assembled browser acceptance cases passed (profile isolation, safe activation, recovery and offline). Preview was not published. Production artifact 566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f; manifest SHA-256 f6dcbf715ad38f8c0c498440e2897ecc6dc84362ebc4383b858ef95beb648cb5. All 368 staged Git blobs equaled pinned artifact bytes. [Pins](home-seam-release-pins.json).
+
+Pages commit 52c12fde44ce505c627051142daca17f3440dea0; [deployment 36756137394](https://github.com/leotsouo/questnote-pwa/actions/runs/36756137394) succeeded. Ten live HTTPS files match, including seam CSS, runtime version, worker, mailbox and unchanged 84-pet/three-pool catalog. The V3.4.29 source and Pages rollback tags remain intact. No storage clearing or forced worker activation.
+
+Hosted natural close/reopen verification confirmed V3.4.31 / active Service Worker and the pinned artifact marker. At 393×852 the scene ends at 485px and the sheet begins at 461px: exactly 24px overlap, no horizontal overflow. No live gameplay, theme or notification action was performed. [Hosted DOM evidence](home-seam-hosted-browser.json).

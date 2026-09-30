@@ -1,0 +1,56 @@
+{
+  "artifactId": "566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f",
+  "verifiedAt": "2026-09-30T18:07:07.662Z",
+  "results": [
+    {
+      "file": "release-artifact.json",
+      "sha256": "f6dcbf715ad38f8c0c498440e2897ecc6dc84362ebc4383b858ef95beb648cb5",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "sha256": "6c04629b46d2cf662604d2e2ca8cf5379a0ac100a44c6d985820c33e2396bfb4",
+      "ok": true
+    },
+    {
+      "file": "src/version.js",
+      "sha256": "4677a9a1028899a2616ded7c5e7b8461eda90c7863abc5ab65468235d447f910",
+      "ok": true
+    },
+    {
+      "file": "src/theme-refinements.css",
+      "sha256": "b9b3e9f1ea0b69b3342347037cb539f0345caa4bd215f0a90a9650c80ca144df",
+      "ok": true
+    },
+    {
+      "file": "src/theme-system.css",
+      "sha256": "72eb36f160c47b5ed950443083371bd68743272c3fe6d1e39dfd1e053a494348",
+      "ok": true
+    },
+    {
+      "file": "service-worker.js",
+      "sha256": "981acaef4b11dcccff0c7a7730c2346eeb4566478c20cd2d7283dae92278325b",
+      "ok": true
+    },
+    {
+      "file": "src/releaseProfile.js",
+      "sha256": "d441fc7557c93b01de759eed89e226894973e2ab43e73bef1e451e3b5abf92f2",
+      "ok": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
+      "ok": true
+    },
+    {
+      "file": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "ok": true
+    },
+    {
+      "file": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+      "sha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "production": {
+    "root": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-home-seam-v3431-production\\566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f",
+    "artifactId": "566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f",
+    "manifestSha256": "f6dcbf715ad38f8c0c498440e2897ecc6dc84362ebc4383b858ef95beb648cb5",
+    "sourceCommit": "aaf9b5488326fa9a62a349b76cf769b77489b890",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-home-seam-v3431-production\\566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f",
+      "artifactId": "566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f",
+      "manifestSha256": "f6dcbf715ad38f8c0c498440e2897ecc6dc84362ebc4383b858ef95beb648cb5",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 368
+    }
+  },
+  "preview": {
+    "root": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-home-seam-v3431-preview\\c71d219827feda82379e0416f144f774250f486ffdc4e3010005786f80b86414",
+    "artifactId": "c71d219827feda82379e0416f144f774250f486ffdc4e3010005786f80b86414",
+    "manifestSha256": "b8f0ca398d16262023ff9c88ad3ccfba2fd5179dd61a52366954e819384f471e",
+    "sourceCommit": "aaf9b5488326fa9a62a349b76cf769b77489b890",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-home-seam-v3431-preview\\c71d219827feda82379e0416f144f774250f486ffdc4e3010005786f80b86414",
+      "artifactId": "c71d219827feda82379e0416f144f774250f486ffdc4e3010005786f80b86414",
+      "manifestSha256": "b8f0ca398d16262023ff9c88ad3ccfba2fd5179dd61a52366954e819384f471e",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 368
+    }
+  }
+}
