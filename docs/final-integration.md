@@ -1,3 +1,7 @@
+## 2026-10-01 — V3.4.35 工坊主題禮物與字體已發布
+
+[PR #19](https://github.com/leotsouo/questnote-pwa/pull/19) 經 CI 合併於 `a66ecfe`。Pages `77d30b8`、[run 36773772651](https://github.com/leotsouo/questnote-pwa/actions/runs/36773772651) 成功；407 個 Git blob、12 項原生 artifact 瀏覽器測試與 15 個正式 HTTPS 雜湊全部通過。保留正式 84 位角色／3 卡池、信箱、DB 與 scope，本次未發布 Honeylight 卡池。既有正式瀏覽器可偵測 verified waiting 更新，但另一個開啟視窗阻擋套用；未清除存檔。詳見 [發布收據](../reports/workshop-typography/production-release.md)。
+
 ## 2026-10-01 — V3.4.32 一鍵更新與主畫面圖示引導已發布
 
 PR #16 已合併至 main（599a926ae8d36c5082110c9c89df3d12c12cf632）。正式產物 fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017 已逐一比對 371 個 staged Git blob；gh-pages 提交 505da31a7a97084c9a2b6e2b94842e2a3f1bef97、Pages run 36760461750 成功，16 個正式 HTTPS 檔案雜湊吻合。203 個 Node cases、210 個三套手機檢查及 19 個原生 worker／assembled artifact 檢查通過；正式站按鈕也已驗證同視窗重新載入。未改 DB/schema、任務/獎勵規則、84 隻寵物/3 卡池或後端。V3.4.31 缺少新按鈕，須最後一次自然關閉重開取得 V3.4.32；之後可在 App 內更新。iOS 已安裝圖示不能由頁面強制替換，新引導先備份再從 Safari 加入同一主畫面網址並確認資料。V3.4.31 source/Pages 及先前 V3.4.29 設計的遠端退版標記均保留。詳見 [完整驗證與發布收據](../reports/theme-round-two/one-tap-update-release.md)。

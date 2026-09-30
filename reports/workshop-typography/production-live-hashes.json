@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-09-30T20:37:15.252Z",
+  "artifactId": "7849ec9d9cc02e994f74ae68b3782ea5e8cd6c63a771067cb94b7c25725f1384",
+  "results": [
+    {
+      "path": "release-artifact.json",
+      "status": 200,
+      "sha256": "5dbecc343374f7e4ee72eb36aa34c399288e96dba25cd23972e8dce5c7ca981d",
+      "expected": "5dbecc343374f7e4ee72eb36aa34c399288e96dba25cd23972e8dce5c7ca981d",
+      "ok": true
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "3e5af58f760fa65b3034540acae5466e42e38848e2a94ed4a9d84d34d3c35447",
+      "expected": "3e5af58f760fa65b3034540acae5466e42e38848e2a94ed4a9d84d34d3c35447",
+      "ok": true
+    },
+    {
+      "path": "src/bootstrap.js",
+      "status": 200,
+      "sha256": "383f8cd7295726c8796e421d748a01a2b9e0e82b3bf067f84f16618ed423cd6d",
+      "expected": "383f8cd7295726c8796e421d748a01a2b9e0e82b3bf067f84f16618ed423cd6d",
+      "ok": true
+    },
+    {
+      "path": "src/version.js",
+      "status": 200,
+      "sha256": "db137c6223aaee51ed0b8260175b9bb2a577cbce05889e79288109c966346a54",
+      "expected": "db137c6223aaee51ed0b8260175b9bb2a577cbce05889e79288109c966346a54",
+      "ok": true
+    },
+    {
+      "path": "service-worker.js",
+      "status": 200,
+      "sha256": "fbb7e6abc44fa5f13e0700f43c6bec5b9e4717201ab04921a06ed176fdf7e82e",
+      "expected": "fbb7e6abc44fa5f13e0700f43c6bec5b9e4717201ab04921a06ed176fdf7e82e",
+      "ok": true
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "status": 200,
+      "sha256": "3a58f78d76cdd6850a781a5e49828307ec1f9fd2fb65640cc094ddde1ee28f63",
+      "expected": "3a58f78d76cdd6850a781a5e49828307ec1f9fd2fb65640cc094ddde1ee28f63",
+      "ok": true
+    },
+    {
+      "path": "src/ui.js",
+      "status": 200,
+      "sha256": "ea1815fdb712b6a1fe5459f4cd72420afa64b1ff99eec2e4ce91f9562f446adb",
+      "expected": "ea1815fdb712b6a1fe5459f4cd72420afa64b1ff99eec2e4ce91f9562f446adb",
+      "ok": true
+    },
+    {
+      "path": "src/styles.css",
+      "status": 200,
+      "sha256": "69a402ed4e8a4a5a5a93cf7d094575de43bb1580cca85a8a54662cf6fad67d98",
+      "expected": "69a402ed4e8a4a5a5a93cf7d094575de43bb1580cca85a8a54662cf6fad67d98",
+      "ok": true
+    },
+    {
+      "path": "src/workshopService.js",
+      "status": 200,
+      "sha256": "5c1940a3116e93e8e9376a102621f02ff3a58c9d575491e875420dd4890b9480",
+      "expected": "5c1940a3116e93e8e9376a102621f02ff3a58c9d575491e875420dd4890b9480",
+      "ok": true
+    },
+    {
+      "path": "src/workshopGiftView.js",
+      "status": 200,
+      "sha256": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
+      "expected": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
+      "ok": true
+    },
+    {
+      "path": "src/filterGestureController.js",
+      "status": 200,
+      "sha256": "548300cf1d63d705715fc00668b48b35b5389f351e21ffc3a8e417a350774ad7",
+      "expected": "548300cf1d63d705715fc00668b48b35b5389f351e21ffc3a8e417a350774ad7",
+      "ok": true
+    },
+    {
+      "path": "data/gift-affinities.json",
+      "status": 200,
+      "sha256": "6ba487beaa8d99d9cd26a83a5e3412c147caeafc40894338e378f00ca6472ffe",
+      "expected": "6ba487beaa8d99d9cd26a83a5e3412c147caeafc40894338e378f00ca6472ffe",
+      "ok": true
+    },
+    {
+      "path": "data/craftables.json",
+      "status": 200,
+      "sha256": "bb66e4a8b11327f6b0016c1df1b38a35820329daa41c5d53f42c369e09d286ae",
+      "expected": "bb66e4a8b11327f6b0016c1df1b38a35820329daa41c5d53f42c369e09d286ae",
+      "ok": true
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "status": 200,
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "expected": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "ok": true
+    },
+    {
+      "path": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+      "status": 200,
+      "sha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+      "expected": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+      "ok": true
+    }
+  ]
+}
