@@ -1,0 +1,42 @@
+TW · 三種風格 · 真實 App 390 × 844 · 2026-09-30T11:55:04.138Z
+PASS · default · 偏好已持久化
+PASS · default · 首頁呈現正確
+PASS · default · 三種選項且僅一種使用中
+PASS · sweet · 偏好已持久化
+PASS · sweet · 首頁呈現正確
+PASS · sweet · 三種選項且僅一種使用中
+PASS · twilight · 偏好已持久化
+PASS · twilight · 首頁呈現正確
+PASS · twilight · 三種選項且僅一種使用中
+PASS · 三種風格切換不更動任何遊戲存檔欄位
+PASS · 重新載入保留暮光風格
+PASS · tasks · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · tasks · 固定導覽可見且觸控 >= 44px
+PASS · gacha · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · gacha · 固定導覽可見且觸控 >= 44px
+PASS · collection · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · collection · 固定導覽可見且觸控 >= 44px
+PASS · expedition · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · expedition · 固定導覽可見且觸控 >= 44px
+PASS · more · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · more · 固定導覽可見且觸控 >= 44px
+PASS · settings · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · settings · 固定導覽可見且觸控 >= 44px
+PASS · habits · 390px 無頁面橫溢 · document=390; view=390/390
+PASS · habits · 固定導覽可見且觸控 >= 44px
+PASS · achievements · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · achievements · 固定導覽可見且觸控 >= 44px
+PASS · workshop · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · workshop · 固定導覽可見且觸控 >= 44px
+PASS · handbook · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · handbook · 固定導覽可見且觸控 >= 44px
+PASS · guide · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · guide · 固定導覽可見且觸控 >= 44px
+PASS · share · 390px 無頁面橫溢 · document=375; view=375/375
+PASS · share · 固定導覽可見且觸控 >= 44px
+PASS · 首個任務與完成操作在導覽上方
+PASS · 完成觸控 >= 44px
+PASS · 手帳任務沿用編輯表單
+PASS · 取消編輯不改遊戲存檔
+PASS · 真實匯出包含暮光偏好且可恢復
+DONE · 視覺、原生觸控、裝置 safe-area 與系統減少動態仍需人工驗收。

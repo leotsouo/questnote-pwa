@@ -1,0 +1,446 @@
+/* QuestNote: Twilight Adventure Journal. Every app override is theme-scoped. */
+.twilight-icon { display: none; }
+.twilight-home[hidden], .twilight-chapter-heading[hidden], .twilight-gacha-scene[hidden] { display: none !important; }
+/* This swatch also appears while either older theme is selected. */
+.theme-card__preview-frame--twilight { background: radial-gradient(circle at 72% 27%, #bda77b60, transparent 35%), #172330; border: 1px solid #b8ac95; position: relative; overflow: hidden; }
+.theme-card__preview-frame--twilight::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 44%; background: #f3efe6; border-radius: 12px 12px 0 0; }
+.theme-card__preview-btn--twilight { background: #476952; z-index: 1; }
+.theme-card__swatch--accent-twilight { background: #dabd88; z-index: 1; }
+.theme-card__swatch--primary-twilight { background: #476952; }
+
+body[data-theme="twilight"] {
+  color-scheme: light;
+  --tw-night: #172330;
+  --tw-night-deep: #111b27;
+  --tw-paper: #f3efe6;
+  --tw-ink: #27362f;
+  --tw-muted: #656e66;
+  --tw-gold: #dabd88;
+  --tw-paper-gold: #796039;
+  --tw-green: #476952;
+  --tw-line: #d9dcd1;
+  --tw-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
+  --color-bg-main: #f3efe6;
+  --color-bg-surface: #ebe8de;
+  --color-bg-card: #faf7ef;
+  --color-bg-card-soft: #eeeae0;
+  --color-bg-elevated: #fffcf6;
+  --color-text-main: #27362f;
+  --color-text-secondary: #55624f;
+  --color-text-muted: #656e66;
+  --color-text-soft: #6e776d;
+  --color-text-disabled: #778175;
+  --color-text-inverse: #faf7ef;
+  --color-primary: #476952;
+  --color-primary-hover: #354e3e;
+  --color-primary-soft: #e0e7db;
+  --color-primary-light: #476952;
+  --color-primary-border: #829782;
+  --color-secondary: #426275;
+  --color-secondary-hover: #304d5d;
+  --color-secondary-soft: #e2e8e7;
+  --color-accent: #796039;
+  --color-accent-hover: #614a28;
+  --color-accent-soft: #eee4d1;
+  --color-success: #476952;
+  --color-success-hover: #354e3e;
+  --color-success-soft: #e0e7db;
+  --color-danger: #a14e3f;
+  --color-danger-hover: #843c30;
+  --color-danger-soft: #f4e0d8;
+  --color-warning: #855b25;
+  --color-warning-soft: #f2e6d2;
+  --color-border: #ced3c5;
+  --color-border-soft: #d9dcd1;
+  --color-divider: #d9dcd1;
+  --color-empty-bg: #eeeae0;
+  --color-empty-bg-soft: #faf7ef;
+  --color-empty-border: #d9dcd1;
+  --rarity-n: #656f68;
+  --rarity-r: #406986;
+  --rarity-sr: #795f89;
+  --rarity-ssr: #886639;
+  --rarity-ur: #95547a;
+  --priority-normal: #476952;
+  --priority-important: #855b25;
+  --priority-urgent: #a14e3f;
+  --shadow-sm: 0 3px 10px #27362f08;
+  --shadow-md: 0 8px 24px #27362f0b;
+  --shadow-lg: 0 20px 60px #0c162430;
+  --shadow-glow: none;
+  --radius-xs: 5px;
+  --radius-sm: 9px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --font-weight-heavy: 650;
+  --font-weight-black: 700;
+  --page-padding-x: 24px;
+  --nav-height: 72px;
+  --page-padding-bottom: calc(96px + var(--safe-bottom));
+  /* Rebind legacy aliases here; inherited aliases were resolved on :root. */
+  --bg-main: var(--color-bg-main);
+  --bg-card: var(--color-bg-card);
+  --bg-card-soft: var(--color-bg-card-soft);
+  --bg-elevated: var(--color-bg-elevated);
+  --bg-card-hover: #eeeae0;
+  --bg: var(--color-bg-main);
+  --bg-gradient: none;
+  --text-main: var(--color-text-main);
+  --text-muted: var(--color-text-muted);
+  --text: var(--color-text-main);
+  --accent-primary: var(--color-primary);
+  --accent-secondary: var(--color-secondary);
+  --accent-danger: var(--color-danger);
+  --accent-warning: var(--color-warning);
+  --accent-success: var(--color-success);
+  --accent: var(--color-accent);
+  --border: var(--color-border);
+  --border-glow: var(--color-border);
+  --primary: var(--color-primary);
+  --primary-light: var(--color-primary-soft);
+  --primary-glow: none;
+  --danger: var(--color-danger);
+  --success: var(--color-success);
+  --radius: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --shadow: var(--shadow-md);
+  --shadow-card: var(--shadow-md);
+  background: #0d141d;
+  background-image: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body[data-theme="twilight"]::before { display: none; }
+body[data-theme="twilight"] #app { background: var(--tw-paper); }
+body[data-theme="twilight"] #app::before { content: ''; pointer-events: none; position: absolute; inset: 0; opacity: .025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23585858' filter='url%28%23grain%29' d='M0 0h160v160H0z'/%3E%3C/svg%3E"); }
+body[data-theme="twilight"] #app .view { position: relative; padding: 24px; animation: twilight-page-enter .2s ease-out; }
+body[data-theme="twilight"] #app .view > .page-header { background: var(--tw-night); margin: -24px -24px 26px; padding: 34px 24px 30px; min-height: 126px; border-radius: 0 0 26px 26px; position: relative; }
+body[data-theme="twilight"] #app .page-title { font-family: var(--tw-serif); font-size: 30px; line-height: 1.3; font-weight: 400; letter-spacing: 1.5px; color: #f6eedf; background: none; -webkit-text-fill-color: currentColor; text-shadow: none; }
+body[data-theme="twilight"] #app .page-subtitle { color: #b9c6c1; font-size: 12px; line-height: 1.7; margin-top: 8px; max-width: 310px; }
+body[data-theme="twilight"] #app .page-back-btn { color: #e3d3b1; border: 1px solid #e3d3b12b; background: #ffffff05; min-width: 44px; min-height: 44px; box-shadow: none; }
+body[data-theme="twilight"] #app .section-title { font-family: var(--tw-serif); font-size: 20px; color: var(--tw-ink); letter-spacing: .5px; font-weight: 500; text-transform: none; }
+body[data-theme="twilight"] #app :is(.card, .stat-card, .empty-state) { background: var(--color-bg-card); color: var(--tw-ink); border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] #app .card { padding: 20px; }
+body[data-theme="twilight"] #app .card-animate { animation: none; }
+body[data-theme="twilight"] :is(.btn, .default-summon-btn, .expedition-dispatch-button, .expedition-confirm-button, .quest-claim-button) { min-height: 44px; border-radius: 10px; font-weight: 500; text-shadow: none; }
+body[data-theme="twilight"] .btn--primary, body[data-theme="twilight"] :is(#app, #modal-body) .btn--primary { background: var(--tw-green); color: #faf7ef; box-shadow: none; border: 1px solid var(--tw-green); }
+body[data-theme="twilight"] :is(#app, #modal-body) .btn--secondary { background: #e2e8dc; color: #354e3e; box-shadow: none; border: 1px solid #c7d2c0; }
+body[data-theme="twilight"] :is(#app, #modal-body) .btn--ghost { background: transparent; color: var(--tw-muted); box-shadow: none; }
+body[data-theme="twilight"] :is(#app, #modal-body) .btn--danger { color: var(--color-danger); border-color: #d4b6a9; }
+body[data-theme="twilight"] :is(.form-input, .form-textarea, .form-select, select, input[type="date"]) { color-scheme: light; color: var(--tw-ink); background: #fffcf6; border-color: #b3bca8; box-shadow: none; }
+body[data-theme="twilight"] :is(.form-input, .form-textarea)::placeholder { color: #6e776d; }
+body[data-theme="twilight"] :is(button, a, input, textarea, select, summary):focus-visible { outline: 2px solid #92703e; outline-offset: 3px; }
+body[data-theme="twilight"] #app .fab { background: var(--tw-ink); color: var(--tw-paper); box-shadow: 0 4px 16px #27362f20; border: 0; }
+body[data-theme="twilight"] .twilight-icon { display: inline-flex; flex: none; align-items: center; justify-content: center; }
+body[data-theme="twilight"] .twilight-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.55; stroke-linecap: round; stroke-linejoin: round; }
+body[data-theme="twilight"] #app :is(.segmented-control, .task-view-tabs) { background: transparent; border: 0; border-bottom: 1px solid var(--tw-line); padding: 0; border-radius: 0; box-shadow: none; gap: 12px; }
+body[data-theme="twilight"] #app :is(.segmented-control__btn, .quest-tab) { min-height: 44px; background: transparent; color: var(--tw-muted); box-shadow: none; font-size: 12px; border-radius: 0; position: relative; }
+body[data-theme="twilight"] #app :is(.segmented-control__btn.active, .quest-tab.is-active) { color: var(--tw-ink); border-bottom: 2px solid var(--tw-green); background: transparent; font-weight: 600; }
+body[data-theme="twilight"] #app .filter-bar { gap: 8px; scrollbar-width: thin; scrollbar-color: #c3cbba transparent; }
+body[data-theme="twilight"] #app .filter-btn { background: transparent; color: var(--tw-muted); border: 1px solid var(--tw-line); border-radius: 8px; min-height: 44px; box-shadow: none; font-size: 12px; padding: 8px 12px; }
+body[data-theme="twilight"] #app .filter-btn.active { background: var(--tw-green); color: #faf7ef; border-color: var(--tw-green); }
+body[data-theme="twilight"] #app .progress-bar { background: #dce1d3; height: 5px; }
+body[data-theme="twilight"] #app .progress-bar__fill { background: var(--tw-green); box-shadow: none; }
+
+/* Shared navigation: same destinations and notification state, quieter identity. */
+body[data-theme="twilight"] .bottom-nav { background: #f3efe6; border-color: var(--tw-line); box-shadow: 0 -7px 24px #27362f07; padding: 8px 10px max(8px, var(--safe-bottom)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+body[data-theme="twilight"] .nav-item { color: #65705f; font-size: 11px; gap: 4px; padding: 0; min-height: 48px; flex-direction: column; }
+body[data-theme="twilight"] .nav-item > .twilight-icon { order: -1; }
+body[data-theme="twilight"] .nav-item .nav-icon { display: none; }
+body[data-theme="twilight"] .nav-item.active { background: transparent; color: var(--tw-ink); border-radius: 0; font-weight: 600; }
+body[data-theme="twilight"] .nav-item.active::before { content: ''; width: 24px; height: 2px; background: var(--tw-green); position: absolute; top: -9px; left: calc(50% - 12px); }
+body[data-theme="twilight"] .nav-badge { box-shadow: none; width: 5px; height: 5px; }
+body[data-theme="twilight"] .nav-badge--alert { background: #a14e3f; }
+body[data-theme="twilight"] .nav-badge--hint { background: #92703e; }
+
+/* Task home: twilight scene above one continuous paper notebook. */
+body[data-theme="twilight"] #app #view-tasks.active { display: flex; flex-direction: column; padding: 0; }
+body[data-theme="twilight"] #app #view-tasks > .page-header--tasks { position: absolute; top: 12px; right: 18px; left: auto; z-index: 3; margin: 0; padding: 0; min-height: 44px; background: none; }
+body[data-theme="twilight"] #view-tasks .page-header__inner { display: none; }
+body[data-theme="twilight"] #view-tasks #btn-global-mailbox { width: 44px; height: 44px; background: #ffffff08; border: 0; border-radius: 50%; box-shadow: none; color: #e6ddd0; }
+body[data-theme="twilight"] .mailbox-entry-btn__icon { font-size: 0; }
+body[data-theme="twilight"] #twilight-home { order: 0; background: var(--tw-night); color: var(--tw-paper); overflow: hidden; }
+body[data-theme="twilight"] .twilight-masthead { height: 64px; display: flex; align-items: center; padding: 8px 25px 0; }
+body[data-theme="twilight"] .twilight-wordmark { display: inline-flex; gap: 10px; align-items: center; font: 24px/1.2 Georgia, serif; letter-spacing: -.6px; }
+body[data-theme="twilight"] .twilight-wordmark > span:last-child { color: var(--tw-gold); margin-left: -9px; }
+body[data-theme="twilight"] .twilight-wordmark .twilight-icon { color: var(--tw-gold); }
+body[data-theme="twilight"] .twilight-wordmark svg { width: 27px; height: 27px; stroke-width: 1.25; }
+body[data-theme="twilight"] .twilight-scene { height: 250px; position: relative; overflow: hidden; }
+body[data-theme="twilight"] .twilight-companion-art { position: absolute; width: 310px; height: 310px; right: -27px; top: -17px; object-fit: cover; opacity: .88; mask-image: linear-gradient(90deg,transparent,#000 30%,#000 94%,transparent); -webkit-mask-image: linear-gradient(90deg,transparent,#000 30%,#000 94%,transparent); }
+body[data-theme="twilight"] .twilight-scene--empty .twilight-companion-art { width: 100%; height: 100%; right: 0; top: 0; opacity: .55; mask-image: none; -webkit-mask-image: none; }
+body[data-theme="twilight"] .twilight-scene-shade { position: absolute; inset: -20px 0 0; pointer-events: none; background: linear-gradient(90deg,var(--tw-night),#172330ba 20%,#17233000 65%),linear-gradient(0deg,var(--tw-night),#17233000 35%,#17233000 84%,var(--tw-night)); }
+body[data-theme="twilight"] .twilight-greeting { position: relative; padding: 19px 25px 0; pointer-events: none; }
+body[data-theme="twilight"] .twilight-eyebrow { color: #bec5c7; font-size: 10px; line-height: 1.6; font-weight: 500; letter-spacing: 1.6px; }
+body[data-theme="twilight"] .twilight-greeting h1 { color: #f6eedf; font: 400 31px/1.46 var(--tw-serif); letter-spacing: 1.4px; margin-top: 12px; }
+body[data-theme="twilight"] .twilight-greeting h1 span { color: var(--tw-gold); }
+body[data-theme="twilight"] .twilight-greeting > p:last-child { color: #c6cccd; font-size: 10px; line-height: 1.8; margin-top: 12px; }
+body[data-theme="twilight"] .twilight-companion-caption { position: absolute; bottom: 0; left: 25px; right: 25px; }
+body[data-theme="twilight"] .twilight-companion-caption .twilight-eyebrow { color: var(--tw-gold); font-size: 9px; letter-spacing: 1.8px; }
+body[data-theme="twilight"] .twilight-pet-name { background: none; border: 0; min-height: 44px; color: #f1ecdf; font-size: 19px; font-weight: 500; letter-spacing: .8px; display: flex; gap: 9px; align-items: center; max-width: 100%; padding: 0; text-align: left; }
+body[data-theme="twilight"] .twilight-pet-name svg { width: 15px; height: 15px; }
+body[data-theme="twilight"] .twilight-rarity { font: 10px/1.5 Georgia,serif; border: 1px solid #e3d3b145; border-radius: 4px; color: #dec9a2; padding: 0 4px; }
+body[data-theme="twilight"] .twilight-companion-caption > p:last-child { font-size: 10px; letter-spacing: .8px; color: #aab9bb; }
+body[data-theme="twilight"] .twilight-pet-touch { position: absolute; top: 42px; right: 18px; width: 174px; height: 140px; border: 0; background: none; color: #e0e4da; display: flex; align-items: flex-end; justify-content: flex-end; gap: 4px; padding: 8px; font-size: 10px; border-radius: 25px; }
+body[data-theme="twilight"] .twilight-pet-touch span:first-child { background: #101e2c9c; border-radius: 15px; padding: 5px 8px; font-size: 9px; }
+body[data-theme="twilight"] .twilight-pet-touch svg { width: 12px; height: 12px; color: var(--tw-gold); }
+body[data-theme="twilight"] .twilight-pet-touch:disabled { opacity: .75; cursor: default; }
+body[data-theme="twilight"] .twilight-voice { margin: 15px 25px 0; min-height: 29px; display: flex; gap: 9px; align-items: flex-start; }
+body[data-theme="twilight"] .twilight-voice > span { font: 34px/1 Georgia,serif; color: var(--tw-gold); }
+body[data-theme="twilight"] .twilight-voice p { color: #d1d6d3; font-size: 11px; line-height: 1.7; padding-top: 4px; }
+body[data-theme="twilight"] .twilight-journey { padding: 14px 25px 22px; }
+body[data-theme="twilight"] .twilight-journey-label { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+body[data-theme="twilight"] .twilight-journey-label > span { color: #b6c2c0; font-size: 10px; letter-spacing: .8px; }
+body[data-theme="twilight"] .twilight-journey-label strong { font-size: 15px; font-weight: 500; font-variant-numeric: tabular-nums; }
+body[data-theme="twilight"] .twilight-journey-label small { color: #b6c2c0; font-size: 10px; font-weight: 400; }
+body[data-theme="twilight"] .twilight-journey-track { height: 3px; background: #ffffff17; border-radius: 2px; margin-top: 12px; position: relative; --journey-progress: 0%; }
+body[data-theme="twilight"] .twilight-journey-track > span { height: 100%; width: var(--journey-progress); display: block; background: var(--tw-gold); border-radius: 2px; transition: width .55s cubic-bezier(.2,.65,.25,1); }
+body[data-theme="twilight"] .twilight-journey-track i { position: absolute; left: clamp(0px,var(--journey-progress),calc(100% - 12px)); top: -8px; font-size: 12px; font-style: normal; color: var(--tw-gold); transition: left .55s cubic-bezier(.2,.65,.25,1); }
+body[data-theme="twilight"] .twilight-bond { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #afc0ba; margin-top: 11px; }
+body[data-theme="twilight"] .twilight-bond svg { width: 12px; height: 12px; }
+body[data-theme="twilight"] #twilight-bond-progress { margin-left: auto; }
+body[data-theme="twilight"] #twilight-chapter-heading { order: 2; background: var(--tw-paper); display: flex; align-items: center; justify-content: space-between; padding: 24px 25px 11px; margin-top: -3px; border-radius: 28px 28px 0 0; position: relative; }
+body[data-theme="twilight"] .twilight-chapter-heading::after { content: ''; position: absolute; top: 0; right: 38px; width: 10px; height: 20px; background: #b79157; clip-path: polygon(0 0,100% 0,100% 100%,50% 80%,0 100%); }
+body[data-theme="twilight"] .twilight-chapter-heading p { font-size: 8px; letter-spacing: 1.9px; color: var(--tw-paper-gold); margin-bottom: 4px; }
+body[data-theme="twilight"] .twilight-chapter-heading h2 { font: 500 24px/1.4 var(--tw-serif); letter-spacing: 1px; }
+body[data-theme="twilight"] #twilight-pending { font: 11px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; letter-spacing: 0; margin-left: 12px; color: var(--tw-muted); }
+body[data-theme="twilight"] .twilight-add-task { width: 44px; height: 44px; background: var(--tw-ink); color: var(--tw-paper); border: 0; border-radius: 50%; font-size: 25px; font-weight: 300; }
+body[data-theme="twilight"] #view-tasks #task-view-tabs { order: 3; margin: 0 25px 10px; }
+body[data-theme="twilight"] #view-tasks #task-category-filters { order: 4; margin: 0 25px 8px; }
+body[data-theme="twilight"] #view-tasks #task-category-filters .filter-btn { border: 0; background: none; padding: 4px 9px; font-size: 11px; }
+body[data-theme="twilight"] #view-tasks #task-category-filters .filter-btn.active { background: #e1e6d9; color: var(--tw-green); }
+body[data-theme="twilight"] #view-tasks #task-view-content { order: 5; margin: 0 25px; }
+body[data-theme="twilight"] #task-view-content[data-task-view="today"] > .task-section:first-child > .section-title { display: none; }
+body[data-theme="twilight"] #app .filter-bar { scrollbar-width: none; padding-bottom: 0; }
+body[data-theme="twilight"] #app .filter-bar::-webkit-scrollbar { display: none; }
+body[data-theme="twilight"] #view-tasks .stats-bar { order: 6; margin: 12px 25px 20px; border-top: 1px solid var(--tw-line); border-bottom: 1px solid var(--tw-line); padding: 14px 0; gap: 14px; scrollbar-width: thin; }
+body[data-theme="twilight"] #view-tasks .stat-card { background: transparent; border: 0; flex: 0 0 auto; min-width: 90px; padding: 0; text-align: left; }
+body[data-theme="twilight"] #view-tasks .stat-icon { display: none; }
+body[data-theme="twilight"] #view-tasks .stat-label { font-size: 10px; color: var(--tw-muted); }
+body[data-theme="twilight"] #view-tasks .stat-value { font: 24px/1.3 Georgia,serif; color: var(--tw-ink); }
+body[data-theme="twilight"] #view-tasks #habit-summary { order: 7; margin-inline: 25px; background: #e4e9dd; color: var(--tw-green); border: 0; box-shadow: none; }
+body[data-theme="twilight"] #view-tasks #home-hub { order: 8; margin: 0 25px 20px; }
+body[data-theme="twilight"] #view-tasks :is(#today-plan-summary, #companion-section, #btn-add-task) { display: none; }
+body[data-theme="twilight"] #view-tasks .task-list { gap: 0; }
+body[data-theme="twilight"] #view-tasks .twilight-task-card { display: grid; grid-template-columns: 36px minmax(0,1fr) 30px; gap: 9px; border: 0; border-bottom: 1px solid var(--tw-line); padding: 19px 0; margin: 0; border-radius: 0; background: transparent; box-shadow: none; position: relative; overflow: visible; }
+body[data-theme="twilight"] #view-tasks .twilight-task-card.task-card--done { opacity: 1; padding-block: 13px; }
+body[data-theme="twilight"] #view-tasks .task-check { min-width: 44px; min-height: 44px; width: 44px; height: 44px; margin-left: -8px; border-radius: 50%; background: transparent; border: 0; position: relative; box-shadow: none; color: white; }
+body[data-theme="twilight"] #view-tasks .task-check::before { content: ''; position: absolute; inset: 9px; border: 1.2px solid #748674; border-radius: 50%; }
+body[data-theme="twilight"] #view-tasks .task-check.checked::before { background: var(--tw-green); border-color: var(--tw-green); }
+body[data-theme="twilight"] #view-tasks .task-check .twilight-icon { position: relative; }
+body[data-theme="twilight"] #view-tasks .task-check svg { width: 15px; height: 15px; }
+body[data-theme="twilight"] #view-tasks .task-card__meta { color: var(--tw-muted); font-size: 10px; gap: 8px; min-height: 14px; margin: 0 0 5px; }
+body[data-theme="twilight"] #view-tasks .twilight-task-priority { color: var(--priority-important); }
+body[data-theme="twilight"] #view-tasks .priority-urgent .twilight-task-priority { color: var(--priority-urgent); }
+body[data-theme="twilight"] #view-tasks .task-card__title { font-size: 15px; font-weight: 600; line-height: 1.65; color: var(--tw-ink); letter-spacing: .15px; margin: 0; overflow-wrap: anywhere; }
+body[data-theme="twilight"] #view-tasks .task-card--done .task-card__title { color: #566451; font-weight: 400; }
+body[data-theme="twilight"] #view-tasks .task-card__preview { font-size: 12px; color: var(--tw-muted); margin-top: 6px; line-height: 1.7; }
+body[data-theme="twilight"] #view-tasks .task-card__rewards { gap: 12px; margin-top: 8px; color: var(--tw-paper-gold); font-size: 10px; display: flex; flex-wrap: wrap; }
+body[data-theme="twilight"] #view-tasks .task-card__rewards > span { display: inline-flex; align-items: center; gap: 4px; }
+body[data-theme="twilight"] #view-tasks .task-card__rewards > span:last-child { color: var(--tw-green); }
+body[data-theme="twilight"] #view-tasks .task-card__rewards svg { width: 12px; height: 12px; }
+body[data-theme="twilight"] #view-tasks .twilight-task-menu { position: relative; align-self: start; }
+body[data-theme="twilight"] #view-tasks .twilight-task-menu summary { list-style: none; display: grid; place-items: center; width: 44px; height: 44px; margin-left: -7px; color: var(--tw-muted); cursor: pointer; }
+body[data-theme="twilight"] .twilight-task-menu summary::-webkit-details-marker { display: none; }
+body[data-theme="twilight"] #view-tasks .twilight-task-menu summary svg { width: 17px; height: 17px; }
+body[data-theme="twilight"] #view-tasks .twilight-task-menu .task-card__actions { position: absolute; z-index: 5; right: 0; top: 44px; display: flex; flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: 2px; min-width: 132px; padding: 8px; margin: 0; border: 1px solid var(--tw-line); border-radius: 12px; background: #fffcf6; box-shadow: 0 10px 25px #27362f20; }
+body[data-theme="twilight"] #view-tasks .task-card__subtasks { background: transparent; margin-top: 9px; border: 0; padding: 0; }
+body[data-theme="twilight"] #view-tasks .twilight-task-expander .btn { padding: 0 5px; font-size: 11px; }
+body[data-theme="twilight"] #view-tasks .section-toggle { background: transparent; color: var(--tw-muted); border: 0; font-size: 12px; }
+body[data-theme="twilight"] #view-tasks .task-view-content > .empty-state:not(:first-child) { display: none; }
+body[data-theme="twilight"] #view-tasks .empty-state { border: 0; background: transparent; padding: 20px 0; }
+body[data-theme="twilight"] #view-tasks .home-hub__icons { border-top: 1px solid var(--tw-line); gap: 12px; }
+body[data-theme="twilight"] #view-tasks .home-hub__icon { background: transparent; border-radius: 0; min-height: 54px; color: var(--tw-muted); box-shadow: none; }
+body[data-theme="twilight"] #view-tasks .home-hub__emoji { font-size: 0; }
+body[data-theme="twilight"] #view-tasks .home-hub__name { color: var(--tw-muted); font-size: 11px; }
+body[data-theme="twilight"] #view-tasks .home-hub__icon.is-active { color: var(--tw-green); border-bottom: 2px solid var(--tw-green); background: transparent; }
+body[data-theme="twilight"] #view-tasks .home-hub__dot { background: #92703e; box-shadow: none; }
+body[data-theme="twilight"] #view-tasks :is(.quest-panel__inner, .daily-blessing-card, .daily-blessing, .quest-card, .achievement-strip) { background: #faf7ef; color: var(--tw-ink); border: 1px solid var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] #view-tasks :is(.quest-card__title, .quest-card__description, .daily-blessing-card__title, .daily-blessing-card__subtitle, .daily-blessing-card__hint) { color: var(--tw-ink); }
+body[data-theme="twilight"] #view-tasks .quest-claim-button { background: var(--tw-green); color: #faf7ef; box-shadow: none; }
+
+/* Summoning: an actual catalog encounter, with prices/rates/pity unchanged. */
+body[data-theme="twilight"] #view-gacha .gacha-panel { text-align: left; border: 0; background: #faf7ef; padding: 20px; box-shadow: none; }
+body[data-theme="twilight"] #view-gacha .twilight-gacha-scene { margin: -20px -20px 20px; height: 295px; padding: 35px 23px 23px; position: relative; overflow: hidden; border-radius: 18px 18px 0 0; background: var(--tw-night); color: var(--tw-paper); }
+body[data-theme="twilight"] .twilight-gacha-art { position: absolute; inset: 0; pointer-events: none; }
+body[data-theme="twilight"] .twilight-gacha-art img { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: .8; }
+body[data-theme="twilight"] .twilight-gacha-art div { position: absolute; inset: 0; background: linear-gradient(90deg,#172330dc,#17233070 55%,#17233000),linear-gradient(0deg,#172330,#17233000 60%); }
+body[data-theme="twilight"] .twilight-gacha-scene > :not(.twilight-gacha-art) { position: relative; }
+body[data-theme="twilight"] .twilight-gacha-scene h2 { font: 400 28px/1.5 var(--tw-serif); letter-spacing: 1px; margin: 12px 0 10px; color: #f6eedf; }
+body[data-theme="twilight"] .twilight-gacha-scene h2 span { color: var(--tw-gold); }
+body[data-theme="twilight"] .twilight-gacha-scene > p:not(.twilight-eyebrow) { font-size: 12px; line-height: 1.9; color: #c6cfca; max-width: 210px; }
+body[data-theme="twilight"] .twilight-gacha-caption { display: block; font-size: 10px; color: #d6c69e; margin-top: 25px; }
+body[data-theme="twilight"] #view-gacha .twilight-has-gacha-scene :is(.gacha-orb, .gacha-title, .gacha-subtitle) { display: none; }
+body[data-theme="twilight"] #view-gacha .gacha-pool { color: var(--tw-paper-gold); text-shadow: none; font-size: 13px; }
+body[data-theme="twilight"] #view-gacha :is(.gacha-info, .gacha-unlock, .gacha-pity, .gacha-pool-switcher) { background: transparent; border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] #view-gacha .rate-tag { background: #eeeae0; color: var(--tw-ink); border-color: var(--tw-line); box-shadow: none; font-size: 11px; }
+body[data-theme="twilight"] #view-gacha .rate-tag[data-rarity="SSR"] { color: var(--rarity-ssr); }
+body[data-theme="twilight"] #view-gacha .rate-tag[data-rarity="UR"] { color: var(--rarity-ur); }
+body[data-theme="twilight"] #view-gacha :is(.gacha-cost, .gacha-stardust, .gacha-pity__label, .gacha-pity__count) { color: var(--tw-ink); }
+body[data-theme="twilight"] #view-gacha :is(.gacha-btn, .btn--pull, .btn--ten-pull) { background: var(--tw-green); color: #faf7ef; box-shadow: none; border: 0; }
+body[data-theme="twilight"] #view-gacha .gacha-theme-stage { border-radius: 18px; overflow: hidden; }
+body[data-theme="twilight"] #view-gacha .gacha-theme-details { background: #faf7ef; color: var(--tw-ink); border-color: var(--tw-line); }
+
+/* Collection: character artwork leads; ownership and lore remain meaningful. */
+body[data-theme="twilight"] #view-collection .collection-companion { background: var(--tw-night); color: var(--tw-paper); border: 0; border-radius: 18px; box-shadow: none; }
+body[data-theme="twilight"] #view-collection .collection-companion :is(.collection-companion__name, .collection-companion__title) { color: #f6eedf; text-shadow: none; }
+body[data-theme="twilight"] #view-collection .collection-companion__meta { color: #becac0; }
+body[data-theme="twilight"] #view-collection :is(.collection-summary, .collection-milestone, .collection-milestones-panel) { background: transparent; color: var(--tw-ink); border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] #view-collection .collection-summary__title { font-family: var(--tw-serif); font-size: 20px; font-weight: 500; color: var(--tw-ink); }
+body[data-theme="twilight"] #view-collection :is(.collection-summary__next, .collection-milestone__description, .collection-milestone__progress) { color: var(--tw-muted); }
+body[data-theme="twilight"] #view-collection .collection-summary__progress-fill { background: var(--tw-green); box-shadow: none; }
+body[data-theme="twilight"] #view-collection .collection-rarity-chip { background: #eeeae0; border-color: var(--tw-line); color: var(--tw-muted); }
+body[data-theme="twilight"] #view-collection .collection-grid { gap: 16px; }
+body[data-theme="twilight"] #view-collection .collection-card { background: transparent; border: 0; border-bottom: 1px solid var(--tw-line); box-shadow: none; border-radius: 12px 12px 0 0; padding: 0 0 12px; animation: none; }
+body[data-theme="twilight"] #view-collection .collection-card::before { display: none; }
+body[data-theme="twilight"] #view-collection .collection-card__image { border-radius: 12px; background: #dce0d7; overflow: hidden; }
+body[data-theme="twilight"] #view-collection .collection-card .pet-image-frame { border: 0; box-shadow: none; border-radius: 12px; }
+body[data-theme="twilight"] #view-collection .collection-card__info { padding: 12px 0 0; }
+body[data-theme="twilight"] #view-collection .collection-card__name { font: 500 16px/1.5 var(--tw-serif); color: var(--tw-ink); text-shadow: none; }
+body[data-theme="twilight"] #view-collection :is(.collection-card__title, .collection-card__original-name, .fragments, .locked-label, .collection-card__state) { color: var(--tw-muted); font-size: 11px; line-height: 1.6; }
+body[data-theme="twilight"] #view-collection .collection-card__actions { gap: 6px; padding: 12px 0 0; }
+body[data-theme="twilight"] #view-collection :is(.btn--companion, .btn--upgrade, .collection-milestone__claim) { background: #e0e7db; color: #354e3e; border-color: #c7d2c0; box-shadow: none; min-height: 44px; }
+body[data-theme="twilight"] #view-collection .collection-card--locked { opacity: .8; }
+body[data-theme="twilight"] .badge--rarity { background: #eeeae0; color: var(--tw-muted); border: 1px solid var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] .badge--rarity.rarity-R { color: var(--rarity-r); }
+body[data-theme="twilight"] .badge--rarity.rarity-SR { color: var(--rarity-sr); }
+body[data-theme="twilight"] .badge--rarity.rarity-SSR { color: var(--rarity-ssr); }
+body[data-theme="twilight"] .badge--rarity.rarity-UR { color: var(--rarity-ur); }
+
+/* Expedition: a field journal with existing region illustrations. */
+body[data-theme="twilight"] #view-expedition .expedition-energy { background: transparent; border: 0; border-bottom: 1px solid var(--tw-line); box-shadow: none; padding: 0 0 18px; }
+body[data-theme="twilight"] #view-expedition .expedition-energy__value { font: 30px/1.2 Georgia,serif; color: var(--tw-ink); }
+body[data-theme="twilight"] #view-expedition .expedition-energy__icon { color: var(--tw-green); background: #e1e7db; box-shadow: none; }
+body[data-theme="twilight"] #view-expedition :is(.expedition-energy__hint, .expedition-map__hint) { color: var(--tw-muted); }
+body[data-theme="twilight"] #view-expedition .expedition-area-card { background: #faf7ef; border: 0; border-radius: 18px; padding: 0; box-shadow: none; overflow: hidden; }
+body[data-theme="twilight"] #view-expedition .expedition-area-card__art { height: 145px; }
+body[data-theme="twilight"] #view-expedition .expedition-area-card__content { padding: 16px; }
+body[data-theme="twilight"] #view-expedition .expedition-area-card__title { font: 500 20px/1.4 var(--tw-serif); color: var(--tw-ink); text-shadow: none; }
+body[data-theme="twilight"] #view-expedition :is(.expedition-area-card__meta, .expedition-area-card__material) { color: var(--tw-muted); font-size: 12px; }
+body[data-theme="twilight"] #view-expedition .expedition-area-card__status { background: #f3efe6ed; color: #3d5142; border: 0; font-size: 10px; }
+body[data-theme="twilight"] #view-expedition .expedition-area-card__progress { background: #dce1d3; height: 3px; }
+body[data-theme="twilight"] #view-expedition .expedition-area-progress-fill { background: var(--tw-green); box-shadow: none; }
+body[data-theme="twilight"] #view-expedition .expedition-explore-badge { color: var(--tw-paper-gold); background: #eee4d1; }
+body[data-theme="twilight"] #view-expedition .expedition-dispatch-button { background: var(--tw-green); color: #faf7ef; border: 0; box-shadow: none; }
+body[data-theme="twilight"] #view-expedition :is(.expedition-active-card, .exploration-panel, .exploration-area-card, .camp-card, .journey-archive) { background: #faf7ef; color: var(--tw-ink); border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] #view-expedition .expedition-active-card__fx { display: none; }
+body[data-theme="twilight"] #view-expedition :is(.expedition-active-card__pet-name, .expedition-active-card__area, .expedition-status-badge) { color: var(--tw-green); text-shadow: none; }
+body[data-theme="twilight"] #view-expedition .journey-list button { border-color: var(--tw-line); border-radius: 8px; color: var(--tw-ink); }
+body[data-theme="twilight"] #view-expedition :is(.camp-unlock, .camp-cost, .exploration-milestone) { background: #eeeae0; color: var(--tw-muted); border-color: var(--tw-line); }
+
+/* The remaining journal: habits, rewards, workshop, help, sharing and settings. */
+body[data-theme="twilight"] #app :is(.habit-card, .achievement-card, .workshop-material-card, .workshop-craft-card, .workshop-gift-card, .handbook-card, .handbook-section, .guide-chapter) { background: #faf7ef; border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] #app :is(.habit-card__name, .habit-card__title, .achievement-card__title, .workshop-material-card h3, .workshop-craft-card h3, .handbook-section__title) { color: var(--tw-ink); font-weight: 500; text-shadow: none; }
+body[data-theme="twilight"] #app :is(.habit-card__description, .habit-card__meta, .achievement-card__description, .workshop-material-card__desc, .workshop-material-card__source) { color: var(--tw-muted); }
+body[data-theme="twilight"] #app .achievement-summary__value--claimable { color: var(--tw-green); }
+body[data-theme="twilight"] #app .habit-stat-card__value--streak { color: var(--tw-paper-gold); }
+body[data-theme="twilight"] #app :is(.habit-check, .habit-complete-btn, .achievement-claim-button) { min-width: 44px; min-height: 44px; box-shadow: none; }
+body[data-theme="twilight"] #app :is(.habit-summary, .habit-stats, .workshop-summary, .achievement-summary, .handbook-hero) { background: #e8ecdf; color: var(--tw-ink); border-color: #d2d9c7; box-shadow: none; }
+body[data-theme="twilight"] #app :is(.workshop-tag, .habit-streak, .handbook-chip, .achievement-reward-chip) { background: #eee4d1; color: var(--tw-paper-gold); border-color: #d8c8aa; }
+body[data-theme="twilight"] #app .more-menu { background: transparent; border: 0; padding: 0; }
+body[data-theme="twilight"] #app .more-menu-item { min-height: 82px; padding: 18px 0; background: transparent; border-bottom: 1px solid var(--tw-line); border-radius: 0; }
+body[data-theme="twilight"] #app .more-menu-icon { font-size: 0; background: #e4e9dd; color: #52694e; width: 42px; height: 42px; border-radius: 12px; box-shadow: none; display: flex; align-items: center; justify-content: center; }
+body[data-theme="twilight"] #app .more-menu-icon > img { display: none; }
+body[data-theme="twilight"] #app .more-menu-label { color: var(--tw-ink); font-size: 15px; font-weight: 500; }
+body[data-theme="twilight"] #app .more-menu-desc { color: var(--tw-muted); font-size: 12px; margin-top: 4px; line-height: 1.6; }
+body[data-theme="twilight"] #app .more-menu-arrow { color: #76836d; }
+body[data-theme="twilight"] #app .more-menu-badge { background: #92703e; box-shadow: none; }
+body[data-theme="twilight"] #app .theme-picker { grid-template-columns: 1fr; gap: 14px; }
+body[data-theme="twilight"] #app .theme-card { background: #fffcf6; border: 1px solid var(--tw-line); border-radius: 14px; box-shadow: none; padding: 16px; }
+body[data-theme="twilight"] #app .theme-card--active { background: #e8ecdf; border-color: #829782; box-shadow: none; }
+body[data-theme="twilight"] #app .theme-card__title { font: 500 18px/1.4 var(--tw-serif); color: var(--tw-ink); }
+body[data-theme="twilight"] #app .theme-card__desc { color: var(--tw-muted); font-size: 11px; line-height: 1.6; }
+body[data-theme="twilight"] #app .theme-card__preview-frame { height: 40px; }
+body[data-theme="twilight"] #app .theme-card__badge { background: var(--tw-green); color: #faf7ef; }
+body[data-theme="twilight"] #app :is(.version-info-card, .settings-backup, .settings-theme, .feedback-card, .share-card, .share-install) { background: #faf7ef; border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] #app .settings-section-note { color: var(--tw-muted); font-size: 12px; line-height: 1.8; }
+body[data-theme="twilight"] #app .version-info-card { color: var(--tw-muted); }
+body[data-theme="twilight"] #app :is(.guide-overview, .guide-more, .onboarding-dock) { background: #faf7ef; border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] .onboarding-dock { background: #faf7ef; border: 1px solid #c7d2c0; border-radius: 18px; box-shadow: 0 6px 25px #17233020; }
+body[data-theme="twilight"] .onboarding-dock__top button { min-height: 44px; }
+body[data-theme="twilight"] .onboarding-dock__actions .btn { min-height: 44px; }
+
+/* Dialogs and feedback are part of the same world, including result screens. */
+body[data-theme="twilight"] :is(.modal, .global-mailbox-modal__sheet, .expedition-dispatch-modal__content, .onboarding-dialog) { background: var(--tw-paper); color: var(--tw-ink); border-color: var(--tw-line); box-shadow: var(--shadow-lg); border-radius: 25px 25px 0 0; }
+body[data-theme="twilight"] .modal-title { font: 500 24px/1.4 var(--tw-serif); letter-spacing: .8px; }
+body[data-theme="twilight"] .modal-close { background: transparent; color: var(--tw-muted); border: 0; }
+body[data-theme="twilight"] :is(.modal-overlay, .global-mailbox-modal, .expedition-dispatch-modal, .onboarding-scrim) { background-color: #0c1624b3; }
+body[data-theme="twilight"] #modal-body .pet-detail { background: transparent; }
+body[data-theme="twilight"] #modal-body .pet-detail__name { font: 500 25px/1.4 var(--tw-serif); color: var(--tw-ink); text-shadow: none; }
+body[data-theme="twilight"] #modal-body :is(.pet-detail__title, .pet-detail__desc, .pet-detail__lore, .pet-detail__summon-line, .bond-story, .bond-status-card, .companion-preview-feed) { color: var(--tw-ink); background: transparent; border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] #modal-body :is(.pet-detail__image, .companion-image-preview__frame) { box-shadow: none; border-radius: 16px; border-color: var(--tw-line); }
+body[data-theme="twilight"] #modal-body .pet-detail__info-row { background: #ebe8de; color: var(--tw-muted); border-color: var(--tw-line); }
+body[data-theme="twilight"] .expedition-dispatch-area__title { color: var(--tw-ink); font-family: var(--tw-serif); }
+body[data-theme="twilight"] :is(.expedition-pet-option, .expedition-dispatch-objective, .expedition-reward-item) { background: #faf7ef; border-color: var(--tw-line); color: var(--tw-ink); box-shadow: none; }
+body[data-theme="twilight"] :is(.expedition-pet-option.selected, .expedition-pet-option--selected) { background: #e2e8dc; border-color: #829782; }
+body[data-theme="twilight"] .expedition-confirm-button { background: var(--tw-green); color: #faf7ef; box-shadow: none; }
+body[data-theme="twilight"] :is(.mailbox-list-item__btn, .mailbox-reward-preview) { background: #faf7ef; color: var(--tw-ink); border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] :is(.mailbox-list-item__title, .mailbox-detail__title) { color: var(--tw-ink); font-weight: 500; }
+body[data-theme="twilight"] :is(.mailbox-list-item__meta, .mailbox-detail__body, .mailbox-detail__claim-note) { color: var(--tw-muted); }
+body[data-theme="twilight"] .mailbox-claim-chip { background: #e0e7db; color: #354e3e; border-color: #c7d2c0; }
+body[data-theme="twilight"] :is(.daily-wheel-modal, .daily-wheel-card) { background: var(--tw-paper); color: var(--tw-ink); border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] .default-summon-result { background: var(--tw-paper); color: var(--tw-ink); }
+body[data-theme="twilight"] .default-summon-result::before { display: none; }
+body[data-theme="twilight"] :is(.default-summon-result__title, .default-summon-showcase__name) { color: var(--tw-ink); font-family: var(--tw-serif); font-weight: 500; text-shadow: none; }
+body[data-theme="twilight"] .default-summon-showcase { background: transparent; box-shadow: none; border-color: var(--tw-line); }
+body[data-theme="twilight"] .default-summon-showcase__altar { opacity: .12; }
+body[data-theme="twilight"] .default-summon-showcase__frame { border-radius: 16px; border-color: #b8ac95; box-shadow: none; background: var(--tw-night); }
+body[data-theme="twilight"] :is(.default-summon-result__eyebrow, .default-summon-showcase__line, .summon-result-single__title, .default-summon-grid-card__name) { color: var(--tw-muted); text-shadow: none; }
+body[data-theme="twilight"] .default-summon-grid-card { background: #faf7ef; border-color: var(--tw-line); box-shadow: none; }
+body[data-theme="twilight"] .default-summon-result__actions { background: var(--tw-paper); border-color: var(--tw-line); }
+body[data-theme="twilight"] .default-summon-btn { background: var(--tw-green); color: #faf7ef; border: 0; box-shadow: none; }
+body[data-theme="twilight"] .default-summon-badge { background: #e1e7db; color: #354e3e; border-color: #c7d2c0; box-shadow: none; }
+body[data-theme="twilight"] .summon-reveal-overlay:is([data-theme="ssr"], [data-theme="ur"]) .summon-reveal-bg { background: #111b27f5; }
+body[data-theme="twilight"] .summon-reveal-overlay:is([data-theme="ssr"], [data-theme="ur"]) .summon-reveal-aura { background: radial-gradient(circle, #dabd881c, transparent 65%); filter: none; }
+body[data-theme="twilight"] .summon-reveal-overlay:is([data-theme="ssr"], [data-theme="ur"]) .summon-reveal-ring { opacity: .15; box-shadow: none; }
+body[data-theme="twilight"] .summon-reveal-overlay:is([data-theme="ssr"], [data-theme="ur"]) .summon-reveal-rarity { font: 400 36px/1.4 Georgia, serif; letter-spacing: 5px; color: var(--tw-gold); text-shadow: none; }
+body[data-theme="twilight"] .summon-reveal-overlay:is([data-theme="ssr"], [data-theme="ur"]) .summon-reveal-pet-frame { border-radius: 16px; box-shadow: none; overflow: hidden; }
+body[data-theme="twilight"] .summon-reveal-overlay:is([data-theme="ssr"], [data-theme="ur"]) .summon-reveal-name { font-family: var(--tw-serif); font-size: 24px; font-weight: 500; text-shadow: none; color: #f6eedf; }
+body[data-theme="twilight"] .summon-reveal-overlay:is([data-theme="ssr"], [data-theme="ur"]) :is(.summon-reveal-title, .summon-reveal-caption) { color: #c9d2c8; font-size: 12px; font-weight: 400; text-shadow: none; }
+body[data-theme="twilight"] .summon-reveal-skip { min-height: 44px; color: #eee8dc; background: #ffffff0c; border-color: #eee8dc36; box-shadow: none; }
+body[data-theme="twilight"] .toast { background: #faf7ef; color: var(--tw-ink); border: 1px solid var(--tw-line); box-shadow: 0 8px 25px #17233025; }
+body[data-theme="twilight"] .toast--success { background: #e3ebdd; color: #354e3e; }
+body[data-theme="twilight"] :is(.toast--reward, .reward-toast) { background: #263d31; color: #f6edda; border: 1px solid #b4ad8633; box-shadow: 0 8px 25px #17233025; text-shadow: none; }
+body[data-theme="twilight"] :is(.toast--warning, .toast--error) { background: #f4e0d8; color: #843c30; }
+body[data-theme="twilight"] .toast--info { background: #e2e8e7; color: #304d5d; }
+
+body[data-theme="twilight"] .twilight-is-reacting .twilight-companion-art { animation: twilight-companion-reaction .72s cubic-bezier(.2,.6,.3,1); }
+@keyframes twilight-companion-reaction { 0%,100% { transform: translateY(0); } 38% { transform: translateY(-5px); filter: brightness(1.12); } }
+@keyframes twilight-page-enter { from { opacity: .65; } to { opacity: 1; } }
+@media (max-width: 350px) {
+  body[data-theme="twilight"] #app .view { padding-inline: 20px; }
+  body[data-theme="twilight"] #app .view > .page-header { margin-inline: -20px; padding-inline: 20px; }
+  body[data-theme="twilight"] #view-tasks > .page-header--tasks { margin: 0; padding: 0; }
+  body[data-theme="twilight"] :is(.twilight-masthead, .twilight-greeting) { padding-left: 21px; }
+  body[data-theme="twilight"] .twilight-greeting h1 { font-size: 28px; }
+  body[data-theme="twilight"] .twilight-greeting > p:last-child { font-size: 9px; }
+  body[data-theme="twilight"] .twilight-companion-art { right: -59px; }
+  body[data-theme="twilight"] .twilight-companion-caption { left: 21px; right: 21px; }
+  body[data-theme="twilight"] .twilight-pet-touch { width: 139px; right: 11px; }
+  body[data-theme="twilight"] .twilight-voice { margin-inline: 21px; }
+  body[data-theme="twilight"] .twilight-journey { padding-inline: 21px; }
+  body[data-theme="twilight"] #twilight-chapter-heading { padding-inline: 21px; }
+  body[data-theme="twilight"] #view-tasks :is(#task-view-tabs, #task-category-filters, #task-view-content, .stats-bar, #home-hub) { margin-left: 21px; margin-right: 21px; }
+  body[data-theme="twilight"] #view-tasks .twilight-task-card { gap: 5px; grid-template-columns: 32px minmax(0,1fr) 28px; }
+  body[data-theme="twilight"] #view-collection .collection-grid { gap: 12px; }
+  body[data-theme="twilight"] #view-collection .collection-card__actions { flex-wrap: wrap; }
+}
+@media (max-height: 740px) and (max-width: 500px) {
+  body[data-theme="twilight"] .twilight-masthead { height: 56px; }
+  body[data-theme="twilight"] .twilight-scene { height: 185px; }
+  body[data-theme="twilight"] .twilight-greeting { padding-top: 12px; }
+  body[data-theme="twilight"] .twilight-greeting h1 { font-size: 26px; line-height: 1.34; margin-top: 6px; }
+  body[data-theme="twilight"] .twilight-greeting > p:last-child { display: none; }
+  body[data-theme="twilight"] .twilight-companion-art { width: 250px; height: 250px; top: -18px; }
+  body[data-theme="twilight"] .twilight-scene--empty .twilight-companion-art { width: 100%; height: 100%; top: 0; }
+  body[data-theme="twilight"] .twilight-pet-touch { top: 20px; height: 95px; }
+  body[data-theme="twilight"] .twilight-voice { margin-top: 8px; }
+  body[data-theme="twilight"] .twilight-voice p { font-size: 10px; line-height: 1.6; padding-top: 2px; }
+  body[data-theme="twilight"] .twilight-journey { padding-top: 8px; padding-bottom: 10px; }
+  body[data-theme="twilight"] #twilight-chapter-heading { padding-top: 16px; }
+  body[data-theme="twilight"] #view-tasks .twilight-task-card { padding-block: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="twilight"] *, body[data-theme="twilight"] *::before, body[data-theme="twilight"] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+body[data-theme="twilight"].reduce-motion *, body[data-theme="twilight"].reduce-motion *::before, body[data-theme="twilight"].reduce-motion *::after { animation: none !important; transition: none !important; }

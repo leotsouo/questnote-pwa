@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="src/styles.css" />
   <link rel="stylesheet" href="src/ui-polish.css" />
   <link rel="stylesheet" href="src/summon-polish.css" />
+  <link rel="stylesheet" href="src/twilight-theme.css" />
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -33,6 +34,7 @@
   <div id="app" class="app">
     <!-- 任務頁 -->
     <main id="view-tasks" class="view active">
+      <section id="twilight-home" class="twilight-home" aria-label="今日的冒險與陪伴" hidden></section>
       <header class="page-header page-header--tasks">
         <div class="page-header__row">
           <div class="page-header__inner">
@@ -54,6 +56,7 @@
         </div>
       </header>
 
+      <div id="twilight-chapter-heading" class="twilight-chapter-heading" hidden><div><p>YOUR DAILY CHAPTER</p><h2>今日任務<span id="twilight-pending"></span></h2></div><button type="button" class="twilight-add-task" data-action="empty-add-task" aria-label="新增任務">＋</button></div>
       <section class="stats-bar" aria-label="資源統計">
         <div class="stat-card stat-card--stardust">
           <span class="stat-icon" aria-hidden="true">✦</span>
@@ -135,6 +138,7 @@
       </header>
 
       <section class="gacha-panel card" id="gacha-panel" data-pool-theme="">
+        <div id="twilight-gacha-scene" class="twilight-gacha-scene" hidden></div>
         <div class="gacha-pool-switcher" id="gacha-pool-switcher" hidden>
           <label class="gacha-pool-switcher__label" for="gacha-pool-select">選擇卡池</label>
           <select id="gacha-pool-select" class="gacha-pool-select" aria-label="選擇召喚卡池"></select>
@@ -295,6 +299,11 @@
       </header>
 
       <section class="more-menu card">
+        <button class="more-menu-item" data-goto="settings" data-style-settings type="button">
+          <span class="more-menu-icon" aria-hidden="true">◐</span>
+          <span class="more-menu-text"><span class="more-menu-label">美術風格</span><span class="more-menu-desc" id="more-active-theme">深色幻想風 · 自由切換三種風格</span></span>
+          <span class="more-menu-arrow" aria-hidden="true">›</span>
+        </button>
         <button class="more-menu-item" data-goto="share" type="button">
           <span class="more-menu-icon" aria-hidden="true">🔗</span>
           <span class="more-menu-text">
@@ -611,6 +620,11 @@
               </div>
               <span class="theme-card__swatch theme-card__swatch--primary-sweet"></span>
             </div>
+          </button>
+          <button type="button" class="theme-card" data-action="select-theme" data-theme="twilight" role="radio" aria-checked="false">
+            <div class="theme-card__header"><span class="theme-card__title">暮光冒險手帳</span><span class="theme-card__badge" data-theme-badge="twilight" hidden>使用中</span></div>
+            <p class="theme-card__desc">森林暮色、溫暖紙頁與同行夥伴，把日常寫成共同成長的旅程。</p>
+            <div class="theme-card__preview" aria-hidden="true"><div class="theme-card__preview-frame theme-card__preview-frame--twilight"><span class="theme-card__preview-btn theme-card__preview-btn--twilight"></span><span class="theme-card__swatch theme-card__swatch--accent-twilight"></span></div><span class="theme-card__swatch theme-card__swatch--primary-twilight"></span></div>
           </button>
         </div>
       </section>

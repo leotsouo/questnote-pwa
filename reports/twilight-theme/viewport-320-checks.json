@@ -1,0 +1,32 @@
+[
+  {
+    "content": 305,
+    "document": 305,
+    "view": "view-gacha",
+    "viewport": 320
+  },
+  {
+    "content": 305,
+    "document": 305,
+    "view": "view-collection",
+    "viewport": 320
+  },
+  {
+    "content": 305,
+    "document": 305,
+    "view": "view-expedition",
+    "viewport": 320
+  },
+  {
+    "content": 305,
+    "document": 305,
+    "view": "view-more",
+    "viewport": 320
+  },
+  {
+    "content": 305,
+    "document": 305,
+    "view": "view-settings",
+    "viewport": 320
+  }
+]

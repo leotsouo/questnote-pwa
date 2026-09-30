@@ -31,7 +31,7 @@ import {
   getTodayViewSections,
   validateDateRange,
 } from './taskFilterService.js';
-import { calculateRewardAmount, calculateAdventureEnergyAmount } from './rewardService.js';
+import { calculateRewardAmount, calculateAdventureEnergyAmount, calculateBondAmount } from './rewardService.js';
 import {
   pullOnce,
   performTenPull,
@@ -67,6 +67,7 @@ import {
   IDLE_THRESHOLD_MS,
 } from './companionDialogueService.js';
 import { setTheme, applyThemeToDocument, normalizeTheme } from './preferencesService.js';
+import { twilightIcon, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
 import {
   pickStatusLine,
   randomStatusInterval,
@@ -574,6 +575,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
 
   uiInitialized = true;
   try {
+    initTwilightChrome();
     bindNavigation();
     bindModals();
     bindDelegatedEvents();
@@ -769,6 +771,9 @@ function bindDelegatedEvents() {
 
       await onRefresh();
 
+      if (isCompleting && state.userPreferences?.theme === 'twilight') {
+        reactTwilightCompanion(state.companion?.dialogues?.praise?.[0]);
+      }
       if (isCompleting && taskViewMode === 'today') {
         requestAnimationFrame(() => {
           document.querySelector(`.task-card[data-id="${CSS.escape(String(id))}"]`)
@@ -1067,6 +1072,10 @@ function bindDelegatedEvents() {
     const item = e.target.closest('[data-goto]');
     if (!item) return;
     switchView(item.dataset.goto);
+    if (item.hasAttribute('data-style-settings')) {
+      document.querySelector('.settings-theme')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+      document.querySelector('[data-action="select-theme"][aria-checked="true"]')?.focus({ preventScroll: true });
+    }
     if (item.hasAttribute('data-scroll-daily-blessing')) {
       homeHubActive = 'blessing';
       dailyBlessingCollapsed = false;
@@ -1271,6 +1280,7 @@ export function switchView(viewName) {
   document.querySelectorAll('.nav-item').forEach((n) => n.classList.remove('active'));
 
   const view = document.getElementById(`view-${viewName}`);
+  if (state?.userPreferences?.theme === 'twilight') window.scrollTo(0, 0);
   const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'feedback' || viewName === 'share' ? 'more' : viewName;
   const nav = document.querySelector(`.nav-item[data-view="${navView}"]`);
   if (view) view.classList.add('active');
@@ -1688,6 +1698,7 @@ export function renderSharedUI() {
   updateGachaAffordability();
   renderGachaDailyBlessingEntry();
   maybeRefreshExpeditionBubble();
+  syncTwilightHome(state);
   refreshOnboarding();
 }
 
@@ -1847,6 +1858,7 @@ function renderTasksView() {
   renderTodayPlanSummary(tasks, today);
   renderHabitSummary();
   renderCategoryFilters(categories);
+  syncTwilightHome(state);
 
   const catFilterEl = document.getElementById('task-category-filters');
   if (catFilterEl) {
@@ -1855,6 +1867,7 @@ function renderTasksView() {
 
   const contentEl = document.getElementById('task-view-content');
   if (!contentEl) return;
+  contentEl.dataset.taskView = taskViewMode;
 
   if (taskViewMode === 'today') {
     contentEl.innerHTML = renderTodayView(tasks, today);
@@ -2905,6 +2918,21 @@ function renderTaskCard(task) {
 
   const preview = task.content.split('\n').slice(1).filter((line) => line.trim()).slice(0, 2).join(' ');
 
+  if (state.userPreferences?.theme === 'twilight') {
+    return `<article class="task-card twilight-task-card ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
+      <button type="button" class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" aria-label="${task.completed ? '取消完成' : '完成'} ${escapeHtml(task.title)}">${task.completed ? twilightIcon('check') : ''}</button>
+      <div class="twilight-task-body">
+        <div class="task-card__meta"><span>${formatCategoryLabel(category)}</span>${task.priority !== 'normal' ? `<span class="twilight-task-priority">${escapeHtml(PRIORITY_LABELS[task.priority])}</span>` : ''}${task.dueDate || task.startDate ? `<span class="${dateClass}">${escapeHtml(dateText)}</span>` : ''}${!inPlan && !task.completed ? '<span>未排入今日</span>' : ''}</div>
+        <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
+        ${preview ? `<p class="task-card__preview">${escapeHtml(preview)}</p>` : ''}
+        ${subtasksHtml}
+        ${!task.completed ? `<div class="task-card__rewards"><span>✦ ${stardust} 星塵</span><span>${twilightIcon('energy')}${energy} 能量</span>${state.companion ? `<span>${twilightIcon('heart')}+${calculateBondAmount(task)} 親密度</span>` : ''}</div>` : doneInfo}
+        ${expandBtn ? `<div class="twilight-task-expander">${expandBtn}</div>` : ''}
+      </div>
+      <details class="twilight-task-menu"><summary aria-label="${escapeHtml(task.title)}：更多操作">${twilightIcon('more')}</summary><div class="task-card__actions">${planBtn}<button type="button" class="btn btn--ghost btn--sm" data-action="edit">編輯</button><button type="button" class="btn btn--ghost btn--sm btn--danger" data-action="delete">刪除</button></div></details>
+    </article>`;
+  }
+
   return `
     <article class="task-card card-animate ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
       <div class="task-card__header">
@@ -3284,6 +3312,7 @@ function getPetComfortLine(companion) {
 }
 
 function playHomeCompanionPetEffect() {
+  reactTwilightCompanion();
   const card = document.querySelector('.companion-card');
   const img = document.querySelector('.companion-card__image');
   triggerComfortVibration();
@@ -4419,6 +4448,7 @@ function isModalOpen() {
 }
 
 function setCompanionBubbleText(text, animate = true) {
+  setTwilightCompanionLine(text);
   const bubbleText = document.getElementById('companion-bubble-text');
   if (!bubbleText) return;
 
@@ -4777,6 +4807,7 @@ function renderGachaPoolSwitcher() {
 
 function renderGachaView() {
   const pool = getSelectedGachaPool();
+  syncTwilightGacha(state, pool);
   if (!pool) { renderGachaUnavailable(); return; }
 
   const stats = ensurePoolPity(state.gachaStats || {}, pool.id);
@@ -7837,6 +7868,8 @@ async function handleWorkshopClick(e) {
 
 function renderMoreView() {
   renderVersionInfo();
+  const themeNames = { default: '深色幻想風', sweet: '甜美可愛風', twilight: '暮光冒險手帳' };
+  setText('more-active-theme', `${themeNames[state?.userPreferences?.theme] || themeNames.default} · 自由切換三種風格`);
 
   const summary = state?.achievementSummary;
   const badge = document.getElementById('more-achievements-badge');

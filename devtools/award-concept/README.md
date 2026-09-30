@@ -1,7 +1,9 @@
 # QuestNote Visual Study 01
 
-Single-screen, localhost-only design experiment. Production source, services,
-catalogs, progression rules and service worker are unchanged.
+Original single-screen, localhost-only design experiment. Its approved art direction
+is now available throughout the source App as the optional `twilight` theme in
+More → Art style. The original comparison and captured baseline remain here.
+See [full-theme validation](../../reports/twilight-theme/README.md) for integration status.
 
 From this worktree, run Node.js 24:
 
