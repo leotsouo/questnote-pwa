@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { APP_SHARE_URL, WEBSITE_SHARE_URL, APP_SHARE_TEXT, APP_SHARE_MESSAGE, shareQuestNote, copyQuestNoteInvitation } from '../src/shareService.js';
 
-test('native share includes the official website once and the direct app once', async () => {
+test('native share has one official website URL and no competing app preview', async () => {
   let payload;
   const result = await shareQuestNote({ share: async (data) => { payload = data; } });
   assert.equal(result, 'shared');
@@ -11,9 +11,10 @@ test('native share includes the official website once and the direct app once', 
     text: APP_SHARE_TEXT,
     url: WEBSITE_SHARE_URL,
   });
-  assert.equal(payload.text.split(APP_SHARE_URL).length - 1, 1);
+  assert.equal(payload.text.includes(APP_SHARE_URL), false);
   assert.equal(payload.text.includes(WEBSITE_SHARE_URL), false);
   assert.match(payload.text, /與夥伴一起成長/);
+  assert.equal(payload.text.includes('https://'), false);
 });
 
 test('unsupported sharing and user cancellation remain distinct', async () => {
@@ -30,7 +31,7 @@ test('copy uses Clipboard API and falls back when permission is denied', async (
   let copied = '';
   assert.equal(await copyQuestNoteInvitation({ clipboard: { writeText: async (value) => { copied = value; } } }), true);
   assert.equal(copied, APP_SHARE_MESSAGE);
-  assert.equal(copied.split(APP_SHARE_URL).length - 1, 1);
+  assert.equal(copied.includes(APP_SHARE_URL), false);
   assert.equal(copied.split(WEBSITE_SHARE_URL).length - 1, 1);
 
   let removed = false;

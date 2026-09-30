@@ -363,9 +363,9 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   let sourceHtml = source.get('index.html').toString('utf8');
   if (/\bname\s*=\s*['"]questnote-artifact['"]/i.test(sourceHtml)) throw new Error('Source index already has an artifact marker');
   const publicUrl = new URL(scopePath, 'https://leotsouo.github.io').href;
-  const publicImageUrl = new URL('assets/brand/questnote-icon-512.png', publicUrl).href;
+  const publicImageUrl = 'https://questnote.taste-compare.com/assets/questnote-og-v2.jpg';
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:title" content="[^"]+" \/>/,
-    `<meta property="og:title" content="${profile === 'production' ? 'QuestNote' : 'QuestNote 預覽'}" />`, 'OG title');
+    `<meta property="og:title" content="${profile === 'production' ? 'QuestNote｜小事完成，冒險繼續' : 'QuestNote 預覽'}" />`, 'OG title');
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:url" content="[^"]+" \/>/,
     `<meta property="og:url" content="${publicUrl}" />`, 'OG URL');
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:image" content="[^"]+" \/>/,
