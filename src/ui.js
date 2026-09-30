@@ -1,6 +1,8 @@
 /**
  * UI 渲染與互動邏輯
  */
+import { initReminders, renderReminderSettings } from './reminderController.js';
+import { shiftDate } from './reminderRules.js';
 import {
   createTask,
   updateTask,
@@ -583,6 +585,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     bindAchievementClaimAll();
     bindGlobalMailboxEntry();
     initFeedback({ navigate: switchView });
+    initReminders({ openToday: () => { taskViewMode = 'today'; switchView('tasks'); renderTasksView(); } });
 
     document.getElementById('collection-filters')?.addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
@@ -2752,11 +2755,15 @@ function renderTodayView(tasks, today) {
 
   let html = renderTaskListSection('今日計畫', sections.planned, plannedEmpty);
   html += renderTaskListSection('今天到期', sections.dueToday);
+  html += renderTaskListSection('今天開始', filtered.filter((task) => !task.completed && task.startDate === today
+    && task.plannedDate !== today && task.dueDate !== today));
   html += renderTaskListSection('逾期未完成', sections.overdue,
     sections.overdue.length === 0 && taskCategoryFilter !== 'all' ? '' :
     sections.overdue.length === 0 ? emptyStateHtml('✓', '沒有逾期任務', '目前節奏保持得不錯。') : ''
   );
   html += renderCollapsibleTaskSection('今日已完成', sections.completedToday);
+  const tomorrow = shiftDate(today, 1);
+  html += renderTaskListSection('明日計畫', sortTasks(filtered.filter((task) => !task.completed && task.plannedDate === tomorrow), tomorrow));
 
   if (!html.trim()) {
     return emptyStateHtml('📋', '目前沒有待辦任務', '新增一個小任務，讓你的夥伴開始累積能量吧。', '新增任務', 'empty-add-task');
@@ -3030,6 +3037,17 @@ function openTaskForm(taskId = null) {
         <span class="settings-toggle__switch" aria-hidden="true"></span>
       </label>
 
+      <div class="form-field">
+        <label class="form-label" for="task-plan-date">安排日期</label>
+        <input type="date" id="task-plan-date" class="form-input" value="${escapeHtml(task?.plannedDate || '')}" />
+        <div class="form-actions">
+          <button type="button" class="btn btn--secondary btn--sm" data-plan-date="today">今天</button>
+          <button type="button" class="btn btn--secondary btn--sm" data-plan-date="tomorrow">明天</button>
+          <button type="button" class="btn btn--ghost btn--sm" data-plan-date="clear">未安排</button>
+        </div>
+        <p class="form-hint">前一天選「明天」，隔天會加入今日計畫與每日提醒。</p>
+      </div>
+
       <label class="form-label">子任務</label>
       <div id="subtask-form-list" class="subtask-form-list">${subtaskListHtml}</div>
       <p class="form-hint subtask-form-empty" id="subtask-form-empty" ${subtasks.length ? 'hidden' : ''}>這個任務還沒有子任務，可以把大型任務拆成幾個小步驟。</p>
@@ -3046,6 +3064,18 @@ function openTaskForm(taskId = null) {
   `);
 
   document.getElementById('form-cancel')?.addEventListener('click', closeModal);
+
+  document.querySelectorAll('[data-plan-date]').forEach((button) => button.addEventListener('click', () => {
+    const date = button.dataset.planDate === 'clear' ? '' : shiftDate(getTodayDateString(), button.dataset.planDate === 'tomorrow' ? 1 : 0);
+    document.getElementById('task-plan-date').value = date;
+    document.getElementById('task-plan-today').checked = date === getTodayDateString();
+  }));
+  document.getElementById('task-plan-date')?.addEventListener('change', (event) => {
+    document.getElementById('task-plan-today').checked = event.target.value === getTodayDateString();
+  });
+  document.getElementById('task-plan-today')?.addEventListener('change', (event) => {
+    document.getElementById('task-plan-date').value = event.target.checked ? getTodayDateString() : '';
+  });
 
   document.querySelectorAll('#task-priority-group .segmented-control__btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -3113,6 +3143,7 @@ function openTaskForm(taskId = null) {
     const startDate = document.getElementById('task-start-date').value || null;
     const dueDate = document.getElementById('task-due-date').value || null;
     const planToday = document.getElementById('task-plan-today').checked;
+    const plannedDate = document.getElementById('task-plan-date').value || null;
     const dateError = document.getElementById('task-date-error');
 
     if (!content) {
@@ -3154,6 +3185,7 @@ function openTaskForm(taskId = null) {
       startDate,
       dueDate,
       planToday,
+      plannedDate,
       subtasks: finalSubtasks,
     };
 
@@ -3169,7 +3201,7 @@ function openTaskForm(taskId = null) {
           dueDate,
           subtasks: finalSubtasks,
           isPlannedToday: planToday,
-          plannedDate: planToday ? todayStr : null,
+          plannedDate,
         });
         showToast('任務已更新', 'success');
       } else {
@@ -8830,6 +8862,7 @@ export function renderVersionInfo() {
 }
 
 function renderSettingsView() {
+  void renderReminderSettings();
   renderVersionInfo();
 
   if (!state) return;

@@ -587,6 +587,38 @@
         </div>
       </header>
 
+      <section class="card settings-reminders">
+        <h2 class="section-title">每日任務與習慣提醒</h2>
+        <p class="settings-section-note">睡前把任務安排到明天，隔天在設定時間收到今日摘要。iPhone 請先加入主畫面，再從主畫面 App 啟用。</p>
+        <form id="reminder-form">
+          <div class="form-field"><label class="form-label" for="reminder-time">每天提醒時間</label><input id="reminder-time" type="time" class="form-input" value="08:00" required /></div>
+          <p id="reminder-timezone" class="form-hint"></p>
+          <div class="reminder-options">
+            <label><input type="checkbox" id="reminder-tasks" checked /> 今日任務</label>
+            <label><input type="checkbox" id="reminder-habits" checked /> 每日習慣</label>
+            <label><input type="checkbox" id="reminder-weekly" checked /> 本週習慣進度</label>
+            <label><input type="checkbox" id="reminder-overdue" /> 逾期待處理</label>
+            <label><input type="checkbox" id="reminder-titles" /> 在通知顯示項目名稱</label>
+          </div>
+          <p class="form-hint">預設只顯示數量。今天沒有待辦時不發送；每天最多一則摘要。</p>
+          <label class="reminder-consent"><input type="checkbox" id="reminder-consent" /> 我允許同步提醒所需的日期、完成狀態與習慣規則；開啟名稱預覽時另同步短標題。任務全文與遊戲資料不上傳。</label>
+          <div class="form-actions reminder-actions">
+            <button id="reminder-enable" type="button" class="btn btn--primary">啟用每日提醒</button>
+            <button id="reminder-save" type="submit" class="btn btn--secondary">儲存時間與內容</button>
+            <button id="reminder-disable" type="button" class="btn btn--ghost" hidden>關閉提醒</button>
+          </div>
+          <p id="reminder-status" class="form-hint" role="status">尚未啟用</p>
+          <p id="reminder-next" class="form-hint"></p><p id="reminder-synced" class="form-hint"></p>
+          <p id="reminder-hint" class="form-hint"></p>
+          <div class="form-actions reminder-actions">
+            <button id="reminder-test" type="button" class="btn btn--secondary btn--sm" hidden>發送測試通知</button>
+            <button id="reminder-sync" type="button" class="btn btn--ghost btn--sm">重新同步</button>
+            <button id="reminder-open-today" type="button" class="btn btn--ghost btn--sm">查看今日清單</button>
+          </div>
+          <p id="reminder-result" class="form-hint" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
       <section class="card settings-theme">
         <h2 class="section-title">美術風格</h2>
         <p class="settings-section-note">
