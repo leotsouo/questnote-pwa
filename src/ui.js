@@ -7631,8 +7631,7 @@ function renderWorkshopView() {
         <span class="workshop-summary__label">道具庫存</span>
         <span class="workshop-summary__value">${totalItems}</span>
       </div>
-    </div>
-    <p class="workshop-summary__hint">使用探險取得的材料製作禮物，提升寵物親密度。</p>`;
+    </div>`;
 
   if (workshopTab === 'materials') {
     if (allMaterialEntries.length === 0) {
@@ -7683,11 +7682,6 @@ function renderWorkshopView() {
             const preview = getCraftingPreview(craftable.id, 1, wallet);
             const maxQty = preview.maxQuantity;
             const enough = preview.canCraft;
-            const favoriteHint =
-              craftable.type === 'favorite_bond_item'
-                ? `<p class="workshop-craft-card__favorite">喜歡的寵物可獲得 +${craftable.effect?.favoriteBonusBondExp ?? craftable.effect?.bondExp ?? 0}</p>`
-                : '';
-
             return `
               <article class="workshop-craft-card card ${enough ? '' : 'workshop-craft-card--disabled'}">
                 <div class="workshop-craft-card__header">
@@ -7695,10 +7689,9 @@ function renderWorkshopView() {
                   <span class="rarity-badge rarity-badge--${(craftable.rarity || 'n').toLowerCase()}">${escapeHtml(craftable.rarity || '?')}</span>
                 </div>
                 <p class="workshop-craft-card__effect">${escapeHtml(formatItemEffect(craftable))}</p>
-                ${favoriteHint}
                 <p class="workshop-craft-card__theme">主題：${escapeHtml(getGiftThemeLabel(craftable))}</p>
                 <p class="workshop-craft-card__desc">${escapeHtml(craftable.description || '')}</p>
-                ${craftable.type === 'favorite_bond_item' ? '<p>已擁有 ' + (state.enrichedCollection || []).filter((pet) => pet.owned && getFavoriteBonus(craftable, pet).isFavorite).length + ' 位喜歡它的夥伴</p>' : '<p>通用禮物，所有夥伴效果相同</p>'}
+                <p class="workshop-craft-card__affinity">${craftable.type === 'favorite_bond_item' ? '已擁有 ' + (state.enrichedCollection || []).filter((pet) => pet.owned && getFavoriteBonus(craftable, pet).isFavorite).length + ' 位喜歡它的夥伴' : '通用禮物，所有夥伴效果相同'}</p>
                 <p class="workshop-craft-card__source">材料來源：${escapeHtml([...new Set(Object.keys(craftable.recipe || {}).map((id) => getMaterialInfo(id).sourceArea).filter(Boolean))].join('、'))}</p>
                 <ul class="workshop-recipe-list">
                   ${preview.materials

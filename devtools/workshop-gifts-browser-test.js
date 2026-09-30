@@ -160,6 +160,28 @@ document.getElementById('run').addEventListener('click', async (event) => {
           frame.style.width = `${width}px`; await wait(160);
           const section = get('#workshop-content');
           assert(section.scrollWidth <= section.clientWidth + 2, `Overflow at ${theme}/${width}`);
+          const typeRoles = [
+            ['.page-title', 24], ['.page-subtitle', 15], ['.section-title', 17],
+            ['.segmented-control__btn', 15], ['.workshop-gift-item__name', 17],
+            ['.workshop-gift-item__effect', 15], ['.workshop-gift-pet__name', 17],
+            ['.workshop-gift-pet__reason', 15], ['.workshop-gift-pet__meta', 13],
+            ['.workshop-gift-preview__list', 15], ['.workshop-gift-preview .btn', 15],
+          ];
+          const family = win().getComputedStyle(get('#view-workshop')).fontFamily;
+          for (const [selector, size] of typeRoles) {
+            const style = win().getComputedStyle(get(`#view-workshop ${selector}`));
+            assert(parseFloat(style.fontSize) === size, `Unexpected type size ${selector} at ${theme}/${width}: ${style.fontSize}`);
+            assert(style.fontFamily === family, `Mixed font family ${selector} at ${theme}/${width}`);
+          }
+          await click('[data-workshop-tab="materials"]');
+          assert(parseFloat(win().getComputedStyle(get('.workshop-material-card h3')).fontSize) === 17, 'Material title type mismatch');
+          assert(parseFloat(win().getComputedStyle(get('.workshop-material-card__desc')).fontSize) === 15, 'Material body type mismatch');
+          await click('[data-workshop-tab="craft"]');
+          assert(parseFloat(win().getComputedStyle(get('.workshop-craft-card h3')).fontSize) === 17, 'Recipe title type mismatch');
+          assert(parseFloat(win().getComputedStyle(get('.workshop-craft-card__desc')).fontSize) === 15, 'Recipe body type mismatch');
+          assert(parseFloat(win().getComputedStyle(get('.workshop-craft-card__affinity')).fontSize) === 13, 'Recipe affinity type mismatch');
+          assert(get('#workshop-content').scrollWidth <= get('#workshop-content').clientWidth + 2, `Recipe overflow at ${theme}/${width}`);
+          await giftTab(); await selectItem('item_fire_meat'); await selectPet('pet_n04');
           details.push({ theme, width, scrollWidth: section.scrollWidth, clientWidth: section.clientWidth });
         }
       }
