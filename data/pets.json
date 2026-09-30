@@ -1160,6 +1160,450 @@
         "card": "assets/pets/variants/pet_ur06-card-384-df1dbd7eadff.webp",
         "stage": "assets/pets/variants/pet_ur06-stage-960-df1dbd7eadff.webp"
       }
+    },
+    {
+      "id": "pet_n20",
+      "name": "燼囊旅鼠",
+      "rarity": "N",
+      "image": "assets/pets/pet_n20.png",
+      "description": "背著陶製火種罐的小旅鼠，總在出航前穿過結霜棧橋，把第一點暖光送上航標。牠跑得又快又緊張，卻從未因害怕而忘記答應夥伴的事。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "lemming",
+      "element": "oath_ember",
+      "visualTheme": "fjord_ember_courier",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n20-card-384-a3accd064e77.webp",
+        "stage": "assets/pets/variants/pet_n20-stage-960-a3accd064e77.webp"
+      }
+    },
+    {
+      "id": "pet_n21",
+      "name": "纜結海鸚",
+      "rarity": "N",
+      "image": "assets/pets/pet_n21.png",
+      "description": "橙喙黑羽的船岸傳訊員，胸前航繩結總繫得整整齊齊。牠叼著赭紅訊旗迎風起落，讓高空守望與甲板上的每次行動接得上彼此。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "puffin",
+      "element": "fjord_wind",
+      "visualTheme": "fjord_signal_puffin",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n21-card-384-fe35c6c3aec7.webp",
+        "stage": "assets/pets/variants/pet_n21-stage-960-fe35c6c3aec7.webp"
+      }
+    },
+    {
+      "id": "pet_n22",
+      "name": "鉚殼岸蟹",
+      "rarity": "N",
+      "image": "assets/pets/pet_n22.png",
+      "description": "背著船木小匣的霧藍岸蟹，守著船塢裡最容易被忽略的鉚釘與鐵件。當冰水拍上修船台，牠總是先扣住那枚不能少的零件，再挪回安全處。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "shore_crab",
+      "element": "shore_stone",
+      "visualTheme": "fjord_rivet_crab",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n22-card-384-217c5b56309b.webp",
+        "stage": "assets/pets/variants/pet_n22-stage-960-217c5b56309b.webp"
+      }
+    },
+    {
+      "id": "pet_r17",
+      "name": "槳歌斑海豹",
+      "rarity": "R",
+      "image": "assets/pets/pet_r17.png",
+      "description": "穿梭船舷與浮冰的斑海豹，胸側帶著隨時可用的救援繩環。牠用拍水聲替槳手打節拍，也會立刻轉身，接回任何跟不上隊伍的夥伴。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "spotted_seal",
+      "element": "fjord_water",
+      "visualTheme": "fjord_oarsong_rescuer",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r17-card-384-4a61cde73a55.webp",
+        "stage": "assets/pets/variants/pet_r17-stage-960-4a61cde73a55.webp"
+      }
+    },
+    {
+      "id": "pet_r18",
+      "name": "鍛火獠豬",
+      "rarity": "R",
+      "image": "assets/pets/pet_r18.png",
+      "description": "石爐前的赭鬃野豬，以強健前蹄踏動鍛錘，替長船打出可靠的鐵件。牠說話直、動作快，卻會為一枚不夠牢的船釘重新升火。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "wild_boar",
+      "element": "forge_fire",
+      "visualTheme": "fjord_tusk_forge",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r18-card-384-13f5763d98a2.webp",
+        "stage": "assets/pets/variants/pet_r18-stage-960-13f5763d98a2.webp"
+      }
+    },
+    {
+      "id": "pet_r19",
+      "name": "織帆雪貂",
+      "rarity": "R",
+      "image": "assets/pets/pet_r19.png",
+      "description": "白毛深尾的靈巧帆手，沿著桅桿收緊補線，讓破帆重新接住海風。牠總說修補只是小事，卻記得每位夥伴需要什麼樣的風。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "ferret",
+      "element": "sail_wind",
+      "visualTheme": "fjord_sailweaver",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r19-card-384-bfab16af79e6.webp",
+        "stage": "assets/pets/variants/pet_r19-stage-960-bfab16af79e6.webp"
+      }
+    },
+    {
+      "id": "pet_sr13",
+      "name": "刻潮築舟狸",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr13.png",
+      "description": "以寬尾壓穩船材的築船師，能從木料的回聲聽出承重的薄弱處。牠最得意的作品從不只屬於自己，每根樑上都有夥伴一同修正的痕跡。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "beaver",
+      "element": "resonant_wood",
+      "visualTheme": "fjord_keelwright",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr13-card-384-4a69722de81b.webp",
+        "stage": "assets/pets/variants/pet_sr13-stage-960-4a69722de81b.webp"
+      }
+    },
+    {
+      "id": "pet_sr14",
+      "name": "霜途馴鹿",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr14.png",
+      "description": "佩著航向石的高腿馴鹿，會停下來聽冰岸的振動，再以角尖微光標出下一處落腳點。牠探路時常常回首，確認隊伍看清方向才踏出下一步。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "reindeer",
+      "element": "ice_path",
+      "visualTheme": "fjord_frost_pathfinder",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr14-card-384-c749636bc89a.webp",
+        "stage": "assets/pets/variants/pet_sr14-stage-960-c749636bc89a.webp"
+      }
+    },
+    {
+      "id": "pet_sr15",
+      "name": "峽歌雷鳥",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr15.png",
+      "description": "站上木桶便昂首領唱的白羽雷鳥，歌聲能穿過峽灣風聲，將凌亂槳拍匯成同一節奏。牠也會害怕，但總願意替全船先唱出那一句。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "rock_ptarmigan",
+      "element": "oath_song",
+      "visualTheme": "fjord_deck_chorister",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr15-card-384-26ff3776714d.webp",
+        "stage": "assets/pets/variants/pet_sr15-stage-960-26ff3776714d.webp"
+      }
+    },
+    {
+      "id": "pet_ssr08",
+      "name": "風眼誓鴉",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr08.png",
+      "description": "展翼穿過暴風雲牆的渡鴉，墨羽邊緣亮著細銅色誓紋。牠讀出亂流間短暫的通道，將前進的時機傳向甲板，然後回到風最急的高處。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "raven",
+      "element": "storm_wind",
+      "visualTheme": "fjord_stormwatch_raven",
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "穿雲守望 · 把握前行之刻"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ssr08-card-384-2ce7d7ec4f2d.webp",
+        "stage": "assets/pets/variants/pet_ssr08-stage-960-2ce7d7ec4f2d.webp"
+      }
+    },
+    {
+      "id": "pet_ssr09",
+      "name": "深潮領航鯨",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr09.png",
+      "description": "寬闊弓額與淺色下頷映著深水微光，低沉鯨鳴沿冰壁根部迴盪。牠辨認冰下暗流，為船隊指出能通行的水線，也替匆忙的心留出換氣的餘裕。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "bowhead_whale",
+      "element": "deep_current",
+      "visualTheme": "fjord_deepwater_guide",
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "深潮回聲 · 引舟穿越冰灣"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ssr09-card-384-3a92a1c066ba.webp",
+        "stage": "assets/pets/variants/pet_ssr09-stage-960-3a92a1c066ba.webp"
+      }
+    },
+    {
+      "id": "pet_ur07",
+      "name": "破曉誓角麝牛",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur07.png",
+      "description": "肩覆霜雪、巨角映火的遠航領袖，總在逆風最強時率先踏上岩脊。牠把夥伴付諸行動的承諾匯成航光，讓每一點微火都成為全隊看得見的路。",
+      "poolTags": [
+        "frost_oath_fjord"
+      ],
+      "seriesId": "frost_oath_fjord",
+      "speciesType": "muskox",
+      "element": "dawn_oathfire",
+      "visualTheme": "fjord_dawnbreak_oathleader",
+      "presentation": {
+        "revealKey": "ur",
+        "revealCaption": "眾誓破曉 · 一同迎風啟航"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ur07-card-384-223687e6afa8.webp",
+        "stage": "assets/pets/variants/pet_ur07-stage-960-223687e6afa8.webp"
+      }
+    },
+    {
+      "id": "pet_n26",
+      "name": "方糖絨兔",
+      "rarity": "N",
+      "image": "assets/pets/pet_n26.png",
+      "description": "毛尖沾著金色糖粒的乳白小兔，總把慶祝用的方糖一塊塊擺齊。牠喜歡替不起眼的小進展留一個位置，也把第一塊方糖推給剛踏進糖庭的旅人。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "rabbit",
+      "element": "sugar_spark",
+      "visualTheme": "sugar_cube_fluff",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n26-card-384-ed64ce147f71.webp",
+        "stage": "assets/pets/variants/pet_n26-stage-960-ed64ce147f71.webp"
+      }
+    },
+    {
+      "id": "pet_n27",
+      "name": "跳跳果凍蛙",
+      "rarity": "N",
+      "image": "assets/pets/pet_n27.png",
+      "description": "萊姆綠的果凍小蛙住在溫室淺池，落水後總會隨漣漪彈回岸邊。牠把每次失足都當成重選落腳處的機會，最愛陪朋友試試看下一跳。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "frog",
+      "element": "jelly_ripple",
+      "visualTheme": "lime_jelly_pond",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n27-card-384-16777d42c0a8.webp",
+        "stage": "assets/pets/variants/pet_n27-stage-960-16777d42c0a8.webp"
+      }
+    },
+    {
+      "id": "pet_n28",
+      "name": "奶油曲奇刺蝟",
+      "rarity": "N",
+      "image": "assets/pets/pet_n28.png",
+      "description": "背刺散著奶油曲奇香的小刺蝟，常在烘焙街窗台替新出爐的點心守溫。牠話不多，總等朋友坐穩了，才輕輕挪近那一點暖香。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "hedgehog",
+      "element": "biscuit_warmth",
+      "visualTheme": "butter_cookie_spines",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n28-card-384-32ef9e7edd47.webp",
+        "stage": "assets/pets/variants/pet_n28-stage-960-32ef9e7edd47.webp"
+      }
+    },
+    {
+      "id": "pet_r23",
+      "name": "薄荷拐杖鼬",
+      "rarity": "R",
+      "image": "assets/pets/pet_r23.png",
+      "description": "尾巴帶著薄荷條紋的靈巧小鼬，穿過糖晶拱門時總留下一縷清爽風。牠最擅長找替代小路，讓卡住的事情也有繼續前進的方法。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "weasel",
+      "element": "mint_breeze",
+      "visualTheme": "mint_candy_cane_tail",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r23-card-384-788893677732.webp",
+        "stage": "assets/pets/variants/pet_r23-stage-960-788893677732.webp"
+      }
+    },
+    {
+      "id": "pet_r24",
+      "name": "泡芙栗鼠",
+      "rarity": "R",
+      "image": "assets/pets/pet_r24.png",
+      "description": "像剛出爐泡芙般圓滾滾的栗鼠，會用蓬鬆毛團把小布巾暖好。牠不擅長熱鬧招呼，卻總替晚到的朋友留下最柔軟的座位。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "chinchilla",
+      "element": "cream_cloud",
+      "visualTheme": "cream_puff_chinchilla",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r24-card-384-c6173cdc592b.webp",
+        "stage": "assets/pets/variants/pet_r24-stage-960-c6173cdc592b.webp"
+      }
+    },
+    {
+      "id": "pet_r25",
+      "name": "莓糖卷尾松鼠",
+      "rarity": "R",
+      "image": "assets/pets/pet_r25.png",
+      "description": "卷尾映著莓紅糖光的小松鼠，記得每位朋友喜歡的甜味，卻偶爾忘了自己的安排。牠正學著把今天最重要的事也放進心裡那座小糖罐。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "squirrel",
+      "element": "berry_glaze",
+      "visualTheme": "berry_candy_spiral_tail",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r25-card-384-70530265c2f2.webp",
+        "stage": "assets/pets/variants/pet_r25-stage-960-70530265c2f2.webp"
+      }
+    },
+    {
+      "id": "pet_sr19",
+      "name": "馬卡龍錦羽孔雀",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr19.png",
+      "description": "扇尾排著薄荷、莓粉與淡紫羽眼的孔雀，總能把不同甜香放在恰好的位置。牠相信漂亮的宴席來自彼此襯托，也正學著接受一點不對稱。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "peacock",
+      "element": "pastel_harmony",
+      "visualTheme": "macaron_fan_feathers",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr19-card-384-0b56c8aaaf55.webp",
+        "stage": "assets/pets/variants/pet_sr19-stage-960-0b56c8aaaf55.webp"
+      }
+    },
+    {
+      "id": "pet_sr20",
+      "name": "可可熔心龍",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr20.png",
+      "description": "可可棕小龍的胸前藏著一點琥珀暖光，能替烘焙街穩住爐邊溫度。牠原本一熱心就把火加大，如今會先聽朋友需要多暖，再慢慢呼出熱氣。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "small_dragon",
+      "element": "cocoa_ember",
+      "visualTheme": "chocolate_lava_heart",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr20-card-384-536044295f30.webp",
+        "stage": "assets/pets/variants/pet_sr20-stage-960-536044295f30.webp"
+      }
+    },
+    {
+      "id": "pet_ssr12",
+      "name": "琉糖星翼蝶",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr12.png",
+      "description": "四片硬糖晶翼折出莓粉、薄荷與琥珀光的蝶，是糖晶溫室的細心照看者。牠能讓不起眼的晶芽也被看見，從不要求每一份慶祝都同樣耀眼。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "butterfly",
+      "element": "sugar_prism",
+      "visualTheme": "hard_candy_prism_butterfly",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ssr12-card-384-1cbe693844eb.webp",
+        "stage": "assets/pets/variants/pet_ssr12-stage-960-1cbe693844eb.webp"
+      }
+    },
+    {
+      "id": "pet_ssr13",
+      "name": "蜜曦盛宴小熊貓",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr13.png",
+      "description": "橘紅毛、焦糖環尾的小熊貓在糖庭晨光裡召集分享宴席。牠把糖晶與暖香放上同一張小桌，不比誰帶來的甜更多，只確認每位夥伴都有坐下的位置。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "red_panda",
+      "element": "honey_dawn",
+      "visualTheme": "confectionery_feast_red_panda",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ssr13-card-384-f22e689544f6.webp",
+        "stage": "assets/pets/variants/pet_ssr13-stage-960-f22e689544f6.webp"
+      }
+    },
+    {
+      "id": "pet_ur09",
+      "name": "焦糖布蕾海獺",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur09.png",
+      "description": "琥珀背毛映著薄脆糖光的海獺，在暖池邊慢慢照看小碟布蕾。牠懂得等火候，也懂得在恰好的時候輕輕敲開，讓完成的香氣真正散出來。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "sea_otter",
+      "element": "caramel_glow",
+      "visualTheme": "brulee_amber_otter",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ur09-card-384-57693be9d2b4.webp",
+        "stage": "assets/pets/variants/pet_ur09-stage-960-57693be9d2b4.webp"
+      }
+    },
+    {
+      "id": "pet_ur10",
+      "name": "千層奶霜天鵝",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur10.png",
+      "description": "圓滾滾、奶霜羽毛蓬鬆的親人小天鵝，小翅膀與尾羽藏著金黃千層酥皮。牠總歪著頭聽朋友說今天的小事，再用柔柔的暖香陪對方慶祝。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "swan",
+      "element": "millefeuille_cream",
+      "visualTheme": "cute_millefeuille_swan",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ur10-card-384-20684b478872.webp",
+        "stage": "assets/pets/variants/pet_ur10-stage-960-20684b478872.webp"
+      }
     }
   ]
 }

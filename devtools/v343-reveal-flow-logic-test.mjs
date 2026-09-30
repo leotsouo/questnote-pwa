@@ -5,6 +5,7 @@
 import { readFileSync } from 'fs';
 import { pathToFileURL } from 'url';
 import { createRequire } from 'module';
+import { isDeepStrictEqual } from 'node:util';
 
 const root = process.cwd();
 const pets = JSON.parse(readFileSync(`${root}/data/pets.json`, 'utf8')).pets;
@@ -42,8 +43,15 @@ assert(dbText.includes('const DB_VERSION = 3'), 'DB_VERSION=3');
 const standard = pets.filter((p) => (p.poolTags || []).includes('standard'));
 const slumber = pets.filter((p) => (p.poolTags || []).includes('eternal_slumber_bloom'));
 const awakened = pets.filter((p) => (p.poolTags || []).includes('eternal_slumber_bloom_awakened'));
-assert(pets.length === 72, `pets=72 (got ${pets.length})`);
-assert(lore.length === 72, `lore=72 (got ${lore.length})`);
+const legacyPets = JSON.parse(readFileSync(`${root}/content/release-compatibility/v3.4.4/pets.json`, 'utf8')).pets;
+const legacyLore = JSON.parse(readFileSync(`${root}/content/release-compatibility/v3.4.4/pets-lore.json`, 'utf8')).lore;
+assert(legacyPets.length === 72 && legacyPets.every((old) => {
+  const current = pets.find((p) => p.id === old.id);
+  return current && Object.entries(old).every(([key, value]) => isDeepStrictEqual(current[key], value));
+}), 'all original fields of 72 legacy pets remain unchanged; additive image variants are allowed');
+assert(legacyLore.length === 72 && legacyLore.every((old) => isDeepStrictEqual(lore.find((p) => p.id === old.id), old)), '72 legacy Lore entries remain unchanged after source promotion');
+assert(pets.length === lore.length && new Set(pets.map((p) => p.id)).size === pets.length
+  && new Set(lore.map((p) => p.id)).size === lore.length && pets.every((p) => lore.some((l) => l.id === p.id)), 'complete modern pet/Lore identities match');
 assert(standard.length === 56, `standard=56 (got ${standard.length})`);
 assert(slumber.length === 12, `eternal locked=12 (got ${slumber.length})`);
 assert(slumber.length + awakened.length === 16, `eternal unlocked=16`);

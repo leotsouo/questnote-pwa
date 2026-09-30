@@ -1,0 +1,22 @@
+{
+  "preparedAt": "2026-09-30T19:41:03.749Z",
+  "branch": "codex/honeylight-production-v3434",
+  "deploymentRoot": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-production-v3434",
+  "deploymentCommit": "0e00ce0c57c5a236cd74ffa8aa0231719f74225e",
+  "parentCommit": "3942a7f35287a0aa2c3ac343b45115ec4948a380",
+  "sourceCommit": "c8a0aef8804e6213a0856d83e7155c8f1b3dbd2d",
+  "candidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
+  "artifactId": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a",
+  "manifestSha256": "cc77cc06a790fe55de3b96d52b1bc2081da21d45bea55b851b228afd1b3d0426",
+  "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
+  "stagedFileCount": 408,
+  "committedFileCount": 408,
+  "everyGitBlobMatchesReviewedArtifact": true,
+  "removedSupersededArtifactFiles": [
+    "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json"
+  ],
+  "productionPushed": false,
+  "productionApproval": "PENDING_USER_FINAL_GO_AHEAD",
+  "finalActionAfterApproval": "Recheck origin/gh-pages and current HTTPS baseline, then fast-forward push the prepared commit to gh-pages; verify Pages build and HTTPS artifact bytes.",
+  "withdrawal": "Keep all published 96 pet identities, Lore and assets. Disable this new pool in a reviewed forward release if necessary; do not restore the 84-pet catalog or reset player saves."
+}

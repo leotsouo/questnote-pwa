@@ -1,0 +1,61 @@
+{
+  "recordedAt": "2026-09-30T19:43:59.282Z",
+  "finalPreviewUrl": "http://127.0.0.1:58456/questnote-pwa-preview/",
+  "finalArtifactId": "2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005",
+  "finalCandidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
+  "syntheticContent": false,
+  "isolatedTestPlayer": true,
+  "livePlayerDatabaseAccess": false,
+  "finalPreviewSeed": {
+    "ownedPets": 12,
+    "stardust": 3000,
+    "adventureEnergy": 60,
+    "urPity": 99
+  },
+  "finalUiChecks": [
+    "Full app boot",
+    "Four pool choices including Honeylight",
+    "Series filter shows 12/12",
+    "UR filter shows exactly sea otter and swan",
+    "Cute swan description and full Lore render",
+    "Rates 55/30/10/3/2, prices 100/1000, SSR30/UR100",
+    "Hero and all three featured images decoded"
+  ],
+  "priorManualSummonAcceptance": {
+    "origin": "http://127.0.0.1:50518",
+    "artifactId": "3df7af73d6ab601da93cb610e39429d19a2418e9d2b7a5cbbb9c1d31bf6340b7",
+    "reasonStillApplicable": "Strict comparison confirms only the public series description changed; pool, all pets, Lore and images are identical; summon runtime logic is unchanged. Latest collection filter gestures and styles are preserved and the final native suites are rerun.",
+    "single": {
+      "wallet": [
+        3000,
+        2900
+      ],
+      "rarity": "UR",
+      "pet": "焦糖布蕾海獺",
+      "urPity": [
+        99,
+        0
+      ],
+      "duplicateFragments": 20
+    },
+    "ten": {
+      "wallet": [
+        2900,
+        1900
+      ],
+      "count": 10,
+      "highest": "UR",
+      "urPet": "千層奶霜天鵝",
+      "duplicates": 10,
+      "fragments": 44
+    },
+    "collection": "12/96; Honeylight 12/12; UR filter two; both UR full Lore and stage images; swan original 1254 px decoded",
+    "reload": "1900 stardust, 60 energy, selected Honeylight and SSR/UR pity 8/30 and 8/100 retained",
+    "screenshots": [
+      "ur-summon-preview.jpg",
+      "ten-pull-preview.jpg"
+    ]
+  },
+  "finalScreenshot": "final-app-preview.jpg",
+  "deviceLimitation": "Physical iPhone installation/standalone behavior is not inferred from desktop acceptance."
+}

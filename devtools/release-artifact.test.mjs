@@ -190,7 +190,13 @@ test('release artifact preparation is immutable, isolated and content complete',
       for (const [name, value] of Object.entries(metadata)) assert.equal(await fs.readFile(path.join(candidate.artifactDir, 'release-input', name), 'utf8'), value);
       assert.equal(extractConstant(await fs.readFile(path.join(candidate.artifactDir, 'service-worker.js'), 'utf8'), 'PRECACHE_URLS')
         .some((name) => name.startsWith('release-input/')), false);
-      assert.deepEqual(await fs.readFile(path.join(candidate.artifactDir, 'data/pools.json')), await fs.readFile(path.join(projectRoot, 'data/pools.json')));
+      for (const file of ['pools.json', 'pets.json', 'pets-lore.json', 'pet-series.json']) {
+        assert.deepEqual(await fs.readFile(path.join(candidate.artifactDir, 'data', file)),
+          await fs.readFile(path.join(projectRoot, 'content/release-compatibility/v3.4.4', file)),
+          'Unversioned catalogs retain frozen legacy bytes after authoring source promotion');
+      }
+      assert.deepEqual(JSON.parse(await fs.readFile(path.join(candidate.artifactDir, candidate.descriptor.contentBundleUrl))), bundle,
+        'The versioned bundle includes the full promoted source and candidate content');
       const publishedExpansion = bundle.poolsData.pools.find((pool) => pool.unlockExpansion).unlockExpansion;
       const previousKey = publishedExpansion.key;
       publishedExpansion.key = 'changed_published_identity';

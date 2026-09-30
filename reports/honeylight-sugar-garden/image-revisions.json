@@ -1,0 +1,20 @@
+[
+  {
+    "petId": "pet_r20",
+    "referencePath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-2fbdb966-b229-423f-bb37-993505bab0b7.png",
+    "outputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-1bd5a136-2f4f-4230-822c-68cd2ce377f1.png",
+    "prompt": "Edit this artwork as a targeted anatomical correction of the SAME mint candy-cane WEASEL pet. Keep the exact square framing, warm sugar-crystal greenhouse path, mint and cream palette, painterly tactile fur style, and the long mint-striped hook-curled tail. Replace the cat-like animal anatomy with an unmistakable SMALL NATURAL WEASEL: very elongated low slender tubular torso, extremely short legs close to the ground, small rounded ears approximately one-quarter of the current ear size, a long pointed slender muzzle, small pink nose, dark beady affectionate eyes and flat low head with short whiskers. Cute but recognizably a weasel or stoat, NEVER a kitten or fox. The animal trots horizontally low over the path on four short paws, with its long neck and snout projecting forward. Slim the fluffy cat chest down strongly. Preserve one clean continuous tail with the candy-cane hooked tip and mint-white stripes, but make its thickness appropriate for a weasel rather than a cat's giant fluffy tail. Do not modify the lovely greenhouse environment or add props. One animal only. No text, card frame, watermark, humans or humanoid pose. Original full-bleed square PNG resolution.",
+    "startedAt": "2026-09-30T18:34:22.712Z",
+    "completedAt": "2026-09-30T18:35:18.347Z",
+    "reason": "Agent QA: original resembled a cat; corrected to elongated low weasel anatomy."
+  },
+  {
+    "petId": "pet_sr17",
+    "referencePath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-1bd12cee-be67-4c24-8c60-92c800a7ba39.png",
+    "outputPath": "C:\\Users\\User\\.codex\\generated_images\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\exec-525206b7-e2de-435b-9eea-c2c6f6617c9e.png",
+    "prompt": "Make a single framing correction to this SAME finished macaron-feather peacock illustration. Preserve its beautiful exact lavender, mint and berry-pink feather design, round macaron feather eyes, adorable bird face, anatomy, mosaic path, greenhouse background and warm light. Zoom the CAMERA OUT enough that the entire peacock including EVERY outer fan-tail feather fits fully inside the square, with a clearly visible 6-8 percent background margin on the left, top and right. Scale the whole peacock uniformly to about 78 percent of its current size. Its complete fan silhouette must be visible with zero clipped feathers, while all feet and crest remain fully visible. Extend the existing greenhouse scenery naturally behind the widened framing. This is a collectible card illustration and needs the full intact animal silhouette. Do not change the character into a new design, do not add another bird, no text, no borders, no watermark, no UI. Full-bleed square PNG artwork.",
+    "startedAt": "2026-09-30T18:36:24.499Z",
+    "completedAt": "2026-09-30T18:37:23.817Z",
+    "reason": "Agent QA: original fan feathers clipped at left edge; widened framing to preserve full silhouette."
+  }
+]

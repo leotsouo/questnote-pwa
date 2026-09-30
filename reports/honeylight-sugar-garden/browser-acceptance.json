@@ -1,0 +1,16 @@
+{
+  "tool": "unified-computer-use / cua_repl",
+  "url": "http://127.0.0.1:53483/",
+  "results": {
+    "all12CardsVisibleInAccessibilityTree": "PASS",
+    "ssrFilterShowsExactlyTwoPets": "PASS",
+    "cuteSwanOriginalDialog": "PASS",
+    "nextShowsCandyButterflyOriginal": "PASS",
+    "originalPngDownloadLinkMatchesSelectedPet": "PASS",
+    "closeAndRestoreAll": "PASS",
+    "visualScreenshot": "gallery-preview.jpg"
+  },
+  "notRun": ["Full App staging acceptance", "Production rollout", "Native staging (awaiting user image approval)"],
+  "appIndexedDbUsed": false,
+  "externalApiCallsFromReviewPage": false
+}

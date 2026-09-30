@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-09-30T19:38:36.086Z",
+  "realApprovedContent": true,
+  "candidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
+  "candidateCounts": {
+    "pets": 96,
+    "lore": 96,
+    "pools": 4,
+    "series": 4
+  },
+  "firstDrawCandidates": {
+    "locked": 12,
+    "unlocked": 12,
+    "effective": 12,
+    "added": 0
+  },
+  "rarityPlan": {
+    "N": 3,
+    "R": 3,
+    "SR": 2,
+    "SSR": 2,
+    "UR": 2
+  },
+  "unchangedPublishedBaseline": "PASS",
+  "normalAndPityUR": [
+    {
+      "id": "pet_ur09",
+      "normalUR": "PASS",
+      "hundredthPullUR": "PASS"
+    },
+    {
+      "id": "pet_ur10",
+      "normalUR": "PASS",
+      "hundredthPullUR": "PASS"
+    }
+  ],
+  "thirtyPullSSR": "PASS",
+  "singleAndTenCosts": "PASS",
+  "noCrossPoolResults": "PASS",
+  "noUnlockOrGifts": "PASS",
+  "presentation": {
+    "hero": "pet_ur10",
+    "featured": [
+      "pet_ur09",
+      "pet_ssr12",
+      "pet_ssr13"
+    ]
+  },
+  "playerDatabaseOpened": false
+}

@@ -1,0 +1,102 @@
+{
+  "running": false,
+  "runId": "56ba4484-2ec0-4895-a9d0-8b1fff300f8c",
+  "passed": 12,
+  "failed": 0,
+  "results": [
+    {
+      "name": "uncontrolled first boot rejects profile-null before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects index-marker-mismatch before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects missing503 before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects corrupt before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "known legacy network-first controller cannot start the new app before every legacy client closes",
+      "ok": true
+    },
+    {
+      "name": "direct first production visit verifies, activates, reloads, and initializes the actual app",
+      "ok": true
+    },
+    {
+      "name": "direct preview visit coexists with production using a separate database and controller",
+      "ok": true
+    },
+    {
+      "name": "old perf/debug shortcuts cannot expose diagnostics or grant test currency",
+      "ok": true
+    },
+    {
+      "name": "evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state",
+      "ok": true
+    },
+    {
+      "name": "cleared preview shell rebuilds verified bytes while two clients and persisted state survive",
+      "ok": true
+    },
+    {
+      "name": "both fully assembled cached apps and catalogs boot while all artifact HTTP responses are 503",
+      "ok": true
+    },
+    {
+      "name": "growth chapters remain usable and resume the saved step without the network",
+      "ok": true
+    }
+  ],
+  "observations": {
+    "profile-null": {
+      "failure": "發布檔案版本不一致，請稍後重新開啟。重新載入",
+      "requests": 13,
+      "databaseNames": []
+    },
+    "index-marker-mismatch": {
+      "failure": "發布檔案版本不一致，請稍後重新開啟。重新載入",
+      "requests": 13,
+      "databaseNames": []
+    },
+    "missing503": {
+      "failure": "必要檔案驗證失敗，請稍後重試。重新載入",
+      "requests": 126,
+      "databaseNames": []
+    },
+    "corrupt": {
+      "failure": "必要檔案驗證失敗，請稍後重試。重新載入",
+      "requests": 126,
+      "databaseNames": []
+    },
+    "production": {
+      "artifactId": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a",
+      "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
+      "petCount": 96,
+      "controller": "http://127.0.0.1:59077/questnote-pwa/service-worker.js?artifact=e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a"
+    },
+    "legacyTransition": {
+      "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+      "waitingBeforeClose": true,
+      "zeroDatabasesBeforeClose": true,
+      "newArtifact": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a"
+    },
+    "preview": {
+      "artifactId": "2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005",
+      "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
+      "petCount": 96,
+      "controller": "http://127.0.0.1:59077/questnote-pwa-preview/service-worker.js?artifact=2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005"
+    },
+    "offlineGrowthLesson": {
+      "chapter": "workshop",
+      "step": "craft",
+      "resumed": true
+    }
+  },
+  "cleanupOwnedOrigin": true
+}

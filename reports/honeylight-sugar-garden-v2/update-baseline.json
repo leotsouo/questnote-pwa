@@ -1,0 +1,13 @@
+{
+  "commit": "3942a7f35287a0aa2c3ac343b45115ec4948a380",
+  "root": "C:/Users/User/.codex/visualizations/2026/09/22/01a0ca22-627f-7f11-898a-8e5d89734c1d/honeylight-release/baseline-v3433",
+  "verification": {
+    "ok": true,
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\baseline-v3433",
+    "artifactId": "4e04d3a13c9a5c3759130efcfc7bea52885f21338dc3b3bff12c0eedf00d492a",
+    "manifestSha256": "0a4e48564f17a5aa76f37fda43a3737e49b67952ab095788d5ec3d14379478eb",
+    "profile": "production",
+    "scopePath": "/questnote-pwa/",
+    "fileCount": 372
+  }
+}

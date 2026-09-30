@@ -1,0 +1,20 @@
+{
+  "preparedAt": "2026-09-30T18:15:15.981Z",
+  "sourceCommit": "ce1efbf8394d100a78c5b0de411d8199de25744b",
+  "ghPagesCommit": "52c12fde44ce505c627051142daca17f3440dea0",
+  "artifactId": "566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f",
+  "bundleSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+  "candidateRelative": "content/pet-series/frost_oath_fjord/staging/697316249910931d21b57c50744997c2a12e9fde9743bfd3e61e094b18b7a131",
+  "candidateManifestSha256": "7a21bd41a69224604638f4daa319ce30300a3647809e2602d05cbc187d774ff8",
+  "authoringRoot": ".dev-backups/honeylight-authoring",
+  "pets": 84,
+  "lore": 84,
+  "pools": 3,
+  "series": 3,
+  "verifiedImageFiles": 252,
+  "review": "Agent reviewed cumulative 84-pet baseline against approved candidate and published Git artifact; isolated copy only.",
+  "sourcePromotion": "NOT_PERFORMED",
+  "mainCatalogsChanged": false,
+  "mainAssetsChanged": false,
+  "legacyCompatibilityChanged": false
+}

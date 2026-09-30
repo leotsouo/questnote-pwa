@@ -1,0 +1,19 @@
+✔ three save-compatible worlds only use authored wolf scenes for the actual wolf (1.9385ms)
+✔ text, status and action tokens retain AA contrast on their solid surfaces (4.9411ms)
+✔ three mobile scene assets decode, preserve 3:2 composition and fit the offline art budget (7.7108ms)
+✔ one fixed primary icon has a real 1024 master and separate maskable safe margin (17.2747ms)
+✔ new presentation dependencies and home art are included in the verified offline closure (2.6604ms)
+✔ all three user themes survive preference normalization; legacy and unknown values fall back (0.6473ms)
+✔ third theme backup restore preserves tasks, wallet, collection and progression exactly (13.2603ms)
+✔ journey counts only actual today plans and today completions, including the empty state (0.2767ms)
+✔ companion presentation escapes user names and does not pretend an empty collection owns a pet (0.4353ms)
+✔ owned pets without a companion lead to collection instead of another summon (0.1275ms)
+✔ home refresh replaces the empty summon entry when the first pet becomes owned (13.108ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 274.4788

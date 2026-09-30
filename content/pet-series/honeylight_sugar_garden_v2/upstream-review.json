@@ -1,0 +1,94 @@
+{
+  "reviewedAt": "2026-09-30T18:49:04.202Z",
+  "reviewer": "agent-under-user-delegation-2026-10-01",
+  "delegation": "User delegated upstream choices, then corrected UR pair to sea otter and swan. Human personally reviews final images only.",
+  "reviewed": [
+    "brief",
+    "plan",
+    "content",
+    "prompts"
+  ],
+  "dialogueLinesCheckedForExactDuplicates": 300,
+  "imageApproval": "PENDING_HUMAN_REVIEW",
+  "releaseApproval": "NOT_GRANTED",
+  "status": {
+    "schemaVersion": 1,
+    "seriesId": "honeylight_sugar_garden_v2",
+    "toolsHash": "61222c8cc45ffcb80975126423e84b04fa0c5ba29823e29464f3b18a1c143588",
+    "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
+    "errors": [],
+    "stages": [
+      {
+        "stage": "brief",
+        "inputHash": "0fd0b5101fa34188f02f43398d6ee20284ece51e62dd209ef9166ada572357e3",
+        "outputHash": "9fa1435b4e1e08e72e6d5f72a026c2831698f94c6f1c782fc7de767a77f776cb",
+        "files": {
+          "brief.json": "5b4c67c13a50eea309140def02a11951dbb246ea642cc2fc9b6d44b4dbef6117"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "plan",
+        "inputHash": "9fa1435b4e1e08e72e6d5f72a026c2831698f94c6f1c782fc7de767a77f776cb",
+        "outputHash": "d994877d63093c81d167e60afb0b53a7a334c822acbd12ca3f8714706a4ef91a",
+        "files": {
+          "plan.json": "32d246e33abe4ed7079fb6fc3e411c702756a77fcd8ef9f93f44728e45ace14d"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "content",
+        "inputHash": "d994877d63093c81d167e60afb0b53a7a334c822acbd12ca3f8714706a4ef91a",
+        "outputHash": "3f59e4e2cd5c89d9286dcf575a280f9cf0a16eae3ee9511f7b896fbbf0664733",
+        "files": {
+          "series.json": "dacfd0b5557e1c47f1d74e39614cb6634fb0cdbd8fed1dbda935856faa4b097b",
+          "pets.json": "df5d7ad0f6f60889057b2b7e7f38b1aad11d144aa4c4a6cf1e12b55226a5b902",
+          "pets-lore.json": "2eea24aa991d6c45f0943bb71cc6ea3a4352de60b98cfda54fe4e89464aa9c13",
+          "pool.json": "30b9521ecbac198a6e3732d792ef2ffed78310e2e6eabcc789a5f28a4b9cae82"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "prompts",
+        "inputHash": "3f59e4e2cd5c89d9286dcf575a280f9cf0a16eae3ee9511f7b896fbbf0664733",
+        "outputHash": "3b2fe888678dc9e3d732737b82f188a597bf2531a27eea1d7ba3cb967a645ca0",
+        "files": {
+          "prompts.json": "8aaaeb437bbf44e8bfa3ab1dae68f19d0c35e4f209071c720899e5f9c0c80273"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "images",
+        "inputHash": "3b2fe888678dc9e3d732737b82f188a597bf2531a27eea1d7ba3cb967a645ca0",
+        "outputHash": "b602c823a88e2552525be188a214b4e475f4a109dd002d8e6f30a3f3259f1cfb",
+        "files": {
+          "images/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
+          "images/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
+          "images/pet_n28.png": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
+          "images/pet_r23.png": "7888936777327f49c8a2c15fca04eb03244486f9f1c6d054d47209097f2cc159",
+          "images/pet_r24.png": "c6173cdc592be2030d72d77a7a2fc257df1593eb343b2fa9f727ff325a2c8b5a",
+          "images/pet_r25.png": "70530265c2f2f91bf8662210496f83584004aea2f4c165fee13f8dd1bf37977c",
+          "images/pet_sr19.png": "0b56c8aaaf55b785c6a66635959080c16d4200cdb3e29a4d57e49179e984b90d",
+          "images/pet_sr20.png": "536044295f302ebce8808ef56718b2cf8c8f1c1961356de09a4519f560323859",
+          "images/pet_ssr12.png": "1cbe693844ebdef76a2030c3c62f120428b2a1f5b5181ff01972aa7c242ce54d",
+          "images/pet_ssr13.png": "f22e689544f68a44f67890cf8da6ea689aa7a1358e8a7e82bcfa359fcb149b61",
+          "images/pet_ur09.png": "57693be9d2b4a69859fc6bb9f38a3b6c1b689e4909dcc6690dd3f2c61e7f0717",
+          "images/pet_ur10.png": "20684b478872287c38db5dab58d0d74d7335ac8d2cc8c77bc7c9dfc4ed1c2526"
+        },
+        "missing": [],
+        "approved": false,
+        "status": "awaiting_review"
+      }
+    ],
+    "nextStage": "images",
+    "readyToStage": false
+  }
+}
