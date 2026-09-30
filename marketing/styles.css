@@ -34,8 +34,8 @@ h3 { font-size: 25px; }
 p { text-wrap: pretty; }
 .wrap { width: min(100% - 44px, 1200px); margin-inline: auto; }
 .section { padding-block: 72px; }
-.skip-link { position: fixed; z-index: 10; top: 6px; left: 10px; padding: 10px; background: var(--surface); transform: translateY(-160%); }
-.skip-link:focus { transform: none; }
+.skip-link { position: fixed; z-index: 10; top: 6px; left: 10px; padding: 10px; background: var(--surface); transform: translateY(-160%); clip-path: inset(50%); }
+.skip-link:focus { transform: none; clip-path: none; }
 .site-header { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .brand { display: inline-flex; gap: 9px; align-items: center; font-size: 21px; font-weight: 600; letter-spacing: -.03em; min-height: 44px; }
 .brand img { border-radius: 7px; }

@@ -123,8 +123,8 @@
     },
     {
       "path": "styles.css",
-      "bytes": 18030,
-      "sha256": "012f9ddab5b7abda3bb869cc50fa3dcff076ddb44249de74b058ea6070d3f398"
+      "bytes": 18070,
+      "sha256": "45cb09f7061a290504212e038aa23c5e99ec5332ef61e244e9ebccfffeca13b9"
     },
     {
       "path": "support/index.html",
@@ -138,9 +138,9 @@
     },
     {
       "path": "_headers",
-      "bytes": 507,
-      "sha256": "2882944b7d3fcae30959d523900cb45d4f769e4eeb41761d14dec3412245a702"
+      "bytes": 587,
+      "sha256": "5bf0252fc52f676fb90228f87d796a7cb3107cebde8bc077aca311e2d0206f1c"
     }
   ],
-  "totalBytes": 841392
+  "totalBytes": 841512
 }

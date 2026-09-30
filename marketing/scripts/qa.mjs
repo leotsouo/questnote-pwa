@@ -8,7 +8,7 @@ const root = path.resolve(import.meta.dirname, '..');
 const output = path.resolve(root, '../reports/marketing');
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:8031';
 const hosted = base.startsWith('https:');
-const prefix = hosted ? 'preview' : 'local';
+const prefix = new URL(base).hostname === 'questnote.taste-compare.com' ? 'production' : hosted ? 'preview' : 'local';
 await fs.mkdir(path.join(output, prefix), { recursive: true });
 const browser = await chromium.launch({ headless: true, channel: process.env.QA_BROWSER_CHANNEL || 'msedge' });
 const checks = [];
@@ -107,7 +107,7 @@ try {
       await page.evaluate(() => scrollTo(0, 0));
       await page.waitForTimeout(150);
       assert.equal(await page.locator('#mobile-cta').isVisible(), false);
-      await page.addScriptTag({ path: path.join(root, 'node_modules/axe-core/axe.min.js') });
+      await page.evaluate(await fs.readFile(path.join(root, 'node_modules/axe-core/axe.min.js'), 'utf8'));
       const axe = await page.evaluate(() => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }));
       await fs.writeFile(path.join(output, prefix, 'axe.json'), JSON.stringify(axe.violations, null, 2));
       assert.deepEqual(axe.violations.map(item => ({ id: item.id, nodes: item.nodes.length })), []);
