@@ -23,11 +23,10 @@ const date = '2026-10-01';
 const inventory = { items: { item_fire_meat: 2, item_small_spirit_food: 1 }, itemUsageLogs: {} };
 const model = (overrides = {}) => buildWorkshopGiftView({ items, pets: [pet('pet_n04'), pet('pet_sr04')], inventory, date, ...overrides });
 
-test('six gift themes consume every available material; every recipe and affinity reference is valid', () => {
-  assert.equal(items.length, 10);
+test('growing food catalogs retain valid recipes, supported themes and explicit affinities', () => {
   assert.equal(new Set(items.map((row) => row.id)).size, items.length);
   const themed = items.filter((row) => row.type === 'favorite_bond_item');
-  assert.deepEqual(themed.flatMap((row) => row.favoriteTags).sort(), Object.keys(GIFT_TAG_LABELS).sort());
+  assert.ok(themed.every((row) => row.favoriteTags.length > 0 && row.favoriteTags.every((tag) => Object.hasOwn(GIFT_TAG_LABELS, tag))));
   const knownMaterials = new Set(materials.map((row) => row.id));
   const usedMaterials = new Set();
   for (const row of themed) {
@@ -38,7 +37,11 @@ test('six gift themes consume every available material; every recipe and affinit
       usedMaterials.add(id);
     }
   }
-  assert.deepEqual([...usedMaterials].sort(), [...knownMaterials].sort());
+  assert.ok([...usedMaterials].every((id) => knownMaterials.has(id)));
+  for (const row of items) for (const [id, quantity] of Object.entries(row.recipe)) {
+    assert.ok(knownMaterials.has(id));
+    assert.ok(Number.isSafeInteger(quantity) && quantity > 0);
+  }
   assert.deepEqual(Object.keys(affinities.giftAffinityTags).sort(), pets.pets.map((row) => row.id).sort());
   const elementTags = { 木: 'nature', 火: 'fire', 機械: 'machine', 星: 'astral', 冰: 'frost' };
   for (const row of lore.lore) {
