@@ -1,7 +1,9 @@
 # Mobile scroll without page zoom — 2026-09-30
 
 Source branch: `codex/mobile-scroll-only`, based on fetched `origin/main`.
-Runtime version: 3.4.23. No preview or production deployment performed.
+Runtime version: 3.4.23. Initial local checks below preceded publication.
+Production publication is recorded in `docs/final-integration.md` and the
+`live-hashes.json`/`live-browser.json` evidence alongside this report.
 
 - Viewport fixes the mobile page scale at 1.
 - Coarse-pointer devices use `touch-action: pan-y`, including nested scrollers.

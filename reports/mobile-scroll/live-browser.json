@@ -1,0 +1,8 @@
+{
+  "version": "3.4.23",
+  "touchAction": "pan-y",
+  "viewport": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover",
+  "controller": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=fdfdaf3989d2d7869d857a71adb931816e7317fb39f20302ab4ff31f4d564428",
+  "scale": 1,
+  "horizontalOverflow": false
+}
