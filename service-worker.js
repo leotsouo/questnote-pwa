@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3438-share-website';
+const CACHE_NAME = 'questnote-preview-cache-v351-bond-journey';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -101,6 +101,12 @@ const PRECACHE_URLS = [
   'src/glacierArrivalScene.js',
   'src/honeylightSugarScene.js',
   'src/collectionService.js',
+  'src/bondJourneyCore.js',
+  'src/bondJourneyService.js',
+  'src/bondJourneyView.js',
+  'src/bondJourneyController.js',
+  'src/bond-journey.css',
+  'data/bond-stories.json',
   'src/collectionMilestoneService.js',
   'src/backupService.js',
   'src/companionService.js',

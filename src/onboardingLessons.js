@@ -142,7 +142,7 @@ export function getLessonStepContent(id, step, state = {}) {
         const previous = new Set(getBondUnlocksByLevel(level - 1));
         const names = getBondUnlocksByLevel(level).filter((key) => !previous.has(key) && UNLOCK_NAMES[key]).map((key) => UNLOCK_NAMES[key]);
         return `累積 ${exp} 點到 Lv.${level}：${names.join('、')}`;
-      }).join('；') + '。點圖鑑的夥伴資訊，可查看已解鎖內容與故事。',
+      }).join('；') + '。Lv.2～5 各有一章專屬故事，回應沒有對錯。閱讀後可選自己的任務或習慣同行，完成約定會解鎖後續與星塵獎勵；約定可暫停，沒有期限。完成 Lv.5 故事後能展示紀念物，並解鎖每天一次的日常同行。首頁「故事與同行」或圖鑑的夥伴資訊都能進入。',
       target: { view: 'collection', filter: 'owned', petId: c.companion?.id }, selector: '.collection-card [data-action="view-detail"]', action: '查看夥伴詳情入口',
     },
     'expedition/prepare': {

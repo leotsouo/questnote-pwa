@@ -5,7 +5,7 @@
   "scripts": {
     "images:build": "node devtools/build-pet-images.mjs build",
     "images:check": "node devtools/build-pet-images.mjs check",
-    "test": "node --test devtools/font-size-settings.test.mjs devtools/workshop-gifts.test.mjs devtools/gameplay-improvement.test.mjs devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs devtools/gacha-transaction.test.mjs devtools/app-update.test.mjs devtools/release-safety.test.mjs devtools/release-artifact.test.mjs devtools/card-pool-pipeline.test.mjs devtools/verify-release-artifact.test.mjs devtools/preview-cache-recovery.test.mjs devtools/onboarding-flow.test.mjs devtools/feedback.test.mjs devtools/feedback-backend.test.mjs devtools/share-service.test.mjs devtools/reminders.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs && node --test devtools/theme-preferences.test.mjs devtools/theme-design.test.mjs && node --test devtools/honeylight-animation.test.mjs",
+    "test": "node --test devtools/bond-journey.test.mjs devtools/font-size-settings.test.mjs devtools/workshop-gifts.test.mjs devtools/gameplay-improvement.test.mjs devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs devtools/gacha-transaction.test.mjs devtools/app-update.test.mjs devtools/release-safety.test.mjs devtools/release-artifact.test.mjs devtools/card-pool-pipeline.test.mjs devtools/verify-release-artifact.test.mjs devtools/preview-cache-recovery.test.mjs devtools/onboarding-flow.test.mjs devtools/feedback.test.mjs devtools/feedback-backend.test.mjs devtools/share-service.test.mjs devtools/reminders.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs && node --test devtools/theme-preferences.test.mjs devtools/theme-design.test.mjs && node --test devtools/honeylight-animation.test.mjs",
     "pools:validate": "node scripts/validate-pool-content.mjs",
     "release:prepare": "node scripts/prepare-release.mjs",
     "card-pool": "node scripts/card-pool.mjs",
@@ -15,7 +15,9 @@
     "test:themes": "node --test devtools/theme-preferences.test.mjs devtools/theme-design.test.mjs",
     "test:feedback": "node --test devtools/feedback.test.mjs devtools/feedback-backend.test.mjs",
     "test:feedback:browser": "node devtools/feedback-browser-server.mjs",
-    "feedback:read": "node --use-system-ca scripts/read-feedback.mjs"
+    "feedback:read": "node --use-system-ca scripts/read-feedback.mjs",
+    "test:bond": "node --test devtools/bond-journey.test.mjs",
+    "test:bond:browser": "node devtools/bond-journey-browser-test.mjs"
   },
   "devDependencies": {
     "sharp": "0.35.4",
