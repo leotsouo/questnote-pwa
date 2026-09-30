@@ -22,3 +22,16 @@
 Web Share 的接收端由作業系統與 LINE 等 App 決定。此驗證測試真实按鈕至 navigator.share 的 payload，沒有宣稱實機 iOS 分享面板或各通訊 App 的網址預覽排序已驗證。
 
 發佈身份、預覽／正式驗證另記於 `reports/share-marketing/deployment.json`；來源完成不代表已上線。
+
+## 上線驗收
+
+**PRODUCTION LIVE**：V3.4.38。PR #25 已合併至 main；預覽与正式 App 的 Pages 建置皆成功，兩站各 13 個關鍵 HTTPS 檔案符合固定產物 SHA-256。413 個 staged Git blobs 全部符合產物；正式產物相對 V3.4.37 只變更分享 UI、服務、樣式、版本與發布身份八個檔案，內容包和信箱原樣保留。
+
+- 正式 App：https://leotsouo.github.io/questnote-pwa/
+- HTTPS 預覽：https://leotsouo.github.io/questnote-pwa-preview/
+- 本機、HTTPS 預覽及正式站各通過 30 組版面與分享／複製檢查。正式站另外在五尺寸 × 三風格共 15 次 axe WCAG 2 A/AA 自動規則檢查中發現 0 項違規；此結果不代表所有實機與輔助技術皆已驗收。
+- axe 必須等待主題顏色過渡結束再測量；過渡中瞬間混合的顏色曾導致誤判，穩定畫面確認無違規，QA runner 現在保留等待步驟。
+- 本機 393×852 觸控事件模擬：分享按鈕以 tap 成功產生官網 payload；分享頁按鈕／連結／展開控制均至少 44px；page errors 為 0。
+- 12 項真實組裝版 PWA 測試通過，包含升版、回退、預覽隔離及離線。
+
+已安裝舊 PWA 的使用者請關閉全部 QuestNote 視窗及分頁後再在線上開啟，以便 verified worker 正常啟用。不要清除網站資料。

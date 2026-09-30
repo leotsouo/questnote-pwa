@@ -1,0 +1,36 @@
+{
+  "viewport": "393x852",
+  "emulation": true,
+  "payload": {
+    "title": "QuestNote",
+    "text": "一起試試 QuestNote。\n把生活裡的待辦，變成與夥伴一起成長的冒險。\n\n直接開始：https://leotsouo.github.io/questnote-pwa/",
+    "url": "https://questnote.taste-compare.com/"
+  },
+  "touchTargets": [
+    {
+      "id": "BUTTON",
+      "height": 44
+    },
+    {
+      "id": "share-website-link",
+      "height": 75.390625
+    },
+    {
+      "id": "share-app-link",
+      "height": 75.390625
+    },
+    {
+      "id": "btn-share-app",
+      "height": 44
+    },
+    {
+      "id": "btn-copy-app-link",
+      "height": 44
+    },
+    {
+      "id": "SUMMARY",
+      "height": 46.5
+    }
+  ],
+  "pageErrors": []
+}
