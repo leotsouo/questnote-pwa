@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-4e04d3a13c9a5c3759130efcfc7bea52885f21338dc3b3bff12c0eedf00d492a';
+const CACHE_NAME = 'questnote-production-app-e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,14 +40,14 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "4e04d3a13c9a5c3759130efcfc7bea52885f21338dc3b3bff12c0eedf00d492a",
-  "sourceCommit": "bc3fb784d99ec9cd85d92333c8707c10bf8a8cbe",
+  "artifactId": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a",
+  "sourceCommit": "c8a0aef8804e6213a0856d83e7155c8f1b3dbd2d",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
   "cacheNamespace": "questnote-production-",
-  "contentBundleSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
-  "contentBundleUrl": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json"
+  "contentBundleSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
+  "contentBundleUrl": "data/releases/d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5/catalog.json"
 };
 const PRECACHE_HASHES = {
   "assets/brand/questnote-icon-180.png": "568c5f586481050de3c0263794de557f36acb340346eba7db1a9cdc7b000f9bf",
@@ -79,9 +79,9 @@ const PRECACHE_HASHES = {
   "data/pets-lore.json": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
   "data/pets.json": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
-  "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+  "data/releases/d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5/catalog.json": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "ba2e8fd84c9677a1e03a113c6cfe1a5df58f1a3c3fc58134c96a0d38ebafc8c0",
+  "index.html": "5379684d88ed853d09328b09d47a95d5a81e5628ca0d0e8b4ddfe088ca621fe3",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
   "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
@@ -107,7 +107,7 @@ const PRECACHE_HASHES = {
   "src/feedbackConfig.js": "77e9eda8efe76ad2ea3d1d216d10be01bb219c954c6c619e925d8e2aeafe49f7",
   "src/feedbackController.js": "9ff600987abd7476b7e6e1bfecb9610ba93588dc0b0930b3c3378c8c78b83e76",
   "src/feedbackService.js": "f96898f3d97d6dc86157f65aae8e8f2b763f222b04bf778aab386276d8bb9310",
-  "src/filterGestureController.js": "f13f8040003f857f0ffe725172d372292d40778c737c1caca83729f777013fcb",
+  "src/filterGestureController.js": "548300cf1d63d705715fc00668b48b35b5389f351e21ffc3a8e417a350774ad7",
   "src/gachaService.js": "d631816bfcb980ecbe502cbecf867e0adf65871d00d6ef4e70adce22df9c9bf9",
   "src/gachaTransactionCore.js": "ac2b5db58e2cdec942bb28e0e7b8dae446282fd45518bdf6666fafdc6d579dde",
   "src/glacierArrivalScene.js": "bb3d646a9faaece23f41d29f6248b682fb67e3851e702ac3667f006c02d8b2bb",
@@ -134,14 +134,14 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
   "src/questService.js": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "1f9bfa825fd7fa50efce5bf5cd4acb88922d97d1752a6aae658af0e968b92245",
+  "src/releaseProfile.js": "97e3ad738b5d2d924d52ca589db8d0cf50fdca6461a586ee73e863e1f1dd759e",
   "src/reminder-settings.css": "4b5053346fb0bc697af1455fa4a6e763d450045094f94a6f952b0721a385bd4a",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
   "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
   "src/rewardService.js": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
   "src/shareService.js": "04705dbca03c699f62781606b45d8bf483acb7463358750d6c9c4c0da47bcad1",
-  "src/styles.css": "4574bdf632dd6e493827c7e72a3764077638171fe82c1c8bbdd6a5ee578b3054",
+  "src/styles.css": "5fab4fdf4651a4ff3b0827354f6e5ff56a5246bb0386991ff75da9da16b0a5dc",
   "src/summon-polish.css": "0d3cbae026034e11034be8ecabc6ff9613a461fbaee616376a26f90f4b924bda",
   "src/summonRevealService.js": "71d4828b6e0c4a89285f63a2781c67e7b96b7966c3e0c98312c4c037c1c1bed4",
   "src/taskFilterService.js": "687858edc36119afcb388fc3fd75ebd058d0a93117da42740c8a1f18d4b00471",
@@ -155,12 +155,12 @@ const PRECACHE_HASHES = {
   "src/themeTokens.css": "7061e9c268ed909e3cae2738268dd2aeb44d0aca4810cfca22ddc9208a2f3c31",
   "src/twilightPresentation.js": "68373c4d07a5a0dcd682c6bfac1cbd6888f5677e3b38004768a98bea077b8a54",
   "src/ui-polish.css": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
-  "src/ui.js": "d956f8be65a81bded0f367178654fa0b486aad3043e66b4aaadf7c8bee2119a8",
+  "src/ui.js": "25427e21469dba2f422adb55ecf5cf9ef9d94beba5b1504a9de50de02e106d23",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "6348beb8ed4b8ed35cf6ff3dff6e722ca63fb5be230fdef8f6abc75fa0915675",
+  "src/version.js": "5fa767809d3a5d7b8c41c5a4729d843fdfcfb544a536c28d2f4df374757179e8",
   "src/workshopService.js": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69"
 };
 
@@ -195,7 +195,7 @@ const PRECACHE_URLS = [
   "data/pets-lore.json",
   "data/pets.json",
   "data/pools.json",
-  "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+  "data/releases/d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5/catalog.json",
   "data/titles.json",
   "index.html",
   "manifest.webmanifest",
