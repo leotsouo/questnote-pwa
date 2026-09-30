@@ -204,3 +204,7 @@ Production V3.4.28 moves petting and cooldown below the portrait beside companio
 ## V3.4.29 reminder settings polish — 2026-09-30
 
 [PR #13](https://github.com/leotsouo/questnote-pwa/pull/13) merged after CI. Production now serves the themed time panel, accessible switches, illustrative notification preview and clearer consent/actions/delivery sections. Source `9fad7f41f3785aeffa4f4643639b654e31ad6fe4`, Pages `13d3f5db135243b6a30d85148d2fa3d9c2c7bf0f`; [run 36740510978](https://github.com/leotsouo/questnote-pwa/actions/runs/36740510978) succeeded. Artifact `49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37`, manifest SHA-256 `6affc46b80a570af2f9d8f59f3ea27129ce4f4ea47a9c223cd5f1d86bfd59b2e`: 350 staged blobs and 16 live hashes verified. Integration tests, 8 reminder-browser scenarios and 12 artifact cases passed. Backend/subscription rules unchanged; existing production content/mailbox and V3.4.28 prompt fix retained. [Receipt and screenshots](../reports/reminder-settings/production-release.md).
+
+## V3.4.36 蜜光糖庭 — 2026-10-01
+
+[PR #21](https://github.com/leotsouo/questnote-pwa/pull/21) CI通過並合併；正式Pages提交 `9e815676db8ff3e203391894090a52b1d5090129`，建置成功且30個HTTPS檔案雜湊相符，包含所有14個變更檔案與12張核准卡圖。12隻雙UR卡池和專屬動畫正式開放，台詞「糖庭亮起／甜蜜相遇」。詳細pins／證據見 [發布紀錄](../reports/honeylight-animation/production-release.md)。工坊／探險需求的流程規劃留待發布後討論。
