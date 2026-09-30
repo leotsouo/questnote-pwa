@@ -179,3 +179,8 @@ Production now serves V3.4.26. Twilight's night background fills the top safe in
 ## V3.4.27 daily reminder release — 2026-09-30
 
 [PR #11](https://github.com/leotsouo/questnote-pwa/pull/11) passed CI and merged at `d691e47`. Production now serves configurable daily task/habit Web Push reminders and tomorrow scheduling. Pages commit `66e29ce4c153d9a8055948fa0575411f47103167`; [run 36737740780](https://github.com/leotsouo/questnote-pwa/actions/runs/36737740780) succeeded. Artifact `f8d2cd85d2cacf06cdfa1b13a27c593ac30e08b925c9753879b9000cbc27fada`, manifest `ca1f4bace8abcb021c6c770b211504eac8ed733a2102d6b38ad8078cf25a8429`: 349 committed blobs and 15 live hashes verified; 84-pet/three-pool catalog and mailbox preserved. Dedicated Cloudflare reminders Worker/D1 and minute Cron are deployed. All integration, reminder, mobile browser, workerd and 12 artifact browser checks passed. Physical iPhone/Android receipt remains device acceptance. [Release receipt](../reports/daily-reminders/production-release.md).
+
+## V3.4.28 twilight petting prompt — 2026-09-30
+
+Production V3.4.28 moves petting and cooldown below the portrait beside companion dialogue, preserving the current daily reminder runtime. PR #12 and Pages run 36738837787 succeeded. All 349 artifact Git blobs, 12 artifact browser cases and 16 live HTTPS hashes passed verification. Source tests passed 192 Node cases and summon assertions; four isolated viewport checks verified real petting/cooldown. See [production receipt](../reports/twilight-pet-prompt/production-release.md). Existing content and mailbox bytes were retained; no backend deployment or save migration occurred.
+

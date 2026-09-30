@@ -1,0 +1,89 @@
+{
+  "artifactId": "fef95f7d4dd1fb31a1b945c56feeeeb75bb7e0b6781881eaffa3e4d9d65b8ebf",
+  "sourceCommit": "10d73578cc42a4874746597162161f8a7a72d95e",
+  "verifiedAt": "2026-09-30T15:43:39.463Z",
+  "productionUrl": "https://leotsouo.github.io/questnote-pwa/",
+  "passed": 16,
+  "results": [
+    {
+      "name": "release-artifact.json",
+      "sha256": "4b1da1af123af4eb2952fc47d478bb19ddb9b718195ee9fa7d8e2f38ea6b1627",
+      "ok": true
+    },
+    {
+      "name": "index.html",
+      "sha256": "3fb9e37406bcd404f7dac7f08d5bee1f7e922f518f7eb5826dd2f50f002b09f1",
+      "ok": true
+    },
+    {
+      "name": "manifest.webmanifest",
+      "sha256": "044a5f22c568ec5dab4f2a1f0cce9a9a26ed70f2320a0e5a6c1c9f06b7cd2591",
+      "ok": true
+    },
+    {
+      "name": "src/version.js",
+      "sha256": "30b3eaf2095860303c2e5703eccdabec91bb26f8a79dda5f9abc130c42e9c595",
+      "ok": true
+    },
+    {
+      "name": "src/releaseProfile.js",
+      "sha256": "0b9b4aa1525cc1dbbd26f2d0bd2befbd953ee739d139737939bc790ecc585bc0",
+      "ok": true
+    },
+    {
+      "name": "src/bootstrap.js",
+      "sha256": "975974b344ff1f3e8100eed78a1fafa054b6b549c185dc03cd918dd31be6f08d",
+      "ok": true
+    },
+    {
+      "name": "src/app.js",
+      "sha256": "7ab42490004bac0be0b4145cc172bb42beb009177c6dc8e913d3a2e5f0797156",
+      "ok": true
+    },
+    {
+      "name": "src/ui.js",
+      "sha256": "16bb747976a5a6f53a400d8aa9fee7257f1dd4531e38f46a7b0118f9e19da18a",
+      "ok": true
+    },
+    {
+      "name": "src/styles.css",
+      "sha256": "d66c91c9344dddacd5bf6ae52104fc7264400cd903d88225ae170007ba038838",
+      "ok": true
+    },
+    {
+      "name": "src/ui-polish.css",
+      "sha256": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
+      "ok": true
+    },
+    {
+      "name": "src/twilight-theme.css",
+      "sha256": "3aa7fe8ad193f87ef6218d352c274ec8fda9ff8bfa3c7b77414ff767629363ac",
+      "ok": true
+    },
+    {
+      "name": "src/preferencesService.js",
+      "sha256": "a6ae09d8f8f120a5c7c74da67f73fde022d053a398aed3bb972e343d0fdcc135",
+      "ok": true
+    },
+    {
+      "name": "src/themeRegistry.js",
+      "sha256": "7aff25923d95bed495eabb02e7b0a0b505591589ebdf96d3c361b392f9040f1a",
+      "ok": true
+    },
+    {
+      "name": "service-worker.js",
+      "sha256": "7cf7726f3a9be6a4082f05484cdf240adee9bd6b616c3ddd9dbeedd197d9efbf",
+      "ok": true
+    },
+    {
+      "name": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "ok": true
+    },
+    {
+      "name": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+      "sha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+      "ok": true
+    }
+  ]
+}
