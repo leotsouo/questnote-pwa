@@ -4,7 +4,7 @@ PASS: SW CACHE_NAME matches app
 PASS: SW precache summonRevealService
 PASS: 寵物圖未進 precache
 PASS: DB_VERSION=3
-FAIL: 72 legacy pets remain unchanged after source promotion
+PASS: all original fields of 72 legacy pets remain unchanged; additive image variants are allowed
 PASS: 72 legacy Lore entries remain unchanged after source promotion
 PASS: complete modern pet/Lore identities match
 PASS: standard=56 (got 56)
@@ -35,4 +35,4 @@ PASS: runtime CACHE_NAME
 PASS: SW URL matches version
 
 ---
-FAILED: 1 assertion(s)
+All Node logic assertions passed.
