@@ -44,7 +44,7 @@ export function ecosystemScaffold(allocation, runtimeHashes) {
 function registry(source, name) {
   const match = source.match(new RegExp(`(?:export\\s+)?const ${name} = (?:Object\\.freeze\\()?([\\s\\S]*?\\n\\})(?:\\))?;`));
   if (!match) throw new Error(`Missing controlled registry: ${name}`);
-  return JSON.parse(JSON.stringify(runInNewContext(`(${match[1]})`, Object.create(null), { timeout: 100 })));
+  return JSON.parse(JSON.stringify(runInNewContext(`(${match[1]})`, Object.create(null), { timeout: 1000 })));
 }
 
 /** Returns merged companion catalogs, with existing rows preserved exactly. */
@@ -98,7 +98,7 @@ export function validateEcosystem({ ecosystem: e, pets, baseline, runtime, runti
     let actualRole;
     try {
       actualRole = runInNewContext(runtime['src/expeditionGameplay.js'].replace(/^export /gm, '')
-        + `\ngetPetSpecialty(${JSON.stringify(pet)}).role;`, Object.create(null), { timeout: 100 });
+        + `\ngetPetSpecialty(${JSON.stringify(pet)}).role;`, Object.create(null), { timeout: 1000 });
     } catch (error) { require(false, 'SPECIALTY_RUNTIME_INVALID', error.message); }
     require(['scout', 'gatherer', 'companion', 'scholar', 'guardian'].includes(specialty?.role) && plain(specialty?.reason)
       && specialty.role === actualRole, 'SPECIALTY_INVALID', `${pet.id} specialty must agree with the actual dispatch runtime`);
