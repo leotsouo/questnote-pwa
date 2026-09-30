@@ -1,0 +1,20 @@
+{
+  "production": {
+    "root": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-one-tap-v3432-production\\fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017",
+    "artifactId": "fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017",
+    "manifestSha256": "b7d1d28a9e0cc287cdae31bf6b6752e25d8b61fd98aef5aae540a0156a0d2c4f",
+    "fileCount": 371
+  },
+  "preview": {
+    "root": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-one-tap-v3432-preview\\5f9bf3beeae3c66898baefb48d8388be7e661b4ececa6a9f15664a554c2a66af",
+    "artifactId": "5f9bf3beeae3c66898baefb48d8388be7e661b4ececa6a9f15664a554c2a66af",
+    "manifestSha256": "97becaab79ddb04e21c601b029f69163c1f53013e29bbec76d8eb5a95da4bcc6",
+    "fileCount": 371
+  },
+  "fixtureOnly": {
+    "root": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-one-tap-FIXTURE-NOT-FOR-PUBLISH\\4b27dd8c3f00b94c4e40b661dd11c2e531b6f6f6cb84672bf51e44b66a582bba",
+    "artifactId": "4b27dd8c3f00b94c4e40b661dd11c2e531b6f6f6cb84672bf51e44b66a582bba",
+    "manifestSha256": "c4b29b4ee6f726ccf3957b650fd1cd103dc7b2afecb0c9c23aa1eade5ab44e25",
+    "fileCount": 371
+  }
+}
