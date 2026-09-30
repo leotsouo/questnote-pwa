@@ -6,10 +6,36 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3426-twilight-safe-area';
+const CACHE_NAME = 'questnote-preview-cache-v3427-daily-reminders';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
+
+self.addEventListener('push', (event) => {
+  event.waitUntil((async () => {
+    let data = {};
+    try { data = event.data?.json() || {}; } catch { /* Always show a visible fallback. */ }
+    const expired = typeof data.expiresAt === 'number' && data.expiresAt < Date.now();
+    await self.registration.showNotification(expired ? 'QuestNote' : String(data.title || 'QuestNote 今日計畫').slice(0, 100), {
+      body: expired ? '開啟 QuestNote 查看最新計畫。' : String(data.body || '點開查看今日任務與習慣。').slice(0, 700),
+      icon: new URL('assets/icons/icon-192.png', self.registration.scope).href,
+      badge: new URL('assets/icons/icon-192.png', self.registration.scope).href,
+      tag: String(data.tag || 'questnote-daily').slice(0, 100),
+      data: { type: 'questnote-open-today' },
+    });
+  })());
+});
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil((async () => {
+    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: false });
+    const client = windows.find((c) => c.url.startsWith(self.registration.scope));
+    if (client) { await client.focus(); client.postMessage({ type: 'questnote-open-today' }); return; }
+    const url = new URL('index.html', self.registration.scope);
+    url.searchParams.set('reminder', 'today');
+    await self.clients.openWindow(url.href);
+  })());
+});
 // Filled by the release assembler. Source checkouts are not release artifacts.
 const BUILD_PROFILE = null;
 const PRECACHE_HASHES = null;
@@ -35,6 +61,9 @@ const PRECACHE_URLS = [
   'src/onboardingController.js',
   'src/onboardingLessons.js',
   'src/taskService.js',
+  'src/reminderRules.js',
+  'src/reminderService.js',
+  'src/reminderController.js',
   'src/taskMigration.js',
   'src/taskFilterService.js',
   'src/taskStatsService.js',
