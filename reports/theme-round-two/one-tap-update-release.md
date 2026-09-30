@@ -14,4 +14,12 @@ Validation:
 - Assembled production/preview safety: 12 cases pass, including fail-closed bootstrap, legacy migration, scope/database isolation, eviction repair, wrong hashes/503, offline boot and saved lessons.
 - Strict artifact verifier passes production, preview and test-only fixture. All 84-pet/3-pool production catalogs, mailbox and asset hashes match V3.4.31. No backend, schema, reward or progression rule changes.
 
-Deployment and hosted verification are recorded below after publication.
+Publication verified:
+
+- PR #16 merged at `599a926ae8d36c5082110c9c89df3d12c12cf632`; PR CI run `36760174105` passed.
+- Production artifact `fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017`, manifest SHA-256 `b7d1d28a9e0cc287cdae31bf6b6752e25d8b61fd98aef5aae540a0156a0d2c4f`. All 371 staged Git blobs matched before push.
+- gh-pages commit `505da31a7a97084c9a2b6e2b94842e2a3f1bef97`; Pages deployment run `36760461750` completed successfully. The source main checkout was not copied onto Pages.
+- 16 focused HTTPS reads match reviewed bytes, including manifest, bootstrap, worker, controller, UI, icons, mailbox and 84-pet/3-pool catalog.
+- Hosted PWA naturally migrated from V3.4.31, displayed V3.4.32 / worker enabled, reported “目前已是最新版本”, and its “重新載入 App” button successfully reloaded the same tab. No production fixtures or gameplay actions were added; existing stored state was left intact.
+- Hosted controls verified at 393/320px. Primary/reload targets are 44px; icon entry is 72px; no horizontal overflow. On 320px the two controls stack, and the guide has a working vertical scroll area. Actual 393px screenshots: `one-tap-update-live-controls.jpg`, `one-tap-update-icon-guide.jpg`.
+- Remote backup tags `codex/update-backup-v3.4.31-source` → `ce1efbf8394d100a78c5b0de411d8199de25744b` and `codex/update-backup-v3.4.31-pages` → `52c12fde44ce505c627051142daca17f3440dea0`. Earlier V3.4.29 design backups remain preserved. A rollback restores compatible presentation files as a new descendant commit; never force-push or clear player storage.

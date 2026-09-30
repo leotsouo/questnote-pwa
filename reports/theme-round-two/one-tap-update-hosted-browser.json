@@ -1,0 +1,30 @@
+{
+  "artifactId": "fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017",
+  "buttons": [
+    {
+      "action": "apply",
+      "height": 44,
+      "width": 227.33334350585935
+    },
+    {
+      "action": "reload",
+      "height": 44,
+      "width": 227.33334350585935
+    },
+    {
+      "action": "icon",
+      "height": 72.66667175292969,
+      "width": 227.33334350585935
+    }
+  ],
+  "version": "V3.4.32",
+  "viewport": {
+    "scrollWidth": 305,
+    "width": 305
+  },
+  "workerStatus": "已啟用",
+  "sameWindowReloadVerified": true,
+  "latestCheckVerified": true,
+  "iconGuideVerified": true,
+  "physicalIPhone": false
+}

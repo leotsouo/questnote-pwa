@@ -1,0 +1,101 @@
+{
+  "artifactId": "fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017",
+  "results": [
+    {
+      "name": "release-artifact.json",
+      "status": 200,
+      "sha256": "b7d1d28a9e0cc287cdae31bf6b6752e25d8b61fd98aef5aae540a0156a0d2c4f",
+      "ok": true
+    },
+    {
+      "name": "index.html",
+      "status": 200,
+      "sha256": "ac3017f27a0b8e65f25ebf4d41a4b0c791bed6d576032bf68953ec907c9c5e8c",
+      "ok": true
+    },
+    {
+      "name": "service-worker.js",
+      "status": 200,
+      "sha256": "6ae899599743093164b4ded8ccb1fc545613576cc6cdd39a5d5621850b4744a1",
+      "ok": true
+    },
+    {
+      "name": "src/app.js",
+      "status": 200,
+      "sha256": "f6209bdf35a5d65d5619df66e44971180acbc7df5920ad4e93a4c53a3514521a",
+      "ok": true
+    },
+    {
+      "name": "src/ui.js",
+      "status": 200,
+      "sha256": "94ecf71151ac2131d88b8f79b7fc0df575b5e0f4ce2a522aef2befc34d176004",
+      "ok": true
+    },
+    {
+      "name": "src/bootstrap.js",
+      "status": 200,
+      "sha256": "4e204d38ee18c4e87068357d92eb229015114a80f6ea066e84caf63d8b73ec10",
+      "ok": true
+    },
+    {
+      "name": "src/updateController.js",
+      "status": 200,
+      "sha256": "fcf45665a4ed9fa8dc8e14f719e65320ce2de90fe877cfa87245387cfafaa8e4",
+      "ok": true
+    },
+    {
+      "name": "src/updateActivity.js",
+      "status": 200,
+      "sha256": "2cb4d2e9f5b4a77b0e92cd2793e577578914cdc4a5f4c2aee3410838a22526b5",
+      "ok": true
+    },
+    {
+      "name": "src/updateProtocol.js",
+      "status": 200,
+      "sha256": "df73542b7899fb473b91f913bc890463331fbb0832db56289f783c33e9d588a0",
+      "ok": true
+    },
+    {
+      "name": "src/theme-refinements.css",
+      "status": 200,
+      "sha256": "c17ef676bdac003a6c40ae5c6fb5566a7d7eaae235e6c5b2b0e04093c9cb29e4",
+      "ok": true
+    },
+    {
+      "name": "src/version.js",
+      "status": 200,
+      "sha256": "15f3ba31a4990f9bb837da011579fe73252eb7c465e733cf0d08e89b4c918eba",
+      "ok": true
+    },
+    {
+      "name": "src/releaseProfile.js",
+      "status": 200,
+      "sha256": "585ff5da259a38512ff0c54688189e4f81b46183225edd69c8e6024fcdfe81c3",
+      "ok": true
+    },
+    {
+      "name": "manifest.webmanifest",
+      "status": 200,
+      "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
+      "ok": true
+    },
+    {
+      "name": "assets/brand/questnote-icon-180.png",
+      "status": 200,
+      "sha256": "568c5f586481050de3c0263794de557f36acb340346eba7db1a9cdc7b000f9bf",
+      "ok": true
+    },
+    {
+      "name": "data/global-mailbox.json",
+      "status": 200,
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "ok": true
+    },
+    {
+      "name": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+      "status": 200,
+      "sha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+      "ok": true
+    }
+  ]
+}
