@@ -29,9 +29,9 @@
       "name": "initial browser performance observations (unthrottled, not field Core Web Vitals)",
       "pass": true,
       "cls": 0,
-      "lcpMs": 212,
-      "transferredBytes": 121593,
-      "jsBytes": 9947
+      "lcpMs": 236,
+      "transferredBytes": 121700,
+      "jsBytes": 10054
     },
     {
       "name": "responsive 393px, clear first-screen story, UTM",
@@ -108,5 +108,5 @@
   ],
   "errors": [],
   "badResponses": [],
-  "testedAt": "2026-09-30T20:16:22.290Z"
+  "testedAt": "2026-09-30T20:23:58.842Z"
 }
