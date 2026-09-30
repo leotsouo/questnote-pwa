@@ -7,9 +7,9 @@ import { execFileSync } from 'node:child_process';
 import { verifyReleaseArtifact } from '../../scripts/verify-release-artifact.mjs';
 
 const sourceRoot = path.resolve(import.meta.dirname, '../..');
-const deploymentRoot = path.resolve(sourceRoot, '../honeylight-animation-production-v3436');
+const deploymentRoot = path.resolve(sourceRoot, '../honeylight-animation-production-v3436-short-debut');
 const expectedBase = '77d30b869ca69cdf5a9b56b127ab13d5e2e6056b';
-const branch = 'codex/honeylight-animation-production-v3436';
+const branch = 'codex/honeylight-animation-production-v3436-short-debut';
 const pins = JSON.parse(await fs.readFile(path.join(import.meta.dirname, 'release-pins.json')));
 const production = pins.production;
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
