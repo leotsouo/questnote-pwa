@@ -1,5 +1,7 @@
 # Pool Content Contract v1
 
+蜜光糖庭新增受控 `honeylight_sugar` theme／summon template，以及 UR `caramel`／`cream` reveal keys。這些值由 runtime registry 決定，不接受 catalog HTML 或程式碼；`brief.animationPlan` 與實際 dispatch 在 authoring validation 中核對一致。企劃前正式版同步、動畫製作及發布驗收見 [卡池 Pipeline](card-pool-pipeline.md)。
+
 Status: contract, UI/presentation/reveal adapters, shared schema validation, read-only CLI, and browser harness implemented. No persistent schema changes, production catalog changes, or new dependencies are included. Payment/transaction integration belongs to M2A and browser acceptance is run by the lead engineer after integration.
 
 ## Inputs and validation

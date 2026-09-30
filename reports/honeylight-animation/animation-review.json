@@ -1,0 +1,106 @@
+{
+  "reviewedAt": "2026-09-30T20:42:06.318Z",
+  "sourceCommit": "e209c1e65130c25f356f52f67011f29274f93323",
+  "candidateId": "e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
+  "production": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+    "artifactId": "621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+    "manifestSha256": "4e93bdd443fdf234d18cd68fff1547a0d79488f5fdd4fded7d58ac8197fa1eb4",
+    "fileCount": 410,
+    "scopePath": "/questnote-pwa/",
+    "catalogSha256": "67fb0ef59d21ba0310292f7bc6b861644256ae2eabc41ff03e7042c7bf210005",
+    "reproducible": true,
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+      "artifactId": "621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+      "manifestSha256": "4e93bdd443fdf234d18cd68fff1547a0d79488f5fdd4fded7d58ac8197fa1eb4",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 410
+    }
+  },
+  "preview": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+    "artifactId": "9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+    "manifestSha256": "d252c7fe4bf0709590eefe970e73876347edd7d6e296787d244699a8208ce123",
+    "fileCount": 410,
+    "scopePath": "/questnote-pwa-preview/",
+    "catalogSha256": "67fb0ef59d21ba0310292f7bc6b861644256ae2eabc41ff03e7042c7bf210005",
+    "reproducible": true,
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+      "artifactId": "9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+      "manifestSha256": "d252c7fe4bf0709590eefe970e73876347edd7d6e296787d244699a8208ce123",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 410
+    }
+  },
+  "animation": {
+    "desktopPassed": 14,
+    "mobilePassed": 14,
+    "failed": 0,
+    "previewUrl": "http://127.0.0.1:54939/devtools/honeylight-animation-preview.html"
+  },
+  "app": {
+    "passed": 12,
+    "updatePassed": 8,
+    "manual": {
+      "previewUrl": "http://127.0.0.1:60619/questnote-pwa-preview/",
+      "artifactId": "9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+      "single": {
+        "rarity": "UR",
+        "petName": "千層奶霜天鵝",
+        "initialWallet": 3000,
+        "walletAfter": 2900,
+        "urPityBefore": 99,
+        "urPityAfter": 0
+      },
+      "responsive": {
+        "width": 393,
+        "height": 852,
+        "overlayWidth": 393.3333435058594,
+        "overlayHeight": 852,
+        "scrollWidth": 393
+      },
+      "productionPushed": false,
+      "ten": {
+        "walletAfter": 1900,
+        "names": [
+          "奶油曲奇刺蝟",
+          "方糖絨兔",
+          "泡芙栗鼠",
+          "跳跳果凍蛙",
+          "莓糖卷尾松鼠",
+          "奶油曲奇刺蝟",
+          "薄荷拐杖鼬",
+          "方糖絨兔",
+          "馬卡龍錦羽孔雀",
+          "泡芙栗鼠"
+        ],
+        "layout": {
+          "scrollWidth": 393,
+          "summaryWidth": 377.59375,
+          "width": 393
+        }
+      }
+    },
+    "previewUrl": "http://127.0.0.1:60619/questnote-pwa-preview/"
+  },
+  "approvedPngCount": 12,
+  "approvedPngBytesUnchanged": true,
+  "authoringArchiveFileCount": 766,
+  "deploymentCommit": "77ab1b5d0c2e450d0ebc9a4809cbdc16ff67f609",
+  "productionPushed": false,
+  "sourceAutoMerged": false,
+  "finalGate": "Explicit user approval before formal source integration/production push; recheck latest refs and live production first.",
+  "limitations": [
+    "Chromium desktop and 393×852 viewport emulation verified; no physical iPhone/Safari run was performed."
+  ],
+  "deferredUntilPoolPublished": [
+    "Workshop craftable food review",
+    "Expedition region review"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "preparedAt": "2026-09-30T20:21:42.860Z",
+  "sourceCommit": "e209c1e65130c25f356f52f67011f29274f93323",
+  "candidateId": "e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
+  "productionApproval": "PENDING_USER_FINAL_GO_AHEAD",
+  "productionPushed": false,
+  "production": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+    "artifactId": "621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+    "manifestSha256": "4e93bdd443fdf234d18cd68fff1547a0d79488f5fdd4fded7d58ac8197fa1eb4",
+    "fileCount": 410,
+    "scopePath": "/questnote-pwa/",
+    "catalogSha256": "67fb0ef59d21ba0310292f7bc6b861644256ae2eabc41ff03e7042c7bf210005",
+    "reproducible": true,
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+      "artifactId": "621e46f61b9233b67978680cbbf4a913a4f392fa1444cb2de39162a1b85fe74e",
+      "manifestSha256": "4e93bdd443fdf234d18cd68fff1547a0d79488f5fdd4fded7d58ac8197fa1eb4",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 410
+    }
+  },
+  "preview": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+    "artifactId": "9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+    "manifestSha256": "d252c7fe4bf0709590eefe970e73876347edd7d6e296787d244699a8208ce123",
+    "fileCount": 410,
+    "scopePath": "/questnote-pwa-preview/",
+    "catalogSha256": "67fb0ef59d21ba0310292f7bc6b861644256ae2eabc41ff03e7042c7bf210005",
+    "reproducible": true,
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+      "artifactId": "9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+      "manifestSha256": "d252c7fe4bf0709590eefe970e73876347edd7d6e296787d244699a8208ce123",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 410
+    }
+  }
+}
