@@ -17952,3 +17952,9 @@ body.is-pet-image-viewer-open .onboarding-dock { visibility: hidden; }
   flex: 0 0 auto;
   overflow-wrap: anywhere;
 }
+/* Daily reminder controls share the app's form and theme tokens. */
+.reminder-options { display: grid; gap: 12px; margin: 16px 0; }
+.reminder-options label, .reminder-consent { display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+.reminder-options input, .reminder-consent input { flex-shrink: 0; margin-top: 5px; }
+.reminder-actions { flex-wrap: wrap; }
+.settings-reminders .form-hint { overflow-wrap: anywhere; }

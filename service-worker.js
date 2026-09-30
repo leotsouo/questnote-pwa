@@ -6,16 +6,42 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-9c2bd9c3ac2ebdb9202f6f2b942df8346cca9b6c2c8e4ecd64f3e3a06592ff37';
+const CACHE_NAME = 'questnote-production-app-f8d2cd85d2cacf06cdfa1b13a27c593ac30e08b925c9753879b9000cbc27fada';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
+
+self.addEventListener('push', (event) => {
+  event.waitUntil((async () => {
+    let data = {};
+    try { data = event.data?.json() || {}; } catch { /* Always show a visible fallback. */ }
+    const expired = typeof data.expiresAt === 'number' && data.expiresAt < Date.now();
+    await self.registration.showNotification(expired ? 'QuestNote' : String(data.title || 'QuestNote 今日計畫').slice(0, 100), {
+      body: expired ? '開啟 QuestNote 查看最新計畫。' : String(data.body || '點開查看今日任務與習慣。').slice(0, 700),
+      icon: new URL('assets/icons/icon-192.png', self.registration.scope).href,
+      badge: new URL('assets/icons/icon-192.png', self.registration.scope).href,
+      tag: String(data.tag || 'questnote-daily').slice(0, 100),
+      data: { type: 'questnote-open-today' },
+    });
+  })());
+});
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil((async () => {
+    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: false });
+    const client = windows.find((c) => c.url.startsWith(self.registration.scope));
+    if (client) { await client.focus(); client.postMessage({ type: 'questnote-open-today' }); return; }
+    const url = new URL('index.html', self.registration.scope);
+    url.searchParams.set('reminder', 'today');
+    await self.clients.openWindow(url.href);
+  })());
+});
 // Filled by the release assembler. Source checkouts are not release artifacts.
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "9c2bd9c3ac2ebdb9202f6f2b942df8346cca9b6c2c8e4ecd64f3e3a06592ff37",
-  "sourceCommit": "fa70beb4c90e71a4c732cb60a9da1b7f4b6d9fe9",
+  "artifactId": "f8d2cd85d2cacf06cdfa1b13a27c593ac30e08b925c9753879b9000cbc27fada",
+  "sourceCommit": "d691e47bd39b42d6abd6a26ccb43a113daf567cc",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -44,11 +70,11 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "eae58e071fa89eca54efa91abca8c04e23a7b1a3a5b24e1b1d4fad6328d2da61",
+  "index.html": "491d8fc52999d79ce751a544b0ba5bfcb7b6b1e68c13ad0b46b8e7362c79d9e2",
   "manifest.webmanifest": "044a5f22c568ec5dab4f2a1f0cce9a9a26ed70f2320a0e5a6c1c9f06b7cd2591",
   "src/achievementService.js": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
   "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
-  "src/app.js": "f1ae1db55c2572aad3849e94d1d684b3b3e8109b602ddc7c4d46e97c1faf8c04",
+  "src/app.js": "7ab42490004bac0be0b4145cc172bb42beb009177c6dc8e913d3a2e5f0797156",
   "src/backupSchema.js": "70448806c5b03d4cca512b9d856300ea9e3683301fd15a2b0aac201d0c0dd80e",
   "src/backupService.js": "e48da4ded47c5e6c984b8f09fcbe5b5f2deb7b8ecb2477c4d0169c11e2c7cfa1",
   "src/bootstrap.js": "975974b344ff1f3e8100eed78a1fafa054b6b549c185dc03cd918dd31be6f08d",
@@ -59,7 +85,7 @@ const PRECACHE_HASHES = {
   "src/companionDialogueService.js": "8fe79ef7d7d94e3a654b8f9ee43178cc4fac01bfbf1cc67b53b173be3f17c955",
   "src/companionService.js": "3974b56613aea67e80f7659caa9dbca0d9397f298948f1f98c9e60b8e446d6aa",
   "src/dailyCheckInService.js": "d994210565a779da2265f8a32334dc233a06b4dee037672ef433eb5fa123b62b",
-  "src/db.js": "5c84de76db373846b23686ae1ff3babca9da9df9bd2b24e7aa8ab1679b3e32c1",
+  "src/db.js": "646ad94adfaed2031d1c27a0d2bafb17f3830ef606b6bb091dc54d9ccc604c78",
   "src/deferredRenderGate.js": "cbbaf2e401be35eab6d673a935c13fef615286a554937dc497b02c4aa6aca6e5",
   "src/devService.js": "af56b92e6fcf886786f4a41d777dc355c35c0d0bd4b39fd72fc11217c4238dd4",
   "src/dialogFocus.js": "24eb36d909579732f8b9776c4f2e2a3fec8e112d8e96194257b6b16bee49eecf",
@@ -94,24 +120,27 @@ const PRECACHE_HASHES = {
   "src/preferencesService.js": "a6ae09d8f8f120a5c7c74da67f73fde022d053a398aed3bb972e343d0fdcc135",
   "src/questService.js": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "0e0328659922e6423427c1d861dd4f5e2a1c4e99985a1675f143862df45bb604",
+  "src/releaseProfile.js": "2f1f53c9a062c517392f9c2e6952303e467c3055ca6299be5115a531625e4c70",
+  "src/reminderController.js": "2a49ca7ef18e8bc0192b5e97af666fce289ff7d180f413edfd9d161646ea6ada",
+  "src/reminderRules.js": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
+  "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
   "src/rewardService.js": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
   "src/shareService.js": "04705dbca03c699f62781606b45d8bf483acb7463358750d6c9c4c0da47bcad1",
-  "src/styles.css": "b0bd2f56718da2792036debd5aad7175d89c737d284a3072511ff3bc7a8a17e5",
+  "src/styles.css": "d66c91c9344dddacd5bf6ae52104fc7264400cd903d88225ae170007ba038838",
   "src/summon-polish.css": "0d3cbae026034e11034be8ecabc6ff9613a461fbaee616376a26f90f4b924bda",
   "src/summonRevealService.js": "71d4828b6e0c4a89285f63a2781c67e7b96b7966c3e0c98312c4c037c1c1bed4",
   "src/taskFilterService.js": "687858edc36119afcb388fc3fd75ebd058d0a93117da42740c8a1f18d4b00471",
   "src/taskMigration.js": "67055f714b759d43e1a333ce7d039619eca3537f5e83ce46ee76a0d4692f25b1",
-  "src/taskService.js": "d706443822d95fc230e367cc3a42e64fcc460b129025a93fbd204fa13c0ee49f",
+  "src/taskService.js": "e12190eb4cf777b79e49d327547544be53af707e1237928b8d7c93c040ceca84",
   "src/taskStatsService.js": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
   "src/themedSummonController.js": "f2bcd1b922da8dee874ee5c2a678378f23841f44287b44b8d2b8f14014b3af6f",
   "src/themeRegistry.js": "7aff25923d95bed495eabb02e7b0a0b505591589ebdf96d3c361b392f9040f1a",
   "src/twilight-theme.css": "0c8a4f3dc4216bd3a122469c26e34f865fcab686415339a0da87fa6926750ad6",
   "src/twilightPresentation.js": "3d7fd0a1d8671e92517f9df9e9caa9026def111805f662ec9bc1c4cea5600263",
   "src/ui-polish.css": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
-  "src/ui.js": "cfa07ac65b4020dfa3d784487a8b8bbc0eb07dd82bfaa74360adc7f58f629108",
+  "src/ui.js": "16bb747976a5a6f53a400d8aa9fee7257f1dd4531e38f46a7b0118f9e19da18a",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
-  "src/version.js": "a10d63155a7b4a5c5a4da13388fb8246ac9d4be90c44551e411d7d42ce655ef6",
+  "src/version.js": "cbbcbfd82e3fd43b481cb46ac0c9bd1616f2bba27407ab34b17c22e3551db8f3",
   "src/workshopService.js": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69"
 };
 
@@ -188,6 +217,9 @@ const PRECACHE_URLS = [
   "src/questService.js",
   "src/releaseCatalog.js",
   "src/releaseProfile.js",
+  "src/reminderController.js",
+  "src/reminderRules.js",
+  "src/reminderService.js",
   "src/rewardService.js",
   "src/shareService.js",
   "src/styles.css",

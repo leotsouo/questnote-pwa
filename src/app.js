@@ -5,6 +5,7 @@
  */
 
 import { openDB, clearAllData } from './db.js';
+import { getReminderState, disableReminders } from './reminderService.js';
 import { RELEASE_PROFILE } from './releaseProfile.js';
 
 import { getAllTasks } from './taskService.js';
@@ -395,6 +396,8 @@ async function refreshState(options = {}) {
 
 
 async function resetAllData() {
+  const reminderState = await getReminderState();
+  if (reminderState.token) await disableReminders();
 
   await clearAllData();
 
