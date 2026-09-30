@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="src/theme-system.css" />
   <link rel="stylesheet" href="src/theme-refinements.css" />
   <link rel="stylesheet" href="src/reminder-settings.css" />
+  <link rel="stylesheet" href="src/font-size-settings.css" />
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -590,6 +591,22 @@
           <p class="page-subtitle">備份、統計與顯示偏好</p>
         </div>
       </header>
+
+      <section class="card settings-font-size" aria-labelledby="font-size-heading">
+        <h2 id="font-size-heading" class="section-title">字體大小</h2>
+        <p class="settings-section-note">選擇看得舒服的文字大小，切換後立即生效，App 會記住你的選擇。</p>
+        <fieldset id="font-size-picker" class="font-size-picker">
+          <legend class="sr-only">字體大小</legend>
+          <label><input type="radio" name="font-size" value="standard" checked /><span>標準<small>目前大小</small></span></label>
+          <label><input type="radio" name="font-size" value="large" /><span>大<small>放大 25%</small></span></label>
+          <label><input type="radio" name="font-size" value="extra-large" /><span>特大<small>放大 50%</small></span></label>
+        </fieldset>
+        <div class="font-size-preview" aria-label="文字大小預覽">
+          <strong>今天，完成一件讓自己開心的小事。</strong>
+          <p>任務、說明與按鈕文字會一起調整，閱讀更輕鬆。</p>
+        </div>
+        <p id="font-size-result" class="settings-section-note" role="status" aria-live="polite"></p>
+      </section>
 
       <section class="card settings-reminders">
         <header class="reminder-heading">

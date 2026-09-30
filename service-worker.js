@@ -62,6 +62,7 @@ const PRECACHE_URLS = [
   'assets/brand/questnote-icon-512.png',
   'assets/brand/questnote-icon-maskable-512.png',
   'src/reminder-settings.css',
+  'src/font-size-settings.css',
   'src/twilightPresentation.js',
   'src/themeRegistry.js',
   'src/dialogFocus.js',

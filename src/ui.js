@@ -72,7 +72,7 @@ import {
   randomBubbleInterval,
   IDLE_THRESHOLD_MS,
 } from './companionDialogueService.js';
-import { setTheme, applyThemeToDocument, normalizeTheme } from './preferencesService.js';
+import { setTheme, applyThemeToDocument, normalizeTheme, setFontSize, applyFontSizeToDocument, normalizeFontSize } from './preferencesService.js';
 import { initQuestIconLanguage } from './iconPresentation.js';
 import { THEME_DIRECTIONS } from './themeRegistry.js';
 import { twilightIcon, getCompanionScene, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
@@ -1191,6 +1191,27 @@ function bindDelegatedEvents() {
     }
   }));
 
+  document.getElementById('font-size-picker')?.addEventListener('change', trackUpdateActivity(async (event) => {
+    if (event.target.name !== 'font-size') return;
+    const picker = event.currentTarget;
+    const previous = state.userPreferences?.fontSize;
+    picker.disabled = true;
+    try {
+      const prefs = await setFontSize(event.target.value);
+      state.userPreferences = prefs;
+      applyFontSizeToDocument(prefs.fontSize);
+      renderFontSizePickerState(prefs.fontSize);
+      setText('font-size-result', '字體大小已儲存');
+    } catch (error) {
+      applyFontSizeToDocument(previous);
+      renderFontSizePickerState(previous);
+      setText('font-size-result', '無法儲存字體大小，請再試一次。');
+      console.warn('[Preferences] Failed to save font size:', error);
+    } finally {
+      picker.disabled = false;
+    }
+  }));
+
   document.querySelector('.theme-picker')?.addEventListener('keydown', trackUpdateActivity(async (event) => {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
     const current = event.target.closest('[data-action="select-theme"]');
@@ -1849,6 +1870,7 @@ export async function renderAll() {
   }
   uiDebugLog('[Render] renderAll fallback');
   applyThemeToDocument(state.userPreferences?.theme ?? 'default');
+  applyFontSizeToDocument(state.userPreferences?.fontSize);
   applyReduceMotionClass(state.userPreferences?.reduceMotion ?? false);
   renderTasksView();
   renderGachaView();
@@ -4583,6 +4605,7 @@ export async function applyTheme(theme, options = {}) {
   }
 
   if (state) {
+    applyFontSizeToDocument(state.userPreferences?.fontSize);
     applyReduceMotionClass(state.userPreferences?.reduceMotion ?? false);
     await renderAll();
   } else {
@@ -4594,6 +4617,13 @@ export async function applyTheme(theme, options = {}) {
   }
 
   return valid;
+}
+
+function renderFontSizePickerState(fontSize) {
+  const valid = normalizeFontSize(fontSize);
+  document.querySelectorAll('input[name="font-size"]').forEach((input) => {
+    input.checked = input.value === valid;
+  });
 }
 
 function renderThemePickerState(activeTheme) {
@@ -8817,6 +8847,7 @@ function renderSettingsView() {
   setText('settings-achievements', `${achUnlocked}/${achTotal}`);
 
   renderThemePickerState(userPreferences?.theme ?? 'default');
+  renderFontSizePickerState(userPreferences?.fontSize);
 
   // 開發測試區：正式環境不可見；僅 localhost／127.0.0.1／::1（不得僅靠 CSS、不得用 ?debug 開正式 PWA）
   const localDevOn = isAuthorLocalDevMode();
