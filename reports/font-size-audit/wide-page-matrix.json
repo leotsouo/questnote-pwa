@@ -1,0 +1,50 @@
+[
+  {
+    "view": "任務",
+    "documentWidth": 375,
+    "size": "extra-large",
+    "width": 390
+  },
+  {
+    "view": "召喚",
+    "documentWidth": 375,
+    "size": "extra-large",
+    "width": 390
+  },
+  {
+    "view": "圖鑑",
+    "documentWidth": 375,
+    "size": "extra-large",
+    "width": 390
+  },
+  {
+    "view": "探險",
+    "documentWidth": 375,
+    "size": "extra-large",
+    "width": 390
+  },
+  {
+    "view": "任務",
+    "documentWidth": 415,
+    "size": "extra-large",
+    "width": 430
+  },
+  {
+    "view": "召喚",
+    "documentWidth": 415,
+    "size": "extra-large",
+    "width": 430
+  },
+  {
+    "view": "圖鑑",
+    "documentWidth": 415,
+    "size": "extra-large",
+    "width": 430
+  },
+  {
+    "view": "探險",
+    "documentWidth": 415,
+    "size": "extra-large",
+    "width": 430
+  }
+]
