@@ -556,6 +556,10 @@ async function run() {
   const group = document.getElementById('group').value;
   taskSemanticsBaseline = undefined;
   output.textContent = `${group} · 真實 App 390 × 844 · ${new Date().toISOString()}\n`;
+  if (group.startsWith('TW')) {
+    await checkTwilight();
+    return;
+  }
   for (const value of ['default', 'sweet']) {
     await theme(value);
     log(`\n[${value}]`);
@@ -565,6 +569,57 @@ async function run() {
     if (group === 'VP-05') await vp05();
   }
   log('\n檢查結束。FAIL 不視為通過；仍需人工視覺、原生鍵盤、捲動與點擊驗收。');
+}
+
+async function checkTwilight() {
+  const { readAllStoresSnapshot } = await import('../src/db.js');
+  const gameplay = async () => {
+    const snapshot = await readAllStoresSnapshot();
+    snapshot.meta = snapshot.meta.filter((row) => row.key !== 'userPreferences');
+    return JSON.stringify(snapshot);
+  };
+  const baseline = await gameplay();
+  for (const value of ['default', 'sweet', 'twilight']) {
+    await theme(value);
+    await navigate('tasks');
+    check(`${value} · 偏好已持久化`, (await preferences.getUserPreferences()).theme === value);
+    check(`${value} · 首頁呈現正確`, visible(doc().querySelector('#twilight-home')) === (value === 'twilight'));
+    await navigate('settings');
+    check(`${value} · 三種選項且僅一種使用中`, doc().querySelectorAll('.theme-card').length === 3
+      && doc().querySelectorAll('.theme-card[aria-checked="true"]').length === 1
+      && doc().querySelector('.theme-card[aria-checked="true"]').dataset.theme === value);
+  }
+  check('三種風格切換不更動任何遊戲存檔欄位', await gameplay() === baseline);
+  await loadApp();
+  check('重新載入保留暮光風格', doc().body.dataset.theme === 'twilight');
+  for (const view of ['tasks', 'gacha', 'collection', 'expedition', 'more', 'settings', 'habits', 'achievements', 'workshop', 'handbook', 'guide', 'share']) {
+    await navigate(view);
+    const active = doc().querySelector('.view.active');
+    check(`${view} · 390px 無頁面橫溢`, doc().documentElement.scrollWidth <= 390 && active.scrollWidth <= active.clientWidth + 1,
+      `document=${doc().documentElement.scrollWidth}; view=${active.scrollWidth}/${active.clientWidth}`);
+    const nav = doc().querySelector('.bottom-nav');
+    check(`${view} · 固定導覽可見且觸控 >= 44px`, rect(nav).bottom <= 844.1
+      && [...nav.querySelectorAll('.nav-item')].every((button) => rect(button).height >= 44));
+  }
+  await navigate('tasks');
+  const title = doc().querySelector('.twilight-task-card .task-card__title');
+  const completion = doc().querySelector('.twilight-task-card .task-check');
+  check('首個任務與完成操作在導覽上方', rect(title).bottom < rect(doc().querySelector('.bottom-nav')).top
+    && rect(completion).bottom < rect(doc().querySelector('.bottom-nav')).top);
+  check('完成觸控 >= 44px', rect(completion).width >= 44 && rect(completion).height >= 44);
+  const card = doc().querySelector('.twilight-task-card');
+  const beforeEdit = await gameplay();
+  card.querySelector('summary').click();
+  card.querySelector('[data-action="edit"]').click();
+  await settleDialog(doc().querySelector('#modal-overlay'));
+  check('手帳任務沿用編輯表單', visible(doc().querySelector('#task-content')));
+  doc().querySelector('#form-cancel').click();
+  await settle();
+  check('取消編輯不改遊戲存檔', await gameplay() === beforeEdit);
+  const { exportBackup, validateBackup } = await import('../src/backupService.js');
+  const backup = await exportBackup();
+  check('真實匯出包含暮光偏好且可恢復', backup.data.userPreferences.theme === 'twilight' && validateBackup(backup).valid);
+  log('DONE · 視覺、原生觸控、裝置 safe-area 與系統減少動態仍需人工驗收。');
 }
 
 async function action(work) {

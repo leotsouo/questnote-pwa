@@ -1,0 +1,70 @@
+{
+  "expected": 15,
+  "passed": 15,
+  "failed": 0,
+  "complete": true,
+  "databaseName": "QuestNoteTest-SummonDraw-71247058-457d-4ae4-b56f-4bdcf017ee4c",
+  "serverInstance": "affb6439-722e-4207-b462-5e3467b04adb",
+  "results": [
+    {
+      "name": "default: rapid single click charges exactly 75 once",
+      "ok": true
+    },
+    {
+      "name": "default: result offers close only and displays a small card image first",
+      "ok": true
+    },
+    {
+      "name": "default: close returns to main summon controls without changing saved state",
+      "ok": true
+    },
+    {
+      "name": "default: main-page ten draws charge 750 and compensate ten N duplicates",
+      "ok": true
+    },
+    {
+      "name": "default: closing result releases pull locks without further writes",
+      "ok": true
+    },
+    {
+      "name": "sweet: rapid single click charges exactly 75 once",
+      "ok": true
+    },
+    {
+      "name": "sweet: result offers close only and displays a small card image first",
+      "ok": true
+    },
+    {
+      "name": "sweet: close returns to main summon controls without changing saved state",
+      "ok": true
+    },
+    {
+      "name": "sweet: main-page ten draws charge 750 and compensate ten N duplicates",
+      "ok": true
+    },
+    {
+      "name": "sweet: closing result releases pull locks without further writes",
+      "ok": true
+    },
+    {
+      "name": "twilight: rapid single click charges exactly 75 once",
+      "ok": true
+    },
+    {
+      "name": "twilight: result offers close only and displays a small card image first",
+      "ok": true
+    },
+    {
+      "name": "twilight: close returns to main summon controls without changing saved state",
+      "ok": true
+    },
+    {
+      "name": "twilight: main-page ten draws charge 750 and compensate ten N duplicates",
+      "ok": true
+    },
+    {
+      "name": "twilight: closing result releases pull locks without further writes",
+      "ok": true
+    }
+  ]
+}

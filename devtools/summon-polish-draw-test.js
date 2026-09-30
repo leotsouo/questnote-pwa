@@ -89,7 +89,8 @@ try {
   document.body.classList.add('reduce-motion');
   const snapshot = async () => JSON.stringify(await storage.readAllStoresSnapshot());
   Math.random = () => 0.2;
-  for (const theme of ['default', 'sweet']) {
+  for (const theme of ['default', 'sweet', 'twilight']) {
+    const resultTheme = theme === 'sweet' ? 'sweet' : 'default';
     await settlePull();
     // Clear only this generated tenant's fixture data between themes, never another database.
     for (const store of Object.values(storage.STORES)) await storage.dbClear(store);
@@ -114,16 +115,16 @@ try {
       node('btn-pull').click(); node('btn-pull').click();
       await waitFor(() => node('modal-overlay').classList.contains('open')
         && node('modal-body').firstElementChild !== previousResult
-        && document.querySelector(`.${theme}-summon-result--single #pull-close`), 'fresh open single result');
+        && document.querySelector(`.${resultTheme}-summon-result--single #pull-close`), 'fresh open single result');
       assert(state.wallet.stardust === 1925 && state.gachaStats.totalPulls === 1,
         `Rapid click totals incorrect: stardust=${state.wallet.stardust}, totalPulls=${state.gachaStats.totalPulls}`);
-      assert(document.querySelector(`.${theme}-summon-result--single`), 'Wrong theme result');
+      assert(document.querySelector(`.${resultTheme}-summon-result--single`), 'Wrong theme result');
       const pet = await storage.dbGet(storage.STORES.COLLECTION, 'pet_n910');
       assert(pet && pet.fragments === 0, 'First N draw or duplicate compensation incorrect');
     });
     await test(prefix + 'result offers close only and displays a small card image first', async () => {
       assert(!document.querySelector('[data-action="result-single-pull"], [data-action="result-ten-pull"]'), 'Repeat summon action remains');
-      assert(document.querySelectorAll(`.${theme}-summon-result--single footer button`).length === 1, 'Result footer has extra actions');
+      assert(document.querySelectorAll(`.${resultTheme}-summon-result--single footer button`).length === 1, 'Result footer has extra actions');
       const image = document.querySelector('.summon-result-single__frame .pet-img');
       assert(image?.getAttribute('src')?.includes('card') || image?.complete, 'First result image did not start loading');
     });
@@ -139,8 +140,8 @@ try {
       node('btn-pull-ten').click();
       await waitFor(() => node('modal-overlay').classList.contains('open')
         && node('modal-body').firstElementChild !== previousResult
-        && document.querySelector(`.${theme}-summon-result--ten`), 'fresh open ten result');
-      assert(document.querySelectorAll(`.${theme}-summon-grid-card`).length === 10, 'Ten result card count incorrect');
+        && document.querySelector(`.${resultTheme}-summon-result--ten`), 'fresh open ten result');
+      assert(document.querySelectorAll(`.${resultTheme}-summon-grid-card`).length === 10, 'Ten result card count incorrect');
       assert(state.wallet.stardust === 1175, `Ten cost is not 750 or an unexpected refund occurred: stardust=${state.wallet.stardust}`);
       assert(state.gachaStats.totalPulls === 11 && state.gachaStats.tenPullCount === 1,
         `Draw counters incorrect: totalPulls=${state.gachaStats.totalPulls}, tenPullCount=${state.gachaStats.tenPullCount}`);
@@ -174,6 +175,6 @@ try {
   indexedDB.open = nativeOpen;
   const passed = results.filter((result) => result.ok).length;
   const failed = results.filter((result) => !result.ok).length;
-  output.textContent = JSON.stringify({ expected: 10, passed, failed, complete: passed === 10 && failed === 0, databaseName, serverInstance, results }, null, 2);
-  document.title = passed === 10 && failed === 0 ? 'PASS — summon polish draws' : 'FAIL — summon polish draws';
+  output.textContent = JSON.stringify({ expected: 15, passed, failed, complete: passed === 15 && failed === 0, databaseName, serverInstance, results }, null, 2);
+  document.title = passed === 15 && failed === 0 ? 'PASS — summon polish draws' : 'FAIL — summon polish draws';
 }

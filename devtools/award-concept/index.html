@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>QuestNote · Award Visual Experiment</title><link rel="icon" href="../../assets/icons/icon-192.png"><link rel="stylesheet" href="study.css"></head>
+<body>
+  <header class="study-header"><a href="index.html" class="study-title">QuestNote<span>VISUAL STUDY 01</span></a><div class="study-controls" role="group" aria-label="設計比較"><button data-mode="current" type="button" aria-pressed="false">CURRENT</button><button data-mode="concept" type="button" aria-pressed="true">AWARD CONCEPT</button><button data-mode="split" type="button" class="split-control" aria-pressed="false">並排比較</button></div><button type="button" id="reset-study">重新比較 ↺</button></header>
+  <div class="study-intro"><p>暮光冒險手帳<span>同一份內容，兩種體驗。試著完成一件任務，看看夥伴的回應。</span></p><label><input id="motion-toggle" type="checkbox"> 減少動態</label></div>
+  <main class="comparison" data-mode="concept"><section class="comparison-pane" id="current-pane"><div class="pane-label"><strong>CURRENT</strong><span id="source-version"></span></div><iframe src="current.html" title="QuestNote 目前任務首頁，唯讀比較"></iframe><a class="direct-link" href="current.html" target="_blank">開啟目前畫面 ↗</a></section><section class="comparison-pane" id="concept-pane"><div class="pane-label"><strong>AWARD CONCEPT</strong><span>暮光冒險手帳</span></div><iframe src="concept.html" id="concept-frame" title="QuestNote 新版任務首頁，互動原型"></iframe><a class="direct-link" href="concept.html" target="_blank">開啟新版畫面 ↗</a></section></main>
+  <details class="study-notes"><summary>內容來源與實驗範圍</summary><p id="source-note"></p><p>只重新設計任務首頁。CURRENT 使用目前主線的 HTML、樣式與 renderer。新版操作只保留在頁面記憶體，重新比較可回到相同起點；不改存檔、收藏、資源或成長規則。</p><button type="button" id="verify-save">驗證原有存檔未改變</button><output id="save-verification"></output></details>
+  <script type="module" src="study.js"></script>
+</body></html>
