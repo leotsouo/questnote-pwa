@@ -1,0 +1,38 @@
+{
+  "status": "PRODUCTION_LIVE",
+  "version": "3.4.38",
+  "sourceCommit": "62574b696b614211e1876a2fed159137a58ed6f3",
+  "sourceIntegration": "bd686b7dc43cb988d11947aad1c882363bfcf39e",
+  "pullRequest": "https://github.com/leotsouo/questnote-pwa/pull/25",
+  "ci": "https://github.com/leotsouo/questnote-pwa/actions/runs/36781517247",
+  "preview": {
+    "url": "https://leotsouo.github.io/questnote-pwa-preview/",
+    "artifactId": "2b58db2d43bc7898be2249d6b8b30fcf389f6f068ba12ba36a410b61cbd7f639",
+    "pagesCommit": "7c346f8ab80ab1ed174b51ee98cafdf065aedc76",
+    "build": "https://github.com/leotsouo/questnote-pwa-preview/actions/runs/36781986905",
+    "httpsFilesVerified": 13,
+    "browserCases": 30
+  },
+  "production": {
+    "url": "https://leotsouo.github.io/questnote-pwa/",
+    "artifactId": "23317a83166f1f1ea528420d23583b03815e935949c4c769529a7fb1a82010a6",
+    "manifestSha256": "f43160d95824f30fcd3cf5f2fe88bd2300a0aa55cca4fb886ca47c4186d92f57",
+    "pagesCommit": "f95d758adab7d6f6669ebc5614afc43cc15e8f72",
+    "build": "https://github.com/leotsouo/questnote-pwa/actions/runs/36782303723",
+    "httpsFilesVerified": 13,
+    "browserCases": 30,
+    "axeCases": 15,
+    "axeViolations": 0
+  },
+  "website": "https://questnote.taste-compare.com/",
+  "contentBundleSha256": "f00f02ed3dc6414a7bdc41b1032d1f021e6a19edd1b1f5792f27725ec07abc45",
+  "catalogAndMailboxUnchangedFromV3437": true,
+  "localNodeTests": 223,
+  "assembledPwaBrowserCases": 12,
+  "productionStagedFilesHashVerified": 413,
+  "limitations": [
+    "Native iPhone/Android share-sheet and messaging-app preview ordering require physical-device confirmation.",
+    "Desktop Edge viewport simulation is not physical-device testing."
+  ],
+  "touchEmulation": "393x852: tap works; targets at least 44px; pageErrors 0"
+}

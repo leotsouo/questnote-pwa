@@ -3,14 +3,15 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 const { chromium } = await import(pathToFileURL(path.resolve(process.env.QUESTNOTE_NODE_MODULES || 'node_modules', 'playwright/index.mjs')));
+const axePath = path.resolve(process.env.QUESTNOTE_NODE_MODULES || 'node_modules', 'axe-core/axe.min.js');
 const browser = await chromium.launch({ channel: 'msedge' });
 const base = process.env.QUESTNOTE_QA_URL || 'http://127.0.0.1:8891/';
-const output = 'reports/share-marketing';
+const output = process.env.QUESTNOTE_QA_OUTPUT || 'reports/share-marketing';
 await fs.mkdir(output, { recursive: true });
 const results = [];
 try {
   for (const width of [320, 375, 393, 430, 1440]) {
-    const context = await browser.newContext({ viewport: { width, height: 852 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
+    const context = await browser.newContext({ viewport: { width, height: 852 }, reducedMotion: 'reduce', serviceWorkers: process.env.QUESTNOTE_QA_URL ? 'allow' : 'block' });
     const page = await context.newPage();
     await context.route('**/*', route => new URL(route.request().url()).origin === new URL(base).origin ? route.continue() : route.abort());
     await page.addInitScript(() => {
@@ -29,8 +30,13 @@ try {
     await skip.click();
     await page.locator('.onboarding-scrim').waitFor({ state: 'hidden' });
     await page.evaluate(async () => (await import('./src/ui.js')).switchView('share'));
+    await page.addScriptTag({ path: axePath });
     for (const theme of ['default', 'twilight', 'sweet']) {
       await page.evaluate(async theme => (await import('./src/ui.js')).applyTheme(theme, { silent: true, skipSave: true }), theme);
+      // Theme colour transitions must settle before measuring static contrast.
+      await page.waitForTimeout(1000);
+      const accessibility = await page.evaluate(() => axe.run({ include: [['#view-share']] }, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] } }));
+      assert.deepEqual(accessibility.violations, [], `${width}/${theme} accessibility`);
       for (const font of [16, 24]) {
         await page.evaluate(font => document.documentElement.style.fontSize = `${font}px`, font);
         const dimensions = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
