@@ -1,6 +1,8 @@
 /**
  * UI 渲染與互動邏輯
  */
+import { trackUpdateActivity } from './updateActivity.js';
+import { updateControlsHtml, refreshUpdateControls } from './updateController.js';
 import { initReminders, renderReminderSettings } from './reminderController.js';
 import { shiftDate } from './reminderRules.js';
 import {
@@ -497,7 +499,7 @@ function openNicknameModal(petId) {
 
   document.getElementById('nickname-cancel')?.addEventListener('click', closeModal);
 
-  document.getElementById('nickname-clear')?.addEventListener('click', async () => {
+  document.getElementById('nickname-clear')?.addEventListener('click', trackUpdateActivity(async () => {
     const result = await clearPetNickname(petId);
     if (!result.success) {
       showToast(result.message || '暱稱儲存失敗，請稍後再試。', 'error');
@@ -507,9 +509,9 @@ function openNicknameModal(petId) {
     await onRefresh({ renderMode: ['collection'] });
     openPetDetailModal(petId);
     showToast('暱稱已清除', 'success');
-  });
+  }));
 
-  document.getElementById('nickname-save')?.addEventListener('click', async () => {
+  document.getElementById('nickname-save')?.addEventListener('click', trackUpdateActivity(async () => {
     const value = input?.value ?? '';
     const validation = validatePetNickname(value);
     if (!validation.valid) {
@@ -533,7 +535,7 @@ function openNicknameModal(petId) {
       }
     }
     await handleAchievementCheckAfterAction();
-  });
+  }));
 }
 
 export function showToast(message, type = 'info', duration = 2800) {
@@ -605,7 +607,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
       renderCollectionView();
     });
 
-    document.getElementById('gacha-pool-select')?.addEventListener('change', async (e) => {
+    document.getElementById('gacha-pool-select')?.addEventListener('change', trackUpdateActivity(async (e) => {
       const poolId = e.target.value;
       const selection = ++latestPoolSelection;
       if (!poolId || isGachaPullInProgress()) {
@@ -623,7 +625,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
         if (selection !== latestPoolSelection) return;
         showToast(err.message || '切換卡池失敗', 'error');
       }
-    });
+    }));
 
     document.getElementById('gacha-theme-details-btn')?.addEventListener('click', () => {
       const details = document.getElementById('gacha-theme-details');
@@ -682,7 +684,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
 
 /** 使用事件委派，避免重複渲染後按鈕失效 */
 function bindDelegatedEvents() {
-  document.getElementById('view-tasks')?.addEventListener('click', async (e) => {
+  document.getElementById('view-tasks')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const target = e.target.closest('[data-action]');
     if (!target) return;
 
@@ -898,11 +900,11 @@ function bindDelegatedEvents() {
         showToast('任務已刪除', 'success');
       }, { danger: true, confirmLabel: '刪除' });
     }
-  });
+  }));
 
   document.getElementById('btn-add-task')?.addEventListener('click', () => openTaskForm());
 
-  document.getElementById('view-gacha')?.addEventListener('click', async (e) => {
+  document.getElementById('view-gacha')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const target = e.target.closest('[data-action]');
     if (!target) return;
     const action = target.dataset.action;
@@ -918,12 +920,12 @@ function bindDelegatedEvents() {
     } else if (action === 'daily-open-wheel') {
       await openDailyWheelModal();
     }
-  });
+  }));
 
-  document.getElementById('btn-pull')?.addEventListener('click', handlePull);
-  document.getElementById('btn-pull-ten')?.addEventListener('click', handleTenPull);
+  document.getElementById('btn-pull')?.addEventListener('click', trackUpdateActivity(handlePull));
+  document.getElementById('btn-pull-ten')?.addEventListener('click', trackUpdateActivity(handleTenPull));
 
-  document.getElementById('view-collection')?.addEventListener('click', async (e) => {
+  document.getElementById('view-collection')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const milestoneAction = e.target.closest('[data-collection-milestone-action]');
     if (milestoneAction) {
       const action = milestoneAction.dataset.collectionMilestoneAction;
@@ -1027,9 +1029,9 @@ function bindDelegatedEvents() {
         showToast(error.message || '升星失敗，請稍後再試', 'error');
       }
     }, { confirmLabel: `花費 ${cost} 碎片升星` });
-  });
+  }));
 
-  document.getElementById('btn-export')?.addEventListener('click', async () => {
+  document.getElementById('btn-export')?.addEventListener('click', trackUpdateActivity(async () => {
     try {
       await downloadBackup();
       await markExportedBackup();
@@ -1038,24 +1040,24 @@ function bindDelegatedEvents() {
     } catch {
       showToast('匯出失敗，請稍後再試', 'error');
     }
-  });
+  }));
 
   initImportBackupHandlers();
 
-  document.getElementById('btn-reset')?.addEventListener('click', handleReset);
+  document.getElementById('btn-reset')?.addEventListener('click', trackUpdateActivity(handleReset));
 
-  document.getElementById('btn-dev-unlock')?.addEventListener('click', handleDevUnlock);
+  document.getElementById('btn-dev-unlock')?.addEventListener('click', trackUpdateActivity(handleDevUnlock));
 
-  document.getElementById('btn-dev-unlock-all')?.addEventListener('click', handleDevUnlockAll);
+  document.getElementById('btn-dev-unlock-all')?.addEventListener('click', trackUpdateActivity(handleDevUnlockAll));
 
-  document.getElementById('btn-dev-stardust')?.addEventListener('click', handleDevStardust);
-  document.getElementById('btn-dev-companion-bond')?.addEventListener('click', handleDevCompanionBond);
+  document.getElementById('btn-dev-stardust')?.addEventListener('click', trackUpdateActivity(handleDevStardust));
+  document.getElementById('btn-dev-companion-bond')?.addEventListener('click', trackUpdateActivity(handleDevCompanionBond));
 
-  document.getElementById('btn-dev-expedition')?.addEventListener('click', handleDevExpedition);
-  document.getElementById('btn-dev-daily-blessing')?.addEventListener('click', handleDevResetDailyBlessing);
-  document.getElementById('btn-dev-mailbox-announcement')?.addEventListener('click', handleDevMailboxAnnouncement);
-  document.getElementById('btn-dev-mailbox-compensation')?.addEventListener('click', handleDevMailboxCompensation);
-  document.getElementById('btn-dev-mailbox-clear')?.addEventListener('click', handleDevMailboxClear);
+  document.getElementById('btn-dev-expedition')?.addEventListener('click', trackUpdateActivity(handleDevExpedition));
+  document.getElementById('btn-dev-daily-blessing')?.addEventListener('click', trackUpdateActivity(handleDevResetDailyBlessing));
+  document.getElementById('btn-dev-mailbox-announcement')?.addEventListener('click', trackUpdateActivity(handleDevMailboxAnnouncement));
+  document.getElementById('btn-dev-mailbox-compensation')?.addEventListener('click', trackUpdateActivity(handleDevMailboxCompensation));
+  document.getElementById('btn-dev-mailbox-clear')?.addEventListener('click', trackUpdateActivity(handleDevMailboxClear));
 
   // 演出測試僅本機綁定；正式環境即使殘留 DOM 也不掛 listener
   if (isAuthorLocalDevMode()) {
@@ -1071,7 +1073,7 @@ function bindDelegatedEvents() {
       switchView('gacha');
       return;
     }
-    handleExpeditionClick(e);
+    void trackUpdateActivity(handleExpeditionClick)(e);
   });
 
   document.getElementById('view-more')?.addEventListener('click', (e) => {
@@ -1097,7 +1099,7 @@ function bindDelegatedEvents() {
     const backBtn = e.target.closest('[data-goto]');
     if (backBtn) switchView(backBtn.dataset.goto);
   });
-  document.getElementById('btn-share-app')?.addEventListener('click', async () => {
+  document.getElementById('btn-share-app')?.addEventListener('click', trackUpdateActivity(async () => {
     const result = await shareQuestNote();
     if (result === 'unsupported') {
       const copied = await copyQuestNoteUrl();
@@ -1105,18 +1107,18 @@ function bindDelegatedEvents() {
     } else if (result === 'failed') {
       showToast('無法開啟分享，請使用複製連結', 'warning');
     }
-  });
-  document.getElementById('btn-copy-app-link')?.addEventListener('click', async () => {
+  }));
+  document.getElementById('btn-copy-app-link')?.addEventListener('click', trackUpdateActivity(async () => {
     const copied = await copyQuestNoteUrl();
     showToast(copied ? '正式版連結已複製' : '無法自動複製，請長按下方連結', copied ? 'success' : 'warning');
-  });
+  }));
 
   document.getElementById('view-workshop')?.addEventListener('click', (e) => {
-    handleWorkshopClick(e);
+    void trackUpdateActivity(handleWorkshopClick)(e);
   });
 
   document.getElementById('view-handbook')?.addEventListener('click', (e) => {
-    handleHandbookClick(e);
+    void trackUpdateActivity(handleHandbookClick)(e);
   });
 
   document.getElementById('view-guide')?.addEventListener('click', (e) => {
@@ -1124,7 +1126,7 @@ function bindDelegatedEvents() {
     if (backBtn) switchView(backBtn.dataset.goto);
   });
 
-  document.getElementById('view-achievements')?.addEventListener('click', async (e) => {
+  document.getElementById('view-achievements')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const backBtn = e.target.closest('[data-goto]');
     if (backBtn) {
       switchView(backBtn.dataset.goto);
@@ -1159,9 +1161,9 @@ function bindDelegatedEvents() {
         claimBtn.disabled = false;
       }
     }
-  });
+  }));
 
-  document.getElementById('view-settings')?.addEventListener('click', async (e) => {
+  document.getElementById('view-settings')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const backBtn = e.target.closest('[data-goto]');
     if (backBtn) {
       switchView(backBtn.dataset.goto);
@@ -1173,9 +1175,9 @@ function bindDelegatedEvents() {
       const theme = themeCard.dataset.theme;
       if (theme) await applyTheme(theme);
     }
-  });
+  }));
 
-  document.querySelector('.theme-picker')?.addEventListener('keydown', async (event) => {
+  document.querySelector('.theme-picker')?.addEventListener('keydown', trackUpdateActivity(async (event) => {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
     const current = event.target.closest('[data-action="select-theme"]');
     if (!current) return;
@@ -1186,7 +1188,7 @@ function bindDelegatedEvents() {
       : (index + (['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1) + cards.length) % cards.length;
     await applyTheme(cards[next].dataset.theme);
     cards[next].focus();
-  });
+  }));
 
   document.getElementById('achievement-strip')?.addEventListener('click', () => {
     switchView('achievements');
@@ -1208,7 +1210,7 @@ function bindDelegatedEvents() {
 
   document.getElementById('btn-add-habit')?.addEventListener('click', () => openHabitForm());
 
-  document.getElementById('view-habits')?.addEventListener('click', async (e) => {
+  document.getElementById('view-habits')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const backBtn = e.target.closest('[data-goto]');
     if (backBtn) {
       switchView(backBtn.dataset.goto);
@@ -1282,7 +1284,7 @@ function bindDelegatedEvents() {
     } else if (action === 'habit-create-first') {
       openHabitForm();
     }
-  });
+  }));
 }
 
 function bindNavigation() {
@@ -1625,10 +1627,10 @@ function openConfirmModal(title, message, onConfirm, options = {}) {
     closeModal();
     if (typeof onCancel === 'function') onCancel();
   });
-  document.getElementById('confirm-ok')?.addEventListener('click', async () => {
+  document.getElementById('confirm-ok')?.addEventListener('click', trackUpdateActivity(async () => {
     closeModal();
     await onConfirm();
-  });
+  }));
 }
 
 /** 寵物圖片含 fallback；preview 模式顯示模糊黑白預覽（未獲得） */
@@ -2641,7 +2643,7 @@ async function openDailyWheelModal() {
   if (!canSpin) return;
 
   const startBtn = document.getElementById('daily-wheel-start');
-  startBtn?.addEventListener('click', async () => {
+  startBtn?.addEventListener('click', trackUpdateActivity(async () => {
     if (startBtn.disabled || isWheelSpinning()) return;
     startBtn.disabled = true;
 
@@ -2681,7 +2683,7 @@ async function openDailyWheelModal() {
       showToast('轉盤發生錯誤，請稍後再試', 'error');
       startBtn.disabled = false;
     }
-  });
+  }));
 }
 
 function renderTodayPlanSummary(tasks, today) {
@@ -3111,7 +3113,7 @@ function openTaskForm(taskId = null) {
 
   renderSubtaskFormList();
 
-  document.getElementById('task-form')?.addEventListener('submit', async (e) => {
+  document.getElementById('task-form')?.addEventListener('submit', trackUpdateActivity(async (e) => {
     e.preventDefault();
     const content = document.getElementById('task-content').value.trim();
     const priority = document.getElementById('task-priority').value;
@@ -3193,7 +3195,7 @@ function openTaskForm(taskId = null) {
     } catch (err) {
       showToast(err.message || '儲存失敗', 'error');
     }
-  });
+  }));
 }
 
 /** 設定首頁中樞圖示的提示紅點 */
@@ -3567,7 +3569,7 @@ function bindPetFeedInteractions(companion) {
     void openTeachingTarget({ view: 'workshop', tab: 'craft' });
   });
 
-  feedBtn?.addEventListener('click', async (e) => {
+  feedBtn?.addEventListener('click', trackUpdateActivity(async (e) => {
     e.stopPropagation();
     if (feedBtn.disabled) return;
     const select = document.getElementById('companion-feed-select');
@@ -3612,7 +3614,7 @@ function bindPetFeedInteractions(companion) {
         ? '餵食已完成，畫面暫時無法更新，請重新開啟 App'
         : '餵食狀態無法確認，請重新開啟 App 檢查庫存', 'warning', 4000);
     }
-  });
+  }));
 }
 
 function openPetFeedModal(companion) {
@@ -6313,7 +6315,7 @@ function openPetDetailModal(petId) {
     openPetFeedModal(pet);
   });
 
-  document.querySelector('[data-action="set-companion-detail"]')?.addEventListener('click', async (e) => {
+  document.querySelector('[data-action="set-companion-detail"]')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const id = e.target.dataset.petId;
     if (id) {
       await setCompanion(id);
@@ -6322,14 +6324,14 @@ function openPetDetailModal(petId) {
       showToast('已設為陪伴寵物', 'success');
       void recordOnboardingEvent('companion-set', { petId: id });
     }
-  });
+  }));
 
   document.querySelector('[data-action="edit-nickname"]')?.addEventListener('click', (e) => {
     const id = e.target.dataset.petId;
     if (id) openNicknameModal(id);
   });
 
-  document.querySelector('[data-action="clear-nickname"]')?.addEventListener('click', async (e) => {
+  document.querySelector('[data-action="clear-nickname"]')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const id = e.target.dataset.petId;
     if (!id) return;
     const result = await clearPetNickname(id);
@@ -6341,7 +6343,7 @@ function openPetDetailModal(petId) {
     await onRefresh({ renderMode: ['collection'] });
     openPetDetailModal(id);
     showToast('暱稱已清除', 'success');
-  });
+  }));
 }
 
 /* ─── 探險頁 ─── */
@@ -7047,7 +7049,7 @@ function openExpeditionDispatchModal(areaId) {
     overlay.id = 'expedition-dispatch-modal';
     overlay.className = 'expedition-dispatch-modal';
     document.body.appendChild(overlay);
-    overlay.addEventListener('click', handleDispatchModalClick);
+    overlay.addEventListener('click', trackUpdateActivity(handleDispatchModalClick));
   }
   rememberDialogFocus(overlay);
   document.body.classList.add('expedition-dispatch-open');
@@ -7537,7 +7539,7 @@ function openHabitForm(habitId = null) {
 
   document.getElementById('habit-form-cancel')?.addEventListener('click', closeModal);
 
-  document.getElementById('habit-form')?.addEventListener('submit', async (e) => {
+  document.getElementById('habit-form')?.addEventListener('submit', trackUpdateActivity(async (e) => {
     e.preventDefault();
     const errEl = document.getElementById('habit-form-error');
     const name = document.getElementById('habit-name')?.value?.trim();
@@ -7565,7 +7567,7 @@ function openHabitForm(habitId = null) {
         showToast(result.error || '儲存失敗', 'error');
       }
     }
-  });
+  }));
 }
 
 /* ─── 更多 / 成就頁 ─── */
@@ -8209,7 +8211,7 @@ function bindAchievementClaimAll() {
     const btn = e.target.closest('[data-action="claim-all-achievements"]');
     if (!btn || btn.disabled) return;
     e.preventDefault();
-    handleClaimAllAchievements();
+    void trackUpdateActivity(handleClaimAllAchievements)();
   });
 }
 
@@ -8444,7 +8446,7 @@ function openTitleManagementModal() {
   `);
 
   document.querySelectorAll('.title-item .btn').forEach((btn) => {
-    btn.addEventListener('click', async () => {
+    btn.addEventListener('click', trackUpdateActivity(async () => {
       const titleId = btn.dataset.titleId;
       if (!titleId || btn.textContent === '已裝備') return;
       const result = await equipTitle(titleId);
@@ -8455,15 +8457,15 @@ function openTitleManagementModal() {
       } else {
         showToast(result.error || '設定失敗', 'error');
       }
-    });
+    }));
   });
 
-  document.getElementById('btn-clear-title')?.addEventListener('click', async () => {
+  document.getElementById('btn-clear-title')?.addEventListener('click', trackUpdateActivity(async () => {
     await equipTitle(null);
     await onRefresh({ renderMode: ['achievements', 'collection', 'tasks'] });
     closeModal();
     showToast('已清除稱號', 'info');
-  });
+  }));
 }
 
 async function handleAchievementCheckAfterAction() {
@@ -8672,7 +8674,7 @@ function initImportBackupHandlers() {
       showToast('請先選擇有效的備份檔', 'warning');
       return;
     }
-    handleRestoreBackup();
+    void trackUpdateActivity(handleRestoreBackup)();
   });
 
   reloadBtn?.addEventListener('click', () => {
@@ -8782,7 +8784,7 @@ function buildVersionInfoHtml({ compact = false, serviceWorkerStatus = '檢查�
           <dt class="version-info-label">Service Worker</dt>
           <dd class="version-info-value" data-version-sw-status>${escapeHtml(serviceWorkerStatus)}</dd>
         </div>
-      </dl>`;
+      </dl>${updateControlsHtml()}`;
   }
 
   return `
@@ -8805,8 +8807,8 @@ function buildVersionInfoHtml({ compact = false, serviceWorkerStatus = '檢查�
       </div>
     </dl>
     <p class="settings-version__note version-info-note" data-version-update-hint>
-      若仍看到舊版，請先匯出 JSON 備份，再關閉所有 QuestNote 分頁與主畫面 App 後重新開啟。請勿為了更新而清除網站資料。
-    </p>`;
+      按「檢查並更新」即可取得新版。更新保留存檔，請勿清除網站資料。
+    </p>${updateControlsHtml()}`;
 }
 
 function updateVersionInfoServiceWorkerStatus(status) {
@@ -8835,6 +8837,7 @@ export function renderVersionInfo() {
     container.innerHTML = buildVersionInfoHtml({ compact, serviceWorkerStatus: '檢查中' });
   });
 
+  refreshUpdateControls();
   setText('settings-footer-note', `QuestNote ${formatDisplayVersion()} — 離線個人任務記事 App`);
 
   updateServiceWorkerStatusDisplay().catch((error) => {

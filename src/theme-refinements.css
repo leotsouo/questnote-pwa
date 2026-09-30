@@ -201,3 +201,23 @@ body[data-theme] .twilight-is-reacting .twilight-companion-art { animation-durat
   body[data-theme] *, body[data-theme] *::before, body[data-theme] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 body[data-theme].reduce-motion *, body[data-theme].reduce-motion *::before, body[data-theme].reduce-motion *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+/* Update actions share each world's surfaces, type and touch target scale. */
+.app-update-controls { margin-top: 16px; }
+.app-update-status { margin: 0 0 12px; font-size: 0.875rem; line-height: 1.6; overflow-wrap: anywhere; }
+.app-update-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.app-update-actions .btn { min-height: 44px; white-space: normal; flex: 1 1 130px; }
+.app-icon-entry { display: flex; width: 100%; align-items: center; gap: 12px; padding: 14px 0; margin-top: 14px; border: 0; border-top: 1px solid var(--border); background: transparent; color: var(--text); text-align: left; cursor: pointer; min-height: 72px; }
+.app-icon-entry img { border-radius: 12px; flex-shrink: 0; }
+.app-icon-entry > span:first-of-type { flex: 1; min-width: 0; }
+.app-icon-entry strong, .app-icon-entry small { display: block; }
+.app-icon-entry small { margin-top: 3px; line-height: 1.5; }
+.app-icon-entry:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.app-icon-guide { line-height: 1.7; }
+.app-icon-guide > img { display: block; border-radius: 22px; margin: 0 auto 20px; }
+.app-icon-guide ol { padding-left: 24px; }
+.app-icon-guide li { margin-bottom: 12px; }
+.app-icon-url { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+.app-icon-address { overflow-wrap: anywhere; font-size: 0.8rem; }
+.update-banner { display: block; width: calc(100% - 32px); max-height: calc(100dvh - var(--nav-height) - var(--safe-bottom) - 40px); overflow-y: auto; }
+.update-banner .app-update-status { margin-top: 6px; }
+body.modal-open .update-banner { visibility: hidden; pointer-events: none; }
