@@ -58,8 +58,10 @@ export function initTwilightChrome() {
   add(document.querySelector('.mailbox-entry-btn__icon'), 'mail');
 }
 
-export function buildTwilightHome(companion) {
-  const name = companion?.displayName || companion?.name || '等待第一位夥伴';
+export function buildTwilightHome(companion, hasOwnedPets = false) {
+  const name = companion?.displayName || companion?.name || (hasOwnedPets ? '選擇同行夥伴' : '等待第一位夥伴');
+  const emptyAction = hasOwnedPets ? 'empty-go-collection' : 'empty-go-gacha';
+  const emptyHint = hasOwnedPets ? '到圖鑑選一位夥伴，陪你完成今天的旅程。' : '完成任務，讓第一次相遇更近一步。';
   const art = companion ? getPetImageSrc(companion, 'stage') : './assets/expeditions/mist_forest.webp';
   return `<header class="twilight-masthead"><span class="twilight-wordmark">${twilightIcon('book')}QuestNote<span>·</span></span></header>
     <div class="twilight-scene ${companion ? '' : 'twilight-scene--empty'}">
@@ -68,8 +70,8 @@ export function buildTwilightHome(companion) {
       <div class="twilight-greeting"><p class="twilight-eyebrow" id="twilight-date"></p><h1>今天，也<br>一起前進<span>。</span></h1><p>每一件小事，都有人陪你完成。</p></div>
       ${companion ? `<button type="button" class="twilight-pet-touch" data-action="companion-pet" aria-label="撫摸 ${escapeHtml(name)}"><span id="twilight-pet-label">輕觸，打個招呼</span> ${twilightIcon('arrow')}</button>` : ''}
       <div class="twilight-companion-caption"><p class="twilight-eyebrow">${companion ? '今日同行' : '冒險的起點'}</p>
-        <button type="button" class="twilight-pet-name" data-action="${companion ? 'companion-view-detail' : 'empty-go-gacha'}" ${companion ? `data-pet-id="${escapeHtml(companion.id)}"` : ''}>${escapeHtml(name)} ${companion ? `<span class="twilight-rarity">${escapeHtml(companion.rarity)}</span>` : ''}${twilightIcon('arrow')}</button>
-        <p>${escapeHtml(companion?.title || '完成任務，讓第一次相遇更近一步。')}</p>
+        <button type="button" class="twilight-pet-name" data-action="${companion ? 'companion-view-detail' : emptyAction}" ${companion ? `data-pet-id="${escapeHtml(companion.id)}"` : ''}>${escapeHtml(name)} ${companion ? `<span class="twilight-rarity">${escapeHtml(companion.rarity)}</span>` : ''}${twilightIcon('arrow')}</button>
+        <p>${escapeHtml(companion?.title || emptyHint)}</p>
       </div>
     </div>
     <div class="twilight-voice"><span aria-hidden="true">“</span><p id="twilight-companion-line"></p></div>
@@ -88,9 +90,10 @@ export function syncTwilightHome(state) {
   heading.hidden = !active;
   if (!active) return;
   const companion = state.companion;
-  const key = JSON.stringify([companion?.id, companion?.displayName, companion?.name, getPetImageSrc(companion, 'stage')]);
+  const hasOwnedPets = (state.collectionProgress?.owned ?? 0) > 0;
+  const key = JSON.stringify([companion?.id, companion?.displayName, companion?.name, getPetImageSrc(companion, 'stage'), hasOwnedPets]);
   if (container.dataset.companionKey !== key) {
-    container.innerHTML = buildTwilightHome(companion);
+    container.innerHTML = buildTwilightHome(companion, hasOwnedPets);
     container.dataset.companionKey = key;
     const image = container.querySelector('.twilight-companion-art');
     image?.addEventListener('error', () => {
@@ -111,7 +114,7 @@ export function syncTwilightHome(state) {
   track.setAttribute('aria-valuenow', journey.percent);
   track.setAttribute('aria-valuetext', `${journey.done} / ${journey.total} 件完成`);
   const existingLine = document.getElementById('companion-bubble-text')?.textContent;
-  set('twilight-companion-line', companion ? existingLine || state.companionLine : '每一次完成，都在為新的相遇累積星塵。');
+  set('twilight-companion-line', companion ? existingLine || state.companionLine : hasOwnedPets ? '夥伴已經在圖鑑等你，選一位一起出發吧。' : '每一次完成，都在為新的相遇累積星塵。');
   if (companion) {
     const progress = getBondProgress(companion.bondExp ?? 0, companion.bondLevel ?? 1);
     set('twilight-bond-level', `親密度 Lv.${companion.bondLevel ?? 1}`);
