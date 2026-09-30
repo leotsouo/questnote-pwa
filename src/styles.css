@@ -5391,6 +5391,43 @@ body.reduce-motion .task-card--completing {
   color: var(--color-accent);
 }
 
+.workshop-gift-pet__reason {
+  font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
+}
+
+.workshop-gift-pet:disabled,
+.workshop-gift-item:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.workshop-gift-pet__name {
+  overflow-wrap: anywhere;
+}
+
+.workshop-gift-others {
+  margin-top: var(--space-3);
+}
+
+.workshop-gift-others summary {
+  cursor: pointer;
+  padding: var(--space-2) 0;
+}
+
+.workshop-gift-status {
+  padding: var(--space-3);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+}
+
+.workshop-craft-card__source,
+.workshop-craft-card__desc,
+.workshop-gift-hint {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
 .workshop-gift-item {
   flex-direction: column;
   align-items: flex-start;
@@ -17959,6 +17996,95 @@ body.is-pet-image-viewer-open .onboarding-dock { visibility: hidden; }
 .reminder-actions { flex-wrap: wrap; }
 .settings-reminders .form-hint { overflow-wrap: anywhere; }
 
+/* Workshop: one readable type scale across materials, recipes and gifting.
+   Scoped after theme rules so a theme cannot shrink individual text roles. */
+body[data-theme] #app #view-workshop {
+  --workshop-type-title: 1.5rem;
+  --workshop-type-heading: 1.0625rem;
+  --workshop-type-body: 0.9375rem;
+  --workshop-type-meta: 0.8125rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+  font-size: var(--workshop-type-body);
+  line-height: 1.6;
+}
+
+body[data-theme] #app #view-workshop :is(h1, h2, h3, button, summary) {
+  font-family: inherit;
+  letter-spacing: normal;
+}
+
+body[data-theme] #app #view-workshop .page-title {
+  font-size: var(--workshop-type-title);
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+body[data-theme] #app #view-workshop .page-subtitle { font-weight: 400; max-width: none; }
+
+body[data-theme] #app #view-workshop :is(.page-subtitle, .workshop-material-card__desc, .workshop-material-card__qty,
+  .workshop-craft-card__desc, .workshop-craft-card__effect, .workshop-recipe-list li,
+  .workshop-gift-item__effect, .workshop-gift-item__stock, .workshop-gift-pet__reason,
+  .workshop-gift-preview__list, .workshop-gift-preview > p, .workshop-gift-section > p,
+  .workshop-gift-hint, .workshop-gift-status, .workshop-gift-others summary, .btn, .segmented-control__btn) {
+  font-size: var(--workshop-type-body);
+  line-height: 1.6;
+}
+
+body[data-theme] #app #view-workshop :is(.workshop-material-card__header h3, .workshop-craft-card__header h3,
+  .section-title, .workshop-gift-item__name, .workshop-gift-pet__name) {
+  font-size: var(--workshop-type-heading);
+  line-height: 1.45;
+  font-weight: 650;
+  color: var(--color-text-main);
+}
+
+body[data-theme] #app #view-workshop :is(.workshop-summary__label, .workshop-material-card__source,
+  .workshop-craft-card__source, .workshop-craft-card__theme, .workshop-craft-card__affinity,
+  .workshop-gift-pet__meta, .workshop-gift-pet__companion, .pet-original-name,
+  .workshop-gift-preview__limit, .workshop-tag, .rarity-badge) {
+  font-size: var(--workshop-type-meta);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body[data-theme] #app #view-workshop :is(.page-subtitle, .workshop-material-card__desc, .workshop-material-card__source,
+  .workshop-summary__label, .workshop-craft-card__desc, .workshop-craft-card__source,
+  .workshop-craft-card__theme, .workshop-craft-card__affinity, .workshop-gift-pet__meta,
+  .workshop-gift-item__effect, .workshop-gift-hint, .pet-original-name) {
+  color: var(--color-text-secondary);
+}
+
+body[data-theme] #app #view-workshop :is(.workshop-summary__value, .workshop-gift-item__stock,
+  .workshop-recipe-list span, .workshop-material-card__qty strong, .workshop-gift-pet__meta,
+  .workshop-gift-preview__list) {
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-theme] #app #view-workshop .workshop-summary__value {
+  font-size: var(--workshop-type-title);
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+body[data-theme] #app #view-workshop .workshop-summary__grid { margin-bottom: 0; }
+body[data-theme] #app #view-workshop :is(.workshop-material-card, .workshop-craft-card) { padding: var(--space-4); }
+body[data-theme] #app #view-workshop :is(.workshop-craft-card, .workshop-material-card) > p { margin: 0 0 var(--space-2); }
+body[data-theme] #app #view-workshop .workshop-craft-card__effect { color: var(--color-text-main); font-weight: 600; }
+body[data-theme] #app #view-workshop .workshop-recipe-list { gap: var(--space-2); margin-top: var(--space-3); }
+body[data-theme] #app #view-workshop .workshop-recipe-list li { gap: var(--space-3); }
+body[data-theme] #app #view-workshop .workshop-recipe-list span { flex-shrink: 0; }
+body[data-theme] #app #view-workshop .workshop-tag { padding: 3px 8px; }
+body[data-theme] #app #view-workshop :is(.btn, .segmented-control__btn, .workshop-gift-others summary) { min-height: 44px; font-weight: 600; }
+body[data-theme] #app #view-workshop .workshop-gift-section { padding: var(--space-4); }
+body[data-theme] #app #view-workshop .section-title { margin: 0 0 var(--space-3); }
+body[data-theme] #app #view-workshop :is(.workshop-gift-item, .workshop-gift-pet) { padding: var(--space-3); gap: var(--space-3); }
+body[data-theme] #app #view-workshop .workshop-gift-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: baseline; }
+body[data-theme] #app #view-workshop .workshop-gift-item__effect { grid-column: 1 / -1; }
+body[data-theme] #app #view-workshop .workshop-gift-item__stock { font-weight: 600; white-space: nowrap; }
+body[data-theme] #app #view-workshop .workshop-gift-pet__info { gap: var(--space-1); }
+body[data-theme] #app #view-workshop :is(.workshop-gift-item__name, .workshop-gift-item__effect, .workshop-gift-preview > p) { overflow-wrap: anywhere; }
+body[data-theme] #app #view-workshop .workshop-gift-preview > p { margin: 0 0 var(--space-3); font-weight: 600; }
+body[data-theme] #app #view-workshop .workshop-gift-preview__levelup { color: var(--color-accent); font-weight: 600; }
 /* Keep horizontal filter gestures within their own scroll row. */
 .filter-bar { overscroll-behavior-x: contain; user-select: none; cursor: grab; }
 .filter-bar.is-dragging, .filter-bar.is-dragging .filter-btn { cursor: grabbing; }
