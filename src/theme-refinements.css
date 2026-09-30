@@ -41,7 +41,9 @@ body[data-theme] .twilight-masthead { height: 58px; padding: 0 22px; gap: 12px; 
 body[data-theme] .twilight-wordmark { color: var(--qn-scene-text); font: 600 20px/1.2 var(--font-body); letter-spacing: -.6px; gap: 8px; }
 body[data-theme] .qn-brand-mark { border-radius: 7px; flex: none; }
 body[data-theme] .qn-world-name { font-size: 10px; letter-spacing: .3px; color: var(--qn-scene-muted); margin-left: auto; margin-right: 42px; }
-body[data-theme] #twilight-home { background: var(--qn-scene); color: var(--qn-scene-text); }
+/* Reserve the complete notebook corner behind the following sheet. A 3px
+   overlap leaves most of its 24px corners painted against the page background. */
+body[data-theme] #twilight-home { background: var(--qn-scene); color: var(--qn-scene-text); padding-bottom: var(--radius-xl); }
 body[data-theme] .twilight-scene { height: 260px; }
 body[data-theme] .twilight-companion-art { width: 100%; height: 100%; right: 0; top: 0; object-fit: cover; object-position: center; opacity: 1; mask-image: none; -webkit-mask-image: none; }
 body[data-theme] .twilight-scene--catalog .twilight-companion-art { width: 66%; right: 0; object-position: center; mask-image: linear-gradient(90deg,transparent,#000 25%); -webkit-mask-image: linear-gradient(90deg,transparent,#000 25%); }
@@ -72,7 +74,7 @@ body[data-theme] .twilight-journey-label strong { font-size: 15px; font-weight: 
 body[data-theme] .twilight-journey-track { background: color-mix(in srgb,var(--qn-scene-muted) 25%,transparent); height: 4px; }
 body[data-theme] .twilight-journey-track > span, body[data-theme] .twilight-journey-track i { transition-duration: var(--motion-growth); }
 body[data-theme] .twilight-bond { font-size: 11px; color: var(--qn-scene-muted); margin-top: 12px; }
-body[data-theme] #twilight-chapter-heading { padding: 20px 22px 8px; background: var(--color-bg-main); border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
+body[data-theme] #twilight-chapter-heading { padding: 20px 22px 8px; margin-top: calc(-1 * var(--radius-xl)); background: var(--color-bg-main); border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
 body[data-theme] .twilight-chapter-heading::after { display: none; }
 body[data-theme] .twilight-chapter-heading p { font-size: 10px; letter-spacing: 1px; }
 body[data-theme] .twilight-chapter-heading h2 { font-size: var(--type-section); letter-spacing: -.3px; font-weight: 600; }
