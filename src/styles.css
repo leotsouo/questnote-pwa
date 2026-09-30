@@ -163,6 +163,18 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+@media (pointer: coarse) {
+  /* Include nested scroll containers; keep specific custom gesture rules. */
+  :where(html, body, body *) {
+    touch-action: pan-y;
+  }
+
+  /* Prevent iPhone focus zoom on small form text, including modal fields. */
+  input, textarea, select {
+    font-size: max(16px, 1rem) !important;
+  }
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
   background: var(--bg-main);
