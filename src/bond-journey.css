@@ -7,10 +7,11 @@
 .bond-eyebrow { font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 6px; }
 .bond-home > .btn { flex: 0 1 auto; min-height: 44px; white-space: normal; }
 .bond-reader { padding: 4px; color: var(--color-text-main); overflow-wrap: anywhere; }
-.bond-reader__header { display: flex; gap: 14px; align-items: center; }
+.bond-reader__header { display: flex; gap: 14px; align-items: center; padding-right: 44px; }
 .bond-reader__header > * { min-width: 0; }
 .bond-reader__header .pet-image, .bond-reader__header img { width: 76px; height: 76px; object-fit: contain; flex: 0 0 76px; }
 .bond-reader .modal-title { margin: 4px 0 14px; text-align: left; font-size: 1.25rem; }
+.bond-reader__header .modal-title { padding-right: 0 !important; }
 .bond-reader h3 { margin: 0 0 10px; font-size: 1rem; }
 .bond-reader p { line-height: 1.85; margin: 10px 0; }
 .bond-reader .bond-note, .bond-detail-entry .bond-note { color: var(--color-text-muted); font-size: 0.8125rem; line-height: 1.8; }
