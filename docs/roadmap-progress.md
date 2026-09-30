@@ -18,6 +18,8 @@ Implementation branch at the time: `codex/card-pool-pipeline`. The reviewed inte
 
 ## Status
 
+- 新卡池 SOP 2：從下一池開始，企劃前先同步核對最新正式版本；固定三題後由 AI 完成前期，人工只審卡圖及最終整包。標準一池／12 隻可調整／一種新食物，逐隻偏好與探險專長，地區按需新增但評估必填。優先確認不額外計費的產圖外掛；食物、專長、地區及其 hashes 納入新 workspace、candidate 和 release 驗證。蜜光糖庭不補做，舊產物保持歷史。詳見 [新卡池發布 SOP](new-card-pool-sop.md)。本次僅流程／工具，沒有新的正式內容或部署。
+
 - 蜜光糖庭動畫補強：新增 `honeylight_sugar` 入場／抽卡前奏與 `caramel`／`cream` 雙 UR 出場，沿用核准 PNG。新的動畫流程要求企劃前核對最新正式版與 reviewed source baseline，发布前绑定實際預覽和產物 hash；本次 evidence 見 `reports/honeylight-animation/`。舊無專屬動畫產物保留歷史，不能再用於新動畫發布；使用者核准後已正式發布 V3.4.36，Pages 建置與30個正式HTTPS檔案驗證成功，包含全部變更檔案及核准卡圖；最新證據見 `reports/honeylight-animation/production-release.md`。工坊食物與探險區域規劃依使用者要求留到卡池發布後討論。
 
 - V3.4.8 release preparation integrates accepted UI VP-01 through VP-05 with the five-stage-approved frost_oath_fjord candidate (84 pets/Lore, 3 pools/series). Runtime source is fixed at b588cd97094c1dbca7fca73cef7918166023f29b on codex/release-v3.4.8. Production artifact 2c3a9312a4cac620c1982bc90c884da6b0db3c35acd41cfe3b682d440c3fb6ad and the separate preview have passed local acceptance; a byte-preserving Pages artifact commit is prepared locally. Source catalogs remain separate from release assembly. No push or Pages settings change has occurred; user review and publication approval are pending. See [V3.4.8 release review](../reports/release-v3.4.8/README.md) for pinned inputs, actual tests, previews, known external gates and publication sequence.

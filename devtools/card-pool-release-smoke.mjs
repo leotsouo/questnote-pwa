@@ -7,6 +7,11 @@ import sharp from 'sharp';
 import { createPipelineWorkspace, loadPipelineStatus, approvePipelineStage, stagePoolCandidate } from '../scripts/cardPoolPipeline.mjs';
 import { prepareReleaseArtifact } from '../scripts/releaseArtifact.mjs';
 import { planGachaTransaction } from '../src/gachaTransactionCore.js';
+import { getPetSpecialty } from '../src/expeditionGameplay.js';
+import { verifyReleaseArtifact } from '../scripts/verify-release-artifact.mjs';
+import { createHash } from 'node:crypto';
+import { checkPoolReleaseReview } from '../scripts/poolReleaseReview.mjs';
+import assert from 'node:assert/strict';
 
 const repository = path.resolve(import.meta.dirname, '..');
 const runRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'questnote-pool-rehearsal-'));
@@ -15,7 +20,7 @@ await fs.mkdir(source);
 for (const name of ['src', 'data', 'assets', 'content/release-compatibility']) {
   await fs.cp(path.join(repository, name), path.join(source, name), { recursive: true });
 }
-for (const name of ['index.html', 'manifest.webmanifest', 'service-worker.js']) {
+for (const name of ['index.html', 'manifest.webmanifest', 'service-worker.js', '.nojekyll']) {
   await fs.copyFile(path.join(repository, name), path.join(source, name));
 }
 execFileSync('git', ['init', '--quiet', source]);
@@ -24,7 +29,10 @@ execFileSync('git', ['-C', source, '-c', 'user.name=Synthetic Rehearsal', '-c', 
 const read = async (relative) => JSON.parse(await fs.readFile(path.join(source, relative), 'utf8'));
 const write = async (relative, value) => fs.writeFile(path.join(source, relative), JSON.stringify(value, null, 2) + '\n');
 const poolId = 'acceptance_pool'; const seriesId = 'acceptance_series';
-const brief = { schemaVersion: 1, seriesId, poolId, seriesName: '合成驗收卡池',
+const brief = { schemaVersion: 1, sopVersion: 2, purpose: 'synthetic', noExtraCost: true, seriesId, poolId, seriesName: '合成驗收卡池',
+  productionBaseline: { deployedCommit: '1'.repeat(40), sourceCommit: '2'.repeat(40), mainCommit: '3'.repeat(40),
+    artifactId: '4'.repeat(64), version: 'synthetic', httpsUrl: 'https://example.invalid/', verifiedAt: new Date().toISOString(), unpublishedChanges: 'Synthetic pins, not a production check' },
+  animationPlan: { decision: 'none', reason: 'Synthetic rehearsal only', storyboard: 'Existing result', rarityNotes: 'Existing queue', motionNotes: 'No added motion' },
   concept: 'Automated synthetic validation only. Not approved product content.',
   rarityPlan: { N: 1, R: 2, SR: 1, SSR: 1, UR: 1 }, presentationTemplate: 'default',
   cost: 75, rates: { N: 0.55, R: 0.3, SR: 0.1, SSR: 0.03, UR: 0.02 }, pity: { ssr: 30, ur: 100 },
@@ -45,7 +53,7 @@ for (const [index, entry] of plan.pets.entries()) {
   pets.push(pet);
   lore.push({ ...officialLore.lore.find((item) => item.id === template.id), id: entry.petId });
   prompts[entry.petId] = { prompt: 'Synthetic solid-color square. Integration fixture; not generated product artwork.',
-    negativePrompt: 'No production use.', provenance: { method: 'sharp synthetic fixture' } };
+    negativePrompt: 'No production use.', provenance: { tool: 'sharp synthetic fixture', noExtraCost: true, costBasis: 'Local CPU-generated test PNG, no billed service' } };
   const bytes = await sharp({ create: { width: 512, height: 512, channels: 4,
     background: { r: 30 + index * 25, g: 90, b: 160, alpha: 1 } } }).png().toBuffer();
   await fs.writeFile(path.join(source, workspace, 'images', `${entry.petId}.png`), bytes);
@@ -53,10 +61,20 @@ for (const [index, entry] of plan.pets.entries()) {
 await write(`${workspace}/pets.json`, { pets });
 await write(`${workspace}/pets-lore.json`, { version: 1, lore });
 await write(`${workspace}/prompts.json`, { schemaVersion: 1, prompts });
+const ecosystem = await read(`${workspace}/ecosystem.json`);
+ecosystem.food = { ...(await read('data/craftables.json')).find((f) => f.id === 'item_leaf_dumpling'),
+  id: 'item_synthetic_food', name: 'Synthetic rehearsal food' };
+for (const pet of pets) {
+  ecosystem.affinities[pet.id] = ['nature']; ecosystem.affinityNotes[pet.id] = 'Synthetic reviewed fixture';
+  ecosystem.specialties[pet.id] = { role: getPetSpecialty(pet).role, reason: 'Matches actual dispatch runtime' };
+}
+ecosystem.expedition = { decision: 'reuse', reason: 'Existing forest supplies all recipe materials', reusedAreaIds: ['mist_forest'], areas: [] };
+ecosystem.releaseNotes = 'Synthetic pool, food, preferences and dispatch settings; no new region or animation.';
+await write(`${workspace}/ecosystem.json`, ecosystem);
 for (const stage of ['brief', 'plan', 'content', 'prompts', 'images']) {
   const status = await loadPipelineStatus(source, seriesId);
   await approvePipelineStage(source, seriesId, stage, status.stages.find((item) => item.stage === stage).outputHash,
-    { acknowledgeWarnings: true, reviewer: 'automated synthetic fixture; not product approval' });
+    { acknowledgeWarnings: true, reviewer: 'automated synthetic fixture; not product approval', reviewerType: 'synthetic' });
 }
 const candidate = await stagePoolCandidate(source, seriesId);
 const again = await stagePoolCandidate(source, seriesId);
@@ -72,7 +90,42 @@ for (const profile of ['production', 'preview']) {
   const result = await prepareReleaseArtifact({ projectRoot: source, outputRoot: path.join(runRoot, 'artifacts'),
     profile, scopePath: `/${profile}/`, candidateDir: candidate.candidateDir });
   artifacts[profile] = { artifactId: result.artifactId, artifactDir: result.artifactDir };
+  const manifestBytes = await fs.readFile(path.join(result.artifactDir, 'release-artifact.json'));
+  const manifestSha256 = createHash('sha256').update(manifestBytes).digest('hex');
+  await verifyReleaseArtifact({ artifactDir: result.artifactDir, artifactId: result.artifactId,
+    manifestSha256, profile, scopePath: `/${profile}/` });
+  const foods = JSON.parse(await fs.readFile(path.join(result.artifactDir, 'data/craftables.json')));
+  if (!foods.some((f) => f.id === ecosystem.food.id)) throw new Error('Companion food missing from artifact');
+  const affinities = JSON.parse(await fs.readFile(path.join(result.artifactDir, 'data/gift-affinities.json')));
+  if (!pets.every((p) => affinities.giftAffinityTags[p.id]?.includes('nature'))) throw new Error('Companion preferences missing from artifact');
+  artifacts[profile].manifestSha256 = manifestSha256;
+  artifacts[profile].scopePath = `/${profile}/`;
 }
+await assert.rejects(checkPoolReleaseReview({ schemaVersion: 1,
+  sourceCommit: execFileSync('git', ['-C', source, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+  candidateId: candidate.candidateId,
+  candidateManifestSha256: createHash('sha256').update(await fs.readFile(path.join(candidate.candidateDir, 'candidate.json'))).digest('hex'),
+  artifacts, previewUrl: 'http://127.0.0.1/synthetic-only/',
+  checks: Object.fromEntries(['animation', 'workshop', 'specialties', 'region', 'transactions', 'serviceWorker']
+    .map((key) => [key, { status: key === 'region' ? 'reuse' : 'pass', evidence: 'Synthetic gate fixture; not actual human/browser acceptance' }])) }), /Synthetic content/);
+// Even a self-consistent rehashed companion file must reproduce from reviewed inputs.
+const candidateManifestPath = path.join(candidate.candidateDir, 'candidate.json');
+const manifest = JSON.parse(await fs.readFile(candidateManifestPath));
+const companionFoodPath = path.join(candidate.candidateDir, 'companion/data/craftables.json');
+const approvedBytes = await fs.readFile(companionFoodPath);
+const changed = JSON.parse(approvedBytes); changed.at(-1).effect.bondExp = 999;
+const changedBytes = Buffer.from(JSON.stringify(changed, null, 2) + '\n');
+await fs.writeFile(companionFoodPath, changedBytes);
+manifest.files['companion/data/craftables.json'] = createHash('sha256').update(changedBytes).digest('hex');
+await fs.writeFile(candidateManifestPath, JSON.stringify(manifest, null, 2) + '\n');
+let rejected = false;
+try { await prepareReleaseArtifact({ projectRoot: source, outputRoot: path.join(runRoot, 'artifacts'), profile: 'preview',
+  scopePath: '/preview/', candidateDir: candidate.candidateDir, dryRun: true }); }
+catch (error) { if (!error.message.includes('Companion catalog differs')) throw error; rejected = true; }
+if (!rejected) throw new Error('Rehashed companion tampering was accepted');
+await fs.writeFile(companionFoodPath, approvedBytes);
+manifest.files['companion/data/craftables.json'] = createHash('sha256').update(approvedBytes).digest('hex');
+await fs.writeFile(candidateManifestPath, JSON.stringify(manifest, null, 2) + '\n');
 const report = { syntheticOnly: true, releaseReady: false, runRoot, candidateId: candidate.candidateId,
   candidateDir: candidate.candidateDir, petCount: official.pets.length + pets.length, newPoolId: poolId,
   reused: again.reused, gachaPlanner: 'PASS', artifacts };

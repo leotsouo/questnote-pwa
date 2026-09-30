@@ -10,6 +10,8 @@ import sharp from 'sharp';
 import { PIPELINE_STAGES, createPipelineWorkspace, loadPipelineStatus, validatePipelineWorkspace,
   approvePipelineStage, stagePoolCandidate } from '../scripts/cardPoolPipeline.mjs';
 import { buildPetImages, getPetImageVariants } from './build-pet-images.mjs';
+import { ECOSYSTEM_CATALOGS, ECOSYSTEM_RUNTIME } from '../scripts/poolEcosystem.mjs';
+import { getPetSpecialty } from '../src/expeditionGameplay.js';
 
 const exec = promisify(execFile);
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -20,7 +22,7 @@ const rarities = ['N', 'R', 'SR', 'SSR', 'UR'];
 const rates = { N: .55, R: .3, SR: .1, SSR: .03, UR: .02 };
 const png = (width = 512, height = width, color = '#537cab') => sharp({ create: { width, height, channels: 4, background: color } }).png().toBuffer();
 function brief(id = 'fixture_one') {
-  return { schemaVersion: 1, seriesId: id, poolId: id, seriesName: `${id} Garden`, concept: 'A synthetic garden for isolated release pipeline tests.',
+  return { schemaVersion: 1, purpose: 'synthetic', seriesId: id, poolId: id, seriesName: `${id} Garden`, concept: 'A synthetic garden for isolated release pipeline tests.',
     rarityPlan: { N: 1, R: 2, SR: 1, SSR: 1, UR: 1 }, cost: 100, rates: { ...rates }, pity: { ssr: 30, ur: 100 },
     presentationTemplate: 'default', unlock: { key: 'sunrise', threshold: 20, rewardDraftId: 'r_2' }, releaseVersion: '3.4.5' };
 }
@@ -408,4 +410,167 @@ test('CLI status, validation and dry-run use explicit fixture root and do not wr
     assert.doesNotThrow(() => JSON.parse(result.stdout));
   }
   assert.deepEqual(await snapshot(root), before);
+});
+
+
+function sopBrief(id = 'sop_fixture') {
+  return { ...brief(id), sopVersion: 2, noExtraCost: true, unlock: null,
+    productionBaseline: { deployedCommit: '1'.repeat(40), sourceCommit: '2'.repeat(40), mainCommit: '3'.repeat(40),
+      artifactId: '4'.repeat(64), version: 'fixture', httpsUrl: 'https://example.invalid/',
+      verifiedAt: '2026-10-01T00:00:00Z', unpublishedChanges: 'Synthetic pins; never deployment evidence' },
+    animationPlan: { decision: 'none', reason: 'Synthetic fixture only', storyboard: 'No motion', rarityNotes: 'Existing result queue', motionNotes: 'Static result' } };
+}
+async function setupSop(t, definition = sopBrief(), transformRuntime) {
+  const root = await setup(t);
+  await fs.mkdir(path.join(root, 'src'));
+  for (const file of [...ECOSYSTEM_CATALOGS, ...ECOSYSTEM_RUNTIME]) {
+    await fs.copyFile(new URL(`../${file}`, import.meta.url), path.join(root, file));
+  }
+  if (transformRuntime) await transformRuntime(root);
+  const result = await fill(root, definition);
+  const ecosystemPath = path.join(result.dir, 'ecosystem.json');
+  const e = await read(ecosystemPath);
+  e.food = { id: 'item_fixture_food', name: 'Fixture food', description: 'Synthetic food only', rarity: 'R', enabled: true,
+    type: 'favorite_bond_item', effect: { bondExp: 75, favoriteBonusBondExp: 150 }, recipe: { forest_leaf: 8 }, favoriteTags: ['nature'] };
+  for (const p of result.pets) {
+    e.affinities[p.id] = ['nature']; e.affinityNotes[p.id] = 'Synthetic reviewed preference';
+    e.specialties[p.id] = { role: getPetSpecialty(p).role, reason: 'Matches actual current dispatch settings' };
+  }
+  e.expedition = { decision: 'reuse', reason: 'Reuse existing forest material source', reusedAreaIds: ['mist_forest'], areas: [] };
+  e.releaseNotes = 'Synthetic pets, food and affinities; existing dispatch specialties and no new region or animation.';
+  await write(ecosystemPath, e);
+  const promptsPath = path.join(result.dir, 'prompts.json');
+  const prompts = await read(promptsPath);
+  for (const entry of Object.values(prompts.prompts)) entry.provenance = {
+    tool: 'sharp fixture', noExtraCost: true, costBasis: 'Local synthetic PNG, no network or generation billing',
+  };
+  await write(promptsPath, prompts);
+  return { root, ...result, e, ecosystemPath };
+}
+async function approveSop(root, id, start = 0) {
+  for (const stage of PIPELINE_STAGES.slice(start)) {
+    const status = await loadPipelineStatus(root, id);
+    await approvePipelineStage(root, id, stage, status.stages.find((s) => s.stage === stage).outputHash,
+      { acknowledgeWarnings: true, reviewer: 'synthetic fixture, never human acceptance', reviewerType: 'synthetic' });
+  }
+}
+
+test('new real workspace requires SOP and production pins; legacy workspaces still stage in their original format', async (t) => {
+  const root = await setup(t);
+  const real = brief('unmarked_real'); delete real.purpose;
+  await assert.rejects(createPipelineWorkspace(root, real), { code: 'SOP_REQUIRED' });
+  await assert.rejects(createPipelineWorkspace(root, { ...sopBrief('bad_pins'), productionBaseline: {} }), { code: 'SOP_BRIEF_INVALID' });
+  const { dir } = await fill(root);
+  const b = await read(path.join(dir, 'brief.json')); delete b.purpose; await write(path.join(dir, 'brief.json'), b);
+  const state = await read(path.join(dir, 'pipeline.json')); delete state.sopVersion; delete state.purpose;
+  await write(path.join(dir, 'pipeline.json'), state);
+  await approveAll(root, 'fixture_one');
+  const candidate = await stagePoolCandidate(root, 'fixture_one');
+  assert.equal(candidate.manifest.sopVersion, undefined);
+  assert.equal(Object.keys(candidate.manifest.files).some((f) => f.includes('ecosystem') || f.includes('companion')), false);
+});
+
+test('SOP companion food, recipient, recipe, specialty and region assessment are hard content gates', async (t) => {
+  const { root, e, ecosystemPath } = await setupSop(t);
+  assert.equal((await validatePipelineWorkspace(root, 'sop_fixture')).ok, true);
+  for (const [mutate, code] of [
+    [(v) => { v.food = null; }, 'NEW_FOOD_REQUIRED'],
+    [(v) => { v.food.id = 'constructor'; }, 'NEW_FOOD_REQUIRED'],
+    [(v) => { v.expedition.decision = ''; }, 'REGION_ASSESSMENT_REQUIRED'],
+    [(v) => { v.food.recipe = { nonexistent: 1 }; }, 'RECIPE_INVALID'],
+    [(v) => { v.food.favoriteTags = ['unknown']; }, 'FOOD_TAG_INVALID'],
+    [(v) => { for (const id of Object.keys(v.affinities)) v.affinities[id] = []; }, 'FOOD_RECIPIENT_REQUIRED'],
+    [(v) => { delete v.specialties[Object.keys(v.specialties)[0]]; }, 'PET_SETTINGS_REQUIRED'],
+    [(v) => { v.specialties[Object.keys(v.specialties)[0]].role = 'unsupported'; }, 'SPECIALTY_INVALID'],
+    [(v) => { v.runtimeHashes['src/workshopService.js'] = '0'.repeat(64); }, 'ECOSYSTEM_RUNTIME_DRIFT'],
+  ]) {
+    const changed = structuredClone(e); mutate(changed); await write(ecosystemPath, changed);
+    await assertValidationError(root, 'sop_fixture', code);
+  }
+  await write(ecosystemPath, e);
+  const promptPath = path.join(path.dirname(ecosystemPath), 'prompts.json');
+  const prompts = await read(promptPath); delete prompts.prompts[Object.keys(prompts.prompts)[0]].provenance.costBasis;
+  await write(promptPath, prompts);
+  await assertValidationError(root, 'sop_fixture', 'GENERATION_COST_UNCONFIRMED');
+});
+
+test('selecting a new region cannot stage an unimplemented story or omit its actual milestone ladder', async (t) => {
+  const { root, e, ecosystemPath } = await setupSop(t);
+  const forest = (await read(path.join(root, 'data/expeditions.json'))).areas[0];
+  e.expedition = { decision: 'add', reason: 'Independent synthetic story and exploration', reusedAreaIds: ['mist_forest'],
+    areas: [{ ...forest, id: 'new_unimplemented_region', name: 'New region' }] };
+  await write(ecosystemPath, e);
+  await assertValidationError(root, 'sop_fixture', 'REGION_RUNTIME_INCOMPLETE');
+});
+
+test('a complete new region uses actual runtime stories/discoveries/milestones and source-specialty behavior', async (t) => {
+  const areaId = 'fixture_region';
+  const storyId = 'fixture_story';
+  const name = 'Fixture region';
+  const definition = { areaId, name, increment: 5, milestones: [10, 25, 50, 75, 100].map((percent) => ({
+    percent, title: `Milestone ${percent}`, description: 'Synthetic complete milestone', reward: { stardust: 10 },
+    ...(percent === 10 ? { storyId } : {}),
+  })) };
+  const { root, e, ecosystemPath } = await setupSop(t, sopBrief(), async (root) => {
+    const explorationPath = path.join(root, 'src/explorationService.js');
+    let source = await fs.readFile(explorationPath, 'utf8');
+    source = source.replace('const AREA_STORIES = {', `const AREA_STORIES = {\n  ${storyId}: 'Synthetic story',`)
+      .replace('const AREA_EXPLORATION_DEFS = {', `const AREA_EXPLORATION_DEFS = {\n  ${areaId}: ${JSON.stringify(definition)},`);
+    await fs.writeFile(explorationPath, source);
+    const gameplayPath = path.join(root, 'src/expeditionGameplay.js');
+    source = (await fs.readFile(gameplayPath, 'utf8')).replace('const AREA_DISCOVERIES = {',
+      `const AREA_DISCOVERIES = {\n  ${areaId}: 'Synthetic discovery',`)
+      .replace('export function getPetSpecialty(pet) {', "export function getPetSpecialty(pet) {\n  return { role: 'guardian', level: 1 };");
+    await fs.writeFile(gameplayPath, source);
+  });
+  const forest = (await read(path.join(root, 'data/expeditions.json'))).areas[0];
+  e.expedition = { decision: 'add', reason: 'Independent story with functional expedition rewards', reusedAreaIds: ['mist_forest'],
+    areas: [{ ...forest, id: areaId, name }] };
+  await write(ecosystemPath, e);
+  await assertValidationError(root, 'sop_fixture', 'SPECIALTY_INVALID');
+  for (const specialty of Object.values(e.specialties)) specialty.role = 'guardian';
+  await write(ecosystemPath, e);
+  assert.equal((await validatePipelineWorkspace(root, 'sop_fixture')).ok, true);
+  await approveSop(root, 'sop_fixture');
+  const candidate = await stagePoolCandidate(root, 'sop_fixture');
+  const areas = await read(path.join(candidate.candidateDir, 'companion/data/expeditions.json'));
+  assert.equal(areas.areas.at(-1).id, areaId);
+});
+
+test('companion hashes revoke downstream reviews, preserve candidates and detect baseline drift or policy downgrade', async (t) => {
+  const { root, e, ecosystemPath, dir } = await setupSop(t);
+  const official = await snapshot(path.join(root, 'data'));
+  await approveSop(root, 'sop_fixture');
+  const first = await stagePoolCandidate(root, 'sop_fixture');
+  assert.equal(first.manifest.sopVersion, 2);
+  for (const file of ECOSYSTEM_CATALOGS) assert.ok(first.manifest.files[`companion/${file}`]);
+  const old = await snapshot(first.candidateDir);
+  e.releaseNotes += ' Updated'; await write(ecosystemPath, e);
+  assert.deepEqual((await loadPipelineStatus(root, 'sop_fixture')).stages.map((s) => s.approved), [true, true, false, false, false]);
+  await assert.rejects(stagePoolCandidate(root, 'sop_fixture'), { code: 'UNAPPROVED' });
+  await approveSop(root, 'sop_fixture', 2);
+  const next = await stagePoolCandidate(root, 'sop_fixture');
+  assert.notEqual(first.candidateId, next.candidateId);
+  assert.deepEqual(await snapshot(first.candidateDir), old);
+  assert.deepEqual(await snapshot(path.join(root, 'data')), official);
+  const definition = await read(path.join(dir, 'brief.json')); delete definition.sopVersion;
+  await write(path.join(dir, 'brief.json'), definition);
+  await assert.rejects(loadPipelineStatus(root, 'sop_fixture'), { code: 'SOP_DOWNGRADE' });
+  definition.sopVersion = 2; await write(path.join(dir, 'brief.json'), definition);
+  await fs.appendFile(path.join(root, 'data/craftables.json'), '\n');
+  assert.equal((await loadPipelineStatus(root, 'sop_fixture')).errors[0].code, 'BASELINE_DRIFT');
+});
+
+test('real SOP artwork requires explicit human reviewer; internal stages accept AI reviews', async (t) => {
+  const definition = sopBrief('real_review_fixture'); delete definition.purpose;
+  const { root } = await setupSop(t, definition);
+  for (const stage of PIPELINE_STAGES.slice(0, 4)) {
+    const status = await loadPipelineStatus(root, definition.seriesId);
+    await approvePipelineStage(root, definition.seriesId, stage, status.stages.find((s) => s.stage === stage).outputHash,
+      { acknowledgeWarnings: true, reviewer: 'AI fixture', reviewerType: 'ai' });
+  }
+  const status = await loadPipelineStatus(root, definition.seriesId);
+  await assert.rejects(approvePipelineStage(root, definition.seriesId, 'images', status.stages[4].outputHash,
+    { acknowledgeWarnings: true, reviewer: 'AI fixture', reviewerType: 'ai' }), { code: 'HUMAN_IMAGES_REQUIRED' });
+  assert.equal((await loadPipelineStatus(root, definition.seriesId)).readyToStage, false);
 });

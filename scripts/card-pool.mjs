@@ -21,9 +21,10 @@ try {
   else if (command === 'validate') result = await validatePipelineWorkspace(root, id);
   else if (command === 'approve') result = await approvePipelineStage(root, id, stage, option('--hash'), {
     acknowledgeWarnings: args.includes('--ack-warnings'), reviewer: option('--reviewer') || 'local-author',
+    reviewerType: option('--reviewer-type'),
   });
   else if (command === 'stage') result = await stagePoolCandidate(root, id, { dryRun: args.includes('--dry-run') });
-  else throw new Error('Use init <id> --brief <file> | status <id> | approve <id> <stage> --hash <hash> [--ack-warnings] | validate <id> | stage <id> [--dry-run]');
+  else throw new Error('Use init <id> --brief <file> | status <id> | approve <id> <stage> --hash <hash> [--ack-warnings] [--reviewer <name> --reviewer-type ai|human|synthetic] | validate <id> | stage <id> [--dry-run]');
   console.log(JSON.stringify(result, null, 2));
   if (result.ok === false || result.errors?.length) process.exitCode = 1;
 } catch (error) {

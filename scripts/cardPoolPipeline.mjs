@@ -9,6 +9,8 @@ import { validatePetPackage, validatePetCatalog, validateLoreCatalog, validateSe
 import { normalizePoolDefinition, resolveEffectivePool, validatePoolContent, POOL_RARITIES, POOL_THEME_REGISTRY } from '../src/poolContentContract.js';
 import { getEligiblePetsForPool } from '../src/petPoolFilter.js';
 import { buildPetImages, inspectPetImage, PET_IMAGE_BUILD_VERSION, PET_IMAGE_OPTIONS } from '../devtools/build-pet-images.mjs';
+import { ECOSYSTEM_CATALOGS, ECOSYSTEM_RUNTIME, POOL_INTERVIEW, checkSopBrief,
+  ecosystemScaffold, validateEcosystem } from './poolEcosystem.mjs';
 
 export const PIPELINE_VERSION = 1;
 export const PIPELINE_STAGES = Object.freeze(['brief', 'plan', 'content', 'prompts', 'images']);
@@ -78,7 +80,8 @@ function workspaceRelative(id) { return `content/pet-series/${safeId(id)}`; }
 async function workspacePath(root, id) { return contained(root, workspaceRelative(id)); }
 async function toolFingerprint() {
   const files = ['./cardPoolPipeline.mjs', './petSeriesPublishService.mjs', '../src/petDataSchema.js',
-    '../src/poolContentContract.js', '../src/petPoolFilter.js', '../devtools/build-pet-images.mjs'];
+    '../src/poolContentContract.js', '../src/petPoolFilter.js', '../devtools/build-pet-images.mjs',
+    './poolEcosystem.mjs', '../src/expeditionGameplay.js'];
   const entries = {};
   for (const file of files) entries[file] = hash(await fs.readFile(new URL(file, import.meta.url)));
   return hash(jsonText({ pipelineVersion: PIPELINE_VERSION, files: entries, imageBuild: PET_IMAGE_BUILD_VERSION,
@@ -136,8 +139,9 @@ async function archiveStage(dir, stage) {
     throw error;
   }
 }
-async function captureBaseline(root, official) {
+async function captureBaseline(root, official, sopVersion) {
   const files = [...Object.values(CATALOGS)];
+  if (sopVersion === 2) files.push(...ECOSYSTEM_CATALOGS, ...ECOSYSTEM_RUNTIME);
   for (const pet of official.petsData.pets) {
     for (const file of [pet.image, ...Object.values(pet.imageVariants || {})]) {
       assert(typeof file === 'string' && /^assets\/pets\/[a-z0-9_/-]+\.(png|webp)$/i.test(file), 'BASELINE_INVALID', 'Invalid existing pet image path');
@@ -172,6 +176,7 @@ function checkBrief(brief) {
   assert(object(brief) && brief.schemaVersion === 1, 'BRIEF_INVALID', 'Brief schemaVersion must be 1');
   safeId(brief.seriesId); safeId(brief.poolId);
   assert(plain(brief.concept) && plain(brief.seriesName), 'BRIEF_INVALID', 'Concept and seriesName are required');
+  if (brief.sopVersion === 2) checkSopBrief(brief);
   assert(object(brief.rarityPlan) && Object.keys(brief.rarityPlan).length === POOL_RARITIES.length
     && POOL_RARITIES.every((rarity) => Number.isSafeInteger(brief.rarityPlan[rarity]) && brief.rarityPlan[rarity] >= 0),
     'BRIEF_INVALID', 'rarityPlan must contain every rarity with a nonnegative integer');
@@ -228,6 +233,8 @@ export async function createPipelineWorkspace(root, brief) {
     } catch (error) { if (error.code !== 'ENOENT') throw error; }
     try { await fs.access(existingPath); throw new PipelineError('WORKSPACE_EXISTS', 'Incomplete existing workspace requires explicit recovery'); }
     catch (error) { if (error.code !== 'ENOENT') throw error; }
+    assert(brief.sopVersion === 2 || brief.purpose === 'synthetic', 'SOP_REQUIRED',
+      'New real pools require sopVersion: 2; only explicitly synthetic fixtures can use the legacy scaffold');
     const official = await readOfficial(root);
     assert(!official.poolsData.pools.some((pool) => pool.id === brief.poolId), 'POOL_COLLISION', 'Pool ID already published');
     assert(!official.seriesCatalog.series.some((series) => series.id === brief.seriesId), 'SERIES_COLLISION', 'v1 creates a new series; it does not replace published series');
@@ -246,7 +253,7 @@ export async function createPipelineWorkspace(root, brief) {
     }
     const reward = brief.unlock ? allocation.find((pet) => pet.draftId === brief.unlock.rewardDraftId) : null;
     assert(!brief.unlock || reward, 'BRIEF_INVALID', 'rewardDraftId must reference an allocated roster slot such as r_2');
-    const baseline = await captureBaseline(root, official);
+    const baseline = await captureBaseline(root, official, brief.sopVersion);
     const temporary = await contained(contentRoot, `.creating-${brief.seriesId}-${randomUUID()}`, { allowMissing: true });
     await fs.mkdir(temporary);
     const plan = { schemaVersion: 1, pets: allocation.map((pet) => ({ ...pet, name: '', design: '',
@@ -265,18 +272,26 @@ export async function createPipelineWorkspace(root, brief) {
         description: brief.concept, rarityPlan: brief.rarityPlan, releaseVersion: brief.releaseVersion || '' },
       'pets.json': { pets: [] }, 'pets-lore.json': { version: 1, lore: [] }, 'prompts.json': { schemaVersion: 1, prompts: {} },
       'pool.json': pool, 'pipeline.json': { schemaVersion: 1, seriesId: brief.seriesId, poolId: brief.poolId,
+        sopVersion: brief.sopVersion === 2 ? 2 : 1, purpose: brief.purpose === 'synthetic' ? 'synthetic' : 'real',
         baseline, allocation, history: [] } };
+    if (brief.sopVersion === 2) files['ecosystem.json'] = ecosystemScaffold(allocation,
+      Object.fromEntries(ECOSYSTEM_RUNTIME.map((file) => [file, baseline.files[file]])));
     for (const [file, data] of Object.entries(files)) await writeJson(temporary, file, data);
     await fs.mkdir(path.join(temporary, 'images'));
     await fs.writeFile(path.join(temporary, 'AI-HANDOFF.md'), `# ${brief.seriesName} authoring handoff\n\n`
-      + 'Review brief.json with the user, then fill plan.json names/designs and base/unlock phases. IDs are reserved: never renumber them.\n'
+      + 'Ask the fixed product interview once, carrying forward supplied answers; each question accepts 交給你. Then AI owns brief/plan/content/prompts reviews; only artwork and final whole-package acceptance require human review. Record the real reviewer, never impersonate the user. IDs are reserved: never renumber them.\n'
+      + POOL_INTERVIEW.map((question, index) => `${index + 1}. ${question}`).join('\n') + '\n'
+      + 'Default: one pool, 12 adjustable pets, exactly one new themed food; first-draw access, existing economics, no unlock/gift. Rarity allocation is AI-owned; two UR is not a global rule.\n'
       + 'Before planning, verify latest production gh-pages/artifact and its reviewed source baseline against origin/main. Source merge alone is not deployment evidence. Record revisions and reconcile unpublished changes; never copy gh-pages into source.\n'
       + 'For every new real pool, explicitly fill brief.animationPlan: decision dedicated/reuse/none, storyboard, rarityNotes and motionNotes. Explain reuse/none; default is not proof of completed animation. Complete runtime/contract validation before locking a new presentationTemplate.\n'
       + 'After exact-hash plan approval, produce pets.json, pets-lore.json and plain-text pool presentation using the approved roster.\n'
+      + 'For SOP 2 fill ecosystem.json: one food/recipe, every pet affinity + reason and dispatch specialty + reason, add/reuse region assessment, release notes and exact runtime hashes. Missing food/assessment or incomplete selected region blocks staging. New regions need actual story, discoveries and all five runtime milestones before baseline lock.\n'
       + 'Lore requires title, 1–3 personality traits, display element, lore text, normal/urgent/important/praise ×5, idle ×3, bondUp ×2, summon and bondUnlocks 2–5.\n'
+      + 'Before image generation inspect installed applicable plugins; prefer them only when no extra charge is confirmed. Record tool/plugin and cost basis in provenance. Unknown cost means do not invoke; never enable a paid API/subscription automatically. Local CSS/SVG animation costs no generation fee.\n'
       + 'Produce prompts.json entries for every pet ID (prompt and negativePrompt), including generation provenance when available.\n'
       + 'Generate or provide square PNG images named <petId>.png under images/; minimum 512 px, maximum 5 MB. Human review must confirm visual quality and prompt alignment.\n'
-      + 'Use card-pool status/approve for each current exact hash. No stage approval grants publication permission.\n');
+      + 'Use card-pool status/approve for each current exact hash. Identical image bytes may carry forward documented human artwork approval, while downstream hashes require fresh review.\n'
+      + 'Prepare isolated preview and production artifacts and acceptance evidence pinned to source commit, candidate and artifact hashes. Test animation, crafting/gifting, dispatch settings and selected region, storage/transaction safety and SW update. No merge or formal push until final whole-package human acceptance and explicit 可以發布. Preserve prior receipts/candidates/artifacts.\n');
     await verifyBaseline(root, baseline);
     await fs.rename(temporary, existingPath);
     return loadPipelineStatus(root, brief.seriesId);
@@ -290,6 +305,7 @@ async function loadWorkspace(root, id) {
     'WORKSPACE_INVALID', 'Invalid pipeline state');
   const brief = await readJson(dir, 'brief.json');
   checkBrief(brief);
+  assert(state.sopVersion !== 2 || brief.sopVersion === 2, 'SOP_DOWNGRADE', 'A SOP 2 workspace cannot remove its policy marker');
   assert(brief.seriesId === id && brief.poolId === state.poolId, 'WORKSPACE_INVALID', 'Workspace identity changed');
   return { dir, state, brief };
 }
@@ -305,7 +321,8 @@ export async function loadPipelineStatus(root, id) {
   let predecessorsApproved = errors.length === 0;
   const stages = [];
   for (const stage of PIPELINE_STAGES) {
-    const files = stage === 'images' ? state.allocation.map((pet) => `images/${pet.petId}.png`) : STAGE_FILES[stage];
+    const files = stage === 'images' ? state.allocation.map((pet) => `images/${pet.petId}.png`)
+      : [...STAGE_FILES[stage], ...(state.sopVersion === 2 && stage === 'content' ? ['ecosystem.json'] : [])];
     const fileHashes = {};
     const missing = [];
     for (const file of files) {
@@ -361,6 +378,15 @@ async function validateThrough(root, id, stage) {
     readJson(dir, 'series.json'), readJson(dir, 'pets.json'), readJson(dir, 'pets-lore.json'), readJson(dir, 'pool.json'), readJson(dir, 'prompts.json'),
   ]);
   const official = await readOfficial(root);
+  let ecosystemResult;
+  if (state.sopVersion === 2) {
+    const baseline = Object.fromEntries(await Promise.all(ECOSYSTEM_CATALOGS.map(async (file) => [file, await readJson(root, file)])));
+    const runtime = Object.fromEntries(await Promise.all(ECOSYSTEM_RUNTIME.map(async (file) => [file, await fs.readFile(await contained(root, file), 'utf8')])));
+    const ecosystem = await readJson(dir, 'ecosystem.json');
+    ecosystemResult = validateEcosystem({ ecosystem, pets: petsData.pets, baseline, runtime,
+      runtimeHashes: await hashFiles(root, ECOSYSTEM_RUNTIME) });
+    errors.push(...ecosystemResult.errors);
+  }
   assert(pool.id === brief.poolId && !official.poolsData.pools.some((item) => item.id === pool.id), 'POOL_COLLISION', 'New pool must retain its reserved unpublished identity');
   assert(seriesMeta.seriesId === id && seriesMeta.seriesName === brief.seriesName && equal(seriesMeta.rarityPlan, brief.rarityPlan),
     'CONTENT_BRIEF_MISMATCH', 'Series metadata differs from the reviewed brief');
@@ -416,6 +442,10 @@ async function validateThrough(root, id, stage) {
     if (!object(prompt) || !plain(prompt.prompt) || typeof prompt.negativePrompt !== 'string') {
       errors.push(problem('PROMPT_REQUIRED', 'Every pet needs prompt and negativePrompt strings', pet.petId));
     }
+    if (state.sopVersion === 2 && (!object(prompt?.provenance) || prompt.provenance.noExtraCost !== true
+      || !plain(prompt.provenance.tool) || !plain(prompt.provenance.costBasis))) {
+      errors.push(problem('GENERATION_COST_UNCONFIRMED', 'Record the actual tool/plugin and confirmed no-extra-cost basis before generation', pet.petId));
+    }
   }
   if (index >= 4) for (const pet of plan.pets) {
     const relative = `images/${pet.petId}.png`;
@@ -438,7 +468,8 @@ async function validateThrough(root, id, stage) {
       changed: after.filter((item) => previous.has(item.id) && !equal(item, previous.get(item.id))).map((item) => item.id),
       removed: before.filter((item) => !next.has(item.id)).map((item) => item.id) }];
   }));
-  return { ok: !errors.length, errors, warnings, previews: pools.previews, changes, merged, workspace: { dir, state, brief, plan, petsData } };
+  return { ok: !errors.length, errors, warnings, previews: pools.previews, changes, merged,
+    companionCatalogs: ecosystemResult?.catalogs, workspace: { dir, state, brief, plan, petsData } };
 }
 
 export async function validatePipelineWorkspace(root, id) {
@@ -448,7 +479,7 @@ export async function validatePipelineWorkspace(root, id) {
   } catch (error) { return { ok: false, errors: [problem(error.code || 'VALIDATION_FAILED', error.message)], warnings: [] }; }
 }
 
-export async function approvePipelineStage(root, id, stage, exactHash, { acknowledgeWarnings = false, reviewer = 'local-author' } = {}) {
+export async function approvePipelineStage(root, id, stage, exactHash, { acknowledgeWarnings = false, reviewer = 'local-author', reviewerType } = {}) {
   assert(PIPELINE_STAGES.includes(stage), 'STAGE_INVALID', 'Unknown approval stage');
   return locked(root, async () => {
     const status = await loadPipelineStatus(root, id);
@@ -461,11 +492,18 @@ export async function approvePipelineStage(root, id, stage, exactHash, { acknowl
     assert(validation.ok, 'STAGE_INVALID', validation.errors.map((entry) => entry.message).join('; '));
     assert(!validation.warnings.length || acknowledgeWarnings, 'WARNINGS_UNREVIEWED', 'Review and acknowledge the current warnings');
     const { dir, state } = await loadWorkspace(root, id);
+    if (state.sopVersion === 2) {
+      assert(plain(reviewer) && (['ai', 'human'].includes(reviewerType)
+        || (state.purpose === 'synthetic' && reviewerType === 'synthetic')), 'REVIEWER_REQUIRED', 'SOP 2 requires an explicit truthful reviewer type');
+      assert(stage !== 'images' || reviewerType === 'human' || (state.purpose === 'synthetic' && reviewerType === 'synthetic'),
+        'HUMAN_IMAGES_REQUIRED', 'Real pool artwork requires human review');
+    }
     const snapshot = await archiveStage(dir, current);
     const refreshed = await loadPipelineStatus(root, id);
     assert(refreshed.stages[index].outputHash === exactHash && !refreshed.errors.length, 'INPUT_CHANGED', 'Input changed during approval');
     state.history.push({ stage, inputHash: current.inputHash, outputHash: exactHash, files: current.files,
-      toolsHash: status.toolsHash, snapshot, reviewedWarnings: validation.warnings, approvedAt: new Date().toISOString(), reviewer });
+      toolsHash: status.toolsHash, snapshot, reviewedWarnings: validation.warnings, approvedAt: new Date().toISOString(), reviewer,
+      ...(state.sopVersion === 2 ? { reviewerType } : {}) });
     await writeJson(dir, 'pipeline.json', state);
     return loadPipelineStatus(root, id);
   });
@@ -529,6 +567,20 @@ export async function stagePoolCandidate(root, id, { dryRun = false } = {}) {
       const merged = validation.merged;
       merged.petsData.pets = merged.petsData.pets.map((pet) => newPets.get(pet.id) || pet);
       await writeJson(temporary, 'catalog.json', { schemaVersion: 1, ...merged });
+      if (state.sopVersion === 2) {
+        const contentStage = status.stages.find((stage) => stage.stage === 'content');
+        const bytes = await fs.readFile(await contained(dir, 'ecosystem.json'));
+        assert(hash(bytes) === contentStage.files['ecosystem.json'], 'INPUT_CHANGED', 'Reviewed companion content changed during staging');
+        await fs.writeFile(path.join(temporary, 'ecosystem.json'), bytes, { flag: 'wx' });
+        for (const [file, data] of Object.entries(validation.companionCatalogs)) await writeJson(temporary, `companion/${file}`, data);
+        for (const file of ECOSYSTEM_CATALOGS) {
+          const original = await fs.readFile(await contained(root, file));
+          assert(hash(original) === state.baseline.files[file], 'BASELINE_DRIFT', 'Companion baseline changed during staging');
+          const destination = await contained(temporary, `companion-baseline/${file}`, { allowMissing: true });
+          await fs.mkdir(path.dirname(destination), { recursive: true });
+          await fs.writeFile(destination, original, { flag: 'wx' });
+        }
+      }
       await writeJson(temporary, 'validation.json', { schemaVersion: 1, ok: true, errors: [], warnings: validation.warnings,
         previews: validation.previews, changes: validation.changes,
         imageBuild: { version: PET_IMAGE_BUILD_VERSION, options: PET_IMAGE_OPTIONS, encoder: sharp.versions } });
@@ -544,7 +596,8 @@ export async function stagePoolCandidate(root, id, { dryRun = false } = {}) {
       assert(refreshed.readyToStage && equal(refreshed.stages.map((stage) => stage.outputHash), status.stages.map((stage) => stage.outputHash)),
         'INPUT_CHANGED', 'Workspace changed during staging');
       const files = await hashFiles(temporary, await listFiles(temporary));
-      const manifest = { schemaVersion: 1, candidateId, releaseReady: false, baselineHash: state.baseline.hash, files };
+      const manifest = { schemaVersion: 1, candidateId, releaseReady: false, baselineHash: state.baseline.hash,
+        ...(state.sopVersion === 2 ? { sopVersion: 2 } : {}), files };
       await writeJson(temporary, 'candidate.json', manifest);
       await verifyCandidate(temporary, candidateId);
       if (exists) {

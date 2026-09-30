@@ -227,6 +227,50 @@ try {
     const names = await caches.keys();
     for (const profile of ['production', 'preview']) assert(names.includes(configuration.profiles[profile].cacheNames[0]), `${profile} shell was deleted by the other environment`);
   });
+  const companionResponse = await fetch(configuration.profiles.preview.profile.scopePath + 'release-input/ecosystem.json');
+  if (companionResponse.ok) await test('SOP companion content drives actual crafting, favorite gifting and dispatch specialty in an isolated app', async () => {
+    assert(storageOwnershipEstablished, 'Fixture writes require a fresh owned origin');
+    const e = await companionResponse.json();
+    const client = previewFrame.contentWindow;
+    const load = (name) => client.eval('import(' + JSON.stringify(new URL(`src/${name}.js`, client.location.href).href) + ')');
+    let [workshop, collection, db, ui, gameplay] = await Promise.all(['workshopService', 'collectionService', 'db', 'ui', 'expeditionGameplay'].map(load));
+    const bundle = await client.fetch(configuration.profiles.preview.profile.contentBundleUrl).then((r) => r.json());
+    const partner = bundle.petsData.pets.find((p) => e.affinities[p.id]?.some((tag) => e.food.favoriteTags.includes(tag)));
+    assert(partner, 'Companion food has no actual recipient');
+    assert(gameplay.getPetSpecialty(partner).role === e.specialties[partner.id].role, 'Actual dispatch specialty differs from authoring');
+    await collection.addPetToCollection(partner.id);
+    const wallet = await db.dbGet(db.STORES.META, 'wallet');
+    wallet.materials = { ...(wallet.materials || {}), ...Object.fromEntries(Object.entries(e.food.recipe).map(([id, qty]) => [id, qty * 2])) };
+    await db.dbPut(db.STORES.META, wallet);
+    // Test seeding changes IndexedDB directly; a fresh app must load that state.
+    const reloaded = new Promise((resolve) => previewFrame.addEventListener('load', resolve, { once: true }));
+    previewFrame.src = configuration.profiles.preview.profile.scopePath + '?companion-fixture=1';
+    await reloaded;
+    await waitForStarted(previewFrame, 'preview');
+    [workshop, collection, db, ui, gameplay] = await Promise.all(['workshopService', 'collectionService', 'db', 'ui', 'expeditionGameplay'].map(load));
+    previewFrame.contentDocument.querySelector('[data-onboarding-action="skip"]')?.click();
+    await ui.openTeachingTarget({ view: 'workshop', tab: 'craft' });
+    const craftSelector = `[data-action="craft-item"][data-item-id="${e.food.id}"][data-qty="1"]`;
+    await until(() => previewFrame.contentDocument.querySelector(craftSelector), 'companion food craft button');
+    const craft = previewFrame.contentDocument.querySelector(craftSelector);
+    assert(!craft.disabled, 'New recipe is not craftable');
+    craft.click(); craft.click();
+    await until(async () => (await workshop.getInventory()).items[e.food.id] === 1, 'one crafted food despite rapid clicks');
+    await ui.openTeachingTarget({ view: 'workshop', tab: 'gift' });
+    const giftSelector = `[data-action="select-gift-item"][data-item-id="${e.food.id}"]`;
+    await until(() => previewFrame.contentDocument.querySelector(giftSelector), 'companion gift button');
+    previewFrame.contentDocument.querySelector(giftSelector).click();
+    const petSelector = `[data-action="select-gift-pet"][data-pet-id="${partner.id}"]`;
+    await until(() => previewFrame.contentDocument.querySelector(petSelector), 'favorite partner recommendation');
+    previewFrame.contentDocument.querySelector(petSelector).click();
+    await until(() => previewFrame.contentDocument.querySelector('[data-action="gift-item"]'), 'gift confirmation');
+    previewFrame.contentDocument.querySelector('[data-action="gift-item"]').click();
+    await until(async () => (await workshop.getInventory()).items[e.food.id] === 0, 'gift consumes exactly one food');
+    const progress = await collection.getPetCollection(partner.id);
+    assert(progress.bondExp === 150, 'Favorite gift did not apply exactly 150 bond EXP');
+    observations.companionContent = { foodId: e.food.id, petId: partner.id, specialty: e.specialties[partner.id].role,
+      craftedOnce: true, favoriteBondExp: progress.bondExp, isolatedOnly: true };
+  });
   await test('old perf/debug shortcuts cannot expose diagnostics or grant test currency', async () => {
     const before = await previewTransactionSnapshot();
     const flagged = directClient('preview', '?perf=1&debug=1');
