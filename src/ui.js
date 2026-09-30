@@ -1989,7 +1989,7 @@ function showDailyBlessingRewardToast(text) {
   const toast = document.createElement('div');
   toast.className = 'reward-toast reward-toast--daily';
   toast.innerHTML = `<span class="reward-toast__icon">🌙</span><span>${escapeHtml(text)}</span>`;
-  document.body.appendChild(toast);
+  (document.getElementById('toast-container') || document.body).appendChild(toast);
   requestAnimationFrame(() => toast.classList.add('show'));
   setTimeout(() => {
     toast.classList.remove('show');
@@ -4598,7 +4598,7 @@ function showBondLevelUpToast(level, customLine = null) {
     ? escapeHtml(customLine)
     : `你的夥伴提升到親密度 <strong>Lv.${level}</strong>！`;
   toast.innerHTML = `<span class="reward-toast__icon">💜</span><span>${msg}</span>`;
-  document.body.appendChild(toast);
+  (document.getElementById('toast-container') || document.body).appendChild(toast);
   requestAnimationFrame(() => toast.classList.add('show'));
   setTimeout(() => {
     toast.classList.remove('show');
@@ -4670,7 +4670,7 @@ function showBondUnlockToast(level) {
   toast.setAttribute('role', 'status');
   const icon = liberated ? '🌟' : '💠';
   toast.innerHTML = `<span class="bond-unlock-toast__icon" aria-hidden="true">${icon}</span><span class="bond-unlock-toast__text">${escapeHtml(message)}</span>`;
-  document.body.appendChild(toast);
+  (document.getElementById('toast-container') || document.body).appendChild(toast);
   requestAnimationFrame(() => toast.classList.add('show'));
   setTimeout(() => {
     toast.classList.remove('show');
@@ -4704,7 +4704,7 @@ function showRewardToast(amount, energy = 0) {
     text += `<span class="reward-toast__energy">＋<strong class="toast-highlight">${energy}</strong> 冒險能量</span>`;
   }
   toast.innerHTML = text;
-  document.body.appendChild(toast);
+  (document.getElementById('toast-container') || document.body).appendChild(toast);
   requestAnimationFrame(() => toast.classList.add('show'));
   setTimeout(() => {
     toast.classList.remove('show');
