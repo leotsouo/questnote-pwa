@@ -1,0 +1,66 @@
+[
+  {
+    "file": "release-artifact.json",
+    "sha256": "6affc46b80a570af2f9d8f59f3ea27129ce4f4ea47a9c223cd5f1d86bfd59b2e"
+  },
+  {
+    "file": "index.html",
+    "sha256": "7429a6bd97ee05c47ce74484f223afaf0d25eb6d9f974ddc4ba9804c38d68d7d"
+  },
+  {
+    "file": "manifest.webmanifest",
+    "sha256": "044a5f22c568ec5dab4f2a1f0cce9a9a26ed70f2320a0e5a6c1c9f06b7cd2591"
+  },
+  {
+    "file": "service-worker.js",
+    "sha256": "a21bf9c16b8f648f3032ea9045f2a9d844b3b9431e0cf20c597f4b391d628f11"
+  },
+  {
+    "file": "src/bootstrap.js",
+    "sha256": "975974b344ff1f3e8100eed78a1fafa054b6b549c185dc03cd918dd31be6f08d"
+  },
+  {
+    "file": "src/version.js",
+    "sha256": "9a17c3b03c8e21bdd49e2a748991f52c5de16107fe1284767c94cba095a1a6ec"
+  },
+  {
+    "file": "src/releaseProfile.js",
+    "sha256": "2a26ec6d3f507d84818dd66e346b0050f7fb1bfd477c7ca12abc80a5d0ed494a"
+  },
+  {
+    "file": "src/db.js",
+    "sha256": "646ad94adfaed2031d1c27a0d2bafb17f3830ef606b6bb091dc54d9ccc604c78"
+  },
+  {
+    "file": "src/ui.js",
+    "sha256": "16bb747976a5a6f53a400d8aa9fee7257f1dd4531e38f46a7b0118f9e19da18a"
+  },
+  {
+    "file": "src/reminderRules.js",
+    "sha256": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb"
+  },
+  {
+    "file": "src/reminderService.js",
+    "sha256": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b"
+  },
+  {
+    "file": "src/reminderController.js",
+    "sha256": "e99a0206de399b6c7aad1b62c144efaa0a2c7a2bcf7bab1e6cd2a6df7b16595c"
+  },
+  {
+    "file": "src/styles.css",
+    "sha256": "d66c91c9344dddacd5bf6ae52104fc7264400cd903d88225ae170007ba038838"
+  },
+  {
+    "file": "src/reminder-settings.css",
+    "sha256": "a5e1dfae84f24807532f4b444e78b831cc1534fb600d3021467164e640769ae8"
+  },
+  {
+    "file": "data/global-mailbox.json",
+    "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd"
+  },
+  {
+    "file": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+    "sha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32"
+  }
+]
