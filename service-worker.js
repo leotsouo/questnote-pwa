@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3428-twilight-pet-prompt';
+const CACHE_NAME = 'questnote-preview-cache-v3429-reminder-settings';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -48,6 +48,7 @@ const PRECACHE_URLS = [
   'src/ui-polish.css',
   'src/summon-polish.css',
   'src/twilight-theme.css',
+  'src/reminder-settings.css',
   'src/twilightPresentation.js',
   'src/themeRegistry.js',
   'src/dialogFocus.js',

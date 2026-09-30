@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="src/ui-polish.css" />
   <link rel="stylesheet" href="src/summon-polish.css" />
   <link rel="stylesheet" href="src/twilight-theme.css" />
+  <link rel="stylesheet" href="src/reminder-settings.css" />
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -588,34 +589,58 @@
       </header>
 
       <section class="card settings-reminders">
-        <h2 class="section-title">每日任務與習慣提醒</h2>
-        <p class="settings-section-note">睡前把任務安排到明天，隔天在設定時間收到今日摘要。iPhone 請先加入主畫面，再從主畫面 App 啟用。</p>
+        <header class="reminder-heading">
+          <span class="reminder-heading__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10 21h4M12 2V1"/></svg></span>
+          <div><p class="reminder-eyebrow">讓每一天，從容開始</p><h2 class="section-title">每日任務與習慣提醒</h2></div>
+        </header>
+        <p class="reminder-intro">睡前安排好明天，醒來就有今日計畫。</p>
+        <p id="reminder-status" class="reminder-status" role="status" data-state="off">尚未啟用</p>
         <form id="reminder-form">
-          <div class="form-field"><label class="form-label" for="reminder-time">每天提醒時間</label><input id="reminder-time" type="time" class="form-input" value="08:00" required /></div>
-          <p id="reminder-timezone" class="form-hint"></p>
-          <div class="reminder-options">
-            <label><input type="checkbox" id="reminder-tasks" checked /> 今日任務</label>
-            <label><input type="checkbox" id="reminder-habits" checked /> 每日習慣</label>
-            <label><input type="checkbox" id="reminder-weekly" checked /> 本週習慣進度</label>
-            <label><input type="checkbox" id="reminder-overdue" /> 逾期待處理</label>
-            <label><input type="checkbox" id="reminder-titles" /> 在通知顯示項目名稱</label>
+          <div class="reminder-time-card">
+            <div class="reminder-time-card__top"><label for="reminder-time">每天提醒時間</label><span>每天一則摘要</span></div>
+            <div class="reminder-time-card__clock"><input id="reminder-time" type="time" value="08:00" required aria-describedby="reminder-timezone" /><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 43h48M15 49h34M22 55h20M19 37a13 13 0 0 1 26 0M32 9v7M10 17l5 5M54 17l-5 5M4 32h7M53 32h7"/><path d="M29 28c2-3 6-4 9-2"/></svg></div>
+            <p id="reminder-timezone" class="reminder-timezone"></p>
           </div>
-          <p class="form-hint">預設只顯示數量。今天沒有待辦時不發送；每天最多一則摘要。</p>
-          <label class="reminder-consent"><input type="checkbox" id="reminder-consent" /> 我允許同步提醒所需的日期、完成狀態與習慣規則；開啟名稱預覽時另同步短標題。任務全文與遊戲資料不上傳。</label>
-          <div class="form-actions reminder-actions">
+          <fieldset class="reminder-fieldset">
+            <legend>想收到哪些提醒</legend>
+            <div class="reminder-options">
+              <label class="reminder-option" for="reminder-tasks"><span class="reminder-option__copy"><strong>今日任務</strong><small>安排在今天、今天開始或到期的待辦</small></span><input type="checkbox" id="reminder-tasks" role="switch" checked /><span class="reminder-switch" aria-hidden="true"></span></label>
+              <label class="reminder-option" for="reminder-habits"><span class="reminder-option__copy"><strong>每日習慣</strong><small>今天還沒完成的小習慣</small></span><input type="checkbox" id="reminder-habits" role="switch" checked /><span class="reminder-switch" aria-hidden="true"></span></label>
+              <label class="reminder-option" for="reminder-weekly"><span class="reminder-option__copy"><strong>本週習慣進度</strong><small>本週還沒達標、今天尚未完成的習慣</small></span><input type="checkbox" id="reminder-weekly" role="switch" checked /><span class="reminder-switch" aria-hidden="true"></span></label>
+              <label class="reminder-option" for="reminder-overdue"><span class="reminder-option__copy"><strong>逾期待處理</strong><small>也提醒超過截止日的任務</small></span><input type="checkbox" id="reminder-overdue" role="switch" /><span class="reminder-switch" aria-hidden="true"></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="reminder-fieldset reminder-content">
+            <legend>通知內容</legend>
+            <label class="reminder-option" for="reminder-titles"><span class="reminder-option__copy"><strong>顯示項目名稱</strong><small>關閉時只顯示數量，保留鎖屏隱私</small></span><input type="checkbox" id="reminder-titles" role="switch" /><span class="reminder-switch" aria-hidden="true"></span></label>
+            <div class="reminder-preview" aria-label="通知內容示意">
+              <div class="reminder-preview__app"><img src="assets/icons/icon-192.png" width="22" height="22" alt="" /><span>QuestNote</span><small>內容示意</small></div>
+              <strong>今日計畫</strong><p id="reminder-preview-body">今天有 3 項任務、2 項每日習慣。</p>
+            </div>
+            <p class="reminder-note">今天沒有待辦時，就讓你安靜地開始一天。</p>
+          </fieldset>
+          <div class="reminder-privacy">
+            <label id="reminder-consent-label" class="reminder-consent"><input type="checkbox" id="reminder-consent" /><span><strong>允許同步提醒所需資料</strong><small>僅同步日期、完成狀態與習慣規則。</small></span></label>
+            <p id="reminder-privacy-receipt" hidden><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg>已允許同步必要提醒資料</p>
+            <details><summary>資料同步說明</summary><p>同步提醒所需的日期、完成狀態與習慣規則。開啟項目名稱時，另同步短標題；任務全文與遊戲資料不上傳。</p></details>
+          </div>
+          <div class="reminder-primary-actions">
             <button id="reminder-enable" type="button" class="btn btn--primary">啟用每日提醒</button>
-            <button id="reminder-save" type="submit" class="btn btn--secondary">儲存時間與內容</button>
-            <button id="reminder-disable" type="button" class="btn btn--ghost" hidden>關閉提醒</button>
+            <button id="reminder-save" type="submit" class="btn btn--secondary">儲存提醒設定</button>
           </div>
-          <p id="reminder-status" class="form-hint" role="status">尚未啟用</p>
-          <p id="reminder-next" class="form-hint"></p><p id="reminder-synced" class="form-hint"></p>
-          <p id="reminder-hint" class="form-hint"></p>
-          <div class="form-actions reminder-actions">
-            <button id="reminder-test" type="button" class="btn btn--secondary btn--sm" hidden>發送測試通知</button>
-            <button id="reminder-sync" type="button" class="btn btn--ghost btn--sm">重新同步</button>
-            <button id="reminder-open-today" type="button" class="btn btn--ghost btn--sm">查看今日清單</button>
+          <p id="reminder-result" class="reminder-result" role="status" aria-live="polite"></p>
+          <div id="reminder-delivery" class="reminder-delivery" hidden>
+            <div class="reminder-delivery__next"><span>下一次提醒</span><strong id="reminder-next"></strong></div>
+            <p id="reminder-synced" class="reminder-note"></p>
+            <div class="reminder-tools">
+              <button id="reminder-test" type="button" class="btn btn--secondary btn--sm" hidden>發送測試通知</button>
+              <button id="reminder-sync" type="button" class="btn btn--ghost btn--sm">重新同步</button>
+              <button id="reminder-open-today" type="button" class="btn btn--ghost btn--sm">查看今日清單 <span aria-hidden="true">↗</span></button>
+            </div>
           </div>
-          <p id="reminder-result" class="form-hint" role="status" aria-live="polite"></p>
+          <p id="reminder-hint" class="reminder-note reminder-device-hint"></p>
+          <details class="reminder-help"><summary>使用與同步說明</summary><p>iPhone 請先「加入主畫面」，再從主畫面開啟 App 啟用通知。Android 可使用 Chrome。</p><p>依裝置時區提醒；更換時區後，開啟 App 會更新排程。持續 30 天未開啟 App 時，提醒會自動停用。</p></details>
+          <button id="reminder-disable" type="button" class="reminder-disable" hidden>關閉每日提醒</button>
         </form>
       </section>
 

@@ -89,7 +89,24 @@ try {
   console.log('PASS: restore preserves this installation credential and increments reminder revision');
   await page.locator('#reminder-test').click(); await page.waitForFunction(() => document.getElementById('reminder-result').textContent.includes('接受測試通知'));
   await fs.mkdir('.dev-backups/reminders/screenshots', { recursive: true });
-  await page.locator('.settings-reminders').screenshot({ path: '.dev-backups/reminders/screenshots/settings-393.png' });
+  await page.setViewportSize({ width: 393, height: 1800 });
+  await page.locator('.settings-reminders').screenshot({ path: '.dev-backups/reminders/screenshots/settings-393.png', style: '.toast-container { visibility: hidden; }' });
+  for (const theme of ['twilight', 'sweet', 'default']) {
+    await page.evaluate(async (theme) => { await (await import('/src/ui.js')).applyTheme(theme, { silent: true }); }, theme);
+    for (const width of [320, 393, 430, 768]) {
+      await page.setViewportSize({ width, height: 1800 });
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `${theme} ${width}px overflow`);
+      assert.equal(await page.locator('#reminder-enable').isVisible(), false, 'enabled settings have one primary action');
+      assert.equal(await page.getByRole('switch', { name: /今日任務/ }).isChecked(), true);
+      await page.locator('.settings-reminders').screenshot({ path: `.dev-backups/reminders/screenshots/${theme}-${width}.png`, style: '.toast-container { visibility: hidden; }' });
+    }
+  }
+  await page.getByRole('switch', { name: /顯示項目名稱/ }).uncheck();
+  assert.ok(!(await page.locator('#reminder-preview-body').innerText()).includes('閱讀'));
+  await page.getByRole('switch', { name: /顯示項目名稱/ }).focus();
+  await page.keyboard.press('Space');
+  assert.ok((await page.locator('#reminder-preview-body').innerText()).includes('閱讀'));
+  console.log('PASS: three themes at 320/393/430/768px, labeled keyboard switches and live privacy preview');
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
   await page.locator('#reminder-disable').click(); await page.waitForFunction(() => document.getElementById('reminder-result').textContent.includes('雲端提醒資料已刪除'));
   assert.equal(db.prepare('SELECT count(*) n FROM installations').get().n, 0);
