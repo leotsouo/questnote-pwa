@@ -18,7 +18,7 @@ import {
 } from './taskService.js';
 import { getCategoryById } from './categoryService.js';
 import { initFeedback } from './feedbackController.js';
-import { shareQuestNote, copyQuestNoteUrl } from './shareService.js';
+import { APP_SHARE_URL, WEBSITE_SHARE_URL, APP_SHARE_DESCRIPTION, APP_SHARE_MESSAGE, shareQuestNote, copyQuestNoteInvitation } from './shareService.js';
 import { bindDialogFocus, isTopDialog, rememberDialogFocus, focusDialog, restoreDialogFocus } from './dialogFocus.js';
 import {
   getTodayDateString,
@@ -1113,18 +1113,22 @@ function bindDelegatedEvents() {
     const backBtn = e.target.closest('[data-goto]');
     if (backBtn) switchView(backBtn.dataset.goto);
   });
+  document.getElementById('share-description').textContent = APP_SHARE_DESCRIPTION;
+  document.getElementById('share-website-link').href = WEBSITE_SHARE_URL;
+  document.getElementById('share-app-link').href = APP_SHARE_URL;
+  document.getElementById('share-message-text').textContent = APP_SHARE_MESSAGE;
   document.getElementById('btn-share-app')?.addEventListener('click', trackUpdateActivity(async () => {
     const result = await shareQuestNote();
     if (result === 'unsupported') {
-      const copied = await copyQuestNoteUrl();
-      showToast(copied ? '正式版連結已複製' : '無法自動複製，請長按下方連結', copied ? 'success' : 'warning');
+      const copied = await copyQuestNoteInvitation();
+      showToast(copied ? '邀請已複製，包含官網與 App 連結' : '無法自動複製，請展開分享內容並長按選取', copied ? 'success' : 'warning');
     } else if (result === 'failed') {
-      showToast('無法開啟分享，請使用複製連結', 'warning');
+      showToast('無法開啟分享，請使用「複製邀請內容」', 'warning');
     }
   }));
   document.getElementById('btn-copy-app-link')?.addEventListener('click', trackUpdateActivity(async () => {
-    const copied = await copyQuestNoteUrl();
-    showToast(copied ? '正式版連結已複製' : '無法自動複製，請長按下方連結', copied ? 'success' : 'warning');
+    const copied = await copyQuestNoteInvitation();
+    showToast(copied ? '邀請已複製，包含官網與 App 連結' : '無法自動複製，請展開分享內容並長按選取', copied ? 'success' : 'warning');
   }));
 
   document.getElementById('view-workshop')?.addEventListener('click', (e) => {
