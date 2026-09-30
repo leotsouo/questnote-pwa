@@ -1,0 +1,71 @@
+{
+  "base": "https://leotsouo.github.io/questnote-pwa/",
+  "artifactId": "412bd0ff44c7770c7cb8f7119943e5102bbea07df552ab47415e9f60c4955342",
+  "files": [
+    {
+      "path": "release-artifact.json",
+      "sha256": "535df74e6a064b28b930e2bae66d7ca6b6aa108afbf105addbd5b49adccbe4ed",
+      "status": 200
+    },
+    {
+      "path": "index.html",
+      "sha256": "16d6650bb639ce1afaee0c6fc6855a0f3efab865349aa38059b6afcd08afb317",
+      "status": 200
+    },
+    {
+      "path": "src/bootstrap.js",
+      "sha256": "383f8cd7295726c8796e421d748a01a2b9e0e82b3bf067f84f16618ed423cd6d",
+      "status": 200
+    },
+    {
+      "path": "src/shareService.js",
+      "sha256": "4e87705534fe7c74898cb69d8003039031f12e26e7fd7a4fc93d6ff6e4d2a4a3",
+      "status": 200
+    },
+    {
+      "path": "src/ui.js",
+      "sha256": "57561c73231bddd9058bb08a89086491a963f9d597787a8e66763912cbafa6e5",
+      "status": 200
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "baca90b472b200e771fb87ba8293aba5bb958c722779bc60745d806ec583dd34",
+      "status": 200
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "bf085d90a8d36a78d41bdb92f778c19915fe24f7e9a4f8c34aa1bf5dbd523863",
+      "status": 200
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "sha256": "76254747a5276ffe6163b42a81ab2b513ebdfc65075ccb9bb78583e430bd240d",
+      "status": 200
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "a0f7ea30420dbb5c85f5a2f0768f131432f598b3b22acea78fca8cca3ab6831d",
+      "status": 200
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
+      "status": 200
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "status": 200
+    },
+    {
+      "path": "data/releases/f00f02ed3dc6414a7bdc41b1032d1f021e6a19edd1b1f5792f27725ec07abc45/catalog.json",
+      "sha256": "f00f02ed3dc6414a7bdc41b1032d1f021e6a19edd1b1f5792f27725ec07abc45",
+      "status": 200
+    },
+    {
+      "path": "src/font-size-settings.css",
+      "sha256": "47476e661b6f993b8586f37fe5303add68c679793effb9ecaafc2c5b1adde74f",
+      "status": 200
+    }
+  ]
+}
