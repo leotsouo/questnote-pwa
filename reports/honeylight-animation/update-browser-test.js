@@ -124,7 +124,7 @@ try {
   const cast = data.petsData.pets.filter(pet => pet.poolTags.includes('honeylight_sugar_garden_v2'));
   assert(cast.length === 12 && cast.filter(pet => pet.rarity === 'UR').length === 2, 'Wrong new pool roster');
   assert(doc().getElementById('gacha-theme-name').textContent === '蜜光糖庭', 'New pool hero title missing');
-  note('Actual V3.4.33 84-pet release updates to V3.4.34 96-pet release; all old saved rows survive and the dual-UR Honeylight pool is available');
+  note('Actual V3.4.35 84-pet release updates to V3.4.36 96-pet release; all old saved rows survive and the dual-UR Honeylight pool is available');
 } catch (error) { results.push({ name: 'acceptance', ok: false, error: error.stack || error.message }); }
 publish();
 document.title = results.every((result) => result.ok) ? 'PASS — One-tap update' : 'FAIL — One-tap update';

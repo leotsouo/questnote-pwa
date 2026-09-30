@@ -37,9 +37,9 @@ await fs.writeFile(new URL('./release-handoff.md', import.meta.url), `# 蜜光�
 
 - Runtime source：\`${pins.sourceCommit}\`；新 candidate：\`${pins.candidateId}\`。保留原 84-pet canonical baseline、所有舊 receipts／candidates；12 PNG hashes 相同。
 - Production：\`${pins.production.artifactId}\`，manifest SHA-256：\`${pins.production.manifestSha256}\`。
-- Preview：\`${pins.preview.artifactId}\`，manifest SHA-256：\`${pins.preview.manifestSha256}\`。兩者410個檔案逐檔驗證，dry-run／重建／重用一致。
-- 本機發布提交：\`${deployment.deploymentCommit}\`，分支 \`${deployment.branch}\`；parent仍是V3.4.33正式\`${deployment.parentCommit}\`，410 Git blobs與審核產物完全相同，未推送。
-- Node tests 209/209、reveal-flow assertions、catalog與96×2圖片、Pipeline release rehearsal均通過。動畫桌面${desktop.passed}/14、393×852手機尺寸${mobile.passed}/14；完整App${artifact.passed}/12、實際V3.4.33→V3.4.34更新8/8。
+- Preview：\`${pins.preview.artifactId}\`，manifest SHA-256：\`${pins.preview.manifestSha256}\`。兩者412個檔案逐檔驗證，dry-run／重建／重用一致。
+- 本機發布提交：\`${deployment.deploymentCommit}\`，分支 \`${deployment.branch}\`；parent仍是V3.4.35正式\`${deployment.parentCommit}\`，412 Git blobs與審核產物完全相同，未推送。
+- Node tests 220/220、reveal-flow assertions、catalog與96×2圖片、Pipeline release rehearsal均通過。動畫桌面${desktop.passed}/14、393×852手機尺寸${mobile.passed}/14；完整App${artifact.passed}/12、實際V3.4.35→V3.4.36更新8/8。
 - 真實隔離App：3000→2900星塵的單抽保底天鵝UR，接著十連→1900星塵、10項結果含重複角色完整呈現。每次僅扣一次；手機總覽無水平溢出。測試只在全新本機origin，不改正式站／個人存檔。
 - 完整authoring archive共${backup.fileCount}檔逐SHA驗證，位置與清單見authoring-backup.json。
 

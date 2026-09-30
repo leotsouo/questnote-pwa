@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 const git = (args) => execFileSync('git', args, { encoding: 'utf8' }).trim();
-const expected = '3942a7f35287a0aa2c3ac343b45115ec4948a380';
+const expected = '77d30b869ca69cdf5a9b56b127ab13d5e2e6056b';
 assert.equal(git(['rev-parse', 'origin/gh-pages']), expected, 'Production advanced; reconcile baseline first');
 const paths = ['release-artifact.json', 'src/version.js', 'src/releaseProfile.js', 'service-worker.js'];
 const files = [];
@@ -16,5 +16,5 @@ for (const relative of paths) {
   files.push({ path: relative, sha256: createHash('sha256').update(actual).digest('hex'), bytes: actual.length });
 }
 await fs.writeFile(new URL('./production-baseline.json', import.meta.url), JSON.stringify({ checkedAt: new Date().toISOString(),
-  deploymentCommit: expected, version: '3.4.33', originMain: git(['rev-parse', 'origin/main']), productionUnchanged: true, files }, null, 2) + '\n');
-console.log('Live production baseline verified: V3.4.33, four exact files');
+  deploymentCommit: expected, version: '3.4.35', originMain: git(['rev-parse', 'origin/main']), productionUnchanged: true, files }, null, 2) + '\n');
+console.log('Live production baseline verified: V3.4.35, four exact files');

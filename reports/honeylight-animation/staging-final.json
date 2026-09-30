@@ -1,8 +1,8 @@
 {
-  "recordedAt": "2026-09-30T20:17:43.614Z",
+  "recordedAt": "2026-09-30T20:50:38.304Z",
   "dryRun": {
-    "candidateId": "e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
-    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-animation\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
+    "candidateId": "9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
+    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-animation\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
     "releaseReady": false,
     "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
     "warnings": [
@@ -228,8 +228,8 @@
     "dryRun": true
   },
   "built": {
-    "candidateId": "e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
-    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-animation\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
+    "candidateId": "9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
+    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-animation\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
     "releaseReady": false,
     "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
     "warnings": [
@@ -455,11 +455,11 @@
     "reused": false,
     "manifest": {
       "schemaVersion": 1,
-      "candidateId": "e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
+      "candidateId": "9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
       "releaseReady": false,
       "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
       "files": {
-        "approvals.json": "b2006212c01f1e895059376385e2eb3ca94a39f893716e8cb4132ede0e155b96",
+        "approvals.json": "efa4d83a3af936f6c2e95c7c462e956dff749355a1a212e84779ab060d9bc068",
         "assets/pets/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
         "assets/pets/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
         "assets/pets/pet_n28.png": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
@@ -502,8 +502,8 @@
     }
   },
   "repeated": {
-    "candidateId": "e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
-    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-animation\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
+    "candidateId": "9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
+    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\honeylight-animation\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
     "releaseReady": false,
     "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
     "warnings": [
@@ -729,11 +729,11 @@
     "reused": true,
     "manifest": {
       "schemaVersion": 1,
-      "candidateId": "e3f9b7d275d5e4dc0e854473cd03064f872f4eecad53c1d68fdfcbedf78a5d76",
+      "candidateId": "9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
       "releaseReady": false,
       "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
       "files": {
-        "approvals.json": "b2006212c01f1e895059376385e2eb3ca94a39f893716e8cb4132ede0e155b96",
+        "approvals.json": "efa4d83a3af936f6c2e95c7c462e956dff749355a1a212e84779ab060d9bc068",
         "assets/pets/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
         "assets/pets/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
         "assets/pets/pet_n28.png": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
@@ -1009,9 +1009,9 @@
       {
         "stage": "brief",
         "inputHash": "78362290eb6a4ebc02e8c12b6ac02e2e293090ce17f03a0cc18599487ca036b7",
-        "outputHash": "53993cc5571c4c62c8ee20d263bb3afa963490432463086211d326e1a20d0ae1",
+        "outputHash": "34c761278f6498a74d02ffef995751fa8a4b3b0872e733df12913bd2076a39ec",
         "files": {
-          "brief.json": "e55d72c56137157f55f799cd7245cd534a487f669194adcbd99bf4e5338f39e6"
+          "brief.json": "5a2e63ebf5cab831509c660ad39718a57d674a25914c65072d6dae61f8d4ba84"
         },
         "missing": [],
         "approved": true,
@@ -1019,8 +1019,8 @@
       },
       {
         "stage": "plan",
-        "inputHash": "53993cc5571c4c62c8ee20d263bb3afa963490432463086211d326e1a20d0ae1",
-        "outputHash": "8c53de77f58ad824807246e04b114aeaf2bdf0f11ca82c9d472507569289167d",
+        "inputHash": "34c761278f6498a74d02ffef995751fa8a4b3b0872e733df12913bd2076a39ec",
+        "outputHash": "0432cf2e01bcb389fe7a6ab7aa1966f5493bc3a7fc973b6680850980da59559c",
         "files": {
           "plan.json": "32d246e33abe4ed7079fb6fc3e411c702756a77fcd8ef9f93f44728e45ace14d"
         },
@@ -1030,10 +1030,10 @@
       },
       {
         "stage": "content",
-        "inputHash": "8c53de77f58ad824807246e04b114aeaf2bdf0f11ca82c9d472507569289167d",
-        "outputHash": "c8c0886f81fb81acaf63351a989f5a12bb9401be49e62e6f7b9b8268e764bd6b",
+        "inputHash": "0432cf2e01bcb389fe7a6ab7aa1966f5493bc3a7fc973b6680850980da59559c",
+        "outputHash": "6a3e8228650d79de444fd90cebee956a621683ac1320c843b536ac8c278b2983",
         "files": {
-          "series.json": "71954756583044b969b6abbfd51ca9966d8d2457b4ef66dd5b723abc403031db",
+          "series.json": "b66dfe143f14c270e675e4339d76a4b60463f30631250ef038f2b8b3c464134c",
           "pets.json": "ec10dbfde7deed453443a0f52f5d8744a640b75b2cc9367009c6de49c0a93533",
           "pets-lore.json": "2eea24aa991d6c45f0943bb71cc6ea3a4352de60b98cfda54fe4e89464aa9c13",
           "pool.json": "17324f4236874821407c48ff5a2b4ffabc6bc8db93efbc509a11cce87805d570"
@@ -1044,8 +1044,8 @@
       },
       {
         "stage": "prompts",
-        "inputHash": "c8c0886f81fb81acaf63351a989f5a12bb9401be49e62e6f7b9b8268e764bd6b",
-        "outputHash": "cf4d752baa7d1772216999d8b6b298ccbb639548b4b4e1c9919e63db1b56198e",
+        "inputHash": "6a3e8228650d79de444fd90cebee956a621683ac1320c843b536ac8c278b2983",
+        "outputHash": "52890898c9af03c97993141087fcc89f0a68c4a0c78aed0603908c8e63f55e35",
         "files": {
           "prompts.json": "8aaaeb437bbf44e8bfa3ab1dae68f19d0c35e4f209071c720899e5f9c0c80273"
         },
@@ -1055,8 +1055,8 @@
       },
       {
         "stage": "images",
-        "inputHash": "cf4d752baa7d1772216999d8b6b298ccbb639548b4b4e1c9919e63db1b56198e",
-        "outputHash": "1238e632e3acd00c35719b24cd70e3041dee8f30986120f2cef67d4fec1ae6e4",
+        "inputHash": "52890898c9af03c97993141087fcc89f0a68c4a0c78aed0603908c8e63f55e35",
+        "outputHash": "24d5015307fdc40c4ed4378ab52433ca0eac7143680f22e66d556f48ff7ad3d6",
         "files": {
           "images/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
           "images/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",

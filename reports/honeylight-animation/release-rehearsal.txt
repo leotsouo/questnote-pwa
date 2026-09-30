@@ -5,22 +5,22 @@
 {
   "syntheticOnly": true,
   "releaseReady": false,
-  "runRoot": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-J63KGj",
-  "candidateId": "f1ae6170b67009cd379c3dce5dd434119b9ded77c66d30674f9b5a11521944fc",
-  "candidateDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-J63KGj\\source\\content\\pet-series\\acceptance_series\\staging\\f1ae6170b67009cd379c3dce5dd434119b9ded77c66d30674f9b5a11521944fc",
+  "runRoot": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-XdWPCZ",
+  "candidateId": "56f5437f740c83d50f0a4d6aa435b21101ebe88cc10457e7abb17659bc5f4ee2",
+  "candidateDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-XdWPCZ\\source\\content\\pet-series\\acceptance_series\\staging\\56f5437f740c83d50f0a4d6aa435b21101ebe88cc10457e7abb17659bc5f4ee2",
   "petCount": 102,
   "newPoolId": "acceptance_pool",
   "reused": true,
   "gachaPlanner": "PASS",
   "artifacts": {
     "production": {
-      "artifactId": "7e0bace4a79d9a01bcb44dadfa7bdf2d29517a139093ba49474856c967ae34ae",
-      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-J63KGj\\artifacts\\7e0bace4a79d9a01bcb44dadfa7bdf2d29517a139093ba49474856c967ae34ae"
+      "artifactId": "193d9754f892f47833388ebb653ad0a1d48d2adb7e27b3e65628184e08e67019",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-XdWPCZ\\artifacts\\193d9754f892f47833388ebb653ad0a1d48d2adb7e27b3e65628184e08e67019"
     },
     "preview": {
-      "artifactId": "05fa9e1c7a0d58315cfade9e7918b575b943a1b1245346bb15317f896de1b608",
-      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-J63KGj\\artifacts\\05fa9e1c7a0d58315cfade9e7918b575b943a1b1245346bb15317f896de1b608"
+      "artifactId": "00b5c1c9bcb70b8880c3a8160c905f93b6ee82f9ce195f3f12f110f83d86c453",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-XdWPCZ\\artifacts\\00b5c1c9bcb70b8880c3a8160c905f93b6ee82f9ce195f3f12f110f83d86c453"
     }
   },
-  "reportPath": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-J63KGj\\rehearsal.json"
+  "reportPath": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-XdWPCZ\\rehearsal.json"
 }

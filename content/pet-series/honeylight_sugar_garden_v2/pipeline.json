@@ -2904,6 +2904,376 @@
       ],
       "approvedAt": "2026-09-30T20:17:22.362Z",
       "reviewer": "user-approved-byte-identical-card-images-animation-carry-forward"
+    },
+    {
+      "stage": "brief",
+      "inputHash": "78362290eb6a4ebc02e8c12b6ac02e2e293090ce17f03a0cc18599487ca036b7",
+      "outputHash": "34c761278f6498a74d02ffef995751fa8a4b3b0872e733df12913bd2076a39ec",
+      "files": {
+        "brief.json": "5a2e63ebf5cab831509c660ad39718a57d674a25914c65072d6dae61f8d4ba84"
+      },
+      "toolsHash": "049380763ed60f8646bdfa00dd030ebf22ac366972376b88cd2a584fad866b5e",
+      "snapshot": "approvals/34c761278f6498a74d02ffef995751fa8a4b3b0872e733df12913bd2076a39ec",
+      "reviewedWarnings": [],
+      "approvedAt": "2026-09-30T20:50:01.137Z",
+      "reviewer": "agent-implemented-user-approved-animation-plan"
+    },
+    {
+      "stage": "plan",
+      "inputHash": "34c761278f6498a74d02ffef995751fa8a4b3b0872e733df12913bd2076a39ec",
+      "outputHash": "0432cf2e01bcb389fe7a6ab7aa1966f5493bc3a7fc973b6680850980da59559c",
+      "files": {
+        "plan.json": "32d246e33abe4ed7079fb6fc3e411c702756a77fcd8ef9f93f44728e45ace14d"
+      },
+      "toolsHash": "049380763ed60f8646bdfa00dd030ebf22ac366972376b88cd2a584fad866b5e",
+      "snapshot": "approvals/0432cf2e01bcb389fe7a6ab7aa1966f5493bc3a7fc973b6680850980da59559c",
+      "reviewedWarnings": [],
+      "approvedAt": "2026-09-30T20:50:04.305Z",
+      "reviewer": "agent-implemented-user-approved-animation-plan"
+    },
+    {
+      "stage": "content",
+      "inputHash": "0432cf2e01bcb389fe7a6ab7aa1966f5493bc3a7fc973b6680850980da59559c",
+      "outputHash": "6a3e8228650d79de444fd90cebee956a621683ac1320c843b536ac8c278b2983",
+      "files": {
+        "series.json": "b66dfe143f14c270e675e4339d76a4b60463f30631250ef038f2b8b3c464134c",
+        "pets.json": "ec10dbfde7deed453443a0f52f5d8744a640b75b2cc9367009c6de49c0a93533",
+        "pets-lore.json": "2eea24aa991d6c45f0943bb71cc6ea3a4352de60b98cfda54fe4e89464aa9c13",
+        "pool.json": "17324f4236874821407c48ff5a2b4ffabc6bc8db93efbc509a11cce87805d570"
+      },
+      "toolsHash": "049380763ed60f8646bdfa00dd030ebf22ac366972376b88cd2a584fad866b5e",
+      "snapshot": "approvals/6a3e8228650d79de444fd90cebee956a621683ac1320c843b536ac8c278b2983",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        }
+      ],
+      "approvedAt": "2026-09-30T20:50:08.077Z",
+      "reviewer": "agent-implemented-user-approved-animation-plan"
+    },
+    {
+      "stage": "prompts",
+      "inputHash": "6a3e8228650d79de444fd90cebee956a621683ac1320c843b536ac8c278b2983",
+      "outputHash": "52890898c9af03c97993141087fcc89f0a68c4a0c78aed0603908c8e63f55e35",
+      "files": {
+        "prompts.json": "8aaaeb437bbf44e8bfa3ab1dae68f19d0c35e4f209071c720899e5f9c0c80273"
+      },
+      "toolsHash": "049380763ed60f8646bdfa00dd030ebf22ac366972376b88cd2a584fad866b5e",
+      "snapshot": "approvals/52890898c9af03c97993141087fcc89f0a68c4a0c78aed0603908c8e63f55e35",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        }
+      ],
+      "approvedAt": "2026-09-30T20:50:12.871Z",
+      "reviewer": "agent-implemented-user-approved-animation-plan"
+    },
+    {
+      "stage": "images",
+      "inputHash": "52890898c9af03c97993141087fcc89f0a68c4a0c78aed0603908c8e63f55e35",
+      "outputHash": "24d5015307fdc40c4ed4378ab52433ca0eac7143680f22e66d556f48ff7ad3d6",
+      "files": {
+        "images/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
+        "images/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
+        "images/pet_n28.png": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
+        "images/pet_r23.png": "7888936777327f49c8a2c15fca04eb03244486f9f1c6d054d47209097f2cc159",
+        "images/pet_r24.png": "c6173cdc592be2030d72d77a7a2fc257df1593eb343b2fa9f727ff325a2c8b5a",
+        "images/pet_r25.png": "70530265c2f2f91bf8662210496f83584004aea2f4c165fee13f8dd1bf37977c",
+        "images/pet_sr19.png": "0b56c8aaaf55b785c6a66635959080c16d4200cdb3e29a4d57e49179e984b90d",
+        "images/pet_sr20.png": "536044295f302ebce8808ef56718b2cf8c8f1c1961356de09a4519f560323859",
+        "images/pet_ssr12.png": "1cbe693844ebdef76a2030c3c62f120428b2a1f5b5181ff01972aa7c242ce54d",
+        "images/pet_ssr13.png": "f22e689544f68a44f67890cf8da6ea689aa7a1358e8a7e82bcfa359fcb149b61",
+        "images/pet_ur09.png": "57693be9d2b4a69859fc6bb9f38a3b6c1b689e4909dcc6690dd3f2c61e7f0717",
+        "images/pet_ur10.png": "20684b478872287c38db5dab58d0d74d7335ac8d2cc8c77bc7c9dfc4ed1c2526"
+      },
+      "toolsHash": "049380763ed60f8646bdfa00dd030ebf22ac366972376b88cd2a584fad866b5e",
+      "snapshot": "approvals/24d5015307fdc40c4ed4378ab52433ca0eac7143680f22e66d556f48ff7ad3d6",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_n26.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_n27.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_n28.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r23.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r24.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r25.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr19.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr20.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ssr12.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ssr13.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ur09.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ur10.png"
+        }
+      ],
+      "approvedAt": "2026-09-30T20:50:18.460Z",
+      "reviewer": "user-approved-byte-identical-card-images-animation-carry-forward"
     }
   ]
 }

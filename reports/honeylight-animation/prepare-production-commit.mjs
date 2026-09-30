@@ -7,9 +7,9 @@ import { execFileSync } from 'node:child_process';
 import { verifyReleaseArtifact } from '../../scripts/verify-release-artifact.mjs';
 
 const sourceRoot = path.resolve(import.meta.dirname, '../..');
-const deploymentRoot = path.resolve(sourceRoot, '../honeylight-animation-production-v3434');
-const expectedBase = '3942a7f35287a0aa2c3ac343b45115ec4948a380';
-const branch = 'codex/honeylight-animation-production-v3434';
+const deploymentRoot = path.resolve(sourceRoot, '../honeylight-animation-production-v3436');
+const expectedBase = '77d30b869ca69cdf5a9b56b127ab13d5e2e6056b';
+const branch = 'codex/honeylight-animation-production-v3436';
 const pins = JSON.parse(await fs.readFile(path.join(import.meta.dirname, 'release-pins.json')));
 const production = pins.production;
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -69,7 +69,7 @@ function verifyGitBytes(ref) {
   return names.length;
 }
 const stagedFileCount = verifyGitBytes('index');
-git(deploymentRoot, ['commit', '-m', 'V3.4.34: prepared Honeylight animation production artifact; final push awaits user approval']);
+git(deploymentRoot, ['commit', '-m', 'V3.4.36: prepared Honeylight animation production artifact; final push awaits user approval']);
 const deploymentCommit = gitText(deploymentRoot, ['rev-parse', 'HEAD']);
 const committedFileCount = verifyGitBytes('HEAD');
 assert.equal(gitText(deploymentRoot, ['status', '--porcelain']), '');
