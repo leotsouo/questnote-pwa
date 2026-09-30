@@ -14,6 +14,8 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
   let mounted = false;
   const pet = () => getState().enrichedCollection?.find((item) => item.id === petId && item.owned);
   function render() {
+    // A dismissed reader must stay closed when an asynchronous load finishes.
+    if (!document.getElementById('modal-overlay')?.classList.contains('open')) return;
     const p = pet();
     if (!p) { closeModal(); return; }
     const state = getState();
@@ -102,7 +104,9 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
     mounted = true;
     document.addEventListener('click', trackUpdateActivity(async (event) => {
       const target = event.target.closest('[data-bond-open], [data-bond-action]');
-      if (!target || target.disabled || busy) return;
+      if (!target || target.disabled) return;
+      if (target.dataset.bondAction === 'close') { event.preventDefault(); closeModal(); return; }
+      if (busy) return;
       event.preventDefault();
       busy = true;
       const controls = [...document.querySelectorAll('#modal-body [data-bond-action], #modal-body select')];
