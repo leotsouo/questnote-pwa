@@ -108,8 +108,8 @@
     },
     {
       "path": "privacy/index.html",
-      "bytes": 2510,
-      "sha256": "19acf46fef7151461fc5be4b1916cd647d5c1137ad631931371eab26c4bfff0b"
+      "bytes": 8731,
+      "sha256": "60d9cc4e20df94bee2a774dc45930251a01eb3904df0bdf4339cbc330b9bc819"
     },
     {
       "path": "robots.txt",
@@ -128,13 +128,13 @@
     },
     {
       "path": "support/index.html",
-      "bytes": 1876,
-      "sha256": "0d6cc9773f60a55d83fc337e8fed17055b3d21d1efe2a69db3e5006ca895e25a"
+      "bytes": 2179,
+      "sha256": "5193e040242297b4ca684fa52fb3bbb9babf9c4bfa8eea8f04d48dac3007a60d"
     },
     {
       "path": "terms/index.html",
-      "bytes": 2105,
-      "sha256": "1666029a7e7cfe0093d3887ffb2b5470fe0078e84c3d024e1d2be0af16c021e2"
+      "bytes": 6516,
+      "sha256": "e320f90e90eaf710df04ba1d354e61b1db2e2889711cd747a0be50516c3187d9"
     },
     {
       "path": "_headers",
@@ -142,5 +142,5 @@
       "sha256": "5bf0252fc52f676fb90228f87d796a7cb3107cebde8bc077aca311e2d0206f1c"
     }
   ],
-  "totalBytes": 841512
+  "totalBytes": 852447
 }

@@ -136,11 +136,15 @@ try {
   for (const slug of ['privacy', 'terms', 'support']) {
     const response = await context.request.get(base + '/' + slug);
     assert.equal(response.status(), 200);
-    if (slug !== 'support') assert.match(await response.text(), /OWNER REVIEW REQUIRED/);
+    if (slug !== 'support') {
+      const html = await response.text();
+      assert.match(html, /版本 1\.0/);
+      assert.doesNotMatch(html, /OWNER REVIEW REQUIRED/);
+    }
   }
   const missing = await context.request.get(base + '/this-route-does-not-exist');
   assert.equal(missing.status(), 404);
-  report('internal routes, assets, legal draft labels, custom 404');
+  report('internal routes, assets, published policy version, custom 404');
   await page.goto(base, { waitUntil: 'networkidle' });
   assert.equal(await page.locator('meta[property="og:image:width"]').getAttribute('content'), '1200');
   assert.equal(await page.locator('meta[property="og:image:height"]').getAttribute('content'), '630');
