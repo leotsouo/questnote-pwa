@@ -1,0 +1,62 @@
+[
+  {
+    "file": "release-artifact.json",
+    "sha256": "ca1f4bace8abcb021c6c770b211504eac8ed733a2102d6b38ad8078cf25a8429"
+  },
+  {
+    "file": "index.html",
+    "sha256": "491d8fc52999d79ce751a544b0ba5bfcb7b6b1e68c13ad0b46b8e7362c79d9e2"
+  },
+  {
+    "file": "manifest.webmanifest",
+    "sha256": "044a5f22c568ec5dab4f2a1f0cce9a9a26ed70f2320a0e5a6c1c9f06b7cd2591"
+  },
+  {
+    "file": "service-worker.js",
+    "sha256": "903e3bbed2991938b59b45f727da02de12aac697a7759f11a542db38227d43ef"
+  },
+  {
+    "file": "src/bootstrap.js",
+    "sha256": "975974b344ff1f3e8100eed78a1fafa054b6b549c185dc03cd918dd31be6f08d"
+  },
+  {
+    "file": "src/version.js",
+    "sha256": "cbbcbfd82e3fd43b481cb46ac0c9bd1616f2bba27407ab34b17c22e3551db8f3"
+  },
+  {
+    "file": "src/releaseProfile.js",
+    "sha256": "2f1f53c9a062c517392f9c2e6952303e467c3055ca6299be5115a531625e4c70"
+  },
+  {
+    "file": "src/db.js",
+    "sha256": "646ad94adfaed2031d1c27a0d2bafb17f3830ef606b6bb091dc54d9ccc604c78"
+  },
+  {
+    "file": "src/ui.js",
+    "sha256": "16bb747976a5a6f53a400d8aa9fee7257f1dd4531e38f46a7b0118f9e19da18a"
+  },
+  {
+    "file": "src/reminderRules.js",
+    "sha256": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb"
+  },
+  {
+    "file": "src/reminderService.js",
+    "sha256": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b"
+  },
+  {
+    "file": "src/reminderController.js",
+    "sha256": "2a49ca7ef18e8bc0192b5e97af666fce289ff7d180f413edfd9d161646ea6ada"
+  },
+  {
+    "file": "src/styles.css",
+    "sha256": "d66c91c9344dddacd5bf6ae52104fc7264400cd903d88225ae170007ba038838"
+  },
+  {
+    "file": "data/global-mailbox.json",
+    "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd"
+  },
+  {
+    "file": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+    "sha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32"
+  }
+]
