@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37';
+const CACHE_NAME = 'questnote-production-app-1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -18,8 +18,8 @@ self.addEventListener('push', (event) => {
     const expired = typeof data.expiresAt === 'number' && data.expiresAt < Date.now();
     await self.registration.showNotification(expired ? 'QuestNote' : String(data.title || 'QuestNote 今日計畫').slice(0, 100), {
       body: expired ? '開啟 QuestNote 查看最新計畫。' : String(data.body || '點開查看今日任務與習慣。').slice(0, 700),
-      icon: new URL('assets/icons/icon-192.png', self.registration.scope).href,
-      badge: new URL('assets/icons/icon-192.png', self.registration.scope).href,
+      icon: new URL('assets/brand/questnote-icon-192.png', self.registration.scope).href,
+      badge: new URL('assets/brand/questnote-icon-192.png', self.registration.scope).href,
       tag: String(data.tag || 'questnote-daily').slice(0, 100),
       data: { type: 'questnote-open-today' },
     });
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37",
-  "sourceCommit": "9fad7f41f3785aeffa4f4643639b654e31ad6fe4",
+  "artifactId": "1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247",
+  "sourceCommit": "eb9be8f47343180fa63f6a55ecf2a9d6349b78b6",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -50,6 +50,12 @@ const BUILD_PROFILE = {
   "contentBundleUrl": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json"
 };
 const PRECACHE_HASHES = {
+  "assets/brand/questnote-icon-180.png": "568c5f586481050de3c0263794de557f36acb340346eba7db1a9cdc7b000f9bf",
+  "assets/brand/questnote-icon-192.png": "7a2c068ff50729b5b68aba6999ffed491234c11a267ddf26ee6f7a5bc0a1db11",
+  "assets/brand/questnote-icon-32.png": "0c09c5fef9a6c10f9e10fab7a923d6e84e06972791106a9960bfe062b83952fe",
+  "assets/brand/questnote-icon-512.png": "32c505609ea48e4ffab010e2fc53b184441a8bad39d79a45701b658b31040a06",
+  "assets/brand/questnote-icon-maskable-512.png": "54dc03e7eb13c3f4714bc276ea2b9bb1313ef171d27e06f6aa1f378931c6f506",
+  "assets/brand/questnote-icon-master-1024.png": "45eabdd090efcaee9c9305bca6d559983433c00db41c287f92f66fbac809adf3",
   "assets/expeditions/astral_rift.webp": "343c7342d7156be0fef42c809e0028811a936e2ba478b2785eaf498845dc4d2d",
   "assets/expeditions/harvest_fields.webp": "6196b84c367ff547d91741d36a57ed06aa34e15464ddafb071d4940d0014a29c",
   "assets/expeditions/lava_rift.webp": "9c14dd71f7752f8ca652992659ba929a094512ec5dc34b4d3806b90dabac904e",
@@ -58,6 +64,11 @@ const PRECACHE_HASHES = {
   "assets/expeditions/polar_shore.webp": "e963c18f17a9d60746f2601822f7e0ab18be730629b8de9a3fdf546381891506",
   "assets/icons/icon-192.png": "f47dd61d5e26732d2d20aba9051e7ce922449a6095a3715f7e803a2037857fb1",
   "assets/icons/icon-512.png": "8623855b674e1bb7c10525ff0118b0f4b1da5de551753d724238b62db8c403be",
+  "assets/icons/lucide/LICENSE": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57",
+  "assets/icons/lucide/provenance.json": "8464eee7709fe8ba57a1020c0a36b3ecf52175691d9453860322b22997f9ac2c",
+  "assets/scenes/garden-graywolf.webp": "6379b2ad98da53856816d0e11b0048af8a9632002a28c3d362f16fa98c2f5cdc",
+  "assets/scenes/night-graywolf.webp": "4dd1183fd2aa0db6ac52f845515c3c8e2e0fe2aced5a4a7d6a66732d5c114edb",
+  "assets/scenes/twilight-graywolf.webp": "f8000f2b473ec9eedb3bef4e1a34dc8354351041cfc5eb261d80f98271e84f9a",
   "data/achievements.json": "b7d57297344dc4223a8eefc72d42d9f9cdd44c4f812f1e59b3d7aeb2d592db6e",
   "data/categories.json": "166e8f4de44f41d6ec27b3a6b1780f9cd155aa599371b443c92537949276ebe1",
   "data/craftables.json": "7dcac55dcb152e38999596da48281900fdd04db5abd4f3ed6ffd23f9e654d569",
@@ -70,8 +81,8 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "7429a6bd97ee05c47ce74484f223afaf0d25eb6d9f974ddc4ba9804c38d68d7d",
-  "manifest.webmanifest": "044a5f22c568ec5dab4f2a1f0cce9a9a26ed70f2320a0e5a6c1c9f06b7cd2591",
+  "index.html": "59e96a1546e32995724ab074d5d373a2c4bb8c4ba69fb9171cd36e59861e0f39",
+  "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
   "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
   "src/app.js": "7ab42490004bac0be0b4145cc172bb42beb009177c6dc8e913d3a2e5f0797156",
@@ -101,6 +112,7 @@ const PRECACHE_HASHES = {
   "src/glacierArrivalScene.js": "bb3d646a9faaece23f41d29f6248b682fb67e3851e702ac3667f006c02d8b2bb",
   "src/habitService.js": "64d488828c26e49b47ec06d17ad853b473ea21aee2307b0cd5963fb225cc78de",
   "src/healthCheckService.js": "83e35ca90fb51b2029a82adac11cb96a4fec40063ce840081a05fb24092e365f",
+  "src/iconPresentation.js": "7968b5b39c17d4e912486df1fc912f93c9d368579ee6e16875ab069e53b46e2a",
   "src/imagePreloadService.js": "73f6488373daac9b4134c4c7a9549da98f4974d3a4987b4698dc4a56680ad333",
   "src/loreService.js": "2beab9e2c2ab3418b16e638e247d1976c916b537e6a7a21d754751c54336541c",
   "src/mailboxSchema.js": "070e2c731ac75a6bdbecfc24afad986d0357e440d1449c374d898d7e0b0ccd15",
@@ -118,11 +130,12 @@ const PRECACHE_HASHES = {
   "src/poolUnlockCore.js": "2be9a055162feaf7dd521a054e40853c2c3af1106a098708e40d33d2478b2c22",
   "src/poolUnlockService.js": "6e76ffc3c61f002c750435578a7ea5843c91df6f047b2ac2212b50bc150b800a",
   "src/preferencesService.js": "a6ae09d8f8f120a5c7c74da67f73fde022d053a398aed3bb972e343d0fdcc135",
+  "src/questIcons.js": "fa0cb1d6c415b3c5812a5d769526050f3fe7fde36a3734d49e09cc622e5959ba",
   "src/questService.js": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "2a26ec6d3f507d84818dd66e346b0050f7fb1bfd477c7ca12abc80a5d0ed494a",
-  "src/reminder-settings.css": "a5e1dfae84f24807532f4b444e78b831cc1534fb600d3021467164e640769ae8",
-  "src/reminderController.js": "e99a0206de399b6c7aad1b62c144efaa0a2c7a2bcf7bab1e6cd2a6df7b16595c",
+  "src/releaseProfile.js": "0c74006844e072605d748dfab5b36177f3673391ebb42129d5404cf9a4b2e016",
+  "src/reminder-settings.css": "4b5053346fb0bc697af1455fa4a6e763d450045094f94a6f952b0721a385bd4a",
+  "src/reminderController.js": "aa658c836712da69273cde043b6894bdc7e93c4556bdd1764a7953e1babd4b10",
   "src/reminderRules.js": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
   "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
   "src/rewardService.js": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
@@ -134,19 +147,27 @@ const PRECACHE_HASHES = {
   "src/taskMigration.js": "67055f714b759d43e1a333ce7d039619eca3537f5e83ce46ee76a0d4692f25b1",
   "src/taskService.js": "e12190eb4cf777b79e49d327547544be53af707e1237928b8d7c93c040ceca84",
   "src/taskStatsService.js": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
+  "src/theme-refinements.css": "4a83da960089984826727f0537ac4d13071c8cf59918a58e699edb6fe599f705",
+  "src/theme-system.css": "72eb36f160c47b5ed950443083371bd68743272c3fe6d1e39dfd1e053a494348",
   "src/themedSummonController.js": "f2bcd1b922da8dee874ee5c2a678378f23841f44287b44b8d2b8f14014b3af6f",
-  "src/themeRegistry.js": "7aff25923d95bed495eabb02e7b0a0b505591589ebdf96d3c361b392f9040f1a",
-  "src/twilight-theme.css": "3aa7fe8ad193f87ef6218d352c274ec8fda9ff8bfa3c7b77414ff767629363ac",
-  "src/twilightPresentation.js": "cb00b85eecef6dcd51d72a244613ceb77331da0b646c97c2512c97871b757cf0",
+  "src/themeRegistry.js": "e847adc2712293110685bea034d07c91b6e7e4a34964ea91dec92a3f01fdb7ca",
+  "src/themeTokens.css": "20fdb5cdd3aee9835a770a4e039012c2684c5e321c7fa117414b7f1edffad3f0",
+  "src/twilightPresentation.js": "68373c4d07a5a0dcd682c6bfac1cbd6888f5677e3b38004768a98bea077b8a54",
   "src/ui-polish.css": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
-  "src/ui.js": "16bb747976a5a6f53a400d8aa9fee7257f1dd4531e38f46a7b0118f9e19da18a",
+  "src/ui.js": "8d3c2a4f0ea0d2e66c81d1a433562ce825c876fb86445b27c08e68d3b81eaac4",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
-  "src/version.js": "9a17c3b03c8e21bdd49e2a748991f52c5de16107fe1284767c94cba095a1a6ec",
+  "src/version.js": "6880bf8a62641e1f546a94b06dccabeab0eb42862b7e56eb68efaa6dd3a60d25",
   "src/workshopService.js": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69"
 };
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
 const PRECACHE_URLS = [
+  "assets/brand/questnote-icon-180.png",
+  "assets/brand/questnote-icon-192.png",
+  "assets/brand/questnote-icon-32.png",
+  "assets/brand/questnote-icon-512.png",
+  "assets/brand/questnote-icon-maskable-512.png",
+  "assets/brand/questnote-icon-master-1024.png",
   "assets/expeditions/astral_rift.webp",
   "assets/expeditions/harvest_fields.webp",
   "assets/expeditions/lava_rift.webp",
@@ -155,6 +176,11 @@ const PRECACHE_URLS = [
   "assets/expeditions/polar_shore.webp",
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
+  "assets/icons/lucide/LICENSE",
+  "assets/icons/lucide/provenance.json",
+  "assets/scenes/garden-graywolf.webp",
+  "assets/scenes/night-graywolf.webp",
+  "assets/scenes/twilight-graywolf.webp",
   "data/achievements.json",
   "data/categories.json",
   "data/craftables.json",
@@ -198,6 +224,7 @@ const PRECACHE_URLS = [
   "src/glacierArrivalScene.js",
   "src/habitService.js",
   "src/healthCheckService.js",
+  "src/iconPresentation.js",
   "src/imagePreloadService.js",
   "src/loreService.js",
   "src/mailboxSchema.js",
@@ -215,6 +242,7 @@ const PRECACHE_URLS = [
   "src/poolUnlockCore.js",
   "src/poolUnlockService.js",
   "src/preferencesService.js",
+  "src/questIcons.js",
   "src/questService.js",
   "src/releaseCatalog.js",
   "src/releaseProfile.js",
@@ -231,9 +259,11 @@ const PRECACHE_URLS = [
   "src/taskMigration.js",
   "src/taskService.js",
   "src/taskStatsService.js",
+  "src/theme-refinements.css",
+  "src/theme-system.css",
   "src/themeRegistry.js",
+  "src/themeTokens.css",
   "src/themedSummonController.js",
-  "src/twilight-theme.css",
   "src/twilightPresentation.js",
   "src/ui-polish.css",
   "src/ui.js",
