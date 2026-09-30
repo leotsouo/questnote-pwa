@@ -133,8 +133,8 @@
         ]
       },
       "presentation": {
-        "themeKey": "default",
-        "animationKey": "none",
+        "themeKey": "honeylight_sugar",
+        "animationKey": "honeylight_sugar",
         "heroPetId": "pet_ur10",
         "featuredPetIds": [
           "pet_ur09",
@@ -145,7 +145,13 @@
         "eyebrow": "糖晶溫室與暖香烘焙街，為每一個小進展留下甜味。",
         "tagline": "每一步努力，都值得一點甜。",
         "detailsNote": "12 隻皆從第一抽開放，無解鎖、無贈寵。雙 UR：焦糖布蕾海獺、千層奶霜天鵝；主打角色不另加權。",
-        "candidateNote": "僅含蜜光糖庭 12 隻夥伴，不含其他系列寵物。"
+        "candidateNote": "僅含蜜光糖庭 12 隻夥伴，不含其他系列寵物。",
+        "debutLabel": "蜜光糖庭登場",
+        "debutLines": [
+          "穿過糖晶溫室",
+          "每一步努力",
+          "都值得一點甜"
+        ]
       }
     }
   ],

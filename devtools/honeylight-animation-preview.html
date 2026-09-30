@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><base href="../">
+  <title>蜜光糖庭動畫預覽</title>
+  <link rel="stylesheet" href="src/styles.css"><link rel="stylesheet" href="src/honeylight-sugar.css">
+  <style>body{padding:24px;background:#2f253d;color:#fff4df}main{max-width:720px;margin:auto}h1{font-size:24px}main>button{padding:12px 16px;margin:4px;border:1px solid #eecb9d;border-radius:10px;background:#ffddb0;color:#3b263d}label{display:block;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+</head>
+<body><main>
+  <h1>蜜光糖庭動畫預覽</h1>
+  <p>沿用已核准卡圖。可重播入場、單抽、雙 UR 與十連演出；預覽不抽卡、不扣款、不開啟玩家資料庫。</p>
+  <label><input id="reduced" type="checkbox">減少動態效果</label>
+  <button id="debut">糖庭入場</button><button id="short">再次入場</button>
+  <button id="single">單抽演出</button><button id="ssr">SSR 盛宴</button>
+  <button id="caramel">海獺 UR</button><button id="cream">天鵝 UR</button><button id="ten">十連演出</button>
+  <button id="tests">執行動畫驗證</button>
+  <pre id="test-results" aria-live="polite">預覽就緒</pre><section id="gacha-panel" hidden></section>
+</main><script type="module" src="devtools/honeylight-animation-preview.js"></script></body>
+</html>

@@ -6,6 +6,22 @@ v1 提供 AI handoff scaffold、資料契約、審核與組裝流程。**AI 企�
 
 ## 產品範圍與少量必要決策
 
+### 每次企劃開始前：同步最新正式版
+
+先 fetch 最新 refs，讀取正式 `gh-pages` 的 release descriptor／artifact manifest 與 source commit，核對正式 HTTPS 的版本和 manifest，記錄部署 commit、artifact hash、source revision 與核對時間。再與 `origin/main` 比較；來源合併不等於已發布。
+
+新企劃以與最新正式產物對得上的 reviewed authoring source 為 baseline。若 main 有未發布內容，先保存並 reconciliation，不能把它誤當成正式內容，也不能把 gh-pages 整棵目錄覆蓋到來源。已存在的 workspace 不修改 baseline hashes；baseline 真有變動時沿用本文的重新建 workspace 規則。
+
+### 動畫也是企劃與發布的必要項目
+
+每個新的真實卡池都在 `brief.animationPlan` 明確填入：`decision`（`dedicated`／`reuse`／`none`）、`storyboard`（入場和抽卡分鏡／時長）、`rarityNotes`（SSR／UR 演出與十連順序）、`motionNotes`（略過、減少動態、失敗回退）。重用或無動畫要寫明理由；省略欄位僅供舊 workspace 相容，不能作為新池已完成演出的證據。這些內容隨 brief bytes 進入現有 exact-hash 核准鏈，不新增隱藏的聊天核准。
+
+新增模板先完成受控 registry、runtime、離線資源 closure 與呈現驗證，再鎖定 authoring 輸入。蜜光糖庭使用 `honeylight_sugar`，UR 可用 `caramel`／`cream` reveal key；全部是本地 CSS／SVG，無付費生成或音效。catalog 只能指定受控 key 和純文字，不能放可執行模板。
+
+發布 review 必須附動畫驗收紀錄，綁定 source commit、candidate ID、production／preview artifact ID 和 manifest SHA-256，記錄實際測試與預覽網址。至少涵蓋首次／短入場、單抽、十連、每種 SSR／UR、重複稀有角色、略過、鍵盤、減少動態、圖片失敗和清場。前奏略過仍接完整 SSR+ queue；queue 略過是另一項操作。無實際預覽證據時不宣告發布準備完成。
+
+動畫／契約工具修改會使原核准鏈失效：保留舊 receipts 與 immutable candidates，從當前 hash 重新 review。已人工核准的卡圖原始 bytes 相同，可記錄 hash 比對沿用其核准，不要求重產圖片。所有舊發布產物保留歷史，但不可拿來發布新動畫。最後正式發布仍需使用者明確核准。
+
 一個 workspace 對應一個全新 `seriesId` 和 `poolId`，沿用 M4 單一 expansion 機制，不替換既有系列、不變更既有池候選、不新增機制或任意 HTML／程式碼模板。先確認主題、各 rarity 數量、價格／機率／保底、演出模板與有無解鎖贈禮。例如把下列內容存為尚未核准的 `brief-draft.json`：
 
 ```json
@@ -25,7 +41,7 @@ v1 提供 AI handoff scaffold、資料契約、審核與組裝流程。**AI 企�
 }
 ```
 
-不解鎖時明確使用 `"unlock": null`。`presentationTemplate` 使用受控 registry 的 `default`、`dream_bloom` 或 `glacier_arrival`。冰河模板供霜誓峽灣及未來適合的卡池使用，不綁定 pool ID；新增模板必須先完成 runtime、契約與呈現驗證，再鎖定 authoring 輸入。每個非零機率及保底可達 rarity 必須在 locked、unlocked 階段都有候選；不能把唯一 UR 放到解鎖後。總寵物數為 1–100。
+不解鎖時明確使用 `"unlock": null`。`presentationTemplate` 使用受控 registry 的 `default`、`dream_bloom`、`glacier_arrival` 或 `honeylight_sugar`。冰河模板供霜誓峽灣及未來適合的卡池使用，不綁定 pool ID；新增模板必須先完成 runtime、契約與呈現驗證，再鎖定 authoring 輸入。每個非零機率及保底可達 rarity 必須在 locked、unlocked 階段都有候選；不能把唯一 UR 放到解鎖後。總寵物數為 1–100。
 
 `rewardDraftId` 使用分 rarity 的穩定 roster slot：`n_1`、`r_1`、`r_2`、`sr_1` 等。`init` 在全域 authoring lock 下，從官方與所有工作區的現有 ID 後接續配置 pet ID；同時保留未發布 pool ID。**配置發生於尚未核准的 scaffold 建立階段，approve 不會修改 plan 或重配 ID。** 所以人工核准的 plan hash 已涵蓋實際 `draftId → petId` mapping。
 

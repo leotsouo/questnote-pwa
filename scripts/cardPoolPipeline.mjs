@@ -178,6 +178,17 @@ function checkBrief(brief) {
   const count = Object.values(brief.rarityPlan).reduce((sum, value) => sum + value, 0);
   assert(count > 0 && count <= 100, 'BRIEF_INVALID', 'One workspace supports 1–100 pets');
   assert(Object.hasOwn(POOL_THEME_REGISTRY, brief.presentationTemplate || 'default'), 'BRIEF_INVALID', 'Unknown presentation template');
+  // Optional for historical workspaces; new real-pool planning must explicitly fill this.
+  if (brief.animationPlan !== undefined) {
+    const animation = brief.animationPlan;
+    assert(object(animation) && ['dedicated', 'reuse', 'none'].includes(animation.decision)
+      && plain(animation.storyboard) && plain(animation.rarityNotes) && plain(animation.motionNotes),
+      'BRIEF_ANIMATION_INVALID', 'Animation decision, storyboard, rarity and motion notes are required');
+    assert(animation.decision !== 'none' || (brief.presentationTemplate || 'default') === 'default',
+      'BRIEF_ANIMATION_INVALID', 'No-animation decision must use the default template');
+    assert(animation.decision !== 'dedicated' || (brief.presentationTemplate || 'default') !== 'default',
+      'BRIEF_ANIMATION_INVALID', 'Dedicated animation needs a registered template');
+  }
   assert(brief.unlock === null || object(brief.unlock), 'BRIEF_INVALID', 'Explicitly choose unlock: null or an expansion');
   if (brief.unlock) {
     safeId(brief.unlock.key);
@@ -259,6 +270,8 @@ export async function createPipelineWorkspace(root, brief) {
     await fs.mkdir(path.join(temporary, 'images'));
     await fs.writeFile(path.join(temporary, 'AI-HANDOFF.md'), `# ${brief.seriesName} authoring handoff\n\n`
       + 'Review brief.json with the user, then fill plan.json names/designs and base/unlock phases. IDs are reserved: never renumber them.\n'
+      + 'Before planning, verify latest production gh-pages/artifact and its reviewed source baseline against origin/main. Source merge alone is not deployment evidence. Record revisions and reconcile unpublished changes; never copy gh-pages into source.\n'
+      + 'For every new real pool, explicitly fill brief.animationPlan: decision dedicated/reuse/none, storyboard, rarityNotes and motionNotes. Explain reuse/none; default is not proof of completed animation. Complete runtime/contract validation before locking a new presentationTemplate.\n'
       + 'After exact-hash plan approval, produce pets.json, pets-lore.json and plain-text pool presentation using the approved roster.\n'
       + 'Lore requires title, 1–3 personality traits, display element, lore text, normal/urgent/important/praise ×5, idle ×3, bondUp ×2, summon and bondUnlocks 2–5.\n'
       + 'Produce prompts.json entries for every pet ID (prompt and negativePrompt), including generation provenance when available.\n'
@@ -354,6 +367,11 @@ async function validateThrough(root, id, stage) {
   assert(pool.cost === brief.cost && equal(pool.rates, brief.rates) && equal(pool.pity, brief.pity),
     'CONTENT_BRIEF_MISMATCH', 'Pool economics differ from the reviewed brief');
   assert((pool.presentation?.themeKey || 'default') === (brief.presentationTemplate || 'default'), 'CONTENT_BRIEF_MISMATCH', 'Presentation template differs from brief');
+  if (brief.animationPlan?.decision) {
+    const expectedAnimation = (brief.presentationTemplate || 'default') === 'default' ? 'none' : brief.presentationTemplate;
+    assert((pool.presentation?.animationKey || 'none') === expectedAnimation, 'CONTENT_BRIEF_MISMATCH',
+      'Reviewed animation plan must dispatch its registered summon template');
+  }
   assert(!!pool.unlockExpansion === !!brief.unlock, 'UNLOCK_MISSING', 'Pool must implement the approved unlock decision');
   assert(equal(pool.petFilter, { poolTags: [brief.poolId] }), 'POOL_TAG_SCOPE', 'v1 base tags must be the reserved pool ID');
   if (brief.unlock) {
