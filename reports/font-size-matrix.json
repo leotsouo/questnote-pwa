@@ -1,0 +1,1214 @@
+[
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "standard",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 346,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 394,
+        "text": "其他"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "standard",
+    "view": "召喚",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "standard",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 415,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 523,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 379,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 449,
+        "text": "未獲得"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "standard",
+    "view": "探險",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 331,
+        "text": "健康"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 385,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 438,
+        "text": "其他"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 357,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 483,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 610,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 335,
+        "text": "UR"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 413,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 492,
+        "text": "未獲得"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "large",
+    "view": "探險",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "extra-large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 364,
+        "text": "健康"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 423,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 482,
+        "text": "其他"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "extra-large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "extra-large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 406,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 551,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 697,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 360,
+        "text": "UR"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 447,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 535,
+        "text": "未獲得"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "default",
+    "size": "extra-large",
+    "view": "探險",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "standard",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 346,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 394,
+        "text": "其他"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "standard",
+    "view": "召喚",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "standard",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 415,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 523,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 379,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 449,
+        "text": "未獲得"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "standard",
+    "view": "探險",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 331,
+        "text": "健康"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 385,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 438,
+        "text": "其他"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 357,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 483,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 610,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 335,
+        "text": "UR"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 413,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 492,
+        "text": "未獲得"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "large",
+    "view": "探險",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "extra-large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 364,
+        "text": "健康"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 423,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 482,
+        "text": "其他"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "extra-large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "extra-large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 406,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 551,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 697,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 360,
+        "text": "UR"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 447,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 535,
+        "text": "未獲得"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "sweet",
+    "size": "extra-large",
+    "view": "探險",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "standard",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 346,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 394,
+        "text": "其他"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "standard",
+    "view": "召喚",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "standard",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 415,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 523,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 379,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 449,
+        "text": "未獲得"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "standard",
+    "view": "探險",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 331,
+        "text": "健康"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 385,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 438,
+        "text": "其他"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 357,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 483,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 610,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 335,
+        "text": "UR"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 413,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 492,
+        "text": "未獲得"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "large",
+    "view": "探險",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "extra-large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 364,
+        "text": "健康"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 423,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 482,
+        "text": "其他"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "extra-large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "extra-large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 406,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 551,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 697,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 360,
+        "text": "UR"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 447,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 535,
+        "text": "未獲得"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 320,
+    "theme": "twilight",
+    "size": "extra-large",
+    "view": "探險",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "standard",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 398,
+        "text": "其他"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "standard",
+    "view": "召喚",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "standard",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 419,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 527,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 453,
+        "text": "未獲得"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "standard",
+    "view": "探險",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 442,
+        "text": "其他"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 487,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 614,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 417,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 496,
+        "text": "未獲得"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "large",
+    "view": "探險",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "extra-large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 427,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 486,
+        "text": "其他"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "extra-large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "extra-large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 410,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 555,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 701,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 451,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 539,
+        "text": "未獲得"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "default",
+    "size": "extra-large",
+    "view": "探險",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "standard",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 398,
+        "text": "其他"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "standard",
+    "view": "召喚",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "standard",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 419,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 527,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 453,
+        "text": "未獲得"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "standard",
+    "view": "探險",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 442,
+        "text": "其他"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 487,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 614,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 417,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 496,
+        "text": "未獲得"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "large",
+    "view": "探險",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "extra-large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 427,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 486,
+        "text": "其他"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "extra-large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "extra-large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 410,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 555,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 701,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 451,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 539,
+        "text": "未獲得"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "sweet",
+    "size": "extra-large",
+    "view": "探險",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "standard",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 398,
+        "text": "其他"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "standard",
+    "view": "召喚",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "standard",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 419,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 527,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 453,
+        "text": "未獲得"
+      }
+    ],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "standard",
+    "view": "探險",
+    "overflow": [],
+    "root": "16px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 442,
+        "text": "其他"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 487,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 614,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 417,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 496,
+        "text": "未獲得"
+      }
+    ],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "large",
+    "view": "探險",
+    "overflow": [],
+    "root": "20px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "extra-large",
+    "view": "任務",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 427,
+        "text": "工作"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 486,
+        "text": "其他"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "extra-large",
+    "view": "召喚",
+    "overflow": [],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "extra-large",
+    "view": "圖鑑",
+    "overflow": [
+      {
+        "cls": "filter-btn ",
+        "right": 410,
+        "text": "永眠花海 0/16"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 555,
+        "text": "蜜光糖庭 0/12"
+      },
+      {
+        "cls": "filter-btn ",
+        "right": 701,
+        "text": "霜誓峽灣 0/12"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 451,
+        "text": "已獲得"
+      },
+      {
+        "cls": "filter-btn",
+        "right": 539,
+        "text": "未獲得"
+      }
+    ],
+    "root": "24px"
+  },
+  {
+    "width": 390,
+    "theme": "twilight",
+    "size": "extra-large",
+    "view": "探險",
+    "overflow": [],
+    "root": "24px"
+  }
+]

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<title>Local font preference persistence check</title>
+<h1>字體偏好保存測試</h1>
+<pre id="result">執行中…</pre>
+<script type="module">
+  import { openDB } from '../src/db.js';
+  import { getUserPreferences, setTheme, setFontSize } from '../src/preferencesService.js';
+  const output = document.getElementById('result');
+  let original;
+  try {
+    if (!['localhost', '127.0.0.1', '::1'].includes(location.hostname)) throw new Error('Local test origin required');
+    await openDB();
+    original = await getUserPreferences();
+    // Both writes must merge with the latest stored record, not stale snapshots.
+    await Promise.all([setTheme('sweet'), setFontSize('extra-large')]);
+    const both = await getUserPreferences();
+    if (both.theme !== 'sweet' || both.fontSize !== 'extra-large') throw new Error('Concurrent preferences lost');
+    await setFontSize('large');
+    const large = await getUserPreferences();
+    if (large.theme !== 'sweet' || large.fontSize !== 'large') throw new Error('Font update changed theme');
+    await setTheme('twilight');
+    const theme = await getUserPreferences();
+    if (theme.fontSize !== 'large' || theme.theme !== 'twilight') throw new Error('Theme update changed font size');
+    output.textContent = 'PASS: concurrent saves retain both preferences; changing theme retains font size; changing font retains theme.';
+  } catch (error) {
+    output.textContent = `FAIL: ${error.message}`;
+  } finally {
+    if (original) {
+      try {
+        await setTheme(original.theme);
+        await setFontSize(original.fontSize);
+      } catch (error) {
+        output.textContent += `\nFAIL: restoring original test preferences: ${error.message}`;
+      }
+    }
+  }
+</script>
+</html>

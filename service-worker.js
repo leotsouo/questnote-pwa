@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3436-honeylight-animation';
+const CACHE_NAME = 'questnote-preview-cache-v3437-font-layout';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -62,6 +62,7 @@ const PRECACHE_URLS = [
   'assets/brand/questnote-icon-512.png',
   'assets/brand/questnote-icon-maskable-512.png',
   'src/reminder-settings.css',
+  'src/font-size-settings.css',
   'src/twilightPresentation.js',
   'src/themeRegistry.js',
   'src/dialogFocus.js',

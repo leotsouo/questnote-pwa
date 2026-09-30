@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Font size layout regression</title>
+<link rel="stylesheet" href="../src/styles.css">
+<link rel="stylesheet" href="../src/themeTokens.css">
+<link rel="stylesheet" href="../src/theme-system.css">
+<link rel="stylesheet" href="../src/theme-refinements.css">
+<link rel="stylesheet" href="../src/font-size-settings.css">
+<body data-theme="default">
+<h1>字體排版回歸</h1><pre id="results" aria-live="polite">測試中…</pre>
+<div id="fixture"></div>
+<script type="module">
+  import { buildTwilightHome, twilightIcon } from '../src/twilightPresentation.js';
+  const fixture = document.getElementById('fixture');
+  const results = [];
+  const pet = { id: 'pet_ur01', name: '永恆機械龍神', rarity: 'UR', title: '永恆協議龍' };
+  const rect = (selector) => fixture.querySelector(selector).getBoundingClientRect();
+  for (const theme of ['default', 'sweet', 'twilight']) {
+    document.body.dataset.theme = theme;
+    for (const size of ['standard', 'large', 'extra-large']) {
+      document.documentElement.dataset.fontSize = size;
+      for (const width of [320, 390, 430]) {
+        fixture.style.width = `${width - 32}px`;
+        fixture.innerHTML = `<div class="twilight-home">${buildTwilightHome(pet, true, theme)}</div>
+          <button class="twilight-add-task" aria-label="新增任務">${twilightIcon('plus')}</button>
+          <button class="daily-blessing-card__toggle">
+            <span class="daily-blessing-card__icon">${twilightIcon('sun')}</span>
+            <span class="daily-blessing-card__header-main"><span class="daily-blessing-title">每日祝福</span></span>
+            <span class="daily-status-badge">待領取</span><span class="daily-blessing-card__chevron">▲</span>
+          </button>`;
+        fixture.querySelector('.daily-blessing-card__toggle').style.width = '100%';
+        for (const progress of [0, 50, 100]) {
+          fixture.querySelector('.twilight-journey-track').style.setProperty('--journey-progress', `${progress}%`);
+          await new Promise(requestAnimationFrame);
+          const track = rect('.twilight-journey-track');
+          const star = rect('.twilight-journey-track svg');
+          const plus = rect('.twilight-add-task svg');
+          const badge = fixture.querySelector('.twilight-rarity');
+          const badgeHeight = badge.getBoundingClientRect().height;
+          const badgeLineHeight = parseFloat(getComputedStyle(badge).lineHeight);
+          const title = rect('.daily-blessing-title');
+          const titleFont = parseFloat(getComputedStyle(fixture.querySelector('.daily-blessing-title')).fontSize);
+          const checks = {
+            starCentered: Math.abs(star.y + star.height / 2 - track.y - track.height / 2) < 1,
+            starContained: star.left >= track.left - 1 && star.right <= track.right + 1,
+            fixedStar: star.width === 16 && star.height === 16,
+            fixedPlus: plus.width === 24 && plus.height === 24,
+            raritySingleLine: badgeHeight < badgeLineHeight * 1.8,
+            dailyTitleReadable: title.width >= titleFont * 4,
+          };
+          results.push({ theme, size, width, progress, checks, pass: Object.values(checks).every(Boolean) });
+        }
+      }
+    }
+  }
+  fixture.hidden = true;
+  document.documentElement.dataset.fontSize = 'standard';
+  document.body.dataset.theme = 'default';
+  const failures = results.filter((result) => !result.pass);
+  document.getElementById('results').textContent = JSON.stringify({ pass: !failures.length, cases: results.length, failures }, null, 2);
+  document.getElementById('results').dataset.complete = 'true';
+</script>
+</body>
+</html>

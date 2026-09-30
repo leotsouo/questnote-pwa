@@ -915,7 +915,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: white;
   flex-shrink: 0;
   transition: all 0.15s;
@@ -1936,7 +1936,7 @@ body.reduce-motion button.companion-card__detail-button:active {
   width: 100%;
   min-height: 44px;
   padding: 10px 12px;
-  font-size: 16px;
+  font-size: 1rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background: var(--color-bg-elevated);
@@ -4479,7 +4479,7 @@ body[data-theme="default"] .toast--info {
   border: 2px solid var(--color-border);
   background: transparent;
   color: var(--color-success);
-  font-size: 12px;
+  font-size: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5017,7 +5017,7 @@ body.reduce-motion .task-card--completing {
 }
 
 .tag-chip--card {
-  font-size: 11px;
+  font-size: 0.6875rem;
   padding: 2px 8px;
   cursor: pointer;
 }
@@ -5036,7 +5036,7 @@ body.reduce-motion .task-card--completing {
 
 .tag-chip__count {
   opacity: 0.65;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 
 .tag-chip__remove {
@@ -5045,7 +5045,7 @@ body.reduce-motion .task-card--completing {
   color: inherit;
   cursor: pointer;
   padding: 0 2px;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   opacity: 0.7;
 }
@@ -5164,7 +5164,7 @@ body.reduce-motion .task-card--completing {
 }
 
 .tag-chip--sm {
-  font-size: 10px;
+  font-size: 0.625rem;
   padding: 1px 6px;
 }
 
@@ -5278,7 +5278,7 @@ body.reduce-motion .task-card--completing {
 }
 
 .workshop-tag {
-  font-size: 10px;
+  font-size: 0.625rem;
   padding: 2px 8px;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.06);
@@ -5387,7 +5387,7 @@ body.reduce-motion .task-card--completing {
 }
 
 .workshop-gift-pet__companion {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--color-accent);
 }
 
@@ -5492,12 +5492,12 @@ body.reduce-motion .workshop-gift-pet--bounce {
 }
 
 .pet-original-name--sm {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 .pet-original-name--xs {
   display: block;
-  font-size: 10px;
+  font-size: 0.625rem;
   margin-top: 2px;
 }
 
@@ -5582,7 +5582,7 @@ body.reduce-motion .workshop-gift-pet--bounce {
   width: 100%;
   min-height: 48px;
   padding: 12px 14px;
-  font-size: 16px;
+  font-size: 1rem;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(0, 0, 0, 0.25);
@@ -9044,7 +9044,7 @@ body[data-theme="sweet"] .daily-wheel-label {
   background: linear-gradient(145deg, #7c3aed, #5b21b6);
   color: #fff;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.2;
   text-align: center;
   white-space: normal;
@@ -9127,7 +9127,7 @@ body.reduce-motion .daily-wheel-rotor {
     height: 66px;
     min-width: 66px;
     min-height: 66px;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .daily-wheel-label__name,
@@ -10557,12 +10557,12 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
   animation: summonRarityPop 620ms cubic-bezier(0.2, 1.2, 0.4, 1) 360ms both;
 }
 .summon-reveal-overlay.is-ssr .summon-reveal-rarity {
-  font-size: clamp(46px, 15vw, 82px);
+  font-size: clamp(2.875rem, 15vw, 5.125rem);
   color: #FDE68A;
   text-shadow: 0 0 18px rgba(251, 191, 36, 0.7), 0 0 34px rgba(167, 139, 250, 0.5);
 }
 .summon-reveal-overlay.is-ur .summon-reveal-rarity {
-  font-size: clamp(58px, 19vw, 108px);
+  font-size: clamp(3.625rem, 19vw, 6.75rem);
   color: #FFFFFF;
   text-shadow: 0 0 20px rgba(244, 114, 182, 0.8), 0 0 40px rgba(34, 211, 238, 0.6);
   animation-delay: 720ms;
@@ -10610,7 +10610,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
 }
 
 .summon-reveal-caption {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -10625,7 +10625,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
   bottom: max(84px, calc(env(safe-area-inset-bottom) + 76px));
   text-align: center;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 13px;
+  font-size: 0.8125rem;
   letter-spacing: 1px;
   opacity: 0;
   pointer-events: none;
@@ -10653,7 +10653,7 @@ body[data-theme="sweet"] .expedition-reward-modal .btn--primary {
   border: 1px solid rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.14);
   color: #ffffff;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 700;
   cursor: pointer;
   backdrop-filter: blur(2px);
@@ -10981,7 +10981,7 @@ body.reduce-motion .summon-reveal-overlay * {
   border-top: 1px dashed rgba(148, 163, 184, 0.5);
 }
 .dev-tools__subtitle {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 800;
   margin: 0 0 4px;
 }
@@ -11584,7 +11584,7 @@ body[data-theme="default"] .quest-empty {
 }
 .bond-section__title {
   margin: 0;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 700;
 }
 .bond-section__title--story {
@@ -11599,7 +11599,7 @@ body[data-theme="default"] .quest-empty {
 }
 .bond-status-card__level {
   margin: 0 0 8px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 .bond-status-card__chips {
@@ -11613,13 +11613,13 @@ body[data-theme="default"] .quest-empty {
   align-items: center;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.4;
 }
 .bond-status-card__next {
   margin: 0;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
 }
 
@@ -11629,7 +11629,7 @@ body[data-theme="default"] .quest-empty {
   align-items: center;
   padding: 3px 9px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 800;
   line-height: 1.4;
   white-space: nowrap;
@@ -11642,7 +11642,7 @@ body[data-theme="default"] .quest-empty {
   align-items: center;
   padding: 3px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 800;
   line-height: 1.4;
   white-space: nowrap;
@@ -11657,7 +11657,7 @@ body[data-theme="default"] .quest-empty {
 }
 .bond-story p {
   margin: 0 0 8px;
-  font-size: 13.5px;
+  font-size: 0.84375rem;
   line-height: 1.7;
 }
 .bond-story p:last-child {
@@ -11679,7 +11679,7 @@ body[data-theme="default"] .quest-empty {
   z-index: 3;
 }
 .collection-card__bond-badge .bond-badge {
-  font-size: 10px;
+  font-size: 0.625rem;
   padding: 2px 7px;
 }
 .collection-card__image {
@@ -11719,7 +11719,7 @@ body[data-theme="default"] .quest-empty {
   max-width: 88vw;
   padding: 11px 16px;
   border-radius: 14px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.4;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
@@ -11732,7 +11732,7 @@ body[data-theme="default"] .quest-empty {
   transform: translate(-50%, 0);
 }
 .bond-unlock-toast__icon {
-  font-size: 18px;
+  font-size: 1.125rem;
   flex: 0 0 auto;
 }
 .bond-unlock-toast__text {
@@ -11823,7 +11823,7 @@ body[data-theme="sweet"] .workshop-gift-pet__liberated {
   border: 1px solid #F0C878;
   border-radius: 999px;
   padding: 1px 7px;
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 800;
 }
 
@@ -11903,7 +11903,7 @@ body[data-theme="default"] .workshop-gift-pet__liberated {
   border: 1px solid rgba(251, 191, 36, 0.36);
   border-radius: 999px;
   padding: 1px 7px;
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 800;
 }
 

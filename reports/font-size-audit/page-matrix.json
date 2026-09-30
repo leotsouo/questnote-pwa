@@ -1,0 +1,326 @@
+[
+  {
+    "label": "home",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "任務",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "任務",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "label": "任務",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "任務",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "任務",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "default",
+    "width": 320
+  },
+  {
+    "label": "任務",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "16px",
+    "size": "standard",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "任務",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "20px",
+    "size": "large",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "任務",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "召喚",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "圖鑑",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "label": "探險",
+    "documentWidth": 305,
+    "narrowHeadings": [],
+    "rootPx": "24px",
+    "size": "extra-large",
+    "theme": "twilight",
+    "width": 320
+  }
+]

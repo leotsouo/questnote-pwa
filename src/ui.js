@@ -72,7 +72,7 @@ import {
   randomBubbleInterval,
   IDLE_THRESHOLD_MS,
 } from './companionDialogueService.js';
-import { setTheme, applyThemeToDocument, normalizeTheme } from './preferencesService.js';
+import { setTheme, applyThemeToDocument, normalizeTheme, setFontSize, applyFontSizeToDocument, normalizeFontSize } from './preferencesService.js';
 import { initQuestIconLanguage } from './iconPresentation.js';
 import { THEME_DIRECTIONS } from './themeRegistry.js';
 import { twilightIcon, getCompanionScene, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
@@ -1191,6 +1191,27 @@ function bindDelegatedEvents() {
     }
   }));
 
+  document.getElementById('font-size-picker')?.addEventListener('change', trackUpdateActivity(async (event) => {
+    if (event.target.name !== 'font-size') return;
+    const picker = event.currentTarget;
+    const previous = state.userPreferences?.fontSize;
+    picker.disabled = true;
+    try {
+      const prefs = await setFontSize(event.target.value);
+      state.userPreferences = prefs;
+      applyFontSizeToDocument(prefs.fontSize);
+      renderFontSizePickerState(prefs.fontSize);
+      setText('font-size-result', '字體大小已儲存');
+    } catch (error) {
+      applyFontSizeToDocument(previous);
+      renderFontSizePickerState(previous);
+      setText('font-size-result', '無法儲存字體大小，請再試一次。');
+      console.warn('[Preferences] Failed to save font size:', error);
+    } finally {
+      picker.disabled = false;
+    }
+  }));
+
   document.querySelector('.theme-picker')?.addEventListener('keydown', trackUpdateActivity(async (event) => {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
     const current = event.target.closest('[data-action="select-theme"]');
@@ -1849,6 +1870,7 @@ export async function renderAll() {
   }
   uiDebugLog('[Render] renderAll fallback');
   applyThemeToDocument(state.userPreferences?.theme ?? 'default');
+  applyFontSizeToDocument(state.userPreferences?.fontSize);
   applyReduceMotionClass(state.userPreferences?.reduceMotion ?? false);
   renderTasksView();
   renderGachaView();
@@ -2139,11 +2161,11 @@ function buildDailyBlessingCardData() {
           <div class="daily-streak-row">
             <div class="daily-streak-stat">
               <span class="daily-streak-stat__label">連續簽到</span>
-              <span class="daily-streak-stat__value">連續簽到 <span class="daily-streak-number">${streak}</span> 天</span>
+              <span class="daily-streak-stat__value"><span class="daily-streak-number">${streak}</span> 天</span>
             </div>
             <div class="daily-streak-stat">
               <span class="daily-streak-stat__label">最高紀錄</span>
-              <span class="daily-streak-stat__value">最高紀錄 ${bestStreak} 天</span>
+              <span class="daily-streak-stat__value">${bestStreak} 天</span>
             </div>
           </div>
           <div class="daily-milestone-progress">
@@ -2958,6 +2980,7 @@ function renderTaskCard(task) {
     : '';
 
   const preview = task.content.split('\n').slice(1).filter((line) => line.trim()).slice(0, 2).join(' ');
+  const description = task.content.split('\n').slice(1).join('\n').trim();
   const rewardsHtml = task.completed ? doneInfo : task.rewardClaimed
     ? `<div class="task-card__rewards"><span>${twilightIcon('check')}獎勵已領取</span></div>`
     : `<div class="task-card__rewards"><span>${twilightIcon('spark')}${stardust} 星塵</span><span>${twilightIcon('energy')}${energy} 能量</span>${state.companion ? `<span>${twilightIcon('heart')}+${calculateBondAmount(task)} 親密度</span>` : ''}</div>`;
@@ -2968,6 +2991,7 @@ function renderTaskCard(task) {
       <div class="task-card__meta"><span>${formatCategoryLabel(category)}</span>${task.priority !== 'normal' ? `<span class="twilight-task-priority">${escapeHtml(PRIORITY_LABELS[task.priority])}</span>` : ''}${task.dueDate || task.startDate ? `<span class="${dateClass}">${escapeHtml(dateText)}</span>` : ''}${!inPlan && !task.completed ? '<span>未排入今日</span>' : ''}</div>
       <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
       ${preview ? `<p class="task-card__preview">${escapeHtml(preview)}</p>` : ''}
+      ${description ? `<details class="task-card__description"><summary>任務說明</summary><p class="task-card__preview">${escapeHtml(description)}</p></details>` : ''}
       ${subtasksHtml}
       ${rewardsHtml}
       ${expandBtn ? `<div class="twilight-task-expander">${expandBtn}</div>` : ''}
@@ -4583,6 +4607,7 @@ export async function applyTheme(theme, options = {}) {
   }
 
   if (state) {
+    applyFontSizeToDocument(state.userPreferences?.fontSize);
     applyReduceMotionClass(state.userPreferences?.reduceMotion ?? false);
     await renderAll();
   } else {
@@ -4594,6 +4619,13 @@ export async function applyTheme(theme, options = {}) {
   }
 
   return valid;
+}
+
+function renderFontSizePickerState(fontSize) {
+  const valid = normalizeFontSize(fontSize);
+  document.querySelectorAll('input[name="font-size"]').forEach((input) => {
+    input.checked = input.value === valid;
+  });
 }
 
 function renderThemePickerState(activeTheme) {
@@ -7225,7 +7257,10 @@ function renderExpeditionDispatchModal() {
           ${Object.entries(EXPEDITION_OBJECTIVES).map(([id, entry]) => `<button type="button" class="expedition-objective ${dispatchObjective === id ? 'is-selected' : ''}" data-action="dispatch-objective" data-objective="${id}" aria-pressed="${dispatchObjective === id}"><strong>${entry.label}</strong><span>${entry.description}</span></button>`).join('')}
         </div>
       </div>
-      <div class="expedition-dispatch-modal__preview">${previewHtml}</div>
+      <div class="expedition-dispatch-modal__preview">
+        <div class="expedition-dispatch-preview__full">${previewHtml}</div>
+        <div class="expedition-dispatch-preview__compact">${selectedPets.length} 隻同行 · ${EXPEDITION_OBJECTIVES[dispatchObjective].label}<br>消耗 ${terms.energyCost} 能量 · ${formatDuration(terms.durationMinutes)}<details><summary>隊伍與收穫</summary><p>${previewHtml}</p></details></div>
+      </div>
       <div class="expedition-dispatch-modal__footer">
         <button type="button" class="expedition-dispatch-cancel-button" data-action="dispatch-close">取消</button>
         <button type="button" class="expedition-dispatch-confirm-button" data-action="dispatch-confirm" ${canConfirm ? '' : 'disabled'}>${confirmLabel}</button>
@@ -7638,6 +7673,7 @@ function renderWorkshopView() {
   if (workshopTab === 'materials') {
     if (allMaterialEntries.length === 0) {
       contentEl.innerHTML = emptyStateHtml(
+        twilightIcon('workshop'),
         '目前還沒有材料',
         '派遣寵物探險，可以帶回製作禮物的材料。'
       );
@@ -7671,6 +7707,7 @@ function renderWorkshopView() {
     const enabled = craftables.filter((c) => c.enabled);
     if (enabled.length === 0) {
       contentEl.innerHTML = emptyStateHtml(
+        twilightIcon('workshop'),
         '目前沒有可製作的道具',
         '等取得更多材料後再回來看看。'
       );
@@ -8817,6 +8854,7 @@ function renderSettingsView() {
   setText('settings-achievements', `${achUnlocked}/${achTotal}`);
 
   renderThemePickerState(userPreferences?.theme ?? 'default');
+  renderFontSizePickerState(userPreferences?.fontSize);
 
   // 開發測試區：正式環境不可見；僅 localhost／127.0.0.1／::1（不得僅靠 CSS、不得用 ?debug 開正式 PWA）
   const localDevOn = isAuthorLocalDevMode();
