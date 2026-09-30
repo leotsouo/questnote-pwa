@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "honeylight_sugar_garden_v2",
+  "seriesName": "蜜光糖庭",
+  "description": "山谷中的糖晶溫室與暖香烘焙街，住著十二隻把甜味化成魔法的夥伴。焦糖布蕾海獺照看暖池旁的小碟，千層奶霜天鵝用蓬鬆羽毛陪朋友慶祝；糖果晶翼與分享宴席的微光，為每一步努力留下一點甜。",
+  "rarityPlan": {
+    "N": 3,
+    "R": 3,
+    "SR": 2,
+    "SSR": 2,
+    "UR": 2
+  },
+  "releaseVersion": "3.4.36"
+}

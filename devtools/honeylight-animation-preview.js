@@ -11,7 +11,7 @@ const sample = (rarity, key) => {
   const pet = key ? { ...original, presentation: { ...original.presentation, revealKey: key } } : original;
   return { pet, rarity, isNew: true };
 };
-const presentation = { animationKey: 'honeylight_sugar', debutLabel: '蜜光糖庭登場', debutLines: ['穿過糖晶溫室', '每一步努力', '都值得一點甜'] };
+const presentation = { animationKey: 'honeylight_sugar', debutLabel: '蜜光糖庭登場', debutLines: ['糖庭亮起', '甜蜜相遇'] };
 const ten = () => [sample('N'), sample('UR', 'cream'), sample('SSR'), sample('UR', 'caramel'), sample('UR', 'cream'), ...Array.from({ length: 5 }, () => sample('R'))];
 const output = document.getElementById('test-results');
 const reduced = () => document.getElementById('reduced').checked;

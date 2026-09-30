@@ -1,0 +1,180 @@
+{
+  "pets": [
+    {
+      "id": "pet_n26",
+      "name": "方糖絨兔",
+      "rarity": "N",
+      "image": "assets/pets/pet_n26.png",
+      "description": "毛尖沾著金色糖粒的乳白小兔，總把慶祝用的方糖一塊塊擺齊。牠喜歡替不起眼的小進展留一個位置，也把第一塊方糖推給剛踏進糖庭的旅人。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "rabbit",
+      "element": "sugar_spark",
+      "visualTheme": "sugar_cube_fluff"
+    },
+    {
+      "id": "pet_n27",
+      "name": "跳跳果凍蛙",
+      "rarity": "N",
+      "image": "assets/pets/pet_n27.png",
+      "description": "萊姆綠的果凍小蛙住在溫室淺池，落水後總會隨漣漪彈回岸邊。牠把每次失足都當成重選落腳處的機會，最愛陪朋友試試看下一跳。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "frog",
+      "element": "jelly_ripple",
+      "visualTheme": "lime_jelly_pond"
+    },
+    {
+      "id": "pet_n28",
+      "name": "奶油曲奇刺蝟",
+      "rarity": "N",
+      "image": "assets/pets/pet_n28.png",
+      "description": "背刺散著奶油曲奇香的小刺蝟，常在烘焙街窗台替新出爐的點心守溫。牠話不多，總等朋友坐穩了，才輕輕挪近那一點暖香。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "hedgehog",
+      "element": "biscuit_warmth",
+      "visualTheme": "butter_cookie_spines"
+    },
+    {
+      "id": "pet_r23",
+      "name": "薄荷拐杖鼬",
+      "rarity": "R",
+      "image": "assets/pets/pet_r23.png",
+      "description": "尾巴帶著薄荷條紋的靈巧小鼬，穿過糖晶拱門時總留下一縷清爽風。牠最擅長找替代小路，讓卡住的事情也有繼續前進的方法。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "weasel",
+      "element": "mint_breeze",
+      "visualTheme": "mint_candy_cane_tail"
+    },
+    {
+      "id": "pet_r24",
+      "name": "泡芙栗鼠",
+      "rarity": "R",
+      "image": "assets/pets/pet_r24.png",
+      "description": "像剛出爐泡芙般圓滾滾的栗鼠，會用蓬鬆毛團把小布巾暖好。牠不擅長熱鬧招呼，卻總替晚到的朋友留下最柔軟的座位。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "chinchilla",
+      "element": "cream_cloud",
+      "visualTheme": "cream_puff_chinchilla"
+    },
+    {
+      "id": "pet_r25",
+      "name": "莓糖卷尾松鼠",
+      "rarity": "R",
+      "image": "assets/pets/pet_r25.png",
+      "description": "卷尾映著莓紅糖光的小松鼠，記得每位朋友喜歡的甜味，卻偶爾忘了自己的安排。牠正學著把今天最重要的事也放進心裡那座小糖罐。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "squirrel",
+      "element": "berry_glaze",
+      "visualTheme": "berry_candy_spiral_tail"
+    },
+    {
+      "id": "pet_sr19",
+      "name": "馬卡龍錦羽孔雀",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr19.png",
+      "description": "扇尾排著薄荷、莓粉與淡紫羽眼的孔雀，總能把不同甜香放在恰好的位置。牠相信漂亮的宴席來自彼此襯托，也正學著接受一點不對稱。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "peacock",
+      "element": "pastel_harmony",
+      "visualTheme": "macaron_fan_feathers"
+    },
+    {
+      "id": "pet_sr20",
+      "name": "可可熔心龍",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr20.png",
+      "description": "可可棕小龍的胸前藏著一點琥珀暖光，能替烘焙街穩住爐邊溫度。牠原本一熱心就把火加大，如今會先聽朋友需要多暖，再慢慢呼出熱氣。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "small_dragon",
+      "element": "cocoa_ember",
+      "visualTheme": "chocolate_lava_heart"
+    },
+    {
+      "id": "pet_ssr12",
+      "name": "琉糖星翼蝶",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr12.png",
+      "description": "四片硬糖晶翼折出莓粉、薄荷與琥珀光的蝶，是糖晶溫室的細心照看者。牠能讓不起眼的晶芽也被看見，從不要求每一份慶祝都同樣耀眼。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "butterfly",
+      "element": "sugar_prism",
+      "visualTheme": "hard_candy_prism_butterfly"
+    },
+    {
+      "id": "pet_ssr13",
+      "name": "蜜曦盛宴小熊貓",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr13.png",
+      "description": "橘紅毛、焦糖環尾的小熊貓在糖庭晨光裡召集分享宴席。牠把糖晶與暖香放上同一張小桌，不比誰帶來的甜更多，只確認每位夥伴都有坐下的位置。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "red_panda",
+      "element": "honey_dawn",
+      "visualTheme": "confectionery_feast_red_panda"
+    },
+    {
+      "id": "pet_ur09",
+      "name": "焦糖布蕾海獺",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur09.png",
+      "description": "琥珀背毛映著薄脆糖光的海獺，在暖池邊慢慢照看小碟布蕾。牠懂得等火候，也懂得在恰好的時候輕輕敲開，讓完成的香氣真正散出來。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "sea_otter",
+      "element": "caramel_glow",
+      "visualTheme": "brulee_amber_otter",
+      "presentation": {
+        "revealKey": "caramel",
+        "revealCaption": "焦糖漣漪 · 暖甜相遇"
+      }
+    },
+    {
+      "id": "pet_ur10",
+      "name": "千層奶霜天鵝",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur10.png",
+      "description": "圓滾滾、奶霜羽毛蓬鬆的親人小天鵝，小翅膀與尾羽藏著金黃千層酥皮。牠總歪著頭聽朋友說今天的小事，再用柔柔的暖香陪對方慶祝。",
+      "poolTags": [
+        "honeylight_sugar_garden_v2"
+      ],
+      "seriesId": "honeylight_sugar_garden_v2",
+      "speciesType": "swan",
+      "element": "millefeuille_cream",
+      "visualTheme": "cute_millefeuille_swan",
+      "presentation": {
+        "revealKey": "cream",
+        "revealCaption": "奶霜羽光 · 甜夢輕降"
+      }
+    }
+  ]
+}

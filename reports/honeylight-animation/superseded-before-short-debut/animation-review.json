@@ -1,0 +1,102 @@
+{
+  "reviewedAt": "2026-09-30T20:57:45.955Z",
+  "sourceCommit": "67baa8584b938b4f6bdf2a89af030590cce96c7c",
+  "candidateId": "9b67e0de4b503ed08141c94fba3e9d6ce0c425ea076b9bb88ca31a6e192d0ec3",
+  "production": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\9679e157bb1ee1840c7102f763b4960076789feab6abb37baf091b36d5d976c1",
+    "artifactId": "9679e157bb1ee1840c7102f763b4960076789feab6abb37baf091b36d5d976c1",
+    "manifestSha256": "d711bdd083aa68f7d8bdfa7ef0021e868371b84983531ff8b07106e983b48fb2",
+    "fileCount": 412,
+    "scopePath": "/questnote-pwa/",
+    "catalogSha256": "67fb0ef59d21ba0310292f7bc6b861644256ae2eabc41ff03e7042c7bf210005",
+    "reproducible": true,
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\9679e157bb1ee1840c7102f763b4960076789feab6abb37baf091b36d5d976c1",
+      "artifactId": "9679e157bb1ee1840c7102f763b4960076789feab6abb37baf091b36d5d976c1",
+      "manifestSha256": "d711bdd083aa68f7d8bdfa7ef0021e868371b84983531ff8b07106e983b48fb2",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 412
+    }
+  },
+  "preview": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\f9d4f6f8b0541481b00f30c728f281e008d8084f7456a111b494cbd356477873",
+    "artifactId": "f9d4f6f8b0541481b00f30c728f281e008d8084f7456a111b494cbd356477873",
+    "manifestSha256": "e5a57f9218534298f3b1fbf5c9a9b8e6192bb329d33d7a93b2a1828b6cbf0a46",
+    "fileCount": 412,
+    "scopePath": "/questnote-pwa-preview/",
+    "catalogSha256": "67fb0ef59d21ba0310292f7bc6b861644256ae2eabc41ff03e7042c7bf210005",
+    "reproducible": true,
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-animation\\artifacts\\f9d4f6f8b0541481b00f30c728f281e008d8084f7456a111b494cbd356477873",
+      "artifactId": "f9d4f6f8b0541481b00f30c728f281e008d8084f7456a111b494cbd356477873",
+      "manifestSha256": "e5a57f9218534298f3b1fbf5c9a9b8e6192bb329d33d7a93b2a1828b6cbf0a46",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 412
+    }
+  },
+  "animation": {
+    "desktopPassed": 14,
+    "mobilePassed": 14,
+    "failed": 0,
+    "previewUrl": "http://127.0.0.1:54939/devtools/honeylight-animation-preview.html"
+  },
+  "app": {
+    "passed": 12,
+    "updatePassed": 8,
+    "manual": {
+      "checkedAt": "2026-09-30T20:56:36.101Z",
+      "previewUrl": "http://127.0.0.1:50316/questnote-pwa-preview/",
+      "artifactId": "f9d4f6f8b0541481b00f30c728f281e008d8084f7456a111b494cbd356477873",
+      "single": {
+        "walletBefore": 3000,
+        "walletAfter": 2900,
+        "role": "千層奶霜天鵝",
+        "rarity": "UR",
+        "duplicateCompensation": 20
+      },
+      "ten": {
+        "layout": {
+          "height": 852,
+          "scrollWidth": 393,
+          "width": 393
+        },
+        "names": [
+          "可可熔心龍",
+          "蜜曦盛宴小熊貓",
+          "薄荷拐杖鼬",
+          "薄荷拐杖鼬",
+          "奶油曲奇刺蝟",
+          "跳跳果凍蛙",
+          "奶油曲奇刺蝟",
+          "奶油曲奇刺蝟",
+          "方糖絨兔",
+          "奶油曲奇刺蝟"
+        ],
+        "rareSequence": [
+          "蜜曦盛宴小熊貓"
+        ],
+        "walletAfter": 1900,
+        "walletBefore": 2900
+      }
+    },
+    "previewUrl": "http://127.0.0.1:50316/questnote-pwa-preview/"
+  },
+  "approvedPngCount": 12,
+  "approvedPngBytesUnchanged": true,
+  "authoringArchiveFileCount": 825,
+  "deploymentCommit": "65b97557c41fcaab2bd90c41da8daf89e6c6a321",
+  "productionPushed": false,
+  "sourceAutoMerged": false,
+  "finalGate": "Explicit user approval before formal source integration/production push; recheck latest refs and live production first.",
+  "limitations": [
+    "Chromium desktop and 393×852 viewport emulation verified; no physical iPhone/Safari run was performed."
+  ],
+  "deferredUntilPoolPublished": [
+    "Workshop craftable food review",
+    "Expedition region review"
+  ]
+}
