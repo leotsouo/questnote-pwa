@@ -1,0 +1,34 @@
+{
+  "icons": [
+    {
+      "decoded": true,
+      "src": "./assets/scenes/night-graywolf.webp"
+    },
+    {
+      "decoded": true,
+      "src": "./assets/scenes/garden-graywolf.webp"
+    },
+    {
+      "decoded": true,
+      "src": "./assets/scenes/twilight-graywolf.webp"
+    }
+  ],
+  "marker": "1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247",
+  "overflow": false,
+  "radios": [
+    {
+      "checked": "false",
+      "name": "星夜遠行\n\n原深色幻想風 · 星夜營地、清晰星光與沉穩探索。"
+    },
+    {
+      "checked": "false",
+      "name": "晨光花園\n\n原甜美可愛風 · 晨光花園、柔和色彩與日常照顧。"
+    },
+    {
+      "checked": "true",
+      "name": "暮光冒險手帳\n 使用中\n\n森林暮色、溫暖紙頁與同行夥伴，把日常寫成共同成長的旅程。"
+    }
+  ],
+  "theme": "twilight",
+  "version": "版本資訊\n目前版本\nV3.4.30\nCache\nquestnote-production-app-1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247\n更新時間\n2026/10/01 00:10\nService Worker\n已啟用\n\n若仍看到舊版，請先匯出 JSON 備份，再關閉所有 QuestNote 分頁與主畫面 App 後重新開啟。請勿為了更新而清除網站資料。"
+}

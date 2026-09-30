@@ -1,0 +1,33 @@
+{
+  "running": false,
+  "results": [
+    {
+      "name": "old actual controlled app boot",
+      "ok": true,
+      "artifact": "49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37"
+    },
+    {
+      "name": "old actual controlled app boot",
+      "ok": true,
+      "artifact": "49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37"
+    },
+    {
+      "name": "new actual controlled app boot",
+      "ok": true,
+      "artifact": "1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247"
+    },
+    {
+      "name": "V3.4.29 → V3.4.30 preserves all persistent data and theme (only mailbox fetch time excluded)",
+      "ok": true
+    },
+    {
+      "name": "old actual controlled app boot",
+      "ok": true,
+      "artifact": "49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37"
+    },
+    {
+      "name": "V3.4.30 → V3.4.29 restores old design and preserves all persistent data (only mailbox fetch time excluded)",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "production": {
+    "root": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-three-worlds-production-v3430\\1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247",
+    "artifactId": "1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247",
+    "manifestSha256": "536f4ebc92e4a967b2a40c8c5d890969543cc9fc44d69c2a134bff8723f05d36",
+    "sourceCommit": "eb9be8f47343180fa63f6a55ecf2a9d6349b78b6",
+    "scope": "/questnote-pwa/",
+    "contentHash": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-three-worlds-production-v3430\\1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247",
+      "artifactId": "1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247",
+      "manifestSha256": "536f4ebc92e4a967b2a40c8c5d890969543cc9fc44d69c2a134bff8723f05d36",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 368
+    }
+  },
+  "preview": {
+    "root": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-three-worlds-preview-v3430\\cf3a27b860681f1481bf12fb1dc50856c0881516d8fe35e82b3ac36fd3528af0",
+    "artifactId": "cf3a27b860681f1481bf12fb1dc50856c0881516d8fe35e82b3ac36fd3528af0",
+    "manifestSha256": "293bf8b15f03fa0c53fe9b6a873115ecbbf3425a3cb7664b9446a6bbd4d87d7a",
+    "sourceCommit": "eb9be8f47343180fa63f6a55ecf2a9d6349b78b6",
+    "scope": "/questnote-pwa-preview/",
+    "contentHash": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-three-worlds-preview-v3430\\cf3a27b860681f1481bf12fb1dc50856c0881516d8fe35e82b3ac36fd3528af0",
+      "artifactId": "cf3a27b860681f1481bf12fb1dc50856c0881516d8fe35e82b3ac36fd3528af0",
+      "manifestSha256": "293bf8b15f03fa0c53fe9b6a873115ecbbf3425a3cb7664b9446a6bbd4d87d7a",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 368
+    }
+  },
+  "retained": {
+    "files": 266,
+    "petCount": 84,
+    "poolCount": 3,
+    "oldArtifact": "49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37",
+    "oldPagesCommit": "13d3f5db135243b6a30d85148d2fa3d9c2c7bf0f"
+  }
+}

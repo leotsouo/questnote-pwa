@@ -1,5 +1,9 @@
 # QuestNote final integration
 
+## V3.4.30 three-world design upgrade — 2026-10-01
+
+Production is V3.4.30 at https://leotsouo.github.io/questnote-pwa/. All three existing themes are upgraded; preference IDs and gameplay rules are unchanged. PR #14 merged at 30a842f, production Pages commit be4fd23, artifact 1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247. Pages deployment succeeded and 21 live hashes match. The approved 84-pet/three-pool content and mailbox bytes were preserved. Old source and complete V3.4.29 production are retained as remote codex/design-backup-v3.4.29-source and codex/design-backup-v3.4.29-pages tags. Isolated actual update/rollback testing preserved player data and restored the old design. [Release and rollback evidence](../reports/theme-round-two/production-release.md).
+
 ## V3.4.25 selectable twilight journal release — 2026-09-30
 
 The user approved the award concept as a third optional full-App art direction,

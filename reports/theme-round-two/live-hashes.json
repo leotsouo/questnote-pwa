@@ -1,0 +1,113 @@
+{
+  "artifactId": "1f204115bb343502ceb8f978f1160130fec07f7828458116c9447f4cd27f8247",
+  "sourceCommit": "eb9be8f47343180fa63f6a55ecf2a9d6349b78b6",
+  "pagesCommit": "be4fd23cc3ba5e5dac0561ab017b6eccb58609c2",
+  "verifiedAt": "2026-09-30T16:29:20.539Z",
+  "results": [
+    {
+      "file": "release-artifact.json",
+      "sha256": "536f4ebc92e4a967b2a40c8c5d890969543cc9fc44d69c2a134bff8723f05d36",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "sha256": "59e96a1546e32995724ab074d5d373a2c4bb8c4ba69fb9171cd36e59861e0f39",
+      "ok": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
+      "ok": true
+    },
+    {
+      "file": "service-worker.js",
+      "sha256": "0511f5dd11d3fda9cee74b01320ccf30efb1992587dc3883058c0751aa71996b",
+      "ok": true
+    },
+    {
+      "file": "src/version.js",
+      "sha256": "6880bf8a62641e1f546a94b06dccabeab0eb42862b7e56eb68efaa6dd3a60d25",
+      "ok": true
+    },
+    {
+      "file": "src/releaseProfile.js",
+      "sha256": "0c74006844e072605d748dfab5b36177f3673391ebb42129d5404cf9a4b2e016",
+      "ok": true
+    },
+    {
+      "file": "src/ui.js",
+      "sha256": "8d3c2a4f0ea0d2e66c81d1a433562ce825c876fb86445b27c08e68d3b81eaac4",
+      "ok": true
+    },
+    {
+      "file": "src/iconPresentation.js",
+      "sha256": "7968b5b39c17d4e912486df1fc912f93c9d368579ee6e16875ab069e53b46e2a",
+      "ok": true
+    },
+    {
+      "file": "src/themeRegistry.js",
+      "sha256": "e847adc2712293110685bea034d07c91b6e7e4a34964ea91dec92a3f01fdb7ca",
+      "ok": true
+    },
+    {
+      "file": "src/twilightPresentation.js",
+      "sha256": "68373c4d07a5a0dcd682c6bfac1cbd6888f5677e3b38004768a98bea077b8a54",
+      "ok": true
+    },
+    {
+      "file": "src/themeTokens.css",
+      "sha256": "20fdb5cdd3aee9835a770a4e039012c2684c5e321c7fa117414b7f1edffad3f0",
+      "ok": true
+    },
+    {
+      "file": "src/theme-system.css",
+      "sha256": "72eb36f160c47b5ed950443083371bd68743272c3fe6d1e39dfd1e053a494348",
+      "ok": true
+    },
+    {
+      "file": "src/theme-refinements.css",
+      "sha256": "4a83da960089984826727f0537ac4d13071c8cf59918a58e699edb6fe599f705",
+      "ok": true
+    },
+    {
+      "file": "src/reminder-settings.css",
+      "sha256": "4b5053346fb0bc697af1455fa4a6e763d450045094f94a6f952b0721a385bd4a",
+      "ok": true
+    },
+    {
+      "file": "assets/scenes/night-graywolf.webp",
+      "sha256": "4dd1183fd2aa0db6ac52f845515c3c8e2e0fe2aced5a4a7d6a66732d5c114edb",
+      "ok": true
+    },
+    {
+      "file": "assets/scenes/garden-graywolf.webp",
+      "sha256": "6379b2ad98da53856816d0e11b0048af8a9632002a28c3d362f16fa98c2f5cdc",
+      "ok": true
+    },
+    {
+      "file": "assets/scenes/twilight-graywolf.webp",
+      "sha256": "f8000f2b473ec9eedb3bef4e1a34dc8354351041cfc5eb261d80f98271e84f9a",
+      "ok": true
+    },
+    {
+      "file": "assets/brand/questnote-icon-192.png",
+      "sha256": "7a2c068ff50729b5b68aba6999ffed491234c11a267ddf26ee6f7a5bc0a1db11",
+      "ok": true
+    },
+    {
+      "file": "assets/brand/questnote-icon-maskable-512.png",
+      "sha256": "54dc03e7eb13c3f4714bc276ea2b9bb1313ef171d27e06f6aa1f378931c6f506",
+      "ok": true
+    },
+    {
+      "file": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "ok": true
+    },
+    {
+      "file": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+      "sha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+      "ok": true
+    }
+  ]
+}
