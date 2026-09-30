@@ -1,0 +1,11 @@
+PASS guarded source baseline and actual app startup
+PASS chapter gates, two replies and first-choice persistence
+PASS real task completion, chapter ending, atomic duplicate-claim prevention and focus return
+PASS habit UI progress, pause/reload/resume, replacement notice and nonconsecutive completion
+PASS remaining stories, concurrent claims, keepsake display and repeatable Lv.5 daily use
+PASS failed wallet writes roll back receipts, and two tabs claim only once
+PASS goal replacement resets progress but retains used events; deleted goals and ready receipts are protected
+PASS native full backup round trip and corrupted reward record refusal
+PASS story load failures can retry, and closing a slow retry prevents the reader reopening
+PASS three themes × three viewports × two font sizes, keyboard focus and action sizes
+PASS native SW cached reload, offline story choices, agreement progress and reward writes

@@ -1,0 +1,15 @@
+{
+  "verifiedAt": "2026-09-30T22:38:08.451Z",
+  "website": "https://leotsouo.github.io/questnote-pwa/",
+  "version": "3.4.38",
+  "artifactId": "23317a83166f1f1ea528420d23583b03815e935949c4c769529a7fb1a82010a6",
+  "sourceCommit": "62574b696b614211e1876a2fed159137a58ed6f3",
+  "contentBundleSha256": "f00f02ed3dc6414a7bdc41b1032d1f021e6a19edd1b1f5792f27725ec07abc45",
+  "originMain": "cdf17000471daa77fc3181415291b9ede272480c",
+  "originGhPages": "f95d758adab7d6f6669ebc5614afc43cc15e8f72",
+  "verifiedSources": [
+    "src/version.js",
+    "src/releaseProfile.js",
+    "release-artifact.json"
+  ]
+}

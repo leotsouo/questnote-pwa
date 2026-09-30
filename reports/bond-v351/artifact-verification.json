@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-bond-v351\\6067042b8065dd32f32abdd9e021af07e8ba73b3d048ad5b967a3a056ea2e860",
+      "artifactId": "6067042b8065dd32f32abdd9e021af07e8ba73b3d048ad5b967a3a056ea2e860",
+      "manifestSha256": "5313f8b71b9a40c7c9b562f8c134ee40d1250c52a52cf2775f3e28e760484431",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 416
+    },
+    {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-bond-v351\\10d6a433fef001a8c6b9145fab53c6c09ac028659819d2193b6e088ae8019034",
+      "artifactId": "10d6a433fef001a8c6b9145fab53c6c09ac028659819d2193b6e088ae8019034",
+      "manifestSha256": "faa6219cbd5f73366b55dcb653cdfab0829f7b8a3de57ea4fc05714f1871f1df",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 416
+    }
+  ],
+  "sourceCommit": "dd003deb9c2cae7366352d53c8717140d6087d20",
+  "fullBrowserArtifact": "0c33281b9c57e9a4bf86832709618e9b4acf640d6e6d8a9cdfc364b7c4dc5dbc",
+  "finalPreviewArtifact": "6067042b8065dd32f32abdd9e021af07e8ba73b3d048ad5b967a3a056ea2e860",
+  "exactRuntimeSourceBytes": true,
+  "note": "Commit provenance and generated cache identities changed; all included runtime source bytes match the full 11-flow acceptance."
+}

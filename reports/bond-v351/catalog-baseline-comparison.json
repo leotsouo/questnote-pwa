@@ -1,0 +1,8 @@
+{
+  "formalHash": "f00f02ed3dc6414a7bdc41b1032d1f021e6a19edd1b1f5792f27725ec07abc45",
+  "candidateHash": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+  "formalPetCount": 96,
+  "candidatePetCount": 96,
+  "semanticEqual": true,
+  "differences": []
+}

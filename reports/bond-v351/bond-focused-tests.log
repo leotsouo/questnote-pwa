@@ -1,0 +1,42 @@
+✔ verified historical exporters remain valid and migrate to complete snapshots (24.2117ms)
+✔ pre-camp V3.4.17 backup remains importable without camp or new region fields (1.5658ms)
+✔ partial current backup cannot masquerade as an older complete shape (2.2656ms)
+✔ every current core field is required before normalization (5.8318ms)
+✔ top-level/data and projected aliases must agree (7.4183ms)
+✔ duplicate persistent keys and malformed nested records are rejected (8.5148ms)
+✔ money, counters, booleans and dangerous object keys fail closed (8.87ms)
+✔ future/unknown partial formats are rejected with a compatibility explanation (1.322ms)
+✔ snapshot restoration does not roll historical quest dates forward or maximize draws (1.0882ms)
+✔ empty nested state and ID-only rows cannot be silently normalized into defaults (16.7993ms)
+✔ every serialized nested state field is required before legacy normalization (154.4406ms)
+✔ malformed nested maps, date/counter values and missing fixed entries fail closed (8.7449ms)
+✔ collection state cannot override trusted catalog presentation through companion merge (3.0359ms)
+✔ valid daily, cancelled and weekly habit logs and item usage variants remain accepted (0.6786ms)
+✔ active/completed expeditions preserve full reward records and reject partial rewards (7.6649ms)
+✔ daily history supports check-in, wheel-only and combined persisted variants (1.3482ms)
+✔ export preflight permits fresh/mixed legacy stores but refuses existing malformed state (2.4052ms)
+✔ claim markers that normalizers would discard or rewrite are rejected (1.5946ms)
+✔ all current pets have four distinct authored chapters, two replies and unique keepsakes (76.8918ms)
+✔ new saves and old high-level pets retain their original level and start at the first story (0.5355ms)
+✔ malformed story chapters return validation errors, including array-like choices (7.6065ms)
+✔ Lv.5 habit agreements require five distinct completions (1.6903ms)
+✔ past completions and exact acceptance time are not credited (1.1407ms)
+✔ fresh matching task completion survives reload and cannot be credited twice or undone (0.6897ms)
+✔ habit progress counts distinct dates, ignores weekly reward aliases and preserves nonconsecutive progress (0.4837ms)
+✔ pausing excludes completions; resuming uses a new observation boundary without losing progress (0.2831ms)
+✔ already used completions cannot earn another chapter or daily reward (0.2532ms)
+✔ deleted/archived goals do not invent progress or force punishment (0.4371ms)
+✔ malformed journey snapshots are rejected without exceptions or silent defaulting (2.2828ms)
+✔ locked chapters do not expose secret paragraphs and choices cannot inject markup (1.0239ms)
+✔ selectors expose only eligible goals and mark replacement progress reset (0.3638ms)
+✔ keepsakes remain private until the final story agreement is claimed (0.1864ms)
+✔ historical backup migration creates empty journeys without changing wallet, pet levels or fonts (10.9744ms)
+✔ V3.5.1 backups require journey data and preserve active, paused, completed and reward records (13.4357ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 548.2013

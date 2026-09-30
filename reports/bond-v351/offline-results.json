@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "name": "native SW cached reload, offline story choices, agreement progress and reward writes",
+      "ok": true,
+      "detail": {
+        "workerControlled": true,
+        "chapterClaimed": true,
+        "artifactId": "6067042b8065dd32f32abdd9e021af07e8ba73b3d048ad5b967a3a056ea2e860"
+      },
+      "durationMs": 3954
+    }
+  ],
+  "runtimeErrors": [],
+  "browser": "152.0.7977.83",
+  "deviceValidation": "Desktop Chromium, not an iPhone device test",
+  "isolation": "Random synthetic source database and fresh assembled-preview loopback origin; external hosts blocked at the Chromium resolver"
+}
