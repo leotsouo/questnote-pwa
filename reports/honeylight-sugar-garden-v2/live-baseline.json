@@ -1,15 +1,15 @@
 {
-  "checkedAt": "2026-09-30T19:29:26.682Z",
-  "sourceMain": "d73aa3666a64fc2a13724dd63f26975d895166ef",
-  "ghPagesCommit": "505da31a7a97084c9a2b6e2b94842e2a3f1bef97",
-  "artifactId": "fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017",
+  "checkedAt": "2026-09-30T19:38:43.888Z",
+  "sourceMain": "854b566ceffa3b3d0edd555d7e25f9bbaf7dd69c",
+  "ghPagesCommit": "3942a7f35287a0aa2c3ac343b45115ec4948a380",
+  "artifactId": "4e04d3a13c9a5c3759130efcfc7bea52885f21338dc3b3bff12c0eedf00d492a",
   "contentBundleSha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
   "unchanged84PetBaseline": true,
   "checks": [
     {
       "path": "release-artifact.json",
-      "sha256": "b7d1d28a9e0cc287cdae31bf6b6752e25d8b61fd98aef5aae540a0156a0d2c4f",
-      "expectedSha256": "b7d1d28a9e0cc287cdae31bf6b6752e25d8b61fd98aef5aae540a0156a0d2c4f",
+      "sha256": "0a4e48564f17a5aa76f37fda43a3737e49b67952ab095788d5ec3d14379478eb",
+      "expectedSha256": "0a4e48564f17a5aa76f37fda43a3737e49b67952ab095788d5ec3d14379478eb",
       "matches": true
     },
     {
@@ -20,26 +20,26 @@
     },
     {
       "path": "src/releaseProfile.js",
-      "sha256": "585ff5da259a38512ff0c54688189e4f81b46183225edd69c8e6024fcdfe81c3",
-      "expectedSha256": "585ff5da259a38512ff0c54688189e4f81b46183225edd69c8e6024fcdfe81c3",
+      "sha256": "1f9bfa825fd7fa50efce5bf5cd4acb88922d97d1752a6aae658af0e968b92245",
+      "expectedSha256": "1f9bfa825fd7fa50efce5bf5cd4acb88922d97d1752a6aae658af0e968b92245",
       "matches": true
     },
     {
       "path": "src/version.js",
-      "sha256": "15f3ba31a4990f9bb837da011579fe73252eb7c465e733cf0d08e89b4c918eba",
-      "expectedSha256": "15f3ba31a4990f9bb837da011579fe73252eb7c465e733cf0d08e89b4c918eba",
+      "sha256": "6348beb8ed4b8ed35cf6ff3dff6e722ca63fb5be230fdef8f6abc75fa0915675",
+      "expectedSha256": "6348beb8ed4b8ed35cf6ff3dff6e722ca63fb5be230fdef8f6abc75fa0915675",
       "matches": true
     },
     {
       "path": "src/bootstrap.js",
-      "sha256": "4e204d38ee18c4e87068357d92eb229015114a80f6ea066e84caf63d8b73ec10",
-      "expectedSha256": "4e204d38ee18c4e87068357d92eb229015114a80f6ea066e84caf63d8b73ec10",
+      "sha256": "383f8cd7295726c8796e421d748a01a2b9e0e82b3bf067f84f16618ed423cd6d",
+      "expectedSha256": "383f8cd7295726c8796e421d748a01a2b9e0e82b3bf067f84f16618ed423cd6d",
       "matches": true
     },
     {
       "path": "service-worker.js",
-      "sha256": "6ae899599743093164b4ded8ccb1fc545613576cc6cdd39a5d5621850b4744a1",
-      "expectedSha256": "6ae899599743093164b4ded8ccb1fc545613576cc6cdd39a5d5621850b4744a1",
+      "sha256": "79ebe809a6882bcaf4572c1f1ab5bddd7380a58c1bee6452ac9290041449434a",
+      "expectedSha256": "79ebe809a6882bcaf4572c1f1ab5bddd7380a58c1bee6452ac9290041449434a",
       "matches": true
     },
     {

@@ -1,8 +1,8 @@
 {
-  "recordedAt": "2026-09-30T19:24:03.330Z",
+  "recordedAt": "2026-09-30T19:37:57.872Z",
   "dryRun": {
-    "candidateId": "6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
-    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\card-pool-honeylight\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
+    "candidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
+    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\card-pool-honeylight\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
     "releaseReady": false,
     "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
     "warnings": [
@@ -228,8 +228,8 @@
     "dryRun": true
   },
   "built": {
-    "candidateId": "6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
-    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\card-pool-honeylight\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
+    "candidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
+    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\card-pool-honeylight\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
     "releaseReady": false,
     "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
     "warnings": [
@@ -455,11 +455,11 @@
     "reused": false,
     "manifest": {
       "schemaVersion": 1,
-      "candidateId": "6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
+      "candidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
       "releaseReady": false,
       "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
       "files": {
-        "approvals.json": "ca9fc9b226ab95cb08df30b5052edd572ab1c930cace7b4e3f6fa4f519be2f1f",
+        "approvals.json": "62c1a07f592b3474ba60d02561a515969bb5cb02674033eb9bd955c33e9921d5",
         "assets/pets/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
         "assets/pets/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
         "assets/pets/pet_n28.png": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
@@ -502,8 +502,8 @@
     }
   },
   "repeated": {
-    "candidateId": "6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
-    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\card-pool-honeylight\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
+    "candidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
+    "candidateDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\card-pool-honeylight\\.dev-backups\\honeylight-authoring\\content\\pet-series\\honeylight_sugar_garden_v2\\staging\\42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
     "releaseReady": false,
     "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
     "warnings": [
@@ -729,11 +729,11 @@
     "reused": true,
     "manifest": {
       "schemaVersion": 1,
-      "candidateId": "6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
+      "candidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
       "releaseReady": false,
       "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
       "files": {
-        "approvals.json": "ca9fc9b226ab95cb08df30b5052edd572ab1c930cace7b4e3f6fa4f519be2f1f",
+        "approvals.json": "62c1a07f592b3474ba60d02561a515969bb5cb02674033eb9bd955c33e9921d5",
         "assets/pets/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
         "assets/pets/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
         "assets/pets/pet_n28.png": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
@@ -791,9 +791,9 @@
       {
         "stage": "brief",
         "inputHash": "0fd0b5101fa34188f02f43398d6ee20284ece51e62dd209ef9166ada572357e3",
-        "outputHash": "62ab84f2132523846e831d711f2cf1e3c4a82b5f6b6e929e0144284c1063e193",
+        "outputHash": "60683c9f6c0a277509d160954e15f9316c35351c8735a291cce4eb2c26af41a6",
         "files": {
-          "brief.json": "3c7effe9fdfd055879e461e9427062c2f42ee1c04815c086637db6f1b69cddc2"
+          "brief.json": "93856d7f4053d0bf0e93689c5e6aafe5b451efa418cc34a699d8f458dbe0e554"
         },
         "missing": [],
         "approved": true,
@@ -801,8 +801,8 @@
       },
       {
         "stage": "plan",
-        "inputHash": "62ab84f2132523846e831d711f2cf1e3c4a82b5f6b6e929e0144284c1063e193",
-        "outputHash": "16edf74642da670a33d78a69248b0cfd2e44e7e677b950bc7a02948311c207b7",
+        "inputHash": "60683c9f6c0a277509d160954e15f9316c35351c8735a291cce4eb2c26af41a6",
+        "outputHash": "ad636b95027199993f715e29eaeb71a89e685fabdea192aa4754c258d23e17a9",
         "files": {
           "plan.json": "32d246e33abe4ed7079fb6fc3e411c702756a77fcd8ef9f93f44728e45ace14d"
         },
@@ -812,10 +812,10 @@
       },
       {
         "stage": "content",
-        "inputHash": "16edf74642da670a33d78a69248b0cfd2e44e7e677b950bc7a02948311c207b7",
-        "outputHash": "1b27353c63c014f04d9e1699320aada8ece1bd4069264b2fd0a8094e47b6f932",
+        "inputHash": "ad636b95027199993f715e29eaeb71a89e685fabdea192aa4754c258d23e17a9",
+        "outputHash": "dad3bc8d6ff2d3718e6ffc863b4014a72a262b78740bbbe14ba059c9c0cf3c8c",
         "files": {
-          "series.json": "5189c47390c5f6dde5908ee33d7a9eb4e23cd1bce3afe18d85a9f74ac3d7a5c0",
+          "series.json": "71954756583044b969b6abbfd51ca9966d8d2457b4ef66dd5b723abc403031db",
           "pets.json": "df5d7ad0f6f60889057b2b7e7f38b1aad11d144aa4c4a6cf1e12b55226a5b902",
           "pets-lore.json": "2eea24aa991d6c45f0943bb71cc6ea3a4352de60b98cfda54fe4e89464aa9c13",
           "pool.json": "9b853121dd00217651cb154598abc31b55aebef04a5977dd80a0f99b542fa047"
@@ -826,8 +826,8 @@
       },
       {
         "stage": "prompts",
-        "inputHash": "1b27353c63c014f04d9e1699320aada8ece1bd4069264b2fd0a8094e47b6f932",
-        "outputHash": "46a48b9953a687124e8f3fa5847b96838c084a3fba7a1377c6617262ed100b4d",
+        "inputHash": "dad3bc8d6ff2d3718e6ffc863b4014a72a262b78740bbbe14ba059c9c0cf3c8c",
+        "outputHash": "cbd42218be9a3a464356e6e9e111bb1a6384fe16c40c0a3152f83a6d4f2d2a6a",
         "files": {
           "prompts.json": "8aaaeb437bbf44e8bfa3ab1dae68f19d0c35e4f209071c720899e5f9c0c80273"
         },
@@ -837,8 +837,8 @@
       },
       {
         "stage": "images",
-        "inputHash": "46a48b9953a687124e8f3fa5847b96838c084a3fba7a1377c6617262ed100b4d",
-        "outputHash": "6493feb48e2262ad468c0f83b7466a067720076cb1446ed89b5f9475da285a2d",
+        "inputHash": "cbd42218be9a3a464356e6e9e111bb1a6384fe16c40c0a3152f83a6d4f2d2a6a",
+        "outputHash": "0f0beb8a6df96c168eed824e2c9cf1834b3bcfaa6e3105afba0bf7223bf7d543",
         "files": {
           "images/pet_n26.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
           "images/pet_n27.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
@@ -865,12 +865,20 @@
   "productionApproval": "PENDING_USER_FINAL_GO_AHEAD",
   "supersededCandidates": [
     "1ce366630024812a0be270e6f796ae99965457c47188e5f2556fe9a309133905",
-    "12f7ffb07c56d1df5f7e6f70728e881455b5254a5b6fac6e813773373fcaf046"
+    "12f7ffb07c56d1df5f7e6f70728e881455b5254a5b6fac6e813773373fcaf046",
+    "6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583"
   ],
   "copyReview": {
     "changed": "Only the new series public description: remove authoring instructions and use world narrative.",
     "imagesUnchanged": true,
     "runtimeUnchanged": true,
     "generationCalls": 0
+  },
+  "concurrentUpdate": {
+    "main": "bc3fb784d99ec9cd85d92333c8707c10bf8a8cbe",
+    "production": "3942a7f35287a0aa2c3ac343b45115ec4948a380",
+    "releaseVersion": "3.4.34",
+    "unchangedContent": true,
+    "unchangedPixels": true
   }
 }
