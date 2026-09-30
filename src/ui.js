@@ -1,6 +1,7 @@
 /**
  * UI 渲染與互動邏輯
  */
+import { initFilterGestures } from './filterGestureController.js';
 import { trackUpdateActivity } from './updateActivity.js';
 import { updateControlsHtml, refreshUpdateControls } from './updateController.js';
 import { initReminders, renderReminderSettings } from './reminderController.js';
@@ -584,6 +585,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     initTwilightChrome();
     initQuestIconLanguage();
     bindNavigation();
+    initFilterGestures();
     bindModals();
     bindDelegatedEvents();
     bindActivityTracking();
