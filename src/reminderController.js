@@ -1,8 +1,25 @@
 import { getReminderState, reminderCapability, enableReminders, saveReminderSettings, disableReminders, syncReminders, testReminder, getReminderServerStatus } from './reminderService.js';
+import { zonedParts, shiftDate } from './reminderRules.js';
 
 let initialized = false;
 let timer;
 const $ = (id) => document.getElementById(id);
+function renderPreview() {
+  const names = $('reminder-titles').checked;
+  const tasks = $('reminder-tasks').checked;
+  const habits = $('reminder-habits').checked;
+  const lines = [`今天有 ${tasks ? 3 : 0} 項任務、${habits ? 2 : 0} 項每日習慣。`];
+  if (habits && $('reminder-weekly').checked) lines.push('1 項本週習慣尚未達標。');
+  if ($('reminder-overdue').checked && tasks) lines.push('另有 1 項逾期待處理。');
+  if (names && (tasks || habits)) lines.push([...(tasks ? ['閱讀', '整理書桌'] : []), ...(habits ? ['散步'] : [])].join('、'));
+  $('reminder-preview-body').textContent = lines.join('\n');
+}
+function nextReminderLabel(at, timeZone) {
+  const today = zonedParts(Date.now(), timeZone).date;
+  const next = zonedParts(at, timeZone);
+  const day = next.date === today ? '今天' : next.date === shiftDate(today, 1) ? '明天' : new Date(at).toLocaleDateString('zh-TW', { timeZone, month: 'numeric', day: 'numeric' });
+  return `${day} ${next.time}`;
+}
 function settings() {
   return { time: $('reminder-time').value || '08:00', tasks: $('reminder-tasks').checked, habits: $('reminder-habits').checked,
     weekly: $('reminder-weekly').checked, overdue: $('reminder-overdue').checked, showTitles: $('reminder-titles').checked };
@@ -18,16 +35,28 @@ export async function renderReminderSettings() {
   $('reminder-disable').hidden = !state.enabled && !state.pendingDisable;
   $('reminder-test').hidden = !state.enabled;
   const permission = typeof Notification !== 'undefined' ? Notification.permission : 'unsupported';
+  $('reminder-enable').hidden = state.enabled && permission === 'granted';
+  $('reminder-save').dataset.primary = String(state.enabled && permission === 'granted');
+  $('reminder-save').textContent = state.enabled ? '儲存提醒設定' : '儲存提醒偏好';
+  $('reminder-consent-label').hidden = state.enabled;
+  $('reminder-privacy-receipt').hidden = !state.enabled;
+  if (state.enabled) $('reminder-consent').checked = true;
+  $('reminder-delivery').hidden = !state.enabled && !state.pendingDisable;
   const status = state.pendingDisable ? '本機已關閉，雲端停用待確認' : !state.enabled ? '尚未啟用' : permission !== 'granted' ? '系統通知權限已關閉' : state.error ? '已儲存在本機，提醒資料待同步' : state.dirty ? '提醒資料待同步' : '每日提醒已啟用';
   $('reminder-status').textContent = status;
+  $('reminder-status').dataset.state = state.pendingDisable || state.error || state.dirty || (state.enabled && permission !== 'granted') ? 'pending' : state.enabled ? 'on' : 'off';
   $('reminder-hint').textContent = state.error || reminderCapability() || '關閉 App 也能接收通知；離線修改請先恢復連線同步。手機系統可能延後顯示通知。';
-  $('reminder-timezone').textContent = `依此裝置時區：${state.settings.timeZone}。更換時區後，開啟 App 會更新排程。`;
-  $('reminder-next').textContent = state.nextAt && state.enabled ? `下次發送：${new Date(state.nextAt).toLocaleString('zh-TW', { timeZone: state.settings.timeZone, hour12: false })}` : '';
-  $('reminder-synced').textContent = state.lastSyncedAt ? `最後同步：${new Date(state.lastSyncedAt).toLocaleString('zh-TW', { hour12: false })}。持續 30 天未開啟 App 時提醒會停用。` : '';
+  const timeZone = state.settings.timeZone;
+  const offset = new Intl.DateTimeFormat('zh-TW', { timeZone, timeZoneName: 'shortOffset' }).formatToParts(Date.now()).find((part) => part.type === 'timeZoneName')?.value || '';
+  $('reminder-timezone').textContent = `${timeZone === 'Asia/Taipei' ? '台北時間' : timeZone} · ${offset}`;
+  $('reminder-next').textContent = state.nextAt && state.enabled ? nextReminderLabel(state.nextAt, timeZone) : '等待同步';
+  $('reminder-synced').textContent = state.lastSyncedAt ? `最後同步 ${new Date(state.lastSyncedAt).toLocaleString('zh-TW', { timeZone, month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })}` : '尚未同步';
+  renderPreview();
 }
 export function initReminders({ openToday }) {
   if (initialized) return; initialized = true;
   const form = $('reminder-form'); if (!form) return;
+  form.addEventListener('change', renderPreview);
   const feedback = (message) => { $('reminder-result').textContent = message; };
   const run = async (button, action, success) => {
     button.disabled = true;

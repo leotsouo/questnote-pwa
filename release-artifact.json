@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "fef95f7d4dd1fb31a1b945c56feeeeb75bb7e0b6781881eaffa3e4d9d65b8ebf",
-  "sourceCommit": "10d73578cc42a4874746597162161f8a7a72d95e",
+  "artifactId": "49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37",
+  "sourceCommit": "9fad7f41f3785aeffa4f4643639b654e31ad6fe4",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "fef95f7d4dd1fb31a1b945c56feeeeb75bb7e0b6781881eaffa3e4d9d65b8ebf",
-    "sourceCommit": "10d73578cc42a4874746597162161f8a7a72d95e",
+    "artifactId": "49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37",
+    "sourceCommit": "9fad7f41f3785aeffa4f4643639b654e31ad6fe4",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -263,9 +263,9 @@
     "data/pets.json": "fb3c2fcac7b65e0d6b1d41fa16c98fb854394dfa7a3e611e6132a40513c8bcb0",
     "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
     "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-    "index.html": "a4900ba5829b58dd3979f7f5d7769cf823a8dbe50ec014bf7f49c09f07a38421",
+    "index.html": "4cf37905d09ce2c469781bb5a813620df571aacb29fe7868660d2646a83d6055",
     "manifest.webmanifest": "eb55a896e912c00763760ee803a296136569b27ef88077ac886857f8a3f31c66",
-    "service-worker.js": "d401aa1a946dccc6c4872d4ee37372b054445a0bd8ec6c1cf06127ddbbb4daf8",
+    "service-worker.js": "9e1018b190f261c6731ef55b06736c7cd11cd9fbe664940ebf1eb52c02a92595",
     "src/achievementService.js": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
     "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
     "src/app.js": "7ab42490004bac0be0b4145cc172bb42beb009177c6dc8e913d3a2e5f0797156",
@@ -315,7 +315,8 @@
     "src/questService.js": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
     "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
     "src/releaseProfile.js": "512b20c341a3b11c6eeb764789fe8efc3f00fae20a732baaafef8cfec32f4061",
-    "src/reminderController.js": "2a49ca7ef18e8bc0192b5e97af666fce289ff7d180f413edfd9d161646ea6ada",
+    "src/reminder-settings.css": "a5e1dfae84f24807532f4b444e78b831cc1534fb600d3021467164e640769ae8",
+    "src/reminderController.js": "e99a0206de399b6c7aad1b62c144efaa0a2c7a2bcf7bab1e6cd2a6df7b16595c",
     "src/reminderRules.js": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
     "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
     "src/rewardService.js": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
@@ -334,7 +335,7 @@
     "src/ui-polish.css": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
     "src/ui.js": "16bb747976a5a6f53a400d8aa9fee7257f1dd4531e38f46a7b0118f9e19da18a",
     "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
-    "src/version.js": "ccc10fd82b4ccb03137071e5f072bf8c479837b2d5a325d00f34fcbb28891590",
+    "src/version.js": "e3935e3101c25898aee21fab324649e0524eb8d820b82a774466c64221f88e26",
     "src/workshopService.js": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69"
   },
   "assemblerSha256": "8038743986968f47e78c8a9c6b313846a36ede9a75bf226d163a04771c6261cb",
@@ -1442,16 +1443,16 @@
       "bytes": 6119
     },
     "index.html": {
-      "sha256": "3fb9e37406bcd404f7dac7f08d5bee1f7e922f518f7eb5826dd2f50f002b09f1",
-      "bytes": 53393
+      "sha256": "7429a6bd97ee05c47ce74484f223afaf0d25eb6d9f974ddc4ba9804c38d68d7d",
+      "bytes": 57151
     },
     "manifest.webmanifest": {
       "sha256": "044a5f22c568ec5dab4f2a1f0cce9a9a26ed70f2320a0e5a6c1c9f06b7cd2591",
       "bytes": 792
     },
     "service-worker.js": {
-      "sha256": "7cf7726f3a9be6a4082f05484cdf240adee9bd6b616c3ddd9dbeedd197d9efbf",
-      "bytes": 23540
+      "sha256": "a21bf9c16b8f648f3032ea9045f2a9d844b3b9431e0cf20c597f4b391d628f11",
+      "bytes": 23669
     },
     "src/achievementService.js": {
       "sha256": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
@@ -1646,12 +1647,16 @@
       "bytes": 4727
     },
     "src/releaseProfile.js": {
-      "sha256": "0b9b4aa1525cc1dbbd26f2d0bd2befbd953ee739d139737939bc790ecc585bc0",
+      "sha256": "2a26ec6d3f507d84818dd66e346b0050f7fb1bfd477c7ca12abc80a5d0ed494a",
       "bytes": 622
     },
+    "src/reminder-settings.css": {
+      "sha256": "a5e1dfae84f24807532f4b444e78b831cc1534fb600d3021467164e640769ae8",
+      "bytes": 10875
+    },
     "src/reminderController.js": {
-      "sha256": "2a49ca7ef18e8bc0192b5e97af666fce289ff7d180f413edfd9d161646ea6ada",
-      "bytes": 5009
+      "sha256": "e99a0206de399b6c7aad1b62c144efaa0a2c7a2bcf7bab1e6cd2a6df7b16595c",
+      "bytes": 6989
     },
     "src/reminderRules.js": {
       "sha256": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
@@ -1726,8 +1731,8 @@
       "bytes": 2309
     },
     "src/version.js": {
-      "sha256": "30b3eaf2095860303c2e5703eccdabec91bb26f8a79dda5f9abc130c42e9c595",
-      "bytes": 1154
+      "sha256": "9a17c3b03c8e21bdd49e2a748991f52c5de16107fe1284767c94cba095a1a6ec",
+      "bytes": 1151
     },
     "src/workshopService.js": {
       "sha256": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69",
