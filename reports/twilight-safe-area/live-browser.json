@@ -1,0 +1,13 @@
+{
+  "version": "3.4.26",
+  "rootTheme": "twilight",
+  "bodyTheme": "twilight",
+  "rootScheme": "dark",
+  "bodyScheme": "light",
+  "artifact": "9c2bd9c3ac2ebdb9202f6f2b942df8346cca9b6c2c8e4ecd64f3e3a06592ff37",
+  "worker": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=9c2bd9c3ac2ebdb9202f6f2b942df8346cca9b6c2c8e4ecd64f3e3a06592ff37",
+  "overflow": false,
+  "errors": [],
+  "storage": "Fresh disposable browser profile; no user storage or feedback submissions.",
+  "nativeIosStatusBar": "Not tested; screenshots use simulated 59px/34px insets."
+}

@@ -1,8 +1,9 @@
 # V3.4.26 暮光安全區與紙頁銜接
 
 Source branch: `codex/twilight-safe-area`, based on fetched `origin/main`
-`e346722`. This is a source fix with local acceptance; production and preview
-have not been published. The preserved dirty root checkout was not edited.
+`e346722`. This report originally recorded the source-only handoff. Production
+publication is now verified in [the release receipt](production-release.md);
+the separate hosted Preview was not updated. The preserved root checkout was not edited.
 
 ## Changes
 
@@ -53,7 +54,8 @@ On iPhone 14 Pro Max / iOS 26, verify from the existing home-screen App:
 4. Switch to both earlier themes and back; close/reopen and confirm the theme and
    user data persist. Do not clear site data or reinstall to perform this check.
 
-Publication uses the existing immutable artifact flow when separately requested.
+The user subsequently requested publication; the immutable artifact release is
+recorded in [production-release.md](production-release.md).
 
 ## Reproduce
 
