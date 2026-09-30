@@ -1,43 +1,43 @@
 {
-  "preparedAt": "2026-09-30T19:25:21.835Z",
-  "sourceCommit": "4bfe77043d4a4df8ab64b4391f6d8eb3cd898887",
-  "candidateId": "6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
+  "preparedAt": "2026-09-30T19:39:18.599Z",
+  "sourceCommit": "c8a0aef8804e6213a0856d83e7155c8f1b3dbd2d",
+  "candidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
   "productionApproval": "PENDING_USER_FINAL_GO_AHEAD",
   "productionPushed": false,
   "production": {
-    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\artifacts\\ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e",
-    "artifactId": "ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e",
-    "manifestSha256": "924927d4d7cde985d81e057949cdc458cb06f00824b2efa35ef625aea7ea1be2",
-    "fileCount": 407,
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\artifacts\\e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a",
+    "artifactId": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a",
+    "manifestSha256": "cc77cc06a790fe55de3b96d52b1bc2081da21d45bea55b851b228afd1b3d0426",
+    "fileCount": 408,
     "scopePath": "/questnote-pwa/",
     "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
     "reproducible": true,
     "verification": {
       "ok": true,
-      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\artifacts\\ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e",
-      "artifactId": "ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e",
-      "manifestSha256": "924927d4d7cde985d81e057949cdc458cb06f00824b2efa35ef625aea7ea1be2",
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\artifacts\\e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a",
+      "artifactId": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a",
+      "manifestSha256": "cc77cc06a790fe55de3b96d52b1bc2081da21d45bea55b851b228afd1b3d0426",
       "profile": "production",
       "scopePath": "/questnote-pwa/",
-      "fileCount": 407
+      "fileCount": 408
     }
   },
   "preview": {
-    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\artifacts\\04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071",
-    "artifactId": "04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071",
-    "manifestSha256": "17f6d7c8820f3972e9d1b98b33c10d825e3c7f02584bb8366933835746a8e43e",
-    "fileCount": 407,
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\artifacts\\2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005",
+    "artifactId": "2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005",
+    "manifestSha256": "c4a055b376b26c3beb660629ae41821168ef16a58d9643325657c71df6d3b69f",
+    "fileCount": 408,
     "scopePath": "/questnote-pwa-preview/",
     "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
     "reproducible": true,
     "verification": {
       "ok": true,
-      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\artifacts\\04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071",
-      "artifactId": "04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071",
-      "manifestSha256": "17f6d7c8820f3972e9d1b98b33c10d825e3c7f02584bb8366933835746a8e43e",
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\22\\01a0ca22-627f-7f11-898a-8e5d89734c1d\\honeylight-release\\artifacts\\2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005",
+      "artifactId": "2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005",
+      "manifestSha256": "c4a055b376b26c3beb660629ae41821168ef16a58d9643325657c71df6d3b69f",
       "profile": "preview",
       "scopePath": "/questnote-pwa-preview/",
-      "fileCount": 407
+      "fileCount": 408
     }
   }
 }

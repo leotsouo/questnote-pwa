@@ -27,7 +27,7 @@ suite = suite.replace(end, end + `
   const cast = data.petsData.pets.filter(pet => pet.poolTags.includes('honeylight_sugar_garden_v2'));
   assert(cast.length === 12 && cast.filter(pet => pet.rarity === 'UR').length === 2, 'Wrong new pool roster');
   assert(doc().getElementById('gacha-theme-name').textContent === '蜜光糖庭', 'New pool hero title missing');
-  note('Actual V3.4.32 84-pet release updates to V3.4.33 96-pet release; all old saved rows survive and the dual-UR Honeylight pool is available');`);
+  note('Actual V3.4.33 84-pet release updates to V3.4.34 96-pet release; all old saved rows survive and the dual-UR Honeylight pool is available');`);
 // Bind eval imports to this exact fresh origin, including when IAB reuses a tab.
 for (const name of ['db.js', 'taskService.js', 'collectionService.js', 'preferencesService.js', 'ui.js', 'updateActivity.js']) {
   suite = suite.replaceAll(`win().eval('import("/questnote-pwa/src/${name}")')`,

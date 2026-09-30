@@ -1,8 +1,8 @@
 {
-  "recordedAt": "2026-09-30T19:31:41.079Z",
-  "finalPreviewUrl": "http://127.0.0.1:53486/questnote-pwa-preview/",
-  "finalArtifactId": "04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071",
-  "finalCandidateId": "6192f3b1e821fb3ec2e1f5edfb369a1d6dd8ba2c17e8fd0b0eaea5e5a8b90583",
+  "recordedAt": "2026-09-30T19:43:59.282Z",
+  "finalPreviewUrl": "http://127.0.0.1:58456/questnote-pwa-preview/",
+  "finalArtifactId": "2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005",
+  "finalCandidateId": "42f8f86ac3f9ce330e0b401575abdb96b819dbf123c27de9953d498445b30ad0",
   "syntheticContent": false,
   "isolatedTestPlayer": true,
   "livePlayerDatabaseAccess": false,
@@ -24,7 +24,7 @@
   "priorManualSummonAcceptance": {
     "origin": "http://127.0.0.1:50518",
     "artifactId": "3df7af73d6ab601da93cb610e39429d19a2418e9d2b7a5cbbb9c1d31bf6340b7",
-    "reasonStillApplicable": "Strict comparison confirms only the public series description changed; pool, all pets, Lore, images and runtime are identical.",
+    "reasonStillApplicable": "Strict comparison confirms only the public series description changed; pool, all pets, Lore and images are identical; summon runtime logic is unchanged. Latest collection filter gestures and styles are preserved and the final native suites are rerun.",
     "single": {
       "wallet": [
         3000,

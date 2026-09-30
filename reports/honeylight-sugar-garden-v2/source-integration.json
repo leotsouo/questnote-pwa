@@ -2,13 +2,13 @@
   "pullRequestUrl": "https://github.com/leotsouo/questnote-pwa/pull/18",
   "sourceBranch": "codex/card-pool-honeylight",
   "sourceTarget": "main",
-  "reviewedMainBaseline": "d73aa3666a64fc2a13724dd63f26975d895166ef",
-  "artifactSourceCommit": "4bfe77043d4a4df8ab64b4391f6d8eb3cd898887",
+  "reviewedMainBaseline": "bc3fb784d99ec9cd85d92333c8707c10bf8a8cbe",
+  "artifactSourceCommit": "c8a0aef8804e6213a0856d83e7155c8f1b3dbd2d",
   "sourceIntegrationIsSeparateFromPagesDeployment": true,
   "mergeAndCiAuthority": "GitHub PR #18 records the tested head, CI result, merge state and source merge commit. Consult it rather than treating this source snapshot as deployment evidence.",
   "finalLocalIntegrationProof": "C:/Users/User/.codex/visualizations/2026/09/22/01a0ca22-627f-7f11-898a-8e5d89734c1d/honeylight-release/source-integration-final.json",
   "productionApproval": "PENDING_USER_FINAL_GO_AHEAD",
   "productionBranch": "gh-pages",
-  "preparedProductionCommit": "724bb9b1fc225162f065521c7a68badc171556a3",
-  "productionArtifactId": "ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e"
+  "preparedProductionCommit": "0e00ce0c57c5a236cd74ffa8aa0231719f74225e",
+  "productionArtifactId": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a"
 }

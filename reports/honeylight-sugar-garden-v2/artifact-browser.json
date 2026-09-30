@@ -1,6 +1,6 @@
 {
   "running": false,
-  "runId": "4f9a6d82-7dc1-4f49-a33a-d4a6f9bc3fd2",
+  "runId": "56ba4484-2ec0-4895-a9d0-8b1fff300f8c",
   "passed": 12,
   "failed": 0,
   "results": [
@@ -66,31 +66,31 @@
     },
     "missing503": {
       "failure": "必要檔案驗證失敗，請稍後重試。重新載入",
-      "requests": 125,
+      "requests": 126,
       "databaseNames": []
     },
     "corrupt": {
       "failure": "必要檔案驗證失敗，請稍後重試。重新載入",
-      "requests": 125,
+      "requests": 126,
       "databaseNames": []
     },
     "production": {
-      "artifactId": "ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e",
+      "artifactId": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a",
       "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
       "petCount": 96,
-      "controller": "http://127.0.0.1:65064/questnote-pwa/service-worker.js?artifact=ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e"
+      "controller": "http://127.0.0.1:59077/questnote-pwa/service-worker.js?artifact=e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a"
     },
     "legacyTransition": {
       "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
       "waitingBeforeClose": true,
       "zeroDatabasesBeforeClose": true,
-      "newArtifact": "ddadc2ef1c539ca1b121d57478c19f5d13ff4a6c22e1de865405dcd812c0119e"
+      "newArtifact": "e84e9462d4f2587fae3e4b7a0e1977a6ae20680c4793a099544279d474a9978a"
     },
     "preview": {
-      "artifactId": "04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071",
+      "artifactId": "2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005",
       "catalogSha256": "d826c45c22ed3d66cfbff9e1b54dc4732570455aa0c48b78eb4da13abfec6cf5",
       "petCount": 96,
-      "controller": "http://127.0.0.1:65064/questnote-pwa-preview/service-worker.js?artifact=04404828ccd5c6282142fbc0d481eca2c8a1c7aee799c6b54a4eed6fb62d2071"
+      "controller": "http://127.0.0.1:59077/questnote-pwa-preview/service-worker.js?artifact=2a4f2ef20ae52f8310a8a3406d5be77e0bf17f49c03df2cf9cfd637be370b005"
     },
     "offlineGrowthLesson": {
       "chapter": "workshop",
