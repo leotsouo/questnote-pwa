@@ -4,6 +4,9 @@ import { getDispatchTerms, getPetSpecialty, planExpeditionResult } from '../src/
 import { EXPLORATION_AREA_IDS, AREA_EXPLORATION_DEFS, createDefaultExplorationProgress,
   advanceExplorationRecord } from '../src/explorationService.js';
 import { CAMP_UPGRADES, normalizeCampProgress } from '../src/campService.js';
+import fs from 'node:fs/promises';
+const areas = JSON.parse(await fs.readFile(new URL('../data/expeditions.json', import.meta.url), 'utf8')).areas;
+const materials = JSON.parse(await fs.readFile(new URL('../data/materials.json', import.meta.url), 'utf8'));
 
 const area = { id: 'mist_forest', energyCost: 3, durationMinutes: 15,
   rewards: { stardust: { min: 20, max: 20 }, material: { id: 'forest_leaf', min: 1, max: 2 }, bondExp: 5 } };
@@ -42,8 +45,8 @@ test('stars and team specialties improve the result without requiring high rarit
   assert.deepEqual(Object.keys(team.bondByPet).sort(), ['pet_n01', 'pet_r01']);
 });
 
-test('six regions have the same milestone ladder and camp materials span all regions', () => {
-  assert.equal(EXPLORATION_AREA_IDS.length, 6);
+test('every published region has the same milestone ladder and valid camp material references', () => {
+  assert.deepEqual([...EXPLORATION_AREA_IDS].sort(), areas.map((a) => a.id).sort());
   for (const id of EXPLORATION_AREA_IDS) {
     assert.deepEqual(AREA_EXPLORATION_DEFS[id].milestones.map((m) => m.percent), [10, 25, 50, 75, 100]);
   }
@@ -53,6 +56,6 @@ test('six regions have the same milestone ladder and camp materials span all reg
   assert.equal(advanced.newlyReachedMilestones[0].percent, 10);
   assert.equal(advanced.newlyUnlockedStories.length, 1);
   const spent = new Set(CAMP_UPGRADES.flatMap((level) => Object.keys(level.materials)));
-  assert.equal(spent.size, 6);
+  assert.ok([...spent].every((id) => materials.some((m) => m.id === id)));
   assert.equal(normalizeCampProgress(null).level, 0);
 });

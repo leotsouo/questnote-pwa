@@ -6,6 +6,7 @@ import { SNAPSHOT_KEYS, validateSnapshotData, validateStoredSnapshot } from '../
 import { normalizeExpedition, calculateExpeditionRewards } from '../src/expeditionService.js';
 import { COLLECTION_MILESTONE_DEFINITIONS } from '../src/collectionMilestoneService.js';
 import { createBondJourney } from '../src/bondJourneyCore.js';
+import { EXPLORATION_AREA_IDS } from '../src/explorationService.js';
 
 const fixture = (version) => JSON.parse(readFileSync(new URL(`./fixtures/backups/legacy-${version}.json`, import.meta.url), 'utf8'));
 const flat = () => { const data = fixture('3.4.4'); delete data.data; return data; };
@@ -47,7 +48,7 @@ test('pre-camp V3.4.17 backup remains importable without camp or new region fiel
   assert.equal(validateBackup(raw).valid, true);
   const migrated = migrateImportedData(normalizeBackupPayload(raw));
   assert.equal(migrated.campProgress.level, 0);
-  assert.equal(Object.keys(migrated.explorationProgress.areas).length, 6);
+  assert.deepEqual(Object.keys(migrated.explorationProgress.areas).sort(), [...EXPLORATION_AREA_IDS].sort());
 });
 
 test('partial current backup cannot masquerade as an older complete shape', () => {

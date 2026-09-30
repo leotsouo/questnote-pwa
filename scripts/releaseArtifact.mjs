@@ -6,6 +6,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { validateContentBundle, validateReleaseProfile } from '../src/releaseCatalog.js';
 import { POOL_CONTENT_SCHEMA_VERSION, validatePoolContent } from '../src/poolContentContract.js';
+import { ECOSYSTEM_CATALOGS, ECOSYSTEM_RUNTIME, validateEcosystem } from './poolEcosystem.mjs';
 
 const CATALOG_FILES = { petsData: 'data/pets.json', poolsData: 'data/pools.json',
   loreData: 'data/pets-lore.json', seriesCatalog: 'data/pet-series.json' };
@@ -14,7 +15,9 @@ const PROFILES = { production: { dbName: 'QuestNoteDB', cacheNamespace: 'questno
   preview: { dbName: 'QuestNotePreviewDB', cacheNamespace: 'questnote-preview-' } };
 const MANIFEST_FILE = 'release-artifact.json';
 const LEGACY_DIRECTORY = 'content/release-compatibility/v3.4.4';
-const CANDIDATE_METADATA = new Set(['validation.json', 'approvals.json']);
+const CANDIDATE_METADATA = new Set(['validation.json', 'approvals.json', 'ecosystem.json',
+  ...ECOSYSTEM_CATALOGS.map((file) => `companion-baseline/${file}`)]);
+const COMPANION_FILES = new Set(ECOSYSTEM_CATALOGS.map((file) => `companion/${file}`));
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const sorted = (entries) => Object.fromEntries([...entries].sort(([a], [b]) => a.localeCompare(b, 'en')));
 const jsonBytes = (value) => Buffer.from(JSON.stringify(value, null, 2) + '\n');
@@ -211,14 +214,22 @@ async function candidateInputs({ candidateDir, bundlePath, assetRoot }) {
     for (const relative of declared) {
       relativeFile(relative);
       if (relative !== 'catalog.json' && !CANDIDATE_METADATA.has(relative)
-        && !relative.startsWith('assets/pets/')) throw new Error(`Candidate file is outside allowed content: ${relative}`);
+        && !COMPANION_FILES.has(relative) && !relative.startsWith('assets/pets/')) throw new Error(`Candidate file is outside allowed content: ${relative}`);
       const bytes = await readFile(root, relative);
       if (!HASH.test(manifest.files[relative]) || sha256(bytes) !== manifest.files[relative]) throw new Error(`Candidate hash mismatch: ${relative}`);
       if (CANDIDATE_METADATA.has(relative)) JSON.parse(bytes);
       files.set(relative, bytes);
     }
     const metadata = new Map([['candidate.json', manifestBytes], ...[...files].filter(([name]) => CANDIDATE_METADATA.has(name))]);
+    const hasEcosystem = files.has('ecosystem.json') || [...COMPANION_FILES].some((file) => files.has(file));
+    if (manifest.sopVersion === 2 || hasEcosystem) {
+      if (manifest.sopVersion !== 2 || !files.has('ecosystem.json')
+        || ECOSYSTEM_CATALOGS.some((file) => !files.has(`companion/${file}`) || !files.has(`companion-baseline/${file}`))) {
+        throw new Error('SOP 2 candidate is missing its companion content/baseline or policy marker');
+      }
+    }
     return { bundle: JSON.parse(files.get('catalog.json')), assets: new Map([...files].filter(([name]) => name.startsWith('assets/pets/'))), metadata,
+      companion: manifest.sopVersion === 2 ? new Map([...files].filter(([name]) => COMPANION_FILES.has(name)).map(([name, bytes]) => [name.slice('companion/'.length), bytes])) : null,
       verification: 'candidate-file-hashes', candidateManifestSha256: sha256(manifestBytes) };
   }
   const file = await noLinks(bundlePath);
@@ -294,6 +305,31 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   const compatibility = validatePoolContent(bundle.poolsData, { pets: bundle.petsData.pets, previousPoolsData: baseline.poolsData });
   if (!compatibility.ok) throw new Error('Published pool contract changed: ' + compatibility.errors.map((entry) => entry.message).join('; '));
   const files = new Map(source);
+  if (candidate?.companion) {
+    const ecosystem = JSON.parse(candidate.metadata.get('ecosystem.json'));
+    const approvals = JSON.parse(candidate.metadata.get('approvals.json'));
+    if (approvals.brief?.sopVersion !== 2) throw new Error('SOP 2 candidate requires its reviewed brief');
+    const companionBaseline = {};
+    for (const file of ECOSYSTEM_CATALOGS) {
+      const bytes = candidate.metadata.get(`companion-baseline/${file}`);
+      if (sha256(bytes) !== approvals.baseline?.files?.[file]) throw new Error(`Companion baseline hash differs from approvals: ${file}`);
+      companionBaseline[file] = JSON.parse(bytes);
+    }
+    const result = validateEcosystem({ ecosystem,
+      pets: bundle.petsData.pets.filter((pet) => pet.seriesId === approvals.brief.seriesId),
+      baseline: companionBaseline,
+      runtime: Object.fromEntries(ECOSYSTEM_RUNTIME.map((file) => [file, source.get(file)?.toString('utf8')])),
+      runtimeHashes: Object.fromEntries(ECOSYSTEM_RUNTIME.map((file) => [file, source.has(file) ? sha256(source.get(file)) : null])) });
+    if (!result.ok) throw new Error('Invalid companion content: ' + result.errors.map((e) => e.message).join('; '));
+    for (const [file, bytes] of candidate.companion) {
+      if (sha256(bytes) !== sha256(jsonBytes(result.catalogs[file]))) throw new Error(`Companion catalog differs from reviewed ecosystem: ${file}`);
+      // Source may still be the baseline, or already contain this exact promotion.
+      const current = source.get(file);
+      const original = candidate.metadata.get(`companion-baseline/${file}`);
+      if (!current || ![sha256(bytes), sha256(original)].includes(sha256(current))) throw new Error(`Companion source drift: ${file}`);
+      files.set(file, bytes);
+    }
+  }
   // Authoring catalogs may advance after an approved release. Old clients must
   // continue to receive their frozen contract at the original unversioned URLs.
   for (const [relative, bytes] of legacy.files) files.set(relative, bytes);
@@ -311,6 +347,7 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   const input = { schemaVersion: 1, sourceCommit, profile, scopePath, contentBundleSha256, sourceFiles,
     legacyCompatibility: { sourceCommit: legacy.manifest.sourceCommit, manifestSha256: legacy.manifestSha256, catalogs: legacy.manifest.catalogs },
     assemblerSha256: sha256(await fs.readFile(fileURLToPath(import.meta.url))),
+    ...(candidate?.companion ? { ecosystemValidatorSha256: sha256(await fs.readFile(new URL('./poolEcosystem.mjs', import.meta.url))) } : {}),
     candidateAssets: sorted([...(candidate?.assets || [])].map(([name, bytes]) => [name, sha256(bytes)])),
     candidateManifestSha256: candidate?.candidateManifestSha256 || null };
   const artifactId = sha256(jsonBytes(input));
@@ -359,6 +396,7 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   const report = { schemaVersion: 1, artifactId, sourceCommit, profile: descriptor,
     legacyCompatibility: input.legacyCompatibility,
     sourceFiles, assemblerSha256: input.assemblerSha256, candidateManifestSha256: input.candidateManifestSha256,
+    ...(input.ecosystemValidatorSha256 ? { ecosystemValidatorSha256: input.ecosystemValidatorSha256 } : {}),
     inputVerification: candidate?.verification || 'source-catalogs',
     files: sorted([...files].map(([name, bytes]) => [name, { sha256: sha256(bytes), bytes: bytes.length }])),
     localValidations: { catalogContract: 'PASS', imageReferences: 'PASS', importClosure: 'PASS',
