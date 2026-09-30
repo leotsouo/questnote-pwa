@@ -61,4 +61,4 @@
 - `/devtools/theme-worlds/brand.html`：六個概念、final icon、小尺寸、淺／深背景與手機主畫面 mockup。
 - `/index.html`：完整 App；更多 → 美術風格 → 三選一，重開保留偏好。此本機 origin 的資料為隔離測試資料。
 
-重新啟動：在此 worktree 執行 `node devtools/ui-polish-server.mjs 0`，使用它印出的新 port。測試資料初始化後不要在沒有相同 session marker 的新分頁強行重建；安全工具會拒絕未知資料。
+重新啟動：在此 worktree 執行 `node devtools/ui-polish-server.mjs 0`，使用它印出的新 port。同一伺服器 instance 已成功建立的合成資料可供其他比較分頁重用；不重設錢包、任務或親密度。未知資料、不同 server instance 或已啟用的 SW 仍會被安全工具拒絕。

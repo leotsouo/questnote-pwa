@@ -2,6 +2,7 @@
 const frame = document.getElementById('preview');
 const output = document.getElementById('results');
 const sessionKey = 'questnote-ui-polish-test-session';
+const originSessionKey = 'questnote-ui-polish-synthetic-origin';
 const urgentTitle = 'UI 測試：先完成今天最重要的一件事';
 let session;
 let ui;
@@ -28,6 +29,13 @@ async function guard() {
   const existing = await indexedDB.databases();
   let saved;
   try { saved = JSON.parse(sessionStorage.getItem(sessionKey)); } catch { saved = null; }
+  // A second comparison tab may reuse only a fixture successfully seeded by
+  // this exact ephemeral server instance. Unknown databases still fail closed.
+  if (saved?.instance !== marker.instance && existing.length) {
+    let knownFixture;
+    try { knownFixture = JSON.parse(localStorage.getItem(originSessionKey)); } catch { knownFixture = null; }
+    if (knownFixture?.instance === marker.instance && knownFixture.seeded === true) saved = knownFixture;
+  }
   if (saved?.instance !== marker.instance && existing.length) throw new Error('Existing IndexedDB data found. Refusing fixture writes; start a fresh port.');
   session = saved?.instance === marker.instance ? saved : { instance: marker.instance, seeded: false, empty: {} };
   sessionStorage.setItem(sessionKey, JSON.stringify(session));
@@ -122,6 +130,7 @@ async function initialize() {
   }
   await theme('default');
   await navigate('tasks');
+  localStorage.setItem(originSessionKey, JSON.stringify(session));
   document.querySelectorAll('button, select').forEach((element) => { element.disabled = false; });
   log('READY · 今日緊急單行任務、多行及子任務、8 隻測試寵物與 UR 陪伴。可選 VP 分組驗收。');
 }

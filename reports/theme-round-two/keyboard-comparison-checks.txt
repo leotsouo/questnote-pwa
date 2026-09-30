@@ -5,3 +5,4 @@ PASS · CURRENT 3 張原版 JPEG 解碼且可見
 PASS · 其他頁面沒有 Before 時停用 CURRENT，自動顯示 UPGRADED
 PASS · 圖鑑／召喚／探險／設定／首頁比較導覽可切換
 PASS · 同步按鈕重新載入三套並保留各自世界，不寫入偏好
+PASS · 新比較分頁安全重用同 server instance 的已知合成存檔，錢包仍為 0
