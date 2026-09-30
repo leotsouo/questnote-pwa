@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>暮光撫摸提示位置 · V3.4.27</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 20px; background: #e8e5dd; color: #27362f; font: 16px/1.6 system-ui, sans-serif; }
+    main { max-width: 900px; margin: auto; }
+    h1 { margin: 0 0 8px; font-size: 23px; }
+    p { margin: 0 0 18px; }
+    .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    figure { margin: 0; }
+    figcaption { padding: 8px 0; font-weight: 600; }
+    img { display: block; width: 100%; border: 1px solid #ced3c5; }
+    h2 { font-size: 19px; margin-bottom: 0; }
+    @media (max-width: 600px) { .pair { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body><main>
+  <h1>撫摸冷卻提示 · 移出圖片</h1>
+  <p>修正後，撫摸與冷卻提示固定放在圖片下方右側，與夥伴對話同一排。這是隔離存檔的實際 App 截圖；目前為 V3.4.27 本機修正版。</p>
+  <h2>冷卻中</h2>
+  <div class="pair"><figure><figcaption>修正前 · 覆蓋圖片</figcaption><img src="before-430-cooldown.png" alt="冷卻提示位於夥伴圖片中間"></figure><figure><figcaption>修正後 · 圖片下方右側</figcaption><img src="after-430-cooldown.png" alt="冷卻提示移到圖片下方，和對話並排"></figure></div>
+  <h2>可以撫摸時</h2>
+  <div class="pair"><figure><figcaption>修正前</figcaption><img src="before-ready.png" alt="原本的輕觸提示" loading="lazy"></figure><figure><figcaption>修正後</figcaption><img src="after-ready.png" alt="輕觸提示也移至圖片下方右側" loading="lazy"></figure></div>
+</main></body>
+</html>

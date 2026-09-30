@@ -1,0 +1,6 @@
+{
+  "version": "3.4.27",
+  "worker": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=f8d2cd85d2cacf06cdfa1b13a27c593ac30e08b925c9753879b9000cbc27fada",
+  "reminderHeading": "每日任務與習慣提醒",
+  "enabledButton": "啟用每日提醒"
+}

@@ -165,3 +165,26 @@ The user tested the notification demonstration and explicitly approved productio
 - Pages commit: `33c5a4a9e8ab34468e3919b31cfa3b1b7e15bed1`; [run 36703423494](https://github.com/leotsouo/questnote-pwa/actions/runs/36703423494) succeeded. All 346 staged Git blobs matched the immutable artifact; eight live HTTPS files (manifest, app shell, UI, CSS, version, worker, profile and mailbox) matched exact artifact bytes.
 - PR CI passed (177 Node cases and summon assertions). Six isolated notification checks passed across default/sweet themes and 320/393/768px widths. Strict production artifact verification and 12 assembled-artifact browser cases passed. See `reports/notification-stack/acceptance.md`.
 - Production feedback f965402f-3bb8-4caa-badb-d8b8b53c8dbd was marked resolved after live verification. No Worker deployment or storage migration was needed. Close older App windows and reopen online to activate V3.4.24; do not clear site data.
+
+
+## V3.4.26 twilight safe-area release — 2026-09-30
+
+Production now serves V3.4.26. Twilight's night background fills the top safe inset and stays dark while scrolling; its homepage paper corners now fully overlap the night scene without covering bond content. [PR #10](https://github.com/leotsouo/questnote-pwa/pull/10) merged after CI passed, at source commit fa70beb4c90e71a4c732cb60a9da1b7f4b6d9fe9.
+
+- Production artifact: 9c2bd9c3ac2ebdb9202f6f2b942df8346cca9b6c2c8e4ecd64f3e3a06592ff37; manifest SHA-256: e9755c2be942bf170345e31ca6e77721b4e708edc5f55e15f45560de7c7ef453. All 349 staged Git blobs matched the pinned artifact before push.
+- Pages commit: acf74ec254b761bd7eaab509256e020762702a46. [Deployment run 36734233393](https://github.com/leotsouo/questnote-pwa/actions/runs/36734233393) succeeded; 16 live HTTPS hashes match the pinned release.
+- 183 Node cases plus summon assertions, 79 isolated layout cases, and 12 assembled-artifact cases passed. A fresh disposable hosted browser confirmed the version, verified worker and persisted twilight styling after reload. [Release receipt and evidence](../reports/twilight-safe-area/production-release.md).
+- The approved 84-pet/three-pool content and production mailbox bytes were retained. No backend deployment or save migration occurred; hosted Preview was not updated. Physical iPhone 14 Pro Max / iOS 26 status-bar acceptance remains pending. Close older App windows and reopen online to activate the update without clearing site data.
+
+## V3.4.27 daily reminder release — 2026-09-30
+
+[PR #11](https://github.com/leotsouo/questnote-pwa/pull/11) passed CI and merged at `d691e47`. Production now serves configurable daily task/habit Web Push reminders and tomorrow scheduling. Pages commit `66e29ce4c153d9a8055948fa0575411f47103167`; [run 36737740780](https://github.com/leotsouo/questnote-pwa/actions/runs/36737740780) succeeded. Artifact `f8d2cd85d2cacf06cdfa1b13a27c593ac30e08b925c9753879b9000cbc27fada`, manifest `ca1f4bace8abcb021c6c770b211504eac8ed733a2102d6b38ad8078cf25a8429`: 349 committed blobs and 15 live hashes verified; 84-pet/three-pool catalog and mailbox preserved. Dedicated Cloudflare reminders Worker/D1 and minute Cron are deployed. All integration, reminder, mobile browser, workerd and 12 artifact browser checks passed. Physical iPhone/Android receipt remains device acceptance. [Release receipt](../reports/daily-reminders/production-release.md).
+
+## V3.4.28 twilight petting prompt — 2026-09-30
+
+Production V3.4.28 moves petting and cooldown below the portrait beside companion dialogue, preserving the current daily reminder runtime. PR #12 and Pages run 36738837787 succeeded. All 349 artifact Git blobs, 12 artifact browser cases and 16 live HTTPS hashes passed verification. Source tests passed 192 Node cases and summon assertions; four isolated viewport checks verified real petting/cooldown. See [production receipt](../reports/twilight-pet-prompt/production-release.md). Existing content and mailbox bytes were retained; no backend deployment or save migration occurred.
+
+
+## V3.4.29 reminder settings polish — 2026-09-30
+
+[PR #13](https://github.com/leotsouo/questnote-pwa/pull/13) merged after CI. Production now serves the themed time panel, accessible switches, illustrative notification preview and clearer consent/actions/delivery sections. Source `9fad7f41f3785aeffa4f4643639b654e31ad6fe4`, Pages `13d3f5db135243b6a30d85148d2fa3d9c2c7bf0f`; [run 36740510978](https://github.com/leotsouo/questnote-pwa/actions/runs/36740510978) succeeded. Artifact `49298afea132cd13c832dbd62ad13edfc7f788cc383b3906fea80c8cf7757a37`, manifest SHA-256 `6affc46b80a570af2f9d8f59f3ea27129ce4f4ea47a9c223cd5f1d86bfd59b2e`: 350 staged blobs and 16 live hashes verified. Integration tests, 8 reminder-browser scenarios and 12 artifact cases passed. Backend/subscription rules unchanged; existing production content/mailbox and V3.4.28 prompt fix retained. [Receipt and screenshots](../reports/reminder-settings/production-release.md).

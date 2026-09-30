@@ -595,6 +595,16 @@ async function run() {
 }
 
 async function checkWorlds() {
+  const authoredDescription = doc().createElement('p');
+  authoredDescription.className = 'habit-card__desc';
+  authoredDescription.textContent = '晚上帶 🐕 散步，然後喝杯 ☕';
+  doc().querySelector('#view-habits').append(authoredDescription);
+  await settle();
+  check('使用者習慣描述 emoji 保留原文與可讀語意', authoredDescription.textContent === '晚上帶 🐕 散步，然後喝杯 ☕' && !authoredDescription.querySelector('svg'));
+  authoredDescription.textContent = '新的描述 🌱，每天前進一步';
+  await settle();
+  check('編輯後的習慣描述也保留 emoji', authoredDescription.textContent === '新的描述 🌱，每天前進一步' && !authoredDescription.querySelector('svg'));
+  authoredDescription.remove();
   const { readAllStoresSnapshot } = await import('../src/db.js');
   const gameplay = async () => {
     const snapshot = await readAllStoresSnapshot();

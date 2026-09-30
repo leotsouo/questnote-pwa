@@ -58,7 +58,9 @@ body[data-theme] .twilight-pet-name { color: var(--qn-scene-text); font-size: 18
 body[data-theme] .twilight-rarity { color: var(--qn-scene-accent); border-color: color-mix(in srgb,var(--qn-scene-accent) 50%,transparent); }
 body[data-theme] .twilight-companion-caption > p { font-size: 11px; color: var(--qn-scene-muted); line-height: 1.5; }
 body[data-theme] .qn-companion-feed { position: absolute; right: 0; bottom: 2px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; width: 48px; min-height: 48px; border: 1px solid color-mix(in srgb,var(--qn-scene-muted) 35%,transparent); border-radius: 12px; background: color-mix(in srgb,var(--qn-scene) 80%,transparent); color: var(--qn-scene-text); font-size: 11px; }
-body[data-theme] .twilight-pet-touch { right: 16px; top: 48px; height: 115px; width: 155px; padding: 0; align-items: flex-end; color: var(--qn-scene-text); }
+body[data-theme] .twilight-companion-footer { display: flex; align-items: center; gap: 12px; margin: 8px 22px 0; }
+body[data-theme] .twilight-companion-footer .twilight-voice { flex: 1; min-width: 0; margin: 0; }
+body[data-theme] .twilight-companion-footer .twilight-pet-touch { position: static; flex: none; height: 44px; width: auto; max-width: 148px; padding: 0; align-items: center; color: var(--qn-scene-text); }
 body[data-theme] .twilight-pet-touch span:first-child { color: #f4eee1; background: #101a2bdb; font-size: 10px; padding: 7px 9px; }
 body[data-theme] .twilight-pet-touch > .qn-icon { display: none; }
 body[data-theme] .twilight-voice { margin: 8px 22px 0; min-height: 34px; gap: 8px; }
@@ -184,7 +186,7 @@ body[data-theme] .twilight-is-reacting .twilight-companion-art { animation-durat
 }
 @media (max-height: 740px) and (max-width: 500px) {
   body[data-theme] .twilight-masthead { height: 46px; }
-  body[data-theme] .twilight-scene { height: 168px; }
+  body[data-theme] .twilight-scene { height: 140px; }
   body[data-theme] .twilight-companion-art { width: 100%; height: 100%; right: 0; top: 0; }
   body[data-theme] .twilight-greeting { padding-top: 6px; }
   body[data-theme] .twilight-greeting h1 { font-size: 24px; margin-top: 6px; }

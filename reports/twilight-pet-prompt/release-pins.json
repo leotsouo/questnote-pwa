@@ -1,0 +1,20 @@
+{
+  "production": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-twilight-pet-prompt-v3428\\fef95f7d4dd1fb31a1b945c56feeeeb75bb7e0b6781881eaffa3e4d9d65b8ebf",
+    "artifactId": "fef95f7d4dd1fb31a1b945c56feeeeb75bb7e0b6781881eaffa3e4d9d65b8ebf",
+    "manifestSha256": "4b1da1af123af4eb2952fc47d478bb19ddb9b718195ee9fa7d8e2f38ea6b1627",
+    "profile": "production",
+    "scopePath": "/questnote-pwa/",
+    "sourceCommit": "10d73578cc42a4874746597162161f8a7a72d95e",
+    "fileCount": 349
+  },
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-twilight-pet-prompt-v3428\\52ddfba762c816daa39fa7976e95df367f4eb028e5d05e1f5461d5c5e965aab7",
+    "artifactId": "52ddfba762c816daa39fa7976e95df367f4eb028e5d05e1f5461d5c5e965aab7",
+    "manifestSha256": "99b6c76648a168eb0241abcda83514340ebff5e51a110d2c3aba887d658f5d0e",
+    "profile": "preview",
+    "scopePath": "/questnote-pwa-preview/",
+    "sourceCommit": "10d73578cc42a4874746597162161f8a7a72d95e",
+    "fileCount": 349
+  }
+}
