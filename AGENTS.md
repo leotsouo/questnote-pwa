@@ -1,5 +1,11 @@
 # Repository Guidelines
 
+## New card pools — start here
+
+Before every new pool interview or proposal, sync and verify the latest formal HTTPS deployment, artifact, source revision and origin/main; latest source alone is not the formal release. Follow `docs/new-card-pool-sop.md` first, then the technical `docs/card-pool-pipeline.md`.
+
+AI owns planning/content/prompts reviews after the fixed three-question interview. Human review is artwork and final whole-package acceptance; explicit 可以發布 is required before merge/formal push. Default 12 adjustable pets, one mandatory new food, every pet's gift affinity and dispatch specialty, and an explicit add/reuse expedition assessment. Inspect installed applicable image plugins and prefer confirmed no-extra-cost tools; do not invoke unknown-cost or paid services. Preserve legacy workspaces and Honeylight; the new policy is prospective.
+
 ## Shared source and collaboration
 
 Read `docs/project-governance.md` for current branch roles and ownership. Start from current `origin/main` in a clean checkout. The old root `codex/card-pool-pipeline` checkout and historical worktrees contain preserved drafts and older snapshots; never copy their complete trees over main. Inspect both commits and uncommitted files before declaring any worktree merged or deleting it.

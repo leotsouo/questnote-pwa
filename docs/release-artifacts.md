@@ -1,5 +1,7 @@
 # Local release artifacts
 
+New pool releases follow [現行 SOP](new-card-pool-sop.md): verify the actual latest formal deployment before planning, review one companion food, all pet affinities/specialties and an add/reuse region assessment with the pool. 現行 SOP candidates include hash-bound companion baseline/input/catalog files; the assembler overlays only the four controlled companion data paths and rejects source drift or a catalog differing from reviewed inputs. Existing candidates remain unchanged. Run `poolReleaseReview.mjs` with pinned preview/production manifests and actual acceptance evidence before any release; local assembly always remains `releaseReady: false` and never grants publication permission.
+
 Current deployment status and artifact IDs are in [final integration](final-integration.md). The dated deployment evidence near the end of this document records the pre-integration baseline, not the live V3.4.11 release. Production Pages now deploys the assembled artifact from `gh-pages`; source `main` is not the Pages publishing branch.
 
 `data/global-mailbox.json` is a separately published, network-first message feed. It is intentionally excluded from required precache. A mailbox-only update changes that live file after the immutable release artifact was verified; the original `release-artifact.json` remains a record of the app release, not a claim that the later mailbox bytes are unchanged. Validate the message document and deployed mailbox separately.
