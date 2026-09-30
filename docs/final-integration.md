@@ -1,5 +1,29 @@
 # QuestNote final integration
 
+## V3.4.25 selectable twilight journal release — 2026-09-30
+
+The user approved the award concept as a third optional full-App art direction,
+requested review and production publication, and approved repairing the one Bugbot
+finding. More → 美術風格 now offers 暮光冒險手帳 alongside the two existing themes.
+The repair correctly routes users who own pets but have not chosen a companion to
+the collection. Task, reward and progression rules are unchanged.
+
+- [PR #9](https://github.com/leotsouo/questnote-pwa/pull/9) merged at
+  `60dc95cbedced256a4dd612f5c638926d16e157b`. Reviewed artifact source
+  `f2757f78916d7d956e5d441edda0c94cde0c0d5c` is retained in main with identical runtime Git blobs.
+- Production artifact `13f4e0d49a61dba891fd68549a5fac09b8a5677e26cc48c4b3900d5855dfb8ec`;
+  manifest SHA-256 `c4a98025b0daa01f2f30b3c8b1770c58cc2069b61fc1199bf0163a57c1dd1bd9`.
+  All 349 staged files matched the immutable artifact before push.
+- Pages commit `7a4e77be7d126109e246d8d20d27361a53358116`;
+  [run 36714554744](https://github.com/leotsouo/questnote-pwa/actions/runs/36714554744) succeeded.
+  Fourteen live HTTPS hashes match, including theme modules, worker, mailbox and catalog.
+- Repair CI passed 183 Node cases and summon assertions; all 12 isolated assembled
+  browser cases passed. Earlier source acceptance covered 40 theme and 15 summon checks.
+  Existing 84-pet/three-pool content and mailbox bytes were preserved; no backend was deployed.
+- [Review and deployment evidence](../reports/twilight-theme/review-and-release.md).
+  Preview was used only for isolated acceptance. Close older App windows and reopen
+  online for the safe update, without clearing site data. Physical iPhone acceptance remains device-specific.
+
 This is the release history; later dated entries supersede earlier deployment states. Current branch roles and responsibilities are in [project governance](project-governance.md). Earlier `reports/release-v3.4.8/` and authoring handoffs remain historical evidence, not the current deployment status.
 
 ## Source and ownership

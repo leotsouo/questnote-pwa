@@ -1,0 +1,14 @@
+{
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "viewport": {
+    "width": 393,
+    "height": 852
+  },
+  "version": "3.4.25",
+  "theme": "twilight",
+  "reloadPersisted": true,
+  "allThreeChoicesVerified": true,
+  "noHorizontalOverflow": true,
+  "naturalWorkerUpdate": true,
+  "gameplayActionsPerformed": false
+}

@@ -3,7 +3,8 @@
 The user approved Visual Study 01 and authorized a full-App third selectable theme.
 Implementation continues in `codex/award-visual-experiment`, based on current
 `origin/main` V3.4.24 (`08465aaa`). The preserved dirty root checkout was not edited.
-This report records the local source implementation, not a production deployment.
+The initial sections record local source acceptance. V3.4.25 has since been reviewed,
+repaired and published to production; see [review and release evidence](review-and-release.md).
 
 ## Use
 

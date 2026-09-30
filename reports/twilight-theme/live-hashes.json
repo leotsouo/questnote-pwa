@@ -1,0 +1,79 @@
+{
+  "artifactId": "13f4e0d49a61dba891fd68549a5fac09b8a5677e26cc48c4b3900d5855dfb8ec",
+  "sourceCommit": "f2757f78916d7d956e5d441edda0c94cde0c0d5c",
+  "verifiedAt": "2026-09-30T12:25:53.959Z",
+  "productionUrl": "https://leotsouo.github.io/questnote-pwa/",
+  "passed": 14,
+  "results": [
+    {
+      "name": "release-artifact.json",
+      "sha256": "c4a98025b0daa01f2f30b3c8b1770c58cc2069b61fc1199bf0163a57c1dd1bd9",
+      "ok": true
+    },
+    {
+      "name": "index.html",
+      "sha256": "05fd5ba3087fe27786bffdfe1f5696e616cdb378ca354fa3ed42f1e5410a049b",
+      "ok": true
+    },
+    {
+      "name": "src/version.js",
+      "sha256": "94d2282215e48ff7c22f3a983b46c745daee18e14344c2a45af6cc17c1579eec",
+      "ok": true
+    },
+    {
+      "name": "src/releaseProfile.js",
+      "sha256": "b14b74ecef756f9e7bd7aa4da9c6160a2431f15d9ba39e336b7adaf247c37a7c",
+      "ok": true
+    },
+    {
+      "name": "service-worker.js",
+      "sha256": "bff9c77aea75a06e0d996538ceb11c78b2c7855bdaea556874068ae673212860",
+      "ok": true
+    },
+    {
+      "name": "src/ui.js",
+      "sha256": "d9c8d3977f1a9815a5f8481e519971bac73dc7e93f0dc91a9bb063f2883763d7",
+      "ok": true
+    },
+    {
+      "name": "src/preferencesService.js",
+      "sha256": "4c1fc1f63009c3ef4e412b3b1c9d538eb145cb38a14b91ab336398ec0e71006e",
+      "ok": true
+    },
+    {
+      "name": "src/backupSchema.js",
+      "sha256": "8f7bf3b141e4b6d95b62a7abae5f04b4147e8e84235b2b57935614087a822ae1",
+      "ok": true
+    },
+    {
+      "name": "src/themeRegistry.js",
+      "sha256": "6b4b49aee00f499b8ddcf9e1b63c20241c3a25515c8b1bdbf7fff336a90696dd",
+      "ok": true
+    },
+    {
+      "name": "src/twilightPresentation.js",
+      "sha256": "5cc2edd0ffbe61f22b6497c72057fa9afd1888fdd5462179e519ea38dd1f10bf",
+      "ok": true
+    },
+    {
+      "name": "src/twilight-theme.css",
+      "sha256": "ecb587917d24ad1ac2b7874264274c930f85e18b0471ac7165a096a3966a8790",
+      "ok": true
+    },
+    {
+      "name": "manifest.webmanifest",
+      "sha256": "044a5f22c568ec5dab4f2a1f0cce9a9a26ed70f2320a0e5a6c1c9f06b7cd2591",
+      "ok": true
+    },
+    {
+      "name": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "ok": true
+    },
+    {
+      "name": "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json",
+      "sha256": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
+      "ok": true
+    }
+  ]
+}

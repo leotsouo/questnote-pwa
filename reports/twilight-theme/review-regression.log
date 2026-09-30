@@ -1,0 +1,14 @@
+✔ all three user themes survive preference normalization; legacy and unknown values fall back (1.493ms)
+✔ third theme backup restore preserves tasks, wallet, collection and progression exactly (26.0754ms)
+✔ journey counts only actual today plans and today completions, including the empty state (0.4575ms)
+✔ companion presentation escapes user names and does not pretend an empty collection owns a pet (0.6696ms)
+✔ owned pets without a companion lead to collection instead of another summon (0.2223ms)
+✔ home refresh replaces the empty summon entry when the first pet becomes owned (21.5621ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 313.2868
