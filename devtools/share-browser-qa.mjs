@@ -47,12 +47,12 @@ try {
         await page.locator('#btn-share-app').click();
         const payload = await page.evaluate(() => window.__shares.at(-1));
         assert.equal(payload.url, 'https://questnote.taste-compare.com/');
-        assert.match(payload.text, /https:\/\/leotsouo.github.io\/questnote-pwa\//);
-        assert.match(payload.text, /\?share=wolf-v1/);
+        assert.equal(payload.text.includes('https://'), false);
         await page.locator('#btn-copy-app-link').click();
         const copied = await page.evaluate(() => window.__copies.at(-1));
-        assert.match(copied, /認識 QuestNote：https:\/\/questnote.taste-compare.com\//);
-        assert.match(copied, /直接開始：https:\/\/leotsouo.github.io\/questnote-pwa\//);
+        assert.match(copied, /https:\/\/questnote.taste-compare.com\//);
+        assert.equal(copied.includes('leotsouo.github.io'), false);
+        assert.equal(copied.split('https://').length - 1, 1);
         results.push({ width, theme, font, overflow: false, share: true, copy: true });
         if ((width === 393 && font === 16) || (width === 320 && font === 24) || (width === 1440 && theme === 'default' && font === 16)) {
           await page.waitForTimeout(3500);

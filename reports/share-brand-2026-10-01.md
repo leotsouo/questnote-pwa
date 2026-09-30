@@ -1,20 +1,14 @@
-# 分享品牌修正 — V3.4.39
+# 正式分享只走官網 — V3.4.39
 
-使用者的 LINE 截圖顯示 App 連結仍使用紫色 Q。唯讀 HTTPS 確認正式 `assets/brand/questnote-icon-512.png` 已是新版米金狼形圖示，SHA-256 `32c505609ea48e4ffab010e2fc53b184441a8bad39d79a45701b658b31040a06`，因此截圖中的卡片使用了較早的預覽資料。同時發現分享頁、提醒示意與教學仍引用舊 `assets/icons/icon-192.png`。
+本輪依使用者後續 Social Share Preview brief 更新：不重設 App Icon、不用放大 Icon 當 OG。先前未發布的狼形 Icon 預覽方案已撤回，改用官網正式的 1200×630 campaign poster。
 
-## 修正
+- 原生 Web Share 的 text 不含網址，url 只使用 https://questnote.taste-compare.com/。
+- 複製與不支援 Web Share 的備援，使用同一段短文案與官網 URL，整段只有一個網址，不會再產生 App 與官網兩張預覽。
+- App 仍提供直接開始入口，但它不再包含於對外分享訊息。官網 CTA 可開啟實際 App；不轉址或改動 GitHub Pages、存檔或離線架構。
+- 舊 App 網址的 OG/X 預覽也使用官網同一張新版 campaign poster 作為 fallback，避免仍出現放大紫色 Q。OG title 為「QuestNote｜小事完成，冒險繼續」。
+- 分享卡內原有紫色 Q 引用改用既有正式品牌資產，不修改任何 App Icon 原圖。其他教學、提醒 UI 修改已撤回。
+- 不改 Theme / Quest / Pet progression。版本與 cache 同步到 V3.4.39。
 
-- 保留既有品牌身份，將活躍畫面中的三個舊引用換成新版 `assets/brand/questnote-icon-192.png`。
-- 新增 `assets/brand/questnote-share-wolf-v1.png`，與既有正式 512px 品牌圖示 byte-for-byte 相同。OG 與 Twitter 使用新圖片網址、PNG type、512×512 尺寸及 alt，避免沿用紫色 Q 的圖片網址快取。
-- 新分享的直接 App 入口是 `https://leotsouo.github.io/questnote-pwa/?share=wolf-v1`。穩定品牌修訂 query 提供新的 crawler page cache key；官網入口保持不變，原有直接網址仍可用。
-- App 的 meta description 與分享邀請一致，清楚說明生活待辦與夥伴成長。
-- 組裝器替預覽／正式站產生各自 OG 和 Twitter 圖片網址，缺少該圖資時拒絕發佈；新圖資加入 SW precache，版本與 cache 同步。
+分享服務 tests 通過，原生與複製均只有官網 URL；30 組實際 Edge/Playwright 的五寬度、三主題、兩字級分享/版面驗證通過，axe 15 組無違規。截圖在 reports/social-share-app/local。
 
-## 驗證
-
-- 本機完整 `npm test`：223 項通過，召喚斷言通過。最終來源 CI 另覆蓋新增的圖資閉包和 metadata assertions。
-- 真實 Edge / Playwright：五種寬度 × 三主題 × 標準／特大字，共 30 組無水平溢出，分享與複製帶上新的 query，取消及備援正常；三主題 × 五寬度 axe WCAG 2 A/AA 自動規則無違規。
-- 圖示實際 decode 成功，檢視手機與桌面截圖，確認紫色 Q 已換為新版狼形圖示。證據在 `reports/share-brand/`。
-- 未將使用者的私人 LINE 對話截圖加入公開 Git。
-
-部署身份和線上讀回證據另見 `reports/share-brand/deployment.json`。新的 meta 及網址可提供新版預覽資料，無法由本站強制清除 LINE 已儲存的訊息卡片；實際 LINE/iOS 分享面板需用新分享重試，不能由 Playwright 宣稱已在 LINE 實機驗收。
+官網 campaign、十組文案比較、LINE/X/Discord 模擬與三組貼文文案由獨立 codex/social-share-preview 分支維護，沒有合併整個官網 PR 到 main。部署驗證另記。實機分享面板及 LINE 第三方快取不能由桌面模擬宣稱已驗收。
