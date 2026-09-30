@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "f8d2cd85d2cacf06cdfa1b13a27c593ac30e08b925c9753879b9000cbc27fada",
-  "sourceCommit": "d691e47bd39b42d6abd6a26ccb43a113daf567cc",
+  "artifactId": "fef95f7d4dd1fb31a1b945c56feeeeb75bb7e0b6781881eaffa3e4d9d65b8ebf",
+  "sourceCommit": "10d73578cc42a4874746597162161f8a7a72d95e",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "f8d2cd85d2cacf06cdfa1b13a27c593ac30e08b925c9753879b9000cbc27fada",
-    "sourceCommit": "d691e47bd39b42d6abd6a26ccb43a113daf567cc",
+    "artifactId": "fef95f7d4dd1fb31a1b945c56feeeeb75bb7e0b6781881eaffa3e4d9d65b8ebf",
+    "sourceCommit": "10d73578cc42a4874746597162161f8a7a72d95e",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -265,7 +265,7 @@
     "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
     "index.html": "a4900ba5829b58dd3979f7f5d7769cf823a8dbe50ec014bf7f49c09f07a38421",
     "manifest.webmanifest": "eb55a896e912c00763760ee803a296136569b27ef88077ac886857f8a3f31c66",
-    "service-worker.js": "faf92babd157f02c9776b73b6e13c8af3963022e00c8de83f8f3c185a382004f",
+    "service-worker.js": "d401aa1a946dccc6c4872d4ee37372b054445a0bd8ec6c1cf06127ddbbb4daf8",
     "src/achievementService.js": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
     "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
     "src/app.js": "7ab42490004bac0be0b4145cc172bb42beb009177c6dc8e913d3a2e5f0797156",
@@ -329,12 +329,12 @@
     "src/taskStatsService.js": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
     "src/themedSummonController.js": "f2bcd1b922da8dee874ee5c2a678378f23841f44287b44b8d2b8f14014b3af6f",
     "src/themeRegistry.js": "7aff25923d95bed495eabb02e7b0a0b505591589ebdf96d3c361b392f9040f1a",
-    "src/twilight-theme.css": "0c8a4f3dc4216bd3a122469c26e34f865fcab686415339a0da87fa6926750ad6",
-    "src/twilightPresentation.js": "3d7fd0a1d8671e92517f9df9e9caa9026def111805f662ec9bc1c4cea5600263",
+    "src/twilight-theme.css": "3aa7fe8ad193f87ef6218d352c274ec8fda9ff8bfa3c7b77414ff767629363ac",
+    "src/twilightPresentation.js": "cb00b85eecef6dcd51d72a244613ceb77331da0b646c97c2512c97871b757cf0",
     "src/ui-polish.css": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
     "src/ui.js": "16bb747976a5a6f53a400d8aa9fee7257f1dd4531e38f46a7b0118f9e19da18a",
     "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
-    "src/version.js": "311360d761cbc92bd1d2f537a0e8078b9e946c0094a928352ff645f74f667798",
+    "src/version.js": "ccc10fd82b4ccb03137071e5f072bf8c479837b2d5a325d00f34fcbb28891590",
     "src/workshopService.js": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69"
   },
   "assemblerSha256": "8038743986968f47e78c8a9c6b313846a36ede9a75bf226d163a04771c6261cb",
@@ -1442,7 +1442,7 @@
       "bytes": 6119
     },
     "index.html": {
-      "sha256": "491d8fc52999d79ce751a544b0ba5bfcb7b6b1e68c13ad0b46b8e7362c79d9e2",
+      "sha256": "3fb9e37406bcd404f7dac7f08d5bee1f7e922f518f7eb5826dd2f50f002b09f1",
       "bytes": 53393
     },
     "manifest.webmanifest": {
@@ -1450,8 +1450,8 @@
       "bytes": 792
     },
     "service-worker.js": {
-      "sha256": "903e3bbed2991938b59b45f727da02de12aac697a7759f11a542db38227d43ef",
-      "bytes": 23539
+      "sha256": "7cf7726f3a9be6a4082f05484cdf240adee9bd6b616c3ddd9dbeedd197d9efbf",
+      "bytes": 23540
     },
     "src/achievementService.js": {
       "sha256": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
@@ -1646,7 +1646,7 @@
       "bytes": 4727
     },
     "src/releaseProfile.js": {
-      "sha256": "2f1f53c9a062c517392f9c2e6952303e467c3055ca6299be5115a531625e4c70",
+      "sha256": "0b9b4aa1525cc1dbbd26f2d0bd2befbd953ee739d139737939bc790ecc585bc0",
       "bytes": 622
     },
     "src/reminderController.js": {
@@ -1706,12 +1706,12 @@
       "bytes": 279
     },
     "src/twilight-theme.css": {
-      "sha256": "0c8a4f3dc4216bd3a122469c26e34f865fcab686415339a0da87fa6926750ad6",
-      "bytes": 49070
+      "sha256": "3aa7fe8ad193f87ef6218d352c274ec8fda9ff8bfa3c7b77414ff767629363ac",
+      "bytes": 49023
     },
     "src/twilightPresentation.js": {
-      "sha256": "3d7fd0a1d8671e92517f9df9e9caa9026def111805f662ec9bc1c4cea5600263",
-      "bytes": 12068
+      "sha256": "cb00b85eecef6dcd51d72a244613ceb77331da0b646c97c2512c97871b757cf0",
+      "bytes": 12127
     },
     "src/ui-polish.css": {
       "sha256": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
@@ -1726,8 +1726,8 @@
       "bytes": 2309
     },
     "src/version.js": {
-      "sha256": "cbbcbfd82e3fd43b481cb46ac0c9bd1616f2bba27407ab34b17c22e3551db8f3",
-      "bytes": 1151
+      "sha256": "30b3eaf2095860303c2e5703eccdabec91bb26f8a79dda5f9abc130c42e9c595",
+      "bytes": 1154
     },
     "src/workshopService.js": {
       "sha256": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69",
