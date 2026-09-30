@@ -1,6 +1,7 @@
 /**
  * UI 渲染與互動邏輯
  */
+import { initFilterGestures } from './filterGestureController.js';
 import { trackUpdateActivity } from './updateActivity.js';
 import { updateControlsHtml, refreshUpdateControls } from './updateController.js';
 import { initReminders, renderReminderSettings } from './reminderController.js';
@@ -584,6 +585,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     initTwilightChrome();
     initQuestIconLanguage();
     bindNavigation();
+    initFilterGestures();
     bindModals();
     bindDelegatedEvents();
     bindActivityTracking();
@@ -598,6 +600,11 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
       collectionFilter = btn.dataset.filter;
       renderCollectionView();
       refreshOnboarding();
+    });
+
+    document.getElementById('collection-series-select')?.addEventListener('change', (e) => {
+      collectionSeriesFilter = e.target.value || 'all';
+      renderCollectionView();
     });
 
     document.getElementById('collection-series-filters')?.addEventListener('click', (e) => {
@@ -6032,6 +6039,12 @@ function renderCollectionSeriesFilters() {
     { id: 'all', name: '全部系列' },
     ...seriesList.map((s) => ({ id: s.id, name: s.name })),
   ];
+
+  const picker = document.getElementById('collection-series-select');
+  if (picker) {
+    picker.innerHTML = buttons.map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`).join('');
+    picker.value = collectionSeriesFilter;
+  }
 
   bar.innerHTML = buttons.map((item) => {
     let label = item.name;
