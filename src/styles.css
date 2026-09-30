@@ -17927,3 +17927,28 @@ body.is-pet-image-viewer-open .onboarding-dock { visibility: hidden; }
 .expedition-specialty-help p { margin: 8px 0; color: var(--text-muted); }
 .expedition-specialty-help ul { display: grid; gap: 5px; margin: 8px 0 0; padding-left: 1.2rem; }
 .expedition-specialty-help li strong { margin-right: 5px; }
+
+/* Shared notification stack: rewards and achievements reserve their own height. */
+.toast-container > .reward-toast,
+.toast-container > .bond-unlock-toast {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  white-space: normal;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
+  transform: translateY(-12px);
+}
+.toast-container > .reward-toast.show,
+.toast-container > .bond-unlock-toast.show {
+  transform: translateY(0);
+}
+.toast-container > .toast {
+  box-sizing: border-box;
+  width: 100%;
+  flex: 0 0 auto;
+  overflow-wrap: anywhere;
+}
