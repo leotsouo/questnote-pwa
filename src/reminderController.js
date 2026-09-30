@@ -1,3 +1,4 @@
+import { trackUpdateActivity } from './updateActivity.js';
 import { getReminderState, reminderCapability, enableReminders, saveReminderSettings, disableReminders, syncReminders, testReminder, getReminderServerStatus } from './reminderService.js';
 import { zonedParts, shiftDate } from './reminderRules.js';
 
@@ -58,11 +59,11 @@ export function initReminders({ openToday }) {
   const form = $('reminder-form'); if (!form) return;
   form.addEventListener('change', renderPreview);
   const feedback = (message) => { $('reminder-result').textContent = message; };
-  const run = async (button, action, success) => {
+  const run = trackUpdateActivity(async (button, action, success) => {
     button.disabled = true;
     try { await action(); feedback(success); } catch (error) { feedback(error.message); }
     finally { button.disabled = false; await renderReminderSettings(); }
-  };
+  });
   $('reminder-enable').addEventListener('click', (event) => {
     if (!$('reminder-consent').checked) { feedback('請先勾選允許同步提醒所需的資料。'); return; }
     void run(event.currentTarget, () => enableReminders(settings()), '已啟用每日提醒。可發送測試通知確認手機收件。');

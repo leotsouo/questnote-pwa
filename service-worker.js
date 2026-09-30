@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f';
+const CACHE_NAME = 'questnote-production-app-fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "566f1da19e0228af993675ccebb0eb70ac14b89d38d452d08b252e30abab917f",
-  "sourceCommit": "aaf9b5488326fa9a62a349b76cf769b77489b890",
+  "artifactId": "fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017",
+  "sourceCommit": "f38c78e84b7084e3c499f4ae62750286aea730aa",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -81,14 +81,14 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32/catalog.json": "3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "6c04629b46d2cf662604d2e2ca8cf5379a0ac100a44c6d985820c33e2396bfb4",
+  "index.html": "ac3017f27a0b8e65f25ebf4d41a4b0c791bed6d576032bf68953ec907c9c5e8c",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "25eba10a95247380c424a59dd539b7c0e55b866992a2eb6404ac74d3fb4b0316",
   "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
-  "src/app.js": "7ab42490004bac0be0b4145cc172bb42beb009177c6dc8e913d3a2e5f0797156",
+  "src/app.js": "f6209bdf35a5d65d5619df66e44971180acbc7df5920ad4e93a4c53a3514521a",
   "src/backupSchema.js": "70448806c5b03d4cca512b9d856300ea9e3683301fd15a2b0aac201d0c0dd80e",
   "src/backupService.js": "e48da4ded47c5e6c984b8f09fcbe5b5f2deb7b8ecb2477c4d0169c11e2c7cfa1",
-  "src/bootstrap.js": "975974b344ff1f3e8100eed78a1fafa054b6b549c185dc03cd918dd31be6f08d",
+  "src/bootstrap.js": "4e204d38ee18c4e87068357d92eb229015114a80f6ea066e84caf63d8b73ec10",
   "src/campService.js": "fee6e4aeafbde7e3d356214099b50523d31089fb00e573c853810c32062a65b1",
   "src/categoryService.js": "8636cdb8453e0a383b813f99d117ead49911353bd6848de05d7f513c28713e32",
   "src/collectionMilestoneService.js": "2f9fe055d3facfb2ce5f6eee96ee0026eb41dab602f27a0eef104402dbe2db5f",
@@ -105,7 +105,7 @@ const PRECACHE_HASHES = {
   "src/expeditionStatusService.js": "6e45a6ec8e7b3bfa6018b431991b5540cc214e582e1113fe7636da2f95e141e9",
   "src/explorationService.js": "5ee9429d826df97d8bbe0b89fff95a9accc5aec23cd4d99f0105cb3bfaf0ab8f",
   "src/feedbackConfig.js": "77e9eda8efe76ad2ea3d1d216d10be01bb219c954c6c619e925d8e2aeafe49f7",
-  "src/feedbackController.js": "2d1d4956ba24a114bae0fffbe504ab83a55c58194dbf0a83dd3c0d5d774b757e",
+  "src/feedbackController.js": "e1ee611ffddad0146d65129f3bf7446ff27e90d949d087ce90a14496506547e3",
   "src/feedbackService.js": "f96898f3d97d6dc86157f65aae8e8f2b763f222b04bf778aab386276d8bb9310",
   "src/gachaService.js": "d631816bfcb980ecbe502cbecf867e0adf65871d00d6ef4e70adce22df9c9bf9",
   "src/gachaTransactionCore.js": "ac2b5db58e2cdec942bb28e0e7b8dae446282fd45518bdf6666fafdc6d579dde",
@@ -133,9 +133,9 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "fa0cb1d6c415b3c5812a5d769526050f3fe7fde36a3734d49e09cc622e5959ba",
   "src/questService.js": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "d441fc7557c93b01de759eed89e226894973e2ab43e73bef1e451e3b5abf92f2",
+  "src/releaseProfile.js": "585ff5da259a38512ff0c54688189e4f81b46183225edd69c8e6024fcdfe81c3",
   "src/reminder-settings.css": "4b5053346fb0bc697af1455fa4a6e763d450045094f94a6f952b0721a385bd4a",
-  "src/reminderController.js": "aa658c836712da69273cde043b6894bdc7e93c4556bdd1764a7953e1babd4b10",
+  "src/reminderController.js": "880a7961aa54811cce1de73db33a5b7c2ce57c2192109cb6cbd007e9400c8649",
   "src/reminderRules.js": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
   "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
   "src/rewardService.js": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
@@ -147,16 +147,19 @@ const PRECACHE_HASHES = {
   "src/taskMigration.js": "67055f714b759d43e1a333ce7d039619eca3537f5e83ce46ee76a0d4692f25b1",
   "src/taskService.js": "e12190eb4cf777b79e49d327547544be53af707e1237928b8d7c93c040ceca84",
   "src/taskStatsService.js": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
-  "src/theme-refinements.css": "b9b3e9f1ea0b69b3342347037cb539f0345caa4bd215f0a90a9650c80ca144df",
+  "src/theme-refinements.css": "c17ef676bdac003a6c40ae5c6fb5566a7d7eaae235e6c5b2b0e04093c9cb29e4",
   "src/theme-system.css": "72eb36f160c47b5ed950443083371bd68743272c3fe6d1e39dfd1e053a494348",
   "src/themedSummonController.js": "f2bcd1b922da8dee874ee5c2a678378f23841f44287b44b8d2b8f14014b3af6f",
   "src/themeRegistry.js": "e847adc2712293110685bea034d07c91b6e7e4a34964ea91dec92a3f01fdb7ca",
   "src/themeTokens.css": "20fdb5cdd3aee9835a770a4e039012c2684c5e321c7fa117414b7f1edffad3f0",
   "src/twilightPresentation.js": "68373c4d07a5a0dcd682c6bfac1cbd6888f5677e3b38004768a98bea077b8a54",
   "src/ui-polish.css": "d56b6c2dc56782a7833ee96c4573e7a4ffbc7b8580ab9e9e9d0bc08e1fe473f8",
-  "src/ui.js": "8d3c2a4f0ea0d2e66c81d1a433562ce825c876fb86445b27c08e68d3b81eaac4",
+  "src/ui.js": "94ecf71151ac2131d88b8f79b7fc0df575b5e0f4ce2a522aef2befc34d176004",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
-  "src/version.js": "4677a9a1028899a2616ded7c5e7b8461eda90c7863abc5ab65468235d447f910",
+  "src/updateActivity.js": "2cb4d2e9f5b4a77b0e92cd2793e577578914cdc4a5f4c2aee3410838a22526b5",
+  "src/updateController.js": "fcf45665a4ed9fa8dc8e14f719e65320ce2de90fe877cfa87245387cfafaa8e4",
+  "src/updateProtocol.js": "df73542b7899fb473b91f913bc890463331fbb0832db56289f783c33e9d588a0",
+  "src/version.js": "15f3ba31a4990f9bb837da011579fe73252eb7c465e733cf0d08e89b4c918eba",
   "src/workshopService.js": "9833bf353f6c13072f1c3995e2770408533be4e8ed19ea0d1e481740fb7e2e69"
 };
 
@@ -268,6 +271,9 @@ const PRECACHE_URLS = [
   "src/ui-polish.css",
   "src/ui.js",
   "src/uiHelpers.js",
+  "src/updateActivity.js",
+  "src/updateController.js",
+  "src/updateProtocol.js",
   "src/version.js",
   "src/workshopService.js"
 ];
@@ -464,7 +470,44 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Deliberately ignore legacy SKIP_WAITING messages from older open tabs.
+// Legacy SKIP_WAITING stays ignored. Only a deliberate, single-window update
+// can activate a fully installed generation; other windows keep their edits.
+self.addEventListener('message', (event) => {
+  if (!['QUESTNOTE_UPDATE_INFO', 'QUESTNOTE_APPLY_UPDATE'].includes(event.data?.type)) return;
+  event.waitUntil((async () => {
+    const reply = (data) => event.ports?.[0]?.postMessage(data);
+    const scope = self.registration.scope;
+    if (!event.source?.id || !event.source.url?.startsWith(scope) || !BUILD_PROFILE) {
+      reply({ status: 'unavailable' }); return;
+    }
+    if (event.data.type === 'QUESTNOTE_UPDATE_INFO') {
+      reply({ artifactId: BUILD_PROFILE.artifactId, scopePath: BUILD_PROFILE.scopePath }); return;
+    }
+    if (event.data.artifactId !== BUILD_PROFILE.artifactId
+      || !self.registration.waiting || self.registration.waiting.scriptURL !== self.location.href) {
+      reply({ status: 'unavailable' }); return;
+    }
+    // Eviction may happen after install. Do not switch to an incomplete shell.
+    const cache = await caches.open(CACHE_NAME);
+    const complete = await Promise.all(PRECACHE_URLS.map(async (path) => {
+      const response = await cache.match(resolveUrl(path));
+      if (!response?.ok) return false;
+      if (!PRECACHE_HASHES) return true;
+      const digest = await crypto.subtle.digest('SHA-256', await response.arrayBuffer());
+      const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+      return hash === PRECACHE_HASHES[path];
+    }));
+    if (complete.some((ok) => !ok)) { reply({ status: 'unavailable' }); return; }
+    // includeUncontrolled is needed because a waiting worker has no clients yet.
+    const windows = (await self.clients.matchAll({ type: 'window', includeUncontrolled: true }))
+      .filter((client) => client.url.startsWith(scope));
+    if (windows.length !== 1 || windows[0].id !== event.source.id) {
+      reply({ status: 'other-clients' }); return;
+    }
+    reply({ status: 'accepted' });
+    await self.skipWaiting();
+  })().catch(() => event.ports?.[0]?.postMessage({ status: 'unavailable' })));
+});
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
