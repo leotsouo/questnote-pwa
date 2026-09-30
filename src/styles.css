@@ -164,9 +164,9 @@ html {
 }
 
 @media (pointer: coarse) {
-  /* Include nested scroll containers; keep specific custom gesture rules. */
+  /* Allow both scroll axes without enabling pinch zoom; descendants intersect ancestor rules. */
   :where(html, body, body *) {
-    touch-action: pan-y;
+    touch-action: pan-x pan-y;
   }
 
   /* Prevent iPhone focus zoom on small form text, including modal fields. */
@@ -18085,3 +18085,6 @@ body[data-theme] #app #view-workshop .workshop-gift-pet__info { gap: var(--space
 body[data-theme] #app #view-workshop :is(.workshop-gift-item__name, .workshop-gift-item__effect, .workshop-gift-preview > p) { overflow-wrap: anywhere; }
 body[data-theme] #app #view-workshop .workshop-gift-preview > p { margin: 0 0 var(--space-3); font-weight: 600; }
 body[data-theme] #app #view-workshop .workshop-gift-preview__levelup { color: var(--color-accent); font-weight: 600; }
+/* Keep horizontal filter gestures within their own scroll row. */
+.filter-bar { overscroll-behavior-x: contain; user-select: none; cursor: grab; }
+.filter-bar.is-dragging, .filter-bar.is-dragging .filter-btn { cursor: grabbing; }

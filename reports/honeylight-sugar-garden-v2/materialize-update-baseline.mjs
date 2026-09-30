@@ -1,0 +1,34 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { verifyReleaseArtifact } from '../../scripts/verify-release-artifact.mjs';
+const projectRoot = path.resolve(import.meta.dirname, '../..');
+const root = 'C:/Users/User/.codex/visualizations/2026/09/22/01a0ca22-627f-7f11-898a-8e5d89734c1d/honeylight-release/baseline-v3432';
+const commit = '505da31a7a97084c9a2b6e2b94842e2a3f1bef97';
+const git = (args, options = {}) => execFileSync('git', args, { cwd: projectRoot, maxBuffer: 512 * 1024 * 1024, ...options });
+const manifestBytes = git(['show', commit + ':release-artifact.json']);
+const manifest = JSON.parse(manifestBytes);
+const manifestSha256 = createHash('sha256').update(manifestBytes).digest('hex');
+assert.equal(manifestSha256, 'b7d1d28a9e0cc287cdae31bf6b6752e25d8b61fd98aef5aae540a0156a0d2c4f');
+await fs.mkdir(root);
+const names = Object.keys(manifest.files).sort().concat('release-artifact.json');
+const output = git(['cat-file', '--batch'], { input: names.map((name) => commit + ':' + name).join('\n') + '\n' });
+let offset = 0;
+for (const name of names) {
+  const end = output.indexOf(10, offset);
+  const header = output.subarray(offset, end).toString();
+  assert.match(header, /^[a-f0-9]+ blob \d+$/);
+  const size = Number(header.split(' ')[2]);
+  const bytes = output.subarray(end + 1, end + 1 + size);
+  const destination = path.resolve(root, name);
+  assert(destination.startsWith(path.resolve(root) + path.sep));
+  await fs.mkdir(path.dirname(destination), { recursive: true });
+  await fs.writeFile(destination, bytes, { flag: 'wx' });
+  offset = end + 1 + size + 1;
+}
+assert.equal(offset, output.length);
+const verification = await verifyReleaseArtifact({ artifactDir: root, artifactId: manifest.artifactId, manifestSha256, profile: 'production', scopePath: '/questnote-pwa/' });
+await fs.writeFile(path.join(import.meta.dirname, 'update-baseline.json'), JSON.stringify({ commit, root, verification }, null, 2) + '\n');
+console.log(JSON.stringify(verification));

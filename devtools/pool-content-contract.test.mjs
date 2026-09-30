@@ -33,7 +33,7 @@ function expectCode(catalog, pets, code, options = {}) {
 test('legacy golden economics and locked/unlocked candidates are unchanged', () => {
   const result = validatePoolContent(official, { pets: officialPets });
   assert.equal(result.ok, true, JSON.stringify(result.errors));
-  assert.deepEqual(result.previews, [
+  assert.deepEqual(result.previews.filter((preview) => ['standard', 'eternal_slumber_bloom'].includes(preview.poolId)), [
     { poolId: 'standard', locked: 56, unlocked: 56 },
     { poolId: 'eternal_slumber_bloom', locked: 12, unlocked: 16 },
   ]);
