@@ -85,7 +85,7 @@ normal, DNT and GPC contexts, including the successful 204 ingestion response.
 ## Source and deployment
 
 - Repository: [leotsouo/questnote-pwa](https://github.com/leotsouo/questnote-pwa).
-  [Draft PR #20](https://github.com/leotsouo/questnote-pwa/pull/20) holds the
+  [PR #20, ready for review](https://github.com/leotsouo/questnote-pwa/pull/20) holds the
   independent website, assets, docs, workflow and review evidence.
 - Final runtime / deployment source: `f251853f7be061548222ee59f3125d16e49945e9`.
   A subsequent evidence commit can add receipts without changing the artifact.
