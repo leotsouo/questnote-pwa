@@ -9,7 +9,7 @@ export const CACHE_NAME = 'questnote-preview-cache-v351-bond-journey';
 export const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 export const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */
-export const BUILD_TIME = '2026-09-30T22:01:15.289Z';
+export const BUILD_TIME = '2026-09-30T22:46:00.000Z';
 
 export function formatDisplayVersion() {
   return `V${APP_VERSION}`;
