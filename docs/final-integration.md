@@ -1,3 +1,7 @@
+## 2026-10-01 — V3.4.37 字體大小與放大排版修正已發布
+
+[PR #23](https://github.com/leotsouo/questnote-pwa/pull/23) 已合併。正式 Pages commit `a5e563b`、[run 36780180601](https://github.com/leotsouo/questnote-pwa/actions/runs/36780180601) 成功；413 個部署檔案、223 個回歸案例、12 項原生產物瀏覽器測試與 20 個正式 HTTPS 雜湊通過。保留最新工坊功能、Honeylight 動畫、96 位角色／4 卡池與信箱。既有瀏覽器偵測到 verified waiting 更新，但另一個開啟視窗阻擋套用；未清除存檔。詳見 [正式發布收據](../reports/font-size-audit/production-release.md)。
+
 ## 2026-10-01 — V3.4.35 工坊主題禮物與字體已發布
 
 [PR #19](https://github.com/leotsouo/questnote-pwa/pull/19) 經 CI 合併於 `a66ecfe`。Pages `77d30b8`、[run 36773772651](https://github.com/leotsouo/questnote-pwa/actions/runs/36773772651) 成功；407 個 Git blob、12 項原生 artifact 瀏覽器測試與 15 個正式 HTTPS 雜湊全部通過。保留正式 84 位角色／3 卡池、信箱、DB 與 scope，本次未發布 Honeylight 卡池。既有正式瀏覽器可偵測 verified waiting 更新，但另一個開啟視窗阻擋套用；未清除存檔。詳見 [發布收據](../reports/workshop-typography/production-release.md)。

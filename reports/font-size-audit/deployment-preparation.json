@@ -1,0 +1,17 @@
+{
+  "preparedAt": "2026-09-30T21:32:09.554Z",
+  "branch": "codex/font-production-v3437",
+  "deploymentRoot": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\font-production-v3437",
+  "deploymentCommit": "a5e563b03d80f1bb3eadad2631871eb3c9807b52",
+  "parentCommit": "9e815676db8ff3e203391894090a52b1d5090129",
+  "artifactId": "a63513a696737209d41aa8ec6a1d7f1c1540b390b7e893beaa9c0b19f2a6c1f5",
+  "manifestSha256": "99ed4e59d944563a479fb9fde0d945b11fee1befb8fb7ab2f93aa2fa037be0a1",
+  "stagedFileCount": 413,
+  "committedFileCount": 413,
+  "everyGitBlobMatchesReviewedArtifact": true,
+  "removedSupersededArtifactFiles": [],
+  "productionPushed": false,
+  "productionApproval": "PENDING_USER_FINAL_GO_AHEAD",
+  "finalActionAfterApproval": "Recheck origin/gh-pages and current HTTPS baseline, then fast-forward push the prepared commit to gh-pages; verify Pages build and HTTPS artifact bytes.",
+  "withdrawal": "Keep all published 96 pet identities, Lore and assets. Disable this new pool in a reviewed forward release if necessary; do not restore the 84-pet catalog or reset player saves."
+}
