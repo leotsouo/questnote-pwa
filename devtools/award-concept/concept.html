@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#141d29">
+  <title>QuestNote · 暮光冒險手帳</title>
+  <link rel="icon" href="../../assets/icons/icon-192.png">
+  <link rel="stylesheet" href="concept.css">
+</head>
+<body>
+  <div class="study-app" id="study-app">
+    <main id="home">
+      <section class="night" aria-label="今日的冒險與陪伴">
+        <header class="masthead">
+          <a class="wordmark" href="index.html" target="_top" aria-label="QuestNote，開啟設計比較">
+            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 25V8c4-1 7 0 10 3 3-3 6-4 10-3v17c-4-1-7 0-10 3-3-3-6-4-10-3Z"/><path d="M16 11v17M12 4l1-3 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z"/></svg>
+            <span>QuestNote<span class="wordmark-dot">.</span></span>
+          </a>
+          <button class="icon-button" type="button" data-panel="mailbox" aria-label="開啟信箱"><span data-icon="mail"></span><i class="notification-dot" hidden></i></button>
+        </header>
+        <div class="scene">
+          <img class="companion-art" id="companion-art" alt="" fetchpriority="high">
+          <div class="scene-shade" aria-hidden="true"></div>
+          <div class="greeting">
+            <p class="eyebrow" id="date-label"></p>
+            <h1>今天，也<br>一起前進<span class="headline-dot">。</span></h1>
+            <p class="greeting-note">每一件小事，都有人陪你完成。</p>
+          </div>
+          <button class="companion-touch" id="companion-touch" aria-label="和陪伴夥伴互動" type="button">
+            <span class="touch-orbit" aria-hidden="true"></span><span class="touch-hint">輕觸，打個招呼 <span aria-hidden="true">↗</span></span>
+          </button>
+          <div class="companion-caption">
+            <p class="eyebrow companion-label">今日同行 <span aria-hidden="true">—</span></p>
+            <button class="pet-name-button" type="button" data-panel="companion"><strong id="pet-name"></strong><span class="rarity" id="pet-rarity"></span><span data-icon="arrow"></span></button>
+            <p class="pet-title" id="pet-title"></p>
+          </div>
+        </div>
+        <div class="companion-voice"><span class="voice-mark" aria-hidden="true">“</span><p id="companion-line"></p></div>
+        <div class="journey">
+          <div class="journey-heading"><span>今日旅程</span><strong><span id="journey-done">0</span><span class="journey-divider"> / </span><span id="journey-total">0</span><small> 件完成</small></strong></div>
+          <div class="journey-track" id="journey-track" role="progressbar" aria-label="今日任務進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="journey-fill"></span><i class="journey-star" aria-hidden="true">✦</i></div>
+          <div class="bond-line"><span><span data-icon="heart"></span> 親密度 <b id="bond-level">Lv.1</b></span><span id="bond-progress"></span></div>
+        </div>
+      </section>
+      <section class="notebook" aria-labelledby="quest-heading">
+        <div class="notebook-tab" aria-hidden="true"></div>
+        <div class="quest-section-heading"><div><p class="eyebrow paper-eyebrow">YOUR DAILY CHAPTER</p><h2 id="quest-heading">今日任務<span id="pending-count"></span></h2></div><button class="add-quest" type="button" id="add-quest" aria-label="新增任務"><span data-icon="plus"></span></button></div>
+        <div class="task-tabs" role="tablist" aria-label="任務視圖"><button type="button" role="tab" aria-selected="true" data-filter="today">今日</button><button type="button" role="tab" aria-selected="false" data-filter="all">全部</button><button type="button" role="tab" aria-selected="false" data-filter="smart">智慧</button></div>
+        <div id="quest-list" class="quest-list" role="tabpanel" aria-label="任務清單"></div>
+        <details class="completed-quests" id="completed-quests"><summary><span data-icon="check"></span><span id="completed-label">今日已完成</span><span data-icon="chevron"></span></summary><div id="completed-list"></div></details>
+        <div class="supplies" aria-label="冒險資源"><div><span class="resource-symbol" aria-hidden="true">✦</span><span><span class="resource-label">星塵</span><strong id="stardust">0</strong></span></div><span class="supply-rule" aria-hidden="true"></span><div><span data-icon="energy"></span><span><span class="resource-label">冒險能量</span><strong id="energy">0</strong></span></div><button type="button" data-panel="gacha" aria-label="查看召喚資源"><span id="pulls-label"></span><span data-icon="arrow"></span></button></div>
+        <div class="home-shortcuts"><button type="button" data-panel="blessing"><span data-icon="sun"></span><span>每日祝福</span><span data-icon="arrow"></span></button><button type="button" data-panel="quests"><span data-icon="map"></span><span>冒險任務</span><span data-icon="arrow"></span></button></div>
+        <p class="chapter-footer"><span aria-hidden="true">✦</span> 每一個小小的進步，都有人陪你見證。</p>
+        <p class="prototype-note">視覺實驗 · 操作只在本次預覽生效</p>
+      </section>
+    </main>
+    <nav class="bottom-nav" aria-label="主選單"><button type="button" class="is-active" data-nav="tasks" aria-current="page"><span data-icon="book"></span><span>任務</span></button><button type="button" data-panel="gacha"><span data-icon="spark"></span><span>召喚</span></button><button type="button" data-panel="collection"><span data-icon="cards"></span><span>圖鑑</span></button><button type="button" data-panel="expedition"><span data-icon="compass"></span><span>探險</span></button><button type="button" data-panel="more"><span data-icon="more"></span><span>更多</span></button></nav>
+    <div class="reward-feedback" id="reward-feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+    <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-handle" aria-hidden="true"></div><header><h2 id="dialog-title"></h2><button type="button" class="dialog-close" id="dialog-close" aria-label="關閉"><span data-icon="close"></span></button></header><div id="dialog-content"></div></dialog>
+    <dialog id="task-dialog" class="detail-dialog" aria-labelledby="task-dialog-title"><div class="dialog-handle" aria-hidden="true"></div><header><h2 id="task-dialog-title">新的小冒險</h2><button type="button" class="dialog-close" id="task-dialog-close" aria-label="關閉新增任務"><span data-icon="close"></span></button></header><form id="task-form"><label for="task-title">今天想完成什麼？</label><textarea id="task-title" name="title" rows="3" required maxlength="500" placeholder="寫下一件真正想做的事"></textarea><fieldset><legend>重要程度</legend><label><input type="radio" name="priority" value="normal" checked> 普通</label><label><input type="radio" name="priority" value="important"> 重要</label><label><input type="radio" name="priority" value="urgent"> 緊急</label></fieldset><p class="form-hint">加入今日計畫 · 僅保留在本次預覽</p><button type="submit" class="primary-button">加入今日任務 <span data-icon="arrow"></span></button></form></dialog>
+  </div>
+  <script type="module" src="concept.js"></script>
+</body>
+</html>
