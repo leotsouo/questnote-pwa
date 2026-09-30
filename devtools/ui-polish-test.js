@@ -634,6 +634,9 @@ async function checkWorlds() {
       }
       await navigate('tasks');
       const home = doc().querySelector('#twilight-home');
+      const sheet = doc().querySelector('#twilight-chapter-heading');
+      const sheetRadius = parseFloat(css(sheet).borderTopLeftRadius);
+      check(value + ' ' + size.width + ' · 深色背景完整承接任務區圓角', rect(home).bottom - rect(sheet).top >= sheetRadius - 0.5 && parseFloat(css(home).paddingBottom) >= sheetRadius);
       const title = doc().querySelector('.task-card__title');
       const toggle = doc().querySelector('.task-check');
       const navTop = rect(doc().querySelector('.bottom-nav')).top;
