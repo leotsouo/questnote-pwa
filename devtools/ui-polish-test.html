@@ -12,14 +12,15 @@
   button { cursor: pointer; } button:disabled { opacity: .45; cursor: default; }
   .controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
   .workspace { display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
-  iframe { box-sizing: content-box; width: 390px; height: 844px; border: 1px solid #94a3b8; background: #080b16; }
+  iframe { box-sizing: content-box; width: 393px; height: 852px; border: 1px solid #94a3b8; background: #080b16; }
   pre { white-space: pre-wrap; overflow-wrap: anywhere; flex: 1; min-width: 300px; max-width: 780px; margin: 0; }
 </style>
-<h1>UI polish · 390 × 844</h1>
+<h1>QuestNote · 393 × 852 / 320 × 693</h1>
 <p>專用 localhost 新 origin，只建立合成測試資料，不刪除既存資料。必須以 <code>node devtools/ui-polish-server.mjs</code> 啟動。每次重啟伺服器請使用新的 port；同一伺服器、同一分頁可重跑。</p>
 <p>先初始化，再選 VP 檢查。檢查使用真實 app、服務 API、DOM 與 computed styles；Tab 檢查只驗證邊界事件處理，實際鍵盤循環、触控、safe-area、視覺品質仍須人工確認。VP-03 不在範圍內。</p>
-<div class="controls"><button id="initialize">安全檢查並初始化測試資料</button><button id="reload" disabled>重新載入 App</button><select id="theme" disabled aria-label="主題"><option value="default">Default</option><option value="sweet">Sweet</option><option value="twilight">暮光冒險手帳</option></select></div>
-<div class="controls"><button data-view="tasks" disabled>任務</button><button data-view="collection" disabled>圖鑑</button><button data-view="settings" disabled>設定</button><select id="group" aria-label="檢查組"><option>VP-01</option><option>VP-02</option><option>VP-04</option><option>VP-05</option><option>TW · 三種風格</option></select><button id="run" disabled>執行目前檢查</button></div>
-<div class="workspace"><iframe id="preview" title="QuestNote 390 × 844 測試畫面" src="about:blank"></iframe><pre id="results" aria-live="polite">尚未初始化；不會在安全檢查前開啟 App 或匯入資料服務。</pre></div>
+<div class="controls"><button id="initialize">安全檢查並初始化測試資料</button><button id="reload" disabled>重新載入 App</button><select id="theme" disabled aria-label="主題"><option value="default">星夜遠行</option><option value="sweet">晨光花園</option><option value="twilight">暮光冒險手帳</option></select></div>
+<div class="controls"><button id="gray-companion" disabled>使用灰影幼狼比較</button><button data-view="tasks" disabled>任務</button><button data-view="collection" disabled>圖鑑</button><button data-view="gacha" disabled>召喚</button><button data-view="expedition" disabled>探險</button><button data-view="settings" disabled>設定</button><select id="group" aria-label="檢查組"><option>WORLDS · 完整三套驗證</option><option>VP-01</option><option>VP-02</option><option>VP-04</option><option>VP-05</option><option>TW · 三種風格</option></select><button id="run" disabled>執行目前檢查</button></div>
+<div class="workspace"><iframe id="preview" title="QuestNote 手機測試畫面" src="about:blank"></iframe><pre id="results" aria-live="polite">尚未初始化；不會在安全檢查前開啟 App 或匯入資料服務。</pre></div>
+<label>手機尺寸 <select id="size"><option value="393">393 × 852</option><option value="320">320 × 693</option></select></label>
 <script type="module" src="./ui-polish-test.js"></script>
 </html>

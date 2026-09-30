@@ -14,16 +14,18 @@
   <meta property="og:title" content="QuestNote" />
   <meta property="og:description" content="記錄任務、養成習慣，和幻獸一起冒險。" />
   <meta property="og:url" content="https://leotsouo.github.io/questnote-pwa/" />
-  <meta property="og:image" content="https://leotsouo.github.io/questnote-pwa/assets/icons/icon-512.png" />
+  <meta property="og:image" content="https://leotsouo.github.io/questnote-pwa/assets/brand/questnote-icon-512.png" />
   <meta property="og:image:alt" content="QuestNote App 圖示" />
   <meta name="twitter:card" content="summary" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" href="assets/icons/icon-192.png" />
-  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="icon" href="assets/brand/questnote-icon-32.png" />
+  <link rel="apple-touch-icon" href="assets/brand/questnote-icon-180.png" />
   <link rel="stylesheet" href="src/styles.css" />
   <link rel="stylesheet" href="src/ui-polish.css" />
   <link rel="stylesheet" href="src/summon-polish.css" />
-  <link rel="stylesheet" href="src/twilight-theme.css" />
+  <link rel="stylesheet" href="src/themeTokens.css" />
+  <link rel="stylesheet" href="src/theme-system.css" />
+  <link rel="stylesheet" href="src/theme-refinements.css" />
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -321,7 +323,7 @@
           <span class="more-menu-arrow" aria-hidden="true">›</span>
         </button>
         <button class="more-menu-item" data-goto="guide" type="button">
-          <span class="more-menu-icon more-menu-icon--image"><img src="assets/icons/icon-192.png" alt="" width="28" height="28"></span>
+          <span class="more-menu-icon more-menu-icon--image"><img src="assets/brand/questnote-icon-192.png" alt="" width="28" height="28"></span>
           <span class="more-menu-text">
             <span class="more-menu-label">使用教學</span>
             <span class="more-menu-desc">重看入門流程與其他功能</span>
@@ -594,37 +596,19 @@
         </p>
         <div class="theme-picker" role="radiogroup" aria-label="美術風格">
           <button type="button" class="theme-card" data-action="select-theme" data-theme="default" role="radio" aria-checked="false">
-            <div class="theme-card__header">
-              <span class="theme-card__title">深色幻想風</span>
-              <span class="theme-card__badge" data-theme-badge="default" hidden>使用中</span>
-            </div>
-            <p class="theme-card__desc">目前預設風格，適合任務、冒險與幻獸收藏。</p>
-            <div class="theme-card__preview" aria-hidden="true">
-              <div class="theme-card__preview-frame theme-card__preview-frame--default">
-                <span class="theme-card__preview-btn theme-card__preview-btn--default"></span>
-                <span class="theme-card__swatch theme-card__swatch--accent-default"></span>
-              </div>
-              <span class="theme-card__swatch theme-card__swatch--primary-default"></span>
-            </div>
+            <img class="qn-theme-preview" src="./assets/scenes/night-graywolf.webp" alt="" loading="lazy" width="354" height="135">
+            <div class="theme-card__header"><span class="theme-card__title">星夜遠行</span><span class="theme-card__badge" data-theme-badge="default" hidden>✓ 使用中</span></div>
+            <p class="theme-card__desc">原深色幻想風 · 星夜營地、清晰星光與沉穩探索。</p>
           </button>
           <button type="button" class="theme-card" data-action="select-theme" data-theme="sweet" role="radio" aria-checked="false">
-            <div class="theme-card__header">
-              <span class="theme-card__title">甜美可愛風</span>
-              <span class="theme-card__badge" data-theme-badge="sweet" hidden>使用中</span>
-            </div>
-            <p class="theme-card__desc">柔和粉彩、明亮可愛，適合喜歡輕鬆療癒感的介面。</p>
-            <div class="theme-card__preview" aria-hidden="true">
-              <div class="theme-card__preview-frame theme-card__preview-frame--sweet">
-                <span class="theme-card__preview-btn theme-card__preview-btn--sweet"></span>
-                <span class="theme-card__swatch theme-card__swatch--accent-sweet"></span>
-              </div>
-              <span class="theme-card__swatch theme-card__swatch--primary-sweet"></span>
-            </div>
+            <img class="qn-theme-preview" src="./assets/scenes/garden-graywolf.webp" alt="" loading="lazy" width="354" height="135">
+            <div class="theme-card__header"><span class="theme-card__title">晨光花園</span><span class="theme-card__badge" data-theme-badge="sweet" hidden>✓ 使用中</span></div>
+            <p class="theme-card__desc">原甜美可愛風 · 晨光花園、柔和色彩與日常照顧。</p>
           </button>
           <button type="button" class="theme-card" data-action="select-theme" data-theme="twilight" role="radio" aria-checked="false">
-            <div class="theme-card__header"><span class="theme-card__title">暮光冒險手帳</span><span class="theme-card__badge" data-theme-badge="twilight" hidden>使用中</span></div>
+            <img class="qn-theme-preview" src="./assets/scenes/twilight-graywolf.webp" alt="" loading="lazy" width="354" height="135">
+            <div class="theme-card__header"><span class="theme-card__title">暮光冒險手帳</span><span class="theme-card__badge" data-theme-badge="twilight" hidden>✓ 使用中</span></div>
             <p class="theme-card__desc">森林暮色、溫暖紙頁與同行夥伴，把日常寫成共同成長的旅程。</p>
-            <div class="theme-card__preview" aria-hidden="true"><div class="theme-card__preview-frame theme-card__preview-frame--twilight"><span class="theme-card__preview-btn theme-card__preview-btn--twilight"></span><span class="theme-card__swatch theme-card__swatch--accent-twilight"></span></div><span class="theme-card__swatch theme-card__swatch--primary-twilight"></span></div>
           </button>
         </div>
       </section>

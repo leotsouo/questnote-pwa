@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3425-twilight-theme';
+const CACHE_NAME = 'questnote-preview-cache-v3426-three-worlds';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -21,7 +21,19 @@ const PRECACHE_URLS = [
   'src/styles.css',
   'src/ui-polish.css',
   'src/summon-polish.css',
-  'src/twilight-theme.css',
+  'src/themeTokens.css',
+  'src/theme-system.css',
+  'src/theme-refinements.css',
+  'src/questIcons.js',
+  'src/iconPresentation.js',
+  'assets/scenes/night-graywolf.webp',
+  'assets/scenes/garden-graywolf.webp',
+  'assets/scenes/twilight-graywolf.webp',
+  'assets/brand/questnote-icon-32.png',
+  'assets/brand/questnote-icon-180.png',
+  'assets/brand/questnote-icon-192.png',
+  'assets/brand/questnote-icon-512.png',
+  'assets/brand/questnote-icon-maskable-512.png',
   'src/twilightPresentation.js',
   'src/themeRegistry.js',
   'src/dialogFocus.js',

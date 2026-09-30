@@ -1,0 +1,7 @@
+PASS · ArrowDown 從暮光繞回星夜，實際 radio 鍵盤操作
+PASS · End 選擇暮光，aria-checked=true、tabIndex=0、焦點保留在所選項
+PASS · 並排預覽三個真實 App 首頁載入，同一初始灰狼／9收藏／0星塵／0能量
+PASS · CURRENT 3 張原版 JPEG 解碼且可見
+PASS · 其他頁面沒有 Before 時停用 CURRENT，自動顯示 UPGRADED
+PASS · 圖鑑／召喚／探險／設定／首頁比較導覽可切換
+PASS · 同步按鈕重新載入三套並保留各自世界，不寫入偏好

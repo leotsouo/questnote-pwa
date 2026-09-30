@@ -131,6 +131,16 @@ function check(name, passed, details = '') {
   return passed;
 }
 
+document.getElementById('gray-companion').addEventListener('click', () => action(async () => {
+  await guard();
+  const { addPetToCollection, getPetCollection, setCompanion } = await import('../src/collectionService.js');
+  if (!(await getPetCollection('pet_n01'))) await addPetToCollection('pet_n01');
+  await setCompanion('pet_n01');
+  await loadApp();
+  await navigate('tasks');
+  log('READY · 同一組隔離資料使用真實灰影幼狼素材。');
+}));
+
 function colorValues(value) { return value.match(/[\d.]+/g)?.slice(0, 3).map(Number) || [0, 0, 0]; }
 function luminance(value) {
   const channels = colorValues(value).map((part) => part / 255).map((part) => part <= .04045 ? part / 12.92 : ((part + .055) / 1.055) ** 2.4);
@@ -145,11 +155,7 @@ async function vp01(value) {
   await navigate('tasks');
   const card = [...doc().querySelectorAll('.task-card')].find((element) => element.textContent.includes(urgentTitle));
   check('單行任務不重複標題', !!card && !card.querySelector('.task-card__preview'));
-  const border = card ? parseFloat(css(card).borderLeftWidth) : 0;
-  const borderColor = card ? css(card).borderLeftColor : '';
-  // A 3px CSS border can rasterize to 3 physical pixels (2.4 CSS px at DPR 1.25).
-  check('緊急任務 priority border 至少 3 實體像素', border * win().devicePixelRatio >= 2.99
-    && !['transparent', 'rgba(0, 0, 0, 0)'].includes(borderColor), `${border}px; DPR ${win().devicePixelRatio}; ${borderColor}`);
+  check('緊急程度具有可讀文字，不只靠顏色', card?.querySelector('.twilight-task-priority')?.textContent === '緊急');
   const empty = session.empty[value];
   check('首次圖鑑空狀態全欄', !!empty && empty.width >= empty.gridWidth - 2 && empty.width > 300, JSON.stringify(empty));
   await navigate('settings');
@@ -189,12 +195,12 @@ async function checkTaskViewport(label = '') {
   await navigate('tasks');
   const card = doc().querySelector('.task-card:not(.task-card--done)');
   const title = card?.querySelector('.task-card__title');
-  const complete = card?.querySelector('.task-card__complete-btn');
+  const complete = card?.querySelector('.task-check');
   const nav = doc().querySelector('.bottom-nav');
-  const limit = Math.min(844, rect(nav).top);
+  const limit = Math.min(win().innerHeight, rect(nav).top);
   check(`${label}首個今日任務標題在 nav 上方`, visible(title) && rect(title).top >= 0 && rect(title).bottom <= limit, title ? `bottom=${rect(title).bottom.toFixed(1)}; limit=${limit.toFixed(1)}` : 'missing');
   check(`${label}首個完成操作在 nav 上方`, visible(complete) && rect(complete).top >= 0 && rect(complete).bottom <= limit, complete ? `bottom=${rect(complete).bottom.toFixed(1)}` : 'missing');
-  check(`${label}390 viewport 無橫溢`, doc().documentElement.scrollWidth <= 390, `scrollWidth=${doc().documentElement.scrollWidth}`);
+  check(`${label}手機 viewport 無橫溢`, doc().documentElement.scrollWidth <= win().innerWidth, `scrollWidth=${doc().documentElement.scrollWidth}`);
 }
 
 async function until(predicate, description) {
@@ -229,6 +235,7 @@ async function vp02(value) {
   const multiline = tasks.find((task) => task.title === 'UI 測試：整理冒險手帳');
   if (!urgent || !multiline) throw new Error('Original task fixtures missing; no replacement fixtures will be created by checks.');
 
+  taskCard(multiline.id).querySelector('summary').click();
   taskCard(multiline.id).querySelector('[data-action="edit"]').click();
   await settle();
   check('編輯按鈕開啟原內容', doc().querySelector('#modal-overlay').classList.contains('open')
@@ -274,6 +281,7 @@ async function vp02(value) {
   // Exercise actual DOM completion / undo twice; retain reward flags and history, never refund or reset rewards.
   if (urgent.completed) throw new Error('Urgent fixture is already completed. Checks will not silently undo a changed starting state.');
   const walletBefore = await rewards.getWallet();
+  const bondBeforeFirst = (await collection.getCompanionPet()).bondExp;
   let walletAfterFirst;
   const clickCompletion = async (completed) => {
     const card = taskCard(urgent.id);
@@ -281,8 +289,7 @@ async function vp02(value) {
       card.closest('.completed-section').querySelector('[data-action="toggle-completed-section"]').click();
       await settle();
     }
-    const button = completed ? taskCard(urgent.id)?.querySelector('.task-card__complete-btn')
-      : taskCard(urgent.id)?.querySelector('.task-check');
+    const button = taskCard(urgent.id)?.querySelector('.task-check');
     if (!visible(button)) throw new Error(`Task ${completed ? 'complete' : 'undo'} button is not visible.`);
     button.click();
     await until(async () => (await taskService.getTaskById(urgent.id)).completed === completed
@@ -298,9 +305,11 @@ async function vp02(value) {
     check('首次完成只發放應得獎勵', walletAfterFirst.stardust - walletBefore.stardust === expectedDust
       && walletAfterFirst.adventureEnergy - walletBefore.adventureEnergy === expectedEnergy,
     `stardust +${walletAfterFirst.stardust - walletBefore.stardust}; energy +${walletAfterFirst.adventureEnergy - walletBefore.adventureEnergy}; alreadyClaimed=${urgent.rewardClaimed}`);
+    check('首次完成親密度沿用原有獎勵規則', (await collection.getCompanionPet()).bondExp - bondBeforeFirst === (urgent.rewardClaimed ? 0 : 20));
     await clickCompletion(false);
     check('可由勾選按鈕取消完成', !(await taskService.getTaskById(urgent.id)).completed
-      && visible(taskCard(urgent.id).querySelector('.task-card__complete-btn')));
+      && visible(taskCard(urgent.id).querySelector('.task-check')));
+    check('取消完成後誠實顯示獎勵已領取', taskCard(urgent.id).textContent.includes('獎勵已領取'));
     const bondBeforeRepeat = (await collection.getCompanionPet()).bondExp;
     await clickCompletion(true);
     const walletAfterRepeat = await rewards.getWallet();
@@ -316,12 +325,12 @@ async function vp02(value) {
   const semantics = JSON.stringify({
     tabs: [...doc().querySelectorAll('#task-view-tabs button')].map((button) => [button.dataset.taskView, button.getAttribute('role'), button.textContent.trim()]),
     actions: [...taskCard(urgent.id).querySelectorAll('[data-action]')].map((button) => [button.dataset.action, button.getAttribute('aria-label'), button.textContent.trim()]),
-    formOpener: doc().querySelector('#btn-add-task').getAttribute('aria-label'),
+    formOpener: doc().querySelector('.twilight-add-task').getAttribute('aria-label'),
   });
   if (value === 'default') taskSemanticsBaseline = semantics;
   else {
     const equal = taskSemanticsBaseline === semantics;
-    check('Sweet 與 default 使用相同任務 interaction semantics', equal);
+    check(value + ' 與 default 使用相同任務 interaction semantics', equal);
     if (!equal) {
       log(`Default semantics: ${taskSemanticsBaseline ?? '(missing baseline)'}`);
       log(`Sweet semantics: ${semantics}`);
@@ -335,8 +344,9 @@ async function vp04() {
   await settle();
   const cards = [...doc().querySelectorAll('.collection-card:not(.collection-card--locked)')];
   const sizes = cards.map((card) => card.querySelector('.collection-card__image img')).filter(Boolean).map((element) => rect(element).width);
-  check('8 隻收藏 fixture', cards.length === 8, `${cards.length} cards`);
-  check('390 寵物圖片至少 100px', sizes.length === 8 && sizes.every((size) => size >= 100), sizes.map((size) => size.toFixed(1)).join(', '));
+  const expectedOwned = 8 + ((await (await import('../src/collectionService.js')).getPetCollection('pet_n01')) ? 1 : 0);
+  check('收藏 fixture 數量完整', cards.length === expectedOwned, `${cards.length} cards`);
+  check('手機寵物圖片至少 100px', sizes.length === expectedOwned && sizes.every((size) => size >= 100), sizes.map((size) => size.toFixed(1)).join(', '));
   const rows = new Map();
   for (const card of cards) {
     const key = Math.round(rect(card).top);
@@ -346,7 +356,7 @@ async function vp04() {
   }
   const pairs = [...rows.values()].filter((row) => row.length > 1);
   check('同列卡片操作底部對齊 <= 2px', pairs.length > 0 && pairs.every((row) => Math.max(...row) - Math.min(...row) <= 2), JSON.stringify(pairs));
-  check('圖鑑無橫溢', doc().documentElement.scrollWidth <= 390);
+  check('圖鑑無橫溢', doc().documentElement.scrollWidth <= win().innerWidth);
 
   const petId = cards[0]?.dataset.petId;
   if (!petId) throw new Error('No owned collection card to exercise.');
@@ -413,7 +423,7 @@ async function vp04() {
 
 async function vp05() {
   await navigate('tasks');
-  const opener = doc().querySelector('#btn-add-task');
+  const opener = doc().querySelector('.twilight-add-task');
   opener.focus();
   opener.click();
   const overlay = doc().querySelector('#modal-overlay');
@@ -436,7 +446,7 @@ async function vp05() {
   check('日期沿用表單 border / radius', !!date && css(date).borderTopStyle !== 'none' && css(date).borderRadius === css(select).borderRadius,
     date ? `date=${css(date).borderRadius}; select=${css(select).borderRadius}` : 'missing');
   const modal = doc().querySelector('.modal');
-  check('Modal 界限在 844 viewport', !!modal && rect(modal).top >= -1 && rect(modal).bottom <= 845, modal ? `${rect(modal).top.toFixed(1)}..${rect(modal).bottom.toFixed(1)}` : 'missing');
+  check('Modal 界限在手機 viewport', !!modal && rect(modal).top >= -1 && rect(modal).bottom <= win().innerHeight + 1, modal ? `${rect(modal).top.toFixed(1)}..${rect(modal).bottom.toFixed(1)}` : 'missing');
   doc().activeElement.dispatchEvent(new (win().KeyboardEvent)('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
   await settle();
   check('Escape 關閉', !overlay.classList.contains('open'));
@@ -471,6 +481,8 @@ async function vp05() {
   const taskService = await import('../src/taskService.js');
   const task = (await taskService.getAllTasks()).find((item) => item.title === urgentTitle);
   const beforeCancel = JSON.stringify(await taskService.getTaskById(task.id));
+  const menu = taskCard(task.id).querySelector('details');
+  if (!menu.open) { menu.querySelector('summary').click(); await settle(); }
   const deleteTrigger = taskCard(task.id).querySelector('[data-action="delete"]');
   deleteTrigger.focus();
   deleteTrigger.click();
@@ -524,14 +536,15 @@ async function vp05() {
       choice.scrollIntoView({ block: 'center', behavior: 'instant' });
       choice.focus({ preventScroll: true });
       const scrollBefore = dispatch.querySelector('.expedition-dispatch-modal__body').scrollTop;
+      const selectedBefore = dispatch.querySelectorAll('[data-action="dispatch-select-pet"][aria-pressed="true"]').length;
       choice.click();
       await settle();
       dispatch = doc().querySelector('#expedition-dispatch-modal');
       const selected = dispatch.querySelector(`[data-action="dispatch-select-pet"][data-pet-id="${CSS.escape(petId)}"]`);
       const scrollAfter = dispatch.querySelector('.expedition-dispatch-modal__body').scrollTop;
-      check('選寵物後保持 selected focus 與唯一 aria-pressed', doc().activeElement === selected
+      check('選寵物後保持 focus 與原有 1～3 隻隊伍選擇規則', doc().activeElement === selected
         && selected.getAttribute('aria-pressed') === 'true'
-        && dispatch.querySelectorAll('[data-action="dispatch-select-pet"][aria-pressed="true"]').length === 1);
+        && dispatch.querySelectorAll('[data-action="dispatch-select-pet"][aria-pressed="true"]').length === Math.min(3, selectedBefore + 1));
       check('派遣選擇重繪保留實際捲動位置', scrollBefore > 0 && Math.abs(scrollBefore - scrollAfter) <= 2,
         `${scrollBefore.toFixed(2)} → ${scrollAfter.toFixed(2)}`);
       check('派遣預覽反映所選角色', dispatch.querySelector('.expedition-dispatch-modal__preview').textContent.includes(petName));
@@ -554,13 +567,14 @@ async function vp05() {
 async function run() {
   await guard();
   const group = document.getElementById('group').value;
+  if (group.startsWith('WORLDS')) { output.textContent = 'WORLDS · 完整驗證\n'; await checkWorlds(); return; }
   taskSemanticsBaseline = undefined;
-  output.textContent = `${group} · 真實 App 390 × 844 · ${new Date().toISOString()}\n`;
+  output.textContent = `${group} · 真實 App 手機驗證 · ${new Date().toISOString()}\n`;
   if (group.startsWith('TW')) {
     await checkTwilight();
     return;
   }
-  for (const value of ['default', 'sweet']) {
+  for (const value of ['default', 'sweet', 'twilight']) {
     await theme(value);
     log(`\n[${value}]`);
     if (group === 'VP-01') await vp01(value);
@@ -569,6 +583,73 @@ async function run() {
     if (group === 'VP-05') await vp05();
   }
   log('\n檢查結束。FAIL 不視為通過；仍需人工視覺、原生鍵盤、捲動與點擊驗收。');
+}
+
+async function checkWorlds() {
+  const { readAllStoresSnapshot } = await import('../src/db.js');
+  const gameplay = async () => {
+    const snapshot = await readAllStoresSnapshot();
+    snapshot.meta = snapshot.meta.filter((row) => row.key !== 'userPreferences');
+    return JSON.stringify(snapshot);
+  };
+  const baseline = await gameplay();
+  const allViews = ['tasks', 'collection', 'gacha', 'expedition', 'more', 'settings', 'habits', 'achievements', 'workshop', 'handbook', 'guide', 'share'];
+  for (const value of ['default', 'sweet', 'twilight']) await theme(value);
+  check('三套切換本身不改遊戲存檔', await gameplay() === baseline);
+  for (const value of ['default', 'sweet', 'twilight']) {
+    await theme(value);
+    check(value + ' · 偏好持久化', (await preferences.getUserPreferences()).theme === value);
+    await loadApp();
+    check(value + ' · reload 保留風格', doc().body.dataset.theme === value);
+    await navigate('settings');
+    check(value + ' · 只有三套且一套使用中', doc().querySelectorAll('.theme-card').length === 3 && doc().querySelectorAll('.theme-card[aria-checked="true"]').length === 1);
+    for (const size of [{ width: 393, height: 852 }, { width: 320, height: 693 }]) {
+      frame.style.width = size.width + 'px'; frame.style.height = size.height + 'px';
+      await settle();
+      for (const view of allViews) {
+        await navigate(view);
+        const active = doc().querySelector('.view.active');
+        const nav = doc().querySelector('.bottom-nav');
+        check(value + ' ' + size.width + ' ' + view + ' · 無橫溢', doc().documentElement.scrollWidth <= size.width && active.scrollWidth <= active.clientWidth + 1);
+        check(value + ' ' + size.width + ' ' + view + ' · 固定導覽/44px', rect(nav).bottom <= size.height + 1 && [...nav.querySelectorAll('button')].every((button) => rect(button).height >= 44 && rect(button).width >= 44));
+      }
+      await navigate('tasks');
+      const home = doc().querySelector('#twilight-home');
+      const title = doc().querySelector('.task-card__title');
+      const toggle = doc().querySelector('.task-check');
+      const navTop = rect(doc().querySelector('.bottom-nav')).top;
+      check(value + ' ' + size.width + ' · 夥伴/首任務/完成可見', visible(home) && rect(title).bottom < navTop && rect(toggle).bottom < navTop);
+      check(value + ' ' + size.width + ' · 任務與夥伴操作 >=44px', [toggle, doc().querySelector('.twilight-pet-touch'), doc().querySelector('.twilight-pet-name'), doc().querySelector('.qn-companion-feed')].filter(Boolean).every((button) => rect(button).height >= 44 && rect(button).width >= 44));
+      const viewBg = css(doc().querySelector('#view-tasks')).backgroundColor;
+      const bodyBg = css(doc().querySelector('#app')).backgroundColor;
+      const ratio = contrast(css(title).color, viewBg === 'rgba(0, 0, 0, 0)' ? bodyBg : viewBg);
+      check(value + ' · 任務文字對比 >=4.5', ratio >= 4.5, ratio.toFixed(2));
+      const nav = doc().querySelector('.bottom-nav');
+      const navRatio = contrast(css(nav.querySelector('.nav-item:not(.active)')).color, css(nav).backgroundColor);
+      check(value + ' · 導覽文字對比 >=4.5', navRatio >= 4.5, navRatio.toFixed(2));
+      const originalTitle = title.textContent;
+      title.textContent = '這是一項具有完整長標題的任務，必須在窄螢幕閱讀且保留完成操作。'.repeat(5);
+      await settle();
+      check(value + ' ' + size.width + ' · 長標題換行不橫溢', doc().documentElement.scrollWidth <= size.width && title.scrollWidth <= title.clientWidth + 1 && rect(toggle).width >= 44);
+      title.textContent = originalTitle;
+      ui.applyReduceMotionClass(true); await settle();
+      check(value + ' · 減少動態停止動畫與進度 transition', css(home.querySelector('img')).animationName === 'none' && css(doc().querySelector('.twilight-journey-track > span')).transitionDuration === '0s');
+      ui.applyReduceMotionClass(false);
+      const images = [...doc().querySelectorAll('#twilight-home img')];
+      for (let attempt = 0; attempt < 50 && images.some((image) => !image.complete); attempt += 1) await wait(100);
+      check(value + ' · 主場景與品牌圖示已解碼', images.every((image) => image.complete && image.naturalWidth > 0));
+      check(value + ' · 進度具可讀語意', !!doc().querySelector('#twilight-progress[aria-valuetext]') && !!toggle.getAttribute('aria-label'));
+    }
+  }
+  frame.style.width = '393px'; frame.style.height = '852px';
+  await theme('twilight'); await navigate('tasks');
+  // Navigation can record existing tutorial/handbook quest events. It is not a theme mutation.
+  const after = await gameplay();
+  if (after !== baseline) {
+    const beforeStores = JSON.parse(baseline); const afterStores = JSON.parse(after);
+    log('NOTE · 導覽沿用既有頁面事件：變更 stores ' + Object.keys(beforeStores).filter((key) => JSON.stringify(beforeStores[key]) !== JSON.stringify(afterStores[key])).join(', '));
+  }
+  log('DONE · 實際 iPhone safe-area、原生手勢與 VoiceOver 需實機確認。');
 }
 
 async function checkTwilight() {
@@ -583,7 +664,7 @@ async function checkTwilight() {
     await theme(value);
     await navigate('tasks');
     check(`${value} · 偏好已持久化`, (await preferences.getUserPreferences()).theme === value);
-    check(`${value} · 首頁呈現正確`, visible(doc().querySelector('#twilight-home')) === (value === 'twilight'));
+    check(`${value} · 首頁呈現正確`, visible(doc().querySelector('#twilight-home')));
     await navigate('settings');
     check(`${value} · 三種選項且僅一種使用中`, doc().querySelectorAll('.theme-card').length === 3
       && doc().querySelectorAll('.theme-card[aria-checked="true"]').length === 1
@@ -595,10 +676,10 @@ async function checkTwilight() {
   for (const view of ['tasks', 'gacha', 'collection', 'expedition', 'more', 'settings', 'habits', 'achievements', 'workshop', 'handbook', 'guide', 'share']) {
     await navigate(view);
     const active = doc().querySelector('.view.active');
-    check(`${view} · 390px 無頁面橫溢`, doc().documentElement.scrollWidth <= 390 && active.scrollWidth <= active.clientWidth + 1,
+    check(`${view} · 手機無頁面橫溢`, doc().documentElement.scrollWidth <= win().innerWidth && active.scrollWidth <= active.clientWidth + 1,
       `document=${doc().documentElement.scrollWidth}; view=${active.scrollWidth}/${active.clientWidth}`);
     const nav = doc().querySelector('.bottom-nav');
-    check(`${view} · 固定導覽可見且觸控 >= 44px`, rect(nav).bottom <= 844.1
+    check(`${view} · 固定導覽可見且觸控 >= 44px`, rect(nav).bottom <= win().innerHeight + .1
       && [...nav.querySelectorAll('.nav-item')].every((button) => rect(button).height >= 44));
   }
   await navigate('tasks');
@@ -636,3 +717,6 @@ document.getElementById('reload').onclick = () => action(loadApp);
 document.getElementById('theme').onchange = (event) => action(() => theme(event.target.value));
 document.getElementById('run').onclick = () => action(run);
 document.querySelectorAll('[data-view]').forEach((button) => { button.onclick = () => action(() => navigate(button.dataset.view)); });
+document.getElementById('size').onchange = (event) => action(async () => {
+  const width = Number(event.target.value); frame.style.width = width + 'px'; frame.style.height = (width === 320 ? 693 : 852) + 'px'; await settle();
+});

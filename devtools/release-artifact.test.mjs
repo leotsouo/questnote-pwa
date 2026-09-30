@@ -7,6 +7,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { prepareReleaseArtifact } from '../scripts/releaseArtifact.mjs';
+import { THEME_ASSET_FIXTURES } from './fixtures/theme-assets.mjs';
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hash = (value) => createHash('sha256').update(value).digest('hex');
@@ -40,7 +41,7 @@ test('release artifact preparation is immutable, isolated and content complete',
     for (const name of ['index.html', 'manifest.webmanifest', 'service-worker.js']) await fs.copyFile(path.join(repository, name), path.join(projectRoot, name));
     const pets = JSON.parse(await fs.readFile(path.join(projectRoot, 'data/pets.json'))).pets;
     const images = [...new Set(pets.flatMap((pet) => [pet.image, ...Object.values(pet.imageVariants || {})]))];
-    images.push('assets/icons/icon-192.png', 'assets/icons/icon-512.png');
+    images.push('assets/icons/icon-192.png', 'assets/icons/icon-512.png', ...THEME_ASSET_FIXTURES);
     // Tiny stand-ins exercise file closure/hash checks; these tests do not claim
     // image dimension or artistic validation (the production image tools own it).
     for (const name of images) {
@@ -66,7 +67,7 @@ test('release artifact preparation is immutable, isolated and content complete',
       const html = await fs.readFile(path.join(production.artifactDir, 'index.html'), 'utf8');
       assert.ok(html.includes(`<meta name="questnote-artifact" content="${production.artifactId}">`));
       assert.ok(html.includes('<meta property="og:url" content="https://leotsouo.github.io/questnote/" />'));
-      assert.ok(html.includes('<meta property="og:image" content="https://leotsouo.github.io/questnote/assets/icons/icon-512.png" />'));
+      assert.ok(html.includes('<meta property="og:image" content="https://leotsouo.github.io/questnote/assets/brand/questnote-icon-512.png" />'));
       const manifest = JSON.parse(await fs.readFile(path.join(production.artifactDir, 'manifest.webmanifest')));
       assert.equal(manifest.name, 'QuestNote'); assert.equal(manifest.short_name, 'QN');
       assert.equal(manifest.id, '/questnote/'); assert.equal(manifest.scope, '/questnote/');
@@ -100,7 +101,7 @@ test('release artifact preparation is immutable, isolated and content complete',
       const previewHtml = await fs.readFile(path.join(preview.artifactDir, 'index.html'), 'utf8');
       assert.ok(previewHtml.includes('<meta property="og:title" content="QuestNote 預覽" />'));
       assert.ok(previewHtml.includes('<meta property="og:url" content="https://leotsouo.github.io/review/" />'));
-      assert.ok(previewHtml.includes('<meta property="og:image" content="https://leotsouo.github.io/review/assets/icons/icon-512.png" />'));
+      assert.ok(previewHtml.includes('<meta property="og:image" content="https://leotsouo.github.io/review/assets/brand/questnote-icon-512.png" />'));
       assert.equal(preview.descriptor.dbName, 'QuestNotePreviewDB');
       assert.equal(preview.descriptor.cacheNamespace, 'questnote-preview-');
       const manifest = JSON.parse(await fs.readFile(path.join(preview.artifactDir, 'manifest.webmanifest')));
