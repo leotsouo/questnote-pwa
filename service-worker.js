@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3431-home-seam';
+const CACHE_NAME = 'questnote-preview-cache-v3432-one-tap-update';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -66,6 +66,9 @@ const PRECACHE_URLS = [
   'src/dialogFocus.js',
   'src/app.js',
   'src/bootstrap.js',
+  'src/updateProtocol.js',
+  'src/updateActivity.js',
+  'src/updateController.js',
   'src/releaseCatalog.js',
   'src/releaseProfile.js',
   'src/poolContentContract.js',
@@ -340,7 +343,44 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Deliberately ignore legacy SKIP_WAITING messages from older open tabs.
+// Legacy SKIP_WAITING stays ignored. Only a deliberate, single-window update
+// can activate a fully installed generation; other windows keep their edits.
+self.addEventListener('message', (event) => {
+  if (!['QUESTNOTE_UPDATE_INFO', 'QUESTNOTE_APPLY_UPDATE'].includes(event.data?.type)) return;
+  event.waitUntil((async () => {
+    const reply = (data) => event.ports?.[0]?.postMessage(data);
+    const scope = self.registration.scope;
+    if (!event.source?.id || !event.source.url?.startsWith(scope) || !BUILD_PROFILE) {
+      reply({ status: 'unavailable' }); return;
+    }
+    if (event.data.type === 'QUESTNOTE_UPDATE_INFO') {
+      reply({ artifactId: BUILD_PROFILE.artifactId, scopePath: BUILD_PROFILE.scopePath }); return;
+    }
+    if (event.data.artifactId !== BUILD_PROFILE.artifactId
+      || !self.registration.waiting || self.registration.waiting.scriptURL !== self.location.href) {
+      reply({ status: 'unavailable' }); return;
+    }
+    // Eviction may happen after install. Do not switch to an incomplete shell.
+    const cache = await caches.open(CACHE_NAME);
+    const complete = await Promise.all(PRECACHE_URLS.map(async (path) => {
+      const response = await cache.match(resolveUrl(path));
+      if (!response?.ok) return false;
+      if (!PRECACHE_HASHES) return true;
+      const digest = await crypto.subtle.digest('SHA-256', await response.arrayBuffer());
+      const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+      return hash === PRECACHE_HASHES[path];
+    }));
+    if (complete.some((ok) => !ok)) { reply({ status: 'unavailable' }); return; }
+    // includeUncontrolled is needed because a waiting worker has no clients yet.
+    const windows = (await self.clients.matchAll({ type: 'window', includeUncontrolled: true }))
+      .filter((client) => client.url.startsWith(scope));
+    if (windows.length !== 1 || windows[0].id !== event.source.id) {
+      reply({ status: 'other-clients' }); return;
+    }
+    reply({ status: 'accepted' });
+    await self.skipWaiting();
+  })().catch(() => event.ports?.[0]?.postMessage({ status: 'unavailable' })));
+});
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
