@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuestNote 工坊隔離驗收</title>
+<style>
+  body { margin: 16px; background: #101827; color: #f8fafc; font: 15px/1.5 system-ui; }
+  iframe { width: 393px; height: 852px; border: 1px solid #64748b; }
+  .layout { display: flex; gap: 16px; flex-wrap: wrap; }
+  pre { white-space: pre-wrap; max-width: 720px; }
+  button { padding: 10px; }
+</style>
+<h1>工坊禮物與推薦 · 隔離驗收</h1>
+<p>使用 <code>node devtools/onboarding-browser-server.mjs</code> 的全新 origin；只建立隨機測試資料庫，不寫入使用者資料。</p>
+<button id="run">執行驗收</button>
+<div class="layout"><iframe id="preview" title="工坊手機畫面" src="about:blank"></iframe><pre id="results">尚未執行</pre></div>
+<script type="module" src="./workshop-gifts-browser-test.js"></script>
+</html>

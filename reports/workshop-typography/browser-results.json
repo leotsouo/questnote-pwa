@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "database": "QuestNoteTest-Onboarding-ae49bc24-d18c-4f72-b0db-8ab723b4c0c3",
+  "results": [
+    {
+      "name": "old inventory import preserves quantities, unknown IDs and logs while adding new defaults",
+      "ok": true
+    },
+    {
+      "name": "gift tab starts with items only; theme recommendation appears after choosing a gift",
+      "ok": true
+    },
+    {
+      "name": "changing items clears recipient; choosing and previewing never consumes stock",
+      "ok": true
+    },
+    {
+      "name": "actual favorite gift agrees with preview and rapid UI clicks consume one portion",
+      "ok": true
+    },
+    {
+      "name": "nonfavorite dog receives basic +75; last portion resets both selections with success retained",
+      "ok": true
+    },
+    {
+      "name": "crafting new gifts deducts the exact recipe and creates inventory",
+      "ok": true
+    },
+    {
+      "name": "no favorite partners gives an actionable other-partner list; generic honey has no favorite claims",
+      "ok": true
+    },
+    {
+      "name": "daily-limit recipient is disabled and actual service rechecks the limit",
+      "ok": true
+    },
+    {
+      "name": "service locks before awaits; unowned/empty stock rejected; highest level can still receive gifts",
+      "ok": true
+    },
+    {
+      "name": "393/320px layouts fit across all three themes; max level, sources and owned counts are readable",
+      "ok": true,
+      "detail": [
+        {
+          "theme": "default",
+          "width": 393,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        {
+          "theme": "default",
+          "width": 320,
+          "scrollWidth": 269,
+          "clientWidth": 269
+        },
+        {
+          "theme": "sweet",
+          "width": 393,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        {
+          "theme": "sweet",
+          "width": 320,
+          "scrollWidth": 269,
+          "clientWidth": 269
+        },
+        {
+          "theme": "twilight",
+          "width": 393,
+          "scrollWidth": 334,
+          "clientWidth": 334
+        },
+        {
+          "theme": "twilight",
+          "width": 320,
+          "scrollWidth": 269,
+          "clientWidth": 269
+        }
+      ]
+    },
+    {
+      "name": "no-stock flow stays actionable and app has no uncaught runtime errors",
+      "ok": true
+    }
+  ]
+}

@@ -8,6 +8,9 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 const instance = randomUUID();
 const databaseName = `QuestNoteTest-Onboarding-${instance}`;
+// Opt-in native offline rehearsal; the default onboarding server still blocks workers.
+const workshopOffline = process.argv.includes('--workshop-offline');
+let offline = false;
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript',
   '.json': 'application/json', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png',
   '.webp': 'image/webp', '.webmanifest': 'application/manifest+json', '.woff2': 'font/woff2' };
@@ -50,6 +53,13 @@ const server = http.createServer(async (request, response) => {
   response.setHeader('Cache-Control', 'no-store');
   response.setHeader('X-Content-Type-Options', 'nosniff');
   try {
+    if (workshopOffline && request.url === '/__workshop_offline_control__' && request.method === 'POST') {
+      if (request.headers.origin !== `http://127.0.0.1:${server.address().port}`) {
+        response.writeHead(403).end(); return;
+      }
+      offline = true;
+      response.writeHead(200, { 'Content-Type': 'application/json' }).end('{"offline":true}'); return;
+    }
     if (request.method !== 'GET') { response.writeHead(405).end(); return; }
     const url = new URL(request.url, 'http://127.0.0.1');
     if (url.pathname === '/__onboarding_test_guard__') {
@@ -58,16 +68,24 @@ const server = http.createServer(async (request, response) => {
       }));
       return;
     }
+    if (offline && !url.pathname.startsWith('/devtools/')) {
+      response.writeHead(503).end('Synthetic offline rehearsal: app origin unavailable.'); return;
+    }
     if (url.pathname === '/__onboarding_db_guard__.js') {
       response.writeHead(200, { 'Content-Type': types['.js'] }).end(bootstrap); return;
     }
     const relative = decodeURIComponent(url.pathname).replace(/^\/+/, '') || 'devtools/onboarding-browser-test.html';
     const target = path.resolve(root, relative);
     if (!target.startsWith(root + path.sep) || relative.split(/[\\/]/).some((part) => part.startsWith('.'))
-      || path.basename(target) === 'service-worker.js' || request.headers['service-worker']) {
+      || (!workshopOffline && (path.basename(target) === 'service-worker.js' || request.headers['service-worker']))) {
       response.writeHead(403).end('Private paths and service workers are disabled on this synthetic test origin.'); return;
     }
     let bytes = await fs.readFile(target);
+    if (workshopOffline && relative === 'service-worker.js') {
+      // Add only the DB isolation hook; all product assets/logic remain unchanged.
+      bytes = Buffer.from(bytes.toString('utf8').replace('const PRECACHE_URLS = [',
+        "const PRECACHE_URLS = [\n  '__onboarding_db_guard__.js',"));
+    }
     if (relative === 'index.html') {
       const html = bytes.toString('utf8');
       if (!html.includes('<head>')) throw new Error('Expected app head before module scripts');
