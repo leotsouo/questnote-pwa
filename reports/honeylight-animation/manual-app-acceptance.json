@@ -1,40 +1,36 @@
 {
-  "previewUrl": "http://127.0.0.1:60619/questnote-pwa-preview/",
-  "artifactId": "9d80ede2b3b85e9d3ac92c2c1b91a872e1503ff6d604424bb457e1442c5b8d00",
+  "checkedAt": "2026-09-30T20:56:36.101Z",
+  "previewUrl": "http://127.0.0.1:50316/questnote-pwa-preview/",
+  "artifactId": "f9d4f6f8b0541481b00f30c728f281e008d8084f7456a111b494cbd356477873",
   "single": {
-    "rarity": "UR",
-    "petName": "千層奶霜天鵝",
-    "initialWallet": 3000,
+    "walletBefore": 3000,
     "walletAfter": 2900,
-    "urPityBefore": 99,
-    "urPityAfter": 0
+    "role": "千層奶霜天鵝",
+    "rarity": "UR",
+    "duplicateCompensation": 20
   },
-  "responsive": {
-    "width": 393,
-    "height": 852,
-    "overlayWidth": 393.3333435058594,
-    "overlayHeight": 852,
-    "scrollWidth": 393
-  },
-  "productionPushed": false,
   "ten": {
-    "walletAfter": 1900,
-    "names": [
-      "奶油曲奇刺蝟",
-      "方糖絨兔",
-      "泡芙栗鼠",
-      "跳跳果凍蛙",
-      "莓糖卷尾松鼠",
-      "奶油曲奇刺蝟",
-      "薄荷拐杖鼬",
-      "方糖絨兔",
-      "馬卡龍錦羽孔雀",
-      "泡芙栗鼠"
-    ],
     "layout": {
+      "height": 852,
       "scrollWidth": 393,
-      "summaryWidth": 377.59375,
       "width": 393
-    }
+    },
+    "names": [
+      "可可熔心龍",
+      "蜜曦盛宴小熊貓",
+      "薄荷拐杖鼬",
+      "薄荷拐杖鼬",
+      "奶油曲奇刺蝟",
+      "跳跳果凍蛙",
+      "奶油曲奇刺蝟",
+      "奶油曲奇刺蝟",
+      "方糖絨兔",
+      "奶油曲奇刺蝟"
+    ],
+    "rareSequence": [
+      "蜜曦盛宴小熊貓"
+    ],
+    "walletAfter": 1900,
+    "walletBefore": 2900
   }
 }

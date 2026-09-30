@@ -47,7 +47,7 @@ await fs.writeFile(new URL('./release-handoff.md', import.meta.url), `# 蜜光�
 純動畫重播：${review.animation.previewUrl}
 詳細證據：animation-review.json、presentation-browser.json、presentation-mobile-browser.json、artifact-browser.json、actual-update-browser.json、manual-app-acceptance.json。
 
-尚未自行merge來源或推送gh-pages。使用者說「可以發布」後，先重新核對origin/main、origin/gh-pages及正式HTTPS。source整合的runtime須與上述pin完全一致；若有其他改動，重新驗證／組裝。確認後才以準備提交fast-forward發布，再驗證Pages建置與正式HTTPS bytes。舊無專屬動畫的0e00ce0發布提交及其產物只保留歷史，不可推送。
+尚未自行merge來源或推送gh-pages。使用者說「可以發布」後，先重新核對origin/main、origin/gh-pages及正式HTTPS。source整合的runtime須與上述pin完全一致；若有其他改動，重新驗證／組裝。確認後才以準備提交fast-forward發布，再驗證Pages建置與正式HTTPS bytes。舊無專屬動畫的0e00ce0，以及已被新版取代的V3.4.34動畫提交77ab1b5與其產物只保留歷史，不可推送。
 
 目前驗收為Chromium與手機尺寸模擬，未宣稱實體iPhone／Safari通過。工坊可製作食物／探險區域的流程規劃，依使用者要求留到正式卡池發布後討論；每次新企劃先同步最新正式版與reviewed source baseline。
 `);

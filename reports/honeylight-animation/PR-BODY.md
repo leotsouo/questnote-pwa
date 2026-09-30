@@ -4,6 +4,8 @@
 
 卡池流程現在要求企劃前核對最新正式部署與 reviewed source baseline，明確填寫動畫決策／分鏡，並在發布準備綁定實際動畫驗收與 source/candidate/artifact hashes。
 
-驗證：209 個 Node 測試與 reveal-flow assertions；catalog 與 96×2 圖片驗證；Pipeline release rehearsal；動畫瀏覽器驗證14/14、完整產物12/12、實際V3.4.33→V3.4.34更新8/8。證據與截圖位於 `reports/honeylight-animation/`。
+驗證：220 個 Node 測試與 reveal-flow assertions；catalog 與 96×2 圖片驗證；Pipeline release rehearsal；動畫瀏覽器驗證14/14、完整產物12/12、實際V3.4.35→V3.4.36更新8/8。證據與截圖位於 `reports/honeylight-animation/`。
 
 這是來源變更與本地發布準備。正式 `gh-pages` 未推送，等待使用者最後發布核准；舊無專屬動畫產物不可發布，工坊食物／探險區域規劃留到正式卡池發布後討論。
+
+已同步正式 V3.4.35 與最新 main，保留正式工坊配方／贈寵喜好及統一字體。新版以 V3.4.36 準備，所有 412 個產物檔案及 Git blobs 逐檔比對一致；舊產物、candidate 與 receipts 都已保留。
