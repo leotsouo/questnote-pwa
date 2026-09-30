@@ -1,0 +1,478 @@
+{
+  "generatedAt": "2026-09-30T18:39:46.195Z",
+  "imageChecks": [
+    {
+      "petId": "pet_ssr11",
+      "name": "千層奶霜天鵝",
+      "rarity": "SSR",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2456465,
+      "sha256": "20684b478872287c38db5dab58d0d74d7335ac8d2cc8c77bc7c9dfc4ed1c2526",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_ssr10",
+      "name": "琉糖星翼蝶",
+      "rarity": "SSR",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2991174,
+      "sha256": "1cbe693844ebdef76a2030c3c62f120428b2a1f5b5181ff01972aa7c242ce54d",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_ur08",
+      "name": "蜜曦盛宴小熊貓",
+      "rarity": "UR",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3025536,
+      "sha256": "f22e689544f68a44f67890cf8da6ea689aa7a1358e8a7e82bcfa359fcb149b61",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_n23",
+      "name": "方糖絨兔",
+      "rarity": "N",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2762050,
+      "sha256": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_n24",
+      "name": "跳跳果凍蛙",
+      "rarity": "N",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2551833,
+      "sha256": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_n25",
+      "name": "奶油曲奇刺蝟",
+      "rarity": "N",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2659012,
+      "sha256": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_r20",
+      "name": "薄荷拐杖鼬",
+      "rarity": "R",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2683517,
+      "sha256": "7888936777327f49c8a2c15fca04eb03244486f9f1c6d054d47209097f2cc159",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_r21",
+      "name": "泡芙栗鼠",
+      "rarity": "R",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2676214,
+      "sha256": "c6173cdc592be2030d72d77a7a2fc257df1593eb343b2fa9f727ff325a2c8b5a",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_r22",
+      "name": "莓糖卷尾松鼠",
+      "rarity": "R",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3016981,
+      "sha256": "70530265c2f2f91bf8662210496f83584004aea2f4c165fee13f8dd1bf37977c",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_sr16",
+      "name": "焦糖布蕾海獺",
+      "rarity": "SR",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2779122,
+      "sha256": "57693be9d2b4a69859fc6bb9f38a3b6c1b689e4909dcc6690dd3f2c61e7f0717",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_sr17",
+      "name": "馬卡龍錦羽孔雀",
+      "rarity": "SR",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3063364,
+      "sha256": "0b56c8aaaf55b785c6a66635959080c16d4200cdb3e29a4d57e49179e984b90d",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    },
+    {
+      "petId": "pet_sr18",
+      "name": "可可熔心龍",
+      "rarity": "SR",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2609482,
+      "sha256": "536044295f302ebce8808ef56718b2cf8c8f1c1961356de09a4519f560323859",
+      "fullyDecoded": true,
+      "square": true,
+      "below5MiB": true,
+      "humanApproval": "PENDING"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      {
+        "level": "warning",
+        "code": "PKG_RELEASE_VERSION",
+        "message": "缺少 releaseVersion"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[0].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[1].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[2].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[3].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[4].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[5].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[6].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[7].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[8].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[9].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[10].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[11].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n23.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n24.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_n25.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r20.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r21.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_r22.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr16.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr17.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_sr18.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr10.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ssr11.png"
+      },
+      {
+        "level": "warning",
+        "code": "IMAGE_LARGE",
+        "message": "Review large image dimensions or byte size",
+        "path": "images/pet_ur08.png"
+      }
+    ],
+    "previews": [
+      {
+        "poolId": "standard",
+        "locked": 56,
+        "unlocked": 56
+      },
+      {
+        "poolId": "eternal_slumber_bloom",
+        "locked": 12,
+        "unlocked": 16
+      },
+      {
+        "poolId": "frost_oath_fjord",
+        "locked": 12,
+        "unlocked": 12
+      },
+      {
+        "poolId": "honeylight_sugar_garden",
+        "locked": 12,
+        "unlocked": 12
+      }
+    ],
+    "changes": {
+      "pets": {
+        "added": [
+          "pet_n23",
+          "pet_n24",
+          "pet_n25",
+          "pet_r20",
+          "pet_r21",
+          "pet_r22",
+          "pet_sr16",
+          "pet_sr17",
+          "pet_sr18",
+          "pet_ssr10",
+          "pet_ssr11",
+          "pet_ur08"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "pools": {
+        "added": [
+          "honeylight_sugar_garden"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "lore": {
+        "added": [
+          "pet_n23",
+          "pet_n24",
+          "pet_n25",
+          "pet_r20",
+          "pet_r21",
+          "pet_r22",
+          "pet_sr16",
+          "pet_sr17",
+          "pet_sr18",
+          "pet_ssr10",
+          "pet_ssr11",
+          "pet_ur08"
+        ],
+        "changed": [],
+        "removed": []
+      },
+      "series": {
+        "added": [
+          "honeylight_sugar_garden"
+        ],
+        "changed": [],
+        "removed": []
+      }
+    }
+  },
+  "status": {
+    "schemaVersion": 1,
+    "seriesId": "honeylight_sugar_garden",
+    "toolsHash": "61222c8cc45ffcb80975126423e84b04fa0c5ba29823e29464f3b18a1c143588",
+    "baselineHash": "c3960ef2897eb8f173c003a72a7bf7ff3fe15824407ba1584d546052dead7d6a",
+    "errors": [],
+    "stages": [
+      {
+        "stage": "brief",
+        "inputHash": "0fd0b5101fa34188f02f43398d6ee20284ece51e62dd209ef9166ada572357e3",
+        "outputHash": "831dd55413d5ee08fb1a2b569c1d36c879cb8edc91bfa30417953cdb250fdd0b",
+        "files": {
+          "brief.json": "d56647d383a9b4c572a55bb7f4d38f81ecf6dbc40b56cbeffbbf87f105e61698"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "plan",
+        "inputHash": "831dd55413d5ee08fb1a2b569c1d36c879cb8edc91bfa30417953cdb250fdd0b",
+        "outputHash": "f06e476ed4558359c99cbd8118164b9b07b865f8933c89feb7f78f8b31d7df7b",
+        "files": {
+          "plan.json": "27d0f7e67c3724376a62920084a503227a4197bd3198e94536e1eeb5c7716a4f"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "content",
+        "inputHash": "f06e476ed4558359c99cbd8118164b9b07b865f8933c89feb7f78f8b31d7df7b",
+        "outputHash": "586b043912bdff53c8915d567007c691a5604d611507b179278df817ccd6697b",
+        "files": {
+          "series.json": "a38fe0e774ff80f59a6d2ea0aeafe3c873d00190166a60cccae77978842997ce",
+          "pets.json": "5bc938afd0aaaedc7c6c4063ca48de725634b2afc4cefcb96e2e273323e796de",
+          "pets-lore.json": "a943991c2df467721d11ae50a1f972008c15b130649da187b73d02266e541a14",
+          "pool.json": "b21fa47d4a67ef460d6ee490e07d5f0f9f8d8467e630992ce61e5187dc84574e"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "prompts",
+        "inputHash": "586b043912bdff53c8915d567007c691a5604d611507b179278df817ccd6697b",
+        "outputHash": "28526d91135a5c644c2f5d5c778462183741f8564df627e3544188847ae87a00",
+        "files": {
+          "prompts.json": "365922d6d3bc74a6ef4dd4564d9e1eaf629cff06106961d9fd40af55140d12b8"
+        },
+        "missing": [],
+        "approved": true,
+        "status": "approved"
+      },
+      {
+        "stage": "images",
+        "inputHash": "28526d91135a5c644c2f5d5c778462183741f8564df627e3544188847ae87a00",
+        "outputHash": "e30a189e64fc9c5e4083a07057c4f40811df6ebb7e52c27ae2d262961607ca5a",
+        "files": {
+          "images/pet_n23.png": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
+          "images/pet_n24.png": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
+          "images/pet_n25.png": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
+          "images/pet_r20.png": "7888936777327f49c8a2c15fca04eb03244486f9f1c6d054d47209097f2cc159",
+          "images/pet_r21.png": "c6173cdc592be2030d72d77a7a2fc257df1593eb343b2fa9f727ff325a2c8b5a",
+          "images/pet_r22.png": "70530265c2f2f91bf8662210496f83584004aea2f4c165fee13f8dd1bf37977c",
+          "images/pet_sr16.png": "57693be9d2b4a69859fc6bb9f38a3b6c1b689e4909dcc6690dd3f2c61e7f0717",
+          "images/pet_sr17.png": "0b56c8aaaf55b785c6a66635959080c16d4200cdb3e29a4d57e49179e984b90d",
+          "images/pet_sr18.png": "536044295f302ebce8808ef56718b2cf8c8f1c1961356de09a4519f560323859",
+          "images/pet_ssr10.png": "1cbe693844ebdef76a2030c3c62f120428b2a1f5b5181ff01972aa7c242ce54d",
+          "images/pet_ssr11.png": "20684b478872287c38db5dab58d0d74d7335ac8d2cc8c77bc7c9dfc4ed1c2526",
+          "images/pet_ur08.png": "f22e689544f68a44f67890cf8da6ea689aa7a1358e8a7e82bcfa359fcb149b61"
+        },
+        "missing": [],
+        "approved": false,
+        "status": "awaiting_review"
+      }
+    ],
+    "nextStage": "images",
+    "readyToStage": false
+  },
+  "unchangedPublishedContent": true,
+  "pending": [
+    "Human approval of exact current images outputHash",
+    "Native staging after approval",
+    "Separate source integration and release review"
+  ],
+  "originalImagesModified": false,
+  "externalPaidGenerationUsed": false
+}

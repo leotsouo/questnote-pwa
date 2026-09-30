@@ -4,3 +4,7 @@ content/release-compatibility/v3.4.4/*.json -text
 content/release-compatibility/v3.4.4/pools.json -whitespace
 # Approval receipts and candidate manifests bind exact bytes, including line endings.
 content/pet-series/frost_oath_fjord/** -text
+
+# Honeylight authoring receipts and source PNGs retain exact bytes.
+content/pet-series/honeylight_sugar_garden/** -text
+content/pet-series/honeylight_sugar_garden_v2/** -text

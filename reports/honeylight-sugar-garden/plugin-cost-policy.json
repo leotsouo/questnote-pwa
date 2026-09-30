@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-09-30T18:39:46.284Z",
+  "used": [
+    "Plugin Management: read-only plugin discovery",
+    "OpenArt: read-only model-cost lookup"
+  ],
+  "selectedGeneration": "built-in image_gen.imagegen",
+  "externalGenerationSubmitted": false,
+  "newPluginsInstalled": false,
+  "purchases": false,
+  "pricingFinding": "All returned OpenArt generation configurations have positive credit costs; no zero-credit mode verified. External generation not used.",
+  "localValidation": "Native repository validators and Sharp decoding; no paid external image service.",
+  "skillsInspected": [
+    "imagegen",
+    "plugin-management",
+    "game-studio",
+    "sprite-pipeline",
+    "product-design/ideate"
+  ],
+  "decision": "Use imagegen for static pet illustrations; sprite-strip/game-engine/UI-ideation workflows do not fit this deliverable."
+}
