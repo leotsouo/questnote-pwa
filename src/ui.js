@@ -1,6 +1,7 @@
 /**
  * UI 渲染與互動邏輯
  */
+import { buildWorkshopGiftView } from './workshopGiftView.js';
 import { trackUpdateActivity } from './updateActivity.js';
 import { updateControlsHtml, refreshUpdateControls } from './updateController.js';
 import { initReminders, renderReminderSettings } from './reminderController.js';
@@ -195,6 +196,9 @@ import {
   getMaterialName,
   formatItemEffect,
   getFavoriteBonus,
+  getGiftAffinityTags,
+  getGiftThemeLabel,
+  GIFT_TAG_LABELS,
   getDailyBondItemUsage,
   getEnabledCraftables,
   getMaterialInventory,
@@ -413,6 +417,8 @@ let dailyBlessingCollapseDay = null;
 let homeHubActive = null;
 let selectedGiftPetId = null;
 let selectedGiftItemId = null;
+let workshopGiftMessage = '';
+let workshopGiftBusy = false;
 const expandedTaskIds = new Set();
 const recentlyCompletedTaskIds = new Set();
 
@@ -666,6 +672,12 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     document.getElementById('workshop-tabs')?.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-workshop-tab]');
       if (!btn) return;
+      if (workshopGiftBusy) return;
+      if (btn.dataset.workshopTab === 'gift' && workshopTab !== 'gift') {
+        selectedGiftItemId = null;
+        selectedGiftPetId = null;
+        workshopGiftMessage = '';
+      }
       workshopTab = btn.dataset.workshopTab;
       document.querySelectorAll('#workshop-tabs .segmented-control__btn').forEach((b) => {
         b.classList.toggle('active', b.dataset.workshopTab === workshopTab);
@@ -1297,6 +1309,11 @@ function bindNavigation() {
 }
 
 export function switchView(viewName) {
+  if (viewName === 'workshop' && !document.getElementById('view-workshop')?.classList.contains('active')) {
+    selectedGiftItemId = null;
+    selectedGiftPetId = null;
+    workshopGiftMessage = '';
+  }
   document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach((n) => { n.classList.remove('active'); n.removeAttribute('aria-current'); });
 
@@ -1393,7 +1410,8 @@ export async function openTeachingTarget({ view, filter, tab, hub, petId } = {})
   }
   if (view === 'workshop' && ['materials', 'craft', 'gift'].includes(tab)) {
     workshopTab = tab;
-    if (petId) selectedGiftPetId = petId;
+    selectedGiftPetId = null;
+    selectedGiftItemId = null;
     document.querySelectorAll('[data-workshop-tab]').forEach((button) => {
       const active = button.dataset.workshopTab === tab;
       button.classList.toggle('active', active);
@@ -3533,8 +3551,8 @@ function buildPetFeedSection(companion) {
   const options = bondItems
     .map((item) => {
       const stock = itemCounts[item.id] || 0;
-      const fav = getFavoriteBonus(item, companion).isFavorite;
-      const favMark = fav ? ' ★喜好' : '';
+      const bonus = getFavoriteBonus(item, companion);
+      const favMark = ` · +${bonus.bondExp} · ${bonus.reason}`;
       return `<option value="${item.id}">${escapeHtml(item.name)} ×${stock}${favMark}</option>`;
     })
     .join('');
@@ -6289,6 +6307,7 @@ function openPetDetailModal(petId) {
       ${personalityTags ? `<div class="pet-detail__tags">${personalityTags}</div>` : ''}
       ${owned ? renderStars(pet.stars) : ''}
       ${owned ? `<p class="pet-detail__specialty">探險專長：${escapeHtml(getPetSpecialty(pet).label)} Lv.${getPetSpecialty(pet).level}。一星即可發揮效果，升星會強化專長；不同稀有度都能在合適隊伍中派上用場。</p>` : ''}
+      ${owned ? `<p class="pet-detail__gift-affinity">禮物喜好：${escapeHtml(getGiftAffinityTags(pet).map((tag) => GIFT_TAG_LABELS[tag]).join('、') || '通用禮物；目前沒有主題喜好')}</p>` : ''}
       ${owned ? `<p class="pet-detail__bond-lv">親密度 Lv.${bondLevel || 1}</p>` : ''}
       ${owned ? `<button type="button" class="btn btn--primary btn--block pet-detail__feed-button" data-action="detail-feed-pet" data-pet-id="${escapeHtml(pet.id)}">餵食</button>` : ''}
       <p class="pet-detail__desc">${escapeHtml(pet.description)}</p>
@@ -7677,6 +7696,10 @@ function renderWorkshopView() {
                 </div>
                 <p class="workshop-craft-card__effect">${escapeHtml(formatItemEffect(craftable))}</p>
                 ${favoriteHint}
+                <p class="workshop-craft-card__theme">主題：${escapeHtml(getGiftThemeLabel(craftable))}</p>
+                <p class="workshop-craft-card__desc">${escapeHtml(craftable.description || '')}</p>
+                ${craftable.type === 'favorite_bond_item' ? '<p>已擁有 ' + (state.enrichedCollection || []).filter((pet) => pet.owned && getFavoriteBonus(craftable, pet).isFavorite).length + ' 位喜歡它的夥伴</p>' : '<p>通用禮物，所有夥伴效果相同</p>'}
+                <p class="workshop-craft-card__source">材料來源：${escapeHtml([...new Set(Object.keys(craftable.recipe || {}).map((id) => getMaterialInfo(id).sourceArea).filter(Boolean))].join('、'))}</p>
                 <ul class="workshop-recipe-list">
                   ${preview.materials
                     .map(
@@ -7697,100 +7720,21 @@ function renderWorkshopView() {
     return;
   }
 
-  // gift tab
-  const ownedPets = (state.enrichedCollection || []).filter((p) => p.owned);
-  const availableItems = bondItems.filter((c) => (itemCounts[c.id] || 0) > 0);
-
-  if (ownedPets.length === 0) {
-    contentEl.innerHTML = emptyStateHtml(
-      '還沒有可以贈送的寵物',
-      '先透過召喚獲得第一位夥伴。'
-    );
-    return;
-  }
-
-  if (availableItems.length === 0) {
-    contentEl.innerHTML = emptyStateHtml(
-      '目前沒有可贈送的道具',
-      '先到製作頁使用探險材料製作親密度道具。'
-    );
-    return;
-  }
-
-  if (!selectedGiftPetId || !ownedPets.some((p) => p.id === selectedGiftPetId)) {
-    selectedGiftPetId = ownedPets[0].id;
-  }
-  if (!selectedGiftItemId || !availableItems.some((c) => c.id === selectedGiftItemId)) {
-    selectedGiftItemId = availableItems[0].id;
-  }
-
-  const selectedPet = ownedPets.find((p) => p.id === selectedGiftPetId);
-  const selectedItem = getCraftableInfo(selectedGiftItemId);
-  const today = getTodayDateString();
-  const dailyUsed = getDailyBondItemUsage(selectedGiftPetId, today, inventory);
-  const bonus = getFavoriteBonus(selectedItem, selectedPet);
-  const bondProgress = getBondProgress(selectedPet.bondExp ?? 0, selectedPet.bondLevel ?? 1);
-  const previewExp = (selectedPet.bondExp ?? 0) + bonus.bondExp;
-  const previewLevel = previewExp >= 500 ? 5 : previewExp >= 300 ? 4 : previewExp >= 150 ? 3 : previewExp >= 50 ? 2 : 1;
-  const willLevelUp = previewLevel > (selectedPet.bondLevel ?? 1);
-  const atDailyLimit = dailyUsed >= DAILY_BOND_ITEM_LIMIT;
-  const itemStock = itemCounts[selectedGiftItemId] || 0;
-
-  contentEl.innerHTML = `
-    <div class="workshop-gift-layout">
-      <section class="workshop-gift-section card">
-        <h2 class="section-title">選擇夥伴</h2>
-        <div class="workshop-gift-pet-list">
-          ${ownedPets
-            .map((pet) => {
-              const used = getDailyBondItemUsage(pet.id, today, inventory);
-              const selected = pet.id === selectedGiftPetId;
-              return `
-                <button type="button" class="workshop-gift-pet ${selected ? 'workshop-gift-pet--selected' : ''}" data-action="select-gift-pet" data-pet-id="${pet.id}">
-                  <div class="workshop-gift-pet__img">${petImageHtml(pet, { size: 'sm' })}</div>
-                  <div class="workshop-gift-pet__info">
-                    <span class="workshop-gift-pet__name">${escapeHtml(petDisplayName(pet))}</span>
-                    ${pet.nickname ? `<span class="pet-original-name pet-original-name--xs">原名：${escapeHtml(petOriginalName(pet))}</span>` : ''}
-                    <span class="workshop-gift-pet__meta">Lv.${pet.bondLevel ?? 1} · 今日 ${used}/${DAILY_BOND_ITEM_LIMIT}</span>
-                    ${(pet.bondLevel ?? 0) >= 5 ? '<span class="workshop-gift-pet__liberated">羈絆解放</span>' : ''}
-                    ${pet.isCompanion ? '<span class="workshop-gift-pet__companion">陪伴中</span>' : ''}
-                  </div>
-                </button>`;
-            })
-            .join('')}
-        </div>
-      </section>
-
-      <section class="workshop-gift-section card">
-        <h2 class="section-title">選擇道具</h2>
-        <div class="workshop-gift-item-list">
-          ${availableItems
-            .map((item) => {
-              const selected = item.id === selectedGiftItemId;
-              const stock = itemCounts[item.id] || 0;
-              return `
-                <button type="button" class="workshop-gift-item ${selected ? 'workshop-gift-item--selected' : ''}" data-action="select-gift-item" data-item-id="${item.id}">
-                  <span class="workshop-gift-item__name">${escapeHtml(item.name)}</span>
-                  <span class="workshop-gift-item__stock">x${stock}</span>
-                  <span class="workshop-gift-item__effect">${escapeHtml(formatItemEffect(item))}</span>
-                </button>`;
-            })
-            .join('')}
-        </div>
-      </section>
-
-      <section class="workshop-gift-preview card ${bonus.isFavorite ? 'workshop-gift-preview--favorite' : ''}">
-        <h2 class="section-title">贈送預覽</h2>
-        <ul class="workshop-gift-preview__list">
-          <li>目前親密度：Lv.${selectedPet.bondLevel ?? 1}（${bondProgress.current}/${bondProgress.max || 'MAX'}）</li>
-          <li>使用後增加：+${bonus.bondExp}${bonus.isFavorite ? '（喜好加成）' : ''}</li>
-          <li>今日已使用：${dailyUsed} / ${DAILY_BOND_ITEM_LIMIT}</li>
-          ${willLevelUp ? `<li class="workshop-gift-preview__levelup">預計升級至 Lv.${previewLevel}</li>` : ''}
-        </ul>
-        <button class="btn btn--primary btn--block" data-action="gift-item" data-item-id="${selectedGiftItemId}" data-pet-id="${selectedGiftPetId}" ${atDailyLimit || itemStock <= 0 ? 'disabled' : ''}>贈送</button>
-        ${atDailyLimit ? '<p class="workshop-gift-preview__limit">今天這隻寵物已經收到足夠多禮物了，明天再來吧。</p>' : ''}
-      </section>
-    </div>`;
+  const model = buildWorkshopGiftView({
+    items: bondItems,
+    pets: state.enrichedCollection || [],
+    inventory,
+    date: getTodayDateString(),
+    itemId: selectedGiftItemId,
+    petId: selectedGiftPetId,
+    message: workshopGiftMessage,
+    busy: workshopGiftBusy,
+    imageHtml: (pet) => petImageHtml(pet, { size: 'sm' }),
+    displayName: petDisplayName,
+  });
+  selectedGiftItemId = model.itemId;
+  selectedGiftPetId = model.petId;
+  contentEl.innerHTML = model.html;
 }
 
 async function handleWorkshopClick(e) {
@@ -7804,16 +7748,20 @@ async function handleWorkshopClick(e) {
   if (!target || !state) return;
 
   const action = target.dataset.action;
+  if (target.disabled || workshopGiftBusy) return;
 
   if (action === 'select-gift-pet') {
     selectedGiftPetId = target.dataset.petId;
     renderWorkshopView();
+    document.querySelector(`.workshop-gift-pet[data-pet-id="${selectedGiftPetId}"]`)?.focus({ preventScroll: true });
     return;
   }
 
   if (action === 'select-gift-item') {
+    if (selectedGiftItemId !== target.dataset.itemId) selectedGiftPetId = null;
     selectedGiftItemId = target.dataset.itemId;
     renderWorkshopView();
+    document.querySelector(`.workshop-gift-item[data-item-id="${selectedGiftItemId}"]`)?.focus({ preventScroll: true });
     return;
   }
 
@@ -7850,13 +7798,16 @@ async function handleWorkshopClick(e) {
   if (action === 'gift-item') {
     const itemId = target.dataset.itemId;
     const petId = target.dataset.petId;
-    if (target.disabled) return;
+    if (target.disabled || workshopGiftBusy) return;
+    workshopGiftBusy = true;
+    renderWorkshopView();
     try {
       const result = await useBondItem(itemId, petId, state.allPets);
       if (!result.success) {
         showToast(result.message, 'warning');
         return;
       }
+      workshopGiftMessage = result.message;
       void recordOnboardingEvent('gift-given', { petId, itemId });
       await trackQuest('gift_pet');
       await onRefresh({ renderMode: ['workshop', 'tasks', 'collection'] });
@@ -7878,6 +7829,9 @@ async function handleWorkshopClick(e) {
       await handleAchievementCheckAfterAction();
     } catch (err) {
       showToast(err.message || '贈送失敗', 'error');
+    } finally {
+      workshopGiftBusy = false;
+      renderWorkshopView();
     }
   }
 }

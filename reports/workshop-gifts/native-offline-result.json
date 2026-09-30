@@ -1,0 +1,4 @@
+{
+  "status": "FAIL",
+  "error": "Error: Native worker registration/activation timed out\n    at http://127.0.0.1:53316/devtools/workshop-offline-test.js:46:42\n    at async HTMLButtonElement.<anonymous> (http://127.0.0.1:53316/devtools/workshop-offline-test.js:43:26)"
+}

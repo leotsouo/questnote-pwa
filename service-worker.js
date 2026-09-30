@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3432-one-tap-update';
+const CACHE_NAME = 'questnote-preview-cache-v3433-workshop-gifts';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -112,6 +112,7 @@ const PRECACHE_URLS = [
   'src/campService.js',
   'src/explorationService.js',
   'src/workshopService.js',
+  'src/workshopGiftView.js',
   'src/ui.js',
   'src/shareService.js',
   'src/feedbackService.js',
@@ -141,6 +142,7 @@ const PRECACHE_URLS = [
   'data/categories.json',
   'data/materials.json',
   'data/craftables.json',
+  'data/gift-affinities.json',
   'assets/brand/questnote-icon-192.png',
   'assets/icons/icon-512.png',
   'assets/expeditions/mist_forest.webp',

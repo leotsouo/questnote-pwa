@@ -5391,6 +5391,43 @@ body.reduce-motion .task-card--completing {
   color: var(--color-accent);
 }
 
+.workshop-gift-pet__reason {
+  font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
+}
+
+.workshop-gift-pet:disabled,
+.workshop-gift-item:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.workshop-gift-pet__name {
+  overflow-wrap: anywhere;
+}
+
+.workshop-gift-others {
+  margin-top: var(--space-3);
+}
+
+.workshop-gift-others summary {
+  cursor: pointer;
+  padding: var(--space-2) 0;
+}
+
+.workshop-gift-status {
+  padding: var(--space-3);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+}
+
+.workshop-craft-card__source,
+.workshop-craft-card__desc,
+.workshop-gift-hint {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
 .workshop-gift-item {
   flex-direction: column;
   align-items: flex-start;
