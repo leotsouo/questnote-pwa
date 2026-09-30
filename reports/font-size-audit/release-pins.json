@@ -1,0 +1,34 @@
+{
+  "production": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\30\\01a0f3e1-f329-7d30-a1a2-28698238c259\\font-release-artifacts\\a63513a696737209d41aa8ec6a1d7f1c1540b390b7e893beaa9c0b19f2a6c1f5",
+    "artifactId": "a63513a696737209d41aa8ec6a1d7f1c1540b390b7e893beaa9c0b19f2a6c1f5",
+    "manifestSha256": "99ed4e59d944563a479fb9fde0d945b11fee1befb8fb7ab2f93aa2fa037be0a1",
+    "profile": "production",
+    "scopePath": "/questnote-pwa/",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\30\\01a0f3e1-f329-7d30-a1a2-28698238c259\\font-release-artifacts\\a63513a696737209d41aa8ec6a1d7f1c1540b390b7e893beaa9c0b19f2a6c1f5",
+      "artifactId": "a63513a696737209d41aa8ec6a1d7f1c1540b390b7e893beaa9c0b19f2a6c1f5",
+      "manifestSha256": "99ed4e59d944563a479fb9fde0d945b11fee1befb8fb7ab2f93aa2fa037be0a1",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 413
+    }
+  },
+  "preview": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\30\\01a0f3e1-f329-7d30-a1a2-28698238c259\\font-release-artifacts\\e0f6867ab5958e300dc426deb680cb143e3a634afe2bf86b64b977b04153954f",
+    "artifactId": "e0f6867ab5958e300dc426deb680cb143e3a634afe2bf86b64b977b04153954f",
+    "manifestSha256": "d81629ad39aa2fcd9f13697e7a2df1a0d5f39b5c6adb3dee21e8db6d78e84a82",
+    "profile": "preview",
+    "scopePath": "/questnote-pwa-preview/",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\09\\30\\01a0f3e1-f329-7d30-a1a2-28698238c259\\font-release-artifacts\\e0f6867ab5958e300dc426deb680cb143e3a634afe2bf86b64b977b04153954f",
+      "artifactId": "e0f6867ab5958e300dc426deb680cb143e3a634afe2bf86b64b977b04153954f",
+      "manifestSha256": "d81629ad39aa2fcd9f13697e7a2df1a0d5f39b5c6adb3dee21e8db6d78e84a82",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 413
+    }
+  }
+}

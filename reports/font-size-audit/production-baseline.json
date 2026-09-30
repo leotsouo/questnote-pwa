@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-09-30T21:31:51.431Z",
+  "deploymentCommit": "9e815676db8ff3e203391894090a52b1d5090129",
+  "version": "3.4.36",
+  "originMain": "1604423914762c57ba5474b76a6da642339306dd",
+  "productionUnchanged": true,
+  "files": [
+    {
+      "path": "release-artifact.json",
+      "sha256": "c79adaf819c1258c556daacff0e352626a862872fb840fb1bf39dce3b8279e0b",
+      "bytes": 115741
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "21078666a4e5422dc65f73760d57bb1169d87c5a386c9d546b38001c40dc1cf2",
+      "bytes": 1121
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "sha256": "0aabd69489893f0f862400a1c705446854638d2e282b490cbf4e028bc5c63692",
+      "bytes": 622
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "21c3d8e0d09a45a86f6e3ffcd30be9cbbdf8ec9fd3898ede8ad3858d8c3db2c0",
+      "bytes": 28631
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "bytes": 8404
+    }
+  ]
+}
