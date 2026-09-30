@@ -79,6 +79,8 @@ try {
   assert(doc().getElementById('task-content').value === '這段文字尚未存檔', 'Draft was lost');
   assert(marker() === config.profiles.old.artifactId, 'Editing app was reloaded');
   doc().getElementById('form-cancel').click(); ui.switchView('more');
+  await until(() => win().getComputedStyle(doc().getElementById('modal-overlay')).visibility === 'hidden'
+    && !activity.hasUpdateActivity(), 'editor close transition');
   note('Unsaved task text and the open editor survive a blocked update');
 
   const second = await open();
@@ -89,14 +91,16 @@ try {
   assert(!doc().getElementById('app').inert, 'UI stayed locked after veto');
   second.remove(); note('A second app window vetoes activation and the first window unlocks');
 
+  await fetch('./offline', { method: 'POST', headers: { 'X-Test-Token': config.token }, body: 'on' });
   // This is the user's button. No external skipWaiting/claim/reload calls.
   apply(); await until(() => marker() === config.profiles.new.artifactId && ready(), 'one-tap new generation');
   assert(frame.isConnected, 'App window was closed');
   assert(await read() === baseline, 'Update changed stored rows');
   assert(doc().body.dataset.theme === 'twilight', 'Theme preference lost');
   assert(win().navigator.serviceWorker.controller, 'New app is uncontrolled');
-  note('One click activates/reloads coherent new bytes in the same window; all five stores and theme retained');
+  note('One click activates/reloads fully cached new bytes with all artifact HTTP requests returning 503; same window, all five stores and theme retained');
 
+  await fetch('./offline', { method: 'POST', headers: { 'X-Test-Token': config.token }, body: 'off' });
   const newUi = await win().eval('import("/questnote-pwa/src/ui.js")');
   newUi.switchView('more');
   doc().querySelector('#view-more [data-app-update="apply"]').click();

@@ -360,14 +360,23 @@ self.addEventListener('message', (event) => {
       || !self.registration.waiting || self.registration.waiting.scriptURL !== self.location.href) {
       reply({ status: 'unavailable' }); return;
     }
+    // Eviction may happen after install. Do not switch to an incomplete shell.
+    const cache = await caches.open(CACHE_NAME);
+    const complete = await Promise.all(PRECACHE_URLS.map(async (path) => {
+      const response = await cache.match(resolveUrl(path));
+      if (!response?.ok) return false;
+      if (!PRECACHE_HASHES) return true;
+      const digest = await crypto.subtle.digest('SHA-256', await response.arrayBuffer());
+      const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+      return hash === PRECACHE_HASHES[path];
+    }));
+    if (complete.some((ok) => !ok)) { reply({ status: 'unavailable' }); return; }
     // includeUncontrolled is needed because a waiting worker has no clients yet.
     const windows = (await self.clients.matchAll({ type: 'window', includeUncontrolled: true }))
       .filter((client) => client.url.startsWith(scope));
     if (windows.length !== 1 || windows[0].id !== event.source.id) {
       reply({ status: 'other-clients' }); return;
     }
-    const cache = await caches.open(CACHE_NAME);
-    if (!(await cache.match(resolveUrl('index.html')))) { reply({ status: 'unavailable' }); return; }
     reply({ status: 'accepted' });
     await self.skipWaiting();
   })().catch(() => event.ports?.[0]?.postMessage({ status: 'unavailable' })));

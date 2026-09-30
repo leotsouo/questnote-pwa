@@ -21,6 +21,7 @@ for (const [name, root] of [['old', oldRoot], ['new', newRoot]]) {
 }
 if (artifacts.old.manifest.profile.contentBundleSha256 !== artifacts.new.manifest.profile.contentBundleSha256) throw Error('Rollback content must match');
 let active = 'old';
+let offline = false;
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml' };
 const server = http.createServer(async (request, response) => {
   try {
@@ -28,6 +29,12 @@ const server = http.createServer(async (request, response) => {
     if (request.headers.host !== new URL(origin).host) { response.writeHead(403).end(); return; }
     const url = new URL(request.url, origin);
     response.setHeader('Cache-Control', 'no-store');
+    if (url.pathname === '/test/offline' && request.method === 'POST') {
+      if (request.headers.origin !== origin || request.headers['x-test-token'] !== token) { response.writeHead(403).end(); return; }
+      let body = ''; for await (const chunk of request) { body += chunk; if (body.length > 10) throw Error('Too long'); }
+      if (!['on', 'off'].includes(body)) throw Error('Invalid offline mode');
+      offline = body === 'on'; response.end('OK'); return;
+    }
     if (url.pathname === '/test/switch' && request.method === 'POST') {
       if (request.headers.origin !== origin || request.headers['x-test-token'] !== token) { response.writeHead(403).end(); return; }
       let body = ''; for await (const chunk of request) { body += chunk; if (body.length > 100) throw Error('Too long'); }
@@ -47,6 +54,7 @@ const server = http.createServer(async (request, response) => {
       response.setHeader('Content-Type', 'text/javascript'); response.end(await fs.readFile(new URL('./app-update-browser-test.js', import.meta.url))); return;
     }
     if (!url.pathname.startsWith('/questnote-pwa/')) { response.writeHead(404).end(); return; }
+    if (offline) { response.writeHead(503).end('Test network unavailable'); return; }
     const file = url.pathname.slice('/questnote-pwa/'.length) || 'index.html';
     const bytes = artifacts[active].files.get(file);
     if (!bytes) { response.writeHead(404).end(); return; }

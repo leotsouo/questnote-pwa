@@ -26,12 +26,12 @@ const workerSource = await fs.readFile(new URL('../service-worker.js', import.me
 const artifactId = 'b'.repeat(64);
 const scope = 'https://example.test/questnote-pwa/';
 const workerUrl = scope + 'service-worker.js?artifact=old-url';
-function worker({ windows = [{ id: 'caller', url: scope + 'index.html' }], cached = true, waiting = true } = {}) {
+function worker({ windows = [{ id: 'caller', url: scope + 'index.html' }], cached = true, waiting = true, missingPath = null } = {}) {
   const handlers = {}; let skips = 0; let claims = 0;
   const source = workerSource.replace('const BUILD_PROFILE = null;', `const BUILD_PROFILE = ${JSON.stringify({ artifactId, scopePath: '/questnote-pwa/' })};`);
   runInNewContext(source, { URL, Request, Response, Uint8Array, crypto: webcrypto,
     setTimeout, clearTimeout, AbortController,
-    caches: { open: async () => ({ match: async () => cached ? new Response('verified index') : null }) },
+    caches: { open: async () => ({ match: async (url) => cached && !String(url).endsWith(missingPath || 'no-missing-path') ? new Response('verified index') : null }) },
     self: { location: { href: workerUrl }, registration: { scope, waiting: waiting ? { scriptURL: workerUrl } : null },
       addEventListener: (name, callback) => { handlers[name] = callback; },
       clients: { matchAll: async (options) => { assert.equal(options.includeUncontrolled, true); return windows; }, claim: async () => { claims++; } },
@@ -63,7 +63,7 @@ test('preview sibling clients do not block the production scope', async () => {
 });
 
 test('missing cache, wrong artifact, active worker, wrong caller and legacy skip remain fail closed', async () => {
-  for (const options of [{ cached: false }, { waiting: false }]) {
+  for (const options of [{ cached: false }, { waiting: false }, { missingPath: 'src/app.js' }]) {
     const instance = worker(options);
     assert.equal((await instance.message({ type: 'QUESTNOTE_APPLY_UPDATE', artifactId })).status, 'unavailable');
     assert.equal(instance.lifecycle().skips, 0);

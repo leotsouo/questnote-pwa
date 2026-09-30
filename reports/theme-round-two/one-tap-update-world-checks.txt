@@ -1,0 +1,213 @@
+WORLDS · 完整驗證
+PASS · 使用者習慣描述 emoji 保留原文與可讀語意
+PASS · 編輯後的習慣描述也保留 emoji
+PASS · 三套切換本身不改遊戲存檔
+PASS · default · 偏好持久化
+PASS · default · reload 保留風格
+PASS · default · 只有三套且一套使用中
+PASS · default 393 tasks · 無橫溢
+PASS · default 393 tasks · 固定導覽/44px
+PASS · default 393 collection · 無橫溢
+PASS · default 393 collection · 固定導覽/44px
+PASS · default 393 gacha · 無橫溢
+PASS · default 393 gacha · 固定導覽/44px
+PASS · default 393 expedition · 無橫溢
+PASS · default 393 expedition · 固定導覽/44px
+PASS · default 393 more · 無橫溢
+PASS · default 393 more · 固定導覽/44px
+PASS · default 393 settings · 無橫溢
+PASS · default 393 settings · 固定導覽/44px
+PASS · default 393 habits · 無橫溢
+PASS · default 393 habits · 固定導覽/44px
+PASS · default 393 achievements · 無橫溢
+PASS · default 393 achievements · 固定導覽/44px
+PASS · default 393 workshop · 無橫溢
+PASS · default 393 workshop · 固定導覽/44px
+PASS · default 393 handbook · 無橫溢
+PASS · default 393 handbook · 固定導覽/44px
+PASS · default 393 guide · 無橫溢
+PASS · default 393 guide · 固定導覽/44px
+PASS · default 393 share · 無橫溢
+PASS · default 393 share · 固定導覽/44px
+PASS · default 393 · 深色背景完整承接任務區圓角
+PASS · default 393 · 夥伴/首任務/完成可見
+PASS · default 393 · 任務與夥伴操作 >=44px
+PASS · default · 任務文字對比 >=4.5 · 15.08
+PASS · default · 導覽文字對比 >=4.5 · 9.15
+PASS · default 393 · 長標題換行不橫溢
+PASS · default · 減少動態停止動畫與進度 transition
+PASS · default · 主場景與品牌圖示已解碼
+PASS · default · 進度具可讀語意
+PASS · default 320 tasks · 無橫溢
+PASS · default 320 tasks · 固定導覽/44px
+PASS · default 320 collection · 無橫溢
+PASS · default 320 collection · 固定導覽/44px
+PASS · default 320 gacha · 無橫溢
+PASS · default 320 gacha · 固定導覽/44px
+PASS · default 320 expedition · 無橫溢
+PASS · default 320 expedition · 固定導覽/44px
+PASS · default 320 more · 無橫溢
+PASS · default 320 more · 固定導覽/44px
+PASS · default 320 settings · 無橫溢
+PASS · default 320 settings · 固定導覽/44px
+PASS · default 320 habits · 無橫溢
+PASS · default 320 habits · 固定導覽/44px
+PASS · default 320 achievements · 無橫溢
+PASS · default 320 achievements · 固定導覽/44px
+PASS · default 320 workshop · 無橫溢
+PASS · default 320 workshop · 固定導覽/44px
+PASS · default 320 handbook · 無橫溢
+PASS · default 320 handbook · 固定導覽/44px
+PASS · default 320 guide · 無橫溢
+PASS · default 320 guide · 固定導覽/44px
+PASS · default 320 share · 無橫溢
+PASS · default 320 share · 固定導覽/44px
+PASS · default 320 · 深色背景完整承接任務區圓角
+PASS · default 320 · 夥伴/首任務/完成可見
+PASS · default 320 · 任務與夥伴操作 >=44px
+PASS · default · 任務文字對比 >=4.5 · 15.08
+PASS · default · 導覽文字對比 >=4.5 · 9.15
+PASS · default 320 · 長標題換行不橫溢
+PASS · default · 減少動態停止動畫與進度 transition
+PASS · default · 主場景與品牌圖示已解碼
+PASS · default · 進度具可讀語意
+PASS · sweet · 偏好持久化
+PASS · sweet · reload 保留風格
+PASS · sweet · 只有三套且一套使用中
+PASS · sweet 393 tasks · 無橫溢
+PASS · sweet 393 tasks · 固定導覽/44px
+PASS · sweet 393 collection · 無橫溢
+PASS · sweet 393 collection · 固定導覽/44px
+PASS · sweet 393 gacha · 無橫溢
+PASS · sweet 393 gacha · 固定導覽/44px
+PASS · sweet 393 expedition · 無橫溢
+PASS · sweet 393 expedition · 固定導覽/44px
+PASS · sweet 393 more · 無橫溢
+PASS · sweet 393 more · 固定導覽/44px
+PASS · sweet 393 settings · 無橫溢
+PASS · sweet 393 settings · 固定導覽/44px
+PASS · sweet 393 habits · 無橫溢
+PASS · sweet 393 habits · 固定導覽/44px
+PASS · sweet 393 achievements · 無橫溢
+PASS · sweet 393 achievements · 固定導覽/44px
+PASS · sweet 393 workshop · 無橫溢
+PASS · sweet 393 workshop · 固定導覽/44px
+PASS · sweet 393 handbook · 無橫溢
+PASS · sweet 393 handbook · 固定導覽/44px
+PASS · sweet 393 guide · 無橫溢
+PASS · sweet 393 guide · 固定導覽/44px
+PASS · sweet 393 share · 無橫溢
+PASS · sweet 393 share · 固定導覽/44px
+PASS · sweet 393 · 深色背景完整承接任務區圓角
+PASS · sweet 393 · 夥伴/首任務/完成可見
+PASS · sweet 393 · 任務與夥伴操作 >=44px
+PASS · sweet · 任務文字對比 >=4.5 · 10.79
+PASS · sweet · 導覽文字對比 >=4.5 · 5.17
+PASS · sweet 393 · 長標題換行不橫溢
+PASS · sweet · 減少動態停止動畫與進度 transition
+PASS · sweet · 主場景與品牌圖示已解碼
+PASS · sweet · 進度具可讀語意
+PASS · sweet 320 tasks · 無橫溢
+PASS · sweet 320 tasks · 固定導覽/44px
+PASS · sweet 320 collection · 無橫溢
+PASS · sweet 320 collection · 固定導覽/44px
+PASS · sweet 320 gacha · 無橫溢
+PASS · sweet 320 gacha · 固定導覽/44px
+PASS · sweet 320 expedition · 無橫溢
+PASS · sweet 320 expedition · 固定導覽/44px
+PASS · sweet 320 more · 無橫溢
+PASS · sweet 320 more · 固定導覽/44px
+PASS · sweet 320 settings · 無橫溢
+PASS · sweet 320 settings · 固定導覽/44px
+PASS · sweet 320 habits · 無橫溢
+PASS · sweet 320 habits · 固定導覽/44px
+PASS · sweet 320 achievements · 無橫溢
+PASS · sweet 320 achievements · 固定導覽/44px
+PASS · sweet 320 workshop · 無橫溢
+PASS · sweet 320 workshop · 固定導覽/44px
+PASS · sweet 320 handbook · 無橫溢
+PASS · sweet 320 handbook · 固定導覽/44px
+PASS · sweet 320 guide · 無橫溢
+PASS · sweet 320 guide · 固定導覽/44px
+PASS · sweet 320 share · 無橫溢
+PASS · sweet 320 share · 固定導覽/44px
+PASS · sweet 320 · 深色背景完整承接任務區圓角
+PASS · sweet 320 · 夥伴/首任務/完成可見
+PASS · sweet 320 · 任務與夥伴操作 >=44px
+PASS · sweet · 任務文字對比 >=4.5 · 10.79
+PASS · sweet · 導覽文字對比 >=4.5 · 5.17
+PASS · sweet 320 · 長標題換行不橫溢
+PASS · sweet · 減少動態停止動畫與進度 transition
+PASS · sweet · 主場景與品牌圖示已解碼
+PASS · sweet · 進度具可讀語意
+PASS · twilight · 偏好持久化
+PASS · twilight · reload 保留風格
+PASS · twilight · 只有三套且一套使用中
+PASS · twilight 393 tasks · 無橫溢
+PASS · twilight 393 tasks · 固定導覽/44px
+PASS · twilight 393 collection · 無橫溢
+PASS · twilight 393 collection · 固定導覽/44px
+PASS · twilight 393 gacha · 無橫溢
+PASS · twilight 393 gacha · 固定導覽/44px
+PASS · twilight 393 expedition · 無橫溢
+PASS · twilight 393 expedition · 固定導覽/44px
+PASS · twilight 393 more · 無橫溢
+PASS · twilight 393 more · 固定導覽/44px
+PASS · twilight 393 settings · 無橫溢
+PASS · twilight 393 settings · 固定導覽/44px
+PASS · twilight 393 habits · 無橫溢
+PASS · twilight 393 habits · 固定導覽/44px
+PASS · twilight 393 achievements · 無橫溢
+PASS · twilight 393 achievements · 固定導覽/44px
+PASS · twilight 393 workshop · 無橫溢
+PASS · twilight 393 workshop · 固定導覽/44px
+PASS · twilight 393 handbook · 無橫溢
+PASS · twilight 393 handbook · 固定導覽/44px
+PASS · twilight 393 guide · 無橫溢
+PASS · twilight 393 guide · 固定導覽/44px
+PASS · twilight 393 share · 無橫溢
+PASS · twilight 393 share · 固定導覽/44px
+PASS · twilight 393 · 深色背景完整承接任務區圓角
+PASS · twilight 393 · 夥伴/首任務/完成可見
+PASS · twilight 393 · 任務與夥伴操作 >=44px
+PASS · twilight · 任務文字對比 >=4.5 · 11.06
+PASS · twilight · 導覽文字對比 >=4.5 · 4.60
+PASS · twilight 393 · 長標題換行不橫溢
+PASS · twilight · 減少動態停止動畫與進度 transition
+PASS · twilight · 主場景與品牌圖示已解碼
+PASS · twilight · 進度具可讀語意
+PASS · twilight 320 tasks · 無橫溢
+PASS · twilight 320 tasks · 固定導覽/44px
+PASS · twilight 320 collection · 無橫溢
+PASS · twilight 320 collection · 固定導覽/44px
+PASS · twilight 320 gacha · 無橫溢
+PASS · twilight 320 gacha · 固定導覽/44px
+PASS · twilight 320 expedition · 無橫溢
+PASS · twilight 320 expedition · 固定導覽/44px
+PASS · twilight 320 more · 無橫溢
+PASS · twilight 320 more · 固定導覽/44px
+PASS · twilight 320 settings · 無橫溢
+PASS · twilight 320 settings · 固定導覽/44px
+PASS · twilight 320 habits · 無橫溢
+PASS · twilight 320 habits · 固定導覽/44px
+PASS · twilight 320 achievements · 無橫溢
+PASS · twilight 320 achievements · 固定導覽/44px
+PASS · twilight 320 workshop · 無橫溢
+PASS · twilight 320 workshop · 固定導覽/44px
+PASS · twilight 320 handbook · 無橫溢
+PASS · twilight 320 handbook · 固定導覽/44px
+PASS · twilight 320 guide · 無橫溢
+PASS · twilight 320 guide · 固定導覽/44px
+PASS · twilight 320 share · 無橫溢
+PASS · twilight 320 share · 固定導覽/44px
+PASS · twilight 320 · 深色背景完整承接任務區圓角
+PASS · twilight 320 · 夥伴/首任務/完成可見
+PASS · twilight 320 · 任務與夥伴操作 >=44px
+PASS · twilight · 任務文字對比 >=4.5 · 11.06
+PASS · twilight · 導覽文字對比 >=4.5 · 4.60
+PASS · twilight 320 · 長標題換行不橫溢
+PASS · twilight · 減少動態停止動畫與進度 transition
+PASS · twilight · 主場景與品牌圖示已解碼
+PASS · twilight · 進度具可讀語意
+NOTE · 導覽沿用既有頁面事件：變更 stores meta
+DONE · 實際 iPhone safe-area、原生手勢與 VoiceOver 需實機確認。
