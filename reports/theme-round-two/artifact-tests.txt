@@ -1,0 +1,34 @@
+▶ release artifact preparation is immutable, isolated and content complete
+  ✔ dry-run validates without creating output or modifying source (597.3389ms)
+  ✔ production config, final-byte precache hashes and baseline files agree (1309.0517ms)
+  ✔ identical inputs reuse identical artifact and preview is isolated (2822.2187ms)
+  ✔ recursive literal imports are discovered and missing imports fail before writes (1308.9282ms)
+  ✔ another runtime validator cannot be certified using this checkout contract (458.0095ms)
+  ✔ later authoring promotion never changes the legacy URLs served to old clients (1690.9188ms)
+  ✔ bootstrap entrypoint and its dynamic app import are included in precache (456.6338ms)
+  ✔ missing image references and unsafe output roots are rejected (428.3351ms)
+  ✔ candidate hashes, additive identities and unchanged legacy catalogs are enforced (3343.0634ms)
+  ✔ existing artifact corruption and missing files are never overwritten (824.1967ms)
+  ✔ junction/symlink inputs and output roots are refused (105.331ms)
+✔ release artifact preparation is immutable, isolated and content complete (14461.3799ms)
+▶ strict verifier accepts assembler output and rejects unsafe or inconsistent deployment bytes
+  ✔ genuine production and preview assembler output and CLI pass (2983.2944ms)
+  ✔ all caller pins are mandatory and binding (12.8954ms)
+  ✔ extra, missing and untracked empty directories fail (1734.9138ms)
+  ✔ nojekyll must be in both actual and pinned inventory (388.8186ms)
+  ✔ tampered bytes and forged byte counts fail (1266.2028ms)
+  ✔ manifest traversal, Windows path aliases and self-inventory fail before use (2743.2699ms)
+  ✔ directory symlinks/junctions and linked ancestor roots fail (349.3071ms)
+  ✔ rehashed inconsistent runtime descriptor is rejected without executing it (669.9079ms)
+  ✔ rehashed index and webmanifest deployment changes fail (1925.9697ms)
+  ✔ rehashed SW descriptor, cache identity and registration changes fail (2685.079ms)
+  ✔ rehashed precache digest or catalog edits cannot pass (1666.9698ms)
+✔ strict verifier accepts assembler output and rejects unsafe or inconsistent deployment bytes (19143.1649ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19292.4004

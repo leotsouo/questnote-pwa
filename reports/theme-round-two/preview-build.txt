@@ -1,0 +1,10 @@
+{
+  "artifactId": "76a7b2997d75167abeef1a7374beb76a4d8746857c8bc55e5e7dffca1eb47b9f",
+  "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-three-worlds-fbdbf720c71c447dbdec1a7e5491ab1d\\76a7b2997d75167abeef1a7374beb76a4d8746857c8bc55e5e7dffca1eb47b9f",
+  "manifestPath": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-three-worlds-fbdbf720c71c447dbdec1a7e5491ab1d\\76a7b2997d75167abeef1a7374beb76a4d8746857c8bc55e5e7dffca1eb47b9f\\release-artifact.json",
+  "fileCount": 325,
+  "dryRun": false,
+  "reused": false,
+  "releaseReady": false,
+  "liveBaseline": "UNKNOWN"
+}

@@ -69,7 +69,9 @@ import {
   IDLE_THRESHOLD_MS,
 } from './companionDialogueService.js';
 import { setTheme, applyThemeToDocument, normalizeTheme } from './preferencesService.js';
-import { twilightIcon, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
+import { initQuestIconLanguage } from './iconPresentation.js';
+import { THEME_DIRECTIONS } from './themeRegistry.js';
+import { twilightIcon, getCompanionScene, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
 import {
   pickStatusLine,
   randomStatusInterval,
@@ -578,6 +580,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
   uiInitialized = true;
   try {
     initTwilightChrome();
+    initQuestIconLanguage();
     bindNavigation();
     bindModals();
     bindDelegatedEvents();
@@ -774,13 +777,13 @@ function bindDelegatedEvents() {
 
       await onRefresh();
 
-      if (isCompleting && state.userPreferences?.theme === 'twilight') {
+      if (isCompleting) {
         reactTwilightCompanion(state.companion?.dialogues?.praise?.[0]);
       }
       if (isCompleting && taskViewMode === 'today') {
         requestAnimationFrame(() => {
           document.querySelector(`.task-card[data-id="${CSS.escape(String(id))}"]`)
-            ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            ?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'nearest' });
         });
       }
 
@@ -910,7 +913,7 @@ function bindDelegatedEvents() {
       requestAnimationFrame(() => {
         renderDailyBlessingSection();
         renderHomeHub();
-        document.getElementById('homeDailyBlessingContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('homeDailyBlessingContainer')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
       });
     } else if (action === 'daily-open-wheel') {
       await openDailyWheelModal();
@@ -1085,7 +1088,7 @@ function bindDelegatedEvents() {
       requestAnimationFrame(() => {
         renderDailyBlessingSection();
         renderHomeHub();
-        document.getElementById('homeDailyBlessingContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('homeDailyBlessingContainer')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
       });
     }
   });
@@ -1170,6 +1173,19 @@ function bindDelegatedEvents() {
       const theme = themeCard.dataset.theme;
       if (theme) await applyTheme(theme);
     }
+  });
+
+  document.querySelector('.theme-picker')?.addEventListener('keydown', async (event) => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+    const current = event.target.closest('[data-action="select-theme"]');
+    if (!current) return;
+    event.preventDefault();
+    const cards = [...document.querySelectorAll('.theme-picker [data-action="select-theme"]')];
+    const index = cards.indexOf(current);
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? cards.length - 1
+      : (index + (['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1) + cards.length) % cards.length;
+    await applyTheme(cards[next].dataset.theme);
+    cards[next].focus();
   });
 
   document.getElementById('achievement-strip')?.addEventListener('click', () => {
@@ -1280,14 +1296,14 @@ function bindNavigation() {
 
 export function switchView(viewName) {
   document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach((n) => n.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach((n) => { n.classList.remove('active'); n.removeAttribute('aria-current'); });
 
   const view = document.getElementById(`view-${viewName}`);
-  if (state?.userPreferences?.theme === 'twilight') window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
   const navView = viewName === 'achievements' || viewName === 'settings' || viewName === 'habits' || viewName === 'workshop' || viewName === 'handbook' || viewName === 'guide' || viewName === 'feedback' || viewName === 'share' ? 'more' : viewName;
   const nav = document.querySelector(`.nav-item[data-view="${navView}"]`);
   if (view) view.classList.add('active');
-  if (nav) nav.classList.add('active');
+  if (nav) { nav.classList.add('active'); nav.setAttribute('aria-current', 'page'); }
   if (viewName === 'guide') window.scrollTo(0, 0);
 
   trackUserActivity();
@@ -1658,9 +1674,9 @@ export function petImageHtml(pet, options = {}) {
 
 /** 星級顯示 */
 export function renderStars(count, max = 5) {
-  let html = '<span class="stars">';
+  let html = `<span class="stars" role="img" aria-label="${count} / ${max} 星">`;
   for (let i = 1; i <= max; i++) {
-    html += `<span class="star ${i <= count ? 'star--filled' : ''}">★</span>`;
+    html += `<span class="star ${i <= count ? 'star--filled' : ''}" aria-hidden="true">${twilightIcon('star')}</span>`;
   }
   html += '</span>';
   return html;
@@ -2871,7 +2887,6 @@ function renderTaskCard(task) {
   const stardust = calculateRewardAmount(task);
   const energy = calculateAdventureEnergyAmount(task);
   const category = getCategoryById(task.categoryId || 'general', state.categories);
-  const catClass = `badge--category badge--category-${category?.color || 'gray'}`;
   const dateClass = getDateBadgeClass(task, today);
   const dateText = formatDateBadgeText(task, today);
   const inPlan = isInTodayPlan(task, today);
@@ -2909,9 +2924,6 @@ function renderTaskCard(task) {
     </div>
   ` : '';
 
-  const planBadge = inPlan
-    ? `<span class="badge badge--today-plan">${task.completed ? '今日完成' : '今日'}</span>`
-    : '';
 
   const planBtn = !task.completed
     ? inPlan
@@ -2924,58 +2936,22 @@ function renderTaskCard(task) {
     : '';
 
   const preview = task.content.split('\n').slice(1).filter((line) => line.trim()).slice(0, 2).join(' ');
+  const rewardsHtml = task.completed ? doneInfo : task.rewardClaimed
+    ? `<div class="task-card__rewards"><span>${twilightIcon('check')}獎勵已領取</span></div>`
+    : `<div class="task-card__rewards"><span>${twilightIcon('spark')}${stardust} 星塵</span><span>${twilightIcon('energy')}${energy} 能量</span>${state.companion ? `<span>${twilightIcon('heart')}+${calculateBondAmount(task)} 親密度</span>` : ''}</div>`;
 
-  if (state.userPreferences?.theme === 'twilight') {
-    return `<article class="task-card twilight-task-card ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
-      <button type="button" class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" aria-label="${task.completed ? '取消完成' : '完成'} ${escapeHtml(task.title)}">${task.completed ? twilightIcon('check') : ''}</button>
-      <div class="twilight-task-body">
-        <div class="task-card__meta"><span>${formatCategoryLabel(category)}</span>${task.priority !== 'normal' ? `<span class="twilight-task-priority">${escapeHtml(PRIORITY_LABELS[task.priority])}</span>` : ''}${task.dueDate || task.startDate ? `<span class="${dateClass}">${escapeHtml(dateText)}</span>` : ''}${!inPlan && !task.completed ? '<span>未排入今日</span>' : ''}</div>
-        <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
-        ${preview ? `<p class="task-card__preview">${escapeHtml(preview)}</p>` : ''}
-        ${subtasksHtml}
-        ${!task.completed ? `<div class="task-card__rewards"><span>✦ ${stardust} 星塵</span><span>${twilightIcon('energy')}${energy} 能量</span>${state.companion ? `<span>${twilightIcon('heart')}+${calculateBondAmount(task)} 親密度</span>` : ''}</div>` : doneInfo}
-        ${expandBtn ? `<div class="twilight-task-expander">${expandBtn}</div>` : ''}
-      </div>
-      <details class="twilight-task-menu"><summary aria-label="${escapeHtml(task.title)}：更多操作">${twilightIcon('more')}</summary><div class="task-card__actions">${planBtn}<button type="button" class="btn btn--ghost btn--sm" data-action="edit">編輯</button><button type="button" class="btn btn--ghost btn--sm btn--danger" data-action="delete">刪除</button></div></details>
-    </article>`;
-  }
-
-  return `
-    <article class="task-card card-animate ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
-      <div class="task-card__header">
-        <button class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" aria-label="完成任務">
-          ${task.completed ? '✓' : ''}
-        </button>
-        <div class="task-card__meta">
-          <span class="badge ${catClass}">${formatCategoryLabel(category)}</span>
-          <span class="badge ${priorityClass}">${PRIORITY_LABELS[task.priority]}</span>
-          <span class="badge ${dateClass}">${escapeHtml(dateText)}</span>
-          ${planBadge}
-        </div>
-      </div>
+  return `<article class="task-card twilight-task-card ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
+    <button type="button" class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" aria-pressed="${task.completed}" aria-label="${task.completed ? '取消完成' : '完成'} ${escapeHtml(task.title)}">${task.completed ? twilightIcon('check') : ''}</button>
+    <div class="twilight-task-body">
+      <div class="task-card__meta"><span>${formatCategoryLabel(category)}</span>${task.priority !== 'normal' ? `<span class="twilight-task-priority">${escapeHtml(PRIORITY_LABELS[task.priority])}</span>` : ''}${task.dueDate || task.startDate ? `<span class="${dateClass}">${escapeHtml(dateText)}</span>` : ''}${!inPlan && !task.completed ? '<span>未排入今日</span>' : ''}</div>
       <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
       ${preview ? `<p class="task-card__preview">${escapeHtml(preview)}</p>` : ''}
       ${subtasksHtml}
-      ${
-        !task.completed
-          ? `<div class="task-card__rewards">
-              <span class="task-reward-tag task-reward-tag--stardust">✦ ${stardust} 星塵</span>
-              <span class="task-reward-tag task-reward-tag--energy">⚡ ${energy} 能量</span>
-            </div>`
-          : doneInfo
-      }
-      <div class="task-card__actions">
-        ${
-          !task.completed
-            ? `<button class="btn btn--primary btn--sm task-card__complete-btn" data-action="toggle" aria-label="完成任務">完成</button>`
-            : ''
-        }
-        ${planBtn}
-        ${expandBtn}
-        <button class="btn btn--ghost btn--sm" data-action="edit">編輯</button>
-        <button class="btn btn--ghost btn--sm btn--danger" data-action="delete">刪除</button>
-      </div>
-    </article>`;
+      ${rewardsHtml}
+      ${expandBtn ? `<div class="twilight-task-expander">${expandBtn}</div>` : ''}
+    </div>
+    <details class="twilight-task-menu"><summary aria-label="${escapeHtml(task.title)}：更多操作">${twilightIcon('more')}</summary><div class="task-card__actions">${planBtn}<button type="button" class="btn btn--ghost btn--sm" data-action="edit">編輯</button><button type="button" class="btn btn--ghost btn--sm btn--danger" data-action="delete">刪除</button></div></details>
+  </article>`;
 }
 
 function openTaskForm(taskId = null) {
@@ -4560,6 +4536,11 @@ export function applyReduceMotionClass(enabled) {
   document.body.classList.toggle('reduce-motion', !!enabled);
 }
 
+function preferredScrollBehavior() {
+  return state?.userPreferences?.reduceMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ? 'auto' : 'smooth';
+}
+
 /**
  * 套用美術風格主題
  * @param {string} theme
@@ -4600,6 +4581,7 @@ function renderThemePickerState(activeTheme) {
     const isActive = cardTheme === theme;
     card.classList.toggle('theme-card--active', isActive);
     card.setAttribute('aria-checked', isActive ? 'true' : 'false');
+    card.tabIndex = isActive ? 0 : -1;
   });
   document.querySelectorAll('[data-theme-badge]').forEach((badge) => {
     badge.hidden = badge.dataset.themeBadge !== theme;
@@ -6097,14 +6079,14 @@ function renderCollectionView() {
   if (companionEl) {
     if (state.companion) {
       companionEl.innerHTML = `
-        <div>${petImageHtml(state.companion, { size: 'sm' })}</div>
-        <div>
-          <p class="collection-companion__label">目前陪伴寵物</p>
+        <img class="qn-collection-art" src="${escapeHtml(getCompanionScene(state.companion, state.userPreferences?.theme))}" alt="" decoding="async">
+        <div class="qn-collection-copy">
+          <p class="collection-companion__label">與你同行</p>
           <p class="collection-companion__name">${escapeHtml(petDisplayName(state.companion))}</p>
           ${state.companion.nickname ? `<p class="pet-original-name pet-original-name--sm">原名：${escapeHtml(petOriginalName(state.companion))}</p>` : ''}
-          ${bondBadgeHtml(state.companion)}
+          <p class="qn-collection-bond">${twilightIcon('heart')}親密度 Lv.${state.companion.bondLevel ?? 1}</p>
         </div>
-        <span class="badge badge--rarity rarity-${state.companion.rarity}">${state.companion.rarity}</span>`;
+        <button type="button" class="qn-collection-image" data-action="view-pet-image" data-pet-id="${escapeHtml(state.companion.id)}" aria-label="查看 ${escapeHtml(petDisplayName(state.companion))} 原圖">${twilightIcon('eye')}</button>`;
       companionEl.classList.remove('collection-companion--empty');
     } else {
       companionEl.innerHTML = '<p class="collection-companion--empty">尚未設定陪伴寵物</p>';
@@ -7900,7 +7882,7 @@ async function handleWorkshopClick(e) {
 
 function renderMoreView() {
   renderVersionInfo();
-  const themeNames = { default: '深色幻想風', sweet: '甜美可愛風', twilight: '暮光冒險手帳' };
+  const themeNames = Object.fromEntries(Object.entries(THEME_DIRECTIONS).map(([key, direction]) => [key, direction.name]));
   setText('more-active-theme', `${themeNames[state?.userPreferences?.theme] || themeNames.default} · 自由切換三種風格`);
 
   const summary = state?.achievementSummary;

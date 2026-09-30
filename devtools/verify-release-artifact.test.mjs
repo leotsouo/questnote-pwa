@@ -8,6 +8,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { prepareReleaseArtifact } from '../scripts/releaseArtifact.mjs';
 import { verifyReleaseArtifact } from '../scripts/verify-release-artifact.mjs';
+import { THEME_ASSET_FIXTURES } from './fixtures/theme-assets.mjs';
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -27,6 +28,7 @@ test('strict verifier accepts assembler output and rejects unsafe or inconsisten
     const pets = JSON.parse(await fs.readFile(path.join(source, 'data/pets.json'))).pets;
     const images = new Set(pets.flatMap((pet) => [pet.image, ...Object.values(pet.imageVariants || {})]));
     images.add('assets/icons/icon-192.png'); images.add('assets/icons/icon-512.png');
+    for (const name of THEME_ASSET_FIXTURES) images.add(name);
     for (const name of images) {
       await fs.mkdir(path.dirname(path.join(source, name)), { recursive: true });
       await fs.writeFile(path.join(source, name), `synthetic-image:${name}`);
