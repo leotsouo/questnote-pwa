@@ -1,0 +1,6 @@
+{
+  "phase": "before",
+  "cases": [],
+  "pageErrors": [],
+  "nativeIosStatusBar": "Not tested; physical iPhone acceptance required."
+}

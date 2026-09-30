@@ -1,0 +1,18 @@
+{
+  "production": {
+    "artifactId": "9c2bd9c3ac2ebdb9202f6f2b942df8346cca9b6c2c8e4ecd64f3e3a06592ff37",
+    "manifestSha256": "e9755c2be942bf170345e31ca6e77721b4e708edc5f55e15f45560de7c7ef453",
+    "profile": "production",
+    "scopePath": "/questnote-pwa/",
+    "sourceCommit": "fa70beb4c90e71a4c732cb60a9da1b7f4b6d9fe9",
+    "fileCount": 349
+  },
+  "preview": {
+    "artifactId": "210f010406a78da8ab837cccb1c7d15b00da3e55e25d0b5a89d5b8398d2a5135",
+    "manifestSha256": "407630a40e24c3ed9fba55877e0b81ef1097236b504426d7e396a28e3ed3adb2",
+    "profile": "preview",
+    "scopePath": "/questnote-pwa-preview/",
+    "sourceCommit": "fa70beb4c90e71a4c732cb60a9da1b7f4b6d9fe9",
+    "fileCount": 349
+  }
+}

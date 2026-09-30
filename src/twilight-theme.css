@@ -8,6 +8,8 @@
 .theme-card__swatch--accent-twilight { background: #dabd88; z-index: 1; }
 .theme-card__swatch--primary-twilight { background: #476952; }
 
+/* Dark system chrome around the journal; paper content retains light controls. */
+html[data-theme="twilight"] { color-scheme: dark; background: #172330; }
 body[data-theme="twilight"] {
   color-scheme: light;
   --tw-night: #172330;
@@ -19,6 +21,7 @@ body[data-theme="twilight"] {
   --tw-paper-gold: #796039;
   --tw-green: #476952;
   --tw-line: #d9dcd1;
+  --tw-paper-overlap: 28px;
   --tw-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
   --color-bg-main: #f3efe6;
   --color-bg-surface: #ebe8de;
@@ -106,14 +109,15 @@ body[data-theme="twilight"] {
   --radius-card: var(--radius-lg);
   --shadow: var(--shadow-md);
   --shadow-card: var(--shadow-md);
-  background: #0d141d;
+  background: var(--tw-night);
   background-image: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-body[data-theme="twilight"]::before { display: none; }
-body[data-theme="twilight"] #app { background: var(--tw-paper); }
-body[data-theme="twilight"] #app::before { content: ''; pointer-events: none; position: absolute; inset: 0; opacity: .025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23585858' filter='url%28%23grain%29' d='M0 0h160v160H0z'/%3E%3C/svg%3E"); }
+/* Cover scrolling content only inside the system inset, below dialogs/overlays. */
+body[data-theme="twilight"]::before { display: block; position: fixed; inset: 0 0 auto; height: var(--safe-top); background: var(--tw-night); pointer-events: none; z-index: 2; }
+body[data-theme="twilight"] #app { background: linear-gradient(to bottom, var(--tw-night) 0 var(--safe-top), var(--tw-paper) var(--safe-top) 100%); }
+body[data-theme="twilight"] #app::before { content: ''; pointer-events: none; position: absolute; inset: var(--safe-top) 0 0; opacity: .025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23585858' filter='url%28%23grain%29' d='M0 0h160v160H0z'/%3E%3C/svg%3E"); }
 body[data-theme="twilight"] #app .view { position: relative; padding: 24px; animation: twilight-page-enter .2s ease-out; }
 body[data-theme="twilight"] #app .view > .page-header { background: var(--tw-night); margin: -24px -24px 26px; padding: 34px 24px 30px; min-height: 126px; border-radius: 0 0 26px 26px; position: relative; }
 body[data-theme="twilight"] #app .page-title { font-family: var(--tw-serif); font-size: 30px; line-height: 1.3; font-weight: 400; letter-spacing: 1.5px; color: #f6eedf; background: none; -webkit-text-fill-color: currentColor; text-shadow: none; }
@@ -160,7 +164,7 @@ body[data-theme="twilight"] #app #view-tasks > .page-header--tasks { position: a
 body[data-theme="twilight"] #view-tasks .page-header__inner { display: none; }
 body[data-theme="twilight"] #view-tasks #btn-global-mailbox { width: 44px; height: 44px; background: #ffffff08; border: 0; border-radius: 50%; box-shadow: none; color: #e6ddd0; }
 body[data-theme="twilight"] .mailbox-entry-btn__icon { font-size: 0; }
-body[data-theme="twilight"] #twilight-home { order: 0; background: var(--tw-night); color: var(--tw-paper); overflow: hidden; }
+body[data-theme="twilight"] #twilight-home { order: 0; background: var(--tw-night); color: var(--tw-paper); overflow: hidden; padding-bottom: var(--tw-paper-overlap); }
 body[data-theme="twilight"] .twilight-masthead { height: 64px; display: flex; align-items: center; padding: 8px 25px 0; }
 body[data-theme="twilight"] .twilight-wordmark { display: inline-flex; gap: 10px; align-items: center; font: 24px/1.2 Georgia, serif; letter-spacing: -.6px; }
 body[data-theme="twilight"] .twilight-wordmark > span:last-child { color: var(--tw-gold); margin-left: -9px; }
@@ -199,7 +203,7 @@ body[data-theme="twilight"] .twilight-journey-track i { position: absolute; left
 body[data-theme="twilight"] .twilight-bond { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #afc0ba; margin-top: 11px; }
 body[data-theme="twilight"] .twilight-bond svg { width: 12px; height: 12px; }
 body[data-theme="twilight"] #twilight-bond-progress { margin-left: auto; }
-body[data-theme="twilight"] #twilight-chapter-heading { order: 2; background: var(--tw-paper); display: flex; align-items: center; justify-content: space-between; padding: 24px 25px 11px; margin-top: -3px; border-radius: 28px 28px 0 0; position: relative; }
+body[data-theme="twilight"] #twilight-chapter-heading { order: 2; background: var(--tw-paper); display: flex; align-items: center; justify-content: space-between; padding: 24px 25px 11px; margin-top: calc(-1 * var(--tw-paper-overlap)); border-radius: var(--tw-paper-overlap) var(--tw-paper-overlap) 0 0; position: relative; }
 body[data-theme="twilight"] .twilight-chapter-heading::after { content: ''; position: absolute; top: 0; right: 38px; width: 10px; height: 20px; background: #b79157; clip-path: polygon(0 0,100% 0,100% 100%,50% 80%,0 100%); }
 body[data-theme="twilight"] .twilight-chapter-heading p { font-size: 8px; letter-spacing: 1.9px; color: var(--tw-paper-gold); margin-bottom: 4px; }
 body[data-theme="twilight"] .twilight-chapter-heading h2 { font: 500 24px/1.4 var(--tw-serif); letter-spacing: 1px; }

@@ -165,3 +165,13 @@ The user tested the notification demonstration and explicitly approved productio
 - Pages commit: `33c5a4a9e8ab34468e3919b31cfa3b1b7e15bed1`; [run 36703423494](https://github.com/leotsouo/questnote-pwa/actions/runs/36703423494) succeeded. All 346 staged Git blobs matched the immutable artifact; eight live HTTPS files (manifest, app shell, UI, CSS, version, worker, profile and mailbox) matched exact artifact bytes.
 - PR CI passed (177 Node cases and summon assertions). Six isolated notification checks passed across default/sweet themes and 320/393/768px widths. Strict production artifact verification and 12 assembled-artifact browser cases passed. See `reports/notification-stack/acceptance.md`.
 - Production feedback f965402f-3bb8-4caa-badb-d8b8b53c8dbd was marked resolved after live verification. No Worker deployment or storage migration was needed. Close older App windows and reopen online to activate V3.4.24; do not clear site data.
+
+
+## V3.4.26 twilight safe-area release — 2026-09-30
+
+Production now serves V3.4.26. Twilight's night background fills the top safe inset and stays dark while scrolling; its homepage paper corners now fully overlap the night scene without covering bond content. [PR #10](https://github.com/leotsouo/questnote-pwa/pull/10) merged after CI passed, at source commit fa70beb4c90e71a4c732cb60a9da1b7f4b6d9fe9.
+
+- Production artifact: 9c2bd9c3ac2ebdb9202f6f2b942df8346cca9b6c2c8e4ecd64f3e3a06592ff37; manifest SHA-256: e9755c2be942bf170345e31ca6e77721b4e708edc5f55e15f45560de7c7ef453. All 349 staged Git blobs matched the pinned artifact before push.
+- Pages commit: acf74ec254b761bd7eaab509256e020762702a46. [Deployment run 36734233393](https://github.com/leotsouo/questnote-pwa/actions/runs/36734233393) succeeded; 16 live HTTPS hashes match the pinned release.
+- 183 Node cases plus summon assertions, 79 isolated layout cases, and 12 assembled-artifact cases passed. A fresh disposable hosted browser confirmed the version, verified worker and persisted twilight styling after reload. [Release receipt and evidence](../reports/twilight-safe-area/production-release.md).
+- The approved 84-pet/three-pool content and production mailbox bytes were retained. No backend deployment or save migration occurred; hosted Preview was not updated. Physical iPhone 14 Pro Max / iOS 26 status-bar acceptance remains pending. Close older App windows and reopen online to activate the update without clearing site data.
