@@ -14,6 +14,7 @@ test('native share includes the official website once and the direct app once', 
   assert.equal(payload.text.split(APP_SHARE_URL).length - 1, 1);
   assert.equal(payload.text.includes(WEBSITE_SHARE_URL), false);
   assert.match(payload.text, /與夥伴一起成長/);
+  assert.equal(new URL(APP_SHARE_URL).searchParams.get('share'), 'wolf-v1');
 });
 
 test('unsupported sharing and user cancellation remain distinct', async () => {

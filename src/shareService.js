@@ -1,4 +1,5 @@
-export const APP_SHARE_URL = 'https://leotsouo.github.io/questnote-pwa/';
+// A stable branding revision gives social crawlers a fresh page cache key.
+export const APP_SHARE_URL = 'https://leotsouo.github.io/questnote-pwa/?share=wolf-v1';
 export const WEBSITE_SHARE_URL = 'https://questnote.taste-compare.com/';
 export const APP_SHARE_DESCRIPTION = '把生活裡的待辦，變成與夥伴一起成長的冒險。';
 export const APP_SHARE_TEXT = `一起試試 QuestNote。\n${APP_SHARE_DESCRIPTION}\n\n直接開始：${APP_SHARE_URL}`;

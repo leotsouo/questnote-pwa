@@ -326,13 +326,17 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   let sourceHtml = source.get('index.html').toString('utf8');
   if (/\bname\s*=\s*['"]questnote-artifact['"]/i.test(sourceHtml)) throw new Error('Source index already has an artifact marker');
   const publicUrl = new URL(scopePath, 'https://leotsouo.github.io').href;
-  const publicImageUrl = new URL('assets/brand/questnote-icon-512.png', publicUrl).href;
+  const shareImagePath = 'assets/brand/questnote-share-wolf-v1.png';
+  if (!source.has(shareImagePath)) throw new Error('Share preview image missing from artifact source');
+  const publicImageUrl = new URL(shareImagePath, publicUrl).href;
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:title" content="[^"]+" \/>/,
     `<meta property="og:title" content="${profile === 'production' ? 'QuestNote' : 'QuestNote 預覽'}" />`, 'OG title');
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:url" content="[^"]+" \/>/,
     `<meta property="og:url" content="${publicUrl}" />`, 'OG URL');
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:image" content="[^"]+" \/>/,
     `<meta property="og:image" content="${publicImageUrl}" />`, 'OG image');
+  sourceHtml = replaceOne(sourceHtml, /<meta name="twitter:image" content="[^"]+" \/>/,
+    `<meta name="twitter:image" content="${publicImageUrl}" />`, 'Twitter image');
   files.set('index.html', Buffer.from(replaceOne(sourceHtml, /<\/head>/,
     `  <meta name="questnote-artifact" content="${artifactId}">\n</head>`, 'HTML closing head')));
   const manifest = JSON.parse(source.get('manifest.webmanifest'));

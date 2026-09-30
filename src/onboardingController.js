@@ -264,7 +264,7 @@ function render() {
       root.innerHTML = `
         <div class="onboarding-scrim">
           <section class="onboarding-dialog" role="dialog" aria-modal="true" aria-labelledby="onboarding-welcome-title">
-            <img class="onboarding-dialog__logo" src="assets/icons/icon-192.png" alt="" width="64" height="64">
+            <img class="onboarding-dialog__logo" src="assets/brand/questnote-icon-192.png" alt="" width="64" height="64">
             <p class="onboarding-eyebrow">歡迎來到 QuestNote</p>
             <h2 id="onboarding-welcome-title">把待辦事項變成一場小冒險</h2>
             <p>記下真正要做的事，完成後獲得星塵與冒險能量；用星塵召喚夥伴，再帶牠去探險。</p>

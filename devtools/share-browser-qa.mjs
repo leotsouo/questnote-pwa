@@ -30,6 +30,9 @@ try {
     await skip.click();
     await page.locator('.onboarding-scrim').waitFor({ state: 'hidden' });
     await page.evaluate(async () => (await import('./src/ui.js')).switchView('share'));
+    const icon = page.locator('.share-invitation img');
+    assert.equal(await icon.getAttribute('src'), 'assets/brand/questnote-icon-192.png');
+    await icon.evaluate(image => image.decode());
     await page.addScriptTag({ path: axePath });
     for (const theme of ['default', 'twilight', 'sweet']) {
       await page.evaluate(async theme => (await import('./src/ui.js')).applyTheme(theme, { silent: true, skipSave: true }), theme);
@@ -45,6 +48,7 @@ try {
         const payload = await page.evaluate(() => window.__shares.at(-1));
         assert.equal(payload.url, 'https://questnote.taste-compare.com/');
         assert.match(payload.text, /https:\/\/leotsouo.github.io\/questnote-pwa\//);
+        assert.match(payload.text, /\?share=wolf-v1/);
         await page.locator('#btn-copy-app-link').click();
         const copied = await page.evaluate(() => window.__copies.at(-1));
         assert.match(copied, /認識 QuestNote：https:\/\/questnote.taste-compare.com\//);
