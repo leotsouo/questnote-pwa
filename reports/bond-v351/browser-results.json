@@ -6,50 +6,50 @@
       "ok": true,
       "detail": {
         "version": "3.5.1",
-        "database": "QuestNoteTest-Onboarding-867ee375-3373-4667-ad90-bc59a1641ab1"
+        "database": "QuestNoteTest-Onboarding-5c17cf49-1efd-4781-bd0e-28b8490d3394"
       },
-      "durationMs": 1794
+      "durationMs": 1924
     },
     {
       "name": "chapter gates, two replies and first-choice persistence",
       "ok": true,
-      "durationMs": 1041
+      "durationMs": 1133
     },
     {
       "name": "real task completion, chapter ending, atomic duplicate-claim prevention and focus return",
       "ok": true,
-      "durationMs": 1685
+      "durationMs": 1814
     },
     {
       "name": "habit UI progress, pause/reload/resume, replacement notice and nonconsecutive completion",
       "ok": true,
       "detail": "Second nonconsecutive date is synthetic; first completion used the actual habit UI",
-      "durationMs": 6858
+      "durationMs": 6731
     },
     {
       "name": "remaining stories, concurrent claims, keepsake display and repeatable Lv.5 daily use",
       "ok": true,
-      "durationMs": 8865
+      "durationMs": 9063
     },
     {
       "name": "failed wallet writes roll back receipts, and two tabs claim only once",
       "ok": true,
-      "durationMs": 1323
+      "durationMs": 1359
     },
     {
       "name": "goal replacement resets progress but retains used events; deleted goals and ready receipts are protected",
       "ok": true,
-      "durationMs": 1586
+      "durationMs": 1791
     },
     {
       "name": "native full backup round trip and corrupted reward record refusal",
       "ok": true,
-      "durationMs": 642
+      "durationMs": 654
     },
     {
       "name": "story load failures can retry, and closing a slow retry prevents the reader reopening",
       "ok": true,
-      "durationMs": 2744
+      "durationMs": 2750
     },
     {
       "name": "three themes × three viewports × two font sizes, keyboard focus and action sizes",
@@ -200,7 +200,7 @@
           "smallActions": []
         }
       ],
-      "durationMs": 19769
+      "durationMs": 19727
     },
     {
       "name": "native SW cached reload, offline story choices, agreement progress and reward writes",
@@ -208,9 +208,9 @@
       "detail": {
         "workerControlled": true,
         "chapterClaimed": true,
-        "artifactId": "0c33281b9c57e9a4bf86832709618e9b4acf640d6e6d8a9cdfc364b7c4dc5dbc"
+        "artifactId": "099c9e88f51393a8896d971dfe52e02bac01bafc92a5bac9341b56eaf5e99a86"
       },
-      "durationMs": 3708
+      "durationMs": 3488
     }
   ],
   "runtimeErrors": [],

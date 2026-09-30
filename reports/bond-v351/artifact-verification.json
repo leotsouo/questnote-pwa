@@ -2,26 +2,26 @@
   "checks": [
     {
       "ok": true,
-      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-bond-v351\\6067042b8065dd32f32abdd9e021af07e8ba73b3d048ad5b967a3a056ea2e860",
-      "artifactId": "6067042b8065dd32f32abdd9e021af07e8ba73b3d048ad5b967a3a056ea2e860",
-      "manifestSha256": "5313f8b71b9a40c7c9b562f8c134ee40d1250c52a52cf2775f3e28e760484431",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-bond-v351\\099c9e88f51393a8896d971dfe52e02bac01bafc92a5bac9341b56eaf5e99a86",
+      "artifactId": "099c9e88f51393a8896d971dfe52e02bac01bafc92a5bac9341b56eaf5e99a86",
+      "manifestSha256": "2faa3da5200218d0c4621b07395477d7c5cc99fd00c28b0f5e56cc10c74b5c69",
       "profile": "preview",
       "scopePath": "/questnote-pwa-preview/",
       "fileCount": 416
     },
     {
       "ok": true,
-      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-bond-v351\\10d6a433fef001a8c6b9145fab53c6c09ac028659819d2193b6e088ae8019034",
-      "artifactId": "10d6a433fef001a8c6b9145fab53c6c09ac028659819d2193b6e088ae8019034",
-      "manifestSha256": "faa6219cbd5f73366b55dcb653cdfab0829f7b8a3de57ea4fc05714f1871f1df",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-bond-v351\\cbadd4b1789bfca0cee65ceac1e5353751a2de5ea263c00955653d6264589c61",
+      "artifactId": "cbadd4b1789bfca0cee65ceac1e5353751a2de5ea263c00955653d6264589c61",
+      "manifestSha256": "912b0bf5c54ab16d5f5c1052c8dde45492d29f9284c8e3b1785c3c35f344fc8e",
       "profile": "production",
       "scopePath": "/questnote-pwa/",
       "fileCount": 416
     }
   ],
-  "sourceCommit": "dd003deb9c2cae7366352d53c8717140d6087d20",
-  "fullBrowserArtifact": "0c33281b9c57e9a4bf86832709618e9b4acf640d6e6d8a9cdfc364b7c4dc5dbc",
-  "finalPreviewArtifact": "6067042b8065dd32f32abdd9e021af07e8ba73b3d048ad5b967a3a056ea2e860",
+  "sourceCommit": "fabbc72b65312b00e1e2d37c7e8160eb57d28ff6",
+  "fullBrowserArtifact": "099c9e88f51393a8896d971dfe52e02bac01bafc92a5bac9341b56eaf5e99a86",
+  "finalPreviewArtifact": "099c9e88f51393a8896d971dfe52e02bac01bafc92a5bac9341b56eaf5e99a86",
   "exactRuntimeSourceBytes": true,
-  "note": "Commit provenance and generated cache identities changed; all included runtime source bytes match the full 11-flow acceptance."
+  "note": "The full 11-flow acceptance used this final preview artifact."
 }
