@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-three-worlds-fbdbf720c71c447dbdec1a7e5491ab1d\\76a7b2997d75167abeef1a7374beb76a4d8746857c8bc55e5e7dffca1eb47b9f",
+  "artifactId": "76a7b2997d75167abeef1a7374beb76a4d8746857c8bc55e5e7dffca1eb47b9f",
+  "manifestSha256": "a87e117d65168ba8686fcb5c8fe97d04d605faa811df3c077faf741a0049daaf",
+  "profile": "preview",
+  "scopePath": "/questnote-pwa-preview/",
+  "fileCount": 325
+}
