@@ -17960,4 +17960,5 @@ body.is-pet-image-viewer-open .onboarding-dock { visibility: hidden; }
 .settings-reminders .form-hint { overflow-wrap: anywhere; }
 
 /* Keep horizontal filter gestures within their own scroll row. */
-.filter-bar { overscroll-behavior-x: contain; }
+.filter-bar { overscroll-behavior-x: contain; user-select: none; cursor: grab; }
+.filter-bar.is-dragging, .filter-bar.is-dragging .filter-btn { cursor: grabbing; }

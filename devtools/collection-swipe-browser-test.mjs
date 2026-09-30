@@ -30,6 +30,29 @@ try {
     await page.waitForTimeout(300);
   };
   await row.evaluate(el=>{el.scrollLeft=0;});
+  for (const selector of ['#collection-series-filters', '#collection-filters']) {
+    const strip = page.locator(selector);
+    await strip.scrollIntoViewIfNeeded();
+    await strip.evaluate(el=>{el.scrollLeft=0;});
+    const box = await strip.boundingBox();
+    const activeBefore = await strip.locator('.active').getAttribute('data-filter') || await strip.locator('.active').getAttribute('data-series-filter');
+    await page.mouse.move(box.x + box.width - 45, box.y + 20);
+    await page.mouse.down();
+    await page.mouse.move(box.x + 20, box.y + 20, {steps:12});
+    await page.mouse.up();
+    assert.ok(await strip.evaluate(el=>el.scrollLeft)>3, `${selector} supports mouse drag`);
+    const activeAfter = await strip.locator('.active').getAttribute('data-filter') || await strip.locator('.active').getAttribute('data-series-filter');
+    assert.equal(activeAfter, activeBefore, 'Dragging does not select a chip');
+    if (selector === '#collection-filters') {
+      const last = strip.getByRole('button', {name:'未獲得', exact:true});
+      const lastBox = await last.boundingBox();
+      assert.ok(lastBox.x + lastBox.width <= box.x + box.width + 1, 'Mouse drag reveals unowned filter');
+      await last.click();
+      assert.ok(await last.evaluate(el=>el.classList.contains('active')), 'Regular click after drag still works');
+      await strip.getByRole('button', {name:'全部', exact:true}).click();
+    }
+  }
+  await row.scrollIntoViewIfNeeded();
   await swipe(width-55,55);
   assert.ok(await row.evaluate(el=>el.scrollLeft)>3,'Trusted central touch scrolls horizontal filter');
   await row.evaluate(el=>{el.scrollLeft=0;});
