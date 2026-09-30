@@ -1,4 +1,4 @@
-# 新卡池發布 SOP（SOP 2）
+# 新卡池發布 SOP
 
 ## 第一步：先同步並核對最新正式版本
 
@@ -50,7 +50,7 @@
 
 卡圖審查涵蓋角色識別、風格、裁切與提示詞／Lore 一致性。相同 PNG bytes 可記錄原人工核准及 SHA-256 沿用；圖片變更重新核准。工具或上游內容變更仍需重跑受影響階段，不覆寫舊 receipts、snapshots、candidates 或發布產物。
 
-SOP 2 的 `ecosystem.json` 與寵物內容一起進入 content hash；baseline 包含工坊、偏好、材料、探險資料與相關 runtime。缺少新食物、材料來源、逐隻偏好／專長、地區評估、完整新增地區或費用依據，都阻擋核准／staging。`pipeline.json` 的 SOP marker 不可移除降級。
+現行 SOP 的 `ecosystem.json` 與寵物內容一起進入 content hash；baseline 包含工坊、偏好、材料、探險資料與相關 runtime。缺少新食物、材料來源、逐隻偏好／專長、地區評估、完整新增地區或費用依據，都阻擋核准／staging。`pipeline.json` 的 SOP marker 不可移除降級。
 
 candidate 保存原 companion baseline bytes、審核輸入與合併後 companion catalogs；assembler 重新驗證，preview 和 production 使用同一組內容。來源 companion 檔案只可等於原 baseline 或本次完整核准結果，其他漂移會被拒絕。
 

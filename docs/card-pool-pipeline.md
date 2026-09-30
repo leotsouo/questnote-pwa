@@ -1,22 +1,24 @@
-# Card Pool Pipeline — SOP 2 / legacy v1 compatibility
+# Card Pool Pipeline
 
 **第一步：在需求訪談與企劃前，先同步並核對最新正式版本。** 核對正式 HTTPS、部署 commit、artifact、對應 reviewed source 與最新 origin/main，辨識尚未發布差異。完整產品與發布順序見 [新卡池發布 SOP](new-card-pool-sop.md)，本文件補充 CLI 契約。
 
+`sopVersion: 2` 是內部資料契約相容標記，不代表另一套 SOP；所有新卡池使用同一份現行發布流程。
+
 新真實 workspace 必須 `brief.sopVersion: 2`、`noExtraCost: true`、`productionBaseline`（`deployedCommit`、`sourceCommit`、`mainCommit`、`artifactId`、`version`、`httpsUrl`、`verifiedAt`、`unpublishedChanges`）及完整 `animationPlan`（額外含 `reason`）。Pins 是核對紀錄，CLI 格式驗證不能取代實際 HTTPS／Git 核對。已提供需求直接帶入固定三題；AI 審 brief／plan／content／prompts，人工審卡圖與最終整包，不逐階段追問。
 
-SOP 2 自動 scaffold `ecosystem.json`：`schemaVersion: 1`、一個完整 craftable `food`、新增 `materials: []`、新 roster 的 `affinities`／`affinityNotes`／`specialties`（`role`、`reason`）、`expedition`（`decision: add|reuse`、`reason`、`reusedAreaIds`、`areas`）、`releaseNotes`、`runtimeHashes`。角色專長須對得上實際派遣 runtime；空偏好也需要理由。沿用地區須提供所有配方材料的來源；新增地區須完成 runtime 的故事、發現和五個里程碑。
+現行 SOP 自動 scaffold `ecosystem.json`：`schemaVersion: 1`、一個完整 craftable `food`、新增 `materials: []`、新 roster 的 `affinities`／`affinityNotes`／`specialties`（`role`、`reason`）、`expedition`（`decision: add|reuse`、`reason`、`reusedAreaIds`、`areas`）、`releaseNotes`、`runtimeHashes`。角色專長須對得上實際派遣 runtime；空偏好也需要理由。沿用地區須提供所有配方材料的來源；新增地區須完成 runtime 的故事、發現和五個里程碑。
 
 食物、偏好、材料、探險 baseline 和四個相關 runtime 檔案納入 baseline hashes；`ecosystem.json` 納入 content approval。缺漏或未完成時不能 approve/stage。新模板、tags、專長或地區 runtime 支援先完成，再 init 鎖定 baseline。新的標準池僅一種食物／至多一個新地區；較大規模先另行擴充契約，不繞過限制。
 
 產圖前優先盤點已安裝、適用的外掛插件，確認不额外計費再使用；不能確認費用時不呼叫。每隻 `prompts.json` 的 `provenance` 必須含實際 `tool`、`noExtraCost: true`、`costBasis`，其他生成資訊按實際可取得內容記錄。
 
-SOP 2 approve 額外傳入 `--reviewer-type ai|human`；images 只接受 human。測試明確使用 `brief.purpose: synthetic` 和 synthetic reviewer，不構成產品核准。新真實 brief 缺 SOP marker 會拒絕 init；既有 workspace 無 marker 仍可依 legacy 格式讀取，不遷移歷史 snapshots。
+現行 SOP approve 額外傳入 `--reviewer-type ai|human`；images 只接受 human。測試明確使用 `brief.purpose: synthetic` 和 synthetic reviewer，不構成產品核准。新真實 brief 缺 SOP marker 會拒絕 init；既有 workspace 無 marker 仍可依 legacy 格式讀取，不遷移歷史 snapshots。
 
-SOP 2 candidate 額外保存 `ecosystem.json`、`companion/data/{craftables,gift-affinities,materials,expeditions}.json` 與原始 `companion-baseline/data/...` bytes。Assembler 重新驗證來源 hashes、評估與內容，將核准 companion catalogs 放入 artifact 的實際 data／precache；原 baseline 與審核輸入歸檔在 release-input。單獨更新伴隨檔案的 self-hash 無法繞過重現驗證。
+現行 SOP candidate 額外保存 `ecosystem.json`、`companion/data/{craftables,gift-affinities,materials,expeditions}.json` 與原始 `companion-baseline/data/...` bytes。Assembler 重新驗證來源 hashes、評估與內容，將核准 companion catalogs 放入 artifact 的實際 data／precache；原 baseline 與審核輸入歸檔在 release-input。單獨更新伴隨檔案的 self-hash 無法繞過重現驗證。
 
 最後使用 `node scripts/poolReleaseReview.mjs <evidence.json>` 核對兩種 artifact、source/candidate pins、實際驗收證據及人工驗收／「可以發布」的整包 hash。這是唯讀 gate，不發布，也不把本地 reviewer 字串當成數位簽章。
 
-下列 v1 範例與格式說明保留供歷史／synthetic 相容。新真實企劃依上述 SOP 2 欄位與人工作業規則補齊；v1 範例不能當成新的正式池輸入。
+下列 v1 範例與格式說明保留供歷史／synthetic 相容。新真實企劃依上述 現行 SOP 欄位與人工作業規則補齊；v1 範例不能當成新的正式池輸入。
 
 這套 CLI 把已審核的新系列與新卡池組裝成可重現的 staging candidate。它會保留每階段原始輸入、核准輸出、SHA-256、工具版本指紋與審核紀錄；不呼叫既有 pet publisher，不修改官方 `data/`、`assets/`，也沒有 deploy、promote 或覆寫已完成 candidate 的命令。
 
