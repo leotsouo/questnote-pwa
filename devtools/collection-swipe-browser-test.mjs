@@ -17,6 +17,7 @@ try {
   await page.goto('http://127.0.0.1:8775/index.html');
   await page.getByRole('button',{name:'略過教學',exact:true}).click();
   await page.locator('.nav-item[data-view="collection"]').click();
+  assert.equal(await page.locator('#collection-series-select').count(),0,'No added series picker');
   const row=page.locator('#collection-series-filters');
   await row.scrollIntoViewIfNeeded();
   const rect=await row.boundingBox();
@@ -36,7 +37,7 @@ try {
   await swipe(width-2,70);
   assert.ok(await row.evaluate(el=>el.scrollLeft)>3,'Edge touch scrolls filter instead of leaving app');
   assert.equal(page.url(),beforeUrl);
-  assert.equal(await page.locator('#collection-series-select').inputValue(),'all','Swipe does not accidentally select a chip');
+  assert.equal(await page.locator('#collection-series-filters .active').getAttribute('data-series-filter'),'all','Swipe does not accidentally select a chip');
   const guard=await page.evaluate(y=>{
     const target=document.getElementById('collection-series-filters');
     const event=(x,cy)=>new TouchEvent('touchstart',{bubbles:true,cancelable:true,touches:[new Touch({identifier:1,target,clientX:x,clientY:cy})]});
@@ -47,11 +48,11 @@ try {
     return {edge:edge.defaultPrevented,center:center.defaultPrevented,elsewhere:elsewhere.defaultPrevented};
   },y);
   assert.deepEqual(guard,{edge:true,center:false,elsewhere:false},'Edge guard is confined to the filter row');
-  await page.locator('#collection-series-select').selectOption('eternal_slumber_bloom');
+  await page.locator('#collection-series-filters [data-series-filter="eternal_slumber_bloom"]').click();
   assert.equal(await page.locator('#collection-series-filters .active').getAttribute('data-series-filter'),'eternal_slumber_bloom');
-  assert.ok(await page.locator('.collection-card').count()>0,'Picker renders real series cards');
+  assert.ok(await page.locator('.collection-card').count()>0,'Series chip renders real series cards');
   await page.locator('#collection-series-filters [data-series-filter="all"]').click();
-  assert.equal(await page.locator('#collection-series-select').inputValue(),'all');
+  assert.equal(await page.locator('#collection-series-filters .active').getAttribute('data-series-filter'),'all');
   await row.evaluate(el=>{el.scrollLeft=0;});
   const boundaries=await page.evaluate(()=>({body:document.documentElement.scrollWidth, viewport:innerWidth, touch:getComputedStyle(document.body).touchAction}));
   assert.ok(boundaries.body<=width,'No page-wide horizontal overflow');
@@ -64,7 +65,7 @@ try {
   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:width-2,y:y-90}]});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   assert.ok(await page.evaluate(()=>scrollY)>beforeScroll,'Edge vertical swipe still scrolls the page');
-  console.log(`PASS ${width}px: native touch row swipe, edge swipe, picker/chips sync, no overflow`);
+  console.log(`PASS ${width}px: native touch row swipe, edge swipe, original chips and series selection, no overflow`);
   await context.close();
  }
 } finally {await browser.close();}
