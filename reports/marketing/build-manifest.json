@@ -1,0 +1,146 @@
+{
+  "mode": "web",
+  "files": [
+    {
+      "path": "404.html",
+      "bytes": 378,
+      "sha256": "026eb715254ff247fd544c9feb3e7adbf610502776a6d3601b6c8ad720dcc61d"
+    },
+    {
+      "path": "analytics.js",
+      "bytes": 1628,
+      "sha256": "bd81335c15ecabcf30a3306e98e37fc25d6493871af4e2ec53aebb2c4b4a9d28"
+    },
+    {
+      "path": "assets/apple-touch-icon.png",
+      "bytes": 20953,
+      "sha256": "568c5f586481050de3c0263794de557f36acb340346eba7db1a9cdc7b000f9bf"
+    },
+    {
+      "path": "assets/favicon.png",
+      "bytes": 1486,
+      "sha256": "0c09c5fef9a6c10f9e10fab7a923d6e84e06972791106a9960bfe062b83952fe"
+    },
+    {
+      "path": "assets/garden-720.webp",
+      "bytes": 62018,
+      "sha256": "c82b7b8a3c509a948eda3d2b5a46eed1f56498fa4a010489d31550314fb8399d"
+    },
+    {
+      "path": "assets/mist-forest.webp",
+      "bytes": 75276,
+      "sha256": "35eb6cf9a177d83353f9968990edc2bfb3b7b6e94dd7356974f055a73eca5ca4"
+    },
+    {
+      "path": "assets/night-1179.webp",
+      "bytes": 116872,
+      "sha256": "ae2617301c410a110ce9f4c3bd918f7c18be0e9319adf84cdf5d04123fea1236"
+    },
+    {
+      "path": "assets/night-720.webp",
+      "bytes": 50880,
+      "sha256": "303a6c61e0ec8f2ceece709055ecbde89f1570c7a76ee0e0c46e9a7c309978e2"
+    },
+    {
+      "path": "assets/og-questnote.jpg",
+      "bytes": 122011,
+      "sha256": "f1ed34d50b21015f5d4318a3383760a213caa90f92db83a155a4e3813fc46054"
+    },
+    {
+      "path": "assets/owl-card.webp",
+      "bytes": 35994,
+      "sha256": "b7b6e52db1ec3dd356b2440fa350865f299e3337e8f0235aea860c2b78e53530"
+    },
+    {
+      "path": "assets/product/collection.webp",
+      "bytes": 31916,
+      "sha256": "7bd9b834996c02f31bdb8ee3ecaf0c32ba4e20055983591a145ed2724ac34dc3"
+    },
+    {
+      "path": "assets/product/expedition.webp",
+      "bytes": 56856,
+      "sha256": "3d32fc77ce3e0e6d0871de0c4572f65685a6a2b17cd47daf8d29ae7f4fecb9f5"
+    },
+    {
+      "path": "assets/product/gacha.webp",
+      "bytes": 33440,
+      "sha256": "00411676f2eac9c3ac0f6bdc2f6afcd9f8803da68d4a8d90e99a62d20fd71bb2"
+    },
+    {
+      "path": "assets/product/tasks.webp",
+      "bytes": 38446,
+      "sha256": "a0ea91dca4adf50e741131fa8bedd6b633a9c3f9a19486c46c60d9170823c94a"
+    },
+    {
+      "path": "assets/twilight-1179.webp",
+      "bytes": 83334,
+      "sha256": "c147dd5b144aadf2cbea18a57e5e690637cf12bc4e47a89a51d47b544ed8532d"
+    },
+    {
+      "path": "assets/twilight-720.webp",
+      "bytes": 37064,
+      "sha256": "878557ae4b2f388da54370cfae57f7e241712ab77fe73981a6ae435bceb9896f"
+    },
+    {
+      "path": "assets/wolf-card.webp",
+      "bytes": 24056,
+      "sha256": "0a4df48fca689e5e48fadbe2f526b1aeef8dd1daa11735920b5f612ede3f2d45"
+    },
+    {
+      "path": "config.js",
+      "bytes": 1385,
+      "sha256": "eacc6363e10597c8c80ce1119eb48071e29588ff1dbf63633bbee25477a4e96a"
+    },
+    {
+      "path": "demo.js",
+      "bytes": 825,
+      "sha256": "cf1f922db75e3c3cbe22715e8ff714e08e4f05740f5b741bb2ee442ebef3d3dd"
+    },
+    {
+      "path": "index.html",
+      "bytes": 14877,
+      "sha256": "0919960634f8ff6d8b6d03c4aa2eaaa31f496c3303a919e106a27f2e61a7d088"
+    },
+    {
+      "path": "main.js",
+      "bytes": 6216,
+      "sha256": "95280b508705a13cd8a51d9dd5d4bf0482283ce52abf48e2770f70ee67008af8"
+    },
+    {
+      "path": "privacy/index.html",
+      "bytes": 2510,
+      "sha256": "19acf46fef7151461fc5be4b1916cd647d5c1137ad631931371eab26c4bfff0b"
+    },
+    {
+      "path": "robots.txt",
+      "bytes": 80,
+      "sha256": "eb2cecced9ff02d52efa41db21888b96cf201c6a4f079bd30ffbef051efe104a"
+    },
+    {
+      "path": "sitemap.xml",
+      "bytes": 373,
+      "sha256": "22907d4df5b7aa4338f79a8b161b2b1b4847ef97bdf9d1a979667d855e8af8ed"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 18030,
+      "sha256": "012f9ddab5b7abda3bb869cc50fa3dcff076ddb44249de74b058ea6070d3f398"
+    },
+    {
+      "path": "support/index.html",
+      "bytes": 1876,
+      "sha256": "0d6cc9773f60a55d83fc337e8fed17055b3d21d1efe2a69db3e5006ca895e25a"
+    },
+    {
+      "path": "terms/index.html",
+      "bytes": 2105,
+      "sha256": "1666029a7e7cfe0093d3887ffb2b5470fe0078e84c3d024e1d2be0af16c021e2"
+    },
+    {
+      "path": "_headers",
+      "bytes": 507,
+      "sha256": "2882944b7d3fcae30959d523900cb45d4f769e4eeb41761d14dec3412245a702"
+    }
+  ],
+  "totalBytes": 841392
+}

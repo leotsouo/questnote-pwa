@@ -1,0 +1,17 @@
+{
+  "source": "origin/main 23d8cdc / V3.4.34",
+  "viewport": "393 × 852",
+  "state": "Disposable loopback demo profile; five realistic sample quests, two completed, catalog pets seeded by maintained guarded harness, gray wolf companion. Actual app rendering, not a mockup.",
+  "themes": [
+    "default",
+    "sweet",
+    "twilight"
+  ],
+  "views": [
+    "tasks",
+    "collection",
+    "gacha",
+    "expedition"
+  ],
+  "externalRequestsBlocked": true
+}
