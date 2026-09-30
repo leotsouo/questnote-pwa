@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import sharp from 'sharp';
 
 const root = path.resolve(import.meta.dirname, '..');
-const output = path.resolve(root, '../reports/marketing');
+const output = path.resolve(process.env.QA_REPORT_ROOT || path.resolve(root, '../reports/marketing'));
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:8031';
 const hosted = base.startsWith('https:');
 const prefix = new URL(base).hostname === 'questnote.taste-compare.com' ? 'production' : hosted ? 'preview' : 'local';
@@ -150,7 +150,8 @@ try {
   assert.equal(await page.locator('meta[property="og:image:height"]').getAttribute('content'), '630');
   assert.equal(await page.locator('meta[name="twitter:card"]').getAttribute('content'), 'summary_large_image');
   assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://questnote.taste-compare.com/');
-  const og = await context.request.get(base + '/assets/og-questnote.jpg');
+  const ogPath = new URL(await page.locator('meta[property="og:image"]').getAttribute('content')).pathname;
+  const og = await context.request.get(base + ogPath);
   const dimensions = await sharp(await og.body()).metadata();
   assert.equal(dimensions.width, 1200); assert.equal(dimensions.height, 630);
   const anchors = await page.locator('a[href^="#"]').evaluateAll(items => items.map(item => item.getAttribute('href').slice(1)));
