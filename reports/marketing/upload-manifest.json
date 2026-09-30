@@ -24,11 +24,11 @@
     "/privacy/index.html": "149c165c3ef13a4aeb929de1c9d05328",
     "/robots.txt": "52ec998eed869d763ff3f565b336e21f",
     "/sitemap.xml": "4c9c52168356828e077d125493afb5b5",
-    "/styles.css": "fd1e2a411c574d9df488dc968791e628",
+    "/styles.css": "2dafb395a588a9fccc9c4e1fa06d2729",
     "/support/index.html": "3a424eb26a8691841723aedc9d3fb54d",
     "/terms/index.html": "49d8307fbbe07455c66372685d8eba1f"
   },
   "special": {
-    "_headers": "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: DENY\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'\n/assets/*\n  Cache-Control: public, max-age=3600\n"
+    "_headers": "/*\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: DENY\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'\n/assets/*\n  Cache-Control: public, max-age=3600, no-transform\n"
   }
 }

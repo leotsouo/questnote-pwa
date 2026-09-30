@@ -47,4 +47,9 @@ for that optional workflow. Do not place API credentials in source or assets.
 The existing taste-compare-marketing project and root/www records are separate.
 Only attach the questnote subdomain after the HTTPS Preview passes verification.
 Legal text is explicitly OWNER REVIEW REQUIRED. Source screenshots are V3.4.34;
-the App public URL was independently observed at V3.4.33 during this build.
+the App public URL advanced from V3.4.33 at the audit to V3.4.35 at delivery.
+The screenshots keep their V3.4.34 snapshot label. Preview and production are
+live; see `../reports/marketing/acceptance.md` for URLs, evidence and owner actions.
+Pages headers use `no-transform` to prevent provider-injected extra analytics;
+the site's explicit beacon stays under its DNT/GPC controls. This changes only
+this marketing project's responses, not the existing root site's settings.
