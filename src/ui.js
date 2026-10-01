@@ -6544,6 +6544,7 @@ function renderExpeditionView() {
 }
 
 function expeditionAreaImageUrl(areaId) {
+  if (areaId === 'cloudrest_trail') return './assets/expeditions/cloudrest_trail.svg';
   return `./assets/expeditions/${encodeURIComponent(areaId)}.webp`;
 }
 
