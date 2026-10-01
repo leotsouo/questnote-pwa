@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "draft": true,
+  "finalArtifact": false,
+  "origin": "http://127.0.0.1:51373",
+  "checkedAt": "2026-10-01T22:00:03.486Z",
+  "checks": [
+    {
+      "name": "12 隻明確專長",
+      "status": "pass",
+      "evidence": "全部使用實際 getPetSpecialty()"
+    },
+    {
+      "name": "羈絆章節",
+      "status": "pass",
+      "evidence": "116 份原故事 + 12 份新故事，各四章"
+    },
+    {
+      "name": "新食物製作與選角送禮",
+      "status": "pass",
+      "evidence": "實際扣齒輪6／葉8／核心2；奇美拉+150、格里芬+75"
+    },
+    {
+      "name": "獅心城三隻派遣及領獎",
+      "status": "pass",
+      "evidence": "60分鐘／5能量、實際交易與再次領取拒絕"
+    },
+    {
+      "name": "五里程碑與並發防重複",
+      "status": "pass",
+      "evidence": "10次並發請領只發5次：星塵480、齒輪5、徽章與稱號"
+    }
+  ]
+}

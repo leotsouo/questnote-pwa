@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "reviews": [
+    {
+      "petId": "pet_n39",
+      "name": "齒輪拾修鼠",
+      "rarity": "N",
+      "signature": "圓耳、灰褐毛與天然長尾",
+      "action": "穩住齒輪、轉動扳手，替換磨損零件",
+      "result": "新齒輪咬合，測試儀指針轉動；舊件留在桌邊",
+      "constraints": "尾尖與四足完整，維修工具不遮臉",
+      "revisions": "未修訂",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "38444eb59db97d03f9766babab0f38774b7c689a8fda39485e2c0539d6393b4b",
+      "versions": [
+        "generations/pet_n39-v1.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_n40",
+      "name": "苗圃護芽甲蟲",
+      "rarity": "N",
+      "signature": "天然葉形鞘翅、兩觸角、六足",
+      "action": "以前足頂開溫室通風蓋",
+      "result": "凝水流下，芽葉舒展",
+      "constraints": "主角為天然甲蟲；銅框只屬於溫室",
+      "revisions": "移除首版容易被看成機械的腿部關節",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "f8243198fdc99a2981a3cc14933a5133c67f9524998f9538198daf784e123c59",
+      "versions": [
+        "generations/pet_n40-v1.png",
+        "generations/pet_n40-v2.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_r41",
+      "name": "銅管引水獺",
+      "rarity": "R",
+      "signature": "棕毛、奶白喉斑與天然長尾",
+      "action": "雙前爪轉動冷卻閥輪",
+      "result": "觀測管接通清水，水輪與冷卻槽恢復水流",
+      "constraints": "完整尾部；由真實水流表達方向",
+      "revisions": "移除管內示意箭頭、修正尾部邊距",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "09f72b0ce6ce119254f58a61c81e160810df85512c8c16ccf63961c262e4e224",
+      "versions": [
+        "generations/pet_r41-v1.png",
+        "generations/pet_r41-v2.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_r42",
+      "name": "霜閥巡路兔",
+      "rarity": "R",
+      "signature": "長耳淡青霜邊與天然四足",
+      "action": "在洩漏管旁踏上穩固石板，標出霜痕",
+      "result": "霜路繞開裂管熱汽，下一處安全落點清楚",
+      "constraints": "普通巡查提燈與地圖包已寫入 Lore；沒有光系能力或機械肢體",
+      "revisions": "普通巡查道具已對齊設計與故事",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "6f52890d7605f596a19041709015d4771799eb95c5589cc57b48b608d1b5e577",
+      "versions": [
+        "generations/pet_r42-v1.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_r43",
+      "name": "爐膛添薪蜥",
+      "rarity": "R",
+      "signature": "赤褐鱗片、橙色胸腹、四足長尾",
+      "action": "將外溢焰舌收回爐室",
+      "result": "受控火流回到爐膛，錶針停在安全中段",
+      "constraints": "無翼、無裝備、完整尾部，沒有爆炸",
+      "revisions": "修正尾部裁切，收束火流",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "1290ecf6c555ebfe8e2f0408a9062aec2103d60bc8a86f93cafd520b79cc47d6",
+      "versions": [
+        "generations/pet_r43-v1.png",
+        "generations/pet_r43-v2.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_sr35",
+      "name": "刻紋校準鴞",
+      "rarity": "SR",
+      "signature": "褐白面盤、琥珀眼、天然雙翼",
+      "action": "半展翼轉動符文刻盤",
+      "result": "機械翼測試架的錯位與正位相互對照",
+      "constraints": "天然翼尖完整；刻盤符號不含可讀文字",
+      "revisions": "半展翼重新構圖，保留翼尖",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "e1160bb18ccc62037a27e4eff422f4293abbe40ca32e5bf7f9fb8e44ac7fe799",
+      "versions": [
+        "generations/pet_sr35-v1.png",
+        "generations/pet_sr35-v2.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_sr36",
+      "name": "冰軌疾行狐",
+      "rarity": "SR",
+      "signature": "銀灰身形、冰藍尾尖與天然四足",
+      "action": "沿高架疾行，送回高崖消息",
+      "result": "落脚凝冰，短冰軌與霜線標出路徑",
+      "constraints": "完整尾尖；不使用輪子或外掛機械",
+      "revisions": "移除首版多出的機械背具與圍巾",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "187d62123bb34d05a99bec96047697d1bc71effc1303e01097d56df436d74369",
+      "versions": [
+        "generations/pet_sr36-v1.png",
+        "generations/pet_sr36-v2.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_sr37",
+      "name": "赤爐鍛角羊",
+      "rarity": "SR",
+      "signature": "深栗羊毛、巨大天然耐熱彎角與四蹄",
+      "action": "雙角架穩翼樑、前蹄操作鍛台固定桿",
+      "result": "新接頭凝實，破裂舊工件留在桌邊",
+      "constraints": "不把翼樑畫成羊本身的翅膀；保留角與四蹄",
+      "revisions": "未修訂",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "c0282338c4dd5a2e1b1028fd48e380043f1db8ff0b40412f1af339c28d18bb62",
+      "versions": [
+        "generations/pet_sr37-v1.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_ssr25",
+      "name": "重鉚架橋犀",
+      "rarity": "SSR",
+      "signature": "灰皮犀牛、天然主鼻角與工作支架",
+      "action": "抵住試飛塔，以支架工具鎖定鉚點",
+      "result": "接點固定，後方橋塔穩定承重",
+      "constraints": "工作支架屬外掛；主角保持活體犀牛，沒有騎士",
+      "revisions": "移除示意箭頭、保留尾部與足部",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "f773d25056ca5b33d1aba7e9977a976b7ccf61e8e95b6bd0a4950c307d890624",
+      "versions": [
+        "generations/pet_ssr25-v1.png",
+        "generations/pet_ssr25-v2.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_ssr26",
+      "name": "蒸園盤根龜",
+      "rarity": "SSR",
+      "signature": "天然龜甲、蕨葉與根系",
+      "action": "根系纏住過熱管道，葉片導走凝水",
+      "result": "根部苗床保持舒展，蒸汽遠離幼芽",
+      "constraints": "天然四足、完整頭尾，不是機器龜",
+      "revisions": "未修訂",
+      "source": "以真實動物輪廓為基礎；名稱、能力、道具、獅心城工作與故事為遊戲原創。",
+      "sha256": "3697b2054c68ede4719f4723ec74149ba52eac19d057dddd653db80b363ed247",
+      "versions": [
+        "generations/pet_ssr26-v1.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_ur19",
+      "name": "天律之冕・格里芬",
+      "rarity": "UR",
+      "signature": "天然鷹首、羽翼與前爪；金棕獅身、後腿與尾",
+      "action": "立於高崖展翼，迎向遠方試飛塔",
+      "result": "天然風環收束亂流、分開雲層，草葉向外伏倒",
+      "constraints": "完全純生物、沒有任何冠冕或裝備；全翼尖與尾部保留",
+      "revisions": "拉遠構圖修正翼尖裁切，補自然風流",
+      "source": "鷹／獅形體參考傳統格里芬；天律、獅心城與敵對故事為遊戲原創。",
+      "sha256": "87fd3579edf850b01a538b80090b16268c5b2b0be78c3fbed598246032b00570",
+      "versions": [
+        "generations/pet_ur19-v1.png",
+        "generations/pet_ur19-v2.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    },
+    {
+      "petId": "pet_ur20",
+      "name": "逆造獅首奇美拉",
+      "rarity": "UR",
+      "signature": "單一活體獅首、赤棕鬃毛、活體胸腹；人工器官、翼架與節段尾",
+      "action": "在試飛塔主動展開機械翼，挑戰高崖原型",
+      "result": "翼架鎖定，蒸汽推開吊鏈，平台承受推力",
+      "constraints": "半生物半機械、只有一個獅首；無鳥喙、羊頭、血腥，完整翼尖",
+      "revisions": "兩次拉遠與收整翼角，修正左翼裁切",
+      "source": "以奇美拉混種意象原創改造：单一獅首、人工器官與機械翼架；不是傳統三首奇美拉。",
+      "sha256": "a226096708afe2f48680cda2dc507ee4264b8d9917167d8073ca5e29c6abf805",
+      "versions": [
+        "generations/pet_ur20-v1.png",
+        "generations/pet_ur20-v2.png",
+        "generations/pet_ur20-v3.png"
+      ],
+      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+    }
+  ],
+  "humanApproved": false
+}

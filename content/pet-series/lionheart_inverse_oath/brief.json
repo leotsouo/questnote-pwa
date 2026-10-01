@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "sopVersion": 2,
+  "noExtraCost": true,
+  "seriesId": "lionheart_inverse_oath",
+  "poolId": "lionheart_inverse_oath",
+  "seriesName": "獅心城・逆造之誓",
+  "concept": "人們模仿自然孕育的完美生命格里芬，以魔法與蒸汽造出半生物半機械的獅首奇美拉。原型與人工生命水火不容，獅心城承受追逐神、劍走偏鋒的創造代價。",
+  "rarityPlan": {
+    "N": 2,
+    "R": 3,
+    "SR": 3,
+    "SSR": 2,
+    "UR": 2
+  },
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "presentationTemplate": "lionheart_inverse_oath",
+  "unlock": null,
+  "releaseVersion": "3.5.4",
+  "productionBaseline": {
+    "deployedCommit": "4a1808126b9f6805ddb11c7b16ce1a1d8225ebf8",
+    "sourceCommit": "0d450279da0eb31aa01439ba7d875ee5ca28a173",
+    "mainCommit": "ed81995648ba9b60c27207ba1ab3148afa6b2688",
+    "artifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+    "version": "3.5.3",
+    "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+    "verifiedAt": "2026-10-01T21:19:13.361Z",
+    "unpublishedChanges": "Formal V3.5.3 and origin/main runtime/catalog sources agree. This clean feature checkout adds reviewed Lionheart presentation, explicit specialty, exploration stories and backup compatibility before authoring init. Existing catalogs and PNGs stay byte-identical; these engineering prerequisites are not deployed. Additional prerequisite: additive authored four-chapter bond stories and atomic exploration milestone grants. Prior authoring baseline preserved intact under _lionheart_before_bond_baseline_20261002."
+  },
+  "interview": {
+    "theme": "魔法與蒸汽機械；獅心城人們模仿完美格里芬、造出半生物半機械奇美拉，追逐神、劍走偏鋒。",
+    "art": "12 隻雙 UR；天律之冕・格里芬純生物無裝備、無實體冠冕；逆造獅首奇美拉单一獅首半生物半機械。兩者敵對，不和解；禁光／暗系，允許場景照明。",
+    "experience": "新增獅心城探險地區与獨立卡池、雙 UR 及兩 SSR 動畫。無贈寵、抽數解鎖或陣營機制。使用者明確要求實作已定案計畫。"
+  },
+  "animationPlan": {
+    "decision": "dedicated",
+    "reason": "新作獅心城與自然風界／逆造翼架，直接呈現原型與造物對峙，不沿用其他池場景。全本地 SVG/CSS，無付費動畫服務。",
+    "storyboard": "首次入場 6 秒：銅門→天然翼研究→人工翼架→高崖与試飛塔對峙。短轉場 1.5 秒。抽卡前奏 3 秒：啟動650ms→開門750ms→壓力與稀有色900ms→排汽700ms，交接原交易结果。",
+    "rarityNotes": "兩 SSR 各2.5秒：鉚接塔架／根系護苗。格里芬4.5秒天然羽翼、風界、分雲；奇美拉4.5秒呼吸與人工驅動同步、翼面鎖定與排汽。十連依既有SSR+ queue順序處理重複，不呈現合作。",
+    "motionNotes": "前奏與揭示分別可略過；減少動態前奏500ms、SSR550ms／UR750ms，靜態場景與短淡入。失敗回完整結果。最終使用實際artifact播放頁檢視，不扣款不寫收藏。"
+  }
+}
