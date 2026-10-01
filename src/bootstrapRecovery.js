@@ -46,9 +46,11 @@ export function renderBootstrapRecovery(error, {
   const unsupported = error?.code === 'BROWSER_UNSUPPORTED';
   const title = element('h1', 'boot-recovery-title', unsupported ? '換個瀏覽器，\n繼續你的冒險。' : '這次還沒準備好。');
   title.id = 'boot-recovery-title';
+  const explanation = typeof error?.message === 'string' && /[\u3400-\u9fff]/.test(error.message)
+    ? error.message : '連線暫時沒有回應。請稍後重新載入。';
   const intro = element('p', 'boot-recovery-intro', unsupported
     ? '目前的瀏覽器無法開啟 QuestNote。用 Safari 或 Chrome 開啟，就能開始。'
-    : error?.message || '啟動失敗，請稍後重試。');
+    : explanation);
   card.append(icon, brand, title, intro);
   if (unsupported) {
     const ios = /iPhone|iPad|iPod/i.test(navigatorLike.userAgent || '')
