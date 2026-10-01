@@ -10,7 +10,7 @@ export function installationContext({ userAgent = '', platform = '', maxTouchPoi
 /** @param {string} appUrl */
 export function createInstallGuide(appUrl) {
   const dialog = document.querySelector('#install-guide');
-  if (!(dialog instanceof HTMLDialogElement)) return () => false;
+  if (typeof HTMLDialogElement === 'undefined' || !(dialog instanceof HTMLDialogElement)) return () => false;
   const context = installationContext(navigator);
   const intro = dialog.querySelector('#install-intro');
   const steps = dialog.querySelector('#install-steps');

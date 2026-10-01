@@ -103,13 +103,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 16625,
-      "sha256": "08826755175b779806cca85fac49df00c3bd9fd76f03eeef7f27fbea797a72b8"
+      "bytes": 16590,
+      "sha256": "81573919262febd524526134b3ff562350d691aeb0c32a549bc60f08711cdcd9"
     },
     {
       "path": "install-guide.js",
-      "bytes": 3987,
-      "sha256": "b838498e6cc52b2293ce732037b45aee55f1b42682f2b18ce39e9e660bc7ea96"
+      "bytes": 4030,
+      "sha256": "6338cc6eb3f786f516a05619cbac12e45dd79c069f9a63b3835728d00548bac5"
     },
     {
       "path": "main.js",
@@ -152,5 +152,5 @@
       "sha256": "9fc70000d9c8a96e23b5ec12874d0b7dc6a884fd74b69709e7f84977afc9db59"
     }
   ],
-  "totalBytes": 998015
+  "totalBytes": 998023
 }
