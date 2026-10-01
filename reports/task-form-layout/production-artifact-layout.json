@@ -1,0 +1,142 @@
+{
+  "artifactId": "467338c8913e5370fb5960926837ccbcdb781ca14f3fc84a78ca45b03aa427dc",
+  "cases": 27,
+  "passed": true,
+  "results": [
+    {
+      "width": 320,
+      "theme": "default",
+      "fontSize": 16
+    },
+    {
+      "width": 320,
+      "theme": "default",
+      "fontSize": 24
+    },
+    {
+      "width": 320,
+      "theme": "default",
+      "fontSize": 32
+    },
+    {
+      "width": 320,
+      "theme": "sweet",
+      "fontSize": 16
+    },
+    {
+      "width": 320,
+      "theme": "sweet",
+      "fontSize": 24
+    },
+    {
+      "width": 320,
+      "theme": "sweet",
+      "fontSize": 32
+    },
+    {
+      "width": 320,
+      "theme": "twilight",
+      "fontSize": 16
+    },
+    {
+      "width": 320,
+      "theme": "twilight",
+      "fontSize": 24
+    },
+    {
+      "width": 320,
+      "theme": "twilight",
+      "fontSize": 32
+    },
+    {
+      "width": 390,
+      "theme": "default",
+      "fontSize": 16
+    },
+    {
+      "width": 390,
+      "theme": "default",
+      "fontSize": 24
+    },
+    {
+      "width": 390,
+      "theme": "default",
+      "fontSize": 32
+    },
+    {
+      "width": 390,
+      "theme": "sweet",
+      "fontSize": 16
+    },
+    {
+      "width": 390,
+      "theme": "sweet",
+      "fontSize": 24
+    },
+    {
+      "width": 390,
+      "theme": "sweet",
+      "fontSize": 32
+    },
+    {
+      "width": 390,
+      "theme": "twilight",
+      "fontSize": 16
+    },
+    {
+      "width": 390,
+      "theme": "twilight",
+      "fontSize": 24
+    },
+    {
+      "width": 390,
+      "theme": "twilight",
+      "fontSize": 32
+    },
+    {
+      "width": 768,
+      "theme": "default",
+      "fontSize": 16
+    },
+    {
+      "width": 768,
+      "theme": "default",
+      "fontSize": 24
+    },
+    {
+      "width": 768,
+      "theme": "default",
+      "fontSize": 32
+    },
+    {
+      "width": 768,
+      "theme": "sweet",
+      "fontSize": 16
+    },
+    {
+      "width": 768,
+      "theme": "sweet",
+      "fontSize": 24
+    },
+    {
+      "width": 768,
+      "theme": "sweet",
+      "fontSize": 32
+    },
+    {
+      "width": 768,
+      "theme": "twilight",
+      "fontSize": 16
+    },
+    {
+      "width": 768,
+      "theme": "twilight",
+      "fontSize": 24
+    },
+    {
+      "width": 768,
+      "theme": "twilight",
+      "fontSize": 32
+    }
+  ]
+}
