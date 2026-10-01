@@ -10,7 +10,7 @@ if (path.dirname(output) !== root || path.basename(output) !== 'dist') throw new
 const distribution = getDistribution();
 await fs.rm(output, { recursive: true, force: true });
 await fs.mkdir(output, { recursive: true });
-for (const file of ['index.html', 'styles.css', 'main.js', 'config.js', 'demo.js', 'analytics.js', 'robots.txt', 'sitemap.xml', '_headers']) {
+for (const file of ['index.html', 'styles.css', 'main.js', 'install-guide.js', 'config.js', 'demo.js', 'analytics.js', 'robots.txt', 'sitemap.xml', '_headers']) {
   if (['index.html', 'robots.txt', 'sitemap.xml'].includes(file)) {
     let content = await fs.readFile(path.join(root, file), 'utf8');
     content = content.replaceAll('https://questnote.taste-compare.com', MARKETING_CONFIG.canonicalUrl);

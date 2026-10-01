@@ -213,3 +213,29 @@ p { text-wrap: pretty; }
 @media print {
   .mobile-cta { display: none; }.quest-scene,.companion-section { print-color-adjust: exact; }.section { padding-block: 32px; }
 }
+
+/* A small invitation, with native dialog focus handling and no installation claims. */
+.install-guide { width: min(440px, calc(100% - 28px)); max-height: calc(100dvh - 40px); margin: auto; padding: 30px 24px 22px; border: 1px solid var(--line); border-radius: 22px; background: #f4f1e8; color: #213c39; overflow-y: auto; box-shadow: 0 24px 80px #08162555; }
+.install-guide::backdrop { background: #081625b8; }
+.install-guide-open { overflow: hidden; }
+.install-close { position: sticky; float: right; top: 0; z-index: 1; margin: -12px -12px 0 0; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #f4f1e8; color: #213c39; font-size: 28px; cursor: pointer; }
+.install-brand { border-radius: 12px; margin-bottom: 18px; }
+.install-guide .eyebrow { margin-bottom: 10px; }
+.install-guide h2 { margin: 0 0 16px; font-size: clamp(26px, 7vw, 32px); line-height: 1.4; }
+.install-guide p { font-size: 14px; line-height: 1.8; }
+#install-intro { margin: 0; }
+.install-guide ol { display: grid; gap: 12px; margin: 22px 0; padding-left: 24px; font-size: 14px; line-height: 1.75; }
+.install-guide li { padding-left: 4px; }
+.install-guide li::marker { color: #476953; font-weight: 700; }
+.install-actions { display: grid; gap: 10px; }
+.install-actions .button { width: 100%; justify-content: center; min-height: 48px; }
+.button-secondary { border: 1px solid #788980; background: transparent; color: #213c39; cursor: pointer; }
+.install-link-label { display: block; margin-top: 18px; font-size: 12px; }
+.install-link { width: 100%; padding: 12px 8px; border: 1px solid #788980; border-radius: 8px; background: #fcfaf5; color: #213c39; font: inherit; font-size: 12px; }
+.install-guide .install-status { min-height: 25px; margin: 4px 0; font-size: 12px; color: #315942; }
+.install-browser-switch { min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: #315942; font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+.install-existing { border-top: 1px solid #c9cec2; margin-top: 10px; }
+.install-existing summary { min-height: 48px; padding: 14px 0; font-size: 14px; cursor: pointer; }
+.install-existing p { margin: 0 0 12px; }
+.install-guide .install-note { margin: 12px 0 0; font-size: 12px; color: #4a615a; }
+@media (max-width: 359px), (max-height: 700px) { .install-guide { padding: 22px 20px 16px; }.install-brand { width: 40px; height: 40px; margin-bottom: 10px; }.install-guide ol { margin-block: 16px; gap: 8px; } }

@@ -1,18 +1,22 @@
 import { MARKETING_CONFIG, getDistribution } from './config.js';
 import { completeQuest, resetQuest } from './demo.js';
 import { getAttribution, distributionUrl, track } from './analytics.js';
+import { createInstallGuide } from './install-guide.js';
 
 const distribution = getDistribution();
 const attribution = getAttribution(location.search);
+const offerInstallGuide = createInstallGuide(distributionUrl(distribution.url, attribution));
 document.querySelectorAll('[data-distribution]').forEach(element => {
   if (!(element instanceof HTMLAnchorElement)) return;
   element.href = distributionUrl(distribution.url, attribution);
   const label = element.querySelector('[data-cta-label]');
   if (label) label.textContent = distribution.label;
-  element.addEventListener('click', () => {
+  element.addEventListener('click', event => {
     const placement = element.dataset.distribution || 'hero';
     track(`${placement}_cta`, { mode: MARKETING_CONFIG.distributionMode }, MARKETING_CONFIG);
     track('distribution_click', { mode: MARKETING_CONFIG.distributionMode, placement }, MARKETING_CONFIG);
+    if (MARKETING_CONFIG.distributionMode === 'web' && !event.ctrlKey && !event.metaKey && !event.shiftKey
+      && offerInstallGuide(element)) event.preventDefault();
   });
 });
 document.querySelectorAll('[data-distribution-note]').forEach(element => { element.textContent = distribution.note; });
