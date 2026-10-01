@@ -1,0 +1,31 @@
+{
+  "status": "failed",
+  "results": [
+    {
+      "name": "fresh profile shows welcome; skip persists and creates no tasks/rewards",
+      "ok": true
+    },
+    {
+      "name": "resource-free reading completes as understood without rewards or resource changes",
+      "ok": true
+    },
+    {
+      "name": "pause, reload and resume keep chapter position and collapse is keyboard reachable",
+      "ok": true
+    },
+    {
+      "name": "star upgrade confirms cost, cancel spends nothing, success records actual practice",
+      "ok": true
+    },
+    {
+      "name": "petting advances to unlock explanation and respects the real cooldown",
+      "ok": true
+    },
+    {
+      "name": "dispatch waits for real claim; reload keeps claim step and completed reward advances",
+      "ok": false,
+      "error": "Error: Hidden or disabled: [data-action=\"dispatch-confirm\"]\n    at assert (http://127.0.0.1:55952/devtools/onboarding-browser-test.js:13:56)\n    at click (http://127.0.0.1:55952/devtools/onboarding-browser-test.js:24:3)\n    at http://127.0.0.1:55952/devtools/onboarding-browser-test.js:172:13\n    at async check (http://127.0.0.1:55952/devtools/onboarding-browser-test.js:32:25)\n    at async HTMLButtonElement.<anonymous> (http://127.0.0.1:55952/devtools/onboarding-browser-test.js:168:5)"
+    }
+  ],
+  "error": "Error: Failed: dispatch waits for real claim; reload keeps claim step and completed reward advances\n    at assert (http://127.0.0.1:55952/devtools/onboarding-browser-test.js:13:56)\n    at check (http://127.0.0.1:55952/devtools/onboarding-browser-test.js:35:3)\n    at async HTMLButtonElement.<anonymous> (http://127.0.0.1:55952/devtools/onboarding-browser-test.js:168:5)"
+}
