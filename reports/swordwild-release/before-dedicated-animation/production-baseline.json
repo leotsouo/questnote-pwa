@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "productionBaseline": {
+    "deployedCommit": "b434f218c1cedee03d88150ea6f985f648f1e8f0",
+    "sourceCommit": "a15406b63ff040ea6b6d08960d7f1f673ee282bd",
+    "mainCommit": "41e36311e04f59dad392a8fb0f55f64f0294ca5d",
+    "artifactId": "fe265960962cc11859afed1ca7e0e5558bee31dc135eb7f9ac80fca92ec688c5",
+    "version": "3.5.1",
+    "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+    "verifiedAt": "2026-10-01T16:16:22.569Z",
+    "unpublishedChanges": "Latest main retains publication evidence and the independently published October mailbox; all live catalogs, companion data, bond stories and mailbox match current main. Cloudrest runtime is added prospectively before capturing the new authoring baseline."
+  },
+  "manifestSha256": "6710f51d784ced23ca1de43d64f6b05c8a2c47bcdac32b8574852f117f047d9e",
+  "checks": [
+    {
+      "path": "index.html",
+      "sha256": "47f591c63a960f532130f41b2e314b9b57d3e51d10210a36b18a6130209d1b21",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "af5d317cdd7c17a59cec34675a0703bc1f746e1b3592cdd412ca08f24d4765a1",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "sha256": "ef27305bea50f5d55213e1ab67c1900b19422eb69f9065c345d48d606dc7ab91",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "bc46bb85811dd6c77805b95e7913b97c67cda481752a8142d587b3616531c57d",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "data/releases/8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df/catalog.json",
+      "sha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "data/craftables.json",
+      "sha256": "bb66e4a8b11327f6b0016c1df1b38a35820329daa41c5d53f42c369e09d286ae",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "data/gift-affinities.json",
+      "sha256": "6ba487beaa8d99d9cd26a83a5e3412c147caeafc40894338e378f00ca6472ffe",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "data/materials.json",
+      "sha256": "2c13faf4c26ed398297ef4a81ccdb6be0bc0bedadb4c8305a466a68437fcb75b",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "data/expeditions.json",
+      "sha256": "20c9ea6a7ddbcf8a0300268c4653a1d7619c8561cabd35d3cf21a3e31be0c7a3",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "data/bond-stories.json",
+      "sha256": "591e4aec075fed1ccc476dd4fe2cfa3418f3f1d036a8fa630eeae8c08f098c15",
+      "matchesArtifact": true,
+      "mailboxSeparatePublication": false
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "sha256": "2c252ab1b9a7303a580b6ffcf539865fd4599303b054879b4eb10b7e334909b6",
+      "matchesArtifact": false,
+      "mailboxSeparatePublication": true
+    }
+  ],
+  "counts": {
+    "pets": 96,
+    "pools": 4
+  }
+}

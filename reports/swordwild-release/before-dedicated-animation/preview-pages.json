@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "conclusion": "success",
+  "repository": "leotsouo/questnote-pwa-preview",
+  "runId": 36894829892,
+  "url": "https://github.com/leotsouo/questnote-pwa-preview/actions/runs/36894829892",
+  "headSha": "2f8bfc38225b7d2ee6a0ff06c607387fd60c92b4",
+  "deployCompletedAt": "2026-10-01T16:51:00Z",
+  "artifactId": "472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e",
+  "verifiedWith": "gh run view 36894829892 --repo leotsouo/questnote-pwa-preview --json status,conclusion,jobs,headSha,url"
+}

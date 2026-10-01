@@ -3,7 +3,7 @@
   "checks": [
     {
       "file": "approvals.json",
-      "sha256": "6bbb782829905c12d35a7604fb94e42c8973c181fc353346ff1fd5235c676a45"
+      "sha256": "39b2f878d836d33b1cffca657d773286a9af53c493f6af16df483f528ed83119"
     },
     {
       "file": "assets/pets/pet_n36.png",
@@ -247,7 +247,7 @@
     },
     {
       "file": "catalog.json",
-      "sha256": "cdfbea0dba172c49de6ffa5ae23fe2646c51ac10188aab4cf58fac504a172348"
+      "sha256": "509f8172c0a5f1f29513b10b9bcf46ef5a64668ef9970d1eac35f16f62f41223"
     },
     {
       "file": "companion-baseline/data/craftables.json",
@@ -283,7 +283,7 @@
     },
     {
       "file": "ecosystem.json",
-      "sha256": "ec2d03ca32d96df58a12c6af0eaea2796b77dc86ecaa81b133bb445e541fd216"
+      "sha256": "968903fd0e73baab7a147682d4f02f4959be32894a2783598bcd36eea0e7fa69"
     },
     {
       "file": "validation.json",

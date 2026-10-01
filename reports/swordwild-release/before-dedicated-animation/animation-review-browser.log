@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "previewUrl": "http://127.0.0.1:57566/animation-review/",
+  "artifactId": "472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e",
+  "results": [
+    {
+      "mode": "debut",
+      "ok": true,
+      "actualArtifactScene": true
+    },
+    {
+      "mode": "transition",
+      "ok": true,
+      "actualArtifactScene": true
+    },
+    {
+      "mode": "reveal",
+      "petId": "pet_ur16",
+      "name": "玄翎重岳雕",
+      "ok": true
+    },
+    {
+      "mode": "reveal",
+      "petId": "pet_ur17",
+      "name": "丹砂鎮嶺蛤",
+      "ok": true
+    },
+    {
+      "mode": "reveal",
+      "petId": "pet_ur18",
+      "name": "素心劍猿",
+      "ok": true
+    },
+    {
+      "mode": "reveal",
+      "petId": "pet_ssr21",
+      "name": "抱卷白猿",
+      "ok": true
+    },
+    {
+      "mode": "reveal",
+      "petId": "pet_ssr22",
+      "name": "凝霜玉蠶",
+      "ok": true
+    },
+    {
+      "mode": "reveal",
+      "petId": "pet_ssr23",
+      "name": "繞指金蛇",
+      "ok": true
+    },
+    {
+      "mode": "reveal",
+      "petId": "pet_ssr24",
+      "name": "紫鱗潛龍",
+      "ok": true
+    },
+    {
+      "mode": "single",
+      "ok": true,
+      "rareRevealCount": 0
+    },
+    {
+      "mode": "ten",
+      "ok": true,
+      "rareRevealCount": 6
+    },
+    {
+      "mode": "reduced-reveal",
+      "ok": true
+    }
+  ],
+  "imagesLoaded": 7,
+  "narrowOverflow": false,
+  "noIndexedDbCreated": true,
+  "pageErrors": [],
+  "verifiedAt": "2026-10-01T18:51:14.303Z"
+}

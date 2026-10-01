@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "version": "3.5.3",
+  "images": 20,
+  "filters": {
+    "UR": 3,
+    "SSR": 4,
+    "SR": 5,
+    "R": 5,
+    "N": 3
+  },
+  "narrowOverflow": false
+}

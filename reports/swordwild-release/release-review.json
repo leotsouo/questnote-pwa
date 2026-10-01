@@ -1,27 +1,27 @@
 {
   "schemaVersion": 1,
-  "sourceCommit": "28c598ec8a335a017f5101c7b60cb9884b02dc9c",
-  "candidateId": "c1b379187f0d7b8cf5ccb01647a90344dfea30154eed448b698d1ebff8ee4dcd",
-  "candidateManifestSha256": "57e6c0a2908f99895572516374c6c2e0291f4554c092b7bfa0bf2b38330592c2",
-  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/?release-review=472a10006cb4",
+  "sourceCommit": "d7f18e724b25c38fa2cad97fe6835a05435f2ee5",
+  "candidateId": "eaa3e4d2e525439b7c3dd430ad4a9421c1655f4d4776626a8fcb84c7ba8fa2c6",
+  "candidateManifestSha256": "3c6c3e338fa4f03e638b397ada55d411e50869a00c49628d504b663dc6ce3918",
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/?release-review=f9bf15eabb42",
   "artifacts": {
     "preview": {
-      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e",
-      "artifactId": "472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e",
-      "manifestSha256": "cf9df9ee927d3005ac42a1a64f8ccc19769d1adf8d36ca1658b68a3a25f7e884",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f",
+      "artifactId": "f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f",
+      "manifestSha256": "6322f9015c40e1bfa0c35d595a5e692dab074033b9d0ff6de8ff2bdbe2256f87",
       "scopePath": "/questnote-pwa-preview/"
     },
     "production": {
-      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\d27c486d68150000f0b041d9cd4b379470850d1b3b1636731dce5c401056d589",
-      "artifactId": "d27c486d68150000f0b041d9cd4b379470850d1b3b1636731dce5c401056d589",
-      "manifestSha256": "a29e07bb92d068bc1d341c3e9a575432bd5ed5811b4e942e2e12d32b0e92a708",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\b411c76af9d8dce537abeb260bfea76ad0c1add001d9b43b302482c40d57c583",
+      "artifactId": "b411c76af9d8dce537abeb260bfea76ad0c1add001d9b43b302482c40d57c583",
+      "manifestSha256": "483a8276c82c2975a311a4d20654afe951eda8cb13b249e7872e04f6598e0d87",
       "scopePath": "/questnote-pwa/"
     }
   },
   "checks": {
     "animation": {
       "status": "pass",
-      "evidence": "reports/swordwild-release/pool-browser.json: actual UR/SSR order with repeated UR, reduced motion, Enter/Escape, fallback, debut, prelude skip and rapid clicks; snapshot unchanged by visuals. Interactive playback opened for human review: http://127.0.0.1:57566/animation-review/; reports/swordwild-release/animation-review-browser.json verifies 12 replay scenarios, all 7 SSR/UR images, 320px layout and no IndexedDB created, directly using pinned preview artifact 472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e."
+      "evidence": "Original swordwild_shanhe scene: mountain-scroll debut and sword-call single/ten pulls; three dedicated UR wing/territory/blade effects, SSR ink reveal. Viewer http://127.0.0.1:57996/animation-review/ opened in Codex; artifact f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f. reports/swordwild-release/animation-review-browser.json: 12 normal/reduced playback scenarios, all seven rare portraits and rarity labels visible, 320px no overflow, no IndexedDB created. pool-browser.json: actual UR/SSR order with repeated UR, reduced motion, Enter/Escape, fallback, debut, prelude skip and rapid clicks; snapshot unchanged by visuals."
     },
     "workshop": {
       "status": "pass",
@@ -37,11 +37,11 @@
     },
     "transactions": {
       "status": "pass",
-      "evidence": "reports/swordwild-release/pool-browser.json: three real-pool UR pity branches, SSR+ pity, 1+10 draws cost 1100, duplicate fragments, rapid UI clicks cost 100 once, concurrent expedition claims, chapter reward once and native backup round trip; runtime-tests-v353.log regression suites pass."
+      "evidence": "reports/swordwild-release/pool-browser.json: three real-pool UR pity branches, SSR+ pity, 1+10 draws cost 1100, duplicate fragments, rapid UI clicks cost 100 once, concurrent expedition claims, chapter reward once and native backup round trip; runtime-tests-dedicated.log regression suites pass."
     },
     "serviceWorker": {
       "status": "pass",
-      "evidence": "reports/swordwild-release/artifact-browser.json: 13 assembled profile/worker recovery and offline checks; pool-browser.json: 320px offline reload with new catalog/stories/progress; preview-https.json: 175 published preview file hashes match reviewed artifact; preview-https-browser.json: actual HTTPS fresh-preview DB, V3.5.3, default standard preserved, all 20 card images and offline reload; preview-pages.json: Pages deployment succeeded."
+      "evidence": "reports/swordwild-release/artifact-browser.json: 13 assembled profile/worker recovery and offline checks; pool-browser.json: 320px offline reload with new catalog/stories/progress; preview-https.json: published preview file hashes match reviewed artifact; preview-https-browser.json: actual HTTPS fresh-preview DB, V3.5.3, default standard preserved, all 20 card images and offline reload; preview-pages.json: Pages deployment succeeded."
     }
   }
 }

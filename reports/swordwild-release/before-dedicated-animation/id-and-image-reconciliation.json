@@ -1,0 +1,286 @@
+{
+  "mapping": [
+    {
+      "oldPetId": "pet_n33",
+      "newPetId": "pet_n36",
+      "draftId": "n_1",
+      "name": "聽雨玉蜂",
+      "rarity": "N"
+    },
+    {
+      "oldPetId": "pet_n34",
+      "newPetId": "pet_n37",
+      "draftId": "n_2",
+      "name": "回風白駒",
+      "rarity": "N"
+    },
+    {
+      "oldPetId": "pet_n35",
+      "newPetId": "pet_n38",
+      "draftId": "n_3",
+      "name": "茗香眠蜂",
+      "rarity": "N"
+    },
+    {
+      "oldPetId": "pet_r31",
+      "newPetId": "pet_r36",
+      "draftId": "r_1",
+      "name": "踏霞赤駒",
+      "rarity": "R"
+    },
+    {
+      "oldPetId": "pet_r32",
+      "newPetId": "pet_r37",
+      "draftId": "r_2",
+      "name": "夜薔烏駒",
+      "rarity": "R"
+    },
+    {
+      "oldPetId": "pet_r33",
+      "newPetId": "pet_r38",
+      "draftId": "r_3",
+      "name": "乘風白雕",
+      "rarity": "R"
+    },
+    {
+      "oldPetId": "pet_r34",
+      "newPetId": "pet_r39",
+      "draftId": "r_4",
+      "name": "守望白雕",
+      "rarity": "R"
+    },
+    {
+      "oldPetId": "pet_r35",
+      "newPetId": "pet_r40",
+      "draftId": "r_5",
+      "name": "金角疾蛇",
+      "rarity": "R"
+    },
+    {
+      "oldPetId": "pet_sr25",
+      "newPetId": "pet_sr30",
+      "draftId": "sr_1",
+      "name": "逐電靈貂",
+      "rarity": "SR"
+    },
+    {
+      "oldPetId": "pet_sr26",
+      "newPetId": "pet_sr31",
+      "draftId": "sr_2",
+      "name": "望雲霜鷹",
+      "rarity": "SR"
+    },
+    {
+      "oldPetId": "pet_sr27",
+      "newPetId": "pet_sr32",
+      "draftId": "sr_3",
+      "name": "夜渡青蝠",
+      "rarity": "SR"
+    },
+    {
+      "oldPetId": "pet_sr28",
+      "newPetId": "pet_sr33",
+      "draftId": "sr_4",
+      "name": "金鬃護山獅",
+      "rarity": "SR"
+    },
+    {
+      "oldPetId": "pet_sr29",
+      "newPetId": "pet_sr34",
+      "draftId": "sr_5",
+      "name": "雪徑靈狐",
+      "rarity": "SR"
+    },
+    {
+      "oldPetId": "pet_ssr17",
+      "newPetId": "pet_ssr21",
+      "draftId": "ssr_1",
+      "name": "抱卷白猿",
+      "rarity": "SSR"
+    },
+    {
+      "oldPetId": "pet_ssr18",
+      "newPetId": "pet_ssr22",
+      "draftId": "ssr_2",
+      "name": "凝霜玉蠶",
+      "rarity": "SSR"
+    },
+    {
+      "oldPetId": "pet_ssr19",
+      "newPetId": "pet_ssr23",
+      "draftId": "ssr_3",
+      "name": "繞指金蛇",
+      "rarity": "SSR"
+    },
+    {
+      "oldPetId": "pet_ssr20",
+      "newPetId": "pet_ssr24",
+      "draftId": "ssr_4",
+      "name": "紫鱗潛龍",
+      "rarity": "SSR"
+    },
+    {
+      "oldPetId": "pet_ur13",
+      "newPetId": "pet_ur16",
+      "draftId": "ur_1",
+      "name": "玄翎重岳雕",
+      "rarity": "UR"
+    },
+    {
+      "oldPetId": "pet_ur14",
+      "newPetId": "pet_ur17",
+      "draftId": "ur_2",
+      "name": "丹砂鎮嶺蛤",
+      "rarity": "UR"
+    },
+    {
+      "oldPetId": "pet_ur15",
+      "newPetId": "pet_ur18",
+      "draftId": "ur_3",
+      "name": "素心劍猿",
+      "rarity": "UR"
+    }
+  ],
+  "images": [
+    {
+      "oldPetId": "pet_n33",
+      "newPetId": "pet_n36",
+      "sha256": "c6994d0a0ab86e64220c1228b0a1757fdede37d2df2d3014ed17db040f6bb9d4",
+      "bytes": 2758785,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_n34",
+      "newPetId": "pet_n37",
+      "sha256": "c08f25e96e7255fae5551423bc69bc977208cf6dbf4635581b045a3facb30cff",
+      "bytes": 3209289,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_n35",
+      "newPetId": "pet_n38",
+      "sha256": "3926a8e7fa898edb8e96b45a9372a297772bbc1b57893f1ca9fe268ed326db97",
+      "bytes": 2901656,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_r31",
+      "newPetId": "pet_r36",
+      "sha256": "1dcc85f3a9c54d95e67a05c2c294416ef7b19013b033cfe8ea901aedff8e11b9",
+      "bytes": 2799084,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_r32",
+      "newPetId": "pet_r37",
+      "sha256": "98ee8a5f8257af53d9b0657fdaefb19b71f1daeb500c0bd0f8d25a4330aba836",
+      "bytes": 3147260,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_r33",
+      "newPetId": "pet_r38",
+      "sha256": "1b5b0d2bcf3d36a98da39eab4719159b9f48920d11e23d3505b080f8ce8d64ed",
+      "bytes": 2592010,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_r34",
+      "newPetId": "pet_r39",
+      "sha256": "48407e0bbc2d31bff3188997f468a73ee837ba53f8be79df75458349f75a5f00",
+      "bytes": 2785373,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_r35",
+      "newPetId": "pet_r40",
+      "sha256": "762dc9b5b8e7d91adbd45d1e6a2efa5be9b87a2d11fc501bff5b31afcf0de18f",
+      "bytes": 2818341,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_sr25",
+      "newPetId": "pet_sr30",
+      "sha256": "c830f59daf9a69dcd5d10c479fcc4bc4cd5e7ea127032b06b7ecf45d92c30912",
+      "bytes": 3101393,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_sr26",
+      "newPetId": "pet_sr31",
+      "sha256": "2bda25f6fcd65fcc78e813f1342602bf5fd5d8aca45636ed7c8ee68ad10a33a1",
+      "bytes": 2856178,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_sr27",
+      "newPetId": "pet_sr32",
+      "sha256": "50f8395f08c6e231d5f42f7807d0b89fc066e4a132dd6c11c938f05db411d55e",
+      "bytes": 2551259,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_sr28",
+      "newPetId": "pet_sr33",
+      "sha256": "f4a2ef0120ce37811a9cca85483a1daa7859c33f786e2afadee089e98993d3fa",
+      "bytes": 3038844,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_sr29",
+      "newPetId": "pet_sr34",
+      "sha256": "4c055775a46fb4bb639e9c51832a1ac94cf6fb460068755e67bac22625eaba68",
+      "bytes": 3138506,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_ssr17",
+      "newPetId": "pet_ssr21",
+      "sha256": "c4a505ea1d59e4ed56effc13694a80e7012a3dc914b22d62a765da07e0a6f3dd",
+      "bytes": 3170784,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_ssr18",
+      "newPetId": "pet_ssr22",
+      "sha256": "3a53d13ddea68ebda22bb46bb68e6d05893999bd25977298ed5e3984fabf7737",
+      "bytes": 2825477,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_ssr19",
+      "newPetId": "pet_ssr23",
+      "sha256": "be4c79b42b13df13c1cc0bdaa0a3285f20cc46eff2bfbdb8eb5512e084a49151",
+      "bytes": 3020400,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_ssr20",
+      "newPetId": "pet_ssr24",
+      "sha256": "96229a1be3bf52c3431cd9d8fe0bdadd9ed8bb0c0a52be408a4587236f64457a",
+      "bytes": 2991776,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_ur13",
+      "newPetId": "pet_ur16",
+      "sha256": "3a260a48730bc48a2f32710c297e14db2c07d2a2dd0e478a4d5413f0f2c80954",
+      "bytes": 2940271,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_ur14",
+      "newPetId": "pet_ur17",
+      "sha256": "94d0549cc5cda0befffc668c160ebedfa1c41fc61f5a946ce7cf38af1194d2d1",
+      "bytes": 2988105,
+      "unchanged": true
+    },
+    {
+      "oldPetId": "pet_ur15",
+      "newPetId": "pet_ur18",
+      "sha256": "17d2eb5fc3df3a5e9aef0194cdec01f58b141aee055ae66de9399e9f0f670b10",
+      "bytes": 3095713,
+      "unchanged": true
+    }
+  ]
+}

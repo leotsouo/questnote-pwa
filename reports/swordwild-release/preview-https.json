@@ -2,11 +2,11 @@
   "status": "passed",
   "profile": "preview",
   "httpsUrl": "https://leotsouo.github.io/questnote-pwa-preview/",
-  "artifactId": "472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e",
-  "manifestSha256": "cf9df9ee927d3005ac42a1a64f8ccc19769d1adf8d36ca1658b68a3a25f7e884",
-  "sourceCommit": "28c598ec8a335a017f5101c7b60cb9884b02dc9c",
-  "deployedCommit": "2f8bfc38225b7d2ee6a0ff06c607387fd60c92b4",
-  "verifiedAt": "2026-10-01T16:52:14.054Z",
+  "artifactId": "f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f",
+  "manifestSha256": "6322f9015c40e1bfa0c35d595a5e692dab074033b9d0ff6de8ff2bdbe2256f87",
+  "sourceCommit": "d7f18e724b25c38fa2cad97fe6835a05435f2ee5",
+  "deployedCommit": "af3f76307f15d93c93a4db6fa6ab40a65d06e0e1",
+  "verifiedAt": "2026-10-01T19:29:17.689Z",
   "productionUnchanged": "39c40c77e52fd738b90bbd3648f09f6309e59d6ea3e26fb16ce47ee14a0fb529",
   "checks": [
     {
@@ -380,9 +380,9 @@
       "bytes": 1651
     },
     {
-      "path": "data/releases/cdfbea0dba172c49de6ffa5ae23fe2646c51ac10188aab4cf58fac504a172348/catalog.json",
-      "sha256": "cdfbea0dba172c49de6ffa5ae23fe2646c51ac10188aab4cf58fac504a172348",
-      "bytes": 426065
+      "path": "data/releases/509f8172c0a5f1f29513b10b9bcf46ef5a64668ef9970d1eac35f16f62f41223/catalog.json",
+      "sha256": "509f8172c0a5f1f29513b10b9bcf46ef5a64668ef9970d1eac35f16f62f41223",
+      "bytes": 426112
     },
     {
       "path": "data/titles.json",
@@ -391,17 +391,17 @@
     },
     {
       "path": "index.html",
-      "sha256": "c981679f7e4eaacdf17c412a5665fed78e95b8cbcb2529a40231c086b650cdac",
-      "bytes": 59316
+      "sha256": "f2542af3a09a859934c6a0d37388e40447d5e80ab3d9bd680d75b06f44f31db4",
+      "bytes": 58504
     },
     {
       "path": "release-input/approvals.json",
-      "sha256": "6bbb782829905c12d35a7604fb94e42c8973c181fc353346ff1fd5235c676a45",
-      "bytes": 700192
+      "sha256": "39b2f878d836d33b1cffca657d773286a9af53c493f6af16df483f528ed83119",
+      "bytes": 1015611
     },
     {
       "path": "release-input/candidate.json",
-      "sha256": "57e6c0a2908f99895572516374c6c2e0291f4554c092b7bfa0bf2b38330592c2",
+      "sha256": "3c6c3e338fa4f03e638b397ada55d411e50869a00c49628d504b663dc6ce3918",
       "bytes": 8798
     },
     {
@@ -426,8 +426,8 @@
     },
     {
       "path": "release-input/ecosystem.json",
-      "sha256": "ec2d03ca32d96df58a12c6af0eaea2796b77dc86ecaa81b133bb445e541fd216",
-      "bytes": 10819
+      "sha256": "968903fd0e73baab7a147682d4f02f4959be32894a2783598bcd36eea0e7fa69",
+      "bytes": 10872
     },
     {
       "path": "release-input/validation.json",
@@ -436,8 +436,8 @@
     },
     {
       "path": "service-worker.js",
-      "sha256": "21e386b0a911e23f21d0ad1af56a00da9b0761134e543651ccf80b05efa70944",
-      "bytes": 29807
+      "sha256": "06296fb7bb044a1b5c4e7982b2a60d43ae23f08b17b83d3ea369b86d1004e302",
+      "bytes": 30069
     },
     {
       "path": "src/achievementService.js",
@@ -696,8 +696,8 @@
     },
     {
       "path": "src/poolContentContract.js",
-      "sha256": "3c0553261ac787350bd3b552ae3dc228a685a7e5122bc4837ae1b47892d7c48d",
-      "bytes": 23631
+      "sha256": "2f0ac22d0406c4a6d5f5496ff72fb56ec20bf0b6030e743ab6f98fec03ed20bc",
+      "bytes": 23383
     },
     {
       "path": "src/poolDebutService.js",
@@ -706,8 +706,8 @@
     },
     {
       "path": "src/poolPresentation.js",
-      "sha256": "e0ceef497a5fb191bb88f84f03ad4e241d44d737dae8f1d91a83fd93b38aa9e9",
-      "bytes": 1300
+      "sha256": "8ceeb36eb66f87277fd9a9d87d07ccd50d20c154345f42fd0443ea684047418f",
+      "bytes": 1320
     },
     {
       "path": "src/poolUnlockCore.js",
@@ -741,7 +741,7 @@
     },
     {
       "path": "src/releaseProfile.js",
-      "sha256": "5051ee4c22f369a0209f98511db63dd33bd0a36f6baccec872fe6eea4ca2e6dd",
+      "sha256": "2f7f8f568be9c0b415be1c98c803670aa3d32a9aec8dde04d90d2a84d27fa1d6",
       "bytes": 631
     },
     {
@@ -786,8 +786,18 @@
     },
     {
       "path": "src/summonRevealService.js",
-      "sha256": "d99bc30aee107f5ec8a2df2f1387c92b80304ab9f653e9acea521321355b3223",
-      "bytes": 25220
+      "sha256": "cfdbc7d48699373b7a1644dc1fbe9bd01f7134a83c62e013620d0aa91ee705b0",
+      "bytes": 25149
+    },
+    {
+      "path": "src/swordwild-shanhe.css",
+      "sha256": "366ac697dd358a9d277cad9a49c97e628394255d2c78305dc66503b56af24852",
+      "bytes": 13556
+    },
+    {
+      "path": "src/swordwildShanheScene.js",
+      "sha256": "6047edfb33b505b1877355d299340f8511e74cc0cc509fc50ea924fe753554c6",
+      "bytes": 3827
     },
     {
       "path": "src/taskFilterService.js",
@@ -821,8 +831,8 @@
     },
     {
       "path": "src/themedSummonController.js",
-      "sha256": "9ef5d0a3bbaddfd7aea6716cb2162f0ee05a79fa2fe5b95b8e3a010b2868c2a7",
-      "bytes": 31855
+      "sha256": "bdec20f49d44b1e061083b3ed3bf8e5121ed24bb39333a85ed6955d470a7d809",
+      "bytes": 31872
     },
     {
       "path": "src/themeRegistry.js",
@@ -871,8 +881,8 @@
     },
     {
       "path": "src/version.js",
-      "sha256": "e4df26ee60de56e2e0b120adddcab9da194bc3bc2a1720c59bd3b77263abb552",
-      "bytes": 1112
+      "sha256": "425d8e95e1ee8d236113e9c2e3bc255c1325d11de964d8c327da3b082a14f78c",
+      "bytes": 1111
     },
     {
       "path": "src/workshopGiftView.js",

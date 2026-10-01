@@ -1,7 +1,7 @@
 {
   "status": "passed",
-  "previewUrl": "http://127.0.0.1:57566/animation-review/",
-  "artifactId": "472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e",
+  "previewUrl": "http://127.0.0.1:57996/animation-review/",
+  "artifactId": "f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f",
   "results": [
     {
       "mode": "debut",
@@ -74,5 +74,5 @@
   "narrowOverflow": false,
   "noIndexedDbCreated": true,
   "pageErrors": [],
-  "verifiedAt": "2026-10-01T18:51:14.303Z"
+  "verifiedAt": "2026-10-01T19:26:54.876Z"
 }

@@ -1,0 +1,24 @@
+✔ all current pets have four distinct authored chapters, two replies and unique keepsakes (9.4241ms)
+✔ new saves and old high-level pets retain their original level and start at the first story (0.4285ms)
+✔ malformed story chapters return validation errors, including array-like choices (7.0681ms)
+✔ Lv.5 habit agreements require five distinct completions (1.0703ms)
+✔ past completions and exact acceptance time are not credited (0.3837ms)
+✔ fresh matching task completion survives reload and cannot be credited twice or undone (0.4406ms)
+✔ habit progress counts distinct dates, ignores weekly reward aliases and preserves nonconsecutive progress (0.3399ms)
+✔ pausing excludes completions; resuming uses a new observation boundary without losing progress (0.2888ms)
+✔ already used completions cannot earn another chapter or daily reward (0.2165ms)
+✔ deleted/archived goals do not invent progress or force punishment (0.2866ms)
+✔ malformed journey snapshots are rejected without exceptions or silent defaulting (1.7384ms)
+✔ locked chapters do not expose secret paragraphs and choices cannot inject markup (1.504ms)
+✔ selectors expose only eligible goals and mark replacement progress reset (0.3851ms)
+✔ keepsakes remain private until the final story agreement is claimed (0.1149ms)
+✔ historical backup migration creates empty journeys without changing wallet, pet levels or fonts (4.319ms)
+✔ V3.5.1 backups require journey data and preserve active, paused, completed and reward records (6.6236ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 276.604

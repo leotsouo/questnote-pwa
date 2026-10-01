@@ -1,47 +1,47 @@
 {
-  "candidateId": "c1b379187f0d7b8cf5ccb01647a90344dfea30154eed448b698d1ebff8ee4dcd",
+  "candidateId": "eaa3e4d2e525439b7c3dd430ad4a9421c1655f4d4776626a8fcb84c7ba8fa2c6",
   "receipts": [
     {
       "stage": "brief",
-      "inputHash": "48aaa8b8c98b4a60413c316b8b9d26c37e720eb043891bc10541c462ffc93df4",
-      "outputHash": "4462517c99a397a44766f6215b1fd90d7f68189d8f774bd7b19f1fbc5f4503a1",
+      "inputHash": "47742ed74a8e2318613c0cd66c7a43f2d80342a15ae839bc89507252f54f7411",
+      "outputHash": "6e8e781b2f716ccca2d938d04fa7aec82cc5e455cc406c1b21ca8b92fff93c7a",
       "files": {
-        "brief.json": "55d17e97262830e113fb9ca10ee42af44b67bf21c6d2b470927cca7b8a8a90ea"
+        "brief.json": "8b2bb3b443370aa2c1defa0ce83c9fd3982101053247ed0333129ff87822e7be"
       },
-      "toolsHash": "1bbab3406bc4b529e036ca294237fc4f0959994ddbca842f5317794e8b03b409",
-      "snapshot": "approvals/4462517c99a397a44766f6215b1fd90d7f68189d8f774bd7b19f1fbc5f4503a1",
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/6e8e781b2f716ccca2d938d04fa7aec82cc5e455cc406c1b21ca8b92fff93c7a",
       "reviewedWarnings": [],
-      "approvedAt": "2026-10-01T16:43:44.332Z",
-      "reviewer": "Codex — V3.5.2 formal reconciliation, V3.5.3 release review",
+      "approvedAt": "2026-10-01T19:10:14.869Z",
+      "reviewer": "Codex — dedicated swordwild animation, matching registered templates and three UR story effects",
       "reviewerType": "ai"
     },
     {
       "stage": "plan",
-      "inputHash": "4462517c99a397a44766f6215b1fd90d7f68189d8f774bd7b19f1fbc5f4503a1",
-      "outputHash": "03b539e4d9001721b32afe20ce7411aa5a6e7fa3d629c78b5016d7ff28faf747",
+      "inputHash": "6e8e781b2f716ccca2d938d04fa7aec82cc5e455cc406c1b21ca8b92fff93c7a",
+      "outputHash": "16f76229a6854458b921db7e1f04a8ae57250dd567e06ca7902ed30d139aba1f",
       "files": {
         "plan.json": "81c6275be3554a07a4f76d871f417eefd28fda159db5e1bd4214abdd3b2fbe1a"
       },
-      "toolsHash": "1bbab3406bc4b529e036ca294237fc4f0959994ddbca842f5317794e8b03b409",
-      "snapshot": "approvals/03b539e4d9001721b32afe20ce7411aa5a6e7fa3d629c78b5016d7ff28faf747",
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/16f76229a6854458b921db7e1f04a8ae57250dd567e06ca7902ed30d139aba1f",
       "reviewedWarnings": [],
-      "approvedAt": "2026-10-01T16:43:48.174Z",
-      "reviewer": "Codex — V3.5.2 formal reconciliation, V3.5.3 release review",
+      "approvedAt": "2026-10-01T19:10:18.862Z",
+      "reviewer": "Codex — dedicated swordwild animation, matching registered templates and three UR story effects",
       "reviewerType": "ai"
     },
     {
       "stage": "content",
-      "inputHash": "03b539e4d9001721b32afe20ce7411aa5a6e7fa3d629c78b5016d7ff28faf747",
-      "outputHash": "9d6fe9ec1c3556622060e584cc04f17c802e1391ad6fe8afb8ac2818cd91f03e",
+      "inputHash": "16f76229a6854458b921db7e1f04a8ae57250dd567e06ca7902ed30d139aba1f",
+      "outputHash": "eb749fc0e38e4b7be4e2875b1daa80f4b2bbfe3c0e86ba021484eeb1b6be1fe7",
       "files": {
         "series.json": "986fbd009239014b670bac3fe1033bfda54f0e3d2bf7ecbca4ff5d4ccbb71b4c",
-        "pets.json": "ada8eb7289e54fe67188a77daf2dbb36fddccbc2a5af2070f5f897b00ec62f0f",
+        "pets.json": "40561bf21461db64c33bcb13baba8bd8b4047d6b1ce8315ac0c5eec9e6d5142f",
         "pets-lore.json": "f991a748ec2e30c965a93c38faeda3548cb0d4cac7ba9f9c8ce42807573b9dc7",
-        "pool.json": "7c54f7354828f75303aa97689df994b60eeb066d48efd2417e475db8421a29e5",
-        "ecosystem.json": "ec2d03ca32d96df58a12c6af0eaea2796b77dc86ecaa81b133bb445e541fd216"
+        "pool.json": "12d0ae9c65bb1661ca1245386d9f93e4ccf6012ce1eff1e72acc236170c332a8",
+        "ecosystem.json": "968903fd0e73baab7a147682d4f02f4959be32894a2783598bcd36eea0e7fa69"
       },
-      "toolsHash": "1bbab3406bc4b529e036ca294237fc4f0959994ddbca842f5317794e8b03b409",
-      "snapshot": "approvals/9d6fe9ec1c3556622060e584cc04f17c802e1391ad6fe8afb8ac2818cd91f03e",
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/eb749fc0e38e4b7be4e2875b1daa80f4b2bbfe3c0e86ba021484eeb1b6be1fe7",
       "reviewedWarnings": [
         {
           "level": "warning",
@@ -164,19 +164,19 @@
           "path": "pets[19].poolTags"
         }
       ],
-      "approvedAt": "2026-10-01T16:43:52.289Z",
-      "reviewer": "Codex — V3.5.2 formal reconciliation, V3.5.3 release review",
+      "approvedAt": "2026-10-01T19:10:22.420Z",
+      "reviewer": "Codex — dedicated swordwild animation, matching registered templates and three UR story effects",
       "reviewerType": "ai"
     },
     {
       "stage": "prompts",
-      "inputHash": "9d6fe9ec1c3556622060e584cc04f17c802e1391ad6fe8afb8ac2818cd91f03e",
-      "outputHash": "a416569d860a670e2b4fc63f93bceaa44d5b4d0b107944708cedf05985afef78",
+      "inputHash": "eb749fc0e38e4b7be4e2875b1daa80f4b2bbfe3c0e86ba021484eeb1b6be1fe7",
+      "outputHash": "0e9e41700c916da4d2b2975bded17d696a6de8e7a1dc0cf5a63ded128885d445",
       "files": {
         "prompts.json": "63875988ae65d36e77eb711baab68f641c51af999f426903521f533246a0c23b"
       },
-      "toolsHash": "1bbab3406bc4b529e036ca294237fc4f0959994ddbca842f5317794e8b03b409",
-      "snapshot": "approvals/a416569d860a670e2b4fc63f93bceaa44d5b4d0b107944708cedf05985afef78",
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/0e9e41700c916da4d2b2975bded17d696a6de8e7a1dc0cf5a63ded128885d445",
       "reviewedWarnings": [
         {
           "level": "warning",
@@ -299,14 +299,14 @@
           "path": "pets[19].poolTags"
         }
       ],
-      "approvedAt": "2026-10-01T16:43:56.281Z",
-      "reviewer": "Codex — V3.5.2 formal reconciliation, V3.5.3 release review",
+      "approvedAt": "2026-10-01T19:10:26.167Z",
+      "reviewer": "Codex — dedicated swordwild animation, matching registered templates and three UR story effects",
       "reviewerType": "ai"
     },
     {
       "stage": "images",
-      "inputHash": "a416569d860a670e2b4fc63f93bceaa44d5b4d0b107944708cedf05985afef78",
-      "outputHash": "462e820b7b9b0d56921c22aaf5f7ad41bebb562931767c5c6cc20438e1a47fdf",
+      "inputHash": "0e9e41700c916da4d2b2975bded17d696a6de8e7a1dc0cf5a63ded128885d445",
+      "outputHash": "a73fb040eeb3e467b842763586297d0718dfc50392f0be1f83189dcf09dbe4be",
       "files": {
         "images/pet_n36.png": "c6994d0a0ab86e64220c1228b0a1757fdede37d2df2d3014ed17db040f6bb9d4",
         "images/pet_n37.png": "c08f25e96e7255fae5551423bc69bc977208cf6dbf4635581b045a3facb30cff",
@@ -329,8 +329,8 @@
         "images/pet_ur17.png": "94d0549cc5cda0befffc668c160ebedfa1c41fc61f5a946ce7cf38af1194d2d1",
         "images/pet_ur18.png": "17d2eb5fc3df3a5e9aef0194cdec01f58b141aee055ae66de9399e9f0f670b10"
       },
-      "toolsHash": "1bbab3406bc4b529e036ca294237fc4f0959994ddbca842f5317794e8b03b409",
-      "snapshot": "approvals/462e820b7b9b0d56921c22aaf5f7ad41bebb562931767c5c6cc20438e1a47fdf",
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/a73fb040eeb3e467b842763586297d0718dfc50392f0be1f83189dcf09dbe4be",
       "reviewedWarnings": [
         {
           "level": "warning",
@@ -573,8 +573,8 @@
           "path": "images/pet_ur18.png"
         }
       ],
-      "approvedAt": "2026-10-01T16:44:01.751Z",
-      "reviewer": "User — unchanged approved artwork reused for V3.5.3",
+      "approvedAt": "2026-10-01T19:10:30.088Z",
+      "reviewer": "User — unchanged approved third-version PNG bytes reused; animation revision does not alter artwork",
       "reviewerType": "human"
     }
   ]
