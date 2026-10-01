@@ -11,9 +11,9 @@
 
 ## 本池專屬動畫
 
-山河啟卷入場：雲霧退開、紙卷展出群山與古道，諾／俠／心三印回應。劍光赴約抽獎：稀有度光色、劍痕揭卷；三UR各以巨翼、朱息鎮岳界線與分葉劍勢登場。SSR金墨揭露，正常與減少動態均可重播、略過及逐張繼續。
+山河啟卷入場：雲霧退開、紙卷展出群山與古道，中央一枚「俠」印回應。劍光赴約抽獎：稀有度光色、劍痕揭卷；三UR各以巨翼、朱息鎮岳界線與分葉劍勢登場。SSR金墨揭露，正常與減少動態均可重播、略過及逐張繼續。
 
-[開啟互動動畫檢視](http://127.0.0.1:57996/animation-review/)（已在Codex實際開啟，與下列artifact相同）。本次12個播放情境、7張稀有卡圖與稀有度標示、320px版面與無IndexedDB寫入均通過。
+[開啟互動動畫檢視](http://127.0.0.1:64654/animation-review/)（已在Codex實際開啟，與下列artifact相同）。本次12個播放情境、7張稀有卡圖與稀有度標示、320px版面與無IndexedDB寫入均通過。
 
 ## 已驗證
 
@@ -24,12 +24,12 @@
 ## 審閱與發布綁定
 
 - [完整內容審閱](review.html)：二十張圖、取材、Lore、故事、偏好與專長。
-- [隔離 App 預覽](https://leotsouo.github.io/questnote-pwa-preview/?release-review=f9bf15eabb42)；preview部署提交 af3f76307f15d93c93a4db6fa6ab40a65d06e0e1。
+- [隔離 App 預覽](https://leotsouo.github.io/questnote-pwa-preview/?release-review=55d97da00300)；preview部署提交 86042128ae82e34d524430eb363584a0574b8f60。
 - [實際卡池驗收](pool-browser.json)、[SW驗收](artifact-browser.json)、[HTTPS讀回](preview-https.json)。
-- reviewed source commit：`d7f18e724b25c38fa2cad97fe6835a05435f2ee5`。
+- reviewed source commit：`87b72364f72f395a37469726e98cab0e0ab5b3a8`。
 - candidate：`eaa3e4d2e525439b7c3dd430ad4a9421c1655f4d4776626a8fcb84c7ba8fa2c6`。
-- preview artifact：`f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f`。
-- production artifact：`b411c76af9d8dce537abeb260bfea76ad0c1add001d9b43b302482c40d57c583`（尚未發布）。
-- packageHash：`29164739cac3bbe33deeefb3b740e0295e7d09c600d76f9d26ca3471bc538298`。
+- preview artifact：`55d97da0030025cf816497f241e15ad3eb6b30dd1c301315aa603d334ce0d508`。
+- production artifact：`51d6ef83daf716dbd27045f70b16e3fa2dfa1cc733b1a629876804733b01d4a4`（尚未發布）。
+- packageHash：`1a605d84aaead26ddc85517e16781c27dae190e6b9a18d27ec951abeeabc06a1`。
 
 使用者對這一整包驗收及明確同意發布後，才把相同packageHash寫入humanAcceptance及publicationAuthorization，重跑poolReleaseReview，取得releaseReady:true後合併來源及推送正式產物。沒有冒用圖片認可作為整包或正式發布同意。

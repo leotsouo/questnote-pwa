@@ -32,6 +32,6 @@
 
 ## 人工檢視與驗收
 
-[互動動畫檢視](http://127.0.0.1:57996/animation-review/) 已在 Codex 實際開啟。可播放完整入場、短轉場、任一單抽、固定十連、三 UR 與四 SSR，並切換正常／減少動態。展示頁直接載入凍結 preview artifact 的模組、樣式與卡圖，標示 artifact ID；不呼叫抽卡交易，也不建立 IndexedDB。
+[互動動畫檢視](http://127.0.0.1:64654/animation-review/) 已在 Codex 實際開啟。可播放完整入場、短轉場、任一單抽、固定十連、三 UR 與四 SSR，並切換正常／減少動態。展示頁直接載入凍結 preview artifact 的模組、樣式與卡圖，標示 artifact ID；不呼叫抽卡交易，也不建立 IndexedDB。
 
 12 個播放情境、7 張稀有卡圖與稀有度標示、320px 版面均通過，詳見 [播放頁驗收](animation-review-browser.json)。真實卡池交易、保底、重複角色、揭露佇列與離線資料見 [本池驗收](pool-browser.json)。最終人工認可尚未取得；正式發布仍依 SOP 綁定整包 hash。

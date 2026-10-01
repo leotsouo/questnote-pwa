@@ -1,14 +1,14 @@
 {
   "preview": {
-    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f",
-    "artifactId": "f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f",
-    "manifestSha256": "6322f9015c40e1bfa0c35d595a5e692dab074033b9d0ff6de8ff2bdbe2256f87",
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\55d97da0030025cf816497f241e15ad3eb6b30dd1c301315aa603d334ce0d508",
+    "artifactId": "55d97da0030025cf816497f241e15ad3eb6b30dd1c301315aa603d334ce0d508",
+    "manifestSha256": "caa2da8bf001b108f02ecee574e6299db094174905c349078d462390cec500b6",
     "scopePath": "/questnote-pwa-preview/"
   },
   "production": {
-    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\b411c76af9d8dce537abeb260bfea76ad0c1add001d9b43b302482c40d57c583",
-    "artifactId": "b411c76af9d8dce537abeb260bfea76ad0c1add001d9b43b302482c40d57c583",
-    "manifestSha256": "483a8276c82c2975a311a4d20654afe951eda8cb13b249e7872e04f6598e0d87",
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\51d6ef83daf716dbd27045f70b16e3fa2dfa1cc733b1a629876804733b01d4a4",
+    "artifactId": "51d6ef83daf716dbd27045f70b16e3fa2dfa1cc733b1a629876804733b01d4a4",
+    "manifestSha256": "c3f7796afba06b7fe4af6e3a6e1d83c270002153657c3477f7ca5f508daaa62b",
     "scopePath": "/questnote-pwa/"
   }
 }
