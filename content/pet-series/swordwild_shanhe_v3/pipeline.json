@@ -1563,6 +1563,582 @@
       "approvedAt": "2026-10-01T16:44:01.751Z",
       "reviewer": "User — unchanged approved artwork reused for V3.5.3",
       "reviewerType": "human"
+    },
+    {
+      "stage": "brief",
+      "inputHash": "47742ed74a8e2318613c0cd66c7a43f2d80342a15ae839bc89507252f54f7411",
+      "outputHash": "6e8e781b2f716ccca2d938d04fa7aec82cc5e455cc406c1b21ca8b92fff93c7a",
+      "files": {
+        "brief.json": "8b2bb3b443370aa2c1defa0ce83c9fd3982101053247ed0333129ff87822e7be"
+      },
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/6e8e781b2f716ccca2d938d04fa7aec82cc5e455cc406c1b21ca8b92fff93c7a",
+      "reviewedWarnings": [],
+      "approvedAt": "2026-10-01T19:10:14.869Z",
+      "reviewer": "Codex — dedicated swordwild animation, matching registered templates and three UR story effects",
+      "reviewerType": "ai"
+    },
+    {
+      "stage": "plan",
+      "inputHash": "6e8e781b2f716ccca2d938d04fa7aec82cc5e455cc406c1b21ca8b92fff93c7a",
+      "outputHash": "16f76229a6854458b921db7e1f04a8ae57250dd567e06ca7902ed30d139aba1f",
+      "files": {
+        "plan.json": "81c6275be3554a07a4f76d871f417eefd28fda159db5e1bd4214abdd3b2fbe1a"
+      },
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/16f76229a6854458b921db7e1f04a8ae57250dd567e06ca7902ed30d139aba1f",
+      "reviewedWarnings": [],
+      "approvedAt": "2026-10-01T19:10:18.862Z",
+      "reviewer": "Codex — dedicated swordwild animation, matching registered templates and three UR story effects",
+      "reviewerType": "ai"
+    },
+    {
+      "stage": "content",
+      "inputHash": "16f76229a6854458b921db7e1f04a8ae57250dd567e06ca7902ed30d139aba1f",
+      "outputHash": "eb749fc0e38e4b7be4e2875b1daa80f4b2bbfe3c0e86ba021484eeb1b6be1fe7",
+      "files": {
+        "series.json": "986fbd009239014b670bac3fe1033bfda54f0e3d2bf7ecbca4ff5d4ccbb71b4c",
+        "pets.json": "40561bf21461db64c33bcb13baba8bd8b4047d6b1ce8315ac0c5eec9e6d5142f",
+        "pets-lore.json": "f991a748ec2e30c965a93c38faeda3548cb0d4cac7ba9f9c8ce42807573b9dc7",
+        "pool.json": "12d0ae9c65bb1661ca1245386d9f93e4ccf6012ce1eff1e72acc236170c332a8",
+        "ecosystem.json": "968903fd0e73baab7a147682d4f02f4959be32894a2783598bcd36eea0e7fa69"
+      },
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/eb749fc0e38e4b7be4e2875b1daa80f4b2bbfe3c0e86ba021484eeb1b6be1fe7",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[12].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[13].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[14].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[15].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[16].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[17].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[18].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[19].poolTags"
+        }
+      ],
+      "approvedAt": "2026-10-01T19:10:22.420Z",
+      "reviewer": "Codex — dedicated swordwild animation, matching registered templates and three UR story effects",
+      "reviewerType": "ai"
+    },
+    {
+      "stage": "prompts",
+      "inputHash": "eb749fc0e38e4b7be4e2875b1daa80f4b2bbfe3c0e86ba021484eeb1b6be1fe7",
+      "outputHash": "0e9e41700c916da4d2b2975bded17d696a6de8e7a1dc0cf5a63ded128885d445",
+      "files": {
+        "prompts.json": "63875988ae65d36e77eb711baab68f641c51af999f426903521f533246a0c23b"
+      },
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/0e9e41700c916da4d2b2975bded17d696a6de8e7a1dc0cf5a63ded128885d445",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[12].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[13].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[14].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[15].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[16].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[17].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[18].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[19].poolTags"
+        }
+      ],
+      "approvedAt": "2026-10-01T19:10:26.167Z",
+      "reviewer": "Codex — dedicated swordwild animation, matching registered templates and three UR story effects",
+      "reviewerType": "ai"
+    },
+    {
+      "stage": "images",
+      "inputHash": "0e9e41700c916da4d2b2975bded17d696a6de8e7a1dc0cf5a63ded128885d445",
+      "outputHash": "a73fb040eeb3e467b842763586297d0718dfc50392f0be1f83189dcf09dbe4be",
+      "files": {
+        "images/pet_n36.png": "c6994d0a0ab86e64220c1228b0a1757fdede37d2df2d3014ed17db040f6bb9d4",
+        "images/pet_n37.png": "c08f25e96e7255fae5551423bc69bc977208cf6dbf4635581b045a3facb30cff",
+        "images/pet_n38.png": "3926a8e7fa898edb8e96b45a9372a297772bbc1b57893f1ca9fe268ed326db97",
+        "images/pet_r36.png": "1dcc85f3a9c54d95e67a05c2c294416ef7b19013b033cfe8ea901aedff8e11b9",
+        "images/pet_r37.png": "98ee8a5f8257af53d9b0657fdaefb19b71f1daeb500c0bd0f8d25a4330aba836",
+        "images/pet_r38.png": "1b5b0d2bcf3d36a98da39eab4719159b9f48920d11e23d3505b080f8ce8d64ed",
+        "images/pet_r39.png": "48407e0bbc2d31bff3188997f468a73ee837ba53f8be79df75458349f75a5f00",
+        "images/pet_r40.png": "762dc9b5b8e7d91adbd45d1e6a2efa5be9b87a2d11fc501bff5b31afcf0de18f",
+        "images/pet_sr30.png": "c830f59daf9a69dcd5d10c479fcc4bc4cd5e7ea127032b06b7ecf45d92c30912",
+        "images/pet_sr31.png": "2bda25f6fcd65fcc78e813f1342602bf5fd5d8aca45636ed7c8ee68ad10a33a1",
+        "images/pet_sr32.png": "50f8395f08c6e231d5f42f7807d0b89fc066e4a132dd6c11c938f05db411d55e",
+        "images/pet_sr33.png": "f4a2ef0120ce37811a9cca85483a1daa7859c33f786e2afadee089e98993d3fa",
+        "images/pet_sr34.png": "4c055775a46fb4bb639e9c51832a1ac94cf6fb460068755e67bac22625eaba68",
+        "images/pet_ssr21.png": "c4a505ea1d59e4ed56effc13694a80e7012a3dc914b22d62a765da07e0a6f3dd",
+        "images/pet_ssr22.png": "3a53d13ddea68ebda22bb46bb68e6d05893999bd25977298ed5e3984fabf7737",
+        "images/pet_ssr23.png": "be4c79b42b13df13c1cc0bdaa0a3285f20cc46eff2bfbdb8eb5512e084a49151",
+        "images/pet_ssr24.png": "96229a1be3bf52c3431cd9d8fe0bdadd9ed8bb0c0a52be408a4587236f64457a",
+        "images/pet_ur16.png": "3a260a48730bc48a2f32710c297e14db2c07d2a2dd0e478a4d5413f0f2c80954",
+        "images/pet_ur17.png": "94d0549cc5cda0befffc668c160ebedfa1c41fc61f5a946ce7cf38af1194d2d1",
+        "images/pet_ur18.png": "17d2eb5fc3df3a5e9aef0194cdec01f58b141aee055ae66de9399e9f0f670b10"
+      },
+      "toolsHash": "dcccbfceb7286e5b54198b17fbcdccc1abf5f6cf496c197aba7c2bfdf76800d8",
+      "snapshot": "approvals/a73fb040eeb3e467b842763586297d0718dfc50392f0be1f83189dcf09dbe4be",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[12].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[13].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[14].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[15].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[16].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[17].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[18].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[19].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_n36.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_n37.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_n38.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r36.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r37.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r38.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r39.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r40.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr30.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr31.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr32.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr33.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr34.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ssr21.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ssr22.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ssr23.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ssr24.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ur16.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ur17.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ur18.png"
+        }
+      ],
+      "approvedAt": "2026-10-01T19:10:30.088Z",
+      "reviewer": "User — unchanged approved third-version PNG bytes reused; animation revision does not alter artwork",
+      "reviewerType": "human"
     }
   ]
 }

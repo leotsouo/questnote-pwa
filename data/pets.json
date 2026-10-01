@@ -1949,7 +1949,7 @@
       "element": "earth_mountain",
       "visualTheme": "ink_jade_mountain",
       "presentation": {
-        "revealKey": "ur",
+        "revealKey": "sword_eagle",
         "revealCaption": "山重，而一諾更重"
       },
       "imageVariants": {
@@ -1971,7 +1971,7 @@
       "element": "fire_cinnabar",
       "visualTheme": "ink_jade_mountain",
       "presentation": {
-        "revealKey": "ur",
+        "revealKey": "sword_toad",
         "revealCaption": "一聲低鳴，百毒止步"
       },
       "imageVariants": {
@@ -1993,7 +1993,7 @@
       "element": "wood_bamboo",
       "visualTheme": "ink_jade_mountain",
       "presentation": {
-        "revealKey": "ur",
+        "revealKey": "sword_ape",
         "revealCaption": "一劍素心，萬葉知路"
       },
       "imageVariants": {
