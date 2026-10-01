@@ -1,0 +1,87 @@
+{
+  "verifiedAtUtc": "2026-10-01T14:23:28.8155043Z",
+  "base": "https://leotsouo.github.io/questnote-pwa/",
+  "version": "3.4.41",
+  "artifactId": "467338c8913e5370fb5960926837ccbcdb781ca14f3fc84a78ca45b03aa427dc",
+  "manifestSha256": "92df08c7f825ba56cf58b0dd56057750a2f99a09c1464444d30d0c85bbe6327f",
+  "pagesCommit": "4e6744b352975eab2d821e7922426835596b461f",
+  "pagesRunId": "36875482934",
+  "sourceCommit": "5ab101cbff464c5b0d2a255808db9e166d150834",
+  "catalogSha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+  "fileCount": 12,
+  "allHashesMatch": true,
+  "files": [
+    {
+      "path": "release-artifact.json",
+      "status": 200,
+      "bytes": 115471,
+      "sha256": "92df08c7f825ba56cf58b0dd56057750a2f99a09c1464444d30d0c85bbe6327f"
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "bytes": 59027,
+      "sha256": "e69e7609d90842bf4fb79d60ff58f0262d686af486f423f642060254e6346966"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "status": 200,
+      "bytes": 831,
+      "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28"
+    },
+    {
+      "path": "service-worker.js",
+      "status": 200,
+      "bytes": 29100,
+      "sha256": "11a17d6e66795546f26a98e1a2d9d2871b4a4106ac3437d5a9bab412dea98264"
+    },
+    {
+      "path": "src/version.js",
+      "status": 200,
+      "bytes": 1148,
+      "sha256": "ba0d30e9547d10a0efab62c8694347203a6651bfdde41f1c5864cba2af55370d"
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "status": 200,
+      "bytes": 622,
+      "sha256": "7cb538dfd4ff5fa25fb72be76c7709e3322b692915888ddb8d827644fff6c773"
+    },
+    {
+      "path": "src/ui.js",
+      "status": 200,
+      "bytes": 372029,
+      "sha256": "6dee5531092aa31df7c412f001d314d806faeb673a7691ac4471553b49a6b4b6"
+    },
+    {
+      "path": "src/ui-polish.css",
+      "status": 200,
+      "bytes": 14458,
+      "sha256": "ca66a2c6bb7ecd4e1062c34889533bb2ebab5264e218d830fbd1a9982c1a26da"
+    },
+    {
+      "path": "src/styles.css",
+      "status": 200,
+      "bytes": 464520,
+      "sha256": "4d526470e4d92ac352e16c2873ab4a18ae53cf7fcf9a4f5630ef6aef9cdbee1a"
+    },
+    {
+      "path": "src/expeditionGameplay.js",
+      "status": 200,
+      "bytes": 7134,
+      "sha256": "37cd9f4259f9906f6e543dde5e9e4218ca0510b5ab23eeb762a02a2b18b12f3c"
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "status": 200,
+      "bytes": 8404,
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd"
+    },
+    {
+      "path": "data/releases/8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df/catalog.json",
+      "status": 200,
+      "bytes": 331807,
+      "sha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df"
+    }
+  ]
+}

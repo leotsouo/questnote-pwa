@@ -1,0 +1,49 @@
+{
+  "checkedAtUtc": "2026-10-01T14:26:22.8923595Z",
+  "version": "3.4.42",
+  "artifactId": "bf602678f6c3b7935d1de4053afbe4b1346d0dbc984fa28011dbcf9b45878b1b",
+  "sourceCommit": "41e234e79f9b1dfaf2ff9c6deca86b6a84aa3810",
+  "pagesCommit": "f86c5b2371c16b87b98cf025b88b16099c59339b",
+  "pagesRunId": "36875982334",
+  "catalogSha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+  "liveFilesChecked": 7,
+  "allHashesMatch": true,
+  "taskFormCssMatchesV341": true,
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "cf52be8ce30727344a537f3b46dfc25ebcf75c8542eb59ca45efc0efe2c56d05",
+      "matchesV341": false
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "164955155b8a23003bbeddf1ccd25efa35be07105793539b1d879644a904ff29",
+      "matchesV341": false
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "3310e0cfad249d86510564f973ef8e7de005e81e95e9bb9dfe7e240f77c35537",
+      "matchesV341": false
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "sha256": "5c9dae0df603c6acd2a8c6398890c613fc11a3edf47b6ab1a1e299ed587cac30",
+      "matchesV341": false
+    },
+    {
+      "path": "src/ui-polish.css",
+      "sha256": "ca66a2c6bb7ecd4e1062c34889533bb2ebab5264e218d830fbd1a9982c1a26da",
+      "matchesV341": true
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "matchesV341": true
+    },
+    {
+      "path": "data/releases/8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df/catalog.json",
+      "sha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+      "matchesV341": true
+    }
+  ]
+}

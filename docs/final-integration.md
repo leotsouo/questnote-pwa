@@ -2,6 +2,10 @@
 
 [PR #34](https://github.com/leotsouo/questnote-pwa/pull/34) 已合併至 main，來源提交 `e31638dab2f49313d39f9af34fab79185cfaf3e6`。正式產物 `8c0d2bdc8c2314fd2f665ea877fe337211580800d4db1f864ea5000a320c8b24` 的 410 個檔案通過逐一雜湊核對；gh-pages 提交 `964d9fa20ddc28fcb68207eee213534f0245bbd7` 的 [Pages run 36874334932](https://github.com/leotsouo/questnote-pwa/actions/runs/36874334932) 成功，13 個正式 HTTPS 檔案雜湊讀回吻合，12 項原生產物瀏覽器驗收通過。保留正式 96 隻寵物、4 個卡池與既有公開信箱。詳見[正式發布收據](../reports/expedition-recommendations/production-release.md)。
 
+# V3.4.41 新增任務表單垂直捲動已發布 — 2026-10-01
+
+[PR #35](https://github.com/leotsouo/questnote-pwa/pull/35) 已合併至 main（source commit `5ab101cbff464c5b0d2a255808db9e166d150834`）。新增任務表單只沿垂直方向捲動，窄螢幕與大字體欄位會自動換行。Production artifact `467338c8913e5370fb5960926837ccbcdb781ca14f3fc84a78ca45b03aa427dc` 的 410 個 Git blobs 全數符合核准產物；gh-pages commit `4e6744b352975eab2d821e7922426835596b461f`、[Pages run 36875482934](https://github.com/leotsouo/questnote-pwa/actions/runs/36875482934) 成功。12 個正式 HTTPS 檔案、12 項 assembled PWA 測試及 27 項正式表單版面測試通過。保留正式 96 隻角色、4 個卡池、信箱、`QuestNoteDB` 與 scope。其後 V3.4.42 更新亦保留相同表單 CSS；詳見[發布收據](../reports/task-form-layout/production-release.md)及[現行 HTTPS 核對](../reports/task-form-layout/current-production-validation.json)。
+
 ## 2026-10-01 — V3.4.37 字體大小與放大排版修正已發布
 
 [PR #23](https://github.com/leotsouo/questnote-pwa/pull/23) 已合併。正式 Pages commit `a5e563b`、[run 36780180601](https://github.com/leotsouo/questnote-pwa/actions/runs/36780180601) 成功；413 個部署檔案、223 個回歸案例、12 項原生產物瀏覽器測試與 20 個正式 HTTPS 雜湊通過。保留最新工坊功能、Honeylight 動畫、96 位角色／4 卡池與信箱。既有瀏覽器偵測到 verified waiting 更新，但另一個開啟視窗阻擋套用；未清除存檔。詳見 [正式發布收據](../reports/font-size-audit/production-release.md)。
