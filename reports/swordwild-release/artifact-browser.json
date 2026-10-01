@@ -1,6 +1,6 @@
 {
   "running": false,
-  "runId": "a7c8f5d3-6e7c-45d6-bece-03168ca28b60",
+  "runId": "b8bee875-43ed-4bc2-b21a-6a8201792e70",
   "passed": 13,
   "failed": 0,
   "results": [
@@ -75,26 +75,26 @@
     },
     "corrupt": {
       "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
-      "requests": 147,
+      "requests": 146,
       "databaseNames": []
     },
     "production": {
-      "artifactId": "51d6ef83daf716dbd27045f70b16e3fa2dfa1cc733b1a629876804733b01d4a4",
+      "artifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
       "catalogSha256": "509f8172c0a5f1f29513b10b9bcf46ef5a64668ef9970d1eac35f16f62f41223",
       "petCount": 116,
-      "controller": "http://127.0.0.1:61404/questnote-pwa/service-worker.js?artifact=51d6ef83daf716dbd27045f70b16e3fa2dfa1cc733b1a629876804733b01d4a4"
+      "controller": "http://127.0.0.1:55793/questnote-pwa/service-worker.js?artifact=5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8"
     },
     "legacyTransition": {
       "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
       "waitingBeforeClose": true,
       "zeroDatabasesBeforeClose": true,
-      "newArtifact": "51d6ef83daf716dbd27045f70b16e3fa2dfa1cc733b1a629876804733b01d4a4"
+      "newArtifact": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8"
     },
     "preview": {
-      "artifactId": "55d97da0030025cf816497f241e15ad3eb6b30dd1c301315aa603d334ce0d508",
+      "artifactId": "5443bd90acc5b5f6dc14df844b365172b059d7fc1360f48099913ea1fd459c45",
       "catalogSha256": "509f8172c0a5f1f29513b10b9bcf46ef5a64668ef9970d1eac35f16f62f41223",
       "petCount": 116,
-      "controller": "http://127.0.0.1:61404/questnote-pwa-preview/service-worker.js?artifact=55d97da0030025cf816497f241e15ad3eb6b30dd1c301315aa603d334ce0d508"
+      "controller": "http://127.0.0.1:55793/questnote-pwa-preview/service-worker.js?artifact=5443bd90acc5b5f6dc14df844b365172b059d7fc1360f48099913ea1fd459c45"
     },
     "companionContent": {
       "foodId": "item_pine_trail_riceball",

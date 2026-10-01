@@ -2,10 +2,10 @@
   "status": "completed",
   "conclusion": "success",
   "repository": "leotsouo/questnote-pwa-preview",
-  "runId": 36915539797,
-  "url": "https://github.com/leotsouo/questnote-pwa-preview/actions/runs/36915539797",
-  "headSha": "86042128ae82e34d524430eb363584a0574b8f60",
-  "artifactId": "55d97da0030025cf816497f241e15ad3eb6b30dd1c301315aa603d334ce0d508",
-  "deployCompletedAt": "2026-10-01T19:37:17Z",
-  "verifiedWith": "gh run view 36915539797 --repo leotsouo/questnote-pwa-preview --json status,conclusion,jobs,headSha,url"
+  "runId": 36919747600,
+  "headSha": "b39a9437fa8ec53294ccdcd7d3c4c3b1b6b42d9e",
+  "url": "https://github.com/leotsouo/questnote-pwa-preview/actions/runs/36919747600",
+  "artifactId": "5443bd90acc5b5f6dc14df844b365172b059d7fc1360f48099913ea1fd459c45",
+  "deployCompletedAt": "2026-10-01T20:12:29Z",
+  "verifiedAt": "2026-10-01T20:12:47.439Z"
 }
