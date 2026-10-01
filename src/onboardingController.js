@@ -306,7 +306,7 @@ function render() {
         <button class="btn btn--ghost btn--sm" type="button" data-onboarding-action="lesson-close">繼續使用 App</button></div></aside>`;
     } else if (content) {
       root.innerHTML = `
-        <aside class="onboarding-dock${lesson ? ' onboarding-lesson-dock' : ''}" data-step="${lesson ? progress.step : record.step}" aria-label="${lesson ? lesson.title : '新手教學'}">
+        <aside class="onboarding-dock${lesson ? ' onboarding-lesson-dock' : ''}" data-step="${lesson ? progress.step : record.step}" data-collapsed="${collapsed}" aria-label="${lesson ? lesson.title : '新手教學'}">
           <div class="onboarding-dock__top">
             <span>${lesson ? `${lesson.title} ${lesson.steps.indexOf(progress.step) + 1} / ${lesson.steps.length}` : `新手教學 ${STEP_NUMBER[record.step]} / 5`}</span>
             <button type="button" data-onboarding-action="collapse" aria-expanded="${!collapsed}" aria-controls="onboarding-step-body">${collapsed ? '展開' : '收起'}</button>

@@ -17741,11 +17741,6 @@ html:has(body.onboarding-active) { scroll-padding-bottom: calc(var(--nav-height)
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.42);
   padding: var(--space-4);
 }
-.onboarding-dock[data-step='task'],
-.onboarding-dock[data-step='expedition'] {
-  top: calc(var(--safe-top) + 76px);
-  bottom: auto;
-}
 .onboarding-dock__top { display: flex; justify-content: space-between; gap: var(--space-2); color: var(--color-primary-light); font-size: 0.75rem; font-weight: 700; }
 .onboarding-dock__top button,
 .onboarding-dock__skip { border: 0; background: none; color: var(--color-text-secondary); cursor: pointer; text-decoration: underline; }
@@ -18108,7 +18103,13 @@ body[data-theme] #app #view-workshop .workshop-gift-preview__levelup { color: va
 .filter-bar.is-dragging, .filter-bar.is-dragging .filter-btn { cursor: grabbing; }
 
 /* Teaching uses a short invitation first; rules remain available on demand. */
-.onboarding-dock { max-height: min(52dvh, 380px); }
+.onboarding-dock {
+  box-sizing: border-box;
+  height: min(52dvh, 380px);
+  max-height: calc(100dvh - var(--nav-height) - var(--safe-bottom) - var(--safe-top) - 20px);
+  overscroll-behavior-y: contain;
+}
+.onboarding-dock[data-collapsed='true'] { height: auto; }
 .onboarding-progress { display: block; width: 100%; height: 4px; margin: 10px 0 14px; border: 0; border-radius: 4px; accent-color: var(--color-primary-light); }
 .onboarding-progress::-webkit-progress-bar { background: var(--color-border); border-radius: 4px; }
 .onboarding-progress::-webkit-progress-value { background: var(--color-primary-light); border-radius: 4px; }
