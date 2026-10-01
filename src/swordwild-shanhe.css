@@ -46,6 +46,9 @@
 .summon-reveal-overlay.is-shanhe-reveal .summon-reveal-stage{position:relative;z-index:2}
 .summon-reveal-overlay.is-shanhe-reveal .summon-reveal-card{padding:16px;max-width:88vw}
 .summon-reveal-overlay.is-shanhe-reveal.is-ready .summon-reveal-card{animation:none;opacity:1;transform:none}
+.summon-reveal-overlay.is-shanhe-reveal .summon-reveal-rarity{font:700 30px/1.2 'Noto Serif TC','PMingLiU',serif;color:#f4e3b6;text-shadow:0 0 16px #cfb57b66;animation:shanhe-card 1.6s 250ms ease both;letter-spacing:.18em}
+.summon-reveal-overlay.is-shanhe-reveal.is-ready .summon-reveal-rarity{animation:none;opacity:1;transform:none}
+.summon-reveal-overlay.is-shanhe-reveal .summon-reveal-caption{color:#f4e3b6}
 .summon-reveal-overlay.is-shanhe-reveal .summon-reveal-pet-frame{width:min(68vw,390px);height:min(68vw,390px)}
 .summon-reveal-overlay.is-shanhe-reveal .summon-reveal-pet-image.is-loaded{opacity:1;transition:none}
 .dream-debut-overlay[data-animation=swordwild_shanhe].is-ready .dream-debut-line__seg{opacity:1;filter:none;transform:none;animation:none}
