@@ -316,12 +316,14 @@ function render() {
           <progress class="onboarding-progress" value="${lesson ? lesson.steps.indexOf(progress.step) + 1 : STEP_NUMBER[record.step]}" max="${lesson ? lesson.steps.length : 5}" aria-label="教學進度"></progress>
           <div id="onboarding-step-body" ${collapsed ? 'hidden' : ''}>
           <p class="onboarding-brief" aria-live="polite" aria-atomic="true">${escapeText(coachBrief || content.body)}</p>
-          <details class="onboarding-more"><summary>想了解更多</summary><ul>${(content.tips || [content.body]).map((tip) => `<li>${escapeText(tip)}</li>`).join('')}</ul></details>
           <div class="onboarding-dock__actions">
             <button class="btn btn--primary btn--sm" type="button" data-onboarding-action="${content.primary[1]}">${content.primary[0]}</button>
             <button class="btn btn--ghost btn--sm" type="button" data-onboarding-action="${content.secondary[1]}">${lesson && progress.step === lesson.steps.at(-1) ? '完成教學' : content.secondary[0]}</button>
           </div>
-          ${lesson ? `<button class="onboarding-dock__skip" type="button" data-onboarding-action="lesson-back" ${progress.step === lesson.steps[0] ? 'disabled' : ''}>上一步</button>` : '<button class="onboarding-dock__skip" type="button" data-onboarding-action="skip">略過整個教學</button>'}
+          <div class="onboarding-dock__footer">
+          <details class="onboarding-more"><summary>想了解更多</summary><ul>${(content.tips || [content.body]).map((tip) => `<li>${escapeText(tip)}</li>`).join('')}</ul></details>
+          ${lesson ? `<button class="onboarding-dock__skip" type="button" data-onboarding-action="lesson-back" ${progress.step === lesson.steps[0] ? 'disabled' : ''}>上一步</button>` : '<button class="onboarding-dock__skip" type="button" data-onboarding-action="skip">略過教學</button>'}
+          </div>
           </div>
         </aside>`;
     } else {

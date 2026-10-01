@@ -224,5 +224,8 @@ export function getLessonStepContent(id, step, state = {}) {
     'bond/agreement': ['任務：選尚未完成的一項，完成一次即可。', `習慣：Lv.${CHAPTER_LEVELS.join('、Lv.')} 分別需 ${CHAPTER_LEVELS.map((level) => HABIT_TARGETS[level]).join('、')} 個不同日期，不必連續。`, '接受前與暫停期間的完成不會補算。', '同時只能有一個約定；可暫停、繼續或結束。換目標會從零累積。'],
     'bond/keepsake': [`章節獎勵：${CHAPTER_LEVELS.map((level) => `Lv.${level} +${CHAPTER_REWARDS[level]}`).join('、')} 星塵。每隻每章限領一次，領取後開放下一章。`, '完成並領取 Lv.5 約定後，可在首頁與營地展示紀念物。', `日常同行：完成一項任務或習慣，再領 ${DAILY_COMPANION_REWARD} 星塵。全角色合計每天一次。`],
   };
-  return { ...content, brief: briefs[`${id}/${step}`], tips: tips[`${id}/${step}`] || [content.body] };
+  const actions = { 'bond/sources': '查看陪伴', 'bond/pet': c.companion ? '找到撫摸' : '設定陪伴',
+    'bond/unlocks': '查看夥伴', 'bond/story': '找到故事', 'bond/agreement': '查看約定', 'bond/keepsake': '查看獎勵' };
+  return { ...content, action: actions[`${id}/${step}`] || content.action,
+    brief: briefs[`${id}/${step}`], tips: tips[`${id}/${step}`] || [content.body] };
 }

@@ -18119,6 +18119,10 @@ body[data-theme] #app #view-workshop .workshop-gift-preview__levelup { color: va
 .onboarding-more[open] summary::before, .guide-start-details[open] summary::before, .guide-chapter__help[open] summary::before { content: '−'; }
 .onboarding-more ul { padding-inline-start: 20px; margin: 0 0 12px; color: var(--color-text-secondary); font-size: .82rem; line-height: 1.7; }
 .onboarding-more li + li { margin-top: 8px; }
+.onboarding-dock__actions .btn { flex: 1 1 100px; }
+.onboarding-dock__footer { display: flex; align-items: flex-start; gap: 12px; margin-top: 12px; border-top: 1px solid var(--color-border); }
+.onboarding-dock__footer .onboarding-more { flex: 1; min-width: 0; margin: 0; border: 0; }
+.onboarding-dock__footer .onboarding-dock__skip { min-width: 44px; min-height: 44px; flex-shrink: 0; margin: 0; }
 .guide-chapter__help p { margin: 0 0 12px; }
 @media (max-width: 600px) {
   #guide-chapters { grid-template-columns: minmax(0, 1fr); }
