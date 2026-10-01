@@ -103,13 +103,18 @@
     },
     {
       "path": "index.html",
-      "bytes": 14981,
-      "sha256": "d82a10e012063f1b6329bd2afece7dc4796419ae28098f8a23ffc2991e716821"
+      "bytes": 16625,
+      "sha256": "08826755175b779806cca85fac49df00c3bd9fd76f03eeef7f27fbea797a72b8"
+    },
+    {
+      "path": "install-guide.js",
+      "bytes": 3987,
+      "sha256": "b838498e6cc52b2293ce732037b45aee55f1b42682f2b18ce39e9e660bc7ea96"
     },
     {
       "path": "main.js",
-      "bytes": 6335,
-      "sha256": "e8f7ecef2698421443fafd7f27ed13ac95eb76ae34a3d6d97aa50d9319e96f8e"
+      "bytes": 6653,
+      "sha256": "759632e1aaeafe444bef6954420141e8526f80e6160f7553c78038ff358c1727"
     },
     {
       "path": "privacy/index.html",
@@ -128,8 +133,8 @@
     },
     {
       "path": "styles.css",
-      "bytes": 18285,
-      "sha256": "8ede6bba4a7b8f0d08e574b6683c4df3138e25e1ce200015777bd91f6de2e887"
+      "bytes": 20726,
+      "sha256": "f2dc721d3e04eae655a02db580c91b6bce60ee5cfb9e38a1244ec4a43330c21b"
     },
     {
       "path": "support/index.html",
@@ -147,5 +152,5 @@
       "sha256": "9fc70000d9c8a96e23b5ec12874d0b7dc6a884fd74b69709e7f84977afc9db59"
     }
   ],
-  "totalBytes": 989625
+  "totalBytes": 998015
 }

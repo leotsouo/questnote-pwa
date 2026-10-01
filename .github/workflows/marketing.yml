@@ -36,6 +36,7 @@ jobs:
           npm run dev > /tmp/questnote-marketing-server.log 2>&1 &
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8031/ > /dev/null && break || sleep 1; done
           npm run qa
+          node scripts/install-qa.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -43,6 +44,7 @@ jobs:
           path: |
             marketing/dist
             reports/marketing/local
+            reports/marketing/install-guide/local
       - name: Optional Pages deployment
         if: github.event_name == 'workflow_dispatch' && inputs.deploy
         env:
