@@ -1,0 +1,55 @@
+{
+  "states": [
+    {
+      "bottom": 571.34375,
+      "client": 268,
+      "height": 269.34375,
+      "scroll": 268,
+      "step": "task",
+      "tailSpace": 16.666645050048828,
+      "top": 302
+    },
+    {
+      "bottom": 627.96875,
+      "client": 325,
+      "height": 325.96875,
+      "scroll": 325,
+      "step": "task",
+      "tailSpace": 16.666641235351562,
+      "top": 302,
+      "mode": "rules-open"
+    }
+  ],
+  "layouts": [
+    {
+      "width": 320,
+      "height": 298.6770935058594,
+      "bottom": 523.8750152587891,
+      "client": 297,
+      "scroll": 297,
+      "step": "task",
+      "tailSpace": 16.66666030883789,
+      "top": 225.1979217529297
+    },
+    {
+      "width": 390,
+      "height": 293.09375,
+      "bottom": 675.09375,
+      "client": 292,
+      "scroll": 292,
+      "step": "task",
+      "tailSpace": 16.666645050048828,
+      "top": 382
+    },
+    {
+      "width": 1280,
+      "height": 269.34375,
+      "bottom": 707.34375,
+      "client": 268,
+      "scroll": 268,
+      "step": "task",
+      "tailSpace": 16.666645050048828,
+      "top": 438
+    }
+  ]
+}
