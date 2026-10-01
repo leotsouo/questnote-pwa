@@ -1,6 +1,6 @@
 # 探險目標與專長推薦 — 2026-10-01
 
-來源起點：`origin/main` 的 `71b57cd247feb7406c17c20461c72c9fe94a8c23`。功能分支：`codex/expedition-specialty-recommendations`。版本與 SW cache 同步為 V3.4.40；僅本機 source，尚未合併、推送或部署。
+來源起點：`origin/main` 的 `71b57cd247feb7406c17c20461c72c9fe94a8c23`。功能分支：`codex/expedition-specialty-recommendations`。版本與 SW cache 同步為 V3.4.40；[PR #34](https://github.com/leotsouo/questnote-pwa/pull/34) 已合併，正式版已發布。產物、Pages 與正式 HTTPS 驗證詳見[正式發布收據](production-release.md)。
 
 派遣流程先選探索／採集／羈絆目標，再選寵物。推薦與實際收益共用目標對應：探路增加探索進度、採集增加材料、同行增加隊伍親密度。推薦只包含已擁有且可派遣的符合專長夥伴，專長等級優先，再以陪伴、稀有度、親密度與 ID 排序。按「一鍵帶入推薦隊伍」帶入最多三隻，可手動換寵。沒有符合專長時明示原因並停用推薦按鈕，其他夥伴仍可手動出發。切換目標保留現有隊伍，直到使用者再次帶入推薦。
 
