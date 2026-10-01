@@ -1,0 +1,76 @@
+{
+  "base": "https://leotsouo.github.io/questnote-pwa-preview/",
+  "artifactId": "8f8c933b2e939632b2807e33ef21e18b9d3021052b67805b6f03472cf390e92f",
+  "files": [
+    {
+      "path": "release-artifact.json",
+      "sha256": "dc58eb5f1fd1e8b5951f54b24fedf8c799c8c0452b3785082b110b1f4d66b3d6",
+      "status": 200
+    },
+    {
+      "path": "index.html",
+      "sha256": "f373dc9df6e6d2ba3c0aa1810a7fd08f82e822b003cd3411c7ad002247b37e9b",
+      "status": 200
+    },
+    {
+      "path": "src/bootstrap.js",
+      "sha256": "8f9b032181bc1fc1dc15981c707617073272aa42a7a39f956fe94e71f20fb26f",
+      "status": 200
+    },
+    {
+      "path": "src/bootstrapRecovery.js",
+      "sha256": "eb176fdeda0af8c1605c3fdc8f18876028938ce04541154c8faee530732bad34",
+      "status": 200
+    },
+    {
+      "path": "src/shareService.js",
+      "sha256": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
+      "status": 200
+    },
+    {
+      "path": "src/ui.js",
+      "sha256": "6dee5531092aa31df7c412f001d314d806faeb673a7691ac4471553b49a6b4b6",
+      "status": 200
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "3f44735c1f0a602f00d92f5c285d7c506e2bb66bb7139ecce5f081b1f46a8608",
+      "status": 200
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "6f61bc92b1f1f6491717533c776cb7b3e086549e460ed864b378e6b824daa088",
+      "status": 200
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "sha256": "f9b5bc57881997958ace2d66032cb7d23a9981b676fa5f491429f45d1ddd3d31",
+      "status": 200
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "2d2bb39db0a8714845b27c1c10538e5e92bbc0c416b7c4aa90e4b78a9d9afe60",
+      "status": 200
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "92eebd112db700add8829cda91380b117bcf4f4d91723ea899055ebde22caad0",
+      "status": 200
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "status": 200
+    },
+    {
+      "path": "data/releases/8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df/catalog.json",
+      "sha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+      "status": 200
+    },
+    {
+      "path": "src/font-size-settings.css",
+      "sha256": "47476e661b6f993b8586f37fe5303add68c679793effb9ecaafc2c5b1adde74f",
+      "status": 200
+    }
+  ]
+}
