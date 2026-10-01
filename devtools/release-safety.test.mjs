@@ -5,6 +5,23 @@ import { runInNewContext } from 'node:vm';
 import { webcrypto } from 'node:crypto';
 import { loadCatalogBundle, validateContentBundle, validateReleaseProfile, sha256Bytes } from '../src/releaseCatalog.js';
 import { bootApplication } from '../src/bootstrap.js';
+import { readServiceWorker } from '../src/bootstrapRecovery.js';
+
+test('unavailable or browser-denied service workers provide recovery without loading product code', async () => {
+  assert.equal(readServiceWorker({ get serviceWorker() { throw new DOMException('Blocked', 'SecurityError'); } }), undefined);
+  const profile = { artifactId: 'e'.repeat(64), scopePath: '/preview/' };
+  let productCalls = 0;
+  const options = { profile, marker: profile.artifactId, baseUrl: 'https://test.invalid/preview/',
+    attemptStorage: { getItem: () => null }, start: async () => { productCalls++; }, reload: () => { productCalls++; } };
+  for (const serviceWorker of [null,
+    { register: async () => { throw new DOMException('Blocked', 'SecurityError'); } },
+    { register: async () => { throw new DOMException('Unavailable', 'NotSupportedError'); } },
+    { register: async () => { throw new TypeError('Job rejected for non app-bound domain'); } }]) {
+    await assert.rejects(bootApplication({ ...options, serviceWorker }), error => error.code === 'BROWSER_UNSUPPORTED');
+  }
+  await assert.rejects(bootApplication({ ...options, serviceWorker: {}, attemptStorage: null }), error => error.code === 'BROWSER_UNSUPPORTED');
+  assert.equal(productCalls, 0);
+});
 
 test('release bootstrap opens no product code until controlled and refuses partial profiles or reload loops', async () => {
   const profile = { artifactId: 'a'.repeat(64), scopePath: '/preview/' };
