@@ -119,8 +119,8 @@ function stepContent() {
         title: '到圖鑑找到你的夥伴',
         body: ownedPets().length
           ? ownedFilterActive
-            ? '已顯示你獲得的夥伴；點「設為陪伴」，牠就會出現在任務首頁。'
-            : '切到「已獲得」，就能快速找到剛召喚的夥伴。再點「設為陪伴」，牠會出現在任務首頁。'
+            ? '已顯示你獲得的夥伴；點「設為陪伴」，牠就會出現在任務首頁。一起完成任務、撫摸或送禮可累積親密度；Lv.2 起能從「故事與同行」閱讀專屬故事，再選自己的任務或習慣完成約定。'
+            : '切到「已獲得」，就能快速找到剛召喚的夥伴。再點「設為陪伴」，牠會出現在任務首頁。親密度 Lv.2 起有專屬故事與同行約定，可以跟著自己的日常慢慢解鎖。'
           : '召喚得到的寵物會收進圖鑑；之後用「已獲得」篩選，再選一隻設為陪伴。',
         primary: ['前往圖鑑', 'locate-collection'],
         secondary: ['稍後再選夥伴', 'later-collection'],
@@ -282,7 +282,7 @@ function render() {
             <p class="onboarding-eyebrow">新手教學完成</p>
             <h2 id="onboarding-done-title">你已經知道怎麼開始冒險了</h2>
             <p>每天可以先安排任務，完成後累積星塵與能量；召喚、陪伴和探險會讓旅程繼續向前。</p>
-            <p class="onboarding-dialog__hint">下一步可以到「更多 → 使用教學」練習升星、親密度、探險領獎和工坊；每日功能也有入口速查。</p>
+            <p class="onboarding-dialog__hint">親密度 Lv.2 起能閱讀夥伴故事，再選自己的任務或習慣完成同行約定。到「更多 → 使用教學 → 陪伴、故事與同行約定」可逐步了解回應選擇、約定進度、星塵獎勵與紀念物；也能練習升星、探險領獎和工坊。</p>
             <div class="onboarding-dialog__actions">
               <button class="btn btn--primary" type="button" data-onboarding-action="close-summary">開始使用</button>
               <button class="btn btn--ghost" type="button" data-onboarding-action="summary-guide">查看使用教學</button>
