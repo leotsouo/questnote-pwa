@@ -27,16 +27,16 @@
   },
   "presentationTemplate": "glacier_arrival",
   "unlock": null,
-  "releaseVersion": "3.5.2",
+  "releaseVersion": "3.5.3",
   "productionBaseline": {
-    "deployedCommit": "b434f218c1cedee03d88150ea6f985f648f1e8f0",
-    "sourceCommit": "a15406b63ff040ea6b6d08960d7f1f673ee282bd",
-    "mainCommit": "41e36311e04f59dad392a8fb0f55f64f0294ca5d",
-    "artifactId": "fe265960962cc11859afed1ca7e0e5558bee31dc135eb7f9ac80fca92ec688c5",
-    "version": "3.5.1",
+    "deployedCommit": "9adc2e99a7978d02f8c4707865a5f5c24378344a",
+    "sourceCommit": "1b7a599055aa15b8fb441a95aabd8b893b0324dd",
+    "mainCommit": "1b7a599055aa15b8fb441a95aabd8b893b0324dd",
+    "artifactId": "39c40c77e52fd738b90bbd3648f09f6309e59d6ea3e26fb16ce47ee14a0fb529",
+    "version": "3.5.2",
     "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
-    "verifiedAt": "2026-10-01T16:16:22.569Z",
-    "unpublishedChanges": "Latest main retains publication evidence and the independently published October mailbox; all live catalogs, companion data, bond stories and mailbox match current main. Cloudrest runtime is added prospectively before capturing the new authoring baseline."
+    "verifiedAt": "2026-10-01T16:43:38.570Z",
+    "unpublishedChanges": "V3.5.2 default-standard-summon app behavior is integrated. Official catalogs, companion data and all four ecosystem runtime hashes have not changed; retain the same exact-byte authoring baseline and append new version/content approval receipts. V3.5.1 snapshots and candidates remain immutable."
   },
   "interview": {
     "theme": "金庸武俠中的異獸及同級象徵，自創系列；情緒交給 AI。",
