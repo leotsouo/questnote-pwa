@@ -18106,3 +18106,22 @@ body[data-theme] #app #view-workshop .workshop-gift-preview__levelup { color: va
 /* Keep horizontal filter gestures within their own scroll row. */
 .filter-bar { overscroll-behavior-x: contain; user-select: none; cursor: grab; }
 .filter-bar.is-dragging, .filter-bar.is-dragging .filter-btn { cursor: grabbing; }
+
+/* Teaching uses a short invitation first; rules remain available on demand. */
+.onboarding-progress { display: block; width: 100%; height: 4px; margin: 10px 0 14px; border: 0; border-radius: 4px; accent-color: var(--color-primary-light); }
+.onboarding-progress::-webkit-progress-bar { background: var(--color-border); border-radius: 4px; }
+.onboarding-progress::-webkit-progress-value { background: var(--color-primary-light); border-radius: 4px; }
+.onboarding-dock .onboarding-brief { font-size: .9rem; line-height: 1.65; margin-bottom: 10px; }
+.onboarding-more { margin: 0 0 12px; border-top: 1px solid var(--color-border); }
+.onboarding-more summary, .guide-start-details summary, .guide-chapter__help summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: 8px; color: var(--color-text-secondary); font-size: .82rem; }
+.onboarding-more summary::before, .guide-start-details summary::before, .guide-chapter__help summary::before { content: '+'; font-size: 1rem; }
+.onboarding-more[open] summary::before, .guide-start-details[open] summary::before, .guide-chapter__help[open] summary::before { content: '−'; }
+.onboarding-more ul { padding-inline-start: 20px; margin: 0 0 12px; color: var(--color-text-secondary); font-size: .82rem; line-height: 1.7; }
+.onboarding-more li + li { margin-top: 8px; }
+.guide-chapter__help p { margin: 0 0 12px; }
+@media (max-width: 600px) {
+  #guide-chapters { grid-template-columns: minmax(0, 1fr); }
+  #guide-chapters .guide-chapter { padding: 16px 20px; }
+  .onboarding-dock__top { align-items: center; }
+  .onboarding-dock__top > span { flex: 1; min-width: 0; }
+}

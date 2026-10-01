@@ -12,6 +12,19 @@ import { LESSONS, getLessonStepContent, getLessonAvailability } from '../src/onb
 
 const emptySnapshot = () => ({ tasks: [], meta: [], collection: [], expeditions: [], habits: [] });
 
+test('each lesson leads with a short action and preserves its rules behind disclosure', () => {
+  for (const lesson of LESSONS) {
+    for (const step of lesson.steps) {
+      const content = getLessonStepContent(lesson.id, step, {});
+      assert.ok(content.brief.length <= 60, `${lesson.id}/${step} is too dense`);
+      assert.ok(content.tips.length && content.tips.every((tip) => typeof tip === 'string' && tip.length));
+    }
+  }
+  assert.match(getLessonStepContent('bond', 'agreement').tips.join(' '), /1、2、3、5/);
+  assert.match(getLessonStepContent('bond', 'agreement').tips.join(' '), /接受前與暫停/);
+  assert.match(getLessonStepContent('bond', 'keepsake').tips.join(' '), /全角色合計每天一次/);
+});
+
 test('bond teaching covers the journey without requiring story rewards or a level upgrade', () => {
   const lesson = LESSONS.find((entry) => entry.id === 'bond');
   let state = startLesson(normalizeOnboardingState({ status: 'completed' }), 'bond');
