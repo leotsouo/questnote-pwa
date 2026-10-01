@@ -17818,6 +17818,18 @@ body.is-pet-image-viewer-open .onboarding-dock { visibility: hidden; }
 .expedition-objective span { font-size: .78rem; opacity: .75; }
 .expedition-objective.is-selected { outline: 2px solid #8d78cf; }
 .expedition-pet-option__specialty { font-size: .78rem; }
+.expedition-dispatch-modal__objective-section { margin-bottom: 16px; }
+.expedition-recommendation {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 12px;
+  padding: 10px;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+}
+.expedition-recommendation__summary { margin: 0; font-size: .85rem; line-height: 1.5; }
+.expedition-recommendation__button { width: 100%; white-space: normal; }
+.expedition-pet-option__recommended { color: var(--primary); font-size: .78rem; font-weight: 700; }
 .expedition-report-event { line-height: 1.6; }
 @media (max-width: 520px) { .expedition-objectives { grid-template-columns: 1fr; } .journey-list button { display: grid; } }
 
