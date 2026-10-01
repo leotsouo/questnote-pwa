@@ -1,5 +1,5 @@
 /* Original mountain scroll, ancient trail and sword-call ceremony. */
-.swordwild-scene{position:absolute;inset:0;overflow:hidden;background:#092721;pointer-events:none;--shanhe-light:#c9d7b1}
+.swordwild-scene{position:absolute;inset:0;z-index:0;isolation:isolate;overflow:hidden;background:#092721;pointer-events:none;--shanhe-light:#c9d7b1}
 .shanhe-paper{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 20%,#a3b49c38,transparent 48%),repeating-linear-gradient(100deg,#e1d9aa04 0 1px,transparent 1px 5px)}
 .shanhe-landscape,.shanhe-motif{position:absolute;width:100%;height:100%;inset:0}
 .shanhe-landscape{opacity:.83;transform:scale(1.045);transition:transform 2.7s ease,opacity 1s}
@@ -21,7 +21,7 @@
 .dream-debut-overlay[data-animation=swordwild_shanhe] .shanhe-cloud--right{animation:shanhe-cloud-right 3.4s ease both}
 .dream-debut-overlay[data-animation=swordwild_shanhe] .shanhe-landscape{animation:shanhe-arrive 3.4s ease both}
 .dream-debut-overlay[data-animation=swordwild_shanhe] .shanhe-seals{animation:shanhe-seal-arrive 2.2s 500ms both}
-.dream-debut-overlay[data-animation=swordwild_shanhe] .dream-debut-copy{z-index:3;top:auto;bottom:20%;padding:0 24px}
+.dream-debut-overlay[data-animation=swordwild_shanhe] .dream-debut-copy{position:absolute;z-index:3;top:auto;bottom:19%;left:0;right:0;margin:0 auto;padding:0 18px}
 .dream-debut-overlay[data-animation=swordwild_shanhe] .dream-debut-line{color:#f4e4b9;text-shadow:0 2px 14px #000;font-family:'Noto Serif TC','PMingLiU',serif;letter-spacing:.2em}
 .dream-bloom-overlay[data-animation=swordwild_shanhe][data-omen=N] .swordwild-scene{--shanhe-light:#c1d9bc}
 .dream-bloom-overlay[data-animation=swordwild_shanhe][data-omen=R] .swordwild-scene{--shanhe-light:#93c7d2}
@@ -41,6 +41,9 @@
 .dream-bloom-overlay[data-animation=swordwild_shanhe] .dream-bloom-summary{background:#08261ee8;border:1px solid #c8ac6a66;border-radius:16px;padding:20px}
 .dream-bloom-overlay[data-animation=swordwild_shanhe] .dream-bloom-summary__title{color:#f0d99e}
 .summon-reveal-overlay.is-shanhe-reveal{background:#08261e}
+.summon-reveal-overlay.is-shanhe-reveal::after{display:none;animation:none}
+.summon-reveal-overlay.is-shanhe-reveal .summon-reveal-card{animation:shanhe-card 1.6s ease 250ms both}
+.summon-reveal-overlay.is-shanhe-reveal .summon-reveal-stage{position:relative;z-index:2}
 .is-shanhe-reveal .summon-reveal-pool,.is-shanhe-reveal .summon-reveal-ring,.is-shanhe-reveal .summon-reveal-aura,.is-shanhe-reveal .summon-reveal-particles{display:none}
 .is-shanhe-reveal .shanhe-scroll{opacity:.6;transform:scaleX(1)}
 .is-shanhe-reveal .shanhe-cloud{opacity:.22}.is-shanhe-reveal .shanhe-trail-line{stroke-dashoffset:0}
