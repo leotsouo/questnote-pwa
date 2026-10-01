@@ -1,11 +1,12 @@
 /** Backup profiles verified against historical exporters; no database or DOM access. */
 import { SUPPORTED_THEMES } from './themeRegistry.js';
 import { FONT_SIZES } from './preferencesService.js';
+import { validateBondJourney } from './bondJourneyCore.js';
 const BASE_KEYS = ['tasks', 'wallet', 'collection', 'gachaStats', 'expeditions',
   'achievements', 'taskStats', 'userPreferences', 'habits'];
 const ADDITIONS = ['inventory', 'workshopStats', 'dailyCheckIn', 'questProgress',
   'explorationProgress', 'collectionMilestones', 'globalMailboxState',
-  'poolDebutSeen', 'poolUnlockState', 'idempotentGrants', 'campProgress'];
+  'poolDebutSeen', 'poolUnlockState', 'idempotentGrants', 'campProgress', 'bondJourney'];
 export const SNAPSHOT_KEYS = [...BASE_KEYS, ...ADDITIONS];
 // Counts come from actual versioned exports, not inferred release dates.
 const LEGACY_PROFILES = {
@@ -292,6 +293,7 @@ export function validateSnapshotData(data, requiredKeys = SNAPSHOT_KEYS, profile
       visit(item, next);
     }
   };
+  if (Object.hasOwn(data, 'bondJourney')) errors.push(...validateBondJourney(data.bondJourney));
   visit(data, '');
   return errors;
 }
@@ -347,7 +349,9 @@ export function validateBackupEnvelope(raw, currentVersion) {
   const data = raw.data === undefined ? raw : raw.data;
   const preCampRelease = actual[0] < 3 || (actual[0] === 3
     && (actual[1] < 4 || (actual[1] === 4 && (actual[2] ?? 0) <= 17)));
-  const additions = LEGACY_PROFILES[version] ?? (preCampRelease ? 10 : ADDITIONS.length);
+  const preBondRelease = actual[0] < 3 || (actual[0] === 3
+    && (actual[1] < 5 || (actual[1] === 5 && (actual[2] ?? 0) < 1)));
+  const additions = LEGACY_PROFILES[version] ?? (preCampRelease ? 10 : preBondRelease ? 11 : ADDITIONS.length);
   const required = [...BASE_KEYS, ...ADDITIONS.slice(0, additions)];
   const errors = validateSnapshotData(data, required, version);
   if (isRecord(data)) {
