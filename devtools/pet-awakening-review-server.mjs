@@ -9,6 +9,21 @@ const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.
 http.createServer(async (req, res) => {
   try {
     let file = decodeURIComponent(new URL(req.url, 'http://127.0.0.1').pathname).slice(1);
+    if (req.method !== 'GET' || file.includes('\\') || file.split('/').some((s) => s === '..' || s.startsWith('.'))) throw Error('Not a public preview resource');
+    // Review shells live outside the app worker scope, so navigation fallback
+    // cannot replace the viewer or synthetic-demo wrapper with index.html.
+    if (['awakening-review/', 'awakening-review', 'awakening-demo/', 'awakening-demo'].includes(file)) {
+      res.setHeader('Content-Type', mime['.html']); res.setHeader('Cache-Control', 'no-store');
+      const page = file.startsWith('awakening-demo') ? 'pet-awakening-demo.html' : 'pet-awakening-review.html';
+      res.end((await fs.readFile(path.join(source, `devtools/${page}`), 'utf8')).replace('<base href="/">', `<base href="${scope}">`)); return;
+    }
+    if (file.startsWith('reports/awakening-implementation/')) {
+      const directory = path.join(source, 'reports/awakening-implementation');
+      const target = await fs.realpath(path.resolve(source, file));
+      if (!target.startsWith(directory + path.sep) || !['.html', '.json', '.md', '.png', '.log'].includes(path.extname(target))) throw Error('Not a review resource');
+      res.setHeader('Content-Type', mime[path.extname(target)] || 'text/plain; charset=utf-8'); res.setHeader('Cache-Control', 'no-store');
+      res.end(await fs.readFile(target)); return;
+    }
     if (scope !== '/') {
       if (file === 'awakening-review/' || file === 'awakening-review' || file === '') {
         res.writeHead(302, { Location: scope + (file ? 'awakening-review/' : 'index.html') }).end(); return;
@@ -29,4 +44,4 @@ http.createServer(async (req, res) => {
     res.setHeader('Content-Type', mime[path.extname(file)] || 'application/octet-stream'); res.setHeader('Cache-Control', 'no-store');
     res.end(await fs.readFile(resolved));
   } catch { res.writeHead(404).end('Preview resource not found'); }
-}).listen(0, '127.0.0.1', function () { console.log(`http://127.0.0.1:${this.address().port}${scope}awakening-review/`); });
+}).listen(0, '127.0.0.1', function () { console.log(`http://127.0.0.1:${this.address().port}/awakening-review/`); });

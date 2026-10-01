@@ -8,4 +8,5 @@ PASS two tabs race for ritual: one success, one food/token consumption, preserve
 PASS actual mobile reader switches forms, replays/escapes animation, and remembers form after reload
 PASS backup export/restore retains titles, progress and forms; malformed import does not overwrite
 PASS all twenty stage portraits load; reduced/normal scenes are replayable visual-only and canonical art unchanged
-Awakening acceptance: 10 checks passed
+PASS latest Today habit UI advances the active trial once across undo and recomplete
+Awakening acceptance: 11 checks passed

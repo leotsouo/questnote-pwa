@@ -1,13 +1,13 @@
 {
-  "testedAt": "2026-10-01T21:28:56.056Z",
+  "testedAt": "2026-10-01T21:49:20.251Z",
   "purpose": "guarded synthetic-only awakening functional acceptance",
   "results": [
     {
       "name": "actual app starts; all twenty awakening entries load without existing save changes",
       "ok": true,
       "detail": {
-        "database": "QuestNoteTest-Onboarding-e5d032b3-a233-4eba-bbd8-96ab4e5c7b5c",
-        "version": "3.5.4"
+        "database": "QuestNoteTest-Onboarding-2a4f937b-c3d8-495a-9009-09eb15a03226",
+        "version": "3.5.5"
       }
     },
     {
@@ -17,7 +17,7 @@
         "missing": true,
         "low": true,
         "noStory": true,
-        "oldId": "8cc68f31-a3fd-48d1-9d58-9a6354ae6ffd"
+        "oldId": "a5b56708-6e96-4041-82fb-3c14a2d48ac0"
       }
     },
     {
@@ -51,6 +51,15 @@
     {
       "name": "all twenty stage portraits load; reduced/normal scenes are replayable visual-only and canonical art unchanged",
       "ok": true
+    },
+    {
+      "name": "latest Today habit UI advances the active trial once across undo and recomplete",
+      "ok": true,
+      "detail": {
+        "habitId": "habit_1790891359531",
+        "trialCredit": 1,
+        "preservedAfterUndo": true
+      }
     }
   ],
   "pageErrors": []

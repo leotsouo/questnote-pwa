@@ -43,7 +43,9 @@ try {
   await frame.locator('[data-awake-action="awaken"]').click(); await frame.locator('.awakening-scene').waitFor(); await frame.locator('.awakening-scene__skip').click();
   await frame.locator('.awakening-reader').filter({ hasText: '目前：覺醒相' }).waitFor();
   assert.deepEqual(errors, []);
+  await page.goto(viewer); await page.locator('article').last().waitFor();
+  assert.equal(await page.locator('article').count(), 20, 'App worker cannot replace the review shell on reopening');
   await fs.writeFile(path.join(report, process.argv.includes('--demo-only') ? 'demo-acceptance.json' : 'viewer-acceptance.json'), JSON.stringify({ status: 'passed', artifactId: artifact.artifactId, testedAt: new Date().toISOString(),
-    scenarios: results, readonlyViewerDatabaseCount: 0, width320Overflow: false, isolatedDemo: 'actual app dual-form switch and ritual passed', pageErrors: errors }, null, 2) + '\n');
+    scenarios: results, readonlyViewerDatabaseCount: 0, width320Overflow: false, isolatedDemo: 'actual app dual-form switch and ritual passed', reviewShellOutsideWorkerScope: true, viewerReloadAfterDemo: true, pageErrors: errors }, null, 2) + '\n');
   console.log('PASS pinned viewer: all twenty normal/reduced, no DB, 320px; actual isolated demo ritual');
 } finally { await context?.close(); await browser.close(); child.kill(); }

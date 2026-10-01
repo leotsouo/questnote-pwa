@@ -1,10 +1,1 @@
-file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/swordwild-shanhe-release/devtools/verify-awakening-preview.mjs:26
-function assertHash(bytes, expected, name) { if (sha(bytes) !== expected) throw Error(`HTTPS byte mismatch: ${name}`); }
-                                                                                ^
-
-Error: HTTPS byte mismatch: formal baseline
-    at assertHash (file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/swordwild-shanhe-release/devtools/verify-awakening-preview.mjs:26:81)
-    at file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/swordwild-shanhe-release/devtools/verify-awakening-preview.mjs:32:100
-    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
-
-Node.js v24.18.0
+{"status":"passed","httpsFiles":192,"artifactId":"dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7","formalUnchanged":true}

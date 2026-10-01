@@ -6,5 +6,8 @@
   "manifestSha256": "55e7e3551ee7fd2e4ef5e2c58353ab9de06064d2bfd2465d231302128d38b0a4",
   "sourceCommit": "377b62ffeef20328b7f3b7ebe9d5acd5ee9b67cc",
   "version": "3.5.4",
-  "mainCommit": "38288b3"
+  "mainCommit": "38288b3",
+  "contentBundleSha256": "509f8172c0a5f1f29513b10b9bcf46ef5a64668ef9970d1eac35f16f62f41223",
+  "contentBundleSemanticSha256": "e560670c83393125494fb9456ea30678864a31e0a986af1da67da863ce20349e",
+  "publishedCatalogVerified": true
 }

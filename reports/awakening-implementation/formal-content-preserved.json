@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-01T21:57:00.425Z",
+  "formalArtifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+  "proposedArtifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+  "checks": [
+    {
+      "path": "data/achievements.json",
+      "publishedSha256": "776500e4349d56741a41e4ff6b45ccf8cf342c0b2fa41f11496c51d21c9455dc",
+      "proposedSha256": "b7d57297344dc4223a8eefc72d42d9f9cdd44c4f812f1e59b3d7aeb2d592db6e",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/bond-stories.json",
+      "publishedSha256": "4b6f40038a9477517adbcc80682ae1f0a753afe2217e487e135634e77c15ba35",
+      "proposedSha256": "4b6f40038a9477517adbcc80682ae1f0a753afe2217e487e135634e77c15ba35",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/categories.json",
+      "publishedSha256": "0b541c002a6684818e679e9c4b1925579fa5deeae5174003643b7c2435eb25db",
+      "proposedSha256": "166e8f4de44f41d6ec27b3a6b1780f9cd155aa599371b443c92537949276ebe1",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/craftables.json",
+      "publishedSha256": "aae00091888b74f3223919ce2f06f72c10f8ee505cf40b565e0054ae789ac19e",
+      "proposedSha256": "aae00091888b74f3223919ce2f06f72c10f8ee505cf40b565e0054ae789ac19e",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/dailyWheelRewards.json",
+      "publishedSha256": "caa1634588c66e4ea46ede23ed5c8bdb4a3d5fa0deceed9521d12234477824d8",
+      "proposedSha256": "98f1fb5b3dc5e49fb0815cf60842bc53fd34e604baf540b4d0e2946929030f12",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/expeditions.json",
+      "publishedSha256": "9d14ec309b570be01c65c29dfa8236c1f05b8d5447374e562df5a37537f08530",
+      "proposedSha256": "9d14ec309b570be01c65c29dfa8236c1f05b8d5447374e562df5a37537f08530",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/gift-affinities.json",
+      "publishedSha256": "5c4ae4f64bd97acf70d0ac5d229ddf344c6251f4c54c0dbb5fb2ed63da8afee5",
+      "proposedSha256": "5c4ae4f64bd97acf70d0ac5d229ddf344c6251f4c54c0dbb5fb2ed63da8afee5",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/global-mailbox.json",
+      "publishedSha256": "80cab9075a5db551fadca624f947c5824536cbd988656b246945a95d87db2a67",
+      "proposedSha256": "80cab9075a5db551fadca624f947c5824536cbd988656b246945a95d87db2a67",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/materials.json",
+      "publishedSha256": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
+      "proposedSha256": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/pet-series.json",
+      "publishedSha256": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57",
+      "proposedSha256": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/pets-lore.json",
+      "publishedSha256": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
+      "proposedSha256": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/pets.json",
+      "publishedSha256": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
+      "proposedSha256": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/pools.json",
+      "publishedSha256": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
+      "proposedSha256": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
+      "valuesAndOrderPreserved": true
+    },
+    {
+      "path": "data/titles.json",
+      "publishedSha256": "ea884cd1a86ff66a8512ba8016632eaea57ee25d55db3cff2a3afac6dc602fcb",
+      "proposedSha256": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
+      "valuesAndOrderPreserved": true
+    }
+  ]
+}

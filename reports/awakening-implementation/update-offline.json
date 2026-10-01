@@ -1,10 +1,10 @@
 {
   "status": "passed",
-  "testedAt": "2026-10-01T21:31:45.281Z",
-  "from": "3.5.3",
-  "to": "3.5.4",
-  "previousArtifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
-  "artifactId": "6c8ec18fe7187377e802f3fed3bdfba81e0aa8fe1fbbea492236cf84b0973156",
+  "testedAt": "2026-10-01T21:49:42.971Z",
+  "from": "3.5.4",
+  "to": "3.5.5",
+  "previousArtifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+  "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
   "savedPetAndStoryPreserved": true,
   "isolatedDatabase": "QuestNoteDB",
   "oldCacheRemoved": true,
@@ -14,8 +14,8 @@
       "schemaVersion": 1,
       "byPet": {
         "pet_ur17": {
-          "startedAt": "2026-10-01T21:31:44.269Z",
-          "observingSince": "2026-10-01T21:31:44.269Z",
+          "startedAt": "2026-10-01T21:49:42.027Z",
+          "observingSince": "2026-10-01T21:49:42.027Z",
           "status": "awakened",
           "eventKeys": [
             "task:synthetic-a",
@@ -23,9 +23,9 @@
             "habit:synthetic:2026-10-02"
           ],
           "expeditionKey": "expedition:synthetic",
-          "tokenGrantedAt": "2026-10-01T21:31:44.271Z",
-          "tokenConsumedAt": "2026-10-01T21:31:44.272Z",
-          "awakenedAt": "2026-10-01T21:31:44.272Z",
+          "tokenGrantedAt": "2026-10-01T21:49:42.028Z",
+          "tokenConsumedAt": "2026-10-01T21:49:42.030Z",
+          "awakenedAt": "2026-10-01T21:49:42.030Z",
           "form": "initial"
         }
       },
@@ -64,6 +64,6 @@
         "height": 540
       }
     ],
-    "backupVersion": "3.5.4"
+    "backupVersion": "3.5.5"
   }
 }

@@ -2,15 +2,15 @@
   "status": "passed",
   "artifacts": {
     "preview": {
-      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-releases\\d0fdaaa989ec678e4c38ccc899b0ab7ff2b844458e30b35e9f0e8bcd01960f84",
-      "artifactId": "d0fdaaa989ec678e4c38ccc899b0ab7ff2b844458e30b35e9f0e8bcd01960f84",
-      "manifestSha256": "230e556e2f554c96bcd74c53fab20c554bf50b8ca1a575e2d4851298fca4209c",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-releases\\dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7",
+      "artifactId": "dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7",
+      "manifestSha256": "f6caf31b83f0c2ace5e120075e6b8d9d7a62ba6e201ab83927e0aef2d10df1db",
       "scopePath": "/questnote-pwa-preview/"
     },
     "production": {
-      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-releases\\6c8ec18fe7187377e802f3fed3bdfba81e0aa8fe1fbbea492236cf84b0973156",
-      "artifactId": "6c8ec18fe7187377e802f3fed3bdfba81e0aa8fe1fbbea492236cf84b0973156",
-      "manifestSha256": "a77a9a799bb4d6fb328e842ff831e35ad93d216f5b9e95c58739a2bb485726ff",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-releases\\24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+      "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+      "manifestSha256": "113b2182285c641a9930c76879f0fe1f612a1a38a5df5723318c7e18520cf0c3",
       "scopePath": "/questnote-pwa/"
     }
   },
@@ -477,16 +477,16 @@
                     "chapters": {
                       "2": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.074Z",
-                        "completedAt": "2026-10-01T21:32:02.088Z",
-                        "claimedAt": "2026-10-01T21:32:02.092Z"
+                        "readAt": "2026-10-01T21:49:58.226Z",
+                        "completedAt": "2026-10-01T21:49:58.239Z",
+                        "claimedAt": "2026-10-01T21:49:58.244Z"
                       }
                     }
                   }
                 },
                 "active": null,
                 "usedEventKeys": [
-                  "task:a82a405c-352f-44db-b886-9595c9b7f677"
+                  "task:e762fa14-e371-4a03-a3b0-931d248c5d5b"
                 ],
                 "dailyClaimDates": [],
                 "displayPetId": null
@@ -508,23 +508,23 @@
                     "chapters": {
                       "2": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.074Z",
-                        "completedAt": "2026-10-01T21:32:02.088Z",
-                        "claimedAt": "2026-10-01T21:32:02.092Z"
+                        "readAt": "2026-10-01T21:49:58.226Z",
+                        "completedAt": "2026-10-01T21:49:58.239Z",
+                        "claimedAt": "2026-10-01T21:49:58.244Z"
                       },
                       "3": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.093Z",
-                        "completedAt": "2026-10-01T21:32:02.106Z",
-                        "claimedAt": "2026-10-01T21:32:02.111Z"
+                        "readAt": "2026-10-01T21:49:58.245Z",
+                        "completedAt": "2026-10-01T21:49:58.257Z",
+                        "claimedAt": "2026-10-01T21:49:58.261Z"
                       }
                     }
                   }
                 },
                 "active": null,
                 "usedEventKeys": [
-                  "task:a82a405c-352f-44db-b886-9595c9b7f677",
-                  "task:09964282-99c7-4662-9e77-856f1c7021e8"
+                  "task:e762fa14-e371-4a03-a3b0-931d248c5d5b",
+                  "task:2c6127d8-326a-4757-a3c5-547dfcc525c6"
                 ],
                 "dailyClaimDates": [],
                 "displayPetId": null
@@ -546,30 +546,30 @@
                     "chapters": {
                       "2": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.074Z",
-                        "completedAt": "2026-10-01T21:32:02.088Z",
-                        "claimedAt": "2026-10-01T21:32:02.092Z"
+                        "readAt": "2026-10-01T21:49:58.226Z",
+                        "completedAt": "2026-10-01T21:49:58.239Z",
+                        "claimedAt": "2026-10-01T21:49:58.244Z"
                       },
                       "3": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.093Z",
-                        "completedAt": "2026-10-01T21:32:02.106Z",
-                        "claimedAt": "2026-10-01T21:32:02.111Z"
+                        "readAt": "2026-10-01T21:49:58.245Z",
+                        "completedAt": "2026-10-01T21:49:58.257Z",
+                        "claimedAt": "2026-10-01T21:49:58.261Z"
                       },
                       "4": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.112Z",
-                        "completedAt": "2026-10-01T21:32:02.124Z",
-                        "claimedAt": "2026-10-01T21:32:02.129Z"
+                        "readAt": "2026-10-01T21:49:58.262Z",
+                        "completedAt": "2026-10-01T21:49:58.274Z",
+                        "claimedAt": "2026-10-01T21:49:58.279Z"
                       }
                     }
                   }
                 },
                 "active": null,
                 "usedEventKeys": [
-                  "task:a82a405c-352f-44db-b886-9595c9b7f677",
-                  "task:09964282-99c7-4662-9e77-856f1c7021e8",
-                  "task:23e9f30e-67fc-49e3-a7ba-38cede051480"
+                  "task:e762fa14-e371-4a03-a3b0-931d248c5d5b",
+                  "task:2c6127d8-326a-4757-a3c5-547dfcc525c6",
+                  "task:4509a63b-a2a0-47ed-b084-ece3bbc07219"
                 ],
                 "dailyClaimDates": [],
                 "displayPetId": null
@@ -591,37 +591,37 @@
                     "chapters": {
                       "2": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.074Z",
-                        "completedAt": "2026-10-01T21:32:02.088Z",
-                        "claimedAt": "2026-10-01T21:32:02.092Z"
+                        "readAt": "2026-10-01T21:49:58.226Z",
+                        "completedAt": "2026-10-01T21:49:58.239Z",
+                        "claimedAt": "2026-10-01T21:49:58.244Z"
                       },
                       "3": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.093Z",
-                        "completedAt": "2026-10-01T21:32:02.106Z",
-                        "claimedAt": "2026-10-01T21:32:02.111Z"
+                        "readAt": "2026-10-01T21:49:58.245Z",
+                        "completedAt": "2026-10-01T21:49:58.257Z",
+                        "claimedAt": "2026-10-01T21:49:58.261Z"
                       },
                       "4": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.112Z",
-                        "completedAt": "2026-10-01T21:32:02.124Z",
-                        "claimedAt": "2026-10-01T21:32:02.129Z"
+                        "readAt": "2026-10-01T21:49:58.262Z",
+                        "completedAt": "2026-10-01T21:49:58.274Z",
+                        "claimedAt": "2026-10-01T21:49:58.279Z"
                       },
                       "5": {
                         "choiceId": "gentle",
-                        "readAt": "2026-10-01T21:32:02.131Z",
-                        "completedAt": "2026-10-01T21:32:02.145Z",
-                        "claimedAt": "2026-10-01T21:32:02.149Z"
+                        "readAt": "2026-10-01T21:49:58.280Z",
+                        "completedAt": "2026-10-01T21:49:58.293Z",
+                        "claimedAt": "2026-10-01T21:49:58.297Z"
                       }
                     }
                   }
                 },
                 "active": null,
                 "usedEventKeys": [
-                  "task:a82a405c-352f-44db-b886-9595c9b7f677",
-                  "task:09964282-99c7-4662-9e77-856f1c7021e8",
-                  "task:23e9f30e-67fc-49e3-a7ba-38cede051480",
-                  "task:87f8c06a-189e-4d5f-87fe-380417b6b378"
+                  "task:e762fa14-e371-4a03-a3b0-931d248c5d5b",
+                  "task:2c6127d8-326a-4757-a3c5-547dfcc525c6",
+                  "task:4509a63b-a2a0-47ed-b084-ece3bbc07219",
+                  "task:4a4780ce-3ed7-40a0-abcd-7d02420e5c20"
                 ],
                 "dailyClaimDates": [],
                 "displayPetId": "pet_ur18"
