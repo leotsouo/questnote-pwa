@@ -1,0 +1,127 @@
+{
+  "verifiedAt": "2026-10-01T15:07:27.778Z",
+  "website": "https://leotsouo.github.io/questnote-pwa/",
+  "artifactId": "fe265960962cc11859afed1ca7e0e5558bee31dc135eb7f9ac80fca92ec688c5",
+  "checks": [
+    {
+      "name": "release-artifact.json",
+      "sha256": "6710f51d784ced23ca1de43d64f6b05c8a2c47bcdac32b8574852f117f047d9e",
+      "ok": true
+    },
+    {
+      "name": "src/releaseProfile.js",
+      "sha256": "ef27305bea50f5d55213e1ab67c1900b19422eb69f9065c345d48d606dc7ab91",
+      "ok": true
+    },
+    {
+      "name": "index.html",
+      "sha256": "47f591c63a960f532130f41b2e314b9b57d3e51d10210a36b18a6130209d1b21",
+      "ok": true
+    },
+    {
+      "name": "manifest.webmanifest",
+      "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
+      "ok": true
+    },
+    {
+      "name": "service-worker.js",
+      "sha256": "bc46bb85811dd6c77805b95e7913b97c67cda481752a8142d587b3616531c57d",
+      "ok": true
+    },
+    {
+      "name": "src/version.js",
+      "sha256": "af5d317cdd7c17a59cec34675a0703bc1f746e1b3592cdd412ca08f24d4765a1",
+      "ok": true
+    },
+    {
+      "name": "src/bootstrap.js",
+      "sha256": "424349b05fe4e245c0e7e4dc744bea4e2717851666d12ac49f391b715558e07b",
+      "ok": true
+    },
+    {
+      "name": "src/bootstrapRecovery.js",
+      "sha256": "7ed8b4ec63dfd3bb1fb908995c435983816c1cb91146842b9792c8ad840d0d2e",
+      "ok": true
+    },
+    {
+      "name": "data/releases/8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df/catalog.json",
+      "sha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+      "ok": true
+    },
+    {
+      "name": "data/global-mailbox.json",
+      "sha256": "49c06b7f0dc976bda2034ee5a9a50abb14d894baa0903a6821016798b6b9a1bd",
+      "ok": true
+    },
+    {
+      "name": "data/bond-stories.json",
+      "sha256": "591e4aec075fed1ccc476dd4fe2cfa3418f3f1d036a8fa630eeae8c08f098c15",
+      "ok": true
+    },
+    {
+      "name": "src/app.js",
+      "sha256": "bf171d08615920ed3d25ddfe9167f2c18d14f66a0c907aad26b58b4ac5e451dd",
+      "ok": true
+    },
+    {
+      "name": "src/backupSchema.js",
+      "sha256": "263a219644733b661d060d2944f6cfaa281f7ed7d924b13b3751cfb68fb10edc",
+      "ok": true
+    },
+    {
+      "name": "src/backupService.js",
+      "sha256": "3bb6fad2988d3b4e63c3ff7232acacd93f17edf490969a1312bad4b46c18cf0c",
+      "ok": true
+    },
+    {
+      "name": "src/bond-journey.css",
+      "sha256": "be3fe7bd609e5d497767d29981c9a3b6569d8272e84d6e21cd0b30e729824f9c",
+      "ok": true
+    },
+    {
+      "name": "src/bondJourneyController.js",
+      "sha256": "1502a76313d7bc71c55e567455609a195d1d67fc081ecfe609e33bb354602e10",
+      "ok": true
+    },
+    {
+      "name": "src/bondJourneyCore.js",
+      "sha256": "58982c5b7926c25a0772be03dc0d128f919c7c0c4eadfe2230b538bdaaf9e81c",
+      "ok": true
+    },
+    {
+      "name": "src/bondJourneyService.js",
+      "sha256": "156c790065f6b8a766abcf31f098ecf57113a8fd5c9c50d8e48360597bc95258",
+      "ok": true
+    },
+    {
+      "name": "src/bondJourneyView.js",
+      "sha256": "439e5efc4417e5c7513ee3a995285e119450664813e3f5a7636326c9943c6dc9",
+      "ok": true
+    },
+    {
+      "name": "src/db.js",
+      "sha256": "9cc5b9e56efb7a1b51b9d112777a267ec8f4bf280c12e1b98b869703da7e3038",
+      "ok": true
+    },
+    {
+      "name": "src/onboardingController.js",
+      "sha256": "b7d7b0dfd42e14204283b8da75ddfa52e3980c30d34da0894ef88d571d0811f3",
+      "ok": true
+    },
+    {
+      "name": "src/onboardingLessons.js",
+      "sha256": "a9438d97708b85dccc2b6faff038a41d2f9051929d8341d28321ff90032bbd31",
+      "ok": true
+    },
+    {
+      "name": "src/styles.css",
+      "sha256": "417a2ad0ea0bfed9907207376db59c5ab00d6a61ad6721b14589967d6cebc5bf",
+      "ok": true
+    },
+    {
+      "name": "src/ui.js",
+      "sha256": "8edc7592d9efdc1a3031a24b5e8f24fafb9ed748789f4561883000d292a2a019",
+      "ok": true
+    }
+  ]
+}

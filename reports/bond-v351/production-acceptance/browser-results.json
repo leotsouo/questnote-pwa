@@ -1,0 +1,220 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "name": "guarded source baseline and actual app startup",
+      "ok": true,
+      "detail": {
+        "version": "3.5.1",
+        "database": "QuestNoteTest-Onboarding-1a8354c8-1772-4bc4-8316-e87fd9ae04eb"
+      },
+      "durationMs": 1697
+    },
+    {
+      "name": "chapter gates, two replies and first-choice persistence",
+      "ok": true,
+      "durationMs": 1154
+    },
+    {
+      "name": "real task completion, chapter ending, atomic duplicate-claim prevention and focus return",
+      "ok": true,
+      "durationMs": 2298
+    },
+    {
+      "name": "habit UI progress, pause/reload/resume, replacement notice and nonconsecutive completion",
+      "ok": true,
+      "detail": "Second nonconsecutive date is synthetic; first completion used the actual habit UI",
+      "durationMs": 6577
+    },
+    {
+      "name": "remaining stories, concurrent claims, keepsake display and repeatable Lv.5 daily use",
+      "ok": true,
+      "durationMs": 8959
+    },
+    {
+      "name": "failed wallet writes roll back receipts, and two tabs claim only once",
+      "ok": true,
+      "durationMs": 1314
+    },
+    {
+      "name": "goal replacement resets progress but retains used events; deleted goals and ready receipts are protected",
+      "ok": true,
+      "durationMs": 1684
+    },
+    {
+      "name": "native full backup round trip and corrupted reward record refusal",
+      "ok": true,
+      "durationMs": 632
+    },
+    {
+      "name": "story load failures can retry, and closing a slow retry prevents the reader reopening",
+      "ok": true,
+      "durationMs": 2827
+    },
+    {
+      "name": "three themes × three viewports × two font sizes, keyboard focus and action sizes",
+      "ok": true,
+      "detail": [
+        {
+          "theme": "default",
+          "width": 320,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "default",
+          "width": 320,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "default",
+          "width": 393,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "default",
+          "width": 393,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "default",
+          "width": 1280,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "default",
+          "width": 1280,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "sweet",
+          "width": 320,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "sweet",
+          "width": 320,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "sweet",
+          "width": 393,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "sweet",
+          "width": 393,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "sweet",
+          "width": 1280,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "sweet",
+          "width": 1280,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "twilight",
+          "width": 320,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "twilight",
+          "width": 320,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "twilight",
+          "width": 393,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "twilight",
+          "width": 393,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "twilight",
+          "width": 1280,
+          "fontSize": "standard",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        },
+        {
+          "theme": "twilight",
+          "width": 1280,
+          "fontSize": "extra-large",
+          "pageOverflow": 0,
+          "modalOverflow": 0,
+          "smallActions": []
+        }
+      ],
+      "durationMs": 20149
+    },
+    {
+      "name": "native SW cached reload, offline story choices, agreement progress and reward writes",
+      "ok": true,
+      "detail": {
+        "workerControlled": true,
+        "chapterClaimed": true,
+        "artifactId": "06aabcccb1a299427f84154639f632e29446ed78dcf5185d576501b1f71ae8d6"
+      },
+      "durationMs": 3670
+    }
+  ],
+  "runtimeErrors": [],
+  "browser": "152.0.7977.83",
+  "deviceValidation": "Desktop Chromium, not an iPhone device test",
+  "isolation": "Random synthetic source database and fresh assembled-preview loopback origin; external hosts blocked at the Chromium resolver"
+}
