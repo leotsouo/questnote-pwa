@@ -152,6 +152,50 @@
           "甜蜜相遇"
         ]
       }
+    },
+    {
+      "id": "swordwild_shanhe_v3",
+      "name": "劍隱山河",
+      "active": true,
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.3,
+        "SR": 0.1,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "petFilter": {
+        "poolTags": [
+          "swordwild_shanhe_v3"
+        ]
+      },
+      "presentation": {
+        "themeKey": "swordwild_shanhe",
+        "animationKey": "swordwild_shanhe",
+        "heroPetId": "pet_ur16",
+        "featuredPetIds": [
+          "pet_ur17",
+          "pet_ur18",
+          "pet_ssr21",
+          "pet_ssr22"
+        ],
+        "badge": "山河新篇",
+        "eyebrow": "山重，而一諾更重。",
+        "tagline": "替每個同行者，留一段能走的路。",
+        "debutLines": [
+          "一諾入山",
+          "百川同行",
+          "劍隱山河"
+        ],
+        "debutLabel": "踏入雲棧古道",
+        "detailsNote": "20 隻夥伴從第一抽全部開放，無抽數解鎖或贈寵。三 UR：玄翎重岳雕、丹砂鎮嶺蛤、素心劍猿；主打角色不另加權。同一稀有度內依既有抽卡規則選取。",
+        "candidateNote": "僅含劍隱山河20隻夥伴；不含其他系列。專屬山河啟卷入場、劍光赴約抽獎與三UR故事揭露。"
+      }
     }
   ],
   "schemaVersion": 1

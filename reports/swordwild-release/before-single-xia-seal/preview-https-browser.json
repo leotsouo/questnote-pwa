@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-01T19:30:15.240Z",
+  "httpsUrl": "https://leotsouo.github.io/questnote-pwa-preview/",
+  "artifactId": "f9bf15eabb426db00c85e0eabbf72b3afd9d80a5c1fe84684efccdbc956f000f",
+  "detail": {
+    "version": "3.5.3",
+    "database": "QuestNotePreviewDB",
+    "images": 20,
+    "petCount": 20,
+    "urCount": 3,
+    "food": true,
+    "region": true,
+    "chapters": 80
+  },
+  "freshBrowserContext": true,
+  "defaultStandardPreserved": true,
+  "offlineReload": true,
+  "blockedExternalOrigins": [],
+  "errors": []
+}

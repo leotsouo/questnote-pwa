@@ -1,0 +1,14 @@
+{
+  "status": "prepared_locally_not_published",
+  "artifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+  "sourceCommit": "0d450279da0eb31aa01439ba7d875ee5ca28a173",
+  "expectedPreviousDeployment": "9adc2e99a7978d02f8c4707865a5f5c24378344a",
+  "destination": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\swordwild-shanhe-release\\.dev-backups\\production-publish",
+  "copiedFiles": 488,
+  "allFileHashesMatch": true,
+  "preparedAt": "2026-10-01T20:11:09.673Z",
+  "deploymentCommit": "4a1808126b9f6805ddb11c7b16ce1a1d8225ebf8",
+  "gitBlobsVerified": 488,
+  "manifestSha256": "07c63616a676c43edc06078e087c3cb8bcb01aa1024655f6fdf32fce22c3bfad",
+  "gitVerifiedAt": "2026-10-01T20:15:12.847Z"
+}

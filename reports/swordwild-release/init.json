@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "swordwild_shanhe_v3",
+  "toolsHash": "1bbab3406bc4b529e036ca294237fc4f0959994ddbca842f5317794e8b03b409",
+  "baselineHash": "d37b7b471b9d3462fca921249029e9b454b5886c09c72926c2b9c6c7fe596f8a",
+  "errors": [],
+  "stages": [
+    {
+      "stage": "brief",
+      "inputHash": "48aaa8b8c98b4a60413c316b8b9d26c37e720eb043891bc10541c462ffc93df4",
+      "outputHash": "bc573cca807c75e92f71d1f78326e097855cbe6d6953eb7bd8182e4a779f928a",
+      "files": {
+        "brief.json": "acdb3162cc35fb2ae86c7b89ce007b1a2d99078b359422e23db46f44ebcec3d5"
+      },
+      "missing": [],
+      "approved": false,
+      "status": "awaiting_review"
+    },
+    {
+      "stage": "plan",
+      "inputHash": "bc573cca807c75e92f71d1f78326e097855cbe6d6953eb7bd8182e4a779f928a",
+      "outputHash": "771649b63e266b0fa340d1f558cd7473df3140d7f1fcfa95e975695b66f988f7",
+      "files": {
+        "plan.json": "1754f995bb98dc013a7e8f4a048ca01f8fea17ec8bd5f7f0c0500bf53bc0dd3c"
+      },
+      "missing": [],
+      "approved": false,
+      "status": "awaiting_review"
+    },
+    {
+      "stage": "content",
+      "inputHash": "771649b63e266b0fa340d1f558cd7473df3140d7f1fcfa95e975695b66f988f7",
+      "outputHash": "857ab996ec1c172a5e43dcefe5a1525bfec36bb2b1774e37186e3eeaec65e828",
+      "files": {
+        "series.json": "5cc124bf04b4cc39931beccfc70bc90125ed598e7502bcc8d4ac3f50e87458e4",
+        "pets.json": "4c91004ae75ea4a4d86c669ed9d68df06d711cbec4e0b389d220e50e90e12196",
+        "pets-lore.json": "00b284e04e3caf7e64f5c98ef140479a7356b2ceeb8bc36fd1b120492077a0d1",
+        "pool.json": "3fb3e21e5a4e4691ec8740e521b7968ce6197ef5538dd710ff5b98948d8a2c66",
+        "ecosystem.json": "9b1e4349f847f7f183d88f01ca4a50cfc6b633fe9d79584d4e96b0d56f71b595"
+      },
+      "missing": [],
+      "approved": false,
+      "status": "awaiting_review"
+    },
+    {
+      "stage": "prompts",
+      "inputHash": "857ab996ec1c172a5e43dcefe5a1525bfec36bb2b1774e37186e3eeaec65e828",
+      "outputHash": "54428824df8cf35f11ea6c46a484d2a46c38da9a65c3dc9fba1a49c431b57106",
+      "files": {
+        "prompts.json": "d06699e785aecbee0f3e55bcf537a2450cd521357a77c406088fa2a84792a1a5"
+      },
+      "missing": [],
+      "approved": false,
+      "status": "awaiting_review"
+    },
+    {
+      "stage": "images",
+      "inputHash": "54428824df8cf35f11ea6c46a484d2a46c38da9a65c3dc9fba1a49c431b57106",
+      "outputHash": null,
+      "files": {},
+      "missing": [
+        "images/pet_n36.png",
+        "images/pet_n37.png",
+        "images/pet_n38.png",
+        "images/pet_r36.png",
+        "images/pet_r37.png",
+        "images/pet_r38.png",
+        "images/pet_r39.png",
+        "images/pet_r40.png",
+        "images/pet_sr30.png",
+        "images/pet_sr31.png",
+        "images/pet_sr32.png",
+        "images/pet_sr33.png",
+        "images/pet_sr34.png",
+        "images/pet_ssr21.png",
+        "images/pet_ssr22.png",
+        "images/pet_ssr23.png",
+        "images/pet_ssr24.png",
+        "images/pet_ur16.png",
+        "images/pet_ur17.png",
+        "images/pet_ur18.png"
+      ],
+      "approved": false,
+      "status": "missing"
+    }
+  ],
+  "nextStage": "brief",
+  "readyToStage": false
+}

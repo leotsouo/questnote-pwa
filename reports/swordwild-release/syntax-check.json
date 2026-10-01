@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "files": [
+    "devtools/backup-safety.test.mjs",
+    "devtools/gameplay-improvement.test.mjs",
+    "devtools/pool-content-contract.test.mjs",
+    "devtools/swordwild-animation-review-server.mjs",
+    "devtools/swordwild-preview-https.mjs",
+    "devtools/swordwild-release-browser.mjs",
+    "scripts/build-bond-stories.mjs",
+    "service-worker.js",
+    "src/backupSchema.js",
+    "src/expeditionGameplay.js",
+    "src/expeditionStatusService.js",
+    "src/explorationService.js",
+    "src/poolContentContract.js",
+    "src/poolPresentation.js",
+    "src/summonRevealService.js",
+    "src/swordwildShanheScene.js",
+    "src/themedSummonController.js",
+    "src/ui.js",
+    "src/version.js",
+    "devtools/swordwild-release-browser.mjs",
+    "devtools/swordwild-preview-https.mjs"
+  ]
+}

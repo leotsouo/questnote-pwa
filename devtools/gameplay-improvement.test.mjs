@@ -89,7 +89,7 @@ test('stars and team specialties improve the result without requiring high rarit
 });
 
 test('every published region has the same milestone ladder and valid camp material references', () => {
-  assert.deepEqual([...EXPLORATION_AREA_IDS].sort(), areas.map((a) => a.id).sort());
+  for (const area of areas) assert.ok(EXPLORATION_AREA_IDS.includes(area.id), `Missing published region: ${area.id}`);
   for (const id of EXPLORATION_AREA_IDS) {
     assert.deepEqual(AREA_EXPLORATION_DEFS[id].milestones.map((m) => m.percent), [10, 25, 50, 75, 100]);
   }

@@ -1,0 +1,30 @@
+
+> test:pool:release
+> node devtools/card-pool-release-smoke.mjs
+
+{
+  "syntheticOnly": true,
+  "releaseReady": false,
+  "runRoot": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-02lsDn",
+  "candidateId": "387bf476384e4cb96ef69cd1158b5b25d5a07ff4c5790aab98d39de989671856",
+  "candidateDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-02lsDn\\source\\content\\pet-series\\acceptance_series\\staging\\387bf476384e4cb96ef69cd1158b5b25d5a07ff4c5790aab98d39de989671856",
+  "petCount": 122,
+  "newPoolId": "acceptance_pool",
+  "reused": true,
+  "gachaPlanner": "PASS",
+  "artifacts": {
+    "production": {
+      "artifactId": "9080d505dd1364ba687e9efddacb66da9e8c9a6e949c044d3b537eabee5a4692",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-02lsDn\\artifacts\\9080d505dd1364ba687e9efddacb66da9e8c9a6e949c044d3b537eabee5a4692",
+      "manifestSha256": "75ddfdd45013dc7ab91fd90646feffe6530176d547e70544787a2bd5a2552ca4",
+      "scopePath": "/production/"
+    },
+    "preview": {
+      "artifactId": "d5c0e6ea12f72b2796aee90a9bc723ed081f28686a7a7f082e6979757b542a91",
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-02lsDn\\artifacts\\d5c0e6ea12f72b2796aee90a9bc723ed081f28686a7a7f082e6979757b542a91",
+      "manifestSha256": "41e767bfd65776e5eba9f463ae716a0079da2f627d3d7778f4820550eb78fe37",
+      "scopePath": "/preview/"
+    }
+  },
+  "reportPath": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-pool-rehearsal-02lsDn\\rehearsal.json"
+}

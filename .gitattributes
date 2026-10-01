@@ -8,3 +8,8 @@ content/pet-series/frost_oath_fjord/** -text
 # Honeylight authoring receipts and source PNGs retain exact bytes.
 content/pet-series/honeylight_sugar_garden/** -text
 content/pet-series/honeylight_sugar_garden_v2/** -text
+
+# Swordwild exact-byte authoring snapshots and candidates.
+content/pet-series/swordwild_shanhe/** -text
+content/pet-series/swordwild_shanhe_v2/** -text
+content/pet-series/swordwild_shanhe_v3/** -text

@@ -84,6 +84,8 @@ node scripts/card-pool.mjs status rain_lanterns
 4. **prompts**：完成 `prompts.json`，每個 pet ID 對應 `{ "prompt": "...", "negativePrompt": "...", "provenance": "..." }`。provenance 可記錄使用的生成工具、模型、版本、seed 或 reference 說明；可用的生成資訊應保留，不猜測未提供資訊。
 5. **images**：放入 `images/<petId>.png`，必須可完整解碼、正方形、至少 512 px、每張不超過 5 MB。超過 2048 px 或 2 MB 會要求審核 warning。人工檢查外觀、角色識別、裁切、透明度與 prompt／Lore 一致性。
 
+美術依 [SOP：故事如何成為卡圖](new-card-pool-sop.md#故事如何成為卡圖) 執行：每隻 `plan.design` 明確寫出辨識特徵、故事動作與可見結果，content 同步名稱／Lore／描述／入場短句，prompts 保留這些具體要求。實際圖片須逐張檢查故事是否可見，再交人工審圖。這是既有五階段的審查內容，不新增 schema 欄位或 approval gate；文字與圖片修訂依原 hash 失效規則處理。
+
 核准命令必須帶入當前顯示的完整 SHA-256；不是從聊天中猜測或沿用舊 hash：
 
 ```text

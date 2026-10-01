@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "policy": "實際小說動物與稱號/武器/地域象徵分開列明；遊戲名稱、外形、Lore與對話為原創，不把象徵誤寫成原著真實神獸。",
+  "sources": [
+    "https://bailushuyuan.org/novel/traditional/chapters/228",
+    "https://ivantsoi.myds.me/web/schoolebook/pdf/043022.pdf",
+    "https://ivantsoi.myds.me/web/schoolebook/pdf/039014.pdf",
+    "https://www.hetubook.com/book2/54/index.html",
+    "https://www.hk01.com/即時娛樂/341520/倚天屠龍記-金庸作品奇異生物-有一隻逾百歲仲長命過鵰兄",
+    "https://www.jointpublishing.com/wp-content/uploads/2024/09/金庸小說裡的中國文學_試閱.pdf"
+  ],
+  "pets": [
+    {
+      "petId": "pet_n33",
+      "name": "聽雨玉蜂",
+      "inspiration": "《神鵰俠侶》玉蜂，小說中的動物；轉化為辨識雨勢與照料草藥的小夥伴。"
+    },
+    {
+      "petId": "pet_n34",
+      "name": "回風白駒",
+      "inspiration": "《白馬嘯西風》的白馬與行旅意象；原創白駒，不套用人物的身世。"
+    },
+    {
+      "petId": "pet_n35",
+      "name": "茗香眠蜂",
+      "inspiration": "《天龍八部》新修版醉人蜂；保留茶花偏好與使人昏沉的辨識點，原創茗香蜂，不照搬擒人情節。"
+    },
+    {
+      "petId": "pet_r31",
+      "name": "踏霞赤駒",
+      "inspiration": "《射鵰英雄傳》的汗血寶馬與郭靖的小紅馬；轉化為破曉出發意象。"
+    },
+    {
+      "petId": "pet_r32",
+      "name": "夜薔烏駒",
+      "inspiration": "《天龍八部》木婉清的黑玫瑰；原創黑馬，保留全黑毛色、敏捷與認主忠實，與紅馬、白馬分工。"
+    },
+    {
+      "petId": "pet_r33",
+      "name": "乘風白雕",
+      "inspiration": "《射鵰英雄傳》郭靖雙白雕的第一隻原創轉化；兩隻同為 R，不分高低，不設定原著沒有的性別。"
+    },
+    {
+      "petId": "pet_r34",
+      "name": "守望白雕",
+      "inspiration": "《射鵰英雄傳》郭靖雙白雕的第二隻原創轉化；同為 R、獨立卡圖與故事，收藏時構圖相互呼應。"
+    },
+    {
+      "petId": "pet_r35",
+      "name": "金角疾蛇",
+      "inspiration": "《神鵰俠侶》菩斯曲蛇；保留金鱗、肉角與疾行，不複製取膽情節。與無角金蛇劍象徵分開。"
+    },
+    {
+      "petId": "pet_sr25",
+      "name": "逐電靈貂",
+      "inspiration": "《天龍八部》閃電貂，小說中的動物；原創迅捷探路者，沒有毒殺情節。"
+    },
+    {
+      "petId": "pet_sr26",
+      "name": "望雲霜鷹",
+      "inspiration": "《倚天屠龍記》白眉鷹王的稱號意象；是象徵轉化，不宣稱原著有這隻鷹。"
+    },
+    {
+      "petId": "pet_sr27",
+      "name": "夜渡青蝠",
+      "inspiration": "《倚天屠龍記》青翼蝠王的稱號和輕功意象；象徵轉化。"
+    },
+    {
+      "petId": "pet_sr28",
+      "name": "金鬃護山獅",
+      "inspiration": "《倚天屠龍記》金毛獅王的稱號意象；原創守山獅，不套用人物身世與傷勢。"
+    },
+    {
+      "petId": "pet_sr29",
+      "name": "雪徑靈狐",
+      "inspiration": "《雪山飛狐》《飛狐外傳》的飛狐稱號與雪山行旅意象；象徵轉化，不使用九尾神狐傳聞。"
+    },
+    {
+      "petId": "pet_ssr17",
+      "name": "抱卷白猿",
+      "inspiration": "《倚天屠龍記》藏經白猿與傳承意象；原創護卷白猿，書卷內容完全原創。"
+    },
+    {
+      "petId": "pet_ssr18",
+      "name": "凝霜玉蠶",
+      "inspiration": "《天龍八部》冰蠶；保留白玉微青、透明晶體般身軀與極寒異力，明確區別雪蠶，不使用舊版寒玉蟲名稱混稱。"
+    },
+    {
+      "petId": "pet_ssr19",
+      "name": "繞指金蛇",
+      "inspiration": "《碧血劍》的金蛇郎君、金蛇劍象徵；是武器和稱號意象，不宣稱小說有同名神獸。"
+    },
+    {
+      "petId": "pet_ssr20",
+      "name": "紫鱗潛龍",
+      "inspiration": "《倚天屠龍記》紫衫龍王的稱號與水行意象；象徵轉化，不宣稱原著有真龍。"
+    },
+    {
+      "petId": "pet_ur13",
+      "name": "玄翎重岳雕",
+      "inspiration": "《神鵰俠侶》神鵰與重劍意象；保留古老、粗獷、沉重巨翼與亦師亦友氣質，原創守橋巨雕，不美化成鳳凰。"
+    },
+    {
+      "petId": "pet_ur14",
+      "name": "丹砂鎮嶺蛤",
+      "inspiration": "《天龍八部》莽牯朱蛤；保留身小如錢、通紅金眼、牛鳴與毒物之王氣質，原創毒力守谷者。 美術借玄武的幽深鎮守氛圍，蟾蜍解剖保持完整，不加入龜蛇混種外形。"
+    },
+    {
+      "petId": "pet_ur15",
+      "name": "素心劍猿",
+      "inspiration": "《越女劍》與阿青交手的白猿；保留白猿、竹棒和近乎天然的劍術意象，原創山林劍意，不宣稱勝過阿青或武功天下第一。 修正版卡圖的銀色直劍由遊戲原創修橋餘鐵鑄成；原著白猿使用竹棒，不把金屬劍當成原著事實。"
+    }
+  ]
+}

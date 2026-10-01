@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "0d450279da0eb31aa01439ba7d875ee5ca28a173",
+  "candidateId": "eaa3e4d2e525439b7c3dd430ad4a9421c1655f4d4776626a8fcb84c7ba8fa2c6",
+  "candidateManifestSha256": "3c6c3e338fa4f03e638b397ada55d411e50869a00c49628d504b663dc6ce3918",
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/?release-review=5443bd90acc5",
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\5443bd90acc5b5f6dc14df844b365172b059d7fc1360f48099913ea1fd459c45",
+      "artifactId": "5443bd90acc5b5f6dc14df844b365172b059d7fc1360f48099913ea1fd459c45",
+      "manifestSha256": "e820e4fe846bc16a2a986912e82a4a37351879572db042a8dced248c7742cea9",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+      "artifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+      "manifestSha256": "07c63616a676c43edc06078e087c3cb8bcb01aa1024655f6fdf32fce22c3bfad",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "animation": {
+      "status": "pass",
+      "evidence": "Original swordwild_shanhe scene: mountain-scroll debut and sword-call single/ten pulls with one centered xia seal only, as requested by User; three dedicated UR wing/territory/blade effects, SSR ink reveal. Viewer http://127.0.0.1:63663/animation-review/ opened in Codex; artifact 5443bd90acc5b5f6dc14df844b365172b059d7fc1360f48099913ea1fd459c45. reports/swordwild-release/animation-review-browser.json: 12 normal/reduced playback scenarios, all seven rare portraits and rarity labels visible, 320px no overflow, no IndexedDB created. pool-browser.json: actual UR/SSR order with repeated UR, reduced motion, Enter/Escape, fallback, debut, prelude skip and rapid clicks; snapshot unchanged by visuals."
+    },
+    "workshop": {
+      "status": "pass",
+      "evidence": "reports/swordwild-release/pool-browser.json: actual UI craft -> choose item -> choose new pet -> gift +150; all 20 affinity computations match 75/150 and reviewed recipe."
+    },
+    "specialties": {
+      "status": "pass",
+      "evidence": "reports/swordwild-release/pool-browser.json and draft-validation.json: all 20 native runtime specialties match reviewed content; actual scout team dispatch affects exploration and reports."
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "reports/swordwild-release/pool-browser.json: actual cloudrest dispatch/claim to 100%, concurrent expedition reward rejection, all five milestone claims, repeated milestone rejection, five complete stories."
+    },
+    "transactions": {
+      "status": "pass",
+      "evidence": "reports/swordwild-release/pool-browser.json: three real-pool UR pity branches, SSR+ pity, 1+10 draws cost 1100, duplicate fragments, rapid UI clicks cost 100 once, concurrent expedition claims, chapter reward once and native backup round trip; runtime-tests-final.log regression suites pass."
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "reports/swordwild-release/artifact-browser.json: 13 assembled profile/worker recovery and offline checks; pool-browser.json: 320px offline reload with new catalog/stories/progress; preview-https.json: published preview file hashes match reviewed artifact; preview-https-browser.json: actual HTTPS fresh-preview DB, V3.5.3, default standard preserved, all 20 card images and offline reload; preview-pages.json: Pages deployment succeeded."
+    }
+  }
+}

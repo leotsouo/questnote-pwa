@@ -1,0 +1,16 @@
+{
+  "productionBaseline": {
+    "deployedCommit": "9adc2e99a7978d02f8c4707865a5f5c24378344a",
+    "sourceCommit": "1b7a599055aa15b8fb441a95aabd8b893b0324dd",
+    "mainCommit": "1b7a599055aa15b8fb441a95aabd8b893b0324dd",
+    "artifactId": "39c40c77e52fd738b90bbd3648f09f6309e59d6ea3e26fb16ce47ee14a0fb529",
+    "version": "3.5.2",
+    "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+    "verifiedAt": "2026-10-01T16:43:38.570Z",
+    "unpublishedChanges": "V3.5.2 default-standard-summon app behavior is integrated. Official catalogs, companion data and all four ecosystem runtime hashes have not changed; retain the same exact-byte authoring baseline and append new version/content approval receipts. V3.5.1 snapshots and candidates remain immutable."
+  },
+  "baselineUnchanged": "d37b7b471b9d3462fca921249029e9b454b5886c09c72926c2b9c6c7fe596f8a",
+  "allBaselineFilesVerified": 300,
+  "catalogSha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+  "manifestSha256": "737db27a71c8abcff85fe8231a19b865ccddb5ed060b1b0726e35a1454122882"
+}

@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "version": "3.5.3",
+  "candidateId": "eaa3e4d2e525439b7c3dd430ad4a9421c1655f4d4776626a8fcb84c7ba8fa2c6",
+  "baselineCommit": "1b7a599055aa15b8fb441a95aabd8b893b0324dd",
+  "checks": [
+    {
+      "file": "data/pets.json",
+      "preserved": 96,
+      "total": 116,
+      "equalsReviewedCandidate": true
+    },
+    {
+      "file": "data/pools.json",
+      "preserved": 4,
+      "total": 5,
+      "equalsReviewedCandidate": true
+    },
+    {
+      "file": "data/pets-lore.json",
+      "preserved": 96,
+      "total": 116,
+      "equalsReviewedCandidate": true
+    },
+    {
+      "file": "data/pet-series.json",
+      "preserved": 4,
+      "total": 5,
+      "equalsReviewedCandidate": true
+    }
+  ],
+  "preservedBondStories": 96,
+  "totalBondStories": 116,
+  "originalMailboxAndDefaultSummonAppPreserved": true,
+  "frozenCompatibility": "content/release-compatibility/v3.4.4 untouched",
+  "authoringLifecycle": "Promoted source equals reviewed immutable candidate; archive receipts and original baseline remain unchanged."
+}

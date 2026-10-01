@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "file": "data/pets.json",
+      "preserved": 96,
+      "count": 116
+    },
+    {
+      "file": "data/pools.json",
+      "preserved": 4,
+      "count": 5
+    },
+    {
+      "file": "data/pets-lore.json",
+      "preserved": 96,
+      "count": 116
+    },
+    {
+      "file": "data/pet-series.json",
+      "preserved": 4,
+      "count": 5
+    }
+  ],
+  "preservedBondStories": 96,
+  "totalBondStories": 116,
+  "candidateId": "f5ffd7be9bc9c8c8d1cffbef75a2a22cf5042908c8fa98ae4638fc00a9745de4",
+  "frozenCompatibility": "content/release-compatibility/v3.4.4 untouched",
+  "authoringLifecycle": "Source promotion intentionally advances authoring baseline after immutable candidate creation; old workspace hashes and receipts remain unchanged."
+}

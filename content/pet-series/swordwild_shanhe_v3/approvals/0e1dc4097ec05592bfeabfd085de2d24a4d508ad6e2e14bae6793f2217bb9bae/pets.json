@@ -1,0 +1,312 @@
+{
+  "pets": [
+    {
+      "id": "pet_n36",
+      "name": "聽雨玉蜂",
+      "rarity": "N",
+      "image": "assets/pets/pet_n36.png",
+      "description": "葉尖上的小小回信。雲棧古道的藥圃旁，聽雨玉蜂總比大家早一刻知道雨將落下。牠曾把整片新葉搬進亭裡，反而讓需要露水的草藥乾了根。白猿沒有責備牠，只陪牠分辨哪些葉子要遮雨、哪些需要留在外面。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "jade_bee",
+      "element": "wood_mist",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_n37",
+      "name": "回風白駒",
+      "rarity": "N",
+      "image": "assets/pets/pet_n37.png",
+      "description": "願意回頭的腳步。回風白駒走路不快，卻記得每一段山階旁可以休息的地方。第一次獨自送信時，牠只顧追上遠方的鐘聲，沒有發現小玉蜂已落在後頭。信送到了，牠卻沿原路找了整夜。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "white_horse",
+      "element": "river_wind",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_n38",
+      "name": "茗香眠蜂",
+      "rarity": "N",
+      "image": "assets/pets/pet_n38.png",
+      "description": "把歇息留在茶香裡。茗香眠蜂只採山茶花的蜜，翼間帶著讓小獸昏昏欲睡的香。牠初到古道時想讓趕路的大家好好休息，卻在送信前把茶香吹滿了亭子。雙雕沒有責怪，只請牠等信送完再開花窗。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "tea_bee",
+      "element": "wood_tea",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_r36",
+      "name": "踏霞赤駒",
+      "rarity": "R",
+      "image": "assets/pets/pet_r36.png",
+      "description": "把清晨踏成第一步。踏霞赤駒喜歡在天色剛亮時出門，相信動起來就能找到方向。牠曾沒看清橋上的裂縫，差點把整袋補給踢進溪裡。重岳雕只用翅膀擋了牠一下，讓牠停在最該停的地方。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "red_horse",
+      "element": "fire_dawn",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_r37",
+      "name": "夜薔烏駒",
+      "rarity": "R",
+      "image": "assets/pets/pet_r37.png",
+      "description": "只把後背交給信任的人。夜薔烏駒很少靠近陌生行囊，卻記得每個曾替牠添過水的人。山亭被風雨隔斷的那晚，牠繞過三處滑坡，將最後一袋補給送到橋邊。牠不是不害怕，只在每個轉彎前聞一聞熟悉的繩結，確認這是自己答應走的路。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "black_mare",
+      "element": "night_rose",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_r38",
+      "name": "乘風白雕",
+      "rarity": "R",
+      "image": "assets/pets/pet_r38.png",
+      "description": "先飛一步，也留下會合的風。乘風白雕總先飛到山口，把亂流的位置告訴守望白雕。牠以前以為先找到風口就等於完成送信，直到回頭看見夥伴仍護著被吹散的信袋。如今牠確認路線後會繞回同一塊岩石，等待另一雙翼靠近。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "white_eagle",
+      "element": "cloud_wind",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_r39",
+      "name": "守望白雕",
+      "rarity": "R",
+      "image": "assets/pets/pet_r39.png",
+      "description": "讓另一雙翼放心回頭。守望白雕守著山口下的一塊平岩，讓乘風白雕每次試路都有地方降落。牠曾把守望理解成不能離開，眼看信袋落下溪谷也只是焦急地鳴叫。後來牠學會留下一根白羽作記號，再飛去接住需要幫忙的東西。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "white_eagle",
+      "element": "cloud_wind",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_r40",
+      "name": "金角疾蛇",
+      "rarity": "R",
+      "image": "assets/pets/pet_r40.png",
+      "description": "快，也要記得讓路。金角疾蛇穿過岩縫時只留一抹金光，總能搶在雨前找到乾燥的山階。牠一度把這條古道當成自己的快路，讓採葉的小蜂不敢落下。直到重岳雕在窄口靜靜站了一天，牠才發現速度也會變成別人的阻礙。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "golden_horn_snake",
+      "element": "earth_stone",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_sr30",
+      "name": "逐電靈貂",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr30.png",
+      "description": "快一步，也等一步。逐電靈貂可以在一聲鐘響前穿過整條溪道，因此總嫌大家走得慢。一次暴雨讓水位漲高，牠跳到對岸後才發現其餘夥伴過不來。牠第一次沒有跑向下一站，而是一趟趟把繩頭拉過水面。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "swift_marten",
+      "element": "wind_current",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_sr31",
+      "name": "望雲霜鷹",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr31.png",
+      "description": "替同行者看見轉彎。望雲霜鷹住在古道最高的路碑上，熟悉雲影遮住山口時的風向。牠曾為了證明自己看得遠，把尚未確認的小徑也畫進旅圖，讓白駒多繞了一個下午。後來牠學會先飛近些，看看路面，再把路標帶回來。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "frost_hawk",
+      "element": "frost_wind",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_sr32",
+      "name": "夜渡青蝠",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr32.png",
+      "description": "月下也有回程的燈。夜渡青蝠不喜歡白日的喧鬧，常等山亭熄燈後才沿屋簷飛行。起初大家以為牠只願意獨行，直到有晚守望白雕聽見牠不停敲打茶碗，才發現牠替迷路的玉蜂找到了回程。牠沒有學會熱鬧地介紹自己，只把每段黑暗中的落腳處記得更清楚。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "azure_bat",
+      "element": "night_wind",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_sr33",
+      "name": "金鬃護山獅",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr33.png",
+      "description": "把聲音留給需要的人。金鬃護山獅的聲音可以穿過整座山谷，以前牠以為喊得夠大聲就能讓大家安心。白駒第一次過斷橋時，卻被牠的鼓勵嚇得不敢動。那天獅子坐下來，聽白駒說完最怕的地方，再陪牠一步一步試橋板。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "golden_lion",
+      "element": "earth_oath",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_sr34",
+      "name": "雪徑靈狐",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr34.png",
+      "description": "替迷路的人留一串腳印。雪徑靈狐喜歡走少有人走的小路，山風吹過後卻常找不到自己的腳印。一次牠帶玉蜂穿過雪坡，才知道會走路與能帶人回來是兩回事。牠開始在轉彎處輕輕壓出三個並排爪印，讓薄雪也能記得方向。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "snow_fox",
+      "element": "frost_snow",
+      "visualTheme": "ink_jade_mountain"
+    },
+    {
+      "id": "pet_ssr21",
+      "name": "抱卷白猿",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr21.png",
+      "description": "把知曉的路交給後來的人。抱卷白猿守著的書卷沒有絕世武功，只有歷代旅人記下的風向、橋板與可飲的泉。牠以前不肯讓人添字，怕新的筆跡傷了舊的記憶。直到一次山崩改變水路，牠照著卷上的指示走，才看見已經乾掉的泉眼。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "ancient_white_ape",
+      "element": "cloud_memory",
+      "visualTheme": "ink_jade_mountain",
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "把知曉的路交給後來的人"
+      }
+    },
+    {
+      "id": "pet_ssr22",
+      "name": "凝霜玉蠶",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr22.png",
+      "description": "一寸寒光，留住半葉生機。凝霜玉蠶身旁的露水會在盛夏結冰，古道上的小獸都知道要替牠留一點距離。牠以前只住在雪線，怕自己的寒氣碰壞竹亭嫩葉。聽雨玉蜂帶來一塊厚岩，請牠把寒氣停在石面上，替行旅的糰子留住新鮮。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "ice_silkworm",
+      "element": "frost_ice",
+      "visualTheme": "ink_jade_mountain",
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "一寸寒光，留住半葉生機"
+      }
+    },
+    {
+      "id": "pet_ssr23",
+      "name": "繞指金蛇",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr23.png",
+      "description": "換一條路，也能抵達。繞指金蛇可以從最窄的石縫鑽過去，常把難題想成可以換個方向的路。牠曾為了展示自己的巧思，留下只有自己過得去的捷徑，讓補給袋卡在半途。烏駒沒有生氣，只請牠陪著袋子再走一遍。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "golden_snake",
+      "element": "earth_metal",
+      "visualTheme": "ink_jade_mountain",
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "換一條路，也能抵達"
+      }
+    },
+    {
+      "id": "pet_ssr24",
+      "name": "紫鱗潛龍",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr24.png",
+      "description": "深水裡也記得岸上的人。紫鱗潛龍擅長在水下尋找掉落的物件，卻以前從不告訴大家自己潛到哪裡。一次牠為了找回白猿的書繩，在深潭待得太久，岸上的夥伴點了一整排燈等牠。牠終於明白，有人等待就應該留下消息。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "river_dragon",
+      "element": "river_water",
+      "visualTheme": "ink_jade_mountain",
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "深水裡也記得岸上的人"
+      }
+    },
+    {
+      "id": "pet_ur16",
+      "name": "玄翎重岳雕",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur16.png",
+      "description": "山重，而一諾更重。玄翎重岳雕在斷橋旁等過許多個冬天。牠曾答應一位遠行的修橋者守住入口，後來再沒等到對方歸來。那人留下的無鋒黑鐵重劍仍靠在路碑旁，成為這段承諾的記號。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "ancient_giant_eagle",
+      "element": "earth_mountain",
+      "visualTheme": "ink_jade_mountain",
+      "presentation": {
+        "revealKey": "ur",
+        "revealCaption": "山重，而一諾更重"
+      }
+    },
+    {
+      "id": "pet_ur17",
+      "name": "丹砂鎮嶺蛤",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur17.png",
+      "description": "一聲低鳴，百毒止步。丹砂鎮嶺蛤小得能停在一枚葉尖上，藥谷裡的毒藤卻會在牠低鳴時收回枝梢。牠起初不願與任何小獸同行，怕一口未收住的朱息傷了來客。修橋的那夜，溪水帶著腐霧湧到山亭，牠第一次離開黑石，把毒息壓成一道細圈，將霧攔在橋外。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "vermilion_toad",
+      "element": "fire_cinnabar",
+      "visualTheme": "ink_jade_mountain",
+      "presentation": {
+        "revealKey": "ur",
+        "revealCaption": "一聲低鳴，百毒止步"
+      }
+    },
+    {
+      "id": "pet_ur18",
+      "name": "素心劍猿",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur18.png",
+      "description": "一劍素心，萬葉知路。素心劍猿先以竹枝學會聽風，才將修橋留下的薄鐵打成一柄素劍。劍不求華麗，只有乾淨的直刃與一枚小玉護手。山裡的小獸想學漂亮招式，牠卻先讓大家看葉子怎麼落。",
+      "poolTags": [
+        "swordwild_shanhe_v3"
+      ],
+      "seriesId": "swordwild_shanhe_v3",
+      "speciesType": "bamboo_ape",
+      "element": "wood_bamboo",
+      "visualTheme": "ink_jade_mountain",
+      "presentation": {
+        "revealKey": "ur",
+        "revealCaption": "一劍素心，萬葉知路"
+      }
+    }
+  ]
+}

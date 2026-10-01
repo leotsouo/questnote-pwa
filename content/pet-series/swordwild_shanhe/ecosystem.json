@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "food": {
+    "id": "item_pine_trail_riceball",
+    "name": "松香行旅糰",
+    "type": "favorite_bond_item",
+    "rarity": "R",
+    "description": "以靈性嫩葉包住田園補給的溫熱小糰，帶著清淡松香，適合在山亭歇腳時分享。自然與田園喜好的夥伴特別喜歡。",
+    "enabled": true,
+    "favoriteTags": [
+      "nature",
+      "harvest"
+    ],
+    "effect": {
+      "bondExp": 75,
+      "favoriteBonusBondExp": 150
+    },
+    "recipe": {
+      "forest_leaf": 6,
+      "harvest_charm": 2
+    },
+    "futureTags": [
+      "bond_item",
+      "swordwild_shanhe"
+    ]
+  },
+  "materials": [],
+  "affinities": {
+    "pet_n29": [
+      "nature"
+    ],
+    "pet_n30": [
+      "harvest"
+    ],
+    "pet_n31": [
+      "frost"
+    ],
+    "pet_n32": [
+      "harvest"
+    ],
+    "pet_r26": [
+      "nature"
+    ],
+    "pet_r27": [
+      "fire",
+      "harvest"
+    ],
+    "pet_r28": [
+      "nature"
+    ],
+    "pet_r29": [
+      "harvest"
+    ],
+    "pet_r30": [
+      "nature"
+    ],
+    "pet_sr21": [
+      "nature"
+    ],
+    "pet_sr22": [
+      "frost"
+    ],
+    "pet_sr23": [
+      "harvest"
+    ],
+    "pet_sr24": [
+      "fire"
+    ],
+    "pet_ssr14": [
+      "fire"
+    ],
+    "pet_ssr15": [
+      "nature"
+    ],
+    "pet_ssr16": [
+      "nature"
+    ],
+    "pet_ur11": [
+      "harvest"
+    ],
+    "pet_ur12": [
+      "nature"
+    ]
+  },
+  "affinityNotes": {
+    "pet_n29": "聽雨玉蜂的生活與竹林、溪流與草藥相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_n30": "回風白驹的生活與山亭補給、行旅與田園相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_n31": "望雲霜鷹的生活與雪線與寒地行走相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_n32": "守亭黃犬的生活與山亭補給、行旅與田園相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_r26": "逐電靈貂的生活與竹林、溪流與草藥相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_r27": "踏霞赤驹的生活與暖意、霞光與藥罐保溫、山亭補給、行旅與田園相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_r28": "夜渡青蝠的生活與竹林、溪流與草藥相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_r29": "白駝行客的生活與山亭補給、行旅與田園相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_r30": "並翼雲雕的生活與竹林、溪流與草藥相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_sr21": "繞指金蛇的生活與竹林、溪流與草藥相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_sr22": "雪徑靈狐的生活與雪線與寒地行走相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_sr23": "金鬃護山獅的生活與山亭補給、行旅與田園相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_sr24": "赤練靈蛇的生活與暖意、霞光與藥罐保溫相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_ssr14": "丹砂鳴蛤的生活與暖意、霞光與藥罐保溫相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_ssr15": "碧竹劍猿的生活與竹林、溪流與草藥相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_ssr16": "紫鱗潛龍的生活與竹林、溪流與草藥相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_ur11": "玄翎重岳雕的生活與山亭補給、行旅與田園相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。",
+    "pet_ur12": "抱卷白猿的生活與竹林、溪流與草藥相關；依完整 Lore 明確設定，未由名稱在 runtime 猜測。"
+  },
+  "specialties": {
+    "pet_n29": {
+      "role": "scholar",
+      "reason": "聽雨玉蜂的實際派遣角色為解讀；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提升發現機率與額外素材，解讀沿途线索。"
+    },
+    "pet_n30": {
+      "role": "scholar",
+      "reason": "回風白驹的實際派遣角色為解讀；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提升發現機率與額外素材，解讀沿途线索。"
+    },
+    "pet_n31": {
+      "role": "scout",
+      "reason": "望雲霜鷹的實際派遣角色為探路；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。探索目標增加路線進展，适合為古道辨認方向。"
+    },
+    "pet_n32": {
+      "role": "gatherer",
+      "reason": "守亭黃犬的實際派遣角色為採集；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。採集目標增加嫩葉收穫，供應行旅糰。"
+    },
+    "pet_r26": {
+      "role": "gatherer",
+      "reason": "逐電靈貂的實際派遣角色為採集；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。採集目標增加嫩葉收穫，供應行旅糰。"
+    },
+    "pet_r27": {
+      "role": "guardian",
+      "reason": "踏霞赤驹的實際派遣角色為守護；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提高星塵收益與守護貢獻，穩住行旅補給。"
+    },
+    "pet_r28": {
+      "role": "scout",
+      "reason": "夜渡青蝠的實際派遣角色為探路；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。探索目標增加路線進展，适合為古道辨認方向。"
+    },
+    "pet_r29": {
+      "role": "gatherer",
+      "reason": "白駝行客的實際派遣角色為採集；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。採集目標增加嫩葉收穫，供應行旅糰。"
+    },
+    "pet_r30": {
+      "role": "guardian",
+      "reason": "並翼雲雕的實際派遣角色為守護；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提高星塵收益與守護貢獻，穩住行旅補給。"
+    },
+    "pet_sr21": {
+      "role": "scholar",
+      "reason": "繞指金蛇的實際派遣角色為解讀；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提升發現機率與額外素材，解讀沿途线索。"
+    },
+    "pet_sr22": {
+      "role": "scout",
+      "reason": "雪徑靈狐的實際派遣角色為探路；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。探索目標增加路線進展，适合為古道辨認方向。"
+    },
+    "pet_sr23": {
+      "role": "gatherer",
+      "reason": "金鬃護山獅的實際派遣角色為採集；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。採集目標增加嫩葉收穫，供應行旅糰。"
+    },
+    "pet_sr24": {
+      "role": "guardian",
+      "reason": "赤練靈蛇的實際派遣角色為守護；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提高星塵收益與守護貢獻，穩住行旅補給。"
+    },
+    "pet_ssr14": {
+      "role": "guardian",
+      "reason": "丹砂鳴蛤的實際派遣角色為守護；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提高星塵收益與守護貢獻，穩住行旅補給。"
+    },
+    "pet_ssr15": {
+      "role": "companion",
+      "reason": "碧竹劍猿的實際派遣角色為同行；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。羈絆目標提升全隊親密度，照顧同行節奏。"
+    },
+    "pet_ssr16": {
+      "role": "gatherer",
+      "reason": "紫鱗潛龍的實際派遣角色為採集；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。採集目標增加嫩葉收穫，供應行旅糰。"
+    },
+    "pet_ur11": {
+      "role": "scholar",
+      "reason": "玄翎重岳雕的實際派遣角色為解讀；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提升發現機率與額外素材，解讀沿途线索。"
+    },
+    "pet_ur12": {
+      "role": "guardian",
+      "reason": "抱卷白猿的實際派遣角色為守護；依当前受控 runtime 對 element/species/name/tags 的匹配或穩定 ID 分配確認。提高星塵收益與守護貢獻，穩住行旅補給。"
+    }
+  },
+  "expedition": {
+    "decision": "add",
+    "reason": "本池的核心是修復古道、保護行旅与傳承旅圖，具有獨立故事與逐步探索用途。新增一個完整雲棧古道，供應新食物所需的既有嫩葉；護符沿用豐穗遠郊。不新增材料，避免沒有用途的掉落物。",
+    "reusedAreaIds": [
+      "mist_forest",
+      "harvest_fields"
+    ],
+    "areas": [
+      {
+        "id": "cloudrest_trail",
+        "name": "雲棧古道",
+        "description": "穿過竹林、雪線與山亭的古道。與珍禽異獸修整斷橋，把能走的路留給後來者。",
+        "unlock": {
+          "type": "default"
+        },
+        "energyCost": 3,
+        "durationMinutes": 30,
+        "rewards": {
+          "stardust": {
+            "min": 25,
+            "max": 45
+          },
+          "material": {
+            "id": "forest_leaf",
+            "name": "森林嫩葉",
+            "min": 1,
+            "max": 2
+          },
+          "bondExp": 8
+        }
+      }
+    ]
+  },
+  "releaseNotes": "劍隱山河新增18隻與雙UR（重岳雕／白猿），全員首抽開放，維持100星塵、55/30/10/3/2及SSR30/UR100。新食物松香行旅糰：嫩葉6＋護符2，普通+75，匹配自然/田園總共+150不疊加。逐隻偏好與實際派遣角色已對照runtime。新雲棧古道3能量/30分鐘，完整五段故事與10/25/50/75/100里程碑；嫩葉來自古道或迷霧森林，護符來自豐穗遠郊。沿用glacier_arrival與SSR/UR受控演出。圖片仍待人工作品審核，整包瀏覽器、存檔、交易和SW驗收未完成，不代表發布。",
+  "runtimeHashes": {
+    "src/workshopService.js": "5c1940a3116e93e8e9376a102621f02ff3a58c9d575491e875420dd4890b9480",
+    "src/expeditionService.js": "a0393db1951029c6496216e3af4c6b771ab35c590ddff74adc44c5c68136581d",
+    "src/explorationService.js": "832c01adec1b95404dbd06f7a636c07bc0308e4f61d161e6c3bacfbd2dc367e6",
+    "src/expeditionGameplay.js": "d6102b1ab7db9be541b4b136d0de37061db4ea13a42e24acefd432b43476ad60"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "sopVersion": 2,
+  "noExtraCost": true,
+  "seriesId": "swordwild_shanhe_v3",
+  "poolId": "swordwild_shanhe_v3",
+  "seriesName": "劍隱山河",
+  "concept": "雲棧古道上的二十位珍禽異獸，以守諾、傳承、行旅與知己寫成一段沒有掌門的江湖。從武俠小說中的動物與武林象徵取材，創作屬於 QuestNote 的原創夥伴、山路與故事。",
+  "rarityPlan": {
+    "N": 3,
+    "R": 5,
+    "SR": 5,
+    "SSR": 4,
+    "UR": 3
+  },
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "presentationTemplate": "swordwild_shanhe",
+  "unlock": null,
+  "releaseVersion": "3.5.3",
+  "productionBaseline": {
+    "deployedCommit": "9adc2e99a7978d02f8c4707865a5f5c24378344a",
+    "sourceCommit": "1b7a599055aa15b8fb441a95aabd8b893b0324dd",
+    "mainCommit": "1b7a599055aa15b8fb441a95aabd8b893b0324dd",
+    "artifactId": "39c40c77e52fd738b90bbd3648f09f6309e59d6ea3e26fb16ce47ee14a0fb529",
+    "version": "3.5.2",
+    "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+    "verifiedAt": "2026-10-01T16:43:38.570Z",
+    "unpublishedChanges": "V3.5.2 default-standard-summon app behavior is integrated. Official catalogs, companion data and all four ecosystem runtime hashes have not changed; retain the same exact-byte authoring baseline and append new version/content approval receipts. V3.5.1 snapshots and candidates remain immutable."
+  },
+  "interview": {
+    "theme": "金庸武俠中的異獸及同級象徵，自創系列；情緒交給 AI。",
+    "art": "神鵰為重點；其他角色、畫風與禁止元素交給 AI。使用者明確同意三 UR，角色可依平衡擴充；AI 採二十隻。",
+    "experience": "探險、動畫與特殊體驗由 AI 評估。 使用者追加要求：動畫不要沿用，獨立設計本池入場與抽獎，完成後開啟播放頁供檢視。"
+  },
+  "animationPlan": {
+    "decision": "dedicated",
+    "reason": "依使用者要求製作山河卷軸與劍光赴約；以古道、守諾、傳承及三UR的故事辨識點設計。全新本地CSS/SVG場景，不使用舊池視覺。",
+    "storyboard": "完整入場3.4秒：墨綠群山隱在霧後，兩側卷軸展開，金線古道穿過石橋，諾／俠／心三印與一諾入山／百川同行／劍隱山河浮現。短轉場0.9秒保留古道構圖。單抽與十連依固定交易結果：聚霧550ms→啟卷650ms（十連850ms）→稀有度劍光450/550/700/900/1200ms→分霧650ms（UR900ms），結果後依原順序接SSR+再回收束卡片或十連總覽。",
+    "rarityNotes": "N淡竹綠、R霧藍、SR淡紫、SSR金墨、UR丹金，強度隨稀有度提高。SSR金墨劍痕與山河紙卷揭露1.5秒。三UR各2.6秒：重岳雕以左右巨翼展開掃退霧幕；鎮嶺蛤以朱息橢圓界線由小展開後定住山嶺；素心劍猿以斜向劍光與分葉軌跡連到直劍卡圖。每隻保留名稱、第三版卡圖及專屬caption。",
+    "motionNotes": "減少動態採靜態山河／獸印與520ms前奏，SSR550ms／UR750ms。略過前奏仍接稀有揭露；Enter逐張繼續、Escape跳過剩餘，十連含重複UR維持原序。重播不抽卡、不扣款、不寫收藏，保留fallback、關閉、清场和連點保護。必須開啟使用相同artifact的實際動畫播放頁進行最終人工檢視。"
+  }
+}
