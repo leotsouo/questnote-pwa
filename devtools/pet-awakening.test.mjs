@@ -99,6 +99,7 @@ test('old backups default unawakened; current backups require and roundtrip prog
   delete data.petAwakening;
   assert.equal(validateBackup(current).valid, false);
   assert.equal(validateBackup({ ...current, appVersion: '3.5.3' }).valid, true);
+  assert.equal(validateBackup({ ...current, appVersion: '3.5.4' }).valid, true);
   data.petAwakening = { broken: true };
   assert.equal(validateBackup(current).valid, false);
 });

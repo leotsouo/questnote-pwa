@@ -9,7 +9,7 @@ const root = path.resolve(import.meta.dirname, '..');
 const reports = path.join(root, 'reports/awakening-implementation');
 const pins = JSON.parse(await fs.readFile(path.join(reports, 'artifacts.json'))).production;
 const baseline = JSON.parse(await fs.readFile(path.join(reports, 'formal-baseline.json')));
-const previous = path.join(process.env.TEMP, 'questnote-swordwild-releases', baseline.artifactId);
+const previous = baseline.artifactDir;
 const oldManifest = JSON.parse(await fs.readFile(path.join(previous, 'release-artifact.json')));
 assert.equal(oldManifest.artifactId, baseline.artifactId);
 for (const [file, entry] of Object.entries(oldManifest.files)) assert.equal(createHash('sha256').update(await fs.readFile(path.join(previous, file))).digest('hex'), entry.sha256);
@@ -44,7 +44,7 @@ try {
     bond.byPet.pet_ur17 = { chapters: Object.fromEntries([2,3,4,5].map((lv) => [lv, { choiceId: 'gentle', readAt: at, completedAt: at, claimedAt: at }])) }; await db.dbPut('meta', bond);
     await db.dbPut('meta', { key: 'inventory', items: { item_pine_trail_riceball: 2 }, itemUsageLogs: {} });
     return { pet: await c.getPetCollection('pet_ur17'), journey: bond, version: (await import('./src/version.js')).APP_VERSION };
-  }); assert.equal(before.version, '3.5.3');
+  }); assert.equal(before.version, '3.5.4');
   usingOld = false; await page.evaluate(async () => (await navigator.serviceWorker.getRegistration()).update());
   await page.locator('#update-banner [data-app-update="apply"]').waitFor({ timeout: 90000 });
   await Promise.all([page.waitForEvent('framenavigated', { predicate: (f) => f === page.mainFrame(), timeout: 90000 }), page.locator('#update-banner [data-app-update="apply"]').click()]);
@@ -55,7 +55,7 @@ try {
       awakening: await a.getPetAwakening(), database: (await db.openDB()).name, caches: await caches.keys(), version: (await import('./src/version.js')).APP_VERSION };
   });
   assert.deepEqual(upgraded.pet, before.pet); assert.deepEqual(upgraded.journey, before.journey); assert.deepEqual(upgraded.awakening.byPet, {});
-  assert.equal(upgraded.version, '3.5.4'); assert.equal(upgraded.database, 'QuestNoteDB'); assert.ok(upgraded.caches.some((k) => k.includes(pins.artifactId))); assert.ok(!upgraded.caches.some((k) => k.includes(oldManifest.artifactId)));
+  assert.equal(upgraded.version, '3.5.5'); assert.equal(upgraded.database, 'QuestNoteDB'); assert.ok(upgraded.caches.some((k) => k.includes(pins.artifactId))); assert.ok(!upgraded.caches.some((k) => k.includes(oldManifest.artifactId)));
   const prepared = await page.evaluate(async () => {
     const service = await import('./src/petAwakeningService.js'); await service.startPetAwakening('pet_ur17');
     const core = await import('./src/petAwakeningCore.js'); const db = await import('./src/db.js');
@@ -78,8 +78,8 @@ try {
     await (await import('./src/petAwakeningScene.js')).playAwakeningScene(entry, pet, { reducedMotion: true });
     await service.setAwakeningForm('pet_ur17', 'awakened'); await service.setAwakeningForm('pet_ur17', 'initial');
     const backup = await (await import('./src/backupService.js')).exportBackup(); return { state: await service.getPetAwakening(), images, backupVersion: backup.appVersion };
-  }); assert.deepEqual(offline.state, prepared); assert.equal(offline.backupVersion, '3.5.4'); assert.deepEqual([offline.images.at(-1).width, offline.images.at(-1).height], [960, 540]);
+  }); assert.deepEqual(offline.state, prepared); assert.equal(offline.backupVersion, '3.5.5'); assert.deepEqual([offline.images.at(-1).width, offline.images.at(-1).height], [960, 540]);
   await page.screenshot({ path: path.join(reports, 'update-offline-mobile.png'), fullPage: true });
   await fs.writeFile(path.join(reports, 'update-offline.json'), JSON.stringify({ status: 'passed', testedAt: new Date().toISOString(), from: before.version, to: upgraded.version, previousArtifactId: baseline.artifactId, artifactId: pins.artifactId, savedPetAndStoryPreserved: true, isolatedDatabase: upgraded.database, oldCacheRemoved: true, offline }, null, 2) + '\n');
-  console.log('PASS formal V3.5.3 -> proposed V3.5.4 save/cache upgrade, double forms, map, replay and backup offline');
+  console.log('PASS formal V3.5.4 -> proposed V3.5.5 save/cache upgrade, double forms, map, replay and backup offline');
 } finally { await context?.close(); await browser.close(); await new Promise((r) => server.close(r)); }
