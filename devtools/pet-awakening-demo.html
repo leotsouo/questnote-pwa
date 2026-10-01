@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/"><title>覺醒系統 · 隔離試玩</title><style>html,body{margin:0;height:100%;background:#142c2b;color:#f8edd3;font:14px/1.6 system-ui}body{display:flex;flex-direction:column;height:100dvh}header{flex-shrink:0;box-sizing:border-box;min-height:82px;padding:10px 18px}header p{margin:0}iframe{border:0;width:100%;flex:1;min-height:0;height:0;display:block;background:#fcf9f0}a{color:#e6c68d}#status{color:#d1dbc8}</style></head><body><header><p><strong>隔離試玩存檔</strong> · 蛤已覺醒、雕可進行儀式、猿正在試煉，其餘角色可接下。</p><p>操作只影響此本機試玩副本，正式站與 HTTPS 預覽存檔不受影響。<a href="awakening-review/">演出與圖片檢視</a></p><p id="status">準備試玩角色…</p></header><script type="module">
+const status = document.querySelector('#status');
+try {
+  if (location.hostname !== '127.0.0.1') throw Error('試玩只能在獨立本機 origin 使用');
+  const db = await import('./src/db.js'); const { loadCatalogBundle } = await import('./src/releaseCatalog.js');
+  const { normalizeWallet } = await import('./src/rewardService.js');
+  const { createBondJourney } = await import('./src/bondJourneyCore.js');
+  const { createPetAwakening, validatePetAwakening } = await import('./src/petAwakeningCore.js');
+  const { normalizeCollectionItem } = await import('./src/collectionService.js');
+  const pets = (await loadCatalogBundle()).petsData.pets.filter((p) => p.seriesId === 'swordwild_shanhe_v3');
+  await db.dbMutateRecords([{ store: 'meta', all: true }, { store: 'collection', all: true }, { store: 'tasks', all: true }, { store: 'habits', all: true }, { store: 'expeditions', all: true }], ([meta, collection, tasks, habits, expeditions]) => {
+    if (meta.some((m) => m.key === 'awakeningReviewDemo' && m.version === 1)) return { puts: [], result: 'resume' };
+    if (meta.length || collection.length || tasks.length || habits.length || expeditions.length) throw Error('此本機預覽已存在其他存檔，未寫入試玩資料。請使用新的隔離预覽網址。');
+    const now = Date.now(); const at = new Date(now - 3600000).toISOString(); const complete = new Date(now - 60000).toISOString(); const awakened = new Date(now - 30000).toISOString();
+    const bond = createBondJourney();
+    for (const p of pets) bond.byPet[p.id] = { chapters: Object.fromEntries([2,3,4,5].map((lv) => [lv, { choiceId: 'gentle', readAt: at, completedAt: at, claimedAt: at }])) };
+    const a = createPetAwakening();
+    for (const [i, id] of ['pet_ur17', 'pet_ur16', 'pet_ur18'].entries()) {
+      const count = id === 'pet_ur18' ? 2 : 3;
+      const eventKeys = Array.from({ length: count }, (_, j) => `task:demo-${i}-${j}`); const expeditionKey = id === 'pet_ur18' ? null : `expedition:demo-${i}`;
+      a.byPet[id] = { startedAt: at, observingSince: at, status: id === 'pet_ur17' ? 'awakened' : id === 'pet_ur16' ? 'ready' : 'active', eventKeys, expeditionKey,
+        tokenGrantedAt: id === 'pet_ur18' ? null : complete, tokenConsumedAt: id === 'pet_ur17' ? awakened : null, awakenedAt: id === 'pet_ur17' ? awakened : null, form: 'awakened' };
+      a.usedEventKeys.push(...eventKeys, ...(expeditionKey ? [expeditionKey] : []));
+    }
+    a.activePetId = 'pet_ur18'; if (validatePetAwakening(a).length) throw Error('試玩資料驗證失敗');
+    return { puts: [
+      ...pets.map((p) => ({ store: 'collection', value: normalizeCollectionItem({ petId: p.id, stars: 1, fragments: 0, bondExp: 500, bondLevel: 5, isCompanion: p.id === 'pet_ur17', obtainedAt: at, nickname: null, lastPettedAt: null }) })),
+      { store: 'meta', value: bond }, { store: 'meta', value: a }, { store: 'meta', value: { key: 'awakeningReviewDemo', version: 1 } },
+      { store: 'meta', value: { key: 'inventory', items: { item_pine_trail_riceball: 3 }, itemUsageLogs: {} } },
+      { store: 'meta', value: normalizeWallet({ stardust: 10000, adventureEnergy: 50, materials: { forest_leaf: 60, harvest_charm: 20 } }) },
+    ], result: 'seeded' };
+  });
+  status.textContent = '試玩已準備 · 圖鑑可查看二十位角色；可以切換蛤的形態、重播演出，或為雕完成儀式。';
+  const frame = document.createElement('iframe'); frame.title = 'QuestNote 覺醒隔離試玩'; frame.src = 'index.html'; document.body.append(frame);
+} catch (error) { status.textContent = error.message; }
+</script></body></html>

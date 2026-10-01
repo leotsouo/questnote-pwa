@@ -1,0 +1,102 @@
+{
+  "running": false,
+  "runId": "5926cec9-157a-4420-aafe-4867397435d2",
+  "passed": 12,
+  "failed": 0,
+  "results": [
+    {
+      "name": "uncontrolled first boot rejects profile-null before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects index-marker-mismatch before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects missing503 before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects corrupt before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "known legacy network-first controller cannot start the new app before every legacy client closes",
+      "ok": true
+    },
+    {
+      "name": "direct first production visit verifies, activates, reloads, and initializes the actual app",
+      "ok": true
+    },
+    {
+      "name": "direct preview visit coexists with production using a separate database and controller",
+      "ok": true
+    },
+    {
+      "name": "old perf/debug shortcuts cannot expose diagnostics or grant test currency",
+      "ok": true
+    },
+    {
+      "name": "evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state",
+      "ok": true
+    },
+    {
+      "name": "cleared preview shell rebuilds verified bytes while two clients and persisted state survive",
+      "ok": true
+    },
+    {
+      "name": "both fully assembled cached apps and catalogs boot while all artifact HTTP responses are 503",
+      "ok": true
+    },
+    {
+      "name": "growth chapters remain usable and resume the saved step without the network",
+      "ok": true
+    }
+  ],
+  "observations": {
+    "profile-null": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+      "requests": 20,
+      "databaseNames": []
+    },
+    "index-marker-mismatch": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+      "requests": 20,
+      "databaseNames": []
+    },
+    "missing503": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+      "requests": 157,
+      "databaseNames": []
+    },
+    "corrupt": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+      "requests": 157,
+      "databaseNames": []
+    },
+    "production": {
+      "artifactId": "6c8ec18fe7187377e802f3fed3bdfba81e0aa8fe1fbbea492236cf84b0973156",
+      "catalogSha256": "000e1dc13374a553d6561116cfcf9417c3ebabe531a334596aa5706c26632680",
+      "petCount": 116,
+      "controller": "http://127.0.0.1:60187/questnote-pwa/service-worker.js?artifact=6c8ec18fe7187377e802f3fed3bdfba81e0aa8fe1fbbea492236cf84b0973156"
+    },
+    "legacyTransition": {
+      "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+      "waitingBeforeClose": true,
+      "zeroDatabasesBeforeClose": true,
+      "newArtifact": "6c8ec18fe7187377e802f3fed3bdfba81e0aa8fe1fbbea492236cf84b0973156"
+    },
+    "preview": {
+      "artifactId": "d0fdaaa989ec678e4c38ccc899b0ab7ff2b844458e30b35e9f0e8bcd01960f84",
+      "catalogSha256": "000e1dc13374a553d6561116cfcf9417c3ebabe531a334596aa5706c26632680",
+      "petCount": 116,
+      "controller": "http://127.0.0.1:60187/questnote-pwa-preview/service-worker.js?artifact=d0fdaaa989ec678e4c38ccc899b0ab7ff2b844458e30b35e9f0e8bcd01960f84"
+    },
+    "offlineGrowthLesson": {
+      "chapter": "workshop",
+      "step": "craft",
+      "resumed": true
+    }
+  },
+  "cleanupOwnedOrigin": true
+}

@@ -1,0 +1,111 @@
+{
+  "status": "passed",
+  "artifactId": "d0fdaaa989ec678e4c38ccc899b0ab7ff2b844458e30b35e9f0e8bcd01960f84",
+  "testedAt": "2026-10-01T21:42:29.102Z",
+  "scenarios": [
+    {
+      "name": "玄翎重岳雕",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "丹砂鎮嶺蛤",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "素心劍猿",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "聽雨玉蜂",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "回風白駒",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "茗香眠蜂",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "踏霞赤駒",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "夜薔烏駒",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "乘風白雕",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "守望白雕",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "金角疾蛇",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "逐電靈貂",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "望雲霜鷹",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "夜渡青蝠",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "金鬃護山獅",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "雪徑靈狐",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "抱卷白猿",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "凝霜玉蠶",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "繞指金蛇",
+      "normal": "passed",
+      "reduced": "passed"
+    },
+    {
+      "name": "紫鱗潛龍",
+      "normal": "passed",
+      "reduced": "passed"
+    }
+  ],
+  "readonlyViewerDatabaseCount": 0,
+  "width320Overflow": false,
+  "isolatedDemo": "actual app dual-form switch and ritual passed",
+  "pageErrors": []
+}

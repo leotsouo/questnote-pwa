@@ -1,0 +1,655 @@
+{
+  "status": "passed",
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-releases\\d0fdaaa989ec678e4c38ccc899b0ab7ff2b844458e30b35e9f0e8bcd01960f84",
+      "artifactId": "d0fdaaa989ec678e4c38ccc899b0ab7ff2b844458e30b35e9f0e8bcd01960f84",
+      "manifestSha256": "230e556e2f554c96bcd74c53fab20c554bf50b8ca1a575e2d4851298fca4209c",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-releases\\6c8ec18fe7187377e802f3fed3bdfba81e0aa8fe1fbbea492236cf84b0973156",
+      "artifactId": "6c8ec18fe7187377e802f3fed3bdfba81e0aa8fe1fbbea492236cf84b0973156",
+      "manifestSha256": "a77a9a799bb4d6fb328e842ff831e35ad93d216f5b9e95c58739a2bb485726ff",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "results": [
+    {
+      "name": "assembled preview/production isolation, worker recovery and offline bootstrap",
+      "ok": true,
+      "detail": {
+        "passed": 12,
+        "profiles": [
+          "preview",
+          "production"
+        ]
+      }
+    },
+    {
+      "name": "actual 20-pet catalog, three UR, all images and complete bond stories",
+      "ok": true,
+      "detail": {
+        "count": 20,
+        "ur": [
+          "玄翎重岳雕",
+          "丹砂鎮嶺蛤",
+          "素心劍猿"
+        ],
+        "images": 20,
+        "stories": 116,
+        "chapters": 80
+      }
+    },
+    {
+      "name": "actual pool SSR/UR pity branches, native single and ten pulls, duplicate fragments",
+      "ok": true,
+      "detail": {
+        "urPityIds": [
+          "pet_ur16",
+          "pet_ur17",
+          "pet_ur18"
+        ],
+        "ssrPity": "UR",
+        "single": "素心劍猿",
+        "tenResults": 10,
+        "duplicateFragments": 200,
+        "charged": 1100
+      }
+    },
+    {
+      "name": "UR/SSR reveal order, repeated UR, keyboard continue and reduced motion",
+      "ok": true,
+      "detail": {
+        "seen": [
+          "抱卷白猿",
+          "玄翎重岳雕",
+          "丹砂鎮嶺蛤",
+          "素心劍猿",
+          "玄翎重岳雕"
+        ],
+        "result": {
+          "played": 5,
+          "skipped": false,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "name": "image fallback and skip remaining queue leave wallet/collection unchanged",
+      "ok": true,
+      "detail": {
+        "name": "素心劍猿",
+        "result": {
+          "played": 1,
+          "skipped": true,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "name": "real UI pool debut, prelude skip and rapid single-pull clicks charge once",
+      "ok": true,
+      "detail": {
+        "debit": 100,
+        "transactions": 1,
+        "preludeSkipPreservedRareReveal": true
+      }
+    },
+    {
+      "name": "workshop UI craft then select pet and gift; actual affinity gains for all 20",
+      "ok": true,
+      "detail": {
+        "gains": [
+          {
+            "petId": "pet_n36",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_n37",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "harvest"
+            ],
+            "reason": "喜歡田園禮物"
+          },
+          {
+            "petId": "pet_n38",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_r36",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "harvest"
+            ],
+            "reason": "喜歡田園禮物"
+          },
+          {
+            "petId": "pet_r37",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "harvest"
+            ],
+            "reason": "喜歡田園禮物"
+          },
+          {
+            "petId": "pet_r38",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_r39",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_r40",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_sr30",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_sr31",
+            "isFavorite": false,
+            "bondExp": 75,
+            "matchedTags": [],
+            "reason": "非喜好禮物，獲得基本效果"
+          },
+          {
+            "petId": "pet_sr32",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_sr33",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "harvest"
+            ],
+            "reason": "喜歡田園禮物"
+          },
+          {
+            "petId": "pet_sr34",
+            "isFavorite": false,
+            "bondExp": 75,
+            "matchedTags": [],
+            "reason": "非喜好禮物，獲得基本效果"
+          },
+          {
+            "petId": "pet_ssr21",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_ssr22",
+            "isFavorite": false,
+            "bondExp": 75,
+            "matchedTags": [],
+            "reason": "非喜好禮物，獲得基本效果"
+          },
+          {
+            "petId": "pet_ssr23",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_ssr24",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          },
+          {
+            "petId": "pet_ur16",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "harvest"
+            ],
+            "reason": "喜歡田園禮物"
+          },
+          {
+            "petId": "pet_ur17",
+            "isFavorite": false,
+            "bondExp": 75,
+            "matchedTags": [],
+            "reason": "非喜好禮物，獲得基本效果"
+          },
+          {
+            "petId": "pet_ur18",
+            "isFavorite": true,
+            "bondExp": 150,
+            "matchedTags": [
+              "nature"
+            ],
+            "reason": "喜歡自然禮物"
+          }
+        ],
+        "recipe": {
+          "forest_leaf": 6,
+          "harvest_charm": 2
+        },
+        "actualGift": 150
+      }
+    },
+    {
+      "name": "all specialties, real cloudrest dispatch/claim, five milestones and duplicate rejection",
+      "ok": true,
+      "detail": {
+        "specialties": [
+          {
+            "petId": "pet_n36",
+            "role": "scout",
+            "label": "探路",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_n37",
+            "role": "guardian",
+            "label": "守護",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_n38",
+            "role": "gatherer",
+            "label": "採集",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_r36",
+            "role": "guardian",
+            "label": "守護",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_r37",
+            "role": "companion",
+            "label": "同行",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_r38",
+            "role": "gatherer",
+            "label": "採集",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_r39",
+            "role": "scout",
+            "label": "探路",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_r40",
+            "role": "companion",
+            "label": "同行",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_sr30",
+            "role": "scholar",
+            "label": "解讀",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_sr31",
+            "role": "scout",
+            "label": "探路",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_sr32",
+            "role": "scout",
+            "label": "探路",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_sr33",
+            "role": "gatherer",
+            "label": "採集",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_sr34",
+            "role": "scout",
+            "label": "探路",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_ssr21",
+            "role": "companion",
+            "label": "同行",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_ssr22",
+            "role": "scout",
+            "label": "探路",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_ssr23",
+            "role": "scout",
+            "label": "探路",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_ssr24",
+            "role": "companion",
+            "label": "同行",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_ur16",
+            "role": "scout",
+            "label": "探路",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_ur17",
+            "role": "guardian",
+            "label": "守護",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          },
+          {
+            "petId": "pet_ur18",
+            "role": "guardian",
+            "label": "守護",
+            "stars": 1,
+            "level": 1,
+            "description": "已能發揮隊伍專長"
+          }
+        ],
+        "runs": 12,
+        "duplicateClaimsRejected": 12,
+        "progress": 100,
+        "milestones": [
+          10,
+          25,
+          50,
+          75,
+          100
+        ],
+        "stories": 5
+      }
+    },
+    {
+      "name": "new UR four-chapter journey, reply persistence, keepsake and duplicate reward rejection",
+      "ok": true,
+      "detail": {
+        "chapters": [
+          {
+            "level": 2,
+            "gain": 30,
+            "claimed": {
+              "journey": {
+                "key": "bondJourney",
+                "schemaVersion": 1,
+                "byPet": {
+                  "pet_ur18": {
+                    "chapters": {
+                      "2": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.074Z",
+                        "completedAt": "2026-10-01T21:32:02.088Z",
+                        "claimedAt": "2026-10-01T21:32:02.092Z"
+                      }
+                    }
+                  }
+                },
+                "active": null,
+                "usedEventKeys": [
+                  "task:a82a405c-352f-44db-b886-9595c9b7f677"
+                ],
+                "dailyClaimDates": [],
+                "displayPetId": null
+              },
+              "amount": 30,
+              "petId": "pet_ur18",
+              "chapter": 2
+            }
+          },
+          {
+            "level": 3,
+            "gain": 50,
+            "claimed": {
+              "journey": {
+                "key": "bondJourney",
+                "schemaVersion": 1,
+                "byPet": {
+                  "pet_ur18": {
+                    "chapters": {
+                      "2": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.074Z",
+                        "completedAt": "2026-10-01T21:32:02.088Z",
+                        "claimedAt": "2026-10-01T21:32:02.092Z"
+                      },
+                      "3": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.093Z",
+                        "completedAt": "2026-10-01T21:32:02.106Z",
+                        "claimedAt": "2026-10-01T21:32:02.111Z"
+                      }
+                    }
+                  }
+                },
+                "active": null,
+                "usedEventKeys": [
+                  "task:a82a405c-352f-44db-b886-9595c9b7f677",
+                  "task:09964282-99c7-4662-9e77-856f1c7021e8"
+                ],
+                "dailyClaimDates": [],
+                "displayPetId": null
+              },
+              "amount": 50,
+              "petId": "pet_ur18",
+              "chapter": 3
+            }
+          },
+          {
+            "level": 4,
+            "gain": 70,
+            "claimed": {
+              "journey": {
+                "key": "bondJourney",
+                "schemaVersion": 1,
+                "byPet": {
+                  "pet_ur18": {
+                    "chapters": {
+                      "2": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.074Z",
+                        "completedAt": "2026-10-01T21:32:02.088Z",
+                        "claimedAt": "2026-10-01T21:32:02.092Z"
+                      },
+                      "3": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.093Z",
+                        "completedAt": "2026-10-01T21:32:02.106Z",
+                        "claimedAt": "2026-10-01T21:32:02.111Z"
+                      },
+                      "4": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.112Z",
+                        "completedAt": "2026-10-01T21:32:02.124Z",
+                        "claimedAt": "2026-10-01T21:32:02.129Z"
+                      }
+                    }
+                  }
+                },
+                "active": null,
+                "usedEventKeys": [
+                  "task:a82a405c-352f-44db-b886-9595c9b7f677",
+                  "task:09964282-99c7-4662-9e77-856f1c7021e8",
+                  "task:23e9f30e-67fc-49e3-a7ba-38cede051480"
+                ],
+                "dailyClaimDates": [],
+                "displayPetId": null
+              },
+              "amount": 70,
+              "petId": "pet_ur18",
+              "chapter": 4
+            }
+          },
+          {
+            "level": 5,
+            "gain": 100,
+            "claimed": {
+              "journey": {
+                "key": "bondJourney",
+                "schemaVersion": 1,
+                "byPet": {
+                  "pet_ur18": {
+                    "chapters": {
+                      "2": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.074Z",
+                        "completedAt": "2026-10-01T21:32:02.088Z",
+                        "claimedAt": "2026-10-01T21:32:02.092Z"
+                      },
+                      "3": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.093Z",
+                        "completedAt": "2026-10-01T21:32:02.106Z",
+                        "claimedAt": "2026-10-01T21:32:02.111Z"
+                      },
+                      "4": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.112Z",
+                        "completedAt": "2026-10-01T21:32:02.124Z",
+                        "claimedAt": "2026-10-01T21:32:02.129Z"
+                      },
+                      "5": {
+                        "choiceId": "gentle",
+                        "readAt": "2026-10-01T21:32:02.131Z",
+                        "completedAt": "2026-10-01T21:32:02.145Z",
+                        "claimedAt": "2026-10-01T21:32:02.149Z"
+                      }
+                    }
+                  }
+                },
+                "active": null,
+                "usedEventKeys": [
+                  "task:a82a405c-352f-44db-b886-9595c9b7f677",
+                  "task:09964282-99c7-4662-9e77-856f1c7021e8",
+                  "task:23e9f30e-67fc-49e3-a7ba-38cede051480",
+                  "task:87f8c06a-189e-4d5f-87fe-380417b6b378"
+                ],
+                "dailyClaimDates": [],
+                "displayPetId": "pet_ur18"
+              },
+              "amount": 100,
+              "petId": "pet_ur18",
+              "chapter": 5
+            }
+          }
+        ],
+        "keepsakePetId": "pet_ur18"
+      }
+    },
+    {
+      "name": "native backup round trip, 320px card layout and cached new content offline",
+      "ok": true,
+      "detail": {
+        "backupRoundTrip": true,
+        "offline": {
+          "pets": 20,
+          "stories": 116,
+          "worker": true,
+          "progress": 100
+        },
+        "viewport": 320
+      }
+    }
+  ],
+  "browser": "152.0.7977.83",
+  "isolation": "Fresh loopback origin and ephemeral Chromium contexts; all external DNS blocked. No production player DB."
+}
