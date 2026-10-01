@@ -1,0 +1,45 @@
+{
+  "baseline": {
+    "artifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+    "contentBundleSha256": "509f8172c0a5f1f29513b10b9bcf46ef5a64668ef9970d1eac35f16f62f41223",
+    "files": {
+      "data/global-mailbox.json": "80cab9075a5db551fadca624f947c5824536cbd988656b246945a95d87db2a67",
+      "data/craftables.json": "aae00091888b74f3223919ce2f06f72c10f8ee505cf40b565e0054ae789ac19e",
+      "data/gift-affinities.json": "5c4ae4f64bd97acf70d0ac5d229ddf344c6251f4c54c0dbb5fb2ed63da8afee5",
+      "data/materials.json": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
+      "data/expeditions.json": "9d14ec309b570be01c65c29dfa8236c1f05b8d5447374e562df5a37537f08530"
+    }
+  },
+  "production": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f95a-9870-7700-ae37-85a36119aae0\\today-habits-artifacts\\1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+    "artifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+    "manifestSha256": "55e7e3551ee7fd2e4ef5e2c58353ab9de06064d2bfd2465d231302128d38b0a4",
+    "profile": "production",
+    "scopePath": "/questnote-pwa/",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f95a-9870-7700-ae37-85a36119aae0\\today-habits-artifacts\\1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+      "artifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+      "manifestSha256": "55e7e3551ee7fd2e4ef5e2c58353ab9de06064d2bfd2465d231302128d38b0a4",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 489
+    }
+  },
+  "preview": {
+    "root": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f95a-9870-7700-ae37-85a36119aae0\\today-habits-artifacts\\1029a06b07a8811dda6c1c8d7be45b2bc031b4400baef8c8bd02b67fd09cfe24",
+    "artifactId": "1029a06b07a8811dda6c1c8d7be45b2bc031b4400baef8c8bd02b67fd09cfe24",
+    "manifestSha256": "2de27fe48be848050d328e8d8fb965bd43d8525b22b42e358765885afb194244",
+    "profile": "preview",
+    "scopePath": "/questnote-pwa-preview/",
+    "verification": {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f95a-9870-7700-ae37-85a36119aae0\\today-habits-artifacts\\1029a06b07a8811dda6c1c8d7be45b2bc031b4400baef8c8bd02b67fd09cfe24",
+      "artifactId": "1029a06b07a8811dda6c1c8d7be45b2bc031b4400baef8c8bd02b67fd09cfe24",
+      "manifestSha256": "2de27fe48be848050d328e8d8fb965bd43d8525b22b42e358765885afb194244",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 489
+    }
+  }
+}
