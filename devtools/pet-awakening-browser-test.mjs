@@ -144,6 +144,26 @@ try {
       return { bad, canonicalToad: s.bundle.petsData.pets.find((p) => p.id === 'pet_ur17').image };
     }); assert.deepEqual(out.bad, []); assert.equal(out.canonicalToad, 'assets/pets/pet_ur17.png'); assert.deepEqual(await read(), before);
   });
+  await check('latest Today habit UI advances the active trial once across undo and recomplete', async () => {
+    const id = await page.evaluate(async () => {
+      const s = window.awakeTest;
+      await s.petAwakeningService.startPetAwakening('pet_ur16');
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      return (await s.habitService.createHabit({ name: '今日清單覺醒整合', frequency: 'daily' })).habit.id;
+    });
+    await load();
+    const card = page.locator(`.today-habit-card[data-id="${id}"]`);
+    await card.locator('[data-action="habit-complete"]').click();
+    await card.locator('[data-action="habit-uncomplete"]').waitFor();
+    const completed = await read();
+    assert.equal(completed.byPet.pet_ur16.eventKeys.length, 2);
+    await card.locator('[data-action="habit-uncomplete"]').click();
+    await card.locator('[data-action="habit-complete"]').waitFor();
+    await card.locator('[data-action="habit-complete"]').click();
+    await card.locator('[data-action="habit-uncomplete"]').waitFor();
+    assert.deepEqual((await read()).byPet.pet_ur16.eventKeys, completed.byPet.pet_ur16.eventKeys);
+    return { habitId: id, trialCredit: 1, preservedAfterUndo: true };
+  });
   assert.deepEqual(errors, []); console.log(`Awakening acceptance: ${results.length} checks passed`);
 } finally {
   await fs.writeFile(path.join(reports, 'browser-acceptance.json'), JSON.stringify({ testedAt: new Date().toISOString(), purpose: 'guarded synthetic-only awakening functional acceptance', results, pageErrors: errors }, null, 2) + '\n');
