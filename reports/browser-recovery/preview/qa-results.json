@@ -1,0 +1,121 @@
+{
+  "base": "https://leotsouo.github.io/questnote-pwa-preview/",
+  "results": [
+    {
+      "width": 320,
+      "name": "missing",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 375,
+      "name": "missing",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 393,
+      "name": "missing",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 430,
+      "name": "missing",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 1440,
+      "name": "missing",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 393,
+      "name": "getter",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 393,
+      "name": "security",
+      "ua": "Mozilla/5.0 (Linux; Android 14; wv) AppleWebKit/537.36 Chrome/130.0.0.0 Mobile Safari/537.36",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 393,
+      "name": "app-bound",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 393,
+      "name": "storage",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 393,
+      "name": "network",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "width": 393,
+      "height": 640,
+      "name": "short",
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Line/14.0",
+      "pass": true,
+      "noProductModule": true,
+      "noDatabase": true,
+      "keyboard": true,
+      "accessibility": true
+    },
+    {
+      "name": "supported-browser",
+      "pass": true
+    }
+  ],
+  "platform": "Desktop browser with WebView failure emulation; not a physical iPhone"
+}

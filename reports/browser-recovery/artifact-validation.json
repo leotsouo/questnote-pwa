@@ -1,0 +1,124 @@
+{
+  "verification": [
+    {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-browser-recovery-releases\\bf602678f6c3b7935d1de4053afbe4b1346d0dbc984fa28011dbcf9b45878b1b",
+      "artifactId": "bf602678f6c3b7935d1de4053afbe4b1346d0dbc984fa28011dbcf9b45878b1b",
+      "manifestSha256": "d6bfc9c44278f43d497808de341790ff6197b8b42613f26fe223fc806fe8817b",
+      "profile": "production",
+      "scopePath": "/questnote-pwa/",
+      "fileCount": 411
+    },
+    {
+      "ok": true,
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-browser-recovery-releases\\8f8c933b2e939632b2807e33ef21e18b9d3021052b67805b6f03472cf390e92f",
+      "artifactId": "8f8c933b2e939632b2807e33ef21e18b9d3021052b67805b6f03472cf390e92f",
+      "manifestSha256": "dc58eb5f1fd1e8b5951f54b24fedf8c799c8c0452b3785082b110b1f4d66b3d6",
+      "profile": "preview",
+      "scopePath": "/questnote-pwa-preview/",
+      "fileCount": 411
+    }
+  ],
+  "browser": {
+    "running": false,
+    "runId": "f6e28142-08a6-4500-b12e-324c139cc578",
+    "passed": 12,
+    "failed": 0,
+    "results": [
+      {
+        "name": "uncontrolled first boot rejects profile-null before app import or database access",
+        "ok": true
+      },
+      {
+        "name": "uncontrolled first boot rejects index-marker-mismatch before app import or database access",
+        "ok": true
+      },
+      {
+        "name": "uncontrolled first boot rejects missing503 before app import or database access",
+        "ok": true
+      },
+      {
+        "name": "uncontrolled first boot rejects corrupt before app import or database access",
+        "ok": true
+      },
+      {
+        "name": "known legacy network-first controller cannot start the new app before every legacy client closes",
+        "ok": true
+      },
+      {
+        "name": "direct first production visit verifies, activates, reloads, and initializes the actual app",
+        "ok": true
+      },
+      {
+        "name": "direct preview visit coexists with production using a separate database and controller",
+        "ok": true
+      },
+      {
+        "name": "old perf/debug shortcuts cannot expose diagnostics or grant test currency",
+        "ok": true
+      },
+      {
+        "name": "evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state",
+        "ok": true
+      },
+      {
+        "name": "cleared preview shell rebuilds verified bytes while two clients and persisted state survive",
+        "ok": true
+      },
+      {
+        "name": "both fully assembled cached apps and catalogs boot while all artifact HTTP responses are 503",
+        "ok": true
+      },
+      {
+        "name": "growth chapters remain usable and resume the saved step without the network",
+        "ok": true
+      }
+    ],
+    "observations": {
+      "profile-null": {
+        "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+        "requests": 17,
+        "databaseNames": []
+      },
+      "index-marker-mismatch": {
+        "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+        "requests": 17,
+        "databaseNames": []
+      },
+      "missing503": {
+        "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+        "requests": 136,
+        "databaseNames": []
+      },
+      "corrupt": {
+        "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+        "requests": 136,
+        "databaseNames": []
+      },
+      "production": {
+        "artifactId": "bf602678f6c3b7935d1de4053afbe4b1346d0dbc984fa28011dbcf9b45878b1b",
+        "catalogSha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+        "petCount": 96,
+        "controller": "http://127.0.0.1:64654/questnote-pwa/service-worker.js?artifact=bf602678f6c3b7935d1de4053afbe4b1346d0dbc984fa28011dbcf9b45878b1b"
+      },
+      "legacyTransition": {
+        "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+        "waitingBeforeClose": true,
+        "zeroDatabasesBeforeClose": true,
+        "newArtifact": "bf602678f6c3b7935d1de4053afbe4b1346d0dbc984fa28011dbcf9b45878b1b"
+      },
+      "preview": {
+        "artifactId": "8f8c933b2e939632b2807e33ef21e18b9d3021052b67805b6f03472cf390e92f",
+        "catalogSha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+        "petCount": 96,
+        "controller": "http://127.0.0.1:64654/questnote-pwa-preview/service-worker.js?artifact=8f8c933b2e939632b2807e33ef21e18b9d3021052b67805b6f03472cf390e92f"
+      },
+      "offlineGrowthLesson": {
+        "chapter": "workshop",
+        "step": "craft",
+        "resumed": true
+      }
+    },
+    "cleanupOwnedOrigin": true
+  }
+}

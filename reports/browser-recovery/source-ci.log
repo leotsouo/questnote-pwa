@@ -1,0 +1,654 @@
+tests	UNKNOWN STEP	﻿2026-10-01T11:50:32.2340791Z Current runner version: '2.337.0'
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2366094Z ##[group]Runner Image Provisioner
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2367404Z Hosted Compute Agent
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2368015Z Version: 20260901.588
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2368647Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2369452Z Build Date: 2026-09-01T19:56:44Z
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2370176Z Worker ID: {200a393d-5c4a-4200-91b3-434c656b395f}
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2370910Z Azure Region: westus
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2371500Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2373038Z ##[group]Operating System
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2373796Z Ubuntu
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2374324Z 24.04.5
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2374878Z LTS
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2375410Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2375982Z ##[group]Runner Image
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2377072Z Image: ubuntu-24.04
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2377700Z Version: 20260927.320.1
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2379019Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2380657Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2381725Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2382844Z ##[group]GITHUB_TOKEN Permissions
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2385009Z Contents: read
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2385634Z Metadata: read
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2386533Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2388785Z Secret source: Actions
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2389713Z Cache mode: write
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2390520Z Prepare workflow directory
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2756427Z Prepare all required actions
+tests	UNKNOWN STEP	2026-10-01T11:50:32.2830065Z Getting action download info
+tests	UNKNOWN STEP	2026-10-01T11:50:32.6676100Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+tests	UNKNOWN STEP	2026-10-01T11:50:32.7810146Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+tests	UNKNOWN STEP	2026-10-01T11:50:32.9685700Z Complete job name: tests
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0560159Z ##[group]Run actions/checkout@v4
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0561043Z with:
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0561516Z   fetch-depth: 0
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0562349Z   repository: leotsouo/questnote-pwa
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0566874Z   token: ***
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0567341Z   ssh-strict: true
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0567781Z   ssh-user: git
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0568239Z   persist-credentials: true
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0568730Z   clean: true
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0569176Z   sparse-checkout-cone-mode: true
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0569698Z   fetch-tags: false
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0570153Z   show-progress: true
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0570597Z   lfs: false
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0571015Z   submodules: false
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0571469Z   set-safe-directory: true
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0571987Z   allow-unsafe-pr-checkout: false
+tests	UNKNOWN STEP	2026-10-01T11:50:33.0572853Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1576469Z Syncing repository: leotsouo/questnote-pwa
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1578341Z ##[group]Getting Git version info
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1579216Z Working directory is '/home/runner/work/questnote-pwa/questnote-pwa'
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1580291Z [command]/usr/bin/git version
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1663782Z git version 2.55.0
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1685385Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1698233Z Temporarily overriding HOME='/home/runner/work/_temp/2887d308-1b36-47c0-8e1d-5cb4a1fd2933' before making global git config changes
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1700278Z Adding repository directory to the temporary git global config as a safe directory
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1702888Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/questnote-pwa/questnote-pwa
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1759372Z Deleting the contents of '/home/runner/work/questnote-pwa/questnote-pwa'
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1763888Z ##[group]Initializing the repository
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1767640Z [command]/usr/bin/git init /home/runner/work/questnote-pwa/questnote-pwa
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1891290Z hint: Using 'master' as the name for the initial branch. This default branch name
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1893027Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1894979Z hint: to use in all of your new repositories, which will suppress this warning,
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1896694Z hint: call:
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1897938Z hint:
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1898989Z hint: 	git config --global init.defaultBranch <name>
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1899927Z hint:
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1900798Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1902239Z hint: 'development'. The just-created branch can be renamed via this command:
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1903377Z hint:
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1904007Z hint: 	git branch -m <name>
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1904613Z hint:
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1905276Z hint: Disable this message with "git config set advice.defaultBranchName false"
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1922681Z Initialized empty Git repository in /home/runner/work/questnote-pwa/questnote-pwa/.git/
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1932314Z [command]/usr/bin/git remote add origin https://github.com/leotsouo/questnote-pwa
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1979440Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1980333Z ##[group]Disabling automatic garbage collection
+tests	UNKNOWN STEP	2026-10-01T11:50:33.1983551Z [command]/usr/bin/git config --local gc.auto 0
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2016878Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2018285Z ##[group]Setting up auth
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2020500Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2053943Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2448103Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2478168Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2690638Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2719995Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2937723Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2973779Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2975543Z ##[group]Fetching the repository
+tests	UNKNOWN STEP	2026-10-01T11:50:33.2985155Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +a1acd1e504851934f0d05c4b667b21bbba46f755:refs/remotes/pull/36/merge
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3078411Z From https://github.com/leotsouo/questnote-pwa
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3081142Z  * [new branch]      codex/award-visual-experiment            -> origin/codex/award-visual-experiment
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3084059Z  * [new branch]      codex/bond-v351                          -> origin/codex/bond-v351
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3087032Z  * [new branch]      codex/card-pool-honeylight               -> origin/codex/card-pool-honeylight
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3089903Z  * [new branch]      codex/companion-feeding-entry            -> origin/codex/companion-feeding-entry
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3093010Z  * [new branch]      codex/consolidate-20260927               -> origin/codex/consolidate-20260927
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3096771Z  * [new branch]      codex/daily-reminder-design              -> origin/codex/daily-reminder-design
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3100339Z  * [new branch]      codex/embedded-browser-recovery          -> origin/codex/embedded-browser-recovery
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3103873Z  * [new branch]      codex/final-integration                  -> origin/codex/final-integration
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3107732Z  * [new branch]      codex/fix-achievement-notifications      -> origin/codex/fix-achievement-notifications
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3111827Z  * [new branch]      codex/fix-collection-swipe               -> origin/codex/fix-collection-swipe
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3116044Z  * [new branch]      codex/fix-home-world-seam                -> origin/codex/fix-home-world-seam
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3118968Z  * [new branch]      codex/fix-mailbox-layout                 -> origin/codex/fix-mailbox-layout
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3121710Z  * [new branch]      codex/font-release-evidence              -> origin/codex/font-release-evidence
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3124526Z  * [new branch]      codex/font-size-settings                 -> origin/codex/font-size-settings
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3127582Z  * [new branch]      codex/gameplay-evaluation                -> origin/codex/gameplay-evaluation
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3130354Z  * [new branch]      codex/honeylight-animation               -> origin/codex/honeylight-animation
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3133337Z  * [new branch]      codex/honeylight-release-evidence        -> origin/codex/honeylight-release-evidence
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3136692Z  * [new branch]      codex/marketing-install-evidence         -> origin/codex/marketing-install-evidence
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3139665Z  * [new branch]      codex/marketing-install-guide            -> origin/codex/marketing-install-guide
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3142344Z  * [new branch]      codex/mobile-scroll-only                 -> origin/codex/mobile-scroll-only
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3144797Z  * [new branch]      codex/one-tap-update                     -> origin/codex/one-tap-update
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3147614Z  * [new branch]      codex/pool-release-sop                   -> origin/codex/pool-release-sop
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3150301Z  * [new branch]      codex/questnote-marketing                -> origin/codex/questnote-marketing
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3153166Z  * [new branch]      codex/reminder-settings-polish           -> origin/codex/reminder-settings-polish
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3155936Z  * [new branch]      codex/share-brand-icon                   -> origin/codex/share-brand-icon
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3158989Z  * [new branch]      codex/share-marketing                    -> origin/codex/share-marketing
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3161806Z  * [new branch]      codex/share-marketing-evidence           -> origin/codex/share-marketing-evidence
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3164671Z  * [new branch]      codex/social-share-preview               -> origin/codex/social-share-preview
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3168018Z  * [new branch]      codex/social-share-release-evidence      -> origin/codex/social-share-release-evidence
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3171119Z  * [new branch]      codex/task-form-vertical-scroll          -> origin/codex/task-form-vertical-scroll
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3174031Z  * [new branch]      codex/three-theme-refinement             -> origin/codex/three-theme-refinement
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3177330Z  * [new branch]      codex/twilight-pet-prompt-position       -> origin/codex/twilight-pet-prompt-position
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3180309Z  * [new branch]      codex/twilight-safe-area                 -> origin/codex/twilight-safe-area
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3183314Z  * [new branch]      codex/update-announcements-20260927      -> origin/codex/update-announcements-20260927
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3186402Z  * [new branch]      codex/user-sharing                       -> origin/codex/user-sharing
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3189065Z  * [new branch]      codex/v3422-release-evidence             -> origin/codex/v3422-release-evidence
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3191964Z  * [new branch]      codex/workshop-gift-affinities           -> origin/codex/workshop-gift-affinities
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3194463Z  * [new branch]      gh-pages                                 -> origin/gh-pages
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3196714Z  * [new branch]      main                                     -> origin/main
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3199059Z  * [new tag]         codex/design-backup-v3.4.29-pages        -> codex/design-backup-v3.4.29-pages
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3201772Z  * [new tag]         codex/design-backup-v3.4.29-source       -> codex/design-backup-v3.4.29-source
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3204512Z  * [new tag]         codex/update-backup-v3.4.31-pages        -> codex/update-backup-v3.4.31-pages
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3207621Z  * [new tag]         codex/update-backup-v3.4.31-source       -> codex/update-backup-v3.4.31-source
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3210315Z  * [new ref]         a1acd1e504851934f0d05c4b667b21bbba46f755 -> pull/36/merge
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3214147Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3215724Z ##[group]Determining the checkout info
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3217841Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3218857Z [command]/usr/bin/git sparse-checkout disable
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3411974Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3484846Z ##[group]Checking out the ref
+tests	UNKNOWN STEP	2026-10-01T11:50:49.3487723Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/36/merge
+tests	UNKNOWN STEP	2026-10-01T11:50:50.3596472Z Updating files:  31% (653/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.3931084Z Updating files:  32% (666/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.3988569Z Updating files:  33% (687/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.4498125Z Updating files:  34% (708/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.4693052Z Updating files:  35% (729/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.5029258Z Updating files:  36% (750/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.5059715Z Updating files:  37% (770/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.5401328Z Updating files:  38% (791/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.5431312Z Updating files:  39% (812/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.5801559Z Updating files:  40% (833/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.5845641Z Updating files:  41% (854/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.6195310Z Updating files:  42% (875/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.6224589Z Updating files:  43% (895/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.6571788Z Updating files:  44% (916/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.6629395Z Updating files:  45% (937/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.6947625Z Updating files:  46% (958/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.7032051Z Updating files:  47% (979/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.7328108Z Updating files:  48% (999/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.7464649Z Updating files:  49% (1020/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.7702434Z Updating files:  50% (1041/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.7901478Z Updating files:  51% (1062/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8076918Z Updating files:  52% (1083/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8100521Z Updating files:  53% (1103/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8115374Z Updating files:  54% (1124/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8129412Z Updating files:  55% (1145/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8143332Z Updating files:  56% (1166/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8158528Z Updating files:  57% (1187/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8175148Z Updating files:  58% (1207/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8193809Z Updating files:  59% (1228/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8211825Z Updating files:  60% (1249/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8256580Z Updating files:  61% (1270/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8310331Z Updating files:  62% (1291/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8336241Z Updating files:  63% (1312/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8372401Z Updating files:  64% (1332/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8387899Z Updating files:  65% (1353/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8406256Z Updating files:  66% (1374/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8423394Z Updating files:  67% (1395/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8440544Z Updating files:  68% (1416/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8458723Z Updating files:  69% (1436/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8475267Z Updating files:  70% (1457/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8490347Z Updating files:  71% (1478/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8502436Z Updating files:  72% (1499/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8518256Z Updating files:  73% (1520/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8530669Z Updating files:  74% (1540/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8545959Z Updating files:  75% (1561/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8578070Z Updating files:  76% (1582/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8626759Z Updating files:  77% (1603/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8664506Z Updating files:  78% (1624/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8709176Z Updating files:  79% (1644/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8756527Z Updating files:  80% (1665/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8807962Z Updating files:  81% (1686/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8866805Z Updating files:  82% (1707/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8909795Z Updating files:  83% (1728/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.8948492Z Updating files:  84% (1749/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9145606Z Updating files:  85% (1769/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9157433Z Updating files:  86% (1790/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9204402Z Updating files:  87% (1811/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9634531Z Updating files:  88% (1832/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9649333Z Updating files:  89% (1853/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9723572Z Updating files:  90% (1873/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9792394Z Updating files:  91% (1894/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9821603Z Updating files:  92% (1915/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9846296Z Updating files:  93% (1936/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9865920Z Updating files:  94% (1957/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9883135Z Updating files:  95% (1977/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9901819Z Updating files:  96% (1998/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9928326Z Updating files:  97% (2019/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:50.9970361Z Updating files:  98% (2040/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0012035Z Updating files:  99% (2061/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0012893Z Updating files: 100% (2081/2081)
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0013522Z Updating files: 100% (2081/2081), done.
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0041339Z Note: switching to 'refs/remotes/pull/36/merge'.
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0041677Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0041964Z You are in 'detached HEAD' state. You can look around, make experimental
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0042612Z changes and commit them, and you can discard any commits you make in this
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0043244Z state without impacting any branches by switching back to a branch.
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0043614Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0043957Z If you want to create a new branch to retain commits you create, you may
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0044620Z do so (now or later) by using -c with the switch command. Example:
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0044968Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0045102Z   git switch -c <new-branch-name>
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0045336Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0045463Z Or undo this operation with:
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0045679Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0045790Z   git switch -
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0045953Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0046958Z Turn off this advice by setting config variable advice.detachedHead to false
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0047477Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0047964Z HEAD is now at a1acd1e Merge 41e234e79f9b1dfaf2ff9c6deca86b6a84aa3810 into 5ab101cbff464c5b0d2a255808db9e166d150834
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0113222Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0162602Z [command]/usr/bin/git log -1 --format=%H
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0185325Z a1acd1e504851934f0d05c4b667b21bbba46f755
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0467444Z ##[group]Run actions/setup-node@v4
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0467778Z with:
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0467987Z   node-version: 24
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0468198Z   cache: npm
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0468399Z   always-auth: false
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0468621Z   check-latest: false
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0471369Z   token: ***
+tests	UNKNOWN STEP	2026-10-01T11:50:51.0471579Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:51.1880873Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+tests	UNKNOWN STEP	2026-10-01T11:50:51.1885948Z (node:2305) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+tests	UNKNOWN STEP	2026-10-01T11:50:51.1887800Z (Use `node --trace-deprecation ...` to show where the warning was created)
+tests	UNKNOWN STEP	2026-10-01T11:50:51.1889070Z ##[group]Environment details
+tests	UNKNOWN STEP	2026-10-01T11:50:51.6498225Z node: v24.21.0
+tests	UNKNOWN STEP	2026-10-01T11:50:51.6498903Z npm: 11.19.0
+tests	UNKNOWN STEP	2026-10-01T11:50:51.6499298Z yarn: 1.22.22
+tests	UNKNOWN STEP	2026-10-01T11:50:51.6501344Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:51.6523190Z [command]/opt/hostedtoolcache/node/24.21.0/x64/bin/npm config get cache
+tests	UNKNOWN STEP	2026-10-01T11:50:51.8190917Z /home/runner/.npm
+tests	UNKNOWN STEP	2026-10-01T11:50:52.0873877Z Cache hit for: node-cache-Linux-x64-npm-f32da82c6ec8141681c7e011930a18d6333d6d55fd7550484d3d000eb7ef1430
+tests	UNKNOWN STEP	2026-10-01T11:50:52.0977523Z (node:2305) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+tests	UNKNOWN STEP	2026-10-01T11:50:53.3567154Z Received 4194304 of 65805898 (6.4%), 4.0 MBs/sec
+tests	UNKNOWN STEP	2026-10-01T11:50:53.9253970Z Received 65805898 of 65805898 (100.0%), 40.0 MBs/sec
+tests	UNKNOWN STEP	2026-10-01T11:50:53.9255309Z Cache Size: ~63 MB (65805898 B)
+tests	UNKNOWN STEP	2026-10-01T11:50:53.9320348Z [command]/usr/bin/tar -xf /home/runner/work/_temp/71133d1c-c473-4dda-a636-0af18e6e2499/cache.tzst -P -C /home/runner/work/questnote-pwa/questnote-pwa --use-compress-program unzstd
+tests	UNKNOWN STEP	2026-10-01T11:50:54.0600512Z Cache restored successfully
+tests	UNKNOWN STEP	2026-10-01T11:50:54.0639409Z Cache restored from key: node-cache-Linux-x64-npm-f32da82c6ec8141681c7e011930a18d6333d6d55fd7550484d3d000eb7ef1430
+tests	UNKNOWN STEP	2026-10-01T11:50:54.2372735Z ##[group]Run npm ci
+tests	UNKNOWN STEP	2026-10-01T11:50:54.2373113Z ^[[36;1mnpm ci^[[0m
+tests	UNKNOWN STEP	2026-10-01T11:50:54.7155895Z shell: /usr/bin/bash -e {0}
+tests	UNKNOWN STEP	2026-10-01T11:50:54.7156497Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:57.4989086Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:57.4999164Z added 52 packages, and audited 53 packages in 3s
+tests	UNKNOWN STEP	2026-10-01T11:50:57.4999564Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:57.4999800Z 9 packages are looking for funding
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5000201Z   run `npm fund` for details
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5602175Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5603164Z 3 vulnerabilities (2 moderate, 1 high)
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5603631Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5603826Z To address all issues, run:
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5604165Z   npm audit fix --force
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5604324Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5604467Z Run `npm audit` for details.
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5615404Z npm warn install-scripts 2 packages have install scripts not yet covered by allowScripts:
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5617017Z npm warn install-scripts   esbuild@0.28.1 (postinstall: node install.js)
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5618325Z npm warn install-scripts   workerd@1.20260925.1 (postinstall: node install.js)
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5619219Z npm warn install-scripts
+tests	UNKNOWN STEP	2026-10-01T11:50:57.5620459Z npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+tests	UNKNOWN STEP	2026-10-01T11:50:57.6228680Z ##[group]Run npm test
+tests	UNKNOWN STEP	2026-10-01T11:50:57.6228969Z ^[[36;1mnpm test^[[0m
+tests	UNKNOWN STEP	2026-10-01T11:50:57.6293419Z shell: /usr/bin/bash -e {0}
+tests	UNKNOWN STEP	2026-10-01T11:50:57.6293734Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:50:57.7488662Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:57.7489268Z > test
+tests	UNKNOWN STEP	2026-10-01T11:50:57.7495782Z > node --test devtools/font-size-settings.test.mjs devtools/workshop-gifts.test.mjs devtools/gameplay-improvement.test.mjs devtools/summon-perf.test.mjs devtools/backup-safety.test.mjs devtools/pool-content-contract.test.mjs devtools/gacha-transaction.test.mjs devtools/app-update.test.mjs devtools/release-safety.test.mjs devtools/release-artifact.test.mjs devtools/card-pool-pipeline.test.mjs devtools/pool-release-review.test.mjs devtools/verify-release-artifact.test.mjs devtools/preview-cache-recovery.test.mjs devtools/onboarding-flow.test.mjs devtools/feedback.test.mjs devtools/feedback-backend.test.mjs devtools/share-service.test.mjs devtools/reminders.test.mjs && node devtools/v343-reveal-flow-logic-test.mjs && node --test devtools/theme-preferences.test.mjs devtools/theme-design.test.mjs && node --test devtools/honeylight-animation.test.mjs
+tests	UNKNOWN STEP	2026-10-01T11:50:57.7501439Z 
+tests	UNKNOWN STEP	2026-10-01T11:50:57.8708975Z ✔ a complete asynchronous UI action blocks updates across gaps between writes, then unlocks (2.020028ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:57.9520214Z ✔ explicit update activates only the installed, pinned generation with one scoped caller; never claims (50.861435ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:57.9528477Z ✔ another app window vetoes activation, including uncontrolled and legacy clients (7.81767ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:57.9530259Z ✔ preview sibling clients do not block the production scope (7.379148ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:57.9532379Z ✔ missing cache, wrong artifact, active worker, wrong caller and legacy skip remain fail closed (10.095021ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:57.9540431Z ✔ bootstrap verifies new worker bytes installed at an old script URL before opening the DB/runtime (5.760443ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1152115Z ✔ verified historical exporters remain valid and migrate to complete snapshots (31.230797ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1157897Z ✔ pre-camp V3.4.17 backup remains importable without camp or new region fields (2.638428ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1204958Z ✔ partial current backup cannot masquerade as an older complete shape (1.731607ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1245435Z ✔ every current core field is required before normalization (8.67078ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1279371Z ✔ top-level/data and projected aliases must agree (4.673735ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1280846Z ✔ duplicate persistent keys and malformed nested records are rejected (8.944073ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1282512Z ✔ money, counters, booleans and dangerous object keys fail closed (13.486972ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1284051Z ✔ future/unknown partial formats are rejected with a compatibility explanation (0.785744ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1303297Z ✔ snapshot restoration does not roll historical quest dates forward or maximize draws (1.833528ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1305160Z ✔ empty nested state and ID-only rows cannot be silently normalized into defaults (14.424079ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1307128Z ✔ every serialized nested state field is required before legacy normalization (72.232868ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1308876Z ✔ malformed nested maps, date/counter values and missing fixed entries fail closed (9.794438ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1317595Z ✔ collection state cannot override trusted catalog presentation through companion merge (4.174681ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1347713Z ✔ valid daily, cancelled and weekly habit logs and item usage variants remain accepted (0.567033ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1349728Z ✔ active/completed expeditions preserve full reward records and reject partial rewards (14.952509ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1351433Z ✔ daily history supports check-in, wheel-only and combined persisted variants (4.824304ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1353045Z ✔ export preflight permits fresh/mixed legacy stores but refuses existing malformed state (2.851507ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:58.1355133Z ✔ claim markers that normalizers would discard or rewrite are rejected (1.771753ms)
+tests	UNKNOWN STEP	2026-10-01T11:50:59.5118750Z ✔ reviewed animation choice is hash-bound and cannot silently fall back to none (1542.708556ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:01.1056699Z ✔ glacier scaffold carries its reviewed animation and no expansion through staging (1596.619492ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:03.5383232Z ✔ synthetic pool SOP approves exact bytes, stages all catalogs and 512px variants, and deterministically resumes (2432.150606ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:05.4418484Z ✔ hash approval requires ordered reviews, preserves history and invalidates changed downstream content (1903.914922ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:06.2599417Z ✔ missing or modified approval snapshot blocks staging and is never silently recreated or overwritten (818.254527ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:06.3861249Z ✔ invalid economics, missing unlock, wrong gift, conflicting tags and pet IDs block approval (125.816101ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:06.5633537Z ✔ unreachable rarity, missing Lore and incomplete prompts block the candidate (177.04044ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:07.4998304Z ✔ assets require real complete square PNGs at least 512px and image changes revoke approval (935.974602ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:07.7054249Z ✔ pool and pet reservations survive separate drafts and concurrent init; dead lock is never stolen (205.713021ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:10.3170708Z ✔ baseline drift blocks stale workspaces and a reviewed source promotion preserves first pool in the next candidate (2611.709427ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:12.1542274Z ✔ reused candidate must match reproduced approved bytes, even if an altered catalog updates its self-hashes (1837.231478ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:12.9247857Z ✔ interrupted staging leaves approved sources usable and does not reuse a partial directory (770.510028ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:12.9511380Z ✔ authoring and image writers reject external and internal junctions without modifying their targets (26.466059ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:13.7633514Z ✔ CLI status, validation and dry-run use explicit fixture root and do not write reports or production files (811.756244ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:14.5154462Z ✔ new real workspace requires SOP and production pins; legacy workspaces still stage in their original format (752.036565ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:14.9953848Z ✔ SOP companion food, recipient, recipe, specialty and region assessment are hard content gates (480.087936ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:15.0778321Z ✔ selecting a new region cannot stage an unimplemented story or omit its actual milestone ladder (82.305091ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:16.0695927Z ✔ a complete new region uses actual runtime stories/discoveries/milestones and source-specialty behavior (991.639693ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:17.7620056Z ✔ companion hashes revoke downstream reviews, preserve candidates and detect baseline drift or policy downgrade (1692.381963ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2415444Z ✔ real SOP artwork requires explicit human reviewer; internal stages accept AI reviews (479.65799ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2730823Z ✔ anonymous report is durably inserted, retry is idempotent, altered payload cannot overwrite (75.181268ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2732410Z ✔ there is no public list or read endpoint; disallowed origins cannot send (4.080826ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2733795Z ✔ validation and streamed size limits reject bad input before database writes (4.210687ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2735388Z ✔ diagnostics allowlist and parameter binding prevent extra private fields and SQL injection (3.791509ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2736684Z {"event":"feedback_intake_failed"}
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2737858Z ✔ rate limit and database failure return retryable errors without false success (2.452008ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2739256Z ✔ daily cap prevents additional inserts but still acknowledges retries (27.78217ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2740666Z ✔ required fields reject whitespace and malformed persisted drafts recover safely (2.954831ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2742064Z ✔ drafts survive reload, can be cleared, and storage failures are reported (0.830326ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2743198Z ✔ diagnostics contain useful environment data without URLs, tasks or account data (0.52231ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2744377Z ✔ environment diagnostics require opt-in; reports have stable structure and an ID (5.811067ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2745233Z ✔ direct POST preserves special characters, omits credentials and verifies receipt (32.011254ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2745989Z ✔ long Chinese reports are submitted intact without URL length limits (1.008391ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2747394Z ✔ offline shell caches feedback modules and matches current version cache (14.273267ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2748733Z ✔ failed, rate-limited and malformed replies never count as accepted (7.812541ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2750356Z ✔ uncertain submissions reuse the exact payload after reload; receipt clears the draft (0.979367ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2751874Z ✔ old preferences use the original size; invalid font sizes cannot alter the scale (1.18909ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2753173Z ✔ applying a font size does not overwrite the selected theme (0.21347ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2754656Z ✔ backups preserve font size and gameplay; backups without the field restore the original size (26.975269ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2755886Z ✔ single and ten preserve public result shapes, wallet fields, and within-ten duplicates (9.151161ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2757121Z ✔ SSR and UR pity boundaries, resets, legacy standard mirrors, and other pools stay independent (1.913368ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2758820Z ✔ every rarity uses its existing duplicate compensation without erasing progression fields (2.348574ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2760337Z ✔ threshold single is locked; the next single can select an expanded candidate (1.299317ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2761896Z ✔ ten freezes every candidate before unlock and grants one actual-rarity gift after its results (1.145408ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2763597Z ✔ two new pools sharing expansion key keep separate gifts and preserve the legacy grant identity (16.480937ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2765020Z ✔ gift recovery reconciles markers once, repairs only missing pets, and never guesses lost fragments (1.710578ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2765938Z ✔ rejected content, insufficient money, overflow and bad RNG never mutate planner inputs (9.336358ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2768499Z ✔ planner accepts deeply frozen snapshots and changes no original counters, catalog or collection (0.708519ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2770126Z ✔ recommendations match each objective and outrank a stronger nonmatching companion (17.818966ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2771493Z ✔ recommendations exclude unowned and busy pets, cap at three, and prioritize specialty level (0.620474ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2772387Z ✔ empty matches do not claim other specialties are recommended; ties remain deterministic (1.190934ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2773140Z ✔ first forest journey uses one energy and three minutes only once (0.276729ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2773880Z ✔ one-star ordinary pet is useful and objectives make recognizable differences (0.833683ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2774648Z ✔ stars and team specialties improve the result without requiring high rarity (0.38378ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2775481Z ✔ every published region has the same milestone ladder and valid camp material references (1.496747ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2776608Z ✔ first-use eligibility requires an entirely empty profile before normal initialization (1.994701ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2777375Z ✔ saved step and practice task survive normalization for resume (0.439033ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2778149Z ✔ existing users retain core decisions and receive unstarted chapters without a welcome (1.735714ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2779019Z ✔ chapters preserve reading position and practice evidence independently of core progress (0.696757ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2779829Z ✔ understanding a chapter does not claim practice or complete other chapters (0.396514ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2780537Z ✔ only the matching successful action at the practice step counts (1.581014ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2781290Z ✔ switching chapters pauses the old one; back and replay retain completed practice (0.403837ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2782083Z ✔ malformed chapter data cannot activate multiple coaches or invent practice (0.277079ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2783125Z ✔ teaching previews handle absent resources, full stars, cooldown and changing catalogs without writes (3.902977ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2783930Z ✔ guide advances only from successful matching product actions (0.473848ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2784657Z ✔ creating a task after choosing to continue later attaches it to the reward step (0.280596ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2785390Z ✔ dismissed and paused guides never advance from background actions (0.467987ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2786090Z ✔ legacy golden economics and locked/unlocked candidates are unchanged (6.192934ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2787866Z ✔ legacy presentation preserves identity, heroes, cast order, and Chinese copy (2.654839ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2789467Z ✔ two unpublished pools with the same expansion key have independent grants and economics (1.502698ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2791193Z ✔ identity survives threshold changes and different pools cannot inherit legacy grants (1.762364ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2792869Z ✔ effective filtering is OR with no duplicates and never changes the input snapshot (0.808306ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2794255Z ✔ visual lock delays only presentation after a committed unlock (1.266786ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2795403Z ✔ zero active pools do not fall back to inactive content (0.738905ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2797035Z ✔ legacy special reveals and explicit templates are reusable without pool identity (1.09286ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2798383Z ✔ malformed pool 1: POOL_COST_INVALID (0.582282ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2799375Z ✔ malformed pool 2: POOL_COST_INVALID (3.764961ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2800303Z ✔ malformed pool 3: POOL_COST_INVALID (0.44209ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2801209Z ✔ malformed pool 4: POOL_COST_INVALID (0.814287ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2802182Z ✔ malformed pool 5: POOL_RATE_INVALID (0.242274ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2803103Z ✔ malformed pool 6: POOL_RATE_INVALID (0.25587ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2804022Z ✔ malformed pool 7: POOL_RATE_SUM (0.237385ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2804948Z ✔ malformed pool 8: POOL_RATE_SUM (0.144461ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2805989Z ✔ malformed pool 9: POOL_PITY_INVALID (0.177893ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2807199Z ✔ malformed pool 10: POOL_PITY_INVALID (0.155962ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2808279Z ✔ malformed pool 11: POOL_ACTIVE_INVALID (0.121738ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2809453Z ✔ malformed pool 12: POOL_ID_INVALID (0.122841ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2810854Z ✔ malformed pool 13: POOL_LIST_INVALID (0.246052ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2811916Z ✔ malformed pool 14: POOL_LIST_DUPLICATE (0.176531ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2814254Z ✔ malformed pool 15: POOL_LIST_ENTRY (0.133691ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2814915Z ✔ malformed pool 16: POOL_THEME_UNKNOWN (0.129123ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2815435Z ✔ malformed pool 17: POOL_ANIMATION_UNKNOWN (0.123672ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2815952Z ✔ malformed pool 18: POOL_THRESHOLD_INVALID (0.227687ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2816834Z ✔ malformed pool 19: POOL_PROGRESS_SCOPE (0.193883ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2817337Z ✔ malformed pool 20: POOL_EXPANSION_KEY (0.286577ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2817841Z ✔ malformed pool 21: POOL_UNLOCK_ANIMATION (0.246894ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2818327Z ✔ malformed pool 22: POOL_REFERENCE_MISSING (0.223679ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2818810Z ✔ malformed pool 23: POOL_REFERENCE_PHASE (0.270468ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2819281Z ✔ malformed pool 24: POOL_REFERENCE_PHASE (0.455895ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2820313Z ✔ malformed pool 25: POOL_EXPANSION_EMPTY (0.217558ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2821681Z ✔ draw count, malformed direct normalization, schema version, and catalog failures (0.990447ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2822630Z ✔ normal rates and pity reachable rarities each need valid candidates, including inactive pools (0.663364ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2823550Z ✔ presentation input remains inert plain text and unknown pet reveal templates are rejected (0.476033ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2824428Z ✔ published identity cannot disappear or silently change its gift; disabling is allowed (1.049859ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2825524Z ✔ all public model builders accept deeply frozen content and leave original catalog unchanged (1.623394ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2826704Z ✔ validator returns issues, without throwing, for malformed JSON-shaped field types (3.311ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2827489Z ✔ an unused tag is an error even when another tag supplies valid candidates (0.43188ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2828262Z ✔ legacy presentation adapters use canonical registry and reject unknown content (0.232617ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2829150Z ✔ glacier template validates independently of pool identity and preserves all base candidates (0.864711ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2829971Z ✔ reveal controller reuses explicit metadata and preserves legacy captions (0.375925ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2830788Z ✔ shared schema forwards all pool contract errors and preserves pet reveal metadata (3.193318ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2831685Z ✔ Builder preview keeps legacy shape and adds effective unlocked counts without throwing on errors (1.686442ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2832632Z ✔ read-only pool CLI reports valid official content and exits nonzero for wrong catalog shape (102.064043ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2833563Z ✔ whole-package acceptance and explicit release authorization are separate exact-package gates (2.680596ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2834513Z ✔ changes to either artifact, source, candidate or acceptance evidence invalidate the final approval (1.024101ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2835668Z ✔ actual legacy activation evicts preview; verified navigation, module and versioned bundle recover without lifecycle or DB effects (61.609244ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2837074Z ✔ legacy eviction followed by bad-hash never publishes unverified navigation, module or catalog bytes (11.285504ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2838530Z ✔ legacy eviction followed by http-503 never publishes unverified navigation, module or catalog bytes (4.146476ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2839530Z ✔ legacy eviction followed by offline never publishes unverified navigation, module or catalog bytes (3.765502ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2840593Z ✔ partial eviction repairs only the missing canonical asset and ignores caller query versions (3.981356ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2841405Z ✔ recovery never borrows another namespace or touches an out-of-scope URL (5.618657ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2842312Z ✔ two concurrent clients independently receive complete verified bytes and leave one canonical cache entry (9.310961ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2843680Z ✔ a racing wrong-generation response cannot overwrite another client’s verified repair (18.262327ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2844886Z ✔ source checkout has no profile or hashes: a cache miss fails closed without trusting a live URL (3.217694ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2845802Z ✔ release descriptor has no hash manifest: a cache miss fails closed without trusting a live URL (2.662724ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2847095Z ✔ release hash manifest omits this asset: a cache miss fails closed without trusting a live URL (2.432572ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2848090Z ✔ source checkout must not recover using stray hashes: a cache miss fails closed without trusting a live URL (2.480852ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2848911Z ▶ release artifact preparation is immutable, isolated and content complete
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2849568Z   ✔ dry-run validates without creating output or modifying source (651.107617ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2850267Z   ✔ production config, final-byte precache hashes and baseline files agree (979.951162ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2850960Z   ✔ identical inputs reuse identical artifact and preview is isolated (1403.767906ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2851752Z   ✔ recursive literal imports are discovered and missing imports fail before writes (597.828255ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2852505Z   ✔ another runtime validator cannot be certified using this checkout contract (359.700444ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2853256Z   ✔ later authoring promotion never changes the legacy URLs served to old clients (1139.046085ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2853995Z   ✔ bootstrap entrypoint and its dynamic app import are included in precache (325.773764ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2854827Z   ✔ missing image references and unsafe output roots are rejected (301.999003ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2855574Z   ✔ candidate hashes, additive identities and unchanged legacy catalogs are enforced (3042.532598ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2856900Z   ✔ existing artifact corruption and missing files are never overwritten (826.880934ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2857614Z   ✔ junction/symlink inputs and output roots are refused (39.513468ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2858381Z ✔ release artifact preparation is immutable, isolated and content complete (10242.471731ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2859266Z ✔ unavailable or browser-denied service workers provide recovery without loading product code (3.658721ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2860254Z ✔ release bootstrap opens no product code until controlled and refuses partial profiles or reload loops (0.936536ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2861230Z ✔ legacy or mismatched controlling worker cannot execute a new runtime before all old clients close (0.406923ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2862153Z ✔ first release installation failure and timeout reject without importing app or reloading (11.061193ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2862976Z ✔ release loader accepts exactly one hash-verified complete catalog generation (67.82716ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2863848Z ✔ incompatible, corrupt, partial and unavailable releases never fall back to mutable catalogs (48.904508ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2864738Z ✔ required precache 503 and digest mismatch abort installation before cache publication (50.602277ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2865631Z ✔ successful installation does not force activation, claim clients or honor old skip messages (15.614901ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2866855Z ✔ both production and preview activation preserve every other cache namespace (25.491872ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2867700Z ✔ verified shell serves one generation online/offline and never reads another scope (4.564589ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2868502Z ✔ mailbox HTTP 503 falls back only to the exact current-scope cache entry (4.357131ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2869294Z ✔ assembled releases reject debug query, local flags and test currency before any write (5.193633ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2870103Z ✔ legacy perf shortcut cannot create a diagnostic panel in assembled releases (2.313869ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2870956Z ✔ tomorrow crosses month/year, next local reminder respects current time and DST gaps/folds (37.793274ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2871834Z ✔ projection excludes completed/archive/private text and titles require explicit opt-in (1.881909ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2873032Z ✔ digest deduplicates date conditions, excludes completed habits and resets weekly goals across weeks (2.29341ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2873946Z ✔ subscription validation blocks arbitrary URL fetches and strips private payload fields (1.186575ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2874823Z ✔ anonymous credential protects state; sync is monotonic, idempotent and CORS is restricted (61.962479ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2875730Z ✔ parallel scheduler claims once, sends the current day and advances without a second notification (5.12958ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2877104Z ✔ empty and expired summaries do not send; subscription expiry disables reminders (12.03544ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2898215Z ✔ temporary failures retry at most three times and do not block the next day (9.687477ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2899189Z ✔ Web Push payload is encrypted and decrypts using only the receiving device key (12.960134ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2899980Z ✔ native share has one official website URL and no competing app preview (2.343285ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2900692Z ✔ unsupported sharing and user cancellation remain distinct (0.364494ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2901356Z ✔ copy uses Clipboard API and falls back when permission is denied (0.567705ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2902086Z ✔ retired App animation setting does not leave old profiles in reduced mode (1.60014ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2902795Z ✔ sized image paths are optional and originals remain the fallback (2.044023ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2903491Z ✔ preloads with the same URL share one in-flight Image and retry failures (0.730189ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2904409Z ✔ first reveal card loads before its stage upgrade and ten-pull thumbnails (10.294483ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2905182Z ✔ slow stage image does not hold up the first card or other ten-pull thumbnails (2.030568ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2905805Z ✔ a failed sized asset retries the original PNG (1.56773ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2906779Z ✔ collection redraw is deferred once and remains dirty if rendering throws (0.546154ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2907527Z ✔ preview Pages uses a separate IndexedDB from the live Pages app (3.683428ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2908158Z ✔ preview service worker leaves live Pages caches intact (3.827538ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2908882Z ▶ strict verifier accepts assembler output and rejects unsafe or inconsistent deployment bytes
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2909597Z   ✔ genuine production and preview assembler output and CLI pass (1818.349644ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2910145Z   ✔ all caller pins are mandatory and binding (8.603903ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2910659Z   ✔ extra, missing and untracked empty directories fail (733.139207ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2911224Z   ✔ nojekyll must be in both actual and pinned inventory (259.874376ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2911740Z   ✔ tampered bytes and forged byte counts fail (815.360536ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2912369Z   ✔ manifest traversal, Windows path aliases and self-inventory fail before use (1675.338826ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2913052Z   ✔ directory symlinks/junctions and linked ancestor roots fail (245.806904ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2913755Z   ✔ rehashed inconsistent runtime descriptor is rejected without executing it (562.314233ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2914409Z   ✔ rehashed index and webmanifest deployment changes fail (1675.373381ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2915055Z   ✔ rehashed SW descriptor, cache identity and registration changes fail (1517.353418ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2915680Z   ✔ rehashed precache digest or catalog edits cannot pass (940.223783ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2916718Z ✔ strict verifier accepts assembler output and rejects unsafe or inconsistent deployment bytes (11823.126612ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2917639Z ✔ growing food catalogs retain valid recipes, supported themes and explicit affinities (3.678778ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2918435Z ✔ original six IDs, effects and recipes preserve existing inventory economics (0.403985ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2919175Z ✔ fire affinity grants 150; dogs and misleading names cannot infer affinity (0.595173ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2920199Z ✔ multi-affinity partners match multiple gifts without stacking; ordinary honey stays universal (0.370322ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2921134Z ✔ recommendations prioritize eligible non-max partners then levels/exp/ID; daily limits stay last (0.895405ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2922120Z ✔ unknown affinity and zero favorite partners still allow basic gifts; universal lists never claim favorites (1.465249ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2922925Z ✔ item-first view requires explicit item and recipient selections (0.918497ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2923663Z ✔ exhaustion resets choices and preserves success; unowned recipient is discarded (0.476351ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2924471Z ✔ limited/busy confirmation is disabled; max-level and basic effects are explicit (1.086822ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2925249Z ✔ nickname HTML is escaped and old inventories/usage logs survive normalization (0.842986ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2926364Z ✔ actual source worker installs all real assets and serves gift modules/data with the network unavailable (63.926745ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2927019Z ℹ tests 219
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2927243Z ℹ suites 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2927461Z ℹ pass 219
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2927672Z ℹ fail 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2927898Z ℹ cancelled 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2928124Z ℹ skipped 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2928334Z ℹ todo 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.2928590Z ℹ duration_ms 20494.298321
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3160091Z PASS: semantic APP_VERSION
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3162647Z PASS: CACHE_NAME declared
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3163482Z PASS: SW CACHE_NAME matches app
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3164410Z PASS: SW precache summonRevealService
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3165352Z PASS: 寵物圖未進 precache
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3166380Z PASS: DB_VERSION=3
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3200755Z PASS: all original fields of 72 legacy pets remain unchanged; additive image variants are allowed
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3212811Z PASS: 72 legacy Lore entries remain unchanged after source promotion
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3217731Z PASS: complete modern pet/Lore identities match
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3218694Z PASS: standard=56 (got 56)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3219570Z PASS: eternal locked=12 (got 12)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3220403Z PASS: eternal unlocked=16
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3221092Z PASS: cost=100
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3221727Z PASS: pity unchanged
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3222382Z PASS: rates unchanged
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3223003Z PASS: introSkipped flag
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3223564Z PASS: skipIntroRitual
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3224220Z PASS: no skipped&&queue gate
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3224940Z PASS: revealQueueSkipped
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3225619Z PASS: advanceOnce
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3226469Z PASS: stopPropagation
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3227137Z PASS: queue keeps compensation
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3227751Z PASS: localhost guard
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3228458Z PASS: prod removes dev section
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3229065Z PASS: pendingAwakening
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3234177Z PASS: awakening after result
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3261930Z PASS: queue length 3 (got 3)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3262502Z PASS: duplicate petId preserved
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3262876Z PASS: UR third
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3263159Z PASS: original order indices
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3263475Z PASS: compensation retained
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3263766Z PASS: shouldPlayReveal
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3270703Z PASS: runtime APP_VERSION
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3271205Z PASS: runtime CACHE_NAME
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3271671Z PASS: SW URL matches version
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3271963Z 
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3272115Z ---
+tests	UNKNOWN STEP	2026-10-01T11:51:18.3272510Z All Node logic assertions passed.
+tests	UNKNOWN STEP	2026-10-01T11:51:18.4803656Z ✔ three save-compatible worlds only use authored wolf scenes for the actual wolf (1.658826ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.4827405Z ✔ text, status and action tokens retain AA contrast on their solid surfaces (6.063401ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.4890138Z ✔ three mobile scene assets decode, preserve 3:2 composition and fit the offline art budget (5.095522ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5048284Z ✔ one fixed primary icon has a real 1024 master and separate maskable safe margin (14.066109ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5050796Z ✔ new presentation dependencies and home art are included in the verified offline closure (1.801212ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5146540Z ✔ all three user themes survive preference normalization; legacy and unknown values fall back (1.647085ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5148390Z ✔ third theme backup restore preserves tasks, wallet, collection and progression exactly (24.285142ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5150015Z ✔ journey counts only actual today plans and today completions, including the empty state (0.387711ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5151000Z ✔ companion presentation escapes user names and does not pretend an empty collection owns a pet (0.679794ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5152134Z ✔ owned pets without a companion lead to collection instead of another summon (0.210702ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5153476Z ✔ home refresh replaces the empty summon entry when the first pet becomes owned (18.721532ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5153994Z ℹ tests 11
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5154212Z ℹ suites 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5154428Z ℹ pass 11
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5154639Z ℹ fail 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5154877Z ℹ cancelled 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5155104Z ℹ skipped 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5155324Z ℹ todo 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.5155571Z ℹ duration_ms 157.270334
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6078340Z ✔ sugar template dispatches with arbitrary pool identity; old default stays unthemed (1.621046ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6088877Z ✔ each UR reveal resolves from data and cannot be attached to a low rarity (0.424811ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6090892Z ✔ ten-pull queue preserves both URs, repeated characters and original positions (1.011983ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6092862Z ✔ sugar prelude is one bounded sequence per pull, with short reduced motion (0.347767ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6095197Z ✔ real 12-pet pool is registered and complete without unlock or altered economics (3.619844ms)
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6182187Z ℹ tests 5
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6184267Z ℹ suites 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6184727Z ℹ pass 5
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6185130Z ℹ fail 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6185538Z ℹ cancelled 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6185969Z ℹ skipped 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6186835Z ℹ todo 0
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6187301Z ℹ duration_ms 69.889437
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6367710Z ##[group]Run npm run pools:validate
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6368059Z ^[[36;1mnpm run pools:validate^[[0m
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6430977Z shell: /usr/bin/bash -e {0}
+tests	UNKNOWN STEP	2026-10-01T11:51:18.6431248Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7432232Z 
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7432589Z > pools:validate
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7433328Z > node scripts/validate-pool-content.mjs
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7433681Z 
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7776962Z {
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7777591Z   "ok": true,
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7778021Z   "errors": [],
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7778450Z   "warnings": [],
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7778867Z   "previews": [
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7779273Z     {
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7779660Z       "poolId": "standard",
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7780144Z       "locked": 56,
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7780541Z       "unlocked": 56
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7780915Z     },
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7781282Z     {
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7781711Z       "poolId": "eternal_slumber_bloom",
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7782343Z       "locked": 12,
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7782868Z       "unlocked": 16
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7783280Z     },
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7783664Z     {
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7784131Z       "poolId": "frost_oath_fjord",
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7784635Z       "locked": 12,
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7785079Z       "unlocked": 12
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7785539Z     },
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7785864Z     {
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7786620Z       "poolId": "honeylight_sugar_garden_v2",
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7787229Z       "locked": 12,
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7787707Z       "unlocked": 12
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7788112Z     }
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7788462Z   ]
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7788811Z }
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7910255Z ##[group]Run npm run images:check
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7910578Z ^[[36;1mnpm run images:check^[[0m
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7973636Z shell: /usr/bin/bash -e {0}
+tests	UNKNOWN STEP	2026-10-01T11:51:18.7973926Z ##[endgroup]
+tests	UNKNOWN STEP	2026-10-01T11:51:18.8971879Z 
+tests	UNKNOWN STEP	2026-10-01T11:51:18.8972337Z > images:check
+tests	UNKNOWN STEP	2026-10-01T11:51:18.8973028Z > node devtools/build-pet-images.mjs check
+tests	UNKNOWN STEP	2026-10-01T11:51:18.8973631Z 
+tests	UNKNOWN STEP	2026-10-01T11:51:22.1854126Z check: 96 pets × 2 sizes verified
+tests	UNKNOWN STEP	2026-10-01T11:51:22.2147114Z Post job cleanup.
+tests	UNKNOWN STEP	2026-10-01T11:51:22.3345419Z (node:3121) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+tests	UNKNOWN STEP	2026-10-01T11:51:22.3346813Z (Use `node --trace-deprecation ...` to show where the warning was created)
+tests	UNKNOWN STEP	2026-10-01T11:51:22.3349923Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-f32da82c6ec8141681c7e011930a18d6333d6d55fd7550484d3d000eb7ef1430, not saving cache.
+tests	UNKNOWN STEP	2026-10-01T11:51:22.3501643Z Post job cleanup.
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4339241Z [command]/usr/bin/git version
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4378296Z git version 2.55.0
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4414715Z Temporarily overriding HOME='/home/runner/work/_temp/0de70b02-b0d5-4589-a887-bbf1551eb863' before making global git config changes
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4416719Z Adding repository directory to the temporary git global config as a safe directory
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4420526Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/questnote-pwa/questnote-pwa
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4457060Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4490254Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4715348Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4742274Z http.https://github.com/.extraheader
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4752418Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+tests	UNKNOWN STEP	2026-10-01T11:51:22.4785285Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+tests	UNKNOWN STEP	2026-10-01T11:51:22.5004381Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+tests	UNKNOWN STEP	2026-10-01T11:51:22.5034009Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+tests	UNKNOWN STEP	2026-10-01T11:51:22.5414098Z Cleaning up orphan processes
+tests	UNKNOWN STEP	2026-10-01T11:51:22.5809126Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
