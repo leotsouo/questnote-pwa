@@ -1,0 +1,14 @@
+{
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\b17d7c169da54a430abd4f94cfefb1b8fdf8d5d55ec6625c4346042279b7c526",
+    "artifactId": "b17d7c169da54a430abd4f94cfefb1b8fdf8d5d55ec6625c4346042279b7c526",
+    "manifestSha256": "9c7b284c91d0072dfedc5cfe583da300bd6e1b43010b1f538faa08a66632e8a4",
+    "scopePath": "/questnote-pwa-preview/"
+  },
+  "production": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-swordwild-releases\\e47d05453691ab3f24f179ae0041f3880953a6849a146fb8200d3695a298b8da",
+    "artifactId": "e47d05453691ab3f24f179ae0041f3880953a6849a146fb8200d3695a298b8da",
+    "manifestSha256": "4fce45ad219d534393e24b6527485d95bd31222f96eb26e4c4d7ebf3d6836ffd",
+    "scopePath": "/questnote-pwa/"
+  }
+}

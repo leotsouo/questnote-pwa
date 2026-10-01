@@ -1,0 +1,114 @@
+{
+  "running": false,
+  "runId": "e3b3b506-fddb-4d0a-a208-62fd39534617",
+  "passed": 13,
+  "failed": 0,
+  "results": [
+    {
+      "name": "uncontrolled first boot rejects profile-null before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects index-marker-mismatch before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects missing503 before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects corrupt before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "known legacy network-first controller cannot start the new app before every legacy client closes",
+      "ok": true
+    },
+    {
+      "name": "direct first production visit verifies, activates, reloads, and initializes the actual app",
+      "ok": true
+    },
+    {
+      "name": "direct preview visit coexists with production using a separate database and controller",
+      "ok": true
+    },
+    {
+      "name": "SOP companion content drives actual crafting, favorite gifting and dispatch specialty in an isolated app",
+      "ok": true
+    },
+    {
+      "name": "old perf/debug shortcuts cannot expose diagnostics or grant test currency",
+      "ok": true
+    },
+    {
+      "name": "evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state",
+      "ok": true
+    },
+    {
+      "name": "cleared preview shell rebuilds verified bytes while two clients and persisted state survive",
+      "ok": true
+    },
+    {
+      "name": "both fully assembled cached apps and catalogs boot while all artifact HTTP responses are 503",
+      "ok": true
+    },
+    {
+      "name": "growth chapters remain usable and resume the saved step without the network",
+      "ok": true
+    }
+  ],
+  "observations": {
+    "profile-null": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+      "requests": 18,
+      "databaseNames": []
+    },
+    "index-marker-mismatch": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+      "requests": 18,
+      "databaseNames": []
+    },
+    "missing503": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+      "requests": 144,
+      "databaseNames": []
+    },
+    "corrupt": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+      "requests": 144,
+      "databaseNames": []
+    },
+    "production": {
+      "artifactId": "e47d05453691ab3f24f179ae0041f3880953a6849a146fb8200d3695a298b8da",
+      "catalogSha256": "cdfbea0dba172c49de6ffa5ae23fe2646c51ac10188aab4cf58fac504a172348",
+      "petCount": 116,
+      "controller": "http://127.0.0.1:53682/questnote-pwa/service-worker.js?artifact=e47d05453691ab3f24f179ae0041f3880953a6849a146fb8200d3695a298b8da"
+    },
+    "legacyTransition": {
+      "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+      "waitingBeforeClose": true,
+      "zeroDatabasesBeforeClose": true,
+      "newArtifact": "e47d05453691ab3f24f179ae0041f3880953a6849a146fb8200d3695a298b8da"
+    },
+    "preview": {
+      "artifactId": "b17d7c169da54a430abd4f94cfefb1b8fdf8d5d55ec6625c4346042279b7c526",
+      "catalogSha256": "cdfbea0dba172c49de6ffa5ae23fe2646c51ac10188aab4cf58fac504a172348",
+      "petCount": 116,
+      "controller": "http://127.0.0.1:53682/questnote-pwa-preview/service-worker.js?artifact=b17d7c169da54a430abd4f94cfefb1b8fdf8d5d55ec6625c4346042279b7c526"
+    },
+    "companionContent": {
+      "foodId": "item_pine_trail_riceball",
+      "petId": "pet_n36",
+      "specialty": "scout",
+      "craftedOnce": true,
+      "favoriteBondExp": 150,
+      "isolatedOnly": true
+    },
+    "offlineGrowthLesson": {
+      "chapter": "workshop",
+      "step": "craft",
+      "resumed": true
+    }
+  },
+  "cleanupOwnedOrigin": true
+}

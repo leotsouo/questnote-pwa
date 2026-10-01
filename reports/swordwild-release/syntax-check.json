@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "files": [
+    "devtools/backup-safety.test.mjs",
+    "devtools/gameplay-improvement.test.mjs",
+    "scripts/build-bond-stories.mjs",
+    "service-worker.js",
+    "src/backupSchema.js",
+    "src/expeditionGameplay.js",
+    "src/expeditionStatusService.js",
+    "src/explorationService.js",
+    "src/ui.js",
+    "src/version.js",
+    "devtools/swordwild-release-browser.mjs",
+    "devtools/swordwild-preview-https.mjs"
+  ]
+}
