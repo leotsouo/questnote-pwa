@@ -1,0 +1,122 @@
+{
+  "database": "QuestNoteTest-Onboarding-7968a8f3-ccf9-413f-ac20-7e482298a8b2",
+  "layout": [
+    {
+      "width": 320,
+      "theme": "default",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "theme": "default",
+      "font": 24,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "theme": "sweet",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "theme": "sweet",
+      "font": 24,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "theme": "twilight",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "theme": "twilight",
+      "font": 24,
+      "overflow": false
+    },
+    {
+      "width": 393,
+      "theme": "default",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 393,
+      "theme": "default",
+      "font": 24,
+      "overflow": false
+    },
+    {
+      "width": 393,
+      "theme": "sweet",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 393,
+      "theme": "sweet",
+      "font": 24,
+      "overflow": false
+    },
+    {
+      "width": 393,
+      "theme": "twilight",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 393,
+      "theme": "twilight",
+      "font": 24,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "default",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "default",
+      "font": 24,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "sweet",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "sweet",
+      "font": 24,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "twilight",
+      "font": 16,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "twilight",
+      "font": 24,
+      "overflow": false
+    }
+  ],
+  "objectives": [
+    "explore",
+    "gather",
+    "bond"
+  ],
+  "confirmed": [
+    "pet_n06"
+  ],
+  "errors": []
+}
