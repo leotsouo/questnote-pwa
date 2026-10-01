@@ -69,6 +69,7 @@ const PRECACHE_URLS = [
   'src/filterGestureController.js',
   'src/app.js',
   'src/bootstrap.js',
+  'src/bootstrapRecovery.js',
   'src/updateProtocol.js',
   'src/updateActivity.js',
   'src/updateController.js',
@@ -456,3 +457,5 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(networkFirstWithCache(request));
 });
+
+

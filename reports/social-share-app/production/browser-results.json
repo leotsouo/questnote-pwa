@@ -1,0 +1,50 @@
+[
+  {
+    "width": 393,
+    "theme": "default",
+    "font": 16,
+    "overflow": false,
+    "share": true,
+    "copy": true
+  },
+  {
+    "width": 393,
+    "theme": "default",
+    "font": 24,
+    "overflow": false,
+    "share": true,
+    "copy": true
+  },
+  {
+    "width": 393,
+    "theme": "twilight",
+    "font": 16,
+    "overflow": false,
+    "share": true,
+    "copy": true
+  },
+  {
+    "width": 393,
+    "theme": "twilight",
+    "font": 24,
+    "overflow": false,
+    "share": true,
+    "copy": true
+  },
+  {
+    "width": 393,
+    "theme": "sweet",
+    "font": 16,
+    "overflow": false,
+    "share": true,
+    "copy": true
+  },
+  {
+    "width": 393,
+    "theme": "sweet",
+    "font": 24,
+    "overflow": false,
+    "share": true,
+    "copy": true
+  }
+]
