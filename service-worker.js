@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v353-shanhe-scroll';
+const CACHE_NAME = 'questnote-preview-cache-v353-shanhe-xia';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -459,5 +459,4 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(networkFirstWithCache(request));
 });
-
 
