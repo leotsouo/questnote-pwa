@@ -1,0 +1,20 @@
+[
+  {
+    "ok": true,
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\standard-summon-release\\39c40c77e52fd738b90bbd3648f09f6309e59d6ea3e26fb16ce47ee14a0fb529",
+    "artifactId": "39c40c77e52fd738b90bbd3648f09f6309e59d6ea3e26fb16ce47ee14a0fb529",
+    "manifestSha256": "737db27a71c8abcff85fe8231a19b865ccddb5ed060b1b0726e35a1454122882",
+    "profile": "production",
+    "scopePath": "/questnote-pwa/",
+    "fileCount": 417
+  },
+  {
+    "ok": true,
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\standard-summon-release\\76c1f6ebb3230e6e8ff8eebf6f51c21e7b8ac41d05592a5e720474a3d10d7866",
+    "artifactId": "76c1f6ebb3230e6e8ff8eebf6f51c21e7b8ac41d05592a5e720474a3d10d7866",
+    "manifestSha256": "921e05bc413a4aab67a5c79e2d4f415b745adb956e61fb5dc968f5eb2e6d47f0",
+    "profile": "preview",
+    "scopePath": "/questnote-pwa-preview/",
+    "fileCount": 417
+  }
+]

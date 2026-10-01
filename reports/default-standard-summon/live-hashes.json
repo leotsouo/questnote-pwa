@@ -1,0 +1,57 @@
+[
+  {
+    "file": "release-artifact.json",
+    "sha256": "737db27a71c8abcff85fe8231a19b865ccddb5ed060b1b0726e35a1454122882",
+    "ok": true
+  },
+  {
+    "file": "index.html",
+    "sha256": "e006fb108767df47e8710c7f5ce10a4b648987a3be7858ee3c89332f71cf2fde",
+    "ok": true
+  },
+  {
+    "file": "src/app.js",
+    "sha256": "b81e2eeae614a53ca64ebf8b9a735598b83bf8aaca413b656239693b5e6ad2aa",
+    "ok": true
+  },
+  {
+    "file": "src/version.js",
+    "sha256": "b87834dfe561c5f7961d71b011a043ef10335c1f26b68a9635f4a2b7484be2cb",
+    "ok": true
+  },
+  {
+    "file": "service-worker.js",
+    "sha256": "e333a39a509354c81366b8ca3a80e3de76760852ecafc9f1cda82dffa02ddc3b",
+    "ok": true
+  },
+  {
+    "file": "src/releaseProfile.js",
+    "sha256": "3a6324f065a0dddaa935ec455810bf55beb77b126dabd31187945c1b4176e0ee",
+    "ok": true
+  },
+  {
+    "file": "src/gachaService.js",
+    "sha256": "d631816bfcb980ecbe502cbecf867e0adf65871d00d6ef4e70adce22df9c9bf9",
+    "ok": true
+  },
+  {
+    "file": "src/poolContentContract.js",
+    "sha256": "3c0553261ac787350bd3b552ae3dc228a685a7e5122bc4837ae1b47892d7c48d",
+    "ok": true
+  },
+  {
+    "file": "src/ui.js",
+    "sha256": "8edc7592d9efdc1a3031a24b5e8f24fafb9ed748789f4561883000d292a2a019",
+    "ok": true
+  },
+  {
+    "file": "data/global-mailbox.json",
+    "sha256": "2c252ab1b9a7303a580b6ffcf539865fd4599303b054879b4eb10b7e334909b6",
+    "ok": true
+  },
+  {
+    "file": "data/releases/8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df/catalog.json",
+    "sha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+    "ok": true
+  }
+]
