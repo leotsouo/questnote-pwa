@@ -218,7 +218,7 @@ p { text-wrap: pretty; }
 .install-guide { width: min(440px, calc(100% - 28px)); max-height: calc(100dvh - 40px); margin: auto; padding: 30px 24px 22px; border: 1px solid var(--line); border-radius: 22px; background: #f4f1e8; color: #213c39; overflow-y: auto; box-shadow: 0 24px 80px #08162555; }
 .install-guide::backdrop { background: #081625b8; }
 .install-guide-open { overflow: hidden; }
-.install-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: #213c39; font-size: 28px; cursor: pointer; }
+.install-close { position: sticky; float: right; top: 0; z-index: 1; margin: -12px -12px 0 0; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #f4f1e8; color: #213c39; font-size: 28px; cursor: pointer; }
 .install-brand { border-radius: 12px; margin-bottom: 18px; }
 .install-guide .eyebrow { margin-bottom: 10px; }
 .install-guide h2 { margin: 0 0 16px; font-size: clamp(26px, 7vw, 32px); line-height: 1.4; }

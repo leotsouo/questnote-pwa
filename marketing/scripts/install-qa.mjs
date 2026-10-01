@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 
-const base = process.env.QA_BASE_URL || 'http://127.0.0.1:8035';
+const base = process.env.QA_BASE_URL || 'http://127.0.0.1:8031';
 const phase = process.env.QA_PHASE || 'local';
 const output = path.resolve('../reports/marketing/install-guide', phase);
 await fs.mkdir(output, { recursive: true });
@@ -48,6 +48,11 @@ try {
     assert.equal(new URL(copied).pathname, '/questnote-pwa/');
     assert.equal(new URL(copied).searchParams.get('utm_source'), 'line');
     assert.match(await page.locator('#install-status').innerText(), /已複製/);
+    await dialog.evaluate(el => { el.scrollTop = el.scrollHeight; });
+    const closeBox = await page.locator('[data-close-install]').boundingBox();
+    const dialogBox = await dialog.boundingBox();
+    assert.ok(closeBox.y >= dialogBox.y && closeBox.y + closeBox.height <= dialogBox.y + dialogBox.height, 'close remains visible in a scrolled short dialog');
+    await dialog.evaluate(el => { el.scrollTop = 0; });
     await page.addScriptTag({ path: path.resolve('node_modules/axe-core/axe.min.js') });
     const accessibility = await page.evaluate(async () => window.axe.run(document.querySelector('#install-guide'), { runOnly: ['wcag2a', 'wcag2aa', 'wcag21aa'] }));
     assert.deepEqual(accessibility.violations.map(item => ({ id: item.id, targets: item.nodes.map(node => node.target) })), []);
