@@ -63,3 +63,7 @@ GitHub Ubuntu / Node 24 CI 也已通過相同 runtime snapshot 的 npm test、�
 ![offline](offline-complete-393.png)
 
 計畫與維護入口見 [v3.5.1-bond-plan.md](../../docs/v3.5.1-bond-plan.md)。本機 tracing 留在 ignored `.dev-backups/bond-v351/`。
+
+## 新手教學精簡設計審查（2026-10-01）
+
+目前本機預覽已加入一句核心提示、可展開完整規則、44px 操作目標與單欄章節。前後逐步截圖、250 項測試及本次證據範圍見 [教學設計審查](teaching-design-audit/README.md)。本段為後續設計迭代；上方較早的 artifact 與驗收記錄不代表這次教學優化已正式發布。
