@@ -17,8 +17,8 @@ const liveBytes = async (relative) => {
 };
 const baseline = JSON.parse(await liveBytes('release-artifact.json'));
 const baselineFiles = {};
-for (const relative of ['data/global-mailbox.json', 'data/craftables.json', 'data/pet-gift-affinities.json',
-  'data/dispatch-specialties.json', 'data/expeditions.json']) {
+for (const relative of ['data/global-mailbox.json', 'data/craftables.json', 'data/gift-affinities.json',
+  'data/materials.json', 'data/expeditions.json']) {
   const bytes = await liveBytes(relative);
   assert.equal(hash(await fs.readFile(path.join(projectRoot, relative))), hash(bytes), `${relative}: source must preserve live content`);
   baselineFiles[relative] = hash(bytes);
