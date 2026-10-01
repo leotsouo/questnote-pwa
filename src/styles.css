@@ -18124,6 +18124,7 @@ body[data-theme] #app #view-workshop .workshop-gift-preview__levelup { color: va
 .onboarding-dock__footer .onboarding-more { flex: 1; min-width: 0; margin: 0; border: 0; }
 .onboarding-dock__footer .onboarding-dock__skip { min-width: 44px; min-height: 44px; flex-shrink: 0; margin: 0; }
 .guide-chapter__help p { margin: 0 0 12px; }
+#guide-chapters { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 600px) {
   #guide-chapters { grid-template-columns: minmax(0, 1fr); }
   #guide-chapters .guide-chapter { padding: 16px 20px; }
