@@ -6,6 +6,7 @@ import { SNAPSHOT_KEYS, validateSnapshotData, validateStoredSnapshot } from '../
 import { normalizeExpedition, calculateExpeditionRewards } from '../src/expeditionService.js';
 import { COLLECTION_MILESTONE_DEFINITIONS } from '../src/collectionMilestoneService.js';
 import { createBondJourney } from '../src/bondJourneyCore.js';
+import { createPetAwakening } from '../src/petAwakeningCore.js';
 import { EXPLORATION_AREA_IDS } from '../src/explorationService.js';
 
 const fixture = (version) => JSON.parse(readFileSync(new URL(`./fixtures/backups/legacy-${version}.json`, import.meta.url), 'utf8'));
@@ -15,7 +16,7 @@ const canonical = () => {
   return { app: 'QuestNote', version: 2, appVersion: '3.4.4', exportedAt: raw.exportedAt,
     data: Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key,
       key === 'campProgress' ? { key, level: 0, upgradedAt: null }
-        : key === 'bondJourney' ? createBondJourney() : raw.data[key]])) };
+        : key === 'bondJourney' ? createBondJourney() : key === 'petAwakening' ? createPetAwakening() : raw.data[key]])) };
 };
 // Serialized fields match startExpedition/claimExpeditionRewards at a0936fc and
 // current HEAD; reward values come from the actual calculator, with fixed ranges.

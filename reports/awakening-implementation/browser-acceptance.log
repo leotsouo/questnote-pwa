@@ -1,0 +1,11 @@
+PASS actual app starts; all twenty awakening entries load without existing save changes
+PASS owned + Lv5 + claimed Lv5 gates and existing eligible progression
+PASS real task undo/recomplete keeps one credit; simultaneous daily companion agreement proceeds
+PASS pause/switch/resume retains progress and excludes paused or used completions
+PASS wrong region and absent participant do not count; actual team cloudrest claim yields exactly one token
+PASS missing materials preserves trial; failed native transaction rolls back both ritual writes
+PASS two tabs race for ritual: one success, one food/token consumption, preserved wallet and no auto-title equip
+PASS actual mobile reader switches forms, replays/escapes animation, and remembers form after reload
+PASS backup export/restore retains titles, progress and forms; malformed import does not overwrite
+PASS all twenty stage portraits load; reduced/normal scenes are replayable visual-only and canonical art unchanged
+Awakening acceptance: 10 checks passed
