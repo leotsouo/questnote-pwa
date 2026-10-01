@@ -21,7 +21,7 @@
   "checks": {
     "animation": {
       "status": "pass",
-      "evidence": "reports/swordwild-release/pool-browser.json: actual UR/SSR order with repeated UR, reduced motion, Enter/Escape, fallback, debut, prelude skip and rapid clicks; snapshot unchanged by visuals. Interactive playback opened for human review: http://127.0.0.1:57566/animation-review/; reports/swordwild-release/animation-review-browser.json verifies 12 replay scenarios, all 7 SSR/UR images, 320px layout and no IndexedDB created, directly using pinned preview artifact 472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e."
+      "evidence": "reports/swordwild-release/pool-browser.json: actual UR/SSR order with repeated UR, reduced motion, Enter/Escape, fallback, debut, prelude skip and rapid clicks; snapshot unchanged by visuals."
     },
     "workshop": {
       "status": "pass",

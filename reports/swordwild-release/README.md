@@ -28,6 +28,14 @@
 - candidate：`c1b379187f0d7b8cf5ccb01647a90344dfea30154eed448b698d1ebff8ee4dcd`。
 - preview artifact：`472a10006cb4d729a4bb090c29d06f75a7e96e742a23de017c00c6230bbb532e`。
 - production artifact：`d27c486d68150000f0b041d9cd4b379470850d1b3b1636731dce5c401056d589`（尚未發布）。
-- packageHash：`a4e2693de818076bbf1cc135972495b35508c00133e22956d7bd739204750839`。
+- packageHash：`334a2278ba163d65202b3d01914ebb3b50575101b79e945350391bdc1c4227a1`。
 
 使用者對這一整包驗收及明確同意發布後，才把相同packageHash寫入humanAcceptance及publicationAuthorization，重跑poolReleaseReview，取得releaseReady:true後合併來源及推送正式產物。沒有冒用圖片認可作為整包或正式發布同意。
+
+## 可播放的動畫檢視
+
+已主動開啟[動畫檢視頁](http://127.0.0.1:57566/animation-review/)：完整入場、切換短轉場、可選角色的單抽、含三UR與重複角色的十連，以及三UR／四SSR的逐隻揭露，皆可重播；可切換減少動態。直接讀取待發布 artifact 的實際模組、樣式與資料，沒有改製動畫或替代效果。
+
+[播放頁實測](animation-review-browser.json)：12個播放情境通過，7張SSR/UR圖載入，320px無橫向溢出，沒有建立IndexedDB或執行真實抽卡。SOP已加入必須開啟動畫供使用者檢視的交付步驟，此檢視屬於既有最終整包驗收。
+
+僅新增檢視工具與SOP；原preview及production產物bytes不變。最終animation evidence加入可播放頁，故packageHash更新，前一份未獲人工驗收的review/gate保存在 `*-before-animation-viewer.json`。尚未取得「可以發布」，正式產物不推送。

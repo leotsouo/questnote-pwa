@@ -103,6 +103,14 @@ candidate 保存原 companion baseline bytes、審核輸入與合併後 companio
 
 在隔離 preview 實際驗證：入場／單抽／十連／SSR／UR 順序與重複角色、各階段略過／連點／鍵盤／減少動態／圖片失敗與中斷；工坊製作→選角送禮；逐隻專長與派遣效果；新增地區解鎖→派遣→領獎→里程碑；無重抽／重複扣款／領獎、存檔相容及 service worker 更新。不要操作正式玩家 DB 或把 synthetic 測試結果當成實際卡池驗收。
 
+### 開啟動畫，讓使用者實際檢視
+
+最終整包驗收前，必須製作並主動開啟可操作的動畫檢視頁，提供可重開的連結。不能只交文字說明、靜態卡圖或自動測試紀錄，也不能要求使用者耗費星塵、抽到稀有角色才能檢視。這項檢視屬於既有人工最終驗收，不另設第三次人工關卡。
+
+播放頁直接使用待發布 artifact 的實際動畫模組、樣式、卡圖與 presentation 資料，標示 artifact ID；展示用固定結果與真實抽卡交易分開，不呼叫抽卡、扣款、收藏、保底或補償 API。至少提供完整入場、短轉場、單抽、十連、每一隻 UR，以及所有有演出的 SSR；十連包含重複角色以查看揭露順序。提供正常／減少動態切換、重播、略過與繼續操作。
+
+明確標示哪些演出為新作、沿用或沒有動畫；沿用時說明實際場景與文案，不把改名或換圖說成專屬動畫。先確認播放按鈕可用、圖片載入、手機版面與播放後可再次操作，再開啟頁面請使用者檢視。在 `checks.animation.evidence` 記錄播放頁、artifact ID 及實測紀錄，與最終整包的 `packageHash` 一起驗收；若使用者要求修改動畫，重建受影響產物並檢視最新版本後才能發布。
+
 final review JSON 包含 `schemaVersion: 1`、`sourceCommit`、`candidateId`、`candidateManifestSha256`、`previewUrl`、`artifacts.preview/production`（`artifactDir`、`artifactId`、`manifestSha256`、`scopePath`），及 `checks.animation/workshop/specialties/region/transactions/serviceWorker`（`status: pass`、實際 `evidence`；沿用地區可 `status: reuse`）。
 
 執行 `node scripts/poolReleaseReview.mjs <evidence.json>`，取得綁定整包的 `packageHash`。人工最終驗收寫入 `humanAcceptance: { reviewer, acceptedAt, packageHash }`；明確發布授權寫入 `publicationAuthorization: { reviewer, approvedAt, packageHash, phrase: '可以發布' }`。同一次明確整包驗收與發布同意可記錄兩者；沒有明確發布同意就等待，不多設前期人工關卡。

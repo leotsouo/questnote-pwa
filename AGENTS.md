@@ -8,6 +8,8 @@ Apply the SOP's story-to-art workflow to every rarity: recognizable signature, m
 
 AI owns planning/content/prompts reviews after the fixed three-question interview. Human review is artwork and final whole-package acceptance; explicit 可以發布 is required before merge/formal push. Default 12 adjustable pets, one mandatory new food, every pet's gift affinity and dispatch specialty, and an explicit add/reuse expedition assessment. Inspect installed applicable image plugins and prefer confirmed no-extra-cost tools; do not invoke unknown-cost or paid services. Preserve legacy workspaces and Honeylight; the new policy is prospective.
 
+Before final pool acceptance, open an interactive animation review page using the pinned artifact's actual modules, styles and presentation. Include debut, short transition, single/ten pulls, every UR and animated SSR, reduced motion and replay. Use fixed display results without calling draw, wallet or collection APIs; record the viewer and artifact in final animation evidence.
+
 ## Shared source and collaboration
 
 Read `docs/project-governance.md` for current branch roles and ownership. Start from current `origin/main` in a clean checkout. The old root `codex/card-pool-pipeline` checkout and historical worktrees contain preserved drafts and older snapshots; never copy their complete trees over main. Inspect both commits and uncommitted files before declaring any worktree merged or deleting it.
