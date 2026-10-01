@@ -2,7 +2,11 @@
 
 [PR #30](https://github.com/leotsouo/questnote-pwa/pull/30) 已合併，正式 Pages commit `09f1b66`、[run 36881650163](https://github.com/leotsouo/questnote-pwa/actions/runs/36881650163) 成功。417 個 Git blobs、254 項 Node 測試、12 項原生 artifact 驗收、11 項親密度瀏覽器驗收及 24 個正式 HTTPS 雜湊通過。保留 V3.4.42 的修正、96 位角色／四卡池與信箱。既有正式瀏覽器偵測 verified waiting 更新，另一個視窗阻擋套用；未清除存檔。[完整發布收據](../reports/bond-v351/production-release/README.md)。
 
-# V3.4.40 探險目標與專長推薦已發布 — 2026-10-01
+# V3.5.4 今日任務可直接完成每日習慣 — 2026-10-02
+
+[PR #44](https://github.com/leotsouo/questnote-pwa/pull/44) 已經 CI 合併至 main（`38288b3`）。每日習慣現在直接列在「任務 → 今日」，支援完成、取消、進度及管理入口，兩頁共用紀錄與既有獎勵規則。正式 artifact `1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842`，gh-pages `5d971c0bc65b99e6455b1237f483aa6c968159a9`，[Pages run 36930403527](https://github.com/leotsouo/questnote-pwa/actions/runs/36930403527) 成功。489 個 Git blob、13 項原生產物瀏覽器檢查、98 個 HTTPS 雜湊與 27 組習慣排版檢查通過；維持既有 116 位寵物／5 卡池、公開信箱及配方／探險資料。詳見 [發布收據](../reports/today-habits/production-release.md)。
+
+## V3.4.40 探險目標與專長推薦已發布 — 2026-10-01
 
 [PR #34](https://github.com/leotsouo/questnote-pwa/pull/34) 已合併至 main，來源提交 `e31638dab2f49313d39f9af34fab79185cfaf3e6`。正式產物 `8c0d2bdc8c2314fd2f665ea877fe337211580800d4db1f864ea5000a320c8b24` 的 410 個檔案通過逐一雜湊核對；gh-pages 提交 `964d9fa20ddc28fcb68207eee213534f0245bbd7` 的 [Pages run 36874334932](https://github.com/leotsouo/questnote-pwa/actions/runs/36874334932) 成功，13 個正式 HTTPS 檔案雜湊讀回吻合，12 項原生產物瀏覽器驗收通過。保留正式 96 隻寵物、4 個卡池與既有公開信箱。詳見[正式發布收據](../reports/expedition-recommendations/production-release.md)。
 
