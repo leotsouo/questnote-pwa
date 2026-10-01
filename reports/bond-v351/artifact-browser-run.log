@@ -1,0 +1,49 @@
+{
+  "passed": 12,
+  "failed": 0,
+  "observations": {
+    "profile-null": {
+      "failure": "發布檔案版本不一致，請稍後重新開啟。重新載入",
+      "requests": 16,
+      "databaseNames": []
+    },
+    "index-marker-mismatch": {
+      "failure": "發布檔案版本不一致，請稍後重新開啟。重新載入",
+      "requests": 16,
+      "databaseNames": []
+    },
+    "missing503": {
+      "failure": "必要檔案驗證失敗，請稍後重試。重新載入",
+      "requests": 140,
+      "databaseNames": []
+    },
+    "corrupt": {
+      "failure": "必要檔案驗證失敗，請稍後重試。重新載入",
+      "requests": 140,
+      "databaseNames": []
+    },
+    "production": {
+      "artifactId": "cbadd4b1789bfca0cee65ceac1e5353751a2de5ea263c00955653d6264589c61",
+      "catalogSha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+      "petCount": 96,
+      "controller": "http://127.0.0.1:58306/questnote-pwa/service-worker.js?artifact=cbadd4b1789bfca0cee65ceac1e5353751a2de5ea263c00955653d6264589c61"
+    },
+    "legacyTransition": {
+      "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+      "waitingBeforeClose": true,
+      "zeroDatabasesBeforeClose": true,
+      "newArtifact": "cbadd4b1789bfca0cee65ceac1e5353751a2de5ea263c00955653d6264589c61"
+    },
+    "preview": {
+      "artifactId": "099c9e88f51393a8896d971dfe52e02bac01bafc92a5bac9341b56eaf5e99a86",
+      "catalogSha256": "8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df",
+      "petCount": 96,
+      "controller": "http://127.0.0.1:58306/questnote-pwa-preview/service-worker.js?artifact=099c9e88f51393a8896d971dfe52e02bac01bafc92a5bac9341b56eaf5e99a86"
+    },
+    "offlineGrowthLesson": {
+      "chapter": "workshop",
+      "step": "craft",
+      "resumed": true
+    }
+  }
+}

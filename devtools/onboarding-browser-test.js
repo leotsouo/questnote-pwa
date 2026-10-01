@@ -107,7 +107,7 @@ runButton.addEventListener('click', async () => {
       const before = await businessState();
       for (const id of ['stars', 'bond', 'expedition', 'workshop']) {
         await chapter(id);
-        for (let step = 0; step < 3; step++) {
+        for (let step = 0; step < (id === 'bond' ? 6 : 3); step++) {
           await action('lesson-locate'); geometry();
           await action('lesson-next');
         }
@@ -156,6 +156,12 @@ runButton.addEventListener('click', async () => {
       assert((await services.collectionService.getPetCollection(pet.id)).bondExp === 5, 'Wrong pet reward');
       assert(get('[data-action="companion-pet"]').disabled, 'Cooldown missing');
       await action('lesson-next');
+      for (const step of ['story', 'agreement', 'keepsake']) {
+        assert((await record()).lessons.bond.step === step, `Missing journey teaching: ${step}`);
+        await action('lesson-locate');
+        assert(get(`.collection-card[data-pet-id="${pet.id}"]`), 'Story target missing');
+        await action('lesson-next');
+      }
       assert((await record()).lessons.bond.status === 'practiced', 'Bond chapter incomplete');
       await closeSummary();
     });

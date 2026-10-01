@@ -1,0 +1,110 @@
+[
+  {
+    "client": 284,
+    "coachBottom": 558,
+    "coachTop": 272.5,
+    "height": 640,
+    "navTop": 568,
+    "pageWidth": 305,
+    "scroll": 284,
+    "targets": [
+      {
+        "height": 44,
+        "text": "收起"
+      },
+      {
+        "height": 44,
+        "text": "稍後"
+      },
+      {
+        "height": 44,
+        "text": "查看獎勵"
+      },
+      {
+        "height": 44,
+        "text": "完成教學"
+      },
+      {
+        "height": 44,
+        "text": "想了解更多"
+      },
+      {
+        "height": 44,
+        "text": "上一步"
+      }
+    ],
+    "width": 320
+  },
+  {
+    "client": 292,
+    "coachBottom": 762,
+    "coachTop": 468.5,
+    "height": 844,
+    "navTop": 772,
+    "pageWidth": 375,
+    "scroll": 292,
+    "targets": [
+      {
+        "height": 44,
+        "text": "收起"
+      },
+      {
+        "height": 44,
+        "text": "稍後"
+      },
+      {
+        "height": 44,
+        "text": "查看獎勵"
+      },
+      {
+        "height": 44,
+        "text": "完成教學"
+      },
+      {
+        "height": 44,
+        "text": "想了解更多"
+      },
+      {
+        "height": 44,
+        "text": "上一步"
+      }
+    ],
+    "width": 390
+  },
+  {
+    "client": 292,
+    "coachBottom": 818,
+    "coachTop": 524.5,
+    "height": 900,
+    "navTop": 828,
+    "pageWidth": 1265,
+    "scroll": 292,
+    "targets": [
+      {
+        "height": 44,
+        "text": "收起"
+      },
+      {
+        "height": 44,
+        "text": "稍後"
+      },
+      {
+        "height": 44,
+        "text": "查看獎勵"
+      },
+      {
+        "height": 44,
+        "text": "完成教學"
+      },
+      {
+        "height": 44,
+        "text": "想了解更多"
+      },
+      {
+        "height": 44,
+        "text": "上一步"
+      }
+    ],
+    "width": 1280
+  }
+]

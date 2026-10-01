@@ -1,0 +1,46 @@
+{
+  "steps": [
+    {
+      "bottom": 682,
+      "height": 380,
+      "step": "agreement",
+      "top": 302
+    },
+    {
+      "bottom": 682,
+      "height": 380,
+      "step": "story",
+      "top": 302
+    },
+    {
+      "bottom": 682,
+      "height": 380,
+      "step": "unlocks",
+      "top": 302
+    },
+    {
+      "bottom": 682,
+      "height": 380,
+      "step": "pet",
+      "top": 302
+    },
+    {
+      "bottom": 682,
+      "height": 380,
+      "step": "sources",
+      "top": 302
+    },
+    {
+      "bottom": 682,
+      "height": 380,
+      "step": "keepsake",
+      "top": 302
+    }
+  ],
+  "narrowReward": {
+    "bottom": 558.0000152587891,
+    "height": 332.8000183105469,
+    "step": "keepsake",
+    "top": 225.1999969482422
+  }
+}

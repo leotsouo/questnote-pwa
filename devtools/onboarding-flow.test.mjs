@@ -12,6 +12,60 @@ import { LESSONS, getLessonStepContent, getLessonAvailability } from '../src/onb
 
 const emptySnapshot = () => ({ tasks: [], meta: [], collection: [], expeditions: [], habits: [] });
 
+test('each lesson leads with a short action and preserves its rules behind disclosure', () => {
+  for (const lesson of LESSONS) {
+    for (const step of lesson.steps) {
+      const content = getLessonStepContent(lesson.id, step, {});
+      assert.ok(content.brief.length <= 60, `${lesson.id}/${step} is too dense`);
+      assert.ok(content.tips.length && content.tips.every((tip) => typeof tip === 'string' && tip.length));
+    }
+  }
+  assert.match(getLessonStepContent('bond', 'agreement').tips.join(' '), /1、2、3、5/);
+  assert.match(getLessonStepContent('bond', 'agreement').tips.join(' '), /接受前與暫停/);
+  assert.match(getLessonStepContent('bond', 'keepsake').tips.join(' '), /全角色合計每天一次/);
+});
+
+test('bond teaching covers the journey without requiring story rewards or a level upgrade', () => {
+  const lesson = LESSONS.find((entry) => entry.id === 'bond');
+  let state = startLesson(normalizeOnboardingState({ status: 'completed' }), 'bond');
+  for (const step of lesson.steps) {
+    assert.equal(state.lessons.bond.step, step);
+    assert.ok(getLessonStepContent('bond', step, {}).body);
+    state = advanceLesson(state);
+  }
+  assert.equal(state.lessons.bond.status, 'understood');
+  assert.match(getLessonStepContent('bond', 'unlocks').body, /領取前一章/);
+  assert.match(getLessonStepContent('bond', 'story').body, /沒有標準答案/);
+  const agreement = getLessonStepContent('bond', 'agreement').body;
+  assert.match(agreement, /1、2、3、5 個不同日期/);
+  assert.match(agreement, /接受前或暫停期間/);
+  assert.match(agreement, /同時只能有一個約定/);
+  assert.match(agreement, /換目標會從零/);
+  const rewards = getLessonStepContent('bond', 'keepsake').body;
+  assert.match(rewards, /30、50、70、100 星塵/);
+  assert.match(rewards, /20 星塵/);
+  assert.match(rewards, /換寵物也不會增加/);
+});
+
+test('existing bond lesson progress resumes and its entry targets the owned companion', () => {
+  const state = normalizeOnboardingState({ activeLesson: 'bond', lessons: {
+    bond: { status: 'active', step: 'unlocks', practiced: ['pet'] },
+  } });
+  const next = advanceLesson(state);
+  assert.equal(next.lessons.bond.step, 'story');
+  assert.deepEqual(next.lessons.bond.practiced, ['pet']);
+  const appState = { companion: { id: 'pet_n02' }, enrichedCollection: [
+    { id: 'pet_n01', owned: true }, { id: 'pet_n02', owned: true },
+  ] };
+  const before = JSON.stringify(appState);
+  for (const step of ['unlocks', 'story', 'agreement', 'keepsake']) {
+    const content = getLessonStepContent('bond', step, appState);
+    assert.equal(content.target.petId, 'pet_n02');
+    assert.match(content.selector, /pet_n02/);
+  }
+  assert.equal(JSON.stringify(appState), before);
+});
+
 test('first-use eligibility requires an entirely empty profile before normal initialization', () => {
   assert.equal(isPristineOnboardingSnapshot(emptySnapshot()), true);
   for (const store of Object.keys(emptySnapshot())) {
