@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "swordwild_shanhe_v3",
+  "seriesName": "劍隱山河",
+  "description": "雲棧古道上的二十位珍禽異獸，以守諾、傳承、行旅與知己寫成一段沒有掌門的江湖。從武俠小說中的動物與武林象徵取材，創作屬於 QuestNote 的原創夥伴、山路與故事。",
+  "rarityPlan": {
+    "N": 3,
+    "R": 5,
+    "SR": 5,
+    "SSR": 4,
+    "UR": 3
+  },
+  "releaseVersion": "3.5.2"
+}

@@ -51,6 +51,26 @@ test('pre-camp V3.4.17 backup remains importable without camp or new region fiel
   assert.deepEqual(Object.keys(migrated.explorationProgress.areas).sort(), [...EXPLORATION_AREA_IDS].sort());
 });
 
+test('V3.5.1 six-region backup preserves bond journey and adds fresh cloudrest progress', () => {
+  const baseline = migrateImportedData(normalizeBackupPayload(fixture('3.4.4')));
+  const data = Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key, baseline[key]]));
+  data.bondJourney = createBondJourney();
+  data.bondJourney.dailyClaimDates = ['2026-10-01'];
+  data.explorationProgress.areas.mist_forest.progress = 25;
+  data.explorationProgress.areas.mist_forest.unlockedStories = ['mist_forest_story_10'];
+  delete data.explorationProgress.areas.cloudrest_trail;
+  const previous = { app: 'QuestNote', version: 2, appVersion: '3.5.1', data };
+  assert.equal(validateBackup(previous).valid, true);
+  const migrated = migrateImportedData(normalizeBackupPayload(previous));
+  assert.deepEqual(migrated.bondJourney, data.bondJourney);
+  assert.deepEqual(migrated.explorationProgress.areas.mist_forest, data.explorationProgress.areas.mist_forest);
+  assert.equal(migrated.explorationProgress.areas.cloudrest_trail.progress, 0);
+  assert.deepEqual(migrated.explorationProgress.areas.cloudrest_trail.claimedMilestones, []);
+  assert.equal(validateBackup({ ...previous, appVersion: '3.5.2' }).valid, false);
+  const currentData = Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key, migrated[key]]));
+  assert.equal(validateBackup({ ...previous, appVersion: '3.5.2', data: currentData }).valid, true);
+});
+
 test('partial current backup cannot masquerade as an older complete shape', () => {
   assert.equal(validateBackup({ appName: 'QuestNote', version: 2, appVersion: '3.4.4', tasks: [] }).valid, false);
   const raw = fixture('1.8.1'); raw.appVersion = '3.4.4';

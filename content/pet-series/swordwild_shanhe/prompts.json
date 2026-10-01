@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "prompts": {
+    "pet_n29": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 聽雨玉蜂. Visual brief: 一隻白玉色絨毛蜜蜂，六條腿和兩對半透明翅清楚，腹部淡青環紋，停在帶雨珠的竹葉上。微小體型仍佔畫面六成，翅完整，沒有蜂群、帽子或人形。 Story mood: 葉尖上的小小回信. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_n30": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 回風白驹. Visual brief: 四足白色幼馬，柔軟奶白鬃毛、淡灰鼻頭，尾端一段墨灰，站在風過的石階旁，身形溫柔而非獨角獸。背景淡墨山路、細草，無馬鞍、騎士或武器。 Story mood: 願意回頭的腳步. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_n31": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 望雲霜鷹. Visual brief: 一隻銀灰幼鷹，眉上兩撮白羽、胸腹霜白，尖尾與細瘦鳥腿，雙翼收起站在雪線小石柱，眼神專注。青灰雪霧、淡金晨光，與巨大重岳雕和白色雲雕有明顯體型差異。 Story mood: 替同行者看見轉彎. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_n32": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 守亭黃犬. Visual brief: 溫厚黃毛田園小犬，胸前白斑、垂耳與捲尾，趴在竹亭階口，旁邊空茶碗與一束枝條。天然四足、溫暖土黃色，無乞丐服、手持棍棒或人類。 Story mood: 每個旅人都有一席. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_r26": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 逐電靈貂. Visual brief: 灰白毛小貂，身形修長，細長自然尾巴、深棕眼睛，從青石上斜向躍起，四肢完整，身後兩條淡銀速度弧。竹林綠光與小溪，無雷電盔甲或刺眼電爆。 Story mood: 快一步，也等一步. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_r27": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 踏霞赤驹. Visual brief: 健壯赤栗色幼馬，深紅鬃尾、額上窄白流星，四蹄完整，一前蹄踏上古道小石階，暖橘霞光沿鬃毛照亮。天然馬匹，不冒火、不流血、沒有鞍具或人。 Story mood: 把清晨踏成第一步. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_r28": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 夜渡青蝠. Visual brief: 小型青灰絨毛蝙蝠，兩翼為深青自然翼膜，短鼻圓耳，展翼飛過古道小亭簷角，翼尖完整。月光銀邊、青色薄霧，一隻主角，無吸血獠牙或人形披風。 Story mood: 月下也有回程的燈. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_r29": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 白駝行客. Visual brief: 一隻乳白雙峰幼駝，短粗腿、大睫毛，身上只有小巧天然麻繩補給袋，坐在山道沙岩段。米白毛、砂金灰石，兩座駝峰清楚，無騎士、宮殿或大型貨隊。 Story mood: 把遠路分成幾口水. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_r30": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 並翼雲雕. Visual brief: 修長白色雲雕，翅尖淡墨灰，一側翼向前斜展、另一側完整外展，飛行低於雲端，淡金雙眼。遠景山脊只有一道抽象雲影呼應同行，主角只有一隻，不是重岳雕的黑褐粗壯體型。 Story mood: 為另一雙翼留一片風. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_sr21": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 繞指金蛇. Visual brief: 金色細鱗靈蛇，盤成自然不打結的S形，長尾與頭完整，眼睛墨黑，一枚落葉貼在尾端。金鱗有劍脊般細線但仍柔軟蛇體，石階竹影，無人手、真劍或攻擊獠牙。 Story mood: 換一條路，也能抵達. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_sr22": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 雪徑靈狐. Visual brief: 單尾白色雪狐，琥珀眼、耳尖深灰，厚尾自然繞身，坐在覆薄雪的石階上，後方斷續小爪印。帶靈氣但無九尾或人形，白毛在青灰背景下清楚，溫和警覺。 Story mood: 替迷路的人留一串腳印. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_sr23": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 金鬃護山獅. Visual brief: 金棕小型雄獅，濃密鬃毛沿頭與肩自然展開，四爪完整，坐守竹橋入口，雙眼都健康明亮。暖金邊光、沉穩山岩，無王冠、刀、盔甲或咆哮攻擊。 Story mood: 把聲音留給需要的人. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_sr24": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 赤練靈蛇. Visual brief: 朱紅細鱗靈蛇，腹部奶白、背紋深棕，鬆鬆盤在暖色陶藥罐旁，頭抬起但嘴閉合。小眼澄明，身尾完整，少量紅色葉片，沒有毒霧、傷口或攻擊姿勢。 Story mood: 暖意也要留一點距離. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_ssr14": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 丹砂鳴蛤. Visual brief: 朱砂紅小蟾蜍，金色眼睛、顆粒細膩的自然皮膚，四足明確，喉囊微鼓，坐在草藥溪畔的黑石上。淡金声紋只有兩圈，紅而不恐怖，無毒霧或黏液污物。 Story mood: 低鳴替心緒定一個拍. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_ssr15": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 碧竹劍猿. Visual brief: 銀灰毛修長小猿，四肢靈活，手中握一截沒有刃口的細竹枝，正蹲在竹林石台上看落葉，明亮綠眼。清楚猿猴臉、非人形武士；不穿長袍，無金屬劍或戰鬥場面。 Story mood: 把一招練成每天的耐心. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_ssr16": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 紫鱗潛龍. Visual brief: 紫灰東方幼龍，長形蛇身、四隻短爪、鹿角般小角与细须，尾部完整，自淺溪盤身望向竹橋。鱗片細而柔，淡紫水光、自然溪石，無翅、無人形、無金冠或宮殿。 Story mood: 深水裡也記得岸上的人. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_ur11": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 玄翎重岳雕. Visual brief: 一隻壯碩古老巨雕，玄褐厚羽、寬大收合雙翼、粗壯鳥腿與鉤喙，頭頂少量暗紅短羽，胸羽沉如層疊山岩。完整站在無字石碑旁，身後青墨重山與日出金邊；天然鳥身，無拿劍或人類。 Story mood: 山重，而一諾更重. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    },
+    "pet_ur12": {
+      "prompt": "Use case: stylized-concept. Asset: QuestNote fantasy companion collectible card, one square 1024 x 1024 PNG. Original natural animal with lifelike textured fur, feathers or scales, gentle expressive eyes, finely detailed storybook fantasy realism. Chinese ink landscape atmosphere mixed with tactile three-dimensional character rendering. Muted ink teal, jade, warm parchment and restrained cinnabar, warm rim light. One recognizable animal occupies about 65-75 percent of the frame, complete silhouette with 8 percent margins, unobscured eyes and all limbs, clean small-card readability. Distinct character anatomy, no generic blob. Background is a quiet mountain trail scene with shallow atmospheric depth; it must not overpower the subject. No readable text, border, card frame, rarity badge, watermark, logo or people. Do not imitate any film costume, existing illustration or artist. Character: 抱卷白猿. Visual brief: 年長白毛猿，寬厚自然猿臉、柔和琥珀眼、額前一绺霜银毛，坐在崖邊古松下，用自然雙手扶著一卷繫青繩的無字竹簡。全身完整、體型圓厚，暖金晨光與墨青山雲，無衣袍、眼鏡、人手特寫或可辨識文字。 Story mood: 把知曉的路交給後來的人. Keep this design internally consistent and original.",
+      "negativePrompt": "cropped ears, clipped wings or tail, extra limbs, fused paws, distorted animal anatomy, human face, humanoid clothes, realistic human hands, weapon combat, gore, blood, scary fangs, busy particle storm, duplicate main animals, text, watermark, logo, card border",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 72%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:28:11.225Z",
+        "status": "prepared-not-yet-generated",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls."
+      }
+    }
+  }
+}

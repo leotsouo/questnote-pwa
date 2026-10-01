@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "sopVersion": 2,
+  "noExtraCost": true,
+  "seriesId": "swordwild_shanhe",
+  "poolId": "swordwild_shanhe",
+  "seriesName": "劍隱山河",
+  "concept": "雲棧古道上的十八位珍禽異獸，以守諾、傳承、行旅與知己寫成一段沒有掌門的江湖。從武俠小說中的動物與武林象徵取材，創作屬於 QuestNote 的原創夥伴、山路與故事。",
+  "rarityPlan": {
+    "N": 4,
+    "R": 5,
+    "SR": 4,
+    "SSR": 3,
+    "UR": 2
+  },
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "presentationTemplate": "glacier_arrival",
+  "unlock": null,
+  "releaseVersion": "3.4.40",
+  "productionBaseline": {
+    "deployedCommit": "1b27f815a716d6bd7f2323525da1937aa27fd5b7",
+    "sourceCommit": "aa4171320a7a33607ef67cd156c1f99e929dec3b",
+    "mainCommit": "71b57cd247feb7406c17c20461c72c9fe94a8c23",
+    "artifactId": "412bd0ff44c7770c7cb8f7119943e5102bbea07df552ab47415e9f60c4955342",
+    "version": "3.4.39",
+    "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+    "verifiedAt": "2026-10-01T11:16:13.186Z",
+    "unpublishedChanges": "origin/main 比 reviewed source 僅多 reports/ 發布證據；四份 modern catalogs 與正式96寵物/4池 bundle 一致，companion checkout bytes 與正式一致。此分支先新增雲棧古道受控故事、發現、地圖及備份相容，尚未發布，作為本池 reviewed runtime baseline；不回灌 gh-pages 或改歷史 workspace。"
+  },
+  "interview": {
+    "theme": "金庸武俠中的異獸及同級象徵，自創系列；情緒交給 AI。",
+    "art": "神鵰為重點；其他角色、畫風與禁止元素交給 AI。使用者追加擴大為更多角色、雙 UR，採十八隻。",
+    "experience": "探險、動畫與特殊體驗由 AI 評估。"
+  },
+  "animationPlan": {
+    "decision": "reuse",
+    "reason": "沿用 glacier_arrival 的雪嶺、山道燈火與有限運鏡，對應古道雪段與夜行意象；保留其六盞燈和冰谷構圖，明確是重用，不宣稱新增武俠劍陣。將創作資源集中在十八獸、完整古道故事和雙 UR。",
+    "storyboard": "首次入場沿用受控山嶺前奏：遠景山脊、燈火逐段亮起、角色登場。文案為「一諾入山／百川同行／劍隱山河」。後續短入場與召喚前奏按既有 glacier_arrival controller 時長；不改速率。單抽與十連前奏後交付原交易結果；完整角色輪廓和名稱在結果頁辨識。",
+    "rarityNotes": "SSR 使用 ssr，UR 使用 ur。重岳雕與抱卷白猿各有專屬 caption、卡圖與敘事，使用受控通用 UR 光場。十連依現有結果順序展示所有 SSR+，包含重複角色，不重新抽取；各階段時長沿用現有 controller 常數。",
+    "motionNotes": "前奏略過只結束前奏，仍接完整 SSR+ queue；稀有 reveal 可個別或略過剩餘。沿用鍵盤關閉、連點保護、reduced motion 靜態構圖、圖片失敗 fallback 和清場；須在 assembled preview 實測才算通過。"
+  }
+}

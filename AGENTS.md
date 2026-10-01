@@ -4,6 +4,8 @@
 
 Before every new pool interview or proposal, sync and verify the latest formal HTTPS deployment, artifact, source revision and origin/main; latest source alone is not the formal release. Follow `docs/new-card-pool-sop.md` first, then the technical `docs/card-pool-pipeline.md`.
 
+Apply the SOP's story-to-art workflow to every rarity: recognizable signature, meaningful story action, and visible consequence. Record these in `plan.design` and prompts, align names/Lore/captions, and inspect the actual images at card size before human art review. Borrowing a creature's atmosphere does not imply hybrid anatomy; distinguish source facts from original adaptations.
+
 AI owns planning/content/prompts reviews after the fixed three-question interview. Human review is artwork and final whole-package acceptance; explicit 可以發布 is required before merge/formal push. Default 12 adjustable pets, one mandatory new food, every pet's gift affinity and dispatch specialty, and an explicit add/reuse expedition assessment. Inspect installed applicable image plugins and prefer confirmed no-extra-cost tools; do not invoke unknown-cost or paid services. Preserve legacy workspaces and Honeylight; the new policy is prospective.
 
 ## Shared source and collaboration

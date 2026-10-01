@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 1,
+  "prompts": {
+    "pet_n33": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 聽雨玉蜂 (N). Required visual scene: 白玉絨毛、淡青腹紋的玉蜂，六足四翅完整。側身懸停，把一片小竹葉向上拱成遮雨屋簷；一側雨珠順葉尖落下，另一側剛萌芽的藥草安然乾爽。微距、主角清楚，無蜂群。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:06:05.356Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_n33.png",
+        "outputSha256": "c6994d0a0ab86e64220c1228b0a1757fdede37d2df2d3014ed17db040f6bb9d4",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 聽雨玉蜂 (N). Required visual scene: 白玉絨毛、淡青腹紋的玉蜂，六足四翅完整。側身懸停，把一片小竹葉向上拱成遮雨屋簷；一側雨珠順葉尖落下，另一側剛萌芽的藥草安然乾爽。微距、主角清楚，無蜂群。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_n34": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 回風白駒 (N). Required visual scene: 奶白幼馬、淡灰鼻、墨灰尾端，完整四蹄；行走在西風草地通往山階的岔路，回首等候，前蹄停在最後一級石階。路邊繫著淡青布結的細小信筒，彎曲蹄印回到畫面前景。無騎士。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:06:33.586Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_n34.png",
+        "outputSha256": "c08f25e96e7255fae5551423bc69bc977208cf6dbf4635581b045a3facb30cff",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 回風白駒 (N). Required visual scene: 奶白幼馬、淡灰鼻、墨灰尾端，完整四蹄；行走在西風草地通往山階的岔路，回首等候，前蹄停在最後一級石階。路邊繫著淡青布結的細小信筒，彎曲蹄印回到畫面前景。無騎士。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_n35": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 茗香眠蜂 (N). Required visual scene: 棕金蜜蜂、三道深棕腹紋、琥珀複眼，六足四翅完整。山茶花與小陶茶盞前低飛，一條緩慢旋轉的暖金茶香流由花心延至茶盞，花瓣像合上眼睛般半闔，旁邊清風窗口留白。無蜂群。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:08:20.554Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_n35.png",
+        "outputSha256": "3926a8e7fa898edb8e96b45a9372a297772bbc1b57893f1ca9fe268ed326db97",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 茗香眠蜂 (N). Required visual scene: 棕金蜜蜂、三道深棕腹紋、琥珀複眼，六足四翅完整。山茶花與小陶茶盞前低飛，一條緩慢旋轉的暖金茶香流由花心延至茶盞，花瓣像合上眼睛般半闔，旁邊清風窗口留白。無蜂群。 Keep all wings and limbs in frame. Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_r31": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 踏霞赤駒 (R). Required visual scene: 赤栗幼馬、暗紅鬃、窄白額斑，昂首但前蹄謹慎試踩修補橋板。身旁小麻布補給袋穩妥靠在橋欄；木板微微下壓、蹄下金色朝霞照亮裂縫，全身四蹄可見。無騎士、無火焰。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [
+          "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-1167e9ec-c813-4def-bc4a-4a7c138bfa2c.png"
+        ],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:07:40.309Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_r31.png",
+        "outputSha256": "1dcc85f3a9c54d95e67a05c2c294416ef7b19013b033cfe8ea901aedff8e11b9",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [
+          {
+            "prompt": "Change only the bridge directly under the raised front hoof. Remove ALL orange glowing fissures, embers, sparks or flame-like light. It is a weathered wooden bridge with a narrow ordinary dark crack and one slightly depressed board being carefully tested by the horse. Replace fiery glow with soft natural golden sunrise reflection on dry wood. Preserve chestnut horse, pose, all four legs, mane, supply sack, mountains and framing. No fire or magic effects.",
+            "referenced_image_paths": [
+              "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-1167e9ec-c813-4def-bc4a-4a7c138bfa2c.png"
+            ],
+            "transparent_background": false
+          }
+        ],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Change only the bridge directly under the raised front hoof. Remove ALL orange glowing fissures, embers, sparks or flame-like light. It is a weathered wooden bridge with a narrow ordinary dark crack and one slightly depressed board being carefully tested by the horse. Replace fiery glow with soft natural golden sunrise reflection on dry wood. Preserve chestnut horse, pose, all four legs, mane, supply sack, mountains and framing. No fire or magic effects.",
+        "firstAttempt": {
+          "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-1167e9ec-c813-4def-bc4a-4a7c138bfa2c.png",
+          "args": {
+            "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 踏霞赤駒 (R). Required visual scene: 赤栗幼馬、暗紅鬃、窄白額斑，昂首但前蹄謹慎試踩修補橋板。身旁小麻布補給袋穩妥靠在橋欄；木板微微下壓、蹄下金色朝霞照亮裂縫，全身四蹄可見。無騎士、無火焰。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+            "transparent_background": false
+          },
+          "archivePath": "content/pet-series/swordwild_shanhe_v2/image-revisions/pet_r31-528cb0e64606a28edd8fa594b0a3db4507fc5b5ceceb675d0392d9354681d7f6.png",
+          "sha256": "528cb0e64606a28edd8fa594b0a3db4507fc5b5ceceb675d0392d9354681d7f6"
+        }
+      }
+    },
+    "pet_r32": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 夜薔烏駒 (R). Required visual scene: 全黑修長母馬、黑鬃尾，風雨中側身跨過濕岩，鼻尖輕觸補給袋上的熟悉青色繩結；後方滑坡泥痕與前方溫暖山亭燈形成路線，前景暗紅野薔薇。四腿完整，暖邊光使黑色輪廓清楚。無騎士。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:00:51.981Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_r32.png",
+        "outputSha256": "98ee8a5f8257af53d9b0657fdaefb19b71f1daeb500c0bd0f8d25a4330aba836",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 夜薔烏駒 (R). Required visual scene: 全黑修長母馬、黑鬃尾，風雨中側身跨過濕岩，鼻尖輕觸補給袋上的熟悉青色繩結；後方滑坡泥痕與前方溫暖山亭燈形成路線，前景暗紅野薔薇。四腿完整，暖邊光使黑色輪廓清楚。無騎士。 Keep entire animal in central 75% of canvas; if bird wings are spread, leave a wide band of background around all feather tips. Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_r33": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 乘風白雕 (R). Required visual scene: 雪白雕、黑灰飛羽末端、額心短銀羽、琥珀眼，完整展翼側向疾飛，爪抓一枚繫青繩的小竹信筒。翅膀把薄雲分成可通行的風口，下方固定白羽記號的平岩與另一只的卡圖呼應。本圖只有一鳥，翼尖留白。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:01:43.964Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_r33.png",
+        "outputSha256": "1b5b0d2bcf3d36a98da39eab4719159b9f48920d11e23d3505b080f8ce8d64ed",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 乘風白雕 (R). Required visual scene: 雪白雕、黑灰飛羽末端、額心短銀羽、琥珀眼，完整展翼側向疾飛，爪抓一枚繫青繩的小竹信筒。翅膀把薄雲分成可通行的風口，下方固定白羽記號的平岩與另一只的卡圖呼應。本圖只有一鳥，翼尖留白。 Keep entire animal in central 75% of canvas; if bird wings are spread, leave a wide band of background around all feather tips. Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_r34": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 守望白雕 (R). Required visual scene: 雪白雕、頸後柔銀羽、灰尾、琥珀眼，从平岩向下伸爪接住正在滑落的青繩信袋，半展翼保持平衡，翅尾完整。岩上插著一根白羽會合記號；清晨山口與乘風白雕共享色調，但取救援姿態。本圖只有一鳥。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:04:41.508Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_r34.png",
+        "outputSha256": "48407e0bbc2d31bff3188997f468a73ee837ba53f8be79df75458349f75a5f00",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 守望白雕 (R). Required visual scene: 雪白雕、頸後柔銀羽、灰尾、琥珀眼，从平岩向下伸爪接住正在滑落的青繩信袋，半展翼保持平衡，翅尾完整。岩上插著一根白羽會合記號；清晨山口與乘風白雕共享色調，但取救援姿態。本圖只有一鳥。 Keep entire animal comfortably within central 75% of square canvas, all wing tips or whole snake tail visible with wide background margins. Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_r35": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 金角疾蛇 (R). Required visual scene: 金褐鱗蛇、頭頂短鈍肉角、深紫眼，完整開放S形長身貼岩急行。頭部在狹口暫停、肉角輕點石壁，身後細金反光軌跡折入岩縫；旁邊竹葉上雨珠未落，顯出極快但懂讓路。無腳、鹿角、劍。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:05:10.958Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_r35.png",
+        "outputSha256": "762dc9b5b8e7d91adbd45d1e6a2efa5be9b87a2d11fc501bff5b31afcf0de18f",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 金角疾蛇 (R). Required visual scene: 金褐鱗蛇、頭頂短鈍肉角、深紫眼，完整開放S形長身貼岩急行。頭部在狹口暫停、肉角輕點石壁，身後細金反光軌跡折入岩縫；旁邊竹葉上雨珠未落，顯出極快但懂讓路。無腳、鹿角、劍。 Keep entire animal comfortably within central 75% of square canvas, all wing tips or whole snake tail visible with wide background margins. Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_sr25": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 逐電靈貂 (SR). Required visual scene: 灰白毛修長小貂、深棕眼、長直自然尾，四肢伸展從溪岸斜躍。嘴咬麻繩末端，繩索橫跨湍急溪水，連接兩岸木樁；身後一條細銀白閃電般速度線劃過水面，繩下飛濺水珠被拉成斜線。無電甲、無松鼠捲尾。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:56:34.723Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_sr25.png",
+        "outputSha256": "c830f59daf9a69dcd5d10c479fcc4bc4cd5e7ea127032b06b7ecf45d92c30912",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 逐電靈貂 (SR). Required visual scene: 灰白毛修長小貂、深棕眼、長直自然尾，四肢伸展從溪岸斜躍。嘴咬麻繩末端，繩索橫跨湍急溪水，連接兩岸木樁；身後一條細銀白閃電般速度線劃過水面，繩下飛濺水珠被拉成斜線。無電甲、無松鼠捲尾。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_sr26": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 望雲霜鷹 (SR). Required visual scene: 銀灰鷹、明顯雙白眉、霜白胸，低飛在雪線路碑上方，一爪抓著無字竹路標；另一爪伸向路碑頂。銳利目光望向霧中彎道，翼下風把霧推開一條狹路。只有一鳥，全翅留白，冷銀灰不混同白雕。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [
+          "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-ad77ec9e-1b71-4178-adcb-79d438e50d71.png"
+        ],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:03:09.404Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_sr26.png",
+        "outputSha256": "2bda25f6fcd65fcc78e813f1342602bf5fd5d8aca45636ed7c8ee68ad10a33a1",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [
+          {
+            "prompt": "Zoom the entire existing scene out by about 25% within the same square canvas. Extend the mountain sky around it. The WHOLE silver-gray hawk including every feather of the currently clipped upper-left wing must be visible with at least 8% empty background gap around both wing tips, tail and feet. Preserve white eyebrow plumes, bamboo route marker in one claw, rock pillar, snow and clear path revealed in mist. Exactly TWO wings, TWO feet, one hawk. No extra bird, words or badges.",
+            "referenced_image_paths": [
+              "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-ad77ec9e-1b71-4178-adcb-79d438e50d71.png"
+            ],
+            "transparent_background": false
+          }
+        ],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Zoom the entire existing scene out by about 25% within the same square canvas. Extend the mountain sky around it. The WHOLE silver-gray hawk including every feather of the currently clipped upper-left wing must be visible with at least 8% empty background gap around both wing tips, tail and feet. Preserve white eyebrow plumes, bamboo route marker in one claw, rock pillar, snow and clear path revealed in mist. Exactly TWO wings, TWO feet, one hawk. No extra bird, words or badges.",
+        "firstAttempt": {
+          "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-ad77ec9e-1b71-4178-adcb-79d438e50d71.png",
+          "args": {
+            "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 望雲霜鷹 (SR). Required visual scene: 銀灰鷹、明顯雙白眉、霜白胸，低飛在雪線路碑上方，一爪抓著無字竹路標；另一爪伸向路碑頂。銳利目光望向霧中彎道，翼下風把霧推開一條狹路。只有一鳥，全翅留白，冷銀灰不混同白雕。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+            "transparent_background": false
+          },
+          "archivePath": "content/pet-series/swordwild_shanhe_v2/image-revisions/pet_sr26-9aece4347bac8c824430e61ef2381252d0f63666c42dfad380ac28af6b7bb332.png",
+          "sha256": "9aece4347bac8c824430e61ef2381252d0f63666c42dfad380ac28af6b7bb332"
+        }
+      }
+    },
+    "pet_sr27": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 夜渡青蝠 (SR). Required visual scene: 青灰絨毛蝙蝠、短鼻圓耳、深青自然翼膜，全翼完整。在月下亭簷急轉，一隻腳輕碰懸掛的小陶茶碗，茶碗與小木敲棒振動；稀疏青色聲波沿屋簷逐段引向暖黃燈。自然蝙蝠而非蛾翅或披風。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [
+          "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-99b007e4-3754-4642-86bc-074a8705530c.png"
+        ],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T15:03:55.958Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_sr27.png",
+        "outputSha256": "50f8395f08c6e231d5f42f7807d0b89fc066e4a132dd6c11c938f05db411d55e",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [
+          {
+            "prompt": "Correct only bat anatomy and cup-contact pose. The bat has exactly TWO membranous wings as its forelimbs and TWO small hind feet; no separate extra arm or hand protruding from its chest. Remove the little arm reaching sideways from the chest toward the cup. Reposition one of the two hind feet to gently tap the swinging ceramic cup; the other hind foot remains natural. Keep the whole bat, blue membrane wings, expressive animal face, moon, teal sound rings, cup and lantern-lit night route unchanged. Do not add limbs or people.",
+            "referenced_image_paths": [
+              "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-99b007e4-3754-4642-86bc-074a8705530c.png"
+            ],
+            "transparent_background": false
+          }
+        ],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Correct only bat anatomy and cup-contact pose. The bat has exactly TWO membranous wings as its forelimbs and TWO small hind feet; no separate extra arm or hand protruding from its chest. Remove the little arm reaching sideways from the chest toward the cup. Reposition one of the two hind feet to gently tap the swinging ceramic cup; the other hind foot remains natural. Keep the whole bat, blue membrane wings, expressive animal face, moon, teal sound rings, cup and lantern-lit night route unchanged. Do not add limbs or people.",
+        "firstAttempt": {
+          "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-99b007e4-3754-4642-86bc-074a8705530c.png",
+          "args": {
+            "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 夜渡青蝠 (SR). Required visual scene: 青灰絨毛蝙蝠、短鼻圓耳、深青自然翼膜，全翼完整。在月下亭簷急轉，一隻腳輕碰懸掛的小陶茶碗，茶碗與小木敲棒振動；稀疏青色聲波沿屋簷逐段引向暖黃燈。自然蝙蝠而非蛾翅或披風。 Especially: entire silhouette comfortably inside the frame, no clipped wing tips. Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+            "transparent_background": false
+          },
+          "archivePath": "content/pet-series/swordwild_shanhe_v2/image-revisions/pet_sr27-685c34fd372b8d88970cc9cc674dc1b95c4a3513f5e26274caee84396643bb44.png",
+          "sha256": "685c34fd372b8d88970cc9cc674dc1b95c4a3513f5e26274caee84396643bb44"
+        }
+      }
+    },
+    "pet_sr28": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 金鬃護山獅 (SR). Required visual scene: 金棕雄獅、濃密自然金鬃、健康雙眼，四爪穩踏斷橋前岩台，胸口抬起低吼而非張牙獵殺。淡金環形聲浪震開橫路碎石和霧，背後竹橋繩索保持平穩、通路清楚。英雄守護姿態，不戴王冠盔甲、不持刀。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:57:55.807Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_sr28.png",
+        "outputSha256": "f4a2ef0120ce37811a9cca85483a1daa7859c33f786e2afadee089e98993d3fa",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 金鬃護山獅 (SR). Required visual scene: 金棕雄獅、濃密自然金鬃、健康雙眼，四爪穩踏斷橋前岩台，胸口抬起低吼而非張牙獵殺。淡金環形聲浪震開橫路碎石和霧，背後竹橋繩索保持平穩、通路清楚。英雄守護姿態，不戴王冠盔甲、不持刀。 Especially: entire silhouette comfortably inside the frame, no clipped wing tips. Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_sr29": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 雪徑靈狐 (SR). Required visual scene: 單尾白雪狐、灰耳尖、琥珀眼，雪坡上半轉身，前爪正在壓出第三枚並排爪印；前兩枚清楚可見。後方一串腳印通往暖燈路亭，橫吹雪絲在爪印邊緣繞開，厚長尾完整飄出曲線。不可九尾。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:59:16.654Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_sr29.png",
+        "outputSha256": "4c055775a46fb4bb639e9c51832a1ac94cf6fb460068755e67bac22625eaba68",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 雪徑靈狐 (SR). Required visual scene: 單尾白雪狐、灰耳尖、琥珀眼，雪坡上半轉身，前爪正在壓出第三枚並排爪印；前兩枚清楚可見。後方一串腳印通往暖燈路亭，橫吹雪絲在爪印邊緣繞開，厚長尾完整飄出曲線。不可九尾。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_ssr17": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 抱卷白猿 (SSR). Required visual scene: 圓厚年長白猿、自然灰猿臉、額前銀毛，坐在古松台雙手打開大型青繩綁的行旅書卷；卷上僅抽象墨點線路無文字，舊頁暖赭、新頁淡青。卷上細金光路延伸接到背後山道和清泉，體現可驗證的傳承。全身完整，無衣服劍。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [
+          "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-f6dc3d60-a890-4c47-a54c-8cc161a34554.png"
+        ],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:55:26.763Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_ssr17.png",
+        "outputSha256": "c4a505ea1d59e4ed56effc13694a80e7012a3dc914b22d62a765da07e0a6f3dd",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [
+          {
+            "prompt": "Make a narrow anatomical correction: remove the entire long furry curled tail lying across the lower-left foreground rock. This character is a natural white APE with no external tail. Replace that area with continuous mossy rock. Preserve the rest exactly: aged white ape, all four natural limbs, face, open two-color route scroll, clear gold path flowing into distant landscape, colors, light, camera framing. Do not add new animals, limbs, letters or objects.",
+            "referenced_image_paths": [
+              "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-f6dc3d60-a890-4c47-a54c-8cc161a34554.png"
+            ],
+            "transparent_background": false
+          }
+        ],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Make a narrow anatomical correction: remove the entire long furry curled tail lying across the lower-left foreground rock. This character is a natural white APE with no external tail. Replace that area with continuous mossy rock. Preserve the rest exactly: aged white ape, all four natural limbs, face, open two-color route scroll, clear gold path flowing into distant landscape, colors, light, camera framing. Do not add new animals, limbs, letters or objects.",
+        "firstAttempt": {
+          "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-f6dc3d60-a890-4c47-a54c-8cc161a34554.png",
+          "args": {
+            "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 抱卷白猿 (SSR). Required visual scene: 圓厚年長白猿、自然灰猿臉、額前銀毛，坐在古松台雙手打開大型青繩綁的行旅書卷；卷上僅抽象墨點線路無文字，舊頁暖赭、新頁淡青。卷上細金光路延伸接到背後山道和清泉，體現可驗證的傳承。全身完整，無衣服劍。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+            "transparent_background": false
+          },
+          "archivePath": "content/pet-series/swordwild_shanhe_v2/image-revisions/pet_ssr17-92aa82b4c6ca8e9fbc18e17e38de4e61823ce905c3b035c9b15c149970fd1f48.png",
+          "sha256": "92aa82b4c6ca8e9fbc18e17e38de4e61823ce905c3b035c9b15c149970fd1f48"
+        }
+      }
+    },
+    "pet_ssr18": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 凝霜玉蠶 (SSR). Required visual scene: 白玉微青半透明分節冰蠶、自然蠶頭與小腹足，完整身體在深青桑葉上。頭抬起時極寒沿厚黑岩凝成一圈銳利透明冰晶，但只凍住葉緣露珠，葉心保留鮮活青綠；旁邊一個葉包行旅糰未凍壞。微距冷暖清楚，無蛾翼。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [
+          "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-2d3a9b54-e16a-45d1-82ab-f20f89139390.png"
+        ],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:55:53.993Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_ssr18.png",
+        "outputSha256": "3a53d13ddea68ebda22bb46bb68e6d05893999bd25977298ed5e3984fabf7737",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [
+          {
+            "prompt": "Make a narrow anatomical correction: the silkworm has only ONE head, the raised head at upper center with black eyes. Its rear end at lower left must be a smooth softly rounded tapering translucent final abdomen segment with short natural rear prolegs, with NO second face, mandibles, eye or antenna. Preserve the rest exactly: crystal silkworm, single raised head, ice only along leaf edge, living green leaf center, leaf-wrapped travel riceball, mountain scenery, lighting and framing.",
+            "referenced_image_paths": [
+              "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-2d3a9b54-e16a-45d1-82ab-f20f89139390.png"
+            ],
+            "transparent_background": false
+          }
+        ],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Make a narrow anatomical correction: the silkworm has only ONE head, the raised head at upper center with black eyes. Its rear end at lower left must be a smooth softly rounded tapering translucent final abdomen segment with short natural rear prolegs, with NO second face, mandibles, eye or antenna. Preserve the rest exactly: crystal silkworm, single raised head, ice only along leaf edge, living green leaf center, leaf-wrapped travel riceball, mountain scenery, lighting and framing.",
+        "firstAttempt": {
+          "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-2d3a9b54-e16a-45d1-82ab-f20f89139390.png",
+          "args": {
+            "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 凝霜玉蠶 (SSR). Required visual scene: 白玉微青半透明分節冰蠶、自然蠶頭與小腹足，完整身體在深青桑葉上。頭抬起時極寒沿厚黑岩凝成一圈銳利透明冰晶，但只凍住葉緣露珠，葉心保留鮮活青綠；旁邊一個葉包行旅糰未凍壞。微距冷暖清楚，無蛾翼。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+            "transparent_background": false
+          },
+          "archivePath": "content/pet-series/swordwild_shanhe_v2/image-revisions/pet_ssr18-cecc13fd9089bedc72167e200c94323eab4da071c7045ea19ad51ec027e08a75.png",
+          "sha256": "cecc13fd9089bedc72167e200c94323eab4da071c7045ea19ad51ec027e08a75"
+        }
+      }
+    },
+    "pet_ssr19": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 繞指金蛇 (SSR). Required visual scene: 無角金色細鱗蛇、墨黑眼，完整柔軟蛇身穿繞一柄斜插岩縫的金色蛇形古劍護手，身軀S弧與蛇形彎刃相呼應但兩者清楚分離。劍在左、蛇頭在右前，蛇尾輕提卡住的小補給袋青繩，使繩從窄石縫滑出。自然蛇無腳無人。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:53:46.151Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_ssr19.png",
+        "outputSha256": "be4c79b42b13df13c1cc0bdaa0a3285f20cc46eff2bfbdb8eb5512e084a49151",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 繞指金蛇 (SSR). Required visual scene: 無角金色細鱗蛇、墨黑眼，完整柔軟蛇身穿繞一柄斜插岩縫的金色蛇形古劍護手，身軀S弧與蛇形彎刃相呼應但兩者清楚分離。劍在左、蛇頭在右前，蛇尾輕提卡住的小補給袋青繩，使繩從窄石縫滑出。自然蛇無腳無人。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_ssr20": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 紫鱗潛龍 (SSR). Required visual scene: 紫灰東方龍、四爪小角長鬚、完整長尾，以一半身體沉入深青潭水的潛游姿態，前爪捧起找回的青色書繩。龍尾推起圓形水窗，水下岩層清晰，一片紫葉浮向岸邊暖燈，紫色鬃鱗像流動披衫。无翅无金冠。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:54:19.037Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_ssr20.png",
+        "outputSha256": "96229a1be3bf52c3431cd9d8fe0bdadd9ed8bb0c0a52be408a4587236f64457a",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 紫鱗潛龍 (SSR). Required visual scene: 紫灰東方龍、四爪小角長鬚、完整長尾，以一半身體沉入深青潭水的潛游姿態，前爪捧起找回的青色書繩。龍尾推起圓形水窗，水下岩層清晰，一片紫葉浮向岸邊暖燈，紫色鬃鱗像流動披衫。无翅无金冠。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_ur13": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 玄翎重岳雕 (UR). Required visual scene: 古老粗獷巨雕，玄褐厚羽、局部暗紅裸露額頂、沉重鉤喙與壯碩雙足。低角度三分之四仰視，一足踏高岩一足穩踏橋頭，巨大雙翼完全張開形成寬廣拱形，完整翼尖距畫邊至少8%。頭高抬俯視山口，有亦師亦友的凌然威儀。旁邊一柄巨大無鋒黑鐵重劍斜靠無字石碑，雕不持劍。翼下厚雲和山風被壓成兩側流線，身後受護的竹橋安穩；層疊山嶺与金色破雲天光顯出一方霸主。全身清楚，不是鳳凰，不穿甲。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:50:48.538Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_ur13.png",
+        "outputSha256": "3a260a48730bc48a2f32710c297e14db2c07d2a2dd0e478a4d5413f0f2c80954",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 玄翎重岳雕 (UR). Required visual scene: 古老粗獷巨雕，玄褐厚羽、局部暗紅裸露額頂、沉重鉤喙與壯碩雙足。低角度三分之四仰視，一足踏高岩一足穩踏橋頭，巨大雙翼完全張開形成寬廣拱形，完整翼尖距畫邊至少8%。頭高抬俯視山口，有亦師亦友的凌然威儀。旁邊一柄巨大無鋒黑鐵重劍斜靠無字石碑，雕不持劍。翼下厚雲和山風被壓成兩側流線，身後受護的竹橋安穩；層疊山嶺与金色破雲天光顯出一方霸主。全身清楚，不是鳳凰，不穿甲。 Exactly TWO wings, both anatomically attached to shoulders and fully outstretched in one symmetrical rising V, no folded extra wing against body. Zoom out to include all wing feathers with a full 10% background gap from every edge; the whole giant eagle and heavy blunt sword fit within central 80% of canvas. Pose resembles a powerful ancient eagle ruling a mountain pass. Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": {
+          "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a0f72a-0fac-77c0-a63e-3fd1ecb0323d\\exec-3efbf9e9-c028-4a01-aecd-74a25416ef2b.png",
+          "args": {
+            "prompt": "Recompose and redesign this character, preserve its natural species, coarse dark feather texture and palette, but replace the quiet portrait with the following commanding story scene. Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 玄翎重岳雕 (UR). Required visual scene: 古老粗獷巨雕，玄褐厚羽、局部暗紅裸露額頂、沉重鉤喙與壯碩雙足。低角度三分之四仰視，一足踏高岩一足穩踏橋頭，巨大雙翼完全張開形成寬廣拱形，完整翼尖距畫邊至少8%。頭高抬俯視山口，有亦師亦友的凌然威儀。旁邊一柄巨大無鋒黑鐵重劍斜靠無字石碑，雕不持劍。翼下厚雲和山風被壓成兩側流線，身後受護的竹橋安穩；層疊山嶺与金色破雲天光顯出一方霸主。全身清楚，不是鳳凰，不穿甲。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+            "referenced_image_paths": [
+              "C:/Users/User/OneDrive/questnote-pwa/.worktrees/new-card-pool-20261001/content/pet-series/swordwild_shanhe_v2/images/pet_ur13.png"
+            ],
+            "transparent_background": false
+          },
+          "archivePath": "content/pet-series/swordwild_shanhe_v2/image-revisions/pet_ur13-e36181e47f217dfada72ef1581ad42eae434f37c5ad9e72e3320709e9eac04f5.png",
+          "sha256": "e36181e47f217dfada72ef1581ad42eae434f37c5ad9e72e3320709e9eac04f5"
+        }
+      }
+    },
+    "pet_ur14": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 丹砂鎮嶺蛤 (UR). Required visual scene: 純正朱砂紅蟾蜍，疣粒皮膚、金眼、寬頭、鼓起的圓喉囊、四隻自然蛤足，背部低寬，沒有任何龜甲蛇尾或混種器官。極低視角近距離正面三分之四，四足穩壓黑色玄武岩祭台般天然岩層，沉靜直視，體格厚重但旁邊藥葉顯其小身。深墨藍溪水圍繞黑岩形成層層同心波紋；一線朱紅毒息形成邊界，外側灰綠腐霧和毒藤停止前進，內側水面平靜。借北方鎮守神的幽深、莊嚴與不動氛圍，不借實體造型。金色眼光為焦點，無盔甲王冠、角、龜殼、蛇纏身。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [
+          "C:/Users/User/OneDrive/questnote-pwa/.worktrees/new-card-pool-20261001/content/pet-series/swordwild_shanhe_v2/images/pet_ur14.png"
+        ],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:48:50.733Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_ur14.png",
+        "outputSha256": "94d0549cc5cda0befffc668c160ebedfa1c41fc61f5a946ce7cf38af1194d2d1",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [
+          {
+            "prompt": "Recompose the provided character into an imposing guardian lord story scene. Preserve natural species identity and textured appearance; change pose and environment decisively. Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 丹砂鎮嶺蛤 (UR). Required visual scene: 純正朱砂紅蟾蜍，疣粒皮膚、金眼、寬頭、鼓起的圓喉囊、四隻自然蛤足，背部低寬，沒有任何龜甲蛇尾或混種器官。極低視角近距離正面三分之四，四足穩壓黑色玄武岩祭台般天然岩層，沉靜直視，體格厚重但旁邊藥葉顯其小身。深墨藍溪水圍繞黑岩形成層層同心波紋；一線朱紅毒息形成邊界，外側灰綠腐霧和毒藤停止前進，內側水面平靜。借北方鎮守神的幽深、莊嚴與不動氛圍，不借實體造型。金色眼光為焦點，無盔甲王冠、角、龜殼、蛇纏身。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+            "referenced_image_paths": [
+              "C:/Users/User/OneDrive/questnote-pwa/.worktrees/new-card-pool-20261001/content/pet-series/swordwild_shanhe_v2/images/pet_ur14.png"
+            ],
+            "transparent_background": false
+          }
+        ],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Recompose the provided character into an imposing guardian lord story scene. Preserve natural species identity and textured appearance; change pose and environment decisively. Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 丹砂鎮嶺蛤 (UR). Required visual scene: 純正朱砂紅蟾蜍，疣粒皮膚、金眼、寬頭、鼓起的圓喉囊、四隻自然蛤足，背部低寬，沒有任何龜甲蛇尾或混種器官。極低視角近距離正面三分之四，四足穩壓黑色玄武岩祭台般天然岩層，沉靜直視，體格厚重但旁邊藥葉顯其小身。深墨藍溪水圍繞黑岩形成層層同心波紋；一線朱紅毒息形成邊界，外側灰綠腐霧和毒藤停止前進，內側水面平靜。借北方鎮守神的幽深、莊嚴與不動氛圍，不借實體造型。金色眼光為焦點，無盔甲王冠、角、龜殼、蛇纏身。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    },
+    "pet_ur15": {
+      "prompt": "Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 素心劍猿 (UR). Required visual scene: 修長強健成年白猿，銀白長毛、天然深灰猿臉、專注琥珀眼。站在竹林高石台、雙足穩落成優雅低勢，一隻自然猿手持一柄清楚可見的古樸銀色直劍，素玉小護手與短暗青劍柄；劍刃由右下斜指左上，橫過身前但不擋臉。另一臂向後保持平衡，全身與劍尖留白。劍勢引出唯一一道清澈銀青弧，落葉在弧兩側分流，身後竹林由狂風變得安靜。原本修練竹枝斜靠石台旁作为傳承線索。光、姿態、清晰劍刃顯山林劍宗氣質，不用飛劍陣或衣甲人形。",
+      "negativePrompt": "cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Official https://learn.chatgpt.com/docs/image-generation states built-in generation consumes included Codex usage. Session usage check: ordinaryUsageAllowed true, included usage 76%, purchased credits absent/balance 0. Use built-in tool only, no API key, paid third-party call, purchase, reset or subscription. Stop if included access is exhausted. Native generations consume existing quota; no separate API charge is enabled.",
+        "costCheckedAt": "2026-10-01T11:40:23.131Z",
+        "status": "generated-pending-human-image-review",
+        "references": [
+          "C:/Users/User/OneDrive/questnote-pwa/.worktrees/new-card-pool-20261001/content/pet-series/swordwild_shanhe_v2/images/pet_ur15.png"
+        ],
+        "model": null,
+        "seed": null,
+        "note": "No model or seed returned by the tool yet; do not infer from docs. Exact generation output paths and hashes will be recorded after actual calls.",
+        "generatedFileModifiedAt": "2026-10-01T14:49:58.894Z",
+        "outputPath": "content/pet-series/swordwild_shanhe_v2/images/pet_ur15.png",
+        "outputSha256": "17d2eb5fc3df3a5e9aef0194cdec01f58b141aee055ae66de9399e9f0f670b10",
+        "actualTool": "image_gen.imagegen (built-in)",
+        "edits": [
+          {
+            "prompt": "Recompose the provided character into an imposing guardian lord story scene. Preserve natural species identity and textured appearance; change pose and environment decisively. Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 素心劍猿 (UR). Required visual scene: 修長強健成年白猿，銀白長毛、天然深灰猿臉、專注琥珀眼。站在竹林高石台、雙足穩落成優雅低勢，一隻自然猿手持一柄清楚可見的古樸銀色直劍，素玉小護手與短暗青劍柄；劍刃由右下斜指左上，橫過身前但不擋臉。另一臂向後保持平衡，全身與劍尖留白。劍勢引出唯一一道清澈銀青弧，落葉在弧兩側分流，身後竹林由狂風變得安靜。原本修練竹枝斜靠石台旁作为傳承線索。光、姿態、清晰劍刃顯山林劍宗氣質，不用飛劍陣或衣甲人形。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+            "referenced_image_paths": [
+              "C:/Users/User/OneDrive/questnote-pwa/.worktrees/new-card-pool-20261001/content/pet-series/swordwild_shanhe_v2/images/pet_ur15.png"
+            ],
+            "transparent_background": false
+          }
+        ],
+        "generationRecord": "generation-records.json",
+        "humanApproved": false,
+        "revision": "v3",
+        "actualPrompt": "Recompose the provided character into an imposing guardian lord story scene. Preserve natural species identity and textured appearance; change pose and environment decisively. Create one square collectible companion artwork. Finely detailed storybook fantasy realism, tactile natural animal anatomy, Chinese ink landscape atmosphere, ink teal and jade with selective warm gold, strong readable character silhouette. This is a STORY SCENE: the character signature, meaningful action and visible effect must all be unmistakable at small-card size. Subject occupies 65-80% of image; whole wings, limbs, tail and sword tips visible, generous 8% margins. Keep restrained elegant magic, differentiated scene and lighting, not a generic animal portrait. No readable lettering, logos, watermark, card border, people or imitation of existing illustrations. All objects are original design. Character: 素心劍猿 (UR). Required visual scene: 修長強健成年白猿，銀白長毛、天然深灰猿臉、專注琥珀眼。站在竹林高石台、雙足穩落成優雅低勢，一隻自然猿手持一柄清楚可見的古樸銀色直劍，素玉小護手與短暗青劍柄；劍刃由右下斜指左上，橫過身前但不擋臉。另一臂向後保持平衡，全身與劍尖留白。劍勢引出唯一一道清澈銀青弧，落葉在弧兩側分流，身後竹林由狂風變得安靜。原本修練竹枝斜靠石台旁作为傳承線索。光、姿態、清晰劍刃顯山林劍宗氣質，不用飛劍陣或衣甲人形。 Avoid: cropped wings or tail or sword tip, extra limbs, distorted anatomy, human face, costumes, blood, gore, aggressive killing, crowded particle storm, duplicate main animals, text, watermark, card frame",
+        "firstAttempt": null
+      }
+    }
+  }
+}
