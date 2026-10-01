@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "layouts": 27,
+  "behavior": [
+    "create from today",
+    "active daily only",
+    "double click",
+    "focus",
+    "reload persistence",
+    "undo/redo rewards",
+    "cross-page sync",
+    "category filtering",
+    "tab isolation",
+    "task storage unchanged"
+  ]
+}
