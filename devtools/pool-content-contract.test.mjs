@@ -8,6 +8,8 @@ import {
   resolvePoolPresentationModel, PoolContentError,
 } from '../src/poolContentContract.js';
 import { getEligiblePetsForPool } from '../src/petPoolFilter.js';
+import { shouldUseThemedSummon } from '../src/poolPresentation.js';
+import { swordwildPreludeDurations } from '../src/swordwildShanheScene.js';
 import { createPoolContentFixtures } from './fixtures/pool-content-fixtures.mjs';
 
 const readJson = (relative) => JSON.parse(readFileSync(new URL(relative, import.meta.url), 'utf8'));
@@ -16,6 +18,25 @@ const officialPets = readJson('../data/pets.json').pets;
 const standard = official.pools.find((pool) => pool.id === 'standard');
 const eternal = official.pools.find((pool) => pool.id === 'eternal_slumber_bloom');
 const clone = (value) => structuredClone(value);
+test('swordwild registered theme reaches the actual themed-summon path', () => {
+  const pool = official.pools.find((p) => p.id === 'swordwild_shanhe_v3');
+  assert.ok(pool);
+  assert.equal(shouldUseThemedSummon(pool), true);
+  assert.equal(shouldUseThemedSummon(standard), false);
+  assert.equal(shouldUseThemedSummon({ ...pool, presentation: { ...pool.presentation, animationKey: 'unknown' } }), false);
+});
+test('swordwild story motifs are UR-only metadata independent of pet identity', () => {
+  for (const key of ['sword_eagle', 'sword_toad', 'sword_ape']) {
+    assert.equal(resolvePetRevealKey({ id: 'pet_ur99', rarity: 'UR', presentation: { revealKey: key } }), key);
+    assert.throws(() => resolvePetRevealKey({ id: 'pet_ssr99', rarity: 'SSR', presentation: { revealKey: key } }), PoolContentError);
+  }
+});
+test('swordwild prelude stays bounded and reduced motion removes rarity suspense', () => {
+  const sums = ['N', 'R', 'SR', 'SSR', 'UR'].map((r) => swordwildPreludeDurations(r, 'ten', false).reduce((a, b) => a + b, 0));
+  assert.ok(sums.every((sum, index) => sum < 5000 && (index === 0 || sum > sums[index - 1])));
+  assert.deepEqual(swordwildPreludeDurations('N', 'single', true), swordwildPreludeDurations('UR', 'ten', true));
+  assert.ok(swordwildPreludeDurations('UR', 'ten', true).reduce((a, b) => a + b, 0) < 600);
+});
 function deepFreeze(value) {
   if (value && typeof value === 'object') {
     Object.freeze(value);

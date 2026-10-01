@@ -44,6 +44,11 @@
 .summon-reveal-overlay.is-shanhe-reveal::after{display:none;animation:none}
 .summon-reveal-overlay.is-shanhe-reveal .summon-reveal-card{animation:shanhe-card 1.6s ease 250ms both}
 .summon-reveal-overlay.is-shanhe-reveal .summon-reveal-stage{position:relative;z-index:2}
+.summon-reveal-overlay.is-shanhe-reveal .summon-reveal-card{padding:16px;max-width:88vw}
+.summon-reveal-overlay.is-shanhe-reveal.is-ready .summon-reveal-card{animation:none;opacity:1;transform:none}
+.summon-reveal-overlay.is-shanhe-reveal .summon-reveal-pet-frame{width:min(68vw,390px);height:min(68vw,390px)}
+.summon-reveal-overlay.is-shanhe-reveal .summon-reveal-pet-image.is-loaded{opacity:1;transition:none}
+.dream-debut-overlay[data-animation=swordwild_shanhe].is-ready .dream-debut-line__seg{opacity:1;filter:none;transform:none;animation:none}
 .is-shanhe-reveal .summon-reveal-pool,.is-shanhe-reveal .summon-reveal-ring,.is-shanhe-reveal .summon-reveal-aura,.is-shanhe-reveal .summon-reveal-particles{display:none}
 .is-shanhe-reveal .shanhe-scroll{opacity:.6;transform:scaleX(1)}
 .is-shanhe-reveal .shanhe-cloud{opacity:.22}.is-shanhe-reveal .shanhe-trail-line{stroke-dashoffset:0}
