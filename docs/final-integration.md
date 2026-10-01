@@ -224,3 +224,10 @@ Production V3.4.28 moves petting and cooldown below the portrait beside companio
 ## V3.4.36 蜜光糖庭 — 2026-10-01
 
 [PR #21](https://github.com/leotsouo/questnote-pwa/pull/21) CI通過並合併；正式Pages提交 `9e815676db8ff3e203391894090a52b1d5090129`，建置成功且30個HTTPS檔案雜湊相符，包含所有14個變更檔案與12張核准卡圖。12隻雙UR卡池和專屬動畫正式開放，台詞「糖庭亮起／甜蜜相遇」。詳細pins／證據見 [發布紀錄](../reports/honeylight-animation/production-release.md)。工坊／探險需求的流程規劃留待發布後討論。
+
+
+## V3.5.3 劍隱山河 — 2026-10-02
+
+使用者整包驗收通過並明確同意發布。PR #42 合併於 `ed81995648ba9b60c27207ba1ab3148afa6b2688`；Pages `4a1808126b9f6805ddb11c7b16ce1a1d8225ebf8` 部署成功。正式 artifact `5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8`，manifest SHA-256 `07c63616a676c43edc06078e087c3cb8bcb01aa1024655f6fdf32fce22c3bfad`。488 Git 檔案、177 正式 HTTPS 檔案、正式瀏覽器／離線、V3.5.2 → V3.5.3 更新及存檔保留均驗證成功。
+
+20 角色、三 UR、單一「俠」印專屬入場與抽卡動畫、新食物、逐隻偏好／專長、雲棧古道與80章故事已上線。現行親密度旅程、派遣推薦、公告及舊內容保留。[發布證據](../reports/swordwild-release/production-release.md)。覺醒只在發布後另寫獨立討論草案，不納入卡池 SOP。
