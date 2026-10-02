@@ -1,0 +1,26 @@
+[
+  {
+    "theme": "default",
+    "name": 13.17,
+    "title": 7.99,
+    "mutedSoft": 6.9,
+    "link": 8.71,
+    "cta": 8.7
+  },
+  {
+    "theme": "sweet",
+    "name": 11.09,
+    "title": 5.8,
+    "mutedSoft": 4.87,
+    "link": 5.85,
+    "cta": 5.94
+  },
+  {
+    "theme": "twilight",
+    "name": 11.85,
+    "title": 5.3,
+    "mutedSoft": 4.62,
+    "link": 5.37,
+    "cta": 5.75
+  }
+]

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <title>QuestNote · 相遇與收藏設計 Prototype</title>
+  <link rel="stylesheet" href="../src/themeTokens.css">
+  <link rel="stylesheet" href="./companion-identity.css">
+</head>
+<body data-theme="default">
+  <a class="skip-link" href="#screen">跳至內容</a>
+  <div class="prototype-note">設計 Prototype · 真實角色，收藏為展示樣本 · 不消耗星塵</div>
+  <header class="app-header">
+    <a class="brand" href="./companion-identity.html"><img src="../assets/brand/questnote-icon-192.png" alt="">QuestNote <span>同行手帳</span></a>
+    <button id="review-toggle" aria-expanded="false" aria-controls="review-panel">檢視設定</button>
+  </header>
+  <section id="review-panel" class="review-panel" hidden aria-label="設計檢視設定">
+    <label>世界風格<select id="theme"><option value="default">星夜遠行</option><option value="sweet">晨光花園</option><option value="twilight">暮光冒險手帳</option></select></label>
+    <label>閱讀字級<select id="type-scale"><option value="1">標準</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select></label>
+    <label class="check"><input type="checkbox" id="reduce-motion">減少動態</label>
+    <label class="check"><input type="checkbox" id="haptics">觸覺回饋（支援的裝置）</label>
+    <label class="check"><input type="checkbox" id="expansion">永眠花海：檢視已解鎖花庭</label>
+    <label>指定演出角色<select id="demo-pet"></select></label>
+    <div class="review-actions"><button id="demo-new">體驗新夥伴</button><button id="demo-duplicate">體驗再次相遇</button><button id="stress">文字壓力測試</button><button id="reset-demo">重設展示收藏</button></div>
+    <p>這裡只指定顯示結果，不呼叫抽卡、錢包或存檔服務。重新整理即重設。</p>
+    <p id="haptic-support"></p>
+  </section>
+  <nav class="main-nav" aria-label="Prototype 主選單"><button data-view="pool" aria-current="page">相遇</button><button data-view="collection">旅程圖鑑</button></nav>
+  <main id="screen" tabindex="-1"><p role="status">載入夥伴手帳…</p></main>
+  <dialog id="detail-dialog" aria-labelledby="dialog-heading"><div id="dialog-content"></div></dialog>
+  <dialog id="reveal-dialog" aria-labelledby="reveal-name"><div id="reveal-content"></div></dialog>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script type="module" src="./companion-identity.js"></script>
+</body>
+</html>

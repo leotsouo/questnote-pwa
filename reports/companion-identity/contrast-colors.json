@@ -1,0 +1,41 @@
+[
+  {
+    "colors": {
+      "accent": "#e4c38c",
+      "bg-card": "#18263b",
+      "bg-card-soft": "#203149",
+      "bg-main": "#101a2b",
+      "primary": "#b9b0ed",
+      "text-inverse": "#121a2a",
+      "text-main": "#f4eee1",
+      "text-muted": "#b1bdcc"
+    },
+    "theme": "default"
+  },
+  {
+    "colors": {
+      "accent": "#866235",
+      "bg-card": "#fffcf8",
+      "bg-card-soft": "#f3e6e3",
+      "bg-main": "#fff8f2",
+      "primary": "#914b68",
+      "text-inverse": "#fffaf6",
+      "text-main": "#493441",
+      "text-muted": "#765d69"
+    },
+    "theme": "sweet"
+  },
+  {
+    "colors": {
+      "accent": "#796039",
+      "bg-card": "#faf7ef",
+      "bg-card-soft": "#e6e9de",
+      "bg-main": "#f3efe6",
+      "primary": "#476952",
+      "text-inverse": "#faf7ef",
+      "text-main": "#27362f",
+      "text-muted": "#616960"
+    },
+    "theme": "twilight"
+  }
+]

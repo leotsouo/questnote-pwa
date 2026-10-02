@@ -1,0 +1,307 @@
+{
+  "source": "3a88db8f227e710c13324860197b73c1ce880573",
+  "browser": "Codex IAB (Chromium)",
+  "requestedViewports": [
+    "393x852",
+    "320x852"
+  ],
+  "checks": [
+    {
+      "scenario": "default-393",
+      "brokenImages": 0,
+      "name": "天律之冕・格里芬",
+      "nameFont": "24px",
+      "scrollWidth": 378,
+      "smallButtons": 0,
+      "titleFont": "13.6px",
+      "width": 378
+    },
+    {
+      "scenario": "sweet-393",
+      "brokenImages": 0,
+      "name": "天律之冕・格里芬",
+      "nameFont": "24px",
+      "scrollWidth": 378,
+      "smallButtons": 0,
+      "titleFont": "13.6px",
+      "width": 378
+    },
+    {
+      "scenario": "twilight-393",
+      "brokenImages": 0,
+      "name": "天律之冕・格里芬",
+      "nameFont": "24px",
+      "scrollWidth": 378,
+      "smallButtons": 0,
+      "titleFont": "13.6px",
+      "width": 378
+    },
+    {
+      "nameFont": "48px",
+      "scenario": "default-320-text200",
+      "scrollWidth": 305,
+      "smallButtons": 0,
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "nameFont": "48px",
+      "scenario": "sweet-320-text200",
+      "scrollWidth": 305,
+      "smallButtons": 0,
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "nameFont": "48px",
+      "scenario": "twilight-320-text200",
+      "scrollWidth": 305,
+      "smallButtons": 0,
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "dialogClient": 272,
+      "dialogScroll": 272,
+      "samples": [
+        {
+          "client": 231,
+          "name": "鳥哥",
+          "nameFont": "44.8px",
+          "scroll": 231
+        },
+        {
+          "client": 231,
+          "name": "霧隱兔",
+          "nameFont": "44.8px",
+          "scroll": 231
+        },
+        {
+          "client": 231,
+          "name": "灰影幼狼",
+          "nameFont": "44.8px",
+          "scroll": 231
+        },
+        {
+          "client": 231,
+          "name": "苗圃護芽甲蟲",
+          "nameFont": "44.8px",
+          "scroll": 231
+        },
+        {
+          "client": 231,
+          "name": "天律之冕・格里芬",
+          "nameFont": "44.8px",
+          "scroll": 231
+        },
+        {
+          "client": 231,
+          "name": "The Companion Beyond the Mist",
+          "nameFont": "44.8px",
+          "scroll": 231
+        },
+        {
+          "client": 231,
+          "name": "與你同行於暮色森林的長名字測試",
+          "nameFont": "44.8px",
+          "scroll": 231
+        }
+      ],
+      "scenario": "stress-320-text200-final",
+      "viewport": 320
+    },
+    {
+      "brokenImages": 0,
+      "scenario": "default-320",
+      "scrollWidth": 305,
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "brokenImages": 0,
+      "scenario": "sweet-320",
+      "scrollWidth": 305,
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "brokenImages": 0,
+      "scenario": "twilight-320",
+      "scrollWidth": 305,
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "announcement": "重鉚架橋犀，讓一次真正的試飛有路可走，SSR。再次相遇，重鉚架橋犀碎片增加10。",
+      "dialogLabel": "重鉚架橋犀，讓一次真正的試飛有路可走，SSR，已擁有",
+      "scenario": "duplicate-SSR",
+      "state": "再次相遇 · 重鉚架橋犀碎片 +10碎片會幫助這位夥伴升星。",
+      "trace": [
+        {
+          "at": 7,
+          "phase": "begin"
+        },
+        {
+          "at": 323,
+          "phase": "cue"
+        },
+        {
+          "at": 561,
+          "phase": "silhouette"
+        },
+        {
+          "at": 860,
+          "phase": "art"
+        },
+        {
+          "at": 1211,
+          "phase": "name"
+        },
+        {
+          "at": 1458,
+          "phase": "title"
+        },
+        {
+          "at": 1816,
+          "phase": "result"
+        }
+      ]
+    },
+    {
+      "announcement": "天律之冕・格里芬，自然法則的完整形體，UR。新夥伴已加入展示圖鑑。",
+      "phase": "result",
+      "scenario": "reduced-new-UR",
+      "trace": [
+        {
+          "at": 3,
+          "phase": "result"
+        }
+      ],
+      "transition": "0s"
+    },
+    {
+      "label": "天律之冕・格里芬，UR",
+      "nameHidden": "false",
+      "phase": "name",
+      "scenario": "name-peak",
+      "titleHidden": "true"
+    },
+    {
+      "focus": "逐步檢視 Reveal",
+      "open": false,
+      "scenario": "escape-result-close-focus"
+    },
+    {
+      "count": [
+        "56 位可相遇的夥伴 · 焦點展示不加成機率"
+      ],
+      "hero": "創世星龍",
+      "options": 56,
+      "scenario": "pool-standard"
+    },
+    {
+      "count": [
+        "12 位可相遇的夥伴 · 焦點展示不加成機率",
+        "此系列在累積 20 次召喚後開啟晨醒花庭；此處顯示初始名單。"
+      ],
+      "hero": "永眠花皇兔",
+      "options": 12,
+      "scenario": "pool-eternal_slumber_bloom"
+    },
+    {
+      "count": [
+        "12 位可相遇的夥伴 · 焦點展示不加成機率"
+      ],
+      "hero": "破曉誓角麝牛",
+      "options": 12,
+      "scenario": "pool-frost_oath_fjord"
+    },
+    {
+      "count": [
+        "12 位可相遇的夥伴 · 焦點展示不加成機率"
+      ],
+      "hero": "千層奶霜天鵝",
+      "options": 12,
+      "scenario": "pool-honeylight_sugar_garden_v2"
+    },
+    {
+      "count": [
+        "20 位可相遇的夥伴 · 焦點展示不加成機率"
+      ],
+      "hero": "玄翎重岳雕",
+      "options": 20,
+      "scenario": "pool-swordwild_shanhe_v3"
+    },
+    {
+      "count": [
+        "12 位可相遇的夥伴 · 焦點展示不加成機率"
+      ],
+      "hero": "天律之冕・格里芬",
+      "options": 12,
+      "scenario": "pool-lionheart_inverse_oath"
+    },
+    {
+      "count": 16,
+      "hero": "曙綻花后兔",
+      "scenario": "bloom-expanded-final"
+    },
+    {
+      "nameFont": "48px",
+      "scenario": "default-320-text200-final",
+      "scrollWidth": 305,
+      "supportColumns": "268.667px",
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "nameFont": "48px",
+      "scenario": "sweet-320-text200-final",
+      "scrollWidth": 305,
+      "supportColumns": "268.667px",
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "nameFont": "48px",
+      "scenario": "twilight-320-text200-final",
+      "scrollWidth": 305,
+      "supportColumns": "268.667px",
+      "viewport": 320,
+      "width": 305
+    },
+    {
+      "scenario": "collection-filters-search",
+      "ownedCount": 4,
+      "unownedCount": 8,
+      "nameCount": 1,
+      "titleCount": 1,
+      "emptyCount": 0,
+      "resetCount": 12
+    },
+    {
+      "columns": "268.667px",
+      "nameFont": "32px",
+      "scenario": "collection-320-text200-final",
+      "scrollWidth": 305,
+      "width": 305
+    },
+    {
+      "scenario": "dialog-keyboard-wrap-final",
+      "focusLastFinal": {
+        "tag": "BUTTON",
+        "text": "返回本池夥伴",
+        "withinDialog": true
+      },
+      "focusFirstFinal": {
+        "tag": "BUTTON",
+        "text": "關閉",
+        "withinDialog": true
+      }
+    }
+  ],
+  "limitations": [
+    "No physical iPhone or VoiceOver run",
+    "200% root-font simulation, not native Dynamic Type",
+    "Haptic API present, tactile output not verified"
+  ]
+}

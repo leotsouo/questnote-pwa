@@ -1,0 +1,18 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>隔離 Audit 收藏樣本</title></head>
+<body><h1>隔離 Audit 收藏樣本</h1><p>僅允許此輪建立的 127.0.0.1:4187；只在空收藏中放入六筆展示資料，不執行抽卡或發送報告。</p><button id="seed">建立本機 Audit 展示收藏</button><p id="result" role="status">尚未建立</p><a href="../">回到實際 App</a>
+<script type="module">
+import { dbMutateRecords, STORES } from '../src/db.js';
+import { createCollectionEntry } from '../src/collectionService.js';
+document.getElementById('seed').addEventListener('click',async()=>{
+  const result=document.getElementById('result');
+  try{
+    if(location.origin!=='http://127.0.0.1:4187')throw Error('不在本輪隔離 origin，拒絕建立樣本。');
+    await dbMutateRecords([{store:STORES.COLLECTION,all:true}],([rows])=>{
+      if(rows.length)throw Error('收藏不是空的，拒絕覆寫。');
+      return {puts:['pet_n01','pet_n09','pet_n39','pet_r41','pet_ssr25','pet_ur20'].map(id=>({store:STORES.COLLECTION,value:createCollectionEntry(id)})),result:true};
+    });
+    result.textContent='六筆真實角色的展示收藏已建立。';
+    document.getElementById('seed').disabled=true;
+  }catch(error){result.textContent=error.message;}
+});
+</script></body></html>

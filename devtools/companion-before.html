@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="../">
+<title>QuestNote · 原版演出 Audit</title>
+<link rel="stylesheet" href="../src/styles.css"><link rel="stylesheet" href="../src/ui-polish.css"><link rel="stylesheet" href="../src/summon-polish.css"><link rel="stylesheet" href="../src/honeylight-sugar.css"><link rel="stylesheet" href="../src/swordwild-shanhe.css"><link rel="stylesheet" href="../src/lionheart.css">
+<style>body{margin:0;padding:24px;background:#101a2b;color:#f4eee1;min-height:100vh}main{max-width:600px;margin:auto}h1{font-size:24px}button{font:inherit;min-height:44px;padding:10px;margin:8px 0;display:block}p{line-height:1.7}select{font:inherit;padding:10px;max-width:100%}</style></head>
+<body data-theme="default"><main><h1>原版召喚與 Reveal</h1><p>最新 main V3.5.9 的原有模組；固定真實角色，不呼叫抽取或存檔服務。</p>
+<label>演出角色 <select id="pet"></select></label><button id="summon">播放原版召喚</button><button id="reveal">播放原版 Reveal</button><p id="status" role="status">載入…</p></main>
+<script type="module">
+import { mergeAllPetsWithLore } from '../src/loreService.js';
+import { playThemedSummon } from '../src/themedSummonController.js';
+import { playSummonReveal } from '../src/summonRevealService.js';
+const [petData,loreData,poolData] = await Promise.all(['pets.json','pets-lore.json','pools.json'].map(file => fetch('../data/'+file).then(r=>r.json())));
+const pets = mergeAllPetsWithLore(petData.pets,loreData).filter(p=>p.poolTags.includes('lionheart_inverse_oath') && ['UR','SSR'].includes(p.rarity));
+const pool = poolData.pools.find(p=>p.id==='lionheart_inverse_oath');
+document.getElementById('pet').innerHTML=pets.map(p=>`<option value="${p.id}" ${p.id==='pet_ur19'?'selected':''}>${p.name}</option>`).join('');
+document.getElementById('status').textContent='原版模組已就緒。';
+let playing=false;
+async function play(mode){
+  if(playing)return;playing=true;
+  const pet=pets.find(p=>p.id===document.getElementById('pet').value);
+  document.getElementById('status').textContent='播放中';
+  try {
+    if(mode==='summon')await playThemedSummon({results:[{pet,rarity:pet.rarity,isNew:true,fragmentsGained:0}],mode:'single',reduceMotion:false,poolName:pool.name,animationKey:pool.presentation.animationKey});
+    else await playSummonReveal({pet,rarity:pet.rarity,isNew:true,reduceMotion:false,presentationKey:pool.presentation.animationKey});
+    document.getElementById('status').textContent='播放完成。';
+  } catch(error) { document.getElementById('status').textContent=error.message; }
+  finally{playing=false;}
+}
+document.getElementById('summon').addEventListener('click',()=>play('summon'));
+document.getElementById('reveal').addEventListener('click',()=>play('reveal'));
+</script></body></html>
