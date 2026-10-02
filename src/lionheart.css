@@ -100,7 +100,7 @@
   color: var(--pool-text-primary);
 }
 /* Match the selector that supplies themed surfaces in every app theme. */
-#view-gacha #gacha-panel[data-pool-theme=lionheart_inverse_oath] {
+body[data-theme] #view-gacha #gacha-panel[data-pool-theme=lionheart_inverse_oath] {
   background: radial-gradient(ellipse at 15% 0%, #a67a3f38, transparent 60%),
     radial-gradient(ellipse at 95% 65%, #527e8540, transparent 65%), var(--pool-surface-strong);
 }
