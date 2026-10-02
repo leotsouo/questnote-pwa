@@ -1,0 +1,7 @@
+{
+  "evidence": "reports/lionheart/v356-wings-release-evidence.json",
+  "gate": "reports/lionheart/v356-wings-release-gate.json",
+  "packageHash": "b156b65612d75978f11a08f206fbc1411b2c672caa16ba9ac882b651dcd07626",
+  "previewUrl": "http://127.0.0.1:57584/review/",
+  "reason": "UR wing occlusion correction after previous human acceptance"
+}
