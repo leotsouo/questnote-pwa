@@ -595,6 +595,9 @@ export async function playSummonReveal({
       };
 
       const onAnimationEnd = () => {
+        // Lionheart has a staged wing-to-card sequence. A decorative child ending
+        // must not reveal the card early or shorten the bounded presentation.
+        if (overlay.classList.contains('is-lionheart-reveal')) return;
         // 僅作就緒輔助；真正關閉仍需使用者或略過，且冪等
         if (!ready) enterReady();
       };
