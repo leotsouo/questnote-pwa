@@ -24,12 +24,18 @@ test('repeated clicks wrap, rerender retains selection, and obsolete image loads
   const host = { querySelector: (selector) => elements[selector] };
   const carousel = createStandardUrCarousel(host);
   const model = { poolId: 'standard', eligiblePets: [
-    { id: 'one', name: 'One', rarity: 'UR', image: 'one.png', imageVariants: { stage: 'one.webp' } },
+    { id: 'one', name: 'One', title: 'The First', rarity: 'UR', image: 'one.png', imageVariants: { stage: 'one.webp' } },
     { id: 'two', name: 'Two', rarity: 'UR', image: 'two.png', imageVariants: { stage: 'two.webp' } },
   ] };
   carousel.render(model);
+  assert.equal(name.textContent, 'The First');
+  assert.equal(name.hidden, false);
+  assert.equal(image.alt, 'The First・UR 黑白預覽');
   const staleLoad = image.onload;
   button.onclick();
+  assert.equal(name.textContent, '');
+  assert.equal(name.hidden, true);
+  assert.equal(image.alt, 'UR 角色黑白預覽');
   staleLoad();
   assert.ok(classes.has('is-loading'));
   assert.equal(image.src, 'two.webp');
@@ -41,7 +47,7 @@ test('repeated clicks wrap, rerender retains selection, and obsolete image loads
   assert.equal(count.textContent, '2 / 2');
   button.onclick();
   assert.equal(count.textContent, '1 / 2');
-  assert.equal(name.textContent, 'One');
+  assert.equal(name.textContent, 'The First');
   carousel.render({ ...model, poolId: 'limited' });
   assert.equal(host.hidden, true);
   assert.equal(button.disabled, true);

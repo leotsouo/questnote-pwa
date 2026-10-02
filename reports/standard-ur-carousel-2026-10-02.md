@@ -2,7 +2,7 @@
 
 Source baseline: origin/main e17be76. Feature branch: codex/standard-ur-carousel.
 
-Standard summon now shows all eligible UR characters in a black-and-white preview using the existing themed-pool silhouette filter. Clicking the image (or activating the button with keyboard) advances and wraps. Character title and position update together. There is no timer or additional control, following the user's preference. Selection survives rerenders; switching pools hides this preview. Draw logic and catalogs are unchanged.
+Standard summon now shows all eligible UR characters in a black-and-white preview using the existing themed-pool silhouette filter. Clicking the image (or activating the button with keyboard) advances and wraps. Only the character title and position are shown. Characters without titles have no identifying text; neither captions nor image alt text fall back to character names. There is no timer or additional control, following the user's preference. Selection survives rerenders; switching pools hides this preview. Draw logic and catalogs are unchanged.
 
 Validation:
 - npm test: passed, 258 main tests + 11 theme tests + 5 Honeylight tests, plus reveal-flow assertions.
@@ -11,6 +11,8 @@ Validation:
 - Browser on isolated localhost: 9 eligible URs shown; click advances 1/9 to 2/9 and 3/9; continued clicks wrap to 1/9; switching to Eternal Slumber hides the standard preview and retains the existing themed stage.
 - Screenshot: standard-ur-carousel.jpg.
 
-Runtime version/cache: 3.5.6 / questnote-preview-cache-v356-standard-ur. New module is precached.
+Runtime version/cache: 3.5.7 / questnote-preview-cache-v357-standard-ur-titles. New module is precached.
 
 Status: local source implementation and verification complete. No source merge or preview/production deployment performed.
+
+Follow-up: fetched origin on 2026-10-02 and confirmed main remains e17be761f61b7480ae663e1be5cef3f9baa2efec, the exact feature baseline. Formal HTTPS version.js reads V3.5.5 and artifact 24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769. Local guide and Lionheart candidate branches also use V3.5.6, so this candidate is now V3.5.7 with a unique synchronized cache identifier. Publication must recheck current main and release numbering. Title-only captions and generic image alt text without titles are covered by the focused tests; 21 focused/update/release safety tests pass.

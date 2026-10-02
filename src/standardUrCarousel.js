@@ -15,10 +15,11 @@ export function createStandardUrCarousel(host, { imageSrc = getPetImageSrc } = {
   const show = () => {
     const pet = pets[index];
     if (!pet) return;
-    const label = pet.title || pet.name;
+    const label = pet.title?.trim() || '';
     name.textContent = label;
+    name.hidden = !label;
     count.textContent = `${index + 1} / ${pets.length}`;
-    image.alt = `${label}・UR 黑白預覽`;
+    image.alt = label ? `${label}・UR 黑白預覽` : 'UR 角色黑白預覽';
     const src = imageSrc(pet, 'stage');
     if (image.dataset.src === src) return;
     image.classList.add('is-loading');
