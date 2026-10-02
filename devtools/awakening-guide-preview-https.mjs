@@ -1,4 +1,4 @@
-/** Verify every actual public preview byte matches the immutable V3.5.8 candidate. */
+/** Verify every actual public preview byte matches the immutable V3.5.9 candidate. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';

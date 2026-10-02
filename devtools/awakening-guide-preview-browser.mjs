@@ -39,7 +39,7 @@ try {
     return { version: (await import('./src/version.js')).APP_VERSION, artifactId: document.querySelector('meta[name="questnote-artifact"]').content,
       initialImages: images, serviceWorker: navigator.serviceWorker.controller?.scriptURL };
   });
-  assert.equal(data.version, '3.5.8'); assert.equal(data.artifactId, pins.artifactId); assert.equal(data.initialImages.length, 20);
+  assert.equal(data.version, '3.5.9'); assert.equal(data.artifactId, pins.artifactId); assert.equal(data.initialImages.length, 20);
   await page.getByRole('button', { name: '召喚', exact: true }).click();
   const standardCarousel = page.locator('#gacha-standard-ur');
   await standardCarousel.waitFor({ state: 'visible' });
