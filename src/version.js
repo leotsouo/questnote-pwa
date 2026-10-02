@@ -9,7 +9,9 @@ export const CACHE_NAME = 'questnote-preview-cache-v3510-awakening-guide';
 export const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 export const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */
-export const BUILD_TIME = '2026-10-02T09:30:27.000Z';`r`n`r`nexport function formatDisplayVersion() {
+export const BUILD_TIME = '2026-10-02T09:30:27.000Z';
+
+export function formatDisplayVersion() {
   return `V${APP_VERSION}`;
 }
 
