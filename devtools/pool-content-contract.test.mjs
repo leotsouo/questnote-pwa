@@ -78,7 +78,7 @@ test('legacy presentation preserves identity, heroes, cast order, and Chinese co
   assert.deepEqual(before.featured.map((pet) => pet.id), ['pet_ssr05', 'pet_ssr06']);
   assert.deepEqual(before.unlock.previewPets.map((pet) => pet.id), ['pet_r16', 'pet_sr12', 'pet_ssr07', 'pet_ur06']);
   assert.equal(before.unlock.progressText, '夢塵共鳴 19／20');
-  assert.equal(before.unlock.description, '完成 20 次永眠花海召喚，解鎖 4 位晨醒角色，並固定獲得曉露花蝟。');
+  assert.equal(before.unlock.description, '在「永眠花海」完成 20 次召喚，解鎖 4 位晨醒角色，並固定獲得曉露花蝟。');
   assert.equal(before.unlock.countsText, '目前候選：12　解鎖後候選：16');
   assert.equal(before.unlock.grantId, 'awakening_reward:eternal_slumber_bloom:20');
   assert.equal(before.unlock.rewardSource, 'morning_garden_unlock_reward');

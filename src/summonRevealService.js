@@ -428,6 +428,7 @@ export function skipSummonReveal() {
  *   progressText?: string,
  *   queueMode?: boolean,
  *   forceFallback?: boolean,
+ *   identityHandoff?: boolean,
  * }} options
  * @returns {Promise<void>}
  */
@@ -442,6 +443,7 @@ export async function playSummonReveal({
   queueMode = false,
   forceFallback = false,
   presentationKey,
+  identityHandoff = false,
 } = {}) {
   void mode;
   void results;
@@ -509,6 +511,10 @@ export async function playSummonReveal({
     }
 
     activeOverlay = overlay;
+    if (identityHandoff) {
+      overlay.dataset.identityHandoff = 'true';
+      overlay.querySelectorAll('.summon-reveal-name, .summon-reveal-title, .summon-reveal-caption, .summon-reveal-continue').forEach((element) => { element.hidden = true; });
+    }
     document.body.appendChild(overlay);
     document.body.classList.add('summon-reveal-active');
     overlay.querySelector('.summon-reveal-skip')?.focus();
@@ -563,6 +569,7 @@ export async function playSummonReveal({
 
       const enterReady = () => {
         if (completed) return;
+        if (identityHandoff) { advanceOnce({ skipQueue: false }); return; }
         ready = true;
         overlay.classList.add('is-ready');
         if (skipBtn) {

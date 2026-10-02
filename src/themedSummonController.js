@@ -354,6 +354,7 @@ function setupBuds(container, count, reduceMotion) {
  *   mode?: 'single'|'ten'|'preview',
  *   reduceMotion?: boolean,
  *   skipRitual?: boolean,
+ *   ritualOnly?: boolean, // optional caller-owned reveal/result handoff
  * }} options
  * @returns {Promise<{ ok: boolean, fallback: boolean, state: string }>}
  */
@@ -500,6 +501,13 @@ export async function playThemedSummon(options = {}) {
       await runPhase(STATES.BLOOM, (sugar || swordwild || lionheart) ? sugarMs[3] : bloomMs);
     } else {
       introSkipped = true;
+    }
+
+    // Optional presentation handoff: the local viewer owns the character/result sequence.
+    // Existing callers retain the complete ritual, SSR+ queue and summary below.
+    if (options.ritualOnly) {
+      setState(STATES.COMPLETE, liveEl);
+      return { ok: true, fallback: false, state: STATES.COMPLETE, skipped: introSkipped };
     }
 
     // SSR+ 自動出場：主動畫（含略過）後、結果總覽前。introSkipped 不得跳過 queue。

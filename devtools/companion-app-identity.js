@@ -8,6 +8,7 @@ import { mergeAllPetsWithLore } from '../src/loreService.js';
 import { RARITIES, MAX_DISPLAY_STARS, poolCandidates, identityLabel, basePetRate, seedDisplayCollection, publicIntro, normalGreeting, prepareDisplayBatch, tenPreviewPets, duplicateNote, setDisplayCompanion } from './companion-identity-model.js';
 import { AWAKENING_PET_IDS } from '../src/petAwakeningCore.js';
 import { normalizePoolDefinition } from '../src/poolContentContract.js';
+import { createPoolScenery, ceremonyPresentation, playCeremonyEntry, playCeremonyRitual, playCeremonyCharacter, playCeremonyAwakening } from './companion-ceremony.js';
 
 let screen = document.getElementById('identity-screen');
 let refreshApp = null;
@@ -26,7 +27,6 @@ let collection = seedDisplayCollection();
 let filter = 'all';
 let density = 'compact';
 let query = '';
-let recent = null;
 let dialogOpener = null;
 let revealOpener = null;
 let revealFocusAction = '';
@@ -36,6 +36,7 @@ let activeResult = null;
 let activeBatch = null;
 let manual = false;
 let displayBusy = false;
+const seenDebuts = new Set();
 let trace = [];
 const pool = () => pools.find((row) => row.id === poolId);
 const candidates = () => poolCandidates(pets, pool(), document.getElementById('identity-expansion').checked);
@@ -68,36 +69,32 @@ function poolSelector() {
   return `<div class="pool-select"><label for="identity-pool-select-${view}">${isCollection ? '瀏覽系列' : '探索世界'}</label><select id="identity-pool-select-${view}">${isCollection ? '<option value="all">全部系列</option>' : ''}${pools.map((row) => `<option value="${row.id}" ${row.id === selected ? 'selected' : ''}>${escapeHtml(row.name)}</option>`).join('')}</select></div>`;
 }
 
-function companionPreview() {
-  const pair = [...collection].find(([, entry]) => entry.isCompanion);
-  if (!pair) return '<section class="companion-preview"><p class="eyebrow">今天的同行者</p><p class="subtle">在已相遇夥伴的手記中，選擇想一起同行的夥伴。</p></section>';
-  const [id, entry] = pair;
-  const pet = byId(id);
-  return `<section class="companion-preview"><p class="eyebrow">今天的同行者 · 日常陪伴</p><button data-pet="${id}" aria-label="${escapeHtml([entry.nickname || pet.name, entry.nickname ? `原名：${pet.name}` : '', '目前陪伴夥伴'].filter(Boolean).join('，'))}">${imageHtml(pet)}<span><strong class="companion-name">${escapeHtml(entry.nickname || pet.name)}</strong>${entry.nickname ? `<span class="companion-original">原名：${escapeHtml(pet.name)}</span>` : ''}<span class="subtle">${pet.rarity} · 正在與你同行</span></span><span class="companion-link">認識牠</span></button></section>`;
-}
-
 function renderPool() {
+  screen = document.querySelector('#view-gacha .identity-surface') || screen;
   const selected = pool();
   const list = candidates();
   const hero = byId(presentation().heroPetId) || list.find((pet) => pet.rarity === 'UR') || list[0];
   const support = (presentation().featuredPetIds || list.filter((pet) => pet.rarity === 'UR' && pet.id !== hero.id).slice(0, 3).map((pet) => pet.id)).map(byId).filter((pet) => pet && list.some((row) => row.id === pet.id));
   screen.innerHTML = `<div class="page-intro pool-heading"><h1>下一位同行者。</h1></div>
-    ${poolSelector()}<div class="pool-layout">
-    <div class="pool-stage"><button class="hero-card rank-${hero.rarity}" data-pet="${hero.id}" aria-label="預覽 ${escapeHtml(identityLabel(hero, owned(hero)))}">
-      <span class="art-label">焦點夥伴 · 點擊認識</span>${imageHtml(hero, 'stage', false, 'hero-art')}
+    ${poolSelector()}<section class="summon-sanctuary" data-world="${ceremonyPresentation(selected).animationKey}">
+    <div class="sanctuary-scenery" aria-hidden="true"></div>
+    <header class="sanctuary-heading"><h2>${escapeHtml(selected.name)}</h2><span>${escapeHtml(selected.presentation?.badge || '星光相遇')}</span></header>
+    <div class="pool-layout"><div class="pool-stage"><button class="hero-card rank-${hero.rarity}" data-pet="${hero.id}" aria-label="預覽 ${escapeHtml(identityLabel(hero, owned(hero)))}">
+      <span class="art-label">本池焦點 · 點擊認識</span><span class="hero-portal">${imageHtml(hero, 'stage', false, 'hero-art')}</span>
       <span class="hero-caption"><span class="pet-name">${escapeHtml(hero.name)}</span><span class="pet-title">${escapeHtml(hero.title)}</span>${cues(hero)}</span>
-    </button><div class="summon-dock"><p>單次召喚 ${selected.cost} 星塵 · 此處不消耗</p><div class="summon-buttons"><button class="primary" data-identity-action="summon" data-pet-id="${hero.id}">體驗一次相遇</button><button data-identity-action="summon-ten">體驗十連</button></div></div></div>
+    </button><div class="summon-dock"><div class="summon-buttons"><button class="primary" data-identity-action="summon" data-pet-id="${hero.id}"><span>啟動相遇</span><small>單次 · ${selected.cost} 星塵</small></button><button data-identity-action="summon-ten"><span>十連相遇</span><small>十次 · ${selected.cost * 10} 星塵</small></button></div><p>展示試演 · 星塵不扣除</p></div></div></div></section>
     <div class="pool-copy"><p class="eyebrow">${escapeHtml(selected.presentation?.badge || '持續開放的相遇')}</p><h2>${escapeHtml(selected.name)}</h2>
       <p class="pool-lore">${escapeHtml(selected.presentation?.tagline || '循著星光，認識願意與你一起前進的夥伴。')}</p>
       <p class="subtle">${list.length} 位可相遇的夥伴 · 焦點展示不加成機率</p>
       ${selected.unlockExpansion ? `<p class="subtle">${document.getElementById('identity-expansion').checked ? '晨醒花庭已解鎖，候選名單已擴充。' : `此系列在累積 ${selected.unlockExpansion.threshold} 次召喚後開啟晨醒花庭；此處顯示初始名單。`}</p>` : ''}
       <div><button class="text-button" data-identity-action="preview">查看全部夥伴</button><br><button class="text-button" data-identity-action="probability">機率與卡池規則</button></div>
-    </div></div>
+      <button class="text-button" data-identity-action="replay-debut">重看卡池登場</button>
+      ${selected.unlockExpansion ? '<button class="text-button" data-identity-action="replay-awakening">試看晨醒花庭</button>' : ''}
+    </div>
     <div class="section-heading"><h2>也在這裡等你</h2><span class="subtle">焦點展示</span></div>
     <div class="support-grid">${support.slice(0, 3).map((pet) => `<button class="mini-card" data-pet="${pet.id}" aria-label="${escapeHtml(identityLabel(pet, owned(pet)))}">${imageHtml(pet)}<span class="pet-name">${escapeHtml(pet.name)}</span>${cues(pet)}</button>`).join('')}</div>
-    <p class="subtle">演出為指定角色的設計預覽；不會抽取、扣款或改變你的存檔。</p>
-    ${companionPreview()}
-    ${recent ? `<section class="recent"><p class="eyebrow">最近的相遇 · 展示紀錄</p><button data-pet="${recent.pet.id}">${imageHtml(recent.pet)}<span><span class="pet-name">${escapeHtml(recent.pet.name)}</span><span class="pet-title">${recent.isNew ? '新夥伴已加入手帳' : `再次相遇 · ${recent.pet.rarity} 碎片 +${recent.fragmentsGained}`}</span></span></button></section>` : ''}`;
+    <p class="subtle">演出為指定角色的設計預覽；不會抽取、扣款或改變你的存檔。</p>`;
+  screen.querySelector('.sanctuary-scenery').append(createPoolScenery(selected));
 }
 
 function renderCollection() {
@@ -119,6 +116,7 @@ function renderCollectionCards() {
 }
 
 function render() {
+  view = document.getElementById('view-collection').classList.contains('active') ? 'collection' : 'pool';
   screen = document.querySelector(`#view-${view === 'pool' ? 'gacha' : 'collection'} .identity-surface`);
   if (!screen) return;
   view === 'pool' ? renderPool() : renderCollection();
@@ -223,7 +221,7 @@ function rememberRevealOpener() {
   if (dialog.open) dialog.close();
 }
 
-function presentResult(result, stepByStep = false) {
+function presentResult(result, stepByStep = false, artworkShown = false) {
   clearTimers();
   activeResult = result;
   const pet = result.pet;
@@ -241,9 +239,9 @@ function presentResult(result, stepByStep = false) {
   if (!reveal.open) reveal.showModal();
   reveal.scrollTop = 0;
   reveal.querySelector('[data-identity-action="skip-reveal"]').focus();
-  phase(reduced() ? 'result' : 'begin');
+  phase(reduced() ? 'result' : artworkShown ? 'art' : 'begin');
   if (!reduced() && !manual) {
-    [['cue',300],['silhouette',550],['art',850],['name',1200],['title',1450],['result',1800]].forEach(([key,delay]) => timers.push(setTimeout(() => phase(key),delay)));
+    (artworkShown ? [['name',300],['title',650],['result',1000]] : [['cue',300],['silhouette',550],['art',850],['name',1200],['title',1450],['result',1800]]).forEach(([key,delay]) => timers.push(setTimeout(() => phase(key),delay)));
   }
 }
 
@@ -254,8 +252,16 @@ async function startReveal(pet, stepByStep = false) {
   activeBatch = null;
   const batch = prepareDisplayBatch(collection, [pet]);
   collection = batch.collection;
-  recent = batch.results[0];
-  try { await commitCollection(); presentResult(recent, stepByStep); } finally { displayBusy = false; }
+  try {
+    await commitCollection();
+    if (stepByStep) { presentResult(batch.results[0], true); return; }
+    activationHaptic();
+    const ritual = await playCeremonyRitual(pool(), batch.results, reduced());
+    if (ritual.skipped) { presentResult(batch.results[0]); phase('result'); return; }
+    const character = await playCeremonyCharacter(pool(), batch.results[0], { reduceMotion: reduced() });
+    presentResult(batch.results[0], false, character.artworkShown);
+    if (character.skipped) phase('result');
+  } finally { displayBusy = false; }
 }
 
 async function startScenario(kind, stepByStep = false) {
@@ -273,12 +279,14 @@ async function startTen() {
   rememberRevealOpener();
   const batch = prepareDisplayBatch(collection, tenPreviewPets(candidates()));
   collection = batch.collection;
-  recent = batch.results.at(-1);
   try {
     await commitCollection();
     activeBatch = { results: batch.results, queue: batch.results.filter((result) => ['SSR', 'UR'].includes(result.pet.rarity)), index: 0, summary: false };
-    if (reduced() || !activeBatch.queue.length) showBatchSummary();
-    else presentResult(activeBatch.queue[0]);
+    activationHaptic();
+    if (reduced()) { showBatchSummary(); return; }
+    const ritual = await playCeremonyRitual(pool(), batch.results, false);
+    if (ritual.skipped || !activeBatch.queue.length) showBatchSummary();
+    else await presentBatchCharacter();
   } finally { displayBusy = false; }
 }
 
@@ -303,6 +311,32 @@ function finishPresentation() {
 
 function closeReveal() { clearTimers(); reveal.close(); activeBatch = null; render(); }
 
+function activationHaptic() {
+  if (!reduced() && document.getElementById('identity-haptics').checked && navigator.vibrate) navigator.vibrate(12);
+}
+
+async function presentBatchCharacter() {
+  if (!activeBatch) return;
+  if (reveal.open) reveal.close();
+  const result = activeBatch.queue[activeBatch.index];
+  const character = await playCeremonyCharacter(pool(), result, { reduceMotion: reduced(), index: activeBatch.index, count: activeBatch.queue.length });
+  character.skipped ? showBatchSummary() : presentResult(result, false, character.artworkShown);
+}
+
+async function enterPool(replay = false) {
+  if (displayBusy || reveal.open || dialog.open) return;
+  const opener = document.activeElement;
+  displayBusy = true;
+  try {
+    await playCeremonyEntry(pool(), { full: replay || !seenDebuts.has(poolId), reduceMotion: reduced() });
+    seenDebuts.add(poolId);
+  } finally {
+    displayBusy = false;
+    const target = opener?.isConnected && opener !== document.body ? opener : document.querySelector('#identity-pool-select-pool');
+    target?.focus({ preventScroll: true });
+  }
+}
+
 function stress() {
   const examples = [pets.find((pet) => pet.name.length === 2), pets.find((pet) => pet.name.length === 3), byId('pet_n01'), byId('pet_n40'), byId('pet_ur19')].filter(Boolean);
   showDialog('名字與稱號的閱讀測試', `<p class="subtle">真實角色維持原名。英文與極長句僅為排版測試字串，不會寫入角色資料。</p>${examples.map((pet) => `<section class="stress-sample">${imageHtml(pet)}<p class="pet-name">${escapeHtml(pet.name)}</p><p class="pet-title">${escapeHtml(pet.title)}</p>${cues(pet)}</section>`).join('')}
@@ -317,6 +351,8 @@ document.addEventListener('error', (event) => {
 
 document.addEventListener('click', async (event) => {
   if (!event.target.closest('.identity-surface, .identity-dialog, .identity-review')) return;
+  const surface = event.target.closest('.identity-surface');
+  if (surface) { screen = surface; view = surface.closest('#view-collection') ? 'collection' : 'pool'; }
   const button = event.target.closest('button');
   if (!button) return;
 
@@ -332,11 +368,18 @@ document.addEventListener('click', async (event) => {
   if (action === 'close-dialog') dialog.close();
   if (action === 'summon') startReveal(byId(button.dataset.petId));
   if (action === 'summon-ten') startTen();
+  if (action === 'replay-debut') enterPool(true);
+  if (action === 'replay-awakening' && !displayBusy) {
+    displayBusy = true;
+    try { await playCeremonyAwakening(pool(), pets, reduced()); } finally { displayBusy = false; }
+  }
   if (action === 'skip-reveal') activeBatch ? showBatchSummary() : document.querySelector('.reveal-shell').dataset.phase === 'result' ? closeReveal() : phase('result');
   if (action === 'batch-summary') showBatchSummary();
   if (action === 'next-result' && activeBatch) {
+    if (displayBusy) return;
+    displayBusy = true;
     activeBatch.index += 1;
-    activeBatch.index < activeBatch.queue.length ? presentResult(activeBatch.queue[activeBatch.index]) : showBatchSummary();
+    try { activeBatch.index < activeBatch.queue.length ? await presentBatchCharacter() : showBatchSummary(); } finally { displayBusy = false; }
   }
   if (action === 'close-reveal') closeReveal();
   if (action === 'return-batch') dialog.close();
@@ -353,7 +396,16 @@ document.addEventListener('click', async (event) => {
 });
 
 document.addEventListener('change', (event) => {
-  if (event.target.id.startsWith('identity-pool-select-')) { if (view === 'collection') collectionScope = event.target.value; else poolId = event.target.value; query = ''; render(); }
+  if (event.target.id.startsWith('identity-pool-select-')) {
+    if (displayBusy) { event.target.value = event.target.id === 'identity-pool-select-collection' ? collectionScope : poolId; return; }
+    if (event.target.id === 'identity-pool-select-collection') collectionScope = event.target.value;
+    else poolId = event.target.value;
+    query = ''; render();
+    if (event.target.id === 'identity-pool-select-pool') enterPool();
+  }
+});
+document.addEventListener('click', (event) => {
+  if (event.target.closest('.nav-item[data-view="gacha"]') && !seenDebuts.has(poolId)) enterPool();
 });
 document.addEventListener('input', (event) => {
   if (event.target.id === 'identity-collection-search') { query = event.target.value; renderCollectionCards(); }
