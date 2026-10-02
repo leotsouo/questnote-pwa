@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "feature": "V3.5.6 劍隱山河羈絆覺醒教學、初遇卡圖呈現與雙形態驚喜",
+  "sourceCommit": "e948d15155ea4219ea31b7e7bfa1c043c38becb5",
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/?release-review=0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4",
+  "baseline": {
+    "version": "3.5.5",
+    "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+    "manifestSha256": "113b2182285c641a9930c76879f0fe1f612a1a38a5df5723318c7e18520cf0c3",
+    "contentBundleSemanticSha256": "e560670c83393125494fb9456ea30678864a31e0a986af1da67da863ce20349e"
+  },
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-guide-releases\\0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4",
+      "artifactId": "0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4",
+      "manifestSha256": "e1863952241e2721c0fb662e2eb160ebd56ba3df746bf0f3220ea7fc6522f53b",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-guide-releases\\20bb8033f3a8559649dfa671708c344776f99d4bbdcbb1fdd2071353e31e021a",
+      "artifactId": "20bb8033f3a8559649dfa671708c344776f99d4bbdcbb1fdd2071353e31e021a",
+      "manifestSha256": "9d19d02ff0721f599c3ab29bf7bee4f06afd09b0afd4b0c81c8d18ac53100020",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "functional": {
+      "status": "pass",
+      "evidence": "Source UUID-isolated browser check forced the guaranteed UR in a single pull and ten pull; each pull charged once, animated and result images used initial art, tutorial expands/collapses/navigates, ritual reveals awakening art and persisted form survives reload. reports/awakening-guide/browser-checks.json; V3.5.5 Awakening UI regression: 11 checks passed."
+    },
+    "artworkAndAnimation": {
+      "status": "pass",
+      "evidence": "HTTPS preview-browser test decoded all 20 initial-card WebP files and captured actual preview UI; gacha overlay is pinned themed animation with initial art, skip path and unchanged purchase counters were checked in the UUID-isolated source browser. Original approved 20-pair art source and V3.5.5 animation assets retained."
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "Preview and production immutable manifests share source files/content bundle; pet/pool/economy/Lore semantic catalog matches published V3.5.5: e560670c83393125494fb9456ea30678864a31e0a986af1da67da863ce20349e."
+    },
+    "backupAndTransactions": {
+      "status": "pass",
+      "evidence": "npm test includes awakening atomic ritual rollback/two-tab race and old/new backup roundtrip; new work changes only presentation and tutorial, no backup fields or transaction paths. Synthetic HTTPS browser reported an empty fresh preview storage and did not spend stars."
+    },
+    "regressions": {
+      "status": "pass",
+      "evidence": "npm test, focused pet-awakening tests (11), native UI browser regression (11 awakening checks), pool-release smoke, pools:validate and images:check all exited successfully."
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "Actual candidate controlled by its artifact-specific Service Worker https://leotsouo.github.io/questnote-pwa-preview/service-worker.js?artifact=0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4; isolated HTTPS browser passed offline reload. Cache version advances to V3.5.6."
+    },
+    "previewHttps": {
+      "status": "pass",
+      "evidence": "https://leotsouo.github.io/questnote-pwa-preview/ · Pages deployment e6670449a321bfb7b397881f37ea6154bda1db42; all 556 GitHub HTTPS files match artifact 0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4 and manifest e1863952241e2721c0fb662e2eb160ebd56ba3df746bf0f3220ea7fc6522f53b; browser checks captured in reports/awakening-guide/preview-browser.json."
+    }
+  },
+  "packageHash": "707a6b5aa3d90201cdbabd1e6cd91808f9459cbca8df8a8a4294a2ffcc276470"
+}
