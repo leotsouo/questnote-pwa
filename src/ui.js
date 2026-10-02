@@ -1,3 +1,4 @@
+import { LOCAL_ART_PREVIEW, renderLocalIdentityView } from './localArtPreview.js';
 /**
  * UI 渲染與互動邏輯
  */
@@ -4954,6 +4955,7 @@ function renderGachaPoolSwitcher() {
 }
 
 function renderGachaView() {
+  if (renderLocalIdentityView('gacha', state, onRefresh, { switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) return;
   const pool = getSelectedGachaPool();
   syncTwilightGacha(state, pool);
   if (!pool) { renderGachaUnavailable(); return; }
@@ -5115,6 +5117,7 @@ async function maybeResumeMorningGarden(poolId) {
  * @param {string} poolId
  */
 async function maybePlayPoolDebut(poolId) {
+  if (LOCAL_ART_PREVIEW) return;
   const pool = getSelectedGachaPool();
   if (!pool || pool.id !== poolId || isGachaPullInProgress() || maybePlayPoolDebut._inflight) return;
   const presentation = normalizePoolPresentation(pool);
@@ -6203,6 +6206,7 @@ function renderCollectionSeriesFilters() {
 }
 
 function renderCollectionView() {
+  if (renderLocalIdentityView('collection', state, onRefresh, { switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) { collectionRenderGate.clear(); return; }
   renderCollectionProgressSummary();
   renderCollectionMilestones();
   renderCollectionSeriesFilters();

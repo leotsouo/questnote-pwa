@@ -1,0 +1,12 @@
+<div class="identity-review"><div class="identity-review-bar"><span>美術整合測試 · 展示資料 · 重新整理重設</span><button id="identity-review-toggle" aria-expanded="false" aria-controls="identity-review-panel">測試設定</button></div><section id="identity-review-panel" class="identity-review-panel" hidden aria-label="設計檢視設定">
+    <label>世界風格<select id="identity-theme"><option value="default">星夜遠行</option><option value="sweet">晨光花園</option><option value="twilight">暮光冒險手帳</option></select></label>
+    <label>閱讀字級<select id="identity-type-scale"><option value="1">標準</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select></label>
+    <label class="check"><input type="checkbox" id="identity-reduce-motion">減少動態</label>
+    <label class="check"><input type="checkbox" id="identity-haptics">觸覺回饋（支援的裝置）</label>
+    <label class="check"><input type="checkbox" id="identity-expansion">永眠花海：檢視已解鎖花庭</label>
+    <label>指定演出角色<select id="identity-demo-pet"></select></label>
+    <div class="review-actions"><button id="identity-demo-new" disabled>體驗新夥伴</button><button id="identity-demo-duplicate" disabled>體驗再次相遇</button><button id="identity-demo-max-star" disabled>體驗滿星再次相遇</button><button id="identity-demo-ten" disabled>體驗固定十連</button><button id="identity-stress" disabled>文字壓力測試</button><button id="identity-reset-demo">重設展示收藏</button></div>
+    <p>指定情境使用展示資料，十連使用本池固定候選。操作不消耗星塵；重新整理即重設。</p>
+    <p id="identity-haptic-support"></p>
+  </section>
+  <dialog id="identity-detail-dialog" class="identity-dialog" aria-labelledby="identity-dialog-heading"><div id="identity-dialog-content"></div></dialog><dialog id="identity-reveal-dialog" class="identity-dialog" aria-labelledby="identity-reveal-name"><div id="identity-reveal-content"></div></dialog><div id="identity-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div></div>

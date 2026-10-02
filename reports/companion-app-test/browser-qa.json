@@ -1,0 +1,107 @@
+[
+  {
+    "ctaBottom": 632.4687728881836,
+    "navTop": 780,
+    "overflow": false,
+    "theme": "default",
+    "width": 393,
+    "hiddenEmptyImages": 2,
+    "visibleBroken": 0
+  },
+  {
+    "ctaBottom": 632.4687728881836,
+    "navTop": 780,
+    "overflow": false,
+    "theme": "sweet",
+    "width": 393,
+    "hiddenEmptyImages": 2,
+    "visibleBroken": 0
+  },
+  {
+    "ctaBottom": 632.4687728881836,
+    "navTop": 780,
+    "overflow": false,
+    "theme": "twilight",
+    "width": 393,
+    "hiddenEmptyImages": 2,
+    "visibleBroken": 0
+  },
+  {
+    "nameFont": "48px",
+    "overflow": false,
+    "rootFont": "32px",
+    "theme": "default",
+    "visibleBroken": 0,
+    "width": 320
+  },
+  {
+    "nameFont": "48px",
+    "overflow": false,
+    "rootFont": "32px",
+    "theme": "sweet",
+    "visibleBroken": 0,
+    "width": 320
+  },
+  {
+    "nameFont": "48px",
+    "overflow": false,
+    "rootFont": "32px",
+    "theme": "twilight",
+    "visibleBroken": 0,
+    "width": 320
+  },
+  {
+    "buttonFont": "32px",
+    "overflow": false,
+    "theme": "sweet",
+    "width": 320
+  },
+  {
+    "buttonFont": "32px",
+    "overflow": false,
+    "theme": "twilight",
+    "width": 320
+  },
+  {
+    "case": "search-and-unowned",
+    "passed": true,
+    "canonical": "天律之冕・格里芬",
+    "publicIntro": true,
+    "noOwnedActions": true
+  },
+  {
+    "case": "full-app-flows",
+    "taskReward": [
+      30000,
+      30020
+    ],
+    "nickname": "小翼",
+    "canonical": "天律之冕・格里芬",
+    "companionSyncedToHome": true,
+    "resetOnReload": true
+  },
+  {
+    "case": "ten-results",
+    "cards": 10,
+    "newCards": 5,
+    "ssrQueue": [
+      "重鉚架橋犀",
+      "天律之冕・格里芬",
+      "蒸園盤根龜",
+      "逆造獅首奇美拉"
+    ],
+    "sameBatchDuplicateFragments": 1,
+    "maxStarFragments": 20,
+    "skipAppliesOnce": true,
+    "reducedMotionDirectSummary": true,
+    "detailRestoresCardFocus": true,
+    "escapeRestoresSummonTen": true
+  },
+  {
+    "case": "keyboard-and-targets",
+    "minTargetPx": 44,
+    "shiftTabTrapped": true,
+    "appWarnings": 0,
+    "appErrors": 0
+  }
+]
