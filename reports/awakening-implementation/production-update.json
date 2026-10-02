@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "from": "3.5.4",
+  "to": "3.5.5",
+  "previousArtifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+  "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+  "previousArtifactRouteFixture": true,
+  "currentArtifactFetchedFromFormalHttps": true,
+  "isolatedFreshBrowserContext": true,
+  "explicitUpdateButton": true,
+  "storedProbePreserved": true,
+  "oldAppCacheRetired": true,
+  "offlineReload": true,
+  "state": {
+    "probe": "isolated-v354-save-preserved",
+    "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+    "petCount": 116,
+    "db": "QuestNoteDB",
+    "caches": [
+      "questnote-production-mailbox-runtime-v1",
+      "questnote-production-app-24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769"
+    ],
+    "marker": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+    "version": "3.5.5",
+    "activeWorker": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+    "uiText": "載入 QuestNote…\n\n📮\n星塵\n0\n冒險能量\n0\n今日完成\n0\n可抽卡\n0\n可領成就\n0\n今日\n全部\n智慧\n🌸\n每日祝福\n🗺️\n冒險任務\n🏆\n稱號\n任務\n召喚\n圖鑑\n探險\n更多"
+  },
+  "verifiedAt": "2026-10-02T06:20:28.338Z"
+}

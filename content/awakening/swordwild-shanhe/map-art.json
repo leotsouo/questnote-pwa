@@ -13,5 +13,11 @@
   "width": 960,
   "height": 540,
   "preservedAsset": "assets/expeditions/cloudrest_trail.svg",
-  "humanApproval": "pending-whole-package-review"
+  "humanApproval": "accepted-whole-package",
+  "humanAcceptance": {
+    "reviewer": "使用者",
+    "acceptedAt": "2026-10-02T06:08:58Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "response": "審核通過"
+  }
 }

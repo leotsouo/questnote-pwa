@@ -1,0 +1,13 @@
+{
+  "status": "prepared-not-pushed",
+  "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+  "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+  "previousDeploymentCommit": "5d971c0bc65b99e6455b1237f483aa6c968159a9",
+  "files": 556,
+  "everyHashMatches": true,
+  "preparedAt": "2026-10-02T06:13:07.271Z",
+  "deploymentCommit": "567266bc64e57b48824e8cf148096147272f2bf3",
+  "gitBlobsVerified": 556,
+  "manifestSha256": "113b2182285c641a9930c76879f0fe1f612a1a38a5df5723318c7e18520cf0c3",
+  "gitVerifiedAt": "2026-10-02T06:15:46.470Z"
+}
