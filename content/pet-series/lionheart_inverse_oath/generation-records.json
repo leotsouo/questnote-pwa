@@ -331,7 +331,7 @@
       "petId": "pet_ur19",
       "version": 2,
       "file": "generations/pet_ur19-v2.png",
-      "selected": true,
+      "selected": false,
       "sha256": "87fd3579edf850b01a538b80090b16268c5b2b0be78c3fbed598246032b00570",
       "bytes": 2772973,
       "width": 1254,
@@ -389,7 +389,7 @@
       "petId": "pet_ur20",
       "version": 3,
       "file": "generations/pet_ur20-v3.png",
-      "selected": true,
+      "selected": false,
       "sha256": "a226096708afe2f48680cda2dc507ee4264b8d9917167d8073ca5e29c6abf805",
       "bytes": 2829211,
       "width": 1254,
@@ -399,6 +399,140 @@
       "noExtraCost": true,
       "model": null,
       "seed": null
+    },
+    {
+      "originalPath": "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-8011c8eb-c889-47b4-9480-50365ea509ce.png",
+      "prompt": "Use case: identity-preserve. Edit target: the provided 天律之冕・格里芬 collectible card illustration. The user specifically requests the camera closer because the creature currently looks too small. Create a substantially tighter heroic FULL-CREATURE framing: enlarge the head, chest and lion body about 35–45% in visual scale; the face and torso must be noticeably easier to see on a small card. Reduce the foreground cliff and panoramic city to supporting background. Keep the complete head, four legs, natural lion tail and both full wing tips within the square image with a small safe border. To achieve a closer body without cropping wide wings, subtly angle the raised natural wings upward in a proud curved posture. Preserve this exact creature identity, ivory eagle head, natural hooked beak, amber eyes, creamy/brown feather wings, tawny lion body and muscular lion hindlegs, natural eagle foreclaws. Preserve the high cliff, distant Lionheart city, daylight clouds and wind currents, painterly detailed fantasy realism and original palette. One main creature. Its calm powerful refusal of the artificial rival remains. STRICT: entire creature purely biological; absolutely no equipment, metal, machinery, harness, crown, halo, collar, jewelry, armor or artificial feathers. No additional limbs, missing limbs, cropped body/wing tips/tail, text, frames, UI, watermark, humans, gore, light-element or dark-element powers. Keep square opaque illustration. The change must be visibly closer, especially the head and body, not just a larger rock or backdrop.",
+      "references": [
+        "generations/pet_ur19-v2.png"
+      ],
+      "petId": "pet_ur19",
+      "version": 3,
+      "file": "generations/pet_ur19-v3.png",
+      "selected": false,
+      "sha256": "0e2a6350a49bf85fcf2e99f161e728e248eeb48422732b209a4c725064451d33",
+      "bytes": 2802389,
+      "width": 1254,
+      "height": 1254,
+      "generatedFileModifiedAt": "2026-10-02T06:29:43.634Z",
+      "tool": "image_gen.imagegen (built-in)",
+      "noExtraCost": true,
+      "model": null,
+      "seed": null,
+      "revisionReason": "兩張 UR 鏡頭拉近，角色現在有點小"
+    },
+    {
+      "originalPath": "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-84019363-f789-4c4e-9456-57dc92735b98.png",
+      "prompt": "Precise framing correction to this CLOSE-UP griffin illustration. Keep this enlarged expressive eagle head, chest and lion body, identity, natural texture, pose and painted style. The near frame unfortunately cuts the upper-left wing feather tips. Correct ONLY framing/wing fit: provide enough extra background around all sides (roughly 10–12 percent zoom-out from THIS close-up, still far closer than the original distant view) and slightly tuck the raised wing feather spread inward so BOTH WINGS and ALL uppermost and outermost individual feather tips are fully visible. Leave at least 4 percent empty sky between every wing tip and image border. The enlarged head/body remain the clear focus. Keep four legs and natural lion tail fully visible, rock/cliff reduced, distant city subdued, same daylight windy sky. Strictly pure biological griffin, no equipment, crown, metal, machinery, jewelry, harness, halo, armor, light/dark power, extra animals, extra limbs, text, border, UI or watermark. SINGLE square opaque card illustration. Do not return clipped wings; reconstruct the missing tips and keep safe sky margins on top/left/right.",
+      "references": [
+        "generations/pet_ur19-v3.png"
+      ],
+      "petId": "pet_ur19",
+      "version": 4,
+      "file": "generations/pet_ur19-v4.png",
+      "selected": false,
+      "sha256": "f824c87bcefd396878f6e625bb07b807f3e41ae1eecf55838c3ef9d80403f0c7",
+      "bytes": 2828275,
+      "width": 1254,
+      "height": 1254,
+      "generatedFileModifiedAt": "2026-10-02T06:31:35.345Z",
+      "tool": "image_gen.imagegen (built-in)",
+      "noExtraCost": true,
+      "model": null,
+      "seed": null,
+      "revisionReason": "兩張 UR 鏡頭拉近，角色現在有點小"
+    },
+    {
+      "originalPath": "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-ef407839-fc64-4e11-bf72-2fc3c3f5113c.png",
+      "prompt": "Use case: identity-preserve. Edit target: provided 逆造獅首奇美拉 card illustration. User requests a closer camera because the creature looks too small. Move the camera closer to make this SAME creature's lion head, chest, flank and legs approximately 30 percent larger. Heroic full creature shot, NOT a distant city panorama. The organic lion face and red-brown mane must be clearly readable and the organic chest/flank muscles visible. Reduce the large empty foreground tower and broad distant city, retain enough stone tower ledge, pushed-aside chain and steam to show the scene. Target creature fills about 85 percent of square frame width and 65–75 percent of frame height. Keep all four feet, full segmented snake-shaped tail and COMPLETE wing tips inside the picture with 5 percent safe margin. You may angle the two mechanical wings more upright and slightly inward so a larger body fits with full wings. Preserve original anatomy and identity: single LIVING lion head with lion muzzle, amber eyes, mane, furred living chest/flanks; enclosed artificial organs, brass rib support, goat-horn-shaped pressure tubing, four flesh-and-mechanism hybrid animal limbs, two articulated mechanical wings, segmented tail. It is half biological half machinery, NOT a robot lion, no bird beak, no extra heads, no exposed organs or gore. Show breathing living flesh and locked powered wing structure, restrained venting steam. Same painted detailed fantasy style, brass and oxidized copper, stone steampunk Lionheart city, sunset palette. Single dominant creature with hostile determination toward original griffin offscreen. No humans, readable text, UI, border, watermark, holy halo or light/dark element powers. IMPORTANT: visibly closer and stronger head/body prominence while ALL tips and limbs remain uncut.",
+      "references": [
+        "generations/pet_ur20-v3.png"
+      ],
+      "petId": "pet_ur20",
+      "version": 4,
+      "file": "generations/pet_ur20-v4.png",
+      "selected": false,
+      "sha256": "ec600de55a0a6176e73ebb47c430043b4e9b40f482e8c07c0173b640b066ad60",
+      "bytes": 3116435,
+      "width": 1254,
+      "height": 1254,
+      "generatedFileModifiedAt": "2026-10-02T06:30:52.961Z",
+      "tool": "image_gen.imagegen (built-in)",
+      "noExtraCost": true,
+      "model": null,
+      "seed": null,
+      "revisionReason": "兩張 UR 鏡頭拉近，角色現在有點小"
+    },
+    {
+      "originalPath": "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-81165536-ab12-4491-b82c-62f01b6d96e6.png",
+      "prompt": "Precise framing fix for this close-up lion-headed chimera. Retain the excellent larger living lion face, red-brown mane, organic flesh flanks, brass artificial organs and the four hybrid legs EXACTLY. Retain the closer heroic body emphasis and tower ledge, stone city, sunset, steam and segmented snake tail. ONLY correct the upper wing fit: tilt or tuck the upper-left mechanical wing tips DOWN and slightly inward and narrow both wing fans a little so EVERY part of BOTH mechanical wings is fully inside the square frame with visibly clear sky above. If needed zoom out no more than 5–8 percent from this CLOSE-UP, preserving the head/body markedly larger than the old distant original. The upper wing mast currently touches/cuts the top edge: reconstruct its complete tip, leave clear sky all around. Keep all four feet and full tail. Single living lion head, no beak, no second head, not a robot lion, enclosed artificial organs, no gore. No extra creature, text, border, UI, watermark, halo, light or dark elemental power. Same detailed painterly steampunk fantasy collectible square opaque card. Preserve creature identity and colors; do NOT widen to a distant city panorama.",
+      "references": [
+        "generations/pet_ur20-v4.png"
+      ],
+      "petId": "pet_ur20",
+      "version": 5,
+      "file": "generations/pet_ur20-v5.png",
+      "selected": false,
+      "sha256": "1b4bf0d244e6e12a81e0b2000f41c8f85b49f89bb28f8b7448b096aa30e32ce0",
+      "bytes": 2932642,
+      "width": 1254,
+      "height": 1254,
+      "generatedFileModifiedAt": "2026-10-02T06:32:20.182Z",
+      "tool": "image_gen.imagegen (built-in)",
+      "noExtraCost": true,
+      "model": null,
+      "seed": null,
+      "revisionReason": "兩張 UR 鏡頭拉近，角色現在有點小"
+    },
+    {
+      "petId": "pet_ur19",
+      "version": 5,
+      "file": "generations/pet_ur19-v5.png",
+      "selected": true,
+      "sha256": "6fcd7b39ced1764b3a9647f490607ed6108a904a47418c838b616734a46db9dd",
+      "bytes": 3020201,
+      "width": 1254,
+      "height": 1254,
+      "originalPath": "C:/Users/User/AppData/Local/Temp/codex-clipboard-94f7a55b-8dfa-437c-a4a7-e36f1013a44e.png",
+      "kind": "user-provided-selection",
+      "tool": "user-provided PNG copy",
+      "noExtraCost": true,
+      "model": null,
+      "seed": null,
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 天律之冕・格里芬 (UR). Required story scene: 純生物格里芬：象牙白鷹首、琥珀眼與天然鉤喙，寬大完整的奶白至深褐羽翼、天然鷹前爪、金棕獅身、獅後腿與長獅尾。立於高崖完整展翼，頭轉向遠方試飛塔，爪穩扣岩面；風流匯成巨大自然弧線、雲層沿翼展分開，草葉向外伏倒。低視角莊嚴、全身與翼尖尾端留白。絕對沒有金屬、機械、冠冕、衣物、項圈、護甲或外掛裝備；城市只在遠景。\nAvoid: extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore, ANY machinery or metal on griffin, armor, jewelry, crown, harness, collar, artificial feathers",
+      "references": [
+        "generations/pet_ur19-v1.png"
+      ],
+      "pixelIdenticalTo": "generations/pet_ur19-v1.png",
+      "approvedAt": "2026-10-02T06:35:29.262Z",
+      "reviewer": "user",
+      "request": "我覺得使用這兩張",
+      "compositionDecision": "使用者指定近景原圖；部分翼尖出框，依選擇原樣採用，不補畫或裁切"
+    },
+    {
+      "petId": "pet_ur20",
+      "version": 6,
+      "file": "generations/pet_ur20-v6.png",
+      "selected": true,
+      "sha256": "2c238e42dae5c514740154ca2c45493a08418498b0fbc740a8715b7aa2f772d5",
+      "bytes": 3245066,
+      "width": 1254,
+      "height": 1254,
+      "originalPath": "C:/Users/User/AppData/Local/Temp/codex-clipboard-5f19c003-46bb-43bb-a8b8-d166f8679d9e.png",
+      "kind": "user-provided-selection",
+      "tool": "user-provided PNG copy",
+      "noExtraCost": true,
+      "model": null,
+      "seed": null,
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 逆造獅首奇美拉 (UR). Required story scene: 只有一個主要活體獅首的半生物半機械奇美拉：赤棕鬃毛、天然獅形口鼻，絕不使用鳥喙、琥珀獅眼，活體肌肉胸腹與毛皮側腹清楚；黃銅肋架、受控人工器官外殼、羊角形壓力導管、四條血肉與機械融合的獸肢、兩面巨大節段機械翼、蛇形節段調壓尾。站在試飛塔前緣，壓低獅首、完整張開翼面，金屬節點依序鎖定，蒸汽推開兩側吊鏈、腳下平台受力微裂。胸腹呼吸可讀，無裸露傷口或血腥。完整翼尖、四足与尾端，只有一頭，不畫成全機器獅，不增加羊頭。\nAvoid: extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore, all-robot lion, multiple heads, goat head, beak instead of lion muzzle, fully metal chest, exposed organs",
+      "references": [
+        "generations/pet_ur20-v1.png"
+      ],
+      "pixelIdenticalTo": "generations/pet_ur20-v1.png",
+      "approvedAt": "2026-10-02T06:35:29.262Z",
+      "reviewer": "user",
+      "request": "我覺得使用這兩張",
+      "compositionDecision": "使用者指定近景原圖；部分翼尖出框，依選擇原樣採用，不補畫或裁切"
     }
   ]
 }

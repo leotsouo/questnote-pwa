@@ -174,15 +174,18 @@
       "signature": "天然鷹首、羽翼與前爪；金棕獅身、後腿與尾",
       "action": "立於高崖展翼，迎向遠方試飛塔",
       "result": "天然風環收束亂流、分開雲層，草葉向外伏倒",
-      "constraints": "完全純生物、沒有任何冠冕或裝備；全翼尖與尾部保留",
-      "revisions": "拉遠構圖修正翼尖裁切，補自然風流",
+      "constraints": "完全純生物、沒有任何冠冕或裝備；採用人工指定近景原圖，部分翼尖出框",
+      "revisions": "人工指定附圖：原第 1 版像素相同，直接採用所附 PNG 原檔；中間修訂全部保留",
       "source": "鷹／獅形體參考傳統格里芬；天律、獅心城與敵對故事為遊戲原創。",
-      "sha256": "87fd3579edf850b01a538b80090b16268c5b2b0be78c3fbed598246032b00570",
+      "sha256": "6fcd7b39ced1764b3a9647f490607ed6108a904a47418c838b616734a46db9dd",
       "versions": [
         "generations/pet_ur19-v1.png",
-        "generations/pet_ur19-v2.png"
+        "generations/pet_ur19-v2.png",
+        "generations/pet_ur19-v3.png",
+        "generations/pet_ur19-v4.png",
+        "generations/pet_ur19-v5.png"
       ],
-      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+      "aiReview": "兩隻 UR 已由使用者指定此附圖。採用近景、翼尖部分出框的原圖；不另行補畫，保留純生物／半機械故事設定。"
     },
     {
       "petId": "pet_ur20",
@@ -191,16 +194,19 @@
       "signature": "單一活體獅首、赤棕鬃毛、活體胸腹；人工器官、翼架與節段尾",
       "action": "在試飛塔主動展開機械翼，挑戰高崖原型",
       "result": "翼架鎖定，蒸汽推開吊鏈，平台承受推力",
-      "constraints": "半生物半機械、只有一個獅首；無鳥喙、羊頭、血腥，完整翼尖",
-      "revisions": "兩次拉遠與收整翼角，修正左翼裁切",
+      "constraints": "半生物半機械、只有一個獅首；無鳥喙、羊頭、血腥；採用人工指定近景，部分翼尖出框",
+      "revisions": "人工指定附圖：原第 1 版像素相同，直接採用所附 PNG 原檔；中間修訂全部保留",
       "source": "以奇美拉混種意象原創改造：单一獅首、人工器官與機械翼架；不是傳統三首奇美拉。",
-      "sha256": "a226096708afe2f48680cda2dc507ee4264b8d9917167d8073ca5e29c6abf805",
+      "sha256": "2c238e42dae5c514740154ca2c45493a08418498b0fbc740a8715b7aa2f772d5",
       "versions": [
         "generations/pet_ur20-v1.png",
         "generations/pet_ur20-v2.png",
-        "generations/pet_ur20-v3.png"
+        "generations/pet_ur20-v3.png",
+        "generations/pet_ur20-v4.png",
+        "generations/pet_ur20-v5.png",
+        "generations/pet_ur20-v6.png"
       ],
-      "aiReview": "已逐張查看實際圖：物種與主要肢體可辨、臉與工作道具清楚、主要翼尖／尾端未裁切；由人工確認畫風及故事表達。部分小角色邊距較緊，審圖頁提供 160px 檢視。"
+      "aiReview": "兩隻 UR 已由使用者指定此附圖。採用近景、翼尖部分出框的原圖；不另行補畫，保留純生物／半機械故事設定。"
     }
   ],
   "humanApproved": false
