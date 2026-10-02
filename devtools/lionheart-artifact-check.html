@@ -10,7 +10,7 @@ import { loadCatalogBundle } from './src/releaseCatalog.js';
 import { pullOnce, performTenPull, normalizeGachaStats } from './src/gachaService.js';
 import { exportBackup, validateBackup, importBackup } from './src/backupService.js';
 import { loadAwakeningCatalog, validateAwakeningCatalog } from './src/petAwakeningCatalog.js';
-import { getPetSpecialty } from './src/expeditionGameplay.js';
+import { getPetSpecialty, planExpeditionResult } from './src/expeditionGameplay.js';
 const check = (value, message) => { if (!value) throw Error(message); };
 document.getElementById('run').onclick = async () => {
   document.getElementById('run').disabled = true;
@@ -39,6 +39,23 @@ document.getElementById('run').onclick = async () => {
     check((await dbGet(STORES.COLLECTION,pets[11].id)).bondExp===150 && (await dbGet(STORES.COLLECTION,pets[10].id)).bondExp===75,'偏好與普通送禮數值錯誤');
     record('新食物製作與選角送禮','實際扣齒輪6／葉8／核心2；奇美拉+150、格里芬+75');
     const areas=await loadExpeditionAreas();const city=areas.find(x=>x.id==='lionheart_city');check(city?.unlock.type==='default','獅心城沒有預設開放');
+    const affinityData=await fetch('data/gift-affinities.json').then(r=>r.json());
+    const specialtyEvidence=[];
+    for(const pet of pets){
+      const tags=affinityData.giftAffinityTags[pet.id];check(Array.isArray(tags),'角色偏好缺失');
+      const expected=tags.some(t=>food.favoriteTags.includes(t))?150:75;check(getFavoriteBonus(food,pet).bondExp===expected,'逐隻偏好沒有進入送禮');
+      for(const stars of [1,5]){
+        const role=pet.expeditionSpecialty,objective=role==='gatherer'?'gather':'explore';
+        const actual=planExpeditionResult(city,[{...pet,stars}],objective,()=>0);
+        const other=planExpeditionResult(city,[{...pet,stars,expeditionSpecialty:'companion'}],objective,()=>0);
+        check(actual.specialtySummary[0].role===role,'派遣報告專長錯誤');
+        if(role==='scout')check(actual.explorationGain>other.explorationGain,'探路未加進度');
+        if(['gatherer','scholar'].includes(role))check(actual.rewards.materials.machine_part>other.rewards.materials.machine_part,'採集／解讀未加材料');
+        if(role==='guardian')check(actual.rewards.stardust>other.rewards.stardust,'守護未加星塵');
+      }
+      specialtyEvidence.push(pet.name+'：'+pet.expeditionSpecialty+'、送禮'+expected);
+    }
+    record('逐隻專長派遣與偏好效果',specialtyEvidence.join('；'));
     const started=await startExpedition([pets[10].id,pets[11].id,pets[5].id],city.id,areas,allPets,'explore');
     const journey=started.expedition || started;
     check(journey.id && new Date(journey.endsAt)-new Date(journey.startedAt)===3600000,'派遣時間不正確');
@@ -73,7 +90,7 @@ document.getElementById('run').onclick = async () => {
       check(rare.triggeredPity && rare.pet.id===expected,'100抽UR保底或雙UR候選失敗');
     }
     const stats=normalizeGachaStats(await dbGet(STORES.META,'gachaStats'));stats.poolPity.lionheart_inverse_oath={ssrPity:29,urPity:40};await dbPut(STORES.META,stats);
-    const ssr=await draw(()=>pullOnce(allPets,catalog.poolsData,'lionheart_inverse_oath'),0);check(ssr.rarity==='SSR' && ssr.triggeredPity,'30抽SSR保底失敗');
+    const ssr=await draw(()=>pullOnce(allPets,catalog.poolsData,'lionheart_inverse_oath'),0.9);check(ssr.rarity==='SSR' && ssr.triggeredPity,'30抽SSR保底失敗');
     record('本池保底與雙 UR','UR100與SSR30實際交易；兩隻UR均可選中');
     const beforeRace=normalizeGachaStats(await dbGet(STORES.META,'gachaStats'));
     await dbPut(STORES.META,{...await dbGet(STORES.META,'wallet'),stardust:100});
@@ -89,5 +106,62 @@ document.getElementById('run').onclick = async () => {
     record('目前存檔重複匯入','完整V3.5.6備份兩次還原，餘額、收藏、五里程碑與覺醒狀態保持');
     document.getElementById('report').textContent=JSON.stringify({status:'pass',draft:false,finalArtifact:true,artifactId:RELEASE_PROFILE.artifactId,origin:location.origin,checkedAt:new Date().toISOString(),checks:rows},null,2);
   } catch(error) { const li=document.createElement('li');li.textContent=`FAIL · ${error.message}`;results.append(li);document.getElementById('report').textContent=JSON.stringify({status:'fail',message:error.message,checks:rows},null,2); }
+};
+</script>
+<section><h2>隔離動畫驗收</h2><p>固定結果，只播放實際 artifact 動畫，不抽卡、不扣款、不寫收藏。</p><button id="animation-run">執行動畫順序／略過／圖片失敗檢查</button><pre id="animation-report"></pre></section>
+<script type="module">
+import { playPoolDebutPresentation, playThemedSummon, skipThemedSummon } from './src/themedSummonController.js';
+import { dbGet, dbGetAll, STORES } from './src/db.js';
+const output=document.getElementById('animation-report');
+const assert=(condition,message)=>{if(!condition)throw Error(message);};
+const saved=async()=>JSON.stringify(await Promise.all([dbGet(STORES.META,'wallet'),dbGet(STORES.META,'gachaStats'),dbGet(STORES.META,'poolUnlockState'),dbGetAll(STORES.COLLECTION)]));
+document.getElementById('animation-run').onclick=async()=>{
+ document.getElementById('animation-run').disabled=true;
+ const config=await fetch('/review-config.json').then(r=>r.json());const {pool,pets}=config;
+ const checks=[];let active;let driver;const seen=new WeakSet();let reveals=[];let summary=[];let failedImage=false;let interrupted=false;
+ const update=()=>output.textContent=JSON.stringify({running:true,artifactId:config.artifactId,checks},null,2);
+ const fixed=['pet_n39','pet_r41','pet_sr35','pet_ssr25','pet_ur19','pet_ur20','pet_n40','pet_ur19','pet_ssr26','pet_ur20'];
+ const rows=(ids)=>{const obtained=new Set();return ids.map(id=>{const pet=structuredClone(pets.find(p=>p.id===id));const isNew=!obtained.has(id);obtained.add(id);return {pet,petId:id,rarity:pet.rarity,isNew,duplicateFragments:isNew?0:5};});};
+ const run=async(name,options,ids=fixed)=>{
+  active=options;reveals=[];summary=[];failedImage=false;interrupted=false;update();
+  const before=await saved();const input=rows(ids);
+  if(options.badImage)for(const row of input){row.pet.image='/intentionally-missing-card.png';row.pet.imageVariants={card:row.pet.image,stage:row.pet.image};}
+  const original=JSON.stringify(input);const start=performance.now();
+  const result=options.debut?await playPoolDebutPresentation({poolName:pool.name,presentation:pool.presentation,full:options.full,reduceMotion:options.reduce}):await playThemedSummon({results:input,mode:ids.length===1?'single':'ten',reduceMotion:options.reduce,poolName:pool.name,animationKey:pool.presentation.animationKey});
+  assert(await saved()===before,'動畫改變玩家交易狀態');assert(JSON.stringify(input)===original,'動畫改寫既定結果');
+  if(!options.debut){assert(result.ok,'動畫沒有完成');if(ids.length===10)assert(JSON.stringify(summary)===JSON.stringify(input.map(r=>r.pet.name)),'十連結果遺失或重排');}
+  if(options.verifyQueue){const expected=input.filter(r=>['SSR','UR'].includes(r.rarity)).map(r=>r.pet.name);assert(JSON.stringify(reveals)===JSON.stringify(expected),'稀有揭示順序或重複項目遺失');}
+  if(options.badImage)assert(failedImage,'未觀察到圖片失敗備援');
+  checks.push({name,status:'pass',milliseconds:Math.round(performance.now()-start),reveals,summary,failedImage,transactionStateUnchanged:true});update();
+ };
+ driver=setInterval(()=>{
+  if(!active)return;
+  const debut=document.querySelector('.dream-debut-overlay');const debutButton=debut?.querySelector('[data-role="skip"]');
+  if(debutButton && (active.skipEntry || debutButton.textContent.includes('繼續')))debutButton.click();
+  const reveal=document.querySelector('.summon-reveal-overlay');
+  if(reveal && !seen.has(reveal)){seen.add(reveal);reveals.push(reveal.querySelector('.summon-reveal-name')?.textContent||'');}
+  if(reveal?.querySelector('.summon-reveal-fallback-label'))failedImage=true;
+  const next=reveal?.querySelector('.summon-reveal-skip');
+  if(active.interrupt && reveal && !interrupted){interrupted=true;skipThemedSummon();}
+  else if(next && (active.skipReveal || next.textContent==='繼續')){next.click();if(active.doubleClick)next.click();}
+  const intro=document.querySelector('.dream-bloom-overlay [data-action="skip"]');
+  if(active.skipIntro && intro && !intro.hidden)intro.click();
+  const close=document.querySelector('.dream-bloom-overlay [data-action="close"]');
+  if(close && !close.hidden){summary=[...document.querySelectorAll('.dream-bloom-mini-seal__name')].map(e=>e.textContent);close.click();}
+ },80);
+ try{
+  await run('完整入場與繼續',{debut:true,full:true,reduce:false});
+  await run('短轉場',{debut:true,full:false,reduce:false});
+  await run('入場提前略過',{debut:true,full:true,skipEntry:true});
+  await run('單抽一般卡完整前奏',{reduce:false},['pet_n39']);
+  await run('正常十連雙UR／兩SSR及重複',{reduce:false,verifyQueue:true});
+  await run('減少動態十連及繼續連點',{reduce:true,verifyQueue:true,doubleClick:true});
+  await run('略過前奏仍保留稀有順序',{reduce:true,skipIntro:true,verifyQueue:true});
+  await run('略過揭示仍有完整十連',{reduce:false,skipIntro:true,skipReveal:true});
+  await run('圖片失敗仍有完整結果',{reduce:true,badImage:true,verifyQueue:true});
+  await run('外部中斷仍保留完整結果',{reduce:true,interrupt:true});
+  output.textContent=JSON.stringify({status:'pass',running:false,artifactId:config.artifactId,checkedAt:new Date().toISOString(),checks},null,2);
+ }catch(error){output.textContent=JSON.stringify({status:'fail',running:false,artifactId:config.artifactId,error:error.message,checks},null,2);}
+ finally{clearInterval(driver);document.getElementById('animation-run').disabled=false;}
 };
 </script></body></html>

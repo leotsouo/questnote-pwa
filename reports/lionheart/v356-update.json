@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "name": "Downloaded generation waits; no forced refresh during use",
+      "ok": true
+    },
+    {
+      "name": "An incomplete asynchronous UI operation vetoes activation",
+      "ok": true
+    },
+    {
+      "name": "Unsaved task text and the open editor survive a blocked update",
+      "ok": true
+    },
+    {
+      "name": "A second app window vetoes activation and the first window unlocks",
+      "ok": true
+    },
+    {
+      "name": "One click upgrades actual formal V3.5.5 to V3.5.6 while network is 503; original five stores/theme retained, only empty Lionheart progress and zero-count food inventory added",
+      "ok": true
+    },
+    {
+      "name": "Checking the latest generation reports success without a reload loop",
+      "ok": true
+    },
+    {
+      "name": "Real icon decodes; backup settings opens without reset, reinstall or changing app identity",
+      "ok": true
+    }
+  ]
+}

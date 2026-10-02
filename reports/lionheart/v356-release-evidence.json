@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "dddeaee198ed00b41bb35772de10e3348fd4b26b",
+  "candidateId": "5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "candidateManifestSha256": "4c0c82b7ebe69e9a29f50a8341bf66f229c6820e9004bc97d843daae223df0c9",
+  "previewUrl": "http://127.0.0.1:55844/review/",
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\c043fd6b6a14fbb5df76afbf7594774967d7e138bf25499a277fa534c7fb5f61",
+      "artifactId": "c043fd6b6a14fbb5df76afbf7594774967d7e138bf25499a277fa534c7fb5f61",
+      "manifestSha256": "0f601f1e9adc204b53f128f28d830faf4446bd6f216b981106d8c4b75ace0b05",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\777d564c5dee30ec924a0abd25d22b2d5c5ad8f22a5c0a3c09b2b7cc30fbba4d",
+      "artifactId": "777d564c5dee30ec924a0abd25d22b2d5c5ad8f22a5c0a3c09b2b7cc30fbba4d",
+      "manifestSha256": "368dad80d07e9d17b9869dc5f2209c83778b0c053309fe6ae85160756cb041d3",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "animation": {
+      "status": "pass",
+      "evidence": "reports\\lionheart\\v356-animation-check.json sha256=f708bc65cd441f8a893274894a23e8d0086ef2c8f2adacb36bed8f53a3f8c5e0; actual artifact viewer http://127.0.0.1:55844/review/ artifact=c043fd6b6a14fbb5df76afbf7594774967d7e138bf25499a277fa534c7fb5f61; reports\\lionheart\\artifact-animation-review.html sha256=5e2129a9e95fb784fbd348e1630378462df1eef9c92313fa87c3df346c020277; both URs and SSRs visually inspected; Enter continuation and 390×844 reduced motion verified; all ten sequence/failure/skip scenarios preserve transaction state"
+    },
+    "workshop": {
+      "status": "pass",
+      "evidence": "reports\\lionheart\\v356-browser-check.json sha256=127ac0fb5ca7110b86de0e21bddcfa17f89c09f01732cd8d6dcf453fd9a9af0e; real recipe deduction, selected recipients +150/+75; UI rapid craft and gift covered in v356-service-worker.json"
+    },
+    "specialties": {
+      "status": "pass",
+      "evidence": "reports\\lionheart\\v356-browser-check.json sha256=127ac0fb5ca7110b86de0e21bddcfa17f89c09f01732cd8d6dcf453fd9a9af0e; each of 12 pets at stars 1/5 reaches its actual planner bonus; all gift affinities verified; original 116 specialties unchanged at stars 1/3/5"
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "reports\\lionheart\\v356-browser-check.json sha256=127ac0fb5ca7110b86de0e21bddcfa17f89c09f01732cd8d6dcf453fd9a9af0e; default-open city, actual 3-pet dispatch/5 energy/60 minutes/reward/reclaim rejection; five story and atomic milestone claims; direct UI recommends Griffin/scout and confirms dispatch; eight map assets visibly load"
+    },
+    "transactions": {
+      "status": "pass",
+      "evidence": "reports\\lionheart\\v356-browser-check.json sha256=127ac0fb5ca7110b86de0e21bddcfa17f89c09f01732cd8d6dcf453fd9a9af0e; actual single/ten/duplicates/UR100/SSR30/concurrent draws; full V3.5.6 export and repeated import preserve wallet/claims; old V3.5.3–V3.5.5 seven-region backups migrate"
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "reports\\lionheart\\v356-service-worker.json sha256=7db42bf7d35f9a1092886bdb2ca993c804a2a5e7d86d211e3b0f01793bb7b560; 13 assembled-artifact checks; reports\\lionheart\\v356-update.json sha256=ed3c2361b84205537a3f6514c78d91adbd0f8957812384ff2010243be903b17e; 7 actual V3.5.5 to V3.5.6 update checks, editing/multi-client veto and offline reload retain existing five stores/theme; only zero city progress and zero new-food inventory added"
+    }
+  }
+}

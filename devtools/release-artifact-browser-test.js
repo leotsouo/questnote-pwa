@@ -287,7 +287,9 @@ try {
     flagged.contentDocument.querySelector('[data-goto="settings"]').click();
     await until(() => flagged.contentDocument.getElementById('view-settings').classList.contains('active'), 'released settings');
     assert(!flagged.contentDocument.getElementById('dev-tools-section'), 'Release exposed settings debug tools');
-    assert(await previewTransactionSnapshot() === before, 'Debug shortcut changed persistent state');
+    const after = await previewTransactionSnapshot();
+    if (after !== before) observations.debugStateDifference = { before: JSON.parse(before), after: JSON.parse(after) };
+    assert(after === before, 'Debug shortcut changed persistent state');
     flagged.remove(); frames.delete(flagged);
   });
   await test('evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state', async () => {
