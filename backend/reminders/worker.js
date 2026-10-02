@@ -73,6 +73,7 @@ async function authenticate(request, env) {
 async function schedulerHealth(env, now) {
   const row = await env.DB.prepare('SELECT scheduled_at, started_at, completed_at, status FROM scheduler_health WHERE singleton = ?').bind(1).first();
   return {
+    driver: env.SCHEDULER ? 'durable-alarm' : 'cron',
     healthy: !!row?.completed_at && row.status !== 'failed' && row.completed_at >= now - SCHEDULER_MAX_AGE,
     lastScheduledAt: row?.scheduled_at || null, lastStartedAt: row?.started_at || null,
     lastCompletedAt: row?.completed_at || null, lastStatus: row?.status || 'unverified',
@@ -80,7 +81,7 @@ async function schedulerHealth(env, now) {
 }
 async function route(request, env) {
   const path = new URL(request.url).pathname; const now = Date.now();
-  if (path === '/health' && request.method === 'GET') return json({ service: 'questnote-reminders', version: 2, ready: !!env.VAPID_PRIVATE_KEY, scheduler: await schedulerHealth(env, now) });
+  if (path === '/health' && request.method === 'GET') return json({ service: 'questnote-reminders', version: 3, ready: !!env.VAPID_PRIVATE_KEY, scheduler: await schedulerHealth(env, now) });
   if (path === '/v1/push/public-key' && request.method === 'GET') return json({ publicKey: env.VAPID_PUBLIC_KEY });
   if (env.API_RATE && !(await env.API_RATE.limit({ key: request.headers.get('CF-Connecting-IP') || 'unknown' })).success) throw fail(429, '操作太頻繁，請稍後重試');
   if (path === '/v1/reminder-installations' && request.method === 'POST') {
@@ -110,6 +111,7 @@ async function route(request, env) {
     // Publish the new future schedule and reset only its unsent delivery atomically.
     const changed = (await env.DB.batch(updates))[0].results?.[0];
     if (!changed) throw fail(409, '同步版本已更新');
+    if (env.SCHEDULER) await env.SCHEDULER.getByName('minute-dispatch').ensure();
     return json({ revision: body.revision, syncedAt: now, nextAt: body.revision === row.revision ? row.next_at : next });
   }
   if (path.endsWith('/status') && request.method === 'GET') return json({ revision: row.revision, enabled: !!row.enabled, nextAt: row.next_at, lastStatus: row.last_status, expiresAt: row.updated_at + LIFETIME, scheduler: await schedulerHealth(env, now) });
@@ -193,6 +195,11 @@ export async function runScheduled(env, scheduledAt, push = sendPush, clock = Da
 }
 export default {
   async fetch(request, env) {
+    if (new URL(request.url).pathname === '/_internal/scheduler/start') {
+      if (request.method !== 'POST' || !env.SCHEDULER_BOOTSTRAP_TOKEN || request.headers.get('Authorization') !== `Bearer ${env.SCHEDULER_BOOTSTRAP_TOKEN}`) return json({ error: '未授權' }, 403);
+      try { return json(await env.SCHEDULER.getByName('minute-dispatch').ensure()); }
+      catch { return json({ error: '排程啟動失敗' }, 503); }
+    }
     const origin = request.headers.get('Origin'); const allowed = (env.ALLOWED_ORIGINS || '').split(',').includes(origin);
     const publicGet = request.method === 'GET' && ['/health', '/v1/push/public-key'].includes(new URL(request.url).pathname);
     if (!allowed && !publicGet) return json({ error: '來源不允許' }, 403);

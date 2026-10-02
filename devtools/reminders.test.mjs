@@ -7,6 +7,7 @@ import webpush from 'web-push';
 import ece from 'http_ece';
 import worker, { runSchedule, runScheduled, sanitizeState, validateSubscription } from '../backend/reminders/worker.js';
 import { sendPush } from '../backend/reminders/push.js';
+import { ensureSchedulerAlarm, dispatchSchedulerAlarm } from '../backend/reminders/scheduler.js';
 import { REMINDER_DEFAULTS, projectReminderData, buildDailyDigest, nextReminderAt, shiftDate } from '../src/reminderRules.js';
 
 const settings = { ...REMINDER_DEFAULTS, timeZone: 'Asia/Taipei' };
@@ -14,6 +15,30 @@ const subscriber = createECDH('prime256v1'); subscriber.generateKeys();
 const auth = randomBytes(16);
 const subscription = { endpoint: 'https://web.push.apple.com/test', keys: { p256dh: subscriber.getPublicKey().toString('base64url'), auth: auth.toString('base64url') } };
 const input = (changes = {}) => ({ revision: 1, settings, subscription, tasks: [{ id: 't1', plannedDate: '2026-10-01', dueDate: '2026-10-01' }], habits: [], ...changes });
+
+test('persistent alarm stays on minute boundaries, cannot be postponed by sync, and survives dispatch failure', async () => {
+  const now = Date.parse('2026-10-02T07:00:15Z'); let nextAt = null;
+  const storage = { getAlarm: async () => nextAt, setAlarm: async (value) => { nextAt = value; } };
+  assert.equal((await ensureSchedulerAlarm(storage, now)).nextAt, now + 45000);
+  await ensureSchedulerAlarm(storage, now + 10000); assert.equal(nextAt, now + 45000);
+  await assert.rejects(dispatchSchedulerAlarm(storage, {}, async () => { throw Error('fixture outage'); }, () => now + 45000), /fixture outage/);
+  assert.equal(nextAt, now + 105000, 'the next wakeup is persisted before dispatch fails');
+  await ensureSchedulerAlarm(storage, now + 10 * 60000); assert.ok(nextAt > now + 10 * 60000);
+});
+
+test('scheduler bootstrap requires a separate admin secret; health never starts background work', async (t) => {
+  const { env } = setup(t); let starts = 0;
+  env.SCHEDULER = { getByName(name) { assert.equal(name, 'minute-dispatch'); return { ensure: async () => { starts++; return { nextAt: 123 }; } }; } };
+  env.SCHEDULER_BOOTSTRAP_TOKEN = 'isolated-admin-fixture';
+  assert.equal((await worker.fetch(request('/_internal/scheduler/start', 'POST'), env)).status, 403);
+  assert.equal((await worker.fetch(request('/_internal/scheduler/start'), env)).status, 403);
+  assert.equal((await worker.fetch(request('/health'), env)).status, 200); assert.equal(starts, 0);
+  const authorized = new Request('https://reminders.test/_internal/scheduler/start', { method: 'POST', headers: { Authorization: 'Bearer isolated-admin-fixture' } });
+  assert.equal((await worker.fetch(authorized, env)).status, 200); assert.equal(starts, 1);
+  const identity = await (await worker.fetch(request('/v1/reminder-installations', 'POST', {}), env)).json();
+  assert.equal((await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input(), identity), env)).status, 200);
+  assert.equal(starts, 2, 'authenticated state sync also repairs a missing alarm');
+});
 function setup(t) {
   const db = new DatabaseSync(':memory:'); db.exec(readFileSync(new URL('../backend/reminders/schema.sql', import.meta.url), 'utf8'));
   t.after(() => db.close());
