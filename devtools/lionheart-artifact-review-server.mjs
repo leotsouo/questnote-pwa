@@ -24,7 +24,9 @@ const configuration = { artifactId: preview.artifactId, sourceCommit: preview.ma
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8',
   '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
-const pages = { '/review/': 'reports/lionheart/artifact-animation-review.html',
+const reviewPage = process.argv[3] || 'reports/lionheart/artifact-animation-review.html';
+if (!/^reports\/lionheart\/[a-z0-9-]+\.html$/.test(reviewPage)) throw Error('Review page must be a Lionheart report');
+const pages = { '/review/': reviewPage,
   '/checks/': 'devtools/lionheart-artifact-check.html' };
 const server = http.createServer(async (request, response) => {
   try {

@@ -37,6 +37,17 @@
 .is-lionheart-reveal::after { display: none; }
 .is-lionheart-reveal :is(.summon-reveal-pool, .summon-reveal-ring, .summon-reveal-aura, .summon-reveal-particles) { display: none; }
 .is-lionheart-reveal .lionheart-gate { display: none; }
+.is-lionheart-reveal .lionheart-scene { z-index: auto; }
+.lionheart-reveal-wind, .lionheart-wind-motes, .lionheart-reveal-steam { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.lionheart-reveal-wind { width: 100%; height: 100%; opacity: .75; }
+.lionheart-wind-trails path { stroke-width: 3; stroke-dasharray: 145 65 28 1450; animation: lionheart-gust 2.8s linear infinite; animation-delay: var(--gust-delay); }
+.lionheart-wind-trails path:nth-child(even) { stroke-width: 1.5; opacity: .55; }
+.lionheart-wind-motes i { position: absolute; left: -8%; top: var(--mote-y); width: 22px; height: 3px; border-radius: 100%; background: #dfedce; animation: lionheart-wind-mote 3s linear infinite; animation-delay: var(--mote-delay); }
+.lionheart-reveal-steam { left: 50%; width: min(100%, 900px); transform: translateX(-50%); }
+.lionheart-steam-jet { position: absolute; bottom: -3%; width: 0; height: 0; }
+.lionheart-steam-jet--left { left: 15%; }.lionheart-steam-jet--right { left: 85%; }
+.lionheart-steam-jet::before { content: ''; position: absolute; bottom: 0; left: -25px; width: 50px; height: 32vh; background: linear-gradient(0deg, #e4f3ee99, #cde3df44 55%, transparent); clip-path: polygon(42% 100%, 58% 100%, 100% 0, 0 0); filter: blur(3px); animation: lionheart-steam-pressure 1.1s ease-in-out infinite; }
+.lionheart-steam-jet i { position: absolute; bottom: 0; left: calc(var(--steam-size) / -2); width: var(--steam-size); height: calc(var(--steam-size) * 1.25); border-radius: 45%; background: radial-gradient(ellipse at 35% 40%, #eff6f2b3, transparent 60%), radial-gradient(ellipse at 65% 55%, #c6dad7a6, transparent 64%); filter: blur(5px); opacity: 0; animation: lionheart-steam-rise 2.6s linear infinite; animation-delay: var(--steam-delay); will-change: transform, opacity; }
 .is-lionheart-reveal .summon-reveal-stage { position: relative; z-index: 2; }
 .is-lionheart-reveal .summon-reveal-card { background: #142724e8; border: 1px solid #be9e68; border-radius: 16px; padding: 16px; max-width: 88vw; animation: lionheart-card 2.2s both; }
 .is-lionheart-reveal .summon-reveal-pet-frame { width: min(68vw, 390px); height: min(68vw, 390px); background: transparent; }
@@ -65,13 +76,18 @@
 @keyframes lionheart-vent { 0% { opacity: .1; } 45% { opacity: .7; } 100% { opacity: .15; transform: translateY(-25%); } }
 @keyframes lionheart-anchor { from { transform: translateY(18px); opacity: .3; } 65%, to { transform: none; opacity: 1; } }
 @keyframes lionheart-roots { from { stroke-dasharray: 600; stroke-dashoffset: 600; } to { stroke-dasharray: 600; stroke-dashoffset: 0; } }
+@keyframes lionheart-gust { from { stroke-dashoffset: 1688; } to { stroke-dashoffset: 0; } }
+@keyframes lionheart-wind-mote { 0% { opacity: 0; transform: translate(0, 35px) rotate(-12deg); } 15%, 75% { opacity: .65; } 100% { opacity: 0; transform: translate(112vw, -100px) rotate(-22deg); } }
+@keyframes lionheart-steam-pressure { 50% { opacity: .5; transform: scaleX(1.2); } }
+@keyframes lionheart-steam-rise { 0% { opacity: 0; transform: translate(0, 0) scale(.35); } 12% { opacity: .75; } 48% { opacity: .5; } 100% { opacity: 0; transform: translate(var(--steam-drift), -105vh) scale(2.7); } }
 :is(.dream-debut-overlay, .dream-bloom-overlay)[data-animation=lionheart_inverse_oath].is-reduced .lionheart-scene *, .is-lionheart-reveal.is-reduced * { animation: none !important; transition: none !important; }
 .dream-debut-overlay[data-animation=lionheart_inverse_oath]:is(.is-short, .is-reduced, .is-skipped) .lionheart-gate { display: none; }
 .dream-debut-overlay[data-animation=lionheart_inverse_oath]:is(.is-reduced, .is-skipped) .lionheart-natural { opacity: .35; transform: translateX(-22%) scale(.55); }
 .dream-debut-overlay[data-animation=lionheart_inverse_oath]:is(.is-reduced, .is-skipped) .lionheart-artificial { opacity: .4; transform: translateX(24%) scale(.6); }
 .is-lionheart-reveal.is-reduced .summon-reveal-card { opacity: 1; transform: none; }
+.is-lionheart-reveal.is-reduced :is(.lionheart-reveal-wind, .lionheart-wind-motes, .lionheart-reveal-steam) { display: none; }
 .gacha-panel[data-pool-theme=lionheart_inverse_oath] { --pool-text-primary: #f2dfb7; --pool-text-secondary: #bacbc0; --pool-accent: #d8b27c; --pool-border: #b89c6b80; --pool-surface: #20382fe6; background: radial-gradient(ellipse at 20% 15%, #49665b77, transparent 55%), #142724; color: var(--pool-text-primary); }
 .gacha-panel[data-pool-theme=lionheart_inverse_oath] :is(.gacha-theme-stage__atmosphere, .gacha-pool) { display: none; }
 .gacha-panel[data-pool-theme=lionheart_inverse_oath] :is(.gacha-theme-stage__name, .gacha-theme-stage__tagline, .gacha-theme-stage__eyebrow, .gacha-theme-hero__name, .gacha-theme-details, .gacha-theme-featured__item) { color: var(--pool-text-primary); }
-@media (prefers-reduced-motion: reduce) { .lionheart-scene *, .is-lionheart-reveal * { animation: none !important; transition: none !important; } .is-lionheart-reveal .summon-reveal-card { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .lionheart-scene *, .is-lionheart-reveal * { animation: none !important; transition: none !important; } .is-lionheart-reveal .summon-reveal-card { opacity: 1; transform: none; } :is(.lionheart-reveal-wind, .lionheart-wind-motes, .lionheart-reveal-steam) { display: none; } }
 @media (max-width: 480px) { .dream-bloom-overlay[data-animation=lionheart_inverse_oath] .dream-bloom-summary { padding: 14px; } .is-lionheart-reveal .summon-reveal-name { font-size: clamp(17px, 4.8vw, 23px); } }

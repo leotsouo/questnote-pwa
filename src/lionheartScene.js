@@ -51,6 +51,24 @@ export function createLionheartScene(motif = 'summon') {
     <div class="lionheart-steam lionheart-steam--left"></div><div class="lionheart-steam lionheart-steam--right"></div>
     <div class="lionheart-pressure"><i></i></div>
     <div class="lionheart-vignette"></div>
+    ${motif === 'griffin' ? `
+      <svg class="lionheart-reveal-wind" viewBox="0 0 1000 1000" preserveAspectRatio="none" focusable="false">
+        <g class="lionheart-wind-trails" fill="none" stroke="#d2eee5" stroke-linecap="round">
+          <path style="--gust-delay:0s" d="M-150 790C170 830 310 690 175 585S130 285 460 220S845 190 1090 75"/>
+          <path style="--gust-delay:-.7s" d="M-120 890C200 970 440 805 255 690S95 350 390 305S805 255 1110 135"/>
+          <path style="--gust-delay:-1.3s" d="M-130 180C195 95 620 90 825 260S765 475 865 620S1100 745 1190 665"/>
+          <path style="--gust-delay:-1.9s" d="M-90 115C190 35 645 55 895 225S805 535 925 660S1110 825 1190 750"/>
+          <path style="--gust-delay:-.4s" d="M-100 945C285 1010 580 835 815 765S1010 595 1140 525"/>
+          <path style="--gust-delay:-1.6s" d="M-120 865C250 965 530 790 790 710S965 560 1130 465"/>
+        </g>
+      </svg>
+      <div class="lionheart-wind-motes">${Array.from({ length: 8 }, (_, i) => `<i style="--mote-y:${18 + i * 10}%;--mote-delay:${-i * .37}s"></i>`).join('')}</div>
+    ` : ''}
+    ${motif === 'chimera' ? `
+      <div class="lionheart-reveal-steam">
+        ${['left', 'right'].map((side) => `<div class="lionheart-steam-jet lionheart-steam-jet--${side}">${Array.from({ length: 8 }, (_, i) => `<i style="--steam-delay:${-i * .32}s;--steam-drift:${(i % 3 - 1) * 24}px;--steam-size:${72 + (i % 3) * 24}px"></i>`).join('')}</div>`).join('')}
+      </div>
+    ` : ''}
   `;
   return scene;
 }
