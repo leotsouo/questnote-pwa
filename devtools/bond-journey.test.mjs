@@ -4,12 +4,13 @@ import { readFileSync } from 'node:fs';
 import { createBondJourney, validateBondJourney, normalizeBondJourney, advanceBondJourney,
   chapterIsAvailable, getBondSummary, CHAPTER_REWARDS, HABIT_TARGETS } from '../src/bondJourneyCore.js';
 import { validateBondStories } from '../src/bondJourneyService.js';
+import { mergeBondStorySupplements } from '../src/bondStoryCatalog.js';
 import { renderBondChapter, renderBondSelector, renderBondKeepsake, renderBondOverview } from '../src/bondJourneyView.js';
 import { validateBackup, normalizeBackupPayload, migrateImportedData } from '../src/backupService.js';
 import { APP_VERSION } from '../src/version.js';
 
 const read = (name) => JSON.parse(readFileSync(new URL(name, import.meta.url), 'utf8'));
-const stories = read('../data/bond-stories.json');
+const stories = mergeBondStorySupplements(read('../data/bond-stories.json'), read('../data/pets-lore.json'));
 const pets = read('../data/pets.json').pets;
 const at = '2026-10-01T01:00:00.000Z';
 const later = '2026-10-01T02:00:00.000Z';

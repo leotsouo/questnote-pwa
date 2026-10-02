@@ -1,7 +1,7 @@
 {
-  "evidence": "reports/lionheart/v358-release-evidence.json",
-  "gate": "reports/lionheart/v358-release-gate.json",
+  "evidence": "reports/lionheart/v358-authorized-evidence.json",
+  "gate": "reports/lionheart/v358-authorized-gate.json",
   "packageHash": "94e77b9be64b777d9c11bca74acc915759f7f9cf8eb246ad1a5b7116e9acf94e",
   "previewUrl": "http://127.0.0.1:58789/review/",
-  "reason": "Rebuilt V3.5.8 after latest upstream V3.5.7 deployment; preserved approved Lionheart content/images/animations; prior human approval archived; final latest-package consent and explicit publication authorization pending"
+  "reason": "User explicitly accepted latest V3.5.8 package and authorized publication with 可以發布"
 }

@@ -1,0 +1,84 @@
+{
+  "status": "pass",
+  "candidateId": "5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "reviewedRuntimeSource": "d42b8fc44dc3c55f39ca0dee138fb30d114e85c6",
+  "approvedProductionArtifact": "0f04afb6f8d0b4e447b20320524b63c39203469035478aea97a9929c5da897ba",
+  "packageHash": "94e77b9be64b777d9c11bca74acc915759f7f9cf8eb246ad1a5b7116e9acf94e",
+  "authorization": "user: 可以發布",
+  "counts": [
+    {
+      "file": "data/pets.json",
+      "before": 116,
+      "after": 128
+    },
+    {
+      "file": "data/pools.json",
+      "before": 5,
+      "after": 6
+    },
+    {
+      "file": "data/pets-lore.json",
+      "before": 116,
+      "after": 128
+    },
+    {
+      "file": "data/pet-series.json",
+      "before": 5,
+      "after": 6
+    }
+  ],
+  "preservedLegacyHashes": {
+    "baseline.json": "a6cb4d25e08284806fa913bf3f3447c61940908d5ea2131efb8f82a566518339",
+    "pet-series.json": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57",
+    "pets-lore.json": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
+    "pets.json": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
+    "pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc"
+  },
+  "promotedFiles": {
+    "data/pets.json": "697d14babcb60e592c6e9c6035ad20587283e8698641221631f4b6ed38a2522c",
+    "data/pools.json": "5d6fa50b6434beed214154ff19d802a3a2adbfd160733ed018a33442e95cc235",
+    "data/pets-lore.json": "3d63dc31ffdcf2476ed42de94657e910f5abc2c4101e078e4b80d08cc982c69a",
+    "data/pet-series.json": "8864b04a12e33cd6d3254ed24ed18219771923a453c1fe4a69a2f6b7b6830f4d",
+    "assets/pets/pet_n39.png": "38444eb59db97d03f9766babab0f38774b7c689a8fda39485e2c0539d6393b4b",
+    "assets/pets/pet_n40.png": "f8243198fdc99a2981a3cc14933a5133c67f9524998f9538198daf784e123c59",
+    "assets/pets/pet_r41.png": "09f72b0ce6ce119254f58a61c81e160810df85512c8c16ccf63961c262e4e224",
+    "assets/pets/pet_r42.png": "6f52890d7605f596a19041709015d4771799eb95c5589cc57b48b608d1b5e577",
+    "assets/pets/pet_r43.png": "1290ecf6c555ebfe8e2f0408a9062aec2103d60bc8a86f93cafd520b79cc47d6",
+    "assets/pets/pet_sr35.png": "e1160bb18ccc62037a27e4eff422f4293abbe40ca32e5bf7f9fb8e44ac7fe799",
+    "assets/pets/pet_sr36.png": "187d62123bb34d05a99bec96047697d1bc71effc1303e01097d56df436d74369",
+    "assets/pets/pet_sr37.png": "c0282338c4dd5a2e1b1028fd48e380043f1db8ff0b40412f1af339c28d18bb62",
+    "assets/pets/pet_ssr25.png": "f773d25056ca5b33d1aba7e9977a976b7ccf61e8e95b6bd0a4950c307d890624",
+    "assets/pets/pet_ssr26.png": "3697b2054c68ede4719f4723ec74149ba52eac19d057dddd653db80b363ed247",
+    "assets/pets/pet_ur19.png": "6fcd7b39ced1764b3a9647f490607ed6108a904a47418c838b616734a46db9dd",
+    "assets/pets/pet_ur20.png": "2c238e42dae5c514740154ca2c45493a08418498b0fbc740a8715b7aa2f772d5",
+    "assets/pets/variants/pet_n39-card-384-38444eb59db9.webp": "fb55c6114376cf65ca1b205a5dee2d099306734de965edb935c675ad71d3a116",
+    "assets/pets/variants/pet_n39-stage-960-38444eb59db9.webp": "85725ac3e9cc785efed7a906e8b2a19c786d94ad75ff25878ab3641586acad93",
+    "assets/pets/variants/pet_n40-card-384-f8243198fdc9.webp": "023f3a408edf6214be9ed4d936043c20e5792883f6184ed7989f0a4944aa414d",
+    "assets/pets/variants/pet_n40-stage-960-f8243198fdc9.webp": "140e72a74c88e08913d5757c83872d66c9c88084da45b029162efbfda1ac14c9",
+    "assets/pets/variants/pet_r41-card-384-09f72b0ce6ce.webp": "2d4bf2c7473a6bdab69876ec321ea695183ea4bf206ef83a522531518cafcdb2",
+    "assets/pets/variants/pet_r41-stage-960-09f72b0ce6ce.webp": "14ff586e80307d54fc66032c95d6545932f9fcc2e71eed28421e8d637e744e80",
+    "assets/pets/variants/pet_r42-card-384-6f52890d7605.webp": "b958c732d6115be7a6d47ac39fe4bb3b482a64d1ac2ec91cd090524964f0b17a",
+    "assets/pets/variants/pet_r42-stage-960-6f52890d7605.webp": "408084b7fe08508058520d586803025a0f54b6e806fc8783bfcd1a6c386163c6",
+    "assets/pets/variants/pet_r43-card-384-1290ecf6c555.webp": "cec330c4d3fce840c5b65ca256bf3748ace10c65154154c1bea42eb40522c9a9",
+    "assets/pets/variants/pet_r43-stage-960-1290ecf6c555.webp": "d5f6040e345557c4f8af9d32e8ddb418b6c3518c4845049e924ef9f362754e88",
+    "assets/pets/variants/pet_sr35-card-384-e1160bb18ccc.webp": "d6b6e35dbee2193bcd31224ee8bde237a35a1632d05f1334e9f7df0cfdfb175a",
+    "assets/pets/variants/pet_sr35-stage-960-e1160bb18ccc.webp": "7550356c1aab6ddf1a9496699da38e187530b56a764ad6a6c164c34defe7c08c",
+    "assets/pets/variants/pet_sr36-card-384-187d62123bb3.webp": "9bf150740525e713b935219c93544aec20dffe17fc42ee74d1547efa7c887caf",
+    "assets/pets/variants/pet_sr36-stage-960-187d62123bb3.webp": "810a09e2e9494db61b34d2499dbb47101683e8159af964340a38264d18b1dc2f",
+    "assets/pets/variants/pet_sr37-card-384-c0282338c4dd.webp": "c74a710e4cca6dca9d362b545582125ee46e13b9ed6cd53e87cd5081accdf144",
+    "assets/pets/variants/pet_sr37-stage-960-c0282338c4dd.webp": "38f70a6cb2f899f0dd11de47a63f89fb5efa329545ccb32b7162dfb6ddc77922",
+    "assets/pets/variants/pet_ssr25-card-384-f773d25056ca.webp": "860d33753af7ce273574aa9a5590be0178ca9ba28f5a1ee8527d10dd47d346ae",
+    "assets/pets/variants/pet_ssr25-stage-960-f773d25056ca.webp": "3ae8f9665c80976ccfe28e56dc1fae55f3b6336f72956b411cfbb0906281f85c",
+    "assets/pets/variants/pet_ssr26-card-384-3697b2054c68.webp": "0de5ff78022cc900e00b8e37205d03f331b55f2a9122ca1fde0d92493d074f06",
+    "assets/pets/variants/pet_ssr26-stage-960-3697b2054c68.webp": "b467b3f35c9565d86ac3987e041bf76f490ca54a07ab6a64ef7d7560c39f1464",
+    "assets/pets/variants/pet_ur19-card-384-6fcd7b39ced1.webp": "fa48141aa5d26bf8c90ce14223e2ae0d23bbf98365e2797c7a7b9ab7ac4327c3",
+    "assets/pets/variants/pet_ur19-stage-960-6fcd7b39ced1.webp": "278728d82f16a9ea945c2850a30178902b1dffe6d137bb0e669d5367db6a4027",
+    "assets/pets/variants/pet_ur20-card-384-2c238e42dae5.webp": "fd728aef077159d693b2ba29545eba6e50b5dec2f6f380bca1651b21738fafb1",
+    "assets/pets/variants/pet_ur20-stage-960-2c238e42dae5.webp": "3b0092752949d1f8f0d553ff1cc8658a0916b2f7cabbaeab69534ad659fe38c5",
+    "data/craftables.json": "f49345c56b3010389d60ec9c03ec7f44f57b89b9662a2c3ec55d8381fe7fcd73",
+    "data/expeditions.json": "1dbacba9d13d4addaa03b8348dd2abc42a0d12175bc13176444990041a601984",
+    "data/gift-affinities.json": "78237d48ef4403e33458a39e1d5fb477501d0bf119ef956e3b8f917492cb6027",
+    "data/materials.json": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c"
+  },
+  "publication": "Separate source promotion; deployment will use unchanged approved immutable production bytes"
+}

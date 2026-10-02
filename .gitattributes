@@ -21,3 +21,13 @@ content/pet-series/_lionheart_approved_v353_baseline_20261002/** -text
 
 # Lionheart final review hashes bind viewer and evidence bytes.
 reports/lionheart/** -text whitespace=cr-at-eol
+
+# Promoted Lionheart catalogs preserve approved candidate bytes across checkouts.
+data/pets.json -text
+data/pools.json -text
+data/pets-lore.json -text
+data/pet-series.json -text
+data/craftables.json -text
+data/gift-affinities.json -text
+data/materials.json -text
+data/expeditions.json -text
