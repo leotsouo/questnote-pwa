@@ -1,5 +1,5 @@
 {
-  "publicationStatus": "human-whole-package-accepted-awaiting-explicit-可以發布",
+  "publicationStatus": "authorized-deployment-pending",
   "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
   "runtimeSourceCommit": "38242746077131d08d7d4c38b8e0af3470e50e81",
   "validatedSourceHead": "8af1890b258d09edaf1a8d8320bf097dc77912fa",
@@ -30,5 +30,12 @@
     "acceptedAt": "2026-10-02T06:08:58Z",
     "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
     "response": "審核通過"
+  },
+  "publicationAuthorization": {
+    "reviewer": "使用者",
+    "approvedAt": "2026-10-02T06:10:41Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "phrase": "可以發布",
+    "response": "**可以發布**"
   }
 }
