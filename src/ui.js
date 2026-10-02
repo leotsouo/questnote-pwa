@@ -6601,7 +6601,6 @@ function renderExpeditionView() {
 }
 
 function expeditionAreaImageUrl(areaId) {
-  if (areaId === 'lionheart_city') return './assets/expeditions/lionheart_city.svg';
   return `./assets/expeditions/${encodeURIComponent(areaId)}.webp`;
 }
 
