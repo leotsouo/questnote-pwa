@@ -1,0 +1,17 @@
+{
+  "status": "preview-verified-awaiting-whole-package-acceptance",
+  "artifactId": "997d7d457b32ae908fdf7fae5c7b5c93ade73e2a1349861198994e6392f31f58",
+  "manifestSha256": "0a84bef51d9cffdd4497d9637b072be55c6af51e2c1e8170035ca79843aec986",
+  "commit": "d32e5023db0630b3e7e1e283da8638b7afe2fa22",
+  "parent": "e6670449a321bfb7b397881f37ea6154bda1db42",
+  "previousArtifact": "0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4",
+  "previousHttpsManifestSha256": "e1863952241e2721c0fb662e2eb160ebd56ba3df746bf0f3220ea7fc6522f53b",
+  "files": 557,
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/?release-review=997d7d457b32ae908fdf7fae5c7b5c93ade73e2a1349861198994e6392f31f58",
+  "pushedAt": "2026-10-02T07:26:26.401Z",
+  "httpsFilesVerified": 557,
+  "pagesRunId": 36978563651,
+  "pagesRunUrl": "https://github.com/leotsouo/questnote-pwa-preview/actions/runs/36978563651",
+  "pagesConclusion": "success",
+  "verifiedAt": "2026-10-02T07:32:12.682Z"
+}

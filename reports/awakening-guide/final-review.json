@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "feature": "V3.5.8 劍隱山河羈絆覺醒教學、初遇卡圖呈現與雙形態驚喜",
+  "sourceCommit": "36671c3b50a50370828dcef9ad89865cf93ceea5",
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/?release-review=997d7d457b32ae908fdf7fae5c7b5c93ade73e2a1349861198994e6392f31f58",
+  "baseline": {
+    "version": "3.5.7",
+    "artifactId": "0235b47e9f0e8aed5a4e707cce8e6c79a40a25543bd9841c23cee21f5c78ef33",
+    "manifestSha256": "9859b4fdc3379162abec5a60c7e6901955d29bb9b69cc8d80b1300ff12d2e10b",
+    "contentBundleSemanticSha256": "e560670c83393125494fb9456ea30678864a31e0a986af1da67da863ce20349e"
+  },
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-guide-releases\\997d7d457b32ae908fdf7fae5c7b5c93ade73e2a1349861198994e6392f31f58",
+      "artifactId": "997d7d457b32ae908fdf7fae5c7b5c93ade73e2a1349861198994e6392f31f58",
+      "manifestSha256": "0a84bef51d9cffdd4497d9637b072be55c6af51e2c1e8170035ca79843aec986",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-guide-releases\\afa84a16d91c231d46a2fc949b4ae313917bda9d242006b0857955c700abf441",
+      "artifactId": "afa84a16d91c231d46a2fc949b4ae313917bda9d242006b0857955c700abf441",
+      "manifestSha256": "1e723ea176702a7d16aacb91388ec2453f8b9561c335f01e3476c2ca31adce52",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "functional": {
+      "status": "pass",
+      "evidence": "V3.5.8 source UUID-isolated browser check forced the guaranteed UR in a single pull and ten pull; each pull charged once, result images used initial art, tutorial expands/collapses/navigates, ritual reveals awakening art and persisted form survives reload. See reports/awakening-guide/browser-checks.json."
+    },
+    "artworkAndAnimation": {
+      "status": "pass",
+      "evidence": "HTTPS preview-browser test decoded all 20 initial-card WebP files and captured actual preview UI; gacha overlay is pinned themed animation with initial art, skip path and unchanged purchase counters were checked in the UUID-isolated source browser. Original approved 20-pair art source and V3.5.5 animation assets retained."
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "Preview and production immutable manifests share source files/content bundle; pet/pool/economy/Lore semantic catalog matches the verified formal V3.5.7: e560670c83393125494fb9456ea30678864a31e0a986af1da67da863ce20349e."
+    },
+    "backupAndTransactions": {
+      "status": "pass",
+      "evidence": "npm test includes awakening atomic ritual rollback/two-tab race and old/new backup roundtrip; new work changes only presentation and tutorial, no backup fields or transaction paths. Synthetic HTTPS browser reported an empty fresh preview storage and did not spend stars."
+    },
+    "regressions": {
+      "status": "pass",
+      "evidence": "npm test, focused pet-awakening tests (11), native UI browser regression (11 awakening checks), pool-release smoke, pools:validate and images:check all exited successfully."
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "Actual candidate controlled by its artifact-specific Service Worker https://leotsouo.github.io/questnote-pwa-preview/service-worker.js?artifact=997d7d457b32ae908fdf7fae5c7b5c93ade73e2a1349861198994e6392f31f58; isolated HTTPS browser passed offline reload. Cache version advances to V3.5.8."
+    },
+    "currentMainFeatures": {
+      "status": "pass",
+      "evidence": "V3.5.7 standard UR preview is preserved and interactive; awakening tutorial toggle sits beside pool details in the V3.5.8 isolated HTTPS browser: true, true."
+    },
+    "previewHttps": {
+      "status": "pass",
+      "evidence": "HTTPS preview commit d32e5023db0630b3e7e1e283da8638b7afe2fa22 completed Pages run https://github.com/leotsouo/questnote-pwa-preview/actions/runs/36978563651; all 557 GitHub HTTPS files match artifact 997d7d457b32ae908fdf7fae5c7b5c93ade73e2a1349861198994e6392f31f58 and manifest 0a84bef51d9cffdd4497d9637b072be55c6af51e2c1e8170035ca79843aec986; browser checks captured in reports/awakening-guide/preview-browser.json."
+    }
+  },
+  "packageHash": "4eb94a509d6893cd7b2eb131c59488db5b729da89f33d0f138351112c2d5b10a"
+}

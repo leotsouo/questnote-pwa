@@ -55,6 +55,10 @@ try {
   await skipDebut.waitFor({ state: 'visible' }); await skipDebut.click();
   await page.locator('#gacha-pet-awakening-toggle').waitFor({ state: 'visible' });
   await debut.waitFor({ state: 'detached' });
+  const actionLabels = (await page.locator('.gacha-info-actions > button').allTextContents()).map((text) => text.trim());
+  assert.equal(actionLabels.length, 2, 'The details actions should share one row');
+  assert.equal(actionLabels[0], '卡池詳情');
+  assert.match(actionLabels[1], /羈絆覺醒/);
   assert.equal(await page.locator('#gacha-pet-awakening-toggle').getAttribute('aria-expanded'), 'false');
   assert.equal(await page.locator('#gacha-pet-awakening-guide').isVisible(), false);
   await page.screenshot({ path: path.join(report, 'preview-https-collapsed.png'), fullPage: true });
@@ -71,6 +75,7 @@ try {
   const output = { status: 'passed', verifiedAt: new Date().toISOString(), artifactId: pins.artifactId, previewUrl: base,
     detail: { version: data.version, initialImages: data.initialImages.length, serviceWorker: data.serviceWorker,
       standardCarousel: true,
+      poolDetailsNeighbor: true,
       collapsedAndExpanded: true, guideText: true, freshBrowserStorage: true, gachaTotalPullsUnchanged: await page.evaluate(async (n) => (await (await import('./src/gachaService.js')).getGachaStats()).totalPulls === n, before), offlineReload },
     blockedExternalOrigins: [...new Set(blocked)], errors };
   assert.equal(output.detail.gachaTotalPullsUnchanged, true); await fs.writeFile(path.join(report, 'preview-browser.json'), JSON.stringify(output, null, 2) + '\n');

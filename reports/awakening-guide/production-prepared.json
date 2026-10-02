@@ -1,0 +1,13 @@
+{
+  "status": "prepared-exact-bytes-not-pushed-awaiting-user-approval",
+  "packageHash": "4eb94a509d6893cd7b2eb131c59488db5b729da89f33d0f138351112c2d5b10a",
+  "artifactId": "afa84a16d91c231d46a2fc949b4ae313917bda9d242006b0857955c700abf441",
+  "manifestSha256": "1e723ea176702a7d16aacb91388ec2453f8b9561c335f01e3476c2ca31adce52",
+  "previousFormalArtifact": "0235b47e9f0e8aed5a4e707cce8e6c79a40a25543bd9841c23cee21f5c78ef33",
+  "previousFormalManifestSha256": "9859b4fdc3379162abec5a60c7e6901955d29bb9b69cc8d80b1300ff12d2e10b",
+  "previousDeploymentCommit": "03d1de744769f99f608ef777514b216705489dff",
+  "preparedDeploymentCommit": "42e1fbf7585f75a74528f788c71625aac7fa26e1",
+  "files": 557,
+  "everySourceAndGitBlobMatches": true,
+  "preparedAt": "2026-10-02T07:35:31.527Z"
+}
