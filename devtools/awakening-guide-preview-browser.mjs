@@ -9,7 +9,7 @@ const pins = JSON.parse(await fs.readFile(path.join(report, 'artifacts.json'))).
 const verified = JSON.parse(await fs.readFile(path.join(report, 'preview-https.json')));
 assert.equal(verified.status, 'passed'); assert.equal(verified.artifactId, pins.artifactId);
 const { chromium } = createRequire(import.meta.url)(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
-const base = 'https://leotsouo.github.io/questnote-pwa-preview/v359-review/';
+const base = 'https://leotsouo.github.io/questnote-pwa-preview/v3510-review/';
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 try {
   const context = await browser.newContext({ viewport: { width: 393, height: 852 } });
@@ -39,7 +39,7 @@ try {
     return { version: (await import('./src/version.js')).APP_VERSION, artifactId: document.querySelector('meta[name="questnote-artifact"]').content,
       initialImages: images, serviceWorker: navigator.serviceWorker.controller?.scriptURL };
   });
-  assert.equal(data.version, '3.5.9'); assert.equal(data.artifactId, pins.artifactId); assert.equal(data.initialImages.length, 20);
+  assert.equal(data.version, '3.5.10'); assert.equal(data.artifactId, pins.artifactId); assert.equal(data.initialImages.length, 20);
   await page.getByRole('button', { name: '召喚', exact: true }).click();
   const standardCarousel = page.locator('#gacha-standard-ur');
   await standardCarousel.waitFor({ state: 'visible' });
