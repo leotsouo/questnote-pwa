@@ -1,3 +1,7 @@
+# V3.5.5 劍隱山河覺醒與雲棧古道已發布 — 2026-10-02
+
+[PR45](https://github.com/leotsouo/questnote-pwa/pull/45)已合併，正式artifact 24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769，gh-pages 567266bc64e57b48824e8cf148096147272f2bf3，[Pages36972761813](https://github.com/leotsouo/questnote-pwa/actions/runs/36972761813)成功。二十隻覺醒、張口鎮嶺蛤與古道新地圖已上線；556個Git檔案／556個HTTPS檔案、正式瀏覽器與3.5.4→3.5.5存檔／快取／離線更新驗證通過。保留今日習慣、原卡池與資料。[完整發布收據](../reports/awakening-implementation/production-release.md)。
+
 ## 2026-10-01 — V3.5.1 親密度故事與精簡教學已發布
 
 [PR #30](https://github.com/leotsouo/questnote-pwa/pull/30) 已合併，正式 Pages commit `09f1b66`、[run 36881650163](https://github.com/leotsouo/questnote-pwa/actions/runs/36881650163) 成功。417 個 Git blobs、254 項 Node 測試、12 項原生 artifact 驗收、11 項親密度瀏覽器驗收及 24 個正式 HTTPS 雜湊通過。保留 V3.4.42 的修正、96 位角色／四卡池與信箱。既有正式瀏覽器偵測 verified waiting 更新，另一個視窗阻擋套用；未清除存檔。[完整發布收據](../reports/bond-v351/production-release/README.md)。

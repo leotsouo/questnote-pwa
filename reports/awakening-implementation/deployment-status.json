@@ -1,5 +1,5 @@
 {
-  "publicationStatus": "authorized-deployment-pending",
+  "publicationStatus": "published-and-verified",
   "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
   "runtimeSourceCommit": "38242746077131d08d7d4c38b8e0af3470e50e81",
   "validatedSourceHead": "8af1890b258d09edaf1a8d8320bf097dc77912fa",
@@ -16,12 +16,21 @@
     "httpsVerification": "passed"
   },
   "production": {
-    "currentVersion": "3.5.4",
-    "currentArtifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
-    "proposedVersion": "3.5.5",
-    "proposedArtifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
-    "featureMerged": false,
-    "featureDeployed": false
+    "previousVersion": "3.5.4",
+    "previousArtifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+    "currentVersion": "3.5.5",
+    "currentArtifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+    "manifestSha256": "113b2182285c641a9930c76879f0fe1f612a1a38a5df5723318c7e18520cf0c3",
+    "deploymentCommit": "567266bc64e57b48824e8cf148096147272f2bf3",
+    "pagesUrl": "https://github.com/leotsouo/questnote-pwa/actions/runs/36972761813",
+    "pagesConclusion": "success",
+    "featureMerged": true,
+    "featureDeployed": true,
+    "gitBlobsVerified": 556,
+    "httpsFilesVerified": 556,
+    "freshBrowserPassed": true,
+    "saveAndCacheUpdatePassed": true,
+    "offlineReloadPassed": true
   },
   "latestMain": "98c72ae0a1a641d1d45e18b738bfe5b8a9f300fe",
   "latestMainDelta": "Only V3.5.4 release receipt and documentation; merged to preserve maintained deployment history. No runtime/catalog/art changes from reviewed source.",
@@ -37,5 +46,13 @@
     "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
     "phrase": "可以發布",
     "response": "**可以發布**"
+  },
+  "publishedAt": "2026-10-02T06:22:06.555Z",
+  "sourceMergeCommit": "5ae4f83d4119012f933309cdefc8e1c536b9ae0b",
+  "sourcePr": "https://github.com/leotsouo/questnote-pwa/pull/45",
+  "authorizationCi": {
+    "head": "42f6865a4a80f1297348dfdebad000e07e6af2c5",
+    "conclusion": "success",
+    "url": "https://github.com/leotsouo/questnote-pwa/actions/runs/36972391331"
   }
 }

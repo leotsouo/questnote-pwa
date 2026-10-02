@@ -66,7 +66,7 @@
     "map": "http://127.0.0.1:59069/awakening-review/#map-review",
     "previewArtifactId": "dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7"
   },
-  "publicationStatus": "Explicit publication authorized for reviewed package; deployment verification pending.",
+  "publicationStatus": "Published V3.5.5; Pages, all formal HTTPS hashes, fresh browser and native save/cache upgrade verified.",
   "humanAcceptance": {
     "reviewer": "使用者",
     "acceptedAt": "2026-10-02T06:08:58Z",
