@@ -27,16 +27,16 @@
   },
   "presentationTemplate": "lionheart_inverse_oath",
   "unlock": null,
-  "releaseVersion": "3.5.6",
+  "releaseVersion": "3.5.4",
   "productionBaseline": {
-    "deployedCommit": "567266bc64e57b48824e8cf148096147272f2bf3",
-    "sourceCommit": "38242746077131d08d7d4c38b8e0af3470e50e81",
-    "mainCommit": "e17be761f61b7480ae663e1be5cef3f9baa2efec",
-    "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
-    "version": "3.5.5",
+    "deployedCommit": "4a1808126b9f6805ddb11c7b16ce1a1d8225ebf8",
+    "sourceCommit": "0d450279da0eb31aa01439ba7d875ee5ca28a173",
+    "mainCommit": "ed81995648ba9b60c27207ba1ab3148afa6b2688",
+    "artifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+    "version": "3.5.3",
     "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
-    "verifiedAt": "2026-10-02T06:52:22.556Z",
-    "unpublishedChanges": "Integrated latest V3.5.5 awakening and V3.5.4 today habits into feature branch 26b2938; preserved all existing catalogs and awakening art. Lionheart runtime prerequisites are local V3.5.6, not deployed. Archived the previous approved V3.5.3 authoring baseline, receipts and candidate without rewriting. User approval 審核通過繼續工作 carries forward only byte-identical 12 PNGs; AI content/prompts reviews rerun on fresh baseline. Seven-region V3.5.3–V3.5.5 saves remain importable; new region required from V3.5.6."
+    "verifiedAt": "2026-10-01T21:19:13.361Z",
+    "unpublishedChanges": "Formal V3.5.3 and origin/main runtime/catalog sources agree. This clean feature checkout adds reviewed Lionheart presentation, explicit specialty, exploration stories and backup compatibility before authoring init. Existing catalogs and PNGs stay byte-identical; these engineering prerequisites are not deployed. Additional prerequisite: additive authored four-chapter bond stories and atomic exploration milestone grants. Prior authoring baseline preserved intact under _lionheart_before_bond_baseline_20261002."
   },
   "interview": {
     "theme": "魔法與蒸汽機械；獅心城人們模仿完美格里芬、造出半生物半機械奇美拉，追逐神、劍走偏鋒。",

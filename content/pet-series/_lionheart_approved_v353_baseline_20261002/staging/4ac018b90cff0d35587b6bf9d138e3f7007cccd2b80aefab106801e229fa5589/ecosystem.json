@@ -166,7 +166,7 @@
   "releaseNotes": "新增獅心城・逆造之誓12隻雙UR，格里芬純生物無裝備、奇美拉半生物半機械且彼此敵對。新增爐香齒輪酥、逐隻偏好與明確專長、獅心城完整探險與五里程碑、獨立入場和雙UR／兩SSR演出。全部第一抽開放，沿用價格機率保底與交易限制；沒有贈寵、陣營或和解結局。工坊材料來源為獅心城／機械遺跡、森林與熔岩裂谷。不宣稱已發布或通過人工驗收。",
   "runtimeHashes": {
     "src/workshopService.js": "2e867a770495d2923c0443e96e8e160b09542c34ebeb29c6a9004769e8ca670b",
-    "src/expeditionService.js": "caec8978877213406550d8604dd480f791229e6e4f6ece88505e104836d84722",
+    "src/expeditionService.js": "a0393db1951029c6496216e3af4c6b771ab35c590ddff74adc44c5c68136581d",
     "src/explorationService.js": "d7118f648219c5802e15361e744a2b1b72af9f732bc4c5ed0c2ff1da09ed917e",
     "src/expeditionGameplay.js": "736903f5546ec3cd5c496b2fc23a530f713880f66f7eaa43103a6493b7ea6a3d"
   }

@@ -5,7 +5,7 @@
   "sopVersion": 2,
   "purpose": "real",
   "baseline": {
-    "hash": "2ec4b46b9589a17930422f72dde78b25adefc88bbc758e5671b2bde03f4315b2",
+    "hash": "d3be04bd6d4100aee4ce216ef178686664b3240a79d11a344282fb213991d4ce",
     "files": {
       "assets/pets/pet_n01.png": "41df3c9be3b152326985d8885a14d54eb2eb85e62d9dbd01ae9867af92d4f924",
       "assets/pets/pet_n02.png": "d0d0a661e3e9f66f255fd5542441b9bbc4d8b292ffac70245af887b8bceb8f23",
@@ -364,7 +364,7 @@
       "data/pets.json": "ab12914f009519fef5e718b3e816d0d285774242a7064e692e8a7898818cd388",
       "data/pools.json": "6e67b49d785dabcdf44d917fd3b033dffe895cb1a5387cbab498a3146dc8420e",
       "src/expeditionGameplay.js": "736903f5546ec3cd5c496b2fc23a530f713880f66f7eaa43103a6493b7ea6a3d",
-      "src/expeditionService.js": "caec8978877213406550d8604dd480f791229e6e4f6ece88505e104836d84722",
+      "src/expeditionService.js": "a0393db1951029c6496216e3af4c6b771ab35c590ddff74adc44c5c68136581d",
       "src/explorationService.js": "d7118f648219c5802e15361e744a2b1b72af9f732bc4c5ed0c2ff1da09ed917e",
       "src/workshopService.js": "2e867a770495d2923c0443e96e8e160b09542c34ebeb29c6a9004769e8ca670b"
     }
@@ -434,45 +434,45 @@
   "history": [
     {
       "stage": "brief",
-      "inputHash": "aab27632d0271719add065bf6884966220e2db906c37f44393c1e3035a7132cb",
-      "outputHash": "5279e26bf0bdd109290b6da6653166357b6ff8045dce87597b4286d8d6e1e471",
+      "inputHash": "2a145000a45f031cc73032fef0f25f8a2574b4c6bdbe740111a1137d3cd06e48",
+      "outputHash": "6bbb9c32cb52f7e7e5409298f8c0ed658d7fc3b3518c29fef27fc81c5ea7012e",
       "files": {
-        "brief.json": "2df0be0bde8a8345c30731ed4c8a040c85ae838575b5a3511416b6c1898bc678"
+        "brief.json": "1ba28efcebf7b8f3f14faae27b95b4de05453eef3f83ae83a8c94bebdd0f9ed2"
       },
       "toolsHash": "b370339823f9a17a0e5023b9988ad75334b6324fdf262f9435b2c3de39781089",
-      "snapshot": "approvals/5279e26bf0bdd109290b6da6653166357b6ff8045dce87597b4286d8d6e1e471",
+      "snapshot": "approvals/6bbb9c32cb52f7e7e5409298f8c0ed658d7fc3b3518c29fef27fc81c5ea7012e",
       "reviewedWarnings": [],
-      "approvedAt": "2026-10-02T06:53:14.513Z",
-      "reviewer": "Codex: current-main integration, ecosystem, lore, animation and provenance review",
+      "approvedAt": "2026-10-01T22:05:33.140Z",
+      "reviewer": "Codex",
       "reviewerType": "ai"
     },
     {
       "stage": "plan",
-      "inputHash": "5279e26bf0bdd109290b6da6653166357b6ff8045dce87597b4286d8d6e1e471",
-      "outputHash": "f6ff4ed89b02f631bd73840e0c8f6371259686c48fa0a7a1d9b712ece4535669",
+      "inputHash": "6bbb9c32cb52f7e7e5409298f8c0ed658d7fc3b3518c29fef27fc81c5ea7012e",
+      "outputHash": "eec186d38a70433103c9c5ff6b992226cf3fc9d3ed3a72e5417654b9a91d5063",
       "files": {
         "plan.json": "beb8bf836eddf99b3a281217c7fa0b769344f52052b46b70d1e38ac82b97c9ca"
       },
       "toolsHash": "b370339823f9a17a0e5023b9988ad75334b6324fdf262f9435b2c3de39781089",
-      "snapshot": "approvals/f6ff4ed89b02f631bd73840e0c8f6371259686c48fa0a7a1d9b712ece4535669",
+      "snapshot": "approvals/eec186d38a70433103c9c5ff6b992226cf3fc9d3ed3a72e5417654b9a91d5063",
       "reviewedWarnings": [],
-      "approvedAt": "2026-10-02T06:53:18.338Z",
-      "reviewer": "Codex: current-main integration, ecosystem, lore, animation and provenance review",
+      "approvedAt": "2026-10-01T22:05:36.975Z",
+      "reviewer": "Codex",
       "reviewerType": "ai"
     },
     {
       "stage": "content",
-      "inputHash": "f6ff4ed89b02f631bd73840e0c8f6371259686c48fa0a7a1d9b712ece4535669",
-      "outputHash": "40026e029ef27813f615f16d1a897be8c1c204e8f8dd610fec5d22cb04893f34",
+      "inputHash": "eec186d38a70433103c9c5ff6b992226cf3fc9d3ed3a72e5417654b9a91d5063",
+      "outputHash": "ab93250beb5664c7dab40ec556ea985586d54eca1523db844e44faa887473096",
       "files": {
-        "series.json": "74e73f474e06a1ddec48681a24eabe33e9d5df6bef6e1eea045265690681ea16",
+        "series.json": "afe8a72a605b82da29e1c5ba3a8a0a047851e5270f9a1a836f6294f41315e77e",
         "pets.json": "1113650deb84724cbc0c0004dfeb913bae4d3cb0c913a17e06642bdf27ae1e28",
         "pets-lore.json": "88419acb887b1d88f73d159d069de1ecdb13e0680e0a6bb0beb1a92c11750bfe",
         "pool.json": "0d7786417b854a5e49aacfd4cea9673e4ee5afc2d86e5a44221534926539077c",
-        "ecosystem.json": "22f6a0f33de9f91e5a83cf932aeb01237a6d6f82a546f2a43aa304c8624755f5"
+        "ecosystem.json": "4c8606ba30e467b5a34831f6597ef3f13fb3858dc0da2bff1e2f6eb28ecb496a"
       },
       "toolsHash": "b370339823f9a17a0e5023b9988ad75334b6324fdf262f9435b2c3de39781089",
-      "snapshot": "approvals/40026e029ef27813f615f16d1a897be8c1c204e8f8dd610fec5d22cb04893f34",
+      "snapshot": "approvals/ab93250beb5664c7dab40ec556ea985586d54eca1523db844e44faa887473096",
       "reviewedWarnings": [
         {
           "level": "warning",
@@ -547,19 +547,19 @@
           "path": "pets[11].poolTags"
         }
       ],
-      "approvedAt": "2026-10-02T06:53:21.706Z",
-      "reviewer": "Codex: current-main integration, ecosystem, lore, animation and provenance review",
+      "approvedAt": "2026-10-01T22:05:40.723Z",
+      "reviewer": "Codex",
       "reviewerType": "ai"
     },
     {
       "stage": "prompts",
-      "inputHash": "40026e029ef27813f615f16d1a897be8c1c204e8f8dd610fec5d22cb04893f34",
-      "outputHash": "80c70c5e382a0530813c568c40ee4cfdd1e7a9c9e07f8daa5c1ab7072b193dbe",
+      "inputHash": "ab93250beb5664c7dab40ec556ea985586d54eca1523db844e44faa887473096",
+      "outputHash": "5d6e970f59ec2177d71f3906bce2f1d655d67db35a76d0e8285f7761c564825a",
       "files": {
-        "prompts.json": "155ca7ef9f2d1f226645ceb628c7897f3c8d4b0deb4d55c6919b993b4efb2301"
+        "prompts.json": "bbecae06ce7cc69f67b2992118bd689ba8680d1d61a7f9d34887b3fc3d1a76a4"
       },
       "toolsHash": "b370339823f9a17a0e5023b9988ad75334b6324fdf262f9435b2c3de39781089",
-      "snapshot": "approvals/80c70c5e382a0530813c568c40ee4cfdd1e7a9c9e07f8daa5c1ab7072b193dbe",
+      "snapshot": "approvals/5d6e970f59ec2177d71f3906bce2f1d655d67db35a76d0e8285f7761c564825a",
       "reviewedWarnings": [
         {
           "level": "warning",
@@ -634,14 +634,188 @@
           "path": "pets[11].poolTags"
         }
       ],
-      "approvedAt": "2026-10-02T06:53:25.075Z",
-      "reviewer": "Codex: current-main integration, ecosystem, lore, animation and provenance review",
+      "approvedAt": "2026-10-01T22:05:44.343Z",
+      "reviewer": "Codex",
+      "reviewerType": "ai"
+    },
+    {
+      "stage": "prompts",
+      "inputHash": "ab93250beb5664c7dab40ec556ea985586d54eca1523db844e44faa887473096",
+      "outputHash": "075f30ec3aadfdb6fa6fc4d7b72159baadd1dfba3893766ccb96fb7d54398c56",
+      "files": {
+        "prompts.json": "cdc0fb40ca78a77c59cf5f3afcd4811902600c3b6f720135a5e66d4bd7cbfea6"
+      },
+      "toolsHash": "b370339823f9a17a0e5023b9988ad75334b6324fdf262f9435b2c3de39781089",
+      "snapshot": "approvals/075f30ec3aadfdb6fa6fc4d7b72159baadd1dfba3893766ccb96fb7d54398c56",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        }
+      ],
+      "approvedAt": "2026-10-02T06:34:05.509Z",
+      "reviewer": "Codex",
+      "reviewerType": "ai"
+    },
+    {
+      "stage": "prompts",
+      "inputHash": "ab93250beb5664c7dab40ec556ea985586d54eca1523db844e44faa887473096",
+      "outputHash": "f3c6871165f892a6565403736f7b531ebe35e4e709872efb3ee10f5e5f9aefcb",
+      "files": {
+        "prompts.json": "155ca7ef9f2d1f226645ceb628c7897f3c8d4b0deb4d55c6919b993b4efb2301"
+      },
+      "toolsHash": "b370339823f9a17a0e5023b9988ad75334b6324fdf262f9435b2c3de39781089",
+      "snapshot": "approvals/f3c6871165f892a6565403736f7b531ebe35e4e709872efb3ee10f5e5f9aefcb",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        }
+      ],
+      "approvedAt": "2026-10-02T06:36:39.231Z",
+      "reviewer": "Codex",
       "reviewerType": "ai"
     },
     {
       "stage": "images",
-      "inputHash": "80c70c5e382a0530813c568c40ee4cfdd1e7a9c9e07f8daa5c1ab7072b193dbe",
-      "outputHash": "1d22a9d05981c04c6eed4506c409a591e308b599226eb9463ae31c5a1dc3e42f",
+      "inputHash": "f3c6871165f892a6565403736f7b531ebe35e4e709872efb3ee10f5e5f9aefcb",
+      "outputHash": "f90af76b9730f9f90503715868015c2df57135dde75b951ac16a03d29234c632",
       "files": {
         "images/pet_n39.png": "38444eb59db97d03f9766babab0f38774b7c689a8fda39485e2c0539d6393b4b",
         "images/pet_n40.png": "f8243198fdc99a2981a3cc14933a5133c67f9524998f9538198daf784e123c59",
@@ -657,7 +831,7 @@
         "images/pet_ur20.png": "2c238e42dae5c514740154ca2c45493a08418498b0fbc740a8715b7aa2f772d5"
       },
       "toolsHash": "b370339823f9a17a0e5023b9988ad75334b6324fdf262f9435b2c3de39781089",
-      "snapshot": "approvals/1d22a9d05981c04c6eed4506c409a591e308b599226eb9463ae31c5a1dc3e42f",
+      "snapshot": "approvals/f90af76b9730f9f90503715868015c2df57135dde75b951ac16a03d29234c632",
       "reviewedWarnings": [
         {
           "level": "warning",
@@ -804,8 +978,8 @@
           "path": "images/pet_ur20.png"
         }
       ],
-      "approvedAt": "2026-10-02T06:53:28.637Z",
-      "reviewer": "user: 審核通過繼續工作; identical PNG hashes carried in art-approval-carry.json",
+      "approvedAt": "2026-10-02T06:44:11.860Z",
+      "reviewer": "user: 審核通過繼續工作",
       "reviewerType": "human"
     }
   ]

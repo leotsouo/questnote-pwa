@@ -1,0 +1,41 @@
+{
+  "id": "lionheart_inverse_oath",
+  "name": "逆造之誓召喚",
+  "active": true,
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "petFilter": {
+    "poolTags": [
+      "lionheart_inverse_oath"
+    ]
+  },
+  "presentation": {
+    "themeKey": "lionheart_inverse_oath",
+    "animationKey": "lionheart_inverse_oath",
+    "heroPetId": "pet_ur19",
+    "featuredPetIds": [
+      "pet_ur20",
+      "pet_ssr25",
+      "pet_ssr26"
+    ],
+    "badge": "獅心城系列",
+    "eyebrow": "完美的原型，逆造的挑戰",
+    "tagline": "他們仰望完美，卻造出了向神露齒的生命。",
+    "debutLines": [
+      "仰望天律",
+      "逆造之誓",
+      "獅心城"
+    ],
+    "debutLabel": "獅心城・逆造之誓登場"
+  }
+}

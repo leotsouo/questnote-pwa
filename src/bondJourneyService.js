@@ -1,5 +1,6 @@
 import { dbGet, dbMutateRecords, STORES } from './db.js';
 import { normalizeWallet } from './rewardService.js';
+import { loadCatalogBundle } from './releaseCatalog.js';
 import { getTodayDateString } from './taskFilterService.js';
 import { BOND_JOURNEY_KEY, CHAPTER_LEVELS, CHAPTER_REWARDS, HABIT_TARGETS,
   DAILY_COMPANION_REWARD, normalizeBondJourney, chapterIsAvailable, advanceBondJourney } from './bondJourneyCore.js';
@@ -15,9 +16,8 @@ export async function loadBondStories() {
   if (!loading) loading = (async () => {
     const response = await fetch(new URL('../data/bond-stories.json', import.meta.url));
     if (!response.ok) throw new Error('夥伴故事暫時無法載入，請稍後重試。');
-    const loreResponse = await fetch(new URL('../data/pets-lore.json', import.meta.url));
-    if (!loreResponse.ok) throw new Error('夥伴故事補充資料無法載入。');
-    storyCatalog = mergeBondStorySupplements(await response.json(), await loreResponse.json());
+    const { loreData } = await loadCatalogBundle();
+    storyCatalog = mergeBondStorySupplements(await response.json(), loreData);
     return storyCatalog;
   })().finally(() => { loading = null; });
   return loading;
