@@ -31,7 +31,8 @@ test('strict verifier accepts assembler output and rejects unsafe or inconsisten
     for (const name of THEME_ASSET_FIXTURES) images.add(name);
     for (const name of images) {
       await fs.mkdir(path.dirname(path.join(source, name)), { recursive: true });
-      await fs.writeFile(path.join(source, name), `synthetic-image:${name}`);
+      if (name.startsWith('assets/expeditions/')) await fs.copyFile(path.join(repository, name), path.join(source, name));
+      else await fs.writeFile(path.join(source, name), `synthetic-image:${name}`);
     }
     execFileSync('git', ['init', '--quiet', source]);
     execFileSync('git', ['-C', source, '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',

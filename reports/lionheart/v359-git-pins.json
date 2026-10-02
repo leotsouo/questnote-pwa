@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "checkedAt": "2026-10-02T09:20:19.034Z",
+  "artifactId": "fc6946ae230b2583071b1e814227d1c8e175b185750fe96e3fe7834b3e9d50e0",
+  "manifestSha256": "c5fcf60d26506497f974564f63bb4aca23359134f1f10cafbe09da0b95131af7",
+  "deploymentCommit": "9a01e6af5d643b4df88e3e89130595eebb6e76ef",
+  "sourceMergeCommit": "3a88db8f227e710c13324860197b73c1ce880573",
+  "files": 598,
+  "gitMetadata": [
+    ".gitattributes"
+  ],
+  "mailbox": "Full JSON semantics equal latest formal correction; source checkout CRLF serialization retained in new pinned artifact."
+}

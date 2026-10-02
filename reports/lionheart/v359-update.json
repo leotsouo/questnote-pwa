@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "name": "Downloaded generation waits; no forced refresh during use",
+      "ok": true
+    },
+    {
+      "name": "An incomplete asynchronous UI operation vetoes activation",
+      "ok": true
+    },
+    {
+      "name": "Unsaved task text and the open editor survive a blocked update",
+      "ok": true
+    },
+    {
+      "name": "A second app window vetoes activation and the first window unlocks",
+      "ok": true
+    },
+    {
+      "name": "One click upgrades actual formal artifact 0f04afb6f8d0b4e447b20320524b63c39203469035478aea97a9929c5da897ba to fc6946ae230b2583071b1e814227d1c8e175b185750fe96e3fe7834b3e9d50e0 while network is 503; original five stores/theme retained, only empty Lionheart progress and zero-count food inventory added",
+      "ok": true
+    },
+    {
+      "name": "New Lionheart city map and dispatch use the decoded raster while every artifact network request returns 503",
+      "ok": true
+    },
+    {
+      "name": "Checking the latest generation reports success without a reload loop",
+      "ok": true
+    },
+    {
+      "name": "Real icon decodes; backup settings opens without reset, reinstall or changing app identity",
+      "ok": true
+    }
+  ]
+}

@@ -89,7 +89,21 @@
 .dream-debut-overlay[data-animation=lionheart_inverse_oath]:is(.is-reduced, .is-skipped) .lionheart-artificial { opacity: .4; transform: translateX(24%) scale(.6); }
 .is-lionheart-reveal.is-reduced .summon-reveal-card { opacity: 1; transform: none; }
 .is-lionheart-reveal.is-reduced :is(.lionheart-reveal-wind, .lionheart-wind-motes, .lionheart-reveal-steam) { display: none; }
-.gacha-panel[data-pool-theme=lionheart_inverse_oath] { --pool-text-primary: #f2dfb7; --pool-text-secondary: #bacbc0; --pool-accent: #d8b27c; --pool-border: #b89c6b80; --pool-surface: #20382fe6; background: radial-gradient(ellipse at 20% 15%, #49665b77, transparent 55%), #142724; color: var(--pool-text-primary); }
+.gacha-panel[data-pool-theme=lionheart_inverse_oath] {
+  --pool-text-primary: #f6e7cb;
+  --pool-text-secondary: #c9d7d8;
+  --pool-accent: #e0b678;
+  --pool-border: #c4975d88;
+  --pool-surface: #283c48;
+  --pool-surface-strong: #1c2d3a;
+  background: var(--pool-surface-strong);
+  color: var(--pool-text-primary);
+}
+/* Match the selector that supplies themed surfaces in every app theme. */
+body[data-theme] #view-gacha #gacha-panel[data-pool-theme=lionheart_inverse_oath] {
+  background: radial-gradient(ellipse at 15% 0%, #a67a3f38, transparent 60%),
+    radial-gradient(ellipse at 95% 65%, #527e8540, transparent 65%), var(--pool-surface-strong);
+}
 .gacha-panel[data-pool-theme=lionheart_inverse_oath] :is(.gacha-theme-stage__atmosphere, .gacha-pool) { display: none; }
 .gacha-panel[data-pool-theme=lionheart_inverse_oath] :is(.gacha-theme-stage__name, .gacha-theme-stage__tagline, .gacha-theme-stage__eyebrow, .gacha-theme-hero__name, .gacha-theme-details, .gacha-theme-featured__item) { color: var(--pool-text-primary); }
 @media (prefers-reduced-motion: reduce) { .lionheart-scene *, .is-lionheart-reveal * { animation: none !important; transition: none !important; } .is-lionheart-reveal .summon-reveal-card { opacity: 1; transform: none; } :is(.lionheart-reveal-wind, .lionheart-wind-motes, .lionheart-reveal-steam) { display: none; } }
