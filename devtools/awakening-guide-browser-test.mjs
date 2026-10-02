@@ -14,12 +14,22 @@ const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const context = await browser.newContext({ viewport: { width: 393, height: 852 } });
 await context.route('**/*', (r) => new URL(r.request().url()).origin === base ? r.continue() : r.abort());
 const page = await context.newPage(); page.setDefaultTimeout(25000);
+const app = page.frameLocator('#preview');
 const errors = []; const checks = [];
 page.on('pageerror', (e) => errors.push(e.message));
+const selectPool = async (poolId) => {
+  const selector = app.locator('#gacha-pool-select');
+  const previousPool = await selector.inputValue();
+  await selector.selectOption(poolId);
+  if (previousPool === poolId) return;
+  const debut = app.locator('.dream-debut-overlay');
+  await debut.waitFor({ state: 'visible' });
+  await debut.locator('[data-role="skip"]').click();
+  await debut.waitFor({ state: 'detached' });
+};
 try {
   await page.goto(`${base}/devtools/awakening-guide-review.html`);
   await page.locator('#preview').waitFor();
-  const app = page.frameLocator('#preview');
   await app.locator('#app-loader').waitFor({ state: 'hidden' });
   const frame = page.frames().find((f) => f.url().endsWith('/index.html'));
   await frame.waitForFunction(() => document.querySelector('#guide-tutorial-status')?.textContent);
@@ -30,9 +40,8 @@ try {
   });
   const catalog = await frame.evaluate(() => window.guideTest.petAwakeningCatalog.loadAwakeningCatalog());
   await app.locator('.bottom-nav [data-view="gacha"]').click();
-  await app.locator('#gacha-pool-select').selectOption('swordwild_shanhe_v3');
+  await selectPool('swordwild_shanhe_v3');
   await app.locator('#gacha-pet-awakening-toggle').waitFor({ state: 'visible' });
-  if (await app.locator('.dream-debut-skip').isVisible()) await app.locator('.dream-debut-skip').click();
   await app.locator('.dream-debut-overlay').waitFor({ state: 'detached' });
   assert.equal(await app.locator('#gacha-pet-awakening-toggle').getAttribute('aria-expanded'), 'false');
   assert.equal(await app.locator('#gacha-pet-awakening-guide').isVisible(), false);
@@ -89,9 +98,7 @@ try {
     await window.guideTest.gachaService.importGachaStats(stats);
   });
   await app.locator('.bottom-nav [data-view="gacha"]').click();
-  await app.locator('#gacha-pool-select').selectOption('swordwild_shanhe_v3');
-  if (await app.locator('.dream-debut-skip').isVisible()) await app.locator('.dream-debut-skip').click();
-  await app.locator('.dream-debut-overlay').waitFor({ state: 'detached' });
+  await selectPool('swordwild_shanhe_v3');
   for (const [button, count] of [['#btn-pull', 1], ['#btn-pull-ten', 10]]) {
     const previous = await reloadFrame.evaluate(() => window.guideTest.gachaService.getGachaStats());
     await app.locator(button).click();
@@ -119,8 +126,7 @@ try {
   await app.locator('#gacha-pool-select').selectOption('standard');
   await app.locator('#gacha-pet-awakening-guide').waitFor({ state: 'hidden' });
   checks.push('other pools hide this tutorial');
-  await app.locator('#gacha-pool-select').selectOption('swordwild_shanhe_v3');
-  if (await app.locator('.dream-debut-skip').isVisible()) await app.locator('.dream-debut-skip').click();
+  await selectPool('swordwild_shanhe_v3');
   for (const width of [320, 393, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     assert.ok(await reloadFrame.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));

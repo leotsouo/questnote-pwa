@@ -15,10 +15,19 @@ const get = async (file) => {
 const manifest = await get('release-artifact.json');
 const version = await get('src/version.js');
 const baseline = JSON.parse(manifest);
-if (baseline.artifactId !== '24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769'
-  || sha(manifest) !== '113b2182285c641a9930c76879f0fe1f612a1a38a5df5723318c7e18520cf0c3'
-  || !version.toString().includes("APP_VERSION = '3.5.5'")) throw Error('Formal baseline moved; review next patch before freezing.');
-await fs.writeFile(path.join(report, 'baseline.json'), JSON.stringify({ at: new Date().toISOString(), version: '3.5.5', artifactId: baseline.artifactId, manifestSha256: sha(manifest), sourceCommit: baseline.sourceCommit }, null, 2) + '\n');
+if (baseline.artifactId !== '0235b47e9f0e8aed5a4e707cce8e6c79a40a25543bd9841c23cee21f5c78ef33'
+  || sha(manifest) !== '9859b4fdc3379162abec5a60c7e6901955d29bb9b69cc8d80b1300ff12d2e10b'
+  || !version.toString().includes("APP_VERSION = '3.5.7'")) throw Error('Formal baseline moved; review next patch before freezing.');
+const catalogResponse = await fetch(`https://leotsouo.github.io/questnote-pwa/${baseline.profile.contentBundleUrl}?awakening-guide-baseline=${Date.now()}`);
+if (!catalogResponse.ok) throw Error(`Formal catalog HTTP ${catalogResponse.status}`);
+const catalog = await catalogResponse.json();
+const canonical = (value) => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
+  ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])])) : value;
+const contentBundleSemanticSha256 = sha(JSON.stringify(canonical(catalog)));
+if (contentBundleSemanticSha256 !== 'e560670c83393125494fb9456ea30678864a31e0a986af1da67da863ce20349e') {
+  throw Error('Formal catalog semantics changed; review the new baseline before freezing.');
+}
+await fs.writeFile(path.join(report, 'baseline.json'), JSON.stringify({ at: new Date().toISOString(), version: '3.5.7', artifactId: baseline.artifactId, manifestSha256: sha(manifest), sourceCommit: baseline.sourceCommit, contentBundleSemanticSha256 }, null, 2) + '\n');
 const artifacts = {};
 for (const [profile, scopePath] of [['preview', '/questnote-pwa-preview/'], ['production', '/questnote-pwa/']]) {
   const built = await prepareReleaseArtifact({ projectRoot, outputRoot: path.join(process.env.TEMP, 'questnote-awakening-guide-releases'), profile, scopePath });
