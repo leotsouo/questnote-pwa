@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-02T08:07:53.557Z",
+  "sourceCommit": "9aa9afe9fac1f2d9cf852423e419d486f97cac33",
+  "sourceBytesMatchArtifact": true,
+  "changedSourceFiles": [
+    "service-worker.js",
+    "src/lionheart.css",
+    "src/summonRevealService.js",
+    "src/version.js"
+  ],
+  "approvedArtworkAndContentUnchanged": true,
+  "nodeTests": {
+    "pass": 267,
+    "fail": 0,
+    "themesPass": 11,
+    "honeylightPass": 5,
+    "revealLogic": "pass"
+  },
+  "poolsValidation": "pass",
+  "imagesCheck": "116 x 2 sizes pass; same approved candidate and asset bytes",
+  "releaseSmoke": "pass; synthetic rehearsal only",
+  "actualBrowserChecks": {
+    "gameplay": 12,
+    "animation": 10,
+    "desktopWingTiming": 4,
+    "mobileWingTiming": 4,
+    "serviceWorker": 13,
+    "formalUpdate": 7
+  },
+  "approval": "Prior d92d8083 package acceptance is preserved. This new package must be reviewed; no human acceptance or publication authorization is copied."
+}

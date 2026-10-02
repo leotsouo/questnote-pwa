@@ -1,0 +1,16 @@
+{
+  "status": "pass",
+  "previewArtifact": "491a5553bc635f963b8d2e06d8d8522e825a09b7ca43142104919e21c41a3910",
+  "checkedAt": "2026-10-02T08:20:43.636Z",
+  "beforeSwitch": {
+    "alt": "命運踏碎者・UR 黑白預覽",
+    "filter": "grayscale(1) contrast(1.08) brightness(0.82)",
+    "hidden": false,
+    "imageLoaded": true,
+    "text": "UR 角色預覽\n\n點擊圖片，預覽下一位 UR 角色\n\nUR 命運踏碎者 · 2 / 9"
+  },
+  "afterSwitch": {
+    "carouselHidden": true,
+    "lionheartStageText": "獅心城系列\n\n完美的原型，逆造的挑戰\n\n他們仰望完美，卻造出了向神露齒的生命。\n\nUR\n自然法則的完整形體\nUR\n向完美露齒的人工生命\nSSR\n讓一次真正的試飛有路可走\nSSR\n研究之外仍有生命\n\n候選角色 12 隻"
+  }
+}

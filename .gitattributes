@@ -13,3 +13,21 @@ content/pet-series/honeylight_sugar_garden_v2/** -text
 content/pet-series/swordwild_shanhe/** -text
 content/pet-series/swordwild_shanhe_v2/** -text
 content/pet-series/swordwild_shanhe_v3/** -text
+
+# Lionheart approvals, historical baselines and candidates bind exact bytes.
+content/pet-series/lionheart_inverse_oath/** -text
+content/pet-series/_lionheart_before_bond_baseline_20261002/** -text
+content/pet-series/_lionheart_approved_v353_baseline_20261002/** -text
+
+# Lionheart final review hashes bind viewer and evidence bytes.
+reports/lionheart/** -text whitespace=cr-at-eol
+
+# Promoted Lionheart catalogs preserve approved candidate bytes across checkouts.
+data/pets.json -text
+data/pools.json -text
+data/pets-lore.json -text
+data/pet-series.json -text
+data/craftables.json -text
+data/gift-affinities.json -text
+data/materials.json -text
+data/expeditions.json -text

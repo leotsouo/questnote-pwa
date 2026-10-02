@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-02T07:34:16.280Z",
+  "sourceCommit": "2fa5e6936e61f5a2a734ff36b768faeae76ab954",
+  "sourceBytesMatchArtifact": true,
+  "changedSourceFiles": [
+    "service-worker.js",
+    "src/lionheart.css",
+    "src/lionheartScene.js",
+    "src/version.js"
+  ],
+  "approvedArtworkAndContentUnchanged": true,
+  "candidateId": "5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "nodeTests": {
+    "pass": 267,
+    "fail": 0,
+    "themesPass": 11,
+    "honeylightPass": 5
+  },
+  "poolsValidation": "pass",
+  "imagesCheck": "116 x 2 derivatives pass; approved candidate bytes unchanged",
+  "releaseSmoke": "pass; synthetic pipeline rehearsal only",
+  "browser": 12,
+  "animation": 10,
+  "serviceWorker": 13,
+  "update": 7,
+  "harnessCorrection": "The first run compared debug-client state before the preceding gift UI persisted its level notifications. Initial diagnostics show only bondUnlocks level 2/3 notifications changing. The harness now waits for those actual persisted notifications; the same immutable artifacts passed all 13 checks. The strict read-only state assertion is retained."
+}

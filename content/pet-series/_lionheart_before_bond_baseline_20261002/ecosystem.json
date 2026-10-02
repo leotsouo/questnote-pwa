@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "food": {
+    "id": "item_lionheart_gear_crisp",
+    "name": "爐香齒輪酥",
+    "type": "favorite_bond_item",
+    "rarity": "SR",
+    "description": "工坊以齒輪靈質塑形、爐熱烘焙而成的可食用酥點，適合喜歡機械與火系禮物的夥伴。",
+    "enabled": true,
+    "favoriteTags": [
+      "machine",
+      "fire"
+    ],
+    "effect": {
+      "bondExp": 75,
+      "favoriteBonusBondExp": 150
+    },
+    "recipe": {
+      "machine_part": 3,
+      "forest_leaf": 4,
+      "lava_core": 1
+    },
+    "futureTags": [
+      "bond_item",
+      "lionheart_inverse_oath"
+    ]
+  },
+  "materials": [],
+  "affinities": {
+    "pet_n39": [
+      "machine"
+    ],
+    "pet_n40": [
+      "nature"
+    ],
+    "pet_r41": [
+      "machine"
+    ],
+    "pet_r42": [
+      "frost"
+    ],
+    "pet_r43": [
+      "fire"
+    ],
+    "pet_sr35": [
+      "machine"
+    ],
+    "pet_sr36": [
+      "frost"
+    ],
+    "pet_sr37": [
+      "fire"
+    ],
+    "pet_ssr25": [
+      "machine"
+    ],
+    "pet_ssr26": [
+      "nature"
+    ],
+    "pet_ur19": [
+      "nature"
+    ],
+    "pet_ur20": [
+      "fire",
+      "machine"
+    ]
+  },
+  "affinityNotes": {
+    "pet_n39": "熟悉齒輪與測試儀，可以解讀零件故障；偏愛工坊作業能量食物。",
+    "pet_n40": "逐株辨認苗圃植物、適合採集；喜歡清淡植物靈食。",
+    "pet_r41": "可判讀管線與水壓，因此擔任解讀；維修工作後偏愛工坊能量補給。",
+    "pet_r42": "敏銳辨識低溫路線與危險落腳處，擔任探路；偏愛冰涼食物。",
+    "pet_r43": "能控制爐火、守住危險現場；偏愛溫熱燻烤補給。",
+    "pet_sr35": "解讀造生控制符文與結構誤差；長時間校準後喜歡工坊補給。",
+    "pet_sr36": "快速勘查高架運輸與城外路線，擔任探路；喜歡清涼補給。",
+    "pet_sr37": "耐熱能力與結構固定可保護鍛造現場；喜歡爐香烘焙食物。",
+    "pet_ssr25": "理解橋塔結構受力，適合解讀；偏愛耐力與機械能量補給。",
+    "pet_ssr26": "熟悉溫室根系、水分與植物資源，擔任採集；偏愛植物靈食。",
+    "pet_ur19": "依天然感知判讀氣流與航路，明確指定探路；偏愛清淡植物靈食，不使用機械偏好。",
+    "pet_ur20": "人工器官與蒸汽骨架可承受高壓、控制危險能量，擔任守護；喜歡爐熱與機械補給。"
+  },
+  "specialties": {
+    "pet_n39": {
+      "role": "scholar",
+      "reason": "熟悉齒輪與測試儀，可以解讀零件故障；偏愛工坊作業能量食物。"
+    },
+    "pet_n40": {
+      "role": "gatherer",
+      "reason": "逐株辨認苗圃植物、適合採集；喜歡清淡植物靈食。"
+    },
+    "pet_r41": {
+      "role": "scholar",
+      "reason": "可判讀管線與水壓，因此擔任解讀；維修工作後偏愛工坊能量補給。"
+    },
+    "pet_r42": {
+      "role": "scout",
+      "reason": "敏銳辨識低溫路線與危險落腳處，擔任探路；偏愛冰涼食物。"
+    },
+    "pet_r43": {
+      "role": "guardian",
+      "reason": "能控制爐火、守住危險現場；偏愛溫熱燻烤補給。"
+    },
+    "pet_sr35": {
+      "role": "scholar",
+      "reason": "解讀造生控制符文與結構誤差；長時間校準後喜歡工坊補給。"
+    },
+    "pet_sr36": {
+      "role": "scout",
+      "reason": "快速勘查高架運輸與城外路線，擔任探路；喜歡清涼補給。"
+    },
+    "pet_sr37": {
+      "role": "guardian",
+      "reason": "耐熱能力與結構固定可保護鍛造現場；喜歡爐香烘焙食物。"
+    },
+    "pet_ssr25": {
+      "role": "scholar",
+      "reason": "理解橋塔結構受力，適合解讀；偏愛耐力與機械能量補給。"
+    },
+    "pet_ssr26": {
+      "role": "gatherer",
+      "reason": "熟悉溫室根系、水分與植物資源，擔任採集；偏愛植物靈食。"
+    },
+    "pet_ur19": {
+      "role": "scout",
+      "reason": "依天然感知判讀氣流與航路，明確指定探路；偏愛清淡植物靈食，不使用機械偏好。"
+    },
+    "pet_ur20": {
+      "role": "guardian",
+      "reason": "人工器官與蒸汽骨架可承受高壓、控制危險能量，擔任守護；喜歡爐熱與機械補給。"
+    }
+  },
+  "expedition": {
+    "decision": "add",
+    "reason": "獅心城具有獨立造生故事、五個探索里程碑與工坊零件來源；新增一區，保留既有區。",
+    "reusedAreaIds": [
+      "machine_ruins",
+      "mist_forest",
+      "lava_rift"
+    ],
+    "areas": [
+      {
+        "id": "lionheart_city",
+        "name": "獅心城",
+        "description": "高崖與試飛塔隔城對峙。循著銅門、培育溫室與逆造工坊，見證人們模仿完美生命、劍走偏鋒追逐神的代價。回收工坊提供可用古代齒輪。",
+        "unlock": {
+          "type": "default"
+        },
+        "energyCost": 5,
+        "durationMinutes": 60,
+        "rewards": {
+          "stardust": {
+            "min": 30,
+            "max": 60
+          },
+          "material": {
+            "id": "machine_part",
+            "name": "古代齒輪",
+            "min": 1,
+            "max": 2
+          },
+          "bondExp": 10
+        }
+      }
+    ]
+  },
+  "releaseNotes": "新增獅心城・逆造之誓12隻雙UR，格里芬純生物無裝備、奇美拉半生物半機械且彼此敵對。新增爐香齒輪酥、逐隻偏好與明確專長、獅心城完整探險與五里程碑、獨立入場和雙UR／兩SSR演出。全部第一抽開放，沿用價格機率保底與交易限制；沒有贈寵、陣營或和解結局。工坊材料來源為獅心城／機械遺跡、森林與熔岩裂谷。不宣稱已發布或通過人工驗收。",
+  "runtimeHashes": {
+    "src/workshopService.js": "2e867a770495d2923c0443e96e8e160b09542c34ebeb29c6a9004769e8ca670b",
+    "src/expeditionService.js": "a0393db1951029c6496216e3af4c6b771ab35c590ddff74adc44c5c68136581d",
+    "src/explorationService.js": "5256d8b292f48cb5bbc609cf579086ee8e6bfaf61ad00b44d2cdfd2ba652a258",
+    "src/expeditionGameplay.js": "736903f5546ec3cd5c496b2fc23a530f713880f66f7eaa43103a6493b7ea6a3d"
+  }
+}

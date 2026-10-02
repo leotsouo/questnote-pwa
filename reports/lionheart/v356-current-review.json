@@ -1,0 +1,7 @@
+{
+  "evidence": "reports/lionheart/v358-authorized-evidence.json",
+  "gate": "reports/lionheart/v358-authorized-gate.json",
+  "packageHash": "94e77b9be64b777d9c11bca74acc915759f7f9cf8eb246ad1a5b7116e9acf94e",
+  "previewUrl": "http://127.0.0.1:58789/review/",
+  "reason": "User explicitly accepted latest V3.5.8 package and authorized publication with 可以發布"
+}

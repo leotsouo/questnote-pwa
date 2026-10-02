@@ -1,0 +1,18 @@
+{
+  "candidateId": "5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "candidateDir": "C:\\Users\\User\\.codex\\worktrees\\lionheart-inverse-oath\\questnote-pwa\\content\\pet-series\\lionheart_inverse_oath\\staging\\5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "candidateManifestSha256": "4c0c82b7ebe69e9a29f50a8341bf66f229c6820e9004bc97d843daae223df0c9",
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\c043fd6b6a14fbb5df76afbf7594774967d7e138bf25499a277fa534c7fb5f61",
+    "artifactId": "c043fd6b6a14fbb5df76afbf7594774967d7e138bf25499a277fa534c7fb5f61",
+    "manifestSha256": "0f601f1e9adc204b53f128f28d830faf4446bd6f216b981106d8c4b75ace0b05",
+    "scopePath": "/questnote-pwa-preview/"
+  },
+  "sourceCommit": "dddeaee198ed00b41bb35772de10e3348fd4b26b",
+  "production": {
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\777d564c5dee30ec924a0abd25d22b2d5c5ad8f22a5c0a3c09b2b7cc30fbba4d",
+    "artifactId": "777d564c5dee30ec924a0abd25d22b2d5c5ad8f22a5c0a3c09b2b7cc30fbba4d",
+    "manifestSha256": "368dad80d07e9d17b9869dc5f2209c83778b0c053309fe6ae85160756cb041d3",
+    "scopePath": "/questnote-pwa/"
+  }
+}

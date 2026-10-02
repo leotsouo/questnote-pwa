@@ -1,0 +1,23 @@
+{
+  "draft": true,
+  "finalArtifact": false,
+  "checkedAt": "2026-10-01T22:06:10.695Z",
+  "reveals": [
+    "SSR\n重鉚架橋犀\n鉚接承重，讓創造者承擔自己的選擇。\n高稀有揭露 1 / 6\n點擊畫面繼續\n繼續",
+    "UR\n天律之冕・格里芬\n天然羽翼展開，風界不容逆造。\n高稀有揭露 2 / 6\n點擊畫面繼續\n繼續",
+    "UR\n逆造獅首奇美拉\n血肉自主呼吸，人工翼架向神挑戰。\n高稀有揭露 3 / 6\n點擊畫面繼續\n繼續",
+    "UR\n天律之冕・格里芬\n天然羽翼展開，風界不容逆造。\n高稀有揭露 4 / 6\n點擊畫面繼續\n繼續",
+    "SSR\n蒸園盤根龜\n根系守住研究之外的生命。\n高稀有揭露 5 / 6\n點擊畫面繼續\n繼續",
+    "UR\n逆造獅首奇美拉\n血肉自主呼吸，人工翼架向神挑戰。\n高稀有揭露 6 / 6\n點擊畫面繼續\n繼續"
+  ],
+  "summary": "十連逆造之誓\n\n獅心城的命運已交會\nN\n齒輪拾修鼠\n初次相遇\nR\n銅管引水獺\n初次相遇\nSR\n刻紋校準鴞\n初次相遇\nSSR\n重鉚架橋犀\n初次相遇\nUR\n天律之冕・格里芬\n初次相遇\nUR\n逆造獅首奇美拉\n初次相遇\nN\n苗圃護芽甲蟲\n初次相遇\nUR\n天律之冕・格里芬\n再次相遇\nSSR\n蒸園盤根龜\n初次相遇\nUR\n逆造獅首奇美拉\n再次相遇\n召喚結果整理\n關閉結果",
+  "checks": [
+    "normal entry, two UR and two SSR visually inspected",
+    "reduced ten preserves 10 results and 6 ordered rare reveals",
+    "single prelude skip returns complete result",
+    "entry skip completes without summon transaction",
+    "short transition completes",
+    "390px griffin reveal remains within viewport",
+    "all 12 selected images inspected at 160px"
+  ]
+}

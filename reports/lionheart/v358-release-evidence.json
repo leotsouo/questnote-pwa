@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "d42b8fc44dc3c55f39ca0dee138fb30d114e85c6",
+  "candidateId": "5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "candidateManifestSha256": "4c0c82b7ebe69e9a29f50a8341bf66f229c6820e9004bc97d843daae223df0c9",
+  "previewUrl": "http://127.0.0.1:58789/review/",
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\491a5553bc635f963b8d2e06d8d8522e825a09b7ca43142104919e21c41a3910",
+      "artifactId": "491a5553bc635f963b8d2e06d8d8522e825a09b7ca43142104919e21c41a3910",
+      "manifestSha256": "8f2838cf8af92027d4e045e3400edbe95398877e7c6b7a573c912ef2a8cd5605",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\0f04afb6f8d0b4e447b20320524b63c39203469035478aea97a9929c5da897ba",
+      "artifactId": "0f04afb6f8d0b4e447b20320524b63c39203469035478aea97a9929c5da897ba",
+      "manifestSha256": "7e711b7f8c989544aadbc106f46d33d426fc0e0f6f488d3b4fd5207cf826b617",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "animation": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v358-animation.json sha256=47d58791fdfc7fea625da96152ab27a7d70ce7dfb336ad9fa4c33f0d3a2d5480; reports/lionheart/v358-timing.json sha256=648cdf254eaa8b9767a78f65ce330ae9b066562e2bc753552b976cf1692fd56f; reports/lionheart/v358-mobile-timing.json sha256=ef2a2afc23c58512a5d6771f482f6095b56d6b17ebaa28ef35b5a75275949376; reports/lionheart/artifact-animation-review-v358.html sha256=2a21635cbacdc4d10b26ffef4b00099104451ee4a4f6c7e09ee3d89802a45d45; actual artifact viewer http://127.0.0.1:58789/review/; all 10 animation checks and desktop/mobile four full-wing checks passed; prior approved Lionheart animation/art bytes retained"
+    },
+    "workshop": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v358-browser.json sha256=9090aa717a8de1385320d8c2db1f6ec7e9da0f95bd389519e5f2d1bfbbb39ded; actual crafting ingredient deductions; ordinary +75/favorite +150, all 12 preferences; rapid-click gift/craft reports/lionheart/v358-sw.json sha256=73f842c3f54fbb08f41f78f5effd0b7637130c17f724456082be34825e7fa151"
+    },
+    "specialties": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v358-browser.json sha256=9090aa717a8de1385320d8c2db1f6ec7e9da0f95bd389519e5f2d1bfbbb39ded; all 12 explicit roles at stars 1/5 with real dispatch rules"
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v358-browser.json sha256=9090aa717a8de1385320d8c2db1f6ec7e9da0f95bd389519e5f2d1bfbbb39ded; default-open 3-pet dispatch, 5 energy, 60min, real claim/reclaim rejection, all five atomic milestones"
+    },
+    "transactions": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v358-browser.json sha256=9090aa717a8de1385320d8c2db1f6ec7e9da0f95bd389519e5f2d1bfbbb39ded; actual single/ten/duplicates/SSR30/UR100/concurrent transactions and repeated backup import"
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v358-sw.json sha256=73f842c3f54fbb08f41f78f5effd0b7637130c17f724456082be34825e7fa151; 13 actual production/preview/offline/cache checks; reports/lionheart/v358-update.json sha256=a45c69709e7fcad4db5fa0e74a54b3f56fcdd877926c8665aa29228312e92550; 7 exact formal V3.5.7 to V3.5.8 update checks including save retention, offline launch, multi-window and editing guards"
+    }
+  }
+}

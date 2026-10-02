@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<base href="/questnote-pwa-preview/"><title>雙 UR 展翼時序檢查</title>
+<link rel="stylesheet" href="src/styles.css"><link rel="stylesheet" href="src/ui-polish.css">
+<link rel="stylesheet" href="src/summon-polish.css"><link rel="stylesheet" href="src/honeylight-sugar.css">
+<link rel="stylesheet" href="src/swordwild-shanhe.css"><link rel="stylesheet" href="src/lionheart.css">
+<style>html,body{height:auto;overflow:auto;background:#142724;color:#f2dfb7}main{max-width:900px;margin:auto;padding:24px;font:16px/1.8 system-ui}button{font:inherit;padding:12px}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+</head><body><main><h1>雙 UR 展翼時序檢查</h1><p>固定角色，只播放實際 artifact 的演出。檢查完整展翼時卡片仍透明、最後卡圖載入、減少動態直接顯示。</p><button id="run">執行展翼遮擋檢查</button><pre id="report"></pre></main>
+<script type="module">
+import { playSummonReveal } from './src/summonRevealService.js';
+const config = await fetch('/review-config.json').then(r => r.json());
+const output = document.getElementById('report');
+const assert = (condition, message) => { if (!condition) throw Error(message); };
+document.getElementById('run').onclick = async () => {
+  document.getElementById('run').disabled = true;
+  const checks = [];
+  let driver;
+  try {
+    for (const reduceMotion of [false, true]) for (const id of ['pet_ur19', 'pet_ur20']) {
+      const pet = config.pets.find(p => p.id === id);
+      let fullWingFrame = null;
+      let finalFrame = null;
+      const started = performance.now();
+      driver = setInterval(() => {
+        const overlay = document.querySelector('.summon-reveal-overlay');
+        if (!overlay) return;
+        const wing = overlay.querySelector(id === 'pet_ur19' ? '.lionheart-natural' : '.lionheart-artificial');
+        const card = overlay.querySelector('.summon-reveal-card');
+        const wingStyle = getComputedStyle(wing);
+        const cardStyle = getComputedStyle(card);
+        const matrix = new DOMMatrix(wingStyle.transform);
+        if (!reduceMotion && !fullWingFrame && Number(wingStyle.opacity) >= .86 && matrix.a >= .99 && Number(cardStyle.opacity) < .01) {
+          fullWingFrame = { wingOpacity:Number(wingStyle.opacity),cardOpacity:Number(cardStyle.opacity),wingScale:matrix.a,ready:overlay.classList.contains('is-ready'),milliseconds:Math.round(performance.now()-started) };
+        }
+        if (!overlay.classList.contains('is-ready')) return;
+        const image = overlay.querySelector('.summon-reveal-pet-image');
+        finalFrame = { cardOpacity:Number(cardStyle.opacity),imageLoaded:!!image?.naturalWidth,name:overlay.querySelector('.summon-reveal-name').textContent,atmosphereDisplay:getComputedStyle(overlay.querySelector(id==='pet_ur19'?'.lionheart-reveal-wind':'.lionheart-reveal-steam')).display };
+        overlay.querySelector('.summon-reveal-skip').click();
+      }, 16);
+      await playSummonReveal({ pet,rarity:'UR',reduceMotion,presentationKey:config.pool.presentation.animationKey });
+      clearInterval(driver);
+      assert(finalFrame?.cardOpacity===1 && finalFrame.imageLoaded && finalFrame.name===pet.name,'Final card missing: '+id);
+      if (!reduceMotion) assert(fullWingFrame && !fullWingFrame.ready,'Full wings were covered or made ready early: '+id);
+      else assert(finalFrame.atmosphereDisplay==='none','Reduced motion still shows moving atmosphere');
+      assert(!document.querySelector('.summon-reveal-overlay'),'Reveal did not clean up');
+      checks.push({ petId:id,reduceMotion,status:'pass',fullWingFrame,finalFrame,milliseconds:Math.round(performance.now()-started) });
+      output.textContent=JSON.stringify({running:true,artifactId:config.artifactId,checks},null,2);
+    }
+    output.textContent=JSON.stringify({status:'pass',running:false,artifactId:config.artifactId,checkedAt:new Date().toISOString(),viewport:{width:innerWidth,height:innerHeight},checks},null,2);
+  } catch (error) {
+    output.textContent=JSON.stringify({status:'fail',running:false,artifactId:config.artifactId,error:error.message,checks},null,2);
+  } finally { clearInterval(driver);document.getElementById('run').disabled=false; }
+};
+</script></body></html>

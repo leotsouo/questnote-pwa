@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "prompts": {
+    "pet_n39": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 齒輪拾修鼠 (N). Required story scene: 灰褐小鼠、圓耳、細長天然尾與小型黃銅工具腰包。側身以一隻前爪穩住齒輪、另一隻前爪轉動扳手，把一枚缺齒齒輪換入桌面測試儀；原本停住的陶瓷指針向前移動，磨損零件留在桌邊。小鼠全身與尾尖完整，只有一個主角，微距工坊場景。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [],
+        "selectedImage": "images/pet_n39.png",
+        "selectedSha256": "38444eb59db97d03f9766babab0f38774b7c689a8fda39485e2c0539d6393b4b",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_n40": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 苗圃護芽甲蟲 (N). Required story scene: 翠綠葉形鞘翅、棕色腹節，完整六足與觸角的甲蟲。以前足頂開小溫室通風蓋，凝結水沿蓋邊滑下；一側蜷縮幼芽重新舒展。葉形鞘翅與頂蓋動作同時可見，柔和綠植與銅框溫室，無昆蟲群。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [
+          "generations/pet_n40-v1.png"
+        ],
+        "selectedImage": "images/pet_n40.png",
+        "selectedSha256": "f8243198fdc99a2981a3cc14933a5133c67f9524998f9538198daf784e123c59",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_r41": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 銅管引水獺 (R). Required story scene: 深棕水獺、奶白喉斑、完整四足與長尾，佩小型銅質維修工具袋。站在濕石平台抱住大閥輪轉動，清水沿透明觀測管流向乾涸的冷卻槽，水輪重新轉起。清楚展示閥輪與水流方向，無額外主角。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [
+          "generations/pet_r41-v1.png"
+        ],
+        "selectedImage": "images/pet_r41.png",
+        "selectedSha256": "09f72b0ce6ce119254f58a61c81e160810df85512c8c16ccf63961c262e4e224",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_r42": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 霜閥巡路兔 (R). Required story scene: 白灰短毛兔、長耳帶淡青霜邊、完整四足，沒有機械肢體；普通維修地圖包與巡查燈是工作道具，並非光系能力。輕踩冷卻管旁的石踏板，一串藍白霜痕繞開洩漏的熱汽；裂痕位於另一側。耳、後足與安全落腳點清楚，低視角巡路場景。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [],
+        "selectedImage": "images/pet_r42.png",
+        "selectedSha256": "6f52890d7605f596a19041709015d4771799eb95c5589cc57b48b608d1b5e577",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_r43": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 爐膛添薪蜥 (R). Required story scene: 赤褐鱗蜥、橙色胸腹、完整四足與長尾，爬伏爐口旁。張口把外溢焰舌引回燃燒室，陶瓷壓力錶的指針從紅區退回中段；爐門、火焰與鱗片可辨。無爆炸、無血腥。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [
+          "generations/pet_r43-v1.png"
+        ],
+        "selectedImage": "images/pet_r43.png",
+        "selectedSha256": "1290ecf6c555ebfe8e2f0408a9062aec2103d60bc8a86f93cafd520b79cc47d6",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_sr35": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 刻紋校準鴞 (SR). Required story scene: 褐白貓頭鷹、清楚面盤、琥珀雙眼與天然雙翼，爪扶黃銅符文刻盤。半展翼轉動刻盤，身旁小型機械翼測試架逐層對齊，錯位與正位刻線對照可見。只有一隻鴞，刻盤無可讀文字，完整翼尖。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [
+          "generations/pet_sr35-v1.png"
+        ],
+        "selectedImage": "images/pet_sr35.png",
+        "selectedSha256": "e1160bb18ccc62037a27e4eff422f4293abbe40ca32e5bf7f9fb8e44ac7fe799",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_sr36": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 冰軌疾行狐 (SR). Required story scene: 銀灰細身狐狸、冰藍尾尖、完整四足與長尾，沿高架軌道側向疾行。落腳處凝成短冰軌，霜線標出下一段安全落點，後方工坊與遠處高崖形成路線。禁止裁掉尾端或把腿化成輪子。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [
+          "generations/pet_sr36-v1.png"
+        ],
+        "selectedImage": "images/pet_sr36.png",
+        "selectedSha256": "187d62123bb34d05a99bec96047697d1bc71effc1303e01097d56df436d74369",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_sr37": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 赤爐鍛角羊 (SR). Required story scene: 深栗羊毛、巨大赤銅色天然彎角、完整四蹄的公羊。以雙角架穩一根灼熱翼樑，前蹄壓住鍛台固定桿；新接頭冷卻凝實，桌邊有裂開的舊工件。爐香火星少量，角與翼樑用途清楚。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [],
+        "selectedImage": "images/pet_sr37.png",
+        "selectedSha256": "c0282338c4dd5a2e1b1028fd48e380043f1db8ff0b40412f1af339c28d18bb62",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_ssr25": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 重鉚架橋犀 (SSR). Required story scene: 石灰色犀牛、單一天然鼻角、完整四足與小尾，外掛黃銅工作支架。肩背抵住傾斜試飛塔架，支架上的鉚接工具鎖定節點；後方歪斜橫樑逐段恢復水平。低視角強調受力，主角與鉚點清楚，無人類騎士。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [
+          "generations/pet_ssr25-v1.png"
+        ],
+        "selectedImage": "images/pet_ssr25.png",
+        "selectedSha256": "f773d25056ca5b33d1aba7e9977a976b7ccf61e8e95b6bd0a4950c307d890624",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_ssr26": {
+      "prompt": "Create ONE square original collectible fantasy creature story illustration. Painterly detailed realism, tactile fur/feathers/scales and original brass steam machinery where specified, oxidized copper, stone city, restrained teal and amber. Strong character silhouette readable at 160px, subject about 65-80%, all limbs, wing tips and tail inside an 8% safety margin. Show the signature, meaningful story action and its visible consequence. One main creature, no humans, no text, logos, watermark, UI, frame, rarity labels, gore, holy-light or shadow powers. Normal lighting and furnace flame are allowed.\nCharacter: 蒸園盤根龜 (SSR). Required story scene: 深綠棕紋天然龜甲、低矮蕨葉、完整四足與頭尾的陸龜。踏穩溫室石基，甲邊根系纏住過熱管道，葉片承接凝水導入苗床；靠近苗床的蒸汽退去，幼葉保持舒展。不可畫成機器龜。",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [],
+        "selectedImage": "images/pet_ssr26.png",
+        "selectedSha256": "3697b2054c68ede4719f4723ec74149ba52eac19d057dddd653db80b363ed247",
+        "generationRecords": "generation-records.json"
+      }
+    },
+    "pet_ur19": {
+      "prompt": "Precise framing correction to this CLOSE-UP griffin illustration. Keep this enlarged expressive eagle head, chest and lion body, identity, natural texture, pose and painted style. The near frame unfortunately cuts the upper-left wing feather tips. Correct ONLY framing/wing fit: provide enough extra background around all sides (roughly 10–12 percent zoom-out from THIS close-up, still far closer than the original distant view) and slightly tuck the raised wing feather spread inward so BOTH WINGS and ALL uppermost and outermost individual feather tips are fully visible. Leave at least 4 percent empty sky between every wing tip and image border. The enlarged head/body remain the clear focus. Keep four legs and natural lion tail fully visible, rock/cliff reduced, distant city subdued, same daylight windy sky. Strictly pure biological griffin, no equipment, crown, metal, machinery, jewelry, harness, halo, armor, light/dark power, extra animals, extra limbs, text, border, UI or watermark. SINGLE square opaque card illustration. Do not return clipped wings; reconstruct the missing tips and keep safe sky margins on top/left/right.",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore, ANY machinery or metal on griffin, armor, jewelry, crown, harness, collar, artificial feathers",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [
+          "generations/pet_ur19-v3.png"
+        ],
+        "selectedImage": "images/pet_ur19.png",
+        "selectedSha256": "f824c87bcefd396878f6e625bb07b807f3e41ae1eecf55838c3ef9d80403f0c7",
+        "generationRecords": "generation-records.json",
+        "revisionReason": "兩張 UR 鏡頭拉近，角色現在有點小"
+      }
+    },
+    "pet_ur20": {
+      "prompt": "Precise framing fix for this close-up lion-headed chimera. Retain the excellent larger living lion face, red-brown mane, organic flesh flanks, brass artificial organs and the four hybrid legs EXACTLY. Retain the closer heroic body emphasis and tower ledge, stone city, sunset, steam and segmented snake tail. ONLY correct the upper wing fit: tilt or tuck the upper-left mechanical wing tips DOWN and slightly inward and narrow both wing fans a little so EVERY part of BOTH mechanical wings is fully inside the square frame with visibly clear sky above. If needed zoom out no more than 5–8 percent from this CLOSE-UP, preserving the head/body markedly larger than the old distant original. The upper wing mast currently touches/cuts the top edge: reconstruct its complete tip, leave clear sky all around. Keep all four feet and full tail. Single living lion head, no beak, no second head, not a robot lion, enclosed artificial organs, no gore. No extra creature, text, border, UI, watermark, halo, light or dark elemental power. Same detailed painterly steampunk fantasy collectible square opaque card. Preserve creature identity and colors; do NOT widen to a distant city panorama.",
+      "negativePrompt": "extra or missing limbs, cropped wings or tail, duplicate main creatures, human face, distorted animal anatomy, readable text, watermark, border, UI, holy halo, shadow powers, blood, gore, all-robot lion, multiple heads, goat head, beak instead of lion muzzle, fully metal chest, exposed organs",
+      "provenance": {
+        "tool": "image_gen.imagegen (built-in)",
+        "noExtraCost": true,
+        "costBasis": "Verified 2026-10-02: official https://learn.chatgpt.com/docs/image-generation states built-in generation counts toward general included Codex usage. Live account ordinaryUsageAllowed=true, included usage usedPercent=9, purchased credits absent and balance=0. Use built-in image_gen only; no API key, third-party paid credits, purchases or subscription. Stop if included access becomes unavailable.",
+        "costCheckedAt": "2026-10-01T21:24:00.000Z",
+        "status": "generated-ai-inspected-awaiting-human",
+        "model": null,
+        "seed": null,
+        "references": [
+          "generations/pet_ur20-v4.png"
+        ],
+        "selectedImage": "images/pet_ur20.png",
+        "selectedSha256": "1b4bf0d244e6e12a81e0b2000f41c8f85b49f89bb28f8b7448b096aa30e32ce0",
+        "generationRecords": "generation-records.json",
+        "revisionReason": "兩張 UR 鏡頭拉近，角色現在有點小"
+      }
+    }
+  }
+}

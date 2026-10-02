@@ -2000,6 +2000,250 @@
         "card": "assets/pets/variants/pet_ur18-card-384-17d2eb5fc3df.webp",
         "stage": "assets/pets/variants/pet_ur18-stage-960-17d2eb5fc3df.webp"
       }
+    },
+    {
+      "id": "pet_n39",
+      "name": "齒輪拾修鼠",
+      "rarity": "N",
+      "image": "assets/pets/pet_n39.png",
+      "description": "小齒輪也有自己的位置。齒輪拾修鼠是逆造工坊最小的學徒，總在大工匠離開後收拾落在地上的零件。牠曾把一枚磨損齒輪偷偷換成新件，讓測試儀恢復運作，也讓尚未準備好的試驗提早開始。自那日起，牠學會修好東西之前先問清用途。牠還不懂追逐神的野心，只知道每一個接回去的零件，都會把城市帶向某個方向。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "workshop_mouse",
+      "element": "machine",
+      "visualTheme": "lionheart_inverse_oath_workshop_mouse",
+      "expeditionSpecialty": "scholar",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n39-card-384-38444eb59db9.webp",
+        "stage": "assets/pets/variants/pet_n39-stage-960-38444eb59db9.webp"
+      }
+    },
+    {
+      "id": "pet_n40",
+      "name": "苗圃護芽甲蟲",
+      "rarity": "N",
+      "image": "assets/pets/pet_n40.png",
+      "description": "留下自然生長的空間。苗圃護芽甲蟲住在培育溫室的普通苗床，背上有一對像嫩葉的天然鞘翅。研究者忙著記錄奇美拉的成長時，牠仍逐株檢查幼苗。有人以為加熱越快，植物就能長得越好；牠卻頂開過熱的通風蓋，保住了一床險些乾枯的芽。牠不懂完美的定義，只相信每個生命都應有合適的生長速度。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "seedling_beetle",
+      "element": "wood",
+      "visualTheme": "lionheart_inverse_oath_seedling_beetle",
+      "expeditionSpecialty": "gatherer",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n40-card-384-f8243198fdc9.webp",
+        "stage": "assets/pets/variants/pet_n40-stage-960-f8243198fdc9.webp"
+      }
+    },
+    {
+      "id": "pet_r41",
+      "name": "銅管引水獺",
+      "rarity": "R",
+      "image": "assets/pets/pet_r41.png",
+      "description": "接通城市的呼吸。銅管引水獺熟悉獅心城每條冷卻水道。牠曾為研究區讓出整晚水量，直到普通工坊的水輪停轉，才發現宏大的試驗也會擠壓居民的日常。如今牠每次調閥都先算好兩邊所需，爭論最激烈時仍把水送到每一戶。牠不替任何一派喊口號，但從不允許城市因一場研究而停止呼吸。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "pipe_otter",
+      "element": "water_machine",
+      "visualTheme": "lionheart_inverse_oath_pipe_otter",
+      "expeditionSpecialty": "scholar",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r41-card-384-09f72b0ce6ce.webp",
+        "stage": "assets/pets/variants/pet_r41-stage-960-09f72b0ce6ce.webp"
+      }
+    },
+    {
+      "id": "pet_r42",
+      "name": "霜閥巡路兔",
+      "rarity": "R",
+      "image": "assets/pets/pet_r42.png",
+      "description": "在危險旁留下落腳點。霜閥巡路兔沿研究區的冷卻管道巡查，以耳尖感受壓力變化。牠攜帶巡查地圖與普通提燈，逐段記下需要回報的故障。一次試驗前，牠發現常走的踏板已有裂痕，卻因怕打斷研究而沒有立刻回報。夜裡蒸汽洩漏，牠用霜痕帶走受困學徒。從此，牠不再把警告吞回去：再完美的圖紙，也不能取代眼前真正安全的一步。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "frost_rabbit",
+      "element": "ice",
+      "visualTheme": "lionheart_inverse_oath_frost_rabbit",
+      "expeditionSpecialty": "scout",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r42-card-384-6f52890d7605.webp",
+        "stage": "assets/pets/variants/pet_r42-stage-960-6f52890d7605.webp"
+      }
+    },
+    {
+      "id": "pet_r43",
+      "name": "爐膛添薪蜥",
+      "rarity": "R",
+      "image": "assets/pets/pet_r43.png",
+      "description": "守住安全的那一格。爐膛添薪蜥在獅心城公共蒸汽爐旁長大，胸腹的赤色鱗片能收束火焰。研究者不斷要求更高壓力，牠一度以為火越旺越能幫上忙，直到管道開始震顫。牠把焰舌收回安全範圍，拒絕再照著口令加火。牠並不反對創造，只是不願讓每個還在城市裡生活的生命，替野心承受無限壓力。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "furnace_lizard",
+      "element": "fire",
+      "visualTheme": "lionheart_inverse_oath_furnace_lizard",
+      "expeditionSpecialty": "guardian",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r43-card-384-1290ecf6c555.webp",
+        "stage": "assets/pets/variants/pet_r43-stage-960-1290ecf6c555.webp"
+      }
+    },
+    {
+      "id": "pet_sr35",
+      "name": "刻紋校準鴞",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr35.png",
+      "description": "讓不可能開始運轉。刻紋校準鴞是逆造工坊最堅定的研究支持者，能以符文刻盤讀出人工器官與翼架的誤差。牠曾把格里芬每片飛羽的角度都量進圖譜，卻發現奇美拉的第一次自主展翼並不照著原型。牠沒有因此撤回研究，而是翻開空白頁。牠相信人工生命的價值不能只靠相似度證明，也明白每次突破都必須記下真正付出的代價。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "calibration_owl",
+      "element": "machine",
+      "visualTheme": "lionheart_inverse_oath_calibration_owl",
+      "expeditionSpecialty": "scholar",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr35-card-384-e1160bb18ccc.webp",
+        "stage": "assets/pets/variants/pet_sr35-stage-960-e1160bb18ccc.webp"
+      }
+    },
+    {
+      "id": "pet_sr36",
+      "name": "冰軌疾行狐",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr36.png",
+      "description": "比爭論更早抵達的消息。冰軌疾行狐往返高崖觀測站與獅心城，把腳下的水汽凝成短暫冰軌。牠親眼看見格里芬逼近試飛塔，也聽見工坊仍在爭論是否繼續。牠沒有替消息加上哪一派的評語，只把時間、風向與距離說清楚。牠知道真相不會自動讓敵人和解，但可以讓其他夥伴少一步誤判。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "ice_rail_fox",
+      "element": "ice",
+      "visualTheme": "lionheart_inverse_oath_ice_rail_fox",
+      "expeditionSpecialty": "scout",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr36-card-384-187d62123bb3.webp",
+        "stage": "assets/pets/variants/pet_sr36-stage-960-187d62123bb3.webp"
+      }
+    },
+    {
+      "id": "pet_sr37",
+      "name": "赤爐鍛角羊",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr37.png",
+      "description": "把野心鍛成能承重的形狀。赤爐鍛角羊以耐熱雙角固定工件，是奇美拉人工骨架的鍛造者。牠相信人工生命值得離開培育艙，卻曾因急著追上試飛日期而留下不合格的翼樑。牠親自折斷那件半成品，重新開爐。對牠而言，支持一條劍走偏鋒的道路，不等於把缺陷交給下一個承受重量的生命。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "forge_ram",
+      "element": "fire",
+      "visualTheme": "lionheart_inverse_oath_forge_ram",
+      "expeditionSpecialty": "guardian",
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr37-card-384-c0282338c4dd.webp",
+        "stage": "assets/pets/variants/pet_sr37-stage-960-c0282338c4dd.webp"
+      }
+    },
+    {
+      "id": "pet_ssr25",
+      "name": "重鉚架橋犀",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr25.png",
+      "description": "讓一次真正的試飛有路可走。重鉚架橋犀負責試飛塔與城市高架的受力結構，天然厚皮外有黃銅工作支架。牠支持奇美拉獲得一次真正試飛，因為牠見過培育室裡那雙不願只看圖紙的眼睛。但支持不等於失去判斷：牠在試飛前拆掉了妨礙居民通行的臨時加壓塔，把研究的重量從公共街道移回工坊。牠想證明，承擔創造的後果，也是創造的一部分。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "rivet_rhino",
+      "element": "machine",
+      "visualTheme": "lionheart_inverse_oath_rivet_rhino",
+      "expeditionSpecialty": "scholar",
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "鉚接承重，讓創造者承擔自己的選擇。"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ssr25-card-384-f773d25056ca.webp",
+        "stage": "assets/pets/variants/pet_ssr25-stage-960-f773d25056ca.webp"
+      }
+    },
+    {
+      "id": "pet_ssr26",
+      "name": "蒸園盤根龜",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr26.png",
+      "description": "研究之外仍有生命。蒸園盤根龜的天然甲殼長著小型蕨葉，根系能感知培育溫室的水與熱。研究者把所有記錄留給奇美拉時，牠仍記得普通苗株的名字。牠反對無限制造生，並非因為畏懼新生命，而是看見追逐完美如何讓現有生命被忽略。牠以根系封住過熱管道，守住未參與試驗的苗床；城內爭論可以繼續，牠腳下的生命不能因此失去明天。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "root_tortoise",
+      "element": "wood",
+      "visualTheme": "lionheart_inverse_oath_root_tortoise",
+      "expeditionSpecialty": "gatherer",
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "根系守住研究之外的生命。"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ssr26-card-384-3697b2054c68.webp",
+        "stage": "assets/pets/variants/pet_ssr26-stage-960-3697b2054c68.webp"
+      }
+    },
+    {
+      "id": "pet_ur19",
+      "name": "天律之冕・格里芬",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur19.png",
+      "description": "自然法則的完整形體。天律之冕・格里芬生於獅心城外的高崖。鷹首的感知、天然巨翼的風壓、獅身的力量與魔法在牠體內達成完整平衡，沒有任何人工增強。人們先仰望牠，後來量測牠，最後試圖創造足以取代牠的生命。格里芬拒絕逆造工坊強行拼接生命的道路，尤其不能容忍獅首奇美拉以人工翼架闖入自己的領域。牠可以承認契約者的勇氣，却不會因羈絆放棄這條界線。牠的完美不是裝備帶來的；牠展翼時，自然本身便有了不容侵犯的形體。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "griffin",
+      "element": "wind",
+      "visualTheme": "lionheart_inverse_oath_griffin",
+      "expeditionSpecialty": "scout",
+      "presentation": {
+        "revealKey": "lionheart_griffin",
+        "revealCaption": "天然羽翼展開，風界不容逆造。"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ur19-card-384-6fcd7b39ced1.webp",
+        "stage": "assets/pets/variants/pet_ur19-stage-960-6fcd7b39ced1.webp"
+      }
+    },
+    {
+      "id": "pet_ur20",
+      "name": "逆造獅首奇美拉",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur20.png",
+      "description": "向完美露齒的人工生命。逆造獅首奇美拉誕生於獅心城培育室。工匠以活體獅首、血肉胸腹與人工器官連接黃銅骨架、蒸汽肢架和機械翼，想重現格里芬那種天然的完整。牠第一次自主呼吸時，便看見牆上作為標準的格里芬圖譜。人們稱讚每一次相似，牠卻想知道何時才能只以自己的名字被衡量。離開培育艙後，牠把人工翼架張向高崖，決意擊敗原型。牠不是沒有感受的機器，也沒有因創造者的期待放棄自主；牠要以劍走偏鋒的力量，證明天然的完美並非不可逾越。與玩家的羈絆，仍不會消解牠對格里芬的敵意。",
+      "poolTags": [
+        "lionheart_inverse_oath"
+      ],
+      "seriesId": "lionheart_inverse_oath",
+      "speciesType": "biomechanical_chimera",
+      "element": "fire_machine",
+      "visualTheme": "lionheart_inverse_oath_biomechanical_chimera",
+      "expeditionSpecialty": "guardian",
+      "presentation": {
+        "revealKey": "lionheart_chimera",
+        "revealCaption": "血肉自主呼吸，人工翼架向神挑戰。"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ur20-card-384-2c238e42dae5.webp",
+        "stage": "assets/pets/variants/pet_ur20-stage-960-2c238e42dae5.webp"
+      }
     }
   ]
 }

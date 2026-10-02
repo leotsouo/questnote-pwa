@@ -1,0 +1,196 @@
+{
+  "status": "pass",
+  "running": false,
+  "artifactId": "9024aff0ecb76cc22230249c1e89792b16111016708b16027e8f53f0a75b6444",
+  "checkedAt": "2026-10-02T07:29:29.272Z",
+  "checks": [
+    {
+      "name": "完整入場與繼續",
+      "status": "pass",
+      "milliseconds": 6646,
+      "reveals": [],
+      "summary": [],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "短轉場",
+      "status": "pass",
+      "milliseconds": 1883,
+      "reveals": [],
+      "summary": [],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "入場提前略過",
+      "status": "pass",
+      "milliseconds": 323,
+      "reveals": [],
+      "summary": [],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "單抽一般卡完整前奏",
+      "status": "pass",
+      "milliseconds": 3070,
+      "reveals": [],
+      "summary": [],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "正常十連雙UR／兩SSR及重複",
+      "status": "pass",
+      "milliseconds": 27994,
+      "reveals": [
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "summary": [
+        "齒輪拾修鼠",
+        "銅管引水獺",
+        "刻紋校準鴞",
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "苗圃護芽甲蟲",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "減少動態十連及繼續連點",
+      "status": "pass",
+      "milliseconds": 5679,
+      "reveals": [
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "summary": [
+        "齒輪拾修鼠",
+        "銅管引水獺",
+        "刻紋校準鴞",
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "苗圃護芽甲蟲",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "略過前奏仍保留稀有順序",
+      "status": "pass",
+      "milliseconds": 5192,
+      "reveals": [
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "summary": [
+        "齒輪拾修鼠",
+        "銅管引水獺",
+        "刻紋校準鴞",
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "苗圃護芽甲蟲",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "略過揭示仍有完整十連",
+      "status": "pass",
+      "milliseconds": 244,
+      "reveals": [
+        "重鉚架橋犀"
+      ],
+      "summary": [
+        "齒輪拾修鼠",
+        "銅管引水獺",
+        "刻紋校準鴞",
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "苗圃護芽甲蟲",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "圖片失敗仍有完整結果",
+      "status": "pass",
+      "milliseconds": 5669,
+      "reveals": [
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "summary": [
+        "齒輪拾修鼠",
+        "銅管引水獺",
+        "刻紋校準鴞",
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "苗圃護芽甲蟲",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "failedImage": true,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "外部中斷仍保留完整結果",
+      "status": "pass",
+      "milliseconds": 634,
+      "reveals": [
+        "重鉚架橋犀"
+      ],
+      "summary": [
+        "齒輪拾修鼠",
+        "銅管引水獺",
+        "刻紋校準鴞",
+        "重鉚架橋犀",
+        "天律之冕・格里芬",
+        "逆造獅首奇美拉",
+        "苗圃護芽甲蟲",
+        "天律之冕・格里芬",
+        "蒸園盤根龜",
+        "逆造獅首奇美拉"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="/">
+  <title>獅心城・逆造之誓 · 動畫檢視</title>
+  <link rel="stylesheet" href="src/styles.css"><link rel="stylesheet" href="src/ui-polish.css">
+  <link rel="stylesheet" href="src/summon-polish.css"><link rel="stylesheet" href="src/honeylight-sugar.css">
+  <link rel="stylesheet" href="src/swordwild-shanhe.css"><link rel="stylesheet" href="src/lionheart.css">
+  <style>
+    html,body{height:auto;min-height:100%;overflow:auto;background:#071c20;color:#e5eee8}
+    .animation-review{max-width:980px;margin:auto;padding:32px 22px 80px;font:16px/1.8 system-ui,sans-serif}
+    .animation-review h1{font-size:clamp(28px,5vw,44px);margin:12px 0;color:#f2d69a}
+    .animation-review h2{font-size:23px;color:#f2d69a;margin:0 0 10px}
+    .animation-review section{margin:22px 0;padding:22px;border:1px solid #476e64;border-radius:12px;background:#102b2d}
+    .animation-review button{min-height:46px;padding:10px 18px;border:1px solid #719a89;background:#d2bc83;color:#092021;border-radius:8px;cursor:pointer;white-space:normal;font:inherit}
+    .animation-review button:disabled{opacity:.45;cursor:wait}.animation-review select{max-width:100%;padding:12px;border-radius:8px;color:#092021;background:#f0eee0;font:inherit}
+    .animation-review .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .animation-review .pet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+    .animation-review .pet-grid button{display:flex;align-items:center;gap:12px;text-align:left;background:#183936;color:#e5eee8}
+    .animation-review img{width:64px;height:64px;object-fit:contain;border-radius:8px}
+    .animation-review .note{color:#b8d2c4}.animation-review #status{min-height:32px;color:#f2d69a}
+    .animation-review .signature{font-size:12px;word-break:break-all;color:#8fafa2}
+    .animation-review label{display:inline-flex;gap:10px;align-items:center}.animation-review input{width:20px;height:20px}
+    @media(max-width:480px){.animation-review{padding:20px 14px 60px}.animation-review section{padding:16px}.animation-review .pet-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main class="animation-review">
+  <p class="note">V3.5.4 製作中 · 卡圖待人工核准 · 非正式整包驗收</p><h1>獅心城・逆造之誓 · 動畫檢視</h1>
+  <p id="animation-description">獅心城專屬本地 SVG／CSS 演出：天然羽翼與人工翼架各自展開，呈現高崖與試飛塔的對峙。格里芬以天然風界登場；奇美拉以呼吸、翼架與排汽突破登場；SSR 分別鎖定塔架與以根系護苗。</p>
+  <p class="note">此頁僅播放預先指定的結果，不會扣星塵、抽取角色或改變收藏與保底。演出中可略過；卡片出現後點擊或按 Enter 繼續。</p>
+  <label><input id="reduce" type="checkbox">以減少動態模式檢視</label>
+  <p id="status" role="status" aria-live="polite">載入製作中的動畫與卡圖…</p>
+  <section><h2>卡池入場</h2><p>天然羽翼研究 → 人工翼架 → 高崖與試飛塔對峙</p><div class="actions">
+    <button data-play="debut" disabled>播放完整入場</button><button data-play="transition" disabled>播放切換卡池的短轉場</button>
+  </div></section>
+  <section><h2>單抽與十連</h2><div class="actions">
+    <select id="single-pet" aria-label="單抽預覽角色"></select><button data-play="single" disabled>播放單抽</button>
+    <button data-play="ten" disabled>播放十連：含雙 UR 與重複角色</button>
+  </div><p class="note">十連使用固定名單，方便核對揭露順序；畫面中的重複角色是展示資料。</p></section>
+  <section><h2>雙 UR 登場</h2><p class="note">逐隻查看卡圖、名字、台詞與目前的 UR 演出。</p><div id="ur" class="pet-grid"></div></section>
+  <section><h2>兩 SSR 登場</h2><div id="ssr" class="pet-grid"></div></section>
+  <p class="signature" id="signature"></p>
+</main>
+<script type="module">
+  import { playPoolDebutPresentation, playThemedSummon } from './src/themedSummonController.js';
+  import { playSummonReveal } from './src/summonRevealService.js';
+  const configuration = await fetch('/review-config.json').then((r) => { if (!r.ok) throw Error('演出資料無法載入'); return r.json(); });
+  const { pool, pets } = configuration;
+  if (pool.presentation.animationKey !== 'lionheart_inverse_oath') document.getElementById('animation-description').textContent = '此為舊版沿用動畫；請切換至最新專屬動畫檢視頁。';
+  const status = document.getElementById('status');
+  let playing = false;
+  const result = (pet) => ({ pet, petId: pet.id, rarity: pet.rarity, isNew: true, fragments: 0 });
+  for (const pet of pets) {
+    const option = document.createElement('option'); option.value = pet.id; option.textContent = `${pet.rarity} · ${pet.name}`;
+    document.getElementById('single-pet').append(option);
+    if (!['UR', 'SSR'].includes(pet.rarity)) continue;
+    const button = document.createElement('button'); button.dataset.play = 'reveal'; button.dataset.petId = pet.id;
+    const image = document.createElement('img'); image.src = pet.image; image.alt = '';
+    const text = document.createElement('span'); text.textContent = `${pet.rarity} · ${pet.name}`;
+    button.append(image, text); document.getElementById(pet.rarity.toLowerCase()).append(button);
+  }
+  document.getElementById('signature').textContent = `本頁使用製作工作區實際模組與卡圖；尚無發布 artifact。製作 baseline：${configuration.baselineHash}`;
+  document.querySelectorAll('[data-play]').forEach((b) => b.disabled = false);
+  status.textContent = '已就緒，請選擇要檢視的演出。';
+  document.querySelector('main').addEventListener('click', async (event) => {
+    const button = event.target.closest('[data-play]');
+    if (!button || playing) return;
+    playing = true; document.querySelectorAll('[data-play]').forEach((b) => b.disabled = true);
+    const reduceMotion = document.getElementById('reduce').checked;
+    status.textContent = `正在播放：${button.textContent}`;
+    try {
+      const mode = button.dataset.play;
+      if (mode === 'debut' || mode === 'transition') {
+        await playPoolDebutPresentation({ poolName: pool.name, presentation: pool.presentation, full: mode === 'debut', reduceMotion });
+      } else if (mode === 'reveal') {
+        const pet = pets.find((p) => p.id === button.dataset.petId);
+        await playSummonReveal({ pet, rarity: pet.rarity, reduceMotion, presentationKey: pool.presentation.animationKey });
+      } else {
+        const selected = pets.find((p) => p.id === document.getElementById('single-pet').value);
+        const fixed = ['pet_n39','pet_r41','pet_sr35','pet_ssr25','pet_ur19','pet_ur20','pet_n40','pet_ur19','pet_ssr26','pet_ur20'];
+        const seen = new Set();
+        const rows = mode === 'ten' ? fixed.map((id) => { const row = result(pets.find((p) => p.id === id)); row.isNew = !seen.has(id); seen.add(id); return row; }) : [result(selected)];
+        await playThemedSummon({ results: rows, mode: mode === 'ten' ? 'ten' : 'single', reduceMotion, poolName: pool.name, animationKey: pool.presentation.animationKey });
+      }
+      status.textContent = '播放完成，可再次選擇或重播。';
+    } catch (error) { status.textContent = `播放失敗：${error.message}`; }
+    finally { playing = false; document.querySelectorAll('[data-play]').forEach((b) => b.disabled = false); }
+  });
+</script></body></html>

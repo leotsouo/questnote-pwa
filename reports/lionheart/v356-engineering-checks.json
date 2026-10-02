@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-02T07:14:54.156Z",
+  "sourceCommit": "dddeaee198ed00b41bb35772de10e3348fd4b26b",
+  "sourceBytesMatchArtifact": true,
+  "approvedArtworkPngs": 12,
+  "preservedExistingPets": 116,
+  "totalArtifactPets": 128,
+  "nodeTests": {
+    "pass": 267,
+    "fail": 0,
+    "themesPass": 11,
+    "honeylightAnimationPass": 5,
+    "revealLogic": "pass"
+  },
+  "catalogs": "pass",
+  "sourceImages": "116 × 2 variants pass",
+  "candidate": "12 × original PNG and 2 derivatives verified",
+  "releaseSmoke": "pass; synthetic pipeline rehearsal recorded separately from actual-pool browser acceptance",
+  "syntaxFiles": [
+    "devtools/lionheart-artifact-review-server.mjs",
+    "devtools/lionheart-update-browser-server.mjs",
+    "devtools/lionheart-update-browser-test.js",
+    "devtools/release-artifact-browser-test.js"
+  ]
+}

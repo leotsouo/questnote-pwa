@@ -268,6 +268,12 @@ try {
     await until(async () => (await workshop.getInventory()).items[e.food.id] === 0, 'gift consumes exactly one food');
     const progress = await collection.getPetCollection(partner.id);
     assert(progress.bondExp === 150, 'Favorite gift did not apply exactly 150 bond EXP');
+    // The gift's asynchronous UI handler persists level notifications after EXP.
+    // Finish that operation before checking that a new debug client is read-only.
+    await until(async () => {
+      const saved = await db.dbGet(db.STORES.COLLECTION, partner.id);
+      return [2, 3].every((level) => saved?.bondUnlocks?.notifiedLevels?.includes(level));
+    }, 'favorite gift level notifications finish before the next client boots');
     observations.companionContent = { foodId: e.food.id, petId: partner.id, specialty: e.specialties[partner.id].role,
       craftedOnce: true, favoriteBondExp: progress.bondExp, isolatedOnly: true };
   });
@@ -287,7 +293,9 @@ try {
     flagged.contentDocument.querySelector('[data-goto="settings"]').click();
     await until(() => flagged.contentDocument.getElementById('view-settings').classList.contains('active'), 'released settings');
     assert(!flagged.contentDocument.getElementById('dev-tools-section'), 'Release exposed settings debug tools');
-    assert(await previewTransactionSnapshot() === before, 'Debug shortcut changed persistent state');
+    const after = await previewTransactionSnapshot();
+    if (after !== before) observations.debugStateDifference = { before: JSON.parse(before), after: JSON.parse(after) };
+    assert(after === before, 'Debug shortcut changed persistent state');
     flagged.remove(); frames.delete(flagged);
   });
   await test('evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state', async () => {

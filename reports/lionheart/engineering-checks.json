@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-01T22:00:53.432Z",
+  "syntaxFiles": [
+    "src/ui.js",
+    "src/version.js",
+    "src/lionheartScene.js",
+    "src/bondStoryCatalog.js",
+    "src/bondJourneyService.js",
+    "src/backupSchema.js",
+    "src/expeditionGameplay.js",
+    "src/explorationService.js",
+    "src/workshopService.js",
+    "src/petDataSchema.js",
+    "src/poolContentContract.js",
+    "src/poolPresentation.js",
+    "src/summonRevealService.js",
+    "src/themedSummonController.js",
+    "service-worker.js",
+    "scripts/author-lionheart.mjs",
+    "scripts/complete-lionheart-authoring.mjs",
+    "devtools/lionheart-review-server.mjs",
+    "devtools/lionheart.test.mjs"
+  ],
+  "checks": [
+    {
+      "name": "npm-test",
+      "status": "pass",
+      "exitCode": 0,
+      "evidence": "reports/lionheart/npm-test-final.log"
+    },
+    {
+      "name": "catalogs",
+      "status": "pass",
+      "exitCode": 0,
+      "evidence": "reports/lionheart/catalogs-final.log"
+    },
+    {
+      "name": "images",
+      "status": "pass",
+      "exitCode": 0,
+      "evidence": "reports/lionheart/images-final.log"
+    },
+    {
+      "name": "release-smoke",
+      "status": "pass",
+      "exitCode": 0,
+      "evidence": "reports/lionheart/release-smoke-final.log"
+    },
+    {
+      "name": "draft",
+      "status": "pass",
+      "exitCode": 0,
+      "evidence": "reports/lionheart/draft-final.log"
+    }
+  ],
+  "finalArtifact": false
+}

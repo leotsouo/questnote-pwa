@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "packageHash": "b156b65612d75978f11a08f206fbc1411b2c672caa16ba9ac882b651dcd07626",
+  "releaseReady": false,
+  "nextGate": "explicit_publication_authorization",
+  "limitations": "Local review records are not signed identities; verify actual human consent and linked browser evidence before publishing."
+}

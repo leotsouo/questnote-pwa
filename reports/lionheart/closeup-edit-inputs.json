@@ -1,0 +1,58 @@
+{
+  "requestedAt": "2026-10-02T06:32:52.978Z",
+  "request": "兩張 UR 鏡頭拉近，角色現在有點小",
+  "edits": [
+    {
+      "petId": "pet_ur19",
+      "version": 3,
+      "selected": false,
+      "path": "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-8011c8eb-c889-47b4-9480-50365ea509ce.png",
+      "input": {
+        "referenced_image_paths": [
+          "C:/Users/User/.codex/worktrees/lionheart-inverse-oath/questnote-pwa/content/pet-series/lionheart_inverse_oath/images/pet_ur19.png"
+        ],
+        "transparent_background": false,
+        "prompt": "Use case: identity-preserve. Edit target: the provided 天律之冕・格里芬 collectible card illustration. The user specifically requests the camera closer because the creature currently looks too small. Create a substantially tighter heroic FULL-CREATURE framing: enlarge the head, chest and lion body about 35–45% in visual scale; the face and torso must be noticeably easier to see on a small card. Reduce the foreground cliff and panoramic city to supporting background. Keep the complete head, four legs, natural lion tail and both full wing tips within the square image with a small safe border. To achieve a closer body without cropping wide wings, subtly angle the raised natural wings upward in a proud curved posture. Preserve this exact creature identity, ivory eagle head, natural hooked beak, amber eyes, creamy/brown feather wings, tawny lion body and muscular lion hindlegs, natural eagle foreclaws. Preserve the high cliff, distant Lionheart city, daylight clouds and wind currents, painterly detailed fantasy realism and original palette. One main creature. Its calm powerful refusal of the artificial rival remains. STRICT: entire creature purely biological; absolutely no equipment, metal, machinery, harness, crown, halo, collar, jewelry, armor or artificial feathers. No additional limbs, missing limbs, cropped body/wing tips/tail, text, frames, UI, watermark, humans, gore, light-element or dark-element powers. Keep square opaque illustration. The change must be visibly closer, especially the head and body, not just a larger rock or backdrop."
+      }
+    },
+    {
+      "petId": "pet_ur19",
+      "version": 4,
+      "selected": true,
+      "path": "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-84019363-f789-4c4e-9456-57dc92735b98.png",
+      "input": {
+        "referenced_image_paths": [
+          "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-8011c8eb-c889-47b4-9480-50365ea509ce.png"
+        ],
+        "transparent_background": false,
+        "prompt": "Precise framing correction to this CLOSE-UP griffin illustration. Keep this enlarged expressive eagle head, chest and lion body, identity, natural texture, pose and painted style. The near frame unfortunately cuts the upper-left wing feather tips. Correct ONLY framing/wing fit: provide enough extra background around all sides (roughly 10–12 percent zoom-out from THIS close-up, still far closer than the original distant view) and slightly tuck the raised wing feather spread inward so BOTH WINGS and ALL uppermost and outermost individual feather tips are fully visible. Leave at least 4 percent empty sky between every wing tip and image border. The enlarged head/body remain the clear focus. Keep four legs and natural lion tail fully visible, rock/cliff reduced, distant city subdued, same daylight windy sky. Strictly pure biological griffin, no equipment, crown, metal, machinery, jewelry, harness, halo, armor, light/dark power, extra animals, extra limbs, text, border, UI or watermark. SINGLE square opaque card illustration. Do not return clipped wings; reconstruct the missing tips and keep safe sky margins on top/left/right."
+      }
+    },
+    {
+      "petId": "pet_ur20",
+      "version": 4,
+      "selected": false,
+      "path": "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-ef407839-fc64-4e11-bf72-2fc3c3f5113c.png",
+      "input": {
+        "referenced_image_paths": [
+          "C:/Users/User/.codex/worktrees/lionheart-inverse-oath/questnote-pwa/content/pet-series/lionheart_inverse_oath/images/pet_ur20.png"
+        ],
+        "transparent_background": false,
+        "prompt": "Use case: identity-preserve. Edit target: provided 逆造獅首奇美拉 card illustration. User requests a closer camera because the creature looks too small. Move the camera closer to make this SAME creature's lion head, chest, flank and legs approximately 30 percent larger. Heroic full creature shot, NOT a distant city panorama. The organic lion face and red-brown mane must be clearly readable and the organic chest/flank muscles visible. Reduce the large empty foreground tower and broad distant city, retain enough stone tower ledge, pushed-aside chain and steam to show the scene. Target creature fills about 85 percent of square frame width and 65–75 percent of frame height. Keep all four feet, full segmented snake-shaped tail and COMPLETE wing tips inside the picture with 5 percent safe margin. You may angle the two mechanical wings more upright and slightly inward so a larger body fits with full wings. Preserve original anatomy and identity: single LIVING lion head with lion muzzle, amber eyes, mane, furred living chest/flanks; enclosed artificial organs, brass rib support, goat-horn-shaped pressure tubing, four flesh-and-mechanism hybrid animal limbs, two articulated mechanical wings, segmented tail. It is half biological half machinery, NOT a robot lion, no bird beak, no extra heads, no exposed organs or gore. Show breathing living flesh and locked powered wing structure, restrained venting steam. Same painted detailed fantasy style, brass and oxidized copper, stone steampunk Lionheart city, sunset palette. Single dominant creature with hostile determination toward original griffin offscreen. No humans, readable text, UI, border, watermark, holy halo or light/dark element powers. IMPORTANT: visibly closer and stronger head/body prominence while ALL tips and limbs remain uncut."
+      }
+    },
+    {
+      "petId": "pet_ur20",
+      "version": 5,
+      "selected": true,
+      "path": "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-81165536-ab12-4491-b82c-62f01b6d96e6.png",
+      "input": {
+        "referenced_image_paths": [
+          "C:/Users/User/.codex/generated_images/01a0f937-8a89-76f3-b634-076560c96fbb/exec-ef407839-fc64-4e11-bf72-2fc3c3f5113c.png"
+        ],
+        "transparent_background": false,
+        "prompt": "Precise framing fix for this close-up lion-headed chimera. Retain the excellent larger living lion face, red-brown mane, organic flesh flanks, brass artificial organs and the four hybrid legs EXACTLY. Retain the closer heroic body emphasis and tower ledge, stone city, sunset, steam and segmented snake tail. ONLY correct the upper wing fit: tilt or tuck the upper-left mechanical wing tips DOWN and slightly inward and narrow both wing fans a little so EVERY part of BOTH mechanical wings is fully inside the square frame with visibly clear sky above. If needed zoom out no more than 5–8 percent from this CLOSE-UP, preserving the head/body markedly larger than the old distant original. The upper wing mast currently touches/cuts the top edge: reconstruct its complete tip, leave clear sky all around. Keep all four feet and full tail. Single living lion head, no beak, no second head, not a robot lion, enclosed artificial organs, no gore. No extra creature, text, border, UI, watermark, halo, light or dark elemental power. Same detailed painterly steampunk fantasy collectible square opaque card. Preserve creature identity and colors; do NOT widen to a distant city panorama."
+      }
+    }
+  ]
+}

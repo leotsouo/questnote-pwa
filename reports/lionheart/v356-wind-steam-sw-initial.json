@@ -1,0 +1,242 @@
+{
+  "running": false,
+  "runId": "a0d2aa3a-7993-4fbc-af14-9d5d65dc44db",
+  "passed": 12,
+  "failed": 1,
+  "results": [
+    {
+      "name": "uncontrolled first boot rejects profile-null before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects index-marker-mismatch before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects missing503 before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects corrupt before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "known legacy network-first controller cannot start the new app before every legacy client closes",
+      "ok": true
+    },
+    {
+      "name": "direct first production visit verifies, activates, reloads, and initializes the actual app",
+      "ok": true
+    },
+    {
+      "name": "direct preview visit coexists with production using a separate database and controller",
+      "ok": true
+    },
+    {
+      "name": "SOP companion content drives actual crafting, favorite gifting and dispatch specialty in an isolated app",
+      "ok": true
+    },
+    {
+      "name": "old perf/debug shortcuts cannot expose diagnostics or grant test currency",
+      "ok": false,
+      "error": "Error: Debug shortcut changed persistent state\n    at assert (http://127.0.0.1:50835/test/suite.js:5:64)\n    at http://127.0.0.1:50835/test/suite.js:292:5\n    at async test (http://127.0.0.1:50835/test/suite.js:23:9)\n    at async http://127.0.0.1:50835/test/suite.js:274:3"
+    },
+    {
+      "name": "evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state",
+      "ok": true
+    },
+    {
+      "name": "cleared preview shell rebuilds verified bytes while two clients and persisted state survive",
+      "ok": true
+    },
+    {
+      "name": "both fully assembled cached apps and catalogs boot while all artifact HTTP responses are 503",
+      "ok": true
+    },
+    {
+      "name": "growth chapters remain usable and resume the saved step without the network",
+      "ok": true
+    }
+  ],
+  "observations": {
+    "profile-null": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+      "requests": 21,
+      "databaseNames": []
+    },
+    "index-marker-mismatch": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+      "requests": 21,
+      "databaseNames": []
+    },
+    "missing503": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+      "requests": 163,
+      "databaseNames": []
+    },
+    "corrupt": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+      "requests": 163,
+      "databaseNames": []
+    },
+    "production": {
+      "artifactId": "a1543824a463aff1392b6e121f9bca57e9bfc29486264e5860379b2d7fb89d6f",
+      "catalogSha256": "bb02bed3ffb41027e81b7ce4134dea6d79273c5ea2e7ce2bbbe6a27e501be73b",
+      "petCount": 128,
+      "controller": "http://127.0.0.1:50835/questnote-pwa/service-worker.js?artifact=a1543824a463aff1392b6e121f9bca57e9bfc29486264e5860379b2d7fb89d6f"
+    },
+    "legacyTransition": {
+      "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+      "waitingBeforeClose": true,
+      "zeroDatabasesBeforeClose": true,
+      "newArtifact": "a1543824a463aff1392b6e121f9bca57e9bfc29486264e5860379b2d7fb89d6f"
+    },
+    "preview": {
+      "artifactId": "9024aff0ecb76cc22230249c1e89792b16111016708b16027e8f53f0a75b6444",
+      "catalogSha256": "bb02bed3ffb41027e81b7ce4134dea6d79273c5ea2e7ce2bbbe6a27e501be73b",
+      "petCount": 128,
+      "controller": "http://127.0.0.1:50835/questnote-pwa-preview/service-worker.js?artifact=9024aff0ecb76cc22230249c1e89792b16111016708b16027e8f53f0a75b6444"
+    },
+    "companionContent": {
+      "foodId": "item_lionheart_gear_crisp",
+      "petId": "pet_n39",
+      "specialty": "scholar",
+      "craftedOnce": true,
+      "favoriteBondExp": 150,
+      "isolatedOnly": true
+    },
+    "debugStateDifference": {
+      "before": {
+        "wallet": {
+          "key": "wallet",
+          "stardust": 0,
+          "adventureEnergy": 0,
+          "materials": {
+            "forest_leaf": 4,
+            "lava_core": 1,
+            "machine_part": 3,
+            "star_shard": 0,
+            "aurora_ice": 0,
+            "harvest_charm": 0
+          }
+        },
+        "gachaStats": {
+          "key": "gachaStats",
+          "ssrPity": 0,
+          "urPity": 0,
+          "totalPulls": 0,
+          "tenPullCount": 0,
+          "selectedPoolId": "standard",
+          "poolPity": {
+            "standard": {
+              "ssrPity": 0,
+              "urPity": 0
+            }
+          }
+        },
+        "poolUnlockState": {
+          "key": "poolUnlockState",
+          "schemaVersion": 1,
+          "byPool": {},
+          "legacyBackfill": {
+            "attempted": true,
+            "status": "unavailable_no_pool_history",
+            "note": "抽卡歷史未保存 poolId，已停止舊玩家自動補判定；lifetimeDraws 僅自 V3.4.0 起累積。不得使用 pity 或全池 totalPulls 猜測。"
+          }
+        },
+        "collection": [
+          {
+            "petId": "pet_n39",
+            "stars": 1,
+            "fragments": 0,
+            "bondExp": 150,
+            "bondLevel": 3,
+            "isCompanion": false,
+            "nickname": null,
+            "lastPettedAt": null,
+            "obtainedAt": "2026-10-02T07:28:55.113Z",
+            "bondUnlocks": {
+              "dialogueLv2": false,
+              "badgeLv3": false,
+              "homeEffectLv4": false,
+              "bondFrameLv5": false,
+              "bondStoryLv5": false,
+              "bondLiberated": false,
+              "notifiedLevels": []
+            }
+          }
+        ]
+      },
+      "after": {
+        "wallet": {
+          "key": "wallet",
+          "stardust": 0,
+          "adventureEnergy": 0,
+          "materials": {
+            "forest_leaf": 4,
+            "lava_core": 1,
+            "machine_part": 3,
+            "star_shard": 0,
+            "aurora_ice": 0,
+            "harvest_charm": 0
+          }
+        },
+        "gachaStats": {
+          "key": "gachaStats",
+          "ssrPity": 0,
+          "urPity": 0,
+          "totalPulls": 0,
+          "tenPullCount": 0,
+          "selectedPoolId": "standard",
+          "poolPity": {
+            "standard": {
+              "ssrPity": 0,
+              "urPity": 0
+            }
+          }
+        },
+        "poolUnlockState": {
+          "key": "poolUnlockState",
+          "schemaVersion": 1,
+          "byPool": {},
+          "legacyBackfill": {
+            "attempted": true,
+            "status": "unavailable_no_pool_history",
+            "note": "抽卡歷史未保存 poolId，已停止舊玩家自動補判定；lifetimeDraws 僅自 V3.4.0 起累積。不得使用 pity 或全池 totalPulls 猜測。"
+          }
+        },
+        "collection": [
+          {
+            "petId": "pet_n39",
+            "stars": 1,
+            "fragments": 0,
+            "bondExp": 150,
+            "bondLevel": 3,
+            "isCompanion": false,
+            "nickname": null,
+            "lastPettedAt": null,
+            "obtainedAt": "2026-10-02T07:28:55.113Z",
+            "bondUnlocks": {
+              "dialogueLv2": true,
+              "badgeLv3": true,
+              "homeEffectLv4": false,
+              "bondFrameLv5": false,
+              "bondStoryLv5": false,
+              "bondLiberated": false,
+              "notifiedLevels": [
+                2,
+                3
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "offlineGrowthLesson": {
+      "chapter": "workshop",
+      "step": "craft",
+      "resumed": true
+    }
+  },
+  "cleanupOwnedOrigin": true
+}

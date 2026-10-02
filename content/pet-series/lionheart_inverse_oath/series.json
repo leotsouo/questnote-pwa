@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "lionheart_inverse_oath",
+  "seriesName": "獅心城・逆造之誓",
+  "description": "人們模仿自然孕育的完美生命格里芬，以魔法與蒸汽造出半生物半機械的獅首奇美拉。原型與人工生命水火不容，獅心城承受追逐神、劍走偏鋒的創造代價。",
+  "rarityPlan": {
+    "N": 2,
+    "R": 3,
+    "SR": 3,
+    "SSR": 2,
+    "UR": 2
+  },
+  "releaseVersion": "3.5.6"
+}
