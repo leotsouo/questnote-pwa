@@ -18,7 +18,7 @@ const evidence = {
   schemaVersion: 1,
   feature: 'V3.5.10 劍隱山河羈絆覺醒教學、初遇卡圖呈現與雙形態驚喜',
   sourceCommit: manifest.sourceCommit,
-  previewUrl: `https://leotsouo.github.io/questnote-pwa-preview/v3510-review/?release-review=${artifacts.preview.artifactId}`,
+  previewUrl: new URL(`?release-review=${artifacts.preview.artifactId}`, `https://leotsouo.github.io${artifacts.preview.scopePath}`).href,
   baseline: { version: baseline.version, artifactId: baseline.artifactId, manifestSha256: baseline.manifestSha256,
     contentBundleSemanticSha256: baseline.contentBundleSemanticSha256 },
   artifacts,
