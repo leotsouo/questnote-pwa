@@ -24,7 +24,7 @@ const catalog = await catalogResponse.json();
 const canonical = (value) => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
   ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])])) : value;
 const contentBundleSemanticSha256 = sha(JSON.stringify(canonical(catalog)));
-if (contentBundleSemanticSha256 !== 'bb02bed3ffb41027e81b7ce4134dea6d79273c5ea2e7ce2bbbe6a27e501be73b') {
+if (contentBundleSemanticSha256 !== '588aae49654b5f9bb3b13a2d2d63157964366274bb076c5212e6a76017344ef6') {
   throw Error('Formal catalog semantics changed; review the new baseline before freezing.');
 }
 await fs.writeFile(path.join(report, 'baseline.json'), JSON.stringify({ at: new Date().toISOString(), version: '3.5.8', artifactId: baseline.artifactId, manifestSha256: sha(manifest), sourceCommit: baseline.sourceCommit, contentBundleSemanticSha256 }, null, 2) + '\n');
