@@ -18,7 +18,7 @@ const evidence = {
   schemaVersion: 1,
   feature: 'V3.5.9 劍隱山河羈絆覺醒教學、初遇卡圖呈現與雙形態驚喜',
   sourceCommit: manifest.sourceCommit,
-  previewUrl: `https://leotsouo.github.io/questnote-pwa-preview/?release-review=${artifacts.preview.artifactId}`,
+  previewUrl: `https://leotsouo.github.io/questnote-pwa-preview/v359-review/?release-review=${artifacts.preview.artifactId}`,
   baseline: { version: baseline.version, artifactId: baseline.artifactId, manifestSha256: baseline.manifestSha256,
     contentBundleSemanticSha256: baseline.contentBundleSemanticSha256 },
   artifacts,
@@ -30,7 +30,7 @@ const evidence = {
     regressions: { status: 'pass', evidence: 'npm test, focused pet-awakening tests (11), native UI browser regression (11 awakening checks), pool-release smoke, pools:validate and images:check all exited successfully.' },
     serviceWorker: { status: 'pass', evidence: `Actual candidate controlled by its artifact-specific Service Worker ${browser.detail.serviceWorker}; isolated HTTPS browser passed offline reload. Cache version advances to V3.5.9.` },
     currentMainFeatures: { status: 'pass', evidence: `V3.5.8 standard UR carousel and Lionheart content are preserved in the V3.5.9 isolated HTTPS browser: ${browser.detail.standardCarousel}.` },
-    previewHttps: { status: 'pass', evidence: `https://leotsouo.github.io/questnote-pwa-preview/ · V3.5.9 Pages run and commit recorded in reports/awakening-guide/preview-https.json; all ${https.fileCount} GitHub HTTPS files match artifact ${https.artifactId} and manifest ${https.manifestSha256}; browser checks captured in reports/awakening-guide/preview-browser.json.` },
+    previewHttps: { status: 'pass', evidence: `https://leotsouo.github.io/questnote-pwa-preview/v359-review/ · V3.5.9 Pages run and commit recorded in reports/awakening-guide/preview-https.json; all ${https.fileCount} GitHub HTTPS files match artifact ${https.artifactId} and manifest ${https.manifestSha256}; browser checks captured in reports/awakening-guide/preview-browser.json.` },
   },
 };
 const decision = await checkFeatureReleaseReview(evidence);

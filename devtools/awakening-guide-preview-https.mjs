@@ -7,7 +7,7 @@ const root = path.resolve(import.meta.dirname, '..');
 const report = path.join(root, 'reports/awakening-guide');
 const pins = JSON.parse(await fs.readFile(path.join(report, 'artifacts.json'))).preview;
 const manifest = JSON.parse(await fs.readFile(path.join(pins.artifactDir, 'release-artifact.json')));
-const url = `https://leotsouo.github.io/questnote-pwa-preview/`;
+const url = `https://leotsouo.github.io/questnote-pwa-preview/v359-review/`;
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const jobs = [['release-artifact.json', pins.manifestSha256], ...Object.entries(manifest.files).map(([file, entry]) => [file, entry.sha256])];
 let cursor = 0; const verified = []; const errors = [];

@@ -9,7 +9,7 @@ const pins = JSON.parse(await fs.readFile(path.join(report, 'artifacts.json'))).
 const verified = JSON.parse(await fs.readFile(path.join(report, 'preview-https.json')));
 assert.equal(verified.status, 'passed'); assert.equal(verified.artifactId, pins.artifactId);
 const { chromium } = createRequire(import.meta.url)(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
-const base = 'https://leotsouo.github.io/questnote-pwa-preview/';
+const base = 'https://leotsouo.github.io/questnote-pwa-preview/v359-review/';
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 try {
   const context = await browser.newContext({ viewport: { width: 393, height: 852 } });

@@ -29,7 +29,7 @@ if (contentBundleSemanticSha256 !== '588aae49654b5f9bb3b13a2d2d63157964366274bb0
 }
 await fs.writeFile(path.join(report, 'baseline.json'), JSON.stringify({ at: new Date().toISOString(), version: '3.5.8', artifactId: baseline.artifactId, manifestSha256: sha(manifest), sourceCommit: baseline.sourceCommit, contentBundleSemanticSha256 }, null, 2) + '\n');
 const artifacts = {};
-for (const [profile, scopePath] of [['preview', '/questnote-pwa-preview/'], ['production', '/questnote-pwa/']]) {
+for (const [profile, scopePath] of [['preview', '/questnote-pwa-preview/v359-review/'], ['production', '/questnote-pwa/']]) {
   const built = await prepareReleaseArtifact({ projectRoot, outputRoot: path.join(process.env.TEMP, 'questnote-awakening-guide-releases'), profile, scopePath });
   artifacts[profile] = { artifactDir: built.artifactDir, artifactId: built.artifactId, manifestSha256: sha(await fs.readFile(built.manifestPath)), scopePath };
   await verifyReleaseArtifact({ ...artifacts[profile], profile });
