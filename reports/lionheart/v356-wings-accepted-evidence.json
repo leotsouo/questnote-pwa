@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "9aa9afe9fac1f2d9cf852423e419d486f97cac33",
+  "candidateId": "5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "candidateManifestSha256": "4c0c82b7ebe69e9a29f50a8341bf66f229c6820e9004bc97d843daae223df0c9",
+  "previewUrl": "http://127.0.0.1:57584/review/",
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\d89b5e93ddccb54a086dd1fe215e5d406b37a1a84f04044b4f2dfba0ce0e72a5",
+      "artifactId": "d89b5e93ddccb54a086dd1fe215e5d406b37a1a84f04044b4f2dfba0ce0e72a5",
+      "manifestSha256": "7b9284af872f1a8dbae09a68223d70d1b03dbd3a4bcdcc3f3ae583ee02d3065c",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\d7cf5fa2afb1b93d337e035e034b242bdcfc65c039db79aac4dc37ba2dc2cf46",
+      "artifactId": "d7cf5fa2afb1b93d337e035e034b242bdcfc65c039db79aac4dc37ba2dc2cf46",
+      "manifestSha256": "98b2b6c2cd3bb8e18d24e30d38220a8dc1f34eca1cc6f0cccce9dcc30d80d456",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "animation": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wings-animation.json sha256=468931bc7c56be47329d84da1bf42767f3bdb91cad7068ffa1cfff4a2126ba27; reports/lionheart/v356-wings-timing.json sha256=389654694bf431ed5059748a14c811b0dde9032dd8029a6cdf0f0dbff207875c; reports/lionheart/v356-wings-mobile-timing.json sha256=a85c70a2a2700c72e7994af243003e45cf0af4da4ce147dd95034735bafdb1c0; reports/lionheart/artifact-animation-review-wings.html sha256=2f1f28e0889b6be2852a2279f89d6379e9ea0ca7b50f1474965ba7e3f151a632; viewer http://127.0.0.1:57584/review/ artifact=d89b5e93ddccb54a086dd1fe215e5d406b37a1a84f04044b4f2dfba0ce0e72a5; desktop/mobile full wings at opacity .88+ while card opacity 0, then correct loaded final cards; skip/reduced/order/duplicates/failure and transaction preservation pass"
+    },
+    "workshop": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wings-browser.json sha256=2550c06f3f42417af1b262c9dfbdd04bc0c576f6056394268c3977caf73b31ea; actual craft recipe deductions and favorite +150/ordinary +75; rapid-click UI craft/gift: reports/lionheart/v356-wings-sw.json sha256=835e2be3a92c62868ed7abb613336b8fa979b8863e98180cdcaa184999c51ff9"
+    },
+    "specialties": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wings-browser.json sha256=2550c06f3f42417af1b262c9dfbdd04bc0c576f6056394268c3977caf73b31ea; all 12 explicit specialties at stars 1/5 and every favorite gift affinity"
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wings-browser.json sha256=2550c06f3f42417af1b262c9dfbdd04bc0c576f6056394268c3977caf73b31ea; actual default-open 3-pet dispatch, 5 energy, 60 minutes, claim/reclaim rejection and five atomic milestones"
+    },
+    "transactions": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wings-browser.json sha256=2550c06f3f42417af1b262c9dfbdd04bc0c576f6056394268c3977caf73b31ea; actual single/ten/duplicates/UR100/SSR30/concurrent draw and repeated backup import"
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wings-sw.json sha256=835e2be3a92c62868ed7abb613336b8fa979b8863e98180cdcaa184999c51ff9; 13 actual immutable-artifact checks; reports/lionheart/v356-wings-update.json sha256=ed3c2361b84205537a3f6514c78d91adbd0f8957812384ff2010243be903b17e; 7 actual formal V3.5.5 to revised V3.5.6 update checks including offline/save retention/multi-window/editing guards"
+    }
+  },
+  "humanAcceptance": {
+    "reviewer": "user: 審核通過繼續工作",
+    "acceptedAt": "2026-10-02T08:11:57.000Z",
+    "packageHash": "b156b65612d75978f11a08f206fbc1411b2c672caa16ba9ac882b651dcd07626"
+  }
+}
