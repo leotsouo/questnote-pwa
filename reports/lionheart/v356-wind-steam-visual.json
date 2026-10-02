@@ -1,0 +1,48 @@
+{
+  "artifactId": "9024aff0ecb76cc22230249c1e89792b16111016708b16027e8f53f0a75b6444",
+  "griffin": {
+    "visibleWindTrails": 6,
+    "imageLoaded": true
+  },
+  "steamFirst": [
+    {
+      "animation": "lionheart-steam-rise",
+      "opacity": "0.495311",
+      "transform": "matrix(1.48946, 0, 0, 1.48946, -11.637, -388.968)"
+    },
+    {
+      "animation": "lionheart-steam-rise",
+      "opacity": "0.376968",
+      "transform": "matrix(1.77869, 0, 0, 1.77869, 0, -487.7)"
+    }
+  ],
+  "checkedAt": "2026-10-02T07:29:07.841Z",
+  "steamSecond": [
+    {
+      "animation": "lionheart-steam-rise",
+      "opacity": "0.48314",
+      "transform": "matrix(1.51921, 0, 0, 1.51921, -11.9408, -399.122)"
+    },
+    {
+      "animation": "lionheart-steam-rise",
+      "opacity": "0.364797",
+      "transform": "matrix(1.80844, 0, 0, 1.80844, 0, -497.854)"
+    }
+  ],
+  "mobile": {
+    "documentWidth": 375,
+    "height": 844,
+    "imageLoaded": true,
+    "name": "逆造獅首奇美拉",
+    "scrollWidth": 375,
+    "steamPuffs": 16,
+    "viewport": 390
+  },
+  "reducedGriffin": {
+    "imageLoaded": true,
+    "windDisplay": "none"
+  },
+  "reducedChimera": {
+    "steamDisplay": "none"
+  }
+}

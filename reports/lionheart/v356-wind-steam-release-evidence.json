@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "2fa5e6936e61f5a2a734ff36b768faeae76ab954",
+  "candidateId": "5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "candidateManifestSha256": "4c0c82b7ebe69e9a29f50a8341bf66f229c6820e9004bc97d843daae223df0c9",
+  "previewUrl": "http://127.0.0.1:55649/review/",
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\9024aff0ecb76cc22230249c1e89792b16111016708b16027e8f53f0a75b6444",
+      "artifactId": "9024aff0ecb76cc22230249c1e89792b16111016708b16027e8f53f0a75b6444",
+      "manifestSha256": "9dff047f46b87bbd2964fa7ddfa31f0cada4b7e945211afa45461ca1ba163b75",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\a1543824a463aff1392b6e121f9bca57e9bfc29486264e5860379b2d7fb89d6f",
+      "artifactId": "a1543824a463aff1392b6e121f9bca57e9bfc29486264e5860379b2d7fb89d6f",
+      "manifestSha256": "51b6f2fd7e27a60464dadd6d5dfe902021087eeb48745d3ca465d11d1077c28a",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "animation": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wind-steam-animation.json sha256=26d0a5b8cda212ff97d468c1241e3798dfa4f483da4efd59ddc56c028d561299; reports/lionheart/artifact-animation-review-wind-steam.html sha256=1c750b96a785cfb45ec5548fd79bf6ac4708bea011c404a14ff2a90770f1b605; reports/lionheart/v356-wind-steam-visual.json sha256=5512876d5bc75af3eece213f3f444f548926c98ccdc94e94131a5357fc45a526; viewer http://127.0.0.1:55649/review/ artifact=9024aff0ecb76cc22230249c1e89792b16111016708b16027e8f53f0a75b6444; Griffin flowing wind and Chimera rising steam inspected at desktop and 390x844; all 10 result-order/skip/reduced/failure scenarios preserve transaction state"
+    },
+    "workshop": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wind-steam-browser.json sha256=a33eb6d3343f9c8d93fd480847fd2a7a1ded9ddcf9317ffa2fe3cdea16819d11; actual craft deductions and +150/+75 recipients; rapid-click UI craft/gift: reports/lionheart/v356-wind-steam-sw.json sha256=3984322d4a69bf20cc7e3866fa4715b405fe4610c9c77082ae769c72fd955a37"
+    },
+    "specialties": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wind-steam-browser.json sha256=a33eb6d3343f9c8d93fd480847fd2a7a1ded9ddcf9317ffa2fe3cdea16819d11; all 12 explicit specialties at stars 1/5 and every gift affinity; published specialties unchanged"
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wind-steam-browser.json sha256=a33eb6d3343f9c8d93fd480847fd2a7a1ded9ddcf9317ffa2fe3cdea16819d11; default-open Lionheart city, real 3-pet 5-energy 60-minute dispatch/claim/reclaim rejection and five atomic milestones"
+    },
+    "transactions": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wind-steam-browser.json sha256=a33eb6d3343f9c8d93fd480847fd2a7a1ded9ddcf9317ffa2fe3cdea16819d11; actual single/ten/duplicates/UR100/SSR30/concurrent draws/repeated backup import"
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "reports/lionheart/v356-wind-steam-sw.json sha256=3984322d4a69bf20cc7e3866fa4715b405fe4610c9c77082ae769c72fd955a37; 13 actual artifact checks; reports/lionheart/v356-wind-steam-update.json sha256=ed3c2361b84205537a3f6514c78d91adbd0f8957812384ff2010243be903b17e; 7 exact formal V3.5.5 to new V3.5.6 update checks including offline/multi-window/editing guards"
+    }
+  }
+}
