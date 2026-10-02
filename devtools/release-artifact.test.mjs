@@ -46,7 +46,8 @@ test('release artifact preparation is immutable, isolated and content complete',
     // image dimension or artistic validation (the production image tools own it).
     for (const name of images) {
       await fs.mkdir(path.dirname(path.join(projectRoot, name)), { recursive: true });
-      await fs.writeFile(path.join(projectRoot, name), `synthetic-image:${name}`);
+      if (name.startsWith('assets/expeditions/')) await fs.copyFile(path.join(repository, name), path.join(projectRoot, name));
+      else await fs.writeFile(path.join(projectRoot, name), `synthetic-image:${name}`);
     }
     execFileSync('git', ['init', '--quiet', projectRoot]);
     execFileSync('git', ['-C', projectRoot, '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
@@ -60,6 +61,19 @@ test('release artifact preparation is immutable, isolated and content complete',
       assert.equal(result.dryRun, true);
       assert.equal(await exists(outputRoot), false);
       assert.deepEqual(await tree(projectRoot), sourceBefore);
+    });
+    await t.test('a new expedition without generated raster art cannot create an artifact', async () => {
+      const file = path.join(projectRoot, 'data/expeditions.json');
+      const original = await fs.readFile(file);
+      const catalog = JSON.parse(original);
+      catalog.areas.push({ ...catalog.areas[0], id: 'missing_city', name: 'Missing artwork' });
+      await fs.writeFile(file, stringify(catalog));
+      try {
+        await assert.rejects(() => prepareReleaseArtifact(options), /Missing expedition artwork: assets\/expeditions\/missing_city.webp/);
+        assert.equal(await exists(outputRoot), false);
+      } finally {
+        await fs.writeFile(file, original);
+      }
     });
     await t.test('production config, final-byte precache hashes and baseline files agree', async () => {
       production = await prepareReleaseArtifact(options);

@@ -25,7 +25,8 @@ const newBundle=JSON.parse(artifacts.new.files.get(artifacts.new.manifest.profil
 for(const [key,rows] of [['petsData','pets'],['loreData','lore'],['poolsData','pools'],['seriesCatalog','series']]){
  for(const old of oldBundle[key][rows])assert.deepEqual(newBundle[key][rows].find(row=>row.id===old.id),old,'Existing published content changed: '+old.id);
 }
-assert.equal(newBundle.petsData.pets.length,oldBundle.petsData.pets.length+12);
+assert.ok([oldBundle.petsData.pets.length, oldBundle.petsData.pets.length + 12].includes(newBundle.petsData.pets.length),
+  'Expected a visual correction or the original 12-pet Lionheart release');
 let active = 'old';
 let offline = false;
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml' };

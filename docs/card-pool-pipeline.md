@@ -10,6 +10,8 @@
 
 食物、偏好、材料、探險 baseline 和四個相關 runtime 檔案納入 baseline hashes；`ecosystem.json` 納入 content approval。缺漏或未完成時不能 approve/stage。新模板、tags、專長或地區 runtime 支援先完成，再 init 鎖定 baseline。新的標準池僅一種食物／至多一個新地區；較大規模先另行擴充契約，不繞過限制。
 
+新增地區必須依 [SOP 地區圖片要求](new-card-pool-sop.md#新增探險地區的圖片是必交項目) 完成生成插畫與雙畫面驗收。先在 reviewed source 放入 `assets/expeditions/<areaId>.webp`，不是將未受支援的非寵物資源塞進 candidate。Assembler 在合併有效 companion catalogs 後驗證所有地區圖片；缺圖、無法完整解碼、尺寸／比例錯誤均拒絕組裝。執行 `npm run images:check` 核對來源 precache；地區圖片隨 sourceFiles 及 artifact files hash 固定，並進入發布後的 HTTPS／离線驗證。產圖紀錄與審圖證據保存於 reports，保留既有卡池 hash 鏈。
+
 產圖前優先盤點已安裝、適用的外掛插件，確認不额外計費再使用；不能確認費用時不呼叫。每隻 `prompts.json` 的 `provenance` 必須含實際 `tool`、`noExtraCost: true`、`costBasis`，其他生成資訊按實際可取得內容記錄。
 
 現行 SOP approve 額外傳入 `--reviewer-type ai|human`；images 只接受 human。測試明確使用 `brief.purpose: synthetic` 和 synthetic reviewer，不構成產品核准。新真實 brief 缺 SOP marker 會拒絕 init；既有 workspace 無 marker 仍可依 legacy 格式讀取，不遷移歷史 snapshots。
