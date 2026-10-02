@@ -1,0 +1,14 @@
+{
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-guide-releases\\0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4",
+    "artifactId": "0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4",
+    "manifestSha256": "e1863952241e2721c0fb662e2eb160ebd56ba3df746bf0f3220ea7fc6522f53b",
+    "scopePath": "/questnote-pwa-preview/"
+  },
+  "production": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-guide-releases\\20bb8033f3a8559649dfa671708c344776f99d4bbdcbb1fdd2071353e31e021a",
+    "artifactId": "20bb8033f3a8559649dfa671708c344776f99d4bbdcbb1fdd2071353e31e021a",
+    "manifestSha256": "9d19d02ff0721f599c3ab29bf7bee4f06afd09b0afd4b0c81c8d18ac53100020",
+    "scopePath": "/questnote-pwa/"
+  }
+}
