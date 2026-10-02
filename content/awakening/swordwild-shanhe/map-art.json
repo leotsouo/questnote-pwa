@@ -1,0 +1,17 @@
+{
+  "generator": "imagegen",
+  "generatedAfterFunctionalAcceptance": "reports/awakening-implementation/browser-acceptance.json",
+  "direction": "與迷霧森林、豐穗遠郊一致的細緻場景插畫：前景竹林石徑、中景暖燈山亭與棧橋、遠景霧中群山。",
+  "references": [
+    "assets/expeditions/mist_forest.webp",
+    "assets/expeditions/harvest_fields.webp"
+  ],
+  "original": "content/awakening/swordwild-shanhe/cloudrest-map-1130b4d25cc3.png",
+  "originalSha256": "1130b4d25cc3b1d060101314e7b79a0599481867794bc3f8b228710449e630ff",
+  "output": "assets/expeditions/cloudrest_trail.webp",
+  "outputSha256": "cf75419ec519bb473ac49f32a6c9af68165550117585ab32649caae2ad9108fd",
+  "width": 960,
+  "height": 540,
+  "preservedAsset": "assets/expeditions/cloudrest_trail.svg",
+  "humanApproval": "pending-whole-package-review"
+}

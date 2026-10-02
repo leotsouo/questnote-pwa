@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "testedAt": "2026-10-01T21:49:42.971Z",
+  "from": "3.5.4",
+  "to": "3.5.5",
+  "previousArtifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+  "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+  "savedPetAndStoryPreserved": true,
+  "isolatedDatabase": "QuestNoteDB",
+  "oldCacheRemoved": true,
+  "offline": {
+    "state": {
+      "key": "petAwakening",
+      "schemaVersion": 1,
+      "byPet": {
+        "pet_ur17": {
+          "startedAt": "2026-10-01T21:49:42.027Z",
+          "observingSince": "2026-10-01T21:49:42.027Z",
+          "status": "awakened",
+          "eventKeys": [
+            "task:synthetic-a",
+            "task:synthetic-b",
+            "habit:synthetic:2026-10-02"
+          ],
+          "expeditionKey": "expedition:synthetic",
+          "tokenGrantedAt": "2026-10-01T21:49:42.028Z",
+          "tokenConsumedAt": "2026-10-01T21:49:42.030Z",
+          "awakenedAt": "2026-10-01T21:49:42.030Z",
+          "form": "initial"
+        }
+      },
+      "activePetId": null,
+      "usedEventKeys": [
+        "task:synthetic-a",
+        "task:synthetic-b",
+        "habit:synthetic:2026-10-02",
+        "expedition:synthetic"
+      ]
+    },
+    "images": [
+      {
+        "src": "assets/pets/awakening/pet_ur17-initial-5159caaf1607-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur17-initial-5159caaf1607-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "./assets/expeditions/cloudrest_trail.webp",
+        "width": 960,
+        "height": 540
+      }
+    ],
+    "backupVersion": "3.5.5"
+  }
+}

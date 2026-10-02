@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "feature": "劍隱山河二十隻覺醒與雲棧古道地圖重製 · V3.5.5",
+  "sourceCommit": "38242746077131d08d7d4c38b8e0af3470e50e81",
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/?awakening-review=dd1896c0b4d6",
+  "baseline": {
+    "verifiedAt": "2026-10-01T21:47:48.053Z",
+    "url": "https://leotsouo.github.io/questnote-pwa/",
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f95a-9870-7700-ae37-85a36119aae0\\today-habits-artifacts\\1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+    "artifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+    "manifestSha256": "55e7e3551ee7fd2e4ef5e2c58353ab9de06064d2bfd2465d231302128d38b0a4",
+    "sourceCommit": "377b62ffeef20328b7f3b7ebe9d5acd5ee9b67cc",
+    "version": "3.5.4",
+    "mainCommit": "38288b3",
+    "contentBundleSha256": "509f8172c0a5f1f29513b10b9bcf46ef5a64668ef9970d1eac35f16f62f41223",
+    "contentBundleSemanticSha256": "e560670c83393125494fb9456ea30678864a31e0a986af1da67da863ce20349e",
+    "publishedCatalogVerified": true
+  },
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-releases\\dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7",
+      "artifactId": "dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7",
+      "manifestSha256": "f6caf31b83f0c2ace5e120075e6b8d9d7a62ba6e201ab83927e0aef2d10df1db",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-awakening-releases\\24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+      "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+      "manifestSha256": "113b2182285c641a9930c76879f0fe1f612a1a38a5df5723318c7e18520cf0c3",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "functional": {
+      "status": "pass",
+      "evidence": "11 guarded actual-app checks; eligibility, inherited Lv5, deduplication, pause/switch, simultaneous journey, expedition participation and latest Today habit UI; browser-acceptance.json sha256=f337a9f70487fce5145ca373247b7680c10b8f190e723520396c3eeaf2abd81b"
+    },
+    "artworkAndAnimation": {
+      "status": "pass",
+      "evidence": "http://127.0.0.1:59069/awakening-review/; all 20 pairs, 40 normal/reduced scenes, actual-size originals, new open-mouth toad 2bf6ab94c0a0, skip/replay and 320px; human use confirmation pending; viewer-acceptance.json sha256=d55409d717af255ef0f65510d99774ea45400306c1c5b93e2c308e71925d2527; demo-acceptance.json sha256=c4a885fdd7e54e93e7df7a02544ccf06febda06e6c9cca716d9f1f6fab486e2a"
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "cloudrest 960x540 WebP visible in actual region card; old SVG and source preserved; five milestones and all economic values unchanged; pool-browser.json sha256=1e4e28e832bbcd41c2036786e5225917f025ea25ab19b02cf0ce036f44899183; formal-content-preserved.json sha256=a7ee38f5ce2df3041ec6b75768ee545998373d4c3299c4f2e671445c93ece9c4"
+    },
+    "backupAndTransactions": {
+      "status": "pass",
+      "evidence": "native interrupted-transaction rollback; two-tab single ritual; old/new backup, titles and forms; latest formal 3.5.4 save retention; browser-acceptance.json sha256=f337a9f70487fce5145ca373247b7680c10b8f190e723520396c3eeaf2abd81b; update-offline.json sha256=9b5eaa0d30bf5629892cb689873c36f63bd62d98ab5b4f0931f8ae78dc0686a0"
+    },
+    "regressions": {
+      "status": "pass",
+      "evidence": "274 Node cases plus reveal-flow assertions; full pool, stories, crafts, gifts, dispatch, announcement and Today-habit regression; runtime-tests.log sha256=f24f88482abf615e1f1cc242e78c5bc53a91667ee8a9e3b0dbd15becae9e97b3; syntax-check.json sha256=9ab657799ce059e2056c3508bebf81d1d4986f89160e593728706413c8c0490d; content-validation.log sha256=f8bc4a5bc0e5a297b560f55d762817bead831f2c299db5770e0067ca3a6f8a99; image-validation.log sha256=35cd0124369d7387b7e6c9aca56446d2bb278f6b04356eb6b44caf3328c652a7; release-pipeline.log sha256=81a406f2821da9b6eb82cbee68724a481aba06c33c37d1d9fb0066669ab4c2bf; pool-browser.json sha256=1e4e28e832bbcd41c2036786e5225917f025ea25ab19b02cf0ce036f44899183; formal-content-preserved.json sha256=a7ee38f5ce2df3041ec6b75768ee545998373d4c3299c4f2e671445c93ece9c4"
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "12 profile/recovery cases; formal 3.5.4 -> proposed 3.5.5 native worker update, cache replacement, save retention and offline form/image/map/replay/backup; artifact-browser.json sha256=ff695b43726cb70c3bd3cca62058c4383e810c231a3a536eab32499e3c700e0b; update-offline.json sha256=9b5eaa0d30bf5629892cb689873c36f63bd62d98ab5b4f0931f8ae78dc0686a0"
+    },
+    "previewHttps": {
+      "status": "pass",
+      "evidence": "192 actual HTTPS bytes verified; fresh browser 80 form images, map, Today habits, replay and offline reload; Pages https://github.com/leotsouo/questnote-pwa-preview/actions/runs/36931393506 success, deployment 16076f1ae1ccd449f6de0e5218d4f346dcf8f906; preview-https.json sha256=084965dd6216004716be5a91b65a5f57b08774de390eed0dec9b5f6b569cc998; preview-https-browser.json sha256=126bc072ead04a682cb37b22dd14c47711fd37e6d7fd4aca96c140ec8f8c174d"
+    }
+  },
+  "reviewSurfaces": {
+    "viewer": "http://127.0.0.1:59069/awakening-review/",
+    "isolatedApp": "http://127.0.0.1:59069/awakening-demo/",
+    "map": "http://127.0.0.1:59069/awakening-review/#map-review",
+    "previewArtifactId": "dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7"
+  },
+  "publicationStatus": "Explicit publication authorized for reviewed package; deployment verification pending.",
+  "humanAcceptance": {
+    "reviewer": "使用者",
+    "acceptedAt": "2026-10-02T06:08:58Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "response": "審核通過"
+  },
+  "publicationAuthorization": {
+    "reviewer": "使用者",
+    "approvedAt": "2026-10-02T06:10:41Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "phrase": "可以發布",
+    "response": "**可以發布**"
+  }
+}

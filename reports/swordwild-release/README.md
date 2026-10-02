@@ -1,6 +1,6 @@
 # 劍隱山河 V3.5.3 整包驗收
 
-狀態：來源與不可變發布包已完成，隔離 HTTPS 預覽已部署並驗證。正式站仍為 V3.5.2；尚待使用者最終整包驗收及明確「可以發布」。
+狀態：使用者整包驗收通過並明確同意發布；正式 V3.5.3 已合併、部署並完成 HTTPS／快取更新／存檔與離線驗證。見 [正式發布紀錄](production-release.md)。
 
 - 20 位角色：N3／R5／SR5／SSR4／UR3；沿用已認可第三版 PNG，逐張 SHA-256 一致。三 UR 為玄翎重岳雕、丹砂鎮嶺蛤、素心劍猿。
 - 單抽100、機率55／30／10／3／2%、SSR+30／UR100保底；全員首抽開放，無解鎖贈寵。
@@ -29,7 +29,11 @@
 - reviewed source commit：`0d450279da0eb31aa01439ba7d875ee5ca28a173`。
 - candidate：`eaa3e4d2e525439b7c3dd430ad4a9421c1655f4d4776626a8fcb84c7ba8fa2c6`。
 - preview artifact：`5443bd90acc5b5f6dc14df844b365172b059d7fc1360f48099913ea1fd459c45`。
-- production artifact：`5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8`（尚未發布）。
+- production artifact：`5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8`（已正式發布）。
 - packageHash：`8dd5cbdce1e6ff6478a2f865a9e5f7dcde19ef1a1024ad20a4cc0b279c1ae12e`。
 
 使用者對這一整包驗收及明確同意發布後，才把相同packageHash寫入humanAcceptance及publicationAuthorization，重跑poolReleaseReview，取得releaseReady:true後合併來源及推送正式產物。沒有冒用圖片認可作為整包或正式發布同意。
+
+## 正式發布結果
+
+[發布紀錄](production-release.md)與[完整 pins](production-release.json)：PR #42 已合併，Pages 成功；488 Git 檔案、177 HTTPS 檔案、正式瀏覽器與 V3.5.2 → V3.5.3 存檔保留更新均通過。原人工驗收綁定保持不變。

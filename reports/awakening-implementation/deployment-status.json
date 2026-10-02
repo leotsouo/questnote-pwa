@@ -1,0 +1,41 @@
+{
+  "publicationStatus": "authorized-deployment-pending",
+  "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+  "runtimeSourceCommit": "38242746077131d08d7d4c38b8e0af3470e50e81",
+  "validatedSourceHead": "8af1890b258d09edaf1a8d8320bf097dc77912fa",
+  "sourceCi": {
+    "url": "https://github.com/leotsouo/questnote-pwa/actions/runs/36932221498",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "preview": {
+    "deploymentCommit": "16076f1ae1ccd449f6de0e5218d4f346dcf8f906",
+    "artifactId": "dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7",
+    "pagesUrl": "https://github.com/leotsouo/questnote-pwa-preview/actions/runs/36931393506",
+    "pagesConclusion": "success",
+    "httpsVerification": "passed"
+  },
+  "production": {
+    "currentVersion": "3.5.4",
+    "currentArtifactId": "1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842",
+    "proposedVersion": "3.5.5",
+    "proposedArtifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+    "featureMerged": false,
+    "featureDeployed": false
+  },
+  "latestMain": "98c72ae0a1a641d1d45e18b738bfe5b8a9f300fe",
+  "latestMainDelta": "Only V3.5.4 release receipt and documentation; merged to preserve maintained deployment history. No runtime/catalog/art changes from reviewed source.",
+  "humanAcceptance": {
+    "reviewer": "使用者",
+    "acceptedAt": "2026-10-02T06:08:58Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "response": "審核通過"
+  },
+  "publicationAuthorization": {
+    "reviewer": "使用者",
+    "approvedAt": "2026-10-02T06:10:41Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "phrase": "可以發布",
+    "response": "**可以發布**"
+  }
+}

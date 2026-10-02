@@ -1,0 +1,66 @@
+{
+  "testedAt": "2026-10-01T21:49:20.251Z",
+  "purpose": "guarded synthetic-only awakening functional acceptance",
+  "results": [
+    {
+      "name": "actual app starts; all twenty awakening entries load without existing save changes",
+      "ok": true,
+      "detail": {
+        "database": "QuestNoteTest-Onboarding-2a4f937b-c3d8-495a-9009-09eb15a03226",
+        "version": "3.5.5"
+      }
+    },
+    {
+      "name": "owned + Lv5 + claimed Lv5 gates and existing eligible progression",
+      "ok": true,
+      "detail": {
+        "missing": true,
+        "low": true,
+        "noStory": true,
+        "oldId": "a5b56708-6e96-4041-82fb-3c14a2d48ac0"
+      }
+    },
+    {
+      "name": "real task undo/recomplete keeps one credit; simultaneous daily companion agreement proceeds",
+      "ok": true
+    },
+    {
+      "name": "pause/switch/resume retains progress and excludes paused or used completions",
+      "ok": true
+    },
+    {
+      "name": "wrong region and absent participant do not count; actual team cloudrest claim yields exactly one token",
+      "ok": true
+    },
+    {
+      "name": "missing materials preserves trial; failed native transaction rolls back both ritual writes",
+      "ok": true
+    },
+    {
+      "name": "two tabs race for ritual: one success, one food/token consumption, preserved wallet and no auto-title equip",
+      "ok": true
+    },
+    {
+      "name": "actual mobile reader switches forms, replays/escapes animation, and remembers form after reload",
+      "ok": true
+    },
+    {
+      "name": "backup export/restore retains titles, progress and forms; malformed import does not overwrite",
+      "ok": true
+    },
+    {
+      "name": "all twenty stage portraits load; reduced/normal scenes are replayable visual-only and canonical art unchanged",
+      "ok": true
+    },
+    {
+      "name": "latest Today habit UI advances the active trial once across undo and recomplete",
+      "ok": true,
+      "detail": {
+        "habitId": "habit_1790891359531",
+        "trialCredit": 1,
+        "preservedAfterUndo": true
+      }
+    }
+  ],
+  "pageErrors": []
+}
