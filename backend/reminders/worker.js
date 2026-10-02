@@ -96,11 +96,19 @@ async function route(request, env) {
     if (body.revision < row.revision || (body.revision === row.revision && encoded !== row.state_json)) throw fail(409, '收到舊的提醒資料，請重試同步');
     let next = nextReminderAt(now, state.settings);
     const previous = row.state_json ? JSON.parse(row.state_json) : null;
-    if (previous && previous.settings.time === state.settings.time && previous.settings.timeZone === state.settings.timeZone
+    const sameSchedule = previous && previous.settings.time === state.settings.time && previous.settings.timeZone === state.settings.timeZone;
+    if (sameSchedule
       && row.next_at && row.next_at > now - 3600000) next = row.next_at;
-    if (row.last_day === zonedParts(next, state.settings.timeZone).date) next = nextReminderAt(next + 1, state.settings);
-    const changed = await env.DB.prepare('UPDATE installations SET revision = ?, state_json = ?, enabled = 1, next_at = ?, updated_at = ?, last_status = ? WHERE id = ? AND (revision < ? OR (revision = ? AND state_json = ?)) AND last_day IS ? RETURNING id')
-      .bind(body.revision, encoded, body.revision === row.revision ? row.next_at : next, now, 'enabled', row.id, body.revision, body.revision, encoded, row.last_day).first();
+    const priorDelivery = previous && !sameSchedule && body.revision > row.revision && row.last_day === zonedParts(next, state.settings.timeZone).date
+      ? await env.DB.prepare('SELECT status FROM deliveries WHERE installation_id = ? AND local_date = ?').bind(row.id, row.last_day).first() : null;
+    const rescheduleSkipped = priorDelivery?.status === 'skipped';
+    if (row.last_day === zonedParts(next, state.settings.timeZone).date && !rescheduleSkipped) next = nextReminderAt(next + 1, state.settings);
+    const updates = [env.DB.prepare('UPDATE installations SET revision = ?, state_json = ?, enabled = 1, next_at = ?, updated_at = ?, last_status = ?, last_day = ? WHERE id = ? AND (revision < ? OR (revision = ? AND state_json = ?)) AND last_day IS ? RETURNING id')
+      .bind(body.revision, encoded, body.revision === row.revision ? row.next_at : next, now, rescheduleSkipped ? 'enabled' : row.last_status || 'enabled', rescheduleSkipped ? null : row.last_day, row.id, body.revision, body.revision, encoded, row.last_day)];
+    if (rescheduleSkipped) updates.push(env.DB.prepare("UPDATE deliveries SET status = 'pending', attempts = 0, lease_until = 0, retry_at = 0 WHERE installation_id = ? AND local_date = ? AND status = 'skipped' AND EXISTS (SELECT 1 FROM installations WHERE id = ? AND revision = ? AND state_json = ? AND next_at = ?)")
+      .bind(row.id, row.last_day, row.id, body.revision, encoded, next));
+    // Publish the new future schedule and reset only its unsent delivery atomically.
+    const changed = (await env.DB.batch(updates))[0].results?.[0];
     if (!changed) throw fail(409, '同步版本已更新');
     return json({ revision: body.revision, syncedAt: now, nextAt: body.revision === row.revision ? row.next_at : next });
   }
@@ -145,7 +153,10 @@ export async function runSchedule(env, now = Date.now(), push = sendPush) {
     }
     const row = await env.DB.prepare('SELECT * FROM installations WHERE id = ?').bind(candidate.id).first();
     if (!row || !row.enabled || row.next_at !== candidate.next_at) {
-      await env.DB.prepare("UPDATE deliveries SET status = 'skipped' WHERE installation_id = ? AND local_date = ?").bind(candidate.id, date).run(); continue;
+      const rescheduledToday = row?.enabled && row.next_at > now
+        && zonedParts(row.next_at, JSON.parse(row.state_json).settings.timeZone).date === date;
+      await env.DB.prepare('UPDATE deliveries SET status = ?, lease_until = 0, attempts = MAX(0, attempts - 1), retry_at = 0 WHERE installation_id = ? AND local_date = ?')
+        .bind(rescheduledToday ? 'pending' : 'skipped', candidate.id, date).run(); continue;
     }
     const state = JSON.parse(row.state_json); const digest = buildDailyDigest(state, now);
     const deadline = Math.min(candidate.next_at + 3600000, nextReminderAt(candidate.next_at, { ...state.settings, time: '00:00' }));

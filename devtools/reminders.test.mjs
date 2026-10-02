@@ -21,7 +21,14 @@ function setup(t) {
     first: async () => db.prepare(sql).get(...args) || null,
     run: async () => db.prepare(sql).run(...args),
     all: async () => ({ results: db.prepare(sql).all(...args) }),
-  }; } }; } };
+  }; } }; }, async batch(statements) {
+    db.exec('BEGIN');
+    try {
+      const results = [];
+      for (const statement of statements) results.push(await statement.all());
+      db.exec('COMMIT'); return results;
+    } catch (error) { db.exec('ROLLBACK'); throw error; }
+  } };
   return { db, env: { DB: binding, ALLOWED_ORIGINS: 'https://app.test', API_RATE: { limit: async () => ({ success: true }) } } };
 }
 function request(path, method = 'GET', body = null, identity = {}) {
@@ -122,6 +129,62 @@ test('recovery never catches up after today\'s delivery window expires', async (
   db.prepare('UPDATE installations SET next_at = ?').run(now - 86400000);
   await runSchedule(env, now + 3600000, async () => { assert.fail('Expired reminders must not send'); });
   assert.equal(db.prepare('SELECT next_at FROM installations').get().next_at, now + 86400000);
+});
+test('changing to a later time can reschedule an unsent skipped day, but cannot resend an accepted day', async (t) => {
+  const originalClock = Date.now; let now = Date.parse('2026-10-01T00:05:00Z');
+  Date.now = () => now; t.after(() => { Date.now = originalClock; });
+  const { db, env } = setup(t);
+  const identity = await (await worker.fetch(request('/v1/reminder-installations', 'POST', {}), env)).json();
+  await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ tasks: [] }), identity), env);
+  db.prepare('UPDATE installations SET next_at = ?').run(now - 5 * 60000);
+  await runSchedule(env, now, async () => { assert.fail('Empty digest must not send'); });
+  await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ revision: 2, tasks: [] }), identity), env);
+  assert.equal(db.prepare('SELECT last_status FROM installations').get().last_status, 'skipped');
+  // Older frontend syncs could overwrite the summary status; the delivery record remains authoritative.
+  db.prepare("UPDATE installations SET last_status = 'enabled'").run();
+  const changed = await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ revision: 3, settings: { ...settings, time: '09:00' } }), identity), env);
+  assert.equal(changed.status, 200);
+  const target = Date.parse('2026-10-01T01:00:00Z');
+  assert.equal((await changed.json()).nextAt, target);
+  assert.equal(db.prepare('SELECT status FROM deliveries').get().status, 'pending');
+  now = target; let pushes = 0;
+  await runSchedule(env, now, async () => { pushes++; return { status: 201 }; });
+  const afterSent = await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ revision: 4, settings: { ...settings, time: '10:00' } }), identity), env);
+  assert.equal((await afterSent.json()).nextAt, Date.parse('2026-10-02T02:00:00Z'));
+  await runSchedule(env, Date.parse('2026-10-01T02:00:00Z'), async () => { pushes++; return { status: 201 }; });
+  assert.equal(pushes, 1);
+});
+test('moving a claimed unsent reminder to a future time keeps that day eligible', async (t) => {
+  const originalClock = Date.now; let now = Date.parse('2026-09-30T23:50:00Z');
+  Date.now = () => now; t.after(() => { Date.now = originalClock; });
+  const { db, env } = setup(t);
+  const identity = await (await worker.fetch(request('/v1/reminder-installations', 'POST', {}), env)).json();
+  await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input(), identity), env);
+  const binding = env.DB; let moved = false;
+  env.DB = { ...binding, prepare(sql) {
+    const statement = binding.prepare(sql);
+    if (sql !== 'SELECT * FROM installations WHERE id = ?') return statement;
+    return { bind(...args) {
+      const bound = statement.bind(...args);
+      return { ...bound, async first() {
+        if (!moved) {
+          moved = true;
+          const response = await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ revision: 2, settings: { ...settings, time: '08:30' } }), identity), env);
+          assert.equal(response.status, 200);
+        }
+        return bound.first();
+      } };
+    } };
+  } };
+  now = Date.parse('2026-10-01T00:00:00Z'); let pushes = 0;
+  const push = async () => { pushes++; return { status: 201 }; };
+  await runSchedule(env, now, push);
+  assert.equal(pushes, 0);
+  assert.equal(db.prepare('SELECT status FROM deliveries').get().status, 'pending');
+  assert.equal(db.prepare('SELECT attempts FROM deliveries').get().attempts, 0);
+  now += 30 * 60000;
+  await runSchedule(env, now, push);
+  assert.equal(pushes, 1);
 });
 test('scheduler health requires a completed background run, and reports a stalled or failed scheduler', async (t) => {
   const { db, env } = setup(t); const now = Date.now(); env.VAPID_PRIVATE_KEY = 'test-only';
