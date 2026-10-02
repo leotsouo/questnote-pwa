@@ -234,14 +234,14 @@ body[data-local-art-review] #app :is(#view-gacha, #view-collection):has(> .ident
 .identity-surface .sanctuary-heading h2 { font-family:var(--font-display); font-size:1.2rem; color:#f8edda; }
 .identity-surface .sanctuary-heading span { color:var(--sanctuary-accent); font-size:.65rem; letter-spacing:.08em; }
 .identity-surface .summon-sanctuary .hero-card { display:block; border:1px solid #dfc89c66; border-radius:14px; box-shadow:0 0 0 3px #0d1c2433; background:#0e202acc; color:#f8edda; }
-.identity-surface .hero-portal { display:block; position:relative; background:radial-gradient(ellipse,#9eb9b726,transparent 70%); overflow:hidden; }
-.identity-surface .summon-sanctuary .hero-art { aspect-ratio:1.5; background:transparent; }
+.identity-surface .hero-portal { display:block; position:relative; }
+.identity-surface .summon-sanctuary .hero-art { width:100%; height:auto; aspect-ratio:1; object-fit:contain; background:transparent; }
 .identity-surface .summon-sanctuary .hero-caption { padding:12px 14px; display:block; }
 .identity-surface .summon-sanctuary .hero-caption .pet-name { display:block; font-size:1.5rem; }
 .identity-surface .summon-sanctuary .pet-title { color:#d6cdbd; margin-top:4px; font-size:.8rem; }
 .identity-surface .summon-sanctuary .identity-cue { color:#d6cdbd; margin-top:7px; font-size:.7rem; }
 .identity-surface .summon-sanctuary .rarity { color:var(--sanctuary-accent); border-color:#d6bc8666; font-size:.7rem; }
-.identity-surface .summon-sanctuary .art-label { font-size:.6rem; top:8px; left:8px; background:#0a192be6; color:#eee4cf; border:1px solid #dfc89c33; }
+.identity-surface .summon-sanctuary .art-label { position:static; display:block; width:fit-content; max-width:100%; margin:0 0 8px; padding:0; font-size:.6rem; line-height:1.5; overflow-wrap:anywhere; background:transparent; color:#d6cdbd; }
 .identity-surface .summon-sanctuary .summon-dock { margin-top:14px; gap:7px; }
 .identity-surface .summon-sanctuary .summon-buttons { grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:9px; }
 .identity-surface .summon-sanctuary .summon-buttons button { display:grid; align-content:center; justify-items:center; gap:3px; padding:10px 8px; min-height:62px; border:1px solid #d6bc8670; border-radius:12px; background:#0e202a; color:#f3e7d1; }

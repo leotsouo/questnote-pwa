@@ -80,8 +80,8 @@ function renderPool() {
     <div class="sanctuary-scenery" aria-hidden="true"></div>
     <header class="sanctuary-heading"><h2>${escapeHtml(selected.name)}</h2><span>${escapeHtml(selected.presentation?.badge || '星光相遇')}</span></header>
     <div class="pool-layout"><div class="pool-stage"><button class="hero-card rank-${hero.rarity}" data-pet="${hero.id}" aria-label="預覽 ${escapeHtml(identityLabel(hero, owned(hero)))}">
-      <span class="art-label">本池焦點 · 點擊認識</span><span class="hero-portal">${imageHtml(hero, 'stage', false, 'hero-art')}</span>
-      <span class="hero-caption"><span class="pet-name">${escapeHtml(hero.name)}</span><span class="pet-title">${escapeHtml(hero.title)}</span>${cues(hero)}</span>
+      <span class="hero-portal">${imageHtml(hero, 'stage', false, 'hero-art')}</span>
+      <span class="hero-caption"><span class="art-label">本池焦點 · 點擊認識</span><span class="pet-name">${escapeHtml(hero.name)}</span><span class="pet-title">${escapeHtml(hero.title)}</span>${cues(hero)}</span>
     </button><div class="summon-dock"><div class="summon-buttons"><button class="primary" data-identity-action="summon" data-pet-id="${hero.id}"><span>啟動相遇</span><small>單次 · ${selected.cost} 星塵</small></button><button data-identity-action="summon-ten"><span>十連相遇</span><small>十次 · ${selected.cost * 10} 星塵</small></button></div><p>展示試演 · 星塵不扣除</p></div></div></div></section>
     <div class="pool-copy"><p class="eyebrow">${escapeHtml(selected.presentation?.badge || '持續開放的相遇')}</p><h2>${escapeHtml(selected.name)}</h2>
       <p class="pool-lore">${escapeHtml(selected.presentation?.tagline || '循著星光，認識願意與你一起前進的夥伴。')}</p>
