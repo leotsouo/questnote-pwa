@@ -66,5 +66,11 @@
     "map": "http://127.0.0.1:59069/awakening-review/#map-review",
     "previewArtifactId": "dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7"
   },
-  "publicationStatus": "Awaiting human whole-package acceptance and explicit 可以發布. Formal V3.5.4 remains active."
+  "publicationStatus": "Human whole-package acceptance passed; awaiting explicit publication authorization. Formal V3.5.4 remains active.",
+  "humanAcceptance": {
+    "reviewer": "使用者",
+    "acceptedAt": "2026-10-02T06:08:58Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "response": "審核通過"
+  }
 }
