@@ -2,7 +2,7 @@
   "pools": [
     {
       "id": "standard",
-      "name": "標準",
+      "name": "星旅之原",
       "active": true,
       "cost": 100,
       "rates": {

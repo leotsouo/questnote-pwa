@@ -165,6 +165,8 @@ v1 **不自動搶占 stale lock，也不保證任何硬中斷後可無人值守�
 
 ## 驗證
 
+卡池入場文字、SSR／UR 時長、下一位交接、覺醒雙形態及十連略過的共用標準見 `docs/new-card-pool-sop.md`「卡池畫面與動畫的共同驗收規格」。`checks.animation.evidence` 應連到實際量測與互動紀錄；來源記憶體試演不能充當 pinned artifact 或人工最終驗收。最新來源試演另執行 `node --test devtools/companion-ceremony.test.mjs`，但 Node checks 不代替逐池動畫觀察與真機項目。
+
 ```text
 node --test devtools/card-pool-pipeline.test.mjs
 node devtools/build-pet-images.mjs check

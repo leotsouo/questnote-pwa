@@ -6,9 +6,9 @@ import { setTheme, applyThemeToDocument, setFontSize, applyFontSizeToDocument } 
 if (!LOCAL_ART_PREVIEW) throw new Error('This viewer requires its local session server');
 import { mergeAllPetsWithLore } from '../src/loreService.js';
 import { RARITIES, MAX_DISPLAY_STARS, poolCandidates, identityLabel, basePetRate, seedDisplayCollection, publicIntro, normalGreeting, prepareDisplayBatch, tenPreviewPets, duplicateNote, setDisplayCompanion } from './companion-identity-model.js';
-import { AWAKENING_PET_IDS } from '../src/petAwakeningCore.js';
 import { normalizePoolDefinition } from '../src/poolContentContract.js';
-import { createPoolScenery, ceremonyPresentation, playCeremonyEntry, playCeremonyRitual, playCeremonyCharacter, playCeremonyAwakening } from './companion-ceremony.js';
+import { createPoolScenery, ceremonyPresentation, playCeremonyEntry, playCeremonyRitual, playCeremonyCharacter, playCeremonyAwakening, playCeremonyPetAwakening } from './companion-ceremony.js';
+import { delay } from '../src/imagePreloadService.js';
 
 let screen = document.getElementById('identity-screen');
 let refreshApp = null;
@@ -19,6 +19,9 @@ const escapeHtml = (text) => String(text ?? '').replace(/[&<>"']/g, (char) => ({
 const asset = (pet, size = 'card') => new URL('../' + (pet.imageVariants?.[size] || pet.image), import.meta.url).href;
 const byId = (id) => pets.find((pet) => pet.id === id);
 let pets = [];
+let canonicalPets = [];
+let awakeningCatalog = null;
+const previewForms = new Map();
 let pools = [];
 let poolId = 'lionheart_inverse_oath';
 let collectionScope = 'all';
@@ -90,6 +93,7 @@ function renderPool() {
       <div><button class="text-button" data-identity-action="preview">查看全部夥伴</button><br><button class="text-button" data-identity-action="probability">機率與卡池規則</button></div>
       <button class="text-button" data-identity-action="replay-debut">重看卡池登場</button>
       ${selected.unlockExpansion ? '<button class="text-button" data-identity-action="replay-awakening">試看晨醒花庭</button>' : ''}
+      ${selected.id === 'swordwild_shanhe_v3' ? '<section class="awakening-preview-card"><h3>一諾同行 · 羈絆覺醒</h3><p>二十位夥伴都有初遇與覺醒形態。正式旅程需親密度 Lv.5、完成同行故事與守諾試煉；這裡可直接檢視既有插畫與演出。</p><button data-identity-action="preview-awakening">預覽羈絆覺醒</button><p class="subtle">展示預覽 · 不消耗材料、不授予稱號</p></section>' : ''}
     </div>
     <div class="section-heading"><h2>也在這裡等你</h2><span class="subtle">焦點展示</span></div>
     <div class="support-grid">${support.slice(0, 3).map((pet) => `<button class="mini-card" data-pet="${pet.id}" aria-label="${escapeHtml(identityLabel(pet, owned(pet)))}">${imageHtml(pet)}<span class="pet-name">${escapeHtml(pet.name)}</span>${cues(pet)}</button>`).join('')}</div>
@@ -159,10 +163,14 @@ function petDetail(pet, returnToBatch = false) {
   const entry = collection.get(pet.id);
   const isOwned = !!entry;
   const species = { griffin:'格里芬', biomechanical_chimera:'生體機械奇美拉' }[pet.speciesType] || '';
-  showDialog(isOwned ? '夥伴手記' : '初識夥伴', `${imageHtml(pet,'stage',false,'detail-art')}
+  const awakening = awakeningCatalog?.pets.find((row) => row.petId === pet.id);
+  const form = previewForms.get(pet.id) || 'initial';
+  const official = canonicalPets.find((row) => row.id === pet.id) || pet;
+  const artwork = awakening && form === 'awakened' ? awakening.awakenedImage ? { ...pet, image:awakening.awakenedImage.original, imageVariants:awakening.awakenedImage } : official : pet;
+  showDialog(isOwned ? '夥伴手記' : '初識夥伴', `${imageHtml(artwork,'stage',false,'detail-art')}
     <div class="detail-identity"><h3 class="pet-name">${escapeHtml(pet.name)}</h3><p class="pet-title">${escapeHtml(pet.title)}</p>${cues(pet)}<p class="subtle" style="margin-top:10px">${escapeHtml([pet.element ? `${pet.element}屬性` : '',species].filter(Boolean).join(' · '))}</p></div>
     ${isOwned ? `<div class="companion-actions">${entry.nickname ? `<p class="subtle">你的稱呼：${escapeHtml(entry.nickname)} · 日常陪伴使用暱稱</p>` : ''}<button class="${entry.isCompanion ? '' : 'primary'}" data-identity-action="set-companion" data-pet-id="${pet.id}" ${entry.isCompanion ? 'disabled' : ''}>${entry.isCompanion ? '正在與你同行' : '設為陪伴'}</button><p class="subtle">切換後，首頁會顯示這位同行者；重新整理可重設。</p></div>` : ''}
-    ${AWAKENING_PET_IDS.includes(pet.id) ? '<p class="subtle">目前預覽：初始形態 · 覺醒後仍是同一位夥伴</p>' : ''}
+    ${awakening ? `<section class="detail-section"><h3>羈絆覺醒 · 形態展示</h3><p>目前預覽：${form === 'awakened' ? '覺醒相' : '初遇相'} · 覺醒後仍是同一位夥伴</p><div class="awakening-form-options"><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="initial" aria-pressed="${form === 'initial'}">初遇相</button><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="awakened" aria-pressed="${form === 'awakened'}">覺醒相</button><button data-identity-action="pet-awakening-preview" data-pet-id="${pet.id}">試看覺醒演出</button></div><p>展示預覽 · 不消耗材料、不授予稱號。正式覺醒須完成親密度與守諾試煉。</p></section>` : ''}
     <p class="detail-copy">${escapeHtml(isOwned ? pet.lore : publicIntro(pet))}</p>
     ${isOwned ? `<dl class="detail-stats"><div><dt>升星</dt><dd>${entry.stars} 星</dd></div><div><dt>親密度</dt><dd>Lv.${entry.bondLevel}</dd></div><div><dt>此夥伴碎片</dt><dd>${entry.fragments}</dd></div></dl>` : ''}
     ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p>${normalGreeting(pet) ? `<blockquote>${escapeHtml(normalGreeting(pet))}</blockquote>` : ''}</section>` : ''}
@@ -260,6 +268,7 @@ async function startReveal(pet, stepByStep = false) {
     if (ritual.skipped) { presentResult(batch.results[0]); phase('result'); return; }
     const character = await playCeremonyCharacter(pool(), batch.results[0], { reduceMotion: reduced() });
     presentResult(batch.results[0], false, character.artworkShown);
+    document.querySelector('.reveal-shell').dataset.characterDuration = String(character.duration || 0);
     if (character.skipped) phase('result');
   } finally { displayBusy = false; }
 }
@@ -317,10 +326,25 @@ function activationHaptic() {
 
 async function presentBatchCharacter() {
   if (!activeBatch) return;
+  const batch = activeBatch;
+  if (reveal.open && !reduced()) {
+    reveal.querySelectorAll('.reveal-actions button').forEach((button) => { button.disabled = true; });
+    reveal.querySelector('.reveal-shell')?.classList.add('is-leaving');
+    await delay(240);
+    if (activeBatch !== batch || batch.summary) return;
+  }
+  const curtain = document.createElement('div');
+  curtain.className = 'ceremony-transition';
+  curtain.setAttribute('aria-hidden','true');
+  document.body.append(curtain);
   if (reveal.open) reveal.close();
-  const result = activeBatch.queue[activeBatch.index];
-  const character = await playCeremonyCharacter(pool(), result, { reduceMotion: reduced(), index: activeBatch.index, count: activeBatch.queue.length });
-  character.skipped ? showBatchSummary() : presentResult(result, false, character.artworkShown);
+  try {
+    const result = batch.queue[batch.index];
+    const character = await playCeremonyCharacter(pool(), result, { reduceMotion: reduced(), index: batch.index, count: batch.queue.length });
+    if (activeBatch !== batch || batch.summary) return;
+    character.skipped ? showBatchSummary() : presentResult(result, false, character.artworkShown);
+    if (!character.skipped) document.querySelector('.reveal-shell').dataset.characterDuration = String(character.duration || 0);
+  } finally { curtain.remove(); }
 }
 
 async function enterPool(replay = false) {
@@ -369,6 +393,27 @@ document.addEventListener('click', async (event) => {
   if (action === 'summon') startReveal(byId(button.dataset.petId));
   if (action === 'summon-ten') startTen();
   if (action === 'replay-debut') enterPool(true);
+  if (action === 'preview-awakening') petDetail(byId(presentation().heroPetId));
+  if (action === 'awakening-form') {
+    previewForms.set(button.dataset.petId, button.dataset.form);
+    petDetail(byId(button.dataset.petId), detailReturnsToBatch);
+    dialog.querySelector(`[data-form="${button.dataset.form}"]`)?.focus();
+  }
+  if (action === 'pet-awakening-preview' && !displayBusy) {
+    const petId = button.dataset.petId;
+    const entry = awakeningCatalog.pets.find((row) => row.petId === petId);
+    const fromBatch = detailReturnsToBatch;
+    displayBusy = true;
+    dialog.close();
+    if (reveal.open) reveal.close();
+    try {
+      await playCeremonyPetAwakening(entry, canonicalPets.find((row) => row.id === petId), reduced());
+      previewForms.set(petId,'awakened');
+      if (fromBatch && activeBatch) showBatchSummary();
+      petDetail(byId(petId),fromBatch);
+      dialog.querySelector('[data-identity-action="pet-awakening-preview"]')?.focus();
+    } finally { displayBusy = false; }
+  }
   if (action === 'replay-awakening' && !displayBusy) {
     displayBusy = true;
     try { await playCeremonyAwakening(pool(), pets, reduced()); } finally { displayBusy = false; }
@@ -470,6 +515,8 @@ async function commitCollection() {
 installLocalIdentityRenderer((name, state, refresh, actions) => {
   refreshApp = refresh;
   appActions = actions;
+  canonicalPets = state.allPets;
+  awakeningCatalog = state.awakeningCatalog;
   pets = state.allPets.map((pet) => initialAwakeningPortrait(pet, state.awakeningCatalog));
   pools = state.poolsData.pools.filter((row) => row.active).map(normalizePoolDefinition);
   collection = new Map(state.enrichedCollection.filter((pet) => pet.owned).map((pet) => [pet.id, {

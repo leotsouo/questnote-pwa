@@ -270,12 +270,17 @@ function durationForTheme(theme, reduce, presentationKey) {
   return DURATION.SSR;
 }
 
+/** The identity viewer gives every world the same unhurried SSR/UR envelope. */
+export function identityRevealDuration(rarity, reduced = false) {
+  return reduced ? (rarity === 'UR' ? 750 : 550) : rarity === 'UR' ? 4500 : 2500;
+}
+
 /**
  * 建立演出 overlay DOM。
  * @param {{ rarity: string, pet: object|null, reduceMotion: boolean, theme?: string, progressText?: string, fallback?: boolean }} options
  * @returns {HTMLDivElement}
  */
-export function createSummonRevealOverlay({ rarity, pet, reduceMotion, theme, progressText = '', fallback = false, presentationKey }) {
+export function createSummonRevealOverlay({ rarity, pet, reduceMotion, theme, progressText = '', fallback = false, presentationKey, sceneFactory }) {
   const resolvedTheme = theme || resolveRevealTheme(pet, { rarity, pet });
   const isUR = rarity === 'UR' || resolvedTheme !== 'ssr';
   const overlay = document.createElement('div');
@@ -341,6 +346,11 @@ export function createSummonRevealOverlay({ rarity, pet, reduceMotion, theme, pr
   if (!fallback && (presentationKey === 'swordwild_shanhe' || Object.hasOwn(shanheMotifs, resolvedTheme))) {
     overlay.classList.add('is-shanhe-reveal');
     overlay.querySelector('.summon-reveal-bg').replaceWith(createSwordwildShanheScene(shanheMotifs[resolvedTheme] || 'ink'));
+  }
+  if (!fallback && sceneFactory) {
+    const scene = sceneFactory();
+    overlay.dataset.encounterWorld = scene.dataset.world;
+    overlay.querySelector('.summon-reveal-bg')?.replaceWith(scene);
   }
   const frame = overlay.querySelector('.summon-reveal-pet-frame');
   if (!fallback && ['caramel', 'cream'].includes(resolvedTheme)) {
@@ -444,6 +454,7 @@ export async function playSummonReveal({
   forceFallback = false,
   presentationKey,
   identityHandoff = false,
+  sceneFactory,
 } = {}) {
   void mode;
   void results;
@@ -495,6 +506,7 @@ export async function playSummonReveal({
         progressText,
         fallback: useFallback,
         presentationKey,
+        sceneFactory,
       });
     } catch (createErr) {
       console.warn('[SummonReveal] overlay 建立失敗，改用 fallback', createErr);
@@ -523,7 +535,7 @@ export async function playSummonReveal({
 
     const duration = useFallback
       ? DURATION.fallbackReady
-      : durationForTheme(resolvedTheme, reduce, presentationKey);
+      : identityHandoff ? identityRevealDuration(rarity, reduce) : durationForTheme(resolvedTheme, reduce, presentationKey);
 
     await new Promise((resolve) => {
       let completed = false;
@@ -538,7 +550,6 @@ export async function playSummonReveal({
         skipBtn?.removeEventListener('click', onButton);
         overlay.removeEventListener('click', onOverlayClick);
         document.removeEventListener('keydown', onKey, true);
-        overlay.removeEventListener('animationend', onAnimationEnd);
         try {
           controller?.abort();
         } catch {
@@ -601,18 +612,11 @@ export async function playSummonReveal({
         }
       };
 
-      const onAnimationEnd = () => {
-        // Lionheart has a staged wing-to-card sequence. A decorative child ending
-        // must not reveal the card early or shorten the bounded presentation.
-        if (overlay.classList.contains('is-lionheart-reveal')) return;
-        // 僅作就緒輔助；真正關閉仍需使用者或略過，且冪等
-        if (!ready) enterReady();
-      };
-
       skipBtn?.addEventListener('click', onButton);
       overlay.addEventListener('click', onOverlayClick);
       document.addEventListener('keydown', onKey, true);
-      overlay.addEventListener('animationend', onAnimationEnd);
+      // Only the bounded presentation timer completes a reveal. Decorative
+      // animationend events (including the overlay's 260ms fade) are not cues.
       trackTimer(setTimeout(enterReady, duration));
 
       activeFinish = (opts = {}) => {

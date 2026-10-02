@@ -189,7 +189,7 @@ function createParticles(count, className) {
  * 建立主題召喚 overlay（文字一律 textContent）
  * @param {{ mode: string, reduceMotion: boolean, highestRarity: string }} opts
  */
-function createOverlay({ mode, reduceMotion, highestRarity, poolName, animationKey }) {
+function createOverlay({ mode, reduceMotion, highestRarity, poolName, animationKey, sceneFactory }) {
   const glacier = animationKey === 'glacier_arrival';
   const overlay = document.createElement('div');
   overlay.className = 'dream-bloom-overlay';
@@ -246,6 +246,7 @@ function createOverlay({ mode, reduceMotion, highestRarity, poolName, animationK
     overlay.querySelector('.dream-bloom-bg').replaceWith(animationKey === 'lionheart_inverse_oath' ? createLionheartScene() : animationKey === 'swordwild_shanhe' ? createSwordwildShanheScene() : glacier ? createGlacierArrivalScene() : createHoneylightSugarScene());
     overlay.querySelectorAll('[data-role="dust"], [data-role="ripple"], [data-role="buds"], [data-role="crest"]').forEach((node) => node.remove());
   }
+  if (sceneFactory) overlay.querySelector('.dream-bloom-bg')?.replaceWith(sceneFactory());
 
   return overlay;
 }
@@ -406,7 +407,7 @@ export async function playThemedSummon(options = {}) {
       delay(reduce ? 100 : 200),
     ]);
 
-    overlay = createOverlay({ mode, reduceMotion: reduce, highestRarity, poolName: options.poolName, animationKey });
+    overlay = createOverlay({ mode, reduceMotion: reduce, highestRarity, poolName: options.poolName, animationKey, sceneFactory: options.sceneFactory });
     activeOverlay = overlay;
     lockScroll();
     document.body.appendChild(overlay);
@@ -633,7 +634,7 @@ const DEBUT_DUST_COUNT = { full: 8, short: 3, reduced: 0 };
  * 永眠花海卡池入場演出
  * 流程：長夜沉幕 → 鏡池微光 → 月皇花甦醒 → 台詞 → 停在完整畫面等待點擊 → 關閉時化開成主畫面
  * 動畫播完後需使用者點擊／Esc／繼續才關閉；略過可提早結束。
- * @param {{ poolName?: string, presentation?: object, reduceMotion?: boolean, full?: boolean }} options
+ * @param {{ poolName?: string, presentation?: object, reduceMotion?: boolean, full?: boolean, sceneFactory?: Function }} options
  */
 export async function playPoolDebutPresentation(options = {}) {
   const lionheart = options.presentation?.animationKey === 'lionheart_inverse_oath';
@@ -652,6 +653,7 @@ export async function playPoolDebutPresentation(options = {}) {
 
   const overlay = document.createElement('div');
   overlay.className = 'dream-debut-overlay';
+  overlay.dataset.layout = 'shared';
   overlay.dataset.animation = lionheart ? 'lionheart_inverse_oath' : options.presentation?.animationKey === 'swordwild_shanhe' ? 'swordwild_shanhe' : sugar ? 'honeylight_sugar' : glacier ? 'glacier_arrival' : 'dream_bloom';
   if (reduce) overlay.classList.add('is-reduced');
   if (!full) overlay.classList.add('is-short');
@@ -679,6 +681,7 @@ export async function playPoolDebutPresentation(options = {}) {
       </div>
     </div>
     <div class="dream-debut-copy">
+      <h2 class="pool-entry-name"></h2>
       <p class="dream-debut-line" data-role="line">
         <span class="dream-debut-line__seg" data-seg="a"></span>
         <span class="dream-debut-line__seg" data-seg="b"></span>
@@ -693,7 +696,9 @@ export async function playPoolDebutPresentation(options = {}) {
   if (lionheart) overlay.querySelector('.dream-debut-stage').replaceWith(createLionheartScene());
   if (glacier) overlay.querySelector('.dream-debut-stage').replaceWith(createGlacierArrivalScene());
   if (sugar) overlay.querySelector('.dream-debut-stage').replaceWith(createHoneylightSugarScene());
-  const lines = options.presentation?.debutLines || [];
+  if (options.sceneFactory) overlay.querySelector('.dream-debut-stage')?.replaceWith(options.sceneFactory());
+  overlay.querySelector('.pool-entry-name').textContent = options.poolName || '卡池';
+  const lines = (options.presentation?.debutLines || []).filter((line) => line !== options.poolName);
   overlay.querySelectorAll('.dream-debut-line__seg').forEach((element, index) => {
     element.textContent = lines[index] || '';
   });

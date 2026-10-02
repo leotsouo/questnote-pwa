@@ -2,7 +2,11 @@
 
 本機網址：http://127.0.0.1:4193/ 。執行 node devtools/companion-app-server.mjs 可重新啟動。
 
-從 origin/main 8c9a3edae21fbad75c926cfb337d44c660d9a821（來源 V3.5.10）建立 codex/companion-app-art-test；本分支標示 V3.5.13。此為本機可操作的完整 App 測試版，未 push、合併或發布。
+從 origin/main 8c9a3edae21fbad75c926cfb337d44c660d9a821（來源 V3.5.10）建立 codex/companion-app-art-test；本分支標示 V3.5.14。此為本機可操作的完整 App 測試版，未 push、合併或發布。
+
+V3.5.14 統一入場文字版型、SSR 2.5 秒／UR 4.5 秒及 240ms 下一位交接，接回二十位劍隱山河覺醒預覽；標準改名星旅之原，星圖山徑與永眠花海鏡池場景重新設計。六池、三套 Theme、320px／200% 字級及鍵盤已實測，317 項 Node checks 通過。最新證據與工程／人工驗收狀態見 [ceremony-v3-review.md](ceremony-v3-review.md)，共同規格已寫入新卡池 SOP。
+
+下方保留 V3.5.11–13 歷史紀錄。舊的「標準」名稱、沿用鏡池及 607px 測量以最新報告為準；舊截圖與測試紀錄不覆寫。
 
 V3.5.13 修正焦點標籤被插畫遮住，並將方形原圖完整填滿卡片寬度；393 × 852 三套 Theme 的召喚按鈕底部約 731px，仍在首屏。最新驗證與截圖見 [image-layout-repair.md](image-layout-repair.md)，下方儀式版 607px 的測量保留作為 V3.5.12 歷史證據。
 
