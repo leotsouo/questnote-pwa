@@ -3,6 +3,10 @@
 日期：2026-09-30。狀態：已實作 V3.4.27，獨立 Cloudflare Worker／D1 已部署；網站發布與實機收件狀態見發布紀錄。
 來源：fetch 後的 `origin/main`，`e34672242db6c9a79f199d59d3dbdd4cc6c64e13`。
 
+2026-10-02 通知修復：正式環境已到期的訂閱沒有每日發送紀錄，近兩天日誌只見前景 API 呼叫。重新以 Wrangler 註冊等效的每分鐘 Cron `*/1 * * * *`；新增私密資料庫中的單列排程健康記錄，`GET /health` 與授權的 `/status` 提供最近啟動／完成時間及健康狀態。`ready` 僅代表推播金鑰就緒，`scheduler.healthy` 才代表最近五分鐘完成過背景排程；讀取 API 不會刷新這份記錄。另修正漏掉前一天後直接跳過今天的恢復問題，並以實際執行時間判斷通知是否過期。
+
+本機驗證：`npm run test:reminders` 與 `npm run test:reminders:runtime`。後者使用記憶體 D1 與攔截所有外部推播的 workerd，直接呼叫部署模組的 scheduled handler；同時驗證 Apple 與 Android 供應商、無前景同步、漏日恢復與去重。正式部署驗證必須讀到背景排程更新的健康記錄；實機收件仍須 iPhone 與 Android 個別確認。
+
 ## 使用者會得到什麼
 
 前一天安排任務，隔天在自訂時間收到一則 QuestNote 系統通知，點開直接看到今日任務與習慣。App 不必保持開啟。使用者已確認 iPhone 與 Android 都必須支援，兩者均為第一版必要驗收平台。第一版預設每天 08:00、Asia/Taipei，可改時間；啟用前需使用者主動同意通知與提醒資料同步。

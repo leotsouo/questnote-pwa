@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { createECDH, randomBytes } from 'node:crypto';
 import webpush from 'web-push';
 import ece from 'http_ece';
-import worker, { runSchedule, sanitizeState, validateSubscription } from '../backend/reminders/worker.js';
+import worker, { runSchedule, runScheduled, sanitizeState, validateSubscription } from '../backend/reminders/worker.js';
 import { sendPush } from '../backend/reminders/push.js';
 import { REMINDER_DEFAULTS, projectReminderData, buildDailyDigest, nextReminderAt, shiftDate } from '../src/reminderRules.js';
 
@@ -102,6 +102,49 @@ test('temporary failures retry at most three times and do not block the next day
   for (const delay of [0, 60000, 120000, 180000]) await runSchedule(env, now + delay, async () => { sent++; return { status: 503 }; });
   assert.equal(sent, 3); assert.equal(db.prepare('SELECT status FROM deliveries').get().status, 'failed');
   assert.ok(db.prepare('SELECT next_at FROM installations').get().next_at > now + 3600000);
+});
+test('a missed earlier day recovers today within its window without skipping or duplicating today', async (t) => {
+  const { db, env } = setup(t); const now = seed(db); const messages = [];
+  db.prepare('UPDATE installations SET next_at = ?').run(now - 86400000);
+  const push = async (_sub, payload) => { messages.push(payload); return { status: 201 }; };
+  await runSchedule(env, now + 60000, push);
+  assert.equal(db.prepare('SELECT next_at FROM installations').get().next_at, now);
+  await runSchedule(env, now + 120000, push);
+  await runSchedule(env, now + 180000, push);
+  assert.equal(messages.length, 1);
+  assert.equal(messages[0].tag, 'daily-2026-10-01');
+  assert.deepEqual(db.prepare('SELECT local_date, status FROM deliveries ORDER BY local_date').all().map((r) => ({ ...r })), [
+    { local_date: '2026-09-30', status: 'skipped' }, { local_date: '2026-10-01', status: 'accepted' },
+  ]);
+});
+test('recovery never catches up after today\'s delivery window expires', async (t) => {
+  const { db, env } = setup(t); const now = seed(db);
+  db.prepare('UPDATE installations SET next_at = ?').run(now - 86400000);
+  await runSchedule(env, now + 3600000, async () => { assert.fail('Expired reminders must not send'); });
+  assert.equal(db.prepare('SELECT next_at FROM installations').get().next_at, now + 86400000);
+});
+test('scheduler health requires a completed background run, and reports a stalled or failed scheduler', async (t) => {
+  const { db, env } = setup(t); const now = Date.now(); env.VAPID_PRIVATE_KEY = 'test-only';
+  const health = async () => (await (await worker.fetch(request('/health'), env)).json()).scheduler;
+  assert.equal((await health()).healthy, false);
+  assert.equal((await health()).lastStatus, 'unverified');
+  await runScheduled(env, now - 60000, undefined, () => now);
+  assert.equal((await health()).healthy, true);
+  db.prepare('UPDATE scheduler_health SET completed_at = ?').run(now - 6 * 60000);
+  assert.equal((await health()).healthy, false);
+  const failing = { ...env, DB: { prepare(sql) {
+    if (sql.startsWith('SELECT * FROM installations')) throw new Error('fixture scheduler failure');
+    return env.DB.prepare(sql);
+  } } };
+  await assert.rejects(runScheduled(failing, now, undefined, () => now + 1), /fixture scheduler failure/);
+  assert.equal((await health()).lastStatus, 'failed');
+  assert.equal((await health()).healthy, false);
+});
+test('a delayed platform trigger uses execution time and does not send a stale notification', async (t) => {
+  const { db, env } = setup(t); const scheduledAt = seed(db); let pushes = 0;
+  await runScheduled(env, scheduledAt, async () => { pushes++; return { status: 201 }; }, () => scheduledAt + 3600001);
+  assert.equal(pushes, 0);
+  assert.equal(db.prepare('SELECT last_status FROM installations').get().last_status, 'skipped');
 });
 test('Web Push payload is encrypted and decrypts using only the receiving device key', async () => {
   const keys = webpush.generateVAPIDKeys(); let delivered;

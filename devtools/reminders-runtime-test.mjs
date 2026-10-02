@@ -4,18 +4,37 @@ import fs from 'node:fs/promises';
 import { createECDH, randomBytes } from 'node:crypto';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import webpush from 'web-push';
+import ece from 'http_ece';
+import { zonedParts } from '../src/reminderRules.js';
 const keys = webpush.generateVAPIDKeys(); const ec = createECDH('prime256v1'); ec.generateKeys();
-let pushes = 0;
-const fixtureScript = (await fs.readFile('backend/reminders/.dev-backups/reminder-worker/worker.js', 'utf8'))
-  .replace('console.error(JSON.stringify({ event: "reminder-api-failed" }))', 'console.error(error.message)');
+const auth = randomBytes(16); const pushes = [];
+const bundled = await fs.readFile('backend/reminders/.dev-backups/reminder-worker/worker.js', 'utf8');
+assert.ok(bundled.includes('worker_default as default'), 'Build the current Worker before running the runtime check');
+// This entry point exists only in the in-memory fixture, never in the deployed Worker.
+const fixtureScript = bundled.replace('worker_default as default', 'runtime_fixture as default') + `
+var runtime_fixture = {
+  ...worker_default,
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    if (url.pathname === '/__test/scheduled') {
+      await worker_default.scheduled({ scheduledTime: Number(url.searchParams.get('time')) }, env, ctx);
+      return new Response('scheduled');
+    }
+    return worker_default.fetch(request, env, ctx);
+  }
+};`;
+const config = JSON.parse(await fs.readFile('backend/reminders/wrangler.jsonc', 'utf8'));
 const mf = new Miniflare(convertV4MiniflareOptions({
-  modules: true, script: fixtureScript, compatibilityDate: '2026-09-30', compatibilityFlags: ['nodejs_compat'],
+  modules: true, script: fixtureScript, compatibilityDate: config.compatibility_date, compatibilityFlags: config.compatibility_flags,
   d1Databases: { DB: 'isolated-reminders-runtime' }, d1Persist: false,
   bindings: { ALLOWED_ORIGINS: 'https://app.test', VAPID_SUBJECT: 'https://app.test', VAPID_PUBLIC_KEY: keys.publicKey, VAPID_PRIVATE_KEY: keys.privateKey },
   outboundService: async (request) => {
-    assert.equal(new URL(request.url).hostname, 'web.push.apple.com');
+    const host = new URL(request.url).hostname;
+    assert.ok(['web.push.apple.com', 'fcm.googleapis.com'].includes(host));
     assert.equal(request.headers.get('Content-Encoding'), 'aes128gcm');
-    assert.ok(request.headers.get('Authorization').startsWith('vapid ')); pushes++;
+    assert.ok(request.headers.get('Authorization').startsWith('vapid '));
+    const payload = JSON.parse(ece.decrypt(Buffer.from(await request.arrayBuffer()), { version: 'aes128gcm', privateKey: ec, authSecret: auth }).toString());
+    pushes.push({ host, payload });
     return new Response(null, { status: 201 });
   },
 }));
@@ -27,13 +46,35 @@ try {
     headers: { Origin: 'https://app.test', 'Content-Type': 'application/json', ...(identity.token ? { Authorization: 'Bearer ' + identity.token, 'X-Installation-Id': identity.installationId } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}),
   });
-  const identity = await (await call('/v1/reminder-installations', 'POST', {})).json();
-  const state = { revision: 1, settings: { time: '08:00', timeZone: 'Asia/Taipei', tasks: true, habits: true }, tasks: [], habits: [],
-    subscription: { endpoint: 'https://web.push.apple.com/runtime-fixture', keys: { p256dh: ec.getPublicKey().toString('base64url'), auth: randomBytes(16).toString('base64url') } } };
-  const synced = await call('/v1/reminder-installation/state', 'PUT', state, identity);
-  assert.equal(synced.status, 200, await synced.text());
-  const tested = await call('/v1/reminder-installation/test', 'POST', {}, identity);
-  assert.equal(tested.status, 200, await tested.text()); assert.equal(pushes, 1);
-  assert.equal((await call('/v1/reminder-installation/state', 'DELETE', null, identity)).status, 200);
-  console.log('PASS workerd: D1 schema, anonymous identity, durable sync, Node-compatible Web Push encryption/VAPID, mock delivery and deletion');
+  const now = Date.now(); const today = zonedParts(now, 'Asia/Taipei'); const identities = [];
+  for (const host of ['web.push.apple.com', 'fcm.googleapis.com']) {
+    const identity = await (await call('/v1/reminder-installations', 'POST', {})).json(); identities.push(identity);
+    const state = { revision: 1, settings: { time: today.time, timeZone: 'Asia/Taipei', tasks: true, habits: true },
+      tasks: [{ id: 'runtime-task', plannedDate: today.date }],
+      habits: [{ id: 'runtime-habit', frequency: 'daily', targetPerWeek: 1, completedDates: [] }],
+      subscription: { endpoint: `https://${host}/runtime-fixture`, keys: { p256dh: ec.getPublicKey().toString('base64url'), auth: auth.toString('base64url') } } };
+    const synced = await call('/v1/reminder-installation/state', 'PUT', state, identity);
+    assert.equal(synced.status, 200, await synced.text());
+  }
+  const tested = await call('/v1/reminder-installation/test', 'POST', {}, identities[0]);
+  assert.equal(tested.status, 200, await tested.text()); assert.equal(pushes.length, 1);
+  const healthBefore = await (await call('/health', 'GET')).json();
+  assert.equal(healthBefore.scheduler.healthy, false);
+  // Simulate the real missed schedule, then stop foreground syncing entirely.
+  await db.prepare('UPDATE installations SET next_at = ?').bind(Math.floor(now / 60000) * 60000 - 86400000).run();
+  for (let invocation = 0; invocation < 3; invocation++) {
+    const response = await mf.dispatchFetch(`https://reminders.test/__test/scheduled?time=${Math.floor(now / 60000) * 60000}`);
+    assert.equal(response.status, 200, await response.text());
+  }
+  const daily = pushes.filter((p) => p.payload.tag === `daily-${today.date}`);
+  assert.equal(daily.length, 2);
+  assert.deepEqual(daily.map((p) => p.host).sort(), ['fcm.googleapis.com', 'web.push.apple.com']);
+  for (const { payload } of daily) assert.match(payload.body, /1 項任務、1 項每日習慣/);
+  const health = await (await call('/health', 'GET')).json();
+  assert.equal(health.scheduler.healthy, true); assert.equal(health.scheduler.lastStatus, 'ok');
+  const records = (await db.prepare('SELECT local_date, status FROM deliveries ORDER BY local_date').all()).results;
+  assert.equal(records.filter((r) => r.status === 'accepted').length, 2);
+  assert.equal(records.filter((r) => r.status === 'skipped').length, 2);
+  for (const identity of identities) assert.equal((await call('/v1/reminder-installation/state', 'DELETE', null, identity)).status, 200);
+  console.log('PASS workerd: actual scheduled handler, missed-day recovery, Apple/Android encrypted delivery without foreground sync, deduplication, scheduler health and cleanup');
 } finally { await mf.dispose(); }

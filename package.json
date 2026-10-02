@@ -15,6 +15,8 @@
     "test:themes": "node --test devtools/theme-preferences.test.mjs devtools/theme-design.test.mjs",
     "test:feedback": "node --test devtools/feedback.test.mjs devtools/feedback-backend.test.mjs",
     "test:feedback:browser": "node devtools/feedback-browser-server.mjs",
+    "test:reminders": "node --test devtools/reminders.test.mjs",
+    "test:reminders:runtime": "node node_modules/wrangler/bin/wrangler.js deploy --config backend/reminders/wrangler.jsonc --dry-run --outdir .dev-backups/reminder-worker && node devtools/reminders-runtime-test.mjs",
     "feedback:read": "node --use-system-ca scripts/read-feedback.mjs",
     "test:bond": "node --test devtools/bond-journey.test.mjs",
     "test:bond:browser": "node devtools/bond-journey-browser-test.mjs",
