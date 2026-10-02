@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-02T07:05:27.652Z",
+  "artifactId": "0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4",
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa-preview/",
+  "detail": {
+    "version": "3.5.6",
+    "initialImages": 20,
+    "serviceWorker": "https://leotsouo.github.io/questnote-pwa-preview/service-worker.js?artifact=0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4",
+    "collapsedAndExpanded": true,
+    "guideText": true,
+    "freshBrowserStorage": true,
+    "gachaTotalPullsUnchanged": true,
+    "offlineReload": true
+  },
+  "blockedExternalOrigins": [],
+  "errors": []
+}
