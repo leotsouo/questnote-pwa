@@ -1,0 +1,118 @@
+{
+  "status": "pass",
+  "artifactId": "a48a151d94dfb8976678d7272be34051f2707c6645afb7623aa9551436568f03",
+  "checks": [
+    {
+      "background": "radial-gradient(at 15% 0%, rgba(166, 122, 63, 0.22), rgba(0, 0, 0, 0) 60%) repeat scroll 0% 0% / auto padding-box border-box, radial-gradient(at 95% 65%, rgba(82, 126, 133, 0.25), rgba(0, 0, 0, 0) 65%) repeat scroll 0% 0% / auto padding-box border-box, rgb(28, 45, 58) none repeat scroll 0% 0% / auto padding-box border-box",
+      "height": 720,
+      "overflow": false,
+      "pool": "lionheart_inverse_oath",
+      "primary": "#f6e7cb",
+      "secondary": "#c9d7d8",
+      "surface": "pool",
+      "theme": "default",
+      "width": 1280
+    },
+    {
+      "background": "radial-gradient(at 15% 0%, rgba(166, 122, 63, 0.22), rgba(0, 0, 0, 0) 60%) repeat scroll 0% 0% / auto padding-box border-box, radial-gradient(at 95% 65%, rgba(82, 126, 133, 0.25), rgba(0, 0, 0, 0) 65%) repeat scroll 0% 0% / auto padding-box border-box, rgb(28, 45, 58) none repeat scroll 0% 0% / auto padding-box border-box",
+      "height": 720,
+      "pool": "lionheart_inverse_oath",
+      "primary": "#f6e7cb",
+      "surface": "pool",
+      "theme": "sweet",
+      "width": 1280
+    },
+    {
+      "background": "rgba(12, 48, 41, 0.85) none repeat scroll 0% 0% / auto padding-box border-box",
+      "height": 720,
+      "pool": "swordwild_shanhe",
+      "primary": "#f1e1b8",
+      "surface": "comparison",
+      "theme": "sweet",
+      "width": 1280
+    },
+    {
+      "background": "rgba(12, 48, 41, 0.85) none repeat scroll 0% 0% / auto padding-box border-box",
+      "height": 720,
+      "pool": "swordwild_shanhe",
+      "primary": "#f1e1b8",
+      "surface": "comparison",
+      "theme": "twilight",
+      "width": 1280
+    },
+    {
+      "background": "radial-gradient(at 15% 0%, rgba(166, 122, 63, 0.22), rgba(0, 0, 0, 0) 60%) repeat scroll 0% 0% / auto padding-box border-box, radial-gradient(at 95% 65%, rgba(82, 126, 133, 0.25), rgba(0, 0, 0, 0) 65%) repeat scroll 0% 0% / auto padding-box border-box, rgb(28, 45, 58) none repeat scroll 0% 0% / auto padding-box border-box",
+      "height": 720,
+      "pool": "lionheart_inverse_oath",
+      "primary": "#f6e7cb",
+      "surface": "pool",
+      "theme": "twilight",
+      "width": 1280
+    },
+    {
+      "background": "radial-gradient(at 15% 0%, rgba(166, 122, 63, 0.22), rgba(0, 0, 0, 0) 60%) repeat scroll 0% 0% / auto padding-box border-box, radial-gradient(at 95% 65%, rgba(82, 126, 133, 0.25), rgba(0, 0, 0, 0) 65%) repeat scroll 0% 0% / auto padding-box border-box, rgb(28, 45, 58) none repeat scroll 0% 0% / auto padding-box border-box",
+      "height": 844,
+      "overflow": false,
+      "pool": "lionheart_inverse_oath",
+      "surface": "pool-mobile",
+      "theme": "twilight",
+      "width": 390
+    },
+    {
+      "height": 844,
+      "images": [
+        {
+          "bounds": {
+            "height": 156,
+            "width": 346
+          },
+          "complete": true,
+          "fit": "cover",
+          "height": 540,
+          "src": "./assets/expeditions/lionheart_city.webp",
+          "width": 960
+        },
+        {
+          "bounds": {
+            "height": 118,
+            "width": 284
+          },
+          "complete": true,
+          "fit": "cover",
+          "height": 540,
+          "src": "./assets/expeditions/lionheart_city.webp",
+          "width": 960
+        }
+      ],
+      "surface": "region-mobile",
+      "width": 390
+    },
+    {
+      "height": 900,
+      "images": [
+        {
+          "bounds": {
+            "height": 156,
+            "width": 386
+          },
+          "complete": true,
+          "height": 540,
+          "src": "./assets/expeditions/lionheart_city.webp",
+          "width": 960
+        },
+        {
+          "bounds": {
+            "height": 118,
+            "width": 386
+          },
+          "complete": true,
+          "height": 540,
+          "src": "./assets/expeditions/lionheart_city.webp",
+          "width": 960
+        }
+      ],
+      "surface": "region-desktop",
+      "width": 1280
+    }
+  ]
+}

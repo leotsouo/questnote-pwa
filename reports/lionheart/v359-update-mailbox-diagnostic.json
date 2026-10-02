@@ -1,0 +1,837 @@
+{
+  "results": [
+    {
+      "name": "Downloaded generation waits; no forced refresh during use",
+      "ok": true
+    },
+    {
+      "name": "An incomplete asynchronous UI operation vetoes activation",
+      "ok": true
+    },
+    {
+      "name": "Unsaved task text and the open editor survive a blocked update",
+      "ok": true
+    },
+    {
+      "name": "A second app window vetoes activation and the first window unlocks",
+      "ok": true
+    },
+    {
+      "name": "save difference diagnostic",
+      "ok": false,
+      "before": {
+        "collection": [
+          {
+            "bondExp": 0,
+            "bondLevel": 1,
+            "bondUnlocks": {
+              "badgeLv3": false,
+              "bondFrameLv5": false,
+              "bondLiberated": false,
+              "bondStoryLv5": false,
+              "dialogueLv2": false,
+              "homeEffectLv4": false,
+              "notifiedLevels": []
+            },
+            "fragments": 0,
+            "isCompanion": true,
+            "lastPettedAt": null,
+            "nickname": null,
+            "obtainedAt": "2026-10-02T09:07:35.638Z",
+            "petId": "pet_n01",
+            "stars": 1
+          }
+        ],
+        "expeditions": [],
+        "habits": [],
+        "meta": [
+          {
+            "claimedAchievementIds": [],
+            "equippedTitleId": null,
+            "hasExportedBackup": false,
+            "key": "achievements",
+            "unlockedAchievementIds": [
+              "ach_first_task",
+              "ach_first_pet"
+            ],
+            "unlockedTitleIds": [
+              "title_beginner_adventurer",
+              "title_partner_contractor"
+            ],
+            "unseenTitleIds": [
+              "title_beginner_adventurer",
+              "title_partner_contractor"
+            ]
+          },
+          {
+            "active": null,
+            "byPet": {},
+            "dailyClaimDates": [],
+            "displayPetId": null,
+            "key": "bondJourney",
+            "schemaVersion": 1,
+            "usedEventKeys": []
+          },
+          {
+            "claimedIds": [],
+            "key": "collectionMilestones",
+            "lastUpdatedAt": null,
+            "version": 1
+          },
+          {
+            "bestStreak": 0,
+            "history": [],
+            "key": "dailyCheckIn",
+            "lastCheckInAt": null,
+            "lastCheckInDate": null,
+            "lastWheelSpinAt": null,
+            "lastWheelSpinDate": null,
+            "streak": 0,
+            "totalCheckIns": 0,
+            "totalWheelSpins": 0
+          },
+          {
+            "areas": {
+              "astral_rift": {
+                "areaId": "astral_rift",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "cloudrest_trail": {
+                "areaId": "cloudrest_trail",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "harvest_fields": {
+                "areaId": "harvest_fields",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "lava_rift": {
+                "areaId": "lava_rift",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "machine_ruins": {
+                "areaId": "machine_ruins",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "mist_forest": {
+                "areaId": "mist_forest",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "polar_shore": {
+                "areaId": "polar_shore",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              }
+            },
+            "key": "explorationProgress",
+            "stats": {
+              "fullyExploredAreas": 0,
+              "lastUpdatedAt": null,
+              "totalExplorationRuns": 0,
+              "totalMilestonesClaimed": 0
+            },
+            "unlockedBadges": [],
+            "unlockedTitles": []
+          },
+          {
+            "key": "gachaStats",
+            "poolPity": {
+              "standard": {
+                "ssrPity": 0,
+                "urPity": 0
+              }
+            },
+            "selectedPoolId": "standard",
+            "ssrPity": 0,
+            "tenPullCount": 0,
+            "totalPulls": 0,
+            "urPity": 0
+          },
+          {
+            "claimedIds": [],
+            "key": "globalMailboxState",
+            "lastSeenGeneratedAt": "2026-10-01T16:03:26.047Z",
+            "readIds": [],
+            "version": 1
+          },
+          {
+            "itemUsageLogs": {},
+            "items": {
+              "item_astral_honey": 0,
+              "item_aurora_cream": 0,
+              "item_fire_meat": 0,
+              "item_harvest_rice_cake": 0,
+              "item_leaf_dumpling": 0,
+              "item_machine_biscuit": 0,
+              "item_pine_trail_riceball": 0,
+              "item_small_spirit_food": 0,
+              "item_star_crisp": 0,
+              "item_stardust_candy": 0,
+              "item_warm_snack": 0
+            },
+            "key": "inventory"
+          },
+          {
+            "activeLesson": null,
+            "key": "onboardingV1",
+            "lessons": {
+              "bond": {
+                "practiced": [],
+                "status": "new",
+                "step": "sources"
+              },
+              "expedition": {
+                "practiced": [],
+                "status": "new",
+                "step": "prepare"
+              },
+              "stars": {
+                "practiced": [],
+                "status": "new",
+                "step": "fragments"
+              },
+              "workshop": {
+                "practiced": [],
+                "status": "new",
+                "step": "materials"
+              }
+            },
+            "schemaVersion": 2,
+            "status": "dismissed",
+            "step": "welcome",
+            "taskId": null
+          },
+          {
+            "byPool": {},
+            "key": "poolUnlockState",
+            "legacyBackfill": {
+              "attempted": true,
+              "note": "抽卡歷史未保存 poolId，已停止舊玩家自動補判定；lifetimeDraws 僅自 V3.4.0 起累積。不得使用 pity 或全池 totalPulls 猜測。",
+              "status": "unavailable_no_pool_history"
+            },
+            "schemaVersion": 1
+          },
+          {
+            "daily": {
+              "dateKey": "2026-10-02",
+              "quests": {
+                "daily_checkin_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天完成每日簽到。",
+                  "id": "daily_checkin_1",
+                  "target": 1,
+                  "title": "領取每日祝福",
+                  "type": "daily_checkin"
+                },
+                "daily_complete_habit_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天完成 1 個習慣打卡。",
+                  "id": "daily_complete_habit_1",
+                  "target": 1,
+                  "title": "完成 1 個習慣",
+                  "type": "complete_habits"
+                },
+                "daily_complete_tasks_3": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天完成 3 個任務。",
+                  "id": "daily_complete_tasks_3",
+                  "target": 3,
+                  "title": "完成 3 個任務",
+                  "type": "complete_tasks"
+                },
+                "daily_craft_or_gift_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天製作道具或贈送寵物禮物 1 次。",
+                  "id": "daily_craft_or_gift_1",
+                  "target": 1,
+                  "title": "完成 1 次工坊互動",
+                  "type": "craft_or_gift"
+                },
+                "daily_pet_companion_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天撫摸陪伴寵物 1 次。",
+                  "id": "daily_pet_companion_1",
+                  "target": 1,
+                  "title": "關心陪伴寵物",
+                  "type": "pet_companion"
+                },
+                "daily_start_expedition_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天派遣寵物進行 1 次探險。",
+                  "id": "daily_start_expedition_1",
+                  "target": 1,
+                  "title": "派遣 1 次探險",
+                  "type": "start_expedition"
+                }
+              }
+            },
+            "key": "questProgress",
+            "stats": {
+              "lastUpdatedAt": null,
+              "totalDailyQuestsClaimed": 0,
+              "totalWeeklyQuestsClaimed": 0
+            },
+            "weekly": {
+              "quests": {
+                "weekly_checkin_5": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週完成 5 天每日簽到。",
+                  "id": "weekly_checkin_5",
+                  "target": 5,
+                  "title": "本週簽到 5 天",
+                  "type": "daily_checkin"
+                },
+                "weekly_complete_habits_10": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週累積完成 10 次習慣打卡。",
+                  "id": "weekly_complete_habits_10",
+                  "target": 10,
+                  "title": "本週完成 10 次習慣",
+                  "type": "complete_habits"
+                },
+                "weekly_complete_tasks_20": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週累積完成 20 個任務。",
+                  "id": "weekly_complete_tasks_20",
+                  "target": 20,
+                  "title": "本週完成 20 個任務",
+                  "type": "complete_tasks"
+                },
+                "weekly_expedition_5": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週完成 5 次寵物探險。",
+                  "id": "weekly_expedition_5",
+                  "target": 5,
+                  "title": "本週完成 5 次探險",
+                  "type": "complete_expedition"
+                },
+                "weekly_gift_5": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週贈送寵物親密度道具 5 次。",
+                  "id": "weekly_gift_5",
+                  "target": 5,
+                  "title": "本週贈送 5 次禮物",
+                  "type": "gift_pet"
+                }
+              },
+              "weekKey": "2026-W40"
+            }
+          },
+          {
+            "fontSize": "standard",
+            "key": "userPreferences",
+            "reduceMotion": false,
+            "theme": "twilight"
+          },
+          {
+            "adventureEnergy": 1,
+            "key": "wallet",
+            "materials": {
+              "aurora_ice": 0,
+              "forest_leaf": 0,
+              "harvest_charm": 0,
+              "lava_core": 0,
+              "machine_part": 0,
+              "star_shard": 0
+            },
+            "stardust": 20
+          },
+          {
+            "craftCount": 0,
+            "favoriteGiftCount": 0,
+            "firstCraftAt": null,
+            "firstFavoriteGiftAt": null,
+            "firstGiftAt": null,
+            "giftCount": 0,
+            "key": "workshopStats"
+          }
+        ],
+        "tasks": [
+          {
+            "categoryId": "general",
+            "completed": true,
+            "completedAt": "2026-10-02T09:07:35.631Z",
+            "content": "更新測試：保留完成任務與獎勵",
+            "createdAt": "2026-10-02T09:07:35.628Z",
+            "dueDate": null,
+            "id": "91a3701d-0650-490d-a43a-89289642f660",
+            "isPlannedToday": false,
+            "lastRewardClaimedAt": "2026-10-02T09:07:35.636Z",
+            "plannedDate": null,
+            "priority": "normal",
+            "rewardClaimed": true,
+            "startDate": null,
+            "subtasks": [],
+            "title": "更新測試：保留完成任務與獎勵",
+            "type": "one_time",
+            "updatedAt": "2026-10-02T09:07:35.636Z"
+          }
+        ]
+      },
+      "after": {
+        "collection": [
+          {
+            "bondExp": 0,
+            "bondLevel": 1,
+            "bondUnlocks": {
+              "badgeLv3": false,
+              "bondFrameLv5": false,
+              "bondLiberated": false,
+              "bondStoryLv5": false,
+              "dialogueLv2": false,
+              "homeEffectLv4": false,
+              "notifiedLevels": []
+            },
+            "fragments": 0,
+            "isCompanion": true,
+            "lastPettedAt": null,
+            "nickname": null,
+            "obtainedAt": "2026-10-02T09:07:35.638Z",
+            "petId": "pet_n01",
+            "stars": 1
+          }
+        ],
+        "expeditions": [],
+        "habits": [],
+        "meta": [
+          {
+            "claimedAchievementIds": [],
+            "equippedTitleId": null,
+            "hasExportedBackup": false,
+            "key": "achievements",
+            "unlockedAchievementIds": [
+              "ach_first_task",
+              "ach_first_pet"
+            ],
+            "unlockedTitleIds": [
+              "title_beginner_adventurer",
+              "title_partner_contractor"
+            ],
+            "unseenTitleIds": [
+              "title_beginner_adventurer",
+              "title_partner_contractor"
+            ]
+          },
+          {
+            "active": null,
+            "byPet": {},
+            "dailyClaimDates": [],
+            "displayPetId": null,
+            "key": "bondJourney",
+            "schemaVersion": 1,
+            "usedEventKeys": []
+          },
+          {
+            "claimedIds": [],
+            "key": "collectionMilestones",
+            "lastUpdatedAt": null,
+            "version": 1
+          },
+          {
+            "bestStreak": 0,
+            "history": [],
+            "key": "dailyCheckIn",
+            "lastCheckInAt": null,
+            "lastCheckInDate": null,
+            "lastWheelSpinAt": null,
+            "lastWheelSpinDate": null,
+            "streak": 0,
+            "totalCheckIns": 0,
+            "totalWheelSpins": 0
+          },
+          {
+            "areas": {
+              "astral_rift": {
+                "areaId": "astral_rift",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "cloudrest_trail": {
+                "areaId": "cloudrest_trail",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "harvest_fields": {
+                "areaId": "harvest_fields",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "lava_rift": {
+                "areaId": "lava_rift",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "machine_ruins": {
+                "areaId": "machine_ruins",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "mist_forest": {
+                "areaId": "mist_forest",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              },
+              "polar_shore": {
+                "areaId": "polar_shore",
+                "claimedMilestones": [],
+                "completedAt": null,
+                "completedRuns": 0,
+                "lastExploredAt": null,
+                "progress": 0,
+                "unlockedStories": []
+              }
+            },
+            "key": "explorationProgress",
+            "stats": {
+              "fullyExploredAreas": 0,
+              "lastUpdatedAt": null,
+              "totalExplorationRuns": 0,
+              "totalMilestonesClaimed": 0
+            },
+            "unlockedBadges": [],
+            "unlockedTitles": []
+          },
+          {
+            "key": "gachaStats",
+            "poolPity": {
+              "standard": {
+                "ssrPity": 0,
+                "urPity": 0
+              }
+            },
+            "selectedPoolId": "standard",
+            "ssrPity": 0,
+            "tenPullCount": 0,
+            "totalPulls": 0,
+            "urPity": 0
+          },
+          {
+            "claimedIds": [],
+            "key": "globalMailboxState",
+            "lastSeenGeneratedAt": "2026-10-02T08:49:46.000Z",
+            "readIds": [],
+            "version": 1
+          },
+          {
+            "itemUsageLogs": {},
+            "items": {
+              "item_astral_honey": 0,
+              "item_aurora_cream": 0,
+              "item_fire_meat": 0,
+              "item_harvest_rice_cake": 0,
+              "item_leaf_dumpling": 0,
+              "item_machine_biscuit": 0,
+              "item_pine_trail_riceball": 0,
+              "item_small_spirit_food": 0,
+              "item_star_crisp": 0,
+              "item_stardust_candy": 0,
+              "item_warm_snack": 0
+            },
+            "key": "inventory"
+          },
+          {
+            "activeLesson": null,
+            "key": "onboardingV1",
+            "lessons": {
+              "bond": {
+                "practiced": [],
+                "status": "new",
+                "step": "sources"
+              },
+              "expedition": {
+                "practiced": [],
+                "status": "new",
+                "step": "prepare"
+              },
+              "stars": {
+                "practiced": [],
+                "status": "new",
+                "step": "fragments"
+              },
+              "workshop": {
+                "practiced": [],
+                "status": "new",
+                "step": "materials"
+              }
+            },
+            "schemaVersion": 2,
+            "status": "dismissed",
+            "step": "welcome",
+            "taskId": null
+          },
+          {
+            "byPool": {},
+            "key": "poolUnlockState",
+            "legacyBackfill": {
+              "attempted": true,
+              "note": "抽卡歷史未保存 poolId，已停止舊玩家自動補判定；lifetimeDraws 僅自 V3.4.0 起累積。不得使用 pity 或全池 totalPulls 猜測。",
+              "status": "unavailable_no_pool_history"
+            },
+            "schemaVersion": 1
+          },
+          {
+            "daily": {
+              "dateKey": "2026-10-02",
+              "quests": {
+                "daily_checkin_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天完成每日簽到。",
+                  "id": "daily_checkin_1",
+                  "target": 1,
+                  "title": "領取每日祝福",
+                  "type": "daily_checkin"
+                },
+                "daily_complete_habit_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天完成 1 個習慣打卡。",
+                  "id": "daily_complete_habit_1",
+                  "target": 1,
+                  "title": "完成 1 個習慣",
+                  "type": "complete_habits"
+                },
+                "daily_complete_tasks_3": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天完成 3 個任務。",
+                  "id": "daily_complete_tasks_3",
+                  "target": 3,
+                  "title": "完成 3 個任務",
+                  "type": "complete_tasks"
+                },
+                "daily_craft_or_gift_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天製作道具或贈送寵物禮物 1 次。",
+                  "id": "daily_craft_or_gift_1",
+                  "target": 1,
+                  "title": "完成 1 次工坊互動",
+                  "type": "craft_or_gift"
+                },
+                "daily_pet_companion_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天撫摸陪伴寵物 1 次。",
+                  "id": "daily_pet_companion_1",
+                  "target": 1,
+                  "title": "關心陪伴寵物",
+                  "type": "pet_companion"
+                },
+                "daily_start_expedition_1": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "今天派遣寵物進行 1 次探險。",
+                  "id": "daily_start_expedition_1",
+                  "target": 1,
+                  "title": "派遣 1 次探險",
+                  "type": "start_expedition"
+                }
+              }
+            },
+            "key": "questProgress",
+            "stats": {
+              "lastUpdatedAt": null,
+              "totalDailyQuestsClaimed": 0,
+              "totalWeeklyQuestsClaimed": 0
+            },
+            "weekly": {
+              "quests": {
+                "weekly_checkin_5": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週完成 5 天每日簽到。",
+                  "id": "weekly_checkin_5",
+                  "target": 5,
+                  "title": "本週簽到 5 天",
+                  "type": "daily_checkin"
+                },
+                "weekly_complete_habits_10": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週累積完成 10 次習慣打卡。",
+                  "id": "weekly_complete_habits_10",
+                  "target": 10,
+                  "title": "本週完成 10 次習慣",
+                  "type": "complete_habits"
+                },
+                "weekly_complete_tasks_20": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週累積完成 20 個任務。",
+                  "id": "weekly_complete_tasks_20",
+                  "target": 20,
+                  "title": "本週完成 20 個任務",
+                  "type": "complete_tasks"
+                },
+                "weekly_expedition_5": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週完成 5 次寵物探險。",
+                  "id": "weekly_expedition_5",
+                  "target": 5,
+                  "title": "本週完成 5 次探險",
+                  "type": "complete_expedition"
+                },
+                "weekly_gift_5": {
+                  "claimed": false,
+                  "completed": false,
+                  "current": 0,
+                  "description": "本週贈送寵物親密度道具 5 次。",
+                  "id": "weekly_gift_5",
+                  "target": 5,
+                  "title": "本週贈送 5 次禮物",
+                  "type": "gift_pet"
+                }
+              },
+              "weekKey": "2026-W40"
+            }
+          },
+          {
+            "fontSize": "standard",
+            "key": "userPreferences",
+            "reduceMotion": false,
+            "theme": "twilight"
+          },
+          {
+            "adventureEnergy": 1,
+            "key": "wallet",
+            "materials": {
+              "aurora_ice": 0,
+              "forest_leaf": 0,
+              "harvest_charm": 0,
+              "lava_core": 0,
+              "machine_part": 0,
+              "star_shard": 0
+            },
+            "stardust": 20
+          },
+          {
+            "craftCount": 0,
+            "favoriteGiftCount": 0,
+            "firstCraftAt": null,
+            "firstFavoriteGiftAt": null,
+            "firstGiftAt": null,
+            "giftCount": 0,
+            "key": "workshopStats"
+          }
+        ],
+        "tasks": [
+          {
+            "categoryId": "general",
+            "completed": true,
+            "completedAt": "2026-10-02T09:07:35.631Z",
+            "content": "更新測試：保留完成任務與獎勵",
+            "createdAt": "2026-10-02T09:07:35.628Z",
+            "dueDate": null,
+            "id": "91a3701d-0650-490d-a43a-89289642f660",
+            "isPlannedToday": false,
+            "lastRewardClaimedAt": "2026-10-02T09:07:35.636Z",
+            "plannedDate": null,
+            "priority": "normal",
+            "rewardClaimed": true,
+            "startDate": null,
+            "subtasks": [],
+            "title": "更新測試：保留完成任務與獎勵",
+            "type": "one_time",
+            "updatedAt": "2026-10-02T09:07:35.636Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "acceptance",
+      "ok": false,
+      "error": "Error: Update changed stored rows\n    at assert (http://127.0.0.1:65204/test/suite.js:5:64)\n    at http://127.0.0.1:65204/test/suite.js:112:3"
+    }
+  ]
+}

@@ -25,7 +25,8 @@ const newBundle=JSON.parse(artifacts.new.files.get(artifacts.new.manifest.profil
 for(const [key,rows] of [['petsData','pets'],['loreData','lore'],['poolsData','pools'],['seriesCatalog','series']]){
  for(const old of oldBundle[key][rows])assert.deepEqual(newBundle[key][rows].find(row=>row.id===old.id),old,'Existing published content changed: '+old.id);
 }
-assert.equal(newBundle.petsData.pets.length,oldBundle.petsData.pets.length+12);
+assert.ok([oldBundle.petsData.pets.length, oldBundle.petsData.pets.length + 12].includes(newBundle.petsData.pets.length),
+  'Expected a visual correction or the original 12-pet Lionheart release');
 let active = 'old';
 let offline = false;
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml' };
@@ -50,7 +51,9 @@ const server = http.createServer(async (request, response) => {
     if (request.method !== 'GET') { response.writeHead(405).end(); return; }
     if (url.pathname === '/test/config') {
       response.setHeader('Content-Type', 'application/json');
-      response.end(JSON.stringify({ token, origin, profiles: Object.fromEntries(Object.entries(artifacts).map(([key, value]) => [key, value.manifest.profile])) })); return;
+      response.end(JSON.stringify({ token, origin,
+        mailboxGeneratedAts: Object.values(artifacts).map(value => JSON.parse(value.files.get('data/global-mailbox.json')).generatedAt),
+        profiles: Object.fromEntries(Object.entries(artifacts).map(([key, value]) => [key, value.manifest.profile])) })); return;
     }
     if (url.pathname === '/test/') {
       response.setHeader('Content-Type', 'text/html');

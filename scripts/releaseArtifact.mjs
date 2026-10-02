@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { validateContentBundle, validateReleaseProfile } from '../src/releaseCatalog.js';
 import { POOL_CONTENT_SCHEMA_VERSION, validatePoolContent } from '../src/poolContentContract.js';
 import { ECOSYSTEM_CATALOGS, ECOSYSTEM_RUNTIME, validateEcosystem } from './poolEcosystem.mjs';
+import { validateExpeditionImages } from './validate-expedition-images.mjs';
 
 const CATALOG_FILES = { petsData: 'data/pets.json', poolsData: 'data/pools.json',
   loreData: 'data/pets-lore.json', seriesCatalog: 'data/pet-series.json' };
@@ -330,6 +331,10 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
       files.set(file, bytes);
     }
   }
+  await validateExpeditionImages({
+    catalog: JSON.parse(files.get('data/expeditions.json')),
+    readBytes: async (file) => files.get(file),
+  });
   // Authoring catalogs may advance after an approved release. Old clients must
   // continue to receive their frozen contract at the original unversioned URLs.
   for (const [relative, bytes] of legacy.files) files.set(relative, bytes);
@@ -347,6 +352,7 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   const input = { schemaVersion: 1, sourceCommit, profile, scopePath, contentBundleSha256, sourceFiles,
     legacyCompatibility: { sourceCommit: legacy.manifest.sourceCommit, manifestSha256: legacy.manifestSha256, catalogs: legacy.manifest.catalogs },
     assemblerSha256: sha256(await fs.readFile(fileURLToPath(import.meta.url))),
+    expeditionImageValidatorSha256: sha256(await fs.readFile(new URL('./validate-expedition-images.mjs', import.meta.url))),
     ...(candidate?.companion ? { ecosystemValidatorSha256: sha256(await fs.readFile(new URL('./poolEcosystem.mjs', import.meta.url))) } : {}),
     candidateAssets: sorted([...(candidate?.assets || [])].map(([name, bytes]) => [name, sha256(bytes)])),
     candidateManifestSha256: candidate?.candidateManifestSha256 || null };
@@ -396,15 +402,16 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   const report = { schemaVersion: 1, artifactId, sourceCommit, profile: descriptor,
     legacyCompatibility: input.legacyCompatibility,
     sourceFiles, assemblerSha256: input.assemblerSha256, candidateManifestSha256: input.candidateManifestSha256,
+    expeditionImageValidatorSha256: input.expeditionImageValidatorSha256,
     ...(input.ecosystemValidatorSha256 ? { ecosystemValidatorSha256: input.ecosystemValidatorSha256 } : {}),
     inputVerification: candidate?.verification || 'source-catalogs',
     files: sorted([...files].map(([name, bytes]) => [name, { sha256: sha256(bytes), bytes: bytes.length }])),
-    localValidations: { catalogContract: 'PASS', imageReferences: 'PASS', importClosure: 'PASS',
+    localValidations: { catalogContract: 'PASS', imageReferences: 'PASS', expeditionArtwork: 'PASS', importClosure: 'PASS',
       profileAndCacheConfiguration: 'PASS', immutablePrecacheHashes: 'PASS' },
     releaseReady: false, liveBaseline: 'UNKNOWN', nativePwaValidation: 'NOT_RUN', deploymentApproval: 'NOT_GRANTED',
     compatibility: 'Unversioned catalogs use the frozen legacy snapshot; generated runtime reads only the versioned content bundle.',
     withdrawal: 'Deactivate the pool while retaining pet, lore, image and identity records. Never roll user data back.',
-    limitations: ['Image dimensions and artistic review belong to the content pipeline.',
+    limitations: ['Pet image dimensions and all artistic review belong to the content pipeline; expedition rasters are decoded during assembly.',
       'Candidate approval/validation metadata is archived, not interpreted as deployment approval.',
       'Health-check probes of archived/authoring source are excluded from deployment.',
       'Live runtime/SW baseline and browser upgrade/rollback validation remain release gates.'] };
