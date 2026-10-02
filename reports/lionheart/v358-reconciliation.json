@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "sourceCommit": "d42b8fc44dc3c55f39ca0dee138fb30d114e85c6",
+  "previousPackageHash": "b156b65612d75978f11a08f206fbc1411b2c672caa16ba9ac882b651dcd07626",
+  "candidateId": "5fffbec403504c76f2e3729d8b0d9eb2bdf8ba20f7e68d60781b121bacaed539",
+  "approvedCandidateUnchanged": true,
+  "approvedContentBundleUnchanged": true,
+  "allApprovedLionheartArtAndAnimationsUnchanged": true,
+  "changedSourceFiles": [
+    "index.html",
+    "service-worker.js",
+    "src/standardUrCarousel.js",
+    "src/summon-polish.css",
+    "src/ui.js",
+    "src/version.js"
+  ],
+  "upstreamComparison": "Carousel module matches origin/main text after CRLF normalization; Lionheart diffs in index.html, ui.js and summon-polish.css remain identical to approved package after removing diff line offsets. Version/cache advance to V3.5.8.",
+  "tests": "277 integration +11 theme +5 animation tests and reveal assertions passed; pool validation, image checks and release rehearsal passed.",
+  "formalBaseline": "reports/lionheart/v358-production-baseline.json",
+  "publication": "Not authorized or performed"
+}

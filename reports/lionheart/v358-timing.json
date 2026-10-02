@@ -1,0 +1,76 @@
+{
+  "status": "pass",
+  "running": false,
+  "artifactId": "491a5553bc635f963b8d2e06d8d8522e825a09b7ca43142104919e21c41a3910",
+  "checkedAt": "2026-10-02T08:17:12.479Z",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "checks": [
+    {
+      "petId": "pet_ur19",
+      "reduceMotion": false,
+      "status": "pass",
+      "fullWingFrame": {
+        "wingOpacity": 0.887906,
+        "cardOpacity": 0,
+        "wingScale": 0.990594,
+        "ready": false,
+        "milliseconds": 1169
+      },
+      "finalFrame": {
+        "cardOpacity": 1,
+        "imageLoaded": true,
+        "name": "天律之冕・格里芬",
+        "atmosphereDisplay": "block"
+      },
+      "milliseconds": 4612
+    },
+    {
+      "petId": "pet_ur20",
+      "reduceMotion": false,
+      "status": "pass",
+      "fullWingFrame": {
+        "wingOpacity": 0.883904,
+        "cardOpacity": 0,
+        "wingScale": 0.990164,
+        "ready": false,
+        "milliseconds": 1074
+      },
+      "finalFrame": {
+        "cardOpacity": 1,
+        "imageLoaded": true,
+        "name": "逆造獅首奇美拉",
+        "atmosphereDisplay": "block"
+      },
+      "milliseconds": 4546
+    },
+    {
+      "petId": "pet_ur19",
+      "reduceMotion": true,
+      "status": "pass",
+      "fullWingFrame": null,
+      "finalFrame": {
+        "cardOpacity": 1,
+        "imageLoaded": true,
+        "name": "天律之冕・格里芬",
+        "atmosphereDisplay": "none"
+      },
+      "milliseconds": 787
+    },
+    {
+      "petId": "pet_ur20",
+      "reduceMotion": true,
+      "status": "pass",
+      "fullWingFrame": null,
+      "finalFrame": {
+        "cardOpacity": 1,
+        "imageLoaded": true,
+        "name": "逆造獅首奇美拉",
+        "atmosphereDisplay": "none"
+      },
+      "milliseconds": 786
+    }
+  ]
+}

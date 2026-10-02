@@ -112,7 +112,7 @@ try {
   assert(updatedSnapshot === baseline, 'Update changed stored rows');
   assert(doc().body.dataset.theme === 'twilight', 'Theme preference lost');
   assert(win().navigator.serviceWorker.controller, 'New app is uncontrolled');
-  note('One click upgrades actual formal V3.5.5 to V3.5.6 while network is 503; original five stores/theme retained, only empty Lionheart progress and zero-count food inventory added');
+  note(`One click upgrades actual formal artifact ${config.profiles.old.artifactId} to ${config.profiles.new.artifactId} while network is 503; original five stores/theme retained, only empty Lionheart progress and zero-count food inventory added`);
 
   await fetch('./offline', { method: 'POST', headers: { 'X-Test-Token': config.token }, body: 'off' });
   const newUi = await win().eval('import("/questnote-pwa/src/ui.js")');

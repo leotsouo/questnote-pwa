@@ -1,7 +1,7 @@
 {
-  "evidence": "reports/lionheart/v356-wings-release-evidence.json",
-  "gate": "reports/lionheart/v356-wings-release-gate.json",
-  "packageHash": "b156b65612d75978f11a08f206fbc1411b2c672caa16ba9ac882b651dcd07626",
-  "previewUrl": "http://127.0.0.1:57584/review/",
-  "reason": "UR wing occlusion correction after previous human acceptance"
+  "evidence": "reports/lionheart/v358-release-evidence.json",
+  "gate": "reports/lionheart/v358-release-gate.json",
+  "packageHash": "94e77b9be64b777d9c11bca74acc915759f7f9cf8eb246ad1a5b7116e9acf94e",
+  "previewUrl": "http://127.0.0.1:58789/review/",
+  "reason": "Rebuilt V3.5.8 after latest upstream V3.5.7 deployment; preserved approved Lionheart content/images/animations; prior human approval archived; final latest-package consent and explicit publication authorization pending"
 }

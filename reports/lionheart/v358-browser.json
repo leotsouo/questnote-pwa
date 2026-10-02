@@ -1,0 +1,70 @@
+{
+  "status": "pass",
+  "draft": false,
+  "finalArtifact": true,
+  "artifactId": "491a5553bc635f963b8d2e06d8d8522e825a09b7ca43142104919e21c41a3910",
+  "origin": "http://127.0.0.1:58789",
+  "checkedAt": "2026-10-02T08:17:00.987Z",
+  "checks": [
+    {
+      "name": "待發布 artifact",
+      "status": "pass",
+      "evidence": "491a5553bc635f963b8d2e06d8d8522e825a09b7ca43142104919e21c41a3910"
+    },
+    {
+      "name": "12 隻明確專長",
+      "status": "pass",
+      "evidence": "全部使用實際 getPetSpecialty()"
+    },
+    {
+      "name": "羈絆章節",
+      "status": "pass",
+      "evidence": "116 份原故事 + 12 份新故事，各四章"
+    },
+    {
+      "name": "新食物製作與選角送禮",
+      "status": "pass",
+      "evidence": "實際扣齒輪6／葉8／核心2；奇美拉+150、格里芬+75"
+    },
+    {
+      "name": "逐隻專長派遣與偏好效果",
+      "status": "pass",
+      "evidence": "齒輪拾修鼠：scholar、送禮150；苗圃護芽甲蟲：gatherer、送禮75；銅管引水獺：scholar、送禮150；霜閥巡路兔：scout、送禮75；爐膛添薪蜥：guardian、送禮150；刻紋校準鴞：scholar、送禮150；冰軌疾行狐：scout、送禮75；赤爐鍛角羊：guardian、送禮150；重鉚架橋犀：scholar、送禮150；蒸園盤根龜：gatherer、送禮75；天律之冕・格里芬：scout、送禮75；逆造獅首奇美拉：guardian、送禮150"
+    },
+    {
+      "name": "獅心城三隻派遣及領獎",
+      "status": "pass",
+      "evidence": "60分鐘／5能量、實際交易與再次領取拒絕"
+    },
+    {
+      "name": "五里程碑與並發防重複",
+      "status": "pass",
+      "evidence": "10次並發請領只發5次：星塵480、齒輪5、徽章與稱號"
+    },
+    {
+      "name": "現有覺醒目錄",
+      "status": "pass",
+      "evidence": "二十隻舊角色完整保留"
+    },
+    {
+      "name": "實際單抽與十連",
+      "status": "pass",
+      "evidence": "100／1000扣款；十連保留10個相同角色與碎片補償"
+    },
+    {
+      "name": "本池保底與雙 UR",
+      "status": "pass",
+      "evidence": "UR100與SSR30實際交易；兩隻UR均可選中"
+    },
+    {
+      "name": "並行抽卡交易",
+      "status": "pass",
+      "evidence": "只夠一次時兩次並行僅一次成功，星塵0且總抽數只+1"
+    },
+    {
+      "name": "目前存檔重複匯入",
+      "status": "pass",
+      "evidence": "完整V3.5.6備份兩次還原，餘額、收藏、五里程碑與覺醒狀態保持"
+    }
+  ]
+}
