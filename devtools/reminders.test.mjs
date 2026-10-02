@@ -5,8 +5,9 @@ import { readFileSync } from 'node:fs';
 import { createECDH, randomBytes } from 'node:crypto';
 import webpush from 'web-push';
 import ece from 'http_ece';
-import worker, { runSchedule, sanitizeState, validateSubscription } from '../backend/reminders/worker.js';
+import worker, { runSchedule, runScheduled, sanitizeState, validateSubscription } from '../backend/reminders/worker.js';
 import { sendPush } from '../backend/reminders/push.js';
+import { ensureSchedulerAlarm, dispatchSchedulerAlarm } from '../backend/reminders/scheduler.js';
 import { REMINDER_DEFAULTS, projectReminderData, buildDailyDigest, nextReminderAt, shiftDate } from '../src/reminderRules.js';
 
 const settings = { ...REMINDER_DEFAULTS, timeZone: 'Asia/Taipei' };
@@ -14,6 +15,30 @@ const subscriber = createECDH('prime256v1'); subscriber.generateKeys();
 const auth = randomBytes(16);
 const subscription = { endpoint: 'https://web.push.apple.com/test', keys: { p256dh: subscriber.getPublicKey().toString('base64url'), auth: auth.toString('base64url') } };
 const input = (changes = {}) => ({ revision: 1, settings, subscription, tasks: [{ id: 't1', plannedDate: '2026-10-01', dueDate: '2026-10-01' }], habits: [], ...changes });
+
+test('persistent alarm stays on minute boundaries, cannot be postponed by sync, and survives dispatch failure', async () => {
+  const now = Date.parse('2026-10-02T07:00:15Z'); let nextAt = null;
+  const storage = { getAlarm: async () => nextAt, setAlarm: async (value) => { nextAt = value; } };
+  assert.equal((await ensureSchedulerAlarm(storage, now)).nextAt, now + 45000);
+  await ensureSchedulerAlarm(storage, now + 10000); assert.equal(nextAt, now + 45000);
+  await assert.rejects(dispatchSchedulerAlarm(storage, {}, async () => { throw Error('fixture outage'); }, () => now + 45000), /fixture outage/);
+  assert.equal(nextAt, now + 105000, 'the next wakeup is persisted before dispatch fails');
+  await ensureSchedulerAlarm(storage, now + 10 * 60000); assert.ok(nextAt > now + 10 * 60000);
+});
+
+test('scheduler bootstrap requires a separate admin secret; health never starts background work', async (t) => {
+  const { env } = setup(t); let starts = 0;
+  env.SCHEDULER = { getByName(name) { assert.equal(name, 'minute-dispatch'); return { ensure: async () => { starts++; return { nextAt: 123 }; } }; } };
+  env.SCHEDULER_BOOTSTRAP_TOKEN = 'isolated-admin-fixture';
+  assert.equal((await worker.fetch(request('/_internal/scheduler/start', 'POST'), env)).status, 403);
+  assert.equal((await worker.fetch(request('/_internal/scheduler/start'), env)).status, 403);
+  assert.equal((await worker.fetch(request('/health'), env)).status, 200); assert.equal(starts, 0);
+  const authorized = new Request('https://reminders.test/_internal/scheduler/start', { method: 'POST', headers: { Authorization: 'Bearer isolated-admin-fixture' } });
+  assert.equal((await worker.fetch(authorized, env)).status, 200); assert.equal(starts, 1);
+  const identity = await (await worker.fetch(request('/v1/reminder-installations', 'POST', {}), env)).json();
+  assert.equal((await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input(), identity), env)).status, 200);
+  assert.equal(starts, 2, 'authenticated state sync also repairs a missing alarm');
+});
 function setup(t) {
   const db = new DatabaseSync(':memory:'); db.exec(readFileSync(new URL('../backend/reminders/schema.sql', import.meta.url), 'utf8'));
   t.after(() => db.close());
@@ -21,7 +46,14 @@ function setup(t) {
     first: async () => db.prepare(sql).get(...args) || null,
     run: async () => db.prepare(sql).run(...args),
     all: async () => ({ results: db.prepare(sql).all(...args) }),
-  }; } }; } };
+  }; } }; }, async batch(statements) {
+    db.exec('BEGIN');
+    try {
+      const results = [];
+      for (const statement of statements) results.push(await statement.all());
+      db.exec('COMMIT'); return results;
+    } catch (error) { db.exec('ROLLBACK'); throw error; }
+  } };
   return { db, env: { DB: binding, ALLOWED_ORIGINS: 'https://app.test', API_RATE: { limit: async () => ({ success: true }) } } };
 }
 function request(path, method = 'GET', body = null, identity = {}) {
@@ -102,6 +134,105 @@ test('temporary failures retry at most three times and do not block the next day
   for (const delay of [0, 60000, 120000, 180000]) await runSchedule(env, now + delay, async () => { sent++; return { status: 503 }; });
   assert.equal(sent, 3); assert.equal(db.prepare('SELECT status FROM deliveries').get().status, 'failed');
   assert.ok(db.prepare('SELECT next_at FROM installations').get().next_at > now + 3600000);
+});
+test('a missed earlier day recovers today within its window without skipping or duplicating today', async (t) => {
+  const { db, env } = setup(t); const now = seed(db); const messages = [];
+  db.prepare('UPDATE installations SET next_at = ?').run(now - 86400000);
+  const push = async (_sub, payload) => { messages.push(payload); return { status: 201 }; };
+  await runSchedule(env, now + 60000, push);
+  assert.equal(db.prepare('SELECT next_at FROM installations').get().next_at, now);
+  await runSchedule(env, now + 120000, push);
+  await runSchedule(env, now + 180000, push);
+  assert.equal(messages.length, 1);
+  assert.equal(messages[0].tag, 'daily-2026-10-01');
+  assert.deepEqual(db.prepare('SELECT local_date, status FROM deliveries ORDER BY local_date').all().map((r) => ({ ...r })), [
+    { local_date: '2026-09-30', status: 'skipped' }, { local_date: '2026-10-01', status: 'accepted' },
+  ]);
+});
+test('recovery never catches up after today\'s delivery window expires', async (t) => {
+  const { db, env } = setup(t); const now = seed(db);
+  db.prepare('UPDATE installations SET next_at = ?').run(now - 86400000);
+  await runSchedule(env, now + 3600000, async () => { assert.fail('Expired reminders must not send'); });
+  assert.equal(db.prepare('SELECT next_at FROM installations').get().next_at, now + 86400000);
+});
+test('changing to a later time can reschedule an unsent skipped day, but cannot resend an accepted day', async (t) => {
+  const originalClock = Date.now; let now = Date.parse('2026-10-01T00:05:00Z');
+  Date.now = () => now; t.after(() => { Date.now = originalClock; });
+  const { db, env } = setup(t);
+  const identity = await (await worker.fetch(request('/v1/reminder-installations', 'POST', {}), env)).json();
+  await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ tasks: [] }), identity), env);
+  db.prepare('UPDATE installations SET next_at = ?').run(now - 5 * 60000);
+  await runSchedule(env, now, async () => { assert.fail('Empty digest must not send'); });
+  await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ revision: 2, tasks: [] }), identity), env);
+  assert.equal(db.prepare('SELECT last_status FROM installations').get().last_status, 'skipped');
+  // Older frontend syncs could overwrite the summary status; the delivery record remains authoritative.
+  db.prepare("UPDATE installations SET last_status = 'enabled'").run();
+  const changed = await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ revision: 3, settings: { ...settings, time: '09:00' } }), identity), env);
+  assert.equal(changed.status, 200);
+  const target = Date.parse('2026-10-01T01:00:00Z');
+  assert.equal((await changed.json()).nextAt, target);
+  assert.equal(db.prepare('SELECT status FROM deliveries').get().status, 'pending');
+  now = target; let pushes = 0;
+  await runSchedule(env, now, async () => { pushes++; return { status: 201 }; });
+  const afterSent = await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ revision: 4, settings: { ...settings, time: '10:00' } }), identity), env);
+  assert.equal((await afterSent.json()).nextAt, Date.parse('2026-10-02T02:00:00Z'));
+  await runSchedule(env, Date.parse('2026-10-01T02:00:00Z'), async () => { pushes++; return { status: 201 }; });
+  assert.equal(pushes, 1);
+});
+test('moving a claimed unsent reminder to a future time keeps that day eligible', async (t) => {
+  const originalClock = Date.now; let now = Date.parse('2026-09-30T23:50:00Z');
+  Date.now = () => now; t.after(() => { Date.now = originalClock; });
+  const { db, env } = setup(t);
+  const identity = await (await worker.fetch(request('/v1/reminder-installations', 'POST', {}), env)).json();
+  await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input(), identity), env);
+  const binding = env.DB; let moved = false;
+  env.DB = { ...binding, prepare(sql) {
+    const statement = binding.prepare(sql);
+    if (sql !== 'SELECT * FROM installations WHERE id = ?') return statement;
+    return { bind(...args) {
+      const bound = statement.bind(...args);
+      return { ...bound, async first() {
+        if (!moved) {
+          moved = true;
+          const response = await worker.fetch(request('/v1/reminder-installation/state', 'PUT', input({ revision: 2, settings: { ...settings, time: '08:30' } }), identity), env);
+          assert.equal(response.status, 200);
+        }
+        return bound.first();
+      } };
+    } };
+  } };
+  now = Date.parse('2026-10-01T00:00:00Z'); let pushes = 0;
+  const push = async () => { pushes++; return { status: 201 }; };
+  await runSchedule(env, now, push);
+  assert.equal(pushes, 0);
+  assert.equal(db.prepare('SELECT status FROM deliveries').get().status, 'pending');
+  assert.equal(db.prepare('SELECT attempts FROM deliveries').get().attempts, 0);
+  now += 30 * 60000;
+  await runSchedule(env, now, push);
+  assert.equal(pushes, 1);
+});
+test('scheduler health requires a completed background run, and reports a stalled or failed scheduler', async (t) => {
+  const { db, env } = setup(t); const now = Date.now(); env.VAPID_PRIVATE_KEY = 'test-only';
+  const health = async () => (await (await worker.fetch(request('/health'), env)).json()).scheduler;
+  assert.equal((await health()).healthy, false);
+  assert.equal((await health()).lastStatus, 'unverified');
+  await runScheduled(env, now - 60000, undefined, () => now);
+  assert.equal((await health()).healthy, true);
+  db.prepare('UPDATE scheduler_health SET completed_at = ?').run(now - 6 * 60000);
+  assert.equal((await health()).healthy, false);
+  const failing = { ...env, DB: { prepare(sql) {
+    if (sql.startsWith('SELECT * FROM installations')) throw new Error('fixture scheduler failure');
+    return env.DB.prepare(sql);
+  } } };
+  await assert.rejects(runScheduled(failing, now, undefined, () => now + 1), /fixture scheduler failure/);
+  assert.equal((await health()).lastStatus, 'failed');
+  assert.equal((await health()).healthy, false);
+});
+test('a delayed platform trigger uses execution time and does not send a stale notification', async (t) => {
+  const { db, env } = setup(t); const scheduledAt = seed(db); let pushes = 0;
+  await runScheduled(env, scheduledAt, async () => { pushes++; return { status: 201 }; }, () => scheduledAt + 3600001);
+  assert.equal(pushes, 0);
+  assert.equal(db.prepare('SELECT last_status FROM installations').get().last_status, 'skipped');
 });
 test('Web Push payload is encrypted and decrypts using only the receiving device key', async () => {
   const keys = webpush.generateVAPIDKeys(); let delivered;

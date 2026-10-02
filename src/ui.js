@@ -112,6 +112,7 @@ import {
   preloadImage,
 } from './imagePreloadService.js';
 import { createDeferredRenderGate } from './deferredRenderGate.js';
+import { createStandardUrCarousel } from './standardUrCarousel.js';
 import { resolveActivePool, resolveDrawCost, normalizeUnlockExpansion, resolvePoolPresentationModel, validatePoolContent } from './poolContentContract.js';
 import {
   claimAchievementReward,
@@ -5108,12 +5109,19 @@ async function maybePlayPoolDebut(poolId) {
  * 渲染主題卡池主畫面（無 presentation 時隱藏）
  * @param {object} pool
  */
+let standardUrCarousel = null;
+
 function renderGachaThemeStage(pool) {
   const panel = document.getElementById('gacha-panel');
   const stage = document.getElementById('gacha-theme-stage');
   const poolNameEl = document.getElementById('gacha-pool-name');
   const unlockEntry = getUnlockEntryForPool(pool?.id);
   const model = resolvePoolPresentationModel(pool, state.allPets, unlockEntry, { visualLocked: !shouldShowAwakenedPresentation(unlockEntry) });
+  const standardPreview = document.getElementById('gacha-standard-ur');
+  if (standardPreview) {
+    standardUrCarousel ||= createStandardUrCarousel(standardPreview);
+    standardUrCarousel.render(model);
+  }
   const presentation = model.presentation;
   const themeAttr = model.cssTheme;
   const expansion = model.unlock?.expansion;

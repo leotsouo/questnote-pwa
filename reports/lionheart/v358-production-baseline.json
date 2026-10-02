@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-02T08:14:50.869Z",
+  "mainCommit": "e4b622ff9a39e909439e0d98c21e456d9ca26409",
+  "deployedCommit": "03d1de744769f99f608ef777514b216705489dff",
+  "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+  "artifactId": "0235b47e9f0e8aed5a4e707cce8e6c79a40a25543bd9841c23cee21f5c78ef33",
+  "sourceCommit": "9c0d3e37d0fdd3e97e30b0f84fecb52b4b98ffb1",
+  "manifestSha256": "9859b4fdc3379162abec5a60c7e6901955d29bb9b69cc8d80b1300ff12d2e10b",
+  "version": "3.5.7",
+  "localFormalArtifact": "C:\\Users\\User\\AppData\\Local\\Temp/questnote-release-standard-ur-v357/0235b47e9f0e8aed5a4e707cce8e6c79a40a25543bd9841c23cee21f5c78ef33",
+  "verifiedFiles": 556,
+  "status": "pass",
+  "reconciliation": "Latest standard-pool UR carousel and reminder source fixes integrated into Lionheart feature branch; next release V3.5.8, no deployment performed."
+}
