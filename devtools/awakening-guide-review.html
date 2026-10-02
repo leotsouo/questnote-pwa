@@ -1,0 +1,44 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>初遇與覺醒教學 · 隔離檢視</title>
+<style>html,body{margin:0;height:100%;background:#142c2b;color:#f8edd3;font:14px/1.6 system-ui}body{display:flex;flex-direction:column;height:100dvh}header{padding:12px 18px}header p{margin:0}iframe{border:0;width:100%;flex:1;min-height:0}#status{color:#d1dbc8}</style></head><body>
+<header><strong>初遇預覽與覺醒教學 · 本機隔離試玩</strong><p>召喚頁選「劍隱山河」查看初遇預覽與下方教學；可單抽、十連。圖鑑中的雕可完成覺醒，蛤已覺醒且選擇初遇相。</p><p>合成資源與角色只存在此 UUID 測試資料庫；正式存檔不受影響。首次引導可選「稍後再說」。</p><p id="status">準備中…</p></header>
+<script src="/__onboarding_db_guard__.js"></script><script type="module">
+const status = document.querySelector('#status');
+try {
+  const guard = await fetch('/__onboarding_test_guard__').then((r) => r.json());
+  if (location.hostname !== '127.0.0.1' || guard.purpose !== 'questnote-onboarding-synthetic-only'
+    || window.__questNoteOnboardingTest?.databaseName !== guard.databaseName) throw Error('需要專用隔離伺服器。');
+  const db = await import('/src/db.js');
+  const { loadCatalogBundle } = await import('/src/releaseCatalog.js');
+  const { normalizeWallet } = await import('/src/rewardService.js');
+  const { createBondJourney } = await import('/src/bondJourneyCore.js');
+  const { createPetAwakening, validatePetAwakening } = await import('/src/petAwakeningCore.js');
+  const { normalizeCollectionItem } = await import('/src/collectionService.js');
+  const { setSelectedPoolId } = await import('/src/gachaService.js');
+  const pets = (await loadCatalogBundle()).petsData.pets.filter((p) => p.seriesId === 'swordwild_shanhe_v3');
+  await db.dbMutateRecords([{ store: 'meta', all: true }, { store: 'collection', all: true }, { store: 'tasks', all: true }], ([meta, collection, tasks]) => {
+    if (meta.some((m) => m.key === 'awakeningGuideReview')) return { puts: [], result: 'resume' };
+    if (meta.length || collection.length || tasks.length) throw Error('已有其他測試紀錄，未覆蓋。請另開隔離伺服器。');
+    const at = new Date(Date.now() - 3600000).toISOString();
+    const bond = createBondJourney();
+    for (const p of pets) bond.byPet[p.id] = { chapters: Object.fromEntries([2, 3, 4, 5].map((lv) => [lv, { choiceId: 'gentle', readAt: at, completedAt: at, claimedAt: at }])) };
+    const a = createPetAwakening();
+    for (const id of ['pet_ur16', 'pet_ur17']) {
+      const eventKeys = [0, 1, 2].map((i) => `task:guide-${id}-${i}`); const expeditionKey = `expedition:guide-${id}`;
+      a.byPet[id] = { startedAt: at, observingSince: at, status: id === 'pet_ur17' ? 'awakened' : 'ready', eventKeys, expeditionKey,
+        tokenGrantedAt: at, tokenConsumedAt: id === 'pet_ur17' ? at : null, awakenedAt: id === 'pet_ur17' ? at : null,
+        form: id === 'pet_ur17' ? 'initial' : 'awakened' };
+      a.usedEventKeys.push(...eventKeys, expeditionKey);
+    }
+    if (validatePetAwakening(a).length) throw Error('合成資料驗證失敗');
+    return { puts: [
+      ...pets.map((p) => ({ store: 'collection', value: normalizeCollectionItem({ petId: p.id, stars: 1, fragments: 0, bondExp: 500, bondLevel: 5, isCompanion: p.id === 'pet_ur16', obtainedAt: at }) })),
+      { store: 'meta', value: bond }, { store: 'meta', value: a }, { store: 'meta', value: { key: 'awakeningGuideReview', version: 1 } },
+      { store: 'meta', value: { key: 'inventory', items: { item_pine_trail_riceball: 3 }, itemUsageLogs: {} } },
+      { store: 'meta', value: normalizeWallet({ stardust: 10000, adventureEnergy: 50 }) }
+    ], result: 'seeded' };
+  });
+  await setSelectedPoolId('swordwild_shanhe_v3');
+  const frame = document.createElement('iframe'); frame.id = 'preview'; frame.title = '初遇預覽與覺醒教學試玩'; frame.src = '/index.html'; document.body.append(frame);
+  status.textContent = '已準備，可自由檢視與試玩。';
+} catch (error) { status.textContent = error.message; }
+</script></body></html>

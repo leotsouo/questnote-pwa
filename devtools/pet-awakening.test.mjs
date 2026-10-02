@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { createPetAwakening, validatePetAwakening, normalizePetAwakening, beginPetAwakening, advancePetAwakening, awakeningEvents, AWAKENING_PET_IDS } from '../src/petAwakeningCore.js';
 import { validateAwakeningCatalog } from '../src/petAwakeningCatalog.js';
-import { awakeningPortrait, renderAwakeningReader } from '../src/petAwakeningView.js';
+import { awakeningPortrait, initialAwakeningPortrait, renderAwakeningGuide, renderAwakeningReader } from '../src/petAwakeningView.js';
 import { awakeningDuration, awakeningSceneHtml } from '../src/petAwakeningScene.js';
 import { validateBackup, migrateImportedData, normalizeBackupPayload } from '../src/backupService.js';
 import { SNAPSHOT_KEYS } from '../src/backupSchema.js';
@@ -75,9 +75,9 @@ test('malformed states reject duplicated credit, missing token, multiple active 
     const s = ready(); mutate(s); assert.ok(validatePetAwakening(s).length); assert.throws(() => normalizePetAwakening(s));
   }
 });
-test('awakening-only toad portrait never mutates canonical draw art; form remains per pet', () => {
+test('unawakened toad uses initial art; awakened forms never mutate canonical draw art', () => {
   const pet = { ...pets.find((p) => p.id === 'pet_ur17'), owned: true };
-  assert.equal(awakeningPortrait(pet, ready(), catalog), pet);
+  assert.equal(awakeningPortrait(pet, ready(), catalog).image, catalog.pets.find((p) => p.petId === pet.id).initialImage.original);
   const s = awake();
   assert.deepEqual(validatePetAwakening(s), []);
   const display = awakeningPortrait(pet, s, catalog);
@@ -86,6 +86,36 @@ test('awakening-only toad portrait never mutates canonical draw art; form remain
   s.byPet.pet_ur17.form = 'initial';
   assert.equal(awakeningPortrait(pet, s, catalog).image, catalog.pets.find((p) => p.petId === pet.id).initialImage.original);
   assert.ok(awakeningSceneHtml(catalog.pets.find((p) => p.petId === pet.id), pet).includes('pet_ur17-awakened-'));
+});
+test('all twenty previews and unawakened portraits use initial art, regardless of ownership; other pools unchanged', () => {
+  for (const entry of catalog.pets) {
+    const pet = pets.find((p) => p.id === entry.petId);
+    const original = structuredClone(pet);
+    for (const owned of [true, false]) {
+      const display = awakeningPortrait({ ...pet, owned }, createPetAwakening(), catalog);
+      assert.equal(display.image, entry.initialImage.original);
+      assert.deepEqual(display.imageVariants, { card: entry.initialImage.card, stage: entry.initialImage.stage });
+      assert.equal(display.fallbackImage, entry.initialImage.original);
+    }
+    assert.equal(initialAwakeningPortrait(pet, catalog).image, entry.initialImage.original);
+    assert.deepEqual(pet, original);
+    const state = { byPet: { [pet.id]: { awakenedAt: later, form: 'awakened' } } };
+    assert.equal(awakeningPortrait({ ...pet, owned: true }, state, catalog).image, entry.awakenedImage?.original || pet.image);
+    // Even a duplicate draw of an awakened pet still presents the initial encounter.
+    assert.equal(initialAwakeningPortrait(pet, catalog).image, entry.initialImage.original);
+    assert.equal(awakeningPortrait({ ...pet, owned: false }, state, catalog).image, entry.initialImage.original);
+  }
+  const other = pets.find((p) => !catalog.pets.some((e) => e.petId === p.id));
+  assert.equal(initialAwakeningPortrait(other, catalog), other);
+  assert.equal(awakeningPortrait(other, createPetAwakening(), catalog), other);
+  assert.equal(initialAwakeningPortrait(null, catalog), null);
+});
+test('pool and full guide explain gates, trial-era departure and ritual without revealing awakened portraits', () => {
+  for (const compact of [true, false]) {
+    const html = renderAwakeningGuide({ compact });
+    for (const text of ['Lv.5', '三筆任務／習慣', '接下後出發', '領取派遣獎勵', '信物一枚', '松香行旅糰一份', '可選', '抽卡機率']) assert.ok(html.includes(text), text);
+    assert.ok(!html.includes('<img'));
+  }
 });
 test('old backups default unawakened; current backups require and roundtrip progress/forms and reject malformed record', () => {
   const old = JSON.parse(readFileSync(new URL('./fixtures/backups/legacy-3.4.4.json', import.meta.url)));
