@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { mergeAllPetsWithLore } from '../src/loreService.js';
-import { RARITIES, poolCandidates, identityLabel, basePetRate, displayResult, applyDisplayResult } from './companion-identity-model.js';
+import { RARITIES, MAX_DISPLAY_STARS, poolCandidates, identityLabel, basePetRate, displayResult, applyDisplayResult, seedDisplayCollection, prepareDisplayBatch, tenPreviewPets, setDisplayCompanion, duplicateNote, publicIntro, normalGreeting } from './companion-identity-model.js';
 
 const read = (file) => JSON.parse(fs.readFileSync(new URL('../data/' + file, import.meta.url)));
 const pets = mergeAllPetsWithLore(read('pets.json').pets, read('pets-lore.json'));
@@ -68,4 +68,62 @@ test('prototype has no production writes, network reports, random rolls, or serv
   const source = fs.readFileSync(new URL('./companion-identity.js',import.meta.url),'utf8');
   assert.doesNotMatch(source,/\b(?:pullOnce|performTenPull|planGachaTransaction|dbPut|dbMutateRecords|indexedDB|localStorage|Math\.random)\b/);
   assert.doesNotMatch(source,/serviceWorker|feedbackService|POST/);
+});
+
+test('fixed ten preview uses eligible pets in every pool and recognizes same-batch duplicates', () => {
+  for (const pool of pools) {
+    const candidates = poolCandidates(pets, pool);
+    const ten = tenPreviewPets(candidates);
+    assert.equal(ten.length, 10);
+    assert.ok(ten.every((pet) => candidates.some((candidate) => candidate.id === pet.id)));
+    const before = seedDisplayCollection();
+    const batch = prepareDisplayBatch(before, ten);
+    const repeatedId = ten[1].id;
+    assert.equal(batch.results[4].isNew, false);
+    assert.equal(batch.results[4].fragmentsGained, 1);
+    assert.equal(batch.collection.get(repeatedId).fragments, before.has(repeatedId) ? 2 : 1);
+    assert.equal(before.get(repeatedId)?.fragments || 0, 0);
+  }
+  const lion = pools.find((pool) => pool.id === 'lionheart_inverse_oath');
+  const batch = prepareDisplayBatch(seedDisplayCollection(), tenPreviewPets(poolCandidates(pets, lion)));
+  assert.deepEqual(batch.results.filter((result) => ['SSR', 'UR'].includes(result.pet.rarity)).map((result) => result.pet.id), ['pet_ssr25', 'pet_ur19', 'pet_ssr26', 'pet_ur20']);
+  assert.equal(batch.results.filter((result) => result.isNew).length, 5);
+});
+
+test('max-star repeats accumulate actual fragments while preserving stars and explaining the limit', () => {
+  const pet = pets.find((pet) => pet.id === 'pet_ur20');
+  const before = seedDisplayCollection();
+  const batch = prepareDisplayBatch(before, [pet, pet]);
+  assert.equal(batch.collection.get(pet.id).stars, MAX_DISPLAY_STARS);
+  assert.equal(batch.collection.get(pet.id).fragments, 40);
+  assert.equal(before.get(pet.id).fragments, 0);
+  assert.ok(batch.results.every((result) => duplicateNote(result).includes('已達最高星級')));
+  assert.doesNotMatch(duplicateNote(batch.results[0]), /用於.*升星/);
+});
+
+test('encounters do not replace a companion; explicit switching keeps nickname and other progress', () => {
+  const before = seedDisplayCollection();
+  const griffin = pets.find((pet) => pet.id === 'pet_ur19');
+  const batch = prepareDisplayBatch(before, [griffin]);
+  assert.equal(batch.collection.get('pet_n01').isCompanion, true);
+  assert.ok(!batch.collection.get(griffin.id).isCompanion);
+  const switched = setDisplayCompanion(batch.collection, griffin.id);
+  assert.equal([...switched.values()].filter((entry) => entry.isCompanion).length, 1);
+  assert.equal(switched.get(griffin.id).isCompanion, true);
+  assert.equal(switched.get('pet_n01').nickname, '小灰');
+  assert.equal(before.get('pet_n01').isCompanion, true);
+  const unowned = setDisplayCompanion(before, 'pet_n40');
+  assert.deepEqual(unowned, before);
+});
+
+test('greetings use existing normal dialogue only and curated public introductions omit title repetition', () => {
+  assert.equal(normalGreeting(pets.find((pet) => pet.id === 'pet_n01')), '我會跟著你，別走太快。');
+  assert.equal(normalGreeting({ dialogues: { bond2: ['尚未解鎖的台詞'] } }), '');
+  assert.equal(normalGreeting({ dialogues: { normal: [] } }), '');
+  for (const id of ['pet_n01', 'pet_ur19', 'pet_ssr25']) {
+    const pet = pets.find((pet) => pet.id === id);
+    assert.ok(publicIntro(pet));
+    assert.ok(!publicIntro(pet).startsWith(pet.title));
+    assert.ok(publicIntro(pet).length < 100);
+  }
 });

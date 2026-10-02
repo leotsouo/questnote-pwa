@@ -1,5 +1,5 @@
 import { mergeAllPetsWithLore } from '../src/loreService.js';
-import { RARITIES, poolCandidates, identityLabel, basePetRate, displayResult, applyDisplayResult } from './companion-identity-model.js';
+import { RARITIES, MAX_DISPLAY_STARS, poolCandidates, identityLabel, basePetRate, seedDisplayCollection, publicIntro, normalGreeting, prepareDisplayBatch, tenPreviewPets, duplicateNote, setDisplayCompanion } from './companion-identity-model.js';
 import { AWAKENING_PET_IDS } from '../src/petAwakeningCore.js';
 import { normalizePoolDefinition } from '../src/poolContentContract.js';
 
@@ -9,20 +9,22 @@ const reveal = document.getElementById('reveal-dialog');
 const escapeHtml = (text) => String(text ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const asset = (pet, size = 'card') => new URL('../' + (pet.imageVariants?.[size] || pet.image), import.meta.url).href;
 const byId = (id) => pets.find((pet) => pet.id === id);
-const seedCollection = () => new Map(['pet_n01', 'pet_n09', 'pet_n39', 'pet_r41', 'pet_ssr25', 'pet_ur20'].map((id) => [id, { stars: 1, bondLevel: 1, fragments: 0 }]));
 let pets = [];
 let pools = [];
 let poolId = 'lionheart_inverse_oath';
 let view = 'pool';
-let collection = seedCollection();
+let collection = seedDisplayCollection();
 let filter = 'all';
 let density = 'compact';
 let query = '';
 let recent = null;
-let opener = null;
+let dialogOpener = null;
+let revealOpener = null;
+let revealFocusAction = '';
+let detailReturnsToBatch = false;
 let timers = [];
 let activeResult = null;
-let applied = false;
+let activeBatch = null;
 let manual = false;
 let trace = [];
 const pool = () => pools.find((row) => row.id === poolId);
@@ -52,17 +54,26 @@ function poolSelector() {
   return `<div class="pool-select"><label for="pool-select">探索世界</label><select id="pool-select">${pools.map((row) => `<option value="${row.id}" ${row.id === poolId ? 'selected' : ''}>${escapeHtml(row.name)}</option>`).join('')}</select></div>`;
 }
 
+function companionPreview() {
+  const pair = [...collection].find(([, entry]) => entry.isCompanion);
+  if (!pair) return '<section class="companion-preview"><p class="eyebrow">今天的同行者</p><p class="subtle">在已相遇夥伴的手記中，選擇想一起同行的夥伴。</p></section>';
+  const [id, entry] = pair;
+  const pet = byId(id);
+  return `<section class="companion-preview"><p class="eyebrow">今天的同行者 · 日常陪伴預覽</p><button data-pet="${id}" aria-label="${escapeHtml([entry.nickname || pet.name, entry.nickname ? `原名：${pet.name}` : '', '目前陪伴夥伴'].filter(Boolean).join('，'))}">${imageHtml(pet)}<span><strong class="companion-name">${escapeHtml(entry.nickname || pet.name)}</strong>${entry.nickname ? `<span class="companion-original">原名：${escapeHtml(pet.name)}</span>` : ''}<span class="subtle">${pet.rarity} · 正在與你同行</span></span><span class="companion-link">認識牠</span></button></section>`;
+}
+
 function renderPool() {
   const selected = pool();
   const list = candidates();
   const hero = byId(presentation().heroPetId) || list.find((pet) => pet.rarity === 'UR') || list[0];
   const support = (presentation().featuredPetIds || list.filter((pet) => pet.rarity === 'UR' && pet.id !== hero.id).slice(0, 3).map((pet) => pet.id)).map(byId).filter((pet) => pet && list.some((row) => row.id === pet.id));
-  screen.innerHTML = `<div class="page-intro"><div><p class="eyebrow">COMPANION DISCOVERY</p><h1>下一位同行者。</h1><p class="page-description">每一件完成的小事，都讓相遇更近。</p></div></div>
+  screen.innerHTML = `<div class="page-intro pool-heading"><h1>下一位同行者。</h1></div>
     ${poolSelector()}<div class="pool-layout">
-    <button class="hero-card rank-${hero.rarity}" data-pet="${hero.id}" aria-label="預覽 ${escapeHtml(identityLabel(hero, owned(hero)))}">
+    <div class="pool-stage"><button class="hero-card rank-${hero.rarity}" data-pet="${hero.id}" aria-label="預覽 ${escapeHtml(identityLabel(hero, owned(hero)))}">
       <span class="art-label">焦點夥伴 · 點擊認識</span>${imageHtml(hero, 'stage', false, 'hero-art')}
       <span class="hero-caption"><span class="pet-name">${escapeHtml(hero.name)}</span><span class="pet-title">${escapeHtml(hero.title)}</span>${cues(hero)}</span>
-    </button><div class="pool-copy"><p class="eyebrow">${escapeHtml(selected.presentation?.badge || '持續開放的相遇')}</p><h2>${escapeHtml(selected.name)}</h2>
+    </button><div class="summon-dock"><p>單次召喚 ${selected.cost} 星塵 · 此處不消耗</p><div class="summon-buttons"><button class="primary" data-action="summon" data-pet-id="${hero.id}">體驗一次相遇</button><button data-action="summon-ten">體驗十連</button></div></div></div>
+    <div class="pool-copy"><p class="eyebrow">${escapeHtml(selected.presentation?.badge || '持續開放的相遇')}</p><h2>${escapeHtml(selected.name)}</h2>
       <p class="pool-lore">${escapeHtml(selected.presentation?.tagline || '循著星光，認識願意與你一起前進的夥伴。')}</p>
       <p class="subtle">${list.length} 位可相遇的夥伴 · 焦點展示不加成機率</p>
       ${selected.unlockExpansion ? `<p class="subtle">${document.getElementById('expansion').checked ? '晨醒花庭已解鎖，候選名單已擴充。' : `此系列在累積 ${selected.unlockExpansion.threshold} 次召喚後開啟晨醒花庭；此處顯示初始名單。`}</p>` : ''}
@@ -70,8 +81,8 @@ function renderPool() {
     </div></div>
     <div class="section-heading"><h2>也在這裡等你</h2><span class="subtle">焦點展示</span></div>
     <div class="support-grid">${support.slice(0, 3).map((pet) => `<button class="mini-card" data-pet="${pet.id}" aria-label="${escapeHtml(identityLabel(pet, owned(pet)))}">${imageHtml(pet)}<span class="pet-name">${escapeHtml(pet.name)}</span>${cues(pet)}</button>`).join('')}</div>
-    <div class="summon-dock"><div><p>單次召喚 ${selected.cost} 星塵</p><p>完成任務，累積下一次相遇。</p></div><button class="primary" data-action="summon" data-pet-id="${hero.id}">體驗一次相遇</button></div>
     <p class="subtle">演出為指定角色的設計預覽；不會抽取、扣款或改變你的存檔。</p>
+    ${companionPreview()}
     ${recent ? `<section class="recent"><p class="eyebrow">最近的相遇 · 展示紀錄</p><button data-pet="${recent.pet.id}">${imageHtml(recent.pet)}<span><span class="pet-name">${escapeHtml(recent.pet.name)}</span><span class="pet-title">${recent.isNew ? '新夥伴已加入手帳' : `再次相遇 · ${recent.pet.rarity} 碎片 +${recent.fragmentsGained}`}</span></span></button></section>` : ''}`;
 }
 
@@ -106,7 +117,7 @@ function updateDemoSelect() {
 }
 
 function showDialog(heading, html) {
-  if (!dialog.open) opener = document.activeElement;
+  if (!dialog.open) dialogOpener = document.activeElement;
   document.getElementById('dialog-content').innerHTML = `<div class="dialog-header"><h2 id="dialog-heading">${escapeHtml(heading)}</h2><button data-action="close-dialog">關閉</button></div><div class="dialog-body">${html}</div>`;
   if (!dialog.open) dialog.showModal();
   dialog.querySelector('[data-action="close-dialog"]').focus();
@@ -128,21 +139,20 @@ function keepDialogFocus(event) {
   }
 }
 
-function petDetail(pet) {
+function petDetail(pet, returnToBatch = false) {
+  detailReturnsToBatch = returnToBatch;
   const entry = collection.get(pet.id);
   const isOwned = !!entry;
-  // description may contain the entire long story in recent pools: only the
-  // first two sentences are public. Bond chapters never enter an unowned DOM.
-  const publicIntro = (pet.description || '').split(/(?<=[。！？])/).slice(0,2).join('');
   const species = { griffin:'格里芬', biomechanical_chimera:'生體機械奇美拉' }[pet.speciesType] || '';
   showDialog(isOwned ? '夥伴手記' : '初識夥伴', `${imageHtml(pet,'stage',false,'detail-art')}
     <div class="detail-identity"><h3 class="pet-name">${escapeHtml(pet.name)}</h3><p class="pet-title">${escapeHtml(pet.title)}</p>${cues(pet)}<p class="subtle" style="margin-top:10px">${escapeHtml([pet.element ? `${pet.element}屬性` : '',species].filter(Boolean).join(' · '))}</p></div>
+    ${isOwned ? `<div class="companion-actions">${entry.nickname ? `<p class="subtle">你的稱呼：${escapeHtml(entry.nickname)} · 日常陪伴使用暱稱</p>` : ''}<button class="${entry.isCompanion ? '' : 'primary'}" data-action="set-companion" data-pet-id="${pet.id}" ${entry.isCompanion ? 'disabled' : ''}>${entry.isCompanion ? '正在與你同行' : '設為陪伴'}</button><p class="subtle">陪伴切換僅供此頁展示。</p></div>` : ''}
     ${AWAKENING_PET_IDS.includes(pet.id) ? '<p class="subtle">目前預覽：初始形態 · 覺醒後仍是同一位夥伴</p>' : ''}
-    <p class="detail-copy">${escapeHtml(isOwned ? pet.lore : publicIntro)}</p>
+    <p class="detail-copy">${escapeHtml(isOwned ? pet.lore : publicIntro(pet))}</p>
     ${isOwned ? `<dl class="detail-stats"><div><dt>升星</dt><dd>${entry.stars} 星</dd></div><div><dt>親密度</dt><dd>Lv.${entry.bondLevel}</dd></div><div><dt>此夥伴碎片</dt><dd>${entry.fragments}</dd></div></dl>` : ''}
-    ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p><blockquote>${escapeHtml(pet.dialogues?.normal?.[0] || '')}</blockquote></section>` : ''}
+    ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p>${normalGreeting(pet) ? `<blockquote>${escapeHtml(normalGreeting(pet))}</blockquote>` : ''}</section>` : ''}
     <section class="detail-section"><h3>相處，才會揭開的故事</h3>${isOwned ? [2,3,4,5].map((level) => `<p>親密度 Lv.${level} · ${entry.bondLevel >= level ? escapeHtml(pet.bondUnlocks?.[level] || '已解鎖') : '故事尚未解鎖'}</p>`).join('') : '<p>相遇後可閱讀完整背景；專屬對話與羈絆章節隨親密度逐步揭開。</p>'}</section>
-    ${isOwned ? `<section class="detail-section"><h3>一起走下去</h3><p>升星、餵食與約定保留在正式 App。此處查看角色與收藏狀態。</p>${entry.nickname ? `<p>你的暱稱：${escapeHtml(entry.nickname)} · 原名永遠保留在主標。</p>` : ''}</section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-action="preview">返回本池夥伴</button>`);
+    ${isOwned ? `<section class="detail-section"><h3>一起走下去</h3><p>升星、餵食與約定保留在正式 App。此處查看角色與收藏狀態。</p></section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-action="${returnToBatch ? 'return-batch' : 'preview'}">${returnToBatch ? '返回本次相遇' : '返回本池夥伴'}</button>`);
 }
 
 function poolPreview() {
@@ -170,46 +180,103 @@ function phase(name) {
   shell.dataset.trace = JSON.stringify(trace);
   // The dialog's accessible name follows the same recognition order as its art.
   reveal.removeAttribute('aria-labelledby');
-  reveal.setAttribute('aria-label', name === 'name' ? `${activeResult.pet.name}，${activeResult.pet.rarity}` : ['title','result'].includes(name) ? identityLabel(activeResult.pet, name === 'result') : '夥伴相遇演出');
+  reveal.setAttribute('aria-label', name === 'name' ? `${activeResult.pet.name}，${activeResult.pet.rarity}` : name === 'title' ? [activeResult.pet.name, activeResult.pet.title, activeResult.pet.rarity].filter(Boolean).join('，') : name === 'result' ? identityLabel(activeResult.pet, true) : '夥伴相遇演出');
   shell.querySelector('.pet-name').setAttribute('aria-hidden', !['name','title','result'].includes(name));
   shell.querySelector('.pet-title').setAttribute('aria-hidden', !['title','result'].includes(name));
+  shell.querySelector('.reveal-actions').setAttribute('aria-hidden', name !== 'result');
+  shell.querySelector('.obtained').setAttribute('aria-hidden', name !== 'result');
+  const greeting = shell.querySelector('.reveal-greeting');
+  if (greeting) greeting.hidden = name !== 'result';
   shell.querySelector('.reveal-stage-label').textContent = {begin:'循著星光，等待相遇',cue:`${activeResult.pet.rarity} · 相遇的微光`,silhouette:'一位夥伴正在靠近',art:'牠已經來到你面前',name:'記住這位同行者',title:'名字背後，是牠的故事',result:activeResult.isNew?'新的旅程，從這裡開始':'熟悉的夥伴，再次相遇'}[name];
   if (name === 'name' && !reduced() && document.getElementById('haptics').checked && navigator.vibrate) {
     navigator.vibrate({N:8,R:12,SR:16,SSR:18,UR:[20,30,12]}[activeResult.pet.rarity]);
   }
   if (name === 'result') {
     clearTimers();
-    if (!applied) { collection = applyDisplayResult(collection,activeResult); recent = activeResult; applied = true; }
-    shell.querySelector('[data-action="skip-reveal"]').textContent = '關閉';
+    shell.querySelector('[data-action="skip-reveal"]').textContent = activeBatch ? '略過全部' : '關閉';
     document.getElementById('announcement').textContent = `${activeResult.pet.name}，${activeResult.pet.title || ''}，${activeResult.pet.rarity}。${activeResult.isNew ? '新夥伴已加入展示圖鑑。' : `再次相遇，${activeResult.pet.name}碎片增加${activeResult.fragmentsGained}。`}`;
     shell.querySelector('.reveal-actions').removeAttribute('aria-hidden');
     shell.querySelector('.obtained').removeAttribute('aria-hidden');
   }
 }
 
-function startReveal(pet, duplicate = owned(pet), stepByStep = false) {
-  clearTimers();
+function rememberRevealOpener() {
+  revealOpener = document.activeElement;
+  revealFocusAction = revealOpener?.dataset?.action || '';
   if (dialog.open) dialog.close();
-  opener = document.activeElement;
-  activeResult = displayResult(pet,duplicate);
-  applied = false;
+}
+
+function presentResult(result, stepByStep = false) {
+  clearTimers();
+  activeResult = result;
+  const pet = result.pet;
   manual = stepByStep;
   trace = [];
   document.getElementById('reveal-content').innerHTML = `<section class="reveal-shell rank-${pet.rarity}" data-phase="begin" data-start="${performance.now()}">
-    <div class="reveal-top"><p class="eyebrow reveal-stage-label">循著星光，等待相遇</p><button data-action="skip-reveal">略過演出</button></div>
+    <div class="reveal-top"><p class="eyebrow reveal-stage-label">循著星光，等待相遇</p><button data-action="skip-reveal">${activeBatch ? '略過全部' : '略過演出'}</button></div>
+    ${activeBatch ? `<p class="queue-progress">本次相遇 · 角色揭露 ${activeBatch.index + 1} / ${activeBatch.queue.length}</p>` : ''}
     ${imageHtml(pet,'stage',false,'reveal-image')}<div class="reveal-identity"><h2 id="reveal-name" class="pet-name" aria-hidden="true">${escapeHtml(pet.name)}</h2><p class="pet-title" aria-hidden="true">${escapeHtml(pet.title)}</p>${cues(pet,false)}</div>
-    <div class="obtained" aria-hidden="true">${duplicate ? `再次相遇 · ${escapeHtml(pet.name)}碎片 +${activeResult.fragmentsGained}<p>碎片會幫助這位夥伴升星。</p>` : '新夥伴，已加入你的旅程。<p>從相遇開始，讓故事慢慢變熟悉。</p>'}</div>
-    <div class="reveal-actions" aria-hidden="true"><button class="primary" data-action="reveal-detail">認識這位夥伴</button><button data-action="reveal-collection">收入旅程手帳</button></div>
+    ${result.isNew && normalGreeting(pet) ? `<blockquote class="reveal-greeting" hidden>「${escapeHtml(normalGreeting(pet))}」</blockquote>` : ''}
+    <div class="obtained" aria-hidden="true">${result.isNew ? '初次相遇，已加入圖鑑。<p>從相遇開始，讓故事慢慢變熟悉。</p>' : `再次相遇 · ${escapeHtml(pet.name)}碎片 +${result.fragmentsGained}<p>${duplicateNote(result)}</p>`}</div>
+    <div class="reveal-actions" aria-hidden="true">${activeBatch ? `<button class="primary" data-action="next-result">${activeBatch.index + 1 === activeBatch.queue.length ? '查看本次相遇' : '下一位夥伴'}</button><button data-action="batch-summary">查看全部結果</button>` : '<button class="primary" data-action="reveal-detail">認識這位夥伴</button><button data-action="reveal-collection">查看圖鑑</button>'}</div>
     ${manual ? `<div class="filters" aria-label="逐步檢視演出">${['begin','cue','silhouette','art','name','title','result'].map((key,index) => `<button data-phase-step="${key}">${index+1} ${['開始','稀有線索','輪廓','插畫','名字','稱號','結果'][index]}</button>`).join('')}</div>` : ''}
   </section>`;
-  reveal.showModal();
+  if (!reveal.open) reveal.showModal();
+  reveal.scrollTop = 0;
+  reveal.querySelector('[data-action="skip-reveal"]').focus();
   phase(reduced() ? 'result' : 'begin');
   if (!reduced() && !manual) {
     [['cue',300],['silhouette',550],['art',850],['name',1200],['title',1450],['result',1800]].forEach(([key,delay]) => timers.push(setTimeout(() => phase(key),delay)));
   }
 }
 
-function closeReveal() { clearTimers(); reveal.close(); render(); }
+function startReveal(pet, stepByStep = false) {
+  rememberRevealOpener();
+  activeBatch = null;
+  const batch = prepareDisplayBatch(collection, [pet]);
+  collection = batch.collection;
+  recent = batch.results[0];
+  presentResult(recent, stepByStep);
+}
+
+function startScenario(kind, stepByStep = false) {
+  const pet = byId(document.getElementById('demo-pet').value);
+  collection = new Map(collection);
+  if (kind === 'new') collection.delete(pet.id);
+  else collection.set(pet.id, { stars: 1, bondLevel: 1, fragments: 0, ...collection.get(pet.id), ...(kind === 'max-star' ? { stars: MAX_DISPLAY_STARS } : {}) });
+  startReveal(pet, stepByStep);
+}
+
+function startTen() {
+  rememberRevealOpener();
+  const batch = prepareDisplayBatch(collection, tenPreviewPets(candidates()));
+  collection = batch.collection;
+  recent = batch.results.at(-1);
+  activeBatch = { results: batch.results, queue: batch.results.filter((result) => ['SSR', 'UR'].includes(result.pet.rarity)), index: 0, summary: false };
+  if (reduced() || !activeBatch.queue.length) showBatchSummary();
+  else presentResult(activeBatch.queue[0]);
+}
+
+function showBatchSummary() {
+  if (!activeBatch) return;
+  clearTimers();
+  activeBatch.summary = true;
+  const count = activeBatch.results.filter((result) => result.isNew).length;
+  document.getElementById('reveal-content').innerHTML = `<section class="batch-summary"><div class="dialog-header"><h2 id="batch-heading">本次相遇</h2><button data-action="close-reveal">關閉</button></div><div class="dialog-body"><p class="batch-lead">${count} 位初次相遇 · 10 次旅程記錄</p><p class="subtle">固定候選展示 · 點擊任一夥伴，認識牠的故事。</p><div class="batch-grid">${activeBatch.results.map((result, index) => `<article class="batch-card ${result.isNew ? 'first-encounter' : ''}"><button data-result-pet="${result.pet.id}" aria-label="第 ${index + 1} 位，${escapeHtml(identityLabel(result.pet, true))}，${result.isNew ? '初次相遇' : `再次相遇，碎片增加 ${result.fragmentsGained}`}，${!result.isNew && result.starsAtEncounter >= MAX_DISPLAY_STARS ? '已達最高星級' : ''}"><span class="encounter-index">${String(index + 1).padStart(2, '0')}</span>${imageHtml(result.pet)}<span class="pet-name">${escapeHtml(result.pet.name)}</span><span class="identity-cue"><span class="rarity">${result.pet.rarity}</span></span><span class="encounter-state">${result.isNew ? '初次相遇' : '再次相遇'}</span>${result.isNew ? '' : `<span class="fragment-gain">${escapeHtml(result.pet.name)}碎片 +${result.fragmentsGained}</span>${result.starsAtEncounter >= MAX_DISPLAY_STARS ? '<span class="subtle">已滿星 · 碎片繼續累積</span>' : ''}`}</button></article>`).join('')}</div><div class="batch-actions"><button class="primary" data-action="reveal-collection">查看圖鑑</button><button data-action="close-reveal">返回卡池</button></div></div></section>`;
+  reveal.removeAttribute('aria-label');
+  reveal.setAttribute('aria-labelledby', 'batch-heading');
+  if (!reveal.open) reveal.showModal();
+  reveal.scrollTop = 0;
+  reveal.querySelector('[data-action="close-reveal"]').focus();
+  document.getElementById('announcement').textContent = `十連展示完成，共 10 位結果，${count} 位初次相遇。所有結果已加入展示圖鑑。`;
+}
+
+function finishPresentation() {
+  if (activeBatch) showBatchSummary();
+  else phase('result');
+}
+
+function closeReveal() { clearTimers(); reveal.close(); activeBatch = null; render(); }
 
 function stress() {
   const examples = [pets.find((pet) => pet.name.length === 2), pets.find((pet) => pet.name.length === 3), byId('pet_n01'), byId('pet_n40'), byId('pet_ur19')].filter(Boolean);
@@ -228,6 +295,7 @@ document.addEventListener('click', (event) => {
   if (!button) return;
   if (button.dataset.view) { view = button.dataset.view; render(); window.scrollTo(0,0); return; }
   if (button.dataset.pet) { petDetail(byId(button.dataset.pet)); return; }
+  if (button.dataset.resultPet) { petDetail(byId(button.dataset.resultPet), true); return; }
   if (button.dataset.filter) { filter = button.dataset.filter; renderCollection(); return; }
   if (button.dataset.density) { density = button.dataset.density; renderCollection(); return; }
   if (button.dataset.phaseStep) { phase(button.dataset.phaseStep); return; }
@@ -236,9 +304,23 @@ document.addEventListener('click', (event) => {
   if (action === 'probability') probability();
   if (action === 'close-dialog') dialog.close();
   if (action === 'summon') startReveal(byId(button.dataset.petId));
-  if (action === 'skip-reveal') document.querySelector('.reveal-shell').dataset.phase === 'result' ? closeReveal() : phase('result');
+  if (action === 'summon-ten') startTen();
+  if (action === 'skip-reveal') activeBatch ? showBatchSummary() : document.querySelector('.reveal-shell').dataset.phase === 'result' ? closeReveal() : phase('result');
+  if (action === 'batch-summary') showBatchSummary();
+  if (action === 'next-result' && activeBatch) {
+    activeBatch.index += 1;
+    activeBatch.index < activeBatch.queue.length ? presentResult(activeBatch.queue[activeBatch.index]) : showBatchSummary();
+  }
+  if (action === 'close-reveal') closeReveal();
+  if (action === 'return-batch') dialog.close();
+  if (action === 'set-companion') {
+    collection = setDisplayCompanion(collection, button.dataset.petId);
+    render();
+    petDetail(byId(button.dataset.petId), detailReturnsToBatch);
+    document.getElementById('announcement').textContent = `${byId(button.dataset.petId).name}已設為展示陪伴夥伴。`;
+  }
   if (action === 'reveal-detail') { const pet = activeResult.pet; closeReveal(); petDetail(pet); }
-  if (action === 'reveal-collection') { view = 'collection'; closeReveal(); screen.focus(); }
+  if (action === 'reveal-collection') { view = 'collection'; filter = 'all'; query = ''; closeReveal(); window.scrollTo(0, 0); screen.focus(); }
   if (action === 'clear-filter') { filter = 'all'; query = ''; renderCollection(); }
 });
 
@@ -252,29 +334,42 @@ document.getElementById('theme').addEventListener('change', (event) => { documen
 document.getElementById('type-scale').addEventListener('change', (event) => { document.documentElement.style.fontSize = `${16 * Number(event.target.value)}px`; });
 document.getElementById('reduce-motion').addEventListener('change', (event) => {
   document.body.dataset.reduceMotion = String(event.target.checked);
-  if (reveal.open && reduced()) phase('result');
+  if (reveal.open && reduced()) finishPresentation();
 });
-matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => { if (reveal.open && reduced()) phase('result'); });
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => { if (reveal.open && reduced()) finishPresentation(); });
 document.getElementById('expansion').addEventListener('change',render);
 document.getElementById('review-toggle').addEventListener('click', (event) => {
   const panel = document.getElementById('review-panel'); panel.hidden = !panel.hidden; event.currentTarget.setAttribute('aria-expanded', String(!panel.hidden));
 });
-document.getElementById('demo-new').addEventListener('click', () => startReveal(byId(document.getElementById('demo-pet').value),false));
-document.getElementById('demo-duplicate').addEventListener('click', () => startReveal(byId(document.getElementById('demo-pet').value),true));
+document.getElementById('demo-new').addEventListener('click', () => startScenario('new'));
+document.getElementById('demo-duplicate').addEventListener('click', () => startScenario('duplicate'));
+document.getElementById('demo-max-star').addEventListener('click', () => startScenario('max-star'));
+document.getElementById('demo-ten').addEventListener('click', startTen);
 document.getElementById('stress').addEventListener('click',stress);
-document.getElementById('reset-demo').addEventListener('click', () => { collection = seedCollection(); recent = null; render(); });
+document.getElementById('reset-demo').addEventListener('click', () => { collection = seedDisplayCollection(); recent = null; render(); document.getElementById('announcement').textContent = '展示收藏已重設，小灰正在與你同行。'; });
 const stepButton = document.createElement('button');
 stepButton.id = 'demo-steps'; stepButton.textContent = '逐步檢視 Reveal';
 document.querySelector('.review-actions').append(stepButton);
-stepButton.addEventListener('click', () => startReveal(byId(document.getElementById('demo-pet').value),false,true));
-dialog.addEventListener('close', () => { if (opener?.isConnected) opener.focus(); });
+stepButton.addEventListener('click', () => startScenario('new', true));
+dialog.addEventListener('close', () => {
+  if (reveal.open && !activeBatch?.summary) return;
+  if (dialogOpener?.isConnected) dialogOpener.focus();
+  else if (reveal.open) reveal.querySelector('button').focus();
+  else screen.focus();
+});
 dialog.addEventListener('keydown', keepDialogFocus);
 reveal.addEventListener('keydown', keepDialogFocus);
 reveal.addEventListener('cancel', (event) => {
   event.preventDefault();
-  document.querySelector('.reveal-shell').dataset.phase === 'result' ? closeReveal() : phase('result');
+  if (activeBatch) activeBatch.summary ? closeReveal() : showBatchSummary();
+  else document.querySelector('.reveal-shell').dataset.phase === 'result' ? closeReveal() : phase('result');
 });
-reveal.addEventListener('close', () => { clearTimers(); if (opener?.isConnected) opener.focus(); else screen.focus(); });
+reveal.addEventListener('close', () => {
+  clearTimers();
+  if (dialog.open) return;
+  const target = revealOpener?.isConnected ? revealOpener : revealFocusAction ? screen.querySelector(`[data-action="${revealFocusAction}"]`) : null;
+  (target || screen).focus();
+});
 document.getElementById('haptic-support').textContent = typeof navigator.vibrate === 'function' ? '此瀏覽器提供震動 API；實際觸覺仍須裝置檢查。' : '此瀏覽器不提供震動 API；演出保留完整視覺與文字回饋。';
 
 try {

@@ -2,7 +2,7 @@
 
 [開啟互動 Prototype](http://127.0.0.1:4187/devtools/companion-identity.html) · [完整截圖矩陣](matrix.html) · [遊戲研究](research.md) · [驗證與限制](verification.md)
 
-2026-10-02；設計審查版，尚未進 Production。
+2026-10-02；目前為 Prototype 02，尚未進 Production。[第二版操作與驗證](v2-review.md)；補上手機首屏 CTA、角色招呼、固定十連、陪伴暱稱與滿星重複結果。
 
 來源固定為 `origin/main` 的 `3a88db8f227e710c13324860197b73c1ce880573`（來源版本 V3.5.9）。本機隔離分支：`codex/companion-identity-prototype`，工作目錄：`.worktrees/identity`。這是來源審查，不把來源版本當成正式 HTTPS 部署證據。舊根目錄草稿未改動。
 
@@ -31,10 +31,10 @@
 | 保底 | SSR+ 上限 30；UR 上限 100；各池獨立；UR 重設兩者，SSR 僅重設 SSR 計數 | 文字明示，無計數／抽取實作變更 |
 | 費用 | 單次 100 星塵，十次 1000 | 角色介紹後才顯示；Prototype 不扣款 |
 | 花庭擴充 | 累積 20 次後解鎖 4 隻候選及固定贈 pet_r16；贈寵不是抽卡 | 使用純 contract 處理候選與既有 presentation default，解鎖主角為曙綻花后兔 |
-| 重複 | 該 pet 的碎片 N/R/SR/SSR/UR = 1/2/5/10/20 | 明示 pet 名字、實際增量、升星用途，僅記憶體展示 |
+| 重複 | 該 pet 的碎片 N/R/SR/SSR/UR = 1/2/5/10/20 | 明示 pet 名字與實際增量；滿星只說繼續累積，僅記憶體展示 |
 | 升星 | 升至 2/3/4/5 星需 5/15/30/50 碎片 | 不更改門檻 |
 | 親密度 | EXP 門檻 0/50/150/300/500；摸摸有原有 4h 冷卻與 5 EXP 等規則 | 不模擬任務、餵食、親密度獲取 |
-| Owned／nickname | 既有收藏有 nickname，原版優先暱稱；未擁有多為 ??? | 設計主標保留原名，暱稱獨立補充；不改存檔 schema |
+| Owned／nickname | 既有收藏有 nickname，原版優先暱稱；未擁有多為 ??? | 公開角色畫面以原名為主，日常陪伴以暱稱為主並列原名；不改存檔 schema |
 | 羈絆／覺醒 | Lv.2–5 對話／章節、任務／習慣約定、紀念物；20 隻劍隱角色有覺醒 | 未擁有不插入章節文字；不虛構戰鬥職能或進化 |
 | Theme | default／sweet／twilight，三套 palette 與字型語言 | 共用 UX、字級層級、名稱位置；兩套 muted 色在 Prototype 小幅加深 |
 | Current components | Pool stage、standard UR carousel、single／ten result、collection card、detail modal、image viewer | Prototype 建立小型共用 identity、cue、miniCard、detail 元件 |
@@ -69,7 +69,7 @@ Hero／Reveal 13.6px，Detail 同級；Expanded grid 12px。保持故事氣氛�
 
 ## 6. Pool Overview
 
-步驟 1 — Pool Overview：**健康：可審查**。同一頁先看大插畫、真名和稱號，再看 pool 世界觀與名單，最後才是費用與 CTA。六池的候選數與擴充皆讀真 contract；不造 wallet balance 或倒數。
+步驟 1 — Pool Overview：**健康：可審查**。同一頁先看大插畫、真名和稱號，費用與 CTA 接在主角名字區塊後，再看世界觀與名單。第二版 393×852 標準字級三 Theme 的主 CTA 均在首屏，大字模式自然捲動。六池的候選數與擴充皆讀真 contract；不造 wallet balance 或倒數。
 
 步驟 3 — Pool Preview：**健康：可審查**。每張有縮圖、原名、rarity、owned state、featured state；全部可點進 Detail。機率從 Overview／Preview 兩處可達。Featured 明示是介紹位置，沒有 rate-up。
 
@@ -112,9 +112,9 @@ Owned 保持完整彩圖；Unowned 用較暗灰階圖＋名字＋「尚未相遇
 
 步驟 8 — Pet Detail：**健康：公開／已擁有內容分界與返回路徑可審查**。
 
-完整原圖、原名、稱號與 rarity 放在前面。種族／屬性只列有資料者；不猜 legacy 缺值。未擁有先看 description 前兩句；完整背景於相遇後可讀。專屬對話與羈絆章節按原親密度標記；未解鎖章節內容不插入未擁有 DOM。
+完整原圖、原名、稱號與 rarity 放在前面。種族／屬性只列有資料者；不猜 legacy 缺值。第二版人工整理灰影幼狼、格里芬與重鉚架橋犀的公開短介紹；其餘仍用 description 前兩句。完整背景於相遇後可讀。專屬對話與羈絆章節按原親密度標記；未解鎖章節內容不插入未擁有 DOM。
 
-已擁有 Detail 增加升星、親密度、該角色碎片、性格與原有 normal quote。名稱政策讓原名永遠保留，nickname 作個人稱呼補充。此 Prototype 不提供正式餵食、升星與任務按鈕，不產生假進度。
+已擁有 Detail 增加升星、親密度、該角色碎片、性格與原有 normal quote。第二版新結果也顯示一句既有 normal 招呼，主操作「認識這位夥伴」，次操作「查看圖鑑」。原名保留在角色主標，暱稱用於日常陪伴預覽。手記可明確切換展示陪伴，新相遇不自動替換。此 Prototype 不提供正式餵食、升星與任務按鈕，不產生假進度。
 
 Dialog 關閉恢復 opener，Preview→機率在同一個 dialog 內換頁後仍返回原入口。可從 Detail 返回本池名單。
 
@@ -122,7 +122,7 @@ Dialog 關閉恢復 opener，Preview→機率在同一個 dialog 內換頁後仍
 
 步驟 6 — Duplicate Reveal：**健康：真實碎片數與單次套用通過**。
 
-例如 **重鉚架橋犀 → 再次相遇 → 重鉚架橋犀碎片 +10**，並說明升星用途。保留角色插畫與姓名，不標「失敗」。UR +20、SR +5、R +2、N +1 皆來自既有常數。原始收藏 Map 不被修改，展示結果只套用一次。
+例如 **重鉚架橋犀 → 再次相遇 → 重鉚架橋犀碎片 +10**，未滿星時說明升星用途。滿星奇美拉仍 +20，改說「已達最高星級，碎片繼續累積」。保留角色插畫與姓名，不標「失敗」。UR +20、SR +5、R +2、N +1 皆來自既有常數。原始收藏 Map 不被修改，展示結果只套用一次。第二版固定十連按原順序計算同次重複，再演出 SSR＋；略過到完整十張總覽，減少動態直接總覽，皆不重複套用。
 
 最近相遇入口同樣用 name 作主標，直接到角色 Detail。New／Duplicate 演出不連接抽卡、錢包、任務、獎勵或存檔 API。
 
@@ -142,7 +142,7 @@ Dialog 關閉恢復 opener，Preview→機率在同一個 dialog 內換頁後仍
 
 以官方 [Apple Design Awards](https://developer.apple.com/design/awards/) 的 Interaction、Visuals & Graphics、Delight & Fun、Inclusivity 為內部質性評審框架，並非官方評分或得獎預測。
 
-- Interaction：角色→名單→Detail→相遇結果→手帳路徑清楚；44px touch target、skip／Escape、焦點返回已檢查。窄螢幕 CTA 需下捲，是角色先行的取捨，值得在實際任務情境測效率。
+- Interaction：角色→名單→Detail→相遇結果→手帳路徑清楚；44px touch target、skip／Escape、焦點返回已檢查。第二版標準字級首屏可達 CTA，大字模式保留自然捲動；固定十連完整／略過與詳細頁返回已檢查。
 - Visuals & Graphics：原插畫完整展示，三 Theme 共享 name 層級，稀有邊框收斂。Pool 身份來自角色與原 lore，不只是裝飾背景。
 - Delight & Fun：art→name→title 的短節奏與再次相遇的用途有正向敘事；但「令人記住」仍需真人記憶測試。
 - Inclusivity：實際使用的 name／title／CTA 色對比通過 4.5:1；200% 字體與長名字可換行，reduced motion 通過，非色彩 rarity cue 已有。原生 Dynamic Type、VoiceOver 與實機觸覺尚未驗證，不能宣稱全面 accessibility 合格。
@@ -167,12 +167,12 @@ Impact：介面提供「我認識牠」的條件，但情感連結與記憶增�
 
 ## 16. 還有哪些風險
 
-1. 未擁有公開姓名是有意的探索政策變更；需產品確認。Catalog 沒有 secret flag，不能私下發明一套 hidden schema。
+1. 已確認未擁有公開姓名、彩圖與短介紹，圖鑑灰階區分狀態。Catalog 沒有 secret flag，不能私下發明一套 hidden schema。
 2. 200% 根字體是 Web 排版模擬；Windows IAB 無 iOS VoiceOver／原生 Dynamic Type。Physical iPhone Safari/PWA、VoiceOver 焦點、中文發音、system reduce motion、觸覺 fallback 必須實機檢查。
 3. 慢網路／弱裝置尚未定量測試；Production 應接回既有 preloader 與動畫 queue，在 image ready 後開始 recognition moment，並提供文字／圖像失敗 fallback。
-4. Prototype 只預覽固定單隻結果。正式十連須維持原序列、SSR+ queue、atomic transaction、skips、new／duplicate 與補償語意，不能用本輪展示 Map 接存檔。
-5. Detail 的前兩句是展示用摘要規則，有些 lore 首句就是稱號；正式實作宜人工編輯 publicIntro，不靠字串截取洩漏故事。
-6. canonical name＋nickname 的政策需和原 App 個人稱呼流程協調；保留暱稱而不是丟掉。
+4. 第二版提供固定十連並驗證同次重複、SSR＋順序、略過與一次套用；正式十連仍須接既有 atomic transaction 與 queue，不能用展示 Map 接存檔。
+5. 三隻示範角色已有人工 publicIntro，其餘仍是前兩句預覽；正式實作需完成剩餘角色的內容整理。
+6. 已確認公開角色畫面原名為主、日常陪伴暱稱為主並列原名。正式介面需正確處理 enriched pet 的 originalName，不可把 nickname 當 catalog 名字。
 7. 視覺假設不等於情感或記憶證據；未執行一秒辨識、眼動、隔日回憶與長期收藏壓力測試。
 
 ## 17. 是否值得進 Production Implementation

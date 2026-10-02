@@ -1,0 +1,17 @@
+✔ every public catalog identity preserves its canonical name before its epithet and ownership (1.3417ms)
+✔ pool preview respects real eligibility including the existing locked expansion (1.5949ms)
+✔ per-pet transparency matches existing equal selection, sums to base rates, and has no featured boost (1.4422ms)
+✔ a repeat encounter produces the actual rarity-specific pet fragments without mutating the input (0.6454ms)
+✔ prototype has no production writes, network reports, random rolls, or service-worker registration (1.3919ms)
+✔ fixed ten preview uses eligible pets in every pool and recognizes same-batch duplicates (1.4155ms)
+✔ max-star repeats accumulate actual fragments while preserving stars and explaining the limit (0.7435ms)
+✔ encounters do not replace a companion; explicit switching keeps nickname and other progress (0.2894ms)
+✔ greetings use existing normal dialogue only and curated public introductions omit title repetition (0.2372ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 179.3915

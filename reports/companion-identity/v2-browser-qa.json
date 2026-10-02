@@ -1,0 +1,222 @@
+[
+  {
+    "check": "new-result",
+    "actions": [
+      {
+        "bottom": 772.3375244140625,
+        "text": "認識這位夥伴"
+      },
+      {
+        "bottom": 772.3375244140625,
+        "text": "查看圖鑑"
+      }
+    ],
+    "dialogHeight": 733,
+    "overflow": 0,
+    "phase": "result",
+    "quote": "「先看清風向，再決定你的下一步。」",
+    "trace": [
+      {
+        "at": 13,
+        "phase": "begin"
+      },
+      {
+        "at": 321,
+        "phase": "cue"
+      },
+      {
+        "at": 564,
+        "phase": "silhouette"
+      },
+      {
+        "at": 866,
+        "phase": "art"
+      },
+      {
+        "at": 1214,
+        "phase": "name"
+      },
+      {
+        "at": 1464,
+        "phase": "title"
+      },
+      {
+        "at": 1826,
+        "phase": "result"
+      }
+    ]
+  },
+  {
+    "check": "new-does-not-replace-companion",
+    "text": "今天的同行者 · 日常陪伴預覽小灰原名：灰影幼狼N · 正在與你同行認識牠"
+  },
+  {
+    "check": "detail-focus-wrap",
+    "focus": "關閉"
+  },
+  {
+    "check": "queue-first",
+    "name": "重鉚架橋犀"
+  },
+  {
+    "check": "ten-summary-after-skip",
+    "cards": 10,
+    "newCards": 5,
+    "labels": [
+      "01齒輪拾修鼠N再次相遇齒輪拾修鼠碎片 +1",
+      "02苗圃護芽甲蟲N初次相遇",
+      "03霜閥巡路兔R初次相遇",
+      "04刻紋校準鴞SR初次相遇",
+      "05苗圃護芽甲蟲N再次相遇苗圃護芽甲蟲碎片 +1",
+      "06重鉚架橋犀SSR再次相遇重鉚架橋犀碎片 +10",
+      "07銅管引水獺R再次相遇銅管引水獺碎片 +2",
+      "08天律之冕・格里芬UR初次相遇",
+      "09蒸園盤根龜SSR初次相遇",
+      "10逆造獅首奇美拉UR再次相遇逆造獅首奇美拉碎片 +20已滿星 · 碎片繼續累積"
+    ]
+  },
+  {
+    "check": "same-batch-duplicate-fragments",
+    "stats": "升星\n1 星\n親密度\nLv.1\n此夥伴碎片\n1"
+  },
+  {
+    "check": "max-star-ten-once",
+    "stats": "升星\n5 星\n親密度\nLv.1\n此夥伴碎片\n20"
+  },
+  {
+    "check": "ten-focus-restore-and-preserve-companion",
+    "companion": "小灰",
+    "restoredAction": "summon-ten"
+  },
+  {
+    "check": "reduced-ten-direct-summary",
+    "cards": 10,
+    "animationShells": 0
+  },
+  {
+    "check": "theme-393",
+    "brokenImages": 0,
+    "ctaBottom": 774.9250144958496,
+    "minButtonHeight": 44,
+    "name": "天律之冕・格里芬",
+    "nameFont": "24px",
+    "overflow": 0,
+    "rootFont": "16px",
+    "theme": "default",
+    "viewportHeight": 852
+  },
+  {
+    "check": "theme-393",
+    "brokenImages": 0,
+    "ctaBottom": 774.9250144958496,
+    "minButtonHeight": 44,
+    "name": "天律之冕・格里芬",
+    "nameFont": "24px",
+    "overflow": 0,
+    "rootFont": "16px",
+    "theme": "sweet",
+    "viewportHeight": 852
+  },
+  {
+    "check": "theme-393",
+    "brokenImages": 0,
+    "ctaBottom": 775.3250389099121,
+    "minButtonHeight": 44,
+    "name": "天律之冕・格里芬",
+    "nameFont": "24px",
+    "overflow": 0,
+    "rootFont": "16px",
+    "theme": "twilight",
+    "viewportHeight": 852
+  },
+  {
+    "check": "theme-320-text200",
+    "brokenImages": 0,
+    "ctaBottom": 1246.9375228881836,
+    "minButtonHeight": 56,
+    "name": "天律之冕・格里芬",
+    "nameFont": "48px",
+    "overflow": 0,
+    "rootFont": "32px",
+    "theme": "default",
+    "viewportHeight": 852
+  },
+  {
+    "check": "theme-320-text200",
+    "brokenImages": 0,
+    "ctaBottom": 1246.9375228881836,
+    "minButtonHeight": 56,
+    "name": "天律之冕・格里芬",
+    "nameFont": "48px",
+    "overflow": 0,
+    "rootFont": "32px",
+    "theme": "sweet",
+    "viewportHeight": 852
+  },
+  {
+    "check": "theme-320-text200",
+    "brokenImages": 0,
+    "ctaBottom": 1246.9375228881836,
+    "minButtonHeight": 56,
+    "name": "天律之冕・格里芬",
+    "nameFont": "48px",
+    "overflow": 0,
+    "rootFont": "32px",
+    "theme": "twilight",
+    "viewportHeight": 852
+  },
+  {
+    "check": "collection-320-text200",
+    "columns": "268.8px",
+    "names": [
+      "齒輪拾修鼠",
+      "苗圃護芽甲蟲",
+      "銅管引水獺",
+      "霜閥巡路兔"
+    ],
+    "overflow": 0
+  },
+  {
+    "check": "ten-320-text200",
+    "cards": 10,
+    "columns": "232px",
+    "dialogOverflow": 0,
+    "pageOverflow": 0
+  },
+  {
+    "check": "manual-back-keeps-greeting-unrevealed",
+    "actionsHidden": "true",
+    "greetingHidden": true,
+    "phase": "name"
+  },
+  {
+    "check": "curated-unowned-detail",
+    "bondText": [
+      "相處，才會揭開的故事相遇後可閱讀完整背景；專屬對話與羈絆章節隨親密度逐步揭開。",
+      "你可以先記住牠的名字，讓下一次相遇更熟悉。"
+    ],
+    "companionActions": 0,
+    "greetings": 0,
+    "intro": "生於獅心城外高崖的格里芬，鷹首、巨翼與獅身的力量在牠體內達成平衡。牠以天然羽翼感知風向，守護自己的領域。"
+  },
+  {
+    "check": "collection-canonical-and-grey",
+    "owned": 4,
+    "unowned": 8,
+    "grey": "grayscale(1) brightness(0.63)"
+  },
+  {
+    "check": "complete-queue-order",
+    "names": [
+      "重鉚架橋犀",
+      "天律之冕・格里芬",
+      "蒸園盤根龜",
+      "逆造獅首奇美拉"
+    ],
+    "cards": 10
+  },
+  {
+    "check": "complete-queue-fragments-once",
+    "stats": "升星\n1 星\n親密度\nLv.1\n此夥伴碎片\n10"
+  }
+]
