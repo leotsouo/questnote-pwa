@@ -1,3 +1,7 @@
+# V3.5.9 獅心城探險插畫與卡池配色已發布 — 2026-10-02
+
+[PR #53](https://github.com/leotsouo/questnote-pwa/pull/53) 經 CI 合併於 `3a88db8f227e710c13324860197b73c1ce880573`。依使用者「生成後直接發到正式版」授權，獅心城新增正式探險插畫，卡池改用黃銅與蒸汽藍灰背景；SOP 與自動發布檢查補上所有新增地區的圖像、裁切與離線驗收。正式 artifact `fc6946ae230b2583071b1e814227d1c8e175b185750fe96e3fe7834b3e9d50e0`，gh-pages `9a01e6af5d643b4df88e3e89130595eebb6e76ef`，[Pages 36989205700](https://github.com/leotsouo/questnote-pwa/actions/runs/36989205700) 成功；598 個 Git 檔案與 598 個正式 HTTPS 檔案全部符合固定產物。12 項功能、10 項動畫、8 項升級／離線及三主題手機／桌面畫面驗證通過；保留 128 位寵物／6 池、既有 UR 動畫與最新信箱修正。[完整發布收據](../reports/lionheart/v359-publication.md)。
+
 # V3.5.5 劍隱山河覺醒與雲棧古道已發布 — 2026-10-02
 
 [PR45](https://github.com/leotsouo/questnote-pwa/pull/45)已合併，正式artifact 24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769，gh-pages 567266bc64e57b48824e8cf148096147272f2bf3，[Pages36972761813](https://github.com/leotsouo/questnote-pwa/actions/runs/36972761813)成功。二十隻覺醒、張口鎮嶺蛤與古道新地圖已上線；556個Git檔案／556個HTTPS檔案、正式瀏覽器與3.5.4→3.5.5存檔／快取／離線更新驗證通過。保留今日習慣、原卡池與資料。[完整發布收據](../reports/awakening-implementation/production-release.md)。
