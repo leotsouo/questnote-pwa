@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v354-lionheart';
+const CACHE_NAME = 'questnote-preview-cache-v356-lionheart';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -50,6 +50,14 @@ const PRECACHE_URLS = [
   'src/honeylight-sugar.css',
   'src/swordwild-shanhe.css',
   'src/lionheart.css',
+  'src/pet-awakening.css',
+  'src/petAwakeningCore.js',
+  'src/petAwakeningCatalog.js',
+  'src/petAwakeningService.js',
+  'src/petAwakeningView.js',
+  'src/petAwakeningController.js',
+  'src/petAwakeningScene.js',
+  'data/pet-awakening.json',
   'src/themeTokens.css',
   'src/theme-system.css',
   'src/theme-refinements.css',
@@ -121,6 +129,7 @@ const PRECACHE_URLS = [
   'src/preferencesService.js',
   'src/achievementService.js',
   'src/habitService.js',
+  'src/todayHabitsView.js',
   'src/loreService.js',
   'src/devService.js',
   'src/expeditionService.js',
@@ -168,6 +177,7 @@ const PRECACHE_URLS = [
   'assets/expeditions/astral_rift.webp',
   'assets/expeditions/polar_shore.webp',
   'assets/expeditions/harvest_fields.webp',
+  'assets/expeditions/cloudrest_trail.webp',
 ];
 
 function resolveUrl(path) {
@@ -463,4 +473,3 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(networkFirstWithCache(request));
 });
-

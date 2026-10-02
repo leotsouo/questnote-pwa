@@ -1,0 +1,178 @@
+{
+  "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+  "humanAcceptance": {
+    "reviewer": "使用者",
+    "acceptedAt": "2026-10-02T06:08:58Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "response": "審核通過"
+  },
+  "publicationAuthorization": {
+    "reviewer": "使用者",
+    "approvedAt": "2026-10-02T06:10:41Z",
+    "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+    "phrase": "可以發布",
+    "response": "**可以發布**"
+  },
+  "pets": [
+    {
+      "petId": "pet_n36",
+      "initialImage": "assets/pets/awakening/pet_n36-initial-a8136fdc8249.png",
+      "initialSha256": "a8136fdc82490a5be4d860891b84554b1609d5c70bf4a9ccf08f14bea486e654",
+      "awakenedImage": "assets/pets/pet_n36.png",
+      "awakenedSha256": "c6994d0a0ab86e64220c1228b0a1757fdede37d2df2d3014ed17db040f6bb9d4",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_n37",
+      "initialImage": "assets/pets/awakening/pet_n37-initial-d963956b616a.png",
+      "initialSha256": "d963956b616a1f5e233d9a81330e3f87bc3b492f7e68cc7b2c672abc4e8c53db",
+      "awakenedImage": "assets/pets/pet_n37.png",
+      "awakenedSha256": "c08f25e96e7255fae5551423bc69bc977208cf6dbf4635581b045a3facb30cff",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_n38",
+      "initialImage": "assets/pets/awakening/pet_n38-initial-42a9f2b6c876.png",
+      "initialSha256": "42a9f2b6c876aee5e8913c8897cd0ee5d3093540a9435b2c029c8c34db7570fb",
+      "awakenedImage": "assets/pets/pet_n38.png",
+      "awakenedSha256": "3926a8e7fa898edb8e96b45a9372a297772bbc1b57893f1ca9fe268ed326db97",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_r36",
+      "initialImage": "assets/pets/awakening/pet_r36-initial-cc64f0187029.png",
+      "initialSha256": "cc64f018702931c642359071bf4230d52940bd4b12bd792cbe1ab1b32db514a4",
+      "awakenedImage": "assets/pets/pet_r36.png",
+      "awakenedSha256": "1dcc85f3a9c54d95e67a05c2c294416ef7b19013b033cfe8ea901aedff8e11b9",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_r37",
+      "initialImage": "assets/pets/awakening/pet_r37-initial-e5954c6824cc.png",
+      "initialSha256": "e5954c6824cc172a077843973f5a91837862070aad96f876b3482cdead2d6e22",
+      "awakenedImage": "assets/pets/pet_r37.png",
+      "awakenedSha256": "98ee8a5f8257af53d9b0657fdaefb19b71f1daeb500c0bd0f8d25a4330aba836",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_r38",
+      "initialImage": "assets/pets/awakening/pet_r38-initial-19ab20662541.png",
+      "initialSha256": "19ab20662541ab4b861211d62962cfdbbbf37df405601d4e0916f144c544287a",
+      "awakenedImage": "assets/pets/pet_r38.png",
+      "awakenedSha256": "1b5b0d2bcf3d36a98da39eab4719159b9f48920d11e23d3505b080f8ce8d64ed",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_r39",
+      "initialImage": "assets/pets/awakening/pet_r39-initial-29f7323a1e0f.png",
+      "initialSha256": "29f7323a1e0f750b2545e808109db6a6814983de6fd82064aa0798367cdba32e",
+      "awakenedImage": "assets/pets/pet_r39.png",
+      "awakenedSha256": "48407e0bbc2d31bff3188997f468a73ee837ba53f8be79df75458349f75a5f00",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_r40",
+      "initialImage": "assets/pets/awakening/pet_r40-initial-23501f2f5b7e.png",
+      "initialSha256": "23501f2f5b7e06d26b99c1e7ba15772d0c7afd3157d37a309acaeaefb49d328b",
+      "awakenedImage": "assets/pets/pet_r40.png",
+      "awakenedSha256": "762dc9b5b8e7d91adbd45d1e6a2efa5be9b87a2d11fc501bff5b31afcf0de18f",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_sr30",
+      "initialImage": "assets/pets/awakening/pet_sr30-initial-ccda40665400.png",
+      "initialSha256": "ccda406654009d085360ce78e1a87b2b8af031b47bf69bffd3a7af391e61fdf2",
+      "awakenedImage": "assets/pets/pet_sr30.png",
+      "awakenedSha256": "c830f59daf9a69dcd5d10c479fcc4bc4cd5e7ea127032b06b7ecf45d92c30912",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_sr31",
+      "initialImage": "assets/pets/awakening/pet_sr31-initial-4b7a51c83544.png",
+      "initialSha256": "4b7a51c8354425eb920d6d438c674b347623b56100cddfa75ab9ac43f633c023",
+      "awakenedImage": "assets/pets/pet_sr31.png",
+      "awakenedSha256": "2bda25f6fcd65fcc78e813f1342602bf5fd5d8aca45636ed7c8ee68ad10a33a1",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_sr32",
+      "initialImage": "assets/pets/awakening/pet_sr32-initial-3ad264a5c6a4.png",
+      "initialSha256": "3ad264a5c6a41bb1291f3090086f783df1125cf35e4bf09ec14671fa264ee32b",
+      "awakenedImage": "assets/pets/pet_sr32.png",
+      "awakenedSha256": "50f8395f08c6e231d5f42f7807d0b89fc066e4a132dd6c11c938f05db411d55e",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_sr33",
+      "initialImage": "assets/pets/awakening/pet_sr33-initial-5700ccf5a946.png",
+      "initialSha256": "5700ccf5a946e7efaa6c512d107d2cea61c7e8eaedcc92c5fe2562b74d05a934",
+      "awakenedImage": "assets/pets/pet_sr33.png",
+      "awakenedSha256": "f4a2ef0120ce37811a9cca85483a1daa7859c33f786e2afadee089e98993d3fa",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_sr34",
+      "initialImage": "assets/pets/awakening/pet_sr34-initial-2210f2552770.png",
+      "initialSha256": "2210f2552770313fee722ae083551e8a9d7ecb7b69813680f623a0032b639f82",
+      "awakenedImage": "assets/pets/pet_sr34.png",
+      "awakenedSha256": "4c055775a46fb4bb639e9c51832a1ac94cf6fb460068755e67bac22625eaba68",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_ssr21",
+      "initialImage": "assets/pets/awakening/pet_ssr21-initial-7b52ca556c2f.png",
+      "initialSha256": "7b52ca556c2f7944fb8a0303c6144a6b0bd44c76ec50096edc925d3e24ff0bf9",
+      "awakenedImage": "assets/pets/pet_ssr21.png",
+      "awakenedSha256": "c4a505ea1d59e4ed56effc13694a80e7012a3dc914b22d62a765da07e0a6f3dd",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_ssr22",
+      "initialImage": "assets/pets/awakening/pet_ssr22-initial-5eff846884b7.png",
+      "initialSha256": "5eff846884b7bd3598b991da611468125fa62e45499ac64c94f5189a8ed65300",
+      "awakenedImage": "assets/pets/pet_ssr22.png",
+      "awakenedSha256": "3a53d13ddea68ebda22bb46bb68e6d05893999bd25977298ed5e3984fabf7737",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_ssr23",
+      "initialImage": "assets/pets/awakening/pet_ssr23-initial-ea740a89cabe.png",
+      "initialSha256": "ea740a89cabeebb99f9807b949c0c40a6d1fc62dd035fa16c853645da8417899",
+      "awakenedImage": "assets/pets/pet_ssr23.png",
+      "awakenedSha256": "be4c79b42b13df13c1cc0bdaa0a3285f20cc46eff2bfbdb8eb5512e084a49151",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_ssr24",
+      "initialImage": "assets/pets/awakening/pet_ssr24-initial-0676110f7a3d.png",
+      "initialSha256": "0676110f7a3db2436b1592acb9767f82a3b339f0ad6473087e80847faabdf6b5",
+      "awakenedImage": "assets/pets/pet_ssr24.png",
+      "awakenedSha256": "96229a1be3bf52c3431cd9d8fe0bdadd9ed8bb0c0a52be408a4587236f64457a",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_ur16",
+      "initialImage": "assets/pets/awakening/pet_ur16-initial-9f6fc63881e6.png",
+      "initialSha256": "9f6fc63881e6d6349f218dfd0a4ae888deff922577684d38169d2b873cdcc7a2",
+      "awakenedImage": "assets/pets/pet_ur16.png",
+      "awakenedSha256": "3a260a48730bc48a2f32710c297e14db2c07d2a2dd0e478a4d5413f0f2c80954",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_ur17",
+      "initialImage": "assets/pets/awakening/pet_ur17-initial-5159caaf1607.png",
+      "initialSha256": "5159caaf160720f09535f45d04b85cd858eae78f0b24195cea82179f8c72d6a2",
+      "awakenedImage": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0.png",
+      "awakenedSha256": "2bf6ab94c0a06a41588036f581fd5d774a026f02b9f9e3077e06b8e0aeb3e363",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    },
+    {
+      "petId": "pet_ur18",
+      "initialImage": "assets/pets/awakening/pet_ur18-initial-20af21e2ee81.png",
+      "initialSha256": "20af21e2ee814142d3f4aa9e69fdb46b07d90e66fdd3b7f560c4cd0e31dbc02c",
+      "awakenedImage": "assets/pets/pet_ur18.png",
+      "awakenedSha256": "17d2eb5fc3df3a5e9aef0194cdec01f58b141aee055ae66de9399e9f0f670b10",
+      "approvedUse": "initial/awakened forms; card, original, companion and awakening presentation"
+    }
+  ]
+}

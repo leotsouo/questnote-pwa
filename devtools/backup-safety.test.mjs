@@ -6,6 +6,7 @@ import { SNAPSHOT_KEYS, validateSnapshotData, validateStoredSnapshot } from '../
 import { normalizeExpedition, calculateExpeditionRewards } from '../src/expeditionService.js';
 import { COLLECTION_MILESTONE_DEFINITIONS } from '../src/collectionMilestoneService.js';
 import { createBondJourney } from '../src/bondJourneyCore.js';
+import { createPetAwakening } from '../src/petAwakeningCore.js';
 import { EXPLORATION_AREA_IDS } from '../src/explorationService.js';
 
 const fixture = (version) => JSON.parse(readFileSync(new URL(`./fixtures/backups/legacy-${version}.json`, import.meta.url), 'utf8'));
@@ -15,7 +16,7 @@ const canonical = () => {
   return { app: 'QuestNote', version: 2, appVersion: '3.4.4', exportedAt: raw.exportedAt,
     data: Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key,
       key === 'campProgress' ? { key, level: 0, upgradedAt: null }
-        : key === 'bondJourney' ? createBondJourney() : raw.data[key]])) };
+        : key === 'bondJourney' ? createBondJourney() : key === 'petAwakening' ? createPetAwakening() : raw.data[key]])) };
 };
 // Serialized fields match startExpedition/claimExpeditionRewards at a0936fc and
 // current HEAD; reward values come from the actual calculator, with fixed ranges.
@@ -69,6 +70,22 @@ test('V3.5.2 six-region backup preserves bond journey and adds fresh cloudrest p
   assert.equal(validateBackup({ ...previous, appVersion: '3.5.3' }).valid, false);
   const currentData = Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key, migrated[key]]));
   assert.equal(validateBackup({ ...previous, appVersion: '3.5.3', data: currentData }).valid, true);
+});
+
+test('V3.5.3 through V3.5.5 seven-region saves migrate without inventing Lionheart rewards', () => {
+  const baseline = migrateImportedData(normalizeBackupPayload(fixture('3.4.4')));
+  const data = Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key, baseline[key]]));
+  delete data.explorationProgress.areas.lionheart_city;
+  for (const appVersion of ['3.5.3', '3.5.4', '3.5.5']) {
+    const raw = { app: 'QuestNote', version: 2, appVersion, data };
+    assert.equal(validateBackup(raw).valid, true, appVersion);
+    const migrated = migrateImportedData(normalizeBackupPayload(raw));
+    assert.equal(migrated.explorationProgress.areas.lionheart_city.progress, 0);
+    assert.deepEqual(migrated.explorationProgress.areas.lionheart_city.claimedMilestones, []);
+    assert.deepEqual(migrated.petAwakening, data.petAwakening);
+    assert.equal(migrated.wallet.stardust, data.wallet.stardust);
+  }
+  assert.equal(validateBackup({ app: 'QuestNote', version: 2, appVersion: '3.5.6', data }).valid, false);
 });
 
 test('partial current backup cannot masquerade as an older complete shape', () => {

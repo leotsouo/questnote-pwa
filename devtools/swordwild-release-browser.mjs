@@ -4,8 +4,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
+import { APP_VERSION } from '../src/version.js';
 const root = path.resolve(import.meta.dirname, '..');
-const report = path.join(root, 'reports/swordwild-release');
+const report = path.join(root, process.env.QUESTNOTE_RELEASE_REPORT_DIR || 'reports/swordwild-release');
 const artifacts = JSON.parse(await fs.readFile(path.join(report, 'artifacts.json')));
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
@@ -235,7 +236,7 @@ try {
   });
   await check('native backup round trip, 320px card layout and cached new content offline', async () => {
     const backup = await page.evaluate(() => window.poolTest.backupService.exportBackup());
-    assert.equal(backup.appVersion, '3.5.3'); assert.equal(backup.data.explorationProgress.areas.cloudrest_trail.progress, 100);
+    assert.equal(backup.appVersion, APP_VERSION); assert.equal(backup.data.explorationProgress.areas.cloudrest_trail.progress, 100);
     const restored = await page.evaluate(async (backup) => { await window.poolTest.backupService.restoreBackup(window.poolTest.backupService.normalizeBackupPayload(backup)); return window.poolTest.backupService.exportBackup(); }, backup);
     assert.deepEqual(restored.data, backup.data);
     await page.setViewportSize({ width: 320, height: 740 }); await load();

@@ -1,0 +1,18 @@
+{
+  "probe": "isolated-v352-save-preserved",
+  "artifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+  "petCount": 116,
+  "db": "QuestNoteDB",
+  "caches": [
+    "questnote-production-mailbox-runtime-v1",
+    "questnote-production-app-5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8"
+  ],
+  "marker": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+  "version": "3.5.3",
+  "activeWorker": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=39c40c77e52fd738b90bbd3648f09f6309e59d6ea3e26fb16ce47ee14a0fb529",
+  "activeWorkerInfo": {
+    "artifactId": "5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8",
+    "scopePath": "/questnote-pwa/"
+  },
+  "uiText": "星塵\n0\n冒險能量\n0\n今日完成\n0\n可抽卡\n0\n可領成就\n0\n今日\n全部\n智慧\n每日祝福\n冒險任務\n稱號\n任務\n召喚\n圖鑑\n探險\n更多"
+}

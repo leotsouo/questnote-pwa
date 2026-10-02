@@ -1,8 +1,16 @@
+# V3.5.5 劍隱山河覺醒與雲棧古道已發布 — 2026-10-02
+
+[PR45](https://github.com/leotsouo/questnote-pwa/pull/45)已合併，正式artifact 24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769，gh-pages 567266bc64e57b48824e8cf148096147272f2bf3，[Pages36972761813](https://github.com/leotsouo/questnote-pwa/actions/runs/36972761813)成功。二十隻覺醒、張口鎮嶺蛤與古道新地圖已上線；556個Git檔案／556個HTTPS檔案、正式瀏覽器與3.5.4→3.5.5存檔／快取／離線更新驗證通過。保留今日習慣、原卡池與資料。[完整發布收據](../reports/awakening-implementation/production-release.md)。
+
 ## 2026-10-01 — V3.5.1 親密度故事與精簡教學已發布
 
 [PR #30](https://github.com/leotsouo/questnote-pwa/pull/30) 已合併，正式 Pages commit `09f1b66`、[run 36881650163](https://github.com/leotsouo/questnote-pwa/actions/runs/36881650163) 成功。417 個 Git blobs、254 項 Node 測試、12 項原生 artifact 驗收、11 項親密度瀏覽器驗收及 24 個正式 HTTPS 雜湊通過。保留 V3.4.42 的修正、96 位角色／四卡池與信箱。既有正式瀏覽器偵測 verified waiting 更新，另一個視窗阻擋套用；未清除存檔。[完整發布收據](../reports/bond-v351/production-release/README.md)。
 
-# V3.4.40 探險目標與專長推薦已發布 — 2026-10-01
+# V3.5.4 今日任務可直接完成每日習慣 — 2026-10-02
+
+[PR #44](https://github.com/leotsouo/questnote-pwa/pull/44) 已經 CI 合併至 main（`38288b3`）。每日習慣現在直接列在「任務 → 今日」，支援完成、取消、進度及管理入口，兩頁共用紀錄與既有獎勵規則。正式 artifact `1a1a51c938ee04c1300caedf019efdd17f8b3a706442d35936bb5b9ff493c842`，gh-pages `5d971c0bc65b99e6455b1237f483aa6c968159a9`，[Pages run 36930403527](https://github.com/leotsouo/questnote-pwa/actions/runs/36930403527) 成功。489 個 Git blob、13 項原生產物瀏覽器檢查、98 個 HTTPS 雜湊與 27 組習慣排版檢查通過；維持既有 116 位寵物／5 卡池、公開信箱及配方／探險資料。詳見 [發布收據](../reports/today-habits/production-release.md)。
+
+## V3.4.40 探險目標與專長推薦已發布 — 2026-10-01
 
 [PR #34](https://github.com/leotsouo/questnote-pwa/pull/34) 已合併至 main，來源提交 `e31638dab2f49313d39f9af34fab79185cfaf3e6`。正式產物 `8c0d2bdc8c2314fd2f665ea877fe337211580800d4db1f864ea5000a320c8b24` 的 410 個檔案通過逐一雜湊核對；gh-pages 提交 `964d9fa20ddc28fcb68207eee213534f0245bbd7` 的 [Pages run 36874334932](https://github.com/leotsouo/questnote-pwa/actions/runs/36874334932) 成功，13 個正式 HTTPS 檔案雜湊讀回吻合，12 項原生產物瀏覽器驗收通過。保留正式 96 隻寵物、4 個卡池與既有公開信箱。詳見[正式發布收據](../reports/expedition-recommendations/production-release.md)。
 
@@ -224,3 +232,10 @@ Production V3.4.28 moves petting and cooldown below the portrait beside companio
 ## V3.4.36 蜜光糖庭 — 2026-10-01
 
 [PR #21](https://github.com/leotsouo/questnote-pwa/pull/21) CI通過並合併；正式Pages提交 `9e815676db8ff3e203391894090a52b1d5090129`，建置成功且30個HTTPS檔案雜湊相符，包含所有14個變更檔案與12張核准卡圖。12隻雙UR卡池和專屬動畫正式開放，台詞「糖庭亮起／甜蜜相遇」。詳細pins／證據見 [發布紀錄](../reports/honeylight-animation/production-release.md)。工坊／探險需求的流程規劃留待發布後討論。
+
+
+## V3.5.3 劍隱山河 — 2026-10-02
+
+使用者整包驗收通過並明確同意發布。PR #42 合併於 `ed81995648ba9b60c27207ba1ab3148afa6b2688`；Pages `4a1808126b9f6805ddb11c7b16ce1a1d8225ebf8` 部署成功。正式 artifact `5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8`，manifest SHA-256 `07c63616a676c43edc06078e087c3cb8bcb01aa1024655f6fdf32fce22c3bfad`。488 Git 檔案、177 正式 HTTPS 檔案、正式瀏覽器／離線、V3.5.2 → V3.5.3 更新及存檔保留均驗證成功。
+
+20 角色、三 UR、單一「俠」印專屬入場與抽卡動畫、新食物、逐隻偏好／專長、雲棧古道與80章故事已上線。現行親密度旅程、派遣推薦、公告及舊內容保留。[發布證據](../reports/swordwild-release/production-release.md)。覺醒只在發布後另寫獨立討論草案，不納入卡池 SOP。

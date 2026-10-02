@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-02T06:20:53.021Z",
+  "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+  "previewUrl": "https://leotsouo.github.io/questnote-pwa/",
+  "freshBrowserStorage": true,
+  "offlineReload": true,
+  "detail": {
+    "version": "3.5.5",
+    "database": "QuestNoteDB",
+    "artifactId": "24d38b6793d3e5cec64e1aa896c7832c2c4a104a4e9851c8bb728edf052b1769",
+    "awakeningCount": 20,
+    "imageCount": 80,
+    "map": [
+      960,
+      540
+    ],
+    "toadArt": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0.png",
+    "todayHabitsPresent": true
+  },
+  "pageErrors": []
+}

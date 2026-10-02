@@ -77,6 +77,8 @@ import { initQuestIconLanguage } from './iconPresentation.js';
 import { THEME_DIRECTIONS } from './themeRegistry.js';
 import { twilightIcon, getCompanionScene, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
 import { createBondJourneyController } from './bondJourneyController.js';
+import { createAwakeningController } from './petAwakeningController.js';
+import { renderAwakeningDetail, renderAwakeningHome } from './petAwakeningView.js';
 import { renderBondHome, renderBondDetail, renderBondKeepsake } from './bondJourneyView.js';
 import {
   pickStatusLine,
@@ -190,6 +192,7 @@ import {
   getWeekMonday,
   hasWeeklyNearGoal,
 } from './habitService.js';
+import { getTodayDailyHabits, renderTodayHabits } from './todayHabitsView.js';
 import {
   craftItem,
   useBondItem,
@@ -423,6 +426,7 @@ let selectedGiftPetId = null;
 let selectedGiftItemId = null;
 let workshopGiftMessage = '';
 let workshopGiftBusy = false;
+let habitActionBusy = false;
 const expandedTaskIds = new Set();
 const recentlyCompletedTaskIds = new Set();
 
@@ -595,6 +599,8 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     createBondJourneyController({ getState: () => state, refresh: (...args) => onRefresh(...args),
       openModal, closeModal, showToast, switchView,
       portrait: (pet) => petImageHtml(pet, { size: 'md', loading: 'eager', eager: true }) }).mount();
+    createAwakeningController({ getState: () => state, refresh: (...args) => onRefresh(...args),
+      openModal, closeModal, showToast, switchView, portrait: (pet) => petImageHtml(pet, { size: 'md', loading: 'eager', eager: true }) }).mount();
     initQuestIconLanguage();
     bindNavigation();
     initFilterGestures();
@@ -711,6 +717,20 @@ function bindDelegatedEvents() {
     const card = target.closest('.task-card');
     const id = card?.dataset.id;
     const action = target.dataset.action;
+
+    if (action === 'habit-complete' || action === 'habit-uncomplete') {
+      const habitCard = target.closest('.today-habit-card');
+      if (habitCard) await handleHabitCompletion(action, habitCard.dataset.id, habitCard);
+      return;
+    }
+    if (action === 'go-habits') {
+      switchView('habits');
+      return;
+    }
+    if (action === 'habit-create-first') {
+      openHabitForm();
+      return;
+    }
 
     if (action === 'home-hub') {
       const hub = target.dataset.hub;
@@ -1276,42 +1296,8 @@ function bindDelegatedEvents() {
     const id = card?.dataset.id;
     const action = target.dataset.action;
 
-    if (action === 'habit-complete' && id) {
-      const cardEl = target.closest('.habit-card');
-      cardEl?.classList.add('habit-card--completing');
-      const result = await completeHabitToday(id);
-      if (result.success) {
-        await trackQuest('complete_habit');
-        await onRefresh({ renderMode: ['habits', 'tasks'] });
-        renderHabitsView();
-        const parts = [];
-        if (result.stardustGiven > 0) parts.push(`星塵 +${result.stardustGiven}`);
-        if (result.energyGiven > 0) parts.push(`冒險能量 +${result.energyGiven}`);
-        if (result.bondGiven > 0) parts.push('親密度 +1');
-        if (parts.length > 0) {
-          showToast(`習慣完成！${parts.join('、')}`, 'success');
-        } else if (result.stardustCapped) {
-          showToast('今日習慣星塵已達上限，仍已記錄完成。', 'warning');
-        } else {
-          showToast('習慣已記錄完成', 'success');
-        }
-        if (result.bondGiven > 0) {
-          await notifyBondUnlocks(state.companion?.id);
-        }
-        await handleAchievementCheckAfterAction();
-      } else {
-        cardEl?.classList.remove('habit-card--completing');
-        showToast(result.error || '完成失敗', 'error');
-      }
-    } else if (action === 'habit-uncomplete' && id) {
-      const result = await uncompleteHabitToday(id);
-      if (result.success) {
-        await onRefresh({ renderMode: ['habits', 'tasks'] });
-        renderHabitsView();
-        showToast('已取消今日完成', 'info');
-      } else {
-        showToast(result.error || '操作失敗', 'error');
-      }
+    if ((action === 'habit-complete' || action === 'habit-uncomplete') && id) {
+      await handleHabitCompletion(action, id, card);
     } else if (action === 'habit-edit' && id) {
       openHabitForm(id);
     } else if (action === 'habit-archive' && id) {
@@ -1533,7 +1519,7 @@ export function openPetImageViewer(petId, opener) {
     return;
   }
   const original = pet.nickname ? petOriginalName(pet) : '';
-  openPetImageViewerBySrc(src, petDisplayName(pet), pet.rarity, original, opener, getPetImageSrc(pet, 'stage'));
+  openPetImageViewerBySrc(src, petDisplayName(pet), pet.rarity, original, opener, getPetImageSrc(pet, 'stage'), pet.fallbackImage || '');
 }
 
 /**
@@ -1544,7 +1530,7 @@ export function openPetImageViewer(petId, opener) {
  * @param {string} [originalName] 副名稱（原名，僅有暱稱時顯示）
  * @param {HTMLElement} [opener] 未指定時沿用目前焦點。
  */
-export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName = '', opener, previewSrc = '') {
+export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName = '', opener, previewSrc = '', fallbackSrc = '') {
   const resolved = getPetImageSrc({ image: imageSrc }) || imageSrc;
   if (!resolved) return;
 
@@ -1594,6 +1580,7 @@ export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName 
   const note = overlay.querySelector('.pet-image-viewer__preview-note');
   const preview = previewSrc && previewSrc !== resolved ? previewSrc : resolved;
   let originalStarted = false;
+  let fallbackUsed = false;
   const loadOriginal = () => {
     if (originalStarted || preview === resolved) return;
     originalStarted = true;
@@ -1607,11 +1594,22 @@ export function openPetImageViewerBySrc(imageSrc, petName, rarity, originalName 
     frame.classList.remove('is-loading', 'is-error');
     frame.classList.add('is-loaded');
     if (image.src === new URL(resolved, location.href).href) note.textContent = '';
-    else loadOriginal();
+    else if (!fallbackUsed) loadOriginal();
   };
   image.onerror = () => {
+    if (fallbackUsed) {
+      frame.classList.remove('is-loading', 'is-loaded');
+      frame.classList.add('is-error');
+      return;
+    }
     if (image.src !== new URL(resolved, location.href).href) {
       image.src = resolved;
+      return;
+    }
+    if (fallbackSrc && image.src !== new URL(fallbackSrc, location.href).href) {
+      fallbackUsed = true;
+      image.src = fallbackSrc;
+      note.textContent = '形態圖片暫時無法載入，顯示現行卡圖；形態選擇已保留';
       return;
     }
     frame.classList.remove('is-loading', 'is-loaded');
@@ -1696,7 +1694,7 @@ export function petImageHtml(pet, options = {}) {
   } = options;
   const cls = `pet-img pet-img--${size}`;
   const src = getPetImageSrc(pet, imageVariant);
-  const originalSrc = getPetImageSrc(pet);
+  const originalSrc = pet.fallbackImage || getPetImageSrc(pet);
   const loadAttr = eager || loading === 'eager' ? 'eager' : loading;
   const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
   const onerror = "if(this.dataset.originalSrc&&this.src!==new URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.classList.add('is-error');var f=this.closest('.pet-image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}";
@@ -1778,7 +1776,7 @@ export function renderSharedUI() {
 function renderBondHomeSection() {
   const root = document.getElementById('bond-journey-home');
   if (!root) return;
-  const html = renderBondHome(state);
+  const html = renderBondHome(state) + renderAwakeningHome(state);
   const opener = document.getElementById('modal-overlay')?.classList.contains('open')
     ? root.querySelector('[data-bond-open]') : null;
   // Preserve a connected dialog opener while updating the lightweight home card.
@@ -1924,6 +1922,50 @@ function maybeRefreshExpeditionBubble() {
 
 /* ─── 任務頁 ─── */
 
+async function handleHabitCompletion(action, id, card) {
+  if (habitActionBusy) return;
+  const restoreFocus = card?.contains(document.activeElement);
+  const view = card?.closest('.view');
+  habitActionBusy = true;
+  const buttons = '[data-action="habit-complete"], [data-action="habit-uncomplete"]';
+  document.querySelectorAll(buttons).forEach((button) => { button.disabled = true; });
+  card?.classList.add('habit-card--completing');
+  try {
+    const completing = action === 'habit-complete';
+    const result = await (completing ? completeHabitToday(id) : uncompleteHabitToday(id));
+    if (!result.success) {
+      showToast(result.error || '操作失敗', 'error');
+      return;
+    }
+    if (completing) await trackQuest('complete_habit');
+    await onRefresh({ renderMode: ['habits', 'tasks'] });
+    if (completing) {
+      const parts = [];
+      if (result.stardustGiven > 0) parts.push(`星塵 +${result.stardustGiven}`);
+      if (result.energyGiven > 0) parts.push(`冒險能量 +${result.energyGiven}`);
+      if (result.bondGiven > 0) parts.push('親密度 +1');
+      showToast(parts.length ? `習慣完成！${parts.join('、')}`
+        : result.stardustCapped ? '今日習慣星塵已達上限，仍已記錄完成。' : '習慣已記錄完成',
+      result.stardustCapped && !parts.length ? 'warning' : 'success');
+      if (result.bondGiven > 0) await notifyBondUnlocks(state.companion?.id);
+      await handleAchievementCheckAfterAction();
+    } else {
+      showToast('已取消今日完成', 'info');
+    }
+  } catch (error) {
+    console.warn('[Habits] Completion failed:', error);
+    showToast('無法更新習慣，請稍後再試。', 'error');
+    await onRefresh({ renderMode: ['habits', 'tasks'] });
+  } finally {
+    habitActionBusy = false;
+    card?.classList.remove('habit-card--completing');
+    document.querySelectorAll(buttons).forEach((button) => { button.disabled = false; });
+    if (restoreFocus) {
+      view?.querySelector(`[data-id="${CSS.escape(String(id))}"] [data-action^="habit-"]`)?.focus({ preventScroll: true });
+    }
+  }
+}
+
 function renderTasksView() {
   const { tasks, wallet, todayCompleted, companion, companionLine, achievementSummary, categories } = state;
   const today = getTodayDateString();
@@ -1976,7 +2018,7 @@ function renderHabitSummary() {
   if (!el) return;
 
   const stats = state.habitStats;
-  if (!stats?.hasHabits) {
+  if (taskViewMode === 'today' || !stats?.hasHabits) {
     el.hidden = true;
     return;
   }
@@ -2831,7 +2873,8 @@ function renderTodayView(tasks, today) {
   const filtered = applyCategoryFilter(tasks);
   const sections = getTodayViewSections(filtered, today);
 
-  const plannedEmpty = sections.plannedIncomplete.length === 0
+  const plannedEmpty = sections.planned.length === 0
+    && !getTodayDailyHabits(state.habits || [], today, taskCategoryFilter).length
     ? emptyStateHtml(
         '📅',
         '今天還沒有安排任務',
@@ -2842,6 +2885,10 @@ function renderTodayView(tasks, today) {
     : '';
 
   let html = renderTaskListSection('今日計畫', sections.planned, plannedEmpty);
+  html += renderTodayHabits(state.habits || [], {
+    today, categories: state.categories, categoryFilter: taskCategoryFilter,
+    loadError: state.habitsLoadError, busy: habitActionBusy,
+  });
   html += renderTaskListSection('今天到期', sections.dueToday);
   html += renderTaskListSection('今天開始', filtered.filter((task) => !task.completed && task.startDate === today
     && task.plannedDate !== today && task.dueDate !== today));
@@ -3696,7 +3743,7 @@ function openPetFeedModal(companion) {
   if (src) warmPetImageCache(src).catch(() => {});
 
   const rarityClass = `rarity-${companion.rarity}`;
-  const onError = `this.onerror=null;this.classList.add('companion-image-preview__img--error')`;
+  const onError = `if(this.dataset.fallbackSrc&&this.src!==new URL(this.dataset.fallbackSrc,location.href).href){this.src=this.dataset.fallbackSrc;return;}this.onerror=null;this.classList.add('companion-image-preview__img--error')`;
   const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
   const feedSection = buildPetFeedSection(companion);
   const imageHtml = src
@@ -3704,6 +3751,7 @@ function openPetFeedModal(companion) {
           <img
             class="companion-image-preview__img companion-image-preview__img--interactive is-loading"
             src="${escapeHtml(src)}"
+            data-fallback-src="${escapeHtml(companion.fallbackImage || '')}"
             alt="${escapeHtml(petDisplayName(companion))}"
             loading="eager"
             decoding="async"
@@ -6266,7 +6314,7 @@ function openPetDetailModal(petId) {
     const liberatedLabel = st.bondLiberated
       ? '<span class="bond-liberated-label">羈絆解放</span>'
       : '';
-    const storyHtml = renderBondDetail(pet, state);
+    const storyHtml = renderBondDetail(pet, state) + renderAwakeningDetail(pet, state);
     bondStatusSection = `
       <section class="bond-section">
         <div class="bond-section__title-row">
@@ -6546,7 +6594,6 @@ function renderExpeditionView() {
 
 function expeditionAreaImageUrl(areaId) {
   if (areaId === 'lionheart_city') return './assets/expeditions/lionheart_city.svg';
-  if (areaId === 'cloudrest_trail') return './assets/expeditions/cloudrest_trail.svg';
   return `./assets/expeditions/${encodeURIComponent(areaId)}.webp`;
 }
 

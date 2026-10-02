@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "pets": [
+    {
+      "petId": "pet_ur17",
+      "awakenedSha256": "2bf6ab94c0a06a41588036f581fd5d774a026f02b9f9e3077e06b8e0aeb3e363",
+      "awakenedImage": {
+        "original": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0.png",
+        "card": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0-card.webp",
+        "stage": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0-stage.webp"
+      },
+      "provenance": {
+        "generator": "imagegen",
+        "generatedAt": "2026-10-01T21:20:04.058Z",
+        "reference": "assets/pets/awakening/pet_ur17-awakened-39d60081d6a7.png",
+        "direction": "使用者修訂：張開嘴巴，朱息明確從口中吐出；保留厚重坐鎮姿態、朱金脈紋、山道與安全通路。",
+        "humanApproval": "accepted-whole-package",
+        "productionPortraitRetained": true,
+        "humanAcceptance": {
+          "reviewer": "使用者",
+          "acceptedAt": "2026-10-02T06:08:58Z",
+          "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+          "response": "審核通過"
+        }
+      }
+    }
+  ]
+}

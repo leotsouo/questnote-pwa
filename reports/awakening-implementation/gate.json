@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "packageHash": "930a18cec4a3d7f6ac3a79532b760b0522c21d00130d67d01e7ce73e5e2393fb",
+  "releaseReady": true,
+  "nextGate": "publish_reviewed_bytes",
+  "limitation": "Read-only evidence gate; cannot create consent or deploy. Old release authorizations never count."
+}

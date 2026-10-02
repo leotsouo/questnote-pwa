@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "artifactId": "dd1896c0b4d6b5256313acdb060652c7b0690bf2ebf579c0a258827fd02129a7",
+  "testedAt": "2026-10-01T21:57:01.131Z",
+  "scenarios": [],
+  "readonlyViewerDatabaseCount": 0,
+  "width320Overflow": false,
+  "isolatedDemo": "actual app dual-form switch and ritual passed",
+  "reviewShellOutsideWorkerScope": true,
+  "viewerReloadAfterDemo": true,
+  "pageErrors": []
+}
