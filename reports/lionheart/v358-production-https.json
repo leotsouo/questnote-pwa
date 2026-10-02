@@ -1,0 +1,4871 @@
+{
+  "status": "pass",
+  "startedAt": "2026-10-02T08:35:25.266Z",
+  "completedAt": "2026-10-02T08:36:29.771Z",
+  "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+  "version": "3.5.8",
+  "artifactId": "0f04afb6f8d0b4e447b20320524b63c39203469035478aea97a9929c5da897ba",
+  "reviewedRuntimeSource": "d42b8fc44dc3c55f39ca0dee138fb30d114e85c6",
+  "manifestSha256": "7e711b7f8c989544aadbc106f46d33d426fc0e0f6f488d3b4fd5207cf826b617",
+  "packageHash": "94e77b9be64b777d9c11bca74acc915759f7f9cf8eb246ad1a5b7116e9acf94e",
+  "deploymentCommit": "6cdfdcdd1bd7201081e0af95dec9c9c58818cbae",
+  "sourceMergeCommit": "6dd2551c1ca4ee41309c042bc1c67b80012fc6e3",
+  "sourcePR": "https://github.com/leotsouo/questnote-pwa/pull/51",
+  "pagesRun": "https://github.com/leotsouo/questnote-pwa/actions/runs/36984636232",
+  "verifiedFiles": 605,
+  "failures": [],
+  "counts": {
+    "pets": 128,
+    "pools": 6,
+    "lionheartPets": 12
+  },
+  "serviceWorker": {
+    "cacheName": "questnote-production-app-0f04afb6f8d0b4e447b20320524b63c39203469035478aea97a9929c5da897ba",
+    "httpsBytesVerified": true,
+    "actualUpdateEvidence": "reports/lionheart/v358-update.json",
+    "updatesPassed": 7,
+    "notes": "Exact formal V3.5.7 to same now-deployed V3.5.8 bytes tested on fresh loopback origin, including offline retained saves, incomplete UI and multiple-window guards. No production player DB touched."
+  },
+  "results": [
+    {
+      "file": ".nojekyll",
+      "status": 200,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ok": true
+    },
+    {
+      "file": "assets/brand/questnote-icon-180.png",
+      "status": 200,
+      "bytes": 20953,
+      "sha256": "568c5f586481050de3c0263794de557f36acb340346eba7db1a9cdc7b000f9bf",
+      "expectedSha256": "568c5f586481050de3c0263794de557f36acb340346eba7db1a9cdc7b000f9bf",
+      "ok": true
+    },
+    {
+      "file": "assets/brand/questnote-icon-192.png",
+      "status": 200,
+      "bytes": 23754,
+      "sha256": "7a2c068ff50729b5b68aba6999ffed491234c11a267ddf26ee6f7a5bc0a1db11",
+      "expectedSha256": "7a2c068ff50729b5b68aba6999ffed491234c11a267ddf26ee6f7a5bc0a1db11",
+      "ok": true
+    },
+    {
+      "file": "assets/brand/questnote-icon-32.png",
+      "status": 200,
+      "bytes": 1486,
+      "sha256": "0c09c5fef9a6c10f9e10fab7a923d6e84e06972791106a9960bfe062b83952fe",
+      "expectedSha256": "0c09c5fef9a6c10f9e10fab7a923d6e84e06972791106a9960bfe062b83952fe",
+      "ok": true
+    },
+    {
+      "file": "assets/brand/questnote-icon-512.png",
+      "status": 200,
+      "bytes": 201945,
+      "sha256": "32c505609ea48e4ffab010e2fc53b184441a8bad39d79a45701b658b31040a06",
+      "expectedSha256": "32c505609ea48e4ffab010e2fc53b184441a8bad39d79a45701b658b31040a06",
+      "ok": true
+    },
+    {
+      "file": "assets/brand/questnote-icon-maskable-512.png",
+      "status": 200,
+      "bytes": 116926,
+      "sha256": "54dc03e7eb13c3f4714bc276ea2b9bb1313ef171d27e06f6aa1f378931c6f506",
+      "expectedSha256": "54dc03e7eb13c3f4714bc276ea2b9bb1313ef171d27e06f6aa1f378931c6f506",
+      "ok": true
+    },
+    {
+      "file": "assets/brand/questnote-icon-master-1024.png",
+      "status": 200,
+      "bytes": 718313,
+      "sha256": "45eabdd090efcaee9c9305bca6d559983433c00db41c287f92f66fbac809adf3",
+      "expectedSha256": "45eabdd090efcaee9c9305bca6d559983433c00db41c287f92f66fbac809adf3",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/astral_rift.webp",
+      "status": 200,
+      "bytes": 109378,
+      "sha256": "343c7342d7156be0fef42c809e0028811a936e2ba478b2785eaf498845dc4d2d",
+      "expectedSha256": "343c7342d7156be0fef42c809e0028811a936e2ba478b2785eaf498845dc4d2d",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/cloudrest_trail.svg",
+      "status": 200,
+      "bytes": 1600,
+      "sha256": "e23e3af8c958f5b17a4bf37b639e0875494359601721e0e23bd674ff765868c9",
+      "expectedSha256": "e23e3af8c958f5b17a4bf37b639e0875494359601721e0e23bd674ff765868c9",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/cloudrest_trail.webp",
+      "status": 200,
+      "bytes": 181954,
+      "sha256": "cf75419ec519bb473ac49f32a6c9af68165550117585ab32649caae2ad9108fd",
+      "expectedSha256": "cf75419ec519bb473ac49f32a6c9af68165550117585ab32649caae2ad9108fd",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/harvest_fields.webp",
+      "status": 200,
+      "bytes": 126428,
+      "sha256": "6196b84c367ff547d91741d36a57ed06aa34e15464ddafb071d4940d0014a29c",
+      "expectedSha256": "6196b84c367ff547d91741d36a57ed06aa34e15464ddafb071d4940d0014a29c",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/lava_rift.webp",
+      "status": 200,
+      "bytes": 109960,
+      "sha256": "9c14dd71f7752f8ca652992659ba929a094512ec5dc34b4d3806b90dabac904e",
+      "expectedSha256": "9c14dd71f7752f8ca652992659ba929a094512ec5dc34b4d3806b90dabac904e",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/lionheart_city.svg",
+      "status": 200,
+      "bytes": 1124,
+      "sha256": "ef0402594a19080038e6984b6373134205261ed6050cea47db5309e8c46f4e38",
+      "expectedSha256": "ef0402594a19080038e6984b6373134205261ed6050cea47db5309e8c46f4e38",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/machine_ruins.webp",
+      "status": 200,
+      "bytes": 130140,
+      "sha256": "14947a69cacfa25522b20159f5f135734fc5eac25f58a55ae9cb09fc3dccd3b1",
+      "expectedSha256": "14947a69cacfa25522b20159f5f135734fc5eac25f58a55ae9cb09fc3dccd3b1",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/mist_forest.webp",
+      "status": 200,
+      "bytes": 116464,
+      "sha256": "d97f0f24d8189b4e882b8da213399b5dba992481d97917c196c5d9bbaded8dc1",
+      "expectedSha256": "d97f0f24d8189b4e882b8da213399b5dba992481d97917c196c5d9bbaded8dc1",
+      "ok": true
+    },
+    {
+      "file": "assets/expeditions/polar_shore.webp",
+      "status": 200,
+      "bytes": 91330,
+      "sha256": "e963c18f17a9d60746f2601822f7e0ab18be730629b8de9a3fdf546381891506",
+      "expectedSha256": "e963c18f17a9d60746f2601822f7e0ab18be730629b8de9a3fdf546381891506",
+      "ok": true
+    },
+    {
+      "file": "assets/icons/icon-192.png",
+      "status": 200,
+      "bytes": 4421,
+      "sha256": "f47dd61d5e26732d2d20aba9051e7ce922449a6095a3715f7e803a2037857fb1",
+      "expectedSha256": "f47dd61d5e26732d2d20aba9051e7ce922449a6095a3715f7e803a2037857fb1",
+      "ok": true
+    },
+    {
+      "file": "assets/icons/icon-512.png",
+      "status": 200,
+      "bytes": 19842,
+      "sha256": "8623855b674e1bb7c10525ff0118b0f4b1da5de551753d724238b62db8c403be",
+      "expectedSha256": "8623855b674e1bb7c10525ff0118b0f4b1da5de551753d724238b62db8c403be",
+      "ok": true
+    },
+    {
+      "file": "assets/icons/lucide/LICENSE",
+      "status": 200,
+      "bytes": 3251,
+      "sha256": "6fc5b7332939dd5c61af3a5f97450f7bc05d4a396dd0bc21ac341716b3b05096",
+      "expectedSha256": "6fc5b7332939dd5c61af3a5f97450f7bc05d4a396dd0bc21ac341716b3b05096",
+      "ok": true
+    },
+    {
+      "file": "assets/icons/lucide/provenance.json",
+      "status": 200,
+      "bytes": 1340,
+      "sha256": "9c24954b76dc53bae7fa00a2f9f60527197595b815c3e9ca0d86e30b8477a844",
+      "expectedSha256": "9c24954b76dc53bae7fa00a2f9f60527197595b815c3e9ca0d86e30b8477a844",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/.gitkeep",
+      "status": 200,
+      "bytes": 106,
+      "sha256": "22e959030a1b6293ad3c8f017c04a834e85ae029513aa94b8dbbd618b7bbb60b",
+      "expectedSha256": "22e959030a1b6293ad3c8f017c04a834e85ae029513aa94b8dbbd618b7bbb60b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n36-initial-a8136fdc8249-card.webp",
+      "status": 200,
+      "bytes": 40742,
+      "sha256": "84b6f792061c7d8026f4c099d2843c0ba313acf6cde80bd3fb15d488623457b5",
+      "expectedSha256": "84b6f792061c7d8026f4c099d2843c0ba313acf6cde80bd3fb15d488623457b5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n36-initial-a8136fdc8249-stage.webp",
+      "status": 200,
+      "bytes": 162112,
+      "sha256": "4bcdab90a76167b7c34476c0006b1057ec82061927081c34d3c93bd26d326440",
+      "expectedSha256": "4bcdab90a76167b7c34476c0006b1057ec82061927081c34d3c93bd26d326440",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n36-initial-a8136fdc8249.png",
+      "status": 200,
+      "bytes": 2633624,
+      "sha256": "a8136fdc82490a5be4d860891b84554b1609d5c70bf4a9ccf08f14bea486e654",
+      "expectedSha256": "a8136fdc82490a5be4d860891b84554b1609d5c70bf4a9ccf08f14bea486e654",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n37-initial-d963956b616a-card.webp",
+      "status": 200,
+      "bytes": 44702,
+      "sha256": "8918d2ef53197cc26b75d0f5121662780b1667b2ce633ad7236684ec18b87a2e",
+      "expectedSha256": "8918d2ef53197cc26b75d0f5121662780b1667b2ce633ad7236684ec18b87a2e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n37-initial-d963956b616a-stage.webp",
+      "status": 200,
+      "bytes": 227138,
+      "sha256": "ae6063ad87a82d480ad7b357d5c3a4a1eb83dcc1415b469714109fd5bffa7548",
+      "expectedSha256": "ae6063ad87a82d480ad7b357d5c3a4a1eb83dcc1415b469714109fd5bffa7548",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n37-initial-d963956b616a.png",
+      "status": 200,
+      "bytes": 3045877,
+      "sha256": "d963956b616a1f5e233d9a81330e3f87bc3b492f7e68cc7b2c672abc4e8c53db",
+      "expectedSha256": "d963956b616a1f5e233d9a81330e3f87bc3b492f7e68cc7b2c672abc4e8c53db",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n38-initial-42a9f2b6c876-card.webp",
+      "status": 200,
+      "bytes": 37602,
+      "sha256": "7db3529b322125419f82c49ac59fe155c3979096de9182f6d81c33b2cf313cf8",
+      "expectedSha256": "7db3529b322125419f82c49ac59fe155c3979096de9182f6d81c33b2cf313cf8",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n38-initial-42a9f2b6c876-stage.webp",
+      "status": 200,
+      "bytes": 137662,
+      "sha256": "868df80bb6eb9b500a362030fcb7615cbedd54b4e8880e883fe48589a6415dbf",
+      "expectedSha256": "868df80bb6eb9b500a362030fcb7615cbedd54b4e8880e883fe48589a6415dbf",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_n38-initial-42a9f2b6c876.png",
+      "status": 200,
+      "bytes": 2401099,
+      "sha256": "42a9f2b6c876aee5e8913c8897cd0ee5d3093540a9435b2c029c8c34db7570fb",
+      "expectedSha256": "42a9f2b6c876aee5e8913c8897cd0ee5d3093540a9435b2c029c8c34db7570fb",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r36-initial-cc64f0187029-card.webp",
+      "status": 200,
+      "bytes": 42864,
+      "sha256": "a0f2c98b071e0f9e4a752862b146ecfaeb16426416e787a3fb5936f7bd96f9af",
+      "expectedSha256": "a0f2c98b071e0f9e4a752862b146ecfaeb16426416e787a3fb5936f7bd96f9af",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r36-initial-cc64f0187029-stage.webp",
+      "status": 200,
+      "bytes": 190132,
+      "sha256": "a09476700e35891c98e8213fac8d1f524a2e0080c23c8f7c1e70255b2a89a9c0",
+      "expectedSha256": "a09476700e35891c98e8213fac8d1f524a2e0080c23c8f7c1e70255b2a89a9c0",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r36-initial-cc64f0187029.png",
+      "status": 200,
+      "bytes": 2738775,
+      "sha256": "cc64f018702931c642359071bf4230d52940bd4b12bd792cbe1ab1b32db514a4",
+      "expectedSha256": "cc64f018702931c642359071bf4230d52940bd4b12bd792cbe1ab1b32db514a4",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r37-initial-e5954c6824cc-card.webp",
+      "status": 200,
+      "bytes": 38772,
+      "sha256": "77eb250478e066dab8ee496bb52a07adf5d3f9cbb358193cbdbb59aca438dda1",
+      "expectedSha256": "77eb250478e066dab8ee496bb52a07adf5d3f9cbb358193cbdbb59aca438dda1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r37-initial-e5954c6824cc-stage.webp",
+      "status": 200,
+      "bytes": 187742,
+      "sha256": "6c08fa84774be06f50d5a5331f59fde190a593165d9232c75da663dff9a96a03",
+      "expectedSha256": "6c08fa84774be06f50d5a5331f59fde190a593165d9232c75da663dff9a96a03",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r37-initial-e5954c6824cc.png",
+      "status": 200,
+      "bytes": 2810153,
+      "sha256": "e5954c6824cc172a077843973f5a91837862070aad96f876b3482cdead2d6e22",
+      "expectedSha256": "e5954c6824cc172a077843973f5a91837862070aad96f876b3482cdead2d6e22",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r38-initial-19ab20662541-card.webp",
+      "status": 200,
+      "bytes": 34186,
+      "sha256": "beb26dfc84e9eadb764e1bc6920a0ae41e0f1bf4bf8f209554cca61459e7c78c",
+      "expectedSha256": "beb26dfc84e9eadb764e1bc6920a0ae41e0f1bf4bf8f209554cca61459e7c78c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r38-initial-19ab20662541-stage.webp",
+      "status": 200,
+      "bytes": 155718,
+      "sha256": "d9cfe46fffdc14b2d2470d348960d7af49490501fa055bebf8234ebf2a923852",
+      "expectedSha256": "d9cfe46fffdc14b2d2470d348960d7af49490501fa055bebf8234ebf2a923852",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r38-initial-19ab20662541.png",
+      "status": 200,
+      "bytes": 2572254,
+      "sha256": "19ab20662541ab4b861211d62962cfdbbbf37df405601d4e0916f144c544287a",
+      "expectedSha256": "19ab20662541ab4b861211d62962cfdbbbf37df405601d4e0916f144c544287a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r39-initial-29f7323a1e0f-card.webp",
+      "status": 200,
+      "bytes": 34762,
+      "sha256": "69aeb00840b0949e2d979d2d30b314de7e39f12410afaf32e4cbcd2fb1ca90bc",
+      "expectedSha256": "69aeb00840b0949e2d979d2d30b314de7e39f12410afaf32e4cbcd2fb1ca90bc",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r39-initial-29f7323a1e0f-stage.webp",
+      "status": 200,
+      "bytes": 153316,
+      "sha256": "7ba4e93ec23c67bb4ba24380b361144109c12d3cc7a9f5df14bc02a9d74f624b",
+      "expectedSha256": "7ba4e93ec23c67bb4ba24380b361144109c12d3cc7a9f5df14bc02a9d74f624b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r39-initial-29f7323a1e0f.png",
+      "status": 200,
+      "bytes": 2590110,
+      "sha256": "29f7323a1e0f750b2545e808109db6a6814983de6fd82064aa0798367cdba32e",
+      "expectedSha256": "29f7323a1e0f750b2545e808109db6a6814983de6fd82064aa0798367cdba32e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r40-initial-23501f2f5b7e-card.webp",
+      "status": 200,
+      "bytes": 46268,
+      "sha256": "041e7f9d0bfaae1db7e99cadbedb64d5c9361530c508dbff39ab8d1b88efe26a",
+      "expectedSha256": "041e7f9d0bfaae1db7e99cadbedb64d5c9361530c508dbff39ab8d1b88efe26a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r40-initial-23501f2f5b7e-stage.webp",
+      "status": 200,
+      "bytes": 180464,
+      "sha256": "cfb834c1a6cb509d4fe4d409c05ec8f8898aa52b8d6b5565cac6c309d1316f5a",
+      "expectedSha256": "cfb834c1a6cb509d4fe4d409c05ec8f8898aa52b8d6b5565cac6c309d1316f5a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_r40-initial-23501f2f5b7e.png",
+      "status": 200,
+      "bytes": 2660172,
+      "sha256": "23501f2f5b7e06d26b99c1e7ba15772d0c7afd3157d37a309acaeaefb49d328b",
+      "expectedSha256": "23501f2f5b7e06d26b99c1e7ba15772d0c7afd3157d37a309acaeaefb49d328b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr30-initial-ccda40665400-card.webp",
+      "status": 200,
+      "bytes": 42316,
+      "sha256": "6d39f427d157f3c7db994e9d68a6d7ef3aa15d5686185fad4d73852c68f06d6a",
+      "expectedSha256": "6d39f427d157f3c7db994e9d68a6d7ef3aa15d5686185fad4d73852c68f06d6a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr30-initial-ccda40665400-stage.webp",
+      "status": 200,
+      "bytes": 165548,
+      "sha256": "d26e4ac88751d0ba5195164524222ee941402657764abd696ffba3055c79f92b",
+      "expectedSha256": "d26e4ac88751d0ba5195164524222ee941402657764abd696ffba3055c79f92b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr30-initial-ccda40665400.png",
+      "status": 200,
+      "bytes": 2632345,
+      "sha256": "ccda406654009d085360ce78e1a87b2b8af031b47bf69bffd3a7af391e61fdf2",
+      "expectedSha256": "ccda406654009d085360ce78e1a87b2b8af031b47bf69bffd3a7af391e61fdf2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr31-initial-4b7a51c83544-card.webp",
+      "status": 200,
+      "bytes": 39064,
+      "sha256": "9a33b3a25cc0833353536c662798ab415ce96df56df010b3cc1eb05d98ab2095",
+      "expectedSha256": "9a33b3a25cc0833353536c662798ab415ce96df56df010b3cc1eb05d98ab2095",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr31-initial-4b7a51c83544-stage.webp",
+      "status": 200,
+      "bytes": 161746,
+      "sha256": "176c6854688269c1d0a70757f5699f04fe12c4d1b685c5958c67e071c44e66b2",
+      "expectedSha256": "176c6854688269c1d0a70757f5699f04fe12c4d1b685c5958c67e071c44e66b2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr31-initial-4b7a51c83544.png",
+      "status": 200,
+      "bytes": 2620418,
+      "sha256": "4b7a51c8354425eb920d6d438c674b347623b56100cddfa75ab9ac43f633c023",
+      "expectedSha256": "4b7a51c8354425eb920d6d438c674b347623b56100cddfa75ab9ac43f633c023",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr32-initial-3ad264a5c6a4-card.webp",
+      "status": 200,
+      "bytes": 46398,
+      "sha256": "642ea3fbdbcdc9ac02e68c68c88f08df5a40e4f0bc2b561a4c354f58d0f405a3",
+      "expectedSha256": "642ea3fbdbcdc9ac02e68c68c88f08df5a40e4f0bc2b561a4c354f58d0f405a3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr32-initial-3ad264a5c6a4-stage.webp",
+      "status": 200,
+      "bytes": 193274,
+      "sha256": "050ac545bcc3f2190e4f5573ff41c84d335a281df3917cbf36f7b19c3bbbf280",
+      "expectedSha256": "050ac545bcc3f2190e4f5573ff41c84d335a281df3917cbf36f7b19c3bbbf280",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr32-initial-3ad264a5c6a4.png",
+      "status": 200,
+      "bytes": 2736889,
+      "sha256": "3ad264a5c6a41bb1291f3090086f783df1125cf35e4bf09ec14671fa264ee32b",
+      "expectedSha256": "3ad264a5c6a41bb1291f3090086f783df1125cf35e4bf09ec14671fa264ee32b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr33-initial-5700ccf5a946-card.webp",
+      "status": 200,
+      "bytes": 45582,
+      "sha256": "4318d43c0e169e0e2bde15bc5c9ac6c716eeaa1bd58187c61b89e69830716ae9",
+      "expectedSha256": "4318d43c0e169e0e2bde15bc5c9ac6c716eeaa1bd58187c61b89e69830716ae9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr33-initial-5700ccf5a946-stage.webp",
+      "status": 200,
+      "bytes": 225550,
+      "sha256": "9079193a699f80a4ea08e6fc01cd07fcb986ab319a125389b71621d60df0d193",
+      "expectedSha256": "9079193a699f80a4ea08e6fc01cd07fcb986ab319a125389b71621d60df0d193",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr33-initial-5700ccf5a946.png",
+      "status": 200,
+      "bytes": 2995496,
+      "sha256": "5700ccf5a946e7efaa6c512d107d2cea61c7e8eaedcc92c5fe2562b74d05a934",
+      "expectedSha256": "5700ccf5a946e7efaa6c512d107d2cea61c7e8eaedcc92c5fe2562b74d05a934",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr34-initial-2210f2552770-card.webp",
+      "status": 200,
+      "bytes": 46634,
+      "sha256": "e2927f0510789db312ed76b74e8bfd9eb3723e6b19881c31095bbc07e576dc31",
+      "expectedSha256": "e2927f0510789db312ed76b74e8bfd9eb3723e6b19881c31095bbc07e576dc31",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr34-initial-2210f2552770-stage.webp",
+      "status": 200,
+      "bytes": 210510,
+      "sha256": "4c8478abc885c72cba374fbaed2254f654b740f18bb92fb580e16d039e185965",
+      "expectedSha256": "4c8478abc885c72cba374fbaed2254f654b740f18bb92fb580e16d039e185965",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_sr34-initial-2210f2552770.png",
+      "status": 200,
+      "bytes": 2950698,
+      "sha256": "2210f2552770313fee722ae083551e8a9d7ecb7b69813680f623a0032b639f82",
+      "expectedSha256": "2210f2552770313fee722ae083551e8a9d7ecb7b69813680f623a0032b639f82",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr21-initial-7b52ca556c2f-card.webp",
+      "status": 200,
+      "bytes": 47224,
+      "sha256": "f749694f7c946aa6b9cc894d5ff97d2d19bc4615d43d1b64dd96d893a9411e9c",
+      "expectedSha256": "f749694f7c946aa6b9cc894d5ff97d2d19bc4615d43d1b64dd96d893a9411e9c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr21-initial-7b52ca556c2f-stage.webp",
+      "status": 200,
+      "bytes": 246132,
+      "sha256": "6d0e96f91dd4e3575b512e9d1ef4796303c4b0559bb5c42a4485129a15fb48e4",
+      "expectedSha256": "6d0e96f91dd4e3575b512e9d1ef4796303c4b0559bb5c42a4485129a15fb48e4",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr21-initial-7b52ca556c2f.png",
+      "status": 200,
+      "bytes": 3179755,
+      "sha256": "7b52ca556c2f7944fb8a0303c6144a6b0bd44c76ec50096edc925d3e24ff0bf9",
+      "expectedSha256": "7b52ca556c2f7944fb8a0303c6144a6b0bd44c76ec50096edc925d3e24ff0bf9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr22-initial-5eff846884b7-card.webp",
+      "status": 200,
+      "bytes": 46102,
+      "sha256": "0db4a84e9975917c04a563feec4f705b511e5a4b3df90738ac5fe813342e0534",
+      "expectedSha256": "0db4a84e9975917c04a563feec4f705b511e5a4b3df90738ac5fe813342e0534",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr22-initial-5eff846884b7-stage.webp",
+      "status": 200,
+      "bytes": 201160,
+      "sha256": "37eda6634e4de65bc0b1342afe2c6dcdc2c1e00d52aa3942facf43ea9c6ed9eb",
+      "expectedSha256": "37eda6634e4de65bc0b1342afe2c6dcdc2c1e00d52aa3942facf43ea9c6ed9eb",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr22-initial-5eff846884b7.png",
+      "status": 200,
+      "bytes": 2858071,
+      "sha256": "5eff846884b7bd3598b991da611468125fa62e45499ac64c94f5189a8ed65300",
+      "expectedSha256": "5eff846884b7bd3598b991da611468125fa62e45499ac64c94f5189a8ed65300",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr23-initial-ea740a89cabe-card.webp",
+      "status": 200,
+      "bytes": 46996,
+      "sha256": "954d432ebf6195febbdd788a65c8b212040059da609a06a9d669635423c3981f",
+      "expectedSha256": "954d432ebf6195febbdd788a65c8b212040059da609a06a9d669635423c3981f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr23-initial-ea740a89cabe-stage.webp",
+      "status": 200,
+      "bytes": 186200,
+      "sha256": "891936f20dbce9991bced7fa2d1f3949b86dd0fa9cb91649ebcc99b55e385314",
+      "expectedSha256": "891936f20dbce9991bced7fa2d1f3949b86dd0fa9cb91649ebcc99b55e385314",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr23-initial-ea740a89cabe.png",
+      "status": 200,
+      "bytes": 2726060,
+      "sha256": "ea740a89cabeebb99f9807b949c0c40a6d1fc62dd035fa16c853645da8417899",
+      "expectedSha256": "ea740a89cabeebb99f9807b949c0c40a6d1fc62dd035fa16c853645da8417899",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr24-initial-0676110f7a3d-card.webp",
+      "status": 200,
+      "bytes": 49080,
+      "sha256": "a60fdc2edee3089a3ee0b18e68de30ada07375f5c04ec8c858316d431188ba29",
+      "expectedSha256": "a60fdc2edee3089a3ee0b18e68de30ada07375f5c04ec8c858316d431188ba29",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr24-initial-0676110f7a3d-stage.webp",
+      "status": 200,
+      "bytes": 209790,
+      "sha256": "2d0056f25e715c3005639a93ba8415de4136e9aed69e9b33ee34d8969851f983",
+      "expectedSha256": "2d0056f25e715c3005639a93ba8415de4136e9aed69e9b33ee34d8969851f983",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ssr24-initial-0676110f7a3d.png",
+      "status": 200,
+      "bytes": 2847681,
+      "sha256": "0676110f7a3db2436b1592acb9767f82a3b339f0ad6473087e80847faabdf6b5",
+      "expectedSha256": "0676110f7a3db2436b1592acb9767f82a3b339f0ad6473087e80847faabdf6b5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur16-initial-9f6fc63881e6-card.webp",
+      "status": 200,
+      "bytes": 42616,
+      "sha256": "f6319934378f0a331217ee996476cb6c777b3d2e9529c8540b2936334369fbc6",
+      "expectedSha256": "f6319934378f0a331217ee996476cb6c777b3d2e9529c8540b2936334369fbc6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur16-initial-9f6fc63881e6-stage.webp",
+      "status": 200,
+      "bytes": 226976,
+      "sha256": "d11bc880fa3a78247e928ac5a3d50734dbaa3a8b89f1a94fbec498757d68a187",
+      "expectedSha256": "d11bc880fa3a78247e928ac5a3d50734dbaa3a8b89f1a94fbec498757d68a187",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur16-initial-9f6fc63881e6.png",
+      "status": 200,
+      "bytes": 2997661,
+      "sha256": "9f6fc63881e6d6349f218dfd0a4ae888deff922577684d38169d2b873cdcc7a2",
+      "expectedSha256": "9f6fc63881e6d6349f218dfd0a4ae888deff922577684d38169d2b873cdcc7a2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0-card.webp",
+      "status": 200,
+      "bytes": 58308,
+      "sha256": "326370dfd5f75e8468a9c49c9d3642445c63f691c532aa82c4441784977e7616",
+      "expectedSha256": "326370dfd5f75e8468a9c49c9d3642445c63f691c532aa82c4441784977e7616",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0-stage.webp",
+      "status": 200,
+      "bytes": 260402,
+      "sha256": "0b89f509bea3fdeea50612c7b44024261c52c6378f7f830f9eeeb2818d4abe07",
+      "expectedSha256": "0b89f509bea3fdeea50612c7b44024261c52c6378f7f830f9eeeb2818d4abe07",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-awakened-2bf6ab94c0a0.png",
+      "status": 200,
+      "bytes": 3003851,
+      "sha256": "2bf6ab94c0a06a41588036f581fd5d774a026f02b9f9e3077e06b8e0aeb3e363",
+      "expectedSha256": "2bf6ab94c0a06a41588036f581fd5d774a026f02b9f9e3077e06b8e0aeb3e363",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-awakened-39d60081d6a7-card.webp",
+      "status": 200,
+      "bytes": 58646,
+      "sha256": "d56a4f690288fc14e02572f8f2d0a02eef725d4f5f737fe5bba97a6d27891bb0",
+      "expectedSha256": "d56a4f690288fc14e02572f8f2d0a02eef725d4f5f737fe5bba97a6d27891bb0",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-awakened-39d60081d6a7-stage.webp",
+      "status": 200,
+      "bytes": 273706,
+      "sha256": "450e244afc5675a064970b376e7b39f5a0d89842214fdc51e385139cea0ee2d7",
+      "expectedSha256": "450e244afc5675a064970b376e7b39f5a0d89842214fdc51e385139cea0ee2d7",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-awakened-39d60081d6a7.png",
+      "status": 200,
+      "bytes": 3122665,
+      "sha256": "39d60081d6a7d1d62975c816d9e946cceadc1fbb032f5125ae0dc73180c8b796",
+      "expectedSha256": "39d60081d6a7d1d62975c816d9e946cceadc1fbb032f5125ae0dc73180c8b796",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-initial-5159caaf1607-card.webp",
+      "status": 200,
+      "bytes": 44758,
+      "sha256": "1014bd46a987374968a2b48350747088e4ce82b1e82db85aa57db026d9818017",
+      "expectedSha256": "1014bd46a987374968a2b48350747088e4ce82b1e82db85aa57db026d9818017",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-initial-5159caaf1607-stage.webp",
+      "status": 200,
+      "bytes": 182976,
+      "sha256": "ffc1896b54666775f2b020513f7f0794470bace763687b0693609e0def02b7e8",
+      "expectedSha256": "ffc1896b54666775f2b020513f7f0794470bace763687b0693609e0def02b7e8",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur17-initial-5159caaf1607.png",
+      "status": 200,
+      "bytes": 2678951,
+      "sha256": "5159caaf160720f09535f45d04b85cd858eae78f0b24195cea82179f8c72d6a2",
+      "expectedSha256": "5159caaf160720f09535f45d04b85cd858eae78f0b24195cea82179f8c72d6a2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur18-initial-20af21e2ee81-card.webp",
+      "status": 200,
+      "bytes": 40256,
+      "sha256": "f3241653483f9feeb8ca9ec8e47e14e549870b9eaa27116185a70da6df4e482b",
+      "expectedSha256": "f3241653483f9feeb8ca9ec8e47e14e549870b9eaa27116185a70da6df4e482b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur18-initial-20af21e2ee81-stage.webp",
+      "status": 200,
+      "bytes": 200928,
+      "sha256": "f85ab352dab35a2e72b255ec0e2b035d0b374386a8db8055cd20e09b40f9bf9f",
+      "expectedSha256": "f85ab352dab35a2e72b255ec0e2b035d0b374386a8db8055cd20e09b40f9bf9f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/awakening/pet_ur18-initial-20af21e2ee81.png",
+      "status": 200,
+      "bytes": 2942278,
+      "sha256": "20af21e2ee814142d3f4aa9e69fdb46b07d90e66fdd3b7f560c4cd0e31dbc02c",
+      "expectedSha256": "20af21e2ee814142d3f4aa9e69fdb46b07d90e66fdd3b7f560c4cd0e31dbc02c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n01.png",
+      "status": 200,
+      "bytes": 2180388,
+      "sha256": "41df3c9be3b152326985d8885a14d54eb2eb85e62d9dbd01ae9867af92d4f924",
+      "expectedSha256": "41df3c9be3b152326985d8885a14d54eb2eb85e62d9dbd01ae9867af92d4f924",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n02.png",
+      "status": 200,
+      "bytes": 2472022,
+      "sha256": "d0d0a661e3e9f66f255fd5542441b9bbc4d8b292ffac70245af887b8bceb8f23",
+      "expectedSha256": "d0d0a661e3e9f66f255fd5542441b9bbc4d8b292ffac70245af887b8bceb8f23",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n03.png",
+      "status": 200,
+      "bytes": 2613401,
+      "sha256": "ae0e84d7da7ef24ad9f56f94afe422c8cb44ef252f9a8fb3b28ba854cabf452f",
+      "expectedSha256": "ae0e84d7da7ef24ad9f56f94afe422c8cb44ef252f9a8fb3b28ba854cabf452f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n04.png",
+      "status": 200,
+      "bytes": 2075881,
+      "sha256": "f1394109c4a44a6dcf7b76c0c95ee6107c6f9e0b69476ebdb92f6056ce0d0245",
+      "expectedSha256": "f1394109c4a44a6dcf7b76c0c95ee6107c6f9e0b69476ebdb92f6056ce0d0245",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n05.png",
+      "status": 200,
+      "bytes": 2342124,
+      "sha256": "3fb8d0fe4da713f32c4adce71b2ecdcadf23aae06c761db9643ab26da61919e5",
+      "expectedSha256": "3fb8d0fe4da713f32c4adce71b2ecdcadf23aae06c761db9643ab26da61919e5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n06.png",
+      "status": 200,
+      "bytes": 2352055,
+      "sha256": "a661e719c4d240860b49a7110be8315d4cda3e1231ed526c9f05f80ef8331241",
+      "expectedSha256": "a661e719c4d240860b49a7110be8315d4cda3e1231ed526c9f05f80ef8331241",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n07.png",
+      "status": 200,
+      "bytes": 2302803,
+      "sha256": "ffb4b0444c91c78ee4dc4f16b499583f733f190e7a74f47a10808c7cc64f12df",
+      "expectedSha256": "ffb4b0444c91c78ee4dc4f16b499583f733f190e7a74f47a10808c7cc64f12df",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n08.png",
+      "status": 200,
+      "bytes": 2673784,
+      "sha256": "317c19589fd0eed842837f27c7388ffca6d3830dc4d1b93af216451b4c4d921d",
+      "expectedSha256": "317c19589fd0eed842837f27c7388ffca6d3830dc4d1b93af216451b4c4d921d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n09.png",
+      "status": 200,
+      "bytes": 2146271,
+      "sha256": "5da0cbcd4a064d5245b07b9b576169811880a8e0d766713a33e858d724bbc3f9",
+      "expectedSha256": "5da0cbcd4a064d5245b07b9b576169811880a8e0d766713a33e858d724bbc3f9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n10.png",
+      "status": 200,
+      "bytes": 2303906,
+      "sha256": "bd5e522d55a6643b7029adbbeaf88e6eeab4214bd7d58e268b2a53ed52570dd0",
+      "expectedSha256": "bd5e522d55a6643b7029adbbeaf88e6eeab4214bd7d58e268b2a53ed52570dd0",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n11.png",
+      "status": 200,
+      "bytes": 1904056,
+      "sha256": "4cc1c7dc33a2400087d15ba52d74abf00602bf5618914b7625a96cb659f3fb2d",
+      "expectedSha256": "4cc1c7dc33a2400087d15ba52d74abf00602bf5618914b7625a96cb659f3fb2d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n12.png",
+      "status": 200,
+      "bytes": 2137530,
+      "sha256": "5f93af0a4d3486b8c75a586d2d939570aae054244a9e0ade09ee0b0520294971",
+      "expectedSha256": "5f93af0a4d3486b8c75a586d2d939570aae054244a9e0ade09ee0b0520294971",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n13.png",
+      "status": 200,
+      "bytes": 1911247,
+      "sha256": "f8a8632dae3d97fcce57fbec4316d8c5c99f3e5dbd16ac0b0c20c04753ae4e39",
+      "expectedSha256": "f8a8632dae3d97fcce57fbec4316d8c5c99f3e5dbd16ac0b0c20c04753ae4e39",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n14.png",
+      "status": 200,
+      "bytes": 1556290,
+      "sha256": "c938004eec0056d6f14f4aff52b6447335b4d6399a27e43c6d3e938225794f31",
+      "expectedSha256": "c938004eec0056d6f14f4aff52b6447335b4d6399a27e43c6d3e938225794f31",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n15.png",
+      "status": 200,
+      "bytes": 2172201,
+      "sha256": "8b32c2cd30c94d3b0a49532d2d3b380bc3c132fd0e7a75487c2b2fb03f4b4f40",
+      "expectedSha256": "8b32c2cd30c94d3b0a49532d2d3b380bc3c132fd0e7a75487c2b2fb03f4b4f40",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n16.png",
+      "status": 200,
+      "bytes": 1825911,
+      "sha256": "6669c278dbcca59c11e5941971449bd2d2e9d31f6ec90f47ebad4a4b878eeb9d",
+      "expectedSha256": "6669c278dbcca59c11e5941971449bd2d2e9d31f6ec90f47ebad4a4b878eeb9d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n17.png",
+      "status": 200,
+      "bytes": 2474319,
+      "sha256": "b778724fa5193433d50fbadfbd95bfa8629b19df3edc828b0a5b7b4efe086c02",
+      "expectedSha256": "b778724fa5193433d50fbadfbd95bfa8629b19df3edc828b0a5b7b4efe086c02",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n18.png",
+      "status": 200,
+      "bytes": 2385176,
+      "sha256": "0417c6c856c0e46e501cdadb0028d24f181abd8806258b48d42ef8ba468d7ca0",
+      "expectedSha256": "0417c6c856c0e46e501cdadb0028d24f181abd8806258b48d42ef8ba468d7ca0",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n19.png",
+      "status": 200,
+      "bytes": 2357146,
+      "sha256": "a46e864b3677668226a9a0daa14d09ee85c6286fa30c6560a2563cebd151a8bf",
+      "expectedSha256": "a46e864b3677668226a9a0daa14d09ee85c6286fa30c6560a2563cebd151a8bf",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n20.png",
+      "status": 200,
+      "bytes": 2496562,
+      "sha256": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+      "expectedSha256": "a3accd064e77617e940f234cb8229823e47a3e2119a4abd27baee6b082826fc4",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n21.png",
+      "status": 200,
+      "bytes": 2726779,
+      "sha256": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+      "expectedSha256": "fe35c6c3aec74e3dd0a4327e28f36eec20d3ceef8f9e9f739556d9320693040e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n22.png",
+      "status": 200,
+      "bytes": 2724132,
+      "sha256": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+      "expectedSha256": "217c5b56309b56070e40acdfba56c93aa70b28114fcc4bde61c1b4cd7f2b2bac",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n26.png",
+      "status": 200,
+      "bytes": 2762050,
+      "sha256": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
+      "expectedSha256": "ed64ce147f712789a1c4cdbb827213ca8ebe9f68c94ca5d37920fe44f748d2ea",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n27.png",
+      "status": 200,
+      "bytes": 2551833,
+      "sha256": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
+      "expectedSha256": "16777d42c0a80903eb00ab9a8337e7f12c08bf703bc3c8697d485850616f0e02",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n28.png",
+      "status": 200,
+      "bytes": 2659012,
+      "sha256": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
+      "expectedSha256": "32ef9e7edd47216331e5eb4044e5943ee51f28bfd89f5f01bc5e8829d91c09cf",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n36.png",
+      "status": 200,
+      "bytes": 2758785,
+      "sha256": "c6994d0a0ab86e64220c1228b0a1757fdede37d2df2d3014ed17db040f6bb9d4",
+      "expectedSha256": "c6994d0a0ab86e64220c1228b0a1757fdede37d2df2d3014ed17db040f6bb9d4",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n37.png",
+      "status": 200,
+      "bytes": 3209289,
+      "sha256": "c08f25e96e7255fae5551423bc69bc977208cf6dbf4635581b045a3facb30cff",
+      "expectedSha256": "c08f25e96e7255fae5551423bc69bc977208cf6dbf4635581b045a3facb30cff",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n38.png",
+      "status": 200,
+      "bytes": 2901656,
+      "sha256": "3926a8e7fa898edb8e96b45a9372a297772bbc1b57893f1ca9fe268ed326db97",
+      "expectedSha256": "3926a8e7fa898edb8e96b45a9372a297772bbc1b57893f1ca9fe268ed326db97",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n39.png",
+      "status": 200,
+      "bytes": 2519294,
+      "sha256": "38444eb59db97d03f9766babab0f38774b7c689a8fda39485e2c0539d6393b4b",
+      "expectedSha256": "38444eb59db97d03f9766babab0f38774b7c689a8fda39485e2c0539d6393b4b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_n40.png",
+      "status": 200,
+      "bytes": 2780277,
+      "sha256": "f8243198fdc99a2981a3cc14933a5133c67f9524998f9538198daf784e123c59",
+      "expectedSha256": "f8243198fdc99a2981a3cc14933a5133c67f9524998f9538198daf784e123c59",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r01.png",
+      "status": 200,
+      "bytes": 2597345,
+      "sha256": "0d6ca7821c3213d28d17e38288ca57733dd54f6603bf82366345c76325e574cb",
+      "expectedSha256": "0d6ca7821c3213d28d17e38288ca57733dd54f6603bf82366345c76325e574cb",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r02.png",
+      "status": 200,
+      "bytes": 2539790,
+      "sha256": "ee3b1b08cc6ae3be151f52e994608cd594c1294a46c13ef87205477b280a9494",
+      "expectedSha256": "ee3b1b08cc6ae3be151f52e994608cd594c1294a46c13ef87205477b280a9494",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r03.png",
+      "status": 200,
+      "bytes": 2909056,
+      "sha256": "d5ddf9733ef913af03e997d7cac6e4e6b60c6dcb760b01ea7acabe0f532a8b14",
+      "expectedSha256": "d5ddf9733ef913af03e997d7cac6e4e6b60c6dcb760b01ea7acabe0f532a8b14",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r04.png",
+      "status": 200,
+      "bytes": 2779850,
+      "sha256": "096be1486688074d8e7b9b1793d624a55323a15ec1998397e68b5d13da138fe0",
+      "expectedSha256": "096be1486688074d8e7b9b1793d624a55323a15ec1998397e68b5d13da138fe0",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r05.png",
+      "status": 200,
+      "bytes": 2947981,
+      "sha256": "a63692d4b7319a4c114770d0940575433a3d103227485011ade98e455288dc55",
+      "expectedSha256": "a63692d4b7319a4c114770d0940575433a3d103227485011ade98e455288dc55",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r06.png",
+      "status": 200,
+      "bytes": 3025343,
+      "sha256": "20e63613d5cef71f12e9e82c6bd807017c1edb8468d3d2ead62b408ade256ca2",
+      "expectedSha256": "20e63613d5cef71f12e9e82c6bd807017c1edb8468d3d2ead62b408ade256ca2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r07.png",
+      "status": 200,
+      "bytes": 3015216,
+      "sha256": "528c8955e7a5c9b6ffc81f6b8539e51d48cb19e1320a43168570a12cb780394a",
+      "expectedSha256": "528c8955e7a5c9b6ffc81f6b8539e51d48cb19e1320a43168570a12cb780394a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r08.png",
+      "status": 200,
+      "bytes": 3017987,
+      "sha256": "8c8ff1c02c44d970868a56c9026bf36cd23b66ffb218f2be803ee15f2fc8253a",
+      "expectedSha256": "8c8ff1c02c44d970868a56c9026bf36cd23b66ffb218f2be803ee15f2fc8253a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r09.png",
+      "status": 200,
+      "bytes": 1969108,
+      "sha256": "b67e24791a0a62a378a074e4094d65b082528d443f2f57df0a969fea72c5609e",
+      "expectedSha256": "b67e24791a0a62a378a074e4094d65b082528d443f2f57df0a969fea72c5609e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r10.png",
+      "status": 200,
+      "bytes": 2423880,
+      "sha256": "9f1581acfbd498913f480ecca3df0ce5fd069479748ee1d8ecdf893092bc3c6e",
+      "expectedSha256": "9f1581acfbd498913f480ecca3df0ce5fd069479748ee1d8ecdf893092bc3c6e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r11.png",
+      "status": 200,
+      "bytes": 2141061,
+      "sha256": "174ea084c94b21bfc51290644cb9c54cf59048457fe2e518bce633529a5f1a07",
+      "expectedSha256": "174ea084c94b21bfc51290644cb9c54cf59048457fe2e518bce633529a5f1a07",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r12.png",
+      "status": 200,
+      "bytes": 2204038,
+      "sha256": "b8ffc888a49b09cf5adc90158d6b6e4375e47d51582e45b715c10230f75ffdb3",
+      "expectedSha256": "b8ffc888a49b09cf5adc90158d6b6e4375e47d51582e45b715c10230f75ffdb3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r13.png",
+      "status": 200,
+      "bytes": 2764779,
+      "sha256": "bb855b09ac385bc2d32bae89abfed1c03f945ba29fee4c3979a6a77652589ba1",
+      "expectedSha256": "bb855b09ac385bc2d32bae89abfed1c03f945ba29fee4c3979a6a77652589ba1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r14.png",
+      "status": 200,
+      "bytes": 2991967,
+      "sha256": "b390e87a3b3beb2f3d9027467e457e97041f1818fb457eb446ff4298cb6d194f",
+      "expectedSha256": "b390e87a3b3beb2f3d9027467e457e97041f1818fb457eb446ff4298cb6d194f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r15.png",
+      "status": 200,
+      "bytes": 2802201,
+      "sha256": "588016c183ea56f59dd4c31f7125e061543fbd37147367d83f859fdfb8cd4c6f",
+      "expectedSha256": "588016c183ea56f59dd4c31f7125e061543fbd37147367d83f859fdfb8cd4c6f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r16.png",
+      "status": 200,
+      "bytes": 2519033,
+      "sha256": "9a699476de1ca3bda8448086f7b7f3283921436798f0dbda8096c92d2d050ace",
+      "expectedSha256": "9a699476de1ca3bda8448086f7b7f3283921436798f0dbda8096c92d2d050ace",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r17.png",
+      "status": 200,
+      "bytes": 2954888,
+      "sha256": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+      "expectedSha256": "4a61cde73a55031df75a9b02fe7596f5e661013de512bca35fd00e995b352d2d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r18.png",
+      "status": 200,
+      "bytes": 2917760,
+      "sha256": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+      "expectedSha256": "13f5763d98a2dab66a932e0e3510302683c97837c3163294a40a229224dd7ec3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r19.png",
+      "status": 200,
+      "bytes": 2827254,
+      "sha256": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+      "expectedSha256": "bfab16af79e67d67700f62cb2ddeb99757bc7602e9cde4469be55666f16dbc04",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r23.png",
+      "status": 200,
+      "bytes": 2683517,
+      "sha256": "7888936777327f49c8a2c15fca04eb03244486f9f1c6d054d47209097f2cc159",
+      "expectedSha256": "7888936777327f49c8a2c15fca04eb03244486f9f1c6d054d47209097f2cc159",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r24.png",
+      "status": 200,
+      "bytes": 2676214,
+      "sha256": "c6173cdc592be2030d72d77a7a2fc257df1593eb343b2fa9f727ff325a2c8b5a",
+      "expectedSha256": "c6173cdc592be2030d72d77a7a2fc257df1593eb343b2fa9f727ff325a2c8b5a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r25.png",
+      "status": 200,
+      "bytes": 3016981,
+      "sha256": "70530265c2f2f91bf8662210496f83584004aea2f4c165fee13f8dd1bf37977c",
+      "expectedSha256": "70530265c2f2f91bf8662210496f83584004aea2f4c165fee13f8dd1bf37977c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r36.png",
+      "status": 200,
+      "bytes": 2799084,
+      "sha256": "1dcc85f3a9c54d95e67a05c2c294416ef7b19013b033cfe8ea901aedff8e11b9",
+      "expectedSha256": "1dcc85f3a9c54d95e67a05c2c294416ef7b19013b033cfe8ea901aedff8e11b9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r37.png",
+      "status": 200,
+      "bytes": 3147260,
+      "sha256": "98ee8a5f8257af53d9b0657fdaefb19b71f1daeb500c0bd0f8d25a4330aba836",
+      "expectedSha256": "98ee8a5f8257af53d9b0657fdaefb19b71f1daeb500c0bd0f8d25a4330aba836",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r38.png",
+      "status": 200,
+      "bytes": 2592010,
+      "sha256": "1b5b0d2bcf3d36a98da39eab4719159b9f48920d11e23d3505b080f8ce8d64ed",
+      "expectedSha256": "1b5b0d2bcf3d36a98da39eab4719159b9f48920d11e23d3505b080f8ce8d64ed",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r39.png",
+      "status": 200,
+      "bytes": 2785373,
+      "sha256": "48407e0bbc2d31bff3188997f468a73ee837ba53f8be79df75458349f75a5f00",
+      "expectedSha256": "48407e0bbc2d31bff3188997f468a73ee837ba53f8be79df75458349f75a5f00",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r40.png",
+      "status": 200,
+      "bytes": 2818341,
+      "sha256": "762dc9b5b8e7d91adbd45d1e6a2efa5be9b87a2d11fc501bff5b31afcf0de18f",
+      "expectedSha256": "762dc9b5b8e7d91adbd45d1e6a2efa5be9b87a2d11fc501bff5b31afcf0de18f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r41.png",
+      "status": 200,
+      "bytes": 3009182,
+      "sha256": "09f72b0ce6ce119254f58a61c81e160810df85512c8c16ccf63961c262e4e224",
+      "expectedSha256": "09f72b0ce6ce119254f58a61c81e160810df85512c8c16ccf63961c262e4e224",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r42.png",
+      "status": 200,
+      "bytes": 2761201,
+      "sha256": "6f52890d7605f596a19041709015d4771799eb95c5589cc57b48b608d1b5e577",
+      "expectedSha256": "6f52890d7605f596a19041709015d4771799eb95c5589cc57b48b608d1b5e577",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_r43.png",
+      "status": 200,
+      "bytes": 2613756,
+      "sha256": "1290ecf6c555ebfe8e2f0408a9062aec2103d60bc8a86f93cafd520b79cc47d6",
+      "expectedSha256": "1290ecf6c555ebfe8e2f0408a9062aec2103d60bc8a86f93cafd520b79cc47d6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp01.png",
+      "status": 200,
+      "bytes": 2039687,
+      "sha256": "040886f87235d26d5c4f28ac6d5083dd1e9886c1bc00ce586fc6ac748b1a952f",
+      "expectedSha256": "040886f87235d26d5c4f28ac6d5083dd1e9886c1bc00ce586fc6ac748b1a952f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp02.png",
+      "status": 200,
+      "bytes": 2689813,
+      "sha256": "ea10f2d91fffd82a92b4faaadf0d45d6527fb3b4aab61bf28bf50fc4e65c45eb",
+      "expectedSha256": "ea10f2d91fffd82a92b4faaadf0d45d6527fb3b4aab61bf28bf50fc4e65c45eb",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp03.png",
+      "status": 200,
+      "bytes": 2297374,
+      "sha256": "05f25ea15d1da10702d9949703b4949a2c4b38e8459bd80ad274700db033c001",
+      "expectedSha256": "05f25ea15d1da10702d9949703b4949a2c4b38e8459bd80ad274700db033c001",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp04.png",
+      "status": 200,
+      "bytes": 2306066,
+      "sha256": "87d63597569c4fe526d2bd8b111668abaed6a613a62b5bbcd857221136a2b410",
+      "expectedSha256": "87d63597569c4fe526d2bd8b111668abaed6a613a62b5bbcd857221136a2b410",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp05.png",
+      "status": 200,
+      "bytes": 2438191,
+      "sha256": "169321516a02561ea52eb1173eaae1af14048e3f75b33d384a01de5c3de0ebda",
+      "expectedSha256": "169321516a02561ea52eb1173eaae1af14048e3f75b33d384a01de5c3de0ebda",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp06.png",
+      "status": 200,
+      "bytes": 1647196,
+      "sha256": "46728dd910b497e2cd89b71d708c7e6f81ab3396904c8c523d03cf0823b28876",
+      "expectedSha256": "46728dd910b497e2cd89b71d708c7e6f81ab3396904c8c523d03cf0823b28876",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp08.png",
+      "status": 200,
+      "bytes": 2767873,
+      "sha256": "384abc56db353c62a5552cd955ab65c3412fc442c168f19858c610c015c28217",
+      "expectedSha256": "384abc56db353c62a5552cd955ab65c3412fc442c168f19858c610c015c28217",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp09.png",
+      "status": 200,
+      "bytes": 2681852,
+      "sha256": "e4ea720a4777b3dcc042cd9751785d4793e29a566083bfe19a1aa6500ef79ede",
+      "expectedSha256": "e4ea720a4777b3dcc042cd9751785d4793e29a566083bfe19a1aa6500ef79ede",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp10.png",
+      "status": 200,
+      "bytes": 1828351,
+      "sha256": "1ad83531fa2c8a1ba6c350afc5567fd97e97edbae79092c7f35823b1573ce677",
+      "expectedSha256": "1ad83531fa2c8a1ba6c350afc5567fd97e97edbae79092c7f35823b1573ce677",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp11.png",
+      "status": 200,
+      "bytes": 2266734,
+      "sha256": "948a2bb59875b3f086543843ff88c91661de858eb9c3be133b8108b9063ae343",
+      "expectedSha256": "948a2bb59875b3f086543843ff88c91661de858eb9c3be133b8108b9063ae343",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp12.png",
+      "status": 200,
+      "bytes": 2115631,
+      "sha256": "ed0a96dae373ca038da2a53111acf51131af5a36c30aeb28df9aa75b0ce25f81",
+      "expectedSha256": "ed0a96dae373ca038da2a53111acf51131af5a36c30aeb28df9aa75b0ce25f81",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sp13.png",
+      "status": 200,
+      "bytes": 2287322,
+      "sha256": "4bb18716e63397f54ff8b3033a2969d49361d98df42281f698354317f2f5d32a",
+      "expectedSha256": "4bb18716e63397f54ff8b3033a2969d49361d98df42281f698354317f2f5d32a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr01.png",
+      "status": 200,
+      "bytes": 2726821,
+      "sha256": "bacd9dcf3f5bd2c81278c08d3ec9aacf6bb4a3bd76f1ea5a93b5ce0b4f32f7bd",
+      "expectedSha256": "bacd9dcf3f5bd2c81278c08d3ec9aacf6bb4a3bd76f1ea5a93b5ce0b4f32f7bd",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr02.png",
+      "status": 200,
+      "bytes": 2909238,
+      "sha256": "f6d26dd281f821711c47f2386172e7260089ed79f3e4b943397dd958e88ef555",
+      "expectedSha256": "f6d26dd281f821711c47f2386172e7260089ed79f3e4b943397dd958e88ef555",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr03.png",
+      "status": 200,
+      "bytes": 2753411,
+      "sha256": "38d734ec7c26b4907bb8464c3f89b9dc999b95da686816a9f74dc9368fbcd7f5",
+      "expectedSha256": "38d734ec7c26b4907bb8464c3f89b9dc999b95da686816a9f74dc9368fbcd7f5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr04.png",
+      "status": 200,
+      "bytes": 2370219,
+      "sha256": "9114ee4204b4f565b76ff3712c89ceef84129880c388732a310f7ec973663978",
+      "expectedSha256": "9114ee4204b4f565b76ff3712c89ceef84129880c388732a310f7ec973663978",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr05.png",
+      "status": 200,
+      "bytes": 2887956,
+      "sha256": "d9346a75de4ffaa06b52563cdcd3e2a9491cbd571ece3421abdc40cf04eb00d8",
+      "expectedSha256": "d9346a75de4ffaa06b52563cdcd3e2a9491cbd571ece3421abdc40cf04eb00d8",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr06.png",
+      "status": 200,
+      "bytes": 2608966,
+      "sha256": "d0ea3264f842253475689ffdf0f9fd526b39a106d50010c0223abaf6578329d6",
+      "expectedSha256": "d0ea3264f842253475689ffdf0f9fd526b39a106d50010c0223abaf6578329d6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr07.png",
+      "status": 200,
+      "bytes": 2659438,
+      "sha256": "94376b3ed3b302c1860ac964ada7aed52f8ec071c0c8bc95980429d45a9ddf94",
+      "expectedSha256": "94376b3ed3b302c1860ac964ada7aed52f8ec071c0c8bc95980429d45a9ddf94",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr08.png",
+      "status": 200,
+      "bytes": 2453818,
+      "sha256": "fe7e28f3c5040792e1b2218d648876162d758a0972e514bca5a1b26bd5cd24e6",
+      "expectedSha256": "fe7e28f3c5040792e1b2218d648876162d758a0972e514bca5a1b26bd5cd24e6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr09.png",
+      "status": 200,
+      "bytes": 2989676,
+      "sha256": "1fe9bc648e6a23ebbadc0311fafb078355bdc4b2890f34f88cee58096554c52b",
+      "expectedSha256": "1fe9bc648e6a23ebbadc0311fafb078355bdc4b2890f34f88cee58096554c52b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr10.png",
+      "status": 200,
+      "bytes": 2821585,
+      "sha256": "33c16c3a72ab14c035161f697274df315d83288381f3526b070b11c141ff81be",
+      "expectedSha256": "33c16c3a72ab14c035161f697274df315d83288381f3526b070b11c141ff81be",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr11.png",
+      "status": 200,
+      "bytes": 2789940,
+      "sha256": "1a08bb093b3773c86741a0811233128c0db4e2d52f20de25cb804843878dd193",
+      "expectedSha256": "1a08bb093b3773c86741a0811233128c0db4e2d52f20de25cb804843878dd193",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr12.png",
+      "status": 200,
+      "bytes": 2994338,
+      "sha256": "8ed787ead176f3af3faf9e8be846c96dfa1b5978561ef1187d4124e7e5a5d8cd",
+      "expectedSha256": "8ed787ead176f3af3faf9e8be846c96dfa1b5978561ef1187d4124e7e5a5d8cd",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr13.png",
+      "status": 200,
+      "bytes": 2910199,
+      "sha256": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+      "expectedSha256": "4a69722de81b4ec474115168bb399e0f53539f6b359d3ab934aa48c2fa5bfaf7",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr14.png",
+      "status": 200,
+      "bytes": 2970581,
+      "sha256": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+      "expectedSha256": "c749636bc89ae69018c410e39d9234d48a27bf8f82685234430c65f050bdc189",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr15.png",
+      "status": 200,
+      "bytes": 2629572,
+      "sha256": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+      "expectedSha256": "26ff3776714d7d4426c12d15d24295b100cb71437b747b4dc3b3b6e5e6520e99",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr19.png",
+      "status": 200,
+      "bytes": 3063364,
+      "sha256": "0b56c8aaaf55b785c6a66635959080c16d4200cdb3e29a4d57e49179e984b90d",
+      "expectedSha256": "0b56c8aaaf55b785c6a66635959080c16d4200cdb3e29a4d57e49179e984b90d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr20.png",
+      "status": 200,
+      "bytes": 2609482,
+      "sha256": "536044295f302ebce8808ef56718b2cf8c8f1c1961356de09a4519f560323859",
+      "expectedSha256": "536044295f302ebce8808ef56718b2cf8c8f1c1961356de09a4519f560323859",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr30.png",
+      "status": 200,
+      "bytes": 3101393,
+      "sha256": "c830f59daf9a69dcd5d10c479fcc4bc4cd5e7ea127032b06b7ecf45d92c30912",
+      "expectedSha256": "c830f59daf9a69dcd5d10c479fcc4bc4cd5e7ea127032b06b7ecf45d92c30912",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr31.png",
+      "status": 200,
+      "bytes": 2856178,
+      "sha256": "2bda25f6fcd65fcc78e813f1342602bf5fd5d8aca45636ed7c8ee68ad10a33a1",
+      "expectedSha256": "2bda25f6fcd65fcc78e813f1342602bf5fd5d8aca45636ed7c8ee68ad10a33a1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr32.png",
+      "status": 200,
+      "bytes": 2551259,
+      "sha256": "50f8395f08c6e231d5f42f7807d0b89fc066e4a132dd6c11c938f05db411d55e",
+      "expectedSha256": "50f8395f08c6e231d5f42f7807d0b89fc066e4a132dd6c11c938f05db411d55e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr33.png",
+      "status": 200,
+      "bytes": 3038844,
+      "sha256": "f4a2ef0120ce37811a9cca85483a1daa7859c33f786e2afadee089e98993d3fa",
+      "expectedSha256": "f4a2ef0120ce37811a9cca85483a1daa7859c33f786e2afadee089e98993d3fa",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr34.png",
+      "status": 200,
+      "bytes": 3138506,
+      "sha256": "4c055775a46fb4bb639e9c51832a1ac94cf6fb460068755e67bac22625eaba68",
+      "expectedSha256": "4c055775a46fb4bb639e9c51832a1ac94cf6fb460068755e67bac22625eaba68",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr35.png",
+      "status": 200,
+      "bytes": 2831506,
+      "sha256": "e1160bb18ccc62037a27e4eff422f4293abbe40ca32e5bf7f9fb8e44ac7fe799",
+      "expectedSha256": "e1160bb18ccc62037a27e4eff422f4293abbe40ca32e5bf7f9fb8e44ac7fe799",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr36.png",
+      "status": 200,
+      "bytes": 2873164,
+      "sha256": "187d62123bb34d05a99bec96047697d1bc71effc1303e01097d56df436d74369",
+      "expectedSha256": "187d62123bb34d05a99bec96047697d1bc71effc1303e01097d56df436d74369",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_sr37.png",
+      "status": 200,
+      "bytes": 2775452,
+      "sha256": "c0282338c4dd5a2e1b1028fd48e380043f1db8ff0b40412f1af339c28d18bb62",
+      "expectedSha256": "c0282338c4dd5a2e1b1028fd48e380043f1db8ff0b40412f1af339c28d18bb62",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr01.png",
+      "status": 200,
+      "bytes": 3112895,
+      "sha256": "1594be3fe91e7423e3ba6b31c7130f40203d0386d83b442f10183667802bb600",
+      "expectedSha256": "1594be3fe91e7423e3ba6b31c7130f40203d0386d83b442f10183667802bb600",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr02.png",
+      "status": 200,
+      "bytes": 2801308,
+      "sha256": "414937ec82b0888ff6c7c0e7452891fa90c13c0a41ba861ad89a1b7e7b512709",
+      "expectedSha256": "414937ec82b0888ff6c7c0e7452891fa90c13c0a41ba861ad89a1b7e7b512709",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr03.png",
+      "status": 200,
+      "bytes": 3046565,
+      "sha256": "47a434c4d5cf7bb3506668fdadb18031c83d88f590c07cb30b8aaf26898614df",
+      "expectedSha256": "47a434c4d5cf7bb3506668fdadb18031c83d88f590c07cb30b8aaf26898614df",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr04.png",
+      "status": 200,
+      "bytes": 2930342,
+      "sha256": "d6f7b366a3b2eec6a8a7c1e3d76d32c90c7ac1c27bda38fb0df4ed727b420d93",
+      "expectedSha256": "d6f7b366a3b2eec6a8a7c1e3d76d32c90c7ac1c27bda38fb0df4ed727b420d93",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr05.png",
+      "status": 200,
+      "bytes": 2684666,
+      "sha256": "5a1d1605acb78a9f7d38de06f360a0a2054caf00285ae9dd199d7fa5dc76676a",
+      "expectedSha256": "5a1d1605acb78a9f7d38de06f360a0a2054caf00285ae9dd199d7fa5dc76676a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr06.png",
+      "status": 200,
+      "bytes": 2945101,
+      "sha256": "c5539f8ebe4a87048dbdce29df1c5aafe109262b52251ae07d617df4db42ddd8",
+      "expectedSha256": "c5539f8ebe4a87048dbdce29df1c5aafe109262b52251ae07d617df4db42ddd8",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr07.png",
+      "status": 200,
+      "bytes": 2890294,
+      "sha256": "1008be1397aacaf944ef88af316c8510995afaff3f1cac220f5864f466285357",
+      "expectedSha256": "1008be1397aacaf944ef88af316c8510995afaff3f1cac220f5864f466285357",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr08.png",
+      "status": 200,
+      "bytes": 2506464,
+      "sha256": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+      "expectedSha256": "2ce7d7ec4f2dc234c26b8ff50a8a9adb230e5e348125417152ac673a2d43090d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr09.png",
+      "status": 200,
+      "bytes": 2651770,
+      "sha256": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+      "expectedSha256": "3a92a1c066ba2a3f59ee6fe7788e60681fa2aa061a395d4361416f677fd0e5d2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr12.png",
+      "status": 200,
+      "bytes": 2991174,
+      "sha256": "1cbe693844ebdef76a2030c3c62f120428b2a1f5b5181ff01972aa7c242ce54d",
+      "expectedSha256": "1cbe693844ebdef76a2030c3c62f120428b2a1f5b5181ff01972aa7c242ce54d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr13.png",
+      "status": 200,
+      "bytes": 3025536,
+      "sha256": "f22e689544f68a44f67890cf8da6ea689aa7a1358e8a7e82bcfa359fcb149b61",
+      "expectedSha256": "f22e689544f68a44f67890cf8da6ea689aa7a1358e8a7e82bcfa359fcb149b61",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr21.png",
+      "status": 200,
+      "bytes": 3170784,
+      "sha256": "c4a505ea1d59e4ed56effc13694a80e7012a3dc914b22d62a765da07e0a6f3dd",
+      "expectedSha256": "c4a505ea1d59e4ed56effc13694a80e7012a3dc914b22d62a765da07e0a6f3dd",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr22.png",
+      "status": 200,
+      "bytes": 2825477,
+      "sha256": "3a53d13ddea68ebda22bb46bb68e6d05893999bd25977298ed5e3984fabf7737",
+      "expectedSha256": "3a53d13ddea68ebda22bb46bb68e6d05893999bd25977298ed5e3984fabf7737",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr23.png",
+      "status": 200,
+      "bytes": 3020400,
+      "sha256": "be4c79b42b13df13c1cc0bdaa0a3285f20cc46eff2bfbdb8eb5512e084a49151",
+      "expectedSha256": "be4c79b42b13df13c1cc0bdaa0a3285f20cc46eff2bfbdb8eb5512e084a49151",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr24.png",
+      "status": 200,
+      "bytes": 2991776,
+      "sha256": "96229a1be3bf52c3431cd9d8fe0bdadd9ed8bb0c0a52be408a4587236f64457a",
+      "expectedSha256": "96229a1be3bf52c3431cd9d8fe0bdadd9ed8bb0c0a52be408a4587236f64457a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr25.png",
+      "status": 200,
+      "bytes": 2893283,
+      "sha256": "f773d25056ca5b33d1aba7e9977a976b7ccf61e8e95b6bd0a4950c307d890624",
+      "expectedSha256": "f773d25056ca5b33d1aba7e9977a976b7ccf61e8e95b6bd0a4950c307d890624",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ssr26.png",
+      "status": 200,
+      "bytes": 3223252,
+      "sha256": "3697b2054c68ede4719f4723ec74149ba52eac19d057dddd653db80b363ed247",
+      "expectedSha256": "3697b2054c68ede4719f4723ec74149ba52eac19d057dddd653db80b363ed247",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur01.png",
+      "status": 200,
+      "bytes": 3194581,
+      "sha256": "41e5120e8e1a2c992a0f1fe1a9cf64c8e0baacbf46937e6550ce1e76e6854af2",
+      "expectedSha256": "41e5120e8e1a2c992a0f1fe1a9cf64c8e0baacbf46937e6550ce1e76e6854af2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur02.png",
+      "status": 200,
+      "bytes": 2923625,
+      "sha256": "23031d355464adee4d781d711a51a8ada70fedef354e1facdbf4f972881ba03c",
+      "expectedSha256": "23031d355464adee4d781d711a51a8ada70fedef354e1facdbf4f972881ba03c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur03.png",
+      "status": 200,
+      "bytes": 3280140,
+      "sha256": "865c3b5665eb855b948196b78ba711e604e1b5a495cc11dfd5a32475864c7d08",
+      "expectedSha256": "865c3b5665eb855b948196b78ba711e604e1b5a495cc11dfd5a32475864c7d08",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur04.png",
+      "status": 200,
+      "bytes": 2939381,
+      "sha256": "74bb691a8d99b38380eedcf699781c4b7e8e6e783560aceabcfd908a5ea30a7c",
+      "expectedSha256": "74bb691a8d99b38380eedcf699781c4b7e8e6e783560aceabcfd908a5ea30a7c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur05.png",
+      "status": 200,
+      "bytes": 2583144,
+      "sha256": "39292d46cb7313aac0e46c4bdeab34e066bc971bed9cc7cc32a8baedf2c8bf48",
+      "expectedSha256": "39292d46cb7313aac0e46c4bdeab34e066bc971bed9cc7cc32a8baedf2c8bf48",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur06.png",
+      "status": 200,
+      "bytes": 2658104,
+      "sha256": "df1dbd7eadff38c65ae3a561bf660a1ef306e6b20470c4a87d19023a1f6e4e0c",
+      "expectedSha256": "df1dbd7eadff38c65ae3a561bf660a1ef306e6b20470c4a87d19023a1f6e4e0c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur07.png",
+      "status": 200,
+      "bytes": 3154540,
+      "sha256": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9",
+      "expectedSha256": "223687e6afa81255b6542912ffe4979f3b554ca93c618fcbf6b693adac3e17b9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur09.png",
+      "status": 200,
+      "bytes": 2779122,
+      "sha256": "57693be9d2b4a69859fc6bb9f38a3b6c1b689e4909dcc6690dd3f2c61e7f0717",
+      "expectedSha256": "57693be9d2b4a69859fc6bb9f38a3b6c1b689e4909dcc6690dd3f2c61e7f0717",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur10.png",
+      "status": 200,
+      "bytes": 2456465,
+      "sha256": "20684b478872287c38db5dab58d0d74d7335ac8d2cc8c77bc7c9dfc4ed1c2526",
+      "expectedSha256": "20684b478872287c38db5dab58d0d74d7335ac8d2cc8c77bc7c9dfc4ed1c2526",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur16.png",
+      "status": 200,
+      "bytes": 2940271,
+      "sha256": "3a260a48730bc48a2f32710c297e14db2c07d2a2dd0e478a4d5413f0f2c80954",
+      "expectedSha256": "3a260a48730bc48a2f32710c297e14db2c07d2a2dd0e478a4d5413f0f2c80954",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur17.png",
+      "status": 200,
+      "bytes": 2988105,
+      "sha256": "94d0549cc5cda0befffc668c160ebedfa1c41fc61f5a946ce7cf38af1194d2d1",
+      "expectedSha256": "94d0549cc5cda0befffc668c160ebedfa1c41fc61f5a946ce7cf38af1194d2d1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur18.png",
+      "status": 200,
+      "bytes": 3095713,
+      "sha256": "17d2eb5fc3df3a5e9aef0194cdec01f58b141aee055ae66de9399e9f0f670b10",
+      "expectedSha256": "17d2eb5fc3df3a5e9aef0194cdec01f58b141aee055ae66de9399e9f0f670b10",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur19.png",
+      "status": 200,
+      "bytes": 3020201,
+      "sha256": "6fcd7b39ced1764b3a9647f490607ed6108a904a47418c838b616734a46db9dd",
+      "expectedSha256": "6fcd7b39ced1764b3a9647f490607ed6108a904a47418c838b616734a46db9dd",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/pet_ur20.png",
+      "status": 200,
+      "bytes": 3245066,
+      "sha256": "2c238e42dae5c514740154ca2c45493a08418498b0fbc740a8715b7aa2f772d5",
+      "expectedSha256": "2c238e42dae5c514740154ca2c45493a08418498b0fbc740a8715b7aa2f772d5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n01-card-384-41df3c9be3b1.webp",
+      "status": 200,
+      "bytes": 24056,
+      "sha256": "0a4df48fca689e5e48fadbe2f526b1aeef8dd1daa11735920b5f612ede3f2d45",
+      "expectedSha256": "0a4df48fca689e5e48fadbe2f526b1aeef8dd1daa11735920b5f612ede3f2d45",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n01-stage-960-41df3c9be3b1.webp",
+      "status": 200,
+      "bytes": 96226,
+      "sha256": "31dae77791ba1ab1ccf97f971c7893c06fb414c1a40cbaba0886b821fd610559",
+      "expectedSha256": "31dae77791ba1ab1ccf97f971c7893c06fb414c1a40cbaba0886b821fd610559",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n02-card-384-d0d0a661e3e9.webp",
+      "status": 200,
+      "bytes": 35000,
+      "sha256": "4f66bb97191279c07fa17a5ca55fd37c95958e1b3850dc4436cc02ede48b5cd4",
+      "expectedSha256": "4f66bb97191279c07fa17a5ca55fd37c95958e1b3850dc4436cc02ede48b5cd4",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n02-stage-960-d0d0a661e3e9.webp",
+      "status": 200,
+      "bytes": 146182,
+      "sha256": "19619a4eff338950290237a26e13b8debc37f1216c693d0a6ffd20eed5a0176e",
+      "expectedSha256": "19619a4eff338950290237a26e13b8debc37f1216c693d0a6ffd20eed5a0176e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n03-card-384-ae0e84d7da7e.webp",
+      "status": 200,
+      "bytes": 35994,
+      "sha256": "b7b6e52db1ec3dd356b2440fa350865f299e3337e8f0235aea860c2b78e53530",
+      "expectedSha256": "b7b6e52db1ec3dd356b2440fa350865f299e3337e8f0235aea860c2b78e53530",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n03-stage-960-ae0e84d7da7e.webp",
+      "status": 200,
+      "bytes": 157730,
+      "sha256": "f3ac91bd1c8bed2372f261cb81c53a435d4e39f2db882f7dfb1bd35317fbf81e",
+      "expectedSha256": "f3ac91bd1c8bed2372f261cb81c53a435d4e39f2db882f7dfb1bd35317fbf81e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n04-card-384-f1394109c4a4.webp",
+      "status": 200,
+      "bytes": 27044,
+      "sha256": "7b404cd461e2d11ee2daaffb7719a58fd4a9a066a3dd4d3d6f112d730e6e2736",
+      "expectedSha256": "7b404cd461e2d11ee2daaffb7719a58fd4a9a066a3dd4d3d6f112d730e6e2736",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n04-stage-960-f1394109c4a4.webp",
+      "status": 200,
+      "bytes": 102030,
+      "sha256": "8756d85b3593a053b44abbe712ad036ff0667e8686fb701ea31595567354b745",
+      "expectedSha256": "8756d85b3593a053b44abbe712ad036ff0667e8686fb701ea31595567354b745",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n05-card-384-3fb8d0fe4da7.webp",
+      "status": 200,
+      "bytes": 33682,
+      "sha256": "6c0e93f249c15bfa9008ed288842222a29d2df2e28099d2966359406e6596f82",
+      "expectedSha256": "6c0e93f249c15bfa9008ed288842222a29d2df2e28099d2966359406e6596f82",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n05-stage-960-3fb8d0fe4da7.webp",
+      "status": 200,
+      "bytes": 140490,
+      "sha256": "d724e28278f4f8f7731fc844a11b209c30c1c638343258d2e46356d839049acc",
+      "expectedSha256": "d724e28278f4f8f7731fc844a11b209c30c1c638343258d2e46356d839049acc",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n06-card-384-a661e719c4d2.webp",
+      "status": 200,
+      "bytes": 24658,
+      "sha256": "4a22c272d26c42462982be186ac84ad04f552a02672b0666b07fc26c84832b72",
+      "expectedSha256": "4a22c272d26c42462982be186ac84ad04f552a02672b0666b07fc26c84832b72",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n06-stage-960-a661e719c4d2.webp",
+      "status": 200,
+      "bytes": 106200,
+      "sha256": "246f05b2dbbf02f470f74339b6b26d8fdef678b5a5c4be5d040a7632292ce45b",
+      "expectedSha256": "246f05b2dbbf02f470f74339b6b26d8fdef678b5a5c4be5d040a7632292ce45b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n07-card-384-ffb4b0444c91.webp",
+      "status": 200,
+      "bytes": 37728,
+      "sha256": "4cf52136c919310786f035494068d7c4a5bee536334bad3bccb305fcacae1598",
+      "expectedSha256": "4cf52136c919310786f035494068d7c4a5bee536334bad3bccb305fcacae1598",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n07-stage-960-ffb4b0444c91.webp",
+      "status": 200,
+      "bytes": 140560,
+      "sha256": "149d52a3f6e4456c858f14ab198d26b886608de21724cb8b8abc0ea286003a4a",
+      "expectedSha256": "149d52a3f6e4456c858f14ab198d26b886608de21724cb8b8abc0ea286003a4a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n08-card-384-317c19589fd0.webp",
+      "status": 200,
+      "bytes": 39620,
+      "sha256": "3f80b753f42d67b0106ee0870e22c512f6146f64cefcdbf61ce6df2cb996dbe3",
+      "expectedSha256": "3f80b753f42d67b0106ee0870e22c512f6146f64cefcdbf61ce6df2cb996dbe3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n08-stage-960-317c19589fd0.webp",
+      "status": 200,
+      "bytes": 180688,
+      "sha256": "05637ec94368be1c5f527fb4cb02fd512f0ef82848823a1777eb07162e630b1b",
+      "expectedSha256": "05637ec94368be1c5f527fb4cb02fd512f0ef82848823a1777eb07162e630b1b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n09-card-384-5da0cbcd4a06.webp",
+      "status": 200,
+      "bytes": 22184,
+      "sha256": "dd91b30d5051ed32bc61863d2859be3dd28e463e7212969a4b3dd7225edf9b3a",
+      "expectedSha256": "dd91b30d5051ed32bc61863d2859be3dd28e463e7212969a4b3dd7225edf9b3a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n09-stage-960-5da0cbcd4a06.webp",
+      "status": 200,
+      "bytes": 86596,
+      "sha256": "60d6717faf68dc075ef39e8b984e3b1827bd63a9f1f76f6780dbc9da2449c281",
+      "expectedSha256": "60d6717faf68dc075ef39e8b984e3b1827bd63a9f1f76f6780dbc9da2449c281",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n10-card-384-bd5e522d55a6.webp",
+      "status": 200,
+      "bytes": 35698,
+      "sha256": "6f5683d677e9e4ba918a81e8314cc2f012cfe47df82c17d840ff701ee8fcc4c6",
+      "expectedSha256": "6f5683d677e9e4ba918a81e8314cc2f012cfe47df82c17d840ff701ee8fcc4c6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n10-stage-960-bd5e522d55a6.webp",
+      "status": 200,
+      "bytes": 132196,
+      "sha256": "34f25466b360b8e6a46381b49db8b9dd399a145ed5c37494d82b7606d8f6ec6b",
+      "expectedSha256": "34f25466b360b8e6a46381b49db8b9dd399a145ed5c37494d82b7606d8f6ec6b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n11-card-384-4cc1c7dc33a2.webp",
+      "status": 200,
+      "bytes": 20674,
+      "sha256": "896468b710aa4f646693a4309357ee99951109b5dff39510a8e6c5890bfd02d3",
+      "expectedSha256": "896468b710aa4f646693a4309357ee99951109b5dff39510a8e6c5890bfd02d3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n11-stage-960-4cc1c7dc33a2.webp",
+      "status": 200,
+      "bytes": 77630,
+      "sha256": "7bc01ce1a56e62afd72c15222b5a6379d0a0e4c4aaa02ab59b57c9a670ac5d36",
+      "expectedSha256": "7bc01ce1a56e62afd72c15222b5a6379d0a0e4c4aaa02ab59b57c9a670ac5d36",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n12-card-384-5f93af0a4d34.webp",
+      "status": 200,
+      "bytes": 24150,
+      "sha256": "0a3749ce7cc8b26ac94d72ccde221f89529f3b2fcdb38fd91544e4f7eb509bff",
+      "expectedSha256": "0a3749ce7cc8b26ac94d72ccde221f89529f3b2fcdb38fd91544e4f7eb509bff",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n12-stage-960-5f93af0a4d34.webp",
+      "status": 200,
+      "bytes": 95886,
+      "sha256": "5c69779bcf4e0cb94ca3628194fe73424ab6343acb84f9703c6ff809486fc99d",
+      "expectedSha256": "5c69779bcf4e0cb94ca3628194fe73424ab6343acb84f9703c6ff809486fc99d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n13-card-384-f8a8632dae3d.webp",
+      "status": 200,
+      "bytes": 18938,
+      "sha256": "2a1bdef70e91fe01dcfa09c0bcc15d3c15b4b26e094072d9b659dbb577e286f1",
+      "expectedSha256": "2a1bdef70e91fe01dcfa09c0bcc15d3c15b4b26e094072d9b659dbb577e286f1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n13-stage-960-f8a8632dae3d.webp",
+      "status": 200,
+      "bytes": 67220,
+      "sha256": "f542a5624ea22c9241be7b42ad6d3b73f04a8d8dcb1d59288b2cb2eeb270fc76",
+      "expectedSha256": "f542a5624ea22c9241be7b42ad6d3b73f04a8d8dcb1d59288b2cb2eeb270fc76",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n14-card-384-c938004eec00.webp",
+      "status": 200,
+      "bytes": 14320,
+      "sha256": "7aab9fbed09afa8dd364856596e67faa3e982ad5f0e4520b9e0b32671e9f6a51",
+      "expectedSha256": "7aab9fbed09afa8dd364856596e67faa3e982ad5f0e4520b9e0b32671e9f6a51",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n14-stage-960-c938004eec00.webp",
+      "status": 200,
+      "bytes": 50694,
+      "sha256": "4bef36da8cdd8ab4515ca11c28005d229fcd55d89331e1ce349606433a5a5e12",
+      "expectedSha256": "4bef36da8cdd8ab4515ca11c28005d229fcd55d89331e1ce349606433a5a5e12",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n15-card-384-8b32c2cd30c9.webp",
+      "status": 200,
+      "bytes": 21672,
+      "sha256": "a0b2342f5f0e4a5ba72f27fe551a1bd74322dcf4451e9f9eb52c7aec456912c3",
+      "expectedSha256": "a0b2342f5f0e4a5ba72f27fe551a1bd74322dcf4451e9f9eb52c7aec456912c3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n15-stage-960-8b32c2cd30c9.webp",
+      "status": 200,
+      "bytes": 89742,
+      "sha256": "e902b79501dd5a58e3f4421654dfbe33bc8ab3b9fc56b12b782d7330f8089ab4",
+      "expectedSha256": "e902b79501dd5a58e3f4421654dfbe33bc8ab3b9fc56b12b782d7330f8089ab4",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n16-card-384-6669c278dbcc.webp",
+      "status": 200,
+      "bytes": 17780,
+      "sha256": "0cfc522c8b64968aaea8ab1417ab3b5f532893e2f5596657f03f2bd5911086ef",
+      "expectedSha256": "0cfc522c8b64968aaea8ab1417ab3b5f532893e2f5596657f03f2bd5911086ef",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n16-stage-960-6669c278dbcc.webp",
+      "status": 200,
+      "bytes": 64062,
+      "sha256": "048b0faf11f2f09c49c76bf81e04989eddbcf4812d2295dca5358a7f7f2c7775",
+      "expectedSha256": "048b0faf11f2f09c49c76bf81e04989eddbcf4812d2295dca5358a7f7f2c7775",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n17-card-384-b778724fa519.webp",
+      "status": 200,
+      "bytes": 37536,
+      "sha256": "5e6397c8b255263f7d3faa7380398191d624f375b8a039202059c64135d8fca8",
+      "expectedSha256": "5e6397c8b255263f7d3faa7380398191d624f375b8a039202059c64135d8fca8",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n17-stage-960-b778724fa519.webp",
+      "status": 200,
+      "bytes": 155998,
+      "sha256": "f604ae36684caa0daa6373b832077ead3535e3eca483fbfcf36e02525a376d48",
+      "expectedSha256": "f604ae36684caa0daa6373b832077ead3535e3eca483fbfcf36e02525a376d48",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n18-card-384-0417c6c856c0.webp",
+      "status": 200,
+      "bytes": 35130,
+      "sha256": "69b40a1ed86566c52e38ed26356a448267c8c6732bc7343416a6f55eedffa17b",
+      "expectedSha256": "69b40a1ed86566c52e38ed26356a448267c8c6732bc7343416a6f55eedffa17b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n18-stage-960-0417c6c856c0.webp",
+      "status": 200,
+      "bytes": 143016,
+      "sha256": "24dd92ffb6eb8f7c7a8bb16a1a12293cf053df31406d957676d054f7af5fd154",
+      "expectedSha256": "24dd92ffb6eb8f7c7a8bb16a1a12293cf053df31406d957676d054f7af5fd154",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n19-card-384-a46e864b3677.webp",
+      "status": 200,
+      "bytes": 32606,
+      "sha256": "be4586cf501a826287e3e91ff43f21404139b8faa5c727a97be4c60a94047b97",
+      "expectedSha256": "be4586cf501a826287e3e91ff43f21404139b8faa5c727a97be4c60a94047b97",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n19-stage-960-a46e864b3677.webp",
+      "status": 200,
+      "bytes": 140284,
+      "sha256": "b6e59d7b9166d9cad1af5e0f3e642aaca5b03d37d067ec682378ffde840a5dc9",
+      "expectedSha256": "b6e59d7b9166d9cad1af5e0f3e642aaca5b03d37d067ec682378ffde840a5dc9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n20-card-384-a3accd064e77.webp",
+      "status": 200,
+      "bytes": 42432,
+      "sha256": "d0f3f48ea0c7a475e1546765d891882c25aada2f65098ab251fcf55c1375a2e9",
+      "expectedSha256": "d0f3f48ea0c7a475e1546765d891882c25aada2f65098ab251fcf55c1375a2e9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n20-stage-960-a3accd064e77.webp",
+      "status": 200,
+      "bytes": 156890,
+      "sha256": "376aa1eb12bd796e2c7f03c2ffba9e0fa73b92439ac054452c6457c6f4841217",
+      "expectedSha256": "376aa1eb12bd796e2c7f03c2ffba9e0fa73b92439ac054452c6457c6f4841217",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n21-card-384-fe35c6c3aec7.webp",
+      "status": 200,
+      "bytes": 43372,
+      "sha256": "05f4f1b2a3c44e1bdc6adda868ff6bff3ace9f0a64efb1228a0eb28d5887e8dd",
+      "expectedSha256": "05f4f1b2a3c44e1bdc6adda868ff6bff3ace9f0a64efb1228a0eb28d5887e8dd",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n21-stage-960-fe35c6c3aec7.webp",
+      "status": 200,
+      "bytes": 184252,
+      "sha256": "9ee0bc8db80dd633ec3d295b9906e1e0721d74e593d10255c3dab8417688dd81",
+      "expectedSha256": "9ee0bc8db80dd633ec3d295b9906e1e0721d74e593d10255c3dab8417688dd81",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n22-card-384-217c5b56309b.webp",
+      "status": 200,
+      "bytes": 49460,
+      "sha256": "3bb6245e6df30d627ebcdd17fd58537d33b9bcc418636a58cf28629e930e15f7",
+      "expectedSha256": "3bb6245e6df30d627ebcdd17fd58537d33b9bcc418636a58cf28629e930e15f7",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n22-stage-960-217c5b56309b.webp",
+      "status": 200,
+      "bytes": 201866,
+      "sha256": "282922317214d85d0f55f4b4e5bc4b2897ce5cbc37c1dcd4b0edf4b0f8983b39",
+      "expectedSha256": "282922317214d85d0f55f4b4e5bc4b2897ce5cbc37c1dcd4b0edf4b0f8983b39",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n26-card-384-ed64ce147f71.webp",
+      "status": 200,
+      "bytes": 44874,
+      "sha256": "e67dac33245cb917cb31c51f3a4fa09bc33f2d58afc3378add084c9d50ee91df",
+      "expectedSha256": "e67dac33245cb917cb31c51f3a4fa09bc33f2d58afc3378add084c9d50ee91df",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n26-stage-960-ed64ce147f71.webp",
+      "status": 200,
+      "bytes": 193962,
+      "sha256": "d164da270c6d4b02949cdd8906ad37c6de9f146f9223091dabd28bea499e5b90",
+      "expectedSha256": "d164da270c6d4b02949cdd8906ad37c6de9f146f9223091dabd28bea499e5b90",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n27-card-384-16777d42c0a8.webp",
+      "status": 200,
+      "bytes": 45402,
+      "sha256": "ab53244890a1bf5e422d0eded64111d118a572d5ebd98525f34626324149d6ff",
+      "expectedSha256": "ab53244890a1bf5e422d0eded64111d118a572d5ebd98525f34626324149d6ff",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n27-stage-960-16777d42c0a8.webp",
+      "status": 200,
+      "bytes": 175788,
+      "sha256": "b19bfbaf9f9a5f79ddcad225cf8b6bc31c7f45fc70216fda1c385e6ad36c0e3f",
+      "expectedSha256": "b19bfbaf9f9a5f79ddcad225cf8b6bc31c7f45fc70216fda1c385e6ad36c0e3f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n28-card-384-32ef9e7edd47.webp",
+      "status": 200,
+      "bytes": 42466,
+      "sha256": "775fa5fe1786044ce7d96359ccf91db6a8f8d021a09d6823cd1338a591c08d8d",
+      "expectedSha256": "775fa5fe1786044ce7d96359ccf91db6a8f8d021a09d6823cd1338a591c08d8d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n28-stage-960-32ef9e7edd47.webp",
+      "status": 200,
+      "bytes": 187820,
+      "sha256": "cd2e05979ed4f650e35fca268714388d2adc9c956e9d9778bd005a5eaf1a11e3",
+      "expectedSha256": "cd2e05979ed4f650e35fca268714388d2adc9c956e9d9778bd005a5eaf1a11e3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n36-card-384-c6994d0a0ab8.webp",
+      "status": 200,
+      "bytes": 46014,
+      "sha256": "05bc262e9aa209571264db208a67e9fc37c9ef9a7eca5a09be2c85c3c96f456e",
+      "expectedSha256": "05bc262e9aa209571264db208a67e9fc37c9ef9a7eca5a09be2c85c3c96f456e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n36-stage-960-c6994d0a0ab8.webp",
+      "status": 200,
+      "bytes": 191272,
+      "sha256": "99a78a7f09bc3549aec9457dfe94015880f2bcd8bebfc75983a5043563813011",
+      "expectedSha256": "99a78a7f09bc3549aec9457dfe94015880f2bcd8bebfc75983a5043563813011",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n37-card-384-c08f25e96e72.webp",
+      "status": 200,
+      "bytes": 50132,
+      "sha256": "76afaad387fdf60ab16537e084398616079dd2dbb5e805f0ba02c2e848a5262b",
+      "expectedSha256": "76afaad387fdf60ab16537e084398616079dd2dbb5e805f0ba02c2e848a5262b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n37-stage-960-c08f25e96e72.webp",
+      "status": 200,
+      "bytes": 254144,
+      "sha256": "dd472715879971efee348a96edec9d5b9019292ef437098406ed9a427eaae19b",
+      "expectedSha256": "dd472715879971efee348a96edec9d5b9019292ef437098406ed9a427eaae19b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n38-card-384-3926a8e7fa89.webp",
+      "status": 200,
+      "bytes": 46454,
+      "sha256": "0fd22e3592024a192e14ae65dc51d22c160c1981c59651d1d2d5f5979133ade1",
+      "expectedSha256": "0fd22e3592024a192e14ae65dc51d22c160c1981c59651d1d2d5f5979133ade1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n38-stage-960-3926a8e7fa89.webp",
+      "status": 200,
+      "bytes": 209358,
+      "sha256": "496236889106af917ac183da8b578bb4fd5a54ac2e227e453bc0a7c889837ae3",
+      "expectedSha256": "496236889106af917ac183da8b578bb4fd5a54ac2e227e453bc0a7c889837ae3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n39-card-384-38444eb59db9.webp",
+      "status": 200,
+      "bytes": 39626,
+      "sha256": "fb55c6114376cf65ca1b205a5dee2d099306734de965edb935c675ad71d3a116",
+      "expectedSha256": "fb55c6114376cf65ca1b205a5dee2d099306734de965edb935c675ad71d3a116",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n39-stage-960-38444eb59db9.webp",
+      "status": 200,
+      "bytes": 159746,
+      "sha256": "85725ac3e9cc785efed7a906e8b2a19c786d94ad75ff25878ab3641586acad93",
+      "expectedSha256": "85725ac3e9cc785efed7a906e8b2a19c786d94ad75ff25878ab3641586acad93",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n40-card-384-f8243198fdc9.webp",
+      "status": 200,
+      "bytes": 53070,
+      "sha256": "023f3a408edf6214be9ed4d936043c20e5792883f6184ed7989f0a4944aa414d",
+      "expectedSha256": "023f3a408edf6214be9ed4d936043c20e5792883f6184ed7989f0a4944aa414d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n40-stage-960-f8243198fdc9.webp",
+      "status": 200,
+      "bytes": 211054,
+      "sha256": "140e72a74c88e08913d5757c83872d66c9c88084da45b029162efbfda1ac14c9",
+      "expectedSha256": "140e72a74c88e08913d5757c83872d66c9c88084da45b029162efbfda1ac14c9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r01-card-384-0d6ca7821c32.webp",
+      "status": 200,
+      "bytes": 38864,
+      "sha256": "71ff90c64e5badb5eb474b3a9601098a4a6757e60814e8a76cc714a33b5eb31c",
+      "expectedSha256": "71ff90c64e5badb5eb474b3a9601098a4a6757e60814e8a76cc714a33b5eb31c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r01-stage-960-0d6ca7821c32.webp",
+      "status": 200,
+      "bytes": 161260,
+      "sha256": "fc06e8895673b53bb67b581553a2993808189fc72cec7ca22a729f0cf50f4f7a",
+      "expectedSha256": "fc06e8895673b53bb67b581553a2993808189fc72cec7ca22a729f0cf50f4f7a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r02-card-384-ee3b1b08cc6a.webp",
+      "status": 200,
+      "bytes": 41688,
+      "sha256": "c962d73334c0160d9b6319210736fbcfefe53a19398bdb38ddac32865dde3165",
+      "expectedSha256": "c962d73334c0160d9b6319210736fbcfefe53a19398bdb38ddac32865dde3165",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r02-stage-960-ee3b1b08cc6a.webp",
+      "status": 200,
+      "bytes": 181766,
+      "sha256": "9b24bce877c7d4e272cbe377859b650754f3f13535cfa297e1b86dc896a41b8b",
+      "expectedSha256": "9b24bce877c7d4e272cbe377859b650754f3f13535cfa297e1b86dc896a41b8b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r03-card-384-d5ddf9733ef9.webp",
+      "status": 200,
+      "bytes": 49202,
+      "sha256": "9dc6797f09a37263c6448dc50dfc727e829c9e91bfaaf20906799d53c36a0228",
+      "expectedSha256": "9dc6797f09a37263c6448dc50dfc727e829c9e91bfaaf20906799d53c36a0228",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r03-stage-960-d5ddf9733ef9.webp",
+      "status": 200,
+      "bytes": 226212,
+      "sha256": "308afbaef86b1aec800e8c147ae21c718d80eef08cf10066ec306705df0a76d3",
+      "expectedSha256": "308afbaef86b1aec800e8c147ae21c718d80eef08cf10066ec306705df0a76d3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r04-card-384-096be1486688.webp",
+      "status": 200,
+      "bytes": 39916,
+      "sha256": "1153b91b471206557f112a69483732580108b543f8f324c2e151c11f77b8b2ce",
+      "expectedSha256": "1153b91b471206557f112a69483732580108b543f8f324c2e151c11f77b8b2ce",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r04-stage-960-096be1486688.webp",
+      "status": 200,
+      "bytes": 194202,
+      "sha256": "094c99fd406041f9522759ff1938b5008c720f82e6eb80b02e02565427ca3b98",
+      "expectedSha256": "094c99fd406041f9522759ff1938b5008c720f82e6eb80b02e02565427ca3b98",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r05-card-384-a63692d4b731.webp",
+      "status": 200,
+      "bytes": 45268,
+      "sha256": "8a89d6bedd97f8b7e433beee5649b101a22a0b1140bf0c595cd158aa7bad8590",
+      "expectedSha256": "8a89d6bedd97f8b7e433beee5649b101a22a0b1140bf0c595cd158aa7bad8590",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r05-stage-960-a63692d4b731.webp",
+      "status": 200,
+      "bytes": 229036,
+      "sha256": "6b1459b36c0d421de00800e94ca1fb91bbae9e463d65ca58e06cb5f7d5eb41ef",
+      "expectedSha256": "6b1459b36c0d421de00800e94ca1fb91bbae9e463d65ca58e06cb5f7d5eb41ef",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r06-card-384-20e63613d5ce.webp",
+      "status": 200,
+      "bytes": 45550,
+      "sha256": "e409b3e8c281f0f59a8c9872f2d857d2a6f1f521f0c4c9b8db8d06a12bed2adb",
+      "expectedSha256": "e409b3e8c281f0f59a8c9872f2d857d2a6f1f521f0c4c9b8db8d06a12bed2adb",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r06-stage-960-20e63613d5ce.webp",
+      "status": 200,
+      "bytes": 229978,
+      "sha256": "5f063266a78d1baf3621d483b26e7ea7c94887a69c37e8b74efa54cdb3b5c6e3",
+      "expectedSha256": "5f063266a78d1baf3621d483b26e7ea7c94887a69c37e8b74efa54cdb3b5c6e3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r07-card-384-528c8955e7a5.webp",
+      "status": 200,
+      "bytes": 51658,
+      "sha256": "376a64cf9d90541d5b046d1f1da68864504727f805b24acd1254a67f012748db",
+      "expectedSha256": "376a64cf9d90541d5b046d1f1da68864504727f805b24acd1254a67f012748db",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r07-stage-960-528c8955e7a5.webp",
+      "status": 200,
+      "bytes": 243902,
+      "sha256": "e5d4ca7f934b68bdf3a270314d42364a0f63ea89f500185db48923127432fbfc",
+      "expectedSha256": "e5d4ca7f934b68bdf3a270314d42364a0f63ea89f500185db48923127432fbfc",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r08-card-384-8c8ff1c02c44.webp",
+      "status": 200,
+      "bytes": 42894,
+      "sha256": "8c85dad8d432753e9af1b489d746a55df638e3888ece201265bd1a866b6585dc",
+      "expectedSha256": "8c85dad8d432753e9af1b489d746a55df638e3888ece201265bd1a866b6585dc",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r08-stage-960-8c8ff1c02c44.webp",
+      "status": 200,
+      "bytes": 225298,
+      "sha256": "36382f0e14a87b055eab1227c525c8edbffd309f9f0dfbeec374ae03c454d0b8",
+      "expectedSha256": "36382f0e14a87b055eab1227c525c8edbffd309f9f0dfbeec374ae03c454d0b8",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r09-card-384-b67e24791a0a.webp",
+      "status": 200,
+      "bytes": 14964,
+      "sha256": "1299325bc45c673301370cd5bdfa963fa57735a2f3462cf26c9ed2ca20521394",
+      "expectedSha256": "1299325bc45c673301370cd5bdfa963fa57735a2f3462cf26c9ed2ca20521394",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r09-stage-960-b67e24791a0a.webp",
+      "status": 200,
+      "bytes": 66836,
+      "sha256": "9096e1ec99db5680955eb4403fa64d4f99e6c789b304cfb659c666cc834dc38c",
+      "expectedSha256": "9096e1ec99db5680955eb4403fa64d4f99e6c789b304cfb659c666cc834dc38c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r10-card-384-9f1581acfbd4.webp",
+      "status": 200,
+      "bytes": 33890,
+      "sha256": "5b0c6c166b6d05d83c378be9d297ba549e89ce92bd3699df187a1a5ddf7e28d0",
+      "expectedSha256": "5b0c6c166b6d05d83c378be9d297ba549e89ce92bd3699df187a1a5ddf7e28d0",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r10-stage-960-9f1581acfbd4.webp",
+      "status": 200,
+      "bytes": 153284,
+      "sha256": "39485bd97671a35250f45143a8d76a70dcb2cf84387aee77967fe30cbcac62f1",
+      "expectedSha256": "39485bd97671a35250f45143a8d76a70dcb2cf84387aee77967fe30cbcac62f1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r11-card-384-174ea084c94b.webp",
+      "status": 200,
+      "bytes": 29236,
+      "sha256": "ea6ee83eada22c2e598be1c0069a1c6237105874b31a6f9f91f3d7a4bc2640d6",
+      "expectedSha256": "ea6ee83eada22c2e598be1c0069a1c6237105874b31a6f9f91f3d7a4bc2640d6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r11-stage-960-174ea084c94b.webp",
+      "status": 200,
+      "bytes": 112752,
+      "sha256": "015ef09151338bf439f958b0561eaa9fa6da2d5511fe2bc63e41baddc02c929a",
+      "expectedSha256": "015ef09151338bf439f958b0561eaa9fa6da2d5511fe2bc63e41baddc02c929a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r12-card-384-b8ffc888a49b.webp",
+      "status": 200,
+      "bytes": 25028,
+      "sha256": "0a6fe164865e3a1daaeff9b89b9a45b0fafb01feada843b1e6c0f1c31560643e",
+      "expectedSha256": "0a6fe164865e3a1daaeff9b89b9a45b0fafb01feada843b1e6c0f1c31560643e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r12-stage-960-b8ffc888a49b.webp",
+      "status": 200,
+      "bytes": 103544,
+      "sha256": "3e359cc0df8591f0454eb32edf9aa28fe41f95722ba941acc0abd04b0998900b",
+      "expectedSha256": "3e359cc0df8591f0454eb32edf9aa28fe41f95722ba941acc0abd04b0998900b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r13-card-384-bb855b09ac38.webp",
+      "status": 200,
+      "bytes": 44598,
+      "sha256": "795548e6b3801df11dddf9efbc8663994edc85bb19ce18b1f6f1eb5ea1a355c6",
+      "expectedSha256": "795548e6b3801df11dddf9efbc8663994edc85bb19ce18b1f6f1eb5ea1a355c6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r13-stage-960-bb855b09ac38.webp",
+      "status": 200,
+      "bytes": 207742,
+      "sha256": "19fe7c2e9197e2bd0a53565027059d5fa913ff0332083af3cfa068dd3d9769de",
+      "expectedSha256": "19fe7c2e9197e2bd0a53565027059d5fa913ff0332083af3cfa068dd3d9769de",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r14-card-384-b390e87a3b3b.webp",
+      "status": 200,
+      "bytes": 52644,
+      "sha256": "78d82314d9610a0fa373cd4a913e55086a05c45f82727e37ed7c10be8b62e2e5",
+      "expectedSha256": "78d82314d9610a0fa373cd4a913e55086a05c45f82727e37ed7c10be8b62e2e5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r14-stage-960-b390e87a3b3b.webp",
+      "status": 200,
+      "bytes": 244166,
+      "sha256": "7db4551e7bb4578842ad591a4d25d4f71abdd4f132bddee66eabc2fa3fa32e9e",
+      "expectedSha256": "7db4551e7bb4578842ad591a4d25d4f71abdd4f132bddee66eabc2fa3fa32e9e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r15-card-384-588016c183ea.webp",
+      "status": 200,
+      "bytes": 43156,
+      "sha256": "51afac9eb9ace3e37b409b66f255f951cc735de3e4e4d2487a1a005b5b76c521",
+      "expectedSha256": "51afac9eb9ace3e37b409b66f255f951cc735de3e4e4d2487a1a005b5b76c521",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r15-stage-960-588016c183ea.webp",
+      "status": 200,
+      "bytes": 204714,
+      "sha256": "8ee21120a5aebd27ed00468e95433e60e4ab931b1790c367f59d1f3ef69f2239",
+      "expectedSha256": "8ee21120a5aebd27ed00468e95433e60e4ab931b1790c367f59d1f3ef69f2239",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r16-card-384-9a699476de1c.webp",
+      "status": 200,
+      "bytes": 39496,
+      "sha256": "f1c7d618ee444b261e537bc51ed74f8ad8c8085b0c8eb7865f959a13c89bca20",
+      "expectedSha256": "f1c7d618ee444b261e537bc51ed74f8ad8c8085b0c8eb7865f959a13c89bca20",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r16-stage-960-9a699476de1c.webp",
+      "status": 200,
+      "bytes": 165450,
+      "sha256": "1c2a451a2be772a3324d5e8c37f459d1cb69723ab7a0544d80b817487e84852c",
+      "expectedSha256": "1c2a451a2be772a3324d5e8c37f459d1cb69723ab7a0544d80b817487e84852c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r17-card-384-4a61cde73a55.webp",
+      "status": 200,
+      "bytes": 52212,
+      "sha256": "7802e532164876e609ba88986945b384c777b705355029b757c94a388e6a8d31",
+      "expectedSha256": "7802e532164876e609ba88986945b384c777b705355029b757c94a388e6a8d31",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r17-stage-960-4a61cde73a55.webp",
+      "status": 200,
+      "bytes": 227148,
+      "sha256": "4c57e7838a275183036bcec0d4bbd7a8f6efef62a649c8fda490aeb91c56068e",
+      "expectedSha256": "4c57e7838a275183036bcec0d4bbd7a8f6efef62a649c8fda490aeb91c56068e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r18-card-384-13f5763d98a2.webp",
+      "status": 200,
+      "bytes": 51446,
+      "sha256": "fab65cebf7391b09c1ebbdf1d315a1d727f4aea6cf4932fba0daaf622ba2212d",
+      "expectedSha256": "fab65cebf7391b09c1ebbdf1d315a1d727f4aea6cf4932fba0daaf622ba2212d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r18-stage-960-13f5763d98a2.webp",
+      "status": 200,
+      "bytes": 223324,
+      "sha256": "ce6ec3c4753f4c3534b436d8fe4b5a83791ad7857f6caa3810048a969b483404",
+      "expectedSha256": "ce6ec3c4753f4c3534b436d8fe4b5a83791ad7857f6caa3810048a969b483404",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r19-card-384-bfab16af79e6.webp",
+      "status": 200,
+      "bytes": 41436,
+      "sha256": "96c7c13ccc8ac4b7c142c3f30babaa4ec4c5986eff6c5a11568d658d333d7f96",
+      "expectedSha256": "96c7c13ccc8ac4b7c142c3f30babaa4ec4c5986eff6c5a11568d658d333d7f96",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r19-stage-960-bfab16af79e6.webp",
+      "status": 200,
+      "bytes": 182788,
+      "sha256": "edb9874a3e4b1498718192e03aec875450887bb9347685177405957aac947bf0",
+      "expectedSha256": "edb9874a3e4b1498718192e03aec875450887bb9347685177405957aac947bf0",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r23-card-384-788893677732.webp",
+      "status": 200,
+      "bytes": 49958,
+      "sha256": "3b4fce1d6f1d0ac7b93b3a1113a8124cbe47e52877d5bb8abade1e8a78fcca43",
+      "expectedSha256": "3b4fce1d6f1d0ac7b93b3a1113a8124cbe47e52877d5bb8abade1e8a78fcca43",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r23-stage-960-788893677732.webp",
+      "status": 200,
+      "bytes": 189066,
+      "sha256": "347acd5544e31a47cce4e7f064e39bfc7dba08ef32787c3711d203bec215aa48",
+      "expectedSha256": "347acd5544e31a47cce4e7f064e39bfc7dba08ef32787c3711d203bec215aa48",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r24-card-384-c6173cdc592b.webp",
+      "status": 200,
+      "bytes": 38302,
+      "sha256": "a615e2f54d879ec41d574dbb3bd83cac9f8f833d29a7a8ee89bdffe86d30f897",
+      "expectedSha256": "a615e2f54d879ec41d574dbb3bd83cac9f8f833d29a7a8ee89bdffe86d30f897",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r24-stage-960-c6173cdc592b.webp",
+      "status": 200,
+      "bytes": 165150,
+      "sha256": "ac9ff6e2ae67d523011fa2e460cbc20947ae58f662e9e78a20c7146a6568c71f",
+      "expectedSha256": "ac9ff6e2ae67d523011fa2e460cbc20947ae58f662e9e78a20c7146a6568c71f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r25-card-384-70530265c2f2.webp",
+      "status": 200,
+      "bytes": 50310,
+      "sha256": "21ec9a9b1a3fae24c42a755a6ca0b457d1175d32a54dc429959713ef440e7807",
+      "expectedSha256": "21ec9a9b1a3fae24c42a755a6ca0b457d1175d32a54dc429959713ef440e7807",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r25-stage-960-70530265c2f2.webp",
+      "status": 200,
+      "bytes": 230714,
+      "sha256": "6e2692871f357355090d2697112ef6cc424a79a63ed1f1832df912fe8ffef154",
+      "expectedSha256": "6e2692871f357355090d2697112ef6cc424a79a63ed1f1832df912fe8ffef154",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r36-card-384-1dcc85f3a9c5.webp",
+      "status": 200,
+      "bytes": 46458,
+      "sha256": "fdc3b4e252b83c728d243f0d76294162a264819d6ae87c412cd9132f3d0aa422",
+      "expectedSha256": "fdc3b4e252b83c728d243f0d76294162a264819d6ae87c412cd9132f3d0aa422",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r36-stage-960-1dcc85f3a9c5.webp",
+      "status": 200,
+      "bytes": 207908,
+      "sha256": "4ec039e52f462f7bfd25b2c20aeb219242d6da0b0763aa642caec4d372677070",
+      "expectedSha256": "4ec039e52f462f7bfd25b2c20aeb219242d6da0b0763aa642caec4d372677070",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r37-card-384-98ee8a5f8257.webp",
+      "status": 200,
+      "bytes": 48492,
+      "sha256": "9bf2e4452745ef7446513e685d8ea83e74fc3c1d7664277485a93f6378b1ad0f",
+      "expectedSha256": "9bf2e4452745ef7446513e685d8ea83e74fc3c1d7664277485a93f6378b1ad0f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r37-stage-960-98ee8a5f8257.webp",
+      "status": 200,
+      "bytes": 241976,
+      "sha256": "f0fb8af0d666cddf91f7f59698fa2f65702838debc51ba9e1d940d37cd5fea7d",
+      "expectedSha256": "f0fb8af0d666cddf91f7f59698fa2f65702838debc51ba9e1d940d37cd5fea7d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r38-card-384-1b5b0d2bcf3d.webp",
+      "status": 200,
+      "bytes": 35344,
+      "sha256": "8a6eca1ff80f9bc923fee52de332d48ca65a7507c7c22325cc3364367a4d054b",
+      "expectedSha256": "8a6eca1ff80f9bc923fee52de332d48ca65a7507c7c22325cc3364367a4d054b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r38-stage-960-1b5b0d2bcf3d.webp",
+      "status": 200,
+      "bytes": 147244,
+      "sha256": "636fbf6b1ea3081767e87e4d8306acf0fce73f29fac419539de496bbf6bee89d",
+      "expectedSha256": "636fbf6b1ea3081767e87e4d8306acf0fce73f29fac419539de496bbf6bee89d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r39-card-384-48407e0bbc2d.webp",
+      "status": 200,
+      "bytes": 42654,
+      "sha256": "191ea6bd11d058875a56cf4ed6aeadafefcc655ec2380db994fa6dcd4a422132",
+      "expectedSha256": "191ea6bd11d058875a56cf4ed6aeadafefcc655ec2380db994fa6dcd4a422132",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r39-stage-960-48407e0bbc2d.webp",
+      "status": 200,
+      "bytes": 182302,
+      "sha256": "56008dd124752c96066eb1d7d01ed945bdc93baa222adc779a6f22cd76a019e1",
+      "expectedSha256": "56008dd124752c96066eb1d7d01ed945bdc93baa222adc779a6f22cd76a019e1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r40-card-384-762dc9b5b8e7.webp",
+      "status": 200,
+      "bytes": 43002,
+      "sha256": "fe0df1f8e74f152421f55df6b9c81e55d1e2af0d1cd1cbf5ffdada40628b9696",
+      "expectedSha256": "fe0df1f8e74f152421f55df6b9c81e55d1e2af0d1cd1cbf5ffdada40628b9696",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r40-stage-960-762dc9b5b8e7.webp",
+      "status": 200,
+      "bytes": 195716,
+      "sha256": "f9f44a07174587ace544b1bfe1d41491a8ce5787623f9a12b9260c3e41f14ca2",
+      "expectedSha256": "f9f44a07174587ace544b1bfe1d41491a8ce5787623f9a12b9260c3e41f14ca2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r41-card-384-09f72b0ce6ce.webp",
+      "status": 200,
+      "bytes": 53988,
+      "sha256": "2d4bf2c7473a6bdab69876ec321ea695183ea4bf206ef83a522531518cafcdb2",
+      "expectedSha256": "2d4bf2c7473a6bdab69876ec321ea695183ea4bf206ef83a522531518cafcdb2",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r41-stage-960-09f72b0ce6ce.webp",
+      "status": 200,
+      "bytes": 249844,
+      "sha256": "14ff586e80307d54fc66032c95d6545932f9fcc2e71eed28421e8d637e744e80",
+      "expectedSha256": "14ff586e80307d54fc66032c95d6545932f9fcc2e71eed28421e8d637e744e80",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r42-card-384-6f52890d7605.webp",
+      "status": 200,
+      "bytes": 45170,
+      "sha256": "b958c732d6115be7a6d47ac39fe4bb3b482a64d1ac2ec91cd090524964f0b17a",
+      "expectedSha256": "b958c732d6115be7a6d47ac39fe4bb3b482a64d1ac2ec91cd090524964f0b17a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r42-stage-960-6f52890d7605.webp",
+      "status": 200,
+      "bytes": 200952,
+      "sha256": "408084b7fe08508058520d586803025a0f54b6e806fc8783bfcd1a6c386163c6",
+      "expectedSha256": "408084b7fe08508058520d586803025a0f54b6e806fc8783bfcd1a6c386163c6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r43-card-384-1290ecf6c555.webp",
+      "status": 200,
+      "bytes": 45028,
+      "sha256": "cec330c4d3fce840c5b65ca256bf3748ace10c65154154c1bea42eb40522c9a9",
+      "expectedSha256": "cec330c4d3fce840c5b65ca256bf3748ace10c65154154c1bea42eb40522c9a9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r43-stage-960-1290ecf6c555.webp",
+      "status": 200,
+      "bytes": 185596,
+      "sha256": "d5f6040e345557c4f8af9d32e8ddb418b6c3518c4845049e924ef9f362754e88",
+      "expectedSha256": "d5f6040e345557c4f8af9d32e8ddb418b6c3518c4845049e924ef9f362754e88",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp01-card-384-040886f87235.webp",
+      "status": 200,
+      "bytes": 22478,
+      "sha256": "d475b728e1dc4ff675071790069b8eebfa030bf6679bff6b67700605cc383217",
+      "expectedSha256": "d475b728e1dc4ff675071790069b8eebfa030bf6679bff6b67700605cc383217",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp01-stage-960-040886f87235.webp",
+      "status": 200,
+      "bytes": 83782,
+      "sha256": "b4842927813d331988d85e17d9ce5b40628fdf562b2bfc77862ba0ac22ce51ee",
+      "expectedSha256": "b4842927813d331988d85e17d9ce5b40628fdf562b2bfc77862ba0ac22ce51ee",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp02-card-384-ea10f2d91fff.webp",
+      "status": 200,
+      "bytes": 45542,
+      "sha256": "ddece38ad26c3ce9de5a287bbf2408f3539d0e3a06656aec1c15bf1e6b762e75",
+      "expectedSha256": "ddece38ad26c3ce9de5a287bbf2408f3539d0e3a06656aec1c15bf1e6b762e75",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp02-stage-960-ea10f2d91fff.webp",
+      "status": 200,
+      "bytes": 175716,
+      "sha256": "877b63f4b13aad4be0e292a77dd7a87c2e583590079e5d417b5beb919a7769e9",
+      "expectedSha256": "877b63f4b13aad4be0e292a77dd7a87c2e583590079e5d417b5beb919a7769e9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp03-card-384-05f25ea15d1d.webp",
+      "status": 200,
+      "bytes": 35388,
+      "sha256": "87bc9cc4ca4f6baa13bb18d02302dbeaec09f68a71ccff6b27a3ae40992d0f5c",
+      "expectedSha256": "87bc9cc4ca4f6baa13bb18d02302dbeaec09f68a71ccff6b27a3ae40992d0f5c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp03-stage-960-05f25ea15d1d.webp",
+      "status": 200,
+      "bytes": 139156,
+      "sha256": "0285f972a5da72f68341b654587b8b8df2f453a68a6be77e33f86e174d78545c",
+      "expectedSha256": "0285f972a5da72f68341b654587b8b8df2f453a68a6be77e33f86e174d78545c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp04-card-384-87d63597569c.webp",
+      "status": 200,
+      "bytes": 32078,
+      "sha256": "3dc1c1bbf8451929ce4d3bad9e35308c6e17f651996c9960321bd97fdd190dc5",
+      "expectedSha256": "3dc1c1bbf8451929ce4d3bad9e35308c6e17f651996c9960321bd97fdd190dc5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp04-stage-960-87d63597569c.webp",
+      "status": 200,
+      "bytes": 126996,
+      "sha256": "4fce732f49e7f257c0c45425989323b524b3af6bc021e4c661a1e1cb3d98f967",
+      "expectedSha256": "4fce732f49e7f257c0c45425989323b524b3af6bc021e4c661a1e1cb3d98f967",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp05-card-384-169321516a02.webp",
+      "status": 200,
+      "bytes": 35134,
+      "sha256": "7493e1b6006624a9c766d220bf90b14858dae698fc7296c1b099eb53ba60896e",
+      "expectedSha256": "7493e1b6006624a9c766d220bf90b14858dae698fc7296c1b099eb53ba60896e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp05-stage-960-169321516a02.webp",
+      "status": 200,
+      "bytes": 140322,
+      "sha256": "c0006cf748b058ccf974ed96719958cd08dafe8bae60fea20d6239cd219c6c50",
+      "expectedSha256": "c0006cf748b058ccf974ed96719958cd08dafe8bae60fea20d6239cd219c6c50",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp06-card-384-46728dd910b4.webp",
+      "status": 200,
+      "bytes": 17144,
+      "sha256": "a1d0ed141e426860adb552bfa9054118b325a1afdea8e477bbe438a66a537c83",
+      "expectedSha256": "a1d0ed141e426860adb552bfa9054118b325a1afdea8e477bbe438a66a537c83",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp06-stage-960-46728dd910b4.webp",
+      "status": 200,
+      "bytes": 55804,
+      "sha256": "dd5dcfd38ba187c8316d9cd30f208a48c5adebcdde87c7957ff65ac01d4c152c",
+      "expectedSha256": "dd5dcfd38ba187c8316d9cd30f208a48c5adebcdde87c7957ff65ac01d4c152c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp08-card-384-384abc56db35.webp",
+      "status": 200,
+      "bytes": 41560,
+      "sha256": "8a5b03ec1d04f54145c1da083ff82aa34a8aa3d6e4968405dbb1b4a56f84a591",
+      "expectedSha256": "8a5b03ec1d04f54145c1da083ff82aa34a8aa3d6e4968405dbb1b4a56f84a591",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp08-stage-960-384abc56db35.webp",
+      "status": 200,
+      "bytes": 196490,
+      "sha256": "b96ac4edd38d166715019f212bb58b9420950276c19ddaf9920a869515f6d272",
+      "expectedSha256": "b96ac4edd38d166715019f212bb58b9420950276c19ddaf9920a869515f6d272",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp09-card-384-e4ea720a4777.webp",
+      "status": 200,
+      "bytes": 34834,
+      "sha256": "cc38300ae6edf6643c1586836ba77faab99e008e0500c5595e675e0a4205498d",
+      "expectedSha256": "cc38300ae6edf6643c1586836ba77faab99e008e0500c5595e675e0a4205498d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp09-stage-960-e4ea720a4777.webp",
+      "status": 200,
+      "bytes": 158368,
+      "sha256": "4b127e447e659f7df765ac61ba1d1ed2c50c2127587293f0f022782b0504b768",
+      "expectedSha256": "4b127e447e659f7df765ac61ba1d1ed2c50c2127587293f0f022782b0504b768",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp10-card-384-1ad83531fa2c.webp",
+      "status": 200,
+      "bytes": 18114,
+      "sha256": "4648c1bce79aca784252622fef5cf5a1f8f5dfabd789ecf61cfe6954554757de",
+      "expectedSha256": "4648c1bce79aca784252622fef5cf5a1f8f5dfabd789ecf61cfe6954554757de",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp10-stage-960-1ad83531fa2c.webp",
+      "status": 200,
+      "bytes": 63910,
+      "sha256": "fb20deb7ab42d04bbfa21d271541ff987541ffe2081ce66e124fe510a1a0917e",
+      "expectedSha256": "fb20deb7ab42d04bbfa21d271541ff987541ffe2081ce66e124fe510a1a0917e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp11-card-384-948a2bb59875.webp",
+      "status": 200,
+      "bytes": 26794,
+      "sha256": "b1fe35e014f3aa293d9ad280a2387fd276b402c27f5c3200c9a70b42d0a2c516",
+      "expectedSha256": "b1fe35e014f3aa293d9ad280a2387fd276b402c27f5c3200c9a70b42d0a2c516",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp11-stage-960-948a2bb59875.webp",
+      "status": 200,
+      "bytes": 116270,
+      "sha256": "1176d18dca412980e97259c7a8630cc498485d49a85d281b8571095af0ac3864",
+      "expectedSha256": "1176d18dca412980e97259c7a8630cc498485d49a85d281b8571095af0ac3864",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp12-card-384-ed0a96dae373.webp",
+      "status": 200,
+      "bytes": 25806,
+      "sha256": "6b32b36678a960d373bf7eb05648212f8aae1e37fddd9454bcebfbd78b26c4fe",
+      "expectedSha256": "6b32b36678a960d373bf7eb05648212f8aae1e37fddd9454bcebfbd78b26c4fe",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp12-stage-960-ed0a96dae373.webp",
+      "status": 200,
+      "bytes": 101190,
+      "sha256": "9b1746a25a0e3dd541968dcdd6fddda871561805c2386fa7b7039c70457dc5a1",
+      "expectedSha256": "9b1746a25a0e3dd541968dcdd6fddda871561805c2386fa7b7039c70457dc5a1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp13-card-384-4bb18716e633.webp",
+      "status": 200,
+      "bytes": 27998,
+      "sha256": "88e77c46d4cffcf91da1551c7a7489c8787b2a29d0fb49191dee9e475c0495ea",
+      "expectedSha256": "88e77c46d4cffcf91da1551c7a7489c8787b2a29d0fb49191dee9e475c0495ea",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sp13-stage-960-4bb18716e633.webp",
+      "status": 200,
+      "bytes": 115046,
+      "sha256": "630aafabd1f343e2042814c99fa8c50e124ad914ff186feef8e8d25b2ad15c9f",
+      "expectedSha256": "630aafabd1f343e2042814c99fa8c50e124ad914ff186feef8e8d25b2ad15c9f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr01-card-384-bacd9dcf3f5b.webp",
+      "status": 200,
+      "bytes": 41214,
+      "sha256": "1d4863367eded1413587f0ec9edbd19a122016352eda434f2a5902eaab3ec5f3",
+      "expectedSha256": "1d4863367eded1413587f0ec9edbd19a122016352eda434f2a5902eaab3ec5f3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr01-stage-960-bacd9dcf3f5b.webp",
+      "status": 200,
+      "bytes": 187434,
+      "sha256": "f18a8922d8b8c2561933e009f40dc397ed411c1f7ab4714e8f5d868383c7153e",
+      "expectedSha256": "f18a8922d8b8c2561933e009f40dc397ed411c1f7ab4714e8f5d868383c7153e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr02-card-384-f6d26dd281f8.webp",
+      "status": 200,
+      "bytes": 48956,
+      "sha256": "0c0860258cb5bb7ec087768a369e0719707e5db5a4168d57452978e9d286e2d9",
+      "expectedSha256": "0c0860258cb5bb7ec087768a369e0719707e5db5a4168d57452978e9d286e2d9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr02-stage-960-f6d26dd281f8.webp",
+      "status": 200,
+      "bytes": 233256,
+      "sha256": "d3b4230c905964e90a869e15a587013d9b989a396cd8bd0cfd76a06e4f7f02c5",
+      "expectedSha256": "d3b4230c905964e90a869e15a587013d9b989a396cd8bd0cfd76a06e4f7f02c5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr03-card-384-38d734ec7c26.webp",
+      "status": 200,
+      "bytes": 44546,
+      "sha256": "5c1e211adcc75cc0d7528452282881bfffb5b5ede172beb6eb3db26ce3747b27",
+      "expectedSha256": "5c1e211adcc75cc0d7528452282881bfffb5b5ede172beb6eb3db26ce3747b27",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr03-stage-960-38d734ec7c26.webp",
+      "status": 200,
+      "bytes": 199258,
+      "sha256": "bc9af403ba65b2dd095f41713e2a89749e76a22c620718d4cce9bd52f522fb82",
+      "expectedSha256": "bc9af403ba65b2dd095f41713e2a89749e76a22c620718d4cce9bd52f522fb82",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr04-card-384-9114ee4204b4.webp",
+      "status": 200,
+      "bytes": 34464,
+      "sha256": "21bfac9353e5dc9529e3a7bf5b86d75c3f75654515545709bc1ac3099569a328",
+      "expectedSha256": "21bfac9353e5dc9529e3a7bf5b86d75c3f75654515545709bc1ac3099569a328",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr04-stage-960-9114ee4204b4.webp",
+      "status": 200,
+      "bytes": 143514,
+      "sha256": "a103348d201a48ea9b5dfe7c42830f39b3bdaf3486800757ef6cb897c555ea77",
+      "expectedSha256": "a103348d201a48ea9b5dfe7c42830f39b3bdaf3486800757ef6cb897c555ea77",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr05-card-384-d9346a75de4f.webp",
+      "status": 200,
+      "bytes": 49316,
+      "sha256": "fe921f5075178f7dcd813647f91f0dcd1e0a16dc48420d10c3d324f076fc77b8",
+      "expectedSha256": "fe921f5075178f7dcd813647f91f0dcd1e0a16dc48420d10c3d324f076fc77b8",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr05-stage-960-d9346a75de4f.webp",
+      "status": 200,
+      "bytes": 236390,
+      "sha256": "a4a2f248cb29421b074b43011c49f792dd9b513d8b37e78f879bac44e9983904",
+      "expectedSha256": "a4a2f248cb29421b074b43011c49f792dd9b513d8b37e78f879bac44e9983904",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr06-card-384-d0ea3264f842.webp",
+      "status": 200,
+      "bytes": 44120,
+      "sha256": "569652c95470a55ab64c075b4f68069556302c19d73d4c2074044ea528ff619c",
+      "expectedSha256": "569652c95470a55ab64c075b4f68069556302c19d73d4c2074044ea528ff619c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr06-stage-960-d0ea3264f842.webp",
+      "status": 200,
+      "bytes": 178378,
+      "sha256": "b1af28b036a663dbb4a791f4740fae9c0558ed474002e8b2e2c782d5eb0a8a6b",
+      "expectedSha256": "b1af28b036a663dbb4a791f4740fae9c0558ed474002e8b2e2c782d5eb0a8a6b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr07-card-384-94376b3ed3b3.webp",
+      "status": 200,
+      "bytes": 40614,
+      "sha256": "f7d051afac6e170f7b0829001a45a51ad16a53b991e55302db67c7f83cc70aa7",
+      "expectedSha256": "f7d051afac6e170f7b0829001a45a51ad16a53b991e55302db67c7f83cc70aa7",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr07-stage-960-94376b3ed3b3.webp",
+      "status": 200,
+      "bytes": 178340,
+      "sha256": "28a891f8086f3ca4d661f0b41dbde44ae336fc7fdf37938ee1befb90f1450c5b",
+      "expectedSha256": "28a891f8086f3ca4d661f0b41dbde44ae336fc7fdf37938ee1befb90f1450c5b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr08-card-384-fe7e28f3c504.webp",
+      "status": 200,
+      "bytes": 33948,
+      "sha256": "19be78fc829144b4e1ffe36a4b8e985643e31db8fd268c0114f548b4a8370087",
+      "expectedSha256": "19be78fc829144b4e1ffe36a4b8e985643e31db8fd268c0114f548b4a8370087",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr08-stage-960-fe7e28f3c504.webp",
+      "status": 200,
+      "bytes": 145692,
+      "sha256": "73473085445b2326b1b252bd195e63ed20fd3380f4c63962652afb5fdd68ce75",
+      "expectedSha256": "73473085445b2326b1b252bd195e63ed20fd3380f4c63962652afb5fdd68ce75",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr09-card-384-1fe9bc648e6a.webp",
+      "status": 200,
+      "bytes": 47704,
+      "sha256": "e2bf25994faf266222ca0d41047c86e47745d2bbe4df57549c5a68c7ce0545ab",
+      "expectedSha256": "e2bf25994faf266222ca0d41047c86e47745d2bbe4df57549c5a68c7ce0545ab",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr09-stage-960-1fe9bc648e6a.webp",
+      "status": 200,
+      "bytes": 236392,
+      "sha256": "3cbb7816757eb36a7c0d42b4026bb06bce5dd5e790d9e613a7969e2ddb5822bd",
+      "expectedSha256": "3cbb7816757eb36a7c0d42b4026bb06bce5dd5e790d9e613a7969e2ddb5822bd",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr10-card-384-33c16c3a72ab.webp",
+      "status": 200,
+      "bytes": 40432,
+      "sha256": "cad4bc780809418218e1b191f227ce87d9ec61511a34bdf3efa061d11bfbbd94",
+      "expectedSha256": "cad4bc780809418218e1b191f227ce87d9ec61511a34bdf3efa061d11bfbbd94",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr10-stage-960-33c16c3a72ab.webp",
+      "status": 200,
+      "bytes": 203608,
+      "sha256": "48a54caf72119bf2cb43756216c1e18795613a63378e3b6afb0d00040e0f80c1",
+      "expectedSha256": "48a54caf72119bf2cb43756216c1e18795613a63378e3b6afb0d00040e0f80c1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr11-card-384-1a08bb093b37.webp",
+      "status": 200,
+      "bytes": 44926,
+      "sha256": "d6d170f70bed659733eb9185dba49e6f44e863ed4204aa8ba327b0d7ba8a8e6d",
+      "expectedSha256": "d6d170f70bed659733eb9185dba49e6f44e863ed4204aa8ba327b0d7ba8a8e6d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr11-stage-960-1a08bb093b37.webp",
+      "status": 200,
+      "bytes": 214432,
+      "sha256": "756cf56dc5df87a232c7a3a4510a89cc16e849c6565d60c2dd815ef633b29118",
+      "expectedSha256": "756cf56dc5df87a232c7a3a4510a89cc16e849c6565d60c2dd815ef633b29118",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr12-card-384-8ed787ead176.webp",
+      "status": 200,
+      "bytes": 50640,
+      "sha256": "9b312fb52d187bf8a7428f950c58e34276771e15e40e495542e8a3777cff672b",
+      "expectedSha256": "9b312fb52d187bf8a7428f950c58e34276771e15e40e495542e8a3777cff672b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr12-stage-960-8ed787ead176.webp",
+      "status": 200,
+      "bytes": 243762,
+      "sha256": "809cc8c6c90b4621b17089676731cbd21b4574368900cd7ae15855f2d8e5e56b",
+      "expectedSha256": "809cc8c6c90b4621b17089676731cbd21b4574368900cd7ae15855f2d8e5e56b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr13-card-384-4a69722de81b.webp",
+      "status": 200,
+      "bytes": 46354,
+      "sha256": "aba4b087c8c0462025a08612fafeb12252b415225fcd6ca5f98f4b38d0b7037f",
+      "expectedSha256": "aba4b087c8c0462025a08612fafeb12252b415225fcd6ca5f98f4b38d0b7037f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr13-stage-960-4a69722de81b.webp",
+      "status": 200,
+      "bytes": 215080,
+      "sha256": "499fbed72ac2c4ccf47b8633d3aaad8917953403111d7d7fdb946c4250bbd170",
+      "expectedSha256": "499fbed72ac2c4ccf47b8633d3aaad8917953403111d7d7fdb946c4250bbd170",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr14-card-384-c749636bc89a.webp",
+      "status": 200,
+      "bytes": 46276,
+      "sha256": "b1b6f641bff991d8d07e070d9cee83a80af1133d53d10c91fb93f11d41444360",
+      "expectedSha256": "b1b6f641bff991d8d07e070d9cee83a80af1133d53d10c91fb93f11d41444360",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr14-stage-960-c749636bc89a.webp",
+      "status": 200,
+      "bytes": 215124,
+      "sha256": "90d48fec9253e7068ed7d1b67d0421a990bcfc38f155db99704c9f0d120f952b",
+      "expectedSha256": "90d48fec9253e7068ed7d1b67d0421a990bcfc38f155db99704c9f0d120f952b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr15-card-384-26ff3776714d.webp",
+      "status": 200,
+      "bytes": 39932,
+      "sha256": "74f757e7ef6c1effc5b232a49348c876855a7ee0b4767d0908df031ab40e91d1",
+      "expectedSha256": "74f757e7ef6c1effc5b232a49348c876855a7ee0b4767d0908df031ab40e91d1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr15-stage-960-26ff3776714d.webp",
+      "status": 200,
+      "bytes": 162058,
+      "sha256": "3d90d5007563a2562b7d2bd04098321fd35f497bef0069d0655fcbfc4a6ddf1f",
+      "expectedSha256": "3d90d5007563a2562b7d2bd04098321fd35f497bef0069d0655fcbfc4a6ddf1f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr19-card-384-0b56c8aaaf55.webp",
+      "status": 200,
+      "bytes": 59766,
+      "sha256": "c211b16cc8d8c2329560b7b78bf53d1ca6d7496940f2a64f54cc3f99b3a6549e",
+      "expectedSha256": "c211b16cc8d8c2329560b7b78bf53d1ca6d7496940f2a64f54cc3f99b3a6549e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr19-stage-960-0b56c8aaaf55.webp",
+      "status": 200,
+      "bytes": 250428,
+      "sha256": "83f7dde28082e9829f9bd90bfb3d12f4094b14046a86879492ed4a6e52f1e812",
+      "expectedSha256": "83f7dde28082e9829f9bd90bfb3d12f4094b14046a86879492ed4a6e52f1e812",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr20-card-384-536044295f30.webp",
+      "status": 200,
+      "bytes": 45988,
+      "sha256": "114a18f56cb580b1afb084052449c4e9f3f8960e3a1b2608865eba088a3425d9",
+      "expectedSha256": "114a18f56cb580b1afb084052449c4e9f3f8960e3a1b2608865eba088a3425d9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr20-stage-960-536044295f30.webp",
+      "status": 200,
+      "bytes": 180558,
+      "sha256": "6d028aef6d69dcd16bd255a257871a982c96ed41ea27743f37dcce82b573382d",
+      "expectedSha256": "6d028aef6d69dcd16bd255a257871a982c96ed41ea27743f37dcce82b573382d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr30-card-384-c830f59daf9a.webp",
+      "status": 200,
+      "bytes": 47048,
+      "sha256": "0ed53c7043aabf7ef14e31629bb82886e906f6e68fe7bfaf80c5f521445797af",
+      "expectedSha256": "0ed53c7043aabf7ef14e31629bb82886e906f6e68fe7bfaf80c5f521445797af",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr30-stage-960-c830f59daf9a.webp",
+      "status": 200,
+      "bytes": 225636,
+      "sha256": "5e3717b66b19c6365b2c1d3ce221ead50f7de6abcc6614a177112ca56af74435",
+      "expectedSha256": "5e3717b66b19c6365b2c1d3ce221ead50f7de6abcc6614a177112ca56af74435",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr31-card-384-2bda25f6fcd6.webp",
+      "status": 200,
+      "bytes": 44112,
+      "sha256": "af65281dcea65feee27819520ee41a57452d62be93048fde1568b4b3265c5ca6",
+      "expectedSha256": "af65281dcea65feee27819520ee41a57452d62be93048fde1568b4b3265c5ca6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr31-stage-960-2bda25f6fcd6.webp",
+      "status": 200,
+      "bytes": 192698,
+      "sha256": "0ba509a98045b0699087b2ca174a0f70eea82a7f5777feed70c905d64703d16a",
+      "expectedSha256": "0ba509a98045b0699087b2ca174a0f70eea82a7f5777feed70c905d64703d16a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr32-card-384-50f8395f08c6.webp",
+      "status": 200,
+      "bytes": 36850,
+      "sha256": "03574343bf618abbe88fe704a97a379f299c6647f56180ed3149a0995b886c8b",
+      "expectedSha256": "03574343bf618abbe88fe704a97a379f299c6647f56180ed3149a0995b886c8b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr32-stage-960-50f8395f08c6.webp",
+      "status": 200,
+      "bytes": 156646,
+      "sha256": "84e6817df9e16162f5bf2569f173481d280c679af9daa6c131d886b96d05c4a1",
+      "expectedSha256": "84e6817df9e16162f5bf2569f173481d280c679af9daa6c131d886b96d05c4a1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr33-card-384-f4a2ef0120ce.webp",
+      "status": 200,
+      "bytes": 48192,
+      "sha256": "65feb688d81246c2d749f4341f3319279bde724211b8b51b396154f8e87af891",
+      "expectedSha256": "65feb688d81246c2d749f4341f3319279bde724211b8b51b396154f8e87af891",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr33-stage-960-f4a2ef0120ce.webp",
+      "status": 200,
+      "bytes": 226586,
+      "sha256": "a73b7de161fabc2d5092c430ed23049f1675e64b8265b32d7a3be8563ae0e98f",
+      "expectedSha256": "a73b7de161fabc2d5092c430ed23049f1675e64b8265b32d7a3be8563ae0e98f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr34-card-384-4c055775a46f.webp",
+      "status": 200,
+      "bytes": 44742,
+      "sha256": "da037be96e5baa34f28379dfeb04beda320278f29c366a1614f0f4967dd9d270",
+      "expectedSha256": "da037be96e5baa34f28379dfeb04beda320278f29c366a1614f0f4967dd9d270",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr34-stage-960-4c055775a46f.webp",
+      "status": 200,
+      "bytes": 230588,
+      "sha256": "9227fdd29412e3ddc274519fd391bf6091ac698bb78a64a469c64a07d628f3fb",
+      "expectedSha256": "9227fdd29412e3ddc274519fd391bf6091ac698bb78a64a469c64a07d628f3fb",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr35-card-384-e1160bb18ccc.webp",
+      "status": 200,
+      "bytes": 51834,
+      "sha256": "d6b6e35dbee2193bcd31224ee8bde237a35a1632d05f1334e9f7df0cfdfb175a",
+      "expectedSha256": "d6b6e35dbee2193bcd31224ee8bde237a35a1632d05f1334e9f7df0cfdfb175a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr35-stage-960-e1160bb18ccc.webp",
+      "status": 200,
+      "bytes": 221198,
+      "sha256": "7550356c1aab6ddf1a9496699da38e187530b56a764ad6a6c164c34defe7c08c",
+      "expectedSha256": "7550356c1aab6ddf1a9496699da38e187530b56a764ad6a6c164c34defe7c08c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr36-card-384-187d62123bb3.webp",
+      "status": 200,
+      "bytes": 48274,
+      "sha256": "9bf150740525e713b935219c93544aec20dffe17fc42ee74d1547efa7c887caf",
+      "expectedSha256": "9bf150740525e713b935219c93544aec20dffe17fc42ee74d1547efa7c887caf",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr36-stage-960-187d62123bb3.webp",
+      "status": 200,
+      "bytes": 212966,
+      "sha256": "810a09e2e9494db61b34d2499dbb47101683e8159af964340a38264d18b1dc2f",
+      "expectedSha256": "810a09e2e9494db61b34d2499dbb47101683e8159af964340a38264d18b1dc2f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr37-card-384-c0282338c4dd.webp",
+      "status": 200,
+      "bytes": 41390,
+      "sha256": "c74a710e4cca6dca9d362b545582125ee46e13b9ed6cd53e87cd5081accdf144",
+      "expectedSha256": "c74a710e4cca6dca9d362b545582125ee46e13b9ed6cd53e87cd5081accdf144",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr37-stage-960-c0282338c4dd.webp",
+      "status": 200,
+      "bytes": 190798,
+      "sha256": "38f70a6cb2f899f0dd11de47a63f89fb5efa329545ccb32b7162dfb6ddc77922",
+      "expectedSha256": "38f70a6cb2f899f0dd11de47a63f89fb5efa329545ccb32b7162dfb6ddc77922",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr01-card-384-1594be3fe91e.webp",
+      "status": 200,
+      "bytes": 59134,
+      "sha256": "c16506243aea0eac13b3969095563c63b43074ec81790b130ffa11ba81d7e37b",
+      "expectedSha256": "c16506243aea0eac13b3969095563c63b43074ec81790b130ffa11ba81d7e37b",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr01-stage-960-1594be3fe91e.webp",
+      "status": 200,
+      "bytes": 284964,
+      "sha256": "3f54f1e627a296780fe8b880cc487e159b1eb51c745e739a7c36d7a27f99f065",
+      "expectedSha256": "3f54f1e627a296780fe8b880cc487e159b1eb51c745e739a7c36d7a27f99f065",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr02-card-384-414937ec82b0.webp",
+      "status": 200,
+      "bytes": 38198,
+      "sha256": "f6fd8114f35416dfc1f2b25ff9675273b1496ad154111a71139fb0d3c5c5bf6a",
+      "expectedSha256": "f6fd8114f35416dfc1f2b25ff9675273b1496ad154111a71139fb0d3c5c5bf6a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr02-stage-960-414937ec82b0.webp",
+      "status": 200,
+      "bytes": 179858,
+      "sha256": "f7cafee573b5c0efe1d2471f53944ccbf9c7bd8b107fb8a38379fcb630d60d59",
+      "expectedSha256": "f7cafee573b5c0efe1d2471f53944ccbf9c7bd8b107fb8a38379fcb630d60d59",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr03-card-384-47a434c4d5cf.webp",
+      "status": 200,
+      "bytes": 50648,
+      "sha256": "9fcc9c60ece9a08c275e4cc77952962f3eeeac7b9515580cd125e86b00ce301a",
+      "expectedSha256": "9fcc9c60ece9a08c275e4cc77952962f3eeeac7b9515580cd125e86b00ce301a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr03-stage-960-47a434c4d5cf.webp",
+      "status": 200,
+      "bytes": 254764,
+      "sha256": "450b4ff25317dc1772d1e40dbd5ed159618a89b903d0879bfd24c3ad1395fcd8",
+      "expectedSha256": "450b4ff25317dc1772d1e40dbd5ed159618a89b903d0879bfd24c3ad1395fcd8",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr04-card-384-d6f7b366a3b2.webp",
+      "status": 200,
+      "bytes": 48086,
+      "sha256": "81fad242c8a763482e6c097085207454783156c256b3d1c6af26f779e0796252",
+      "expectedSha256": "81fad242c8a763482e6c097085207454783156c256b3d1c6af26f779e0796252",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr04-stage-960-d6f7b366a3b2.webp",
+      "status": 200,
+      "bytes": 225316,
+      "sha256": "b5b0c1dd6b42d06a67c666c5e3d302336b003e4c47287bc7cef72e0e7c808156",
+      "expectedSha256": "b5b0c1dd6b42d06a67c666c5e3d302336b003e4c47287bc7cef72e0e7c808156",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr05-card-384-5a1d1605acb7.webp",
+      "status": 200,
+      "bytes": 34848,
+      "sha256": "8fec3e7dcccac72ceb891666c27c13f4282d6a6ec5ddaf34847f972236e0eafa",
+      "expectedSha256": "8fec3e7dcccac72ceb891666c27c13f4282d6a6ec5ddaf34847f972236e0eafa",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr05-stage-960-5a1d1605acb7.webp",
+      "status": 200,
+      "bytes": 188004,
+      "sha256": "4de0d74feb6e0a5efaa341c083cc61942090be1839fca87ba09bc6a0898e84ac",
+      "expectedSha256": "4de0d74feb6e0a5efaa341c083cc61942090be1839fca87ba09bc6a0898e84ac",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr06-card-384-c5539f8ebe4a.webp",
+      "status": 200,
+      "bytes": 40492,
+      "sha256": "87682180bc05b924239ccd44edac640372fb665f6a539c95767afccc3491fbdb",
+      "expectedSha256": "87682180bc05b924239ccd44edac640372fb665f6a539c95767afccc3491fbdb",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr06-stage-960-c5539f8ebe4a.webp",
+      "status": 200,
+      "bytes": 228520,
+      "sha256": "8f6285528043e743aaf4a88c699bb8879cd22ab18f2620c03c161a269d9105bc",
+      "expectedSha256": "8f6285528043e743aaf4a88c699bb8879cd22ab18f2620c03c161a269d9105bc",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr07-card-384-1008be1397aa.webp",
+      "status": 200,
+      "bytes": 43638,
+      "sha256": "220ff8eccd5915f1e653fcd944a3b5f2f9aed4fef4e0d4b4c02e98946b5aa64a",
+      "expectedSha256": "220ff8eccd5915f1e653fcd944a3b5f2f9aed4fef4e0d4b4c02e98946b5aa64a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr07-stage-960-1008be1397aa.webp",
+      "status": 200,
+      "bytes": 220960,
+      "sha256": "4634ba486e3b24ebdbfc5bde6c71f9b2532b918f1799b9ff30fe41ba6fde7534",
+      "expectedSha256": "4634ba486e3b24ebdbfc5bde6c71f9b2532b918f1799b9ff30fe41ba6fde7534",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr08-card-384-2ce7d7ec4f2d.webp",
+      "status": 200,
+      "bytes": 32488,
+      "sha256": "11ebcff5bf2587ca11a2b547f8c99c87548e722724d9ef47faf4e2df7211dbc6",
+      "expectedSha256": "11ebcff5bf2587ca11a2b547f8c99c87548e722724d9ef47faf4e2df7211dbc6",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr08-stage-960-2ce7d7ec4f2d.webp",
+      "status": 200,
+      "bytes": 133984,
+      "sha256": "76d2a411c2bcef29177003be4abc9b1f604a007a0353866d047801c8250e9992",
+      "expectedSha256": "76d2a411c2bcef29177003be4abc9b1f604a007a0353866d047801c8250e9992",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr09-card-384-3a92a1c066ba.webp",
+      "status": 200,
+      "bytes": 30994,
+      "sha256": "f257baaf7f7b21dc6ab8a56334d3a5c1b6902f9e4fab77ac2d4031331ddab3e4",
+      "expectedSha256": "f257baaf7f7b21dc6ab8a56334d3a5c1b6902f9e4fab77ac2d4031331ddab3e4",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr09-stage-960-3a92a1c066ba.webp",
+      "status": 200,
+      "bytes": 150750,
+      "sha256": "ad037afa4607a1af40705b7ad65e229d4d65307d48fc636fcc56876b976d44d5",
+      "expectedSha256": "ad037afa4607a1af40705b7ad65e229d4d65307d48fc636fcc56876b976d44d5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr12-card-384-1cbe693844eb.webp",
+      "status": 200,
+      "bytes": 54116,
+      "sha256": "403465d7d42cefed47d116b686db45521b2e9fd7bafe56f18b7e29d9c038571c",
+      "expectedSha256": "403465d7d42cefed47d116b686db45521b2e9fd7bafe56f18b7e29d9c038571c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr12-stage-960-1cbe693844eb.webp",
+      "status": 200,
+      "bytes": 230392,
+      "sha256": "5d9b11d207ec13e1b1299d66227a30fe120d11a01a87426b0d17dd189e286601",
+      "expectedSha256": "5d9b11d207ec13e1b1299d66227a30fe120d11a01a87426b0d17dd189e286601",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr13-card-384-f22e689544f6.webp",
+      "status": 200,
+      "bytes": 51456,
+      "sha256": "9e28b427964501f4b9f21b5515303be3cd99575ac2a955f65755698643c92d6d",
+      "expectedSha256": "9e28b427964501f4b9f21b5515303be3cd99575ac2a955f65755698643c92d6d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr13-stage-960-f22e689544f6.webp",
+      "status": 200,
+      "bytes": 243126,
+      "sha256": "d134f82eaa342308590e1b5c86fc78bf43d5c81f46798a9b05b7ef39166096ca",
+      "expectedSha256": "d134f82eaa342308590e1b5c86fc78bf43d5c81f46798a9b05b7ef39166096ca",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr21-card-384-c4a505ea1d59.webp",
+      "status": 200,
+      "bytes": 53258,
+      "sha256": "b9583e8d41b7ca951e306c0925ec004a156722a8a4dc4803181434f754c17658",
+      "expectedSha256": "b9583e8d41b7ca951e306c0925ec004a156722a8a4dc4803181434f754c17658",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr21-stage-960-c4a505ea1d59.webp",
+      "status": 200,
+      "bytes": 258400,
+      "sha256": "4d752c24f19caf6e38559ff3f3a19cd4a07cb9b3b7d07f28e6db691cba81faf9",
+      "expectedSha256": "4d752c24f19caf6e38559ff3f3a19cd4a07cb9b3b7d07f28e6db691cba81faf9",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr22-card-384-3a53d13ddea6.webp",
+      "status": 200,
+      "bytes": 47502,
+      "sha256": "773c626c9d6bd1f0d17b1138f3bbf85741658a7469961b48470a53f89dd52c5d",
+      "expectedSha256": "773c626c9d6bd1f0d17b1138f3bbf85741658a7469961b48470a53f89dd52c5d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr22-stage-960-3a53d13ddea6.webp",
+      "status": 200,
+      "bytes": 203016,
+      "sha256": "ca1810bd415b88cae6af848b7fba4ebcab62c576afbe11860142796e58734078",
+      "expectedSha256": "ca1810bd415b88cae6af848b7fba4ebcab62c576afbe11860142796e58734078",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr23-card-384-be4c79b42b13.webp",
+      "status": 200,
+      "bytes": 48540,
+      "sha256": "31945674b67264f33f3c6f6a09f4c0c503a42b72639643d8e7c177c587bde46a",
+      "expectedSha256": "31945674b67264f33f3c6f6a09f4c0c503a42b72639643d8e7c177c587bde46a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr23-stage-960-be4c79b42b13.webp",
+      "status": 200,
+      "bytes": 233162,
+      "sha256": "c3221c10a67295cd22e125a542429840e342f45a4aa3ca1d29534ec2d9e29e77",
+      "expectedSha256": "c3221c10a67295cd22e125a542429840e342f45a4aa3ca1d29534ec2d9e29e77",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr24-card-384-96229a1be3bf.webp",
+      "status": 200,
+      "bytes": 44226,
+      "sha256": "b8ccf321f64f87ef54741a63093acdb637d54f1847202eb2351f184090b888c4",
+      "expectedSha256": "b8ccf321f64f87ef54741a63093acdb637d54f1847202eb2351f184090b888c4",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr24-stage-960-96229a1be3bf.webp",
+      "status": 200,
+      "bytes": 216654,
+      "sha256": "2164f54cec80f68ee00413e1908c1fd2701ad795336ff361c51f7b8dfd698182",
+      "expectedSha256": "2164f54cec80f68ee00413e1908c1fd2701ad795336ff361c51f7b8dfd698182",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr25-card-384-f773d25056ca.webp",
+      "status": 200,
+      "bytes": 50312,
+      "sha256": "860d33753af7ce273574aa9a5590be0178ca9ba28f5a1ee8527d10dd47d346ae",
+      "expectedSha256": "860d33753af7ce273574aa9a5590be0178ca9ba28f5a1ee8527d10dd47d346ae",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr25-stage-960-f773d25056ca.webp",
+      "status": 200,
+      "bytes": 232110,
+      "sha256": "3ae8f9665c80976ccfe28e56dc1fae55f3b6336f72956b411cfbb0906281f85c",
+      "expectedSha256": "3ae8f9665c80976ccfe28e56dc1fae55f3b6336f72956b411cfbb0906281f85c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr26-card-384-3697b2054c68.webp",
+      "status": 200,
+      "bytes": 58462,
+      "sha256": "0de5ff78022cc900e00b8e37205d03f331b55f2a9122ca1fde0d92493d074f06",
+      "expectedSha256": "0de5ff78022cc900e00b8e37205d03f331b55f2a9122ca1fde0d92493d074f06",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr26-stage-960-3697b2054c68.webp",
+      "status": 200,
+      "bytes": 275876,
+      "sha256": "b467b3f35c9565d86ac3987e041bf76f490ca54a07ab6a64ef7d7560c39f1464",
+      "expectedSha256": "b467b3f35c9565d86ac3987e041bf76f490ca54a07ab6a64ef7d7560c39f1464",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur01-card-384-41e5120e8e1a.webp",
+      "status": 200,
+      "bytes": 49330,
+      "sha256": "a0847669d2b0d14aeb20bb2542c3b138b67e1c8348641a14794aa21648a0cb00",
+      "expectedSha256": "a0847669d2b0d14aeb20bb2542c3b138b67e1c8348641a14794aa21648a0cb00",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur01-stage-960-41e5120e8e1a.webp",
+      "status": 200,
+      "bytes": 253806,
+      "sha256": "3a0eb0c26349e7150620a12a86eb1e8d2d5d882bb5c34efa9ab803efe7d7386a",
+      "expectedSha256": "3a0eb0c26349e7150620a12a86eb1e8d2d5d882bb5c34efa9ab803efe7d7386a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur02-card-384-23031d355464.webp",
+      "status": 200,
+      "bytes": 43460,
+      "sha256": "e5bd245a537426aacd127b3e1db3a599b451eb62d8322ccbf0b2a50bff3611e5",
+      "expectedSha256": "e5bd245a537426aacd127b3e1db3a599b451eb62d8322ccbf0b2a50bff3611e5",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur02-stage-960-23031d355464.webp",
+      "status": 200,
+      "bytes": 214568,
+      "sha256": "db56812777e190aa07159e1083c94bb803d0471cd0a8ee60563b95c349baa727",
+      "expectedSha256": "db56812777e190aa07159e1083c94bb803d0471cd0a8ee60563b95c349baa727",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur03-card-384-865c3b5665eb.webp",
+      "status": 200,
+      "bytes": 55820,
+      "sha256": "133269920c54f9f972cf82d7f12e15634000bcdfb16f7ca53ebb1bfab046fb5d",
+      "expectedSha256": "133269920c54f9f972cf82d7f12e15634000bcdfb16f7ca53ebb1bfab046fb5d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur03-stage-960-865c3b5665eb.webp",
+      "status": 200,
+      "bytes": 283704,
+      "sha256": "909bf3220e48d8d53bd138139859312917dac1be9b282e727abad290a134d903",
+      "expectedSha256": "909bf3220e48d8d53bd138139859312917dac1be9b282e727abad290a134d903",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur04-card-384-74bb691a8d99.webp",
+      "status": 200,
+      "bytes": 42006,
+      "sha256": "57d14d852352a7292c02a8e662d73179c930eecf77b806078ed0105ae8e2624a",
+      "expectedSha256": "57d14d852352a7292c02a8e662d73179c930eecf77b806078ed0105ae8e2624a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur04-stage-960-74bb691a8d99.webp",
+      "status": 200,
+      "bytes": 212756,
+      "sha256": "c8f0bd828b66a4800251b8fd4655ecc8c3de4ad9cc97f5d1273b5778c3881107",
+      "expectedSha256": "c8f0bd828b66a4800251b8fd4655ecc8c3de4ad9cc97f5d1273b5778c3881107",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur05-card-384-39292d46cb73.webp",
+      "status": 200,
+      "bytes": 35454,
+      "sha256": "5608a55ae96905a436ef01c6a68cc685a0880bea89f21d7573afdd81faeefbaf",
+      "expectedSha256": "5608a55ae96905a436ef01c6a68cc685a0880bea89f21d7573afdd81faeefbaf",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur05-stage-960-39292d46cb73.webp",
+      "status": 200,
+      "bytes": 164384,
+      "sha256": "8464bec3655b9ff3f8a9cb82427212fe180fb8ac95b0e465b3baf9e2af482df7",
+      "expectedSha256": "8464bec3655b9ff3f8a9cb82427212fe180fb8ac95b0e465b3baf9e2af482df7",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur06-card-384-df1dbd7eadff.webp",
+      "status": 200,
+      "bytes": 39800,
+      "sha256": "87c25f46f03312b29b546fb1c5f0ae1de60992f6fa53de272df8ec0cbee34f82",
+      "expectedSha256": "87c25f46f03312b29b546fb1c5f0ae1de60992f6fa53de272df8ec0cbee34f82",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur06-stage-960-df1dbd7eadff.webp",
+      "status": 200,
+      "bytes": 176594,
+      "sha256": "00f39bf8abe6a19e726e78b1cf3b62be4c62af96768811771d44cfe5e08b0570",
+      "expectedSha256": "00f39bf8abe6a19e726e78b1cf3b62be4c62af96768811771d44cfe5e08b0570",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur07-card-384-223687e6afa8.webp",
+      "status": 200,
+      "bytes": 49758,
+      "sha256": "8dfb03cdde924af1f4509dfb34f773fe72c4babfb74184c4750883d4593d917d",
+      "expectedSha256": "8dfb03cdde924af1f4509dfb34f773fe72c4babfb74184c4750883d4593d917d",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur07-stage-960-223687e6afa8.webp",
+      "status": 200,
+      "bytes": 246380,
+      "sha256": "f0f587ce40753a39e65ebb62384937c440c7e9681519f1ca48db79aadbe5d6ff",
+      "expectedSha256": "f0f587ce40753a39e65ebb62384937c440c7e9681519f1ca48db79aadbe5d6ff",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur09-card-384-57693be9d2b4.webp",
+      "status": 200,
+      "bytes": 53034,
+      "sha256": "5f3693cff2706d512b59e213bf73829ab712ef3c47bf3ada772b18523ae646e3",
+      "expectedSha256": "5f3693cff2706d512b59e213bf73829ab712ef3c47bf3ada772b18523ae646e3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur09-stage-960-57693be9d2b4.webp",
+      "status": 200,
+      "bytes": 219594,
+      "sha256": "6422af5228a631c36b9daca54ea3435a71839acbf1db5ec69ad0bf3d8e46f48f",
+      "expectedSha256": "6422af5228a631c36b9daca54ea3435a71839acbf1db5ec69ad0bf3d8e46f48f",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur10-card-384-20684b478872.webp",
+      "status": 200,
+      "bytes": 39052,
+      "sha256": "b2484dccfa24c8554633c63adb0b0b4bd9812f11db3cf78acd8e3ef3c0b5db0c",
+      "expectedSha256": "b2484dccfa24c8554633c63adb0b0b4bd9812f11db3cf78acd8e3ef3c0b5db0c",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur10-stage-960-20684b478872.webp",
+      "status": 200,
+      "bytes": 148218,
+      "sha256": "b71d5814c06db5331c2fcee11b97f968af41bf49a1a7525107a1545ffb5d457e",
+      "expectedSha256": "b71d5814c06db5331c2fcee11b97f968af41bf49a1a7525107a1545ffb5d457e",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur16-card-384-3a260a48730b.webp",
+      "status": 200,
+      "bytes": 43618,
+      "sha256": "c032e76e51b3a8a83880fcad9924f453d2b6e4da5852c3e80ea01abc0bf2c312",
+      "expectedSha256": "c032e76e51b3a8a83880fcad9924f453d2b6e4da5852c3e80ea01abc0bf2c312",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur16-stage-960-3a260a48730b.webp",
+      "status": 200,
+      "bytes": 212114,
+      "sha256": "f07997176a11c468f0725d66e420b295d638c4be61b80f31280e5d7391503c1a",
+      "expectedSha256": "f07997176a11c468f0725d66e420b295d638c4be61b80f31280e5d7391503c1a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur17-card-384-94d0549cc5cd.webp",
+      "status": 200,
+      "bytes": 52258,
+      "sha256": "985c9eac93124fa989f3adbe5f7615d326712a19c612d28758ae71208dfe5d1a",
+      "expectedSha256": "985c9eac93124fa989f3adbe5f7615d326712a19c612d28758ae71208dfe5d1a",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur17-stage-960-94d0549cc5cd.webp",
+      "status": 200,
+      "bytes": 239806,
+      "sha256": "2498a5d4a6d0089d156ddd66a2dc48a9fd554fc26270e9cfd018c8b6411af3ff",
+      "expectedSha256": "2498a5d4a6d0089d156ddd66a2dc48a9fd554fc26270e9cfd018c8b6411af3ff",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur18-card-384-17d2eb5fc3df.webp",
+      "status": 200,
+      "bytes": 49106,
+      "sha256": "a1de723602647b977359937f69f3b146238a8b5c2f234757e3f541d14e7e5a06",
+      "expectedSha256": "a1de723602647b977359937f69f3b146238a8b5c2f234757e3f541d14e7e5a06",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur18-stage-960-17d2eb5fc3df.webp",
+      "status": 200,
+      "bytes": 232658,
+      "sha256": "2de061e35176ca6d8642b4ccb7565212c44958788f2534f7f0d29a307c30d596",
+      "expectedSha256": "2de061e35176ca6d8642b4ccb7565212c44958788f2534f7f0d29a307c30d596",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur19-card-384-6fcd7b39ced1.webp",
+      "status": 200,
+      "bytes": 41414,
+      "sha256": "fa48141aa5d26bf8c90ce14223e2ae0d23bbf98365e2797c7a7b9ab7ac4327c3",
+      "expectedSha256": "fa48141aa5d26bf8c90ce14223e2ae0d23bbf98365e2797c7a7b9ab7ac4327c3",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur19-stage-960-6fcd7b39ced1.webp",
+      "status": 200,
+      "bytes": 171604,
+      "sha256": "278728d82f16a9ea945c2850a30178902b1dffe6d137bb0e669d5367db6a4027",
+      "expectedSha256": "278728d82f16a9ea945c2850a30178902b1dffe6d137bb0e669d5367db6a4027",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur20-card-384-2c238e42dae5.webp",
+      "status": 200,
+      "bytes": 45252,
+      "sha256": "fd728aef077159d693b2ba29545eba6e50b5dec2f6f380bca1651b21738fafb1",
+      "expectedSha256": "fd728aef077159d693b2ba29545eba6e50b5dec2f6f380bca1651b21738fafb1",
+      "ok": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur20-stage-960-2c238e42dae5.webp",
+      "status": 200,
+      "bytes": 219468,
+      "sha256": "3b0092752949d1f8f0d553ff1cc8658a0916b2f7cabbaeab69534ad659fe38c5",
+      "expectedSha256": "3b0092752949d1f8f0d553ff1cc8658a0916b2f7cabbaeab69534ad659fe38c5",
+      "ok": true
+    },
+    {
+      "file": "assets/scenes/garden-graywolf.webp",
+      "status": 200,
+      "bytes": 142796,
+      "sha256": "6379b2ad98da53856816d0e11b0048af8a9632002a28c3d362f16fa98c2f5cdc",
+      "expectedSha256": "6379b2ad98da53856816d0e11b0048af8a9632002a28c3d362f16fa98c2f5cdc",
+      "ok": true
+    },
+    {
+      "file": "assets/scenes/night-graywolf.webp",
+      "status": 200,
+      "bytes": 122674,
+      "sha256": "4dd1183fd2aa0db6ac52f845515c3c8e2e0fe2aced5a4a7d6a66732d5c114edb",
+      "expectedSha256": "4dd1183fd2aa0db6ac52f845515c3c8e2e0fe2aced5a4a7d6a66732d5c114edb",
+      "ok": true
+    },
+    {
+      "file": "assets/scenes/twilight-graywolf.webp",
+      "status": 200,
+      "bytes": 87732,
+      "sha256": "f8000f2b473ec9eedb3bef4e1a34dc8354351041cfc5eb261d80f98271e84f9a",
+      "expectedSha256": "f8000f2b473ec9eedb3bef4e1a34dc8354351041cfc5eb261d80f98271e84f9a",
+      "ok": true
+    },
+    {
+      "file": "data/achievements.json",
+      "status": 200,
+      "bytes": 18975,
+      "sha256": "b7d57297344dc4223a8eefc72d42d9f9cdd44c4f812f1e59b3d7aeb2d592db6e",
+      "expectedSha256": "b7d57297344dc4223a8eefc72d42d9f9cdd44c4f812f1e59b3d7aeb2d592db6e",
+      "ok": true
+    },
+    {
+      "file": "data/bond-stories.json",
+      "status": 200,
+      "bytes": 773189,
+      "sha256": "28ec8e13ae77f6582ba068d08bd94407305746c8d59bb51035227e46ce59c045",
+      "expectedSha256": "28ec8e13ae77f6582ba068d08bd94407305746c8d59bb51035227e46ce59c045",
+      "ok": true
+    },
+    {
+      "file": "data/categories.json",
+      "status": 200,
+      "bytes": 655,
+      "sha256": "166e8f4de44f41d6ec27b3a6b1780f9cd155aa599371b443c92537949276ebe1",
+      "expectedSha256": "166e8f4de44f41d6ec27b3a6b1780f9cd155aa599371b443c92537949276ebe1",
+      "ok": true
+    },
+    {
+      "file": "data/craftables.json",
+      "status": 200,
+      "bytes": 5786,
+      "sha256": "f49345c56b3010389d60ec9c03ec7f44f57b89b9662a2c3ec55d8381fe7fcd73",
+      "expectedSha256": "f49345c56b3010389d60ec9c03ec7f44f57b89b9662a2c3ec55d8381fe7fcd73",
+      "ok": true
+    },
+    {
+      "file": "data/dailyWheelRewards.json",
+      "status": 200,
+      "bytes": 1262,
+      "sha256": "98f1fb5b3dc5e49fb0815cf60842bc53fd34e604baf540b4d0e2946929030f12",
+      "expectedSha256": "98f1fb5b3dc5e49fb0815cf60842bc53fd34e604baf540b4d0e2946929030f12",
+      "ok": true
+    },
+    {
+      "file": "data/expeditions.json",
+      "status": 200,
+      "bytes": 6388,
+      "sha256": "1dbacba9d13d4addaa03b8348dd2abc42a0d12175bc13176444990041a601984",
+      "expectedSha256": "1dbacba9d13d4addaa03b8348dd2abc42a0d12175bc13176444990041a601984",
+      "ok": true
+    },
+    {
+      "file": "data/gift-affinities.json",
+      "status": 200,
+      "bytes": 3891,
+      "sha256": "78237d48ef4403e33458a39e1d5fb477501d0bf119ef956e3b8f917492cb6027",
+      "expectedSha256": "78237d48ef4403e33458a39e1d5fb477501d0bf119ef956e3b8f917492cb6027",
+      "ok": true
+    },
+    {
+      "file": "data/global-mailbox.json",
+      "status": 200,
+      "bytes": 12306,
+      "sha256": "80cab9075a5db551fadca624f947c5824536cbd988656b246945a95d87db2a67",
+      "expectedSha256": "80cab9075a5db551fadca624f947c5824536cbd988656b246945a95d87db2a67",
+      "ok": true
+    },
+    {
+      "file": "data/materials.json",
+      "status": 200,
+      "bytes": 1985,
+      "sha256": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
+      "expectedSha256": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
+      "ok": true
+    },
+    {
+      "file": "data/pet-awakening.json",
+      "status": 200,
+      "bytes": 26424,
+      "sha256": "4c14254cbceee967c88d2e8491fddb2be046603315cd6a9d12830889c6dda169",
+      "expectedSha256": "4c14254cbceee967c88d2e8491fddb2be046603315cd6a9d12830889c6dda169",
+      "ok": true
+    },
+    {
+      "file": "data/pet-series.json",
+      "status": 200,
+      "bytes": 496,
+      "sha256": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57",
+      "expectedSha256": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57",
+      "ok": true
+    },
+    {
+      "file": "data/pets-lore.json",
+      "status": 200,
+      "bytes": 174861,
+      "sha256": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
+      "expectedSha256": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
+      "ok": true
+    },
+    {
+      "file": "data/pets.json",
+      "status": 200,
+      "bytes": 29473,
+      "sha256": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
+      "expectedSha256": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
+      "ok": true
+    },
+    {
+      "file": "data/pools.json",
+      "status": 200,
+      "bytes": 1651,
+      "sha256": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
+      "expectedSha256": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
+      "ok": true
+    },
+    {
+      "file": "data/releases/bb02bed3ffb41027e81b7ce4134dea6d79273c5ea2e7ce2bbbe6a27e501be73b/catalog.json",
+      "status": 200,
+      "bytes": 557407,
+      "sha256": "bb02bed3ffb41027e81b7ce4134dea6d79273c5ea2e7ce2bbbe6a27e501be73b",
+      "expectedSha256": "bb02bed3ffb41027e81b7ce4134dea6d79273c5ea2e7ce2bbbe6a27e501be73b",
+      "ok": true
+    },
+    {
+      "file": "data/titles.json",
+      "status": 200,
+      "bytes": 6119,
+      "sha256": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
+      "expectedSha256": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "bytes": 60378,
+      "sha256": "2c5f2b7a0796fd138d776de32f423cbab3112dc7729c1271e79e8df6f3604304",
+      "expectedSha256": "2c5f2b7a0796fd138d776de32f423cbab3112dc7729c1271e79e8df6f3604304",
+      "ok": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "status": 200,
+      "bytes": 831,
+      "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
+      "expectedSha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
+      "ok": true
+    },
+    {
+      "file": "release-artifact.json",
+      "status": 200,
+      "bytes": 167546,
+      "sha256": "7e711b7f8c989544aadbc106f46d33d426fc0e0f6f488d3b4fd5207cf826b617",
+      "expectedSha256": "7e711b7f8c989544aadbc106f46d33d426fc0e0f6f488d3b4fd5207cf826b617",
+      "ok": true
+    },
+    {
+      "file": "release-input/approvals.json",
+      "status": 200,
+      "bytes": 311039,
+      "sha256": "973dbe3ad134105d7d1a1a28f5cd8419c2b9b6293022913e5a6b033efda3c3b9",
+      "expectedSha256": "973dbe3ad134105d7d1a1a28f5cd8419c2b9b6293022913e5a6b033efda3c3b9",
+      "ok": true
+    },
+    {
+      "file": "release-input/candidate.json",
+      "status": 200,
+      "bytes": 5881,
+      "sha256": "4c0c82b7ebe69e9a29f50a8341bf66f229c6820e9004bc97d843daae223df0c9",
+      "expectedSha256": "4c0c82b7ebe69e9a29f50a8341bf66f229c6820e9004bc97d843daae223df0c9",
+      "ok": true
+    },
+    {
+      "file": "release-input/companion-baseline/data/craftables.json",
+      "status": 200,
+      "bytes": 5426,
+      "sha256": "e627dee9d97d9eb5859cd66391a84dde4ad789c579baffa5eb5dc3666343ab88",
+      "expectedSha256": "e627dee9d97d9eb5859cd66391a84dde4ad789c579baffa5eb5dc3666343ab88",
+      "ok": true
+    },
+    {
+      "file": "release-input/companion-baseline/data/expeditions.json",
+      "status": 200,
+      "bytes": 5984,
+      "sha256": "19577297f915408ccb0490af322ec3bc063cb9d59e3e782a2624de9e2a7782f3",
+      "expectedSha256": "19577297f915408ccb0490af322ec3bc063cb9d59e3e782a2624de9e2a7782f3",
+      "ok": true
+    },
+    {
+      "file": "release-input/companion-baseline/data/gift-affinities.json",
+      "status": 200,
+      "bytes": 3628,
+      "sha256": "f05fb2e0b566e775cc0646b421f0ef287241aa3f515f9d02877559f4d7f5e213",
+      "expectedSha256": "f05fb2e0b566e775cc0646b421f0ef287241aa3f515f9d02877559f4d7f5e213",
+      "ok": true
+    },
+    {
+      "file": "release-input/companion-baseline/data/materials.json",
+      "status": 200,
+      "bytes": 2066,
+      "sha256": "bc5daf82206250d784400fa9010893b502da8f2a773a2b792c6b4f2e31e35518",
+      "expectedSha256": "bc5daf82206250d784400fa9010893b502da8f2a773a2b792c6b4f2e31e35518",
+      "ok": true
+    },
+    {
+      "file": "release-input/ecosystem.json",
+      "status": 200,
+      "bytes": 6187,
+      "sha256": "22f6a0f33de9f91e5a83cf932aeb01237a6d6f82a546f2a43aa304c8624755f5",
+      "expectedSha256": "22f6a0f33de9f91e5a83cf932aeb01237a6d6f82a546f2a43aa304c8624755f5",
+      "ok": true
+    },
+    {
+      "file": "release-input/validation.json",
+      "status": 200,
+      "bytes": 6697,
+      "sha256": "6a950086d8b342b8025b8f0dde1eef05c8b0ada2c8de56f9046073ebc7f2ee2a",
+      "expectedSha256": "6a950086d8b342b8025b8f0dde1eef05c8b0ada2c8de56f9046073ebc7f2ee2a",
+      "ok": true
+    },
+    {
+      "file": "service-worker.js",
+      "status": 200,
+      "bytes": 32363,
+      "sha256": "ea59d0745692cab1109258a146e4ca2d255d79466fdf1716d5fe9902fb0ea20d",
+      "expectedSha256": "ea59d0745692cab1109258a146e4ca2d255d79466fdf1716d5fe9902fb0ea20d",
+      "ok": true
+    },
+    {
+      "file": "src/achievementService.js",
+      "status": 200,
+      "bytes": 24167,
+      "sha256": "527b3c8706db9c1b653efe7113eab9d079dff5e77612c8a0dd3b9be20583a288",
+      "expectedSha256": "527b3c8706db9c1b653efe7113eab9d079dff5e77612c8a0dd3b9be20583a288",
+      "ok": true
+    },
+    {
+      "file": "src/adventureHandbookService.js",
+      "status": 200,
+      "bytes": 22986,
+      "sha256": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
+      "expectedSha256": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
+      "ok": true
+    },
+    {
+      "file": "src/app.js",
+      "status": 200,
+      "bytes": 18671,
+      "sha256": "da0e04335e760bd4caa289d89c51f8f54c97b8783f5dcbabded558623b4265be",
+      "expectedSha256": "da0e04335e760bd4caa289d89c51f8f54c97b8783f5dcbabded558623b4265be",
+      "ok": true
+    },
+    {
+      "file": "src/backupSchema.js",
+      "status": 200,
+      "bytes": 25476,
+      "sha256": "c97fd208f9a8f11af82b5db9348055f492c8d1e18af07e6a5eef60d6253f57bd",
+      "expectedSha256": "c97fd208f9a8f11af82b5db9348055f492c8d1e18af07e6a5eef60d6253f57bd",
+      "ok": true
+    },
+    {
+      "file": "src/backupService.js",
+      "status": 200,
+      "bytes": 20629,
+      "sha256": "eae7bc45cfc2d45a8d55c579df0a8a713e133d119e1b50ab0bd6744d7ad0e872",
+      "expectedSha256": "eae7bc45cfc2d45a8d55c579df0a8a713e133d119e1b50ab0bd6744d7ad0e872",
+      "ok": true
+    },
+    {
+      "file": "src/bond-journey.css",
+      "status": 200,
+      "bytes": 4598,
+      "sha256": "c5ada471a6ac232974153239c91b6d4628dc5c4decf32b5f256f031f2346ee49",
+      "expectedSha256": "c5ada471a6ac232974153239c91b6d4628dc5c4decf32b5f256f031f2346ee49",
+      "ok": true
+    },
+    {
+      "file": "src/bondJourneyController.js",
+      "status": 200,
+      "bytes": 6492,
+      "sha256": "cfaabae2b18fbf0917cb074e878a11b557801a449a442e71ef9368124aa81805",
+      "expectedSha256": "cfaabae2b18fbf0917cb074e878a11b557801a449a442e71ef9368124aa81805",
+      "ok": true
+    },
+    {
+      "file": "src/bondJourneyCore.js",
+      "status": 200,
+      "bytes": 7284,
+      "sha256": "25cf76d84e0849491bc229af3acbe670acfde12cecafe60a916afd5413276c0e",
+      "expectedSha256": "25cf76d84e0849491bc229af3acbe670acfde12cecafe60a916afd5413276c0e",
+      "ok": true
+    },
+    {
+      "file": "src/bondJourneyService.js",
+      "status": 200,
+      "bytes": 7914,
+      "sha256": "34635f61d310140fec37068b4e598a65ace907ee29314a6f9f9d0ed31ae8b1aa",
+      "expectedSha256": "34635f61d310140fec37068b4e598a65ace907ee29314a6f9f9d0ed31ae8b1aa",
+      "ok": true
+    },
+    {
+      "file": "src/bondJourneyView.js",
+      "status": 200,
+      "bytes": 11758,
+      "sha256": "3805105dee2e07ad228477cf6beba617607fa394fccfbeea951279e78339652d",
+      "expectedSha256": "3805105dee2e07ad228477cf6beba617607fa394fccfbeea951279e78339652d",
+      "ok": true
+    },
+    {
+      "file": "src/bondStoryCatalog.js",
+      "status": 200,
+      "bytes": 2423,
+      "sha256": "65189b5bf4f65c7c9b9cfc61a721c8f2d9f6d438df102dc52f114563bd2bb8ff",
+      "expectedSha256": "65189b5bf4f65c7c9b9cfc61a721c8f2d9f6d438df102dc52f114563bd2bb8ff",
+      "ok": true
+    },
+    {
+      "file": "src/bootstrap.js",
+      "status": 200,
+      "bytes": 4505,
+      "sha256": "424349b05fe4e245c0e7e4dc744bea4e2717851666d12ac49f391b715558e07b",
+      "expectedSha256": "424349b05fe4e245c0e7e4dc744bea4e2717851666d12ac49f391b715558e07b",
+      "ok": true
+    },
+    {
+      "file": "src/bootstrapRecovery.js",
+      "status": 200,
+      "bytes": 4635,
+      "sha256": "7ed8b4ec63dfd3bb1fb908995c435983816c1cb91146842b9792c8ad840d0d2e",
+      "expectedSha256": "7ed8b4ec63dfd3bb1fb908995c435983816c1cb91146842b9792c8ad840d0d2e",
+      "ok": true
+    },
+    {
+      "file": "src/campService.js",
+      "status": 200,
+      "bytes": 1988,
+      "sha256": "fee6e4aeafbde7e3d356214099b50523d31089fb00e573c853810c32062a65b1",
+      "expectedSha256": "fee6e4aeafbde7e3d356214099b50523d31089fb00e573c853810c32062a65b1",
+      "ok": true
+    },
+    {
+      "file": "src/categoryService.js",
+      "status": 200,
+      "bytes": 1850,
+      "sha256": "8636cdb8453e0a383b813f99d117ead49911353bd6848de05d7f513c28713e32",
+      "expectedSha256": "8636cdb8453e0a383b813f99d117ead49911353bd6848de05d7f513c28713e32",
+      "ok": true
+    },
+    {
+      "file": "src/collectionMilestoneService.js",
+      "status": 200,
+      "bytes": 15847,
+      "sha256": "2f9fe055d3facfb2ce5f6eee96ee0026eb41dab602f27a0eef104402dbe2db5f",
+      "expectedSha256": "2f9fe055d3facfb2ce5f6eee96ee0026eb41dab602f27a0eef104402dbe2db5f",
+      "ok": true
+    },
+    {
+      "file": "src/collectionService.js",
+      "status": 200,
+      "bytes": 20200,
+      "sha256": "4babc98a28293244bc833788c641fa20dc0aca396eab6aba0f5ba797f35d3da6",
+      "expectedSha256": "4babc98a28293244bc833788c641fa20dc0aca396eab6aba0f5ba797f35d3da6",
+      "ok": true
+    },
+    {
+      "file": "src/companionDialogueService.js",
+      "status": 200,
+      "bytes": 29933,
+      "sha256": "ca84154fbb28fadbaa176f46c02079b8be2c9863f4567d5c2cc6c29347998876",
+      "expectedSha256": "ca84154fbb28fadbaa176f46c02079b8be2c9863f4567d5c2cc6c29347998876",
+      "ok": true
+    },
+    {
+      "file": "src/companionService.js",
+      "status": 200,
+      "bytes": 3307,
+      "sha256": "3974b56613aea67e80f7659caa9dbca0d9397f298948f1f98c9e60b8e446d6aa",
+      "expectedSha256": "3974b56613aea67e80f7659caa9dbca0d9397f298948f1f98c9e60b8e446d6aa",
+      "ok": true
+    },
+    {
+      "file": "src/dailyCheckInService.js",
+      "status": 200,
+      "bytes": 12031,
+      "sha256": "d994210565a779da2265f8a32334dc233a06b4dee037672ef433eb5fa123b62b",
+      "expectedSha256": "d994210565a779da2265f8a32334dc233a06b4dee037672ef433eb5fa123b62b",
+      "ok": true
+    },
+    {
+      "file": "src/db.js",
+      "status": 200,
+      "bytes": 13290,
+      "sha256": "d14cc93d1a97c250ed5aae3bea1521b031575909aaf8a59586f36a1ad6d25b51",
+      "expectedSha256": "d14cc93d1a97c250ed5aae3bea1521b031575909aaf8a59586f36a1ad6d25b51",
+      "ok": true
+    },
+    {
+      "file": "src/deferredRenderGate.js",
+      "status": 200,
+      "bytes": 388,
+      "sha256": "cbbaf2e401be35eab6d673a935c13fef615286a554937dc497b02c4aa6aca6e5",
+      "expectedSha256": "cbbaf2e401be35eab6d673a935c13fef615286a554937dc497b02c4aa6aca6e5",
+      "ok": true
+    },
+    {
+      "file": "src/devService.js",
+      "status": 200,
+      "bytes": 6855,
+      "sha256": "af56b92e6fcf886786f4a41d777dc355c35c0d0bd4b39fd72fc11217c4238dd4",
+      "expectedSha256": "af56b92e6fcf886786f4a41d777dc355c35c0d0bd4b39fd72fc11217c4238dd4",
+      "ok": true
+    },
+    {
+      "file": "src/dialogFocus.js",
+      "status": 200,
+      "bytes": 4933,
+      "sha256": "24eb36d909579732f8b9776c4f2e2a3fec8e112d8e96194257b6b16bee49eecf",
+      "expectedSha256": "24eb36d909579732f8b9776c4f2e2a3fec8e112d8e96194257b6b16bee49eecf",
+      "ok": true
+    },
+    {
+      "file": "src/expeditionGameplay.js",
+      "status": 200,
+      "bytes": 7595,
+      "sha256": "736903f5546ec3cd5c496b2fc23a530f713880f66f7eaa43103a6493b7ea6a3d",
+      "expectedSha256": "736903f5546ec3cd5c496b2fc23a530f713880f66f7eaa43103a6493b7ea6a3d",
+      "ok": true
+    },
+    {
+      "file": "src/expeditionService.js",
+      "status": 200,
+      "bytes": 14471,
+      "sha256": "caec8978877213406550d8604dd480f791229e6e4f6ece88505e104836d84722",
+      "expectedSha256": "caec8978877213406550d8604dd480f791229e6e4f6ece88505e104836d84722",
+      "ok": true
+    },
+    {
+      "file": "src/expeditionStatusService.js",
+      "status": 200,
+      "bytes": 2371,
+      "sha256": "99e665eea61bc0de3f9dcc6a1f1cfe01c17914f27b4bf3ce6347ef7d7302e3e5",
+      "expectedSha256": "99e665eea61bc0de3f9dcc6a1f1cfe01c17914f27b4bf3ce6347ef7d7302e3e5",
+      "ok": true
+    },
+    {
+      "file": "src/explorationService.js",
+      "status": 200,
+      "bytes": 30579,
+      "sha256": "d7118f648219c5802e15361e744a2b1b72af9f732bc4c5ed0c2ff1da09ed917e",
+      "expectedSha256": "d7118f648219c5802e15361e744a2b1b72af9f732bc4c5ed0c2ff1da09ed917e",
+      "ok": true
+    },
+    {
+      "file": "src/feedbackConfig.js",
+      "status": 200,
+      "bytes": 201,
+      "sha256": "77e9eda8efe76ad2ea3d1d216d10be01bb219c954c6c619e925d8e2aeafe49f7",
+      "expectedSha256": "77e9eda8efe76ad2ea3d1d216d10be01bb219c954c6c619e925d8e2aeafe49f7",
+      "ok": true
+    },
+    {
+      "file": "src/feedbackController.js",
+      "status": 200,
+      "bytes": 6280,
+      "sha256": "9ff600987abd7476b7e6e1bfecb9610ba93588dc0b0930b3c3378c8c78b83e76",
+      "expectedSha256": "9ff600987abd7476b7e6e1bfecb9610ba93588dc0b0930b3c3378c8c78b83e76",
+      "ok": true
+    },
+    {
+      "file": "src/feedbackService.js",
+      "status": 200,
+      "bytes": 6508,
+      "sha256": "f96898f3d97d6dc86157f65aae8e8f2b763f222b04bf778aab386276d8bb9310",
+      "expectedSha256": "f96898f3d97d6dc86157f65aae8e8f2b763f222b04bf778aab386276d8bb9310",
+      "ok": true
+    },
+    {
+      "file": "src/filterGestureController.js",
+      "status": 200,
+      "bytes": 3895,
+      "sha256": "548300cf1d63d705715fc00668b48b35b5389f351e21ffc3a8e417a350774ad7",
+      "expectedSha256": "548300cf1d63d705715fc00668b48b35b5389f351e21ffc3a8e417a350774ad7",
+      "ok": true
+    },
+    {
+      "file": "src/font-size-settings.css",
+      "status": 200,
+      "bytes": 9416,
+      "sha256": "47476e661b6f993b8586f37fe5303add68c679793effb9ecaafc2c5b1adde74f",
+      "expectedSha256": "47476e661b6f993b8586f37fe5303add68c679793effb9ecaafc2c5b1adde74f",
+      "ok": true
+    },
+    {
+      "file": "src/gachaService.js",
+      "status": 200,
+      "bytes": 3376,
+      "sha256": "d631816bfcb980ecbe502cbecf867e0adf65871d00d6ef4e70adce22df9c9bf9",
+      "expectedSha256": "d631816bfcb980ecbe502cbecf867e0adf65871d00d6ef4e70adce22df9c9bf9",
+      "ok": true
+    },
+    {
+      "file": "src/gachaTransactionCore.js",
+      "status": 200,
+      "bytes": 9545,
+      "sha256": "ac2b5db58e2cdec942bb28e0e7b8dae446282fd45518bdf6666fafdc6d579dde",
+      "expectedSha256": "ac2b5db58e2cdec942bb28e0e7b8dae446282fd45518bdf6666fafdc6d579dde",
+      "ok": true
+    },
+    {
+      "file": "src/glacierArrivalScene.js",
+      "status": 200,
+      "bytes": 3523,
+      "sha256": "bb3d646a9faaece23f41d29f6248b682fb67e3851e702ac3667f006c02d8b2bb",
+      "expectedSha256": "bb3d646a9faaece23f41d29f6248b682fb67e3851e702ac3667f006c02d8b2bb",
+      "ok": true
+    },
+    {
+      "file": "src/habitService.js",
+      "status": 200,
+      "bytes": 16624,
+      "sha256": "ccfa3c54ce88d8333fe50e0f4de5926e27d1f8122c919b1bed2b62f160d5e240",
+      "expectedSha256": "ccfa3c54ce88d8333fe50e0f4de5926e27d1f8122c919b1bed2b62f160d5e240",
+      "ok": true
+    },
+    {
+      "file": "src/healthCheckService.js",
+      "status": 200,
+      "bytes": 164032,
+      "sha256": "83e35ca90fb51b2029a82adac11cb96a4fec40063ce840081a05fb24092e365f",
+      "expectedSha256": "83e35ca90fb51b2029a82adac11cb96a4fec40063ce840081a05fb24092e365f",
+      "ok": true
+    },
+    {
+      "file": "src/honeylight-sugar.css",
+      "status": 200,
+      "bytes": 10704,
+      "sha256": "5255d8f40152e53c13d9549dda2fe7e26337fb9ddeb98f6cf2e957c34c83be22",
+      "expectedSha256": "5255d8f40152e53c13d9549dda2fe7e26337fb9ddeb98f6cf2e957c34c83be22",
+      "ok": true
+    },
+    {
+      "file": "src/honeylightSugarScene.js",
+      "status": 200,
+      "bytes": 2321,
+      "sha256": "c67111490307d36ee858219603f0012ecd633e32f07775983325210466b59562",
+      "expectedSha256": "c67111490307d36ee858219603f0012ecd633e32f07775983325210466b59562",
+      "ok": true
+    },
+    {
+      "file": "src/iconPresentation.js",
+      "status": 200,
+      "bytes": 4028,
+      "sha256": "e093f1b2bfc0c300741644d881c6731f7b758be0e5917cf7cc1a036bd06e8013",
+      "expectedSha256": "e093f1b2bfc0c300741644d881c6731f7b758be0e5917cf7cc1a036bd06e8013",
+      "ok": true
+    },
+    {
+      "file": "src/imagePreloadService.js",
+      "status": 200,
+      "bytes": 6116,
+      "sha256": "73f6488373daac9b4134c4c7a9549da98f4974d3a4987b4698dc4a56680ad333",
+      "expectedSha256": "73f6488373daac9b4134c4c7a9549da98f4974d3a4987b4698dc4a56680ad333",
+      "ok": true
+    },
+    {
+      "file": "src/lionheart.css",
+      "status": 200,
+      "bytes": 13589,
+      "sha256": "00330e1c712cad9989f70912371618d7b54aa58ac35050f6ae181e21c5132ec1",
+      "expectedSha256": "00330e1c712cad9989f70912371618d7b54aa58ac35050f6ae181e21c5132ec1",
+      "ok": true
+    },
+    {
+      "file": "src/lionheartScene.js",
+      "status": 200,
+      "bytes": 4840,
+      "sha256": "519ea99532aaefe4cbfda13b20c56440fcad192bdb5e9ed39dd9a8ed35b74c24",
+      "expectedSha256": "519ea99532aaefe4cbfda13b20c56440fcad192bdb5e9ed39dd9a8ed35b74c24",
+      "ok": true
+    },
+    {
+      "file": "src/loreService.js",
+      "status": 200,
+      "bytes": 3139,
+      "sha256": "2beab9e2c2ab3418b16e638e247d1976c916b537e6a7a21d754751c54336541c",
+      "expectedSha256": "2beab9e2c2ab3418b16e638e247d1976c916b537e6a7a21d754751c54336541c",
+      "ok": true
+    },
+    {
+      "file": "src/mailboxSchema.js",
+      "status": 200,
+      "bytes": 14707,
+      "sha256": "070e2c731ac75a6bdbecfc24afad986d0357e440d1449c374d898d7e0b0ccd15",
+      "expectedSha256": "070e2c731ac75a6bdbecfc24afad986d0357e440d1449c374d898d7e0b0ccd15",
+      "ok": true
+    },
+    {
+      "file": "src/mailboxService.js",
+      "status": 200,
+      "bytes": 27364,
+      "sha256": "9e2b08feedc9dc73beb9d18bcff62fd722af276c57ab4f79f9bc8d20eccfa0d0",
+      "expectedSha256": "9e2b08feedc9dc73beb9d18bcff62fd722af276c57ab4f79f9bc8d20eccfa0d0",
+      "ok": true
+    },
+    {
+      "file": "src/onboardingController.js",
+      "status": 200,
+      "bytes": 28152,
+      "sha256": "3592185e4c6fba023c65e8d8903ca2e169c092b107b8674e242d688575df872e",
+      "expectedSha256": "3592185e4c6fba023c65e8d8903ca2e169c092b107b8674e242d688575df872e",
+      "ok": true
+    },
+    {
+      "file": "src/onboardingLessons.js",
+      "status": 200,
+      "bytes": 19587,
+      "sha256": "a9438d97708b85dccc2b6faff038a41d2f9051929d8341d28321ff90032bbd31",
+      "expectedSha256": "a9438d97708b85dccc2b6faff038a41d2f9051929d8341d28321ff90032bbd31",
+      "ok": true
+    },
+    {
+      "file": "src/onboardingService.js",
+      "status": 200,
+      "bytes": 5845,
+      "sha256": "4289008c57efc95843d141a33cb2333c0d9af8c1188a3ba4157e2ab2dfd49a6a",
+      "expectedSha256": "4289008c57efc95843d141a33cb2333c0d9af8c1188a3ba4157e2ab2dfd49a6a",
+      "ok": true
+    },
+    {
+      "file": "src/perfDiagnostics.js",
+      "status": 200,
+      "bytes": 6924,
+      "sha256": "e6e5e3a4fe72ec00df1bd5469147b07d3d6cf8377e9ec691b2908af2cfd494d7",
+      "expectedSha256": "e6e5e3a4fe72ec00df1bd5469147b07d3d6cf8377e9ec691b2908af2cfd494d7",
+      "ok": true
+    },
+    {
+      "file": "src/pet-awakening.css",
+      "status": 200,
+      "bytes": 4864,
+      "sha256": "774137b9955e89dd72f0844c4575eaf72847c959f8ebdcae173ab54475a9b7f5",
+      "expectedSha256": "774137b9955e89dd72f0844c4575eaf72847c959f8ebdcae173ab54475a9b7f5",
+      "ok": true
+    },
+    {
+      "file": "src/petAwakeningCatalog.js",
+      "status": 200,
+      "bytes": 2239,
+      "sha256": "eebf2dfd15fa95b54f8c32b85da9b56467ebc4bf39520090e4218224b3ba26bf",
+      "expectedSha256": "eebf2dfd15fa95b54f8c32b85da9b56467ebc4bf39520090e4218224b3ba26bf",
+      "ok": true
+    },
+    {
+      "file": "src/petAwakeningController.js",
+      "status": 200,
+      "bytes": 3407,
+      "sha256": "e2c86c5c1074c36ac86dfc99ab901055737b6439edd955f4d089f96e53ced53b",
+      "expectedSha256": "e2c86c5c1074c36ac86dfc99ab901055737b6439edd955f4d089f96e53ced53b",
+      "ok": true
+    },
+    {
+      "file": "src/petAwakeningCore.js",
+      "status": 200,
+      "bytes": 6795,
+      "sha256": "b7b4be5b332ff300d73e01b0f90bce83c8b2aec9916f3ab8a1d156f087fbbbae",
+      "expectedSha256": "b7b4be5b332ff300d73e01b0f90bce83c8b2aec9916f3ab8a1d156f087fbbbae",
+      "ok": true
+    },
+    {
+      "file": "src/petAwakeningScene.js",
+      "status": 200,
+      "bytes": 6222,
+      "sha256": "10046736290b074c6fda8106fd51c8c057b03293e7f3a5ef80a3f598af318b6c",
+      "expectedSha256": "10046736290b074c6fda8106fd51c8c057b03293e7f3a5ef80a3f598af318b6c",
+      "ok": true
+    },
+    {
+      "file": "src/petAwakeningService.js",
+      "status": 200,
+      "bytes": 4924,
+      "sha256": "11dd9c96125892d9eb4606aa07caabf4e91544e0a85236560c8af85a79d57f02",
+      "expectedSha256": "11dd9c96125892d9eb4606aa07caabf4e91544e0a85236560c8af85a79d57f02",
+      "ok": true
+    },
+    {
+      "file": "src/petAwakeningView.js",
+      "status": 200,
+      "bytes": 6117,
+      "sha256": "7da55a19c6364bf5e9b3f01993a6bafa0ca21b1966272425591b64eba28c7153",
+      "expectedSha256": "7da55a19c6364bf5e9b3f01993a6bafa0ca21b1966272425591b64eba28c7153",
+      "ok": true
+    },
+    {
+      "file": "src/petDataSchema.js",
+      "status": 200,
+      "bytes": 37523,
+      "sha256": "4e1544021a6e98719e7483876cae0aa8f51b899a64df826efcbc9d3af2a555de",
+      "expectedSha256": "4e1544021a6e98719e7483876cae0aa8f51b899a64df826efcbc9d3af2a555de",
+      "ok": true
+    },
+    {
+      "file": "src/petPoolFilter.js",
+      "status": 200,
+      "bytes": 768,
+      "sha256": "8aab1c055fbdcd40209864ab4ec8b489cb284c73bcded88fa8a45e7b4eacb6db",
+      "expectedSha256": "8aab1c055fbdcd40209864ab4ec8b489cb284c73bcded88fa8a45e7b4eacb6db",
+      "ok": true
+    },
+    {
+      "file": "src/poolAwakeningController.js",
+      "status": 200,
+      "bytes": 12503,
+      "sha256": "9db87f801c43d1fe4a69e8b0c91a119ae0e6622f0d477246b606aa56eabf3b51",
+      "expectedSha256": "9db87f801c43d1fe4a69e8b0c91a119ae0e6622f0d477246b606aa56eabf3b51",
+      "ok": true
+    },
+    {
+      "file": "src/poolContentContract.js",
+      "status": 200,
+      "bytes": 24212,
+      "sha256": "36ef8b68dc8d2b6618693b13b4db502a16e0269b633b5667ce8bb8294f7b94ee",
+      "expectedSha256": "36ef8b68dc8d2b6618693b13b4db502a16e0269b633b5667ce8bb8294f7b94ee",
+      "ok": true
+    },
+    {
+      "file": "src/poolDebutService.js",
+      "status": 200,
+      "bytes": 1173,
+      "sha256": "e820255c52313e465679be1f1ba2a26492dfe0aca7cbfbd8f3627716552e7f7c",
+      "expectedSha256": "e820255c52313e465679be1f1ba2a26492dfe0aca7cbfbd8f3627716552e7f7c",
+      "ok": true
+    },
+    {
+      "file": "src/poolPresentation.js",
+      "status": 200,
+      "bytes": 1346,
+      "sha256": "a7a4ea67dd7e905dd70faa31527a92a119a47dc7badf3fc51a6b316fde84e5c8",
+      "expectedSha256": "a7a4ea67dd7e905dd70faa31527a92a119a47dc7badf3fc51a6b316fde84e5c8",
+      "ok": true
+    },
+    {
+      "file": "src/poolUnlockCore.js",
+      "status": 200,
+      "bytes": 5256,
+      "sha256": "2be9a055162feaf7dd521a054e40853c2c3af1106a098708e40d33d2478b2c22",
+      "expectedSha256": "2be9a055162feaf7dd521a054e40853c2c3af1106a098708e40d33d2478b2c22",
+      "ok": true
+    },
+    {
+      "file": "src/poolUnlockService.js",
+      "status": 200,
+      "bytes": 6103,
+      "sha256": "6e76ffc3c61f002c750435578a7ea5843c91df6f047b2ac2212b50bc150b800a",
+      "expectedSha256": "6e76ffc3c61f002c750435578a7ea5843c91df6f047b2ac2212b50bc150b800a",
+      "ok": true
+    },
+    {
+      "file": "src/preferencesService.js",
+      "status": 200,
+      "bytes": 2712,
+      "sha256": "a9083541abf0cc152debd922aaf6a33fbd671dee04b85ce5300a6b2522a58401",
+      "expectedSha256": "a9083541abf0cc152debd922aaf6a33fbd671dee04b85ce5300a6b2522a58401",
+      "ok": true
+    },
+    {
+      "file": "src/questIcons.js",
+      "status": 200,
+      "bytes": 9512,
+      "sha256": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
+      "expectedSha256": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
+      "ok": true
+    },
+    {
+      "file": "src/questService.js",
+      "status": 200,
+      "bytes": 13333,
+      "sha256": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
+      "expectedSha256": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
+      "ok": true
+    },
+    {
+      "file": "src/releaseCatalog.js",
+      "status": 200,
+      "bytes": 4727,
+      "sha256": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
+      "expectedSha256": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
+      "ok": true
+    },
+    {
+      "file": "src/releaseProfile.js",
+      "status": 200,
+      "bytes": 622,
+      "sha256": "c9a6276a80d2c0f5df6493a954d0b476ddbd6d51fc4c2a1f26beb4fe2825b2d5",
+      "expectedSha256": "c9a6276a80d2c0f5df6493a954d0b476ddbd6d51fc4c2a1f26beb4fe2825b2d5",
+      "ok": true
+    },
+    {
+      "file": "src/reminder-settings.css",
+      "status": 200,
+      "bytes": 11146,
+      "sha256": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
+      "expectedSha256": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
+      "ok": true
+    },
+    {
+      "file": "src/reminderController.js",
+      "status": 200,
+      "bytes": 7107,
+      "sha256": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
+      "expectedSha256": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
+      "ok": true
+    },
+    {
+      "file": "src/reminderRules.js",
+      "status": 200,
+      "bytes": 5206,
+      "sha256": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
+      "expectedSha256": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
+      "ok": true
+    },
+    {
+      "file": "src/reminderService.js",
+      "status": 200,
+      "bytes": 8628,
+      "sha256": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
+      "expectedSha256": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
+      "ok": true
+    },
+    {
+      "file": "src/rewardService.js",
+      "status": 200,
+      "bytes": 9635,
+      "sha256": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
+      "expectedSha256": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
+      "ok": true
+    },
+    {
+      "file": "src/shareService.js",
+      "status": 200,
+      "bytes": 1889,
+      "sha256": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
+      "expectedSha256": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
+      "ok": true
+    },
+    {
+      "file": "src/standardUrCarousel.js",
+      "status": 200,
+      "bytes": 1861,
+      "sha256": "8e2f9f84a14399e61a206d39d1e75ebd1903d025a24866b9b899fe77520deae3",
+      "expectedSha256": "8e2f9f84a14399e61a206d39d1e75ebd1903d025a24866b9b899fe77520deae3",
+      "ok": true
+    },
+    {
+      "file": "src/styles.css",
+      "status": 200,
+      "bytes": 469057,
+      "sha256": "417a2ad0ea0bfed9907207376db59c5ab00d6a61ad6721b14589967d6cebc5bf",
+      "expectedSha256": "417a2ad0ea0bfed9907207376db59c5ab00d6a61ad6721b14589967d6cebc5bf",
+      "ok": true
+    },
+    {
+      "file": "src/summon-polish.css",
+      "status": 200,
+      "bytes": 7535,
+      "sha256": "e832165ec56373e338d2af2c80c0cdde109c2d4455094c4e4d8eadb2cd3d1ec0",
+      "expectedSha256": "e832165ec56373e338d2af2c80c0cdde109c2d4455094c4e4d8eadb2cd3d1ec0",
+      "ok": true
+    },
+    {
+      "file": "src/summonRevealService.js",
+      "status": 200,
+      "bytes": 26949,
+      "sha256": "84561d7e13185af77d180dd1654bf4668def522cf30f474c99509f2c95df6a53",
+      "expectedSha256": "84561d7e13185af77d180dd1654bf4668def522cf30f474c99509f2c95df6a53",
+      "ok": true
+    },
+    {
+      "file": "src/swordwild-shanhe.css",
+      "status": 200,
+      "bytes": 13654,
+      "sha256": "2879fd56a3d6ccffed6f57383b24fd0308a91c6d55dd0166e9184ee7d07ea044",
+      "expectedSha256": "2879fd56a3d6ccffed6f57383b24fd0308a91c6d55dd0166e9184ee7d07ea044",
+      "ok": true
+    },
+    {
+      "file": "src/swordwildShanheScene.js",
+      "status": 200,
+      "bytes": 3855,
+      "sha256": "1f6f9fba2368e8eba318af46f33ff211558b41f7f154b49e190aa9a932b06791",
+      "expectedSha256": "1f6f9fba2368e8eba318af46f33ff211558b41f7f154b49e190aa9a932b06791",
+      "ok": true
+    },
+    {
+      "file": "src/taskFilterService.js",
+      "status": 200,
+      "bytes": 11051,
+      "sha256": "687858edc36119afcb388fc3fd75ebd058d0a93117da42740c8a1f18d4b00471",
+      "expectedSha256": "687858edc36119afcb388fc3fd75ebd058d0a93117da42740c8a1f18d4b00471",
+      "ok": true
+    },
+    {
+      "file": "src/taskMigration.js",
+      "status": 200,
+      "bytes": 4858,
+      "sha256": "67055f714b759d43e1a333ce7d039619eca3537f5e83ce46ee76a0d4692f25b1",
+      "expectedSha256": "67055f714b759d43e1a333ce7d039619eca3537f5e83ce46ee76a0d4692f25b1",
+      "ok": true
+    },
+    {
+      "file": "src/taskService.js",
+      "status": 200,
+      "bytes": 7591,
+      "sha256": "2d95bc05075d7a32f9e45c577cfe54e5650b6c127e53c2fab47410168681c8cd",
+      "expectedSha256": "2d95bc05075d7a32f9e45c577cfe54e5650b6c127e53c2fab47410168681c8cd",
+      "ok": true
+    },
+    {
+      "file": "src/taskStatsService.js",
+      "status": 200,
+      "bytes": 2045,
+      "sha256": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
+      "expectedSha256": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
+      "ok": true
+    },
+    {
+      "file": "src/theme-refinements.css",
+      "status": 200,
+      "bytes": 23971,
+      "sha256": "34221c5c4be673822dcd050e2933e946612d6ad4f02f5077fb5aeb9496b4843b",
+      "expectedSha256": "34221c5c4be673822dcd050e2933e946612d6ad4f02f5077fb5aeb9496b4843b",
+      "ok": true
+    },
+    {
+      "file": "src/theme-system.css",
+      "status": 200,
+      "bytes": 44553,
+      "sha256": "8e3560e9d29587c6ff19970f11baa2e51d44f2a92b5e20887de121a4b963560f",
+      "expectedSha256": "8e3560e9d29587c6ff19970f11baa2e51d44f2a92b5e20887de121a4b963560f",
+      "ok": true
+    },
+    {
+      "file": "src/themedSummonController.js",
+      "status": 200,
+      "bytes": 33537,
+      "sha256": "20f98c143b1ce8f21a031c75cb0255bfbede7391a5e25f0c7dae50b8a65ed769",
+      "expectedSha256": "20f98c143b1ce8f21a031c75cb0255bfbede7391a5e25f0c7dae50b8a65ed769",
+      "ok": true
+    },
+    {
+      "file": "src/themeRegistry.js",
+      "status": 200,
+      "bytes": 1231,
+      "sha256": "d4c935dd737d662dffc17bcd4fe6d243aac583095ab5ac2ec43b76126df7bafb",
+      "expectedSha256": "d4c935dd737d662dffc17bcd4fe6d243aac583095ab5ac2ec43b76126df7bafb",
+      "ok": true
+    },
+    {
+      "file": "src/themeTokens.css",
+      "status": 200,
+      "bytes": 6097,
+      "sha256": "7a898e987663c925e1913aafaa318d352048b294553affa068360f2d4ec3a596",
+      "expectedSha256": "7a898e987663c925e1913aafaa318d352048b294553affa068360f2d4ec3a596",
+      "ok": true
+    },
+    {
+      "file": "src/todayHabitsView.js",
+      "status": 200,
+      "bytes": 2880,
+      "sha256": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
+      "expectedSha256": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
+      "ok": true
+    },
+    {
+      "file": "src/twilightPresentation.js",
+      "status": 200,
+      "bytes": 12004,
+      "sha256": "f5868b44baea107e67d6673ce2e6db31c0c6b9da4f2fa9265746e233194cb6d2",
+      "expectedSha256": "f5868b44baea107e67d6673ce2e6db31c0c6b9da4f2fa9265746e233194cb6d2",
+      "ok": true
+    },
+    {
+      "file": "src/ui-polish.css",
+      "status": 200,
+      "bytes": 16670,
+      "sha256": "d320d927f151a01bf2a26d8f60840d42d75b42cf5a5fbeb3354a37f2a74a076a",
+      "expectedSha256": "d320d927f151a01bf2a26d8f60840d42d75b42cf5a5fbeb3354a37f2a74a076a",
+      "ok": true
+    },
+    {
+      "file": "src/ui.js",
+      "status": 200,
+      "bytes": 375274,
+      "sha256": "96bf5bd6a536251acc38751549973c87879d61d7b04b8a9c7ffbebc8fafdfe15",
+      "expectedSha256": "96bf5bd6a536251acc38751549973c87879d61d7b04b8a9c7ffbebc8fafdfe15",
+      "ok": true
+    },
+    {
+      "file": "src/uiHelpers.js",
+      "status": 200,
+      "bytes": 2309,
+      "sha256": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
+      "expectedSha256": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
+      "ok": true
+    },
+    {
+      "file": "src/updateActivity.js",
+      "status": 200,
+      "bytes": 947,
+      "sha256": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
+      "expectedSha256": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
+      "ok": true
+    },
+    {
+      "file": "src/updateController.js",
+      "status": 200,
+      "bytes": 10081,
+      "sha256": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
+      "expectedSha256": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
+      "ok": true
+    },
+    {
+      "file": "src/updateProtocol.js",
+      "status": 200,
+      "bytes": 695,
+      "sha256": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
+      "expectedSha256": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
+      "ok": true
+    },
+    {
+      "file": "src/version.js",
+      "status": 200,
+      "bytes": 1153,
+      "sha256": "eecd76bb2c5d89e32556a3781cbf2e2b2c948beb218970b8be1490820560375a",
+      "expectedSha256": "eecd76bb2c5d89e32556a3781cbf2e2b2c948beb218970b8be1490820560375a",
+      "ok": true
+    },
+    {
+      "file": "src/workshopGiftView.js",
+      "status": 200,
+      "bytes": 6321,
+      "sha256": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
+      "expectedSha256": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
+      "ok": true
+    },
+    {
+      "file": "src/workshopService.js",
+      "status": 200,
+      "bytes": 20715,
+      "sha256": "2e867a770495d2923c0443e96e8e160b09542c34ebeb29c6a9004769e8ca670b",
+      "expectedSha256": "2e867a770495d2923c0443e96e8e160b09542c34ebeb29c6a9004769e8ca670b",
+      "ok": true
+    }
+  ]
+}

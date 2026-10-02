@@ -3,5 +3,10 @@
   "gate": "reports/lionheart/v358-authorized-gate.json",
   "packageHash": "94e77b9be64b777d9c11bca74acc915759f7f9cf8eb246ad1a5b7116e9acf94e",
   "previewUrl": "http://127.0.0.1:58789/review/",
-  "reason": "User explicitly accepted latest V3.5.8 package and authorized publication with 可以發布"
+  "reason": "Latest V3.5.8 package explicitly accepted and authorized, published unchanged, all 605 formal HTTPS files verified",
+  "publicationStatus": "published_and_verified",
+  "publicationReceipt": "reports/lionheart/v358-publication.md",
+  "formalUrl": "https://leotsouo.github.io/questnote-pwa/",
+  "deploymentCommit": "6cdfdcdd1bd7201081e0af95dec9c9c58818cbae",
+  "sourceMergeCommit": "6dd2551c1ca4ee41309c042bc1c67b80012fc6e3"
 }
