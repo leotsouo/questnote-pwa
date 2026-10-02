@@ -51,7 +51,9 @@ const server = http.createServer(async (request, response) => {
     if (request.method !== 'GET') { response.writeHead(405).end(); return; }
     if (url.pathname === '/test/config') {
       response.setHeader('Content-Type', 'application/json');
-      response.end(JSON.stringify({ token, origin, profiles: Object.fromEntries(Object.entries(artifacts).map(([key, value]) => [key, value.manifest.profile])) })); return;
+      response.end(JSON.stringify({ token, origin,
+        mailboxGeneratedAts: Object.values(artifacts).map(value => JSON.parse(value.files.get('data/global-mailbox.json')).generatedAt),
+        profiles: Object.fromEntries(Object.entries(artifacts).map(([key, value]) => [key, value.manifest.profile])) })); return;
     }
     if (url.pathname === '/test/') {
       response.setHeader('Content-Type', 'text/html');

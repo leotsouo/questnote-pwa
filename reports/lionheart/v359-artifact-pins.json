@@ -1,0 +1,14 @@
+{
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\a48a151d94dfb8976678d7272be34051f2707c6645afb7623aa9551436568f03",
+    "artifactId": "a48a151d94dfb8976678d7272be34051f2707c6645afb7623aa9551436568f03",
+    "manifestSha256": "dc5a2da0b193658e2097f9e7ac269a2ca8dc7c66dcb80f1b4aabbc99d7e0279f",
+    "scopePath": "/questnote-pwa-preview/"
+  },
+  "production": {
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\fc6946ae230b2583071b1e814227d1c8e175b185750fe96e3fe7834b3e9d50e0",
+    "artifactId": "fc6946ae230b2583071b1e814227d1c8e175b185750fe96e3fe7834b3e9d50e0",
+    "manifestSha256": "c5fcf60d26506497f974564f63bb4aca23359134f1f10cafbe09da0b95131af7",
+    "scopePath": "/questnote-pwa/"
+  }
+}

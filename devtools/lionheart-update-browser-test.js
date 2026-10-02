@@ -18,7 +18,12 @@ const read = async () => {
   const db = await win().eval('import("/questnote-pwa/src/db.js")');
   const data = await db.readAllStoresSnapshot();
   const mailbox = data.meta.find((entry) => entry.key === 'globalMailboxState');
-  if (mailbox) delete mailbox.lastFetchedAt;
+  if (mailbox) {
+    delete mailbox.lastFetchedAt;
+    assert(config.mailboxGeneratedAts.includes(mailbox.lastSeenGeneratedAt), 'Unexpected mailbox generation');
+    // The independently published mailbox may advance; keep claimed/read IDs in the comparison.
+    delete mailbox.lastSeenGeneratedAt;
+  }
   const exploration=data.meta.find(row=>row.key==='explorationProgress');
   if(exploration?.areas?.lionheart_city){
     const area=exploration.areas.lionheart_city;
@@ -114,6 +119,16 @@ try {
   assert(win().navigator.serviceWorker.controller, 'New app is uncontrolled');
   note(`One click upgrades actual formal artifact ${config.profiles.old.artifactId} to ${config.profiles.new.artifactId} while network is 503; original five stores/theme retained, only empty Lionheart progress and zero-count food inventory added`);
 
+  const offlineUi = await win().eval('import("/questnote-pwa/src/ui.js")');
+  offlineUi.switchView('expedition');
+  doc().querySelector('[data-area-id="lionheart_city"] button').click();
+  const offlineCityImage = doc().querySelector('.expedition-dispatch-area__image');
+  await offlineCityImage.decode();
+  assert(offlineCityImage.src.endsWith('/assets/expeditions/lionheart_city.webp')
+    && offlineCityImage.naturalWidth >= 960 && offlineCityImage.naturalHeight >= 540,
+  'New Lionheart illustration was not available from verified offline cache');
+  doc().querySelector('.expedition-dispatch-modal__close').click();
+  note('New Lionheart city map and dispatch use the decoded raster while every artifact network request returns 503');
   await fetch('./offline', { method: 'POST', headers: { 'X-Test-Token': config.token }, body: 'off' });
   const newUi = await win().eval('import("/questnote-pwa/src/ui.js")');
   newUi.switchView('more');

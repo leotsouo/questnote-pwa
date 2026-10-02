@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "feature": "lionheart-city-art-and-pool-colour",
+  "sourceCommit": "6b0d5c0cf96f0d8d7cfaab86dca42db3cd23561f",
+  "baseline": {
+    "mainCommit": "27f7c147e5d6be8faac6c5bd988968bb7a6e6bfd",
+    "deployedCommit": "23ddaa4d3c21756da5d6986e5b60836ea08daab3",
+    "artifactId": "0f04afb6f8d0b4e447b20320524b63c39203469035478aea97a9929c5da897ba",
+    "contentBundleSemanticSha256": "588aae49654b5f9bb3b13a2d2d63157964366274bb076c5212e6a76017344ef6",
+    "mailbox": "Latest independently published correction preserved verbatim from main."
+  },
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\a48a151d94dfb8976678d7272be34051f2707c6645afb7623aa9551436568f03",
+      "artifactId": "a48a151d94dfb8976678d7272be34051f2707c6645afb7623aa9551436568f03",
+      "manifestSha256": "dc5a2da0b193658e2097f9e7ac269a2ca8dc7c66dcb80f1b4aabbc99d7e0279f",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\01\\01a0f937-8a89-76f3-b634-076560c96fbb\\lionheart-artifacts\\fc6946ae230b2583071b1e814227d1c8e175b185750fe96e3fe7834b3e9d50e0",
+      "artifactId": "fc6946ae230b2583071b1e814227d1c8e175b185750fe96e3fe7834b3e9d50e0",
+      "manifestSha256": "c5fcf60d26506497f974564f63bb4aca23359134f1f10cafbe09da0b95131af7",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "previewUrl": "http://127.0.0.1:59765/questnote-pwa-preview/",
+  "checks": {
+    "functional": {
+      "status": "pass",
+      "evidence": "v359-browser.json: 12 actual artifact checks, workshop/gifts, specialties, area, milestones, draws/pity and transactions."
+    },
+    "artworkAndAnimation": {
+      "status": "pass",
+      "evidence": "Built-in generated raster AI inspected; v359-animation.json: 10 actual scenes, skip/reduced motion/failure/order; v359-visual.json and PNGs: all 3 app themes, steam gradients actually computed, mobile 390×844 and desktop 1280×900."
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "Map/dispatch decode the same 960×540 WebP; v359-region-image-provenance.json records hash/prompt/cost; v359-update.json confirms offline image with HTTP503."
+    },
+    "backupAndTransactions": {
+      "status": "pass",
+      "evidence": "v359-browser.json duplicate import and concurrency; v359-update.json eight lifecycle/save checks. Only known mailbox publication timestamp advances; claimed/read IDs and original player stores retained."
+    },
+    "regressions": {
+      "status": "pass",
+      "evidence": "v359-npm-test.log.gz:281 integration +11 theme +5 animation tests, reveal assertions; v359-pool-release-smoke.log.gz; pools validation and 128×2 pet/8 region decodes; complete catalog semantic hash unchanged."
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "Both immutable artifacts strictly verified; actual V3.5.8→V3.5.9 offline update, waiting/busy/edit/other-window vetoes and decoded city image."
+    },
+    "preview": {
+      "status": "pass",
+      "evidence": "Pinned isolated loopback preview; HTTPS formally verified after Pages publication, not claimed as a prepublication HTTPS preview."
+    }
+  },
+  "packageHash": "0f64f6fb3641cd9b9be44311b4ecdcda316791dd3a990b975451f78f9c7c3022",
+  "publicationAuthorization": {
+    "rawUserInstruction": "生成後直接發到正式版",
+    "additionalUserInstruction": "並且卡池背景顏色可以稍微跟劍隱山河做出差別 現在顏色很像",
+    "scope": "Generated Lionheart region artwork, distinct pool background, SOP and image gates; AI review then direct production publication.",
+    "packageHash": "0f64f6fb3641cd9b9be44311b4ecdcda316791dd3a990b975451f78f9c7c3022",
+    "recordedAt": "2026-10-02T09:15:12.963Z",
+    "humanInspectedGeneratedBytes": false
+  },
+  "reviewMode": "User expressly delegated this corrective artwork review and direct publication. This scoped instruction overrides waiting for another human artwork/final gate; no fabricated human review or reuse of old approval. Normal new-pool approvals remain unchanged.",
+  "diagnostics": {
+    "initialAnimationFailure": "Concurrent preview App wrote same isolated fixture while animation compared its snapshot. Preserved raw failure, then separate random origins produced 10 passing cases.",
+    "initialUpdateFailure": "Only globalMailboxState.lastSeenGeneratedAt advanced to the known independently published mailbox timestamp. Preserve raw diagnostic, assert allowed pinned timestamps and retain claimed/read IDs, then rerun all 8 checks."
+  },
+  "automatedPackageChecks": "pass",
+  "deploymentStatus": "authorized; not yet published"
+}
