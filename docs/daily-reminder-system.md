@@ -3,6 +3,14 @@
 日期：2026-09-30。狀態：已實作 V3.4.27，獨立 Cloudflare Worker／D1 已部署；網站發布與實機收件狀態見發布紀錄。
 來源：fetch 後的 `origin/main`，`e34672242db6c9a79f199d59d3dbdd4cc6c64e13`。
 
+2026-10-02 通知修復：正式環境已到期的訂閱沒有每日發送紀錄，近兩天日誌及 GraphQL Cron 事件查詢均未見 scheduled invocation。重新註冊等效 Cron 並等待超過文件中的 15 分鐘傳播期，仍未產生排程紀錄；Cloudflare 內部原因未確認。獨立診斷確認 Durable Object alarm 能連續自行執行，因此正式背景喚醒改用 SQLite-backed `ReminderScheduler` alarm，按分鐘持續排程；停用原 Cron，避免兩種驅動同時發送。單一小批次派送是協調邊界，App API 仍在一般 Worker 中處理，不經 Durable Object。
+
+alarm 先持久保存下一個分鐘的喚醒，再處理最多四筆到期安裝，避免下游故障耗盡重試後永久停跑。授權的設定同步會確認 alarm 存在，既有喚醒不因頻繁同步而順延。部署時透過獨立 Worker secret 保護的 `POST /_internal/scheduler/start` 啟動既有訂閱；金鑰只在 Cloudflare secret 中，不放到前端或 Git。`worker-runtime.js` 是部署入口，匯出 Durable Object 與既有 API handler。
+
+新增私密資料庫中的單列排程健康記錄，`GET /health` 與授權的 `/status` 提供最近啟動／完成時間及健康狀態。`ready` 僅代表推播金鑰就緒，`scheduler.healthy` 才代表最近五分鐘完成過背景排程，`driver` 指明背景驅動；讀取 API 不會啟動排程或刷新這份記錄。另修正漏掉前一天後直接跳過今天的恢復問題，並以實際執行時間判斷通知是否過期。當天若只被略過而沒有發送，明確改成當天較晚的時間會原子重設該筆未送出的紀錄；已接受的通知不能重送，前景同步也會保留最近的發送狀態。修改時間時正在處理但尚未發送的舊工作，會保留新時間的發送資格。
+
+本機驗證：`npm run test:reminders` 與 `npm run test:reminders:runtime`。後者使用記憶體 D1、SQLite-backed 測試物件與攔截所有外部推播的 workerd，直接執行部署模組的 alarm handler；同時驗證 Apple 與 Android 供應商、無前景同步、下一次喚醒、漏日恢復與去重。正式部署驗證必須讀到連續兩次自行更新的背景健康記錄；實機收件仍須 iPhone 與 Android 個別確認。每分鐘約 1,440 次 alarm／日及保存下一次喚醒的 storage write，仍須依帳號額度觀察使用量。
+
 ## 使用者會得到什麼
 
 前一天安排任務，隔天在自訂時間收到一則 QuestNote 系統通知，點開直接看到今日任務與習慣。App 不必保持開啟。使用者已確認 iPhone 與 Android 都必須支援，兩者均為第一版必要驗收平台。第一版預設每天 08:00、Asia/Taipei，可改時間；啟用前需使用者主動同意通知與提醒資料同步。

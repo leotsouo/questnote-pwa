@@ -3,6 +3,7 @@ import { sendPush } from './push.js';
 
 const MAX_BYTES = 512 * 1024;
 const LIFETIME = 30 * 86400000;
+const SCHEDULER_MAX_AGE = 5 * 60000;
 const fail = (status, message) => Object.assign(new Error(message), { status });
 const hash = async (value) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value)))).map((b) => b.toString(16).padStart(2, '0')).join('');
 const json = (value, status = 200) => new Response(JSON.stringify(value), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
@@ -69,9 +70,18 @@ async function authenticate(request, env) {
   if (!row || row.updated_at < Date.now() - LIFETIME) throw fail(401, '提醒身分已過期，請重新啟用');
   return row;
 }
+async function schedulerHealth(env, now) {
+  const row = await env.DB.prepare('SELECT scheduled_at, started_at, completed_at, status FROM scheduler_health WHERE singleton = ?').bind(1).first();
+  return {
+    driver: env.SCHEDULER ? 'durable-alarm' : 'cron',
+    healthy: !!row?.completed_at && row.status !== 'failed' && row.completed_at >= now - SCHEDULER_MAX_AGE,
+    lastScheduledAt: row?.scheduled_at || null, lastStartedAt: row?.started_at || null,
+    lastCompletedAt: row?.completed_at || null, lastStatus: row?.status || 'unverified',
+  };
+}
 async function route(request, env) {
   const path = new URL(request.url).pathname; const now = Date.now();
-  if (path === '/health' && request.method === 'GET') return json({ service: 'questnote-reminders', version: 1, ready: !!env.VAPID_PRIVATE_KEY });
+  if (path === '/health' && request.method === 'GET') return json({ service: 'questnote-reminders', version: 3, ready: !!env.VAPID_PRIVATE_KEY, scheduler: await schedulerHealth(env, now) });
   if (path === '/v1/push/public-key' && request.method === 'GET') return json({ publicKey: env.VAPID_PUBLIC_KEY });
   if (env.API_RATE && !(await env.API_RATE.limit({ key: request.headers.get('CF-Connecting-IP') || 'unknown' })).success) throw fail(429, '操作太頻繁，請稍後重試');
   if (path === '/v1/reminder-installations' && request.method === 'POST') {
@@ -87,15 +97,24 @@ async function route(request, env) {
     if (body.revision < row.revision || (body.revision === row.revision && encoded !== row.state_json)) throw fail(409, '收到舊的提醒資料，請重試同步');
     let next = nextReminderAt(now, state.settings);
     const previous = row.state_json ? JSON.parse(row.state_json) : null;
-    if (previous && previous.settings.time === state.settings.time && previous.settings.timeZone === state.settings.timeZone
+    const sameSchedule = previous && previous.settings.time === state.settings.time && previous.settings.timeZone === state.settings.timeZone;
+    if (sameSchedule
       && row.next_at && row.next_at > now - 3600000) next = row.next_at;
-    if (row.last_day === zonedParts(next, state.settings.timeZone).date) next = nextReminderAt(next + 1, state.settings);
-    const changed = await env.DB.prepare('UPDATE installations SET revision = ?, state_json = ?, enabled = 1, next_at = ?, updated_at = ?, last_status = ? WHERE id = ? AND (revision < ? OR (revision = ? AND state_json = ?)) AND last_day IS ? RETURNING id')
-      .bind(body.revision, encoded, body.revision === row.revision ? row.next_at : next, now, 'enabled', row.id, body.revision, body.revision, encoded, row.last_day).first();
+    const priorDelivery = previous && !sameSchedule && body.revision > row.revision && row.last_day === zonedParts(next, state.settings.timeZone).date
+      ? await env.DB.prepare('SELECT status FROM deliveries WHERE installation_id = ? AND local_date = ?').bind(row.id, row.last_day).first() : null;
+    const rescheduleSkipped = priorDelivery?.status === 'skipped';
+    if (row.last_day === zonedParts(next, state.settings.timeZone).date && !rescheduleSkipped) next = nextReminderAt(next + 1, state.settings);
+    const updates = [env.DB.prepare('UPDATE installations SET revision = ?, state_json = ?, enabled = 1, next_at = ?, updated_at = ?, last_status = ?, last_day = ? WHERE id = ? AND (revision < ? OR (revision = ? AND state_json = ?)) AND last_day IS ? RETURNING id')
+      .bind(body.revision, encoded, body.revision === row.revision ? row.next_at : next, now, rescheduleSkipped ? 'enabled' : row.last_status || 'enabled', rescheduleSkipped ? null : row.last_day, row.id, body.revision, body.revision, encoded, row.last_day)];
+    if (rescheduleSkipped) updates.push(env.DB.prepare("UPDATE deliveries SET status = 'pending', attempts = 0, lease_until = 0, retry_at = 0 WHERE installation_id = ? AND local_date = ? AND status = 'skipped' AND EXISTS (SELECT 1 FROM installations WHERE id = ? AND revision = ? AND state_json = ? AND next_at = ?)")
+      .bind(row.id, row.last_day, row.id, body.revision, encoded, next));
+    // Publish the new future schedule and reset only its unsent delivery atomically.
+    const changed = (await env.DB.batch(updates))[0].results?.[0];
     if (!changed) throw fail(409, '同步版本已更新');
+    if (env.SCHEDULER) await env.SCHEDULER.getByName('minute-dispatch').ensure();
     return json({ revision: body.revision, syncedAt: now, nextAt: body.revision === row.revision ? row.next_at : next });
   }
-  if (path.endsWith('/status') && request.method === 'GET') return json({ revision: row.revision, enabled: !!row.enabled, nextAt: row.next_at, lastStatus: row.last_status, expiresAt: row.updated_at + LIFETIME });
+  if (path.endsWith('/status') && request.method === 'GET') return json({ revision: row.revision, enabled: !!row.enabled, nextAt: row.next_at, lastStatus: row.last_status, expiresAt: row.updated_at + LIFETIME, scheduler: await schedulerHealth(env, now) });
   if (path.endsWith('/test') && request.method === 'POST') {
     if (!row.enabled || !row.state_json) throw fail(400, '請先啟用每日提醒');
     const allowed = await env.DB.prepare('UPDATE installations SET last_test_at = ? WHERE id = ? AND last_test_at < ? RETURNING id').bind(now, row.id, now - 60000).first();
@@ -113,6 +132,11 @@ async function route(request, env) {
   }
   throw fail(405, '不支援此操作');
 }
+function nextAfterDelivery(now, settings, processedDate) {
+  // Recover today's unprocessed occurrence after a missed earlier day, within its delivery window.
+  const next = nextReminderAt(now - 3600000, settings);
+  return zonedParts(next, settings.timeZone).date > processedDate ? next : nextReminderAt(Math.max(now, next), settings);
+}
 export async function runSchedule(env, now = Date.now(), push = sendPush) {
   const rows = (await env.DB.prepare('SELECT * FROM installations WHERE enabled = 1 AND next_at <= ? AND updated_at > ? ORDER BY next_at LIMIT 4').bind(now, now - LIFETIME).all()).results;
   for (const candidate of rows) {
@@ -125,13 +149,16 @@ export async function runSchedule(env, now = Date.now(), push = sendPush) {
       if (previous && (['accepted', 'skipped', 'failed', 'subscription-expired'].includes(previous.status) || (previous.attempts >= 3 && previous.lease_until <= now))) {
         const state = JSON.parse(candidate.state_json);
         await env.DB.prepare('UPDATE installations SET next_at = ?, last_day = ?, last_status = ? WHERE id = ? AND next_at = ?')
-          .bind(nextReminderAt(now, state.settings), date, previous.status === 'sending' ? 'failed' : previous.status, candidate.id, candidate.next_at).run();
+          .bind(nextAfterDelivery(now, state.settings, date), date, previous.status === 'sending' ? 'failed' : previous.status, candidate.id, candidate.next_at).run();
       }
       continue;
     }
     const row = await env.DB.prepare('SELECT * FROM installations WHERE id = ?').bind(candidate.id).first();
     if (!row || !row.enabled || row.next_at !== candidate.next_at) {
-      await env.DB.prepare("UPDATE deliveries SET status = 'skipped' WHERE installation_id = ? AND local_date = ?").bind(candidate.id, date).run(); continue;
+      const rescheduledToday = row?.enabled && row.next_at > now
+        && zonedParts(row.next_at, JSON.parse(row.state_json).settings.timeZone).date === date;
+      await env.DB.prepare('UPDATE deliveries SET status = ?, lease_until = 0, attempts = MAX(0, attempts - 1), retry_at = 0 WHERE installation_id = ? AND local_date = ?')
+        .bind(rescheduledToday ? 'pending' : 'skipped', candidate.id, date).run(); continue;
     }
     const state = JSON.parse(row.state_json); const digest = buildDailyDigest(state, now);
     const deadline = Math.min(candidate.next_at + 3600000, nextReminderAt(candidate.next_at, { ...state.settings, time: '00:00' }));
@@ -146,13 +173,33 @@ export async function runSchedule(env, now = Date.now(), push = sendPush) {
     if (status === 'retry' && claim.attempts >= 3) status = 'failed';
     await env.DB.prepare('UPDATE deliveries SET status = ?, lease_until = 0, retry_at = ? WHERE installation_id = ? AND local_date = ?').bind(status, now + Math.max(60, retry) * 1000, row.id, date).run();
     if (status !== 'retry') await env.DB.prepare('UPDATE installations SET next_at = ?, last_day = ?, last_status = ?, enabled = CASE WHEN ? = ? THEN 0 ELSE enabled END WHERE id = ? AND next_at = ?')
-      .bind(nextReminderAt(now, state.settings), date, status, status, 'subscription-expired', row.id, candidate.next_at).run();
+      .bind(nextAfterDelivery(now, state.settings, date), date, status, status, 'subscription-expired', row.id, candidate.next_at).run();
   }
   await env.DB.prepare('DELETE FROM deliveries WHERE created_at < ? OR installation_id IN (SELECT id FROM installations WHERE updated_at < ?)').bind(now - LIFETIME, now - LIFETIME).run();
   await env.DB.prepare('DELETE FROM installations WHERE updated_at < ?').bind(now - LIFETIME).run();
 }
+export async function runScheduled(env, scheduledAt, push = sendPush, clock = Date.now) {
+  const startedAt = clock();
+  try {
+    await env.DB.prepare("INSERT INTO scheduler_health(singleton, scheduled_at, started_at, status) VALUES(1, ?, ?, 'running') ON CONFLICT(singleton) DO UPDATE SET scheduled_at = excluded.scheduled_at, started_at = excluded.started_at, status = 'running' WHERE scheduler_health.started_at <= excluded.started_at")
+      .bind(scheduledAt, startedAt).run();
+    // Use the actual execution time for deadlines; a delayed trigger must not send expired content.
+    await runSchedule(env, startedAt, push);
+    await env.DB.prepare("UPDATE scheduler_health SET completed_at = ?, status = 'ok' WHERE singleton = 1 AND started_at = ?").bind(clock(), startedAt).run();
+    console.info(JSON.stringify({ event: 'reminder-schedule-completed', scheduledAt }));
+  } catch (error) {
+    console.error(JSON.stringify({ event: 'reminder-schedule-failed', scheduledAt }));
+    try { await env.DB.prepare("UPDATE scheduler_health SET status = 'failed' WHERE singleton = 1 AND started_at = ?").bind(startedAt).run(); } catch {}
+    throw error;
+  }
+}
 export default {
   async fetch(request, env) {
+    if (new URL(request.url).pathname === '/_internal/scheduler/start') {
+      if (request.method !== 'POST' || !env.SCHEDULER_BOOTSTRAP_TOKEN || request.headers.get('Authorization') !== `Bearer ${env.SCHEDULER_BOOTSTRAP_TOKEN}`) return json({ error: '未授權' }, 403);
+      try { return json(await env.SCHEDULER.getByName('minute-dispatch').ensure()); }
+      catch { return json({ error: '排程啟動失敗' }, 503); }
+    }
     const origin = request.headers.get('Origin'); const allowed = (env.ALLOWED_ORIGINS || '').split(',').includes(origin);
     const publicGet = request.method === 'GET' && ['/health', '/v1/push/public-key'].includes(new URL(request.url).pathname);
     if (!allowed && !publicGet) return json({ error: '來源不允許' }, 403);
@@ -170,5 +217,5 @@ export default {
     }
     return response;
   },
-  async scheduled(event, env) { await runSchedule(env, event.scheduledTime); },
+  async scheduled(event, env) { await runScheduled(env, event.scheduledTime); },
 };

@@ -14,3 +14,8 @@ CREATE TABLE IF NOT EXISTS deliveries (
   PRIMARY KEY (installation_id, local_date)
 );
 CREATE INDEX IF NOT EXISTS delivery_expiry ON deliveries(created_at);
+CREATE TABLE IF NOT EXISTS scheduler_health (
+  singleton INTEGER PRIMARY KEY CHECK(singleton = 1),
+  scheduled_at INTEGER NOT NULL, started_at INTEGER NOT NULL,
+  completed_at INTEGER, status TEXT NOT NULL CHECK(status IN ('running', 'ok', 'failed'))
+);

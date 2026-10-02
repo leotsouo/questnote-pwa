@@ -2,13 +2,17 @@
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "questnote-reminders",
   "account_id": "c759449ca02c133f573e85d838b8e960",
-  "main": "worker.js",
+  "main": "worker-runtime.js",
   "compatibility_date": "2026-09-30",
   "compatibility_flags": [
     "nodejs_compat"
   ],
   "workers_dev": true,
   "preview_urls": false,
+  "durable_objects": {
+    "bindings": [{ "name": "SCHEDULER", "class_name": "ReminderScheduler" }]
+  },
+  "migrations": [{ "tag": "reminder-scheduler-v1", "new_sqlite_classes": ["ReminderScheduler"] }],
   "vars": {
     "ALLOWED_ORIGINS": "https://leotsouo.github.io",
     "VAPID_SUBJECT": "https://leotsouo.github.io/questnote-pwa/",
@@ -23,7 +27,6 @@
   ],
   "triggers": {
     "crons": [
-      "* * * * *"
     ]
   },
   "ratelimits": [
