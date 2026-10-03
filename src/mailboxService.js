@@ -514,7 +514,7 @@ export async function markMailboxMessageRead(messageId) {
  * 若崩潰發生在 transaction commit 前：整筆 rollback，可再試。
  * 若崩潰發生在 commit 後、UI 更新前：獎勵與 claimed 已一致，不會重複發放。
  */
-async function applyMailboxRewardInTransaction(messageId, reward) {
+async function applyMailboxRewardInTransaction(messageId, reward, markRead = true) {
   const db = await openDB();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORES.META, 'readwrite');
@@ -563,7 +563,7 @@ async function applyMailboxRewardInTransaction(messageId, reward) {
         const nextState = {
           ...state,
           claimedIds: [...state.claimedIds, messageId],
-          readIds: state.readIds.includes(messageId)
+          readIds: !markRead || state.readIds.includes(messageId)
             ? state.readIds
             : [...state.readIds, messageId],
         };
@@ -640,7 +640,7 @@ export async function claimMailboxReward(message, options = {}) {
       return { success: false, error: '此補償已領取', alreadyClaimed: true };
     }
 
-    const result = await applyMailboxRewardInTransaction(message.id, validated.reward);
+    const result = await applyMailboxRewardInTransaction(message.id, validated.reward, options.markRead !== false);
     if (!result) {
       return { success: false, error: '領取失敗，請稍後再試' };
     }

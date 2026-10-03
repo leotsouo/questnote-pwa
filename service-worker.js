@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.5.19 companion art review
+ * QuestNote Service Worker — V3.5.23
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818';
+const CACHE_NAME = 'questnote-production-app-12c4a4103be3d3a45e112eed5ac1566bc482c2ce85a470fb0e3d5672663f9cf0';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818",
-  "sourceCommit": "2e226b65d389357bf90a726ecf8f24adeec982d2",
+  "artifactId": "12c4a4103be3d3a45e112eed5ac1566bc482c2ce85a470fb0e3d5672663f9cf0",
+  "sourceCommit": "47b7c337a39612a4eb337a22c64e812dd22f7454",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -88,7 +88,7 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d/catalog.json": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "5fd2e4f77a48f6767fa81177162a4d433420fe8dfa3dd187940a7e014b4e17dd",
+  "index.html": "d4c939547d2374baf9391043bbf9684e491124e2d8967e18b712de2b62cf8048",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "527b3c8706db9c1b653efe7113eab9d079dff5e77612c8a0dd3b9be20583a288",
   "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
@@ -109,17 +109,17 @@ const PRECACHE_HASHES = {
   "src/collectionService.js": "4babc98a28293244bc833788c641fa20dc0aca396eab6aba0f5ba797f35d3da6",
   "src/companionDialogueService.js": "ca84154fbb28fadbaa176f46c02079b8be2c9863f4567d5c2cc6c29347998876",
   "src/companionService.js": "3974b56613aea67e80f7659caa9dbca0d9397f298948f1f98c9e60b8e446d6aa",
-  "src/dailyCheckInService.js": "d994210565a779da2265f8a32334dc233a06b4dee037672ef433eb5fa123b62b",
+  "src/dailyCheckInService.js": "8edd56d8918232f5c1d19ce46e3a39686d761b73a0e28fe0a6bbc170661575ad",
   "src/db.js": "d14cc93d1a97c250ed5aae3bea1521b031575909aaf8a59586f36a1ad6d25b51",
   "src/deferredRenderGate.js": "cbbaf2e401be35eab6d673a935c13fef615286a554937dc497b02c4aa6aca6e5",
   "src/devService.js": "af56b92e6fcf886786f4a41d777dc355c35c0d0bd4b39fd72fc11217c4238dd4",
   "src/dialogFocus.js": "24eb36d909579732f8b9776c4f2e2a3fec8e112d8e96194257b6b16bee49eecf",
-  "src/encounter-ceremony.css": "e7d557c62e64172f97b5d847acb17a9e7733b003d6c5b1cbeae14b6de03b37cb",
-  "src/encounter-view.css": "dc3fe61a5f80ebe541351cbb62605c8e99abcbdafd223ee9f680cca94ac2f19b",
-  "src/encounterCeremony.js": "9b188aba65f108f96ba7b91115c6339e1375b4a524c0c6f6c3e04cf262171b79",
+  "src/encounter-ceremony.css": "ae74aac4b2d91c35d0728cf02c049e1d0cfc09bc6c316d0d65286a3e30ed6c5f",
+  "src/encounter-view.css": "0e05032df7a75ee20a42210b6c07e2bf57b48e0f3a7f2e415eabd33ff13f3bc3",
+  "src/encounterCeremony.js": "0eddf9959d95ad4f13ab7299f8972e36455f2b57e31de2457f0db59f23d6b371",
   "src/encounterScenery.js": "f94fe3d764ec0c920674f6991fe4ed271741ec1e960170a2f9e7c12baa9adef9",
-  "src/encounterView.js": "b658952795687d72fb40a0ba40e4aa5ca419a68c4fa8bbd73b7b0e1473260484",
-  "src/encounterViewModel.js": "3abd891ceae7e2f4ba229720035530513a7eea56a78f3f225eec2716a140f064",
+  "src/encounterView.js": "70738eaf8501204ad305809dc0d9a2e77d1336b1eb7e06cb3cc55b84ab05ecc4",
+  "src/encounterViewModel.js": "0cbbf3475d17a847a119e04546961d9dfe6ac1710f1406ed6102d99821ffda62",
   "src/expeditionGameplay.js": "ac8b8ab0401c9d263a4ee359405717f60bc0b8a6e4914b0b1e8b9e4cf69767d7",
   "src/expeditionService.js": "caec8978877213406550d8604dd480f791229e6e4f6ece88505e104836d84722",
   "src/expeditionStatusService.js": "99e665eea61bc0de3f9dcc6a1f1cfe01c17914f27b4bf3ce6347ef7d7302e3e5",
@@ -130,7 +130,7 @@ const PRECACHE_HASHES = {
   "src/filterGestureController.js": "548300cf1d63d705715fc00668b48b35b5389f351e21ffc3a8e417a350774ad7",
   "src/font-size-settings.css": "47476e661b6f993b8586f37fe5303add68c679793effb9ecaafc2c5b1adde74f",
   "src/gachaService.js": "d631816bfcb980ecbe502cbecf867e0adf65871d00d6ef4e70adce22df9c9bf9",
-  "src/gachaTransactionCore.js": "692f282be18213389a5a64d9d056b6c15e0cd7f7a908acf8d306f972f0cf38d4",
+  "src/gachaTransactionCore.js": "6e2abc7ba6a27aacb8c838f03e0b64ac37b0893efa3b18252f845469ff8c7b8c",
   "src/glacierArrivalScene.js": "328167de5397d1ebfbfe8fa5ec7338a4b8b285666fa57d598dbcd14d5121f0eb",
   "src/habitService.js": "ccfa3c54ce88d8333fe50e0f4de5926e27d1f8122c919b1bed2b62f160d5e240",
   "src/healthCheckService.js": "83e35ca90fb51b2029a82adac11cb96a4fec40063ce840081a05fb24092e365f",
@@ -143,7 +143,7 @@ const PRECACHE_HASHES = {
   "src/localArtPreview.js": "a4456caac3d209cb86c38b86ec187949b94602fd3fde966d3a78c0a30aa47b7e",
   "src/loreService.js": "2beab9e2c2ab3418b16e638e247d1976c916b537e6a7a21d754751c54336541c",
   "src/mailboxSchema.js": "070e2c731ac75a6bdbecfc24afad986d0357e440d1449c374d898d7e0b0ccd15",
-  "src/mailboxService.js": "9e2b08feedc9dc73beb9d18bcff62fd722af276c57ab4f79f9bc8d20eccfa0d0",
+  "src/mailboxService.js": "4c86ca53a6160fea64020efbd9c25806ab26c374ef87ca3dafcda7c900be1892",
   "src/onboardingController.js": "3592185e4c6fba023c65e8d8903ca2e169c092b107b8674e242d688575df872e",
   "src/onboardingLessons.js": "a9438d97708b85dccc2b6faff038a41d2f9051929d8341d28321ff90032bbd31",
   "src/onboardingService.js": "4289008c57efc95843d141a33cb2333c0d9af8c1188a3ba4157e2ab2dfd49a6a",
@@ -158,21 +158,22 @@ const PRECACHE_HASHES = {
   "src/petDataSchema.js": "2520849bac99b64337a17ed7836294749a1ff7fe9820391a0f9a71e6f1a7172b",
   "src/petPoolFilter.js": "8aab1c055fbdcd40209864ab4ec8b489cb284c73bcded88fa8a45e7b4eacb6db",
   "src/poolAwakeningController.js": "9db87f801c43d1fe4a69e8b0c91a119ae0e6622f0d477246b606aa56eabf3b51",
-  "src/poolContentContract.js": "c8a2508493b11419bc58864db684955709a1f3347896d6aa0762c5ff2407cf1e",
+  "src/poolContentContract.js": "c4495bab029c3a229d386c95ab9517a7c2d85ca908d72c3128827269c9f3827e",
   "src/poolDebutService.js": "e820255c52313e465679be1f1ba2a26492dfe0aca7cbfbd8f3627716552e7f7c",
   "src/poolPresentation.js": "a7a4ea67dd7e905dd70faa31527a92a119a47dc7badf3fc51a6b316fde84e5c8",
   "src/poolUnlockCore.js": "2be9a055162feaf7dd521a054e40853c2c3af1106a098708e40d33d2478b2c22",
   "src/poolUnlockService.js": "6e76ffc3c61f002c750435578a7ea5843c91df6f047b2ac2212b50bc150b800a",
   "src/preferencesService.js": "a9083541abf0cc152debd922aaf6a33fbd671dee04b85ce5300a6b2522a58401",
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
-  "src/questService.js": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
+  "src/questService.js": "ae9532ad78abb8af981d3d76adb9f06f132e81e1fed945bd77a608a7dd2bfa3b",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "275e85c0d67114984c9ed5d9802beb2aee6504e6bf4b5576e2870360015a35c3",
+  "src/releaseProfile.js": "b665f53f5bc7ad83f954ef41c519f753215edbcba24dc99dd1b41c529f4f6dae",
   "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
   "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
-  "src/rewardService.js": "a245a6e08e6ead6aa65dc4dbb99e8c767fa81bd210e253955359be1a5442e0ff",
+  "src/rewardClaimService.js": "6d4c05014013025e7999e0b1c37b9f6eaf63dd5af4f9e48c564d4c2512a87faf",
+  "src/rewardService.js": "4b5484f84458e81a94d6ab9abb09da2dae7b4de05b3df40b344d9b587dff3025",
   "src/shareService.js": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
   "src/standardUrCarousel.js": "8e2f9f84a14399e61a206d39d1e75ebd1903d025a24866b9b899fe77520deae3",
   "src/styles.css": "309ed3e52d158a52cd0df5711d1c76bbe15fa6f659a02521abc5b6bfc975aeb6",
@@ -192,13 +193,13 @@ const PRECACHE_HASHES = {
   "src/themeTokens.css": "7a898e987663c925e1913aafaa318d352048b294553affa068360f2d4ec3a596",
   "src/todayHabitsView.js": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
   "src/twilightPresentation.js": "a945ac27b8db66e8c0ae149ac31eab7190890f68cdf85dbf83eb023d6390bbaf",
-  "src/ui-polish.css": "d320d927f151a01bf2a26d8f60840d42d75b42cf5a5fbeb3354a37f2a74a076a",
-  "src/ui.js": "2c985569fb703d1be49a43ad6205efac6f635166ecda8ee6c1ea6caf7990bdeb",
+  "src/ui-polish.css": "c4fa1670490cf3f39508b0f48c3bcf78f247690b6eaa03948262c309a69bfa53",
+  "src/ui.js": "ab22ac7b9743ed49d5a8d8aead299cc7706729adf8061da66716521ee9857667",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "5da315451a3b1c10ec53e431fe40952f258d48692d8491618005c836fe15757b",
+  "src/version.js": "f27bfda27034715400b6b80892d5583b902a16c6921f59848a808ea6f08f57d1",
   "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
   "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
 };
@@ -327,6 +328,7 @@ const PRECACHE_URLS = [
   "src/reminderController.js",
   "src/reminderRules.js",
   "src/reminderService.js",
+  "src/rewardClaimService.js",
   "src/rewardService.js",
   "src/shareService.js",
   "src/standardUrCarousel.js",

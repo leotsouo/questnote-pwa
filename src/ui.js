@@ -7,6 +7,7 @@ import { LOCAL_ART_PREVIEW, renderLocalIdentityView } from './localArtPreview.js
 import { buildWorkshopGiftView } from './workshopGiftView.js';
 import { initFilterGestures } from './filterGestureController.js';
 import { trackUpdateActivity } from './updateActivity.js';
+import { claimAllAvailableRewards, isBulkClaimInProgress } from './rewardClaimService.js';
 import { updateControlsHtml, refreshUpdateControls } from './updateController.js';
 import { initReminders, renderReminderSettings } from './reminderController.js';
 import { shiftDate } from './reminderRules.js';
@@ -119,7 +120,6 @@ import { createStandardUrCarousel } from './standardUrCarousel.js';
 import { resolveActivePool, resolveDrawCost, normalizeUnlockExpansion, resolvePoolPresentationModel, validatePoolContent } from './poolContentContract.js';
 import {
   claimAchievementReward,
-  claimAllAchievementRewards,
   equipTitle,
   markTitlesSeen,
   markExportedBackup,
@@ -613,7 +613,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
     bindModals();
     bindDelegatedEvents();
     bindActivityTracking();
-    bindAchievementClaimAll();
+    bindRewardClaimAll();
     bindGlobalMailboxEntry();
     initFeedback({ navigate: switchView });
     initReminders({ openToday: () => { taskViewMode = 'today'; switchView('tasks'); renderTasksView(); } });
@@ -714,7 +714,84 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
   }
 }
 
-/** 使用事件委派，避免重複渲染後按鈕失效 */
+const CLAIM_ALL_LABELS = { blessing: '每日祝福', quests: '冒險任務（每日與每週）',
+  collection: '收藏里程碑', exploration: '所有地區探索里程碑', mailbox: '信箱附件', achievements: '成就' };
+const CLAIM_CONTROLS = '[data-claim-all], [data-action="claim-quest"], [data-action="claim-achievement"], '
+  + '[data-action="mailbox-claim"], [data-action="daily-check-in"], '
+  + '[data-action="daily-open-wheel"], #daily-wheel-start, [data-action="claim-exploration-milestone"], '
+  + '[data-collection-milestone-action="claim"]';
+let bulkClaimBusy = false;
+
+function claimAllButtonHtml(kind, count) {
+  if (!(count > 0)) return '';
+  return `<button type="button" class="btn btn--secondary btn--sm reward-claim-all" data-claim-all="${kind}"
+    aria-label="${CLAIM_ALL_LABELS[kind]}：一鍵領取 ${count} 份獎勵" ${bulkClaimBusy ? 'disabled' : ''}>
+    <span>一鍵領取</span><span class="reward-claim-all__count" aria-hidden="true">${count}</span></button>`;
+}
+
+function bindRewardClaimAll() {
+  document.addEventListener('click', (e) => {
+    const control = e.target.closest(CLAIM_CONTROLS);
+    if (!control) return;
+    if (bulkClaimBusy || isBulkClaimInProgress()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return;
+    }
+    if (!control.dataset.claimAll || control.disabled) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    void trackUpdateActivity(() => handleRewardClaimAll(control.dataset.claimAll, control))();
+  }, true);
+}
+
+async function handleRewardClaimAll(kind, button) {
+  if (bulkClaimBusy || isBulkClaimInProgress()) return;
+  bulkClaimBusy = true;
+  const controls = [...document.querySelectorAll(CLAIM_CONTROLS)].map((el) => [el, el.disabled]);
+  controls.forEach(([el]) => { el.disabled = true; });
+  const originalLabel = button.innerHTML;
+  button.textContent = '領取中…';
+  button.setAttribute('aria-busy', 'true');
+  try {
+    const result = await claimAllAvailableRewards(kind, { allPets: state.allPets || [],
+      payload: mailboxPayload, ...getMailboxCatalogs(), appVersion: APP_VERSION });
+    if (kind === 'mailbox') {
+      mailboxStateLocal = await getGlobalMailboxState();
+      for (const item of result.results || []) void recordOnboardingEvent('mailbox-claimed', { messageId: item.entry.id });
+    }
+    await onRefresh({ renderMode: 'current' });
+    if (result.count > 0) {
+      const rewardText = formatDailyRewardBundle(result.rewards);
+      const extraCount = (result.results || []).filter((item) => item.reward?.title || item.reward?.badgeId || item.badge).length;
+      const extraText = extraCount ? '，含徽章／稱號' : '';
+      const failures = result.failures?.length || 0;
+      showToast(`已領取 ${result.count} 份${kind === 'blessing' ? '祝福' : '獎勵'}${rewardText ? `：${rewardText}` : ''}${extraText}${failures ? `；${failures} 份未領取，可再試一次` : ''}`,
+        failures ? 'warning' : 'reward', 4200);
+      await handleAchievementCheckAfterAction();
+    } else {
+      showToast(result.error || result.failures?.[0]?.error || '目前沒有可領取的獎勵', result.failures?.length ? 'warning' : 'info');
+    }
+  } catch (error) {
+    showToast(error?.message || '領取未完成，請稍後再試', 'warning');
+  } finally {
+    bulkClaimBusy = false;
+    controls.forEach(([el, disabled]) => { if (el.isConnected) el.disabled = disabled; });
+    if (button.isConnected) {
+      button.innerHTML = originalLabel;
+      button.removeAttribute('aria-busy');
+    }
+    renderDailyBlessingSection();
+    renderQuestPanel();
+    renderHomeHub();
+    renderCollectionMilestones();
+    renderExplorationPanel();
+    renderAchievementsView();
+    renderGlobalMailboxModal();
+    updateMailboxEntryBadge();
+  }
+}
+
 function bindDelegatedEvents() {
   document.getElementById('view-tasks')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const target = e.target.closest('[data-action]');
@@ -1198,13 +1275,6 @@ function bindDelegatedEvents() {
     const titleBtn = e.target.closest('[data-action="open-titles"]');
     if (titleBtn) {
       openTitleManagementModal();
-      return;
-    }
-
-    const claimAllBtn = e.target.closest('[data-action="claim-all-achievements"]');
-    if (claimAllBtn) {
-      e.preventDefault();
-      await handleClaimAllAchievements();
       return;
     }
 
@@ -2224,13 +2294,6 @@ function buildDailyBlessingCardData() {
       <span class="daily-reward-chip__text">${escapeHtml(chip.text)}</span>
     </span>`).join('');
 
-  const quickActions = collapsed && hasPending
-    ? `<div class="daily-blessing-card__quick-actions">
-        ${!checkedIn ? '<button type="button" class="btn btn--secondary btn--sm daily-blessing-card__quick-btn" data-action="daily-check-in">簽到</button>' : ''}
-        ${!spun ? '<button type="button" class="btn btn--primary btn--sm daily-blessing-card__quick-btn" data-action="daily-open-wheel">轉盤</button>' : ''}
-      </div>`
-    : '';
-
   const html = `
     <div class="daily-blessing-card${collapsed ? ' daily-blessing-card--collapsed' : ''}${hasPending ? ' daily-blessing-card--pending' : ''}">
       <header class="daily-blessing-card__header">
@@ -2246,7 +2309,7 @@ function buildDailyBlessingCardData() {
           <span class="${statusBadgeClass}">${escapeHtml(statusBadgeText)}</span>
           <span class="daily-blessing-card__chevron" aria-hidden="true">${collapsed ? '▼' : '▲'}</span>
         </button>
-        ${quickActions}
+        ${claimAllButtonHtml('blessing', Number(!checkedIn) + Number(!spun))}
       </header>
 
       <div class="daily-blessing-card__body" ${collapsed ? 'hidden' : ''}>
@@ -2432,6 +2495,7 @@ function renderQuestPanel() {
           <span class="quest-panel__status-badge ${statusClass}">${statusText}</span>
           <span class="quest-panel__collapse-icon" aria-hidden="true">${collapsed ? '▼' : '▲'}</span>
         </button>
+        ${claimAllButtonHtml('quests', totalClaimable)}
       </header>
       <div class="quest-panel__body" id="quest-panel-body" ${collapsed ? 'hidden' : ''}>
         <div class="quest-panel__summary">
@@ -4255,6 +4319,20 @@ function renderGlobalMailboxModal() {
 
   const offline = document.getElementById('mailbox-offline-hint');
   if (offline) offline.hidden = !mailboxFromCache;
+
+  const filtersEl = document.getElementById('mailbox-filters');
+  let claimActions = document.getElementById('mailbox-claim-actions');
+  if (!claimActions && filtersEl) {
+    claimActions = document.createElement('div');
+    claimActions.id = 'mailbox-claim-actions';
+    claimActions.className = 'mailbox-claim-actions';
+    filtersEl.after(claimActions);
+  }
+  if (claimActions) {
+    claimActions.hidden = vmAll.claimableCount === 0;
+    claimActions.innerHTML = vmAll.claimableCount > 0
+      ? `<span class="mailbox-claim-actions__hint">收下所有可領附件，信件仍保留</span>${claimAllButtonHtml('mailbox', vmAll.claimableCount)}` : '';
+  }
 
   const filters = document.getElementById('mailbox-filters');
   if (filters) {
@@ -6137,8 +6215,10 @@ function collectionMilestoneCardHtml(item) {
 }
 
 function renderCollectionMilestones() {
-  const panel = document.getElementById('collection-milestones-panel');
+  const panel = document.getElementById('encounter-collection-milestones') || document.getElementById('collection-milestones-panel');
   if (!panel) return;
+  const legacyPanel = document.getElementById('collection-milestones-panel');
+  if (legacyPanel && legacyPanel !== panel) legacyPanel.replaceChildren();
   const summary = state.collectionMilestoneSummary;
   if (!summary) {
     panel.innerHTML = '<p class="collection-summary__empty">收藏里程碑載入中…</p>';
@@ -6165,11 +6245,14 @@ function renderCollectionMilestones() {
   }).join('');
 
   panel.innerHTML = `
+    <div class="reward-claim-header collection-milestones-header">
     <button type="button" class="collection-milestones-toggle" data-collection-milestone-action="toggle" aria-expanded="${collectionMilestonesExpanded}" aria-controls="collection-milestones-content">
       <span class="collection-milestones-toggle__title">收藏里程碑</span>
       <span class="collection-milestones-toggle__meta">完成 ${summary.metCount} / ${summary.total}　可領取 ${summary.claimableCount}</span>
       <span class="collection-milestones-toggle__arrow" aria-hidden="true">⌄</span>
     </button>
+    ${claimAllButtonHtml('collection', summary.claimableCount)}
+    </div>
     <div id="collection-milestones-content" class="collection-milestones-content" ${collectionMilestonesExpanded ? '' : 'hidden'}>
       <div class="collection-milestone-filters" role="tablist" aria-label="里程碑狀態">${filterButtons}</div>
       <div class="collection-milestone-list">
@@ -7034,6 +7117,7 @@ function renderExplorationPanel() {
 
   panelEl.innerHTML = `
     <div class="exploration-panel__wrap card ${collapsed ? 'is-collapsed' : ''}">
+      <div class="reward-claim-header">
       <button type="button" class="exploration-panel__toggle" data-action="toggle-exploration-panel" aria-expanded="${!collapsed}">
         <span class="exploration-panel__toggle-main">
           <span class="exploration-panel__toggle-icon" aria-hidden="true">🗺️</span>
@@ -7046,6 +7130,8 @@ function renderExplorationPanel() {
         </span>
         <span class="exploration-panel__toggle-chevron">${collapsed ? '▸' : '▾'}</span>
       </button>
+      ${claimAllButtonHtml('exploration', summary.totalClaimable)}
+      </div>
       ${
         collapsed
           ? ''
@@ -8306,59 +8392,6 @@ function buildHandbookHtml(model) {
   ].join('');
 }
 
-function bindAchievementClaimAll() {
-  document.getElementById('achievement-summary')?.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-action="claim-all-achievements"]');
-    if (!btn || btn.disabled) return;
-    e.preventDefault();
-    void trackUpdateActivity(handleClaimAllAchievements)();
-  });
-}
-
-async function handleClaimAllAchievements() {
-  const btn = document.querySelector('[data-action="claim-all-achievements"]');
-  if (btn?.disabled) return;
-  if (btn) btn.disabled = true;
-
-  try {
-    const result = await claimAllAchievementRewards(state?.allPets || []);
-    if (!result.success) {
-      showToast(
-        result.error || '領取失敗',
-        result.error === '目前沒有可領取的成就' ? 'info' : 'error'
-      );
-      state.achievementSummary = await getAchievementSummary(state?.allPets || []);
-      renderAchievementsView();
-      return;
-    }
-
-    await onRefresh({ renderMode: ['achievements', 'tasks'] });
-
-    const rewards = result.rewards || {};
-    const materialText = formatAchievementReward(rewards);
-    const hasWalletReward = (rewards.stardust || 0) > 0 || (rewards.adventureEnergy || 0) > 0;
-
-    if (hasWalletReward) {
-      showRewardToast(rewards.stardust || 0, rewards.adventureEnergy || 0);
-    }
-
-    const detail = materialText && materialText !== '無' && !hasWalletReward
-      ? `：${materialText}`
-      : materialText && materialText !== '無' && hasWalletReward
-        ? `（另含 ${materialText}）`
-        : '';
-
-    showToast(`已一次領取 ${result.count} 個成就獎勵${detail}`, 'success', 3500);
-
-    state.achievementSummary = await getAchievementSummary(state?.allPets || []);
-    renderAchievementsView();
-    renderNavBadges();
-  } catch (err) {
-    showToast(err.message || '領取失敗', 'error');
-    if (btn) btn.disabled = false;
-  }
-}
-
 async function refreshAchievementsView() {
   if (!state) return;
   if (onAchievementCheck) {
@@ -8397,9 +8430,7 @@ function renderAchievementsView() {
   if (summaryEl) {
     const claimAllBtn = summary.claimable > 0
       ? `<div class="achievement-summary__actions">
-          <button type="button" class="btn btn--primary btn--block btn--claim-all" data-action="claim-all-achievements">
-            一次領取全部獎勵（${summary.claimable}）
-          </button>
+          ${claimAllButtonHtml('achievements', summary.claimable)}
         </div>`
       : '';
 
@@ -9176,6 +9207,7 @@ export { showRewardToast };
 
 function encounterActions() {
   return {
+    renderCollectionMilestones,
     switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal,
     isBusy: () => isGachaPullInProgress() || !!maybePlayPoolDebut._inflight,
     isExpanded: (id) => shouldShowAwakenedPresentation(getUnlockEntryForPool(id)),

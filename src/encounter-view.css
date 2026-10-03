@@ -274,3 +274,16 @@ body[data-reduce-motion="true"] :is(.identity-surface, .identity-dialog, .identi
   .identity-surface .summon-sanctuary .summon-buttons { grid-template-columns:repeat(auto-fit,minmax(min(100%,8rem),1fr)); }
   .identity-surface .sanctuary-heading { flex-wrap:wrap; }
 }
+.identity-surface #encounter-collection-milestones {
+  margin: 16px 0;
+  padding: 10px 14px;
+  overflow: hidden;
+}
+.identity-surface .collection-milestones-toggle {
+  border: 0;
+  background: transparent;
+  padding: 12px 0;
+}
+.identity-surface .collection-milestones-header {
+  padding-right: 0;
+}
