@@ -72,7 +72,8 @@ function miniCard(pet, { showFeatured = false, grayscale = false, title = false 
 function poolSelector() {
   const isCollection = view === 'collection';
   const selected = isCollection ? collectionScope : poolId;
-  return `<div class="pool-select"><label for="identity-pool-select-${view}">${isCollection ? '瀏覽系列' : '探索世界'}</label><select ${appActions.isBusy() ? 'disabled' : ''} id="identity-pool-select-${view}">${isCollection ? '<option value="all">全部系列</option>' : ''}${pools.map((row) => `<option value="${row.id}" ${row.id === selected ? 'selected' : ''}>${escapeHtml(row.name)}</option>`).join('')}</select></div>`;
+  const balance = (appState.wallet?.stardust || 0).toLocaleString('zh-TW');
+  return `<div class="pool-select"><div class="pool-select-heading"><label for="identity-pool-select-${view}">${isCollection ? '瀏覽系列' : '探索世界'}</label>${isCollection ? '' : `<div class="summon-wallet" role="status" aria-live="polite" aria-atomic="true"><span>星塵總量</span><strong>${balance}</strong></div>`}</div><select ${appActions.isBusy() ? 'disabled' : ''} id="identity-pool-select-${view}">${isCollection ? '<option value="all">全部系列</option>' : ''}${pools.map((row) => `<option value="${row.id}" ${row.id === selected ? 'selected' : ''}>${escapeHtml(row.name)}</option>`).join('')}</select></div>`;
 }
 
 function renderPool() {
@@ -179,10 +180,11 @@ function poolPreview() {
 function probability() {
   const selected = pool();
   const list = candidates();
-  showDialog('機率與卡池規則', `<p class="subtle">${escapeHtml(selected.name)} · 既有規則</p><table class="rate-table"><caption>一般召喚基礎機率（保底未觸發時）</caption><thead><tr><th scope="col">稀有度</th><th scope="col">機率</th><th scope="col">角色數</th></tr></thead><tbody>${RARITIES.map((rarity) => `<tr><th scope="row">${rarity}</th><td>${(selected.rates[rarity] * 100).toFixed(0)}%</td><td>${list.filter((pet) => pet.rarity === rarity).length}</td></tr>`).join('')}</tbody></table>
+  showDialog('機率與卡池規則', `<p class="subtle">${escapeHtml(selected.name)} · 相遇規則</p><table class="rate-table"><caption>一般召喚基礎機率（不含保底與十連保障）</caption><thead><tr><th scope="col">稀有度</th><th scope="col">機率</th><th scope="col">角色數</th></tr></thead><tbody>${RARITIES.map((rarity) => `<tr><th scope="row">${rarity}</th><td>${(selected.rates[rarity] * 100).toFixed(0)}%</td><td>${list.filter((pet) => pet.rarity === rarity).length}</td></tr>`).join('')}</tbody></table>
     <p class="probability-note">先選稀有度，再於同稀有度候選中等機率選取。焦點夥伴沒有另加權；不是 Rate-Up。</p>
     <p class="probability-note">SSR 或 UR 保底上限 ${selected.pity.ssr} 抽：若前 ${selected.pity.ssr - 1} 抽都未得到 SSR 或 UR，第 ${selected.pity.ssr} 抽必為 SSR 或 UR（依兩者基礎比例分配）。UR 保底上限 ${selected.pity.ur} 抽：若前 ${selected.pity.ur - 1} 抽都未得到 UR，第 ${selected.pity.ur} 抽必為 UR。各池獨立計數。得到 UR 時兩種計數歸零；SSR 只重設 SSR 計數。</p>
-    <p class="probability-note">單次 ${selected.cost} 星塵；十次 ${selected.cost * 10} 星塵。此測試版使用固定展示結果，不消耗星塵。</p>
+    ${selected.tenPullGuarantee === 'SR' ? '<p class="probability-note">十連相遇至少獲得一位 SR 或以上夥伴。若前九位都只有 N／R，第十位原本為 N／R 時提升為 SR；SSR 與 UR 保底優先，不降低已抽到的稀有度。十次分開單抽不適用這項十連保障。</p>' : ''}
+    <p class="probability-note">單次 ${selected.cost} 星塵；十連 ${selected.cost * 10} 星塵。相遇會扣除實際星塵。</p>
     ${selected.unlockExpansion ? `<p class="probability-note">原有花庭擴充：${selected.unlockExpansion.threshold} 次召喚後解鎖，候選名單與贈寵依正式規則；解鎖後自動擴充名單並發放一次獎勵。</p>` : ''}
     <details style="margin-top:18px"><summary>每隻夥伴的基礎機率</summary><table class="rate-table"><thead><tr><th scope="col">名字</th><th scope="col">機率</th></tr></thead><tbody>${list.map((pet) => `<tr><th scope="row">${escapeHtml(pet.name)}</th><td>${(basePetRate(pet,list,selected)*100).toLocaleString('en',{maximumFractionDigits:4})}%</td></tr>`).join('')}</tbody></table></details>`);
 }

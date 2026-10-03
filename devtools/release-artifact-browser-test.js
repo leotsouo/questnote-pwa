@@ -265,13 +265,18 @@ try {
     };
     document.querySelector('[data-onboarding-action="skip"]')?.click();
     document.querySelector('[data-view="gacha"]').click();
+    // Entering an already-seen pool still checks its receipt asynchronously.
+    // Wait for that check before simulating a user's next pool selection.
+    await delay(120);
     for (const poolId of ['swordwild_shanhe_v3', 'eternal_slumber_bloom', 'standard']) {
       const selector = document.querySelector('#identity-pool-select-pool');
       selector.value = poolId;
       selector.dispatchEvent(new previewFrame.contentWindow.Event('change', { bubbles: true }));
-      await until(() => document.querySelector('.dream-debut-overlay'), 'normal full entry on pool change');
+      await until(() => document.querySelector('.dream-debut-overlay'), `normal full entry on change to ${poolId}`);
       document.querySelector('.dream-debut-overlay [data-role="skip"]').click();
       await until(() => !document.querySelector('.dream-debut-overlay') && document.querySelector('#identity-pool-select-pool')?.value === poolId, 'entry complete');
+      await until(async () => (await db.dbGet(db.STORES.META, 'poolDebutSeen'))?.seenPoolIds?.includes(poolId), 'entry receipt committed before next change');
+      await delay(50);
       assert(!document.querySelector('[data-identity-action="replay-debut"], [data-identity-action="preview-awakening"], [data-identity-action="replay-awakening"]'), 'Player pool still exposes a test replay');
     }
     const snapshot = async () => JSON.stringify([await db.dbGet(db.STORES.META, 'wallet'), await db.dbGetAll(db.STORES.COLLECTION), await db.dbGet(db.STORES.META, 'petAwakening'), await db.dbGet(db.STORES.META, 'inventory')]);
@@ -351,6 +356,64 @@ try {
     const freshDb = await freshClient.eval('import(' + JSON.stringify(new URL('src/db.js', freshClient.location.href).href) + ')');
     assert(JSON.stringify(await freshDb.dbGet(freshDb.STORES.META,'wallet')) === beforeWallet, 'Fallback changed wallet');
     assert(JSON.stringify(await freshDb.dbGetAll(freshDb.STORES.COLLECTION)) === beforeCollection, 'Fallback changed collection');
+  });
+  if (previewFrame.contentDocument.querySelector('.identity-surface')) await test('native ten-pull SR floor spends once and the summon wallet survives return and reload', async () => {
+    assert(storageOwnershipEstablished, 'Fixture writes require an owned loopback origin');
+    let client = previewFrame.contentWindow;
+    const load = (name) => client.eval('import(' + JSON.stringify(new URL(`src/${name}.js`, client.location.href).href) + ')');
+    let [db, collection, filter] = await Promise.all(['db', 'collectionService', 'petPoolFilter'].map(load));
+    const bundle = await client.fetch(configuration.profiles.preview.profile.contentBundleUrl).then((response) => response.json());
+    const selected = bundle.poolsData.pools.find((pool) => pool.id === 'standard');
+    assert(bundle.poolsData.pools.every((pool) => pool.tenPullGuarantee === 'SR'), 'Not every pool has the SR floor');
+    const eligible = filter.getEligiblePetsForPool(bundle.petsData.pets, selected);
+    const [normal, rare] = ['N', 'SR'].map((rarity) => eligible.find((pet) => pet.rarity === rarity));
+    const at = new Date().toISOString();
+    for (const pet of [normal, rare]) await db.dbPut(db.STORES.COLLECTION, collection.normalizeCollectionItem({ petId:pet.id, stars:5, fragments:10, obtainedAt:at }));
+    const wallet = await db.dbGet(db.STORES.META, 'wallet');
+    await db.dbPut(db.STORES.META, { ...wallet, key:'wallet', stardust:10000 });
+    const stats = await db.dbGet(db.STORES.META, 'gachaStats');
+    await db.dbPut(db.STORES.META, { ...stats, selectedPoolId:'standard', ssrPity:0, urPity:0,
+      poolPity:{ ...stats.poolPity, standard:{ ssrPity:0, urPity:0 } } });
+    const pullsBefore = stats.totalPulls;
+    const reload = async (query) => {
+      const loaded = new Promise((resolve) => previewFrame.addEventListener('load', resolve, { once:true }));
+      previewFrame.src = configuration.profiles.preview.profile.scopePath + query;
+      await loaded;
+      await waitForStarted(previewFrame, 'preview');
+      client = previewFrame.contentWindow;
+      db = await load('db');
+      previewFrame.contentDocument.querySelector('[data-onboarding-action="skip"]')?.click();
+      previewFrame.contentDocument.querySelector('[data-view="gacha"]').click();
+      await delay(120);
+    };
+    await reload('?ten-floor-wallet=1');
+    let document = previewFrame.contentDocument;
+    assert(document.querySelector('.summon-wallet strong')?.textContent === '10,000', 'Summon wallet did not load the real balance');
+    document.querySelector('[data-identity-action="probability"]').click();
+    const rules = document.querySelector('#identity-detail-dialog').textContent;
+    assert(rules.includes('十連相遇至少獲得一位 SR') && rules.includes('相遇會扣除實際星塵') && !rules.includes('固定展示結果'), 'Actual probability and cost disclosure is stale');
+    document.querySelector('#identity-detail-dialog [data-identity-action="close-dialog"]').click();
+    const random = client.Math.random;
+    try {
+      client.Math.random = () => 0;
+      const draw = document.querySelector('[data-identity-action="summon-ten"]');
+      assert(!draw.disabled, 'Seeded ten-pull is disabled');
+      draw.click();
+      await until(async () => (await db.dbGet(db.STORES.META, 'wallet')).stardust === 9000, 'native ten atomic transaction', 12000);
+    } finally { client.Math.random = random; }
+    await until(() => document.querySelectorAll('.batch-grid .batch-card').length === 10, 'complete native ten summary', 15000);
+    const rarities = [...document.querySelectorAll('.batch-grid .rarity')].map((node) => node.textContent);
+    assert(JSON.stringify(rarities) === JSON.stringify([...Array(9).fill('N'), 'SR']), 'Native ten did not apply the final SR floor');
+    assert((await db.dbGet(db.STORES.COLLECTION, normal.id)).fragments === 19, 'Same-batch N duplicates did not accumulate once');
+    assert((await db.dbGet(db.STORES.COLLECTION, rare.id)).fragments === 15, 'Promoted SR duplicate did not grant exactly five fragments');
+    document.querySelector('[data-identity-action="close-reveal"]').click();
+    await until(() => document.querySelector('.summon-wallet strong')?.textContent === '9,000', 'live wallet after return');
+    assert((await db.dbGet(db.STORES.META, 'gachaStats')).totalPulls === pullsBefore + 10, 'Results were applied more than once');
+    await reload('?ten-floor-wallet-persisted=1');
+    document = previewFrame.contentDocument;
+    assert(document.querySelector('.summon-wallet strong')?.textContent === '9,000', 'Summon wallet lost its balance after reload');
+    observations.tenFloorWallet = { poolCount:bundle.poolsData.pools.length, realNativeTransaction:true, results:rarities,
+      balanceBefore:10000, balanceAfter:9000, duplicateFragments:[9,5], walletSurvivesReload:true, drawsAppliedOnce:true };
   });
   if (companionResponse.ok) await test('SOP companion content drives actual crafting, favorite gifting and dispatch specialty in an isolated app', async () => {
     assert(storageOwnershipEstablished, 'Fixture writes require a fresh owned origin');

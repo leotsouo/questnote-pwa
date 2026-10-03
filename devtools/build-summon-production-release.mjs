@@ -28,7 +28,9 @@ for (const [key,file] of [['petsData','pets'],['loreData','pets-lore'],['seriesC
   assert.deepEqual(catalog[key], JSON.parse(await fs.readFile(path.join(projectRoot,'data',file+'.json'))), 'Existing content must remain unchanged: '+file);
 }
 const pools = JSON.parse(await fs.readFile(path.join(projectRoot,'data/pools.json')));
-assert.deepEqual(catalog.poolsData, pools, 'Existing pool content and rules must remain unchanged');
+const withoutTenGuarantee = (value) => ({ ...value, pools:value.pools.map(({ tenPullGuarantee, ...row }) => row) });
+assert.deepEqual(withoutTenGuarantee(catalog.poolsData), withoutTenGuarantee(pools), 'Only the approved ten-pull SR floor may change');
+assert(pools.pools.every((pool) => pool.tenPullGuarantee === 'SR'), 'Every pool must use the approved SR floor');
 const mailbox = await get('data/global-mailbox.json');
 assert.deepEqual(JSON.parse(mailbox),JSON.parse(await fs.readFile(path.join(projectRoot,'data/global-mailbox.json'))),'Public mailbox rewards must remain unchanged');
 await fs.writeFile(path.join(report,'baseline.json'), JSON.stringify({at:new Date().toISOString(),artifactId:baseline.artifactId,sourceCommit:baseline.sourceCommit,manifestSha256:hash(bytes),contentBundleSha256:hash(catalogBytes),mailboxSha256:hash(mailbox)},null,2)+'\n');
