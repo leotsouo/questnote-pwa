@@ -250,6 +250,22 @@ try {
     for (const profile of ['production', 'preview']) assert(names.includes(configuration.profiles[profile].cacheNames[0]), `${profile} shell was deleted by the other environment`);
   });
   const companionResponse = await fetch(configuration.profiles.preview.profile.scopePath + 'release-input/ecosystem.json');
+  await test('retired saved pool selection uses the active fallback without resetting player data', async () => {
+    assert(storageOwnershipEstablished, 'Fixture writes require an owned loopback origin');
+    const client = previewFrame.contentWindow;
+    const db = await client.eval('import(' + JSON.stringify(new URL('src/db.js', client.location.href).href) + ')');
+    const beforeWallet = JSON.stringify(await db.dbGet(db.STORES.META, 'wallet'));
+    const beforeCollection = JSON.stringify(await db.dbGetAll(db.STORES.COLLECTION));
+    const stats = await db.dbGet(db.STORES.META, 'gachaStats');
+    await db.dbPut(db.STORES.META, { ...stats, selectedPoolId:'retired-test-pool' });
+    const loaded = new Promise((resolve) => previewFrame.addEventListener('load', resolve, { once:true }));
+    previewFrame.src = configuration.profiles.preview.profile.scopePath + '?retired-pool-fixture=1';
+    await loaded;
+    await waitForStarted(previewFrame,'preview');
+    await checkCatalogAndUi(previewFrame,'preview');
+    assert(JSON.stringify(await db.dbGet(db.STORES.META,'wallet')) === beforeWallet, 'Fallback changed wallet');
+    assert(JSON.stringify(await db.dbGetAll(db.STORES.COLLECTION)) === beforeCollection, 'Fallback changed collection');
+  });
   if (companionResponse.ok) await test('SOP companion content drives actual crafting, favorite gifting and dispatch specialty in an isolated app', async () => {
     assert(storageOwnershipEstablished, 'Fixture writes require a fresh owned origin');
     const e = await companionResponse.json();

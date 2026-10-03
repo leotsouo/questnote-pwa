@@ -1,6 +1,6 @@
 import { initialAwakeningPortrait } from './petAwakeningView.js';
 import { RARITIES, MAX_DISPLAY_STARS, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, duplicateNote, encounterResults } from './encounterViewModel.js';
-import { normalizePoolDefinition } from './poolContentContract.js';
+import { normalizePoolDefinition, resolveActivePool } from './poolContentContract.js';
 import { createPoolScenery, ceremonyPresentation, playCeremonyEntry, playCeremonyRitual, playCeremonyCharacter, playCeremonyAwakening, playCeremonyPetAwakening } from './encounterCeremony.js';
 import { delay } from './imagePreloadService.js';
 import { SUMMON_TIMING } from './summonTiming.js';
@@ -450,7 +450,7 @@ reveal.addEventListener('close', () => {
 export function renderEncounterView(name, state, refresh, actions) {
   if (!state?.allPets?.length || !state?.poolsData?.pools?.some((row) => row.active)) return false;
   appState = state;
-  poolId = state.gachaStats?.selectedPoolId || state.poolsData.pools.find((row) => row.active).id;
+  poolId = resolveActivePool(state.poolsData, state.gachaStats?.selectedPoolId).id;
   document.body.dataset.reduceMotion = String(!!state.userPreferences?.reduceMotion);
   refreshApp = refresh;
   appActions = actions;

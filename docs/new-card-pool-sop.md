@@ -152,6 +152,8 @@ V3.5.20 將已驗收畫面接回正式 App：召喚、圖鑑和結果共用 `enc
 
 V3.5.20 正式發布驗收補充：Pages 成功後須逐檔核對正式 HTTPS 與核准 artifact 的 bytes／SHA-256，Git blobs 也需全量比對，避免 Windows 換行改寫；`.nojekyll` 屬部署設定，驗 Git blob。報告區分「網站產物已更新」與「每個已開啟 App 已套用」：舊 SW 可繼續服務其原版本；多視窗下應保留 waiting 與關閉其他視窗提示，透過 App 正常更新，不繞過保護或強制中斷操作。記錄畫面實際版本與 artifact，不以網址或 source version 代替。目前正式發布證據見 `reports/summon-production-v3520/deployment.json` 與 `live-verification.json`。
 
+V3.5.21 相容性標準：UI 與交易必須共用 `resolveActivePool`，不能直接假設存檔的 `selectedPoolId` 仍可用。舊 ID 或已關閉卡池應顯示目前可用卡池；所有卡池關閉時顯示不可用狀態，不重設錢包或收藏。artifact 瀏覽器驗收須使用隔離存檔模擬舊 ID，重新啟動真實 App，確認規則與圖鑑可開啟且原存檔不變。
+
 將量測與問題修正寫入 `checks.animation.evidence` 所指的報告，寫清工程通過、人工待驗／通過及真機待驗。使用者完成最終驗收後，將新得出的通用標準補進本節並連到實測報告；不回填或覆寫舊 receipts，不把工程自測記成 `humanAcceptance`。本次來源試演證據見 `reports/companion-app-test/ceremony-v3-review.md`。
 
 ### 開啟動畫，讓使用者實際檢視
