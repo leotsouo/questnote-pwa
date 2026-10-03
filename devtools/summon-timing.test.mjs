@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { SUMMON_TIMING, summonPreludeDurations, poolDebutDuration, summonRevealDuration } from '../src/summonTiming.js';
+import { SUMMON_TIMING, summonPreludeDurations, poolDebutDuration, poolDebutDissolveDuration, summonRevealDuration } from '../src/summonTiming.js';
 import { lionheartPreludeDurations } from '../src/lionheartScene.js';
 import { swordwildPreludeDurations } from '../src/swordwildShanheScene.js';
 import { sugarPreludeDurations } from '../src/honeylightSugarScene.js';
@@ -18,11 +18,16 @@ test('single and ten preludes of every rarity preserve the Lionheart phase bound
   }
 });
 
-test('complete entry and revisit use the reference timing with a bounded reduced mode', () => {
+test('complete entry retains Lionheart timing while short switches use Honeylight timing', () => {
   assert.equal(poolDebutDuration(), 6000);
-  assert.equal(poolDebutDuration(false), 1500);
+  assert.equal(poolDebutDuration(false), 900);
   assert.equal(poolDebutDuration(true, true), 500);
-  assert.equal(poolDebutDuration(false, true), 500);
+  assert.equal(poolDebutDuration(false, true), 240);
+  assert.equal(poolDebutDissolveDuration(), 550);
+  assert.equal(poolDebutDissolveDuration(false), 240);
+  assert.equal(poolDebutDissolveDuration(true, true), 240);
+  assert.equal(poolDebutDissolveDuration(false, true), 120);
+  assert.equal(poolDebutDuration(false) + poolDebutDissolveDuration(false), 1140);
 });
 
 test('native and identity reveal clocks agree by rarity, with the same next-character gap', () => {

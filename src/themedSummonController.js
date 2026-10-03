@@ -11,7 +11,7 @@ import { createSwordwildShanheScene } from './swordwildShanheScene.js';
 import { createLionheartScene } from './lionheartScene.js';
 import { createGlacierArrivalScene } from './glacierArrivalScene.js';
 import { createHoneylightSugarScene } from './honeylightSugarScene.js';
-import { summonPreludeDurations, poolDebutDuration } from './summonTiming.js';
+import { summonPreludeDurations, poolDebutDuration, poolDebutDissolveDuration } from './summonTiming.js';
 import {
   getHighestRarity,
   collectSsrPlusRevealQueue,
@@ -618,7 +618,7 @@ const DEBUT_DUST_COUNT = { full: 8, short: 3, reduced: 0 };
 /**
  * 永眠花海卡池入場演出
  * 流程：長夜沉幕 → 鏡池微光 → 月皇花甦醒 → 台詞 → 停在完整畫面等待點擊 → 關閉時化開成主畫面
- * 動畫播完後需使用者點擊／Esc／繼續才關閉；略過可提早結束。
+ * 完整登場等待點擊／Esc／繼續；短切換播完自動返回卡池，略過可提早結束。
  * @param {{ poolName?: string, presentation?: object, reduceMotion?: boolean, full?: boolean, sceneFactory?: Function }} options
  */
 export async function playPoolDebutPresentation(options = {}) {
@@ -628,11 +628,14 @@ export async function playPoolDebutPresentation(options = {}) {
   const previousFocus = document.activeElement;
   const reduce = isReduceMotion(options.reduceMotion);
   const full = options.full !== false;
-  // 進入「可關閉」狀態前的演出時長（不含等待點擊）
+  // 完整登場的可繼續時間／短切換的自動交接時間。
   const readyMs = poolDebutDuration(full, reduce);
-  const dissolveMs = reduce ? 240 : full ? 550 : 360;
+  const dissolveMs = poolDebutDissolveDuration(full, reduce);
 
   const panel = document.getElementById('gacha-panel');
+  const previousDissolve = panel?.style.getPropertyValue('--pool-dissolve-duration');
+  const previousDissolvePriority = panel?.style.getPropertyPriority('--pool-dissolve-duration');
+  panel?.style.setProperty('--pool-dissolve-duration', `${dissolveMs}ms`);
   panel?.classList.add('is-pool-debut-veil');
   panel?.classList.remove('is-pool-debut-reveal');
 
@@ -640,7 +643,9 @@ export async function playPoolDebutPresentation(options = {}) {
   overlay.className = 'dream-debut-overlay';
   overlay.dataset.layout = 'shared';
   overlay.dataset.duration = String(readyMs);
+  overlay.dataset.dissolveDuration = String(dissolveMs);
   overlay.style.setProperty('--pool-scene-duration', `${readyMs * .96}ms`);
+  overlay.style.setProperty('--pool-dissolve-duration', `${dissolveMs}ms`);
   overlay.dataset.animation = lionheart ? 'lionheart_inverse_oath' : options.presentation?.animationKey === 'swordwild_shanhe' ? 'swordwild_shanhe' : sugar ? 'honeylight_sugar' : glacier ? 'glacier_arrival' : 'dream_bloom';
   if (reduce) overlay.classList.add('is-reduced');
   if (!full) overlay.classList.add('is-short');
@@ -736,6 +741,7 @@ export async function playPoolDebutPresentation(options = {}) {
     ready = true;
     overlay.dataset.elapsed = String(Math.round(performance.now() - startedAt));
     overlay.classList.add('is-ready');
+    if (!full) { finish(); return; }
     // 等待點擊期間維持完整夜幕；關閉時才淡出銜接主畫面
     if (continueEl) continueEl.hidden = false;
     if (skipBtn) {
@@ -807,7 +813,7 @@ export async function playPoolDebutPresentation(options = {}) {
   skipBtn?.focus();
   requestAnimationFrame(() => overlay?.isConnected && overlay.classList.add('is-active', 'is-phase-night'));
 
-  // 分鏡節奏：台詞完整顯現後進入可關閉狀態，等待使用者點擊
+  // 完整登場等待點擊；短切換台詞到位後直接交接。
   // full line CSS：a 0–0.7s、b 0.28–0.98s、c 0.55–1.3s → 約 1.3s 跑完
   if (!reduce && full) {
     schedule(() => overlay.classList.add('is-phase-pool'), 400);
@@ -833,6 +839,8 @@ export async function playPoolDebutPresentation(options = {}) {
     document.removeEventListener('keydown', onKey, true);
     overlay.remove();
     panel?.classList.remove('is-pool-debut-veil', 'is-pool-debut-reveal');
+    if (previousDissolve) panel?.style.setProperty('--pool-dissolve-duration', previousDissolve, previousDissolvePriority);
+    else panel?.style.removeProperty('--pool-dissolve-duration');
     unlockDebutScroll();
     if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true });
   }

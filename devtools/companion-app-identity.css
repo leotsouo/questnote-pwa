@@ -120,7 +120,7 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; text-align: left; margin-bottom: 16px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-top .eyebrow { letter-spacing: .08em; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-top button { font-size: .75rem; background: transparent; }
-:is(.identity-surface, .identity-dialog, .identity-review) .reveal-image { width: min(100%,440px); max-height: 45dvh; aspect-ratio: 1; object-fit: contain; margin: 0 auto; border-radius: var(--radius-lg); background: var(--color-bg-card); transition: filter 300ms ease, opacity 300ms ease, transform 350ms ease; }
+:is(.identity-surface, .identity-dialog, .identity-review) .reveal-image { width: min(100%,440px); height: auto; max-height: none; aspect-ratio: 1; object-fit: contain; margin: 0 auto; border-radius: var(--radius-lg); background: transparent; transition: filter 300ms ease, opacity 300ms ease, transform 350ms ease; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-identity { padding: 20px 0 12px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-identity .pet-name { font-size: 1.7rem; min-height: 2.3rem; transition: opacity 220ms ease, transform 220ms ease; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-identity .pet-title { transition: opacity 220ms ease; }
@@ -257,7 +257,7 @@ body[data-local-art-review] #app :is(#view-gacha, #view-collection):has(> .ident
 .identity-surface .pool-copy .text-button { font-size:.75rem; }
 .identity-surface .mini-card img { border:1px solid var(--color-border); box-shadow:inset 0 0 0 3px #d6bc861a; }
 .identity-dialog .reveal-shell { background:radial-gradient(ellipse at 50% 10%,#c7ad7c18,transparent 60%),var(--color-bg-main); }
-.identity-dialog .reveal-image { border:1px solid #c7ad7c99; box-shadow:0 0 0 4px #c7ad7c18,0 12px 30px #0002; }
+.identity-dialog .reveal-image { border:0; box-shadow:0 12px 30px #0002; }
 .identity-dialog .reveal-identity .pet-name { font-family:var(--font-display); text-wrap:balance; }
 .identity-dialog .reveal-shell:not(:is([data-phase="title"],[data-phase="result"])) .identity-cue { visibility:hidden; }
 .summon-reveal-overlay[data-identity-handoff] [hidden] { display:none !important; }

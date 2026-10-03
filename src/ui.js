@@ -5128,7 +5128,7 @@ async function maybePlayPoolDebut(poolId) {
       if (!seen || maybePlayPoolDebut._fromSwitcher) {
         await playPoolDebutPresentation({
           poolName: pool.name, presentation,
-          full: !seen, reduceMotion: state.userPreferences?.reduceMotion ?? false,
+          full: !seen && !maybePlayPoolDebut._fromSwitcher, reduceMotion: state.userPreferences?.reduceMotion ?? false,
         });
         if (!seen) await markPoolDebutSeen(poolId);
       }

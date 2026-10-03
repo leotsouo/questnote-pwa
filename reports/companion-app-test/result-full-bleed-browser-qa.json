@@ -1,0 +1,98 @@
+{
+  "before": {
+    "background": "rgb(255, 252, 248)",
+    "border": "0.666667px",
+    "height": 345.59375,
+    "maxHeight": "345.6px",
+    "naturalHeight": 960,
+    "naturalWidth": 960,
+    "objectFit": "contain",
+    "viewport": {
+      "height": 768,
+      "width": 1009
+    },
+    "width": 440
+  },
+  "after": [
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "height": 440,
+      "maxHeight": "none",
+      "naturalHeight": 960,
+      "naturalWidth": 960,
+      "objectFit": "contain",
+      "theme": "sweet",
+      "width": 440
+    },
+    {
+      "border": "0px",
+      "height": 320.66668701171875,
+      "theme": "sweet",
+      "viewport": {
+        "height": 852,
+        "width": 378
+      },
+      "width": 320.66668701171875
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "dialogScrollWidth": 683,
+      "dialogWidth": 683,
+      "height": 440,
+      "maxHeight": "none",
+      "naturalHeight": 960,
+      "naturalWidth": 960,
+      "theme": "default",
+      "viewport": {
+        "height": 768,
+        "width": 1009
+      },
+      "width": 440
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "dialogScrollWidth": 683,
+      "dialogWidth": 683,
+      "height": 440,
+      "maxHeight": "none",
+      "naturalHeight": 960,
+      "naturalWidth": 960,
+      "theme": "sweet",
+      "viewport": {
+        "height": 768,
+        "width": 1009
+      },
+      "width": 440
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "dialogScrollWidth": 683,
+      "dialogWidth": 683,
+      "height": 440,
+      "maxHeight": "none",
+      "naturalHeight": 960,
+      "naturalWidth": 960,
+      "theme": "twilight",
+      "viewport": {
+        "height": 768,
+        "width": 1009
+      },
+      "width": 440
+    }
+  ],
+  "largeType": {
+    "dialogScrollWidth": 272,
+    "dialogWidth": 272,
+    "height": 232,
+    "naturalHeight": 960,
+    "naturalWidth": 960,
+    "rootFont": "32px",
+    "theme": "twilight",
+    "width": 232
+  },
+  "detailWorks": "夥伴手記"
+}

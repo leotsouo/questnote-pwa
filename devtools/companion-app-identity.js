@@ -353,16 +353,16 @@ async function presentBatchCharacter() {
   } finally { curtain.remove(); }
 }
 
-async function enterPool(replay = false) {
+async function enterPool({ replay = false, fromSwitcher = false } = {}) {
   if (displayBusy || reveal.open || dialog.open) return;
   const opener = document.activeElement;
   displayBusy = true;
   try {
-    await playCeremonyEntry(pool(), { full: replay || !seenDebuts.has(poolId), reduceMotion: reduced() });
+    await playCeremonyEntry(pool(), { full: replay || (!fromSwitcher && !seenDebuts.has(poolId)), reduceMotion: reduced() });
     seenDebuts.add(poolId);
   } finally {
     displayBusy = false;
-    const target = opener?.isConnected && opener !== document.body ? opener : document.querySelector('#identity-pool-select-pool');
+    const target = !fromSwitcher && opener?.isConnected && opener !== document.body ? opener : document.querySelector('#identity-pool-select-pool');
     target?.focus({ preventScroll: true });
   }
 }
@@ -398,7 +398,7 @@ document.addEventListener('click', async (event) => {
   if (action === 'close-dialog') dialog.close();
   if (action === 'summon') startReveal(byId(button.dataset.petId));
   if (action === 'summon-ten') startTen();
-  if (action === 'replay-debut') enterPool(true);
+  if (action === 'replay-debut') enterPool({ replay: true });
   if (action === 'preview-awakening') petDetail(byId(presentation().heroPetId));
   if (action === 'awakening-form') {
     previewForms.set(button.dataset.petId, button.dataset.form);
@@ -452,7 +452,7 @@ document.addEventListener('change', (event) => {
     if (event.target.id === 'identity-pool-select-collection') collectionScope = event.target.value;
     else poolId = event.target.value;
     query = ''; render();
-    if (event.target.id === 'identity-pool-select-pool') enterPool();
+    if (event.target.id === 'identity-pool-select-pool') enterPool({ fromSwitcher: true });
   }
 });
 document.addEventListener('click', (event) => {

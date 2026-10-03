@@ -1,0 +1,275 @@
+{
+  "version": "3.5.17",
+  "url": "http://127.0.0.1:4193/",
+  "normal": [
+    {
+      "cssExit": "0.24s",
+      "duration": "900",
+      "exit": "240",
+      "nameDuration": "0.3s",
+      "pool": "蜜光糖庭",
+      "sceneDuration": "864ms",
+      "short": true,
+      "ready": "910",
+      "observedRoundTripMs": 1214,
+      "after": {
+        "focus": "identity-pool-select-pool",
+        "inert": false,
+        "overflow": "",
+        "selected": "honeylight_sugar_garden_v2"
+      }
+    },
+    {
+      "cssExit": "0.24s",
+      "duration": "900",
+      "exit": "240",
+      "nameDuration": "0.3s",
+      "pool": "星旅之原",
+      "sceneDuration": "864ms",
+      "short": true,
+      "ready": "910",
+      "observedRoundTripMs": 1211,
+      "after": {
+        "focus": "identity-pool-select-pool",
+        "inert": false,
+        "overflow": "",
+        "selected": "standard"
+      }
+    },
+    {
+      "cssExit": "0.24s",
+      "duration": "900",
+      "exit": "240",
+      "nameDuration": "0.3s",
+      "pool": "永眠花海",
+      "sceneDuration": "864ms",
+      "short": true,
+      "ready": "910",
+      "observedRoundTripMs": 1190,
+      "after": {
+        "focus": "identity-pool-select-pool",
+        "inert": false,
+        "overflow": "",
+        "selected": "eternal_slumber_bloom"
+      }
+    },
+    {
+      "cssExit": "0.24s",
+      "duration": "900",
+      "exit": "240",
+      "nameDuration": "0.3s",
+      "pool": "霜誓峽灣",
+      "sceneDuration": "864ms",
+      "short": true,
+      "ready": "909",
+      "observedRoundTripMs": 1176,
+      "after": {
+        "focus": "identity-pool-select-pool",
+        "inert": false,
+        "overflow": "",
+        "selected": "frost_oath_fjord"
+      }
+    },
+    {
+      "cssExit": "0.24s",
+      "duration": "900",
+      "exit": "240",
+      "nameDuration": "0.3s",
+      "pool": "劍隱山河",
+      "sceneDuration": "864ms",
+      "short": true,
+      "ready": "937",
+      "observedRoundTripMs": 1252,
+      "after": {
+        "focus": "identity-pool-select-pool",
+        "inert": false,
+        "overflow": "",
+        "selected": "swordwild_shanhe_v3"
+      }
+    },
+    {
+      "cssExit": "0.24s",
+      "duration": "900",
+      "exit": "240",
+      "nameDuration": "0.3s",
+      "pool": "逆造之誓",
+      "sceneDuration": "864ms",
+      "short": true,
+      "ready": "905",
+      "observedRoundTripMs": 1205,
+      "after": {
+        "focus": "identity-pool-select-pool",
+        "inert": false,
+        "overflow": "",
+        "selected": "lionheart_inverse_oath"
+      }
+    }
+  ],
+  "reduced": [
+    {
+      "activeMotion": [],
+      "cssExit": "0.12s",
+      "duration": "240",
+      "exit": "120",
+      "pool": "星旅之原",
+      "reduced": true,
+      "short": true,
+      "observedRoundTripMs": 416,
+      "focus": "identity-pool-select-pool"
+    },
+    {
+      "activeMotion": [],
+      "cssExit": "0.12s",
+      "duration": "240",
+      "exit": "120",
+      "pool": "永眠花海",
+      "reduced": true,
+      "short": true,
+      "observedRoundTripMs": 415,
+      "focus": "identity-pool-select-pool"
+    },
+    {
+      "activeMotion": [],
+      "cssExit": "0.12s",
+      "duration": "240",
+      "exit": "120",
+      "pool": "霜誓峽灣",
+      "reduced": true,
+      "short": true,
+      "observedRoundTripMs": 417,
+      "focus": "identity-pool-select-pool"
+    },
+    {
+      "activeMotion": [],
+      "cssExit": "0.12s",
+      "duration": "240",
+      "exit": "120",
+      "pool": "劍隱山河",
+      "reduced": true,
+      "short": true,
+      "observedRoundTripMs": 415,
+      "focus": "identity-pool-select-pool"
+    },
+    {
+      "activeMotion": [],
+      "cssExit": "0.12s",
+      "duration": "240",
+      "exit": "120",
+      "pool": "逆造之誓",
+      "reduced": true,
+      "short": true,
+      "observedRoundTripMs": 427,
+      "focus": "identity-pool-select-pool"
+    },
+    {
+      "activeMotion": [],
+      "cssExit": "0.12s",
+      "duration": "240",
+      "exit": "120",
+      "pool": "蜜光糖庭",
+      "reduced": true,
+      "short": true,
+      "observedRoundTripMs": 421,
+      "focus": "identity-pool-select-pool"
+    }
+  ],
+  "layout": [
+    {
+      "copy": {
+        "bottom": 749.7604675292969,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375
+      },
+      "name": "none",
+      "pool": "劍隱山河",
+      "rootFont": "32px",
+      "scrollWidth": 320,
+      "theme": "default",
+      "width": 320
+    },
+    {
+      "copy": {
+        "bottom": 749.7604675292969,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375
+      },
+      "name": "none",
+      "pool": "霜誓峽灣",
+      "rootFont": "32px",
+      "scrollWidth": 320,
+      "theme": "sweet",
+      "width": 320
+    },
+    {
+      "copy": {
+        "bottom": 749.7604675292969,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375
+      },
+      "name": "none",
+      "pool": "蜜光糖庭",
+      "rootFont": "32px",
+      "scrollWidth": 320,
+      "theme": "twilight",
+      "width": 320
+    }
+  ],
+  "revisit": {
+    "focus": "identity-pool-select-pool",
+    "overlay": false,
+    "selected": "honeylight_sugar_garden_v2"
+  },
+  "keyboard": {
+    "tabFocus": "skip",
+    "shiftTabFocus": "skip",
+    "returnFocus": "identity-pool-select-pool"
+  },
+  "rapidSelection": {
+    "overlays": 1,
+    "selected": "honeylight_sugar_garden_v2"
+  },
+  "fullReplay": {
+    "continueVisible": true,
+    "duration": "6000",
+    "elapsed": "6011",
+    "exit": "550",
+    "pool": "蜜光糖庭",
+    "short": false
+  },
+  "tenRegression": {
+    "characterDuration": "2625",
+    "image": {
+      "height": 320.66668701171875,
+      "width": 320.66668701171875
+    },
+    "name": "天火鳳凰",
+    "progress": "本次相遇 · 角色揭露 1 / 4",
+    "ritualDuration": "3015"
+  },
+  "tenNext": {
+    "characterDuration": "4661",
+    "image": {
+      "height": 320.66668701171875,
+      "width": 320.66668701171875
+    },
+    "name": "創世星龍",
+    "progress": "本次相遇 · 角色揭露 2 / 4",
+    "transition": "240ms"
+  },
+  "tenSummaryCount": 10,
+  "finalBridge": {
+    "cssDissolve": "0.24s",
+    "overlayDuration": "900",
+    "panelAnimation": "0.24s",
+    "panelVariable": "240ms"
+  },
+  "bridgeCleanup": {
+    "focus": "identity-pool-select-pool",
+    "overflow": "",
+    "panelVariable": ""
+  },
+  "console": []
+}

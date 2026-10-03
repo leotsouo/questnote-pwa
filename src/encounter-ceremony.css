@@ -4,6 +4,9 @@ body .dream-debut-overlay[data-layout="shared"] .pool-entry-name { margin:0; fon
 body .dream-debut-overlay[data-layout="shared"] .dream-debut-line { max-width:100%; margin:0; padding:0; gap:.25em .5em; font-size:.85rem; line-height:1.6; letter-spacing:.06em; color:#e6ddcf; background:transparent; }
 body .dream-debut-overlay[data-layout="shared"].is-phase-line .pool-entry-name { animation:encounter-words 700ms both; }
 body .dream-debut-overlay[data-layout="shared"].is-ready .pool-entry-name { opacity:1; animation:none; }
+/* Short switches keep Honeylight's quick scene beat and complete text before handoff. */
+body .dream-debut-overlay[data-layout="shared"].is-short :is(.pool-entry-name,.dream-debut-line__seg) { animation-duration:300ms; animation-delay:0ms; }
+body .dream-debut-overlay[data-layout="shared"].is-short :is(.encounter-scene,.swordwild-scene,.lionheart-scene) * { animation-duration:var(--pool-scene-duration,864ms); animation-delay:0ms; transition-duration:350ms; transition-delay:0ms; }
 body .dream-debut-overlay[data-layout="shared"] .dream-debut-continue { font-size:.75rem; line-height:1.5; }
 .encounter-scene { position:absolute; inset:0; overflow:hidden; pointer-events:none; background:radial-gradient(ellipse at 50% 20%,#4d4066,#13192d 65%); }
 .encounter-scene--stars { background:radial-gradient(ellipse at 50% 15%,#294a61,#101b2c 65%); }
@@ -21,7 +24,7 @@ body .dream-debut-overlay[data-layout="shared"] .dream-debut-continue { font-siz
 .encounter-gateway i { position:absolute; width:50%; height:100%; background:linear-gradient(#1d3449,#121f30); border:1px solid #d2bd8444; animation:encounter-gate-left 3.4s both; }
 .encounter-gateway i:nth-child(2) { right:0; animation-name:encounter-gate-right; }
 .encounter-gateway b { position:absolute; inset:10%; background:radial-gradient(ellipse,#e8dca955,transparent 65%); z-index:-1; }
-.is-short .encounter-scene * { animation-duration:var(--pool-scene-duration,1500ms); animation-delay:0ms; }
+.is-short .encounter-scene * { animation-duration:var(--pool-scene-duration,864ms); animation-delay:0ms; }
 .summon-reveal-overlay[data-timing="shared"]:not(.is-lionheart-reveal):not(.is-reduced):not(.is-fallback) .summon-reveal-card { animation:encounter-character var(--character-duration,2500ms) both; }
 .summon-reveal-overlay[data-timing="shared"]:not(.is-lionheart-reveal) .summon-reveal-pet-image { animation:none; }
 body[data-local-art-review] .summon-reveal-overlay[data-identity-handoff] .summon-reveal-rarity { animation:none;opacity:1;transform:none; }

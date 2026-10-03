@@ -15915,7 +15915,7 @@ body[data-theme="sweet"] .mailbox-detail__claim-btn:disabled {
   color: #f2f6ff;
   background: transparent;
   opacity: 0;
-  transition: opacity 0.55s ease;
+  transition: opacity var(--pool-dissolve-duration, 550ms) ease;
   --debut-night: #050914;
   --debut-mist: rgba(107, 91, 149, 0.38);
   --debut-moon: #e8eef8;
@@ -16255,7 +16255,7 @@ body[data-theme="sweet"] .mailbox-detail__claim-btn:disabled {
 
 .dream-debut-overlay.is-exiting .dream-debut-line {
   opacity: 0;
-  transition: opacity 0.45s ease;
+  transition: opacity var(--pool-dissolve-duration, 550ms) ease;
 }
 
 .dream-debut-overlay.is-skipped .dream-debut-line__seg {
@@ -16321,11 +16321,11 @@ body.reduce-motion .dream-debut-overlay .dream-debut-flower {
 .gacha-panel.is-pool-debut-veil {
   opacity: 0.68;
   transform: translateY(3px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity var(--pool-dissolve-duration, 550ms) ease, transform var(--pool-dissolve-duration, 550ms) ease;
 }
 
 .gacha-panel.is-pool-debut-reveal {
-  animation: dreamDebutPanelReveal 0.75s ease both;
+  animation: dreamDebutPanelReveal var(--pool-dissolve-duration, 750ms) ease both;
 }
 
 @keyframes dreamDebutDustDrift {
