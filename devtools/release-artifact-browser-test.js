@@ -558,6 +558,32 @@ try {
     assert((await caches.keys()).includes(configuration.profiles.production.cacheNames[0]), 'Repair changed production cache');
     second.remove(); frames.delete(second); reopened.remove(); frames.delete(reopened);
   });
+  await test('published fragment gift grants 50 atomically, survives reload and cannot be reclaimed', async () => {
+    assert(storageOwnershipEstablished, 'Gift fixture requires owned origin');
+    let client = productionFrame.contentWindow;
+    const load = (name) => client.eval('import(' + JSON.stringify(new URL(`src/${name}.js`, client.location.href).href) + ')');
+    let db = await load('db');
+    let mailbox = await load('mailboxService');
+    const payload = await client.fetch('data/global-mailbox.json').then((response) => response.json());
+    const gift = mailbox.normalizeMailboxPayload(payload).messages.find((message) => message.id === '2026-10-v362-encounter-fragments-gift-01');
+    assert(gift?.reward?.encounterFragments === 50 && !gift.rewardError, 'Gift schema is invalid');
+    const economy = await db.dbGet(db.STORES.META,'encounterEconomy');
+    const wallet = await db.dbGet(db.STORES.META,'wallet');
+    await db.dbPut(db.STORES.META,{ ...economy, balance:Number.MAX_SAFE_INTEGER });
+    assert(!(await mailbox.claimMailboxReward(gift)).success, 'Overflow must reject the gift');
+    assert(!(await mailbox.getGlobalMailboxState()).claimedIds.includes(gift.id), 'Failed transaction marked claimed');
+    await db.dbPut(db.STORES.META,economy);
+    const first = await mailbox.claimMailboxReward(gift);
+    assert(first.success && first.encounterEconomy.balance === economy.balance + 50, 'Gift must add exactly 50');
+    assert(first.wallet.stardust === wallet.stardust, 'Gift must not alter stardust');
+    assert(mailbox.formatMailboxRewardPreview(first.reward).some((line) => line.text === '相遇碎片 ×50'), 'Reward preview missing');
+    productionFrame.remove(); frames.delete(productionFrame);
+    productionFrame = directClient('production'); await waitForStarted(productionFrame,'production');
+    client = productionFrame.contentWindow; db = await load('db'); mailbox = await load('mailboxService');
+    assert((await mailbox.claimMailboxReward(gift)).alreadyClaimed, 'Reload must not regrant');
+    assert((await db.dbGet(db.STORES.META,'encounterEconomy')).balance === economy.balance + 50, 'Reload changed balance');
+    observations.fragmentGift = { id:gift.id, before:economy.balance, after:economy.balance+50, rollback:true, reloadIdempotent:true };
+  });
   await test('both fully assembled cached apps and catalogs boot while all artifact HTTP responses are 503', async () => {
     closeClients();
     await control('production', 'all503'); await control('preview', 'all503');
