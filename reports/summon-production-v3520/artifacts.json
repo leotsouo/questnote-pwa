@@ -1,0 +1,14 @@
+{
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-summon-releases\\4dddac050996ddc96265d7c615bad0462b72f3b858d485623af418f4a24f350e",
+    "artifactId": "4dddac050996ddc96265d7c615bad0462b72f3b858d485623af418f4a24f350e",
+    "manifestSha256": "2a48949e68ee5846e7f21e48b7518b42e2acbf7bfb875476fbbc5c0eaa3016c4",
+    "scopePath": "/questnote-pwa-preview/v3520-review-fd30782f/"
+  },
+  "production": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-summon-releases\\289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9",
+    "artifactId": "289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9",
+    "manifestSha256": "89717c5c625cb51eb91695c75adbb6b8a0c1a6f774f34bb5b2faa56d6bc1a760",
+    "scopePath": "/questnote-pwa/"
+  }
+}

@@ -23,5 +23,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - run: node --test devtools/encounter-production.test.mjs
       - run: npm run pools:validate
       - run: npm run images:check
