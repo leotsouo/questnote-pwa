@@ -1510,7 +1510,9 @@ export function switchView(viewName) {
 }
 
 /** Teaching links only navigate and select filters; product controls own every write. */
-export async function openTeachingTarget({ view, filter, tab, hub, petId } = {}) {
+export async function openTeachingTarget({ view, filter, tab, hub, petId, detail } = {}) {
+  closeModal();
+  if (document.body.classList.contains('expedition-dispatch-open')) closeExpeditionDispatchModal();
   if (view === 'collection' && filter === 'owned') {
     collectionFilter = 'owned';
     collectionSeriesFilter = 'all';
@@ -1530,6 +1532,7 @@ export async function openTeachingTarget({ view, filter, tab, hub, petId } = {})
   if (view === 'collection') renderCollectionView();
   if (view === 'tasks' && hub) renderHomeHub();
   await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  if (detail && petId) openPetDetailModal(petId);
 }
 
 function bindModals() {
@@ -6552,6 +6555,7 @@ function openPetDetailModal(petId) {
       </div>
       ${personalityTags ? `<div class="pet-detail__tags">${personalityTags}</div>` : ''}
       ${owned ? renderStars(pet.stars) : ''}
+      ${owned ? `<section class="pet-detail__growth"><h3>星數與碎片</h3><p>${pet.fragments || 0} 個此夥伴碎片 · ${pet.stars >= 5 ? '已達最高 5 星' : `下一星需要 ${STAR_UPGRADE_COST[pet.stars + 1]} 個`}</p><button type="button" class="btn btn--secondary" data-action="detail-upgrade" data-pet-id="${escapeHtml(pet.id)}" ${pet.stars >= 5 || (pet.fragments || 0) < STAR_UPGRADE_COST[pet.stars + 1] ? 'disabled' : ''}>${pet.stars >= 5 ? '已滿星' : (pet.fragments || 0) < STAR_UPGRADE_COST[pet.stars + 1] ? '碎片還不足' : `升到 ${pet.stars + 1} 星`}</button></section>` : ''}
       ${owned ? `<p class="pet-detail__specialty">探險專長：${escapeHtml(getPetSpecialty(pet).label)} Lv.${getPetSpecialty(pet).level}。一星即可發揮效果，升星會強化專長；不同稀有度都能在合適隊伍中派上用場。</p>` : ''}
       ${owned ? `<p class="pet-detail__gift-affinity">禮物喜好：${escapeHtml(getGiftAffinityTags(pet).map((tag) => GIFT_TAG_LABELS[tag]).join('、') || '通用禮物；目前沒有主題喜好')}</p>` : ''}
       ${owned ? `<p class="pet-detail__bond-lv">親密度 Lv.${bondLevel || 1}</p>` : ''}
@@ -6571,6 +6575,21 @@ function openPetDetailModal(petId) {
     </div>
   `);
   if (owned) void recordOnboardingEvent('pet-care-opened');
+
+  document.querySelector('[data-action="detail-upgrade"]')?.addEventListener('click', () => {
+    const nextStar = pet.stars + 1;
+    const cost = STAR_UPGRADE_COST[nextStar];
+    if (!cost || (pet.fragments || 0) < cost) return;
+    openConfirmModal('確認升星', `將消耗「${petDisplayName(pet)}」的 ${cost} 個碎片，從 ${pet.stars} 星升到 ${nextStar} 星。`, async () => {
+      try {
+        const result = await upgradeStar(pet.id);
+        if (!result.success) { showToast(result.message, 'warning'); return; }
+        await onRefresh({ renderMode: ['collection', 'tasks'] });
+        void recordOnboardingEvent('star-upgraded', { petId: pet.id });
+        showToast(`${petDisplayName(pet)} 升級至 ${result.entry.stars} 星！`, 'success');
+      } catch (error) { showToast(error.message || '升星失敗，請稍後再試', 'error'); }
+    }, { confirmLabel: `花費 ${cost} 碎片升星` });
+  });
 
   document.querySelector('[data-action="detail-view-image"]')?.addEventListener('click', (e) => {
     const id = e.currentTarget.dataset.petId;

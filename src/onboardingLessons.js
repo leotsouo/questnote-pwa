@@ -10,13 +10,13 @@ import { getDispatchTerms } from './expeditionGameplay.js';
 import { CHAPTER_LEVELS, CHAPTER_REWARDS, HABIT_TARGETS, DAILY_COMPANION_REWARD } from './bondJourneyCore.js';
 
 export const LESSONS = Object.freeze([
-  { id: 'stars', title: '升星與寵物碎片', summary: '重複召喚，讓夥伴變強。',
+  { id: 'stars', title: '讓夥伴的星光更亮', summary: '找到同一位夥伴的碎片，看懂花費，再決定升星。', outcome: '學會查看碎片與安全升星', icon: '✦',
     steps: ['fragments', 'cost', 'upgrade'], practice: { upgrade: 'star-upgraded' } },
-  { id: 'bond', title: '陪伴、故事與同行約定', summary: '聽牠的故事，一起完成小事。',
+  { id: 'bond', title: '把日常變成同行的故事', summary: '撫摸夥伴、認識親密度，再用自己的小事完成約定。', outcome: '學會陪伴、故事與同行約定', icon: '♡',
     steps: ['sources', 'pet', 'unlocks', 'story', 'agreement', 'keepsake'], practice: { pet: 'companion-petted' } },
-  { id: 'expedition', title: '組隊探險與旅程報告', summary: '選好隊伍，帶回旅程收穫。',
+  { id: 'expedition', title: '一起走一段新的旅程', summary: '看地區、選隊伍與目標，旅程結束後讀報告、領收穫。', outcome: '學會派遣與領取旅程收穫', icon: '⌁',
     steps: ['prepare', 'dispatch', 'claim'], practice: { dispatch: 'expedition-started', claim: 'expedition-claimed' } },
-  { id: 'workshop', title: '工坊製作與送禮', summary: '把探險材料做成一份心意。',
+  { id: 'workshop', title: '把收穫做成一份心意', summary: '查看材料、製作禮物，再選一位夥伴預覽送禮效果。', outcome: '學會從材料到製作與送禮', icon: '❋',
     steps: ['materials', 'craft', 'gift'], practice: { craft: 'item-crafted', gift: 'gift-given' } },
 ]);
 
@@ -105,35 +105,35 @@ export function getLessonStepContent(id, step, state = {}) {
   const missing = c.recipe.filter((material) => material.have < material.need);
   const materialList = c.recipe.map((material) => `${material.name} ${material.have}/${material.need}`).join('、');
   const sources = missing.map((material) => `${material.name}還差 ${material.need - material.have}，來源：${material.source || '探險獎勵'}`).join('；');
-  const target = { view: 'collection', filter: 'owned', petId: c.starPet?.id };
+  const target = { view: 'collection', filter: 'owned', petId: c.starPet?.id, detail: Boolean(c.starPet) };
   const collectionSelector = c.starPet
-    ? `.collection-card[data-pet-id="${c.starPet.id}"]` : '#collection-filters';
+    ? '.pet-detail' : '#view-collection [data-filter="owned"]';
   const storyPet = c.companion || c.pets[0];
-  const storyTarget = { view: 'collection', filter: 'owned', petId: storyPet?.id };
+  const storyTarget = { view: 'collection', filter: 'owned', petId: storyPet?.id, detail: Boolean(storyPet) };
   const storySelector = storyPet
-    ? `.collection-card[data-pet-id="${storyPet.id}"] [data-action="view-detail"]` : '#collection-filters';
+    ? `[data-bond-open="${storyPet.id}"]` : '#view-collection [data-filter="owned"]';
   const descriptions = {
     'stars/fragments': {
       title: '重複夥伴會變成牠的碎片',
       body: `召喚已獲得的夥伴時，會累積同一隻寵物的碎片。依稀有度：${Object.entries(FRAGMENT_BY_RARITY).map(([rarity, amount]) => `${rarity} +${amount}`).join('、')}。工坊的「星界碎片」是材料，與升星用的寵物碎片分開計算。`,
-      target, selector: collectionSelector, action: '查看已獲得圖鑑',
+      target, selector: '.pet-detail__growth', action: '找到碎片紀錄',
     },
     'stars/cost': {
       title: '先看下一星需要多少碎片',
       body: `升星會消耗該夥伴的碎片。${Object.entries(STAR_UPGRADE_COST).map(([star, amount]) => `升到 ${star} 星需 ${amount} 個`).join('；')}。最高 5 星，星數會記錄在圖鑑與收藏里程中。`,
-      target, selector: collectionSelector, action: '查看星數與碎片',
+      target, selector: '.pet-detail__growth', action: '查看下一星花費',
     },
     'stars/upgrade': {
       title: '自願練習一次升星',
       body: !c.starPet ? '目前還沒有夥伴。先召喚、累積同一夥伴的碎片後，再回來練習。'
         : stars >= 5 ? '目前已獲得的夥伴都已達到 5 星。可以完成本章回顧。'
-          : `「${name}」目前 ${stars} 星、${c.starPet.fragments || 0} 個碎片；升到 ${stars + 1} 星會花費 ${cost} 個。${c.starPet.fragments >= cost ? '願意實作時，點圖鑑的「升星」並確認花費。' : '碎片不足，可等之後重複召喚累積；不用為了教學額外召喚。'}`,
-      target, selector: `${collectionSelector} [data-action="upgrade"]`, action: '查看升星操作',
+          : `「${name}」目前 ${stars} 星、${c.starPet.fragments || 0} 個碎片；升到 ${stars + 1} 星會花費 ${cost} 個。${c.starPet.fragments >= cost ? '願意實作時，點養成頁的「升星」並確認花費。' : '碎片不足，可等之後重複召喚累積；不用為了教學額外召喚。'}`,
+      target, selector: '.pet-detail [data-action="detail-upgrade"]', action: '查看升星操作',
     },
     'bond/sources': {
       title: '親密度跟著日常累積',
       body: '完成任務會提升目前陪伴夥伴的親密度；撫摸也能增加親密度。探險獎勵給派遣的夥伴，工坊禮物則給你選中的夥伴。首頁進度條顯示目前等級與距離下一級的進度。',
-      target: { view: c.companion ? 'tasks' : 'collection', filter: 'owned' }, selector: c.companion ? '#companion-section' : '#collection-filters', action: c.companion ? '查看陪伴與進度' : '前往設定陪伴',
+      target: { view: c.companion ? 'tasks' : 'collection', filter: 'owned' }, selector: c.companion ? '#twilight-home' : '#view-collection [data-filter="owned"]', action: c.companion ? '查看陪伴與進度' : '前往設定陪伴',
     },
     'bond/pet': {
       title: '試著撫摸你的夥伴',

@@ -65,3 +65,33 @@ body.reduce-motion .guided-ring, body.reduce-motion .guided-companion { animatio
 .guided-page-target { outline: 2px solid var(--accent, #b5cfed); outline-offset: 4px; border-radius: 12px; }
 .guided-page-tour { scroll-margin-top: 16px; }
 #guided-page-tour-button { min-height: 48px; margin-top: 12px; white-space: normal; }
+
+/* Growth chapters teach beside the real page or inside its actual dialog. */
+.guide-growth { margin-block: 24px; }
+.growth-eyebrow { color: var(--color-primary-light); font-size: .875rem; letter-spacing: .04em; }
+.growth-safety-note, .growth-practice-note { padding: 12px; border-left: 3px solid var(--accent); border-radius: 8px; background: var(--bg-card); line-height: 1.65; }
+#guide-chapters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+#guide-chapters .guide-chapter { padding: 22px; border-radius: 22px; }
+#guide-chapters .guide-chapter h3 { font-size: 1.2rem; line-height: 1.5; margin: 12px 0 8px; }
+#guide-chapters .guide-chapter p { font-size: 1rem; line-height: 1.65; }
+.growth-chapter-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-top: 16px; font-size: 1.7rem; border-radius: 16px; color: var(--color-primary-light); background: var(--color-bg-card-soft); }
+.growth-outcome { font-weight: 600; color: var(--color-text-main) !important; }
+#guide-chapters button, #guide-chapters summary { min-height: 48px; font-size: 1rem; white-space: normal; }
+.growth-coach.onboarding-dock { position: static; transform: none; width: 100%; max-height: none; padding: 20px; margin: 16px 0; overflow: visible; box-shadow: none; box-sizing: border-box; border-radius: 22px; color: var(--color-text-main); }
+body.modal-open .growth-coach.onboarding-dock, body.expedition-dispatch-open .growth-coach.onboarding-dock { visibility: visible; }
+.growth-coach .onboarding-dock__top { align-items: center; flex-wrap: wrap; }
+.growth-coach .onboarding-dock__top > span { flex: 1 1 130px; }
+.growth-coach h2 { font-size: 1.2rem; line-height: 1.5; }
+#onboarding-root .growth-coach :is(h2, p, li) { text-align: left; }
+.growth-coach .onboarding-brief, .growth-coach p, .growth-coach .onboarding-more li { font-size: 1rem; line-height: 1.65; }
+.growth-coach button, .growth-coach summary { min-height: 48px; font-size: 1rem; white-space: normal; }
+body[data-theme] :is(#app, #modal-overlay, #expedition-dispatch-modal) #onboarding-root .growth-coach :is(button, summary) { min-height: 48px; font-size: 1rem; white-space: normal; }
+.growth-companion { display: flex; align-items: center; gap: 12px; margin: 10px 0; font-size: .9rem; }
+.growth-companion img { object-fit: contain; border-radius: 12px; }
+.growth-step-rail { display: flex; gap: 8px; padding: 0 0 8px; margin: 12px 0; list-style: none; overflow-x: auto; overscroll-behavior-inline: contain; }
+.growth-step-rail li { flex: 0 0 128px; font-size: .8rem; line-height: 1.5; color: var(--color-text-secondary); padding: 10px; border: 1px solid var(--border-color); border-radius: 12px; }
+.growth-step-rail li span { display: block; font-weight: 700; }
+.growth-step-rail [aria-current] { color: var(--color-text-main); border-color: var(--accent); background: var(--color-bg-card-soft); }
+.pet-detail__growth { margin: 16px 0; padding: 16px; border: 1px solid var(--border-color); border-radius: 14px; }
+.pet-detail__growth button { min-height: 48px; }
+@media (max-width: 600px) { #guide-chapters { grid-template-columns: minmax(0, 1fr); } .growth-coach.onboarding-dock { padding: 16px; } }

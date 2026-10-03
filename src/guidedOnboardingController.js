@@ -203,7 +203,7 @@ export function refreshGuidedOnboarding() {
         <p class="guided-feedback" role="status" aria-live="polite"></p>
         <div class="guided-actions">${skipOpen ? '<button type="button" class="btn btn--primary" data-guided-action="cancel-skip">繼續練習</button><button type="button" class="btn btn--secondary guided-hold" data-guided-action="hold-skip" aria-describedby="guided-hold-help">長按 1.5 秒略過<span class="guided-hold-progress" aria-hidden="true"></span></button><p id="guided-hold-help" class="guided-note">不方便長按？可直接使用下方確認按鈕。</p><button type="button" class="guided-link" data-guided-action="confirm-skip">確認略過教學</button>'
           : action ? `<button type="button" class="btn btn--primary" aria-describedby="guided-instruction" data-guided-action="${record.step === 'FINISH' ? 'finish-create' : 'acknowledge'}">${action}</button>` : target ? '<span class="guided-action-hint">請點畫面上亮起的按鈕</span>' : '<button type="button" class="btn btn--secondary" data-guided-action="repair">重新開啟這一步</button>'}
-          ${!skipOpen && record.step === 'FINISH' ? '<button type="button" class="btn btn--secondary" data-guided-action="finish-tour">繼續認識其他頁面</button><button type="button" class="btn btn--secondary" data-guided-action="finish-home">先回今日任務</button>' : ''}
+          ${!skipOpen && record.step === 'FINISH' ? '<button type="button" class="btn btn--secondary" data-guided-action="finish-growth">帶著夥伴繼續成長</button><button type="button" class="btn btn--secondary" data-guided-action="finish-home">先回今日任務</button>' : ''}
           ${!skipOpen ? '<button type="button" class="guided-link" data-guided-action="skip">略過教學</button>' : ''}
         </div>
       </section>`;
@@ -257,10 +257,11 @@ async function action(name, expected = {}) {
     skipOpen = false; releaseLock(); navigation.showGuidedHome();
     refreshGuidedOnboarding(); navigation.showToast?.(saved ? '教學已略過。新增任務時會有小提醒；也能到「更多 → 使用教學」再次練習。' : '這次已離開教學。儲存暫時失敗，下次開啟會重試保存略過選擇。', 'info', 6500); return;
   }
-  if (name === 'finish-create' || name === 'finish-home' || name === 'finish-tour') {
+  if (name === 'finish-create' || name === 'finish-home' || name === 'finish-tour' || name === 'finish-growth') {
     record = await advanceGuidedOnboarding('finish', expected); releaseLock(); refreshGuidedOnboarding(); navigation.showGuidedHome();
     if (record.status === 'completed' && name === 'finish-create') navigation.openTaskForm();
     if (record.status === 'completed' && name === 'finish-tour') await movePageTour('start');
+    if (record.status === 'completed' && name === 'finish-growth') navigation.showGrowthHelp?.();
     return;
   }
   if (name === 'acknowledge') {
@@ -333,6 +334,11 @@ export async function replayGuidedOnboarding() {
     record = isGuidedOnboardingActive() ? await recoverGuidedOnboarding() : await startGuidedReplay();
     navigation.showGuidedHome(); signature = ''; await repairPresentation();
   });
+}
+
+export async function pauseGuidedPageTour() {
+  if (pageTour?.status === 'active') pageTour = await savePageTour('pause', pageTour.cursor);
+  renderPageTour();
 }
 
 export async function initGuidedOnboarding(state, handlers) {

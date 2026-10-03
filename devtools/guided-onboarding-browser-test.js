@@ -342,7 +342,7 @@ document.querySelector('#offline').addEventListener('click', async () => {
 });
 
 // High-fidelity review snapshots seeded only in the guarded synthetic profile.
-for (const value of ['COLLECTION_HINT', 'EDUCATION_HELP', 'SKIPPED_EDITOR']) {
+for (const value of ['COLLECTION_HINT', 'EDUCATION_HELP', 'SKIPPED_EDITOR', 'GROWTH_STARS_READY']) {
   const option = document.createElement('option'); option.value = value; option.textContent = value;
   document.querySelector('#scene').append(option);
 }
@@ -351,7 +351,7 @@ document.querySelector('#show').addEventListener('click', async () => {
     await fresh(); frame.style.width = `${document.querySelector('#review-width').value}px`; frame.style.height = '852px';
     const scene = document.querySelector('#scene').value;
     let checkpoint = ['SKIP', 'LARGE_TEXT', 'REDUCE_MOTION', 'NARROW'].includes(scene) ? 'WELCOME' : scene;
-    if (['COLLECTION_HINT', 'EDUCATION_HELP'].includes(scene)) checkpoint = 'FINISH';
+    if (['COLLECTION_HINT', 'EDUCATION_HELP', 'GROWTH_STARS_READY'].includes(scene)) checkpoint = 'FINISH';
     if (scene === 'SKIPPED_EDITOR') checkpoint = 'WELCOME';
     if (scene === 'NARROW') { frame.style.width = '320px'; checkpoint = 'CREATE_TUTORIAL_QUEST'; }
     if (scene === 'LARGE_TEXT' || scene === 'REDUCE_MOTION') {
@@ -368,6 +368,15 @@ document.querySelector('#show').addEventListener('click', async () => {
       await services.db.dbPut('meta', { ...(await state()), step: checkpoint });
     }
     await load(); if (scene === 'SKIP') await action('skip');
+    if (scene === 'GROWTH_STARS_READY') {
+      await action('finish-home');
+      const pet = await services.db.dbGet('collection', 'pet_n01');
+      await services.db.dbPut('collection', { ...pet, fragments: 5 });
+      await services.db.dbPut('meta', { key: 'onboardingV1', status: 'dismissed', activeLesson: 'stars',
+        lessons: { stars: { status: 'active', step: 'upgrade', practiced: [] } } });
+      await load();
+      await until(() => doc().querySelector('.growth-coach[data-step="upgrade"]'), 'growth upgrade');
+    }
     if (['COLLECTION_HINT', 'EDUCATION_HELP'].includes(scene)) {
       await action('finish-home'); await click('.bottom-nav [data-view="collection"]');
       if (scene === 'EDUCATION_HELP') await click('[data-guided-hint-help="collection"]', false);

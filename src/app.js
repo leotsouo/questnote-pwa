@@ -697,8 +697,9 @@ async function initApp() {
     }
 
     await initGuidedOnboarding(appState, { openTaskForm, showGuidedHome, showToast, refreshState, showPage: (view) => { closeModal(); switchView(view); },
-      showEducationHelp: (feature) => { closeModal(); openOnboardingEducation(feature); } });
-    initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget }, onboardingAtStartup);
+      showEducationHelp: (feature) => { closeModal(); openOnboardingEducation(feature); },
+      showGrowthHelp: () => { closeModal(); switchView('guide'); requestAnimationFrame(() => document.querySelector('#guide-growth-title')?.focus()); } });
+    initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, showToast }, onboardingAtStartup);
 
 
 
