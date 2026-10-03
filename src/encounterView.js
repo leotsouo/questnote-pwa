@@ -108,10 +108,12 @@ function renderCollection() {
   const count = list.filter(owned).length;
   screen.innerHTML = `<div class="page-intro"><div><p class="eyebrow">OUR ADVENTURE JOURNAL</p><h1>相遇，寫成旅程。</h1><p class="page-description">熟悉的夥伴，和還未寫下的故事。</p></div></div>${poolSelector()}
     <section class="collection-progress"><p><strong>${count} / ${list.length}</strong> <span class="subtle">位夥伴已相遇</span></p><p class="subtle">每次相遇，都留下一頁自己的記錄。</p><progress max="${list.length}" value="${count}" aria-label="${escapeHtml(collectionScopeName())}，${count} 位已相遇，共 ${list.length} 位"></progress></section>
+    <section id="encounter-collection-milestones" class="collection-milestones-panel card" aria-label="收藏里程碑"></section>
     <div class="filters" aria-label="收藏狀態">${[['all','全部夥伴'],['owned','已相遇'],['unowned','尚未相遇']].map(([key,label]) => `<button data-filter="${key}" aria-pressed="${filter === key}">${label}</button>`).join('')}</div>
     <div class="filters" aria-label="卡片密度"><button data-density="compact" aria-pressed="${density === 'compact'}">精簡卡片</button><button data-density="expanded" aria-pressed="${density === 'expanded'}">展開卡片</button></div>
     <label class="search-label">尋找名字或稱號<input id="identity-collection-search" type="search" value="${escapeHtml(query)}" placeholder="輸入你記得的名字…"></label>
     <div id="identity-collection-results"></div>`;
+  appActions.renderCollectionMilestones?.();
   renderCollectionCards();
 }
 
@@ -342,6 +344,7 @@ document.addEventListener('click', async (event) => {
   if (surface) { screen = surface; view = surface.closest('#view-collection') ? 'collection' : 'pool'; }
   const button = event.target.closest('button');
   if (!button) return;
+  if (button.dataset.collectionMilestoneAction) return;
 
   if (button.dataset.pet) { petDetail(byId(button.dataset.pet)); return; }
   if (button.dataset.resultPet) { petDetail(byId(button.dataset.resultPet), true); return; }
