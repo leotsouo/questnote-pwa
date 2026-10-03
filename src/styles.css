@@ -3830,6 +3830,18 @@ body.reduce-motion * {
   display: none;
 }
 
+.more-support > summary {
+  list-style: none;
+}
+
+.more-support > summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-support[open] > summary .more-menu-arrow {
+  transform: rotate(90deg);
+}
+
 .share-card,
 .share-install {
   margin-bottom: 16px;

@@ -77,7 +77,6 @@ import {
 } from './companionDialogueService.js';
 import { setTheme, applyThemeToDocument, normalizeTheme, setFontSize, applyFontSizeToDocument, normalizeFontSize } from './preferencesService.js';
 import { initQuestIconLanguage } from './iconPresentation.js';
-import { THEME_DIRECTIONS } from './themeRegistry.js';
 import { twilightIcon, getCompanionScene, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
 import { createBondJourneyController } from './bondJourneyController.js';
 import { createAwakeningController } from './petAwakeningController.js';
@@ -1138,10 +1137,6 @@ function bindDelegatedEvents() {
     const item = e.target.closest('[data-goto]');
     if (!item) return;
     switchView(item.dataset.goto);
-    if (item.hasAttribute('data-style-settings')) {
-      document.querySelector('.settings-theme')?.scrollIntoView({ behavior: 'instant', block: 'start' });
-      document.querySelector('[data-action="select-theme"][aria-checked="true"]')?.focus({ preventScroll: true });
-    }
     if (item.hasAttribute('data-scroll-daily-blessing')) {
       homeHubActive = 'blessing';
       dailyBlessingCollapsed = false;
@@ -7984,8 +7979,6 @@ async function handleWorkshopClick(e) {
 
 function renderMoreView() {
   renderVersionInfo();
-  const themeNames = Object.fromEntries(Object.entries(THEME_DIRECTIONS).map(([key, direction]) => [key, direction.name]));
-  setText('more-active-theme', `${themeNames[state?.userPreferences?.theme] || themeNames.default} · 自由切換三種風格`);
 
   const summary = state?.achievementSummary;
   const badge = document.getElementById('more-achievements-badge');

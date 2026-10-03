@@ -1,0 +1,43 @@
+{
+  "baseSource": "0d3fbeb4e6fe904652d57bb600d5fb3f1dfe619f",
+  "results": [
+    {
+      "name": "isolated synthetic database; common entries are first; original row artwork and styling preserved",
+      "detail": {
+        "visibleEntries": 7,
+        "beforeEntries": 10,
+        "originalStyle": {
+          "padding": "18px 0px",
+          "height": "82px",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "1px solid rgb(53, 68, 91)",
+          "radius": "0px",
+          "font": "500 15px Arial",
+          "color": "rgb(244, 238, 225)",
+          "icon": "<span class=\"qn-icon twilight-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path d=\"m2 9 3-3 3 3\"></path>\n  <path d=\"M13 18H7a2 2 0 0 1-2-2V6\"></path>\n  <path d=\"m22 15-3 3-3-3\"></path>\n  <path d=\"M11 6h6a2 2 0 0 1 2 2v10\"></path></svg></span>"
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "all daily entries, handbook and settings open and return; daily blessing opens its actions",
+      "passed": true
+    },
+    {
+      "name": "native disclosure works with Enter and Space and keeps support navigation available",
+      "passed": true
+    },
+    {
+      "name": "three unchanged themes and 320px extra-large text have no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "no runtime errors or outbound feedback submission",
+      "detail": {
+        "blockedExternalRequests": [],
+        "errors": []
+      },
+      "passed": true
+    }
+  ]
+}
