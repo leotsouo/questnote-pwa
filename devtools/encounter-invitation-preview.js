@@ -1,5 +1,6 @@
 import { mergeAllPetsWithLore } from '../src/loreService.js';
 import { initialAwakeningPortrait } from '../src/petAwakeningView.js';
+import { playInvitationCharacter } from '../src/encounterCeremony.js';
 import { invitationEntry, reencounterMoment, renderInvitationScreen, intimacySummary, createInvitationController, invitationEscape as e } from '../src/invitationPresentation.js';
 const [catalog, lore, pools, awakening] = await Promise.all(['pets','pets-lore','pools','pet-awakening'].map((name) => fetch(`../data/${name}.json`).then((response) => response.json())));
 const pets = mergeAllPetsWithLore(catalog.pets, lore).map((pet) => initialAwakeningPortrait(pet, awakening));
@@ -10,7 +11,16 @@ const scenarios = { summon:'A · 召喚入口', duplicate_n:'B · N 再次相遇
 const host = document.getElementById('preview');
 document.getElementById('scenario').innerHTML = Object.entries(scenarios).map(([key,label]) => `<option value="${key}">${label}</option>`).join('');
 let balance = 242;
-const controller = createInvitationController(host, { invite:async (id) => { const row = rows.find((row) => row.pet.id === id); if (row.owned) throw new Error('這位夥伴已相遇。'); const cost = row.pet.rarity === 'UR' ? 200 : 100; if (balance < cost) throw new Error('相遇碎片尚不足。'); balance -= cost; row.owned = true; return { balance }; }, setCompanion:async () => {}, close:() => render() });
+const controller = createInvitationController(host, {
+  invite:async (id) => { const row = rows.find((row) => row.pet.id === id); if (row.owned) throw new Error('這位夥伴已相遇。'); const cost = row.pet.rarity === 'UR' ? 200 : 100; if (balance < cost) throw new Error('相遇碎片尚不足。'); balance -= cost; row.owned = true; return { balance }; },
+  playArrival:async ({ selected, reduceMotion }) => {
+    const controls = [...document.querySelectorAll('.preview-controls select')];
+    controls.forEach((control) => { control.disabled = true; });
+    try { return await playInvitationCharacter(pools.pools, selected, { reduceMotion }); }
+    finally { controls.forEach((control) => { control.disabled = false; }); }
+  },
+  setCompanion:async () => {}, close:() => render(),
+});
 const receipt = { total:202, items:[{petId:'pet_n01',leftover:0,refund:0,total:0},{petId:'pet_r01',leftover:7,refund:5,total:12},{petId:'pet_sr01',leftover:0,refund:20,total:20},{petId:'pet_ssr01',leftover:17,refund:50,total:67},{petId:'pet_ur01',leftover:3,refund:100,total:103}] };
 function render() {
   const scenario = document.getElementById('scenario').value;
@@ -25,7 +35,7 @@ function render() {
   if (['ssr','ur','confirm','ceremony','result','companion','insufficient','owned','locked'].includes(scenario)) {
     model.route = ['confirm','ceremony','result','companion'].includes(scenario) ? scenario === 'companion' ? 'result' : scenario : 'detail';
     model.selected = scenario === 'ssr' ? rows.find((row) => row.pet.id === 'pet_ssr26') : scenario === 'owned' ? rows.find((row) => row.pet.id === 'pet_ssr25') : scenario === 'locked' ? rows.find((row) => row.pet.id === 'pet_ur06') : model.selected;
-    model.balance = ['confirm','ceremony'].includes(scenario) ? 242 : ['result','companion'].includes(scenario) ? 42 : scenario === 'insufficient' ? 142 : scenario === 'ur' ? 242 : 142;
+    model.balance = scenario === 'confirm' ? 242 : ['ceremony','result','companion'].includes(scenario) ? 42 : scenario === 'insufficient' ? 142 : scenario === 'ur' ? 242 : 142;
     model.companionSet = scenario === 'companion';
   }
   if (scenario === 'migration') Object.assign(model, { route:'migration', receipt, names:new Map(pets.map((pet) => [pet.id,pet.name])) });

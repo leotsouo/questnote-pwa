@@ -1,5 +1,7 @@
 # 相遇系統 V3.6.0 — 來源交付驗收
 
+本報告保留 V3.6.0 當次產物與驗收證據。後續邀請演出已依使用者回饋改為原卡池角色登場，見 [V3.6.1 演出調整驗收](invitation-pool-arrival-review.md)；下列 V3.6.0 artifact 不包含該後續調整。
+
 2026-10-03。從主線 `d9c69bba09c59da11a115db24a2b3c1d7e4a9ed8` 建立隔離 worktree；正式站基準 V3.5.24、artifact `c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be`。原型先於 production implementation 完成，見 [原型審查](encounter-prototype-review.md)。
 
 ## 功能與 Before / After

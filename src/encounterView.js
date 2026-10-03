@@ -4,7 +4,7 @@ import { getPetSpecialty } from './expeditionGameplay.js';
 import { initialAwakeningPortrait } from './petAwakeningView.js';
 import { RARITIES, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, encounterResults } from './encounterViewModel.js';
 import { normalizePoolDefinition, resolveActivePool } from './poolContentContract.js';
-import { createPoolScenery, ceremonyPresentation, playCeremonyRitual, playCeremonyCharacter } from './encounterCeremony.js';
+import { createPoolScenery, ceremonyPresentation, playCeremonyRitual, playCeremonyCharacter, playInvitationCharacter } from './encounterCeremony.js';
 import { delay } from './imagePreloadService.js';
 import { SUMMON_TIMING } from './summonTiming.js';
 import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
@@ -485,6 +485,7 @@ function openInvitation(route = 'gallery') {
     receipt:appState.encounterEconomy?.migrationReceipt, names:new Map(pets.map((pet) => [pet.id, pet.name])) });
   if (!invitationController) invitationController = createInvitationController(invitationDialog, {
     invite:(id) => appActions.invite(id), setCompanion:(id) => appActions.setCompanion(id),
+    playArrival:({ selected, reduceMotion }) => playInvitationCharacter(pools, selected, { reduceMotion }),
     dismissMigration:() => appActions.dismissMigration(),
     refreshModel(current) { const fresh = model(); const id = current.selected?.pet.id; Object.assign(current, { balance:fresh.balance, rows:fresh.rows, selected:fresh.rows.find((row) => row.pet.id === id) }); },
   });

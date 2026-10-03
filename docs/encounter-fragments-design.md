@@ -37,7 +37,7 @@
 
 先建立真實角色、純記憶體 fixture 的高擬真 dev preview：召喚入口、N/SR/UR 重逢、取得碎片、畫廊、SSR/UR 預覽、確認、儀式、結果、設為同行、不足、已相遇、轉換摘要、無星級角色手記與親密度專長。預覽不呼叫 draw/wallet/collection/production APIs。
 
-393×852 與 320px、三主題、放大文字、鍵盤焦點與 Reduced Motion screenshot review 通過後，才接正式交易。指定邀請先提交收集結果再播放演出；跳過、關閉或失敗均不得再次扣款。SSR/UR 角色由所有正式 active pools 的 effective candidates 決定；擴充尚未解鎖者顯示原因，不能繞過。
+393×852 與 320px、三主題、放大文字、鍵盤焦點與 Reduced Motion screenshot review 通過後，才接正式交易。指定邀請先提交收集結果，再直接播放所選角色原卡池的 SSR／UR 中獎登場演出，共用既有 reveal service、角色 motif 與時間。跨池邀請依角色名單的 seriesId 選演出，不使用目前召喚頁所選卡池。原生 dialog 演出期間暫時離開 top layer，完成或略過後回到邀請結果；跳過、關閉或失敗均不得再次扣款。SSR/UR 角色由所有正式 active pools 的 effective candidates 決定；擴充尚未解鎖者顯示原因，不能繞過。
 
 ## 文件與測試交付
 

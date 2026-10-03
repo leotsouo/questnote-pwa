@@ -46,38 +46,54 @@ export function renderInvitationScreen(model) {
   if (route === 'detail' || route === 'confirm') {
     return `<section class="invitation-character"><button class="text-button" data-invitation-action="${route === 'confirm' ? 'detail' : 'gallery'}">← ${route === 'confirm' ? '返回夥伴預覽' : '返回指定邀請'}</button><div class="invitation-portrait">${portrait(pet)}</div>${identity(pet)}<p class="invitation-character-intro">${e(intro)}</p>${route === 'confirm' ? `<div class="invitation-confirm-copy"><h3>讓這次相遇，成為同行。</h3><p>消耗 ${cost} 枚相遇碎片，邀請${e(pet.name)}加入你的旅程。</p><p class="subtle">邀請後剩餘 ${Math.max(0, balance - cost)} 枚。</p></div>` : `<p class="invitation-availability">${owned ? '已相遇 · 這位夥伴已在你的旅途中' : !available ? e(reason) : '尚未相遇 · 可指定邀請'}</p><div class="invitation-cost">${fragmentMark()}<p><strong>${cost}</strong> 相遇碎片<span>目前持有 ${balance}</span></p></div>`}${error ? `<p class="invitation-error" role="alert">${e(error)}</p>` : ''}${!owned && available && balance < cost ? `<p class="invitation-error" role="status">再累積 ${cost - balance} 枚相遇碎片，就能邀請牠。每次重逢都會留下進度。</p>` : ''}<div class="invitation-primary-action"><button class="primary" data-invitation-action="${route === 'confirm' ? 'commit' : 'confirm'}" ${owned || !available || balance < cost || model.busy ? 'disabled' : ''}>${model.busy ? '正在送出邀請…' : owned ? '已相遇' : !available ? '等待故事開啟' : balance < cost ? '相遇碎片尚不足' : route === 'confirm' ? '送出邀請' : '邀請這位夥伴'}</button></div></section>`;
   }
-  return `<section class="invitation-arrival ${route === 'ceremony' ? 'is-ceremony' : ''}" data-motion="${model.reduceMotion ? 'reduced' : 'full'}"><p class="eyebrow">${route === 'ceremony' ? '沿著你的邀請，光徑正在抵達' : '一份邀請，一段新的同行'}</p><div class="invitation-arrival-art"><div class="invitation-path" aria-hidden="true">${fragmentMark()}</div>${portrait(pet)}</div>${identity(pet)}<p class="invitation-welcome">${route === 'ceremony' ? '你記得牠的名字。牠正走向你的旅程。' : '牠接受了你的邀請。'}</p>${route === 'result' ? `<p class="subtle">${e(pet.name)}已加入收藏。故事，從相處開始。</p><div class="invitation-primary-action"><button class="primary" data-invitation-action="companion" ${model.busy || model.companionSet ? 'disabled' : ''}>${model.companionSet ? '正在與你同行' : '設為同行夥伴'}</button><button data-invitation-action="close">繼續旅程</button><button class="text-button" data-invitation-action="replay">重看邀請</button></div><p class="invitation-footnote">本次邀請 ${cost} 枚 · 剩餘 ${balance} 枚相遇碎片</p>` : '<button class="text-button" data-invitation-action="skip">略過演出，迎接夥伴</button>'}${error ? `<p role="alert">${e(error)}</p>` : ''}</section>`;
+  if (route === 'ceremony') return `<p role="status">${e(pet.name)}已接受邀請，正在準備角色登場演出。</p>`;
+  return `<section class="invitation-arrival" data-motion="${model.reduceMotion ? 'reduced' : 'full'}"><p class="eyebrow">一份邀請，一段新的同行</p><div class="invitation-arrival-art"><div class="invitation-path" aria-hidden="true">${fragmentMark()}</div>${portrait(pet)}</div>${identity(pet)}<p class="invitation-welcome">牠接受了你的邀請。</p><p class="subtle">${e(pet.name)}已加入收藏。故事，從相處開始。</p><div class="invitation-primary-action"><button class="primary" data-invitation-action="companion" ${model.busy || model.companionSet ? 'disabled' : ''}>${model.companionSet ? '正在與你同行' : '設為同行夥伴'}</button><button data-invitation-action="close">繼續旅程</button><button class="text-button" data-invitation-action="replay">重看角色登場</button></div><p class="invitation-footnote">本次邀請 ${cost} 枚 · 剩餘 ${balance} 枚相遇碎片</p>${error ? `<p role="alert">${e(error)}</p>` : ''}</section>`;
 }
 
 /** The controller only invokes injected committed actions. Replays are presentation-only. */
 export function createInvitationController(host, actions) {
-  let model = {}; let timer = null; let opener = null; let generation = 0;
+  let model = {}; let opener = null; let generation = 0; let arrivalRun = 0; let suspendedCloseEvents = 0;
   const redraw = (focus = true) => { host.setAttribute('aria-label', model.route === 'migration' ? '相遇，有了新的意義' : '指定邀請'); host.innerHTML = `<div class="invitation-dialog-header"><span>指定邀請</span><button data-invitation-action="close" aria-label="關閉指定邀請" ${model.busy ? 'disabled' : ''}>關閉</button></div><div class="invitation-content">${renderInvitationScreen(model)}</div><div class="sr-only" role="status" aria-live="polite">${model.announcement || ''}</div>`; if (focus) host.querySelector('button')?.focus(); };
-  const finishArrival = () => { clearTimeout(timer); model.route = 'result'; model.announcement = `${model.selected.pet.name}接受了你的邀請，已加入收藏。`; redraw(); };
-  const arrival = () => {
-    clearTimeout(timer); model.announcement = '';
+  const finishArrival = () => { model.route = 'result'; model.announcement = `${model.selected.pet.name}接受了你的邀請，已加入收藏。`; redraw(); };
+  const arrival = async () => {
+    const current = generation; const run = ++arrivalRun;
+    model.announcement = ''; model.error = '';
     if (model.reduceMotion) { finishArrival(); return; }
     model.route = 'ceremony'; redraw();
-    const current = generation;
-    timer = setTimeout(() => { if (current === generation) finishArrival(); }, 2300);
+    // The existing pool reveal lives on body. Suspend the native dialog so its
+    // top layer cannot cover the character animation or make its skip inert.
+    const previousHidden = host.hidden;
+    const suspended = Boolean(host.open && host.close);
+    host.hidden = true;
+    if (suspended) { suspendedCloseEvents++; host.close(); }
+    try { await actions.playArrival?.({ selected:model.selected, reduceMotion:model.reduceMotion }); }
+    catch { if (current === generation && run === arrivalRun) model.error = '夥伴已加入收藏；登場演出暫時無法播放，可稍後重看。'; }
+    finally {
+      if (current === generation && run === arrivalRun) {
+        host.hidden = previousHidden;
+        finishArrival();
+        if (suspended && !host.open) host.showModal();
+        host.querySelector('[data-invitation-action="companion"]:not(:disabled)')?.focus();
+      }
+    }
   };
-  const close = async () => { if (model.busy) return; if (model.route === 'migration') { model.busy = true; try { await actions.dismissMigration?.(); } catch (error) { model.busy = false; model.error = error.message; redraw(); return; } model.busy = false; } clearTimeout(timer); generation++; if (host.open) host.close(); else actions.close?.(); if (opener?.isConnected) opener.focus(); };
-  host.addEventListener('cancel', (event) => { event.preventDefault(); if (model.route === 'ceremony') { finishArrival(); } else close(); });
-  host.addEventListener('close', () => { clearTimeout(timer); generation++; if (opener?.isConnected) opener.focus(); });
+  const close = async () => { if (model.busy || model.route === 'ceremony') return; if (model.route === 'migration') { model.busy = true; try { await actions.dismissMigration?.(); } catch (error) { model.busy = false; model.error = error.message; redraw(); return; } model.busy = false; } generation++; if (host.open) host.close(); else actions.close?.(); if (opener?.isConnected) opener.focus(); };
+  host.addEventListener('cancel', (event) => { event.preventDefault(); close(); });
+  host.addEventListener('close', () => { if (suspendedCloseEvents) { suspendedCloseEvents--; return; } generation++; if (opener?.isConnected) opener.focus(); });
   host.addEventListener('click', async (event) => {
-    const button = event.target.closest('button'); if (!button || model.busy) return;
+    const button = event.target.closest('button'); if (!button || model.busy || model.route === 'ceremony') return;
     if (button.dataset.invitationPet) { model.selected = model.rows.find((row) => row.pet.id === button.dataset.invitationPet); model.route = 'detail'; model.error = ''; redraw(); return; }
     if (button.dataset.invitationFilter) { model.rarity = button.dataset.invitationFilter; redraw(false); host.querySelector(`[data-invitation-filter="${model.rarity}"]`)?.focus(); return; }
     const action = button.dataset.invitationAction;
     if (['gallery', 'detail', 'confirm'].includes(action)) { model.route = action; model.error = ''; redraw(); }
     if (action === 'close') close();
-    if (action === 'skip') finishArrival();
-    if (action === 'replay') arrival();
+    if (action === 'replay') await arrival();
     if (action === 'dismiss-migration') await close();
     if (action === 'commit') {
       const current = generation; model.busy = true; model.error = ''; redraw();
-      try { const result = await actions.invite(model.selected.pet.id); if (current !== generation) return; model.balance = result.balance; model.selected.owned = true; model.busy = false; arrival(); }
-      catch (error) { if (current !== generation) return; model.busy = false; model.error = ['QuotaExceededError','AbortError','UnknownError','InvalidStateError','DataCloneError'].includes(error.name) ? '裝置暫時無法儲存這份邀請，尚未扣除相遇碎片。請檢查可用空間後再試。' : error.message || '邀請尚未送出，請稍後再試。'; model.route = 'detail'; actions.refreshModel?.(model); redraw(); }
+      try { const result = await actions.invite(model.selected.pet.id); if (current !== generation) return; model.balance = result.balance; model.selected.owned = true; model.busy = false; }
+      catch (error) { if (current !== generation) return; model.busy = false; model.error = ['QuotaExceededError','AbortError','UnknownError','InvalidStateError','DataCloneError'].includes(error.name) ? '裝置暫時無法儲存這份邀請，尚未扣除相遇碎片。請檢查可用空間後再試。' : error.message || '邀請尚未送出，請稍後再試。'; model.route = 'detail'; actions.refreshModel?.(model); redraw(); return; }
+      await arrival();
     }
     if (action === 'companion') {
       model.busy = true; redraw();
@@ -88,5 +104,5 @@ export function createInvitationController(host, actions) {
   });
   host.addEventListener('input', (event) => { if (!event.target.hasAttribute('data-invitation-query')) return; const input = event.target; model.query = input.value; const start = input.selectionStart; redraw(false); const replacement = host.querySelector('[data-invitation-query]'); replacement.focus(); try { replacement.setSelectionRange(start, start); } catch {} });
   host.addEventListener('change', (event) => { if (event.target.hasAttribute('data-invitation-series')) { model.series = event.target.value; redraw(false); host.querySelector('[data-invitation-series]')?.focus(); } });
-  return { open(next) { clearTimeout(timer); generation++; opener = document.activeElement; model = { rarity: 'all', series: 'all', query: '', ...next }; redraw(false); if (host.showModal && !host.open) host.showModal(); host.querySelector('button')?.focus(); }, close };
+  return { open(next) { generation++; opener = document.activeElement; model = { rarity: 'all', series: 'all', query: '', ...next }; host.hidden = false; redraw(false); if (host.showModal && !host.open) host.showModal(); host.querySelector('button')?.focus(); if (model.route === 'ceremony') void arrival(); }, close };
 }

@@ -59,10 +59,6 @@
 .invitation-path { position:absolute; inset:12px; border:1px solid var(--color-accent); border-radius:48% 48% 24px 24px; transform:rotate(-4deg); opacity:.65; pointer-events:none; }
 .invitation-path .encounter-fragment-mark { position:absolute; bottom:-14px; left:calc(50% - 16px); width:32px; height:32px; background:var(--color-bg-main); }
 .invitation-welcome { font-size:1rem; margin:20px 0 10px !important; }
-.invitation-arrival.is-ceremony[data-motion="full"] .invitation-path { animation:invitation-path-arrive 2.3s ease-out both; }
-.invitation-arrival.is-ceremony[data-motion="full"] img { animation:invitation-character-arrive 2.3s ease-out both; }
-@keyframes invitation-path-arrive { 0% { opacity:.12; transform:rotate(-12deg) scale(.94); } 50% { opacity:.85; } 100% { opacity:.65; transform:rotate(-4deg) scale(1); } }
-@keyframes invitation-character-arrive { 0% { opacity:.45; } 55%,100% { opacity:1; } }
 .reencounter-moment { margin:24px 0 0; text-align:center; }
 .reencounter-moment blockquote { margin:16px 0; font-size:.9rem; color:var(--color-text-secondary); }
 .fragment-received { display:flex; align-items:center; justify-content:center; gap:10px; margin:20px 0 !important; }
