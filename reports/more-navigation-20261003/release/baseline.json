@@ -1,0 +1,17 @@
+{
+  "verifiedAt": "2026-10-03T10:01:51.600Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "artifactId": "9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818",
+  "sourceCommit": "2e226b65d389357bf90a726ecf8f24adeec982d2",
+  "deploymentCommit": "4aa9aa10dcd79810f781f8c2f40318d5d45401b6",
+  "manifestSha256": "d2fa708b1ab97ef99c26c409d6c4eead59288849166044bcd7d2c9d7f12ec932",
+  "contentBundleSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
+  "preservedAssets": 474,
+  "files": {
+    "data/global-mailbox.json": "6375b311871b9b12497b988c3d578d5ecc6255768187dc047bf64e11d0b92d6b",
+    "data/materials.json": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
+    "data/craftables.json": "f49345c56b3010389d60ec9c03ec7f44f57b89b9662a2c3ec55d8381fe7fcd73",
+    "data/gift-affinities.json": "78237d48ef4403e33458a39e1d5fb477501d0bf119ef956e3b8f917492cb6027",
+    "data/expeditions.json": "1dbacba9d13d4addaa03b8348dd2abc42a0d12175bc13176444990041a601984"
+  }
+}
