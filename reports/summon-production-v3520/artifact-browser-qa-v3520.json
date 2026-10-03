@@ -1,7 +1,7 @@
 {
   "running": false,
-  "runId": "a5f0246d-74ae-4b8b-b26f-7a0d912a79c8",
-  "passed": 13,
+  "runId": "8fcaff4e-80ef-4ba8-911d-9a2d8806c00f",
+  "passed": 12,
   "failed": 0,
   "results": [
     {
@@ -30,10 +30,6 @@
     },
     {
       "name": "direct preview visit coexists with production using a separate database and controller",
-      "ok": true
-    },
-    {
-      "name": "retired saved pool selection uses the active fallback without resetting player data",
       "ok": true
     },
     {
@@ -79,22 +75,22 @@
       "databaseNames": []
     },
     "production": {
-      "artifactId": "5149724a0426c8dff872572adbcd5fbbbcd5f9fd54f675a2d2733fe200986c51",
+      "artifactId": "289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9",
       "catalogSha256": "163ced468ca4d8025e26c57777bf8ba0954ef923727c66b2069fabef28891443",
       "petCount": 128,
-      "controller": "http://127.0.0.1:58821/questnote-pwa/service-worker.js?artifact=5149724a0426c8dff872572adbcd5fbbbcd5f9fd54f675a2d2733fe200986c51"
+      "controller": "http://127.0.0.1:63873/questnote-pwa/service-worker.js?artifact=289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9"
     },
     "legacyTransition": {
       "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
       "waitingBeforeClose": true,
       "zeroDatabasesBeforeClose": true,
-      "newArtifact": "5149724a0426c8dff872572adbcd5fbbbcd5f9fd54f675a2d2733fe200986c51"
+      "newArtifact": "289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9"
     },
     "preview": {
-      "artifactId": "5ad9e47119cb8379cdb543368405b0c1d295fbe28068c3913aa64033be82c7ff",
+      "artifactId": "4dddac050996ddc96265d7c615bad0462b72f3b858d485623af418f4a24f350e",
       "catalogSha256": "163ced468ca4d8025e26c57777bf8ba0954ef923727c66b2069fabef28891443",
       "petCount": 128,
-      "controller": "http://127.0.0.1:58821/questnote-pwa-preview/v3521-review-9977d4dd/service-worker.js?artifact=5ad9e47119cb8379cdb543368405b0c1d295fbe28068c3913aa64033be82c7ff"
+      "controller": "http://127.0.0.1:63873/questnote-pwa-preview/v3520-review-fd30782f/service-worker.js?artifact=4dddac050996ddc96265d7c615bad0462b72f3b858d485623af418f4a24f350e"
     },
     "offlineGrowthLesson": {
       "chapter": "workshop",

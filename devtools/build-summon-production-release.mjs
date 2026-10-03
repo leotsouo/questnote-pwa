@@ -17,7 +17,7 @@ const get = async (file) => {
 };
 const bytes = await get('release-artifact.json');
 const baseline = JSON.parse(bytes);
-assert.equal(baseline.artifactId, '4f3b66f218a858f2b42a324be80dab4beb0b294f90ab542f2d955cb3f54c2009');
+assert.equal(baseline.artifactId, '289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9');
 const catalogBytes = await get(baseline.profile.contentBundleUrl);
 assert.equal(hash(catalogBytes), baseline.profile.contentBundleSha256);
 const catalog = JSON.parse(catalogBytes);
@@ -31,7 +31,7 @@ const mailbox = await get('data/global-mailbox.json');
 assert.deepEqual(JSON.parse(mailbox),JSON.parse(await fs.readFile(path.join(projectRoot,'data/global-mailbox.json'))),'Public mailbox rewards must remain unchanged');
 await fs.writeFile(path.join(report,'baseline.json'), JSON.stringify({at:new Date().toISOString(),artifactId:baseline.artifactId,sourceCommit:baseline.sourceCommit,manifestSha256:hash(bytes),contentBundleSha256:hash(catalogBytes),mailboxSha256:hash(mailbox)},null,2)+'\n');
 const artifacts = {};
-for (const [profile,scopePath] of [['preview',`/questnote-pwa-preview/v3520-review-${sourceCommit.slice(0,8)}/`],['production','/questnote-pwa/']]) {
+for (const [profile,scopePath] of [['preview',`/questnote-pwa-preview/v3521-review-${sourceCommit.slice(0,8)}/`],['production','/questnote-pwa/']]) {
   const result = await prepareReleaseArtifact({projectRoot,outputRoot:path.join(process.env.TEMP,'questnote-summon-releases'),profile,scopePath});
   artifacts[profile] = {artifactDir:result.artifactDir,artifactId:result.artifactId,manifestSha256:hash(await fs.readFile(result.manifestPath)),scopePath};
   await verifyReleaseArtifact({...artifacts[profile],profile});

@@ -1,0 +1,16 @@
+{
+  "version": "3.5.20",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "sourcePullRequest": "https://github.com/leotsouo/questnote-pwa/pull/57",
+  "mergeCommit": "29c8822d4ecb9349a571c11c8c0ab91482fc6e90",
+  "frozenRuntimeSource": "fd30782f55792fcc32dc7bc5febf2d6cb098af3b",
+  "artifactId": "289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9",
+  "deploymentCommit": "afd9a4dee55a12345b85d1966f4b31b96756d562",
+  "tree": "9d5212c2378f7e809914c68c8a28422c668ae91b",
+  "pagesRun": "https://github.com/leotsouo/questnote-pwa/actions/runs/37109619342",
+  "pagesConclusion": "success",
+  "verifiedGitFiles": 606,
+  "verifiedHttpsFiles": 605,
+  "authorization": { "reviewer": "user", "phrase": "幫我推上正式版" },
+  "existingBrowserApp": { "observedVersion": "3.4.32", "status": "waiting-for-other-clients-to-close", "forcedActivation": false }
+}
