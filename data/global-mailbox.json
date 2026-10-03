@@ -1,7 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-03T09:17:57.000Z",
+  "generatedAt": "2026-10-03T14:09:16.000Z",
   "messages": [
+    {
+      "id": "2026-10-v362-encounter-fragments-gift-01",
+      "type": "compensation",
+      "title": "新的相遇，由你決定｜贈送 50 枚相遇碎片",
+      "body": "親愛的旅人：\n\n新的角色收集系統已上線！寵物升星已改為「相遇碎片 × 指定邀請 × 親密度養成」。\n\n重複相遇的夥伴會帶來共用相遇碎片：N 1 枚、R 2 枚、SR 5 枚、SSR 10 枚、UR 20 枚。到「召喚 → 指定邀請」，累積 100 枚可邀請一位尚未擁有的 SSR，200 枚可邀請一位尚未擁有的 UR；角色原本的故事開放條件仍會保留。確認邀請後，會播放該角色的卡池登場演出，再加入你的收藏。\n\n已收藏的夥伴會繼續透過親密度、同行故事與適用的羈絆覺醒陪你成長。舊寵物碎片會轉成相遇碎片，已投入升星的碎片也會依原規則退還；既有收藏、親密度與派遣專長會保留。\n\n為了慶祝新的相遇，請收下 50 枚相遇碎片。點擊本信的「領取補償」即可領取，也可使用信箱的一鍵領取。每份本機資料可領取一次，期限至 2026 年 11 月 3 日 23:59（台灣時間）。\n\n請更新至 V3.6.2 後領取。若仍看到舊版，請保持連線，關閉所有 QuestNote 分頁與主畫面 App 後重新開啟；請勿清除網站資料，以免失去本機紀錄。\n\n願下一次相遇，正是你期待的夥伴。\n\nQuestNote 開發團隊",
+      "publishedAt": "2026-10-03T22:09:16+08:00",
+      "expiresAt": "2026-11-03T23:59:59+08:00",
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.6.2",
+      "maxAppVersion": null,
+      "icon": "✨",
+      "reward": { "encounterFragments": 50 },
+      "action": { "type": "view", "view": "gacha", "label": "前往指定邀請" }
+    },
     {
       "id": "2026-10-lionheart-inverse-oath-summon-gift-01",
       "type": "compensation",

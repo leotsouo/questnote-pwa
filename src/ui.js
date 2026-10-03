@@ -2101,6 +2101,7 @@ function formatDailyRewardBundle(bundle) {
   if (!bundle) return '';
   const parts = [];
   if (bundle.stardust > 0) parts.push(`星塵 +${bundle.stardust}`);
+  if (bundle.encounterFragments > 0) parts.push(`相遇碎片 +${bundle.encounterFragments}`);
   if (bundle.adventureEnergy > 0) parts.push(`冒險能量 +${bundle.adventureEnergy}`);
   if (bundle.materials) {
     for (const [id, amt] of Object.entries(bundle.materials)) {
@@ -4609,6 +4610,7 @@ async function handleMailboxClaim(messageId, btnEl) {
   mailboxStateLocal = result.state;
   if (result.wallet && state) state.wallet = result.wallet;
   if (result.inventory && state) state.inventory = result.inventory;
+  if (result.encounterEconomy && state) state.encounterEconomy = result.encounterEconomy;
 
   showToast('補償已領取', 'reward', 2800);
   renderSharedUI();

@@ -28,6 +28,7 @@ export async function claimRewardBatch(entries, claim) {
       results.push({ entry, ...result });
       const reward = result.reward || result.rewards || {};
       for (const key of ['stardust', 'adventureEnergy']) rewards[key] += reward[key] || 0;
+      if (reward.encounterFragments > 0) rewards.encounterFragments = (rewards.encounterFragments || 0) + reward.encounterFragments;
       for (const key of ['materials', 'items']) {
         for (const [id, amount] of Object.entries(reward[key] || {})) rewards[key][id] = (rewards[key][id] || 0) + amount;
       }
