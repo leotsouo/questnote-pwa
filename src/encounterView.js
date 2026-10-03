@@ -4,19 +4,20 @@ import { normalizePoolDefinition } from './poolContentContract.js';
 import { createPoolScenery, ceremonyPresentation, playCeremonyEntry, playCeremonyRitual, playCeremonyCharacter, playCeremonyAwakening, playCeremonyPetAwakening } from './encounterCeremony.js';
 import { delay } from './imagePreloadService.js';
 import { SUMMON_TIMING } from './summonTiming.js';
+import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
 
 const modalHost = document.createElement('div');
 modalHost.className = 'encounter-dialogs';
 modalHost.innerHTML = '<dialog id="identity-detail-dialog" class="identity-dialog" aria-labelledby="identity-dialog-heading"><div id="identity-dialog-content"></div></dialog><dialog id="identity-reveal-dialog" class="identity-dialog" aria-labelledby="identity-reveal-name"><div id="identity-reveal-content"></div></dialog><div id="identity-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>';
-document.body.append(modalHost);
+if (!LOCAL_ART_PREVIEW) document.body.append(modalHost);
 let appState = null;
 let resolvePresentation = null;
 
 let screen = document.getElementById('identity-screen');
 let refreshApp = null;
 let appActions = null;
-const dialog = document.getElementById('identity-detail-dialog');
-const reveal = document.getElementById('identity-reveal-dialog');
+const dialog = modalHost.querySelector('#identity-detail-dialog');
+const reveal = modalHost.querySelector('#identity-reveal-dialog');
 const escapeHtml = (text) => String(text ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const asset = (pet, size = 'card') => new URL('../' + (pet.imageVariants?.[size] || pet.image), import.meta.url).href;
 const byId = (id) => pets.find((pet) => pet.id === id);
@@ -347,6 +348,7 @@ document.addEventListener('error', (event) => {
 },true);
 
 document.addEventListener('click', async (event) => {
+  if (LOCAL_ART_PREVIEW) return;
   if (!event.target.closest('.identity-surface, .identity-dialog, .identity-review')) return;
   const surface = event.target.closest('.identity-surface');
   if (surface) { screen = surface; view = surface.closest('#view-collection') ? 'collection' : 'pool'; }
@@ -414,6 +416,7 @@ document.addEventListener('click', async (event) => {
 });
 
 document.addEventListener('change', (event) => {
+  if (LOCAL_ART_PREVIEW) return;
   if (event.target.id.startsWith('identity-pool-select-')) {
     if (displayBusy) { event.target.value = event.target.id === 'identity-pool-select-collection' ? collectionScope : poolId; return; }
     if (event.target.id === 'identity-pool-select-collection') collectionScope = event.target.value;
@@ -422,6 +425,7 @@ document.addEventListener('change', (event) => {
   }
 });
 document.addEventListener('input', (event) => {
+  if (LOCAL_ART_PREVIEW) return;
   if (event.target.id === 'identity-collection-search') { query = event.target.value; renderCollectionCards(); }
 });
 dialog.addEventListener('close', () => {
