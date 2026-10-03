@@ -1,3 +1,5 @@
+import { inviteCompanion, acknowledgeEncounterMigration, getEncounterEconomy } from './encounterEconomyService.js';
+import { intimacySummary } from './invitationPresentation.js';
 import { renderEncounterView, presentCommittedEncounters } from './encounterView.js';
 import { playCeremonyEntry } from './encounterCeremony.js';
 import { LOCAL_ART_PREVIEW, renderLocalIdentityView } from './localArtPreview.js';
@@ -50,9 +52,7 @@ import {
   ensurePoolPity,
 } from './gachaService.js';
 import {
-  upgradeStar,
   setCompanion,
-  STAR_UPGRADE_COST,
   getBondProgress,
   setPetNickname,
   clearPetNickname,
@@ -1138,31 +1138,6 @@ function bindDelegatedEvents() {
       return;
     }
 
-    const btn = e.target.closest('[data-action="upgrade"]');
-    if (!btn) return;
-    const card = btn.closest('.collection-card');
-    const petId = card?.dataset.petId;
-    if (!petId) return;
-
-    const pet = state.enrichedCollection.find((p) => p.id === petId);
-    const nextStar = (pet?.stars || 1) + 1;
-    const cost = STAR_UPGRADE_COST[nextStar];
-
-    if (!cost || (pet?.fragments || 0) < cost) {
-      showToast(cost ? `升星需要 ${cost} 個這隻夥伴的碎片，目前有 ${pet?.fragments || 0} 個。` : '已達最高星級', 'warning');
-      return;
-    }
-    openConfirmModal('確認升星', `將消耗「${petDisplayName(pet)}」的 ${cost} 個碎片，從 ${pet.stars} 星升到 ${nextStar} 星。`, async () => {
-      try {
-        const result = await upgradeStar(petId);
-        if (!result.success) { showToast(result.message, 'warning'); return; }
-        void recordOnboardingEvent('star-upgraded', { petId });
-        await onRefresh({ renderMode: ['collection', 'tasks'] });
-        showToast(`${petDisplayName(pet)} 升級至 ${result.entry.stars} 星！`, 'success');
-      } catch (error) {
-        showToast(error.message || '升星失敗，請稍後再試', 'error');
-      }
-    }, { confirmLabel: `花費 ${cost} 碎片升星` });
   }));
 
   document.getElementById('btn-export')?.addEventListener('click', trackUpdateActivity(async () => {
@@ -1808,16 +1783,6 @@ export function petImageHtml(pet, options = {}) {
     <img class="${cls} is-loading" src="${escapeHtml(src)}"${fallbackAttr} alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="${onload}" onerror="${onerror}" />
     <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
   </div>`;
-}
-
-/** 星級顯示 */
-export function renderStars(count, max = 5) {
-  let html = `<span class="stars" role="img" aria-label="${count} / ${max} 星">`;
-  for (let i = 1; i <= max; i++) {
-    html += `<span class="star ${i <= count ? 'star--filled' : ''}" aria-hidden="true">${twilightIcon('star')}</span>`;
-  }
-  html += '</span>';
-  return html;
 }
 
 /** 取得目前 active 的 view 名稱 */
@@ -3647,7 +3612,7 @@ function renderCompanionSection(companion, defaultLine) {
               <span class="badge badge--rarity ${rarityClass}">${escapeHtml(companion.rarity)}</span>
             </div>
             ${titleHtml}
-            ${renderStars(companion.stars ?? 1)}
+            <span class="companion-bond-label">親密度 Lv.${companion.bondLevel || 1}</span>
             <div class="companion-bond">
               <div class="companion-bond__label">
                 <span>親密度 Lv.${companion.bondLevel ?? 1}</span>
@@ -3854,7 +3819,7 @@ function openPetFeedModal(companion) {
       ${petOriginalNameHtml(companion)}
       <div class="companion-image-preview__meta">
         <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
-        ${renderStars(companion.stars ?? 1)}
+        <span class="companion-bond-label">親密度 Lv.${companion.bondLevel || 1}</span>
       </div>
       ${feedSection}
       <p class="companion-image-preview__hint">點圖片可看原圖 · 餵食會消耗一份工坊道具</p>
@@ -5856,7 +5821,7 @@ function renderSweetSinglePullResult(result, options = {}) {
           <div class="sweet-summon-showcase__badges summon-result-single__badges">
             ${isNew
               ? '<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-new">NEW</span>'
-              : `<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-dup">碎片 +${fragmentsGained}</span>`}
+              : `<span class="sweet-summon-badge sweet-summon-badge--status sweet-summon-badge--status-dup">相遇碎片 +${fragmentsGained}</span>`}
           </div>
           ${pet.summonLine ? `<p class="sweet-summon-showcase__line">「${escapeHtml(pet.summonLine)}」</p>` : ''}
         </section>
@@ -5987,7 +5952,7 @@ function renderDefaultSinglePullResult(result, options = {}) {
           <div class="default-summon-showcase__badges summon-result-single__badges">
             ${isNew
               ? '<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-new">NEW</span>'
-              : `<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-dup">碎片 +${fragmentsGained}</span>`}
+              : `<span class="default-summon-badge default-summon-badge--status default-summon-badge--status-dup">相遇碎片 +${fragmentsGained}</span>`}
           </div>
           ${pet.summonLine ? `<p class="default-summon-showcase__line">「${escapeHtml(pet.summonLine)}」</p>` : ''}
         </section>
@@ -6358,7 +6323,7 @@ function renderCollectionView() {
       grid.innerHTML = emptyStateHtml('🔍', '沒有符合的寵物', '試試其他稀有度、系列或獲得狀態篩選。');
       lastCollectionGridKey = null;
     } else {
-      const gridKey = `${collectionSeriesFilter}|${collectionFilter}|${filtered.map((p) => `${p.id}:${p.owned}:${p.fragments}:${p.stars}:${p.isCompanion}:${p.bondLevel || 0}:${p.nickname || ''}`).join(',')}`;
+      const gridKey = `${collectionSeriesFilter}|${collectionFilter}|${filtered.map((p) => `${p.id}:${p.owned}:${p.isCompanion}:${p.bondLevel || 0}:${p.nickname || ''}`).join(',')}`;
       if (gridKey !== lastCollectionGridKey || !grid.querySelector('.collection-card')) {
         let ownedEagerCount = 0;
         grid.innerHTML = filtered
@@ -6407,7 +6372,7 @@ function renderCollectionCard(pet, imageOptions = {}) {
           <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
           ${
             owned
-              ? `${renderStars(pet.stars)}<div class="collection-card__meta"><span class="fragments">碎片 ${pet.fragments}</span><span class="fragments">親密度 Lv.${pet.bondLevel || 1}</span></div>`
+              ? `<div class="collection-card__meta"><span class="fragments">親密度 Lv.${pet.bondLevel || 1}</span></div>`
               : '<span class="locked-label">未獲得 · 點擊預覽</span>'
           }
         </div>
@@ -6418,11 +6383,7 @@ function renderCollectionCard(pet, imageOptions = {}) {
           ? `<button type="button" class="btn btn--sm btn--companion" data-action="set-companion">設為陪伴</button>`
           : owned ? '<span class="collection-card__state">陪伴中</span>' : ''
       }
-      ${
-        owned && pet.stars < 5
-          ? `<button type="button" class="btn btn--sm btn--upgrade" data-action="upgrade">升星</button>`
-          : owned ? '<span class="collection-card__state">已達最高星級</span>' : ''
-      }
+
       ${owned ? '</div>' : ''}
     </article>`;
 }
@@ -6530,8 +6491,8 @@ function openPetDetailModal(petId) {
         ${pet.element ? `<span class="badge badge--element">${escapeHtml(pet.element)}</span>` : ''}
       </div>
       ${personalityTags ? `<div class="pet-detail__tags">${personalityTags}</div>` : ''}
-      ${owned ? renderStars(pet.stars) : ''}
-      ${owned ? `<p class="pet-detail__specialty">探險專長：${escapeHtml(getPetSpecialty(pet).label)} Lv.${getPetSpecialty(pet).level}。一星即可發揮效果，升星會強化專長；不同稀有度都能在合適隊伍中派上用場。</p>` : ''}
+      ${owned ? intimacySummary(bondLevel || 1, getPetSpecialty(pet), pet.legacySpecialtyFloor) : ''}
+      ${owned ? `<p class="pet-detail__specialty">探險專長：${escapeHtml(getPetSpecialty(pet).label)} Lv.${getPetSpecialty(pet).level}。親密度與日常同行逐步培養專長；不同稀有度都能在合適隊伍中派上用場。</p>` : ''}
       ${owned ? `<p class="pet-detail__gift-affinity">禮物喜好：${escapeHtml(getGiftAffinityTags(pet).map((tag) => GIFT_TAG_LABELS[tag]).join('、') || '通用禮物；目前沒有主題喜好')}</p>` : ''}
       ${owned ? `<p class="pet-detail__bond-lv">親密度 Lv.${bondLevel || 1}</p>` : ''}
       ${owned ? `<button type="button" class="btn btn--primary btn--block pet-detail__feed-button" data-action="detail-feed-pet" data-pet-id="${escapeHtml(pet.id)}">餵食</button>` : ''}
@@ -7072,7 +7033,7 @@ function showExpeditionRewardModal(result) {
         </li>
         ${matEntries.map(([id, amt]) => `<li class="expedition-reward-item" data-reward-type="material">📦 ${escapeHtml(getMaterialName(id))} <strong class="expedition-reward-value">+${amt}</strong></li>`).join('')}
         <li class="expedition-reward-item" data-reward-type="bond">💜 親密度 <strong class="expedition-reward-value">+${rewards.bondExp}</strong></li>
-        ${rewards.fragmentGained > 0 ? `<li class="expedition-reward-item" data-reward-type="fragment">💫 寵物碎片 <strong class="expedition-reward-value">+${rewards.fragmentGained}</strong></li>` : ''}
+        ${rewards.fragmentGained > 0 ? `<li class="expedition-reward-item" data-reward-type="fragment">相遇碎片 <strong class="expedition-reward-value">+${rewards.fragmentGained}</strong></li>` : ''}
       </ul>
       <p class="expedition-reward-modal__workshop-hint">旅程報告已收入營地，可隨時重讀。</p>
       ${
@@ -7436,7 +7397,7 @@ function renderExpeditionDispatchModal() {
           <p class="expedition-dispatch-modal__pet-note">陪伴中的寵物也可以派遣，不會取消目前的陪伴設定。</p>
           <details class="expedition-specialty-help" ${specialtyHelpOpen ? 'open' : ''}>
             <summary>專長是什麼？看隊伍如何影響收穫</summary>
-            <p>一星就能發揮專長，升星會讓效果更強。不同專長同行，也更容易遇見額外事件。</p>
+            <p>初識就能發揮專長，親密度成長會讓效果更強。不同專長同行，也更容易遇見額外事件。</p>
             <ul>
               <li><strong>探路</strong>：選探索目標時，增加地區探索進度。</li>
               <li><strong>採集</strong>：選採集目標時，多帶回地區素材。</li>
@@ -7485,7 +7446,7 @@ function buildDispatchPetOptionHtml(pet) {
         <span class="expedition-pet-option__tags">
           <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
           <span class="expedition-pet-option__bond">親密 Lv.${pet.bondLevel || 1}</span>
-          <span class="expedition-pet-option__specialty">${specialty.label} Lv.${specialty.level} · ${pet.stars || 1}★</span>
+          <span class="expedition-pet-option__specialty">${specialty.label} Lv.${specialty.level}</span>
           ${recommended ? '<span class="expedition-pet-option__recommended">符合目標 · 推薦</span>' : ''}
           ${isCompanion ? '<span class="expedition-pet-option__companion">陪伴中</span>' : ''}
           ${liberated ? '<span class="expedition-pet-option__liberated">羈絆解放</span>' : ''}
@@ -8302,7 +8263,6 @@ function buildHandbookCompanions(collection) {
   const rows = [];
   if (c.collection.available) rows.push(handbookRow('圖鑑收藏', `${c.collection.owned} / ${c.collection.total}`));
   if (c.milestonesClaimed.available) rows.push(handbookRow('收藏里程碑', `${c.milestonesClaimed.claimed} / ${c.milestonesClaimed.total}`));
-  if (c.maxStar.available) rows.push(handbookRow('最高星級', `${'★'.repeat(Math.min(5, c.maxStar.value))}`));
   if (c.maxBond.available) rows.push(handbookRow('最高羈絆', `Lv.${c.maxBond.value}`));
   if (c.bondLiberated.available) rows.push(handbookRow('羈絆解放', `${c.bondLiberated.value} 隻`));
 
@@ -9201,6 +9161,11 @@ export { showRewardToast };
 function encounterActions() {
   return {
     renderCollectionMilestones,
+    async invite(id) {
+      try { const result = await inviteCompanion(id, state.allPets, state.poolsData); await onRefresh({ renderMode:['gacha','collection','tasks'] }); void recordOnboardingEvent('companion-invited', { petId:id }); return result; }
+      catch (error) { await onRefresh({ renderMode:['gacha','collection'] }); throw error; }
+    },
+    async dismissMigration() { await acknowledgeEncounterMigration(); state.encounterEconomy = await getEncounterEconomy(); },
     switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal,
     isBusy: () => isGachaPullInProgress() || !!maybePlayPoolDebut._inflight,
     isExpanded: (id) => shouldShowAwakenedPresentation(getUnlockEntryForPool(id)),
