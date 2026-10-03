@@ -1,0 +1,27 @@
+# V3.5.22 召喚機率與正式預覽
+
+本輪合併使用者要求：移除正式頁重看卡池登場與覺醒試播；尚未完成覺醒的形態預覽改黑白，真正覺醒與完成後的欣賞保留全彩。召喚頁在卡池選單旁顯示真實 `wallet.stardust` 星塵總量，抽卡返回與重開後更新；集合與儀式共用原有正式存檔。
+
+## 機率決策
+
+六池一般基礎機率維持 N 55%、R 30%、SR 10%、SSR 3%、UR 2%，每抽 100 星塵、十連 1000 星塵。SSR／UR 保底上限分別 30／100 抽，各池獨立。SSR+ 保底時 UR 佔 40%，不能把基礎 UR 2% 誤說成含保底的整體機率。
+
+原本從歸零保底開始，十連全部 N／R 的機率為 `0.85^10 = 19.6874%`。新增 `tenPullGuarantee: SR`：前九抽都低於 SR，且第十抽原本也是 N／R 時，才將最後一抽提升為 SR。不重抽、不額外抽、沒有降低天然 SSR／UR；既有 SSR／UR 保底優先。十次分開單抽不享有此保障。
+
+同樣歸零條件下，每十連預期 SR 由 1 位變為 1.19687 位；至少 SSR 的機會仍為 40.1263%，至少 UR 仍為 18.2927%。已全收集時，預期十連碎片由 23.5 增至 24.2180，約增加 3.06%。既有碎片量、升星、暱稱與羈絆資料保持相容。
+
+以實際保底狀態轉移精算，第一位 UR 平均約 37.15 抽／3714.92 星塵，中位數 30 抽，90% 在 84 抽內，最晚 100 抽。這是精確模型結果，不是玩家實測統計，也不代表指定 UR 保證。星旅之原有 9 位 UR，每位一般基礎機率 0.2222%；較集中的主題池指定角色比較易取得，符合廣泛收藏與主題收集的差異，因此不另加焦點加權或改動高稀有度機率。
+
+完整可重算數據見 [balance.json](balance.json)；執行 `node devtools/analyze-summon-balance.mjs`。未掌握實際星塵收入與玩家留存資料，因此沒有擅自調高費用或縮減既有保底。
+
+## 驗收與發布
+
+- 全套測試 309 項、召喚邏輯斷言、六池內容驗證、修改 JS 語法檢查與 `test:pool:release` 演練通過；128 角色圖片與八個探險地點的圖片驗證通過。
+- 最終固定產物的 16 項瀏覽器驗收全部通過，包含真正的十連抽卡、9 筆同角色重複、提升 SR 的 5 碎片、僅扣一次 1000 星塵、返回與重開後顯示 9000、真正覺醒與全彩存檔、離線啟動及舊 worker 更新保護。證據見 `artifact-browser-qa.json`。
+- `artifact-browser-qa-initial.json` 是 UI 第一階段的 14 項通過證據；它綁定當時的產物，不能當成本輪新增機率與餘額的最終產物證據。
+- 所有存檔寫入測試僅在守衛確認為本輪新建的隔離 loopback origin。正式使用者 IndexedDB 未作測試抽卡或重置。
+- 320／393px × 852、100／200% 模擬文字、三套 Theme 共十二組版面檢查通過，存檔未改動，見 `responsive-wallet.json`。393 × 852 標準文字的十連按鈕底部約 688px，首屏保留完整插畫、名字、按鈕；星塵位於卡池選單旁，見 `screenshots/summon-wallet-393.png`。`awakening-monochrome.png` 是同次修改的完整本機 App 靜態預覽；其覺醒黑白／全彩規則另有固定產物的真實儀式驗收。
+- 發布凍結來源 `2e226b65d389357bf90a726ecf8f24adeec982d2`，已整合正式信箱最新兩封公告並保持 reward ID 與獎勵。正式 artifact `9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818`，manifest SHA-256 `d2fa708b1ab97ef99c26c409d6c4eead59288849166044bcd7d2c9d7f12ec932`，catalog `da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d`。Preview `862854191c11142471ff927d5b553a6b7b0c8b5f568e78ff00d04dcff1270187` 僅用於隔離驗收，未發布。
+- [來源 PR #62](https://github.com/leotsouo/questnote-pwa/pull/62) 的 CI 通過，2026-10-03T09:35:34Z 合併於 `d2a8ebf2042aa0b8da5c0f79fdb91bd1b9fc45ea`。Pages 提交 `4aa9aa10dcd79810f781f8c2f40318d5d45401b6`，全部 606 Git 檔案與固定產物一致，tree `32f9a247b9557f0b3d696fcaf1ed4c62725f6266`。[Pages run 37113586595](https://github.com/leotsouo/questnote-pwa/actions/runs/37113586595) 建置與部署均成功（09:36:51Z）；09:38:26Z 讀回全部 605 個正式 HTTPS 檔案（其餘 `.nojekyll` 僅在 Git），雜湊全部相符，見 `live-verification.json`。正式網址為 https://leotsouo.github.io/questnote-pwa/ 。
+- 既有正式瀏覽器仍停在 V3.4.32 的舊 controller；正常「更新並重新載入」提示另一個 QuestNote 視窗仍開著。未強制啟用 worker、清除資料或關閉未知使用者視窗。關閉其他 QuestNote 分頁／主畫面 App 後，保留當前頁按更新即可繼續正常流程。HTTPS 發布完成與這個舊 client 是否已套用新版分開記錄。
+- iPhone VoiceOver、原生字級與觸覺仍須實機驗證。

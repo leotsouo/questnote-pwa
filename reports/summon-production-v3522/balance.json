@@ -1,0 +1,271 @@
+{
+  "version": "3.5.22",
+  "method": "Exact probability and finite-state calculation from zero pity; ten SR floor cannot affect SSR/UR counters or probability. Set completion is the equal-weight coupon-collector expectation, not a guarantee.",
+  "decision": "Keep all base rates, costs, SSR/UR pity and duplicate fragments; add an SR-only ten floor to avoid all-N/R batches. No individual-pet guarantee or rate-up is introduced.",
+  "pools": [
+    {
+      "id": "standard",
+      "name": "星旅之原",
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.3,
+        "SR": 0.1,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "candidateCounts": {
+        "N": 16,
+        "R": 12,
+        "SR": 11,
+        "SSR": 8,
+        "UR": 9
+      },
+      "tenPullGuarantee": "SR",
+      "freshPityLowOnlyTenBefore": 0.19687440434072287,
+      "freshPityLowOnlyTenAfter": 0,
+      "freshPityExpectedSrPerTenBefore": 1,
+      "freshPityExpectedSrPerTenAfter": 1.196874404340723,
+      "fullyOwnedFragmentsPerFreshTenBefore": 23.5,
+      "fullyOwnedFragmentsPerFreshTenGain": 0.7180125334779306,
+      "tenAtLeastSsr": 0.4012630607616213,
+      "tenAtLeastUr": 0.1829271931124533,
+      "singleSpecificUrBase": 0.0022222222222222222,
+      "firstUr": {
+        "expectedDraws": 37.14915672209375,
+        "expectedStardust": 3714.915672209375,
+        "medianDraws": 30,
+        "p90Draws": 84,
+        "p95Draws": 100,
+        "hardMaximum": 100,
+        "probabilityBy30": 0.5403711861947385,
+        "probabilityBy100": 1
+      },
+      "expectedCompleteUrSetDraws": 945.844065256451
+    },
+    {
+      "id": "eternal_slumber_bloom",
+      "name": "永眠花海",
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.3,
+        "SR": 0.1,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "candidateCounts": {
+        "N": 3,
+        "R": 3,
+        "SR": 3,
+        "SSR": 2,
+        "UR": 1
+      },
+      "tenPullGuarantee": "SR",
+      "freshPityLowOnlyTenBefore": 0.19687440434072287,
+      "freshPityLowOnlyTenAfter": 0,
+      "freshPityExpectedSrPerTenBefore": 1,
+      "freshPityExpectedSrPerTenAfter": 1.196874404340723,
+      "fullyOwnedFragmentsPerFreshTenBefore": 23.5,
+      "fullyOwnedFragmentsPerFreshTenGain": 0.7180125334779306,
+      "tenAtLeastSsr": 0.4012630607616213,
+      "tenAtLeastUr": 0.1829271931124533,
+      "singleSpecificUrBase": 0.02,
+      "firstUr": {
+        "expectedDraws": 37.14915672209375,
+        "expectedStardust": 3714.915672209375,
+        "medianDraws": 30,
+        "p90Draws": 84,
+        "p95Draws": 100,
+        "hardMaximum": 100,
+        "probabilityBy30": 0.5403711861947385,
+        "probabilityBy100": 1
+      },
+      "expectedCompleteUrSetDraws": 37.14915672209375
+    },
+    {
+      "id": "frost_oath_fjord",
+      "name": "霜誓峽灣",
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.3,
+        "SR": 0.1,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "candidateCounts": {
+        "N": 3,
+        "R": 3,
+        "SR": 3,
+        "SSR": 2,
+        "UR": 1
+      },
+      "tenPullGuarantee": "SR",
+      "freshPityLowOnlyTenBefore": 0.19687440434072287,
+      "freshPityLowOnlyTenAfter": 0,
+      "freshPityExpectedSrPerTenBefore": 1,
+      "freshPityExpectedSrPerTenAfter": 1.196874404340723,
+      "fullyOwnedFragmentsPerFreshTenBefore": 23.5,
+      "fullyOwnedFragmentsPerFreshTenGain": 0.7180125334779306,
+      "tenAtLeastSsr": 0.4012630607616213,
+      "tenAtLeastUr": 0.1829271931124533,
+      "singleSpecificUrBase": 0.02,
+      "firstUr": {
+        "expectedDraws": 37.14915672209375,
+        "expectedStardust": 3714.915672209375,
+        "medianDraws": 30,
+        "p90Draws": 84,
+        "p95Draws": 100,
+        "hardMaximum": 100,
+        "probabilityBy30": 0.5403711861947385,
+        "probabilityBy100": 1
+      },
+      "expectedCompleteUrSetDraws": 37.14915672209375
+    },
+    {
+      "id": "honeylight_sugar_garden_v2",
+      "name": "蜜光糖庭",
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.3,
+        "SR": 0.1,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "candidateCounts": {
+        "N": 3,
+        "R": 3,
+        "SR": 2,
+        "SSR": 2,
+        "UR": 2
+      },
+      "tenPullGuarantee": "SR",
+      "freshPityLowOnlyTenBefore": 0.19687440434072287,
+      "freshPityLowOnlyTenAfter": 0,
+      "freshPityExpectedSrPerTenBefore": 1,
+      "freshPityExpectedSrPerTenAfter": 1.196874404340723,
+      "fullyOwnedFragmentsPerFreshTenBefore": 23.5,
+      "fullyOwnedFragmentsPerFreshTenGain": 0.7180125334779306,
+      "tenAtLeastSsr": 0.4012630607616213,
+      "tenAtLeastUr": 0.1829271931124533,
+      "singleSpecificUrBase": 0.01,
+      "firstUr": {
+        "expectedDraws": 37.14915672209375,
+        "expectedStardust": 3714.915672209375,
+        "medianDraws": 30,
+        "p90Draws": 84,
+        "p95Draws": 100,
+        "hardMaximum": 100,
+        "probabilityBy30": 0.5403711861947385,
+        "probabilityBy100": 1
+      },
+      "expectedCompleteUrSetDraws": 111.44747016628125
+    },
+    {
+      "id": "swordwild_shanhe_v3",
+      "name": "劍隱山河",
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.3,
+        "SR": 0.1,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "candidateCounts": {
+        "N": 3,
+        "R": 5,
+        "SR": 5,
+        "SSR": 4,
+        "UR": 3
+      },
+      "tenPullGuarantee": "SR",
+      "freshPityLowOnlyTenBefore": 0.19687440434072287,
+      "freshPityLowOnlyTenAfter": 0,
+      "freshPityExpectedSrPerTenBefore": 1,
+      "freshPityExpectedSrPerTenAfter": 1.196874404340723,
+      "fullyOwnedFragmentsPerFreshTenBefore": 23.5,
+      "fullyOwnedFragmentsPerFreshTenGain": 0.7180125334779306,
+      "tenAtLeastSsr": 0.4012630607616213,
+      "tenAtLeastUr": 0.1829271931124533,
+      "singleSpecificUrBase": 0.006666666666666667,
+      "firstUr": {
+        "expectedDraws": 37.14915672209375,
+        "expectedStardust": 3714.915672209375,
+        "medianDraws": 30,
+        "p90Draws": 84,
+        "p95Draws": 100,
+        "hardMaximum": 100,
+        "probabilityBy30": 0.5403711861947385,
+        "probabilityBy100": 1
+      },
+      "expectedCompleteUrSetDraws": 204.3203619715156
+    },
+    {
+      "id": "lionheart_inverse_oath",
+      "name": "逆造之誓",
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.3,
+        "SR": 0.1,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "candidateCounts": {
+        "N": 2,
+        "R": 3,
+        "SR": 3,
+        "SSR": 2,
+        "UR": 2
+      },
+      "tenPullGuarantee": "SR",
+      "freshPityLowOnlyTenBefore": 0.19687440434072287,
+      "freshPityLowOnlyTenAfter": 0,
+      "freshPityExpectedSrPerTenBefore": 1,
+      "freshPityExpectedSrPerTenAfter": 1.196874404340723,
+      "fullyOwnedFragmentsPerFreshTenBefore": 23.5,
+      "fullyOwnedFragmentsPerFreshTenGain": 0.7180125334779306,
+      "tenAtLeastSsr": 0.4012630607616213,
+      "tenAtLeastUr": 0.1829271931124533,
+      "singleSpecificUrBase": 0.01,
+      "firstUr": {
+        "expectedDraws": 37.14915672209375,
+        "expectedStardust": 3714.915672209375,
+        "medianDraws": 30,
+        "p90Draws": 84,
+        "p95Draws": 100,
+        "hardMaximum": 100,
+        "probabilityBy30": 0.5403711861947385,
+        "probabilityBy100": 1
+      },
+      "expectedCompleteUrSetDraws": 111.44747016628125
+    }
+  ]
+}

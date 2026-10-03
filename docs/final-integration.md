@@ -243,3 +243,9 @@ Production V3.4.28 moves petting and cooldown below the portrait beside companio
 使用者整包驗收通過並明確同意發布。PR #42 合併於 `ed81995648ba9b60c27207ba1ab3148afa6b2688`；Pages `4a1808126b9f6805ddb11c7b16ce1a1d8225ebf8` 部署成功。正式 artifact `5a3ea973a884ae5dcc14c0ffd062963831724de3caa87e284ab37d9a766fd2f8`，manifest SHA-256 `07c63616a676c43edc06078e087c3cb8bcb01aa1024655f6fdf32fce22c3bfad`。488 Git 檔案、177 正式 HTTPS 檔案、正式瀏覽器／離線、V3.5.2 → V3.5.3 更新及存檔保留均驗證成功。
 
 20 角色、三 UR、單一「俠」印專屬入場與抽卡動畫、新食物、逐隻偏好／專長、雲棧古道與80章故事已上線。現行親密度旅程、派遣推薦、公告及舊內容保留。[發布證據](../reports/swordwild-release/production-release.md)。覺醒只在發布後另寫獨立討論草案，不納入卡池 SOP。
+
+## V3.5.22 星塵總量與十連保障 — 2026-10-03
+
+[PR #62](https://github.com/leotsouo/questnote-pwa/pull/62) CI 通過並合併於 `d2a8ebf2042aa0b8da5c0f79fdb91bd1b9fc45ea`。正式 summon 顯示真實星塵總量；六池新增十連至少 SR，基礎機率與既有 SSR／UR 保底維持原值；正式試播入口移除，未完成覺醒的靜態預覽改黑白，真正儀式後保留全彩。既有最新兩封公告與獎勵 identity 保留。
+
+Pages `4aa9aa10dcd79810f781f8c2f40318d5d45401b6` 的 [run 37113586595](https://github.com/leotsouo/questnote-pwa/actions/runs/37113586595) 部署成功。正式 artifact `9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818`；606 Git blob 與 605 個正式 HTTPS 檔案全部相符。309 Node 測試、召喚斷言、pipeline 演練、16 固定產物瀏覽器案例及十二組手機／字級／Theme 檢查通過。既有正式 client 仍受另一個 QuestNote 視窗未關閉的正常更新 guard 阻擋，未清資料或強制啟用 worker。[平衡計算、SOP 與發布證據](../reports/summon-production-v3522/README.md)。iPhone VoiceOver、原生字級與觸覺仍待真機驗證；後端未部署。
