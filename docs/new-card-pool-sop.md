@@ -150,6 +150,8 @@ V3.5.20 將已驗收畫面接回正式 App：召喚、圖鑑和結果共用 `enc
 
 正式驗收須包含實際隔離存檔：十連只扣一次費用；同次同角色依順序標記新／重複、各次碎片正確；重新整理後餘額、收藏、暱稱與陪伴保留。結果圖的實際寬高需等於 1:1 容器，使用 `object-fit: cover`，不留側邊白底。首次／切換／重看六池均使用完整 3.4 秒登場，完成後等待繼續；SSR 2.5 秒、UR 4.5 秒與逐張 240ms 切換維持共用時鐘。動畫失敗須顯示已提交結果，不可重新抽卡。人工發布授權保留使用者實際原話，不補造驗收或授權紀錄。iPhone VoiceOver、原生字級與觸覺仍須實機驗證。
 
+V3.5.20 正式發布驗收補充：Pages 成功後須逐檔核對正式 HTTPS 與核准 artifact 的 bytes／SHA-256，Git blobs 也需全量比對，避免 Windows 換行改寫；`.nojekyll` 屬部署設定，驗 Git blob。報告區分「網站產物已更新」與「每個已開啟 App 已套用」：舊 SW 可繼續服務其原版本；多視窗下應保留 waiting 與關閉其他視窗提示，透過 App 正常更新，不繞過保護或強制中斷操作。記錄畫面實際版本與 artifact，不以網址或 source version 代替。目前正式發布證據見 `reports/summon-production-v3520/deployment.json` 與 `live-verification.json`。
+
 將量測與問題修正寫入 `checks.animation.evidence` 所指的報告，寫清工程通過、人工待驗／通過及真機待驗。使用者完成最終驗收後，將新得出的通用標準補進本節並連到實測報告；不回填或覆寫舊 receipts，不把工程自測記成 `humanAcceptance`。本次來源試演證據見 `reports/companion-app-test/ceremony-v3-review.md`。
 
 ### 開啟動畫，讓使用者實際檢視

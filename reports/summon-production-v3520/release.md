@@ -14,4 +14,8 @@
 
 部署產物所有 606 個 staged Git blobs（含 manifest）已逐檔比對 bytes／SHA-256，tree `9d5212c2378f7e809914c68c8a28422c668ae91b`。後續證據提交只包含測試／文件，runtime hashes 不變；manifest source 保留實際凍結來源。正式推送後再記錄部署 commit、Pages 建置與 HTTPS 讀回。
 
+正式發布已完成：來源 PR #57 合併於 `29c8822d4ecb9349a571c11c8c0ab91482fc6e90`；Pages commit `afd9a4dee55a12345b85d1966f4b31b96756d562`；建置與部署 run `37109619342` 全部成功。2026-10-03T08:27:42Z 全部 605 個 HTTPS 檔案（包括 manifest、runtime、catalog、圖片）與核准產物一致，`.nojekyll` 已於 Git blob 驗證。讀回記錄在 `live-verification.json`。
+
+現有 IAB 正式 App 仍由更早的 V3.4.32 artifact `fbb07931fc76df36bef063435230a8ecfe1dc264613af6c3d85adebb1831b017` 控制；正常更新顯示「另一個 QuestNote 視窗仍開著」。未繞過等待或強制操作其他視窗。這不影響正式 HTTPS 已發布 V3.5.20；使用者需關閉其他 QuestNote 視窗後，按「更多 → 更新並重新載入」套用新 worker。沒有將這個舊畫面冒記為新版已啟動。
+
 必要測試：npm test 共 303 項通過，另兩項原生結果與無展示寫入檢查通過。卡池、圖片及 release pipeline 檢查另存驗證紀錄。iPhone VoiceOver、原生字級與觸覺未由桌面瀏覽器代驗。
