@@ -17529,9 +17529,13 @@ body[data-theme="sweet"] .dream-bloom-btn--ghost {
 .glacier-scene__sky {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 36%, #b5cdd0 0%, #426b80 32%, #09232d 70%);
+  background: radial-gradient(ellipse at 50% 36%, #638391 0%, #274e63 36%, #09232d 75%);
 }
+.glacier-scene__daybreak { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 32%, #f3c48b44, transparent 60%); }
 .glacier-scene__landscape { position: absolute; width: 100%; height: 100%; inset: 0; }
+.glacier-scene__sunrise { transform-box: view-box; }
+.glacier-scene__reflection { opacity: .38; }
+.glacier-scene__snow { fill: #ded6b9; }
 .glacier-scene__wall { transform-box: fill-box; transform-origin: center; }
 .glacier-scene__wall--left { transform: translateX(9%); }
 .glacier-scene__wall--right { transform: translateX(-9%); }
@@ -17541,31 +17545,7 @@ body[data-theme="sweet"] .dream-bloom-btn--ghost {
   background: linear-gradient(180deg, #0d2b36aa 12%, #a7c6d8cc 48%, #28556355 78%);
   opacity: 0.95;
 }
-.glacier-scene__beacons { position: absolute; inset: 0; }
-.glacier-scene__beacons i {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: 7px;
-  height: 17px;
-  border-radius: 50% 50% 35% 35%;
-  background: #ffe5ad;
-  box-shadow: 0 0 12px 4px #e9843c99, 0 0 38px 8px #ed673c44;
-  opacity: 0;
-}
-.glacier-scene__oath {
-  position: absolute;
-  left: 50%;
-  top: 38%;
-  width: 4.5rem;
-  height: 4.5rem;
-  margin: -2.25rem;
-  border: 2px solid #f4ca8b;
-  transform: rotate(45deg) scale(0.8);
-  opacity: 0;
-  box-shadow: inset 0 0 22px #f4ca8b33, 0 0 34px #f4ca8b22;
-}
-.glacier-scene__oath::after { content: ''; position: absolute; inset: 11px; border: 1px solid #f4ca8b99; }
+.glacier-scene__beacons ellipse { fill: #ffe5ad; filter: drop-shadow(0 0 6px #e9843c); }
 .glacier-scene__vignette {
   position: absolute;
   inset: 0;
@@ -17576,11 +17556,12 @@ body[data-theme="sweet"] .dream-bloom-btn--ghost {
 [data-animation='glacier_arrival'].is-active .glacier-scene__fog { animation: glacierFogArrival 3.4s ease-out forwards; }
 [data-animation='glacier_arrival'].is-active .glacier-scene__ship { animation: glacierShipArrival 3.4s ease-out forwards; transform-origin: 50% 62%; }
 [data-animation='glacier_arrival'].is-active .glacier-scene__ripples { animation: glacierWaterArrival 3.4s ease-out forwards; transform-origin: 50% 55%; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__beacons i { animation: glacierBeaconArrival 1s ease-out calc(0.4s + var(--i) * 0.16s) forwards; }
-[data-animation='glacier_arrival']:is([data-state='rarityOmen'], [data-state='bloom'], .is-phase-line) .glacier-scene__oath { opacity: 0.9; transform: rotate(45deg) scale(1); transition: opacity 0.5s, transform 0.7s; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__beacons ellipse { animation: glacierBeaconArrival 1s ease-out calc(0.4s + var(--i) * 0.16s) both; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__sunrise { animation: glacierSunrise 3.4s cubic-bezier(.4,0,.2,1) both; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__daybreak { animation: glacierDaybreak 3.4s ease-out both; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__reflection { animation: glacierSunReflection 3.4s ease-out both; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__snow { animation: glacierSnowLight 3.4s ease-out both; }
 [data-animation='glacier_arrival'][data-state='summary'] .glacier-scene { opacity: 0.5; transition: opacity 0.35s; }
-[data-animation='glacier_arrival'] .dream-bloom-omen { background: radial-gradient(circle, #e4bd7844, transparent 66%); }
-[data-animation='glacier_arrival'][data-omen='UR'] .glacier-scene__oath { border-width: 3px; box-shadow: 0 0 52px #efad5d88; }
 [data-animation='glacier_arrival'] .dream-bloom-seal__petal,
 [data-animation='glacier_arrival'] .dream-bloom-seal__reflect { display: none; }
 [data-animation='glacier_arrival'] .dream-bloom-seal { border-color: #94c4cf; background: #102d38eb; }
@@ -17595,6 +17576,10 @@ body[data-theme="sweet"] .dream-bloom-btn--ghost {
 @keyframes glacierShipArrival { from { transform: translateY(-10px) scale(0.85); } to { transform: translateY(0) scale(1); } }
 @keyframes glacierWaterArrival { from { transform: scaleY(0.86); opacity: 0.15; } to { transform: scaleY(1.08); opacity: 0.4; } }
 @keyframes glacierBeaconArrival { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+@keyframes glacierSunrise { 0%,12% { opacity: .55; transform: translateY(140px); } 70% { opacity: 1; transform: translateY(24px); } 100% { opacity: 1; transform: none; } }
+@keyframes glacierDaybreak { from { opacity: 0; } to { opacity: 1; } }
+@keyframes glacierSunReflection { 0%,25% { opacity: 0; } 100% { opacity: .38; } }
+@keyframes glacierSnowLight { from { fill: #adcbd0; } to { fill: #ded6b9; } }
 
 .gacha-panel[data-pool-theme='glacier_arrival'] {
   position: relative;
@@ -17627,13 +17612,13 @@ body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene * { animati
 body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene__wall { transform: none; }
 [data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, .is-short, [data-state='summary']) .glacier-scene__fog,
 body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene__fog { opacity: 0.15; }
-[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, .is-short, [data-state='summary']) .glacier-scene__beacons i,
-body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene__beacons i { opacity: 1; }
+[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, .is-short, [data-state='summary']) .glacier-scene__beacons ellipse,
+body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene__beacons ellipse { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   [data-animation='glacier_arrival'] .glacier-scene * { animation: none !important; transition: none !important; }
   [data-animation='glacier_arrival'] .glacier-scene__wall { transform: none; }
   [data-animation='glacier_arrival'] .glacier-scene__fog { opacity: 0.15; }
-  [data-animation='glacier_arrival'] .glacier-scene__beacons i { opacity: 1; }
+  [data-animation='glacier_arrival'] .glacier-scene__beacons ellipse { opacity: 1; }
 }
 @media (max-width: 480px) {
   [data-animation='glacier_arrival'] .dream-debut-copy { margin-bottom: 15vh; }

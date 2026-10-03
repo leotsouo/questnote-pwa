@@ -1,0 +1,273 @@
+{
+  "version": "3.5.15",
+  "date": "2026-10-03",
+  "environment": "Windows Chromium · loopback memory test · CUA",
+  "measurements": [
+    {
+      "motion": [
+        {
+          "class": "glacier-scene__sunrise",
+          "duration": "3.4s",
+          "iterations": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        },
+        {
+          "class": "glacier-scene__reflection",
+          "duration": "3.4s",
+          "iterations": "1",
+          "transform": "none"
+        }
+      ],
+      "oath": 0,
+      "phase": "entry",
+      "sun": {
+        "bottom": 298.1999969482422,
+        "height": 85.19999694824219,
+        "left": 154.06668090820312,
+        "right": 239.2666778564453,
+        "top": 213,
+        "width": 85.19999694824219,
+        "x": 154.06668090820312,
+        "y": 213
+      },
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "backgroundLocked": "hidden",
+      "gradientRefs": true,
+      "oath": 0,
+      "omen": 0,
+      "phase": "ten-ritual",
+      "state": "rarityOmen",
+      "sun": {
+        "bottom": 318.6235656738281,
+        "height": 85.19999694824219,
+        "left": 154.06668090820312,
+        "right": 239.2666778564453,
+        "top": 233.4235687255859,
+        "width": 85.19999694824219,
+        "x": 154.06668090820312,
+        "y": 233.4235687255859
+      },
+      "sunrise": "matrix(1, 0, 0, 1, 0, 23.9713)"
+    },
+    {
+      "duration": "2546",
+      "name": "風眼誓鴉",
+      "phase": "ten-first-result"
+    },
+    {
+      "duration": "4559",
+      "name": "破曉誓角麝牛",
+      "phase": "ten-ur-result"
+    },
+    {
+      "cards": 10,
+      "phase": "ten-summary",
+      "text": "本次相遇關閉8 位初次相遇 · 10 次旅程記錄固定候選展示 · 點擊任一夥伴，認識牠的故事。01燼囊旅鼠N初次相遇02纜結海鸚N初次相遇03鍛火獠豬R初次相遇04刻潮築舟狸SR初次相遇05纜結海鸚N再次相遇纜結海鸚碎片 +106風眼誓鴉SSR初次相遇07槳歌斑海豹R初次相遇08破曉誓角麝牛UR初次相遇09深潮領航鯨SSR初次相遇10破曉誓角麝牛UR再次相遇破曉誓角麝牛碎片 +20查看圖鑑返回卡池"
+    },
+    {
+      "phase": "fragment-first",
+      "values": [
+        "升星1 星親密度Lv.1此夥伴碎片1"
+      ]
+    },
+    {
+      "phase": "fragment-reopened",
+      "values": [
+        "升星1 星親密度Lv.1此夥伴碎片1"
+      ]
+    },
+    {
+      "omen": 0,
+      "phase": "early-skip-before",
+      "state": "dreamDust"
+    },
+    {
+      "cards": 10,
+      "phase": "early-skip-summary"
+    },
+    {
+      "phase": "desktop-start",
+      "sun": {
+        "bottom": 373.76002502441406,
+        "height": 102.40000915527344,
+        "left": 460.8000183105469,
+        "right": 563.2000045776367,
+        "top": 271.3600158691406,
+        "width": 102.39998626708984,
+        "x": 460.8000183105469,
+        "y": 271.3600158691406
+      },
+      "transform": "matrix(1, 0, 0, 1, 0, 140)",
+      "viewport": [
+        1024,
+        768
+      ]
+    },
+    {
+      "overflow": false,
+      "phase": "desktop-rest",
+      "sun": {
+        "bottom": 230.40000915527344,
+        "height": 102.40000915527344,
+        "left": 460.8000183105469,
+        "right": 563.2000045776367,
+        "top": 128,
+        "width": 102.39998626708984,
+        "x": 460.8000183105469,
+        "y": 128
+      },
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "viewport": [
+        1024,
+        768
+      ]
+    },
+    {
+      "animation": "none",
+      "overflow": false,
+      "phase": "theme-reduced",
+      "sun": {
+        "bottom": 298.1999969482422,
+        "height": 85.19999694824219,
+        "left": 154.06668090820312,
+        "right": 239.2666778564453,
+        "top": 213,
+        "width": 85.19999694824219,
+        "x": 154.06668090820312,
+        "y": 213
+      },
+      "theme": "default",
+      "transform": "none",
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "animation": "none",
+      "overflow": false,
+      "phase": "theme-reduced",
+      "sun": {
+        "bottom": 298.1999969482422,
+        "height": 85.19999694824219,
+        "left": 154.06668090820312,
+        "right": 239.2666778564453,
+        "top": 213,
+        "width": 85.19999694824219,
+        "x": 154.06668090820312,
+        "y": 213
+      },
+      "theme": "sweet",
+      "transform": "none",
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "animation": "none",
+      "overflow": false,
+      "phase": "theme-reduced",
+      "sun": {
+        "bottom": 298.1999969482422,
+        "height": 85.19999694824219,
+        "left": 154.06668090820312,
+        "right": 239.2666778564453,
+        "top": 213,
+        "width": 85.19999694824219,
+        "x": 154.06668090820312,
+        "y": 213
+      },
+      "theme": "twilight",
+      "transform": "none",
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "animation": "none",
+      "copy": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "overflow": false,
+      "phase": "320-200-reduced",
+      "rootFont": "32px",
+      "sun": {
+        "bottom": 298.1999969482422,
+        "height": 85.19999694824219,
+        "left": 117.40000915527344,
+        "right": 202.6000061035156,
+        "top": 213,
+        "width": 85.19999694824219,
+        "x": 117.40000915527344,
+        "y": 213
+      },
+      "viewport": [
+        320,
+        852
+      ]
+    },
+    {
+      "focus": "繼續",
+      "phase": "tab-trap"
+    },
+    {
+      "focus": "繼續",
+      "phase": "shift-tab-trap"
+    },
+    {
+      "brokenVisibleImages": [],
+      "focus": "星旅之原永眠花海霜誓峽灣蜜光糖庭劍隱山河逆造之誓",
+      "overflow": "hidden auto",
+      "phase": "entry-return"
+    },
+    {
+      "animation": "glacierSunrise",
+      "mode": "single",
+      "oath": 0,
+      "omen": 0,
+      "paints": [
+        "glacier-dawn-26-halo",
+        "glacier-dawn-26-sun",
+        "glacier-dawn-26-water",
+        "glacier-dawn-27-halo",
+        "glacier-dawn-27-sun",
+        "glacier-dawn-27-water"
+      ],
+      "phase": "single-ritual"
+    },
+    {
+      "animation": "none",
+      "class": "dream-debut-overlay is-short is-active is-phase-night is-phase-pool is-phase-bloom is-phase-line is-ready",
+      "phase": "revisit-short",
+      "sun": {
+        "bottom": 298.1999969482422,
+        "height": 85.19999694824219,
+        "left": 154.06668090820312,
+        "right": 239.2666778564453,
+        "top": 213,
+        "width": 85.19999694824219,
+        "x": 154.06668090820312,
+        "y": 213
+      }
+    }
+  ],
+  "notes": [
+    "Early skip initially used a non-focusable dialog and text instead of accessible name; the scoped data-action skip button then passed Escape during dreamDust.",
+    "Entry Escape restores focus to the pool selector (existing controller behavior), with scrolling restored.",
+    "Device-specific iPhone behavior and human final acceptance remain pending."
+  ]
+}

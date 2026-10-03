@@ -133,6 +133,8 @@ candidate 保存原 companion baseline bytes、審核輸入與合併後 companio
 
 沿用美術要列出實際 Scene／控制器／角色資源；新場景列出分鏡及差異。圖片存在不等於成功：檢查 `naturalWidth`、完整解碼、失敗 fallback 與可操作返回。正式 artifact 另驗證更新及離線；本機記憶體試演未啟用 SW 時，不能冒充離線／部署通過。iPhone VoiceOver、原生字級、觸覺及裝置效能需要真機，桌面瀏覽器不能代簽。
 
+**地景效果必須共用構圖座標。** 與山脊、水道、船隻互動的太陽、倒影及燈火放在同一個 SVG viewBox／相機中，按地景的前後關係遮擋；不要用另一組螢幕百分比擺放誓印或光環，造成寬螢幕與手機位置不同。專屬場景接替通用預兆時，移除不再適用的通用元素，不能只寫較低優先級 CSS 期待蓋掉稀有度樣式。SVG paint／clip IDs 每個場景實例唯一。驗證入場、單次／十連前奏、不同長寬比例、三套 Theme 及減少動態；確認太陽確實從山後升起、倒影沿水道、燈火落在港口位置，且沒有兩個互不相連的焦點。本次霜誓峽灣日出案例見 `reports/companion-app-test/glacier-dawn-review.md`。
+
 將量測與問題修正寫入 `checks.animation.evidence` 所指的報告，寫清工程通過、人工待驗／通過及真機待驗。使用者完成最終驗收後，將新得出的通用標準補進本節並連到實測報告；不回填或覆寫舊 receipts，不把工程自測記成 `humanAcceptance`。本次來源試演證據見 `reports/companion-app-test/ceremony-v3-review.md`。
 
 ### 開啟動畫，讓使用者實際檢視

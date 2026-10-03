@@ -247,6 +247,8 @@ function createOverlay({ mode, reduceMotion, highestRarity, poolName, animationK
     overlay.querySelectorAll('[data-role="dust"], [data-role="ripple"], [data-role="buds"], [data-role="crest"]').forEach((node) => node.remove());
   }
   if (sceneFactory) overlay.querySelector('.dream-bloom-bg')?.replaceWith(sceneFactory());
+  // The glacier's sunrise is part of its landscape, not a second generic omen.
+  if (glacier) overlay.querySelector('[data-role="omen"]')?.remove();
 
   return overlay;
 }
