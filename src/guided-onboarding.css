@@ -62,3 +62,6 @@ body.reduce-motion .guided-ring, body.reduce-motion .guided-companion { animatio
 #guided-feature-help p { padding: 0 12px 12px; margin: 0; font-size: 1rem; line-height: 1.65; }
 #guided-feature-help button { margin: 0 12px 12px; min-height: 48px; white-space: normal; }
 #guided-feature-help :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.guided-page-target { outline: 2px solid var(--accent, #b5cfed); outline-offset: 4px; border-radius: 12px; }
+.guided-page-tour { scroll-margin-top: 16px; }
+#guided-page-tour-button { min-height: 48px; margin-top: 12px; white-space: normal; }

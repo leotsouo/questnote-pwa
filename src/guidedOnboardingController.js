@@ -4,6 +4,7 @@ import { GUIDED_KEY, GUIDED_STEPS, tutorialDraft } from './guidedOnboardingCore.
 import { advanceGuidedOnboarding, recoverGuidedOnboarding, startGuidedReplay,
   resetGuidedAfterDataReset, dismissGuidedAfterRestore, acknowledgeGuidedHint } from './guidedOnboardingService.js';
 import { GUIDED_EDUCATION, contextualEducation } from './guidedEducation.js';
+import { PAGE_LESSONS, readPageTour, savePageTour } from './guidedPageTour.js';
 import { getPetImageSrc } from './imagePreloadService.js';
 import { reactTwilightCompanion } from './twilightPresentation.js';
 
@@ -22,6 +23,8 @@ let signature = '';
 let repairing = false;
 let layoutFrame;
 let hintFeature;
+let pageTour;
+let tourTarget;
 const inertElements = new Map();
 const pendingSkipKey = () => `questnote-guided-skip-pending:${location.pathname}`;
 const skipPending = () => { try { return sessionStorage.getItem(pendingSkipKey()) === '1'; } catch { return false; } };
@@ -47,6 +50,7 @@ function run(action) {
   const next = queue.then(action).catch((error) => {
     console.warn('[Guided practice]', error);
     feedback('這一步還沒存好。請再試一次；也可以從「略過教學」離開。');
+    if (!isGuidedOnboardingActive()) navigation.showToast?.('教學進度還沒存好，請再試一次。', 'error');
   });
   queue = next;
   return next;
@@ -165,6 +169,7 @@ export function refreshGuidedOnboarding() {
   updateHelp();
   if (!isGuidedOnboardingActive()) {
     releaseLock(); root.replaceChildren(); signature = '';
+    renderPageTour();
     if (hintFeature && !document.querySelector('.guided-feature-hint')) renderContextualHint(hintFeature);
     return;
   }
@@ -198,7 +203,7 @@ export function refreshGuidedOnboarding() {
         <p class="guided-feedback" role="status" aria-live="polite"></p>
         <div class="guided-actions">${skipOpen ? '<button type="button" class="btn btn--primary" data-guided-action="cancel-skip">繼續練習</button><button type="button" class="btn btn--secondary guided-hold" data-guided-action="hold-skip" aria-describedby="guided-hold-help">長按 1.5 秒略過<span class="guided-hold-progress" aria-hidden="true"></span></button><p id="guided-hold-help" class="guided-note">不方便長按？可直接使用下方確認按鈕。</p><button type="button" class="guided-link" data-guided-action="confirm-skip">確認略過教學</button>'
           : action ? `<button type="button" class="btn btn--primary" aria-describedby="guided-instruction" data-guided-action="${record.step === 'FINISH' ? 'finish-create' : 'acknowledge'}">${action}</button>` : target ? '<span class="guided-action-hint">請點畫面上亮起的按鈕</span>' : '<button type="button" class="btn btn--secondary" data-guided-action="repair">重新開啟這一步</button>'}
-          ${!skipOpen && record.step === 'FINISH' ? '<button type="button" class="btn btn--secondary" data-guided-action="finish-home">先回今日任務</button>' : ''}
+          ${!skipOpen && record.step === 'FINISH' ? '<button type="button" class="btn btn--secondary" data-guided-action="finish-tour">繼續認識其他頁面</button><button type="button" class="btn btn--secondary" data-guided-action="finish-home">先回今日任務</button>' : ''}
           ${!skipOpen ? '<button type="button" class="guided-link" data-guided-action="skip">略過教學</button>' : ''}
         </div>
       </section>`;
@@ -252,9 +257,10 @@ async function action(name, expected = {}) {
     skipOpen = false; releaseLock(); navigation.showGuidedHome();
     refreshGuidedOnboarding(); navigation.showToast?.(saved ? '教學已略過。新增任務時會有小提醒；也能到「更多 → 使用教學」再次練習。' : '這次已離開教學。儲存暫時失敗，下次開啟會重試保存略過選擇。', 'info', 6500); return;
   }
-  if (name === 'finish-create' || name === 'finish-home') {
+  if (name === 'finish-create' || name === 'finish-home' || name === 'finish-tour') {
     record = await advanceGuidedOnboarding('finish', expected); releaseLock(); refreshGuidedOnboarding(); navigation.showGuidedHome();
     if (record.status === 'completed' && name === 'finish-create') navigation.openTaskForm();
+    if (record.status === 'completed' && name === 'finish-tour') await movePageTour('start');
     return;
   }
   if (name === 'acknowledge') {
@@ -279,7 +285,7 @@ export async function recordGuidedOnboardingEvent(event, detail = {}) {
       catch { record = { ...record, status: 'skipped' }; }
     } else if (event === 'editor-opened') record = await advanceGuidedOnboarding(event, expected);
     else if (['task-created', 'task-completed', 'foreground', 'navigation'].includes(event)) record = await recoverGuidedOnboarding();
-    if (event === 'foreground') await navigation.refreshState();
+    if (event === 'foreground') { pageTour = await readPageTour(); await navigation.refreshState(); }
     await repairPresentation(); refreshGuidedOnboarding();
     if (event === 'view-changed' && !isGuidedOnboardingActive()) await contextualHint(detail.viewName);
     if (event === 'pet-care-opened' && !isGuidedOnboardingActive()) await contextualHint('pet-care');
@@ -287,7 +293,7 @@ export async function recordGuidedOnboardingEvent(event, detail = {}) {
 }
 
 async function contextualHint(view) {
-  document.querySelectorAll('.guided-feature-hint').forEach((hint) => hint.remove());
+  document.querySelectorAll('.guided-feature-hint:not(.guided-page-tour)').forEach((hint) => hint.remove());
   hintFeature = view;
   // Do not replace the local unlocked exit with the failed checkpoint on disk.
   if (skipPending()) return;
@@ -298,7 +304,7 @@ async function contextualHint(view) {
 }
 
 function renderContextualHint(view) {
-  if (skipPending() || document.querySelector('#onboarding-root .onboarding-dock')) return;
+  if (skipPending() || pageTour?.status === 'active' || document.querySelector('#onboarding-root .onboarding-dock')) return;
   const hint = contextualEducation(record, view);
   const viewHost = document.querySelector(`#view-${CSS.escape(view)}.active`);
   const host = view === 'pet-care' ? document.querySelector('#modal-overlay.open .pet-detail')
@@ -331,11 +337,16 @@ export async function replayGuidedOnboarding() {
 
 export async function initGuidedOnboarding(state, handlers) {
   app = state; navigation = handlers; record = await dbGet(STORES.META, GUIDED_KEY);
+  pageTour = await readPageTour();
   if (skipPending() && record?.status === 'active') {
     try { record = await advanceGuidedOnboarding('skip-confirmed'); rememberSkip(false); }
     catch { record = { ...record, status: 'skipped' }; }
   }
   root = document.querySelector('#guided-onboarding-root');
+  new MutationObserver(() => {
+    if (pageTour?.status === 'active' && !isGuidedOnboardingActive()
+      && !document.querySelector('.view.active .guided-page-tour')) renderPageTour();
+  }).observe(document.querySelector('#app'), { childList: true, subtree: true });
   resizeObserver = new ResizeObserver(positionSpotlight);
   root.addEventListener('click', (event) => {
     const name = event.target.closest('[data-guided-action]')?.dataset.guidedAction;
@@ -368,6 +379,11 @@ export async function initGuidedOnboarding(state, handlers) {
   document.addEventListener('scroll', positionSpotlight, true);
   const permitted = (element) => root.contains(element) || (!skipOpen && ['OPEN_CREATE_QUEST', 'CREATE_TUTORIAL_QUEST', 'COMPLETE_TUTORIAL_QUEST'].includes(record.step) && target?.contains(element));
   document.addEventListener('click', (event) => {
+    const tourButton = event.target.closest('[data-page-tour-action]');
+    if (tourButton && !isGuidedOnboardingActive()) {
+      const expectedCursor = pageTour?.cursor;
+      void run(() => movePageTour(tourButton.dataset.pageTourAction, expectedCursor));
+    }
     if (!isGuidedOnboardingActive() || permitted(event.target)) return;
     event.preventDefault(); event.stopImmediatePropagation(); feedback();
   }, true);
@@ -410,10 +426,57 @@ export async function initGuidedOnboarding(state, handlers) {
     `<details data-education-feature="${feature}"><summary>${escape(content.title)}</summary><p>${escape(content.body)}</p>
       ${content.lesson ? `<button type="button" class="btn btn--secondary" data-onboarding-action="lesson:${content.lesson}">繼續學習這一章</button>` : ''}</details>`).join('');
   await repairPresentation(); refreshGuidedOnboarding();
+  if (!isGuidedOnboardingActive() && pageTour?.status === 'active') {
+    navigation.showPage?.(PAGE_LESSONS[pageTour.cursor].view);
+    renderPageTour(true);
+  }
+}
+
+function renderPageTour(focus = false) {
+  tourTarget?.classList.remove('guided-page-target');
+  document.querySelectorAll('.guided-page-tour').forEach((node) => node.remove());
+  const replay = document.querySelector('#guided-page-tour-button');
+  if (replay) replay.textContent = pageTour?.status === 'paused' ? '繼續其他頁面教學' : '認識其他頁面';
+  if (isGuidedOnboardingActive() || pageTour?.status !== 'active') return;
+  const lesson = PAGE_LESSONS[pageTour.cursor];
+  const view = document.querySelector('.view.active');
+  if (!view) return;
+  document.querySelectorAll('.guided-feature-hint').forEach((node) => node.remove());
+  const host = view.querySelector('.identity-surface') || view;
+  const here = view.id === `view-${lesson.view}`;
+  const card = document.createElement('section');
+  card.className = 'guided-feature-hint guided-page-tour card';
+  card.setAttribute('aria-labelledby', 'guided-page-title');
+  card.innerHTML = `<p class="guided-note">接著認識 QuestNote · ${pageTour.cursor + 1} / ${PAGE_LESSONS.length}</p>
+    <h2 id="guided-page-title" tabindex="-1">${escape(lesson.title)}</h2><p>${here ? escape(lesson.body) : '你可以自由查看其他頁面。準備好後，回到目前的教學頁面繼續。'}</p>
+    <div class="guided-feature-actions">${pageTour.cursor > 0 ? '<button type="button" class="btn btn--secondary" data-page-tour-action="back">上一步</button>' : ''}
+    <button type="button" class="btn btn--primary" data-page-tour-action="${here ? 'next' : 'return'}">${here ? pageTour.cursor === PAGE_LESSONS.length - 1 ? '完成教學，回到今日' : '下一步' : '回到教學頁面'}</button>
+    <button type="button" class="guided-link" data-page-tour-action="pause">先到這裡，之後繼續</button></div>`;
+  host.prepend(card);
+  tourTarget = here && lesson.target ? view.querySelector(lesson.target) : null;
+  tourTarget?.classList.add('guided-page-target');
+  if (focus) requestAnimationFrame(() => card.querySelector('h2')?.focus({ preventScroll: true }));
+}
+
+async function movePageTour(actionName, expectedCursor) {
+  if (actionName !== 'return') pageTour = await savePageTour(actionName, expectedCursor);
+  if (pageTour?.status === 'active') {
+    navigation.showPage?.(PAGE_LESSONS[pageTour.cursor].view);
+    renderPageTour(true);
+    window.scrollTo(0, 0);
+  } else {
+    renderPageTour();
+    if (pageTour?.status === 'completed') navigation.showGuidedHome();
+    if (actionName === 'pause') {
+      navigation.showToast?.('進度已保存。到「更多 → 使用教學」可以繼續。', 'info');
+      document.querySelector('.nav-item.active')?.focus({ preventScroll: true });
+    }
+  }
 }
 
 export async function guidedAfterReset(restored = false) {
   rememberSkip(false);
   record = restored ? await dismissGuidedAfterRestore() : await resetGuidedAfterDataReset();
+  pageTour = await readPageTour();
   skipOpen = false; signature = ''; refreshGuidedOnboarding();
 }
