@@ -1,0 +1,147 @@
+[
+  {
+    "name": "transparent wrapper; 16px separation; unchanged aligned cards and values",
+    "originalMetrics": {
+      "background": "rgb(32, 49, 73)",
+      "gap": 12,
+      "aligned": true,
+      "cardCount": 4,
+      "card": {
+        "background": "rgb(24, 38, 59)",
+        "border": "1px solid rgb(53, 68, 91)",
+        "radius": "14px",
+        "padding": "12px",
+        "label": "11.52px / 17.28px -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Microsoft JhengHei\", sans-serif",
+        "value": ""
+      },
+      "overflow": false,
+      "values": [
+        "0 / 0",
+        "0%",
+        "0",
+        "0 / 30"
+      ]
+    },
+    "after": {
+      "background": "rgba(0, 0, 0, 0)",
+      "gap": 16,
+      "aligned": true,
+      "cardCount": 4,
+      "card": {
+        "background": "rgb(24, 38, 59)",
+        "border": "1px solid rgb(53, 68, 91)",
+        "radius": "14px",
+        "padding": "12px",
+        "label": "11.52px / 17.28px -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Microsoft JhengHei\", sans-serif",
+        "value": ""
+      },
+      "overflow": false,
+      "values": [
+        "0 / 0",
+        "0%",
+        "0",
+        "0 / 30"
+      ]
+    }
+  },
+  {
+    "name": "default mobile",
+    "metrics": {
+      "background": "rgba(0, 0, 0, 0)",
+      "gap": 16,
+      "aligned": true,
+      "cardCount": 4,
+      "card": {
+        "background": "rgb(24, 38, 59)",
+        "border": "1px solid rgb(53, 68, 91)",
+        "radius": "14px",
+        "padding": "12px",
+        "label": "11.52px / 17.28px -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Microsoft JhengHei\", sans-serif",
+        "value": ""
+      },
+      "overflow": false,
+      "values": [
+        "0 / 0",
+        "0%",
+        "0",
+        "0 / 30"
+      ]
+    }
+  },
+  {
+    "name": "sweet mobile",
+    "metrics": {
+      "background": "rgba(0, 0, 0, 0)",
+      "gap": 16,
+      "aligned": true,
+      "cardCount": 4,
+      "card": {
+        "background": "rgb(255, 252, 248)",
+        "border": "1px solid rgb(219, 200, 204)",
+        "radius": "22px",
+        "padding": "12px",
+        "label": "11.52px / 17.28px -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Microsoft JhengHei\", sans-serif",
+        "value": ""
+      },
+      "overflow": false,
+      "values": [
+        "0 / 0",
+        "0%",
+        "0",
+        "0 / 30"
+      ]
+    }
+  },
+  {
+    "name": "twilight mobile",
+    "metrics": {
+      "background": "rgba(0, 0, 0, 0)",
+      "gap": 16,
+      "aligned": true,
+      "cardCount": 4,
+      "card": {
+        "background": "rgb(250, 247, 239)",
+        "border": "1px solid rgb(206, 211, 197)",
+        "radius": "18px",
+        "padding": "12px",
+        "label": "11.52px / 17.28px -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Microsoft JhengHei\", sans-serif",
+        "value": ""
+      },
+      "overflow": false,
+      "values": [
+        "0 / 0",
+        "0%",
+        "0",
+        "0 / 30"
+      ]
+    }
+  },
+  {
+    "name": "320px extra-large text",
+    "metrics": {
+      "background": "rgba(0, 0, 0, 0)",
+      "gap": 16,
+      "aligned": true,
+      "cardCount": 4,
+      "card": {
+        "background": "rgb(250, 247, 239)",
+        "border": "1px solid rgb(206, 211, 197)",
+        "radius": "18px",
+        "padding": "12px",
+        "label": "17.28px / 25.92px -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Microsoft JhengHei\", sans-serif",
+        "value": ""
+      },
+      "overflow": false,
+      "values": [
+        "0 / 0",
+        "0%",
+        "0",
+        "0 / 30"
+      ]
+    }
+  },
+  {
+    "name": "create-first-habit form still opens; no runtime errors",
+    "passed": true
+  }
+]

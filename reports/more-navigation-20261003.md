@@ -14,7 +14,7 @@
 
 沒有修改圖片、SVG 圖示、美術素材、主題、色彩、字型或既有清單列的樣式。CSS 只加入原生 details 的標記隱藏與展開箭頭方向。瀏覽器比較調整前後「習慣」入口，確認圖示 HTML、列高度、padding、背景、邊框、圓角與標籤字型／色彩完全一致。
 
-執行期來源版本更新為 `3.5.22`，`src/version.js` 與 SW cache 同步為 `questnote-preview-cache-v3522-more-navigation`。未增加執行期檔案，原有 precache 已包含所有異動的 App 檔案。
+第一版執行期來源版本為 `3.5.22`；下述習慣頁修正後為 `3.5.23`，`src/version.js` 與 SW cache 同步為 `questnote-preview-cache-v3523-more-navigation`。未增加執行期檔案，原有 precache 已包含所有異動的 App 檔案。
 
 ## 驗收結果
 
@@ -41,3 +41,16 @@
 | 桌面 | [after-desktop.png](more-navigation-20261003/after-desktop.png) |
 
 長頁的全頁截圖會把固定底部導覽列畫在擷取當下的可視區位置；實際操作已逐一捲動、點擊與驗證各入口。正式 iPhone 裝置尚未驗收。
+
+## 後續：習慣頁統計區塊銜接
+
+依使用者截圖修正統計外層突兀的方形底色。`habit-stats` 是排列四張卡片的容器，不應套用摘要卡的背景；從共用主題摘要樣式中排除此容器。下方間距由 12px 改為 16px，與內容卡片左右對齊。
+
+四張統計卡的配色、邊框、圓角、padding、字型及數值皆與修改前完全一致，未改動圖片或功能。三種主題、393px 手機、724px 桌面、320px 特大字體皆通過透明外層、卡片對齊與無水平溢出檢查；建立第一個習慣仍可打開表單，無執行期錯誤。等待原有進場動畫結束後測量，實際卡片間距為 16px。
+
+完整 `npm test` 再次通過 303 個 Node 測試與揭曉流程 assertions；版本／SW 語法與 `git diff --check` 通過。僅完成來源與本機預覽，尚未發布。
+
+- [修正後手機畫面](more-navigation-20261003/habit-layout/after-default-mobile.png)
+- [修正前桌面畫面](more-navigation-20261003/habit-layout/before-desktop.png)
+- [修正後桌面畫面](more-navigation-20261003/habit-layout/after-desktop.png)
+- [量測與驗收結果](more-navigation-20261003/habit-layout/results.json)
