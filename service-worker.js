@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9';
+const CACHE_NAME = 'questnote-production-app-5149724a0426c8dff872572adbcd5fbbbcd5f9fd54f675a2d2733fe200986c51';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "289e965079051be3e843872247e88a424436a2718460f1e6b38b1f8eb1c65ce9",
-  "sourceCommit": "fd30782f55792fcc32dc7bc5febf2d6cb098af3b",
+  "artifactId": "5149724a0426c8dff872572adbcd5fbbbcd5f9fd54f675a2d2733fe200986c51",
+  "sourceCommit": "9977d4dddeea49bb2bcb9a83a1f9f694ca7777f0",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -88,7 +88,7 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/163ced468ca4d8025e26c57777bf8ba0954ef923727c66b2069fabef28891443/catalog.json": "163ced468ca4d8025e26c57777bf8ba0954ef923727c66b2069fabef28891443",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "f39246999cd5aac5ce5fd5dbbd763b5df55bb91c2e2f80bf0f23d25df803a0e0",
+  "index.html": "c681d8ed7aefa56b73744a93f78a10d57589acc9b8fc3ff122b65e68be2106d2",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "527b3c8706db9c1b653efe7113eab9d079dff5e77612c8a0dd3b9be20583a288",
   "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
@@ -118,7 +118,7 @@ const PRECACHE_HASHES = {
   "src/encounter-view.css": "2e1534c79b07c20f50d9a760433a7b6212c04e4a813b3501b6c45dccaa2ec20e",
   "src/encounterCeremony.js": "dd48987a565ac1ad1e899eb1071d86f8241bb0856938104bd55b0ec52ca609c7",
   "src/encounterScenery.js": "f94fe3d764ec0c920674f6991fe4ed271741ec1e960170a2f9e7c12baa9adef9",
-  "src/encounterView.js": "51e2422eb901c43b7def4ef99adb7d0c994e9eb5de7bdaeebe6b72df0132fe8b",
+  "src/encounterView.js": "bf6ea5bfdf99363a1a953c60a55241eace7cdd585cdbf1698584ce51b4789355",
   "src/encounterViewModel.js": "3abd891ceae7e2f4ba229720035530513a7eea56a78f3f225eec2716a140f064",
   "src/expeditionGameplay.js": "ac8b8ab0401c9d263a4ee359405717f60bc0b8a6e4914b0b1e8b9e4cf69767d7",
   "src/expeditionService.js": "caec8978877213406550d8604dd480f791229e6e4f6ece88505e104836d84722",
@@ -167,7 +167,7 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
   "src/questService.js": "93e6c875b21a3fb6cf8d0c0ad2ddae2b4307cee870da3b1b92a2a0969977d8a6",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "d5fdeb03a477efb9385d1915f5ddc31abe57db5a7ee764fd8bf1f19263b682ac",
+  "src/releaseProfile.js": "de61f93f961de0deb372aa34db552fcba6c672c9234eac9e1bd6a76966ea496d",
   "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "fb8939a256305ef880ecebf063d029dc8a1d37a58e330851b2d96ac001ee57bb",
@@ -198,7 +198,7 @@ const PRECACHE_HASHES = {
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "9eb85553464d6600260073a6f6e77eedeee364bd5d2f18c8c9f533f23c27667f",
+  "src/version.js": "2603507e96503523992c2089226bcc7d9f889050de02d0f7c37a9cbfe37eb07b",
   "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
   "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
 };
