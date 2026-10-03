@@ -1,0 +1,81 @@
+{
+  "version": "3.5.18",
+  "layouts": [
+    {
+      "dialogScrollWidth": 361,
+      "dialogWidth": 361,
+      "height": 360.6666870117187,
+      "leftGap": 0,
+      "rightGap": 0,
+      "rootFont": "16px",
+      "shellWidth": 360.6666870117187,
+      "theme": "sweet",
+      "viewport": 378,
+      "width": 360.6666870117187
+    },
+    {
+      "dialogScrollWidth": 272,
+      "dialogWidth": 272,
+      "height": 272,
+      "leftGap": 0,
+      "rightGap": 0,
+      "rootFont": "32px",
+      "shellWidth": 272,
+      "theme": "default",
+      "viewport": 305,
+      "width": 272
+    },
+    {
+      "dialogScrollWidth": 272,
+      "dialogWidth": 272,
+      "height": 272,
+      "leftGap": 0,
+      "rightGap": 0,
+      "rootFont": "32px",
+      "shellWidth": 272,
+      "theme": "sweet",
+      "viewport": 305,
+      "width": 272
+    },
+    {
+      "dialogScrollWidth": 272,
+      "dialogWidth": 272,
+      "height": 272,
+      "leftGap": 0,
+      "rightGap": 0,
+      "rootFont": "32px",
+      "shellWidth": 272,
+      "theme": "twilight",
+      "viewport": 305,
+      "width": 272
+    }
+  ],
+  "console": [],
+  "desktopTen": {
+    "version": "3.5.18",
+    "theme": "sweet",
+    "name": "風眼誓鴉",
+    "progress": "本次相遇 · 角色揭露 1 / 4",
+    "shell": {
+      "left": 283,
+      "right": 966.3333740234376,
+      "width": 683.3333740234375
+    },
+    "art": {
+      "left": 283,
+      "right": 966.3333740234376,
+      "width": 683.3333740234375,
+      "height": 683.3333740234375
+    },
+    "image": {
+      "left": 283,
+      "right": 966.3333740234376,
+      "width": 683.3333740234375,
+      "height": 683.3333740234375,
+      "naturalWidth": 960,
+      "naturalHeight": 960,
+      "border": "0px",
+      "fit": "cover"
+    }
+  }
+}

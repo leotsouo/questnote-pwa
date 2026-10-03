@@ -116,18 +116,19 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 :is(.identity-surface, .identity-dialog, .identity-review) .rate-table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: 18px; overflow-wrap: anywhere; }
 :is(.identity-surface, .identity-dialog, .identity-review) .rate-table th, :is(.identity-surface, .identity-dialog, .identity-review) .rate-table td { text-align: left; padding: 10px 6px; border-bottom: 1px solid var(--color-border); }
 :is(.identity-surface, .identity-dialog, .identity-review) .probability-note { font-size: .8rem; line-height: 1.8; color: var(--color-text-muted); margin-top: 18px; }
-:is(.identity-surface, .identity-dialog, .identity-review) .reveal-shell { padding: 20px; text-align: center; }
-:is(.identity-surface, .identity-dialog, .identity-review) .reveal-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; text-align: left; margin-bottom: 16px; }
+:is(.identity-surface, .identity-dialog, .identity-review) .reveal-shell { padding: 0; text-align: center; }
+:is(.identity-surface, .identity-dialog, .identity-review) .reveal-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; text-align: left; padding: 20px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-top .eyebrow { letter-spacing: .08em; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-top button { font-size: .75rem; background: transparent; }
-:is(.identity-surface, .identity-dialog, .identity-review) .reveal-image { width: min(100%,440px); height: auto; max-height: none; aspect-ratio: 1; object-fit: contain; margin: 0 auto; border-radius: var(--radius-lg); background: transparent; transition: filter 300ms ease, opacity 300ms ease, transform 350ms ease; }
-:is(.identity-surface, .identity-dialog, .identity-review) .reveal-identity { padding: 20px 0 12px; }
+:is(.identity-surface, .identity-dialog, .identity-review) .reveal-art { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; }
+:is(.identity-surface, .identity-dialog, .identity-review) .reveal-image { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover; margin: 0; border-radius: 0; background: transparent; transition: filter 300ms ease, opacity 300ms ease, transform 350ms ease; }
+:is(.identity-surface, .identity-dialog, .identity-review) .reveal-identity { padding: 20px 20px 12px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-identity .pet-name { font-size: 1.7rem; min-height: 2.3rem; transition: opacity 220ms ease, transform 220ms ease; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-identity .pet-title { transition: opacity 220ms ease; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-identity .identity-cue { justify-content: center; }
-:is(.identity-surface, .identity-dialog, .identity-review) .obtained { margin: 14px 0; padding: 14px; border: 1px solid var(--color-border); border-radius: 10px; font-size: .9rem; transition: opacity 220ms ease; }
+:is(.identity-surface, .identity-dialog, .identity-review) .obtained { margin: 14px 20px; padding: 14px; border: 1px solid var(--color-border); border-radius: 10px; font-size: .9rem; transition: opacity 220ms ease; }
 :is(.identity-surface, .identity-dialog, .identity-review) .obtained p { color: var(--color-text-muted); font-size: .75rem; margin-top: 4px; }
-:is(.identity-surface, .identity-dialog, .identity-review) .reveal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+:is(.identity-surface, .identity-dialog, .identity-review) .reveal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 20px 20px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .reveal-actions button { font-size: .8rem; }
 :is(.identity-surface, .identity-dialog, .identity-review) [data-phase="begin"] .reveal-image { opacity: 0; transform: scale(.96); }
 :is(.identity-surface, .identity-dialog, .identity-review) [data-phase="cue"] .reveal-image { opacity: .3; filter: grayscale(1) brightness(.12); }
@@ -149,8 +150,8 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 :is(.identity-surface, .identity-dialog, .identity-review) .pool-heading { margin-bottom: 12px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .pool-heading h1 { font-size: 1.1rem; }
 :is(.identity-surface, .identity-dialog, .identity-review) .companion-actions { display: grid; justify-items: start; gap: 8px; margin: 0 0 22px; }
-:is(.identity-surface, .identity-dialog, .identity-review) .reveal-greeting { margin: 0 0 14px; font-size: .95rem; line-height: 1.7; overflow-wrap: anywhere; }
-:is(.identity-surface, .identity-dialog, .identity-review) .queue-progress { font-size: .75rem; color: var(--color-text-muted); margin-bottom: 10px; }
+:is(.identity-surface, .identity-dialog, .identity-review) .reveal-greeting { margin: 0 20px 14px; font-size: .95rem; line-height: 1.7; overflow-wrap: anywhere; }
+:is(.identity-surface, .identity-dialog, .identity-review) .queue-progress { font-size: .75rem; color: var(--color-text-muted); padding: 0 20px 12px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .batch-lead { font-size: 1.1rem; margin-bottom: 6px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .batch-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px 14px; margin-top: 24px; }
 :is(.identity-surface, .identity-dialog, .identity-review) .batch-card { min-width: 0; }
@@ -257,7 +258,7 @@ body[data-local-art-review] #app :is(#view-gacha, #view-collection):has(> .ident
 .identity-surface .pool-copy .text-button { font-size:.75rem; }
 .identity-surface .mini-card img { border:1px solid var(--color-border); box-shadow:inset 0 0 0 3px #d6bc861a; }
 .identity-dialog .reveal-shell { background:radial-gradient(ellipse at 50% 10%,#c7ad7c18,transparent 60%),var(--color-bg-main); }
-.identity-dialog .reveal-image { border:0; box-shadow:0 12px 30px #0002; }
+.identity-dialog .reveal-image { border:0; box-shadow:none; }
 .identity-dialog .reveal-identity .pet-name { font-family:var(--font-display); text-wrap:balance; }
 .identity-dialog .reveal-shell:not(:is([data-phase="title"],[data-phase="result"])) .identity-cue { visibility:hidden; }
 .summon-reveal-overlay[data-identity-handoff] [hidden] { display:none !important; }
