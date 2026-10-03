@@ -20,7 +20,8 @@
         "poolTags": [
           "standard"
         ]
-      }
+      },
+      "tenPullGuarantee": "SR"
     },
     {
       "id": "eternal_slumber_bloom",
@@ -66,7 +67,8 @@
         "animationKey": "morning_garden_unlock",
         "title": "晨醒花庭",
         "unlockMessage": "沉眠有歸，甦醒有時。"
-      }
+      },
+      "tenPullGuarantee": "SR"
     },
     {
       "id": "frost_oath_fjord",
@@ -109,7 +111,8 @@
         "debutLabel": "抵達霜誓峽灣",
         "detailsNote": "十二隻遠航夥伴從第一抽起皆可抽取；無抽數解鎖或額外贈寵。主打角色不另加權。",
         "candidateNote": "僅含霜誓峽灣 12 隻夥伴，不含其他系列寵物。"
-      }
+      },
+      "tenPullGuarantee": "SR"
     },
     {
       "id": "honeylight_sugar_garden_v2",
@@ -151,7 +154,8 @@
           "糖庭亮起",
           "甜蜜相遇"
         ]
-      }
+      },
+      "tenPullGuarantee": "SR"
     },
     {
       "id": "swordwild_shanhe_v3",
@@ -195,7 +199,8 @@
         "debutLabel": "踏入雲棧古道",
         "detailsNote": "20 隻夥伴從第一抽全部開放，無抽數解鎖或贈寵。三 UR：玄翎重岳雕、丹砂鎮嶺蛤、素心劍猿；主打角色不另加權。同一稀有度內依既有抽卡規則選取。",
         "candidateNote": "僅含劍隱山河20隻夥伴；不含其他系列。專屬山河啟卷入場、劍光赴約抽獎與三UR故事揭露。"
-      }
+      },
+      "tenPullGuarantee": "SR"
     },
     {
       "id": "lionheart_inverse_oath",
@@ -236,7 +241,8 @@
           "獅心城"
         ],
         "debutLabel": "獅心城・逆造之誓登場"
-      }
+      },
+      "tenPullGuarantee": "SR"
     }
   ],
   "schemaVersion": 1
