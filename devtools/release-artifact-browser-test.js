@@ -263,8 +263,10 @@ try {
     await loaded;
     await waitForStarted(previewFrame,'preview');
     await checkCatalogAndUi(previewFrame,'preview');
-    assert(JSON.stringify(await db.dbGet(db.STORES.META,'wallet')) === beforeWallet, 'Fallback changed wallet');
-    assert(JSON.stringify(await db.dbGetAll(db.STORES.COLLECTION)) === beforeCollection, 'Fallback changed collection');
+    const freshClient = previewFrame.contentWindow;
+    const freshDb = await freshClient.eval('import(' + JSON.stringify(new URL('src/db.js', freshClient.location.href).href) + ')');
+    assert(JSON.stringify(await freshDb.dbGet(freshDb.STORES.META,'wallet')) === beforeWallet, 'Fallback changed wallet');
+    assert(JSON.stringify(await freshDb.dbGetAll(freshDb.STORES.COLLECTION)) === beforeCollection, 'Fallback changed collection');
   });
   if (companionResponse.ok) await test('SOP companion content drives actual crafting, favorite gifting and dispatch specialty in an isolated app', async () => {
     assert(storageOwnershipEstablished, 'Fixture writes require a fresh owned origin');
