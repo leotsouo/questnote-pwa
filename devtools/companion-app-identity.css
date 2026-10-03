@@ -263,7 +263,7 @@ body[data-local-art-review] #app :is(#view-gacha, #view-collection):has(> .ident
 .identity-dialog .reveal-shell:not(:is([data-phase="title"],[data-phase="result"])) .identity-cue { visibility:hidden; }
 .summon-reveal-overlay[data-identity-handoff] [hidden] { display:none !important; }
 body[data-local-art-review] :is(.dream-debut-overlay,.dream-bloom-overlay,.summon-reveal-overlay,.pool-awakening-overlay) button:focus-visible { outline:3px solid #ffedbd; outline-offset:4px; }
-.ceremony-session-tag { position:fixed; z-index:12300; top:max(12px,env(safe-area-inset-top)); left:max(12px,env(safe-area-inset-left)); max-width:calc(100% - 120px); color:#f0e5ce; background:#102032d9; border:1px solid #d3b77c55; border-radius:6px; padding:5px 9px; font:400 max(12px,.7rem)/1.5 var(--font-body); pointer-events:none; }
+.ceremony-session-tag { position:fixed; z-index:12300; top:max(12px,env(safe-area-inset-top)); left:max(12px,env(safe-area-inset-left)); max-width:calc(100% - max(120px,6rem)); color:#f0e5ce; background:#102032d9; border:1px solid #d3b77c55; border-radius:6px; padding:5px 9px; font:400 max(12px,.7rem)/1.5 var(--font-body); pointer-events:none; }
 body[data-local-art-review] .summon-reveal-overlay[data-identity-handoff] .summon-reveal-rarity { font-size:1.25rem; letter-spacing:.14em; }
 @media (max-width:350px) {
   .identity-surface .summon-sanctuary { padding:12px; }

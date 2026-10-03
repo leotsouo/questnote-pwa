@@ -77,8 +77,7 @@
     <div class="preview-row">
       <label for="mode">模式</label>
       <select id="mode">
-        <option value="full" selected>完整入場（首次）</option>
-        <option value="short">短轉場（已看過切換）</option>
+        <option value="full" selected>完整登場（首次／切換／重播一致）</option>
       </select>
     </div>
     <div class="preview-row">
@@ -165,14 +164,13 @@
       playing = true;
       applyTheme();
       applyWidth();
-      const full = document.getElementById('mode').value === 'full';
       const reduceMotion = document.getElementById('motion').value === 'true';
       const t0 = performance.now();
       const beforeNodes = document.querySelectorAll('.dream-debut-overlay').length;
       try {
-        log(`${label} 開始 full=${full} reduce=${reduceMotion}`);
+        log(`${label} 完整登場開始 reduce=${reduceMotion}`);
         const pool = await poolReady;
-        await playPoolDebutPresentation({ full, reduceMotion, poolName: pool.name, presentation: pool.presentation });
+        await playPoolDebutPresentation({ reduceMotion, poolName: pool.name, presentation: pool.presentation });
         const afterNodes = document.querySelectorAll('.dream-debut-overlay').length;
         const veil = panel.classList.contains('is-pool-debut-veil');
         const reveal = panel.classList.contains('is-pool-debut-reveal');

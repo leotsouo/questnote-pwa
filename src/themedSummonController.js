@@ -613,13 +613,13 @@ export function skipThemedSummon() {
   }
 }
 
-const DEBUT_DUST_COUNT = { full: 8, short: 3, reduced: 0 };
+const DEBUT_DUST_COUNT = { normal: 8, reduced: 0 };
 
 /**
  * 永眠花海卡池入場演出
  * 流程：長夜沉幕 → 鏡池微光 → 月皇花甦醒 → 台詞 → 停在完整畫面等待點擊 → 關閉時化開成主畫面
- * 完整登場等待點擊／Esc／繼續；短切換播完自動返回卡池，略過可提早結束。
- * @param {{ poolName?: string, presentation?: object, reduceMotion?: boolean, full?: boolean, sceneFactory?: Function }} options
+ * 首次、切換與重播皆使用完整登場；播完等待點擊／Esc／繼續，略過可提早結束。
+ * @param {{ poolName?: string, presentation?: object, reduceMotion?: boolean, sceneFactory?: Function }} options
  */
 export async function playPoolDebutPresentation(options = {}) {
   const lionheart = options.presentation?.animationKey === 'lionheart_inverse_oath';
@@ -627,10 +627,8 @@ export async function playPoolDebutPresentation(options = {}) {
   const sugar = options.presentation?.animationKey === 'honeylight_sugar';
   const previousFocus = document.activeElement;
   const reduce = isReduceMotion(options.reduceMotion);
-  const full = options.full !== false;
-  // 完整登場的可繼續時間／短切換的自動交接時間。
-  const readyMs = poolDebutDuration(full, reduce);
-  const dissolveMs = poolDebutDissolveDuration(full, reduce);
+  const readyMs = poolDebutDuration(reduce);
+  const dissolveMs = poolDebutDissolveDuration(reduce);
 
   const panel = document.getElementById('gacha-panel');
   const previousDissolve = panel?.style.getPropertyValue('--pool-dissolve-duration');
@@ -648,7 +646,6 @@ export async function playPoolDebutPresentation(options = {}) {
   overlay.style.setProperty('--pool-dissolve-duration', `${dissolveMs}ms`);
   overlay.dataset.animation = lionheart ? 'lionheart_inverse_oath' : options.presentation?.animationKey === 'swordwild_shanhe' ? 'swordwild_shanhe' : sugar ? 'honeylight_sugar' : glacier ? 'glacier_arrival' : 'dream_bloom';
   if (reduce) overlay.classList.add('is-reduced');
-  if (!full) overlay.classList.add('is-short');
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
   overlay.setAttribute('aria-label', options.presentation?.debutLabel || `${options.poolName || '卡池'}登場`);
@@ -698,9 +695,7 @@ export async function playPoolDebutPresentation(options = {}) {
   const dustHost = overlay.querySelector('[data-role="dust"]');
   const dustCount = reduce
     ? DEBUT_DUST_COUNT.reduced
-    : full
-      ? DEBUT_DUST_COUNT.full
-      : DEBUT_DUST_COUNT.short;
+    : DEBUT_DUST_COUNT.normal;
   if (dustHost && dustCount > 0) {
     dustHost.appendChild(createParticles(dustCount, 'dream-debut-dust__mote'));
   }
@@ -741,7 +736,6 @@ export async function playPoolDebutPresentation(options = {}) {
     ready = true;
     overlay.dataset.elapsed = String(Math.round(performance.now() - startedAt));
     overlay.classList.add('is-ready');
-    if (!full) { finish(); return; }
     // 等待點擊期間維持完整夜幕；關閉時才淡出銜接主畫面
     if (continueEl) continueEl.hidden = false;
     if (skipBtn) {
@@ -813,15 +807,12 @@ export async function playPoolDebutPresentation(options = {}) {
   skipBtn?.focus();
   requestAnimationFrame(() => overlay?.isConnected && overlay.classList.add('is-active', 'is-phase-night'));
 
-  // 完整登場等待點擊；短切換台詞到位後直接交接。
+  // 各池完整分鏡及文字到位後，等待使用者繼續。
   // full line CSS：a 0–0.7s、b 0.28–0.98s、c 0.55–1.3s → 約 1.3s 跑完
-  if (!reduce && full) {
+  if (!reduce) {
     schedule(() => overlay.classList.add('is-phase-pool'), 400);
     schedule(() => overlay.classList.add('is-phase-bloom'), 1000);
     schedule(() => overlay.classList.add('is-phase-line'), 1800);
-  } else if (!reduce && !full) {
-    schedule(() => overlay.classList.add('is-phase-pool', 'is-phase-bloom'), 120);
-    schedule(() => overlay.classList.add('is-phase-line'), 280);
   } else {
     schedule(() => overlay.classList.add('is-phase-pool', 'is-phase-bloom', 'is-phase-line'), 80);
   }

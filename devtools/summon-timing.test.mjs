@@ -18,16 +18,14 @@ test('single and ten preludes of every rarity preserve the Lionheart phase bound
   }
 });
 
-test('complete entry retains Lionheart timing while short switches use Honeylight timing', () => {
-  assert.equal(poolDebutDuration(), 6000);
-  assert.equal(poolDebutDuration(false), 900);
-  assert.equal(poolDebutDuration(true, true), 500);
-  assert.equal(poolDebutDuration(false, true), 240);
+test('every complete entry uses the original Honeylight clock, with no separate short clock', () => {
+  assert.equal(poolDebutDuration(), 3400);
+  assert.equal(poolDebutDuration(false), 3400);
+  assert.equal(poolDebutDuration(true), 500);
   assert.equal(poolDebutDissolveDuration(), 550);
-  assert.equal(poolDebutDissolveDuration(false), 240);
-  assert.equal(poolDebutDissolveDuration(true, true), 240);
-  assert.equal(poolDebutDissolveDuration(false, true), 120);
-  assert.equal(poolDebutDuration(false) + poolDebutDissolveDuration(false), 1140);
+  assert.equal(poolDebutDissolveDuration(true), 240);
+  assert.equal(poolDebutDuration() + poolDebutDissolveDuration(), 3950);
+  assert.ok(Object.keys(SUMMON_TIMING).every((key) => !key.startsWith('debutShort')));
 });
 
 test('native and identity reveal clocks agree by rarity, with the same next-character gap', () => {

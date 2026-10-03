@@ -1,0 +1,125 @@
+{
+  "version": "3.5.19",
+  "checks": [
+    {
+      "continueVisible": true,
+      "copy": {
+        "bottom": 749.7604370117188,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188
+      },
+      "dissolve": 550,
+      "duration": 3400,
+      "elapsed": 3423,
+      "font": "16px",
+      "height": 852,
+      "moving": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "dream-debut-line__seg",
+        "dream-debut-line__seg",
+        "dream-debut-line__seg",
+        "dream-debut-continue"
+      ],
+      "overflow": false,
+      "pool": "蜜光糖庭",
+      "reduced": false,
+      "short": false,
+      "theme": "default",
+      "width": 393
+    },
+    {
+      "continueVisible": true,
+      "copy": {
+        "bottom": 749.7604675292969,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375
+      },
+      "dissolve": 240,
+      "duration": 500,
+      "elapsed": 514,
+      "font": "32px",
+      "height": 852,
+      "moving": [],
+      "overflow": false,
+      "pool": "蜜光糖庭",
+      "reduced": true,
+      "short": false,
+      "theme": "default",
+      "width": 320
+    },
+    {
+      "continueVisible": true,
+      "copy": {
+        "bottom": 749.7604675292969,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375
+      },
+      "dissolve": 240,
+      "duration": 500,
+      "elapsed": 523,
+      "font": "32px",
+      "height": 852,
+      "moving": [],
+      "overflow": false,
+      "pool": "蜜光糖庭",
+      "reduced": true,
+      "short": false,
+      "theme": "sweet",
+      "width": 320
+    },
+    {
+      "continueVisible": true,
+      "copy": {
+        "bottom": 749.7604675292969,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375
+      },
+      "dissolve": 240,
+      "duration": 500,
+      "elapsed": 509,
+      "font": "32px",
+      "height": 852,
+      "moving": [],
+      "overflow": false,
+      "pool": "蜜光糖庭",
+      "reduced": true,
+      "short": false,
+      "theme": "twilight",
+      "width": 320
+    }
+  ],
+  "skipStart": {
+    "count": 1,
+    "ready": false
+  },
+  "tabFocus": {
+    "inside": true,
+    "role": "skip"
+  },
+  "cleanup": {
+    "action": "replay-debut",
+    "bodyOverflow": "",
+    "rootOverflow": ""
+  },
+  "logs": [],
+  "labelLayout": {
+    "buttonLeft": 198.6666717529297,
+    "overlap": false,
+    "tagRight": 140
+  }
+}

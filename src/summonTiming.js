@@ -1,15 +1,11 @@
-/** Shared clock: Honeylight short switches; Lionheart full ceremonies and reveals. */
+/** Shared clock: Honeylight complete entries; Lionheart summon ceremonies and reveals. */
 export const SUMMON_TIMING = Object.freeze({
   prelude: Object.freeze([650, 750, 900, 700]),
   reducedPrelude: Object.freeze([100, 100, 150, 150]),
-  debutFull: 6000,
-  debutShort: 900,
+  debutFull: 3400,
   debutReduced: 500,
-  debutShortReduced: 240,
   debutDissolve: 550,
-  debutShortDissolve: 240,
   debutReducedDissolve: 240,
-  debutShortReducedDissolve: 120,
   ssr: 2500,
   ur: 4500,
   reducedSsr: 550,
@@ -21,12 +17,12 @@ export function summonPreludeDurations(reduced = false) {
   return [...(reduced ? SUMMON_TIMING.reducedPrelude : SUMMON_TIMING.prelude)];
 }
 
-export function poolDebutDuration(full = true, reduced = false) {
-  return reduced ? (full ? SUMMON_TIMING.debutReduced : SUMMON_TIMING.debutShortReduced) : full ? SUMMON_TIMING.debutFull : SUMMON_TIMING.debutShort;
+export function poolDebutDuration(reduced = false) {
+  return reduced ? SUMMON_TIMING.debutReduced : SUMMON_TIMING.debutFull;
 }
 
-export function poolDebutDissolveDuration(full = true, reduced = false) {
-  return reduced ? (full ? SUMMON_TIMING.debutReducedDissolve : SUMMON_TIMING.debutShortReducedDissolve) : full ? SUMMON_TIMING.debutDissolve : SUMMON_TIMING.debutShortDissolve;
+export function poolDebutDissolveDuration(reduced = false) {
+  return reduced ? SUMMON_TIMING.debutReducedDissolve : SUMMON_TIMING.debutDissolve;
 }
 
 export function summonRevealDuration(rarity, reduced = false) {

@@ -1405,7 +1405,7 @@ export function switchView(viewName) {
     renderGachaView();
     const pool = getSelectedGachaPool();
     if (pool?.id) {
-      // 進入召喚頁：僅在尚未看過時播完整登場；短轉場留給手動切換
+      // 進入召喚頁僅在尚未看過時播放；手動切換也使用相同完整登場。
       maybePlayPoolDebut._fromSwitcher = false;
       maybePlayPoolDebut(pool.id).catch(() => {});
     }
@@ -5113,7 +5113,7 @@ async function maybeResumeMorningGarden(poolId) {
 }
 
 /**
- * 主題卡池首次／短轉場登場演出（純 UI，不抽卡）
+ * 主題卡池首次／切換皆播放完整登場（純 UI，不抽卡）
  * @param {string} poolId
  */
 async function maybePlayPoolDebut(poolId) {
@@ -5128,7 +5128,7 @@ async function maybePlayPoolDebut(poolId) {
       if (!seen || maybePlayPoolDebut._fromSwitcher) {
         await playPoolDebutPresentation({
           poolName: pool.name, presentation,
-          full: !seen && !maybePlayPoolDebut._fromSwitcher, reduceMotion: state.userPreferences?.reduceMotion ?? false,
+          reduceMotion: state.userPreferences?.reduceMotion ?? false,
         });
         if (!seen) await markPoolDebutSeen(poolId);
       }

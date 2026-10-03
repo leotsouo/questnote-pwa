@@ -127,7 +127,7 @@ document.getElementById('animation-run').onclick=async()=>{
   const before=await saved();const input=rows(ids);
   if(options.badImage)for(const row of input){row.pet.image='/intentionally-missing-card.png';row.pet.imageVariants={card:row.pet.image,stage:row.pet.image};}
   const original=JSON.stringify(input);const start=performance.now();
-  const result=options.debut?await playPoolDebutPresentation({poolName:pool.name,presentation:pool.presentation,full:options.full,reduceMotion:options.reduce}):await playThemedSummon({results:input,mode:ids.length===1?'single':'ten',reduceMotion:options.reduce,poolName:pool.name,animationKey:pool.presentation.animationKey});
+  const result=options.debut?await playPoolDebutPresentation({poolName:pool.name,presentation:pool.presentation,reduceMotion:options.reduce}):await playThemedSummon({results:input,mode:ids.length===1?'single':'ten',reduceMotion:options.reduce,poolName:pool.name,animationKey:pool.presentation.animationKey});
   assert(await saved()===before,'動畫改變玩家交易狀態');assert(JSON.stringify(input)===original,'動畫改寫既定結果');
   if(!options.debut){assert(result.ok,'動畫沒有完成');if(ids.length===10)assert(JSON.stringify(summary)===JSON.stringify(input.map(r=>r.pet.name)),'十連結果遺失或重排');}
   if(options.verifyQueue){const expected=input.filter(r=>['SSR','UR'].includes(r.rarity)).map(r=>r.pet.name);assert(JSON.stringify(reveals)===JSON.stringify(expected),'稀有揭示順序或重複項目遺失');}
@@ -150,9 +150,9 @@ document.getElementById('animation-run').onclick=async()=>{
   if(close && !close.hidden){summary=[...document.querySelectorAll('.dream-bloom-mini-seal__name')].map(e=>e.textContent);close.click();}
  },80);
  try{
-  await run('完整入場與繼續',{debut:true,full:true,reduce:false});
-  await run('短轉場',{debut:true,full:false,reduce:false});
-  await run('入場提前略過',{debut:true,full:true,skipEntry:true});
+  await run('完整登場與繼續',{debut:true,reduce:false});
+  await run('切換卡池完整登場',{debut:true,reduce:false});
+  await run('登場提前略過',{debut:true,skipEntry:true});
   await run('單抽一般卡完整前奏',{reduce:false},['pet_n39']);
   await run('正常十連雙UR／兩SSR及重複',{reduce:false,verifyQueue:true});
   await run('減少動態十連及繼續連點',{reduce:true,verifyQueue:true,doubleClick:true});

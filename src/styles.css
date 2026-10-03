@@ -16279,17 +16279,6 @@ body[data-theme="sweet"] .mailbox-detail__claim-btn:disabled {
   cursor: pointer;
 }
 
-/* 短轉場／Reduced：壓縮延遲，保留核心層 */
-.dream-debut-overlay.is-short .dream-debut-mirror__glow,
-.dream-debut-overlay.is-short .dream-debut-mirror__ripple,
-.dream-debut-overlay.is-short .dream-debut-flower__aura,
-.dream-debut-overlay.is-short .dream-debut-flower__core,
-.dream-debut-overlay.is-short .dream-debut-flower__petal,
-.dream-debut-overlay.is-short .dream-debut-line__seg {
-  animation-duration: 0.35s;
-  animation-delay: 0.05s;
-}
-
 .dream-debut-overlay.is-reduced .dream-debut-dust,
 body.reduce-motion .dream-debut-dust {
   display: none;
@@ -17605,14 +17594,14 @@ body[data-theme="sweet"] .dream-bloom-btn--ghost {
 .gacha-panel[data-pool-theme='glacier_arrival'] .btn--gacha-ten { background: #244f60; color: #f4ca8b; border-color: #d8a469; }
 
 /* Motion is finite. Reduced motion and skip render the arrival composition at rest. */
-[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, .is-short) .glacier-scene *,
+[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped) .glacier-scene *,
 [data-animation='glacier_arrival'][data-state='summary'] .glacier-scene *,
 body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene * { animation: none !important; transition: none !important; }
-[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, .is-short, [data-state='summary']) .glacier-scene__wall,
+[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, [data-state='summary']) .glacier-scene__wall,
 body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene__wall { transform: none; }
-[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, .is-short, [data-state='summary']) .glacier-scene__fog,
+[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, [data-state='summary']) .glacier-scene__fog,
 body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene__fog { opacity: 0.15; }
-[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, .is-short, [data-state='summary']) .glacier-scene__beacons ellipse,
+[data-animation='glacier_arrival']:is(.is-reduced, .is-skipped, [data-state='summary']) .glacier-scene__beacons ellipse,
 body.reduce-motion [data-animation='glacier_arrival'] .glacier-scene__beacons ellipse { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   [data-animation='glacier_arrival'] .glacier-scene * { animation: none !important; transition: none !important; }

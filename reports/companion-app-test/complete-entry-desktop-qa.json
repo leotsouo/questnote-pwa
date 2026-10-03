@@ -1,0 +1,117 @@
+{
+  "version": "3.5.19",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "basis": {
+    "revision": "44cd234",
+    "file": "src/themedSummonController.js",
+    "originalHoneylightFullMs": 3400
+  },
+  "observations": [
+    {
+      "name": "逆造之誓",
+      "trigger": "first",
+      "elapsed": 3462,
+      "duration": 3400,
+      "dissolve": 550,
+      "sceneDuration": 3264,
+      "short": false,
+      "ready": true,
+      "continueVisible": true,
+      "textOpacity": 1,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "星旅之原",
+      "poolId": "standard",
+      "trigger": "switch",
+      "elapsed": 3428,
+      "duration": 3400,
+      "dissolve": 550,
+      "sceneDuration": 3264,
+      "short": false,
+      "ready": true,
+      "continueVisible": true,
+      "textOpacity": 1,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "永眠花海",
+      "poolId": "eternal_slumber_bloom",
+      "trigger": "switch",
+      "elapsed": 3412,
+      "duration": 3400,
+      "dissolve": 550,
+      "sceneDuration": 3264,
+      "short": false,
+      "ready": true,
+      "continueVisible": true,
+      "textOpacity": 1,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "霜誓峽灣",
+      "poolId": "frost_oath_fjord",
+      "trigger": "switch",
+      "elapsed": 3427,
+      "duration": 3400,
+      "dissolve": 550,
+      "sceneDuration": 3264,
+      "short": false,
+      "ready": true,
+      "continueVisible": true,
+      "textOpacity": 1,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "蜜光糖庭",
+      "poolId": "honeylight_sugar_garden_v2",
+      "trigger": "switch",
+      "elapsed": 3417,
+      "duration": 3400,
+      "dissolve": 550,
+      "sceneDuration": 3264,
+      "short": false,
+      "ready": true,
+      "continueVisible": true,
+      "textOpacity": 1,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "劍隱山河",
+      "poolId": "swordwild_shanhe_v3",
+      "trigger": "switch",
+      "elapsed": 3463,
+      "duration": 3400,
+      "dissolve": 550,
+      "sceneDuration": 3264,
+      "short": false,
+      "ready": true,
+      "continueVisible": true,
+      "textOpacity": 1,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "逆造之誓",
+      "poolId": "lionheart_inverse_oath",
+      "trigger": "switch",
+      "elapsed": 3417,
+      "duration": 3400,
+      "dissolve": 550,
+      "sceneDuration": 3264,
+      "short": false,
+      "ready": true,
+      "continueVisible": true,
+      "textOpacity": 1,
+      "horizontalOverflow": false
+    }
+  ],
+  "lionheartNaturalComputedDuration": "3.264s",
+  "additionalActions": [
+    "inverse oath replay completed and continued",
+    "revisit standard completed and escaped to pool selector"
+  ],
+  "note": "Transcribed from actual browser measurements; the transient browser session was reset by a viewport capability timeout. No repeat measurements invented."
+}

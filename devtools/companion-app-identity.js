@@ -353,12 +353,12 @@ async function presentBatchCharacter() {
   } finally { curtain.remove(); }
 }
 
-async function enterPool({ replay = false, fromSwitcher = false } = {}) {
+async function enterPool({ fromSwitcher = false } = {}) {
   if (displayBusy || reveal.open || dialog.open) return;
   const opener = document.activeElement;
   displayBusy = true;
   try {
-    await playCeremonyEntry(pool(), { full: replay || (!fromSwitcher && !seenDebuts.has(poolId)), reduceMotion: reduced() });
+    await playCeremonyEntry(pool(), { reduceMotion: reduced() });
     seenDebuts.add(poolId);
   } finally {
     displayBusy = false;
@@ -398,7 +398,7 @@ document.addEventListener('click', async (event) => {
   if (action === 'close-dialog') dialog.close();
   if (action === 'summon') startReveal(byId(button.dataset.petId));
   if (action === 'summon-ten') startTen();
-  if (action === 'replay-debut') enterPool({ replay: true });
+  if (action === 'replay-debut') enterPool();
   if (action === 'preview-awakening') petDetail(byId(presentation().heroPetId));
   if (action === 'awakening-form') {
     previewForms.set(button.dataset.petId, button.dataset.form);

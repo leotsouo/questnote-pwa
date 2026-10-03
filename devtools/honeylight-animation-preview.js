@@ -24,7 +24,7 @@ async function preview(run) {
 }
 const summon = (results, extra = {}) => playThemedSummon({ animationKey: 'honeylight_sugar', poolName: '蜜光糖庭', results, reduceMotion: reduced(), ...extra });
 document.getElementById('debut').onclick = () => preview(() => playPoolDebutPresentation({ presentation, reduceMotion: reduced() }));
-document.getElementById('short').onclick = () => preview(() => playPoolDebutPresentation({ presentation, full: false, reduceMotion: reduced() }));
+document.getElementById('replay').onclick = () => preview(() => playPoolDebutPresentation({ presentation, reduceMotion: reduced() }));
 document.getElementById('single').onclick = () => preview(() => summon([sample('N')]));
 document.getElementById('ssr').onclick = () => preview(() => summon([sample('SSR')]));
 document.getElementById('caramel').onclick = () => preview(() => summon([sample('UR', 'caramel')]));
@@ -52,9 +52,9 @@ async function runTests() {
     assert((await playThemedSummon({ animationKey: '__proto__', results: [sample('N')] })).fallback, 'Unknown key played');
     assert(!document.querySelector('.dream-bloom-overlay'), 'Unknown key created DOM');
   });
-  for (const full of [true, false]) await test(`${full ? 'full' : 'short'} debut is skippable and restores focus`, async () => {
+  for (const entry of ['first', 'replay']) await test(`${entry} complete debut is skippable and restores focus`, async () => {
     const button = output; button.tabIndex = -1; button.focus();
-    const pending = playPoolDebutPresentation({ presentation: { ...presentation, debutLines: ['<b data-injected="yes">糖</b>', '奶霜', '庭'] }, full, reduceMotion: true });
+    const pending = playPoolDebutPresentation({ presentation: { ...presentation, debutLines: ['<b data-injected="yes">糖</b>', '奶霜', '庭'] }, reduceMotion: true });
     const overlay = document.querySelector('.dream-debut-overlay');
     assert(overlay.querySelector('.sugar-scene') && !overlay.querySelector('.dream-debut-flower'), 'Wrong scenery');
     assert(!overlay.querySelector('[data-injected]'), 'Catalog text became markup');
