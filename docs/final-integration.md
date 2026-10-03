@@ -249,3 +249,9 @@ Production V3.4.28 moves petting and cooldown below the portrait beside companio
 [PR #62](https://github.com/leotsouo/questnote-pwa/pull/62) CI 通過並合併於 `d2a8ebf2042aa0b8da5c0f79fdb91bd1b9fc45ea`。正式 summon 顯示真實星塵總量；六池新增十連至少 SR，基礎機率與既有 SSR／UR 保底維持原值；正式試播入口移除，未完成覺醒的靜態預覽改黑白，真正儀式後保留全彩。既有最新兩封公告與獎勵 identity 保留。
 
 Pages `4aa9aa10dcd79810f781f8c2f40318d5d45401b6` 的 [run 37113586595](https://github.com/leotsouo/questnote-pwa/actions/runs/37113586595) 部署成功。正式 artifact `9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818`；606 Git blob 與 605 個正式 HTTPS 檔案全部相符。309 Node 測試、召喚斷言、pipeline 演練、16 固定產物瀏覽器案例及十二組手機／字級／Theme 檢查通過。既有正式 client 仍受另一個 QuestNote 視窗未關閉的正常更新 guard 阻擋，未清資料或強制啟用 worker。[平衡計算、SOP 與發布證據](../reports/summon-production-v3522/README.md)。iPhone VoiceOver、原生字級與觸覺仍待真機驗證；後端未部署。
+
+## V3.5.23 一鍵領取 — 2026-10-03
+
+[PR #65](https://github.com/leotsouo/questnote-pwa/pull/65) CI 通過並合併於 `47b7c337a39612a4eb337a22c64e812dd22f7454`。每日祝福、冒險任務、成就、圖鑑里程碑、探索里程碑和信箱附件增加待領數量與「一鍵領取」，保留單項領取；沒有可領獎勵時按鈕隱藏。批次領取阻擋重複、逐筆重新核對，並以原交易規則保存資源和領取紀錄。
+
+正式 artifact `12c4a4103be3d3a45e112eed5ac1566bc482c2ce85a470fb0e3d5672663f9cf0` 已推至 Pages `6bab17d148d770b30444ca438cce73a80e003eb4`；[run 37115062133](https://github.com/leotsouo/questnote-pwa/actions/runs/37115062133) 成功，607 Git blob 與 606 個正式 HTTPS 檔案全部相符。318 Node 測試、35 項揭示流程檢查、六處實際領取、108 組版面及 16 項固定產物／離線更新瀏覽器案例通過。原有 catalog 與公告 reward identity 保留；後端與存檔格式未更動。[發布收據](../reports/reward-claim-production-v3523/README.md)。
