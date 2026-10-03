@@ -1,0 +1,53 @@
+/* One calm coach, with context preserved around the real control. */
+#guided-onboarding-root { position: fixed; inset: 0; z-index: 12000; pointer-events: none; color: var(--color-text-main); }
+.guided-shade { position: fixed; background: rgba(12, 20, 36, .36); pointer-events: auto; }
+.guided-ring { position: fixed; border: 2px solid var(--accent, #b5cfed); border-radius: 18px; box-shadow: 0 0 0 4px rgba(180, 207, 237, .16); pointer-events: none; }
+.guided-coach { position: fixed; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(440px, calc(100% - 24px)); max-height: calc(100dvh - 32px); overflow-y: auto; overscroll-behavior: contain; padding: 22px; border: 1px solid var(--border-color, #65809c); border-radius: 24px; background: var(--bg-card, #172840); box-shadow: 0 16px 50px rgba(0,0,0,.25); pointer-events: auto; box-sizing: border-box; }
+.guided-coach[data-position="top"] { top: max(12px, env(safe-area-inset-top)); bottom: auto; }
+.guided-coach h2 { font-size: 1.3rem; line-height: 1.45; margin: 14px 0 8px; font-weight: 650; }
+.guided-coach p { font-size: 1rem; line-height: 1.65; margin: 8px 0; }
+.guided-chapters { display: flex; gap: 10px; padding: 0; margin: 0 0 14px; list-style: none; font-size: .875rem; flex-wrap: wrap; }
+.guided-chapters li { border-bottom: 2px solid transparent; padding-bottom: 5px; }
+.guided-chapters [aria-current] { border-color: currentColor; font-weight: 700; }
+.guided-companion { display: flex; align-items: center; gap: 12px; font-size: .9rem; }
+.guided-companion img { object-fit: contain; border-radius: 14px; background: rgba(137, 166, 189, .12); }
+.guided-actions { display: grid; gap: 8px; margin-top: 12px; }
+.guided-actions .btn, .guided-link { min-height: 48px; white-space: normal; line-height: 1.5; }
+.guided-link { border: 0; background: transparent; color: inherit; text-decoration: underline; font: inherit; font-size: .9rem; cursor: pointer; }
+.guided-note { font-size: .875rem !important; }
+.guided-feedback:empty { display: none; }
+.guided-feedback { border-left: 3px solid currentColor; padding-left: 10px; }
+.guided-action-hint { font-size: 1rem; font-weight: 600; }
+.guided-receipt { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 18px 0; }
+.guided-receipt div { padding: 12px 5px; background: rgba(137, 166, 189, .14); border-radius: 14px; text-align: center; }
+.guided-receipt dt { font-size: .875rem; }
+.guided-receipt dd { margin: 5px 0 0; font-size: 1.45rem; font-weight: 700; }
+.guided-hold { position: relative; overflow: hidden; isolation: isolate; touch-action: none; user-select: none; }
+.guided-hold-progress { position: absolute; inset: 0; background: rgba(137, 166, 189, .25); transform: scaleX(0); transform-origin: left; z-index: -1; }
+.is-holding .guided-hold-progress { transform: scaleX(1); transition: transform 1.5s linear; }
+.guided-active :is(#btn-add-task, .twilight-add-task), .guided-learned .twilight-add-task { display: flex; align-items: center; gap: 6px; width: auto !important; height: auto; min-height: 48px; padding: 10px 12px; border-radius: 16px; font-size: 1rem; }
+.guided-active .twilight-add-task::after, .guided-learned .twilight-add-task::after { content: '新增任務'; white-space: nowrap; }
+.guided-active .task-check, .guided-learned .task-check { width: 68px !important; min-width: 68px; height: 48px !important; font-size: .9rem; border-radius: 14px; }
+.guided-active #btn-add-task::after { content: '新增任務'; }
+.guided-active .task-check::after, .guided-learned .task-check::after { content: '完成'; }
+.guided-active .task-check svg, .guided-learned .task-check svg { display: none; }
+.guided-active .task-check.checked::after, .guided-learned .task-check.checked::after { content: '已完成'; }
+body[data-theme]:is(.guided-active, .guided-learned) #view-tasks .twilight-task-card { grid-template-columns: 68px minmax(0,1fr) 30px; }
+.guided-editor #modal-overlay { padding-top: calc(var(--guided-coach-height, 280px) + 28px); align-items: flex-start; }
+.guided-editor .modal { max-height: calc(100dvh - var(--guided-coach-height, 280px) - 40px); }
+body[data-theme].guided-editor .modal:not(:has(.sweet-summon-result, .default-summon-result)) { max-height: calc(100dvh - var(--guided-coach-height, 280px) - 40px); }
+body[data-theme].guided-editor .modal:not(:has(.sweet-summon-result, .default-summon-result)) > .modal-body { max-height: calc(100dvh - var(--guided-coach-height, 280px) - 40px); box-sizing: border-box; }
+.guided-editor .guided-coach { top: max(12px, env(safe-area-inset-top)); bottom: auto; max-height: 48dvh; }
+.guided-editor #task-form > .form-actions:last-child { position: sticky; bottom: 0; padding: 12px 0; background: var(--bg-card, #172840); z-index: 2; }
+.guided-editor #task-form > .form-actions:last-child button[type="submit"] { min-height: 48px; min-width: 110px; }
+.guided-editor #modal-close, .guided-editor #form-cancel { visibility: hidden; }
+.task-editor-options { margin-top: 12px; }
+.task-editor-options > summary { padding: 12px 0; min-height: 44px; box-sizing: border-box; cursor: pointer; color: var(--color-text-main); }
+.task-editor-options[open] > .form-label { margin-top: 12px; }
+.guided-active :focus-visible { outline: 3px solid var(--accent, #b5cfed); outline-offset: 4px; }
+.guided-learned #btn-add-task { width: auto !important; min-width: 132px; padding: 12px 18px; border-radius: 20px; font-size: 1rem; }
+.guided-learned #btn-add-task::after { content: '新增任務'; }
+@media (max-width: 340px) { .guided-coach { padding: 16px; width: calc(100% - 16px); } .guided-chapters { gap: 8px; } }
+@media (prefers-reduced-motion: reduce) { .guided-ring, .guided-companion { animation: none; } }
+body.reduce-motion .guided-ring, body.reduce-motion .guided-companion { animation: none; }
+@media (forced-colors: active) { .guided-coach { background: Canvas; color: CanvasText; border: 2px solid CanvasText; } .guided-ring { border-color: Highlight; } }

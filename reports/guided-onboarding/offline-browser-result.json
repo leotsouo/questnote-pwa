@@ -1,0 +1,5 @@
+{
+  "status": "failed",
+  "results": [],
+  "error": "Error: Browser did not resolve native Service Worker registration.\n    at http://127.0.0.1:4187/devtools/guided-onboarding-browser-test.js:221:38\n    at async HTMLButtonElement.<anonymous> (http://127.0.0.1:4187/devtools/guided-onboarding-browser-test.js:220:26)"
+}

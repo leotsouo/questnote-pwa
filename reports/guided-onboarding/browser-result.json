@@ -1,0 +1,121 @@
+{
+  "status": "passed",
+  "database": "QuestNoteTest-Onboarding-b2485e59-182f-46a3-870e-172aa6ac09d9",
+  "results": [
+    {
+      "name": "fresh concurrent preparation and welcome survive reload without any tutorial task",
+      "ok": true,
+      "detail": {
+        "width": 393,
+        "height": 852,
+        "coachHeight": 393.7083435058594
+      }
+    },
+    {
+      "name": "first meeting grants exactly one real companion; wrong navigation is gently blocked",
+      "ok": true,
+      "detail": {
+        "width": 393,
+        "height": 852,
+        "coachHeight": 397.01043701171875
+      }
+    },
+    {
+      "name": "home and open-create checkpoints survive reload",
+      "ok": true,
+      "detail": {
+        "width": 393,
+        "height": 852,
+        "coachHeight": 313.88543701171875
+      }
+    },
+    {
+      "name": "real editor is prefilled, without keyboard input or background task creation",
+      "ok": true,
+      "detail": {
+        "width": 393,
+        "height": 852,
+        "coachHeight": 340.28125
+      }
+    },
+    {
+      "name": "save failure aborts the native IDB transaction and leaves a retryable editor",
+      "ok": true,
+      "detail": "Native transaction aborted; no task/checkpoint committed."
+    },
+    {
+      "name": "double create uses one deterministic task and one atomic checkpoint",
+      "ok": true,
+      "detail": {
+        "width": 393,
+        "height": 852,
+        "coachHeight": 362.6145935058594
+      }
+    },
+    {
+      "name": "completion transaction failure pays nothing and remains retryable",
+      "ok": true,
+      "detail": "Task, checkpoint, wallet and companion all rolled back in one native transaction."
+    },
+    {
+      "name": "completion and reward survive reload, with no double payment under concurrent retries",
+      "ok": true,
+      "detail": {
+        "stardust": 20,
+        "energy": 1,
+        "bond": 5,
+        "formalCompleted": 0
+      }
+    },
+    {
+      "name": "companion reaction and finish remain explicit, untimed checkpoints",
+      "ok": true,
+      "detail": {
+        "width": 393,
+        "height": 852
+      }
+    },
+    {
+      "name": "learning-transfer mechanism: a separate real quest can be created and completed without coach",
+      "ok": true,
+      "detail": "Separate real task created and completed with no coach. Human transfer is still untested."
+    },
+    {
+      "name": "replay follows the same controls without changing wallet, bond or formal progress",
+      "ok": true,
+      "detail": "No economy, companion, task-stat or challenge changes; rehearsal tasks excluded from export."
+    },
+    {
+      "name": "existing users with legacy flags bypass forced onboarding",
+      "ok": true,
+      "detail": "Completed, dismissed, paused and active legacy flags bypassed."
+    },
+    {
+      "name": "skip is confirmed; short press cancels; keyboard and assistive alternative remains available",
+      "ok": true,
+      "detail": "Short hold did not skip; separate confirmation exited and persisted."
+    },
+    {
+      "name": "320px, all themes, large text and reduced motion retain actionable targets",
+      "ok": true,
+      "detail": {
+        "width": 320,
+        "height": 852,
+        "coachHeight": 724.7083740234375
+      }
+    },
+    {
+      "name": "skip exits even if persistence fails, then retries the choice on the next launch",
+      "ok": true,
+      "detail": "Session lock released; pending skip persisted after reload."
+    },
+    {
+      "name": "200% text can finish the practice without a covered action",
+      "ok": true,
+      "detail": {
+        "width": 393,
+        "height": 852
+      }
+    }
+  ]
+}

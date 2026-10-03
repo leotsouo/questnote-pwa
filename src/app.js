@@ -113,9 +113,10 @@ import {
   hasLowMaterials,
 } from './workshopService.js';
 
-import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget } from './ui.js';
+import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, openTaskForm, showGuidedHome, showToast } from './ui.js';
 import { prepareOnboarding, resetOnboardingState } from './onboardingService.js';
 import { initOnboarding } from './onboardingController.js';
+import { initGuidedOnboarding } from './guidedOnboardingController.js';
 import { runAppHealthCheck } from './healthCheckService.js';
 import { getServiceWorkerRegisterUrl } from './version.js';
 import { loadCatalogBundle } from './releaseCatalog.js';
@@ -301,7 +302,7 @@ async function refreshState(options = {}) {
 
 
 
-  const todayCompleted = tasks.filter((t) => isCompletedToday(t, today)).length;
+  const todayCompleted = tasks.filter((t) => !t.isTutorial && isCompletedToday(t, today)).length;
 
 
 
@@ -695,6 +696,7 @@ async function initApp() {
 
     }
 
+    await initGuidedOnboarding(appState, { openTaskForm, showGuidedHome, showToast, refreshState });
     initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget }, onboardingAtStartup);
 
 

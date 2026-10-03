@@ -158,7 +158,7 @@ export async function exportBackup() {
   const meta = Object.fromEntries(snapshot.meta.map((entry) => [entry.key, entry]));
   const normalized = migrateImportedData(normalizePayloadData({ data: {
     ...meta,
-    tasks: snapshot.tasks,
+    tasks: snapshot.tasks.filter((task) => task.tutorialMode !== 'replay'),
     collection: snapshot.collection,
     expeditions: snapshot.expeditions,
     habits: snapshot.habits,

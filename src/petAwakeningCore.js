@@ -63,7 +63,7 @@ export function normalizePetAwakening(raw) {
 
 export function awakeningEvents(tasks = [], habits = [], expeditions = []) {
   return [
-    ...tasks.filter((t) => t.completed && time(t.completedAt)).map((t) => ({ key: `task:${t.id}`, at: t.completedAt })),
+    ...tasks.filter((t) => !t.isTutorial && t.completed && time(t.completedAt)).map((t) => ({ key: `task:${t.id}`, at: t.completedAt })),
     ...habits.filter((h) => h.isActive && !h.archivedAt).flatMap((h) => Object.entries(h.logs || {})
       .filter(([date, log]) => /^\d{4}-\d{2}-\d{2}$/.test(date) && log.completed && time(log.completedAt))
       .map(([date, log]) => ({ key: `habit:${h.id}:${date}`, at: log.completedAt }))),

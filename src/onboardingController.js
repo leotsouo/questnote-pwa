@@ -8,6 +8,8 @@ import {
 import { resolveActivePool, resolveDrawCost } from './poolContentContract.js';
 import { getDispatchTerms } from './expeditionGameplay.js';
 import { LESSONS, LESSON_STATUS_LABELS, getLesson, getLessonStepContent, getLessonAvailability } from './onboardingLessons.js';
+import { isGuidedOnboardingActive, refreshGuidedOnboarding, recordGuidedOnboardingEvent,
+  replayGuidedOnboarding, guidedAfterReset } from './guidedOnboardingController.js';
 
 const STEP_NUMBER = { task: 1, reward: 2, summon: 3, collection: 4, expedition: 5 };
 const WELCOME_MESSAGE_ID = '2026-07-welcome-10pull';
@@ -238,6 +240,7 @@ function renderGuideStatus() {
 
 function render() {
   if (!root || !record) return;
+  if (isGuidedOnboardingActive()) { root.replaceChildren(); clearHighlight(); refreshGuidedOnboarding(); return; }
   renderGuideStatus();
   if (hasActivePresentation()) {
     root.hidden = true;
@@ -378,6 +381,10 @@ function revealTarget(selector) {
 }
 
 async function handleAction(action) {
+  if (action === 'replay' || action === 'resume') {
+    await save(pauseLesson(record));
+    return replayGuidedOnboarding();
+  }
   if (!record) return;
   if (action === 'collapse') { collapsed = !collapsed; return render(); }
   if (action.startsWith('lesson:')) {
@@ -537,9 +544,11 @@ export function initOnboarding(app, handlers, initialRecord) {
 
 export function refreshOnboarding() {
   render();
+  refreshGuidedOnboarding();
 }
 
 export async function recordOnboardingEvent(event, detail = {}) {
+  await recordGuidedOnboardingEvent(event, detail);
   return enqueue(async () => {
     if (!record) return;
     if (event === 'view-changed') {
@@ -556,12 +565,14 @@ export async function recordOnboardingEvent(event, detail = {}) {
 }
 
 export async function showOnboardingAfterReset() {
+  await guidedAfterReset();
   lessonCompleted = null;
   collapsed = false;
-  await save({ status: 'new', step: 'welcome', taskId: null });
+  await save({ status: 'dismissed', step: 'welcome', taskId: null });
 }
 
 export async function dismissOnboardingAfterRestore() {
+  await guidedAfterReset(true);
   showCompletion = false;
   lessonCompleted = null;
   await save({ status: 'dismissed', step: 'welcome', taskId: null });
