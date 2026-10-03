@@ -250,6 +250,90 @@ try {
     for (const profile of ['production', 'preview']) assert(names.includes(configuration.profiles[profile].cacheNames[0]), `${profile} shell was deleted by the other environment`);
   });
   const companionResponse = await fetch(configuration.profiles.preview.profile.scopePath + 'release-input/ecosystem.json');
+  if (previewFrame.contentDocument.querySelector('.identity-surface')) await test('player previews stay monochrome until the actual awakening ritual reveals color', async () => {
+    assert(storageOwnershipEstablished, 'Fixture writes require an owned loopback origin');
+    const load = (name) => previewFrame.contentWindow.eval('import(' + JSON.stringify(new URL(`src/${name}.js`, previewFrame.contentWindow.location.href).href) + ')');
+    let db = await load('db');
+    let document = previewFrame.contentDocument;
+    const reloadPreview = async (query) => {
+      const loaded = new Promise((resolve) => previewFrame.addEventListener('load', resolve, { once:true }));
+      previewFrame.src = configuration.profiles.preview.profile.scopePath + query;
+      await loaded;
+      await waitForStarted(previewFrame, 'preview');
+      db = await load('db');
+      document = previewFrame.contentDocument;
+    };
+    document.querySelector('[data-onboarding-action="skip"]')?.click();
+    document.querySelector('[data-view="gacha"]').click();
+    for (const poolId of ['swordwild_shanhe_v3', 'eternal_slumber_bloom', 'standard']) {
+      const selector = document.querySelector('#identity-pool-select-pool');
+      selector.value = poolId;
+      selector.dispatchEvent(new previewFrame.contentWindow.Event('change', { bubbles: true }));
+      await until(() => document.querySelector('.dream-debut-overlay'), 'normal full entry on pool change');
+      document.querySelector('.dream-debut-overlay [data-role="skip"]').click();
+      await until(() => !document.querySelector('.dream-debut-overlay') && document.querySelector('#identity-pool-select-pool')?.value === poolId, 'entry complete');
+      assert(!document.querySelector('[data-identity-action="replay-debut"], [data-identity-action="preview-awakening"], [data-identity-action="replay-awakening"]'), 'Player pool still exposes a test replay');
+    }
+    const snapshot = async () => JSON.stringify([await db.dbGet(db.STORES.META, 'wallet'), await db.dbGetAll(db.STORES.COLLECTION), await db.dbGet(db.STORES.META, 'petAwakening'), await db.dbGet(db.STORES.META, 'inventory')]);
+    const before = await snapshot();
+    document.querySelector('[data-view="collection"]').click();
+    const inspectPreview = async (petId, expectedFilter) => {
+      await until(() => document.querySelector(`[data-pet="${petId}"]`), 'visible collection preview');
+      document.querySelector(`[data-pet="${petId}"]`).click();
+      document.querySelector('#identity-detail-dialog [data-form="awakened"]').click();
+      await until(() => document.querySelector('#identity-detail-dialog .detail-art')?.complete && document.querySelector('#identity-detail-dialog .detail-art')?.naturalWidth > 0, 'awakening portrait loaded');
+      const artwork = document.querySelector('#identity-detail-dialog .detail-art');
+      assert(previewFrame.contentWindow.getComputedStyle(artwork).filter === expectedFilter, 'Wrong locked/unlocked portrait color');
+      assert(!document.querySelector('[data-identity-action="pet-awakening-preview"], .awakening-scene'), 'Static preview exposed the awakening performance');
+      document.querySelector('#identity-detail-dialog [data-form="initial"]').click();
+      assert(previewFrame.contentWindow.getComputedStyle(document.querySelector('#identity-detail-dialog .detail-art')).filter === 'none', 'Initial form stayed monochrome');
+      document.querySelector('#identity-detail-dialog [data-identity-action="close-dialog"]').click();
+    };
+    await inspectPreview('pet_ur16', 'grayscale(1)');
+    await inspectPreview('pet_ur17', 'grayscale(1)');
+    assert(await snapshot() === before, 'Static previews changed ownership, wallet, awakening state or inventory');
+    const [core, collection, bond] = await Promise.all(['petAwakeningCore', 'collectionService', 'bondJourneyCore'].map(load));
+    const at = new Date(Date.now() - 3600000).toISOString();
+    const later = new Date(Date.now() - 1800000).toISOString();
+    const petId = 'pet_ur17';
+    const progress = core.advancePetAwakening(core.beginPetAwakening(null, petId, at), [
+      ...[0, 1, 2].map((index) => ({ key:`task:preview-ritual-${index}`, at:later })),
+      { key:'expedition:preview-ritual', at:later, startedAt:at, areaId:'cloudrest_trail', petIds:[petId] },
+    ]);
+    assert(core.validatePetAwakening(progress).length === 0, 'Invalid owned ritual fixture');
+    const journey = bond.createBondJourney();
+    journey.byPet[petId] = { chapters: { 5: { choiceId:'gentle', readAt:at, completedAt:at, claimedAt:at } } };
+    await db.dbPut(db.STORES.COLLECTION, collection.normalizeCollectionItem({ petId, stars:1, fragments:0, bondExp:500, bondLevel:5, obtainedAt:at }));
+    await db.dbPut(db.STORES.META, progress);
+    await db.dbPut(db.STORES.META, journey);
+    const inventory = await db.dbGet(db.STORES.META, 'inventory');
+    await db.dbPut(db.STORES.META, { ...inventory, key:'inventory', items:{ ...inventory?.items, item_pine_trail_riceball:1 } });
+    await reloadPreview('?player-preview-ritual=1');
+    document.querySelector('[data-view="collection"]').click();
+    await inspectPreview(petId, 'grayscale(1)');
+    document.querySelector(`[data-pet="${petId}"]`).click();
+    document.querySelector('[data-identity-action="app-pet-detail"]').click();
+    await until(() => document.querySelector(`[data-awake-open="${petId}"]`), 'native awakening entry');
+    document.querySelector(`[data-awake-open="${petId}"]`).click();
+    await until(() => document.querySelector('[data-awake-action="awaken"]'), 'native ready ritual');
+    assert(!document.querySelector('[data-awake-action="replay"]'), 'Unawakened player can replay the ritual');
+    const wallet = JSON.stringify(await db.dbGet(db.STORES.META, 'wallet'));
+    const ownership = JSON.stringify(await db.dbGetAll(db.STORES.COLLECTION));
+    document.querySelector('[data-awake-action="awaken"]').click();
+    await until(() => document.querySelector('.awakening-scene .awakening-after'), 'actual ritual performance retained');
+    assert(document.querySelector('.awakening-after').getAttribute('src').includes('pet_ur17-awakened-'), 'Ritual did not reveal the real awakened artwork');
+    document.querySelector('.awakening-scene__skip').click();
+    await until(() => !document.querySelector('.awakening-scene') && document.querySelector('.awakening-reader')?.textContent.includes('已覺醒'), 'ritual completes and refreshes native state');
+    assert((await db.dbGet(db.STORES.META, 'inventory')).items.item_pine_trail_riceball === 0, 'Ritual must spend exactly one food');
+    assert((await db.dbGet(db.STORES.META, 'petAwakening')).byPet[petId].awakenedAt, 'Actual ritual progress not persisted');
+    assert(JSON.stringify(await db.dbGet(db.STORES.META, 'wallet')) === wallet && JSON.stringify(await db.dbGetAll(db.STORES.COLLECTION)) === ownership, 'Ritual unexpectedly changed wallet or collection');
+    document.querySelector('[data-awake-action="close"]').click();
+    await inspectPreview(petId, 'none');
+    await reloadPreview('?player-preview-persisted=1');
+    document.querySelector('[data-view="collection"]').click();
+    await inspectPreview(petId, 'none');
+    observations.playerPreview = { testReplaysRemoved:true, normalPoolEntriesPreserved:3, unownedFormsMonochrome:true, ownedUnawakenedMonochrome:true, previewWrites:false, actualRitualPreserved:true, foodSpent:1, awakenedColorSurvivesReload:true };
+  });
   await test('retired saved pool selection uses the active fallback without resetting player data', async () => {
     assert(storageOwnershipEstablished, 'Fixture writes require an owned loopback origin');
     const client = previewFrame.contentWindow;
