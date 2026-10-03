@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "5149724a0426c8dff872572adbcd5fbbbcd5f9fd54f675a2d2733fe200986c51",
-  "sourceCommit": "9977d4dddeea49bb2bcb9a83a1f9f694ca7777f0",
+  "artifactId": "0d93c6aa6a1c6ce427723d957e1b30f07e61ef3dbcd5f79fc3a7313cc8ceee34",
+  "sourceCommit": "f8f07c48144ace6cc6ceaf441e15a05381761c2f",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "5149724a0426c8dff872572adbcd5fbbbcd5f9fd54f675a2d2733fe200986c51",
-    "sourceCommit": "9977d4dddeea49bb2bcb9a83a1f9f694ca7777f0",
+    "artifactId": "0d93c6aa6a1c6ce427723d957e1b30f07e61ef3dbcd5f79fc3a7313cc8ceee34",
+    "sourceCommit": "f8f07c48144ace6cc6ceaf441e15a05381761c2f",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -517,7 +517,7 @@
     "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
     "index.html": "3dbe16b03e221824803e5efba48e44598ada0bcaf577ea0a2ce28efd6c8a083c",
     "manifest.webmanifest": "9045e56d30d015634a8d68a5b6b3cd60d813c500150fea0d48b08b4eefcb45ba",
-    "service-worker.js": "5d1354645820d5c3921ffb783465b90e4d1212ade35f94408d2aacc9da833c44",
+    "service-worker.js": "447be9389dcff8de512600535154962b5bdc1ac2659b8dfe1b59984d2e7ed3fb",
     "src/achievementService.js": "527b3c8706db9c1b653efe7113eab9d079dff5e77612c8a0dd3b9be20583a288",
     "src/adventureHandbookService.js": "d9dc8d34fc08a83c0c2f36682698fd4d96ebd0852c8cb0fde161a5a718d065b9",
     "src/app.js": "baf9b9427e27aeefc657b5269ff822f3546739293275aed42e72444e69710f05",
@@ -543,10 +543,10 @@
     "src/devService.js": "af56b92e6fcf886786f4a41d777dc355c35c0d0bd4b39fd72fc11217c4238dd4",
     "src/dialogFocus.js": "24eb36d909579732f8b9776c4f2e2a3fec8e112d8e96194257b6b16bee49eecf",
     "src/encounter-ceremony.css": "e7d557c62e64172f97b5d847acb17a9e7733b003d6c5b1cbeae14b6de03b37cb",
-    "src/encounter-view.css": "2e1534c79b07c20f50d9a760433a7b6212c04e4a813b3501b6c45dccaa2ec20e",
-    "src/encounterCeremony.js": "dd48987a565ac1ad1e899eb1071d86f8241bb0856938104bd55b0ec52ca609c7",
+    "src/encounter-view.css": "8652b92cdb00871c7acbcaa94571f0371ec9d64e156607eda4ab40ba10b41323",
+    "src/encounterCeremony.js": "9b188aba65f108f96ba7b91115c6339e1375b4a524c0c6f6c3e04cf262171b79",
     "src/encounterScenery.js": "f94fe3d764ec0c920674f6991fe4ed271741ec1e960170a2f9e7c12baa9adef9",
-    "src/encounterView.js": "bf6ea5bfdf99363a1a953c60a55241eace7cdd585cdbf1698584ce51b4789355",
+    "src/encounterView.js": "aed80c3950216cd2ef18dc5360346b61ffd9d2fbac18d2a85c64253f13019c38",
     "src/encounterViewModel.js": "3abd891ceae7e2f4ba229720035530513a7eea56a78f3f225eec2716a140f064",
     "src/expeditionGameplay.js": "ac8b8ab0401c9d263a4ee359405717f60bc0b8a6e4914b0b1e8b9e4cf69767d7",
     "src/expeditionService.js": "caec8978877213406550d8604dd480f791229e6e4f6ece88505e104836d84722",
@@ -626,7 +626,7 @@
     "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
     "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
     "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-    "src/version.js": "79e3bf80f1c7c3186eebc5fcae346c646a992b80cf44b9a97d8a15f827e9c464",
+    "src/version.js": "1c897319354235317e426e1c121291f73078480295bbe9e1b05e80fa5f37c960",
     "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
     "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
   },
@@ -2600,7 +2600,7 @@
       "bytes": 6119
     },
     "index.html": {
-      "sha256": "c681d8ed7aefa56b73744a93f78a10d57589acc9b8fc3ff122b65e68be2106d2",
+      "sha256": "56f45b6983aeed99c789cbbe912317cf35d2f256bb1d813489baf84272fce217",
       "bytes": 60286
     },
     "manifest.webmanifest": {
@@ -2608,7 +2608,7 @@
       "bytes": 831
     },
     "service-worker.js": {
-      "sha256": "345c7ffc62ea21cd3a1a3deb4e7892c6099d4b59f67179d6e46875b4a1aaed1f",
+      "sha256": "6cc4009ef9aa3a75b529fe28697cf180cf2a3cfe05b9d82ff74da39a705f26cc",
       "bytes": 33172
     },
     "src/achievementService.js": {
@@ -2712,20 +2712,20 @@
       "bytes": 10590
     },
     "src/encounter-view.css": {
-      "sha256": "2e1534c79b07c20f50d9a760433a7b6212c04e4a813b3501b6c45dccaa2ec20e",
-      "bytes": 37272
+      "sha256": "8652b92cdb00871c7acbcaa94571f0371ec9d64e156607eda4ab40ba10b41323",
+      "bytes": 37341
     },
     "src/encounterCeremony.js": {
-      "sha256": "dd48987a565ac1ad1e899eb1071d86f8241bb0856938104bd55b0ec52ca609c7",
-      "bytes": 6569
+      "sha256": "9b188aba65f108f96ba7b91115c6339e1375b4a524c0c6f6c3e04cf262171b79",
+      "bytes": 5970
     },
     "src/encounterScenery.js": {
       "sha256": "f94fe3d764ec0c920674f6991fe4ed271741ec1e960170a2f9e7c12baa9adef9",
       "bytes": 2531
     },
     "src/encounterView.js": {
-      "sha256": "bf6ea5bfdf99363a1a953c60a55241eace7cdd585cdbf1698584ce51b4789355",
-      "bytes": 38959
+      "sha256": "aed80c3950216cd2ef18dc5360346b61ffd9d2fbac18d2a85c64253f13019c38",
+      "bytes": 36948
     },
     "src/encounterViewModel.js": {
       "sha256": "3abd891ceae7e2f4ba229720035530513a7eea56a78f3f225eec2716a140f064",
@@ -2920,7 +2920,7 @@
       "bytes": 4727
     },
     "src/releaseProfile.js": {
-      "sha256": "de61f93f961de0deb372aa34db552fcba6c672c9234eac9e1bd6a76966ea496d",
+      "sha256": "79705a5d47a62b97deb4f14d2a05507d3feb93dfb88dc20019346da5b53836ce",
       "bytes": 622
     },
     "src/reminder-settings.css": {
@@ -3044,7 +3044,7 @@
       "bytes": 695
     },
     "src/version.js": {
-      "sha256": "2603507e96503523992c2089226bcc7d9f889050de02d0f7c37a9cbfe37eb07b",
+      "sha256": "26a5b1550d9126c6d3997b7f21691ef861e2c5544b210b349c7418dcd347dbf2",
       "bytes": 1121
     },
     "src/workshopGiftView.js": {

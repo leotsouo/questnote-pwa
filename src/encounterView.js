@@ -1,7 +1,7 @@
 import { initialAwakeningPortrait } from './petAwakeningView.js';
 import { RARITIES, MAX_DISPLAY_STARS, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, duplicateNote, encounterResults } from './encounterViewModel.js';
 import { normalizePoolDefinition, resolveActivePool } from './poolContentContract.js';
-import { createPoolScenery, ceremonyPresentation, playCeremonyEntry, playCeremonyRitual, playCeremonyCharacter, playCeremonyAwakening, playCeremonyPetAwakening } from './encounterCeremony.js';
+import { createPoolScenery, ceremonyPresentation, playCeremonyRitual, playCeremonyCharacter } from './encounterCeremony.js';
 import { delay } from './imagePreloadService.js';
 import { SUMMON_TIMING } from './summonTiming.js';
 import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
@@ -94,9 +94,6 @@ function renderPool() {
       <p class="subtle">${list.length} 位可相遇的夥伴 · 焦點展示不加成機率</p>
       ${selected.unlockExpansion ? `<p class="subtle">${isExpanded(poolId) ? '晨醒花庭已解鎖，候選名單已擴充。' : `此系列在累積 ${selected.unlockExpansion.threshold} 次召喚後開啟晨醒花庭；目前顯示初始名單。`}</p>` : ''}
       <div><button class="text-button" data-identity-action="preview">查看全部夥伴</button><br><button class="text-button" data-identity-action="probability">機率與卡池規則</button></div>
-      <button class="text-button" data-identity-action="replay-debut">重看卡池登場</button>
-      ${selected.unlockExpansion ? '<button class="text-button" data-identity-action="replay-awakening">試看晨醒花庭</button>' : ''}
-      ${selected.id === 'swordwild_shanhe_v3' ? '<section class="awakening-preview-card"><h3>一諾同行 · 羈絆覺醒</h3><p>二十位夥伴都有初遇與覺醒形態。正式旅程需親密度 Lv.5、完成同行故事與守諾試煉；可先預覽形態與演出，再於養成頁完成正式覺醒。</p><button data-identity-action="preview-awakening">預覽羈絆覺醒</button><p class="subtle">展示預覽 · 不消耗材料、不授予稱號</p></section>' : ''}
     </div>
     <div class="section-heading"><h2>也在這裡等你</h2><span class="subtle">焦點展示</span></div>
     <div class="support-grid">${support.slice(0, 3).map((pet) => `<button class="mini-card" data-pet="${pet.id}" aria-label="${escapeHtml(identityLabel(pet, owned(pet)))}">${imageHtml(pet)}<span class="pet-name">${escapeHtml(pet.name)}</span>${cues(pet)}</button>`).join('')}</div>
@@ -160,12 +157,14 @@ function petDetail(pet, returnToBatch = false) {
   const species = { griffin:'格里芬', biomechanical_chimera:'生體機械奇美拉' }[pet.speciesType] || '';
   const awakening = awakeningCatalog?.pets.find((row) => row.petId === pet.id);
   const form = previewForms.get(pet.id) || 'initial';
+  const isAwakened = isOwned && !!appState.petAwakening?.byPet?.[pet.id]?.awakenedAt;
+  const lockedAwakeningPreview = awakening && form === 'awakened' && !isAwakened;
   const official = canonicalPets.find((row) => row.id === pet.id) || pet;
   const artwork = awakening && form === 'awakened' ? awakening.awakenedImage ? { ...pet, image:awakening.awakenedImage.original, imageVariants:awakening.awakenedImage } : official : pet;
-  showDialog(isOwned ? '夥伴手記' : '初識夥伴', `${imageHtml(artwork,'stage',false,'detail-art')}
+  showDialog(isOwned ? '夥伴手記' : '初識夥伴', `${imageHtml(artwork,'stage',false,`detail-art${lockedAwakeningPreview ? ' awakening-art-preview' : ''}`)}
     <div class="detail-identity"><h3 class="pet-name">${escapeHtml(pet.name)}</h3><p class="pet-title">${escapeHtml(pet.title)}</p>${cues(pet)}<p class="subtle" style="margin-top:10px">${escapeHtml([pet.element ? `${pet.element}屬性` : '',species].filter(Boolean).join(' · '))}</p></div>
     ${isOwned ? `<div class="companion-actions">${entry.nickname ? `<p class="subtle">你的稱呼：${escapeHtml(entry.nickname)} · 日常陪伴使用暱稱</p>` : ''}<button class="${entry.isCompanion ? '' : 'primary'}" data-identity-action="set-companion" data-pet-id="${pet.id}" ${entry.isCompanion ? 'disabled' : ''}>${entry.isCompanion ? '正在與你同行' : '設為陪伴'}</button><p class="subtle">切換後，首頁會顯示這位同行者。</p></div>` : ''}
-    ${awakening ? `<section class="detail-section"><h3>羈絆覺醒 · 形態展示</h3><p>目前預覽：${form === 'awakened' ? '覺醒相' : '初遇相'} · 覺醒後仍是同一位夥伴</p><div class="awakening-form-options"><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="initial" aria-pressed="${form === 'initial'}">初遇相</button><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="awakened" aria-pressed="${form === 'awakened'}">覺醒相</button><button data-identity-action="pet-awakening-preview" data-pet-id="${pet.id}">試看覺醒演出</button></div><p>展示預覽 · 不消耗材料、不授予稱號。正式覺醒須完成親密度與守諾試煉。</p></section>` : ''}
+    ${awakening ? `<section class="detail-section"><h3>羈絆覺醒 · ${isAwakened ? '形態欣賞' : '形態預覽'}</h3><p>目前${isAwakened ? '欣賞' : '預覽'}：${form === 'awakened' ? '覺醒相' : '初遇相'} · 覺醒後仍是同一位夥伴</p><div class="awakening-form-options"><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="initial" aria-pressed="${form === 'initial'}">初遇相</button><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="awakened" aria-pressed="${form === 'awakened'}">覺醒相${isAwakened ? '' : ' · 黑白預覽'}</button></div><p>${isAwakened ? '已完成覺醒，可欣賞兩種形態。' : '覺醒相以黑白預覽；完成羈絆覺醒後，揭曉全彩造型與專屬演出。'}</p></section>` : ''}
     <p class="detail-copy">${escapeHtml(isOwned ? pet.lore : publicIntro(pet))}</p>
     ${isOwned ? `<dl class="detail-stats"><div><dt>升星</dt><dd>${entry.stars} 星</dd></div><div><dt>親密度</dt><dd>Lv.${entry.bondLevel}</dd></div><div><dt>此夥伴碎片</dt><dd>${entry.fragments}</dd></div></dl>` : ''}
     ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p>${normalGreeting(pet) ? `<blockquote>${escapeHtml(normalGreeting(pet))}</blockquote>` : ''}</section>` : ''}
@@ -329,19 +328,6 @@ async function presentBatchCharacter() {
   } finally { curtain.remove(); }
 }
 
-async function enterPool({ fromSwitcher = false } = {}) {
-  if (displayBusy || reveal.open || dialog.open || appActions.isBusy()) return;
-  const opener = document.activeElement;
-  displayBusy = true;
-  try {
-    await playCeremonyEntry(pool(), { reduceMotion: reduced() });
-  } finally {
-    displayBusy = false;
-    const target = !fromSwitcher && opener?.isConnected && opener !== document.body ? opener : document.querySelector('#identity-pool-select-pool');
-    target?.focus({ preventScroll: true });
-  }
-}
-
 document.addEventListener('error', (event) => {
   const img = event.target;
   if (img instanceof HTMLImageElement && img.dataset.fallback && img.src !== img.dataset.fallback) img.src = img.dataset.fallback;
@@ -367,31 +353,10 @@ document.addEventListener('click', async (event) => {
   if (action === 'close-dialog') dialog.close();
   if (action === 'summon') await runDraw(1);
   if (action === 'summon-ten') await runDraw(10);
-  if (action === 'replay-debut') enterPool();
-  if (action === 'preview-awakening') petDetail(byId(presentation().heroPetId));
   if (action === 'awakening-form') {
     previewForms.set(button.dataset.petId, button.dataset.form);
     petDetail(byId(button.dataset.petId), detailReturnsToBatch);
     dialog.querySelector(`[data-form="${button.dataset.form}"]`)?.focus();
-  }
-  if (action === 'pet-awakening-preview' && !displayBusy) {
-    const petId = button.dataset.petId;
-    const entry = awakeningCatalog.pets.find((row) => row.petId === petId);
-    const fromBatch = detailReturnsToBatch;
-    displayBusy = true;
-    dialog.close();
-    if (reveal.open) reveal.close();
-    try {
-      await playCeremonyPetAwakening(entry, canonicalPets.find((row) => row.id === petId), reduced());
-      previewForms.set(petId,'awakened');
-      if (fromBatch && activeBatch) showBatchSummary();
-      petDetail(byId(petId),fromBatch);
-      dialog.querySelector('[data-identity-action="pet-awakening-preview"]')?.focus();
-    } finally { displayBusy = false; }
-  }
-  if (action === 'replay-awakening' && !displayBusy) {
-    displayBusy = true;
-    try { await playCeremonyAwakening(pool(), pets, reduced()); } finally { displayBusy = false; }
   }
   if (action === 'skip-reveal') activeBatch ? showBatchSummary() : document.querySelector('.reveal-shell').dataset.phase === 'result' ? closeReveal() : phase('result');
   if (action === 'batch-summary') showBatchSummary();
