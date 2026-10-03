@@ -71,10 +71,28 @@ production artifact 為 `c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5c
 
 整合最新主線 `47b7c337a39612a4eb337a22c64e812dd22f7454`（PR #65），保留一鍵領取及先前召喚更新。只有版本與 cache 常數產生衝突；保留最新 SW 的 `src/rewardClaimService.js` precache。凍結執行期來源為 `b3cb204442339ac56f934d614170dedb2f8558ad`，版本為 V3.5.24；相對 main 僅有本次更多頁、習慣頁與版本更新。
 
-2026-10-03T10:01:51Z 再次核對正式 HTTPS 與 gh-pages：仍為 V3.5.22 artifact `9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818`，部署 commit `4aa9aa10dcd79810f781f8c2f40318d5d45401b6`。完整卡池 SHA-256、474 份美術素材與所有公告／附屬資料均保持正式值，詳見 [baseline.json](more-navigation-20261003/release/baseline.json)。
+2026-10-03T10:01:51Z 再次核對正式 HTTPS 與 gh-pages：當時仍為 V3.5.22 artifact `9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818`，部署 commit `4aa9aa10dcd79810f781f8c2f40318d5d45401b6`。完整卡池 SHA-256、474 份美術素材與所有公告／附屬資料均保持正式值，詳見 [當時的 baseline.json](more-navigation-20261003/release/superseded-v3524-pre-claim-publication/baseline.json)。
 
 新版 production artifact：`c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be`，manifest SHA-256：`853de50d8210179fb753f7ab228cd506e375e1bd0df2d49d4542324c5de142f0`。preview artifact：`9681825588494d99f7a805274f6c9d44a126dd21d553d5d76cdde109bc4bcf8b`。兩個產物均已固定驗證；preview 用於本機隔離驗收，見 [artifacts.json](more-navigation-20261003/release/artifacts.json)。
 
 整合後 `npm test` 三組分別通過 292、14、12 項（總執行 318 項，包含套件原本重複執行的一鍵領取測試），reveal-flow assertions、JS 語法、卡池與圖片驗證皆通過。新版產物原生瀏覽器驗收 16 項通過，更多頁實際支援入口與習慣透明外層驗收通過；沒有使用玩家的正式資料庫或送出正式回報。
 
-部署準備 commit `127920b0dfd716edd24bdb02b018adfc49ca436d` 的 607 個 staged／committed Git blobs 全數與產物一致，沒有移除檔案。見 [deployment-preparation.json](more-navigation-20261003/release/deployment-preparation.json)、[原生瀏覽器驗收](more-navigation-20261003/release/artifact-browser-qa.json)及[更多頁](more-navigation-20261003/release/assembled-more.png)／[習慣頁](more-navigation-20261003/release/assembled-habits.png)截圖。本節仍是發布前準備；成功以後續 Pages 與正式 HTTPS 回執為準。
+初次部署準備 commit `127920b0dfd716edd24bdb02b018adfc49ca436d` 的 607 個 staged／committed Git blobs 全數與產物一致，沒有移除檔案。見 [當時的 deployment-preparation.json](more-navigation-20261003/release/superseded-v3524-pre-claim-publication/deployment-preparation.json)、[原生瀏覽器驗收](more-navigation-20261003/release/artifact-browser-qa.json)及[更多頁](more-navigation-20261003/release/assembled-more.png)／[習慣頁](more-navigation-20261003/release/assembled-habits.png)截圖。本節是發布前準備；後续接續新正式基線的成功紀錄見發布回執。
+
+## 正式發布回執 — V3.5.24
+
+使用者明確授權後，[PR #64](https://github.com/leotsouo/questnote-pwa/pull/64) CI 通過並合併於 `6aa59e3246f44d27e4cdf6ecaee1ba10ef8073d4`。凍結的執行期来源 `b3cb204442339ac56f934d614170dedb2f8558ad` 與合併後 main 的 runtime／assets／data 完全一致。
+
+發布前另一項一鍵領取更新已部署為 V3.5.23：Pages `6bab17d148d770b30444ca438cce73a80e003eb4`，artifact `12c4a4103be3d3a45e112eed5ac1566bc482c2ce85a470fb0e3d5672663f9cf0`。重新讀回並驗證此正式基線，保留其功能、美術與所有公告／catalog bytes。原先以 V3.5.22 為父提交的準備紀錄保存於 `release/superseded-v3524-pre-claim-publication/`，沒有推送。
+
+最終以一般快轉推送 Pages `d2dba3c7b8f7f0823227af19d2cbe147dd975bcd`，父提交為最新 V3.5.23；607 個部署 Git blobs 均與原生驗收過的產物一致，tree `a30b7ca3b062544353d414540f58fbc32f6a23d5` 與先前 V3.5.24 準備相同，沒有重新組裝或更改產物。[Pages run 37115343269](https://github.com/leotsouo/questnote-pwa/actions/runs/37115343269) 建置及部署成功。
+
+2026-10-03T10:09:44.713Z 正式 HTTPS 讀回 606 個檔案（包含 manifest），雜湊與大小全部符合固定 production artifact `c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be`；.nojekyll 為已核對的 Git-only 檔案。全新隔離 Chrome 瀏覽器確認 V3.5.24、production profile、QuestNoteDB、正確 worker artifact、六個主要入口、支援展開及返回流程、習慣四卡透明外層與 16px 間距，無水平溢出或執行期錯誤。未使用既有玩家存檔或送出回報。
+
+正式網址：[QuestNote](https://leotsouo.github.io/questnote-pwa/)。所有功能與圖片均保留；這次未部署後端或 HTTPS preview。
+
+- [完整發布回執](more-navigation-20261003/release/production-receipt.json)
+- [逐檔 HTTPS 驗證](more-navigation-20261003/release/live-verification.json)
+- [正式瀏覽器驗收](more-navigation-20261003/release/production-browser.json)
+- [正式更多頁截圖](more-navigation-20261003/release/production-more-393.png)
+- [正式習慣頁截圖](more-navigation-20261003/release/production-habits-393.png)

@@ -1,0 +1,38 @@
+{
+  "ok": true,
+  "checkedAt": "2026-10-03T10:10:03.423Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "freshBrowserStorage": true,
+  "identity": {
+    "version": "3.5.24",
+    "profile": {
+      "schemaVersion": 1,
+      "profile": "production",
+      "artifactId": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+      "sourceCommit": "b3cb204442339ac56f934d614170dedb2f8558ad",
+      "scopePath": "/questnote-pwa/",
+      "runtimeContentSchema": 1,
+      "dbName": "QuestNoteDB",
+      "cacheNamespace": "questnote-production-",
+      "contentBundleSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
+      "contentBundleUrl": "data/releases/da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d/catalog.json"
+    },
+    "worker": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be"
+  },
+  "moreEntries": [
+    "習慣",
+    "每日祝福",
+    "成就",
+    "工坊",
+    "冒險手冊",
+    "設定"
+  ],
+  "supportNavigation": "passed",
+  "habits": {
+    "background": "rgba(0, 0, 0, 0)",
+    "cards": 4,
+    "gap": 16,
+    "overflow": false
+  },
+  "errors": []
+}

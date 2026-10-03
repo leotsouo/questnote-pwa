@@ -1,8 +1,8 @@
 {
-  "preparedAt": "2026-10-03T10:06:51.933Z",
-  "deploymentRoot": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\more-pages-v3524-final",
-  "parentCommit": "6bab17d148d770b30444ca438cce73a80e003eb4",
-  "deploymentCommit": "d2dba3c7b8f7f0823227af19d2cbe147dd975bcd",
+  "preparedAt": "2026-10-03T10:02:32.863Z",
+  "deploymentRoot": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\more-pages-v3524",
+  "parentCommit": "4aa9aa10dcd79810f781f8c2f40318d5d45401b6",
+  "deploymentCommit": "127920b0dfd716edd24bdb02b018adfc49ca436d",
   "tree": "a30b7ca3b062544353d414540f58fbc32f6a23d5",
   "artifactId": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
   "sourceCommit": "b3cb204442339ac56f934d614170dedb2f8558ad",
