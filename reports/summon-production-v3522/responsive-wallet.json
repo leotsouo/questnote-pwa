@@ -1,0 +1,137 @@
+{
+  "artifactId": "862854191c11142471ff927d5b553a6b7b0c8b5f568e78ff00d04dcff1270187",
+  "mobileFirstScreen": [
+    {
+      "artifact": "862854191c11142471ff927d5b553a6b7b0c8b5f568e78ff00d04dcff1270187",
+      "balance": "星塵總量0",
+      "button": {
+        "bottom": 687.8542098999023,
+        "height": 66.55208587646484,
+        "left": 206.9375,
+        "right": 341.3333435058594,
+        "top": 621.3021240234375,
+        "width": 134.39584350585938,
+        "x": 206.9375,
+        "y": 621.3021240234375
+      },
+      "chip": {
+        "bottom": 52.92708587646485,
+        "height": 34.927085876464844,
+        "left": 262.25,
+        "right": 356,
+        "top": 18,
+        "width": 93.75,
+        "x": 262.25,
+        "y": 18
+      },
+      "overflow": false,
+      "theme": "default",
+      "viewport": [
+        393,
+        852
+      ]
+    }
+  ],
+  "checks": {
+    "checks": [
+      {
+        "theme": "default",
+        "width": 320,
+        "height": 852,
+        "fontPercent": 100,
+        "walletWidth": 125.69792175292969,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "default",
+        "width": 320,
+        "height": 852,
+        "fontPercent": 200,
+        "walletWidth": 218.0416717529297,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "default",
+        "width": 393,
+        "height": 852,
+        "fontPercent": 100,
+        "walletWidth": 125.69792175292969,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "default",
+        "width": 393,
+        "height": 852,
+        "fontPercent": 200,
+        "walletWidth": 218.0416717529297,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "sweet",
+        "width": 320,
+        "height": 852,
+        "fontPercent": 100,
+        "walletWidth": 125.69792175292969,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "sweet",
+        "width": 320,
+        "height": 852,
+        "fontPercent": 200,
+        "walletWidth": 218.0416717529297,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "sweet",
+        "width": 393,
+        "height": 852,
+        "fontPercent": 100,
+        "walletWidth": 125.69792175292969,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "sweet",
+        "width": 393,
+        "height": 852,
+        "fontPercent": 200,
+        "walletWidth": 218.0416717529297,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "twilight",
+        "width": 320,
+        "height": 852,
+        "fontPercent": 100,
+        "walletWidth": 125.69792175292969,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "twilight",
+        "width": 320,
+        "height": 852,
+        "fontPercent": 200,
+        "walletWidth": 218.0416717529297,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "twilight",
+        "width": 393,
+        "height": 852,
+        "fontPercent": 100,
+        "walletWidth": 125.69792175292969,
+        "horizontalOverflow": false
+      },
+      {
+        "theme": "twilight",
+        "width": 393,
+        "height": 852,
+        "fontPercent": 200,
+        "walletWidth": 218.0416717529297,
+        "horizontalOverflow": false
+      }
+    ],
+    "simulatedTextSize": true,
+    "persistedStateUnchanged": true
+  }
+}

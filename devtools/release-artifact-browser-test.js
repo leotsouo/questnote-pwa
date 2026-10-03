@@ -415,6 +415,41 @@ try {
     observations.tenFloorWallet = { poolCount:bundle.poolsData.pools.length, realNativeTransaction:true, results:rarities,
       balanceBefore:10000, balanceAfter:9000, duplicateFragments:[9,5], walletSurvivesReload:true, drawsAppliedOnce:true };
   });
+  if (previewFrame.contentDocument.querySelector('.summon-wallet')) await test('summon wallet fits three themes, mobile widths and simulated 200% text without changing the save', async () => {
+    const before = await previewTransactionSnapshot();
+    const client = previewFrame.contentWindow;
+    const document = previewFrame.contentDocument;
+    const ui = await client.eval('import(' + JSON.stringify(new URL('src/ui.js', client.location.href).href) + ')');
+    const originalFrame = previewFrame.style.cssText;
+    const originalFont = document.documentElement.style.fontSize;
+    const originalTheme = document.body.dataset.theme;
+    const checks = [];
+    try {
+      for (const theme of ['default', 'sweet', 'twilight']) {
+        await ui.applyTheme(theme, { silent:true, skipSave:true });
+        for (const width of [320, 393]) for (const fontPercent of [100, 200]) {
+          previewFrame.style.width = width + 'px';
+          previewFrame.style.height = '852px';
+          document.documentElement.style.fontSize = fontPercent === 200 ? '32px' : '16px';
+          await delay(50);
+          const chip = document.querySelector('.summon-wallet');
+          const rect = chip.getBoundingClientRect();
+          const heading = chip.parentElement.getBoundingClientRect();
+          assert(rect.left >= 0 && rect.right <= client.innerWidth + 1, 'Wallet escaped the viewport');
+          assert(rect.left >= heading.left - 1 && rect.right <= heading.right + 1, 'Wallet escaped the pool heading');
+          assert(document.documentElement.scrollWidth <= client.innerWidth + 1, 'Summon page horizontally overflows');
+          assert(chip.textContent.includes('9,000'), 'Responsive view changed the actual balance');
+          checks.push({ theme, width, height:852, fontPercent, walletWidth:rect.width, horizontalOverflow:false });
+        }
+      }
+    } finally {
+      previewFrame.style.cssText = originalFrame;
+      document.documentElement.style.fontSize = originalFont;
+      await ui.applyTheme(originalTheme, { silent:true, skipSave:true });
+    }
+    assert(await previewTransactionSnapshot() === before, 'Responsive checks changed persistent state');
+    observations.summonWalletResponsive = { checks, simulatedTextSize:true, persistedStateUnchanged:true };
+  });
   if (companionResponse.ok) await test('SOP companion content drives actual crafting, favorite gifting and dispatch specialty in an isolated app', async () => {
     assert(storageOwnershipEstablished, 'Fixture writes require a fresh owned origin');
     const e = await companionResponse.json();
