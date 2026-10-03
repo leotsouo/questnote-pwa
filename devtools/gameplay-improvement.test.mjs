@@ -10,13 +10,13 @@ const materials = JSON.parse(await fs.readFile(new URL('../data/materials.json',
 
 const area = { id: 'mist_forest', energyCost: 3, durationMinutes: 15,
   rewards: { stardust: { min: 20, max: 20 }, material: { id: 'forest_leaf', min: 1, max: 2 }, bondExp: 5 } };
-const forestPet = { id: 'pet_n01', name: '森林芽芽', element: '木', rarity: 'N', stars: 1, bondLevel: 1 };
-const scoutPet = { id: 'pet_r01', name: '雪狐', element: '冰', rarity: 'R', stars: 3, bondLevel: 2 };
+const forestPet = { id: 'pet_n01', name: '森林芽芽', element: '木', rarity: 'N', bondLevel: 1, bondLevel: 1 };
+const scoutPet = { id: 'pet_r01', name: '雪狐', element: '冰', rarity: 'R', bondLevel: 3, bondLevel: 2 };
 
 test('recommendations match each objective and outrank a stronger nonmatching companion', () => {
   const pets = [forestPet, scoutPet,
-    { id: 'light', name: '星光', element: '光', rarity: 'N', stars: 1 },
-    { id: 'companion', name: '火龍', element: '火', rarity: 'UR', stars: 5 }]
+    { id: 'light', name: '星光', element: '光', rarity: 'N', bondLevel: 1 },
+    { id: 'companion', name: '火龍', element: '火', rarity: 'UR', bondLevel: 5 }]
     .map((pet) => ({ ...pet, owned: true }));
   for (const [objective, id] of [['explore', scoutPet.id], ['gather', forestPet.id], ['bond', 'light']]) {
     const recommendation = getExpeditionRecommendations(pets, objective, { companionId: 'companion' });
@@ -33,7 +33,7 @@ test('recommendations match each objective and outrank a stronger nonmatching co
 
 test('recommendations exclude unowned and busy pets, cap at three, and prioritize specialty level', () => {
   const pets = Array.from({ length: 6 }, (_, index) => ({ ...forestPet, id: `forest-${index}`,
-    stars: index + 1, owned: index !== 5 }));
+    bondLevel: index + 1, owned: index !== 5 }));
   const snapshot = structuredClone(pets);
   const options = { companionId: 'forest-0', unavailablePetIds: ['forest-4'] };
   assert.deepEqual(getExpeditionRecommendations(pets, 'gather', options).teamPetIds,
@@ -61,7 +61,7 @@ test('first forest journey uses one energy and three minutes only once', () => {
   assert.equal(getDispatchTerms(area, false).energyCost, 3);
 });
 
-test('one-star ordinary pet is useful and objectives make recognizable differences', () => {
+test('a newly met ordinary pet is useful and objectives make recognizable differences', () => {
   assert.equal(getPetSpecialty(forestPet).role, 'gatherer');
   const random = () => 0;
   const explore = planExpeditionResult(area, [forestPet], 'explore', random);
@@ -78,11 +78,11 @@ test('one-star ordinary pet is useful and objectives make recognizable differenc
   assert.throws(() => planExpeditionResult(area, Array(4).fill(forestPet), 'explore'), /1～3/);
 });
 
-test('stars and team specialties improve the result without requiring high rarity', () => {
+test('intimacy and team specialties improve the result without requiring high rarity', () => {
   const random = () => 0;
   const one = planExpeditionResult(area, [forestPet], 'gather', random);
-  const trained = planExpeditionResult(area, [{ ...forestPet, stars: 5 }], 'gather', random);
-  const team = planExpeditionResult(area, [{ ...forestPet, stars: 5 }, scoutPet], 'gather', random);
+  const trained = planExpeditionResult(area, [{ ...forestPet, bondLevel: 5 }], 'gather', random);
+  const team = planExpeditionResult(area, [{ ...forestPet, bondLevel: 5 }, scoutPet], 'gather', random);
   assert.ok(trained.rewards.materials.forest_leaf > one.rewards.materials.forest_leaf);
   assert.ok(team.rewards.stardust > trained.rewards.stardust);
   assert.deepEqual(Object.keys(team.bondByPet).sort(), ['pet_n01', 'pet_r01']);

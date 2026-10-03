@@ -16,7 +16,7 @@ function scenario(overrides = {}) {
 }
 function nextInput(input, plan, overrides = {}) {
   return { ...input, wallet: plan.wallet, stats: plan.stats, unlockState: plan.unlockState,
-    grants: plan.grants, collection: plan.collection, ...overrides };
+    grants: plan.grants, encounterEconomy: plan.encounterEconomy, collection: plan.collection, ...overrides };
 }
 const freeze = (value) => {
   if (value && typeof value === 'object') { Object.freeze(value); Object.values(value).forEach(freeze); }
@@ -29,7 +29,7 @@ test('single and ten preserve public result shapes, wallet fields, and within-te
   assert.equal(one.wallet.stardust, 9900);
   assert.equal(one.wallet.adventureEnergy, 7);
   assert.equal(one.wallet.materials.forest_leaf, 9);
-  assert.deepEqual(Object.keys(one.result).sort(), ['pet', 'rarity', 'isNew', 'fragmentsGained', 'triggeredPity', 'pool', 'stats', 'unlockProgress'].sort());
+  assert.deepEqual(Object.keys(one.result).sort(), ['pet', 'rarity', 'isNew', 'fragmentsGained', 'triggeredPity', 'pool', 'stats', 'unlockProgress', 'encounterBalanceAfter'].sort());
   const ten = planGachaTransaction(scenario({ count: 10 }));
   assert.equal(ten.wallet.stardust, 9000);
   assert.equal(ten.stats.totalPulls, 10);
@@ -67,12 +67,14 @@ test('every rarity uses its existing duplicate compensation without erasing prog
   for (const [rarity, roll, fragments] of [['N', 0, 1], ['R', 0.6, 2], ['SR', 0.9, 5], ['SSR', 0.96, 10], ['UR', 0.99, 20]]) {
     const input = scenario({ rng: () => roll });
     const pet = input.allPets.find((pet) => pet.rarity === rarity && pet.poolTags.includes('fixture_alpha'));
-    const entry = { ...createCollectionEntry(pet.id, fixedNow), stars: 4, fragments: 12, nickname: '名字', bondExp: 300,
+    const entry = { ...createCollectionEntry(pet.id, fixedNow), encounterMigrationVersion:0, stars: 4, fragments: 12, nickname: '名字', bondExp: 300,
       bondLevel: 4, isCompanion: true, lastPettedAt: fixedNow };
     const plan = planGachaTransaction({ ...input, collection: [entry] });
     assert.equal(plan.result.fragmentsGained, fragments);
-    assert.equal(plan.collection[0].fragments, 12 + fragments);
-    for (const key of ['stars', 'nickname', 'bondExp', 'bondLevel', 'isCompanion', 'lastPettedAt', 'obtainedAt']) {
+    assert.equal(plan.encounterEconomy.balance, 62 + fragments);
+    assert.equal(plan.collection[0].legacySpecialtyFloor, 4);
+    assert.equal(plan.collection[0].fragments, undefined);
+    for (const key of ['nickname', 'bondExp', 'bondLevel', 'isCompanion', 'lastPettedAt', 'obtainedAt']) {
       assert.equal(plan.collection[0][key], entry[key]);
     }
   }
@@ -94,13 +96,15 @@ test('threshold single is locked; the next single can select an expanded candida
 
 test('ten freezes every candidate before unlock and grants one actual-rarity gift after its results', () => {
   const input = scenario({ selectedPoolId: 'fixture_beta', count: 10,
-    collection: [{ ...createCollectionEntry('pet_ssr911', fixedNow), fragments: 4 }], rng: () => 0.99 });
+    collection: [{ ...createCollectionEntry('pet_ssr911', fixedNow), encounterMigrationVersion:0, stars:1, fragments: 4 }], rng: () => 0.99 });
   const plan = planGachaTransaction(input);
   assert.equal(plan.result.cost, 750);
   assert.ok(plan.result.results.every((pull) => pull.petId === 'pet_ur910'));
   assert.equal(plan.result.unlockProgress.entry.lifetimeDraws, 10);
   assert.equal(plan.result.unlockProgress.reward.fragmentsGained, 10);
-  assert.equal(plan.collection.find((entry) => entry.petId === 'pet_ssr911').fragments, 14);
+  assert.equal(plan.encounterEconomy.balance, 194);
+  assert.equal(plan.result.results.at(-1).encounterBalanceAfter, 194, 'Displayed balance includes the committed duplicate gift');
+  assert.equal(plan.collection.find((entry) => entry.petId === 'pet_ssr911').fragments, undefined);
   assert.equal(plan.stats.totalPulls, 10);
   assert.equal(plan.result.summary.totalFragments, 180);
   assert.deepEqual(plan.grants.claimedIds, ['awakening_reward:fixture_beta:first_expansion']);
@@ -121,14 +125,15 @@ test('gift recovery reconciles markers once, repairs only missing pets, and neve
   const id = resolveUnlockGrantId(pool.id, pool.unlockExpansion);
   const state = normalizePoolUnlockState({ byPool: { [pool.id]: { lifetimeDraws: 20, unlocked: true } } });
   const grants = normalizeIdempotentGrants({ claimedIds: [id] });
-  const collection = new Map([[pool.unlockExpansion.rewardPetId, { ...createCollectionEntry(pool.unlockExpansion.rewardPetId), fragments: 8 }]]);
-  const context = { state, grants, collection, changed: new Set(), poolId: pool.id,
+  const collection = new Map([[pool.unlockExpansion.rewardPetId, { ...createCollectionEntry(pool.unlockExpansion.rewardPetId) }]]);
+  const context = { encounterEconomy:{ balance:8 }, state, grants, collection, changed: new Set(), poolId: pool.id,
     expansion: pool.unlockExpansion, allPets: input.allPets, now: fixedNow };
   assert.equal(applyUnlockGift(context).alreadyClaimed, true);
-  assert.equal(collection.get(pool.unlockExpansion.rewardPetId).fragments, 8);
+  assert.equal(context.encounterEconomy.balance, 8);
   collection.clear();
   assert.equal(applyUnlockGift(context).alreadyClaimed, true);
-  assert.equal(collection.get(pool.unlockExpansion.rewardPetId).fragments, 0);
+  assert.equal(context.encounterEconomy.balance, 8);
+  assert.equal(collection.get(pool.unlockExpansion.rewardPetId).fragments, undefined);
   assert.equal(grants.claimedIds.length, 1);
 });
 
@@ -155,10 +160,10 @@ test('rejected content, insufficient money, overflow and bad RNG never mutate pl
 
 test('planner accepts deeply frozen snapshots and changes no original counters, catalog or collection', () => {
   const input = scenario({ stats: normalizeGachaStats({ poolPity: { fixture_alpha: { ssrPity: 2, urPity: 4 } } }),
-    collection: [{ ...createCollectionEntry('pet_n900', fixedNow), fragments: 8 }] });
+    collection: [{ ...createCollectionEntry('pet_n900', fixedNow), encounterMigrationVersion:0, stars:1, fragments: 8 }] });
   const before = JSON.stringify(input);
   freeze(input);
   const plan = planGachaTransaction(input);
-  assert.equal(plan.collection[0].fragments, 9);
+  assert.equal(plan.encounterEconomy.balance, 9);
   assert.equal(JSON.stringify(input), before);
 });

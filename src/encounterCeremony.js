@@ -90,3 +90,10 @@ export async function playCeremonyCharacter(pool, result, { reduceMotion, index 
   }));
   return { skipped: isRevealQueueSkipped(), artworkShown: true, duration: Math.round(performance.now() - startedAt) };
 }
+
+/** A fixed invited character uses its own pool's existing winning reveal. */
+export function playInvitationCharacter(pools, selected, { reduceMotion }) {
+  const pool = pools.find((row) => row.id === selected.seriesId);
+  if (!pool) throw new Error('角色所屬卡池的演出尚未載入。');
+  return playCeremonyCharacter(pool, { pet:selected.pet, isNew:true }, { reduceMotion });
+}
