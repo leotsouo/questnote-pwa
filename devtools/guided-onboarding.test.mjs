@@ -6,6 +6,7 @@ import { awakeningEvents } from '../src/petAwakeningCore.js';
 import { normalizeTask } from '../src/taskMigration.js';
 import { projectReminderData } from '../src/reminderRules.js';
 import { getTwilightJourney } from '../src/twilightPresentation.js';
+import { contextualEducation, GUIDED_EDUCATION } from '../src/guidedEducation.js';
 
 const empty = () => ({ tasks: [], meta: [], collection: [], habits: [], expeditions: [] });
 test('only a truly pristine installation enters practice; every legacy status bypasses it', () => {
@@ -74,4 +75,25 @@ test('tutorial metadata survives migration and is excluded from awakening and re
   assert.deepEqual(awakeningEvents([task]), []);
   assert.deepEqual(projectReminderData([{ ...task, completed: false, plannedDate: '2026-10-03' }], [],
     { timeZone: 'Asia/Taipei' }, Date.parse('2026-10-03T04:00:00Z')).tasks, []);
+});
+
+test('stale clicks cannot acknowledge a different step or a different replay run', () => {
+  const first = normalizeGuidedState({ status: 'active', step: 'WELCOME', runId: 'first' });
+  const clicked = { expectedStep: 'WELCOME', expectedRunId: 'first' };
+  const next = transitionGuidedState(first, 'acknowledge', clicked);
+  assert.equal(next.step, 'MEET_COMPANION');
+  assert.deepEqual(transitionGuidedState(next, 'acknowledge', clicked), next);
+  const replay = { ...first, runId: 'replay-2', mode: 'replay' };
+  assert.deepEqual(transitionGuidedState(replay, 'acknowledge', clicked), replay);
+});
+
+test('education requires deliberate acknowledgement and preserves unaided task transfer', () => {
+  for (const status of ['active', 'existing']) {
+    for (const feature of Object.keys(GUIDED_EDUCATION)) assert.equal(contextualEducation({ status }, feature), null);
+  }
+  assert.equal(contextualEducation({ status: 'completed' }, 'tasks'), null);
+  assert.ok(contextualEducation({ status: 'skipped' }, 'tasks'));
+  assert.ok(contextualEducation({ status: 'completed', hintsSeen: ['gacha'] }, 'gacha'));
+  assert.equal(contextualEducation({ status: 'completed', hintsAcknowledged: ['gacha'] }, 'gacha'), null);
+  assert.equal(contextualEducation({ status: 'completed' }, 'invented-feature'), null);
 });

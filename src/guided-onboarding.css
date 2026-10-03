@@ -51,3 +51,14 @@ body[data-theme].guided-editor .modal:not(:has(.sweet-summon-result, .default-su
 @media (prefers-reduced-motion: reduce) { .guided-ring, .guided-companion { animation: none; } }
 body.reduce-motion .guided-ring, body.reduce-motion .guided-companion { animation: none; }
 @media (forced-colors: active) { .guided-coach { background: Canvas; color: CanvasText; border: 2px solid CanvasText; } .guided-ring { border-color: Highlight; } }
+.guided-feature-hint { padding: 18px; margin: 16px 0; color: var(--color-text-main); border: 1px solid var(--border-color); border-radius: 18px; background: var(--bg-card); }
+.guided-feature-hint h2 { font-size: 1.15rem; line-height: 1.5; margin: 6px 0; }
+.guided-feature-hint p { font-size: 1rem; line-height: 1.65; margin: 6px 0; }
+.guided-feature-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+#app .guided-feature-actions button, #modal-overlay .guided-feature-actions button { min-height: 48px; white-space: normal; flex: 1 1 130px; }
+.guided-feature-hint :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+#guided-feature-help details { margin: 8px 0; border: 1px solid var(--border-color); border-radius: 14px; background: var(--bg-card); }
+#guided-feature-help summary { min-height: 48px; padding: 12px; box-sizing: border-box; font-size: 1rem; line-height: 1.5; cursor: pointer; }
+#guided-feature-help p { padding: 0 12px 12px; margin: 0; font-size: 1rem; line-height: 1.65; }
+#guided-feature-help button { margin: 0 12px 12px; min-height: 48px; white-space: normal; }
+#guided-feature-help :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }

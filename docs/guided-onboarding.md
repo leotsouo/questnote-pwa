@@ -47,7 +47,11 @@ lock 只允許目前真正控制項與教學 controls，其他 DOM 分支 inert�
 
 Skip 是小文字入口 → 說明確認 → 長按 1.5 秒或普通「確認略過」按鈕。pointerup/cancel/失去 capture/移出/切背景會取消長按。鍵盤、螢幕閱讀器與動作不便使用者使用相同確認畫面的普通按鈕。Skip 儲存失敗仍釋放本次 lock，以可用的 sessionStorage 留待重開重試；若該儲存也不可用，下一次可能回到已保存 checkpoint，但仍可退出。
 
-完成／略過後，在「更多 → 使用教學」重播；取消完整強制教學不等於取消輕量提示。第一次真正遇到新增、召喚、圖鑑、探險時各顯示一次說明，預先保存 seen 避免重複。提示不收集 Quest 內容，也沒有新增遠端 analytics 或 AI API。
+完成／略過後，在「更多 → 使用教學」重播；取消完整強制教學不等於取消輕量提示。第一次真正遇到召喚、圖鑑、探險、工坊、習慣、設定與已擁有夥伴的養成頁時，顯示可自行關閉的小提醒。`guidedEducation.js` 管理簡短內容；`hintsAcknowledged` 只在明確按「我知道了」後保存，沒有閱讀倒數。離開再回來會保留未讀提醒，資料刷新也不會丟失；不搶焦點、不鎖操作、不消耗資源。教學中心可再次讀同一內容，並連到既有詳細章節。
+
+完成首輪後不再顯示新增任務提示，讓下一個自己的任務可以無提示操作；略過者首次打開真實空白 editor 仍有可關閉的操作提醒。現版只有各夥伴的升星碎片，沒有「相遇碎片／指定邀請」功能；不指引不存在的控制。提示不收集 Quest 內容，也沒有新增遠端 analytics 或 AI API。
+
+每次確認會攜帶當時的 step/runId，服務層拒絕舊畫面的連點／跨視窗請求。foreground 重新讀 checkpoint 與實際資料；若略過持續保存失敗，仍維持本次已解鎖的退出選擇，不能被磁碟上的舊進度重鎖。重播開始在同一交易清理歷史 replay 任務與未完成的練習任務，保留已完成首輪收據及所有正式任務；兩個視窗同時重播會繼續同一 run。不同 run 的未領練習不能更動資源。
 
 ## 可及性與驗收邊界
 
@@ -64,3 +68,5 @@ Node 24：`npm ci`、`npm test`、`npm run test:guided`。語法檢查所有修�
 離線專用 server：`node devtools/onboarding-browser-server.mjs 4187 --workshop-offline`，同一頁按離線流程。只在使用者的 synthetic loopback scope 安裝真正 SW，緩存後讓 server 的 App 路徑回 503，再逐 checkpoint 重開；每次重跑要重新啟動 server。必須在可用 Service Worker 的瀏覽器完成，不能把註冊逾時稱為成功。
 
 結果、14 張指定尺寸畫面、320px 額外畫面與真人測試腳本見 [驗收報告](../reports/guided-onboarding/acceptance.md)。
+
+真人工具：專用 server 下開 `/devtools/guided-usability.html`。先完成真正引導，再由主持人開始獨立操作。它回到今日列表、關閉已開 editor，只給任務句；觀察找到新增、提交自己的任務、回今日、完成的時間，以及主持人記錄的協助次數。無協助與四項里程碑都成立才記為獨立完成。結果只在記憶體，可自行複製匿名 JSON；沒有保存／上傳任務文字或 task ID。測試頁重載會丟失本頁觀察結果，請先整理到本機私人紀錄。自動演練必須選 `automation-fixture`，輸出 `humanEvidence: false`，不算真人學習證據。

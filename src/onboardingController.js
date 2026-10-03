@@ -209,13 +209,9 @@ function updateHighlight() {
 }
 
 function renderGuideStatus() {
-  const label = document.getElementById('guide-tutorial-status');
-  const button = document.getElementById('guide-tutorial-button');
-  if (!label || !button || !record) return;
-  const resumable = record.status === 'paused' || record.status === 'active';
-  label.textContent = resumable ? '你的教學進度已保留。' : '可以隨時重看，不會自動建立任務或發放獎勵。';
-  button.textContent = resumable ? '繼續實作引導' : '重新體驗引導';
-  button.dataset.onboardingAction = resumable ? 'resume' : 'replay';
+  // Basic practice status belongs to the guided controller; legacy lessons only
+  // render their own chapter progress and must not overwrite its replay label.
+  if (!record) return;
   const chapters = document.getElementById('guide-chapters');
   if (!chapters) return;
   const signature = JSON.stringify([record.lessons, LESSONS.map((lesson) => getLessonAvailability(lesson.id, appState))]);
@@ -545,6 +541,19 @@ export function initOnboarding(app, handlers, initialRecord) {
 export function refreshOnboarding() {
   render();
   refreshGuidedOnboarding();
+}
+
+export function openOnboardingEducation(feature) {
+  navigation.switchView('guide');
+  const detail = document.querySelector(`[data-education-feature="${CSS.escape(feature)}"]`);
+  if (detail) {
+    detail.open = true;
+    // The preceding modal close restores its opener on the next frame. Place
+    // focus after that restoration, while this requested help is still visible.
+    requestAnimationFrame(() => {
+      if (document.querySelector('#view-guide.active') && detail.isConnected) detail.querySelector('summary')?.focus();
+    });
+  }
 }
 
 export async function recordOnboardingEvent(event, detail = {}) {

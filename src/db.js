@@ -211,7 +211,11 @@ export async function dbMutateRecords(reads, reduce) {
               if (!names.includes(write.store)) throw new Error('Mutation writes outside locked stores');
               tx.objectStore(write.store).put(write.value);
             }
-            if ((update.puts || []).some((write) => affectsReminders(write.store))) markReminderDirty(tx);
+            for (const removal of update.deletes || []) {
+              if (!names.includes(removal.store)) throw new Error('Mutation deletes outside locked stores');
+              tx.objectStore(removal.store).delete(removal.key);
+            }
+            if ([...(update.puts || []), ...(update.deletes || [])].some((write) => affectsReminders(write.store))) markReminderDirty(tx);
             result = update.result;
           } catch (error) { abort(error); }
         };

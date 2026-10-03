@@ -36,6 +36,9 @@ const ACKNOWLEDGEMENTS = {
 export function transitionGuidedState(raw, event, detail = {}) {
   const s = normalizeGuidedState(raw);
   if (s.status !== 'active') return s;
+  // A click belongs to the screen the user saw, even if another window advanced it.
+  if ((detail.expectedStep && detail.expectedStep !== s.step)
+    || (detail.expectedRunId && detail.expectedRunId !== s.runId)) return s;
   if (event === 'acknowledge' && ACKNOWLEDGEMENTS[s.step]) return { ...s, step: ACKNOWLEDGEMENTS[s.step] };
   if (event === 'editor-opened' && s.step === 'OPEN_CREATE_QUEST') return { ...s, step: 'CREATE_TUTORIAL_QUEST' };
   if (event === 'task-created' && s.step === 'CREATE_TUTORIAL_QUEST'

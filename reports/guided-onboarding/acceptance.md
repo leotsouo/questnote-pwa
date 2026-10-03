@@ -48,7 +48,9 @@ Welcome、首頁、新增、editor、已建立、完成、reward、reaction、fi
 
 ## 12. Replay Tutorial
 
-更多 → 使用教學可再次練習；active 狀態繼續原 checkpoint。新 replay UUID 使用相同真實操作，reward 明確標示練習展示，wallet/bond/collection/正式進度不變。保留一次 contextual hints；不重新強制完整版。歷史重播 record 暫留本地，尚未加入保留數量清理策略。
+更多 → 使用教學可再次練習；active 狀態繼續原 checkpoint。新 replay UUID 使用相同真實操作，reward 明確標示練習展示，wallet/bond/collection/正式進度不變。開始重播會在同一交易清理歷史 replay 任務與未完成練習，保留首輪完成收據和所有正式任務；交易失敗則一起 rollback。兩個視窗同時開始會繼續同一 run；不同 run 的未領練習不能改動資源。
+
+後續教學改為真正使用到召喚、圖鑑、探險、工坊、習慣、設定、夥伴養成時出現可關閉的小提醒，不設自動消失時間。只有明確按「我知道了」才保存已讀；離開、重開或資料刷新不會把未讀提醒當作看懂。教學中心可重讀並接到詳細章節。略過者在空白 editor 有提示；完成首輪者不再被提示新增／完成，以保留獨立操作的機會。現版沒有指定邀請／相遇碎片功能，不建立假入口。
 
 ## 13. Existing User Migration
 
@@ -68,6 +70,10 @@ Welcome、首頁、新增、editor、已建立、完成、reward、reaction、fi
 ## 15. Screenshot Matrix
 
 [可點開完整圖庫](screenshots.html)。14 張 393×852 + 1 張 320×852；均為瀏覽器真實 App raster，從完整 screenshot 裁出 iframe，沒有重畫 UI。checkpoint fixture 僅在 guard 過的 synthetic profile 注入，不當作真實流程行為證據。預填表單與 Create CTA 是同一真正畫面的兩次擷取。
+
+本輪另補四張：[圖鑑漸進提示](screenshots/16-collection-education.jpg)、[教學中心重讀](screenshots/17-education-help.jpg)、[略過後真實空白 editor](screenshots/18-skipped-editor.jpg)、[320px 圖鑑提示](screenshots/19-education-320.jpg)。新增截圖座標與尺寸另存 [manifest](education-screenshot-manifest.json)。[人工 DOM 檢查](education-manual-result.json) 確認重播入口文案、8 個教學說明入口皆 48px，320px 提示無橫向溢出且兩個按鈕皆 48px。
+
+養成視窗的主要標題保留「灰影幼狼」，小提醒位於名稱之後；從視窗開教學中心時，等關閉視窗的焦點還原完成，再將焦點放到對應說明。CUA 實際鍵盤 Enter 驗證 `petCareHelpFocused: true`；這是瀏覽器焦點證據，仍不能代替手機螢幕閱讀器驗收。
 
 | # | 畫面 | 檔案 |
 | --- | --- | --- |
@@ -95,6 +101,10 @@ Welcome、首頁、新增、editor、已建立、完成、reward、reaction、fi
 
 預定通過門檻：6/6 無提示完成第二任務，沒有 trapped lock；任何求助都先修設計，再以新的未接觸者重測。這是預定驗收標準，不是已取得的結果。原型速度不能代替真人閱讀時間。
 
+已提供 [可執行的真人觀察工具](../../devtools/guided-usability.html)（必須經專用 server 開啟）：首輪完成後從今日列表開始，不自動建立第二任務，只提供任務句。工具記錄找到新增、提交、回今日、完成與協助次數；結果留在本頁記憶體，主持人自行複製匿名 JSON，不保存或上傳 Quest 內容／task ID。重載前須先整理結果到本機私人紀錄。
+
+[工具演練結果](usability-tool-fixture.json) 證明事件與里程碑能記錄，明確為 `automation-fixture`、`humanEvidence: false`。它不是受測者，也不能填補真人樣本數。
+
 ## 17. Apple Design Awards Review
 
 依需求列出的評審面向自我審查，不打分、不聲稱得獎資格。
@@ -114,7 +124,7 @@ Welcome、首頁、新增、editor、已建立、完成、reward、reaction、fi
 | Form | 純熟的既有陪伴視覺、短句 | overlay 仍佔據有限可用高度 | 320px＋系統最大字體 |
 | Function | 真實 task/reward、可恢復、防重 | 遠端錯誤資訊沒有新增 analytics | 實機離線、磁碟滿、多視窗 |
 | Differentiation | 生活任務與真實陪伴成長相接 | 練習任務是固定範例 | 是否理解任務如何對應生活 |
-| Sustainability | 純 core/service/controller、重用 editor | 真正 selector 仍依賴產品 DOM；replay history 暫留 | 改 UI 時需保持 acceptance harness |
+| Sustainability | 純 core/service/controller、重用 editor、交易清理重播練習 | 真正 selector 仍依賴產品 DOM | 改 UI 時需保持 acceptance harness |
 
 ## 19. Red Dot Review
 
@@ -126,12 +136,12 @@ Welcome、首頁、新增、editor、已建立、完成、reward、reaction、fi
 
 ## 20. Automated Test Result
 
-- [最終瀏覽器結果](browser-result.json)：**16/16 passed**。真正 App、表單、native IndexedDB；覆蓋 abort/重試、防重、replay、四種 migration、skip、320px 三主題、大字／減少動態、200% 完整流程與單獨第二正式任務。
-- [最終 Node 結果](npm-test-sequential.log)：**298 + 14 + 12 = 324/324 passed**，reveal-flow assertions 通過。執行 package.json 的相同所有測試命令，對 Node test 加 `--test-concurrency=1`，處理本機低磁碟空間。含新增 6 個 core tests。
-- [語法檢查](syntax-check.txt)：**21/21 passed**。
-- 最終補強後的 [focused tests](focused-final-test.log)：**17/17 passed**，包含首頁旅程排除練習任務與三主題回歸。
+- [最終瀏覽器結果](browser-result.json)：**21/21 passed**。真正 App、表單、native IndexedDB；覆蓋 abort/重試、防重、replay、四種 migration、skip、320px 三主題、大字／減少動態、200% 完整流程與單獨第二正式任務；新增舊畫面連點、跨日、重播清理／交易 rollback／不同 run 領獎拒絕、慢閱讀提示與重看、略過後空白 editor。持續儲存失敗與 foreground 也維持解鎖。
+- [本輪完整 Node 結果](npm-test-completion.log)：**300 + 14 + 12 = 326/326 passed**，reveal-flow assertions 通過。執行 package.json 的相同所有測試命令，對 Node test 加 `--test-concurrency=1`，處理本機低磁碟空間。包含 8 個 guided core／漸進教育檢查。
+- [本輪語法檢查](syntax-completion-check.txt)：**24/24 passed**。
+- 本輪補強後的 [focused tests](focused-completion-test.log)：**34/34 passed**，包含舊教學章節、舊畫面操作防重、讀取確認與無提示第二任務、首頁旅程排除練習及三主題回歸。
 - [原始並行結果](npm-test.log)：292/298；6 個失敗來自 ENOSPC（release fixture 複製滿磁碟，包括父測試失敗），保留原始記錄；序列重跑全部通過。
-- [release dry-run](artifact-dry-run.log)：611 個來源檔通過組裝規劃；新 modules/style 在 precache closure。dryRun=true、releaseReady=false、liveBaseline=UNKNOWN；沒有生成可發布產物、沒有部署。
+- [本輪 release dry-run](artifact-completion-dry-run.log)：612 個來源檔通過組裝規劃；新 modules/style 在 precache closure。dryRun=true、releaseReady=false、liveBaseline=UNKNOWN；沒有生成可發布產物、沒有部署。
 
 ## 21. Simulator / Native Test Result
 
@@ -145,4 +155,4 @@ iPhone Safari／主畫面 PWA 與 Android Chrome：真正安裝、首次慢網�
 
 目前有 **Guided Practice**（建立／完成步驟必須實際提交）、**Real Interaction**（真正產品表單與完成按鈕、真正任務與獎勵交易），以及 **Learning Transfer 的機制證據**（教學結束後，自動化成功走同一路徑建立並完成另一筆無 tutorial 標記的正式任務）。這證明產品允許延續所學、沒有 coach 才能操作的隱藏限制。
 
-**目前沒有真人 Learning Transfer 證據**。自動化知道按鈕在哪裡，不能代表一位不熟悉手機操作的人已學會。真正的結論必須來自第 16 點：教學後只給一句任務，受測者無提示完成新增→建立→回今日→完成。這項結果尚未取得，不能用「介紹過」或 16 個自動測試來代替。
+**目前沒有真人 Learning Transfer 證據**。自動化知道按鈕在哪裡，不能代表一位不熟悉手機操作的人已學會。真正的結論必須來自第 16 點：教學後只給一句任務，受測者無提示完成新增→建立→回今日→完成。這項結果尚未取得，不能用「介紹過」或 21 個自動測試來代替。

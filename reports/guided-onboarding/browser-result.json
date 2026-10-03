@@ -107,7 +107,7 @@
     {
       "name": "skip exits even if persistence fails, then retries the choice on the next launch",
       "ok": true,
-      "detail": "Session lock released; pending skip persisted after reload."
+      "detail": "Session and foreground stayed unlocked under continuing write failure; pending skip persisted after reload."
     },
     {
       "name": "200% text can finish the practice without a covered action",
@@ -116,6 +116,31 @@
         "width": 393,
         "height": 852
       }
+    },
+    {
+      "name": "rapid acknowledgement and stale-window requests cannot skip a screen",
+      "ok": true,
+      "detail": "Three clicks and two stale requests retained the meeting screen and one companion."
+    },
+    {
+      "name": "recovery moves an unfinished practice back to today after midnight",
+      "ok": true,
+      "detail": "Same task identity remains visible on the current day."
+    },
+    {
+      "name": "replay replacement is atomic, concurrent-safe and removes only rehearsal history",
+      "ok": true,
+      "detail": "Abort rolled back cleanup; two starts resumed one run; first receipt and formal task retained; foreign grant rejected."
+    },
+    {
+      "name": "optional education stays until acknowledged, survives navigation and links to rereadable help",
+      "ok": true,
+      "detail": "Reminder remained after seven seconds and navigation; explicit dismissal persisted; help reopened the same explanation."
+    },
+    {
+      "name": "skip still offers an optional editor hint with no task created on the user behalf",
+      "ok": true,
+      "detail": "A skipped learner sees a self-paced editor explanation and starts with an empty real form."
     }
   ]
 }

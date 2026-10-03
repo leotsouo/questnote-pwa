@@ -1,0 +1,34 @@
+[
+  {
+    "file": "16-collection-education",
+    "scene": "COLLECTION_HINT",
+    "height": 852,
+    "left": 21,
+    "top": 225,
+    "width": 393
+  },
+  {
+    "file": "17-education-help",
+    "scene": "EDUCATION_HELP",
+    "height": 852,
+    "left": 21,
+    "top": 225,
+    "width": 393
+  },
+  {
+    "file": "18-skipped-editor",
+    "scene": "SKIPPED_EDITOR",
+    "height": 852,
+    "left": 21,
+    "top": 225,
+    "width": 393
+  },
+  {
+    "file": "19-education-320",
+    "scene": "COLLECTION_HINT",
+    "height": 852,
+    "left": 21,
+    "top": 225,
+    "width": 320
+  }
+]

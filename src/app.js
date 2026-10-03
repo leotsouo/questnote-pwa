@@ -115,7 +115,7 @@ import {
 
 import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, openTaskForm, showGuidedHome, showToast } from './ui.js';
 import { prepareOnboarding, resetOnboardingState } from './onboardingService.js';
-import { initOnboarding } from './onboardingController.js';
+import { initOnboarding, openOnboardingEducation } from './onboardingController.js';
 import { initGuidedOnboarding } from './guidedOnboardingController.js';
 import { runAppHealthCheck } from './healthCheckService.js';
 import { getServiceWorkerRegisterUrl } from './version.js';
@@ -696,7 +696,8 @@ async function initApp() {
 
     }
 
-    await initGuidedOnboarding(appState, { openTaskForm, showGuidedHome, showToast, refreshState });
+    await initGuidedOnboarding(appState, { openTaskForm, showGuidedHome, showToast, refreshState,
+      showEducationHelp: (feature) => { closeModal(); openOnboardingEducation(feature); } });
     initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget }, onboardingAtStartup);
 
 

@@ -1,4 +1,4 @@
-import { dbGet, dbPut, dbMutateRecords, STORES } from './db.js';
+import { dbGet, dbPut, dbUpdateRecord, dbMutateRecords, STORES } from './db.js';
 import { normalizeEntry, getBondLevelFromExp } from './collectionService.js';
 import { getTodayDateString } from './taskFilterService.js';
 import { GUIDED_KEY, STARTER_PET_ID, normalizeGuidedState, initialGuidedState,
@@ -46,10 +46,14 @@ export async function advanceGuidedOnboarding(event, detail = {}) {
 }
 
 export async function startGuidedReplay() {
-  return dbMutateRecords([{ store: STORES.META, key: GUIDED_KEY }], ([raw]) => {
+  return dbMutateRecords([{ store: STORES.META, key: GUIDED_KEY }, { store: STORES.TASKS, all: true }], ([raw, tasks]) => {
+    if (raw?.status === 'active') return { puts: [], result: recoverGuidedState(raw, tasks) };
     const s = normalizeGuidedState({ ...raw, status: 'active', step: 'WELCOME', mode: 'replay',
       runId: `replay-${crypto.randomUUID()}`, taskId: null, reward: null });
-    return { puts: [{ store: STORES.META, value: s }], result: s };
+    // Retain the first real receipt, but do not accumulate hidden rehearsal history.
+    const deletes = tasks.filter((t) => t.isTutorial && (t.tutorialMode === 'replay' || !t.completed))
+      .map((t) => ({ store: STORES.TASKS, key: t.id }));
+    return { puts: [{ store: STORES.META, value: s }], deletes, result: s };
   });
 }
 
@@ -73,6 +77,8 @@ export async function claimTutorialReward(taskId) {
     if (!task?.isTutorial) throw new Error('練習任務不存在');
     if (task.rewardClaimed) return { puts: [], result: { task, amount: 0, energy: 0, bond: null } };
     const s = normalizeGuidedState(raw);
+    if (s.runId !== task.tutorialRunId || s.mode !== task.tutorialMode || s.taskId !== task.id
+      || !['active', 'skipped'].includes(s.status)) throw new Error('這次練習已結束，請重新開啟教學。');
     const receipt = tutorialReward(task.tutorialMode);
     const now = new Date().toISOString();
     const updated = { ...task, completed: true, completedAt: now, rewardClaimed: true,
@@ -114,4 +120,9 @@ export async function dismissGuidedAfterRestore() {
   const s = normalizeGuidedState({ status: 'existing' });
   await dbPut(STORES.META, s);
   return s;
+}
+
+export function acknowledgeGuidedHint(view) {
+  return dbUpdateRecord(STORES.META, GUIDED_KEY, (raw) => ({ ...raw,
+    hintsAcknowledged: [...new Set([...(raw?.hintsAcknowledged || []), view])] }));
 }

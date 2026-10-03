@@ -6570,6 +6570,7 @@ function openPetDetailModal(petId) {
       ${owned && pet.isCompanion ? '<p class="companion-badge companion-badge--detail">目前陪伴中</p>' : ''}
     </div>
   `);
+  if (owned) void recordOnboardingEvent('pet-care-opened');
 
   document.querySelector('[data-action="detail-view-image"]')?.addEventListener('click', (e) => {
     const id = e.currentTarget.dataset.petId;

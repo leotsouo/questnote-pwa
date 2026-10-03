@@ -2,7 +2,8 @@
 import { dbGet, STORES } from './db.js';
 import { GUIDED_KEY, GUIDED_STEPS, tutorialDraft } from './guidedOnboardingCore.js';
 import { advanceGuidedOnboarding, recoverGuidedOnboarding, startGuidedReplay,
-  resetGuidedAfterDataReset, dismissGuidedAfterRestore } from './guidedOnboardingService.js';
+  resetGuidedAfterDataReset, dismissGuidedAfterRestore, acknowledgeGuidedHint } from './guidedOnboardingService.js';
+import { GUIDED_EDUCATION, contextualEducation } from './guidedEducation.js';
 import { getPetImageSrc } from './imagePreloadService.js';
 import { reactTwilightCompanion } from './twilightPresentation.js';
 
@@ -20,6 +21,7 @@ let resizeObserver;
 let signature = '';
 let repairing = false;
 let layoutFrame;
+let hintFeature;
 const inertElements = new Map();
 const pendingSkipKey = () => `questnote-guided-skip-pending:${location.pathname}`;
 const skipPending = () => { try { return sessionStorage.getItem(pendingSkipKey()) === '1'; } catch { return false; } };
@@ -161,7 +163,12 @@ function updateHelp() {
 export function refreshGuidedOnboarding() {
   if (!root || !record) return;
   updateHelp();
-  if (!isGuidedOnboardingActive()) { releaseLock(); root.replaceChildren(); signature = ''; return; }
+  if (!isGuidedOnboardingActive()) {
+    releaseLock(); root.replaceChildren(); signature = '';
+    if (hintFeature && !document.querySelector('.guided-feature-hint')) renderContextualHint(hintFeature);
+    return;
+  }
+  document.querySelectorAll('.guided-feature-hint').forEach((hint) => hint.remove());
   releaseLock();
   document.body.classList.add('guided-active');
   document.body.classList.toggle('guided-editor', record.step === 'CREATE_TUTORIAL_QUEST');
@@ -231,13 +238,13 @@ async function repairPresentation() {
   refreshGuidedOnboarding();
 }
 
-async function action(name) {
+async function action(name, expected = {}) {
   if (name === 'repair') { record = await recoverGuidedOnboarding(); navigation.showGuidedHome(); await repairPresentation(); return; }
   if (name === 'skip') { skipOpen = true; signature = ''; refreshGuidedOnboarding(); return; }
   if (name === 'cancel-skip') { stopHold(); skipOpen = false; signature = ''; refreshGuidedOnboarding(); return; }
   if (name === 'confirm-skip') {
     let saved = true;
-    try { record = await advanceGuidedOnboarding('skip-confirmed'); rememberSkip(false); }
+    try { record = await advanceGuidedOnboarding('skip-confirmed', { expectedRunId: expected.expectedRunId }); rememberSkip(false); }
     catch {
       saved = false; record = { ...record, status: 'skipped' };
       rememberSkip(true);
@@ -246,12 +253,12 @@ async function action(name) {
     refreshGuidedOnboarding(); navigation.showToast?.(saved ? '教學已略過。新增任務時會有小提醒；也能到「更多 → 使用教學」再次練習。' : '這次已離開教學。儲存暫時失敗，下次開啟會重試保存略過選擇。', 'info', 6500); return;
   }
   if (name === 'finish-create' || name === 'finish-home') {
-    record = await advanceGuidedOnboarding('finish'); releaseLock(); refreshGuidedOnboarding(); navigation.showGuidedHome();
-    if (name === 'finish-create') navigation.openTaskForm();
+    record = await advanceGuidedOnboarding('finish', expected); releaseLock(); refreshGuidedOnboarding(); navigation.showGuidedHome();
+    if (record.status === 'completed' && name === 'finish-create') navigation.openTaskForm();
     return;
   }
   if (name === 'acknowledge') {
-    record = await advanceGuidedOnboarding('acknowledge');
+    record = await advanceGuidedOnboarding('acknowledge', expected);
     if (record.step === 'MEET_COMPANION') await navigation.refreshState();
     if (record.step === 'COMPANION_REACTION') reactTwilightCompanion('你做到了。接下來，我也陪你一起。');
     await repairPresentation();
@@ -265,27 +272,49 @@ function stopHold() {
 
 export async function recordGuidedOnboardingEvent(event, detail = {}) {
   if (!root) return;
+  const expected = { expectedStep: record?.step, expectedRunId: record?.runId };
   return run(async () => {
-    if (event === 'editor-opened') record = await advanceGuidedOnboarding(event);
-    else if (['task-created', 'task-completed'].includes(event)) record = await recoverGuidedOnboarding();
+    if (skipPending()) {
+      try { record = await advanceGuidedOnboarding('skip-confirmed'); rememberSkip(false); }
+      catch { record = { ...record, status: 'skipped' }; }
+    } else if (event === 'editor-opened') record = await advanceGuidedOnboarding(event, expected);
+    else if (['task-created', 'task-completed', 'foreground', 'navigation'].includes(event)) record = await recoverGuidedOnboarding();
+    if (event === 'foreground') await navigation.refreshState();
     await repairPresentation(); refreshGuidedOnboarding();
     if (event === 'view-changed' && !isGuidedOnboardingActive()) await contextualHint(detail.viewName);
+    if (event === 'pet-care-opened' && !isGuidedOnboardingActive()) await contextualHint('pet-care');
   });
 }
 
-const HINTS = {
-  tasks: '在「新增任務」記下一件小事。做完後，點該任務的「完成」。',
-  gacha: '召喚會花費星塵。先看畫面上的費用，再決定是否召喚；不用為了教學抽卡。',
-  collection: '在「已獲得」找到夥伴，點「設為陪伴」，牠就會陪你出現在首頁。',
-  expedition: '先選地區查看時間與能量，再選隊伍。確認出發後，時間到回來領收穫。',
-};
-
 async function contextualHint(view) {
-  if (skipPending() || !['completed', 'skipped'].includes(record?.status) || !HINTS[view] || record.hintsSeen?.includes(view)) return;
-  const { dbUpdateRecord } = await import('./db.js');
-  record = await dbUpdateRecord(STORES.META, GUIDED_KEY, (raw) => ({ ...raw,
-    hintsSeen: [...new Set([...(raw.hintsSeen || []), view])] }));
-  navigation.showToast?.(HINTS[view], 'info', 6500);
+  document.querySelectorAll('.guided-feature-hint').forEach((hint) => hint.remove());
+  hintFeature = view;
+  // Do not replace the local unlocked exit with the failed checkpoint on disk.
+  if (skipPending()) return;
+  // The old timed toast did not prove the explanation was read. Only an explicit
+  // dismissal acknowledges this new education; navigating away keeps it available.
+  record = await dbGet(STORES.META, GUIDED_KEY) || record;
+  renderContextualHint(view);
+}
+
+function renderContextualHint(view) {
+  if (skipPending() || document.querySelector('#onboarding-root .onboarding-dock')) return;
+  const hint = contextualEducation(record, view);
+  const viewHost = document.querySelector(`#view-${CSS.escape(view)}.active`);
+  const host = view === 'pet-care' ? document.querySelector('#modal-overlay.open .pet-detail')
+    : view === 'tasks' && document.querySelector('#task-form') ? document.querySelector('#task-form')
+    : viewHost?.querySelector('.identity-surface') || viewHost;
+  if (!hint || !host) return;
+  const card = document.createElement('aside');
+  card.className = 'guided-feature-hint card';
+  card.setAttribute('aria-labelledby', 'guided-feature-title');
+  const body = host.matches('#task-form') ? '寫下一件你想做的事，再點「新增」。今天做完後，回到今日任務，點那一件任務的「完成」。' : hint.body;
+  card.innerHTML = `<p class="guided-note">第一次來這裡 · 小提醒</p><h2 id="guided-feature-title">${escape(hint.title)}</h2><p>${escape(body)}</p>
+    <div class="guided-feature-actions"><button type="button" class="btn btn--secondary" data-guided-hint-dismiss="${escape(view)}">我知道了</button>
+    <button type="button" class="guided-link" data-guided-hint-help="${escape(view)}">查看使用教學</button></div>`;
+  const header = [...host.children].find((child) => child.matches('header, .pet-detail__name'));
+  if (header) header.after(card); else host.prepend(card);
+  // Optional education does not move focus, lock controls or expire for slow readers.
 }
 
 export function showSkippedEditorHint() {
@@ -310,7 +339,8 @@ export async function initGuidedOnboarding(state, handlers) {
   resizeObserver = new ResizeObserver(positionSpotlight);
   root.addEventListener('click', (event) => {
     const name = event.target.closest('[data-guided-action]')?.dataset.guidedAction;
-    if (name && name !== 'hold-skip') void run(() => action(name));
+    const expected = { expectedStep: record?.step, expectedRunId: record?.runId };
+    if (name && name !== 'hold-skip') void run(() => action(name, expected));
     else if (event.target.closest('.guided-shade')) feedback();
   });
   root.addEventListener('pointerdown', (event) => {
@@ -319,7 +349,8 @@ export async function initGuidedOnboarding(state, handlers) {
     event.preventDefault(); stopHold(); holdStarted = performance.now();
     try { hold.setPointerCapture(event.pointerId); } catch { /* Synthetic/switch input may not own a pointer. */ }
     hold.classList.add('is-holding');
-    holdTimer = setTimeout(() => { stopHold(); void run(() => action('confirm-skip')); }, 1500);
+    const expected = { expectedRunId: record?.runId };
+    holdTimer = setTimeout(() => { stopHold(); void run(() => action('confirm-skip', expected)); }, 1500);
   });
   for (const name of ['pointerup', 'pointercancel', 'lostpointercapture']) root.addEventListener(name, stopHold);
   root.addEventListener('pointermove', (event) => {
@@ -354,6 +385,30 @@ export async function initGuidedOnboarding(state, handlers) {
   document.addEventListener('focusin', (event) => {
     if (isGuidedOnboardingActive() && !permitted(event.target)) root.querySelector('.guided-coach')?.focus({ preventScroll: true });
   });
+  document.addEventListener('click', (event) => {
+    const dismissed = event.target.closest('[data-guided-hint-dismiss]')?.dataset.guidedHintDismiss;
+    const help = event.target.closest('[data-guided-hint-help]')?.dataset.guidedHintHelp;
+    if (dismissed) void run(async () => {
+      const button = event.target.closest('button');
+      const card = button.closest('.guided-feature-hint');
+      try { record = await acknowledgeGuidedHint(dismissed); }
+      catch { navigation.showToast?.('這次已關閉提醒。儲存暫時失敗，下次可能再顯示。', 'info'); }
+      const host = card.parentElement;
+      hintFeature = null;
+      card.remove();
+      const next = host?.querySelector('button:not(:disabled), input, select, summary');
+      next?.focus({ preventScroll: true });
+    });
+    if (help) {
+      hintFeature = null;
+      document.querySelectorAll('.guided-feature-hint').forEach((hint) => hint.remove());
+      navigation.showEducationHelp?.(help);
+    }
+  });
+  const help = document.querySelector('#guided-feature-help');
+  if (help) help.innerHTML = Object.entries(GUIDED_EDUCATION).map(([feature, content]) =>
+    `<details data-education-feature="${feature}"><summary>${escape(content.title)}</summary><p>${escape(content.body)}</p>
+      ${content.lesson ? `<button type="button" class="btn btn--secondary" data-onboarding-action="lesson:${content.lesson}">繼續學習這一章</button>` : ''}</details>`).join('');
   await repairPresentation(); refreshGuidedOnboarding();
 }
 
