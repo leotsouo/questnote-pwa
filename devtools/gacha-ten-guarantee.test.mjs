@@ -63,14 +63,16 @@ test('both existing pity boundaries outrank the SR floor and reset only their ow
 test('a promoted duplicate grants its actual SR fragments once and leaves progression intact', () => {
   const { input } = scenario();
   const pet = input.allPets.find((pet) => pet.rarity === 'SR' && pet.poolTags.includes(input.selectedPoolId));
-  input.collection = [{ ...createCollectionEntry(pet.id, input.now), stars:5, fragments:42, nickname:'留住名字', bondExp:500, bondLevel:5 }];
+  input.collection = [{ ...createCollectionEntry(pet.id, input.now), encounterMigrationVersion:0, stars:5, fragments:42, nickname:'留住名字', bondExp:500, bondLevel:5 }];
   const plan = planGachaTransaction(input);
   const result = plan.result.results.at(-1);
   const saved = plan.collection.find((row) => row.petId === pet.id);
   assert.equal(result.isNew, false);
   assert.equal(result.duplicateFragments, 5);
-  assert.equal(saved.fragments, 47);
-  assert.equal(saved.stars, 5);
+  assert.equal(plan.encounterEconomy.balance, 155); // 142 migration + 8 N reencounters + 5 SR.
+  assert.equal(saved.fragments, undefined);
+  assert.equal(saved.legacySpecialtyFloor, 5);
+  assert.equal(saved.stars, undefined);
   assert.equal(saved.nickname, '留住名字');
   assert.equal(saved.bondLevel, 5);
 });

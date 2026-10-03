@@ -1,5 +1,8 @@
+import { invitationEntry, reencounterMoment, fragmentBalance, intimacySummary, createInvitationController } from './invitationPresentation.js';
+import { invitationCandidates } from './encounterEconomyCore.js';
+import { getPetSpecialty } from './expeditionGameplay.js';
 import { initialAwakeningPortrait } from './petAwakeningView.js';
-import { RARITIES, MAX_DISPLAY_STARS, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, duplicateNote, encounterResults } from './encounterViewModel.js';
+import { RARITIES, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, duplicateNote, encounterResults } from './encounterViewModel.js';
 import { normalizePoolDefinition, resolveActivePool } from './poolContentContract.js';
 import { createPoolScenery, ceremonyPresentation, playCeremonyRitual, playCeremonyCharacter } from './encounterCeremony.js';
 import { delay } from './imagePreloadService.js';
@@ -10,6 +13,12 @@ const modalHost = document.createElement('div');
 modalHost.className = 'encounter-dialogs';
 modalHost.innerHTML = '<dialog id="identity-detail-dialog" class="identity-dialog" aria-labelledby="identity-dialog-heading"><div id="identity-dialog-content"></div></dialog><dialog id="identity-reveal-dialog" class="identity-dialog" aria-labelledby="identity-reveal-name"><div id="identity-reveal-content"></div></dialog><div id="identity-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>';
 if (!LOCAL_ART_PREVIEW) document.body.append(modalHost);
+const invitationDialog = document.createElement('dialog');
+invitationDialog.className = 'identity-dialog invitation-dialog';
+invitationDialog.id = 'specified-invitation-dialog';
+if (!LOCAL_ART_PREVIEW) document.body.append(invitationDialog);
+let invitationController = null;
+let migrationShown = false;
 let appState = null;
 let resolvePresentation = null;
 
@@ -58,7 +67,7 @@ function imageHtml(pet, size = 'card', lazy = true, className = '') {
 }
 
 function cues(pet, includeOwned = true) {
-  return `<span class="identity-cue"><span class="rarity">${pet.rarity}</span>${includeOwned ? `<span>${owned(pet) ? '已擁有' : '尚未相遇'}</span>` : ''}</span>`;
+  return `<span class="identity-cue"><span class="rarity">${pet.rarity}</span>${includeOwned ? `<span>${owned(pet) ? '已相遇' : '尚未相遇'}</span>` : ''}</span>`;
 }
 
 function miniCard(pet, { showFeatured = false, grayscale = false, title = false } = {}) {
@@ -90,6 +99,7 @@ function renderPool() {
       <span class="hero-portal">${imageHtml(hero, 'stage', false, 'hero-art')}</span>
       <span class="hero-caption"><span class="art-label">本池焦點 · 點擊認識</span><span class="pet-name">${escapeHtml(hero.name)}</span><span class="pet-title">${escapeHtml(hero.title)}</span>${cues(hero)}</span>
     </button><div class="summon-dock"><div class="summon-buttons"><button class="primary" ${appActions.isBusy() || appState.wallet.stardust < selected.cost ? 'disabled' : ''} data-identity-action="summon" data-pet-id="${hero.id}"><span>啟動相遇</span><small>單次 · ${selected.cost} 星塵</small></button><button ${appActions.isBusy() || appState.wallet.stardust < selected.cost * 10 ? 'disabled' : ''} data-identity-action="summon-ten"><span>十連相遇</span><small>十次 · ${selected.cost * 10} 星塵</small></button></div><p>${walletHint(selected)}</p></div></div></div></section>
+    ${invitationEntry(appState.encounterEconomy?.balance || 0)}
     <div class="pool-copy"><p class="eyebrow">${escapeHtml(selected.presentation?.badge || '持續開放的相遇')}</p><h2>${escapeHtml(selected.name)}</h2>
       <p class="pool-lore">${escapeHtml(selected.presentation?.tagline || '循著星光，認識願意與你一起前進的夥伴。')}</p>
       <p class="subtle">${list.length} 位可相遇的夥伴 · 焦點展示不加成機率</p>
@@ -169,10 +179,10 @@ function petDetail(pet, returnToBatch = false) {
     ${isOwned ? `<div class="companion-actions">${entry.nickname ? `<p class="subtle">你的稱呼：${escapeHtml(entry.nickname)} · 日常陪伴使用暱稱</p>` : ''}<button class="${entry.isCompanion ? '' : 'primary'}" data-identity-action="set-companion" data-pet-id="${pet.id}" ${entry.isCompanion ? 'disabled' : ''}>${entry.isCompanion ? '正在與你同行' : '設為陪伴'}</button><p class="subtle">切換後，首頁會顯示這位同行者。</p></div>` : ''}
     ${awakening ? `<section class="detail-section"><h3>羈絆覺醒 · ${isAwakened ? '形態欣賞' : '形態預覽'}</h3><p>目前${isAwakened ? '欣賞' : '預覽'}：${form === 'awakened' ? '覺醒相' : '初遇相'} · 覺醒後仍是同一位夥伴</p><div class="awakening-form-options"><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="initial" aria-pressed="${form === 'initial'}">初遇相</button><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="awakened" aria-pressed="${form === 'awakened'}">覺醒相${isAwakened ? '' : ' · 黑白預覽'}</button></div><p>${isAwakened ? '已完成覺醒，可欣賞兩種形態。' : '覺醒相以黑白預覽；完成羈絆覺醒後，揭曉全彩造型與專屬演出。'}</p></section>` : ''}
     <p class="detail-copy">${escapeHtml(isOwned ? pet.lore : publicIntro(pet))}</p>
-    ${isOwned ? `<dl class="detail-stats"><div><dt>升星</dt><dd>${entry.stars} 星</dd></div><div><dt>親密度</dt><dd>Lv.${entry.bondLevel}</dd></div><div><dt>此夥伴碎片</dt><dd>${entry.fragments}</dd></div></dl>` : ''}
+    ${isOwned ? intimacySummary(entry.bondLevel, getPetSpecialty({ ...pet, ...entry }), entry.legacySpecialtyFloor) : ''}
     ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p>${normalGreeting(pet) ? `<blockquote>${escapeHtml(normalGreeting(pet))}</blockquote>` : ''}</section>` : ''}
     <section class="detail-section"><h3>相處，才會揭開的故事</h3>${isOwned ? [2,3,4,5].map((level) => `<p>親密度 Lv.${level} · ${entry.bondLevel >= level ? escapeHtml(pet.bondUnlocks?.[level] || '已解鎖') : '故事尚未解鎖'}</p>`).join('') : '<p>相遇後可閱讀完整背景；專屬對話與羈絆章節隨親密度逐步揭開。</p>'}</section>
-    ${isOwned ? `<section class="detail-section"><h3>一起走下去</h3><button data-identity-action="app-pet-detail" data-pet-id="${pet.id}">養成與餵食</button><button data-identity-action="app-nickname" data-pet-id="${pet.id}">修改暱稱</button><p>在完整 App 的養成頁，可以修改暱稱、餵食、升星與閱讀已解鎖故事。</p></section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-identity-action="${returnToBatch ? 'return-batch' : view === 'collection' ? 'close-dialog' : 'preview'}">${returnToBatch ? '返回本次相遇' : view === 'collection' ? '返回圖鑑' : '返回本池夥伴'}</button>`);
+    ${isOwned ? `<section class="detail-section"><h3>一起走下去</h3><button data-identity-action="app-pet-detail" data-pet-id="${pet.id}">養成與餵食</button><button data-identity-action="app-nickname" data-pet-id="${pet.id}">修改暱稱</button><p>在完整 App 的養成頁，可以修改暱稱、餵食、培養親密度與閱讀同行故事。</p></section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-identity-action="${returnToBatch ? 'return-batch' : view === 'collection' ? 'close-dialog' : 'preview'}">${returnToBatch ? '返回本次相遇' : view === 'collection' ? '返回圖鑑' : '返回本池夥伴'}</button>`);
 }
 
 function poolPreview() {
@@ -215,7 +225,7 @@ function phase(name) {
   if (name === 'result') {
     clearTimers();
     shell.querySelector('[data-identity-action="skip-reveal"]').textContent = activeBatch ? '略過全部' : '關閉';
-    document.getElementById('identity-announcement').textContent = `${activeResult.pet.name}，${activeResult.pet.title || ''}，${activeResult.pet.rarity}。${activeResult.isNew ? '新夥伴已加入圖鑑。' : `再次相遇，${activeResult.pet.name}碎片增加${activeResult.fragmentsGained}。`}`;
+    document.getElementById('identity-announcement').textContent = `${activeResult.pet.name}，${activeResult.pet.title || ''}，${activeResult.pet.rarity}。${activeResult.isNew ? '新夥伴已加入圖鑑。' : `再次相遇，相遇碎片增加 ${activeResult.fragmentsGained}，目前 ${activeResult.encounterBalanceAfter ?? appState.encounterEconomy?.balance ?? 0} 枚。`}`;
     shell.querySelector('.reveal-actions').removeAttribute('aria-hidden');
     shell.querySelector('.obtained').removeAttribute('aria-hidden');
   }
@@ -238,7 +248,7 @@ function presentResult(result, stepByStep = false, artworkShown = false) {
     ${activeBatch ? `<p class="queue-progress">本次相遇 · 角色揭露 ${activeBatch.index + 1} / ${activeBatch.queue.length}</p>` : ''}
     <div class="reveal-art">${imageHtml(pet,'stage',false,'reveal-image')}</div><div class="reveal-identity"><h2 id="identity-reveal-name" class="pet-name" aria-hidden="true">${escapeHtml(pet.name)}</h2><p class="pet-title" aria-hidden="true">${escapeHtml(pet.title)}</p>${cues(pet,false)}</div>
     ${result.isNew && normalGreeting(pet) ? `<blockquote class="reveal-greeting" hidden>「${escapeHtml(normalGreeting(pet))}」</blockquote>` : ''}
-    <div class="obtained" aria-hidden="true">${result.isNew ? '初次相遇，已加入圖鑑。<p>從相遇開始，讓故事慢慢變熟悉。</p>' : `再次相遇 · ${escapeHtml(pet.name)}碎片 +${result.fragmentsGained}<p>${duplicateNote(result)}</p>`}</div>
+    <div class="obtained" aria-hidden="true">${result.isNew ? '初次相遇，已加入圖鑑。<p>從相遇開始，讓故事慢慢變熟悉。</p>' : reencounterMoment(pet, result.fragmentsGained, result.encounterBalanceAfter ?? appState.encounterEconomy?.balance ?? 0)}</div>
     <div class="reveal-actions" aria-hidden="true">${activeBatch ? `<button class="primary" data-identity-action="next-result">${activeBatch.index + 1 === activeBatch.queue.length ? '查看本次相遇' : '下一位夥伴'}</button><button data-identity-action="batch-summary">查看全部結果</button>` : '<button class="primary" data-identity-action="reveal-detail">認識這位夥伴</button><button data-identity-action="reveal-collection">查看圖鑑</button>'}</div>
     ${manual ? `<div class="filters" aria-label="逐步檢視演出">${['begin','cue','silhouette','art','name','title','result'].map((key,index) => `<button data-phase-step="${key}">${index+1} ${['開始','稀有線索','輪廓','插畫','名字','稱號','結果'][index]}</button>`).join('')}</div>` : ''}
   </section>`;
@@ -288,7 +298,7 @@ function showBatchSummary() {
   clearTimers();
   activeBatch.summary = true;
   const count = activeBatch.results.filter((result) => result.isNew).length;
-  document.getElementById('identity-reveal-content').innerHTML = `<section class="batch-summary"><div class="dialog-header"><h2 id="identity-batch-heading">本次相遇</h2><button data-identity-action="close-reveal">關閉</button></div><div class="dialog-body"><p class="batch-lead">${count} 位初次相遇 · 10 次旅程記錄</p><p class="subtle">點擊任一夥伴，認識牠的故事。</p><div class="batch-grid">${activeBatch.results.map((result, index) => `<article class="batch-card ${result.isNew ? 'first-encounter' : ''}"><button data-result-pet="${result.pet.id}" aria-label="第 ${index + 1} 位，${escapeHtml(identityLabel(result.pet, true))}，${result.isNew ? '初次相遇' : `再次相遇，碎片增加 ${result.fragmentsGained}`}，${!result.isNew && result.starsAtEncounter >= MAX_DISPLAY_STARS ? '已達最高星級' : ''}"><span class="encounter-index">${String(index + 1).padStart(2, '0')}</span>${imageHtml(result.pet)}<span class="pet-name">${escapeHtml(result.pet.name)}</span><span class="identity-cue"><span class="rarity">${result.pet.rarity}</span></span><span class="encounter-state">${result.isNew ? '初次相遇' : '再次相遇'}</span>${result.isNew ? '' : `<span class="fragment-gain">${escapeHtml(result.pet.name)}碎片 +${result.fragmentsGained}</span>${result.starsAtEncounter >= MAX_DISPLAY_STARS ? '<span class="subtle">已滿星 · 碎片繼續累積</span>' : ''}`}</button></article>`).join('')}</div><div class="batch-actions"><button class="primary" data-identity-action="reveal-collection">查看圖鑑</button><button data-identity-action="close-reveal">返回卡池</button></div></div></section>`;
+  document.getElementById('identity-reveal-content').innerHTML = `<section class="batch-summary"><div class="dialog-header"><h2 id="identity-batch-heading">本次相遇</h2><button data-identity-action="close-reveal">關閉</button></div><div class="dialog-body"><p class="batch-lead">${count} 位初次相遇 · 10 次旅程記錄</p><p class="subtle">點擊任一夥伴，認識牠的故事。</p><div class="batch-grid">${activeBatch.results.map((result, index) => `<article class="batch-card ${result.isNew ? 'first-encounter' : ''}"><button data-result-pet="${result.pet.id}" aria-label="第 ${index + 1} 位，${escapeHtml(identityLabel(result.pet, true))}，${result.isNew ? '初次相遇' : `再次相遇，相遇碎片增加 ${result.fragmentsGained}`}，"><span class="encounter-index">${String(index + 1).padStart(2, '0')}</span>${imageHtml(result.pet)}<span class="pet-name">${escapeHtml(result.pet.name)}</span><span class="identity-cue"><span class="rarity">${result.pet.rarity}</span></span><span class="encounter-state">${result.isNew ? '初次相遇' : '再次相遇'}</span>${result.isNew ? '' : `<span class="fragment-gain">相遇碎片 +${result.fragmentsGained}</span>`}</button></article>`).join('')}</div>${fragmentBalance(activeBatch.results.at(-1).encounterBalanceAfter ?? appState.encounterEconomy?.balance ?? 0)}<div class="batch-actions"><button class="primary" data-identity-action="reveal-collection">查看圖鑑</button><button data-identity-action="close-reveal">返回卡池</button></div></div></section>`;
   reveal.removeAttribute('aria-label');
   reveal.setAttribute('aria-labelledby', 'identity-batch-heading');
   if (!reveal.open) reveal.showModal();
@@ -353,6 +363,7 @@ document.addEventListener('click', async (event) => {
   if (button.dataset.phaseStep) { phase(button.dataset.phaseStep); return; }
   const action = button.dataset.identityAction;
   if (action === 'app-pet-detail' || action === 'app-nickname') { dialog.close(); if (reveal.open) closeReveal(); action === 'app-pet-detail' ? appActions.openPetDetail(button.dataset.petId) : appActions.openNickname(button.dataset.petId); return; }
+  if (action === 'invitation') openInvitation();
   if (action === 'preview') poolPreview();
   if (action === 'probability') probability();
   if (action === 'close-dialog') dialog.close();
@@ -429,9 +440,13 @@ export function renderEncounterView(name, state, refresh, actions) {
   pets = state.allPets.map((pet) => initialAwakeningPortrait(pet, state.awakeningCatalog));
   pools = state.poolsData.pools.filter((row) => row.active).map(normalizePoolDefinition);
   collection = new Map(state.enrichedCollection.filter((pet) => pet.owned).map((pet) => [pet.id, {
-    petId: pet.id, stars: pet.stars, fragments: pet.fragments, bondExp: pet.bondExp, bondLevel: pet.bondLevel,
+    petId:pet.id, legacySpecialtyFloor:pet.legacySpecialtyFloor, encounterMigrationVersion:pet.encounterMigrationVersion, bondExp:pet.bondExp, bondLevel:pet.bondLevel,
     isCompanion: pet.isCompanion, nickname: pet.nickname, obtainedAt: pet.obtainedAt, lastPettedAt: pet.lastPettedAt,
   }]));
+  if (!migrationShown && state.encounterEconomy?.migrationReceipt && !state.encounterEconomy.migrationReceipt.acknowledgedAt) {
+    migrationShown = true;
+    queueMicrotask(() => openInvitation('migration'));
+  }
   const host = document.getElementById('view-' + name);
   let target = host.querySelector('.identity-surface');
   if (!target) {
@@ -462,4 +477,16 @@ async function runDraw(count) {
 function walletHint(selected) {
   const counters = appState.gachaStats?.poolPity?.[selected.id] || {};
   return '持有 ' + (appState.wallet?.stardust || 0) + ' 星塵 · SSR+ 保底 ' + (counters.ssrPity || 0) + '/' + selected.pity.ssr + ' · UR 保底 ' + (counters.urPity || 0) + '/' + selected.pity.ur;
+}
+
+function openInvitation(route = 'gallery') {
+  const model = () => ({ route, balance:appState.encounterEconomy?.balance || 0, reduceMotion:reduced(),
+    rows:invitationCandidates(pets, appState.poolsData, appState.poolUnlockState, [...collection.values()]),
+    receipt:appState.encounterEconomy?.migrationReceipt, names:new Map(pets.map((pet) => [pet.id, pet.name])) });
+  if (!invitationController) invitationController = createInvitationController(invitationDialog, {
+    invite:(id) => appActions.invite(id), setCompanion:(id) => appActions.setCompanion(id),
+    dismissMigration:() => appActions.dismissMigration(),
+    refreshModel(current) { const fresh = model(); const id = current.selected?.pet.id; Object.assign(current, { balance:fresh.balance, rows:fresh.rows, selected:fresh.rows.find((row) => row.pet.id === id) }); },
+  });
+  invitationController.open(model());
 }

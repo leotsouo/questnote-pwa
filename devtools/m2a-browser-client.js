@@ -7,9 +7,9 @@ indexedDB.open = (name, version) => {
   if (!['QuestNoteDB', 'QuestNotePreviewDB'].includes(name)) throw new Error('Unexpected database request');
   return nativeOpen(databaseName, version);
 };
-const [storage, gacha, rewards, collection, unlock, backup] = await Promise.all([
+const [storage, gacha, rewards, collection, unlock, backup, economy] = await Promise.all([
   import('../src/db.js'), import('../src/gachaService.js'), import('../src/rewardService.js'),
-  import('../src/collectionService.js'), import('../src/poolUnlockService.js'), import('../src/backupService.js'),
+  import('../src/collectionService.js'), import('../src/poolUnlockService.js'), import('../src/backupService.js'), import('../src/encounterEconomyService.js'),
 ]);
 const db = await storage.openDB();
 if (db.name !== databaseName) throw new Error('Isolation failed');
@@ -28,7 +28,7 @@ IDBObjectStore.prototype.put = function (...args) {
   return request;
 };
 globalThis.questnoteTestClient = {
-  storage, gacha, rewards, collection, unlock, backup, databaseName,
+  storage, gacha, rewards, collection, unlock, backup, economy, databaseName,
   random(value) { Math.random = () => value; },
   fault(value) { fault = value; putCount = 0; sawRequestSuccess = false; },
   get requestSucceeded() { return sawRequestSuccess; },

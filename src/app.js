@@ -1,3 +1,4 @@
+import { ensureEncounterMigration, getEncounterEconomy } from './encounterEconomyService.js';
 import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
 /**
 
@@ -320,6 +321,7 @@ async function refreshState(options = {}) {
   appState.tasks = sortTasks(tasks);
 
   appState.wallet = wallet;
+  appState.encounterEconomy = await getEncounterEconomy();
 
   appState.gachaStats = gachaStats;
 
@@ -433,6 +435,7 @@ async function resetAllData() {
   await clearAllData();
 
   await initWallet();
+  await ensureEncounterMigration();
 
   await initGachaStats();
 
@@ -558,6 +561,7 @@ async function initApp() {
 
 
     await initWallet();
+  await ensureEncounterMigration();
 
     await initGachaStats();
     // Each App launch starts on standard; later refreshes retain manual selection.

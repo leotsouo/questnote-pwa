@@ -1,6 +1,7 @@
 import { getEligiblePetsForPool } from '../src/petPoolFilter.js';
 import { resolveEffectivePool } from '../src/poolContentContract.js';
-import { FRAGMENT_BY_RARITY, STAR_UPGRADE_COST } from '../src/collectionService.js';
+import { ENCOUNTER_FRAGMENTS_BY_RARITY as FRAGMENT_BY_RARITY } from '../src/encounterEconomyCore.js';
+const STAR_UPGRADE_COST = { 2:5, 3:15, 4:30, 5:50 }; // Historical art-only fixture; never persisted.
 
 export const RARITIES = ['N', 'R', 'SR', 'SSR', 'UR'];
 export const MAX_DISPLAY_STARS = Math.max(...Object.keys(STAR_UPGRADE_COST).map(Number));
