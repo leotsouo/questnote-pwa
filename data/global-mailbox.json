@@ -1,7 +1,31 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-02T08:49:46.000Z",
+  "generatedAt": "2026-10-03T09:01:12.000Z",
   "messages": [
+    {
+      "id": "2026-10-v3521-collection-summon-redesign-gift",
+      "type": "compensation",
+      "title": "V3.5.21 更新｜圖鑑與召喚頁改版，附 1,000 星塵",
+      "body": "親愛的旅人：\n\n新版召喚頁與圖鑑已上線！現在可以瀏覽六個卡池的角色介紹與召喚內容；單抽、十連的結果畫面也重新整理。抽到夥伴後，可前往圖鑑查看收藏、篩選角色，並從角色資料開啟養成入口。\n\n邀請你實際走一遍：切換卡池、查看角色介紹、體驗召喚結果，再用圖鑑篩選和養成入口，看看流程是否清楚、操作是否順手。召喚會消耗星塵，請先留意畫面標示的費用；本信附上的 1,000 星塵可以用來體驗新版召喚，請手動點擊領取。\n\n若遇到顯示錯誤、操作卡住或不直覺的地方，歡迎到「更多 → 意見與問題回報」告訴我們。每份本機資料可領取一次，期限至 2026 年 11 月 3 日 23:59（台灣時間）。\n\n若尚未看到新版，請保持連線，關閉其他 QuestNote 分頁與主畫面 App 後重新開啟；看到更新提示時，按「更新並重新載入」。請勿清除網站資料，以免失去本機紀錄。\n\n謝謝你陪伴 QuestNote，一起讓每次相遇與收藏都更順手。\n\nQuestNote 開發團隊",
+      "publishedAt": "2026-10-03T17:01:12+08:00",
+      "expiresAt": "2026-11-03T23:59:59+08:00",
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.5.20",
+      "maxAppVersion": null,
+      "icon": "✨",
+      "reward": {
+        "stardust": 1000,
+        "adventureEnergy": 0,
+        "materials": {},
+        "items": {}
+      },
+      "action": {
+        "type": "view",
+        "view": "gacha",
+        "label": "體驗新版召喚"
+      }
+    },
     {
       "id": "2026-10-v351-cumulative-update",
       "type": "update",
