@@ -1,0 +1,9 @@
+PASS 108 layout cases: six sections, three widths, three themes, two font sizes
+PASS individual collection milestone claim and independent gallery filters
+PASS blessing: claimed 2, repeat grants nothing
+PASS quests: claimed 4, repeat grants nothing
+PASS collection: claimed 1, repeat grants nothing
+PASS exploration: claimed 3, repeat grants nothing
+PASS achievements: claimed 6, repeat grants nothing
+PASS mailbox: claimed 2, repeat grants nothing
+PASS duplicate prevention, batch lock, atomic abort, unread preservation; no browser errors

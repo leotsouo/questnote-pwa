@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuestNote 一鍵領取畫面</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 28px 20px; font: 16px/1.6 system-ui, sans-serif; background: #f3f0e9; color: #293e38; }
+  main { max-width: 1000px; margin: auto; }
+  h1 { margin: 0; font-size: 26px; }
+  p { margin: 6px 0 20px; color: #65716b; }
+  label { display: inline-flex; gap: 8px; align-items: center; margin: 0 14px 16px 0; }
+  select { padding: 8px 12px; border: 1px solid #b9c5ba; border-radius: 10px; background: white; color: inherit; font: inherit; }
+  figure { margin: 12px 0; }
+  img { display: block; width: min(100%, 393px); border-radius: 22px; box-shadow: 0 12px 32px #18342516; }
+  figcaption { margin-top: 10px; font-size: 14px; color: #65716b; }
+</style>
+<main>
+  <h1>一鍵收下，繼續冒險。</h1>
+  <p>六個領獎區域，沿用現有主題與小按鈕。以下為測試存檔的實際畫面。</p>
+  <label>區域<select id="section"><option value="collection">收藏里程碑</option><option value="blessing">每日祝福</option><option value="quests">冒險任務</option><option value="exploration">探索里程碑</option><option value="achievements">成就</option><option value="mailbox">信箱</option></select></label>
+  <label>主題<select id="theme"><option value="sweet">晨光花園</option><option value="default">星夜遠行</option><option value="twilight">暮光冒險手帳</option></select></label>
+  <figure><img id="preview" src="reward-claim/sweet-collection.png" alt="晨光花園：收藏里程碑一鍵領取畫面"><figcaption id="caption">晨光花園 · 收藏里程碑</figcaption></figure>
+</main>
+<script>
+  const section = document.getElementById('section');
+  const theme = document.getElementById('theme');
+  function update() {
+    const caption = `${theme.selectedOptions[0].text} · ${section.selectedOptions[0].text}`;
+    const preview = document.getElementById('preview');
+    preview.src = `reward-claim/${theme.value}-${section.value}.png`;
+    preview.alt = `${caption}一鍵領取畫面`;
+    document.getElementById('caption').textContent = caption;
+  }
+  section.addEventListener('change', update);
+  theme.addEventListener('change', update);
+</script>
+</html>
