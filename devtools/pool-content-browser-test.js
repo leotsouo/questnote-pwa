@@ -82,7 +82,7 @@ try {
   await test('legacy locked and awakened presentation retains exact content and CSS identity', async () => {
     choose('eternal_slumber_bloom');
     assert(document.getElementById('gacha-panel').dataset.poolTheme === 'eternal_slumber_bloom', 'Legacy CSS theme changed');
-    assert(document.getElementById('gacha-awakening-desc').textContent === '完成 20 次永眠花海召喚，解鎖 4 位晨醒角色，並固定獲得曉露花蝟。', 'Legacy locked copy changed');
+    assert(document.getElementById('gacha-awakening-desc').textContent === '在「永眠花海」完成 20 次召喚，解鎖 4 位晨醒角色，並固定獲得曉露花蝟。', 'Legacy locked copy changed');
     state.poolUnlockState.byPool.eternal_slumber_bloom = { lifetimeDraws: 20, unlocked: true, rewardClaimed: true, animationSeen: true };
     ui.renderView('gacha');
     assert(document.getElementById('gacha-panel').dataset.poolPhase === 'awakened', 'Awakened phase missing');

@@ -1,3 +1,6 @@
+import { renderEncounterView, presentCommittedEncounters } from './encounterView.js';
+import { playCeremonyEntry } from './encounterCeremony.js';
+import { LOCAL_ART_PREVIEW, renderLocalIdentityView } from './localArtPreview.js';
 /**
  * UI 渲染與互動邏輯
  */
@@ -1404,7 +1407,7 @@ export function switchView(viewName) {
     renderGachaView();
     const pool = getSelectedGachaPool();
     if (pool?.id) {
-      // 進入召喚頁：僅在尚未看過時播完整登場；短轉場留給手動切換
+      // 進入召喚頁僅在尚未看過時播放；手動切換也使用相同完整登場。
       maybePlayPoolDebut._fromSwitcher = false;
       maybePlayPoolDebut(pool.id).catch(() => {});
     }
@@ -4954,6 +4957,8 @@ function renderGachaPoolSwitcher() {
 }
 
 function renderGachaView() {
+  if (renderLocalIdentityView('gacha', state, onRefresh, { switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) return;
+  if (renderEncounterView('gacha', state, onRefresh, encounterActions())) return;
   const pool = getSelectedGachaPool();
   syncTwilightGacha(state, pool);
   if (!pool) { renderGachaUnavailable(); return; }
@@ -5111,22 +5116,20 @@ async function maybeResumeMorningGarden(poolId) {
 }
 
 /**
- * 主題卡池首次／短轉場登場演出（純 UI，不抽卡）
+ * 主題卡池首次／切換皆播放完整登場（純 UI，不抽卡）
  * @param {string} poolId
  */
 async function maybePlayPoolDebut(poolId) {
+  if (LOCAL_ART_PREVIEW) return;
   const pool = getSelectedGachaPool();
   if (!pool || pool.id !== poolId || isGachaPullInProgress() || maybePlayPoolDebut._inflight) return;
   const presentation = normalizePoolPresentation(pool);
   maybePlayPoolDebut._inflight = true;
   try {
-    if (shouldUseThemedSummon(pool)) {
+    {
       const seen = await hasSeenPoolDebut(poolId);
       if (!seen || maybePlayPoolDebut._fromSwitcher) {
-        await playPoolDebutPresentation({
-          poolName: pool.name, presentation,
-          full: !seen, reduceMotion: state.userPreferences?.reduceMotion ?? false,
-        });
+        await playCeremonyEntry(pool, { reduceMotion: state.userPreferences?.reduceMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches });
         if (!seen) await markPoolDebutSeen(poolId);
       }
     }
@@ -5418,6 +5421,10 @@ function renderGachaThemeStage(pool) {
 async function playPostPullPresentation({ pool, mode, results, singleResult }) {
   const reduceMotion = state.userPreferences?.reduceMotion ?? false;
   const list = Array.isArray(results) ? results : singleResult ? [singleResult] : [];
+  try {
+    await presentCommittedEncounters(pool, list);
+    return 'themed';
+  } catch (error) { console.warn('[Encounter] Using legacy committed-result fallback', error); }
 
   if (shouldUseThemedSummon(pool)) {
     try {
@@ -5490,6 +5497,10 @@ function resetStaleGachaPullState() {
  */
 export function updateGachaAffordability() {
   if (!state?.wallet) return;
+  if (!LOCAL_ART_PREVIEW && document.querySelector('#view-gacha .identity-surface')) {
+    renderEncounterView('gacha', state, onRefresh, encounterActions());
+    return;
+  }
 
   const btnSingle = document.getElementById('btn-pull');
   const btnTen = document.getElementById('btn-pull-ten');
@@ -5620,7 +5631,7 @@ async function handlePull() {
     if (btn) delete btn.dataset.pulling;
     if (poolSelect) poolSelect.disabled = false;
     renderGachaView();
-    btn?.focus?.();
+    document.querySelector('#view-gacha .identity-surface [data-identity-action="summon"]')?.focus();
   }
 }
 
@@ -5703,7 +5714,7 @@ async function handleTenPull() {
     if (btn) delete btn.dataset.pulling;
     if (poolSelect) poolSelect.disabled = false;
     renderGachaView();
-    btn?.focus?.();
+    document.querySelector('#view-gacha .identity-surface [data-identity-action="summon-ten"]')?.focus();
   }
 }
 
@@ -6203,6 +6214,8 @@ function renderCollectionSeriesFilters() {
 }
 
 function renderCollectionView() {
+  if (renderLocalIdentityView('collection', state, onRefresh, { switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) { collectionRenderGate.clear(); return; }
+  if (renderEncounterView('collection', state, onRefresh, encounterActions())) { collectionRenderGate.clear(); return; }
   renderCollectionProgressSummary();
   renderCollectionMilestones();
   renderCollectionSeriesFilters();
@@ -9160,3 +9173,26 @@ function setText(id, value) {
 }
 
 export { showRewardToast };
+
+function encounterActions() {
+  return {
+    switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal,
+    isBusy: () => isGachaPullInProgress() || !!maybePlayPoolDebut._inflight,
+    isExpanded: (id) => shouldShowAwakenedPresentation(getUnlockEntryForPool(id)),
+    draw: (count) => trackUpdateActivity(count === 10 ? handleTenPull : handlePull)(),
+    async setCompanion(id) {
+      await setCompanion(id);
+      await onRefresh({ renderMode: ['collection', 'tasks'] });
+      void recordOnboardingEvent('companion-set', { petId: id });
+    },
+    async selectPool(id) {
+      if (isGachaPullInProgress() || maybePlayPoolDebut._inflight) return;
+      try {
+        state.gachaStats = await setSelectedPoolId(id);
+        renderGachaView();
+        maybePlayPoolDebut._fromSwitcher = true;
+        await maybePlayPoolDebut(id);
+      } catch (error) { showToast(error.message || '切換卡池失敗', 'error'); }
+    },
+  };
+}

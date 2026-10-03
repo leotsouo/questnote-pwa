@@ -125,19 +125,41 @@ async function checkCatalogAndUi(frame, profile) {
   const bundle = JSON.parse(new TextDecoder().decode(bytes));
   assert(bundle.petsData.pets.length === item.expected.petCount, 'Pet catalog count mismatch');
   const document = frame.contentDocument;
+  const debut = await frame.contentWindow.eval('import(' + JSON.stringify(new URL('src/poolDebutService.js', frame.contentWindow.location.href).href) + ')');
+  const needsDebut = item.expected.firstPool && !await debut.hasSeenPoolDebut(item.expected.firstPool.id);
   document.querySelector('[data-view="gacha"]').click();
   await until(() => document.getElementById('view-gacha').classList.contains('active'), 'gacha view');
+  const encounter = document.querySelector('#view-gacha .identity-surface');
+  if (encounter && needsDebut) {
+    await until(() => document.querySelector('.dream-debut-overlay [data-role="skip"]'), 'complete pool debut');
+    document.querySelector('.dream-debut-overlay [data-role="skip"]').click();
+    await until(() => !document.querySelector('.dream-debut-overlay'), 'debut closes before reading rules');
+  }
   if (item.expected.firstPool) {
-    assert(document.getElementById('gacha-pool-name').textContent === item.expected.firstPool.name, 'Wrong pool displayed by actual runtime');
-    assert(document.getElementById('gacha-cost').textContent === String(item.expected.firstPool.cost), 'Wrong single-draw price');
-    assert(document.getElementById('gacha-ten-cost').textContent === String(item.expected.firstPool.cost * 10), 'Wrong ten-draw price');
-    assert(document.getElementById('gacha-rates').children.length === 5, 'Rarity rates not rendered');
+    if (encounter) {
+      assert(encounter.querySelector('.sanctuary-heading h2').textContent === item.expected.firstPool.name, 'Wrong visible native pool');
+      assert(encounter.querySelector('[data-identity-action="summon"] small').textContent.includes(String(item.expected.firstPool.cost)), 'Wrong visible single price');
+      assert(encounter.querySelector('[data-identity-action="summon-ten"] small').textContent.includes(String(item.expected.firstPool.cost * 10)), 'Wrong visible ten price');
+      encounter.querySelector('[data-identity-action="probability"]').click();
+      assert(document.querySelector('#identity-detail-dialog .rate-table tbody').children.length === 5, 'Visible rarity rules missing');
+      document.querySelector('#identity-detail-dialog [data-identity-action="close-dialog"]').click();
+    } else {
+      assert(document.getElementById('gacha-pool-name').textContent === item.expected.firstPool.name, 'Wrong pool displayed by actual runtime');
+      assert(document.getElementById('gacha-cost').textContent === String(item.expected.firstPool.cost), 'Wrong single-draw price');
+      assert(document.getElementById('gacha-ten-cost').textContent === String(item.expected.firstPool.cost * 10), 'Wrong ten-draw price');
+      assert(document.getElementById('gacha-rates').children.length === 5, 'Rarity rates not rendered');
+    }
   } else {
     assert(document.getElementById('btn-pull').disabled && document.getElementById('btn-pull-ten').disabled, 'All-inactive artifact allows a draw');
   }
   document.querySelector('[data-view="collection"]').click();
-  await until(() => document.getElementById('collection-grid').children.length > 0, 'collection view');
-  assert(document.getElementById('collection-count').textContent.endsWith(`/${item.expected.petCount}`), 'Collection does not use the complete bundle');
+  if (encounter) {
+    await until(() => document.querySelector('#identity-collection-results .collection-card'), 'visible native collection');
+    assert(Number(document.querySelector('#view-collection .collection-progress progress').max) === item.expected.petCount, 'Visible collection misses bundle pets');
+  } else {
+    await until(() => document.getElementById('collection-grid').children.length > 0, 'collection view');
+    assert(document.getElementById('collection-count').textContent.endsWith(`/${item.expected.petCount}`), 'Collection does not use the complete bundle');
+  }
   document.querySelector('[data-view="tasks"]').click();
   observations[profile] = { artifactId: item.profile.artifactId, catalogSha256: hash,
     petCount: bundle.petsData.pets.length, controller: frame.contentWindow.navigator.serviceWorker.controller.scriptURL };

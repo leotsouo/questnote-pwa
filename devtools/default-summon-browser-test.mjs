@@ -43,7 +43,7 @@ try {
   await page.waitForFunction(async () => (await (await import('/src/gachaService.js')).getGachaStats()).selectedPoolId === 'standard');
   await page.evaluate(async () => (await import('/src/ui.js')).switchView('gacha'));
   assert.equal(await select.inputValue(), 'standard', 'Relaunch resets saved limited-pool selection');
-  assert.equal(await page.locator('#gacha-pool-name').innerText(), '標準召喚');
+  assert.equal(await page.locator('#gacha-pool-name').innerText(), '星旅之原');
   const after = await page.evaluate(async () => (await import('/src/gachaService.js')).getGachaStats());
   assert.deepEqual({ ...after, selectedPoolId: otherPool }, before, 'Counters and per-pool pity are preserved');
   await fs.mkdir('reports/default-standard-summon', { recursive: true });

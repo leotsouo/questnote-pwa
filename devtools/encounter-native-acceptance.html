@@ -1,0 +1,27 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><title>Native encounter acceptance</title>
+<h1>正式流程隔離驗證</h1><p>僅限本機新 origin。此頁建立一次測試存檔，正式網站不包含此頁。</p>
+<button id="seed">建立測試存檔</button><button id="snapshot">讀取存檔</button><a href="../index.html">開啟完整 App</a><pre id="results"></pre>
+<script type="module">
+import { dbPut, dbGetAll, STORES } from '../src/db.js';
+import { createCollectionEntry } from '../src/collectionService.js';
+const output = document.getElementById('results');
+if (location.hostname !== '127.0.0.1' || location.port !== '4194') throw new Error('Isolated test origin required');
+const snapshot = async () => {
+  const meta = await dbGetAll(STORES.META);
+  const collection = await dbGetAll(STORES.COLLECTION);
+  output.textContent = JSON.stringify({ wallet:meta.find((row) => row.key === 'wallet'), stats:meta.find((row) => row.key === 'gachaStats'), collection },null,2);
+};
+document.getElementById('snapshot').onclick = snapshot;
+document.getElementById('seed').onclick = async () => {
+  if ((await dbGetAll(STORES.COLLECTION)).length) throw new Error('Refusing to overwrite an existing save');
+  const pets = (await (await fetch('../data/pets.json')).json()).pets;
+  const pools = (await (await fetch('../data/pools.json')).json()).pools;
+  for (const pet of pets) await dbPut(STORES.COLLECTION, { ...createCollectionEntry(pet.id), stars:5, nickname:pet.id === 'pet_n01' ? '小灰' : null, isCompanion:pet.id === 'pet_n01' });
+  await dbPut(STORES.META, { key:'wallet',stardust:10000,adventureEnergy:30,materials:{},items:{} });
+  await dbPut(STORES.META, { key:'gachaStats',totalPulls:0,tenPullCount:0,selectedPoolId:'standard',poolPity:{standard:{ssrPity:0,urPity:99}} });
+  await dbPut(STORES.META, { key:'poolDebutSeen',schemaVersion:1,seenPoolIds:pools.map((row) => row.id) });
+  await dbPut(STORES.META, { key:'onboardingV1',schemaVersion:2,status:'completed',step:'welcome' });
+  await dbPut(STORES.META, { key:'userPreferences',reduceMotion:true,theme:'sweet',fontSize:'standard' });
+  await snapshot();
+};
+</script></html>

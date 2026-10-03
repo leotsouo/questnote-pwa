@@ -342,3 +342,5 @@ body[data-theme] .twilight-is-reacting .twilight-companion-art { animation: twil
   body[data-theme] *, body[data-theme] *::before, body[data-theme] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 body[data-theme].reduce-motion *, body[data-theme].reduce-motion *::before, body[data-theme].reduce-motion *::after { animation: none !important; transition: none !important; }
+
+body[data-theme] .twilight-original-name { font-size: .75rem; color: var(--qn-scene-muted); line-height: 1.5; overflow-wrap: anywhere; }

@@ -1,0 +1,67 @@
+
+> images:check
+> node devtools/build-pet-images.mjs check && node scripts/validate-expedition-images.mjs
+
+check: 128 pets × 2 sizes verified
+{
+  "ok": true,
+  "regions": 8,
+  "results": [
+    {
+      "areaId": "mist_forest",
+      "file": "assets/expeditions/mist_forest.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 116464
+    },
+    {
+      "areaId": "lava_rift",
+      "file": "assets/expeditions/lava_rift.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 109960
+    },
+    {
+      "areaId": "machine_ruins",
+      "file": "assets/expeditions/machine_ruins.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 130140
+    },
+    {
+      "areaId": "astral_rift",
+      "file": "assets/expeditions/astral_rift.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 109378
+    },
+    {
+      "areaId": "polar_shore",
+      "file": "assets/expeditions/polar_shore.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 91330
+    },
+    {
+      "areaId": "harvest_fields",
+      "file": "assets/expeditions/harvest_fields.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 126428
+    },
+    {
+      "areaId": "cloudrest_trail",
+      "file": "assets/expeditions/cloudrest_trail.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 181954
+    },
+    {
+      "areaId": "lionheart_city",
+      "file": "assets/expeditions/lionheart_city.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 226534
+    }
+  ]
+}

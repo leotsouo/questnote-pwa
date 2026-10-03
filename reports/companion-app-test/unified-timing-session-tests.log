@@ -1,0 +1,26 @@
+✔ review gate accepts only the dedicated loopback source marker (0.7907ms)
+✔ native companion and nickname APIs share one in-memory collection (10.9133ms)
+✔ session reads clone records and aborted direct transactions roll back all queued writes (15.7071ms)
+✔ concurrent service mutations serialize and async reducers cannot leak writes (158.1246ms)
+✔ the App direct reward transaction remains idempotent inside the session (29.3945ms)
+✔ nickname is primary and canonical identity stays readable on all three actual homes (1.5631ms)
+✔ SSR and UR receive the same complete presentation time in every identity world (0.7182ms)
+✔ every pool has ten actual candidates, ordered SSR+ and same-batch duplicate compensation (7.5941ms)
+✔ all twenty awakening previews have distinct existing before and after artwork (10.3983ms)
+✔ every public catalog identity preserves its canonical name before its epithet and ownership (0.8965ms)
+✔ pool preview respects real eligibility including the existing locked expansion (1.4921ms)
+✔ per-pet transparency matches existing equal selection, sums to base rates, and has no featured boost (1.2521ms)
+✔ a repeat encounter produces the actual rarity-specific pet fragments without mutating the input (0.2773ms)
+✔ prototype has no production writes, network reports, random rolls, or service-worker registration (1.2845ms)
+✔ fixed ten preview uses eligible pets in every pool and recognizes same-batch duplicates (1.1533ms)
+✔ max-star repeats accumulate actual fragments while preserving stars and explaining the limit (0.759ms)
+✔ encounters do not replace a companion; explicit switching keeps nickname and other progress (0.3231ms)
+✔ greetings use existing normal dialogue only and curated public introductions omit title repetition (0.2159ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 397.6341

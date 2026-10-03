@@ -2,7 +2,7 @@
   "pools": [
     {
       "id": "standard",
-      "name": "標準召喚",
+      "name": "星旅之原",
       "active": true,
       "cost": 100,
       "rates": {
@@ -24,7 +24,7 @@
     },
     {
       "id": "eternal_slumber_bloom",
-      "name": "永眠花海召喚",
+      "name": "永眠花海",
       "active": true,
       "cost": 100,
       "rates": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "frost_oath_fjord",
-      "name": "霜誓峽灣召喚",
+      "name": "霜誓峽灣",
       "active": true,
       "cost": 100,
       "rates": {
@@ -199,7 +199,7 @@
     },
     {
       "id": "lionheart_inverse_oath",
-      "name": "逆造之誓召喚",
+      "name": "逆造之誓",
       "active": true,
       "cost": 100,
       "rates": {

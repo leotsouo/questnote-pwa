@@ -1,0 +1,888 @@
+{
+  "version": "3.5.14",
+  "environment": "Windows Chromium / local memory full App / no service worker",
+  "humanAcceptance": "pending",
+  "observations": [
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry",
+      "name": "劍隱山河",
+      "overflow": false
+    },
+    {
+      "images": [
+        {
+          "natural": 960,
+          "src": "http://127.0.0.1:4193/assets/pets/awakening/pet_ur16-initial-9f6fc63881e6-stage.webp"
+        }
+      ],
+      "kind": "awakening-before",
+      "name": "玄翎重岳雕"
+    },
+    {
+      "forms": [
+        {
+          "pressed": "false",
+          "text": "初遇相"
+        },
+        {
+          "pressed": "true",
+          "text": "覺醒相"
+        },
+        {
+          "pressed": null,
+          "text": "試看覺醒演出"
+        }
+      ],
+      "images": [
+        {
+          "natural": 960,
+          "src": "http://127.0.0.1:4193/assets/pets/variants/pet_ur16-stage-960-3a260a48730b.webp"
+        }
+      ],
+      "kind": "awakening-after"
+    },
+    {
+      "duration": "2539",
+      "kind": "sword-ten-1",
+      "name": "抱卷白猿",
+      "trace": "[{\"phase\":\"art\",\"at\":18},{\"phase\":\"name\",\"at\":320},{\"phase\":\"title\",\"at\":683},{\"phase\":\"result\",\"at\":1022}]"
+    },
+    {
+      "duration": "4553",
+      "kind": "sword-ten-2",
+      "name": "玄翎重岳雕",
+      "trace": "[{\"phase\":\"art\",\"at\":8},{\"phase\":\"name\",\"at\":314},{\"phase\":\"title\",\"at\":663},{\"phase\":\"result\",\"at\":1016}]"
+    },
+    {
+      "duration": "2556",
+      "kind": "sword-ten-3",
+      "name": "凝霜玉蠶"
+    },
+    {
+      "duration": "4546",
+      "kind": "sword-ten-4",
+      "name": "丹砂鎮嶺蛤"
+    },
+    {
+      "cards": [
+        "第 1 位，聽雨玉蜂，葉尖上的小小回信，N，已擁有，初次相遇，",
+        "第 2 位，回風白駒，願意回頭的腳步，N，已擁有，初次相遇，",
+        "第 3 位，夜薔烏駒，只把後背交給信任的人，R，已擁有，初次相遇，",
+        "第 4 位，逐電靈貂，快一步，也等一步，SR，已擁有，初次相遇，",
+        "第 5 位，回風白駒，願意回頭的腳步，N，已擁有，再次相遇，碎片增加 1，",
+        "第 6 位，抱卷白猿，把知曉的路交給後來的人，SSR，已擁有，初次相遇，",
+        "第 7 位，踏霞赤駒，把清晨踏成第一步，R，已擁有，初次相遇，",
+        "第 8 位，玄翎重岳雕，山重，而一諾更重，UR，已擁有，初次相遇，",
+        "第 9 位，凝霜玉蠶，一寸寒光，留住半葉生機，SSR，已擁有，初次相遇，",
+        "第 10 位，丹砂鎮嶺蛤，一聲低鳴，百毒止步，UR，已擁有，初次相遇，"
+      ],
+      "count": 10,
+      "images": true,
+      "kind": "sword-summary"
+    },
+    {
+      "dialogOpen": true,
+      "focus": "試看覺醒演出",
+      "fragments": "升星1 星親密度Lv.1此夥伴碎片1",
+      "kind": "awakening-skip-return",
+      "summaryCards": 10
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry",
+      "name": "永眠花海",
+      "overflow": false
+    },
+    {
+      "duration": "2524",
+      "kind": "bloom-ten-1",
+      "name": "寂繭眠蛾"
+    },
+    {
+      "duration": "4559",
+      "kind": "bloom-ten-2",
+      "name": "永眠花皇兔"
+    },
+    {
+      "duration": "2550",
+      "kind": "bloom-ten-3",
+      "name": "鏡夢花貘"
+    },
+    {
+      "count": 10,
+      "fragments": [
+        "苞燈蕈靈碎片 +1",
+        "永眠花皇兔碎片 +20"
+      ],
+      "kind": "bloom-native-skip-summary"
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry-reduced",
+      "name": "逆造之誓",
+      "overflow": false
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry-reduced",
+      "name": "星旅之原",
+      "overflow": false
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry-reduced",
+      "name": "永眠花海",
+      "overflow": false
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry-reduced",
+      "name": "霜誓峽灣",
+      "overflow": false
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry-reduced",
+      "name": "蜜光糖庭",
+      "overflow": false
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry-reduced",
+      "name": "劍隱山河",
+      "overflow": false
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry",
+      "name": "星旅之原",
+      "overflow": false
+    },
+    {
+      "duration": "2524",
+      "kind": "stars-ten-1",
+      "name": "天火鳳凰"
+    },
+    {
+      "elements": [],
+      "kind": "native-controls"
+    },
+    {
+      "duration": "4545",
+      "kind": "stars-ten-2",
+      "name": "創世星龍"
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry",
+      "name": "霜誓峽灣",
+      "overflow": false
+    },
+    {
+      "duration": "4522",
+      "kind": "glacier-ur",
+      "name": "破曉誓角麝牛"
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry",
+      "name": "蜜光糖庭",
+      "overflow": false
+    },
+    {
+      "duration": "4529",
+      "kind": "sugar-ur",
+      "name": "焦糖布蕾海獺"
+    },
+    {
+      "box": {
+        "bottom": 749.7604370117188,
+        "height": 96.15625,
+        "left": 24,
+        "right": 369.3333435058594,
+        "top": 653.6041870117188,
+        "width": 345.3333435058594,
+        "x": 24,
+        "y": 653.6041870117188
+      },
+      "kind": "entry",
+      "name": "逆造之誓",
+      "overflow": false
+    },
+    {
+      "duration": "4521",
+      "kind": "lionheart-ur",
+      "name": "天律之冕・格里芬"
+    },
+    {
+      "focus": "繼續",
+      "kind": "entry-tab-trap"
+    },
+    {
+      "cta": {
+        "bottom": 730.7917098999023,
+        "height": 66.55208587646484,
+        "left": 36.66666793823242,
+        "right": 197.9375114440918,
+        "top": 664.2396240234375,
+        "width": 161.27084350585938,
+        "x": 36.66666793823242,
+        "y": 664.2396240234375
+      },
+      "hero": [
+        {
+          "box": {
+            "bottom": 518.4479370117188,
+            "height": 303.3333435058594,
+            "left": 37.33333587646485,
+            "right": 340.6666793823242,
+            "top": 215.11459350585935,
+            "width": 303.3333435058594,
+            "x": 37.33333587646485,
+            "y": 215.11459350585935
+          },
+          "natural": 960
+        }
+      ],
+      "kind": "theme-393",
+      "overflow": false,
+      "root": "16px",
+      "theme": "default"
+    },
+    {
+      "cta": {
+        "bottom": 730.7917098999023,
+        "height": 66.55208587646484,
+        "left": 36.66666793823242,
+        "right": 197.9375114440918,
+        "top": 664.2396240234375,
+        "width": 161.27084350585938,
+        "x": 36.66666793823242,
+        "y": 664.2396240234375
+      },
+      "hero": [
+        {
+          "box": {
+            "bottom": 518.4479370117188,
+            "height": 303.3333435058594,
+            "left": 37.33333587646485,
+            "right": 340.6666793823242,
+            "top": 215.11459350585935,
+            "width": 303.3333435058594,
+            "x": 37.33333587646485,
+            "y": 215.11459350585935
+          },
+          "natural": 960
+        }
+      ],
+      "kind": "theme-393",
+      "overflow": false,
+      "root": "16px",
+      "theme": "sweet"
+    },
+    {
+      "cta": {
+        "bottom": 730.7917098999023,
+        "height": 66.55208587646484,
+        "left": 36.66666793823242,
+        "right": 197.9375114440918,
+        "top": 664.2396240234375,
+        "width": 161.27084350585938,
+        "x": 36.66666793823242,
+        "y": 664.2396240234375
+      },
+      "hero": [
+        {
+          "box": {
+            "bottom": 518.4479370117188,
+            "height": 303.3333435058594,
+            "left": 37.33333587646485,
+            "right": 340.6666793823242,
+            "top": 215.11459350585935,
+            "width": 303.3333435058594,
+            "x": 37.33333587646485,
+            "y": 215.11459350585935
+          },
+          "natural": 960
+        }
+      ],
+      "kind": "theme-393",
+      "overflow": false,
+      "root": "16px",
+      "theme": "twilight"
+    },
+    {
+      "box": {
+        "bottom": 749.7604217529297,
+        "height": 218.6041717529297,
+        "left": 24,
+        "right": 296,
+        "top": 531.15625,
+        "width": 272,
+        "x": 24,
+        "y": 531.15625
+      },
+      "kind": "entry-320-200",
+      "name": "星旅之原",
+      "overflow": false,
+      "root": "32px",
+      "theme": "twilight"
+    },
+    {
+      "box": {
+        "bottom": 749.7604217529297,
+        "height": 218.6041717529297,
+        "left": 24,
+        "right": 296,
+        "top": 531.15625,
+        "width": 272,
+        "x": 24,
+        "y": 531.15625
+      },
+      "kind": "entry-320-200",
+      "name": "永眠花海",
+      "overflow": false,
+      "root": "32px",
+      "theme": "twilight"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "霜誓峽灣",
+      "overflow": false,
+      "root": "32px",
+      "theme": "twilight"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "蜜光糖庭",
+      "overflow": false,
+      "root": "32px",
+      "theme": "twilight"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "劍隱山河",
+      "overflow": false,
+      "root": "32px",
+      "theme": "twilight"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "逆造之誓",
+      "overflow": false,
+      "root": "32px",
+      "theme": "twilight"
+    },
+    {
+      "box": {
+        "bottom": 749.7604217529297,
+        "height": 218.6041717529297,
+        "left": 24,
+        "right": 296,
+        "top": 531.15625,
+        "width": 272,
+        "x": 24,
+        "y": 531.15625
+      },
+      "kind": "entry-320-200",
+      "name": "星旅之原",
+      "overflow": false,
+      "root": "32px",
+      "theme": "default"
+    },
+    {
+      "box": {
+        "bottom": 749.7604217529297,
+        "height": 218.6041717529297,
+        "left": 24,
+        "right": 296,
+        "top": 531.15625,
+        "width": 272,
+        "x": 24,
+        "y": 531.15625
+      },
+      "kind": "entry-320-200",
+      "name": "永眠花海",
+      "overflow": false,
+      "root": "32px",
+      "theme": "default"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "霜誓峽灣",
+      "overflow": false,
+      "root": "32px",
+      "theme": "default"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "蜜光糖庭",
+      "overflow": false,
+      "root": "32px",
+      "theme": "default"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "劍隱山河",
+      "overflow": false,
+      "root": "32px",
+      "theme": "default"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "逆造之誓",
+      "overflow": false,
+      "root": "32px",
+      "theme": "default"
+    },
+    {
+      "box": {
+        "bottom": 749.7604217529297,
+        "height": 218.6041717529297,
+        "left": 24,
+        "right": 296,
+        "top": 531.15625,
+        "width": 272,
+        "x": 24,
+        "y": 531.15625
+      },
+      "kind": "entry-320-200",
+      "name": "星旅之原",
+      "overflow": false,
+      "root": "32px",
+      "theme": "sweet"
+    },
+    {
+      "box": {
+        "bottom": 749.7604217529297,
+        "height": 218.6041717529297,
+        "left": 24,
+        "right": 296,
+        "top": 531.15625,
+        "width": 272,
+        "x": 24,
+        "y": 531.15625
+      },
+      "kind": "entry-320-200",
+      "name": "永眠花海",
+      "overflow": false,
+      "root": "32px",
+      "theme": "sweet"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "霜誓峽灣",
+      "overflow": false,
+      "root": "32px",
+      "theme": "sweet"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "蜜光糖庭",
+      "overflow": false,
+      "root": "32px",
+      "theme": "sweet"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "劍隱山河",
+      "overflow": false,
+      "root": "32px",
+      "theme": "sweet"
+    },
+    {
+      "box": {
+        "bottom": 749.7604675292969,
+        "height": 168.30209350585938,
+        "left": 24,
+        "right": 296,
+        "top": 581.4583740234375,
+        "width": 272,
+        "x": 24,
+        "y": 581.4583740234375
+      },
+      "kind": "entry-320-200",
+      "name": "逆造之誓",
+      "overflow": false,
+      "root": "32px",
+      "theme": "sweet"
+    },
+    {
+      "kind": "page-320-200-pending",
+      "overflow": false,
+      "root": "32px",
+      "surface": {
+        "bottom": 4679.1356201171875,
+        "height": 3065.45849609375,
+        "left": 0,
+        "right": 304.66668701171875,
+        "top": 1613.6771240234375,
+        "width": 304.66668701171875,
+        "x": 0,
+        "y": 1613.6771240234375
+      },
+      "theme": "default"
+    },
+    {
+      "kind": "page-320-200-pending",
+      "overflow": false,
+      "root": "32px",
+      "surface": {
+        "bottom": 4679.1356201171875,
+        "height": 3065.45849609375,
+        "left": 0,
+        "right": 304.66668701171875,
+        "top": 1613.6771240234375,
+        "width": 304.66668701171875,
+        "x": 0,
+        "y": 1613.6771240234375
+      },
+      "theme": "default"
+    },
+    {
+      "kind": "page-320-200-pending",
+      "overflow": false,
+      "root": "32px",
+      "surface": {
+        "bottom": 4679.1356201171875,
+        "height": 3065.45849609375,
+        "left": 0,
+        "right": 304.66668701171875,
+        "top": 1613.6771240234375,
+        "width": 304.66668701171875,
+        "x": 0,
+        "y": 1613.6771240234375
+      },
+      "theme": "sweet"
+    },
+    {
+      "focus": "關閉",
+      "kind": "stress-320-200",
+      "overflow": false
+    },
+    {
+      "focus": "關閉",
+      "kind": "detail-focus-trap"
+    },
+    {
+      "count": 0,
+      "focus": "體驗固定十連",
+      "kind": "reduced-ten-320-200-pending",
+      "overflow": false
+    },
+    {
+      "count": 10,
+      "focus": "關閉",
+      "kind": "reduced-ten-320-200",
+      "overflow": false
+    },
+    {
+      "kind": "page-320-200",
+      "overflow": false,
+      "root": "32px",
+      "theme": "default"
+    },
+    {
+      "kind": "page-320-200",
+      "overflow": false,
+      "root": "32px",
+      "theme": "sweet"
+    },
+    {
+      "kind": "page-320-200",
+      "overflow": false,
+      "root": "32px",
+      "theme": "twilight"
+    },
+    {
+      "bodyOverflow": "hidden",
+      "focus": "繼續",
+      "kind": "final-entry-focus-scroll",
+      "rootOverflow": "hidden"
+    },
+    {
+      "bodyOverflow": "hidden",
+      "focus": "略過演出",
+      "kind": "final-character-focus-scroll",
+      "note": {
+        "bottom": 41.33333396911621,
+        "height": 29.33333396911621,
+        "left": 12,
+        "right": 172.5104217529297,
+        "top": 12,
+        "width": 160.5104217529297,
+        "x": 12,
+        "y": 12
+      },
+      "progress": {
+        "bottom": 101.63541793823242,
+        "height": 29.635417938232425,
+        "left": 141.453125,
+        "right": 251.88021087646484,
+        "top": 72,
+        "width": 110.42708587646484,
+        "x": 141.453125,
+        "y": 72
+      },
+      "rootOverflow": "hidden",
+      "skipColor": "rgb(240, 229, 206)"
+    },
+    {
+      "bodyOverflow": "hidden auto",
+      "duration": "4542",
+      "kind": "final-bloom-ur",
+      "name": "永眠花皇兔",
+      "rootOverflow": "visible"
+    },
+    {
+      "details": "升星1 星親密度Lv.1此夥伴碎片1",
+      "kind": "skip-fragment-once"
+    },
+    {
+      "focus": "略過演出",
+      "images": [
+        {
+          "loaded": true,
+          "src": "assets/pets/awakening/pet_ur16-initial-9f6fc63881e6-stage.webp"
+        },
+        {
+          "loaded": true,
+          "src": "assets/pets/variants/pet_ur16-stage-960-3a260a48730b.webp"
+        }
+      ],
+      "kind": "final-awakening-focus",
+      "noteZ": "12600",
+      "rootOverflow": "hidden"
+    },
+    {
+      "bodyOverflow": "hidden auto",
+      "focus": "試看覺醒演出",
+      "kind": "final-awakening-return",
+      "rootOverflow": "visible"
+    },
+    {
+      "home": "QuestNote星夜遠行\n    \n      \n      \n      10月3日星期六把今天，點成星光。每一件小事，都有人陪你完成。\n      今日同行\n        花眠蜜鼯N\n  \n        \n        夢塵搬運者\n        \n  \n  \n  餵食\n      \n    \n    \n      “今天的祝福還沒領喔。\n      輕觸，打個招呼 \n  \n    \n    今日旅程0 / 0 件完成\n      \n  \n  \n  \n      親密度 Lv.10 / 50 EXP\n    ",
+      "images": [
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "花眠蜜鼯",
+          "loaded": true
+        }
+      ],
+      "kind": "companion-home"
+    }
+  ]
+}

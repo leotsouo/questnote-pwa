@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.5.10 awakening guide
+ * QuestNote Service Worker — V3.5.19 companion art review
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3510-awakening-guide';
+const CACHE_NAME = 'questnote-preview-cache-v3520';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -49,6 +49,12 @@ const PRECACHE_URLS = [
   'src/summon-polish.css',
   'src/honeylight-sugar.css',
   'src/swordwild-shanhe.css',
+  'src/encounter-ceremony.css',
+  'src/encounter-view.css',
+  'src/encounterView.js',
+  'src/encounterViewModel.js',
+  'src/encounterCeremony.js',
+  'src/encounterScenery.js',
   'src/lionheart.css',
   'src/pet-awakening.css',
   'src/petAwakeningCore.js',
@@ -77,6 +83,7 @@ const PRECACHE_URLS = [
   'src/themeRegistry.js',
   'src/dialogFocus.js',
   'src/filterGestureController.js',
+  'src/localArtPreview.js',
   'src/app.js',
   'src/bootstrap.js',
   'src/bootstrapRecovery.js',
@@ -104,6 +111,7 @@ const PRECACHE_URLS = [
   'src/poolUnlockCore.js',
   'src/petPoolFilter.js',
   'src/summonRevealService.js',
+  'src/summonTiming.js',
   'src/poolPresentation.js',
   'src/poolDebutService.js',
   'src/poolUnlockService.js',

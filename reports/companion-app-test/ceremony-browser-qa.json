@@ -1,0 +1,107 @@
+{
+  "themes": [
+    {
+      "cta": [
+        607.2708358764648,
+        607.2708358764648
+      ],
+      "height": 852,
+      "nav": 780,
+      "overflow": false,
+      "theme": "default",
+      "width": 393
+    },
+    {
+      "cta": [
+        607.2708358764648,
+        607.2708358764648
+      ],
+      "height": 852,
+      "nav": 780,
+      "overflow": false,
+      "theme": "sweet",
+      "width": 393
+    },
+    {
+      "cta": [
+        607.2708358764648,
+        607.2708358764648
+      ],
+      "height": 852,
+      "nav": 780,
+      "overflow": false,
+      "theme": "twilight",
+      "width": 393
+    }
+  ],
+  "largeText": [
+    {
+      "nameFont": "48px",
+      "overflow": false,
+      "rootFont": "32px",
+      "theme": "default",
+      "width": 320
+    },
+    {
+      "nameFont": "48px",
+      "overflow": false,
+      "rootFont": "32px",
+      "theme": "sweet",
+      "width": 320
+    },
+    {
+      "nameFont": "48px",
+      "overflow": false,
+      "rootFont": "32px",
+      "theme": "twilight",
+      "width": 320
+    }
+  ],
+  "transitions": [
+    {
+      "pool": "標準",
+      "state": " \"圖鑑\":\n    - generic: 圖鑑\n  - button \"探險\":\n    - generic: 探險\n  - button \"更多\":\n    - generic: 更多\n- dialog \"星光中的相遇\":\n  - paragraph:\n    - generic: 循著星光\n    - generic: 迎接新的\n    - generic: 同行者\n  - button \"略過登場演出\" [active]: 略過"
+    },
+    {
+      "pool": "永眠花海",
+      "state": "n \"圖鑑\":\n    - generic: 圖鑑\n  - button \"探險\":\n    - generic: 探險\n  - button \"更多\":\n    - generic: 更多\n- dialog \"永眠花海登場\":\n  - paragraph:\n    - generic: 月皇花\n    - generic: 已於長夜中\n    - generic: 甦醒\n  - button \"略過登場演出\" [active]: 略過"
+    },
+    {
+      "pool": "霜誓峽灣",
+      "state": "\"圖鑑\":\n    - generic: 圖鑑\n  - button \"探險\":\n    - generic: 探險\n  - button \"更多\":\n    - generic: 更多\n- dialog \"抵達霜誓峽灣\":\n  - paragraph:\n    - generic: 冰壁之間\n    - generic: 誓火引路\n    - generic: 霜誓峽灣\n  - button \"略過登場演出\" [active]: 略過"
+    },
+    {
+      "pool": "蜜光糖庭",
+      "state": "eric: 召喚\n  - button \"圖鑑\":\n    - generic: 圖鑑\n  - button \"探險\":\n    - generic: 探險\n  - button \"更多\":\n    - generic: 更多\n- dialog \"蜜光糖庭登場\":\n  - paragraph:\n    - generic: 糖庭亮起\n    - generic: 甜蜜相遇\n  - button \"略過登場演出\" [active]: 略過"
+    },
+    {
+      "pool": "劍隱山河",
+      "state": "eric: 圖鑑\n  - button \"探險\":\n    - generic: 探險\n  - button \"更多\":\n    - generic: 更多\n- dialog \"踏入雲棧古道\":\n  - generic: 俠\n  - paragraph:\n    - generic: 一諾入山\n    - generic: 百川同行\n    - generic: 劍隱山河\n  - button \"略過登場演出\" [active]: 略過"
+    },
+    {
+      "pool": "逆造之誓",
+      "state": "\":\n    - generic: 圖鑑\n  - button \"探險\":\n    - generic: 探險\n  - button \"更多\":\n    - generic: 更多\n- dialog \"獅心城・逆造之誓登場\":\n  - paragraph:\n    - generic: 仰望天律\n    - generic: 逆造之誓\n    - generic: 獅心城\n  - button \"略過登場演出\" [active]: 略過"
+    }
+  ],
+  "queue": [
+    "重鉚架橋犀",
+    "天律之冕・格里芬",
+    "蒸園盤根龜",
+    "逆造獅首奇美拉"
+  ],
+  "checks": {
+    "preludeSkipToTen": true,
+    "characterSkipToTen": true,
+    "reducedTen": true,
+    "duplicateBatchFragmentsOnce": true,
+    "detailReturnFocus": true,
+    "shiftTabTrap": true,
+    "escapeReturnsToCta": true,
+    "collectionSeriesRenamed": true,
+    "awakeningPreview": true
+  },
+  "limitations": [
+    "Physical iPhone VoiceOver/Dynamic Type/haptics/performance unverified",
+    "Fixed demonstration results; native production transaction integration still pending"
+  ]
+}

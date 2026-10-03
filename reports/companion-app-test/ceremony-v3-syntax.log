@@ -1,0 +1,12 @@
+warning: in the working copy of 'devtools/companion-app-identity.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'devtools/companion-ceremony.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'devtools/default-summon-browser-test.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/new-card-pool-sop.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'reports/companion-app-test/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'reports/companion-app-test/ceremony.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'service-worker.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/summonRevealService.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/themedSummonController.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/version.js', LF will be replaced by CRLF the next time Git touches it
+PASS: 9 changed JavaScript files; git diff --check

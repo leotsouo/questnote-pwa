@@ -1,3 +1,4 @@
+import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
 /**
 
  * QuestNote 主程式 — 初始化、資料載入、狀態管理
@@ -474,6 +475,7 @@ export async function runAchievementCheck() {
 
 
 async function registerServiceWorker() {
+  if (LOCAL_ART_PREVIEW) return;
   const options = { showIconGuide: openModal, openBackupSettings: () => {
     closeModal(); switchView('settings');
     document.getElementById('btn-export')?.scrollIntoView({ block: 'center' });
