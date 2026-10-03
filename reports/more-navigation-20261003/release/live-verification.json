@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "checkedAt": "2026-10-03T10:09:44.713Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "artifactId": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+  "sourceCommit": "b3cb204442339ac56f934d614170dedb2f8558ad",
+  "manifestSha256": "853de50d8210179fb753f7ab228cd506e375e1bd0df2d49d4542324c5de142f0",
+  "checkedHttpsFiles": 606,
+  "gitOnlyFiles": [
+    ".nojekyll"
+  ]
+}
