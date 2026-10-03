@@ -395,7 +395,7 @@ export function resolvePoolPresentationModel(rawPool, allPets, unlockEntry = {},
       rewardSource: resolveUnlockRewardSource(pool.id, expansion),
       progress: { draws, threshold: expansion.threshold, percent: Math.min(100, Math.round(draws / expansion.threshold * 100)) },
       progressText: awakened ? `${expansion.title}已解鎖` : `${expansion.presentation.progressLabel} ${draws}／${expansion.threshold}`,
-      description: awakened ? expansion.unlockMessage : `完成 ${expansion.threshold} 次${pool.name}，解鎖 ${added.length} 位${expansion.presentation.candidateLabel}，並固定獲得${rewardPet.name}。`,
+      description: awakened ? expansion.unlockMessage : `在「${pool.name}」完成 ${expansion.threshold} 次召喚，解鎖 ${added.length} 位${expansion.presentation.candidateLabel}，並固定獲得${rewardPet.name}。`,
       countsText: awakened ? `候選角色：${counts.effective}` : `目前候選：${counts.locked}　解鎖後候選：${counts.unlocked}`,
     } : null,
   };
