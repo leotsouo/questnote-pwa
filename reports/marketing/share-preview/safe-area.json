@@ -1,0 +1,38 @@
+{
+  "image": "1200×630",
+  "centralSquare": {
+    "left": 285,
+    "right": 915
+  },
+  "text": [
+    {
+      "element": "brand",
+      "left": 325,
+      "right": 461.046875,
+      "top": 154,
+      "bottom": 189
+    },
+    {
+      "element": "H1",
+      "left": 319,
+      "right": 689.515625,
+      "top": 257,
+      "bottom": 436.34375
+    },
+    {
+      "element": "quest",
+      "left": 325,
+      "right": 528.453125,
+      "top": 482,
+      "bottom": 520
+    },
+    {
+      "element": "growth",
+      "left": 325,
+      "right": 679.296875,
+      "top": 537,
+      "bottom": 569
+    }
+  ],
+  "character": "Existing scene preserved; face inspected in the square crop and 96px thumbnail."
+}

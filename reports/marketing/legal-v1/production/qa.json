@@ -1,0 +1,71 @@
+{
+  "base": "https://questnote.taste-compare.com",
+  "testedAt": "2026-09-30T21:19:57.328Z",
+  "checks": [
+    {
+      "slug": "privacy",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    },
+    {
+      "slug": "terms",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    },
+    {
+      "slug": "support",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    },
+    {
+      "slug": "privacy",
+      "width": 393,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    },
+    {
+      "slug": "terms",
+      "width": 393,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    },
+    {
+      "slug": "support",
+      "width": 393,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    },
+    {
+      "slug": "privacy",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    },
+    {
+      "slug": "terms",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    },
+    {
+      "slug": "support",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "axeViolations": []
+    }
+  ],
+  "browserErrors": [],
+  "verifiedFiles": 27
+}

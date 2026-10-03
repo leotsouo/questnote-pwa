@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuestNote｜今天的待辦，成了你們的冒險。</title>
+  <meta name="description" content="把生活任務變成與夥伴一起成長的冒險。完成一件小事，累積親密度、獲得星塵，慢慢打開 QuestNote 的世界。直接用瀏覽器開始。">
+  <link rel="canonical" href="https://questnote.taste-compare.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="QuestNote">
+  <meta property="og:title" content="QuestNote｜小事完成，冒險繼續">
+  <meta property="og:description" content="把生活裡的待辦變成冒險的 App。完成一件小事，和你的夥伴一起成長。">
+  <meta property="og:url" content="https://questnote.taste-compare.com/">
+  <meta property="og:image" content="https://questnote.taste-compare.com/assets/questnote-og-v2.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="灰影幼狼陪你完成讀書任務；小事完成，冒險繼續。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="QuestNote｜小事完成，冒險繼續">
+  <meta name="twitter:description" content="把生活裡的待辦變成冒險的 App。完成一件小事，和你的夥伴一起成長。">
+  <meta name="twitter:image" content="https://questnote.taste-compare.com/assets/questnote-og-v2.jpg">
+  <meta name="twitter:image:alt" content="灰影幼狼陪你完成讀書任務；小事完成，冒險繼續。">
+  <meta name="theme-color" content="#f4f1e8">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" as="image" href="/assets/night-720.webp" imagesrcset="/assets/night-720.webp 720w, /assets/night-1179.webp 1179w" imagesizes="(min-width: 960px) 60vw, 100vw" fetchpriority="high">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="QuestNote 首頁"><img src="/assets/favicon.png" width="32" height="32" alt=""><span>QuestNote</span></a>
+    <nav aria-label="主要導覽"><a class="nav-story" href="#companion">認識夥伴</a><a class="nav-product" href="#product">看看 App</a><a class="nav-start" href="#start">開始同行 <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="tiny-spark" aria-hidden="true">✧</span> 小事，有回音。</p>
+        <h1 id="hero-title">今天的待辦，<br>成了你們的<span class="word-adventure">冒險。</span></h1>
+        <p class="hero-description">QuestNote 把生活任務，變成與夥伴一起成長的冒險。每完成一件事，都累積你們的親密度，也打開更多世界。</p>
+        <div class="hero-actions"><a class="button button-primary" data-distribution="hero" href="#start"><span data-cta-label>開啟 QuestNote</span><span aria-hidden="true">↗</span></a><a class="text-link demo-link" href="#quest-demo">先試一個任務 <span aria-hidden="true">↓</span></a></div>
+        <p class="cta-note" data-distribution-note>直接用瀏覽器開始，不用下載、不用註冊。</p>
+      </div>
+      <div class="quest-scene" id="quest-demo" aria-label="互動示範：完成任務與灰影幼狼一起前進">
+        <picture class="hero-art"><source srcset="/assets/night-720.webp 720w, /assets/night-1179.webp 1179w" sizes="(min-width: 960px) 60vw, 100vw"><img src="/assets/night-1179.webp" width="1179" height="786" fetchpriority="high" alt="灰黑毛、藍眼的灰影幼狼，坐在有暖燈的星夜森林營地。"></picture>
+        <div class="scene-caption"><span>你的今日夥伴</span><strong>灰影幼狼</strong><p id="companion-says">「今天也一起完成吧。」</p></div>
+        <span class="scene-reaction" aria-hidden="true">✧</span>
+        <div class="quest-paper">
+          <div class="demo-heading"><p>今日任務 <span class="demo-tag">試玩</span></p><span id="progress-count">2 / 5</span></div>
+          <div id="daily-progress" class="progress-track" role="progressbar" aria-label="今日任務進度" aria-valuemin="0" aria-valuemax="5" aria-valuenow="2"><span></span></div>
+          <button class="quest-task" id="complete-quest" type="button" aria-label="完成示範任務：讀書 30 分鐘"><span class="quest-check" aria-hidden="true"></span><span class="quest-title">讀書 30 分鐘</span><span class="quest-action">點一下完成</span></button>
+          <div class="bond-row"><span>♡ 親密度</span><span id="bond-count">10 / 50</span><div id="bond-progress" class="progress-track bond-track" role="progressbar" aria-label="夥伴親密度" aria-valuemin="0" aria-valuemax="50" aria-valuenow="10"><span></span></div></div>
+          <div id="demo-reward" class="demo-reward" hidden><span>+20 星塵</span><span>+1 冒險能量</span><span>+5 親密度</span></div>
+          <div class="demo-bottom"><p id="demo-status" class="demo-status">先試一件小事，看看牠的回應。</p><button id="reset-quest" class="reset-button" type="button" hidden>再試一次</button></div>
+          <span id="demo-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></span>
+        </div>
+      </div>
+      <p class="demo-disclaimer">互動為示範，不會更動 App 資料。獎勵依一般任務的真實規則呈現。</p>
+    </section>
+
+    <section class="continuity wrap section" aria-labelledby="continuity-title">
+      <div class="chapter-mark"><span>01</span><span>完成以後</span></div>
+      <div class="continuity-copy"><h2 id="continuity-title">一個勾，<br>也可以是故事的開始。</h2><p>讀了幾頁書、整理好書桌，<br>都是你真的往前走過的地方。</p><p>在 QuestNote，這些小事會化成星塵、冒險能量，和夥伴一點一點累積的親密度。</p></div>
+      <div class="echo-note" aria-label="現實完成與夥伴成長的關係"><p class="note-label">生活裡</p><p class="note-task"><span aria-hidden="true">✓</span> 讀書 30 分鐘</p><div class="echo-path" aria-hidden="true"><span></span>✧<span></span></div><p class="note-label">你們的世界裡</p><p class="note-response">親密度 +5</p><p class="note-caption">小事，有回音。</p></div>
+    </section>
+
+    <section class="companion-section" id="companion" aria-labelledby="companion-title">
+      <picture class="companion-art"><source srcset="/assets/twilight-720.webp 720w, /assets/twilight-1179.webp 1179w" sizes="100vw"><img src="/assets/twilight-1179.webp" width="1179" height="786" loading="lazy" alt="暮色森林裡，灰影幼狼安靜趴在長滿苔蘚的木沿上，藍眼注視著你。"></picture>
+      <div class="companion-copy wrap"><div class="chapter-mark"><span>02</span><span>與你同行</span></div><h2 id="companion-title">牠記得的，<br>是和你一起走過的日子。</h2><p>完成任務，累積親密度。<br>從第一句招呼，到只對你說的故事。</p><blockquote>「你的腳步，我聽得見。」<cite>— 灰影幼狼，真實角色台詞</cite></blockquote><p class="companion-footnote">隨親密度成長，解鎖暱稱、更多對話與夥伴故事。<br>慢慢來，下一件小事再一起完成。</p></div>
+    </section>
+
+    <section class="world wrap section" aria-labelledby="world-title">
+      <div class="chapter-mark"><span>03</span><span>把世界慢慢打開</span></div>
+      <div class="section-intro"><h2 id="world-title">生活往前，<br>世界也跟著展開。</h2><p>你的日常，是每一次相遇與出發的起點。</p></div>
+      <article class="world-chapter encounter"><div class="world-visual pet-pair"><img src="/assets/wolf-card.webp" width="384" height="384" loading="lazy" alt="圖鑑裡的灰影幼狼插畫"><img src="/assets/owl-card.webp" width="384" height="384" loading="lazy" alt="風語貓頭鷹，另一位可在 QuestNote 遇見的夥伴"></div><div class="world-copy"><p class="eyebrow">相遇 · 召喚與圖鑑</p><h3>把做完的小事，<br>存成下一次相遇。</h3><p>任務得到的星塵，可以用來召喚新夥伴。圖鑑留下每次相遇，也收藏牠們各自的故事。</p><span class="small-detail">每位夥伴，都有自己的名字、個性與故事。</span></div></article>
+      <article class="world-chapter expedition"><div class="world-visual landscape"><img src="/assets/mist-forest.webp" width="800" height="400" loading="lazy" alt="探險的迷霧森林：古老樹根、石刻與霧裡的小徑"><span>迷霧森林 <span aria-hidden="true">↗</span></span></div><div class="world-copy"><p class="eyebrow">出發 · 探險</p><h3>你去過好今天，<br>牠們去看看遠方。</h3><p>把任務累積的冒險能量，交給夥伴出發。帶回材料、星塵和旅程報告，再一起累積下一段成長。</p><span class="small-detail">從迷霧森林，慢慢走向更多地方。</span></div></article>
+    </section>
+
+    <section class="product-section section" id="product" aria-labelledby="product-title">
+      <div class="product-layout wrap">
+        <div class="product-copy"><div class="chapter-mark"><span>04</span><span>真的，現在就能開始</span></div><h2 id="product-title">有個世界，<br>已經在等你的日常。</h2><p>這是正在運作的 QuestNote。<br>把今天想做的事寫下來，就能開始。</p><div class="screen-tabs" role="tablist" aria-label="查看真實 App 畫面"><button id="tab-home" role="tab" type="button" aria-selected="true" aria-controls="panel-home" data-screen="home">首頁</button><button id="tab-collection" role="tab" type="button" aria-selected="false" aria-controls="panel-collection" tabindex="-1" data-screen="collection">圖鑑</button><button id="tab-gacha" role="tab" type="button" aria-selected="false" aria-controls="panel-gacha" tabindex="-1" data-screen="gacha">召喚</button><button id="tab-expedition" role="tab" type="button" aria-selected="false" aria-controls="panel-expedition" tabindex="-1" data-screen="expedition">探險</button></div><p class="product-caption">真實 App 截圖 · V3.4.34<br>使用隔離示範資料，非個人使用紀錄。</p><a href="#start" class="text-link">下一件事，換你試試 <span aria-hidden="true">↗</span></a></div>
+        <div class="screens-stage">
+          <figure id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0"><img src="/assets/product/tasks.webp" width="393" height="852" loading="lazy" alt="QuestNote 真實首頁：灰影幼狼、今日完成 2/5、親密度與今日任務。"><figcaption>今天想做的事，和今天同行的牠。</figcaption></figure>
+          <figure id="panel-collection" role="tabpanel" aria-labelledby="tab-collection" tabindex="0" hidden><img src="/assets/product/collection.webp" width="393" height="852" loading="lazy" alt="QuestNote 真實圖鑑：同行夥伴、收藏進度、系列與角色插畫。"><figcaption>每次相遇，都留在你的圖鑑裡。</figcaption></figure>
+          <figure id="panel-gacha" role="tabpanel" aria-labelledby="tab-gacha" tabindex="0" hidden><img src="/assets/product/gacha.webp" width="393" height="852" loading="lazy" alt="QuestNote 真實召喚頁：標準召喚、星塵消耗與保底資訊。"><figcaption>做完的小事，存成下一次相遇。</figcaption></figure>
+          <figure id="panel-expedition" role="tabpanel" aria-labelledby="tab-expedition" tabindex="0" hidden><img src="/assets/product/expedition.webp" width="393" height="852" loading="lazy" alt="QuestNote 真實探險頁：冒險能量、迷霧森林與派遣出發。"><figcaption>累積能量，讓夥伴去看看遠方。</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="themes wrap section" aria-labelledby="themes-title"><div class="themes-heading"><h2 id="themes-title">同一段同行，<br>三種日常的光。</h2><p>星夜、晨光或暮色。<br>在 App 裡選一個喜歡的氣氛，夥伴與進度都跟著你。</p></div><div class="theme-scenes"><figure><img src="/assets/night-720.webp" width="720" height="480" loading="lazy" alt="星夜遠行的深藍森林與暖燈"><figcaption>星夜遠行 <span>安靜，把目標點亮。</span></figcaption></figure><figure><img src="/assets/garden-720.webp" width="720" height="480" loading="lazy" alt="晨光花園的花朵、石沿与同一隻灰影幼狼"><figcaption>晨光花園 <span>溫柔，把日子照顧好。</span></figcaption></figure><figure><img src="/assets/twilight-720.webp" width="720" height="480" loading="lazy" alt="暮光冒險手帳的森林暮色"><figcaption>暮光冒險手帳 <span>慢慢，把故事寫下來。</span></figcaption></figure></div></section>
+
+    <section class="final-cta section" id="start" aria-labelledby="start-title"><div class="wrap"><p class="eyebrow">小事，有回音。</p><h2 id="start-title">下一件小事，<br>有牠陪你。</h2><p>不必先成為很厲害的人。<br>從今天想完成的一件事開始就好。</p><a class="button button-primary" data-distribution="final" href="#start"><span data-cta-label>開啟 QuestNote</span><span aria-hidden="true">↗</span></a><p class="cta-note" data-distribution-note>直接用瀏覽器開始，不用下載、不用註冊。</p><p class="save-note">目前為網頁 App，任務與收藏儲存在你的裝置。<br>換裝置前，記得在 App 內匯出備份。</p></div></section>
+  </main>
+  <footer class="site-footer wrap"><a class="brand" href="/"><img src="/assets/favicon.png" width="28" height="28" alt=""><span>QuestNote</span></a><p>把日常小事，寫成一起成長的旅程。</p><nav aria-label="網站資訊"><a href="/privacy">隱私</a><a href="/terms">使用說明與條款</a><a href="/support">支援</a></nav><small>© 2026 QuestNote</small></footer>
+  <div id="mobile-cta" class="mobile-cta" hidden><a class="button button-primary" data-distribution="sticky" href="#start"><span data-cta-label>開啟 QuestNote</span><span aria-hidden="true">↗</span></a></div>
+  <dialog id="install-guide" class="install-guide" aria-labelledby="install-title" aria-describedby="install-intro">
+    <button class="install-close" type="button" data-close-install aria-label="關閉加入主畫面說明">×</button>
+    <img class="install-brand" src="/assets/apple-touch-icon.png" alt="" width="52" height="52">
+    <p class="eyebrow">把夥伴，留在身邊。</p>
+    <h2 id="install-title">把 QuestNote<br>放進主畫面？</h2>
+    <p id="install-intro"></p>
+    <ol id="install-steps"></ol>
+    <div class="install-actions">
+      <a id="install-open" class="button button-primary" href="#start">先開啟 QuestNote <span aria-hidden="true">↗</span></a>
+      <button id="install-copy" class="button button-secondary" type="button">複製 App 連結</button>
+    </div>
+    <label class="install-link-label" for="install-link">QuestNote App 連結</label>
+    <input id="install-link" class="install-link" type="url" readonly aria-label="QuestNote App 連結，可長按複製">
+    <p id="install-status" class="install-status" role="status" aria-live="polite"></p>
+    <button id="install-browser-switch" class="install-browser-switch" type="button" aria-pressed="false">我是在 LINE／IG 裡開啟</button>
+    <details class="install-existing"><summary>我已加入主畫面</summary><p>請回到手機主畫面，點 QuestNote 圖示繼續。這裡無法直接喚起已加入的 App。</p></details>
+    <p class="install-note">請加入的是 QuestNote App 頁面，而不是這個介紹網站。加入主畫面需要你在瀏覽器中確認。</p>
+  </dialog>
+  <noscript><p class="noscript-note">你可以直接開啟 QuestNote。此頁互動示範與畫面切換需啟用 JavaScript。</p></noscript>
+</body>
+</html>

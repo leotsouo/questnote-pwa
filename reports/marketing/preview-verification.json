@@ -1,0 +1,235 @@
+{
+  "url": "https://30e69dcc.questnote-marketing.pages.dev",
+  "verifiedFiles": 27,
+  "sourceAssetBytes": 841512,
+  "headers": {
+    "access-control-allow-origin": "*",
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cache-control": "public, max-age=0, must-revalidate, no-transform",
+    "cf-ray": "a436131b2f46f224-KHH",
+    "connection": "keep-alive",
+    "content-length": "14877",
+    "content-security-policy": "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+    "content-type": "text/html; charset=utf-8",
+    "date": "Wed, 30 Sep 2026 20:46:01 GMT",
+    "etag": "\"43a9af472bc6879c7d10437312cfb6e6\"",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "permissions-policy": "camera=(), microphone=(), geolocation=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=i5dIrjkh7ryyXAFWuVHk5dDd%2Fzj5yHqiILstNcKzkmRbqhMo%2FYzqGbDsvmCkf6B61J2XQQ%2FhKhLa%2BiVG1%2B95OmbPZhOuybr6%2F34gB4ZUUTWHVNT2N1kPwvIYPOr5%2B%2F2XwS0%2FGxw16ZYgxEP%2Bf1M5%2BWsBEIZSbgrZowaXL5i2sJI556s0%2Bw%3D%3D\"}]}",
+    "server": "cloudflare",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "x-robots-tag": "noindex"
+  },
+  "labProfile": "393 × 852, 1.6Mbps / 150ms, CPU ×4, cold HTTP cache after DNS/TLS warm-up; raw cold navigation also retained. Simulated Chromium, not field Core Web Vitals.",
+  "rawCold": {
+    "lcpMs": 10780,
+    "cls": 0,
+    "navigation": {
+      "name": "https://30e69dcc.questnote-marketing.pages.dev/",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 10764.900000095367,
+      "navigationId": 2438,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "h2",
+      "renderBlockingStatus": "non-blocking",
+      "contentType": "text/html",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 4.900000095367432,
+      "domainLookupStart": 6.200000047683716,
+      "domainLookupEnd": 9141.200000047684,
+      "connectStart": 9141.200000047684,
+      "secureConnectionStart": 9146.400000095367,
+      "connectEnd": 9223.600000143051,
+      "requestStart": 9223.799999952316,
+      "responseStart": 9252.900000095367,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 9252.900000095367,
+      "responseEnd": 9455.799999952316,
+      "transferSize": 15177,
+      "encodedBodySize": 14877,
+      "decodedBodySize": 14877,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 9460.400000095367,
+      "domContentLoadedEventStart": 10762.299999952316,
+      "domContentLoadedEventEnd": 10762.600000143051,
+      "domComplete": 10764.400000095367,
+      "loadEventStart": 10764.900000095367,
+      "loadEventEnd": 10764.900000095367,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/assets/night-720.webp",
+        "transfer": 51180,
+        "decoded": 50880
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/styles.css",
+        "transfer": 18370,
+        "decoded": 18070
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/main.js",
+        "transfer": 6516,
+        "decoded": 6216
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/assets/favicon.png",
+        "transfer": 1786,
+        "decoded": 1486
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/config.js",
+        "transfer": 1685,
+        "decoded": 1385
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/demo.js",
+        "transfer": 1125,
+        "decoded": 825
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/analytics.js",
+        "transfer": 1928,
+        "decoded": 1628
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/assets/twilight-720.webp",
+        "transfer": 37364,
+        "decoded": 37064
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/assets/favicon.png",
+        "transfer": 300,
+        "decoded": 1486
+      }
+    ]
+  },
+  "metrics": {
+    "lcpMs": 2684,
+    "cls": 0,
+    "navigation": {
+      "name": "https://30e69dcc.questnote-marketing.pages.dev/",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 2854,
+      "navigationId": 3724,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "h2",
+      "renderBlockingStatus": "non-blocking",
+      "contentType": "text/html",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.7000000476837158,
+      "domainLookupStart": 1.7000000476837158,
+      "domainLookupEnd": 1.7000000476837158,
+      "connectStart": 1.7000000476837158,
+      "secureConnectionStart": 1.7000000476837158,
+      "connectEnd": 1.7000000476837158,
+      "requestStart": 3.700000047683716,
+      "responseStart": 33.700000047683716,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 33.700000047683716,
+      "responseEnd": 257.2000000476837,
+      "transferSize": 15177,
+      "encodedBodySize": 14877,
+      "decodedBodySize": 14877,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 2048.5,
+      "domContentLoadedEventStart": 2528.7000000476837,
+      "domContentLoadedEventEnd": 2529.2000000476837,
+      "domComplete": 2853.7000000476837,
+      "loadEventStart": 2854,
+      "loadEventEnd": 2854,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "low"
+      }
+    },
+    "resources": [
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/assets/night-720.webp",
+        "transfer": 51180,
+        "decoded": 50880
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/main.js",
+        "transfer": 6516,
+        "decoded": 6216
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/styles.css",
+        "transfer": 18370,
+        "decoded": 18070
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/assets/favicon.png",
+        "transfer": 1786,
+        "decoded": 1486
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/config.js",
+        "transfer": 1685,
+        "decoded": 1385
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/demo.js",
+        "transfer": 1125,
+        "decoded": 825
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/analytics.js",
+        "transfer": 1928,
+        "decoded": 1628
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/assets/twilight-720.webp",
+        "transfer": 37364,
+        "decoded": 37064
+      },
+      {
+        "url": "https://30e69dcc.questnote-marketing.pages.dev/assets/favicon.png",
+        "transfer": 1786,
+        "decoded": 1486
+      }
+    ]
+  },
+  "checkedAt": "2026-09-30T20:46:17.267Z"
+}

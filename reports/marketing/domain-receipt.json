@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-09-30T20:38:52.519Z",
+  "domain": {
+    "id": "d8494776-a4ed-4a96-8b98-42bb545c85ad",
+    "domain_id": "d8494776-a4ed-4a96-8b98-42bb545c85ad",
+    "name": "questnote.taste-compare.com",
+    "status": "active",
+    "verification_data": {
+      "status": "active"
+    },
+    "validation_data": {
+      "status": "active",
+      "method": "http"
+    },
+    "certificate_authority": "google",
+    "zone_tag": "a2fc497a6fa8365f094661315a051d4a",
+    "created_on": "2026-09-30T20:34:59.447521Z"
+  },
+  "existingRecordsUnchanged": true,
+  "preservedRecords": [
+    {
+      "name": "rsend.taste-compare.com",
+      "type": "CNAME"
+    },
+    {
+      "name": "send.taste-compare.com",
+      "type": "CNAME"
+    },
+    {
+      "name": "taste-compare.com",
+      "type": "CNAME"
+    },
+    {
+      "name": "www.taste-compare.com",
+      "type": "CNAME"
+    },
+    {
+      "name": "resend._domainkey.taste-compare.com",
+      "type": "TXT"
+    }
+  ],
+  "addedRecords": [
+    {
+      "id": "c38694c023d480c9ed8365735a6f8a26",
+      "name": "questnote.taste-compare.com",
+      "type": "CNAME",
+      "content": "questnote-marketing.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    }
+  ]
+}

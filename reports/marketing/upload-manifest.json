@@ -1,0 +1,34 @@
+{
+  "manifest": {
+    "/404.html": "a0ac13e458991136d9bb70a58d187e6c",
+    "/analytics.js": "22a84529649ef9aecbe8c80ef6885099",
+    "/assets/apple-touch-icon.png": "f23b7122842a6a2a10c3e7d9fd4eba4c",
+    "/assets/favicon.png": "a13c7ab25ac05f344fa6a1a379253a7d",
+    "/assets/garden-720.webp": "5df46c4fe4a71d540bcbb4286032d170",
+    "/assets/mist-forest.webp": "3598e8e890a5014d77a8b05d51de5a7f",
+    "/assets/night-1179.webp": "7e9521fda6816288119693ed448344da",
+    "/assets/night-720.webp": "55953ac1bdebc97c899d1cc59a72093d",
+    "/assets/og-questnote.jpg": "1b56be388e0c493cd3956d1a5ac7a2a8",
+    "/assets/owl-card.webp": "902639235cff461f8bef03d9366908d5",
+    "/assets/product/collection.webp": "cd701a2a74091bb69f4e6f5132fd3b8e",
+    "/assets/product/expedition.webp": "f026b07d9a160be363099161a49d34d3",
+    "/assets/product/gacha.webp": "1c94491afe8ea60892e19739862e2381",
+    "/assets/product/tasks.webp": "5a0255e8c831e4fcacfa241c21c8e89d",
+    "/assets/twilight-1179.webp": "4e9065e816a5789c2117fc847a62de32",
+    "/assets/twilight-720.webp": "51a05a752c8fc299e0f8517b7c1bfd45",
+    "/assets/wolf-card.webp": "824ee39a929a79c5eb0730d95cbb062f",
+    "/config.js": "bd4b0090bbc4e033a7e4c162049ddb74",
+    "/demo.js": "420ea5b5a90ad91e388e196189c10667",
+    "/index.html": "43a9af472bc6879c7d10437312cfb6e6",
+    "/main.js": "979e47b153cc7ac64b14cbf52d9ea86f",
+    "/privacy/index.html": "2f3c48cc02d2382ddb6ec87bc7520d75",
+    "/robots.txt": "52ec998eed869d763ff3f565b336e21f",
+    "/sitemap.xml": "4c9c52168356828e077d125493afb5b5",
+    "/styles.css": "2dafb395a588a9fccc9c4e1fa06d2729",
+    "/support/index.html": "1ae09370eecc9fb4a1a9426460fb5fa4",
+    "/terms/index.html": "a19901a239c740ace93421f0d7582119"
+  },
+  "special": {
+    "_headers": "/*\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: DENY\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'\n/assets/*\n  Cache-Control: public, max-age=3600, no-transform\n"
+  }
+}

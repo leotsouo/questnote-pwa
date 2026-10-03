@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-09-30T20:50:25.459Z",
+  "productionUrl": "https://questnote.taste-compare.com",
+  "previewUrl": "https://30e69dcc.questnote-marketing.pages.dev",
+  "runtimeSource": "f251853f7be061548222ee59f3125d16e49945e9",
+  "project": "questnote-marketing",
+  "deploymentMethod": "Static Direct Upload from repository build; no Functions",
+  "deployments": [
+    {
+      "id": "30e69dcc-6cf2-4331-b299-8afd964885f1",
+      "url": "https://30e69dcc.questnote-marketing.pages.dev",
+      "environment": "preview",
+      "source": {
+        "branch": "codex-questnote-marketing",
+        "commit_hash": "f251853f7be061548222ee59f3125d16e49945e9",
+        "commit_message": "Respect privacy preferences in static marketing delivery",
+        "commit_dirty": false
+      },
+      "stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-30T20:44:38.377223Z",
+        "status": "success"
+      },
+      "functions": false
+    },
+    {
+      "id": "87101741-29fe-4e3f-98e8-c8d34a3181df",
+      "url": "https://87101741.questnote-marketing.pages.dev",
+      "environment": "production",
+      "source": {
+        "branch": "main",
+        "commit_hash": "f251853f7be061548222ee59f3125d16e49945e9",
+        "commit_message": "Publish verified QuestNote companion marketing website",
+        "commit_dirty": false
+      },
+      "stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-30T20:47:59.59732Z",
+        "status": "success"
+      },
+      "functions": false
+    }
+  ],
+  "domains": [
+    {
+      "name": "questnote.taste-compare.com",
+      "status": "active",
+      "verification": "active",
+      "validation": "active"
+    }
+  ],
+  "ci": {
+    "url": "https://github.com/leotsouo/questnote-pwa/actions/runs/36774682564",
+    "conclusion": "success",
+    "source": "f251853f7be061548222ee59f3125d16e49945e9"
+  },
+  "domainReceipt": "domain-receipt.json"
+}

@@ -1,0 +1,45 @@
+{
+  "url": "https://questnote.taste-compare.com",
+  "checkedAt": "2026-09-30T20:48:32.691Z",
+  "checks": [
+    {
+      "preference": "normal",
+      "demo": "3 / 5",
+      "events": [
+        "page_view",
+        "demo_start",
+        "quest_completed"
+      ],
+      "analyticsResponses": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+          "method": "POST",
+          "status": 204
+        }
+      ],
+      "cookies": 0,
+      "browserErrors": []
+    },
+    {
+      "preference": "dnt",
+      "demo": "3 / 5",
+      "events": [],
+      "analyticsResponses": [],
+      "cookies": 0,
+      "browserErrors": []
+    },
+    {
+      "preference": "gpc",
+      "demo": "3 / 5",
+      "events": [],
+      "analyticsResponses": [],
+      "cookies": 0,
+      "browserErrors": []
+    }
+  ]
+}
