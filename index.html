@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="src/bond-journey.css" />
   <link rel="stylesheet" href="src/encounter-ceremony.css" />
   <link rel="stylesheet" href="src/encounter-view.css">
-  <meta name="questnote-artifact" content="12c4a4103be3d3a45e112eed5ac1566bc482c2ce85a470fb0e3d5672663f9cf0">
+  <meta name="questnote-artifact" content="c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be">
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -329,46 +329,18 @@
       <header class="page-header">
         <div class="page-header__inner">
           <h1 class="page-title">更多</h1>
-          <p class="page-subtitle">成就、習慣、工坊、設定與資料管理</p>
+          <p class="page-subtitle">日常功能、成長紀錄與 App 設定</p>
         </div>
       </header>
 
-      <section class="more-menu card">
-        <button class="more-menu-item" data-goto="settings" data-style-settings type="button">
-          <span class="more-menu-icon" aria-hidden="true">◐</span>
-          <span class="more-menu-text"><span class="more-menu-label">美術風格</span><span class="more-menu-desc" id="more-active-theme">深色幻想風 · 自由切換三種風格</span></span>
-          <span class="more-menu-arrow" aria-hidden="true">›</span>
-        </button>
-        <button class="more-menu-item" data-goto="share" type="button">
-          <span class="more-menu-icon" aria-hidden="true">🔗</span>
+      <section class="more-menu card" aria-label="更多功能">
+        <button class="more-menu-item" data-goto="habits" type="button">
+          <span class="more-menu-icon">🔄</span>
           <span class="more-menu-text">
-            <span class="more-menu-label">分享 QuestNote</span>
-            <span class="more-menu-desc">傳送正式版連結給朋友</span>
+            <span class="more-menu-label">習慣</span>
+            <span class="more-menu-desc">每日與每週習慣追蹤</span>
           </span>
-          <span class="more-menu-arrow" aria-hidden="true">›</span>
-        </button>
-        <button class="more-menu-item" data-feedback-open type="button">
-          <span class="more-menu-icon" aria-hidden="true">💬</span>
-          <span class="more-menu-text">
-            <span class="more-menu-label">意見與問題回報</span>
-            <span class="more-menu-desc">免登入，直接把問題與建議交給開發者</span>
-          </span>
-          <span class="more-menu-arrow" aria-hidden="true">›</span>
-        </button>
-        <button class="more-menu-item" data-goto="guide" type="button">
-          <span class="more-menu-icon more-menu-icon--image"><img src="assets/brand/questnote-icon-192.png" alt="" width="28" height="28"></span>
-          <span class="more-menu-text">
-            <span class="more-menu-label">使用教學</span>
-            <span class="more-menu-desc">重看入門流程與其他功能</span>
-          </span>
-          <span class="more-menu-arrow">›</span>
-        </button>
-        <button class="more-menu-item" data-goto="handbook" type="button">
-          <span class="more-menu-icon">📖</span>
-          <span class="more-menu-text">
-            <span class="more-menu-label">冒險手冊</span>
-            <span class="more-menu-desc">查看你的任務、收藏與探險成長</span>
-          </span>
+          <span class="more-menu-badge" id="more-habits-badge" hidden aria-hidden="true"></span>
           <span class="more-menu-arrow">›</span>
         </button>
         <button class="more-menu-item" data-goto="tasks" data-scroll-daily-blessing type="button">
@@ -389,15 +361,6 @@
           <span class="more-menu-badge" id="more-achievements-badge" hidden aria-hidden="true"></span>
           <span class="more-menu-arrow">›</span>
         </button>
-        <button class="more-menu-item" data-goto="habits" type="button">
-          <span class="more-menu-icon">🔄</span>
-          <span class="more-menu-text">
-            <span class="more-menu-label">習慣</span>
-            <span class="more-menu-desc">每日與每週習慣追蹤</span>
-          </span>
-          <span class="more-menu-badge" id="more-habits-badge" hidden aria-hidden="true"></span>
-          <span class="more-menu-arrow">›</span>
-        </button>
         <button class="more-menu-item" data-goto="workshop" type="button">
           <span class="more-menu-icon">🔨</span>
           <span class="more-menu-text">
@@ -406,18 +369,58 @@
           </span>
           <span class="more-menu-arrow">›</span>
         </button>
+        <button class="more-menu-item" data-goto="handbook" type="button">
+          <span class="more-menu-icon">📖</span>
+          <span class="more-menu-text">
+            <span class="more-menu-label">冒險手冊</span>
+            <span class="more-menu-desc">查看你的任務、收藏與探險成長</span>
+          </span>
+          <span class="more-menu-arrow">›</span>
+        </button>
         <button class="more-menu-item" data-goto="settings" type="button">
           <span class="more-menu-icon">⚙️</span>
           <span class="more-menu-text">
             <span class="more-menu-label">設定</span>
-            <span class="more-menu-desc">備份、統計與顯示偏好</span>
+            <span class="more-menu-desc">提醒、字體、美術風格與資料備份</span>
           </span>
           <span class="more-menu-arrow">›</span>
         </button>
-      </section>
-
-      <section class="card more-version-section" aria-label="版本資訊">
-        <div class="version-info-card version-info-card--compact" data-version-info data-version-info-compact></div>
+        <details class="more-support">
+          <summary class="more-menu-item">
+            <span class="more-menu-text">
+              <span class="more-menu-label">教學與支援</span>
+              <span class="more-menu-desc">使用教學、問題回報、分享與版本資訊</span>
+            </span>
+            <span class="more-menu-arrow" aria-hidden="true">›</span>
+          </summary>
+          <button class="more-menu-item" data-goto="guide" type="button">
+            <span class="more-menu-icon more-menu-icon--image"><img src="assets/brand/questnote-icon-192.png" alt="" width="28" height="28"></span>
+            <span class="more-menu-text">
+              <span class="more-menu-label">使用教學</span>
+              <span class="more-menu-desc">重看入門流程與其他功能</span>
+            </span>
+            <span class="more-menu-arrow">›</span>
+          </button>
+          <button class="more-menu-item" data-feedback-open type="button">
+            <span class="more-menu-icon" aria-hidden="true">💬</span>
+            <span class="more-menu-text">
+              <span class="more-menu-label">意見與問題回報</span>
+              <span class="more-menu-desc">免登入，直接把問題與建議交給開發者</span>
+            </span>
+            <span class="more-menu-arrow" aria-hidden="true">›</span>
+          </button>
+          <button class="more-menu-item" data-goto="share" type="button">
+            <span class="more-menu-icon" aria-hidden="true">🔗</span>
+            <span class="more-menu-text">
+              <span class="more-menu-label">分享 QuestNote</span>
+              <span class="more-menu-desc">傳送正式版連結給朋友</span>
+            </span>
+            <span class="more-menu-arrow" aria-hidden="true">›</span>
+          </button>
+          <section class="card more-version-section" aria-label="版本資訊">
+            <div class="version-info-card version-info-card--compact" data-version-info data-version-info-compact></div>
+          </section>
+        </details>
       </section>
     </main>
 
