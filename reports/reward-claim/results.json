@@ -1,0 +1,23 @@
+{
+  "layoutCases": 108,
+  "kinds": [
+    "blessing",
+    "quests",
+    "collection",
+    "exploration",
+    "achievements",
+    "mailbox"
+  ],
+  "atomic": {
+    "claimed": 1,
+    "delta": 50,
+    "expected": 50,
+    "checked": 1,
+    "spun": 1,
+    "locked": true,
+    "aborted": true,
+    "marker": null,
+    "walletUnchanged": true
+  },
+  "errors": []
+}
