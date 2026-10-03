@@ -1,14 +1,12 @@
 // Presentation only. Rewards are committed by the native atomic transaction first.
 import { playPoolDebutPresentation, playThemedSummon } from './themedSummonController.js';
 import { playSummonReveal, isRevealQueueSkipped } from './summonRevealService.js';
-import { normalizePoolDefinition, resolvePoolPresentationModel } from './poolContentContract.js';
-import { playPoolUnlock } from './poolAwakeningController.js';
+import { normalizePoolDefinition } from './poolContentContract.js';
 import { createLionheartScene } from './lionheartScene.js';
 import { createSwordwildShanheScene } from './swordwildShanheScene.js';
 import { createGlacierArrivalScene } from './glacierArrivalScene.js';
 import { createHoneylightSugarScene } from './honeylightSugarScene.js';
 import { createEncounterScenery } from './encounterScenery.js';
-import { playAwakeningScene } from './petAwakeningScene.js';
 
 export function ceremonyPresentation(pool) {
   if (pool.id === 'standard') return { animationKey:'dream_bloom', debutLabel:`${pool.name}登場`, debutLines:['循著星圖','走向新的相遇'] };
@@ -35,15 +33,6 @@ export function createPoolScenery(pool) {
 export async function playCeremonyEntry(pool, { reduceMotion }) {
   const sceneFactory = ['standard','eternal_slumber_bloom'].includes(pool.id) ? () => createPoolScenery(pool) : undefined;
   await withLegacyScene(() => playPoolDebutPresentation({ poolName: pool.name, presentation: ceremonyPresentation(pool), reduceMotion, sceneFactory }));
-}
-
-export async function playCeremonyPetAwakening(entry, pet, reduceMotion) {
-  await withLegacyScene(() => playAwakeningScene(entry, pet, { reducedMotion:reduceMotion }));
-}
-
-export async function playCeremonyAwakening(pool, pets, reduceMotion) {
-  const model = resolvePoolPresentationModel(pool, pets, { unlocked: true, lifetimeDraws: pool.unlockExpansion.threshold });
-  await withLegacyScene(() => playPoolUnlock({ model, reduceMotion }));
 }
 
 async function withLegacyScene(play) {

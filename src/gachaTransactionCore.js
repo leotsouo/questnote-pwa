@@ -198,7 +198,13 @@ export function planGachaTransaction({ allPets, poolsData, selectedPoolId, count
     if (![counters.ssrPity, counters.urPity].every((value) => Number.isSafeInteger(value) && value >= 0)) {
       throw new Error('保底資料無效');
     }
-    const { rarity, triggeredPity } = determineRarity(counters, pool, candidates, random);
+    const rolled = determineRarity(counters, pool, candidates, random);
+    // Resolve both existing pity rules first; a ten-pull floor only promotes N/R.
+    const tenGuarantee = pool.tenPullGuarantee === 'SR' && count === 10 && index === 9
+      && !pulls.some((pull) => RARITY_RANK[pull.rarity] >= RARITY_RANK.SR)
+      && RARITY_RANK[rolled.rarity] < RARITY_RANK.SR;
+    const rarity = tenGuarantee ? 'SR' : rolled.rarity;
+    const triggeredPity = rolled.triggeredPity;
     const pet = resolvePetFromRarity(candidates, rarity, random);
     if (!pet) throw new Error('無法從卡池抽取寵物');
     const existing = collection.get(pet.id);
