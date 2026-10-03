@@ -255,3 +255,9 @@ Pages `4aa9aa10dcd79810f781f8c2f40318d5d45401b6` 的 [run 37113586595](https://g
 [PR #65](https://github.com/leotsouo/questnote-pwa/pull/65) CI 通過並合併於 `47b7c337a39612a4eb337a22c64e812dd22f7454`。每日祝福、冒險任務、成就、圖鑑里程碑、探索里程碑和信箱附件增加待領數量與「一鍵領取」，保留單項領取；沒有可領獎勵時按鈕隱藏。批次領取阻擋重複、逐筆重新核對，並以原交易規則保存資源和領取紀錄。
 
 正式 artifact `12c4a4103be3d3a45e112eed5ac1566bc482c2ce85a470fb0e3d5672663f9cf0` 已推至 Pages `6bab17d148d770b30444ca438cce73a80e003eb4`；[run 37115062133](https://github.com/leotsouo/questnote-pwa/actions/runs/37115062133) 成功，607 Git blob 與 606 個正式 HTTPS 檔案全部相符。318 Node 測試、35 項揭示流程檢查、六處實際領取、108 組版面及 16 項固定產物／離線更新瀏覽器案例通過。原有 catalog 與公告 reward identity 保留；後端與存檔格式未更動。[發布收據](../reports/reward-claim-production-v3523/README.md)。
+
+## V3.5.24 更多頁整理與習慣頁銜接 — 2026-10-03
+
+[PR #64](https://github.com/leotsouo/questnote-pwa/pull/64) CI 通過並合併於 `6aa59e3246f44d27e4cdf6ecaee1ba10ef8073d4`。常用習慣、每日祝福、成就及工坊入口上移，教學、回報、分享及版本資訊收合於「教學與支援」，美術風格保留在設定；習慣頁移除統計外層方形底色並保留四張卡片，以 16px 間距連接內容。所有功能、美術素材與正式卡池資料保留，也保留最新一鍵領取與召喚更新。
+
+Pages `d2dba3c7b8f7f0823227af19d2cbe147dd975bcd` 的 [run 37115343269](https://github.com/leotsouo/questnote-pwa/actions/runs/37115343269) 部署成功；artifact `c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be`，manifest SHA-256 `853de50d8210179fb753f7ab228cd506e375e1bd0df2d49d4542324c5de142f0`。607 個 Git blobs 與 606 個正式 HTTPS 檔案全數相符。完整 npm test、召喚 assertions、16 項固定產物原生瀏覽器檢查及正式網址全新 Chrome 操作通過。[來源、截圖及發布回執](../reports/more-navigation-20261003.md)。

@@ -1,0 +1,118 @@
+{
+  "status": "PUBLISHED_AND_VERIFIED",
+  "recordedAt": "2026-10-03T10:10:31.688Z",
+  "version": "3.5.24",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "authorization": "User explicitly requested 幫我推上正式版 after previewing the More and habits changes.",
+  "sourcePullRequest": "https://github.com/leotsouo/questnote-pwa/pull/64",
+  "sourceMergeCommit": "6aa59e3246f44d27e4cdf6ecaee1ba10ef8073d4",
+  "sourceMergedAt": "2026-10-03T10:05:25Z",
+  "sourceCi": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-03T10:04:53Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/leotsouo/questnote-pwa/actions/runs/37115151371/job/111180431077",
+      "name": "tests",
+      "startedAt": "2026-10-03T10:03:58Z",
+      "status": "COMPLETED",
+      "workflowName": "Validate"
+    }
+  ],
+  "artifact": {
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-more-releases\\c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+    "artifactId": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+    "manifestSha256": "853de50d8210179fb753f7ab228cd506e375e1bd0df2d49d4542324c5de142f0",
+    "scopePath": "/questnote-pwa/"
+  },
+  "artifactSourceCommit": "b3cb204442339ac56f934d614170dedb2f8558ad",
+  "deploymentCommit": "d2dba3c7b8f7f0823227af19d2cbe147dd975bcd",
+  "parentDeploymentCommit": "6bab17d148d770b30444ca438cce73a80e003eb4",
+  "deploymentTree": "a30b7ca3b062544353d414540f58fbc32f6a23d5",
+  "exactGitBlobCount": 607,
+  "pushed": true,
+  "pages": {
+    "conclusion": "success",
+    "databaseId": 37115343269,
+    "headSha": "d2dba3c7b8f7f0823227af19d2cbe147dd975bcd",
+    "name": "pages build and deployment",
+    "status": "completed",
+    "updatedAt": "2026-10-03T10:08:03Z",
+    "url": "https://github.com/leotsouo/questnote-pwa/actions/runs/37115343269"
+  },
+  "previousProduction": {
+    "verifiedAt": "2026-10-03T10:06:39.385Z",
+    "url": "https://leotsouo.github.io/questnote-pwa/",
+    "artifactId": "12c4a4103be3d3a45e112eed5ac1566bc482c2ce85a470fb0e3d5672663f9cf0",
+    "sourceCommit": "47b7c337a39612a4eb337a22c64e812dd22f7454",
+    "deploymentCommit": "6bab17d148d770b30444ca438cce73a80e003eb4",
+    "manifestSha256": "6e158a6bb6f62d485eb1401a55f6eae306c89945a37e56c19d56cf88d27cbf4d",
+    "contentBundleSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
+    "preservedAssets": 474,
+    "files": {
+      "data/global-mailbox.json": "6375b311871b9b12497b988c3d578d5ecc6255768187dc047bf64e11d0b92d6b",
+      "data/materials.json": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
+      "data/craftables.json": "f49345c56b3010389d60ec9c03ec7f44f57b89b9662a2c3ec55d8381fe7fcd73",
+      "data/gift-affinities.json": "78237d48ef4403e33458a39e1d5fb477501d0bf119ef956e3b8f917492cb6027",
+      "data/expeditions.json": "1dbacba9d13d4addaa03b8348dd2abc42a0d12175bc13176444990041a601984"
+    }
+  },
+  "unchangedArtworkFiles": 474,
+  "sourceTestExecutions": [
+    292,
+    14,
+    12
+  ],
+  "revealFlowAssertions": "passed",
+  "nativeArtifactBrowserChecks": 16,
+  "live": {
+    "ok": true,
+    "checkedAt": "2026-10-03T10:09:44.713Z",
+    "url": "https://leotsouo.github.io/questnote-pwa/",
+    "artifactId": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+    "sourceCommit": "b3cb204442339ac56f934d614170dedb2f8558ad",
+    "manifestSha256": "853de50d8210179fb753f7ab228cd506e375e1bd0df2d49d4542324c5de142f0",
+    "checkedHttpsFiles": 606,
+    "gitOnlyFiles": [
+      ".nojekyll"
+    ]
+  },
+  "browser": {
+    "ok": true,
+    "checkedAt": "2026-10-03T10:10:03.423Z",
+    "url": "https://leotsouo.github.io/questnote-pwa/",
+    "freshBrowserStorage": true,
+    "identity": {
+      "version": "3.5.24",
+      "profile": {
+        "schemaVersion": 1,
+        "profile": "production",
+        "artifactId": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+        "sourceCommit": "b3cb204442339ac56f934d614170dedb2f8558ad",
+        "scopePath": "/questnote-pwa/",
+        "runtimeContentSchema": 1,
+        "dbName": "QuestNoteDB",
+        "cacheNamespace": "questnote-production-",
+        "contentBundleSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
+        "contentBundleUrl": "data/releases/da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d/catalog.json"
+      },
+      "worker": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be"
+    },
+    "moreEntries": [
+      "習慣",
+      "每日祝福",
+      "成就",
+      "工坊",
+      "冒險手冊",
+      "設定"
+    ],
+    "supportNavigation": "passed",
+    "habits": {
+      "background": "rgba(0, 0, 0, 0)",
+      "cards": 4,
+      "gap": 16,
+      "overflow": false
+    },
+    "errors": []
+  }
+}
