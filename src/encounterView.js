@@ -2,7 +2,7 @@ import { invitationEntry, reencounterMoment, fragmentBalance, intimacySummary, c
 import { invitationCandidates } from './encounterEconomyCore.js';
 import { getPetSpecialty } from './expeditionGameplay.js';
 import { initialAwakeningPortrait } from './petAwakeningView.js';
-import { RARITIES, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, duplicateNote, encounterResults } from './encounterViewModel.js';
+import { RARITIES, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, encounterResults } from './encounterViewModel.js';
 import { normalizePoolDefinition, resolveActivePool } from './poolContentContract.js';
 import { createPoolScenery, ceremonyPresentation, playCeremonyRitual, playCeremonyCharacter } from './encounterCeremony.js';
 import { delay } from './imagePreloadService.js';

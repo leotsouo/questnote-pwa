@@ -308,7 +308,7 @@ try {
     assert(core.validatePetAwakening(progress).length === 0, 'Invalid owned ritual fixture');
     const journey = bond.createBondJourney();
     journey.byPet[petId] = { chapters: { 5: { choiceId:'gentle', readAt:at, completedAt:at, claimedAt:at } } };
-    await db.dbPut(db.STORES.COLLECTION, collection.normalizeCollectionItem({ petId, stars:1, fragments:0, bondExp:500, bondLevel:5, obtainedAt:at }));
+    await db.dbPut(db.STORES.COLLECTION, collection.normalizeCollectionItem({ ...collection.createCollectionEntry(petId,at), bondExp:500, bondLevel:5 }));
     await db.dbPut(db.STORES.META, progress);
     await db.dbPut(db.STORES.META, journey);
     const inventory = await db.dbGet(db.STORES.META, 'inventory');
@@ -368,8 +368,9 @@ try {
     const eligible = filter.getEligiblePetsForPool(bundle.petsData.pets, selected);
     const [normal, rare] = ['N', 'SR'].map((rarity) => eligible.find((pet) => pet.rarity === rarity));
     const at = new Date().toISOString();
-    for (const pet of [normal, rare]) await db.dbPut(db.STORES.COLLECTION, collection.normalizeCollectionItem({ petId:pet.id, stars:5, fragments:10, obtainedAt:at }));
+    for (const pet of [normal, rare]) await db.dbPut(db.STORES.COLLECTION, collection.normalizeCollectionItem({ ...collection.createCollectionEntry(pet.id,at), legacySpecialtyFloor:5 }));
     const wallet = await db.dbGet(db.STORES.META, 'wallet');
+    await db.dbPut(db.STORES.META,{ key:'encounterEconomy', schemaVersion:1, migrationVersion:1, balance:20, migrationReceipt:null });
     await db.dbPut(db.STORES.META, { ...wallet, key:'wallet', stardust:10000 });
     const stats = await db.dbGet(db.STORES.META, 'gachaStats');
     await db.dbPut(db.STORES.META, { ...stats, selectedPoolId:'standard', ssrPity:0, urPity:0,
@@ -404,8 +405,8 @@ try {
     await until(() => document.querySelectorAll('.batch-grid .batch-card').length === 10, 'complete native ten summary', 15000);
     const rarities = [...document.querySelectorAll('.batch-grid .rarity')].map((node) => node.textContent);
     assert(JSON.stringify(rarities) === JSON.stringify([...Array(9).fill('N'), 'SR']), 'Native ten did not apply the final SR floor');
-    assert((await db.dbGet(db.STORES.COLLECTION, normal.id)).fragments === 19, 'Same-batch N duplicates did not accumulate once');
-    assert((await db.dbGet(db.STORES.COLLECTION, rare.id)).fragments === 15, 'Promoted SR duplicate did not grant exactly five fragments');
+    assert((await db.dbGet(db.STORES.META,'encounterEconomy')).balance === 34, 'Nine N + one SR must add 14 shared fragments once');
+    assert(!(await db.dbGet(db.STORES.COLLECTION, rare.id)).fragments, 'Per-character fragments remain retired');
     document.querySelector('[data-identity-action="close-reveal"]').click();
     await until(() => document.querySelector('.summon-wallet strong')?.textContent === '9,000', 'live wallet after return');
     assert((await db.dbGet(db.STORES.META, 'gachaStats')).totalPulls === pullsBefore + 10, 'Results were applied more than once');
@@ -563,6 +564,39 @@ try {
     productionFrame = directClient('production'); previewFrame = directClient('preview');
     await waitForStarted(productionFrame, 'production'); await waitForStarted(previewFrame, 'preview');
     await checkCatalogAndUi(productionFrame, 'production'); await checkCatalogAndUi(previewFrame, 'preview');
+  });
+  await test('specified invitation commits, welcomes, sets companion and replays while every HTTP resource is 503', async () => {
+    assert(storageOwnershipEstablished, 'Invitation fixture requires owned origin');
+    let client = previewFrame.contentWindow;
+    const load = (name) => client.eval('import(' + JSON.stringify(new URL(`src/${name}.js`, client.location.href).href) + ')');
+    let db = await load('db');
+    const core = await load('encounterEconomyCore');
+    const bundle = await client.fetch(configuration.profiles.preview.profile.contentBundleUrl).then((response) => response.json());
+    await db.dbPut(db.STORES.META,{ ...(await db.dbGet(db.STORES.META,'encounterEconomy')), balance:202 });
+    await db.dbPut(db.STORES.META,{ ...(await db.dbGet(db.STORES.META,'userPreferences')), reduceMotion:true });
+    previewFrame.remove(); frames.delete(previewFrame);
+    previewFrame = directClient('preview'); await waitForStarted(previewFrame,'preview');
+    client = previewFrame.contentWindow; db = await load('db');
+    const before = await db.dbGet(db.STORES.META,'gachaStats');
+    const candidate = core.invitationCandidates(bundle.petsData.pets,bundle.poolsData,await db.dbGet(db.STORES.META,'poolUnlockState'),await db.dbGetAll(db.STORES.COLLECTION)).find((row) => row.pet.rarity === 'UR' && row.available && !row.owned);
+    const document = previewFrame.contentDocument;
+    document.querySelector('[data-onboarding-action="skip"]')?.click();
+    document.querySelector('[data-view="gacha"]').click();
+    await until(() => !document.querySelector('.dream-debut-overlay'),'debut finished');
+    document.querySelector('[data-identity-action="invitation"]').click();
+    document.querySelector(`[data-invitation-pet="${candidate.pet.id}"]`).click();
+    document.querySelector('[data-invitation-action="confirm"]').click();
+    document.querySelector('[data-invitation-action="commit"]').click();
+    await until(() => document.querySelector('[data-invitation-action="companion"]'),'offline welcome');
+    assert((await db.dbGet(db.STORES.META,'encounterEconomy')).balance === 2,'Offline invitation charge mismatch');
+    assert(JSON.stringify(before) === JSON.stringify(await db.dbGet(db.STORES.META,'gachaStats')),'Invitation changed pity');
+    document.querySelector('[data-invitation-action="companion"]').click();
+    await until(async () => (await db.dbGet(db.STORES.COLLECTION,candidate.pet.id))?.isCompanion,'offline companion selection');
+    await until(() => document.querySelector('[data-invitation-action="companion"]')?.textContent.includes('正在與你同行'),'companion presentation settled');
+    document.querySelector('[data-invitation-action="replay"]').click();
+    assert((await db.dbGet(db.STORES.META,'encounterEconomy')).balance === 2,'Replay charged again');
+    document.querySelector('[data-invitation-action="close"]').click();
+    observations.offlineInvitation = { petId:candidate.pet.id, before:202, after:2, replay:2, companion:true, controller:client.navigator.serviceWorker.controller.scriptURL };
   });
   await test('growth chapters remain usable and resume the saved step without the network', async () => {
     let document = productionFrame.contentDocument;
