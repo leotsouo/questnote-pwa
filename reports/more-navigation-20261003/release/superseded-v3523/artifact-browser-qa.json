@@ -1,6 +1,6 @@
 {
   "running": false,
-  "runId": "90447340-ea23-4466-9b92-e473b56be424",
+  "runId": "cc954090-46fa-4950-b63e-4425b2e0b276",
   "passed": 16,
   "failed": 0,
   "results": [
@@ -82,31 +82,31 @@
     },
     "missing503": {
       "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
-      "requests": 176,
+      "requests": 175,
       "databaseNames": []
     },
     "corrupt": {
       "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
-      "requests": 176,
+      "requests": 175,
       "databaseNames": []
     },
     "production": {
-      "artifactId": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+      "artifactId": "c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5cc9cc2f726",
       "catalogSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
       "petCount": 128,
-      "controller": "http://127.0.0.1:63837/questnote-pwa/service-worker.js?artifact=c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be"
+      "controller": "http://127.0.0.1:56194/questnote-pwa/service-worker.js?artifact=c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5cc9cc2f726"
     },
     "legacyTransition": {
       "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
       "waitingBeforeClose": true,
       "zeroDatabasesBeforeClose": true,
-      "newArtifact": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be"
+      "newArtifact": "c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5cc9cc2f726"
     },
     "preview": {
-      "artifactId": "9681825588494d99f7a805274f6c9d44a126dd21d553d5d76cdde109bc4bcf8b",
+      "artifactId": "c039b7179314d7b37406356ae4040306e292714f5132ca72fc5b2af7c7a9c025",
       "catalogSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
       "petCount": 128,
-      "controller": "http://127.0.0.1:63837/questnote-pwa-preview/service-worker.js?artifact=9681825588494d99f7a805274f6c9d44a126dd21d553d5d76cdde109bc4bcf8b"
+      "controller": "http://127.0.0.1:56194/questnote-pwa-preview/service-worker.js?artifact=c039b7179314d7b37406356ae4040306e292714f5132ca72fc5b2af7c7a9c025"
     },
     "playerPreview": {
       "testReplaysRemoved": true,

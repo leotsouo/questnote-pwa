@@ -1,0 +1,15 @@
+{
+  "preparedAt": "2026-10-03T09:55:38.676Z",
+  "deploymentRoot": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\more-pages-v3523",
+  "parentCommit": "4aa9aa10dcd79810f781f8c2f40318d5d45401b6",
+  "deploymentCommit": "c606f9227d1707862b0405924bea236c83effb97",
+  "tree": "bd66d982787cd8900ef5883b52b9b5151393a1a0",
+  "artifactId": "c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5cc9cc2f726",
+  "sourceCommit": "dbe2b40a0ac98fa63a82acf6d4f343170341b548",
+  "stagedFiles": 606,
+  "committedFiles": 606,
+  "allGitBlobsMatchArtifact": true,
+  "removed": [],
+  "authorization": "User explicitly requested 幫我推上正式版 after reviewing the local More page and habit layout.",
+  "pushed": false
+}

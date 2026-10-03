@@ -1,14 +1,14 @@
 {
   "preview": {
-    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-more-releases\\c039b7179314d7b37406356ae4040306e292714f5132ca72fc5b2af7c7a9c025",
-    "artifactId": "c039b7179314d7b37406356ae4040306e292714f5132ca72fc5b2af7c7a9c025",
-    "manifestSha256": "0e872de28af4a3efa913caf41dc0a4fdebe6f9c8c3be25cd0592e5d75e8bf866",
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-more-releases\\9681825588494d99f7a805274f6c9d44a126dd21d553d5d76cdde109bc4bcf8b",
+    "artifactId": "9681825588494d99f7a805274f6c9d44a126dd21d553d5d76cdde109bc4bcf8b",
+    "manifestSha256": "0627ad5d46845a3eaf5391b695460e48bcf7b432ed111fb7c5ed1478ab75daab",
     "scopePath": "/questnote-pwa-preview/"
   },
   "production": {
-    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-more-releases\\c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5cc9cc2f726",
-    "artifactId": "c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5cc9cc2f726",
-    "manifestSha256": "8ba01b2e8d6bfb331d77e6bb2e69b1bff393f3bd54ce2e8ccb47490ae7ac70f0",
+    "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-more-releases\\c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+    "artifactId": "c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be",
+    "manifestSha256": "853de50d8210179fb753f7ab228cd506e375e1bd0df2d49d4542324c5de142f0",
     "scopePath": "/questnote-pwa/"
   }
 }

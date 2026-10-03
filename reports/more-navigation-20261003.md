@@ -1,6 +1,6 @@
 # 「更多」功能整理 — 2026-10-03
 
-來源基線：`origin/main` 的 `0d3fbeb4e6fe904652d57bb600d5fb3f1dfe619f`。工作分支：`codex/more-page-organization`。本次只完成來源變更與本機驗收，未合併或發布正式網站。
+最初來源基線：`origin/main` 的 `0d3fbeb4e6fe904652d57bb600d5fb3f1dfe619f`。工作分支：`codex/more-page-organization`。下方依序記錄本機驗收與使用者後續授權的正式發布；目前部署狀態以最後的發布回執為準。
 
 ## 使用者流程
 
@@ -55,14 +55,26 @@
 - [修正後桌面畫面](more-navigation-20261003/habit-layout/after-desktop.png)
 - [量測與驗收結果](more-navigation-20261003/habit-layout/results.json)
 
-## 正式發布準備
+## 首次發布準備（已由新主線取代，未推送）
 
 使用者於預覽與習慣頁修正後明確要求「幫我推上正式版」。整合最新 `origin/main` 的 `15e6a3e`，保留正式 V3.5.22 的召喚更新；凍結執行期來源為 `dbe2b40a0ac98fa63a82acf6d4f343170341b548`。版本為 V3.5.23。
 
 2026-10-03T09:53:11Z 正式 HTTPS 與 gh-pages 讀回的舊 artifact 同為 `9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818`。新版完整 catalog bytes 保持 `da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d`，474 份美術素材及公告、材料、禮物與地區資料完全保留。
 
-production artifact 為 `c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5cc9cc2f726`，preview artifact 為 `c039b7179314d7b37406356ae4040306e292714f5132ca72fc5b2af7c7a9c025`。manifest SHA-256、來源與 scope 見 [artifacts.json](more-navigation-20261003/release/artifacts.json)。preview 僅用於隔離的本機組裝驗收。
+production artifact 為 `c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5cc9cc2f726`，preview artifact 為 `c039b7179314d7b37406356ae4040306e292714f5132ca72fc5b2af7c7a9c025`。manifest SHA-256、來源與 scope 見 [已取代的 artifacts.json](more-navigation-20261003/release/superseded-v3523/artifacts.json)。preview 僅用於隔離的本機組裝驗收。
 
 整合後 `npm test` 309 項及 reveal-flow assertions 全數通過，語法、卡池與圖片檢查通過。組裝產物原生瀏覽器驗收 16 項通過，另驗證真實可見的支援頁入口與習慣透明外層。兩個 profile 的 DB/cache 隔離、legacy worker 遷移、cache eviction、503 離線啟動及教學進度保留均通過。
 
-部署準備 commit `c606f9227d1707862b0405924bea236c83effb97` 的 606 個 staged／committed Git blobs 皆與凍結產物一致，tree `bd66d982787cd8900ef5883b52b9b5151393a1a0`。本節記錄準備完成；發布成功仍以 Pages 建置與最後 HTTPS 讀回回執為準。
+部署準備 commit `c606f9227d1707862b0405924bea236c83effb97` 的 606 個 staged／committed Git blobs 皆與凍結產物一致，tree `bd66d982787cd8900ef5883b52b9b5151393a1a0`。PR 驗證期间主線新增一鍵領取，因此此產物未推送。完整準備證據保留在 `release/superseded-v3523/`。
+
+## V3.5.24 正式發布準備
+
+整合最新主線 `47b7c337a39612a4eb337a22c64e812dd22f7454`（PR #65），保留一鍵領取及先前召喚更新。只有版本與 cache 常數產生衝突；保留最新 SW 的 `src/rewardClaimService.js` precache。凍結執行期來源為 `b3cb204442339ac56f934d614170dedb2f8558ad`，版本為 V3.5.24；相對 main 僅有本次更多頁、習慣頁與版本更新。
+
+2026-10-03T10:01:51Z 再次核對正式 HTTPS 與 gh-pages：仍為 V3.5.22 artifact `9373470b03eff9a04955a9401377a787dcb9ff471d7c11a292418eb46dcb6818`，部署 commit `4aa9aa10dcd79810f781f8c2f40318d5d45401b6`。完整卡池 SHA-256、474 份美術素材與所有公告／附屬資料均保持正式值，詳見 [baseline.json](more-navigation-20261003/release/baseline.json)。
+
+新版 production artifact：`c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be`，manifest SHA-256：`853de50d8210179fb753f7ab228cd506e375e1bd0df2d49d4542324c5de142f0`。preview artifact：`9681825588494d99f7a805274f6c9d44a126dd21d553d5d76cdde109bc4bcf8b`。兩個產物均已固定驗證；preview 用於本機隔離驗收，見 [artifacts.json](more-navigation-20261003/release/artifacts.json)。
+
+整合後 `npm test` 三組分別通過 292、14、12 項（總執行 318 項，包含套件原本重複執行的一鍵領取測試），reveal-flow assertions、JS 語法、卡池與圖片驗證皆通過。新版產物原生瀏覽器驗收 16 項通過，更多頁實際支援入口與習慣透明外層驗收通過；沒有使用玩家的正式資料庫或送出正式回報。
+
+部署準備 commit `127920b0dfd716edd24bdb02b018adfc49ca436d` 的 607 個 staged／committed Git blobs 全數與產物一致，沒有移除檔案。見 [deployment-preparation.json](more-navigation-20261003/release/deployment-preparation.json)、[原生瀏覽器驗收](more-navigation-20261003/release/artifact-browser-qa.json)及[更多頁](more-navigation-20261003/release/assembled-more.png)／[習慣頁](more-navigation-20261003/release/assembled-habits.png)截圖。本節仍是發布前準備；成功以後續 Pages 與正式 HTTPS 回執為準。
