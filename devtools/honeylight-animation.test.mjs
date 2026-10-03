@@ -35,8 +35,8 @@ test('ten-pull queue preserves both URs, repeated characters and original positi
 test('sugar prelude is one bounded sequence per pull, with short reduced motion', () => {
   for (const mode of ['single', 'ten']) for (const rarity of ['N', 'R', 'SR', 'SSR', 'UR']) {
     const ms = sugarPreludeDurations(rarity, mode, false).reduce((a, b) => a + b, 0);
-    assert.ok(ms >= 3000 && ms <= 4000);
-    assert.ok(sugarPreludeDurations(rarity, mode, true).reduce((a, b) => a + b, 0) < 400);
+    assert.equal(ms, 3000);
+    assert.equal(sugarPreludeDurations(rarity, mode, true).reduce((a, b) => a + b, 0), 500);
   }
 });
 

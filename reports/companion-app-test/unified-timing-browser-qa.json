@@ -1,0 +1,567 @@
+{
+  "version": "3.5.16",
+  "environment": "Windows Chromium / loopback memory full App / no service worker",
+  "reference": "逆造之誓",
+  "humanAcceptance": "pending",
+  "measurements": [
+    {
+      "elapsed": "6052",
+      "intended": "6000",
+      "kind": "entry",
+      "pool": "逆造之誓"
+    },
+    {
+      "intended": "3000",
+      "kind": "prelude-plan",
+      "pool": "逆造之誓"
+    },
+    {
+      "character": "2543",
+      "kind": "ten-ssr",
+      "name": "重鉚架橋犀",
+      "pool": "逆造之誓",
+      "prelude": "3019"
+    },
+    {
+      "animation": "4.5s",
+      "intended": "4500",
+      "kind": "ur-animation",
+      "pool": "逆造之誓"
+    },
+    {
+      "character": "4531",
+      "kind": "ten-ur",
+      "name": "天律之冕・格里芬",
+      "pool": "逆造之誓"
+    },
+    {
+      "count": 10,
+      "kind": "ten-summary",
+      "pool": "逆造之誓"
+    },
+    {
+      "elapsed": "6026",
+      "intended": "6000",
+      "kind": "entry",
+      "overflow": false,
+      "pool": "星旅之原"
+    },
+    {
+      "intended": "3000",
+      "kind": "prelude-plan",
+      "pool": "星旅之原",
+      "sceneDuration": "2880ms"
+    },
+    {
+      "character": "2523",
+      "kind": "ten-ssr",
+      "name": "天火鳳凰",
+      "pool": "星旅之原",
+      "prelude": "3012"
+    },
+    {
+      "animation": "4.5s",
+      "intended": "4500",
+      "kind": "ur-animation",
+      "pool": "星旅之原"
+    },
+    {
+      "character": "4538",
+      "kind": "ten-ur",
+      "name": "創世星龍",
+      "pool": "星旅之原"
+    },
+    {
+      "count": 10,
+      "kind": "ten-summary",
+      "pool": "星旅之原"
+    },
+    {
+      "elapsed": "6032",
+      "intended": "6000",
+      "kind": "entry",
+      "overflow": false,
+      "pool": "永眠花海"
+    },
+    {
+      "intended": "3000",
+      "kind": "prelude-plan",
+      "pool": "永眠花海",
+      "sceneDuration": "2880ms"
+    },
+    {
+      "character": "2524",
+      "kind": "ten-ssr",
+      "name": "寂繭眠蛾",
+      "pool": "永眠花海",
+      "prelude": "3005"
+    },
+    {
+      "animation": "4.5s",
+      "intended": "4500",
+      "kind": "ur-animation",
+      "pool": "永眠花海"
+    },
+    {
+      "character": "4533",
+      "kind": "ten-ur",
+      "name": "永眠花皇兔",
+      "pool": "永眠花海"
+    },
+    {
+      "count": 10,
+      "kind": "ten-summary",
+      "pool": "永眠花海"
+    },
+    {
+      "elapsed": "6024",
+      "intended": "6000",
+      "kind": "entry",
+      "overflow": false,
+      "pool": "霜誓峽灣"
+    },
+    {
+      "intended": "3000",
+      "kind": "prelude-plan",
+      "pool": "霜誓峽灣",
+      "sceneDuration": "2880ms"
+    },
+    {
+      "character": "2518",
+      "kind": "ten-ssr",
+      "name": "風眼誓鴉",
+      "pool": "霜誓峽灣",
+      "prelude": "3017"
+    },
+    {
+      "animation": "4.5s",
+      "intended": "4500",
+      "kind": "ur-animation",
+      "pool": "霜誓峽灣"
+    },
+    {
+      "character": "4532",
+      "kind": "ten-ur",
+      "name": "破曉誓角麝牛",
+      "pool": "霜誓峽灣"
+    },
+    {
+      "count": 10,
+      "kind": "ten-summary",
+      "pool": "霜誓峽灣"
+    },
+    {
+      "elapsed": "6021",
+      "intended": "6000",
+      "kind": "entry",
+      "overflow": false,
+      "pool": "蜜光糖庭"
+    },
+    {
+      "intended": "3000",
+      "kind": "prelude-plan",
+      "pool": "蜜光糖庭",
+      "sceneDuration": "2880ms"
+    },
+    {
+      "character": "2520",
+      "kind": "ten-ssr",
+      "name": "琉糖星翼蝶",
+      "pool": "蜜光糖庭",
+      "prelude": "3016"
+    },
+    {
+      "animation": "4.5s",
+      "intended": "4500",
+      "kind": "ur-animation",
+      "pool": "蜜光糖庭"
+    },
+    {
+      "character": "4545",
+      "kind": "ten-ur",
+      "name": "焦糖布蕾海獺",
+      "pool": "蜜光糖庭"
+    },
+    {
+      "count": 10,
+      "kind": "ten-summary",
+      "pool": "蜜光糖庭"
+    },
+    {
+      "elapsed": "6072",
+      "intended": "6000",
+      "kind": "entry",
+      "overflow": false,
+      "pool": "劍隱山河"
+    },
+    {
+      "intended": "3000",
+      "kind": "prelude-plan",
+      "pool": "劍隱山河",
+      "sceneDuration": "2880ms"
+    },
+    {
+      "character": "2522",
+      "kind": "ten-ssr",
+      "name": "抱卷白猿",
+      "pool": "劍隱山河",
+      "prelude": "3029"
+    },
+    {
+      "class": "reveal-shell rank-SSR is-leaving",
+      "kind": "next-transition",
+      "transition": "0.24s, 0.24s"
+    },
+    {
+      "animation": "4.5s",
+      "intended": "4500",
+      "kind": "ur-animation",
+      "pool": "劍隱山河"
+    },
+    {
+      "character": "4556",
+      "kind": "ten-ur",
+      "name": "玄翎重岳雕",
+      "pool": "劍隱山河"
+    },
+    {
+      "count": 10,
+      "kind": "ten-summary",
+      "pool": "劍隱山河"
+    },
+    {
+      "elapsed": "1509",
+      "intended": "1500",
+      "kind": "short-entry",
+      "pool": "星旅之原"
+    },
+    {
+      "elapsed": "1509",
+      "intended": "1500",
+      "kind": "short-entry",
+      "pool": "永眠花海"
+    },
+    {
+      "elapsed": "1507",
+      "intended": "1500",
+      "kind": "short-entry",
+      "pool": "霜誓峽灣"
+    },
+    {
+      "elapsed": "1506",
+      "intended": "1500",
+      "kind": "short-entry",
+      "pool": "蜜光糖庭"
+    },
+    {
+      "elapsed": "1511",
+      "intended": "1500",
+      "kind": "short-entry",
+      "pool": "劍隱山河"
+    },
+    {
+      "elapsed": "1510",
+      "intended": "1500",
+      "kind": "short-entry",
+      "pool": "逆造之誓"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "515",
+      "intended": "500",
+      "kind": "reduced-entry-before-text-fix",
+      "pool": "星旅之原"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "513",
+      "intended": "500",
+      "kind": "reduced-entry-before-text-fix",
+      "pool": "永眠花海"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "509",
+      "intended": "500",
+      "kind": "reduced-entry-before-text-fix",
+      "pool": "霜誓峽灣"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "516",
+      "intended": "500",
+      "kind": "reduced-entry-before-text-fix",
+      "pool": "蜜光糖庭"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "507",
+      "intended": "500",
+      "kind": "reduced-entry-before-text-fix",
+      "pool": "劍隱山河"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "507",
+      "intended": "500",
+      "kind": "reduced-entry-before-text-fix",
+      "pool": "逆造之誓"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "511",
+      "intended": "500",
+      "kind": "reduced-entry-before-prompt-fix",
+      "pool": "逆造之誓"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "508",
+      "intended": "500",
+      "kind": "reduced-entry-before-prompt-fix",
+      "pool": "星旅之原"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "507",
+      "intended": "500",
+      "kind": "reduced-entry-before-prompt-fix",
+      "pool": "永眠花海"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "509",
+      "intended": "500",
+      "kind": "reduced-entry-before-prompt-fix",
+      "pool": "霜誓峽灣"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "520",
+      "intended": "500",
+      "kind": "reduced-entry-before-prompt-fix",
+      "pool": "蜜光糖庭"
+    },
+    {
+      "animated": [
+        {
+          "duration": "0.45s",
+          "name": "dreamDebutLineSeg"
+        }
+      ],
+      "elapsed": "517",
+      "intended": "500",
+      "kind": "reduced-entry-before-prompt-fix",
+      "pool": "劍隱山河"
+    },
+    {
+      "animated": [],
+      "elapsed": "514",
+      "intended": "500",
+      "kind": "reduced-entry",
+      "pool": "逆造之誓"
+    },
+    {
+      "animated": [],
+      "elapsed": "511",
+      "intended": "500",
+      "kind": "reduced-entry",
+      "pool": "星旅之原"
+    },
+    {
+      "animated": [],
+      "elapsed": "508",
+      "intended": "500",
+      "kind": "reduced-entry",
+      "pool": "永眠花海"
+    },
+    {
+      "animated": [],
+      "elapsed": "510",
+      "intended": "500",
+      "kind": "reduced-entry",
+      "pool": "霜誓峽灣"
+    },
+    {
+      "animated": [],
+      "elapsed": "516",
+      "intended": "500",
+      "kind": "reduced-entry",
+      "pool": "蜜光糖庭"
+    },
+    {
+      "animated": [],
+      "elapsed": "509",
+      "intended": "500",
+      "kind": "reduced-entry",
+      "pool": "劍隱山河"
+    },
+    {
+      "copy": {
+        "bottom": 749.7625122070312,
+        "height": 168.3125,
+        "left": 24,
+        "right": 296,
+        "top": 581.4500122070312,
+        "width": 272,
+        "x": 24,
+        "y": 581.4500122070312
+      },
+      "elapsed": "521",
+      "kind": "theme-320-200",
+      "overflow": false,
+      "root": "32px",
+      "theme": "default",
+      "viewport": [
+        320,
+        852
+      ]
+    },
+    {
+      "focus": "繼續",
+      "kind": "tab-focus",
+      "theme": "default"
+    },
+    {
+      "copy": {
+        "bottom": 749.7625122070312,
+        "height": 168.3125,
+        "left": 24,
+        "right": 296,
+        "top": 581.4500122070312,
+        "width": 272,
+        "x": 24,
+        "y": 581.4500122070312
+      },
+      "elapsed": "512",
+      "kind": "theme-320-200",
+      "overflow": false,
+      "root": "32px",
+      "theme": "sweet",
+      "viewport": [
+        320,
+        852
+      ]
+    },
+    {
+      "focus": "繼續",
+      "kind": "tab-focus",
+      "theme": "sweet"
+    },
+    {
+      "copy": {
+        "bottom": 749.7625122070312,
+        "height": 168.3125,
+        "left": 24,
+        "right": 296,
+        "top": 581.4500122070312,
+        "width": 272,
+        "x": 24,
+        "y": 581.4500122070312
+      },
+      "elapsed": "516",
+      "kind": "theme-320-200",
+      "overflow": false,
+      "root": "32px",
+      "theme": "twilight",
+      "viewport": [
+        320,
+        852
+      ]
+    },
+    {
+      "focus": "繼續",
+      "kind": "tab-focus",
+      "theme": "twilight"
+    },
+    {
+      "count": 10,
+      "kind": "reduced-ten-summary"
+    },
+    {
+      "character": "4531",
+      "kind": "single-result",
+      "name": "玄翎重岳雕",
+      "pool": "劍隱山河",
+      "prelude": "3030"
+    },
+    {
+      "kind": "skip-start",
+      "phase": "dreamDust"
+    },
+    {
+      "count": 10,
+      "kind": "skip-ten-summary"
+    },
+    {
+      "kind": "fragment-detail",
+      "text": "升星1 星親密度Lv.1此夥伴碎片3"
+    },
+    {
+      "kind": "fragment-reopened",
+      "text": "升星1 星親密度Lv.1此夥伴碎片3"
+    }
+  ],
+  "notes": [
+    "All six pools measured with fixed ten results, SSR then UR. Extra images and user clicks are outside the fixed timing contract.",
+    "Provider waits have bounded selector deadlines; incomplete waits were followed by fresh UI inspection and the completed result was measured.",
+    "Reduced-motion continue prompt initially kept a .45s animation; final reduced-entry measurements show no active animation in all six pools.",
+    "Native default and identity reveal both use summonRevealDuration; full browser measurements here exercise the current identity handoff.",
+    "No iPhone device was attached."
+  ]
+}

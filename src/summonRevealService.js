@@ -12,21 +12,14 @@ import { createSwordwildShanheScene } from './swordwildShanheScene.js';
 import { createLionheartScene } from './lionheartScene.js';
 import { getPetImageSrc, preloadPetImage, delay } from './imagePreloadService.js';
 import { resolvePetRevealKey, resolvePetRevealPresentation } from './poolContentContract.js';
+import { SUMMON_TIMING, summonRevealDuration } from './summonTiming.js';
 
 const RARITY_RANK = { N: 0, R: 1, SR: 2, SSR: 3, UR: 4 };
 
 /** 演出時間（毫秒） */
 const DURATION = {
-  SSR: 1500,
-  UR: 2200,
-  UR_MOON: 2800,
-  UR_PETAL: 2800,
-  UR_CARAMEL: 2600,
-  UR_CREAM: 2800,
-  reducedSsr: 550,
-  reducedUr: 750,
-  queueGap: 280,
-  queueGapReduced: 120,
+  queueGap: SUMMON_TIMING.nextCharacter,
+  queueGapReduced: 0,
   fallbackReady: 400,
 };
 
@@ -256,23 +249,9 @@ function themeCaption(theme, pet) {
   }).caption;
 }
 
-function durationForTheme(theme, reduce, presentationKey) {
-  if (!reduce && (presentationKey === 'lionheart_inverse_oath' || ['lionheart_griffin', 'lionheart_chimera'].includes(theme))) return theme === 'ssr' ? 2500 : 4500;
-  if (reduce) {
-    return theme === 'ssr' ? DURATION.reducedSsr : DURATION.reducedUr;
-  }
-  if (theme === 'moon') return DURATION.UR_MOON;
-  if (theme === 'petal') return DURATION.UR_PETAL;
-  if (theme === 'caramel') return DURATION.UR_CARAMEL;
-  if (theme === 'cream') return DURATION.UR_CREAM;
-  if (['sword_eagle', 'sword_toad', 'sword_ape'].includes(theme)) return 2600;
-  if (theme === 'ur') return DURATION.UR;
-  return DURATION.SSR;
-}
-
-/** The identity viewer gives every world the same unhurried SSR/UR envelope. */
+/** Existing viewer API; native and identity flows now use the same clock. */
 export function identityRevealDuration(rarity, reduced = false) {
-  return reduced ? (rarity === 'UR' ? 750 : 550) : rarity === 'UR' ? 4500 : 2500;
+  return summonRevealDuration(rarity, reduced);
 }
 
 /**
@@ -522,6 +501,11 @@ export async function playSummonReveal({
       useFallback = true;
     }
 
+    const duration = useFallback ? DURATION.fallbackReady : summonRevealDuration(rarity, reduce);
+    overlay.dataset.timing = 'shared';
+    overlay.dataset.duration = String(duration);
+    overlay.style.setProperty('--character-duration', `${duration}ms`);
+    overlay.style.setProperty('--pool-scene-duration', `${duration}ms`);
     activeOverlay = overlay;
     if (identityHandoff) {
       overlay.dataset.identityHandoff = 'true';
@@ -532,10 +516,6 @@ export async function playSummonReveal({
     overlay.querySelector('.summon-reveal-skip')?.focus();
 
     requestAnimationFrame(() => overlay?.isConnected && overlay.classList.add('is-active'));
-
-    const duration = useFallback
-      ? DURATION.fallbackReady
-      : identityHandoff ? identityRevealDuration(rarity, reduce) : durationForTheme(resolvedTheme, reduce, presentationKey);
 
     await new Promise((resolve) => {
       let completed = false;

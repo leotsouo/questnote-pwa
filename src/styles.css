@@ -17551,16 +17551,16 @@ body[data-theme="sweet"] .dream-bloom-btn--ghost {
   inset: 0;
   background: linear-gradient(180deg, #02111977, transparent 30%, transparent 62%, #03131cdd);
 }
-[data-animation='glacier_arrival'].is-active .glacier-scene__wall--left { animation: glacierLeftArrival 3.4s ease-out forwards; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__wall--right { animation: glacierRightArrival 3.4s ease-out forwards; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__fog { animation: glacierFogArrival 3.4s ease-out forwards; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__ship { animation: glacierShipArrival 3.4s ease-out forwards; transform-origin: 50% 62%; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__ripples { animation: glacierWaterArrival 3.4s ease-out forwards; transform-origin: 50% 55%; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__wall--left { animation: glacierLeftArrival var(--pool-scene-duration,3.4s) ease-out forwards; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__wall--right { animation: glacierRightArrival var(--pool-scene-duration,3.4s) ease-out forwards; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__fog { animation: glacierFogArrival var(--pool-scene-duration,3.4s) ease-out forwards; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__ship { animation: glacierShipArrival var(--pool-scene-duration,3.4s) ease-out forwards; transform-origin: 50% 62%; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__ripples { animation: glacierWaterArrival var(--pool-scene-duration,3.4s) ease-out forwards; transform-origin: 50% 55%; }
 [data-animation='glacier_arrival'].is-active .glacier-scene__beacons ellipse { animation: glacierBeaconArrival 1s ease-out calc(0.4s + var(--i) * 0.16s) both; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__sunrise { animation: glacierSunrise 3.4s cubic-bezier(.4,0,.2,1) both; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__daybreak { animation: glacierDaybreak 3.4s ease-out both; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__reflection { animation: glacierSunReflection 3.4s ease-out both; }
-[data-animation='glacier_arrival'].is-active .glacier-scene__snow { animation: glacierSnowLight 3.4s ease-out both; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__sunrise { animation: glacierSunrise var(--pool-scene-duration,3.4s) cubic-bezier(.4,0,.2,1) both; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__daybreak { animation: glacierDaybreak var(--pool-scene-duration,3.4s) ease-out both; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__reflection { animation: glacierSunReflection var(--pool-scene-duration,3.4s) ease-out both; }
+[data-animation='glacier_arrival'].is-active .glacier-scene__snow { animation: glacierSnowLight var(--pool-scene-duration,3.4s) ease-out both; }
 [data-animation='glacier_arrival'][data-state='summary'] .glacier-scene { opacity: 0.5; transition: opacity 0.35s; }
 [data-animation='glacier_arrival'] .dream-bloom-seal__petal,
 [data-animation='glacier_arrival'] .dream-bloom-seal__reflect { display: none; }

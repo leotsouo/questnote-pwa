@@ -2,13 +2,15 @@
 
 本機網址：http://127.0.0.1:4193/ 。執行 node devtools/companion-app-server.mjs 可重新啟動。
 
-從 origin/main 8c9a3edae21fbad75c926cfb337d44c660d9a821（來源 V3.5.10）建立 codex/companion-app-art-test；本分支標示 V3.5.15。此為本機可操作的完整 App 測試版，未 push、合併或發布。
+從 origin/main 8c9a3edae21fbad75c926cfb337d44c660d9a821（來源 V3.5.10）建立 codex/companion-app-art-test；本分支標示 V3.5.16。此為本機可操作的完整 App 測試版，未 push、合併或發布。
+
+V3.5.16 六池共用逆造之誓的時間設定：完整入場 6 秒、再訪 1.5 秒、抽卡前奏 3 秒、SSR 2.5 秒、UR 4.5 秒、下一位交接 240ms。原生與新版角色流程使用同一個時間來源；地景動作按共同時間伸縮，減少動態保留快速靜態呈現。六池逐一實測與 SOP 更新見 [unified-timing-review.md](unified-timing-review.md)，303 項 repository tests 及 18 項展示整合 tests 通過。
 
 V3.5.15 將霜誓峽灣的菱形誓印與通用圓環改成山脊日出；太陽、倒影與港口燈火共用原地景的 SVG 座標，保留冰壁、紅帆與碼頭。手機／桌機、三套 Theme、320px／200%、減少動態、單次／十連前奏、略過與鍵盤已實測，299 項 Node tests 通過。最新證據見 [glacier-dawn-review.md](glacier-dawn-review.md)，構圖規則已補入 SOP；人工最終體驗與 iPhone 驗收仍待進行。
 
 V3.5.14 統一入場文字版型、SSR 2.5 秒／UR 4.5 秒及 240ms 下一位交接，接回二十位劍隱山河覺醒預覽；標準改名星旅之原，星圖山徑與永眠花海鏡池場景重新設計。六池、三套 Theme、320px／200% 字級及鍵盤已實測，317 項 Node checks 通過。最新證據與工程／人工驗收狀態見 [ceremony-v3-review.md](ceremony-v3-review.md)，共同規格已寫入新卡池 SOP。
 
-下方保留 V3.5.11–14 歷史紀錄。舊的「標準」名稱、沿用鏡池及 607px 測量以最新報告為準；舊截圖與測試紀錄不覆寫。
+下方保留 V3.5.11–15 歷史紀錄。舊的「標準」名稱、沿用鏡池及 607px 測量以最新報告為準；舊截圖與測試紀錄不覆寫。
 
 V3.5.13 修正焦點標籤被插畫遮住，並將方形原圖完整填滿卡片寬度；393 × 852 三套 Theme 的召喚按鈕底部約 731px，仍在首屏。最新驗證與截圖見 [image-layout-repair.md](image-layout-repair.md)，下方儀式版 607px 的測量保留作為 V3.5.12 歷史證據。
 

@@ -31,9 +31,9 @@ test('swordwild story motifs are UR-only metadata independent of pet identity', 
     assert.throws(() => resolvePetRevealKey({ id: 'pet_ssr99', rarity: 'SSR', presentation: { revealKey: key } }), PoolContentError);
   }
 });
-test('swordwild prelude stays bounded and reduced motion removes rarity suspense', () => {
+test('swordwild prelude follows the same Lionheart clock for every rarity', () => {
   const sums = ['N', 'R', 'SR', 'SSR', 'UR'].map((r) => swordwildPreludeDurations(r, 'ten', false).reduce((a, b) => a + b, 0));
-  assert.ok(sums.every((sum, index) => sum < 5000 && (index === 0 || sum > sums[index - 1])));
+  assert.ok(sums.every((sum) => sum === 3000));
   assert.deepEqual(swordwildPreludeDurations('N', 'single', true), swordwildPreludeDurations('UR', 'ten', true));
   assert.ok(swordwildPreludeDurations('UR', 'ten', true).reduce((a, b) => a + b, 0) < 600);
 });

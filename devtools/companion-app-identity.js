@@ -9,6 +9,7 @@ import { RARITIES, MAX_DISPLAY_STARS, poolCandidates, identityLabel, basePetRate
 import { normalizePoolDefinition } from '../src/poolContentContract.js';
 import { createPoolScenery, ceremonyPresentation, playCeremonyEntry, playCeremonyRitual, playCeremonyCharacter, playCeremonyAwakening, playCeremonyPetAwakening } from './companion-ceremony.js';
 import { delay } from '../src/imagePreloadService.js';
+import { SUMMON_TIMING } from '../src/summonTiming.js';
 
 let screen = document.getElementById('identity-screen');
 let refreshApp = null;
@@ -235,7 +236,7 @@ function presentResult(result, stepByStep = false, artworkShown = false) {
   const pet = result.pet;
   manual = stepByStep;
   trace = [];
-  document.getElementById('identity-reveal-content').innerHTML = `<section class="reveal-shell rank-${pet.rarity}" data-phase="begin" data-start="${performance.now()}">
+  document.getElementById('identity-reveal-content').innerHTML = `<section class="reveal-shell rank-${pet.rarity}" data-phase="begin" style="--next-character-duration:${SUMMON_TIMING.nextCharacter}ms" data-start="${performance.now()}">
     <div class="reveal-top"><p class="eyebrow reveal-stage-label">循著星光，等待相遇</p><button data-identity-action="skip-reveal">${activeBatch ? '略過全部' : '略過演出'}</button></div>
     ${activeBatch ? `<p class="queue-progress">本次相遇 · 角色揭露 ${activeBatch.index + 1} / ${activeBatch.queue.length}</p>` : ''}
     ${imageHtml(pet,'stage',false,'reveal-image')}<div class="reveal-identity"><h2 id="identity-reveal-name" class="pet-name" aria-hidden="true">${escapeHtml(pet.name)}</h2><p class="pet-title" aria-hidden="true">${escapeHtml(pet.title)}</p>${cues(pet,false)}</div>
@@ -269,6 +270,7 @@ async function startReveal(pet, stepByStep = false) {
     const character = await playCeremonyCharacter(pool(), batch.results[0], { reduceMotion: reduced() });
     presentResult(batch.results[0], false, character.artworkShown);
     document.querySelector('.reveal-shell').dataset.characterDuration = String(character.duration || 0);
+    document.querySelector('.reveal-shell').dataset.ritualDuration = String(ritual.duration || 0);
     if (character.skipped) phase('result');
   } finally { displayBusy = false; }
 }
@@ -295,7 +297,10 @@ async function startTen() {
     if (reduced()) { showBatchSummary(); return; }
     const ritual = await playCeremonyRitual(pool(), batch.results, false);
     if (ritual.skipped || !activeBatch.queue.length) showBatchSummary();
-    else await presentBatchCharacter();
+    else {
+      activeBatch.ritualDuration = ritual.duration;
+      await presentBatchCharacter();
+    }
   } finally { displayBusy = false; }
 }
 
@@ -330,7 +335,7 @@ async function presentBatchCharacter() {
   if (reveal.open && !reduced()) {
     reveal.querySelectorAll('.reveal-actions button').forEach((button) => { button.disabled = true; });
     reveal.querySelector('.reveal-shell')?.classList.add('is-leaving');
-    await delay(240);
+    await delay(SUMMON_TIMING.nextCharacter);
     if (activeBatch !== batch || batch.summary) return;
   }
   const curtain = document.createElement('div');
@@ -344,6 +349,7 @@ async function presentBatchCharacter() {
     if (activeBatch !== batch || batch.summary) return;
     character.skipped ? showBatchSummary() : presentResult(result, false, character.artworkShown);
     if (!character.skipped) document.querySelector('.reveal-shell').dataset.characterDuration = String(character.duration || 0);
+    if (!character.skipped) document.querySelector('.reveal-shell').dataset.ritualDuration = String(batch.ritualDuration || 0);
   } finally { curtain.remove(); }
 }
 
