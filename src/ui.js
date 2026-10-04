@@ -3332,6 +3332,8 @@ function openTaskForm(taskId = null) {
   });
 
   document.getElementById('subtask-new-input')?.addEventListener('keydown', (e) => {
+    // Enter can confirm an IME candidate; do not turn that into a subtask action.
+    if (e.isComposing || e.keyCode === 229) return;
     if (e.key === 'Enter') {
       e.preventDefault();
       document.getElementById('subtask-add-btn')?.click();

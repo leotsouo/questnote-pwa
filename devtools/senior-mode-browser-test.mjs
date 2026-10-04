@@ -7,7 +7,7 @@ import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const reportDir = path.join(root, 'reports', 'senior-mode');
+const reportDir = path.resolve(root, process.env.QUESTNOTE_SENIOR_REPORT_DIR || 'reports/senior-mode');
 await fs.mkdir(reportDir, { recursive: true });
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
@@ -423,6 +423,53 @@ try {
     await page.locator('#confirm-ok').click();
     await page.waitForFunction(async (id) => !(await window.seniorTest.taskService.getTaskById(id)), task.id);
     assert.equal(await page.locator('.senior-completion-receipt').count(), 0);
+  });
+  await check('synthetic Chinese IME Enter and long text use the shared form in both modes', async () => {
+    const longTitle = '明天下午記得帶媽媽去醫院拿慢性病處方箋然後順便去超市買晚餐需要的東西';
+    const notes = '帶健保卡、處方箋，先確認醫院時間。\n買青菜、豆腐，回家後記得整理。';
+    for (const senior of [true, false]) {
+      await mode(senior);
+      await nav('tasks');
+      await page.getByRole('button', { name: '新增任務', exact: true }).filter({ visible: true }).first().click();
+      await page.locator('#task-content').fill(`${longTitle}\n${notes}`);
+      if (senior) await page.locator('#task-form .senior-form-options summary').click();
+      const input = page.locator('#subtask-new-input');
+      await input.fill('注音選字中');
+      for (const data of [{ isComposing: true, keyCode: 13 }, { isComposing: false, keyCode: 229 }]) {
+        const untouched = await input.evaluate((node, options) => {
+          node.dispatchEvent(new CompositionEvent('compositionstart', { bubbles: true }));
+          const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true, ...options });
+          node.dispatchEvent(event);
+          node.dispatchEvent(new CompositionEvent('compositionend', { bubbles: true, data: node.value }));
+          return { prevented: event.defaultPrevented, value: node.value };
+        }, data);
+        assert.deepEqual(untouched, { prevented: false, value: '注音選字中' });
+        assert.equal(await page.locator('#subtask-form-list .subtask-form-item').count(), 0);
+        assert.equal((await taskRows()).some((task) => task.title === longTitle), false, 'IME candidate confirmation must not create a task');
+      }
+      await input.fill('帶健保卡');
+      await input.press('Enter');
+      assert.equal(await page.locator('#subtask-form-list .subtask-form-item').count(), 1, 'ordinary Enter still adds exactly one subtask');
+      assert.equal(await input.inputValue(), '');
+      assert.equal((await taskRows()).some((task) => task.title === longTitle), false, 'subtask input must not submit the parent task');
+      await page.locator('#task-form button[type="submit"]').click();
+      await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
+      await page.waitForFunction(async (title) => (await window.seniorTest.taskService.getAllTasks()).some((task) => task.title === title), longTitle);
+      const task = (await taskRows()).find((task) => task.title === longTitle);
+      assert.equal(task.content, `${longTitle}\n${notes}`);
+      assert.equal(task.subtasks[0].text, '帶健保卡');
+      // Normal mode deliberately leaves a new task unplanned unless requested.
+      await page.locator('button[data-task-view="all"]').click();
+      const card = page.locator(`.task-card[data-id="${task.id}"]`);
+      await card.locator('.task-card__description summary').click();
+      assert.ok((await card.innerText()).includes(notes.split('\n')[0]));
+      await shot(`${senior ? 'senior' : 'normal'}-long-chinese-task`);
+      await card.locator('.twilight-task-menu summary').click();
+      await card.locator('[data-action="delete"]').click();
+      await page.locator('#confirm-ok').click();
+      await page.waitForFunction(async (id) => !(await window.seniorTest.taskService.getTaskById(id)), task.id);
+    }
+    return { evidence: 'Synthetic DOM keyboard/composition events; not an iPhone keyboard or dictation test' };
   });
   assert.deepEqual(errors, []);
   await fs.unlink(path.join(reportDir, 'failure.png')).catch((error) => { if (error.code !== 'ENOENT') throw error; });
