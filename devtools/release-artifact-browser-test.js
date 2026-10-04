@@ -125,6 +125,15 @@ async function checkCatalogAndUi(frame, profile) {
   const bundle = JSON.parse(new TextDecoder().decode(bytes));
   assert(bundle.petsData.pets.length === item.expected.petCount, 'Pet catalog count mismatch');
   const document = frame.contentDocument;
+  // Catalog smoke checks are separate from the dedicated first-use suite.
+  // Exit the new guide through its real, deliberate skip controls.
+  const skip = document.querySelector('[data-guided-action="skip"]');
+  if (skip && skip.getClientRects().length) {
+    skip.click();
+    await until(() => document.querySelector('[data-guided-action="confirm-skip"]'), 'guided skip confirmation');
+    document.querySelector('[data-guided-action="confirm-skip"]').click();
+    await until(() => !document.querySelector('.guided-coach'), 'guided skip persisted');
+  }
   const debut = await frame.contentWindow.eval('import(' + JSON.stringify(new URL('src/poolDebutService.js', frame.contentWindow.location.href).href) + ')');
   const needsDebut = item.expected.firstPool && !await debut.hasSeenPoolDebut(item.expected.firstPool.id);
   document.querySelector('[data-view="gacha"]').click();
