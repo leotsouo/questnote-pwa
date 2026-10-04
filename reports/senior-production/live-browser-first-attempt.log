@@ -1,0 +1,44 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.check: Timeout 45000ms exceeded.
+Call log:
+  - waiting for locator('#reading-mode-toggle')
+    - locator resolved to <input role="switch" type="checkbox" id="reading-mode-toggle" class="settings-toggle__input" aria-describedby="reading-mode-description"/>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not visible
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not visible
+    - retrying click action
+      - waiting 100ms
+    88 × waiting for element to be visible, enabled and stable
+       - element is not visible
+     - retrying click action
+       - waiting 500ms
+
+    at C:\Users\User\OneDrive\questnote-pwa\.worktrees\senior-friendly\.dev-backups\live-browser.mjs:11:186 {
+  log: [
+    "  - waiting for locator('#reading-mode-toggle')",
+    '    - locator resolved to <input role="switch" type="checkbox" id="reading-mode-toggle" class="settings-toggle__input" aria-describedby="reading-mode-description"/>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is not visible',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is not visible',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    88 × waiting for element to be visible, enabled and stable',
+    '       - element is not visible',
+    '     - retrying click action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.18.0
