@@ -7,6 +7,7 @@ import { normalizePoolDefinition, resolveActivePool } from './poolContentContrac
 import { createPoolScenery, ceremonyPresentation, playCeremonyRitual, playCeremonyCharacter, playInvitationCharacter } from './encounterCeremony.js';
 import { delay } from './imagePreloadService.js';
 import { SUMMON_TIMING } from './summonTiming.js';
+import { isSeniorMode, seniorFeedback, syncSeniorPresentation } from './seniorModeController.js';
 import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
 
 const modalHost = document.createElement('div');
@@ -60,7 +61,7 @@ const collectionScopeName = () => collectionScope === 'all' ? '全部系列' : p
 const presentation = () => isExpanded(poolId) && pool().unlockExpansion ? { ...pool().presentation, ...pool().unlockExpansion.presentation } : pool().presentation || {};
 const featureIds = () => [presentation().heroPetId, ...(presentation().featuredPetIds || [])].filter(Boolean);
 const isExpanded = (id) => appActions?.isExpanded(id) ?? !!appState?.poolUnlockState?.byPool?.[id]?.unlocked;
-const reduced = () => appState?.userPreferences?.reduceMotion || matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduced = () => isSeniorMode() || appState?.userPreferences?.reduceMotion || matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function imageHtml(pet, size = 'card', lazy = true, className = '') {
   return `<img class="${className}" src="${asset(pet, size)}" alt="" ${lazy ? 'loading="lazy"' : 'fetchpriority="high"'} decoding="async" data-fallback="${new URL('../' + pet.image, import.meta.url).href}">`;
@@ -91,14 +92,14 @@ function renderPool() {
   const list = candidates();
   const hero = byId(presentation().heroPetId) || list.find((pet) => pet.rarity === 'UR') || list[0];
   const support = (presentation().featuredPetIds || list.filter((pet) => pet.rarity === 'UR' && pet.id !== hero.id).slice(0, 3).map((pet) => pet.id)).map(byId).filter((pet) => pet && list.some((row) => row.id === pet.id));
-  screen.innerHTML = `<div class="page-intro pool-heading"><h1>下一位同行者。</h1></div>
+  screen.innerHTML = `<div class="page-intro pool-heading"><h1>${isSeniorMode() ? '召喚你的下一位夥伴' : '下一位同行者。'}</h1>${isSeniorMode() ? '<p class="page-description">完成任務獲得星塵，再用星塵隨機召喚夥伴。每一次相遇都會儲存在收藏。</p>' : ''}</div>
     ${poolSelector()}<section class="summon-sanctuary" data-world="${ceremonyPresentation(selected).animationKey}">
     <div class="sanctuary-scenery" aria-hidden="true"></div>
     <header class="sanctuary-heading"><h2>${escapeHtml(selected.name)}</h2><span>${escapeHtml(selected.presentation?.badge || '星光相遇')}</span></header>
     <div class="pool-layout"><div class="pool-stage"><button class="hero-card rank-${hero.rarity}" data-pet="${hero.id}" aria-label="預覽 ${escapeHtml(identityLabel(hero, owned(hero)))}">
       <span class="hero-portal">${imageHtml(hero, 'stage', false, 'hero-art')}</span>
       <span class="hero-caption"><span class="art-label">本池焦點 · 點擊認識</span><span class="pet-name">${escapeHtml(hero.name)}</span><span class="pet-title">${escapeHtml(hero.title)}</span>${cues(hero)}</span>
-    </button><div class="summon-dock"><div class="summon-buttons"><button class="primary" ${appActions.isBusy() || appState.wallet.stardust < selected.cost ? 'disabled' : ''} data-identity-action="summon" data-pet-id="${hero.id}"><span>啟動相遇</span><small>單次 · ${selected.cost} 星塵</small></button><button ${appActions.isBusy() || appState.wallet.stardust < selected.cost * 10 ? 'disabled' : ''} data-identity-action="summon-ten"><span>十連相遇</span><small>十次 · ${selected.cost * 10} 星塵</small></button></div><p>${walletHint(selected)}</p></div></div></div></section>
+    </button><div class="summon-dock"><div class="summon-buttons"><button class="primary" ${appActions.isBusy() || appState.wallet.stardust < selected.cost ? 'disabled' : ''} data-identity-action="summon" data-pet-id="${hero.id}"><span>${isSeniorMode() ? '召喚 1 位夥伴' : '啟動相遇'}</span><small>單次 · ${selected.cost} 星塵</small></button><button ${appActions.isBusy() || appState.wallet.stardust < selected.cost * 10 ? 'disabled' : ''} data-identity-action="summon-ten"><span>${isSeniorMode() ? '召喚 10 次' : '十連相遇'}</span><small>十次 · ${selected.cost * 10} 星塵</small></button></div><p>${walletHint(selected)}</p></div></div></div></section>
     ${invitationEntry(appState.encounterEconomy?.balance || 0)}
     <div class="pool-copy"><p class="eyebrow">${escapeHtml(selected.presentation?.badge || '持續開放的相遇')}</p><h2>${escapeHtml(selected.name)}</h2>
       <p class="pool-lore">${escapeHtml(selected.presentation?.tagline || '循著星光，認識願意與你一起前進的夥伴。')}</p>
@@ -110,13 +111,18 @@ function renderPool() {
     <div class="support-grid">${support.slice(0, 3).map((pet) => `<button class="mini-card" data-pet="${pet.id}" aria-label="${escapeHtml(identityLabel(pet, owned(pet)))}">${imageHtml(pet)}<span class="pet-name">${escapeHtml(pet.name)}</span>${cues(pet)}</button>`).join('')}</div>
 `;
   screen.querySelector('.sanctuary-scenery').append(createPoolScenery(selected));
+  if (isSeniorMode()) {
+    const dock = screen.querySelector('.summon-dock');
+    screen.querySelector('.pool-select').after(dock);
+  }
+  syncSeniorPresentation();
 }
 
 function renderCollection() {
   screen = document.querySelector('#view-collection .identity-surface') || screen;
   const list = collectionCandidates();
   const count = list.filter(owned).length;
-  screen.innerHTML = `<div class="page-intro"><div><p class="eyebrow">OUR ADVENTURE JOURNAL</p><h1>相遇，寫成旅程。</h1><p class="page-description">熟悉的夥伴，和還未寫下的故事。</p></div></div>${poolSelector()}
+  screen.innerHTML = `<div class="page-intro"><div><p class="eyebrow">OUR ADVENTURE JOURNAL</p><h1>${isSeniorMode() ? '寵物與收藏' : '相遇，寫成旅程。'}</h1><p class="page-description">熟悉的夥伴，和還未寫下的故事。</p></div></div>${poolSelector()}
     <section class="collection-progress"><p><strong>${count} / ${list.length}</strong> <span class="subtle">位夥伴已相遇</span></p><p class="subtle">每次相遇，都留下一頁自己的記錄。</p><progress max="${list.length}" value="${count}" aria-label="${escapeHtml(collectionScopeName())}，${count} 位已相遇，共 ${list.length} 位"></progress></section>
     <section id="encounter-collection-milestones" class="collection-milestones-panel card" aria-label="收藏里程碑"></section>
     <div class="filters" aria-label="收藏狀態">${[['all','全部夥伴'],['owned','已相遇'],['unowned','尚未相遇']].map(([key,label]) => `<button data-filter="${key}" aria-pressed="${filter === key}">${label}</button>`).join('')}</div>
@@ -125,6 +131,7 @@ function renderCollection() {
     <div id="identity-collection-results"></div>`;
   appActions.renderCollectionMilestones?.();
   renderCollectionCards();
+  syncSeniorPresentation();
 }
 
 function renderCollectionCards() {
@@ -183,6 +190,20 @@ function petDetail(pet, returnToBatch = false) {
     ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p>${normalGreeting(pet) ? `<blockquote>${escapeHtml(normalGreeting(pet))}</blockquote>` : ''}</section>` : ''}
     <section class="detail-section"><h3>相處，才會揭開的故事</h3>${isOwned ? [2,3,4,5].map((level) => `<p>親密度 Lv.${level} · ${entry.bondLevel >= level ? escapeHtml(pet.bondUnlocks?.[level] || '已解鎖') : '故事尚未解鎖'}</p>`).join('') : '<p>相遇後可閱讀完整背景；專屬對話與羈絆章節隨親密度逐步揭開。</p>'}</section>
     ${isOwned ? `<section class="detail-section"><h3>一起走下去</h3><button data-identity-action="app-pet-detail" data-pet-id="${pet.id}">養成與餵食</button><button data-identity-action="app-nickname" data-pet-id="${pet.id}">修改暱稱</button><p>在完整 App 的養成頁，可以修改暱稱、餵食、培養親密度與閱讀同行故事。</p></section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-identity-action="${returnToBatch ? 'return-batch' : view === 'collection' ? 'close-dialog' : 'preview'}">${returnToBatch ? '返回本次相遇' : view === 'collection' ? '返回圖鑑' : '返回本池夥伴'}</button>`);
+  if (isSeniorMode()) {
+    // Keep care actions visible; optional narrative uses disclosure, not another data model.
+    dialog.querySelectorAll('.detail-section').forEach((section) => {
+      const heading = section.querySelector('h3');
+      if (!heading || section.querySelector('button')) return;
+      const details = document.createElement('details');
+      details.className = 'senior-form-options';
+      const summary = document.createElement('summary');
+      summary.textContent = heading.textContent;
+      heading.remove();
+      section.replaceWith(details);
+      details.append(summary, section);
+    });
+  }
 }
 
 function poolPreview() {
@@ -224,7 +245,7 @@ function phase(name) {
   }
   if (name === 'result') {
     clearTimers();
-    shell.querySelector('[data-identity-action="skip-reveal"]').textContent = activeBatch ? '略過全部' : '關閉';
+    shell.querySelector('[data-identity-action="skip-reveal"]').textContent = activeBatch ? '略過全部' : isSeniorMode() ? '收下，返回召喚' : '關閉';
     document.getElementById('identity-announcement').textContent = `${activeResult.pet.name}，${activeResult.pet.title || ''}，${activeResult.pet.rarity}。${activeResult.isNew ? '新夥伴已加入圖鑑。' : `再次相遇，相遇碎片增加 ${activeResult.fragmentsGained}，目前 ${activeResult.encounterBalanceAfter ?? appState.encounterEconomy?.balance ?? 0} 枚。`}`;
     shell.querySelector('.reveal-actions').removeAttribute('aria-hidden');
     shell.querySelector('.obtained').removeAttribute('aria-hidden');
@@ -249,7 +270,7 @@ function presentResult(result, stepByStep = false, artworkShown = false) {
     <div class="reveal-art">${imageHtml(pet,'stage',false,'reveal-image')}</div><div class="reveal-identity"><h2 id="identity-reveal-name" class="pet-name" aria-hidden="true">${escapeHtml(pet.name)}</h2><p class="pet-title" aria-hidden="true">${escapeHtml(pet.title)}</p>${cues(pet,false)}</div>
     ${result.isNew && normalGreeting(pet) ? `<blockquote class="reveal-greeting" hidden>「${escapeHtml(normalGreeting(pet))}」</blockquote>` : ''}
     <div class="obtained" aria-hidden="true">${result.isNew ? '初次相遇，已加入圖鑑。<p>從相遇開始，讓故事慢慢變熟悉。</p>' : reencounterMoment(pet, result.fragmentsGained, result.encounterBalanceAfter ?? appState.encounterEconomy?.balance ?? 0)}</div>
-    <div class="reveal-actions" aria-hidden="true">${activeBatch ? `<button class="primary" data-identity-action="next-result">${activeBatch.index + 1 === activeBatch.queue.length ? '查看本次相遇' : '下一位夥伴'}</button><button data-identity-action="batch-summary">查看全部結果</button>` : '<button class="primary" data-identity-action="reveal-detail">認識這位夥伴</button><button data-identity-action="reveal-collection">查看圖鑑</button>'}</div>
+    <div class="reveal-actions" aria-hidden="true">${activeBatch ? `<button class="primary" data-identity-action="next-result">${activeBatch.index + 1 === activeBatch.queue.length ? '查看本次相遇' : '下一位夥伴'}</button><button data-identity-action="batch-summary">查看全部結果</button>` : `<button class="primary" data-identity-action="reveal-detail">${isSeniorMode() ? '查看夥伴' : '認識這位夥伴'}</button><button data-identity-action="reveal-collection">查看圖鑑</button>`}</div>
     ${manual ? `<div class="filters" aria-label="逐步檢視演出">${['begin','cue','silhouette','art','name','title','result'].map((key,index) => `<button data-phase-step="${key}">${index+1} ${['開始','稀有線索','輪廓','插畫','名字','稱號','結果'][index]}</button>`).join('')}</div>` : ''}
   </section>`;
   if (!reveal.open) reveal.showModal();
@@ -272,7 +293,10 @@ export async function presentCommittedEncounters(selectedPool, results) {
   activeBatch = list.length > 1 ? { results: list, queue: list.filter((row) => ['SSR', 'UR'].includes(row.pet.rarity)), index: 0, summary: false } : null;
   try {
     activationHaptic();
-    if (reduced() && activeBatch) showBatchSummary();
+    if (isSeniorMode()) {
+      if (activeBatch) showBatchSummary();
+      else presentResult(list[0]);
+    } else if (reduced() && activeBatch) showBatchSummary();
     else {
       const ritual = await playCeremonyRitual(selectedPool, list, reduced());
       if (activeBatch) {
@@ -387,6 +411,7 @@ document.addEventListener('click', async (event) => {
   if (action === 'set-companion') {
     button.disabled = true;
     await appActions.setCompanion(button.dataset.petId);
+    seniorFeedback(`${byId(button.dataset.petId).name}已設為陪伴夥伴。`, 'success');
     render();
     petDetail(byId(button.dataset.petId), detailReturnsToBatch);
     document.getElementById('identity-announcement').textContent = `${byId(button.dataset.petId).name}已設為陪伴夥伴。`;
@@ -475,6 +500,7 @@ async function runDraw(count) {
 }
 
 function walletHint(selected) {
+  if (isSeniorMode()) return `你有 ${appState.wallet?.stardust || 0} 星塵。${appState.wallet?.stardust < selected.cost ? '星塵不足時，可以先回首頁完成任務。' : '按下召喚後，還可以先確認費用。'}稀有度與保底規則可在下方查看。`;
   const counters = appState.gachaStats?.poolPity?.[selected.id] || {};
   return '持有 ' + (appState.wallet?.stardust || 0) + ' 星塵 · SSR+ 保底 ' + (counters.ssrPity || 0) + '/' + selected.pity.ssr + ' · UR 保底 ' + (counters.urPity || 0) + '/' + selected.pity.ur;
 }

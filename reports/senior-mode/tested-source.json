@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-10-04T05:11:03.1636472Z",
+  "base": "89b3550",
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "514e8f5624624cdf1d223b9fdeb4ae5042d351c77799e28022f25d99edad63b9"
+    },
+    {
+      "path": "package.json",
+      "sha256": "96857381271a394484dc09552ae126e68576509da6fd1a531756b26e090d04b7"
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "0781ac10e5ccb4428db7e2b494eda43c19acdc56a297628a29e8f7419668cda9"
+    },
+    {
+      "path": "src/app.js",
+      "sha256": "efa281ee51c78822441b0b17211da41d943502276ba80bf00aaa63b9860bfb56"
+    },
+    {
+      "path": "src/backupSchema.js",
+      "sha256": "5902f66ed00389a537ea0fa2d7c2cd26bfdd1ae04b53484d88592e8505d7d539"
+    },
+    {
+      "path": "src/backupService.js",
+      "sha256": "0c796efc9994df47f35f3e035f618ecdc73d160357180d15aad43c063bd69657"
+    },
+    {
+      "path": "src/dialogFocus.js",
+      "sha256": "58169d9a8ae4e9cdabfa6eb165e12e4233d359915d992a4d2edc4f7b35eb97ab"
+    },
+    {
+      "path": "src/encounterView.js",
+      "sha256": "f480512dd6961432053a9ae380dbbbba37282e3a338202319847fc2396791783"
+    },
+    {
+      "path": "src/preferencesService.js",
+      "sha256": "b9228dae555679f0e1e096dc1fb65d72d6093a39cc889b067abd388a23f6aa57"
+    },
+    {
+      "path": "src/seniorModeController.js",
+      "sha256": "220b18e847c190c29faa91f301c29981b606c6a9bbc61d3e334211d11ddf1242"
+    },
+    {
+      "path": "src/seniorMode.css",
+      "sha256": "e3945fcf911791483e34286134b74c0903215e74491b6c9234d3775d34a329d6"
+    },
+    {
+      "path": "src/taskMigration.js",
+      "sha256": "91951720bd10dce88273cba65f6da26e1b3f7b585d91e97fd1f3b9498841a843"
+    },
+    {
+      "path": "src/taskService.js",
+      "sha256": "7dcd1a97e3768f3997a2f0bde15d0b20b79c6aa4a8a8f7f3e5fd9b39fb46df29"
+    },
+    {
+      "path": "src/ui.js",
+      "sha256": "49943400461c654fffd7931301f89099ebfc34349f67f8f755bf5851e574afca"
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "533abb67a394b20a0a786241c9a58399120a3ec069a16616037d83572ea61ecc"
+    },
+    {
+      "path": "devtools/senior-mode.test.mjs",
+      "sha256": "f8a4f76af20bf226637e03f495e2e5e79deea679124100479b496ff67aa1e412"
+    },
+    {
+      "path": "devtools/task-time.test.mjs",
+      "sha256": "b1105a8e6ff17f6f6b9b4af4ecfb258a27d81308fd6eb5009f99ce94adb37482"
+    },
+    {
+      "path": "devtools/senior-mode-browser-test.mjs",
+      "sha256": "d35f402a2b4f03f8a94be112799447430ea99b865fe70d77a2c981c5e41fac22"
+    }
+  ]
+}

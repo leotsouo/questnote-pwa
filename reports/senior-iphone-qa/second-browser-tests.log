@@ -1,0 +1,44 @@
+
+> test:senior:browser
+> node devtools/senior-mode-browser-test.mjs
+
+PASS normal baseline and isolated seed
+PASS settings switch persists and preserves every shared store
+PASS guided practice uses real task creation/completion and can be dismissed persistently
+PASS create timed task through the shared form; useful labels and advanced disclosure
+PASS complete task grants actual shared rewards and leaves persistent readable receipt
+PASS edit/delete are explicit; confirmation names the task; cancellation is safe
+PASS error feedback remains readable and dirty forms prevent accidental dismissal
+PASS single summon confirms cost, charges once and preserves a readable result
+PASS collection and pet details remain reachable, with explicit home navigation
+PASS primary touch targets, modal keyboard semantics and system reduced motion
+PASS all visible actionable controls have touch targets across main views
+PASS lazy mailbox/image overlays isolate background and recover focus without stale inert
+PASS reflow across widths/themes/larger text and reduced motion
+PASS 200 percent text and WCAG text spacing at 320 pixels reflow
+PASS switching back restores normal presentation with identical gameplay
+PASS normal mode task create/edit/complete/delete still uses the same working services
+FAIL synthetic Chinese IME Enter and long text use the shared form in both modes
+locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('.task-card[data-id="2326b318-85a7-46b7-a897-12cdc5e612e7"]').locator('.task-card__description summary')[22m
+
+    at C:\Users\User\OneDrive\questnote-pwa\.worktrees\senior-friendly\devtools\senior-mode-browser-test.mjs:462:61
+    at async check (C:\Users\User\OneDrive\questnote-pwa\.worktrees\senior-friendly\devtools\senior-mode-browser-test.mjs:34:25)
+    at async file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/senior-friendly/devtools/senior-mode-browser-test.mjs:427:3
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: synthetic Chinese IME Enter and long text use the shared form in both modes
+    at check (file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/senior-friendly/devtools/senior-mode-browser-test.mjs:41:10)
+    at async file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/senior-friendly/devtools/senior-mode-browser-test.mjs:427:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

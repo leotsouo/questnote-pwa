@@ -1,0 +1,2033 @@
+{
+  "measurements": [
+    {
+      "theme": "default",
+      "width": 320,
+      "view": "tasks",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 320,
+      "view": "settings",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 320,
+      "view": "gacha",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 377.2864074707031
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 348.3578109741211,
+          "width": 371.0078125
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 377.2864074707031
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 6.849365234375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 445.390625,
+          "width": 570.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 445.390625,
+          "width": 570.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 360.1875,
+          "width": 400.375
+        }
+      ]
+    },
+    {
+      "theme": "default",
+      "width": 320,
+      "view": "collection",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 254,
+      "view": "task-form",
+      "viewport": 320,
+      "scroll": 320,
+      "scrollWidth": 254,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 254,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 254,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 56
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 254,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 214,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 214,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 214,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 220,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 220,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 220,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 254,
+          "height": 64.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 254,
+          "height": 66.5
+        }
+      ]
+    },
+    {
+      "theme": "default",
+      "width": 393,
+      "view": "tasks",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 393,
+      "view": "settings",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 393,
+      "view": "gacha",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 408.77851486206055,
+          "width": 417.607421875
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 404.98783683776855,
+          "width": 410.6578369140625
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 408.77851486206055,
+          "width": 417.607421875
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 408.77850341796875,
+          "width": 7.581390380859375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 512.390625,
+          "width": 631.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 512.390625,
+          "width": 631.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 439.390625,
+          "width": 485.78125
+        }
+      ]
+    },
+    {
+      "theme": "default",
+      "width": 393,
+      "view": "collection",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 299,
+      "view": "task-form",
+      "viewport": 393,
+      "scroll": 393,
+      "scrollWidth": 299,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 299,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 299,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 56
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 299,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 124.5,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 124.5,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 259,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 265,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 265,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 265,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 299,
+          "height": 64.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 299,
+          "height": 66.5
+        }
+      ]
+    },
+    {
+      "theme": "default",
+      "width": 430,
+      "view": "tasks",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 430,
+      "view": "settings",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 430,
+      "view": "gacha",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 436.3505001068115,
+          "width": 435.45440673828125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 432.39782524108887,
+          "width": 428.20782470703125
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 436.3505001068115,
+          "width": 435.45440673828125
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 436.3504943847656,
+          "width": 7.905364990234375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 544.390625,
+          "width": 658.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 544.390625,
+          "width": 658.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 483.796875,
+          "width": 537.59375
+        }
+      ]
+    },
+    {
+      "theme": "default",
+      "width": 430,
+      "view": "collection",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 336,
+      "view": "task-form",
+      "viewport": 430,
+      "scroll": 430,
+      "scrollWidth": 336,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 336,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 336,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 56
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 336,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 143,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 143,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 296,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 302,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 302,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 302,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 336,
+          "height": 64.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 336,
+          "height": 66.5
+        }
+      ]
+    },
+    {
+      "theme": "default",
+      "width": 852,
+      "view": "tasks",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 852,
+      "view": "settings",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 852,
+      "view": "gacha",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 852,
+      "view": "collection",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "default",
+      "width": 546,
+      "view": "task-form",
+      "viewport": 852,
+      "scroll": 852,
+      "scrollWidth": 546,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 546,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 546,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.65625,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.671875,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.671875,
+          "height": 58
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 546,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 162,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 162,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 162,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 250,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 250,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 512,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 546,
+          "height": 64.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 546,
+          "height": 66.5
+        }
+      ]
+    },
+    {
+      "theme": "sweet",
+      "width": 320,
+      "view": "tasks",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 320,
+      "view": "settings",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 320,
+      "view": "gacha",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 377.2864074707031
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 348.3578109741211,
+          "width": 371.0078125
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 377.2864074707031
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 6.849365234375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 445.390625,
+          "width": 570.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 445.390625,
+          "width": 570.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 360.1875,
+          "width": 400.375
+        }
+      ]
+    },
+    {
+      "theme": "sweet",
+      "width": 320,
+      "view": "collection",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 254,
+      "view": "task-form",
+      "viewport": 320,
+      "scroll": 320,
+      "scrollWidth": 254,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 254,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 254,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 58
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 254,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 210,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 210,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 210,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 220,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 220,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 220,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 254,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 254,
+          "height": 64.5
+        }
+      ]
+    },
+    {
+      "theme": "sweet",
+      "width": 393,
+      "view": "tasks",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 393,
+      "view": "settings",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 393,
+      "view": "gacha",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 408.77851486206055,
+          "width": 417.607421875
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 404.98783683776855,
+          "width": 410.6578369140625
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 408.77851486206055,
+          "width": 417.607421875
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 408.77850341796875,
+          "width": 7.581390380859375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 512.390625,
+          "width": 631.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 512.390625,
+          "width": 631.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 439.390625,
+          "width": 485.78125
+        }
+      ]
+    },
+    {
+      "theme": "sweet",
+      "width": 393,
+      "view": "collection",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 299,
+      "view": "task-form",
+      "viewport": 393,
+      "scroll": 393,
+      "scrollWidth": 299,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 299,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 299,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 58
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 299,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 125.5,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 125.5,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 255,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 265,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 265,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 265,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 299,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 299,
+          "height": 64.5
+        }
+      ]
+    },
+    {
+      "theme": "sweet",
+      "width": 430,
+      "view": "tasks",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 430,
+      "view": "settings",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 430,
+      "view": "gacha",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 436.3505001068115,
+          "width": 435.45440673828125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 432.39782524108887,
+          "width": 428.20782470703125
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 436.3505001068115,
+          "width": 435.45440673828125
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 436.3504943847656,
+          "width": 7.905364990234375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 544.390625,
+          "width": 658.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 544.390625,
+          "width": 658.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 483.796875,
+          "width": 537.59375
+        }
+      ]
+    },
+    {
+      "theme": "sweet",
+      "width": 430,
+      "view": "collection",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 336,
+      "view": "task-form",
+      "viewport": 430,
+      "scroll": 430,
+      "scrollWidth": 336,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 336,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 336,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 58
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 336,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 144,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 144,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 292,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 302,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 302,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 302,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 336,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 336,
+          "height": 64.5
+        }
+      ]
+    },
+    {
+      "theme": "sweet",
+      "width": 852,
+      "view": "tasks",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 852,
+      "view": "settings",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 852,
+      "view": "gacha",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 852,
+      "view": "collection",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "sweet",
+      "width": 546,
+      "view": "task-form",
+      "viewport": 852,
+      "scroll": 852,
+      "scrollWidth": 546,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 546,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 546,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.65625,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.671875,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.671875,
+          "height": 58
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 546,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164.65625,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164.671875,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164.671875,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 250,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 250,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 512,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 546,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 546,
+          "height": 64.5
+        }
+      ]
+    },
+    {
+      "theme": "twilight",
+      "width": 320,
+      "view": "tasks",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 320,
+      "view": "settings",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 320,
+      "view": "gacha",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 377.2864074707031
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 348.3578109741211,
+          "width": 371.0078125
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 377.2864074707031
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 351.7825012207031,
+          "width": 6.849365234375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 445.390625,
+          "width": 570.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 445.390625,
+          "width": 570.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 360.1875,
+          "width": 400.375
+        }
+      ]
+    },
+    {
+      "theme": "twilight",
+      "width": 320,
+      "view": "collection",
+      "viewport": 320,
+      "scroll": 320,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 254,
+      "view": "task-form",
+      "viewport": 320,
+      "scroll": 320,
+      "scrollWidth": 254,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 254,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 254,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 123,
+          "height": 56
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 254,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 214,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 214,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 214,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 220,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 220,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 220,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 254,
+          "height": 64.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 254,
+          "height": 66.5
+        }
+      ]
+    },
+    {
+      "theme": "twilight",
+      "width": 393,
+      "view": "tasks",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 393,
+      "view": "settings",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 393,
+      "view": "gacha",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 408.77851486206055,
+          "width": 417.607421875
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 404.98783683776855,
+          "width": 410.6578369140625
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 408.77851486206055,
+          "width": 417.607421875
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 408.77850341796875,
+          "width": 7.581390380859375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 512.390625,
+          "width": 631.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 512.390625,
+          "width": 631.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 439.390625,
+          "width": 485.78125
+        }
+      ]
+    },
+    {
+      "theme": "twilight",
+      "width": 393,
+      "view": "collection",
+      "viewport": 393,
+      "scroll": 393,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 299,
+      "view": "task-form",
+      "viewport": 393,
+      "scroll": 393,
+      "scrollWidth": 299,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 299,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 299,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 145.5,
+          "height": 56
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 299,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 124.5,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 124.5,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 259,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 265,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 265,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 265,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 299,
+          "height": 64.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 299,
+          "height": 66.5
+        }
+      ]
+    },
+    {
+      "theme": "twilight",
+      "width": 430,
+      "view": "tasks",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 430,
+      "view": "settings",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 430,
+      "view": "gacha",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": [
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 436.3505001068115,
+          "width": 435.45440673828125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 432.39782524108887,
+          "width": 428.20782470703125
+        },
+        {
+          "element": "g#.[object SVGAnimatedString]",
+          "right": 436.3505001068115,
+          "width": 435.45440673828125
+        },
+        {
+          "element": "circle#.[object SVGAnimatedString]",
+          "right": 436.3504943847656,
+          "width": 7.905364990234375
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 544.390625,
+          "width": 658.78125
+        },
+        {
+          "element": "path#.[object SVGAnimatedString]",
+          "right": 544.390625,
+          "width": 658.78125
+        },
+        {
+          "element": "DIV#.encounter-mist",
+          "right": 483.796875,
+          "width": 537.59375
+        }
+      ]
+    },
+    {
+      "theme": "twilight",
+      "width": 430,
+      "view": "collection",
+      "viewport": 430,
+      "scroll": 430,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 336,
+      "view": "task-form",
+      "viewport": 430,
+      "scroll": 430,
+      "scrollWidth": 336,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 336,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 336,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 164,
+          "height": 56
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 336,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 143,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 143,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 296,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 302,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 302,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 302,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 336,
+          "height": 64.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 336,
+          "height": 66.5
+        }
+      ]
+    },
+    {
+      "theme": "twilight",
+      "width": 852,
+      "view": "tasks",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 852,
+      "view": "settings",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 852,
+      "view": "gacha",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 852,
+      "view": "collection",
+      "viewport": 852,
+      "scroll": 852,
+      "reducedMotion": true,
+      "overflow": []
+    },
+    {
+      "theme": "twilight",
+      "width": 546,
+      "view": "task-form",
+      "viewport": 852,
+      "scroll": 852,
+      "scrollWidth": 546,
+      "controls": [
+        {
+          "id": "task-content",
+          "type": "textarea",
+          "width": 546,
+          "height": 134
+        },
+        {
+          "id": "task-plan-date",
+          "type": "date",
+          "width": 546,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.65625,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.671875,
+          "height": 58
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 176.671875,
+          "height": 58
+        },
+        {
+          "id": "task-planned-time",
+          "type": "time",
+          "width": 546,
+          "height": 64
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 162,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 162,
+          "height": 66.5
+        },
+        {
+          "id": "",
+          "type": "button",
+          "width": 162,
+          "height": 66.5
+        },
+        {
+          "id": "task-start-date",
+          "type": "date",
+          "width": 250,
+          "height": 64
+        },
+        {
+          "id": "task-due-date",
+          "type": "date",
+          "width": 250,
+          "height": 64
+        },
+        {
+          "id": "task-plan-today",
+          "type": "checkbox",
+          "width": 24,
+          "height": 24
+        },
+        {
+          "id": "subtask-new-input",
+          "type": "text",
+          "width": 512,
+          "height": 240
+        },
+        {
+          "id": "subtask-add-btn",
+          "type": "button",
+          "width": 169,
+          "height": 66.5
+        },
+        {
+          "id": "form-cancel",
+          "type": "button",
+          "width": 546,
+          "height": 64.5
+        },
+        {
+          "id": "",
+          "type": "submit",
+          "width": 546,
+          "height": 66.5
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

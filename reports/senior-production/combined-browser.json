@@ -1,0 +1,85 @@
+{
+  "results": [
+    {
+      "name": "senior-replay",
+      "ok": true,
+      "detail": {
+        "wallet": {
+          "key": "wallet",
+          "stardust": 0,
+          "adventureEnergy": 0,
+          "materials": {
+            "forest_leaf": 0,
+            "lava_core": 0,
+            "machine_part": 0,
+            "star_shard": 0,
+            "aurora_ice": 0,
+            "harvest_charm": 0
+          }
+        },
+        "guided": {
+          "status": "completed",
+          "key": "guidedOnboarding",
+          "schemaVersion": 1,
+          "onboardingVersion": 1,
+          "step": "FINISH",
+          "mode": "replay",
+          "runId": "replay-457826c2-654d-4032-b2f3-dd1c069d9861",
+          "taskId": "tutorial:replay-457826c2-654d-4032-b2f3-dd1c069d9861",
+          "onboardingCompletedVersion": 1,
+          "reward": {
+            "amount": 20,
+            "energy": 1,
+            "bondAmount": 5,
+            "preview": true
+          }
+        },
+        "overflow": false
+      }
+    },
+    {
+      "name": "senior-first-320-large",
+      "ok": true,
+      "detail": {
+        "wallet": {
+          "key": "wallet",
+          "stardust": 20,
+          "adventureEnergy": 1,
+          "materials": {
+            "forest_leaf": 0,
+            "lava_core": 0,
+            "machine_part": 0,
+            "star_shard": 0,
+            "aurora_ice": 0,
+            "harvest_charm": 0
+          }
+        },
+        "guided": {
+          "status": "completed",
+          "step": "FINISH",
+          "key": "guidedOnboarding",
+          "schemaVersion": 1,
+          "onboardingVersion": 1,
+          "mode": "first",
+          "runId": "first",
+          "taskId": "tutorial:first",
+          "onboardingCompletedVersion": 1,
+          "reward": {
+            "amount": 20,
+            "energy": 1,
+            "bondAmount": 5,
+            "preview": false
+          },
+          "starterGrantedAt": "2026-10-04T12:18:27.332Z",
+          "firstRewardClaimedAt": "2026-10-04T12:18:33.432Z"
+        },
+        "overflow": false
+      }
+    },
+    {
+      "name": "senior-replay-skip-from-editor",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

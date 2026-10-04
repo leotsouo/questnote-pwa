@@ -105,6 +105,9 @@ function positionSpotlight() {
   const width = document.documentElement.clientWidth;
   const coach = root.querySelector('.guided-coach');
   if (!coach) return;
+  // At large text sizes the coach must leave room for the real control.
+  // Its content stays scrollable rather than covering the highlighted target.
+  coach.style.maxHeight = box && !skipOpen ? Math.max(120, height * (record.step === 'CREATE_TUTORIAL_QUEST' ? .48 : .55)) + 'px' : '';
   // Keep the instruction and real control apart. Tall cards remain scrollable.
   const coachHeight = coach.getBoundingClientRect().height;
   const above = box && box.top > coachHeight + 28;
@@ -169,12 +172,14 @@ export function refreshGuidedOnboarding() {
   updateHelp();
   if (!isGuidedOnboardingActive()) {
     releaseLock(); root.replaceChildren(); signature = '';
+    document.dispatchEvent(new CustomEvent('questnote:guided-state-change'));
     renderPageTour();
     if (hintFeature && !document.querySelector('.guided-feature-hint')) renderContextualHint(hintFeature);
     return;
   }
   document.querySelectorAll('.guided-feature-hint').forEach((hint) => hint.remove());
   releaseLock();
+  document.dispatchEvent(new CustomEvent('questnote:guided-state-change'));
   document.body.classList.add('guided-active');
   document.body.classList.toggle('guided-editor', record.step === 'CREATE_TUTORIAL_QUEST');
   target = findTarget();

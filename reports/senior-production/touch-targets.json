@@ -1,0 +1,2117 @@
+{
+  "measurements": [
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "收起結果",
+      "width": 104,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "設定",
+      "width": 66,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "信箱與禮物",
+      "width": 114,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "新增任務",
+      "width": 220,
+      "height": 56
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "今日",
+      "width": 108.328125,
+      "height": 45
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "全部",
+      "width": 108.34375,
+      "height": 45
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "分類與紀錄",
+      "width": 108.328125,
+      "height": 45
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "SUMMARY",
+      "name": "依分類篩選：全部",
+      "width": 349,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "一般",
+      "width": 58,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "課業",
+      "width": 58,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "專題",
+      "width": 58,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "生活",
+      "width": 58,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "健康",
+      "width": 58,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "工作",
+      "width": 58,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "其他",
+      "width": 58,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "取消完成 喝一杯水",
+      "width": 147.5,
+      "height": 56
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "編輯任務",
+      "width": 147.5,
+      "height": 56
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "SUMMARY",
+      "name": "喝一杯水：更多操作",
+      "width": 307,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "刪除",
+      "width": 289,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "管理習慣 ›",
+      "width": 114.875,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "新增每日習慣",
+      "width": 142,
+      "height": 53
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "灰影幼狼N",
+      "width": 143.6875,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "餵食 灰影幼狼",
+      "width": 309,
+      "height": 56
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "撫摸 灰影幼狼",
+      "width": 309,
+      "height": 52
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "故事與約定",
+      "width": 124,
+      "height": 53
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "每日祝福",
+      "width": 108.328125,
+      "height": 78.1875
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "冒險任務",
+      "width": 108.34375,
+      "height": 78.1875
+    },
+    {
+      "view": "tasks",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "稱號",
+      "width": 108.328125,
+      "height": 78.1875
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "返回更多",
+      "width": 111.921875,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "我知道了",
+      "width": 149.5,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "查看使用教學",
+      "width": 149.5,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "reading-mode-toggle",
+      "tag": "INPUT",
+      "name": "",
+      "width": 307,
+      "height": 121.6875
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "再練習一次新增與完成任務",
+      "width": 248,
+      "height": 52
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "INPUT",
+      "name": "",
+      "width": 307,
+      "height": 82
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "INPUT",
+      "name": "",
+      "width": 307,
+      "height": 82
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "INPUT",
+      "name": "",
+      "width": 307,
+      "height": 82
+    },
+    {
+      "view": "settings",
+      "id": "reminder-time",
+      "tag": "INPUT",
+      "name": "",
+      "width": 257,
+      "height": 64
+    },
+    {
+      "view": "settings",
+      "id": "reminder-tasks",
+      "tag": "INPUT",
+      "name": "",
+      "width": 299,
+      "height": 113
+    },
+    {
+      "view": "settings",
+      "id": "reminder-habits",
+      "tag": "INPUT",
+      "name": "",
+      "width": 299,
+      "height": 85
+    },
+    {
+      "view": "settings",
+      "id": "reminder-weekly",
+      "tag": "INPUT",
+      "name": "",
+      "width": 299,
+      "height": 113
+    },
+    {
+      "view": "settings",
+      "id": "reminder-overdue",
+      "tag": "INPUT",
+      "name": "",
+      "width": 299,
+      "height": 85
+    },
+    {
+      "view": "settings",
+      "id": "reminder-titles",
+      "tag": "INPUT",
+      "name": "",
+      "width": 299,
+      "height": 74
+    },
+    {
+      "view": "settings",
+      "id": "reminder-consent",
+      "tag": "INPUT",
+      "name": "",
+      "width": 271,
+      "height": 88
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "SUMMARY",
+      "name": "資料同步說明",
+      "width": 271,
+      "height": 52
+    },
+    {
+      "view": "settings",
+      "id": "reminder-enable",
+      "tag": "BUTTON",
+      "name": "啟用每日提醒",
+      "width": 299,
+      "height": 52
+    },
+    {
+      "view": "settings",
+      "id": "reminder-save",
+      "tag": "BUTTON",
+      "name": "儲存提醒偏好",
+      "width": 299,
+      "height": 52
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "SUMMARY",
+      "name": "使用與同步說明",
+      "width": 299,
+      "height": 52
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "星夜遠行 使用中\n            原深色幻想風 · 星夜營地、清晰星光與沉穩探索。",
+      "width": 307,
+      "height": 266.1875
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "晨光花園 使用中\n            原甜美可愛風 · 晨光花園、柔和色彩與日常照顧。",
+      "width": 307,
+      "height": 264.1875
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "暮光冒險手帳 使用中\n            森林暮色、溫暖紙頁與同行夥伴，把日常寫成共同成長的旅程。",
+      "width": 307,
+      "height": 264.1875
+    },
+    {
+      "view": "settings",
+      "id": "btn-export",
+      "tag": "BUTTON",
+      "name": "匯出 JSON 備份",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-import-select",
+      "tag": "BUTTON",
+      "name": "選擇備份檔",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "填寫回報",
+      "width": 106,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "更新主畫面圖示同行星芽 · 查看手機設定步驟\n      ›",
+      "width": 307,
+      "height": 73
+    },
+    {
+      "view": "settings",
+      "id": "btn-reset",
+      "tag": "BUTTON",
+      "name": "重置所有資料",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-unlock",
+      "tag": "BUTTON",
+      "name": "測試：解鎖 8 隻高稀有寵物",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-unlock-all",
+      "tag": "BUTTON",
+      "name": "測試：解鎖全圖鑑",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-stardust",
+      "tag": "BUTTON",
+      "name": "測試：獲得 100,000 星塵",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-companion-bond",
+      "tag": "BUTTON",
+      "name": "測試：陪伴寵物親密度 +1 等",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-expedition",
+      "tag": "BUTTON",
+      "name": "測試：立即結束派遣探險",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-daily-blessing",
+      "tag": "BUTTON",
+      "name": "測試：重置每日祝福",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-mailbox-announcement",
+      "tag": "BUTTON",
+      "name": "測試公告",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-mailbox-compensation",
+      "tag": "BUTTON",
+      "name": "測試補償（星塵 ×1）",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-dev-mailbox-clear",
+      "tag": "BUTTON",
+      "name": "清除測試信件",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-test-ssr-reveal",
+      "tag": "BUTTON",
+      "name": "測試 SSR 演出",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-test-ur-reveal",
+      "tag": "BUTTON",
+      "name": "測試 UR 演出",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-test-ur05-reveal",
+      "tag": "BUTTON",
+      "name": "測試 UR：永眠花皇兔（月亮）",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "settings",
+      "id": "btn-test-ur06-reveal",
+      "tag": "BUTTON",
+      "name": "測試 UR：曙綻花后兔（花瓣）",
+      "width": 307,
+      "height": 53
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "我知道了",
+      "width": 149.5,
+      "height": 53
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "查看使用教學",
+      "width": 149.5,
+      "height": 53
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "收起結果",
+      "width": 106,
+      "height": 53
+    },
+    {
+      "view": "gacha",
+      "id": "identity-pool-select-pool",
+      "tag": "SELECT",
+      "name": "星旅之原永眠花海霜誓峽灣蜜光糖庭劍隱山河逆造之誓",
+      "width": 349,
+      "height": 56
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "召喚 1 位夥伴單次 · 100 星塵",
+      "width": 349,
+      "height": 90.1875
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "預覽 創世星龍，星河之裔，UR，尚未相遇",
+      "width": 315,
+      "height": 489.953125
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "指定邀請",
+      "width": 130.9375,
+      "height": 52
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "查看全部夥伴",
+      "width": 108,
+      "height": 52
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "機率與卡池規則",
+      "width": 126,
+      "height": 52
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "滅世黑麒麟，命運踏碎者，UR，尚未相遇",
+      "width": 349,
+      "height": 428.1875
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "永恆機械龍神，永恆協議龍，UR，尚未相遇",
+      "width": 349,
+      "height": 428.1875
+    },
+    {
+      "view": "gacha",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "太初聖凰，太初聖羽，UR，尚未相遇",
+      "width": 349,
+      "height": 428.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "我知道了",
+      "width": 149.5,
+      "height": 53
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "查看使用教學",
+      "width": 149.5,
+      "height": 53
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "收起結果",
+      "width": 106,
+      "height": 53
+    },
+    {
+      "view": "collection",
+      "id": "identity-pool-select-collection",
+      "tag": "SELECT",
+      "name": "全部系列星旅之原永眠花海霜誓峽灣蜜光糖庭劍隱山河逆造之誓",
+      "width": 349,
+      "height": 56
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "收藏里程碑\n      完成 0 / 18　可領取 0\n      ⌄",
+      "width": 307,
+      "height": 64.578125
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "全部夥伴",
+      "width": 98,
+      "height": 52
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "已相遇",
+      "width": 82,
+      "height": 52
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "尚未相遇",
+      "width": 98,
+      "height": 52
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "精簡卡片",
+      "width": 98,
+      "height": 52
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "展開卡片",
+      "width": 98,
+      "height": 52
+    },
+    {
+      "view": "collection",
+      "id": "identity-collection-search",
+      "tag": "INPUT",
+      "name": "",
+      "width": 349,
+      "height": 59.6875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "灰影幼狼，迷霧追獵者，N，已相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "岩甲地鼠，地脈掘者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "風語貓頭鷹，風之聆聽者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "火花尾蜥，餘燼尾獸，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "苔蘚史萊姆，森靈聚合體，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鐵喙渡鴉，旅途引路者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "泥沼蟾蜍，沼澤伏擊者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "晶刺豪豬，晶刺守衛，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "霧隱兔，霧隱行者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "銅鱗鯉，古銅吉兆，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "蒼嵐獵狼，高原風狼，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "赤焰獅崽，焰鬃嗣子，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "雷紋飛蛇，雷紋掠空者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鋼骨鬣狗，鋼骨獵食者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "冰晶狐，霜痕靈狐，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "影刃豹，影域獵手，R，已相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "翠羽鸚鵡，咒語模仿者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "砂岩巨龜，符紋承載者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "蒼雷翼龍，暴雲雷翼，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "熔岩鎧獅，熔核戰獅，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "幽冥嘯天狼，冥界嘯魂，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "機械獵犬X，追獵協議體，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "玄冰晶龍，極地晶龍，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "聖光獨角獸，淨化聖獸，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "天火鳳凰，不滅天火，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "深淵魔狼，深淵守門者，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "泰坦機神獸，隕核泰坦，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "九霄應龍，九霄雨師，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "創世星龍，星河之裔，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "滅世黑麒麟，命運踏碎者，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "永恆機械龍神，永恆協議龍，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "太初聖凰，太初聖羽，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "碗糕貓，晨曦蒸靈，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鳥哥，風令巡指，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "柴仔，熱血柴靈，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "極光白熊，極光霜靈，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "天穹靈駒，天穹引路，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "伊芙星靈，星核靈械，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "北海霸主，寒潮海域王，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "維京戰魂，北境遠征魂，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "星糖萌皇，甜夢星皇，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "邪冥夜皇，深淵夜皇，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "稻穗守望者，田園守望，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "星曜智狐，星象策士，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "紙燈小狐，紙燈引路，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "布包倉鼠，行囊整理者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鈴芽麻雀，鈴音提醒，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "棉雲羊，棉雲撫心，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "墨殼蝸牛，墨痕旅者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "豆芽鹿，萌芽仔鹿，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "墨羽夜貓，墨羽守夜，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "琥珀甲蟲，琥珀圓盾，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "潮汐水獺，潮汐戲靈，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "炭角山羊，炭角攀者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "月珀靈豹，月珀掠影，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鐘塔機梟，鐘塔刻時，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "花眠蜜鼯，夢塵搬運者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "苞燈蕈靈，花徑點燈者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "霧絮海蛞，夢霧播散者，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鏡池浮水母，碎夢收集者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "夢壤穿山甲，夢土開路者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鈴蕊果子狸，夢果引路者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "霧紗夢蛛，裂夢縫補者，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "花庭旋角羚，花庭引徑者，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "琉夢花螈，沉夢保存者，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "寂繭眠蛾，夢幕編織者，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鏡夢花貘，惡夢淨化者，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "永眠花皇兔，沉睡花庭的古老主人，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "曉露花蝟，晨露啟花者，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "晨鈴花雀，枝冠初鳴者，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "曦幕雲鶴，夢幕開曦者，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "曙綻花后兔，甦醒花庭的晨曦主人，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "燼囊旅鼠，第一盞航燈的跑腿，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "纜結海鸚，迎風報信的小旗手，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鉚殼岸蟹，一枚也不能少，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "槳歌斑海豹，船舷旁的回聲拍檔，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "鍛火獠豬，把承諾鍛進船釘，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "織帆雪貂，替逆風接上一針，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "刻潮築舟狸，聽懂木紋的築船師，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "霜途馴鹿，把下一步照清楚，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "峽歌雷鳥，敢先唱出的第一聲，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "風眼誓鴉，雲牆間的守望者，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "深潮領航鯨，冰壁之下的引路聲，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "破曉誓角麝牛，眾誓破曉的領航者，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "方糖絨兔，把小步堆成甜甜方塊，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "跳跳果凍蛙，跟著漣漪再跳一次，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "奶油曲奇刺蝟，留住剛出爐的溫度，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "薄荷拐杖鼬，拐個彎也能抵達，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "泡芙栗鼠，把柔軟留給晚到的人，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "莓糖卷尾松鼠，留下一顆記得的甜，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "馬卡龍錦羽孔雀，讓每種顏色都有位置，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "可可熔心龍，用一點暖火把事情融開，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "琉糖星翼蝶，把微光折成看得見的慶祝，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "蜜曦盛宴小熊貓，為每個夥伴留一席甜，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "焦糖布蕾海獺，敲開恰好的薄脆，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "千層奶霜天鵝，把慶祝抱得軟軟的，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "聽雨玉蜂，葉尖上的小小回信，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "回風白駒，願意回頭的腳步，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "茗香眠蜂，把歇息留在茶香裡，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "踏霞赤駒，把清晨踏成第一步，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "夜薔烏駒，只把後背交給信任的人，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "乘風白雕，先飛一步，也留下會合的風，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "守望白雕，讓另一雙翼放心回頭，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "金角疾蛇，快，也要記得讓路，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "逐電靈貂，快一步，也等一步，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "望雲霜鷹，替同行者看見轉彎，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "夜渡青蝠，月下也有回程的燈，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "金鬃護山獅，把聲音留給需要的人，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "雪徑靈狐，替迷路的人留一串腳印，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "抱卷白猿，把知曉的路交給後來的人，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "凝霜玉蠶，一寸寒光，留住半葉生機，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "繞指金蛇，換一條路，也能抵達，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "紫鱗潛龍，深水裡也記得岸上的人，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "玄翎重岳雕，山重，而一諾更重，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "丹砂鎮嶺蛤，一聲低鳴，百毒止步，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "素心劍猿，一劍素心，萬葉知路，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "齒輪拾修鼠，小齒輪也有自己的位置，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "苗圃護芽甲蟲，留下自然生長的空間，N，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "銅管引水獺，接通城市的呼吸，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "霜閥巡路兔，在危險旁留下落腳點，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "爐膛添薪蜥，守住安全的那一格，R，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "刻紋校準鴞，讓不可能開始運轉，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "冰軌疾行狐，比爭論更早抵達的消息，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "赤爐鍛角羊，把野心鍛成能承重的形狀，SR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "重鉚架橋犀，讓一次真正的試飛有路可走，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "蒸園盤根龜，研究之外仍有生命，SSR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "天律之冕・格里芬，自然法則的完整形體，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "collection",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "逆造獅首奇美拉，向完美露齒的人工生命，UR，尚未相遇",
+      "width": 349,
+      "height": 432.1875
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "我知道了",
+      "width": 149.5,
+      "height": 53
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "查看使用教學",
+      "width": 149.5,
+      "height": 53
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "迷霧森林：選隊出發",
+      "width": 317,
+      "height": 56
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "熔岩裂谷：解鎖條件",
+      "width": 317,
+      "height": 56
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "古代機械遺跡：解鎖條件",
+      "width": 317,
+      "height": 56
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "星界裂縫：解鎖條件",
+      "width": 317,
+      "height": 56
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "極北冰岸：解鎖條件",
+      "width": 317,
+      "height": 56
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "豐穗遠郊：查看地區",
+      "width": 317,
+      "height": 56
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "雲棧古道：查看地區",
+      "width": 317,
+      "height": 56
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "獅心城：查看地區",
+      "width": 317,
+      "height": 56
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "SUMMARY",
+      "name": "共用營地 · Lv.0下一步：地圖桌查看",
+      "width": 307,
+      "height": 71.53125
+    },
+    {
+      "view": "expedition",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "地區探索度\n          \n        \n        ▸",
+      "width": 307,
+      "height": 52
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "習慣\n            每日與每週習慣追蹤\n          \n          \n        ",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "每日祝福\n            每日簽到與幸運轉盤\n          \n          \n      ",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "成就\n            查看進度、領取獎勵與管理稱號\n          \n          \n   ",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "工坊\n            使用探險材料製作親密度道具\n          \n          ›",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "冒險手冊\n            查看你的任務、收藏與探險成長\n          \n          ›",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "設定\n            提醒、字體、美術風格與資料備份\n          \n          ›",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "SUMMARY",
+      "name": "教學與支援\n              使用教學、問題回報、分享與版本資訊\n            \n    ",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "使用教學\n              重看入門流程與其他功能\n            \n           ",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "意見與問題回報\n              免登入，直接把問題與建議交給開發者\n            \n  ",
+      "width": 349,
+      "height": 129.375
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "分享 QuestNote\n              傳送正式版連結給朋友\n            \n    ",
+      "width": 349,
+      "height": 102.1875
+    },
+    {
+      "view": "more",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "更新主畫面圖示同行星芽 · 查看手機設定步驟\n      ›",
+      "width": 307,
+      "height": 73
+    },
+    {
+      "view": "task-modal",
+      "id": "modal-close",
+      "tag": "BUTTON",
+      "name": "關閉",
+      "width": 68,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "收起結果",
+      "width": 104,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "我知道了",
+      "width": 261,
+      "height": 53
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "查看使用教學",
+      "width": 261,
+      "height": 48
+    },
+    {
+      "view": "task-modal",
+      "id": "task-content",
+      "tag": "TEXTAREA",
+      "name": "",
+      "width": 299,
+      "height": 98
+    },
+    {
+      "view": "task-modal",
+      "id": "task-plan-today",
+      "tag": "INPUT",
+      "name": "",
+      "width": 299,
+      "height": 79.796875
+    },
+    {
+      "view": "task-modal",
+      "id": "task-plan-date",
+      "tag": "INPUT",
+      "name": "",
+      "width": 299,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "今天",
+      "width": 94.328125,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "明天",
+      "width": 94.328125,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "未安排",
+      "width": 94.34375,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "task-planned-time",
+      "tag": "INPUT",
+      "name": "",
+      "width": 299,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "SUMMARY",
+      "name": "更多設定：分類、重要程度、日期與子任務",
+      "width": 265,
+      "height": 72.15625
+    },
+    {
+      "view": "task-modal",
+      "id": "task-category",
+      "tag": "SELECT",
+      "name": "一般課業專題生活健康工作其他",
+      "width": 265,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "普通",
+      "width": 79.65625,
+      "height": 53
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "重要",
+      "width": 79.671875,
+      "height": 53
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "緊急",
+      "width": 79.671875,
+      "height": 53
+    },
+    {
+      "view": "task-modal",
+      "id": "task-start-date",
+      "tag": "INPUT",
+      "name": "",
+      "width": 265,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "task-due-date",
+      "tag": "INPUT",
+      "name": "",
+      "width": 265,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "subtask-new-input",
+      "tag": "INPUT",
+      "name": "",
+      "width": 265,
+      "height": 160
+    },
+    {
+      "view": "task-modal",
+      "id": "subtask-add-btn",
+      "tag": "BUTTON",
+      "name": "新增子任務",
+      "width": 124,
+      "height": 53
+    },
+    {
+      "view": "task-modal",
+      "id": "form-cancel",
+      "tag": "BUTTON",
+      "name": "取消",
+      "width": 299,
+      "height": 52
+    },
+    {
+      "view": "task-modal",
+      "id": "",
+      "tag": "BUTTON",
+      "name": "新增任務",
+      "width": 299,
+      "height": 53
+    }
+  ],
+  "failures": []
+}

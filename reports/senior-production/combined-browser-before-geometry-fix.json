@@ -1,0 +1,47 @@
+{
+  "results": [
+    {
+      "name": "senior-replay",
+      "ok": true,
+      "detail": {
+        "wallet": {
+          "key": "wallet",
+          "stardust": 0,
+          "adventureEnergy": 0,
+          "materials": {
+            "forest_leaf": 0,
+            "lava_core": 0,
+            "machine_part": 0,
+            "star_shard": 0,
+            "aurora_ice": 0,
+            "harvest_charm": 0
+          }
+        },
+        "guided": {
+          "status": "completed",
+          "key": "guidedOnboarding",
+          "schemaVersion": 1,
+          "onboardingVersion": 1,
+          "step": "FINISH",
+          "mode": "replay",
+          "runId": "replay-447117be-91ee-4fdc-927a-a77212b8c4af",
+          "taskId": "tutorial:replay-447117be-91ee-4fdc-927a-a77212b8c4af",
+          "onboardingCompletedVersion": 1,
+          "reward": {
+            "amount": 20,
+            "energy": 1,
+            "bondAmount": 5,
+            "preview": true
+          }
+        },
+        "overflow": false
+      }
+    },
+    {
+      "name": "senior-first-320-large",
+      "ok": false,
+      "error": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.twilight-add-task').first()\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" aria-label=\"新增任務\" data-action=\"empty-add-task\" aria-describedby=\"guided-instruction\" class=\"twilight-add-task guided-target\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <li aria-current=\"step\">動手</li> from <div id=\"guided-onboarding-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <p aria-live=\"polite\" id=\"guided-instruction\">點一下「新增任務」。夥伴會陪你準備。</p> from <div id=\"guided-onboarding-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <h2 id=\"guided-title\">新增你的第一個 Quest</h2> from <div id=\"guided-onboarding-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <li aria-current=\"step\">動手</li> from <div id=\"guided-onboarding-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  7 × retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <p aria-live=\"polite\" id=\"guided-instruction\">點一下「新增任務」。夥伴會陪你準備。</p> from <div id=\"guided-onboarding-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <h2 id=\"guided-title\">新增你的第一個 Quest</h2> from <div id=\"guided-onboarding-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <li aria-current=\"step\">動手</li> from <div id=\"guided-onboarding-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <li aria-current=\"step\">動手</li> from <div id=\"guided-onboarding-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\n    at click (C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\senior-friendly\\devtools\\senior-guided-browser-test.mjs:57:16)\n    at async walk (C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\senior-friendly\\devtools\\senior-guided-browser-test.mjs:69:7)\n    at async file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/senior-friendly/devtools/senior-guided-browser-test.mjs:114:3"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "091a18f",
+  "files": [
+    {
+      "path": "src/ui.js",
+      "sha256": "a9826c15e8c0252e4494eb907015c4c2a88dbba044e0cc64046f8120135737ab"
+    },
+    {
+      "path": "src/version.js",
+      "sha256": "644df5a9680b9c28ca792093097bf5ea8c306ae78eae8d7013bd620c6b79f787"
+    },
+    {
+      "path": "service-worker.js",
+      "sha256": "ca0db4a793a40763932d06d9c16d2c7c7c8aa8c2cd080a3213d0ae2a3a6ccdb0"
+    },
+    {
+      "path": "devtools/senior-mode-browser-test.mjs",
+      "sha256": "f09789a2ad8b98c01371d35df914231abc345c0c2b22e96eb53d8786bd1b62c4"
+    }
+  ]
+}
