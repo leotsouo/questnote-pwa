@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
-  "sourceCommit": "5473d5b226b6eaa56a97302a84a9eba33042de19",
+  "artifactId": "8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96",
+  "sourceCommit": "86af668460aeb15e69c6ebdea6f0edeab3c9a236",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
-    "sourceCommit": "5473d5b226b6eaa56a97302a84a9eba33042de19",
+    "artifactId": "8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96",
+    "sourceCommit": "86af668460aeb15e69c6ebdea6f0edeab3c9a236",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -517,7 +517,7 @@
     "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
     "index.html": "f583a3df5650db76b7347beab6156c336edf461792b167a372c8f259436a6909",
     "manifest.webmanifest": "9045e56d30d015634a8d68a5b6b3cd60d813c500150fea0d48b08b4eefcb45ba",
-    "service-worker.js": "7c56d6e4e5cc61705b4947421eb8a97b8b93b65289e588e883c031e3fdf05cdb",
+    "service-worker.js": "e9bf6957b4f103e7d658b3184ea57ed87728f3d3f985e82f9b90ed8c5b16a3f8",
     "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
     "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
     "src/app.js": "1723e66f9b23f561fc3d4b3ee7f9bc65434547223d19a4a27fd48ceff0e221f7",
@@ -612,7 +612,7 @@
     "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
     "src/rewardClaimService.js": "e801ad5ca9646aabdd530560a5f184a2ea99befecb53f4d59fbaeb15e594374b",
     "src/rewardService.js": "c6169eb1d6cb15fd8ddfb6b54ad0a295599ac8a3a38e38903214a42c43bd2006",
-    "src/seniorMode.css": "e3945fcf911791483e34286134b74c0903215e74491b6c9234d3775d34a329d6",
+    "src/seniorMode.css": "715d675a24b679e9eb14f29490075a3ffe665d4b0dbc9e1bc05f42e3ab00db3e",
     "src/seniorModeController.js": "8400247546568d9e8a8059da30f6429e0ea10f8b42cd2eb62d7afc7e57e07bbc",
     "src/shareService.js": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
     "src/standardUrCarousel.js": "8e2f9f84a14399e61a206d39d1e75ebd1903d025a24866b9b899fe77520deae3",
@@ -639,7 +639,7 @@
     "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
     "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
     "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-    "src/version.js": "d9fbee6bf364e9384a9dba5fed28c910fdc0545a733a6929b7e7933278113551",
+    "src/version.js": "b84e0a9db2a1be1a65df45f835a3d3bba1fafc431c56c1239e06ab50a71a0aad",
     "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
     "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
   },
@@ -2613,7 +2613,7 @@
       "bytes": 6119
     },
     "index.html": {
-      "sha256": "bdd01ab6e5876c57ee90db546763b1efaefdd712fb95dd92cbc04377eb8fdd70",
+      "sha256": "04780934d8c10b84fa3cdbc0e12baea1431c5948f07b21b4498d47cf96d080a3",
       "bytes": 64966
     },
     "manifest.webmanifest": {
@@ -2621,7 +2621,7 @@
       "bytes": 831
     },
     "service-worker.js": {
-      "sha256": "d203c5856f85f0348753d7f9936974c7833e1c3ada425e7d13a75624ed338737",
+      "sha256": "331550a071ac3a0474b1dafe7d3d8bad0505d256e8f0f77b3a99e1cba5fa4516",
       "bytes": 35212
     },
     "src/achievementService.js": {
@@ -2973,7 +2973,7 @@
       "bytes": 4727
     },
     "src/releaseProfile.js": {
-      "sha256": "81094621ef8060b72b10e371944607be653b46ef11cc5aec41bb733b908076ab",
+      "sha256": "40e2a3dd76879ec04c63116c5c3cf34bf71b71ee09654c8ce9fcb0ee7a609410",
       "bytes": 622
     },
     "src/reminder-settings.css": {
@@ -3001,8 +3001,8 @@
       "bytes": 11266
     },
     "src/seniorMode.css": {
-      "sha256": "e3945fcf911791483e34286134b74c0903215e74491b6c9234d3775d34a329d6",
-      "bytes": 35461
+      "sha256": "715d675a24b679e9eb14f29490075a3ffe665d4b0dbc9e1bc05f42e3ab00db3e",
+      "bytes": 35684
     },
     "src/seniorModeController.js": {
       "sha256": "8400247546568d9e8a8059da30f6429e0ea10f8b42cd2eb62d7afc7e57e07bbc",
@@ -3109,7 +3109,7 @@
       "bytes": 695
     },
     "src/version.js": {
-      "sha256": "b24279a2a81f9cfffc1d5028896b04be33ab704d22831e3df23023b579edd06d",
+      "sha256": "db344a67680f9fbbb06f3d2d2ef5a380a8759b5150ef5813e7f3222f4e9dca85",
       "bytes": 1153
     },
     "src/workshopGiftView.js": {

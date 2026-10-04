@@ -6,7 +6,7 @@
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6';
+const CACHE_NAME = 'questnote-production-app-8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
-  "sourceCommit": "5473d5b226b6eaa56a97302a84a9eba33042de19",
+  "artifactId": "8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96",
+  "sourceCommit": "86af668460aeb15e69c6ebdea6f0edeab3c9a236",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -88,7 +88,7 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d/catalog.json": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "bdd01ab6e5876c57ee90db546763b1efaefdd712fb95dd92cbc04377eb8fdd70",
+  "index.html": "04780934d8c10b84fa3cdbc0e12baea1431c5948f07b21b4498d47cf96d080a3",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
   "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
@@ -177,14 +177,14 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
   "src/questService.js": "ae9532ad78abb8af981d3d76adb9f06f132e81e1fed945bd77a608a7dd2bfa3b",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "81094621ef8060b72b10e371944607be653b46ef11cc5aec41bb733b908076ab",
+  "src/releaseProfile.js": "40e2a3dd76879ec04c63116c5c3cf34bf71b71ee09654c8ce9fcb0ee7a609410",
   "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "f9cfd9f99703dfd3e91f12f4382716875964b09785bf67418dfdc607c5cb1c5d",
   "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
   "src/rewardClaimService.js": "e801ad5ca9646aabdd530560a5f184a2ea99befecb53f4d59fbaeb15e594374b",
   "src/rewardService.js": "c6169eb1d6cb15fd8ddfb6b54ad0a295599ac8a3a38e38903214a42c43bd2006",
-  "src/seniorMode.css": "e3945fcf911791483e34286134b74c0903215e74491b6c9234d3775d34a329d6",
+  "src/seniorMode.css": "715d675a24b679e9eb14f29490075a3ffe665d4b0dbc9e1bc05f42e3ab00db3e",
   "src/seniorModeController.js": "8400247546568d9e8a8059da30f6429e0ea10f8b42cd2eb62d7afc7e57e07bbc",
   "src/shareService.js": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
   "src/standardUrCarousel.js": "8e2f9f84a14399e61a206d39d1e75ebd1903d025a24866b9b899fe77520deae3",
@@ -211,7 +211,7 @@ const PRECACHE_HASHES = {
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "b24279a2a81f9cfffc1d5028896b04be33ab704d22831e3df23023b579edd06d",
+  "src/version.js": "db344a67680f9fbbb06f3d2d2ef5a380a8759b5150ef5813e7f3222f4e9dca85",
   "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
   "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
 };
