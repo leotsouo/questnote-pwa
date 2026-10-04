@@ -376,6 +376,8 @@ function normalizePayloadData(rawBackup) {
       reduceMotion: userPreferences.reduceMotion,
       theme: userPreferences.theme,
       fontSize: userPreferences.fontSize,
+      readingMode: userPreferences.readingMode,
+      seniorOnboardingCompleted: userPreferences.seniorOnboardingCompleted,
     },
     taskStats: data.taskStats ?? {},
     inventory: normalizeInventory(data.inventory),
