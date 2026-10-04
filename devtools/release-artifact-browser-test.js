@@ -21,7 +21,7 @@ async function until(check, description, timeout = 75000) {
 async function test(name, run) {
   publish();
   try { await run(); results.push({ name, ok: true }); }
-  catch (error) { results.push({ name, ok: false, error: error.stack || error.message }); }
+  catch (error) { results.push({ name, ok: false, error: error.stack || error.message, clients: [...frames].map(frame => ({url: frame.contentWindow?.location.href, active: frame.contentDocument?.querySelector('.view.active')?.id, coach: frame.contentDocument?.querySelector('.growth-coach')?.textContent, workshop: frame.contentDocument?.querySelector('#workshop-content')?.textContent})) }); }
   publish();
 }
 async function databaseNames() {
@@ -643,12 +643,12 @@ try {
     document.querySelector('[data-onboarding-action="lesson:workshop"]').click();
     await until(() => document.querySelector('[data-onboarding-action="lesson-next"]'), 'offline chapter started');
     document.querySelector('[data-onboarding-action="lesson-next"]').click();
-    await until(() => document.querySelector('.onboarding-dock')?.textContent.includes('看懂配方'), 'craft step persisted');
+    await until(() => document.querySelector('.growth-coach[data-step="craft"]') && document.getElementById('view-workshop').classList.contains('active') && document.querySelector('[data-action="craft-item"]'), 'craft step persisted at actual recipe');
     productionFrame.remove(); frames.delete(productionFrame);
     productionFrame = directClient('production');
     await waitForStarted(productionFrame, 'production');
     document = productionFrame.contentDocument;
-    await until(() => document.querySelector('.onboarding-dock')?.textContent.includes('看懂配方'), 'offline chapter resumes');
+    await until(() => document.querySelector('.growth-coach[data-step="craft"]') && document.getElementById('view-workshop').classList.contains('active') && document.querySelector('[data-action="craft-item"]'), 'offline chapter resumes at actual recipe');
     document.querySelector('[data-onboarding-action="lesson-locate"]').click();
     await until(() => document.getElementById('view-workshop').classList.contains('active')
       && document.querySelector('[data-action="craft-item"]'), 'offline recipe navigation');
