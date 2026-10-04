@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\03\\01a101e2-1c88-7a63-9b23-6d3e62d6bb6e\\release-v370\\b0b22f41b2ff4407b3c21e77a72eaa53ad3936b6ff2fd28da97b19c757191868",
+  "artifactId": "b0b22f41b2ff4407b3c21e77a72eaa53ad3936b6ff2fd28da97b19c757191868",
+  "manifestSha256": "bec523509deb2067221dd2837af8acb42d2fcc131bce6aed049e8295d3722f0b",
+  "profile": "production",
+  "scopePath": "/questnote-pwa/",
+  "fileCount": 617
+}

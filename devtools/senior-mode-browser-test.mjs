@@ -51,8 +51,12 @@ async function load() {
   await page.waitForFunction(() => document.querySelector('#task-view-content')?.children.length
     && document.querySelector('#guide-tutorial-status')?.textContent);
   await page.waitForTimeout(400);
-  const skip = page.locator('.onboarding-dialog [data-onboarding-action="skip"]');
-  if (await skip.isVisible()) await skip.click();
+  const skip = page.locator('[data-guided-action="skip"]');
+  if (await skip.isVisible()) {
+    await skip.click();
+    await page.locator('[data-guided-action="confirm-skip"]').click();
+    await page.locator('.guided-coach').waitFor({ state: 'hidden' });
+  }
   await page.evaluate(async () => {
     const names = ['db', 'preferencesService', 'taskService', 'rewardService', 'collectionService', 'gachaService', 'ui'];
     window.seniorTest = Object.fromEntries(await Promise.all(names.map(async (name) => [name, await import(`/src/${name}.js`)])));
@@ -432,7 +436,7 @@ try {
       await nav('tasks');
       await page.getByRole('button', { name: '新增任務', exact: true }).filter({ visible: true }).first().click();
       await page.locator('#task-content').fill(`${longTitle}\n${notes}`);
-      if (senior) await page.locator('#task-form .senior-form-options summary').click();
+      await page.locator('#task-form .task-editor-options summary').click();
       const input = page.locator('#subtask-new-input');
       await input.fill('注音選字中');
       for (const data of [{ isComposing: true, keyCode: 13 }, { isComposing: false, keyCode: 229 }]) {

@@ -1,0 +1,42 @@
+PASS normal baseline and isolated seed
+PASS settings switch persists and preserves every shared store
+PASS guided practice uses real task creation/completion and can be dismissed persistently
+FAIL create timed task through the shared form; useful labels and advanced disclosure
+locator.fill: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('#task-planned-time')[22m
+[2m    - locator resolved to <input value="" type="time" class="form-input" id="task-planned-time" aria-describedby="task-time-hint"/>[22m
+[2m    - fill("20:00")[22m
+[2m  - attempting fill action[22m
+[2m    2 × waiting for element to be visible, enabled and editable[22m
+[2m      - element is not visible[22m
+[2m    - retrying fill action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and editable[22m
+[2m      - element is not visible[22m
+[2m    - retrying fill action[22m
+[2m      - waiting 100ms[22m
+[2m    29 × waiting for element to be visible, enabled and editable[22m
+[2m       - element is not visible[22m
+[2m     - retrying fill action[22m
+[2m       - waiting 500ms[22m
+
+    at C:\Users\User\OneDrive\questnote-pwa\.worktrees\senior-friendly\devtools\senior-mode-browser-test.mjs:165:46
+    at async check (C:\Users\User\OneDrive\questnote-pwa\.worktrees\senior-friendly\devtools\senior-mode-browser-test.mjs:34:25)
+    at async file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/senior-friendly/devtools/senior-mode-browser-test.mjs:158:3
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: create timed task through the shared form; useful labels and advanced disclosure
+    at check (file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/senior-friendly/devtools/senior-mode-browser-test.mjs:41:10)
+    at async file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/senior-friendly/devtools/senior-mode-browser-test.mjs:158:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

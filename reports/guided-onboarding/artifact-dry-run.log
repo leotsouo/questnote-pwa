@@ -1,0 +1,10 @@
+{
+  "artifactId": "e4148d9c5a4bea373d44337af30d621fb488538a7855d21683f3c9ac51113d4e",
+  "artifactDir": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-guided-release\\e4148d9c5a4bea373d44337af30d621fb488538a7855d21683f3c9ac51113d4e",
+  "manifestPath": "C:\\Users\\User\\AppData\\Local\\Temp\\questnote-guided-release\\e4148d9c5a4bea373d44337af30d621fb488538a7855d21683f3c9ac51113d4e\\release-artifact.json",
+  "fileCount": 611,
+  "dryRun": true,
+  "reused": false,
+  "releaseReady": false,
+  "liveBaseline": "UNKNOWN"
+}

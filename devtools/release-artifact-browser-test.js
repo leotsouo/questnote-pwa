@@ -21,7 +21,7 @@ async function until(check, description, timeout = 75000) {
 async function test(name, run) {
   publish();
   try { await run(); results.push({ name, ok: true }); }
-  catch (error) { results.push({ name, ok: false, error: error.stack || error.message }); }
+  catch (error) { results.push({ name, ok: false, error: error.stack || error.message, clients: [...frames].map(frame => ({url: frame.contentWindow?.location.href, active: frame.contentDocument?.querySelector('.view.active')?.id, coach: frame.contentDocument?.querySelector('.growth-coach')?.textContent, workshop: frame.contentDocument?.querySelector('#workshop-content')?.textContent})) }); }
   publish();
 }
 async function databaseNames() {
@@ -125,6 +125,15 @@ async function checkCatalogAndUi(frame, profile) {
   const bundle = JSON.parse(new TextDecoder().decode(bytes));
   assert(bundle.petsData.pets.length === item.expected.petCount, 'Pet catalog count mismatch');
   const document = frame.contentDocument;
+  // Catalog smoke checks are separate from the dedicated first-use suite.
+  // Exit the new guide through its real, deliberate skip controls.
+  const skip = document.querySelector('[data-guided-action="skip"]');
+  if (skip && skip.getClientRects().length) {
+    skip.click();
+    await until(() => document.querySelector('[data-guided-action="confirm-skip"]'), 'guided skip confirmation');
+    document.querySelector('[data-guided-action="confirm-skip"]').click();
+    await until(() => !document.querySelector('.guided-coach'), 'guided skip persisted');
+  }
   const debut = await frame.contentWindow.eval('import(' + JSON.stringify(new URL('src/poolDebutService.js', frame.contentWindow.location.href).href) + ')');
   const needsDebut = item.expected.firstPool && !await debut.hasSeenPoolDebut(item.expected.firstPool.id);
   document.querySelector('[data-view="gacha"]').click();
@@ -634,12 +643,12 @@ try {
     document.querySelector('[data-onboarding-action="lesson:workshop"]').click();
     await until(() => document.querySelector('[data-onboarding-action="lesson-next"]'), 'offline chapter started');
     document.querySelector('[data-onboarding-action="lesson-next"]').click();
-    await until(() => document.querySelector('.onboarding-dock')?.textContent.includes('看懂配方'), 'craft step persisted');
+    await until(() => document.querySelector('.growth-coach[data-step="craft"]') && document.getElementById('view-workshop').classList.contains('active') && document.querySelector('[data-action="craft-item"]'), 'craft step persisted at actual recipe');
     productionFrame.remove(); frames.delete(productionFrame);
     productionFrame = directClient('production');
     await waitForStarted(productionFrame, 'production');
     document = productionFrame.contentDocument;
-    await until(() => document.querySelector('.onboarding-dock')?.textContent.includes('看懂配方'), 'offline chapter resumes');
+    await until(() => document.querySelector('.growth-coach[data-step="craft"]') && document.getElementById('view-workshop').classList.contains('active') && document.querySelector('[data-action="craft-item"]'), 'offline chapter resumes at actual recipe');
     document.querySelector('[data-onboarding-action="lesson-locate"]').click();
     await until(() => document.getElementById('view-workshop').classList.contains('active')
       && document.querySelector('[data-action="craft-item"]'), 'offline recipe navigation');

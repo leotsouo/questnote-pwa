@@ -8,6 +8,7 @@ import { COLLECTION_MILESTONE_DEFINITIONS } from '../src/collectionMilestoneServ
 import { createBondJourney } from '../src/bondJourneyCore.js';
 import { createPetAwakening } from '../src/petAwakeningCore.js';
 import { EXPLORATION_AREA_IDS } from '../src/explorationService.js';
+import { canClaimReward } from '../src/rewardService.js';
 
 const fixture = (version) => JSON.parse(readFileSync(new URL(`./fixtures/backups/legacy-${version}.json`, import.meta.url), 'utf8'));
 const flat = () => { const data = fixture('3.4.4'); delete data.data; return data; };
@@ -18,6 +19,36 @@ const canonical = () => {
       key === 'campProgress' ? { key, level: 0, upgradedAt: null }
         : key === 'bondJourney' ? createBondJourney() : key === 'petAwakening' ? createPetAwakening() : raw.data[key]])) };
 };
+
+test('restore preserves edited unfinished first practice as a completable shared task without losing receipts', () => {
+  const normalized = normalizeBackupPayload(fixture('3.4.4'));
+  const ordinary = { ...normalized.tasks[0], id: 'regular-timed', plannedTime: '15:00' };
+  const unfinished = { ...ordinary, id: 'tutorial:first', content: '明天下午吃藥\n使用者修改的內容',
+    completed: false, completedAt: null, rewardClaimed: false, isTutorial: true,
+    tutorialRunId: 'first', tutorialMode: 'first', plannedDate: '2026-10-05' };
+  const receipt = { ...unfinished, id: 'completed-first', completed: true,
+    rewardClaimed: true, completedAt: ordinary.createdAt,
+    tutorialReward: { amount: 20, energy: 1, bondAmount: 5, preview: false } };
+  normalized.tasks = [ordinary, unfinished, receipt];
+  const exported = migrateImportedData(normalized);
+  assert.equal(exported.tasks[1].isTutorial, true, 'Export still retains original practice metadata');
+  const restored = migrateImportedData(normalized, { forRestore: true });
+  assert.equal(restored.tasks.length, 3);
+  const task = restored.tasks[1];
+  assert.equal(task.isTutorial, undefined);
+  assert.equal(task.tutorialRunId, undefined);
+  assert.equal(task.tutorialMode, undefined);
+  assert.equal(task.content, unfinished.content);
+  assert.equal(task.plannedDate, unfinished.plannedDate);
+  assert.equal(task.plannedTime, '15:00');
+  assert.equal(task.rewardClaimed, false);
+  assert.equal(canClaimReward(task), true, 'Ordinary shared completion can pay its unclaimed reward');
+  assert.deepEqual(restored.tasks[0], exported.tasks[0], 'Regular task is unchanged');
+  assert.deepEqual(restored.tasks[2], exported.tasks[2], 'Completed first receipt remains unchanged');
+  assert.equal(canClaimReward(restored.tasks[2]), false, 'Completed practice cannot pay twice');
+  assert.deepEqual(restored.wallet, exported.wallet);
+  assert.deepEqual(restored.collection, exported.collection);
+});
 // Serialized fields match startExpedition/claimExpeditionRewards at a0936fc and
 // current HEAD; reward values come from the actual calculator, with fixed ranges.
 const expedition = () => normalizeExpedition({ id: 'synthetic-expedition', petId: 'pet_n01',

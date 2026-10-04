@@ -1,0 +1,146 @@
+{
+  "status": "passed",
+  "database": "QuestNoteTest-Onboarding-b2485e59-182f-46a3-870e-172aa6ac09d9",
+  "results": [
+    {
+      "name": "fresh concurrent preparation and welcome survive reload without any tutorial task",
+      "ok": true,
+      "detail": {
+        "width": 320,
+        "height": 852,
+        "coachHeight": 381.7083435058594
+      }
+    },
+    {
+      "name": "first meeting grants exactly one real companion; wrong navigation is gently blocked",
+      "ok": true,
+      "detail": {
+        "width": 320,
+        "height": 852,
+        "coachHeight": 411.40625
+      }
+    },
+    {
+      "name": "home and open-create checkpoints survive reload",
+      "ok": true,
+      "detail": {
+        "width": 320,
+        "height": 852,
+        "coachHeight": 328.28125
+      }
+    },
+    {
+      "name": "real editor is prefilled, without keyboard input or background task creation",
+      "ok": true,
+      "detail": {
+        "width": 320,
+        "height": 852,
+        "coachHeight": 328.28125
+      }
+    },
+    {
+      "name": "save failure aborts the native IDB transaction and leaves a retryable editor",
+      "ok": true,
+      "detail": "Native transaction aborted; no task/checkpoint committed."
+    },
+    {
+      "name": "double create uses one deterministic task and one atomic checkpoint",
+      "ok": true,
+      "detail": {
+        "width": 320,
+        "height": 852,
+        "coachHeight": 350.6145935058594
+      }
+    },
+    {
+      "name": "completion transaction failure pays nothing and remains retryable",
+      "ok": true,
+      "detail": "Task, checkpoint, wallet and companion all rolled back in one native transaction."
+    },
+    {
+      "name": "completion and reward survive reload, with no double payment under concurrent retries",
+      "ok": true,
+      "detail": {
+        "stardust": 20,
+        "energy": 1,
+        "bond": 5,
+        "formalCompleted": 0
+      }
+    },
+    {
+      "name": "companion reaction and finish remain explicit, untimed checkpoints",
+      "ok": true,
+      "detail": {
+        "width": 320,
+        "height": 852
+      }
+    },
+    {
+      "name": "learning-transfer mechanism: a separate real quest can be created and completed without coach",
+      "ok": true,
+      "detail": "Separate real task created and completed with no coach. Human transfer is still untested."
+    },
+    {
+      "name": "replay follows the same controls without changing wallet, bond or formal progress",
+      "ok": true,
+      "detail": "No economy, companion, task-stat or challenge changes; rehearsal tasks excluded from export."
+    },
+    {
+      "name": "existing users with legacy flags bypass forced onboarding",
+      "ok": true,
+      "detail": "Completed, dismissed, paused and active legacy flags bypassed."
+    },
+    {
+      "name": "skip is confirmed; short press cancels; keyboard and assistive alternative remains available",
+      "ok": true,
+      "detail": "Short hold did not skip; separate confirmation exited and persisted."
+    },
+    {
+      "name": "320px, all themes, large text and reduced motion retain actionable targets",
+      "ok": true,
+      "detail": {
+        "width": 320,
+        "height": 852,
+        "coachHeight": 724.7083740234375
+      }
+    },
+    {
+      "name": "skip exits even if persistence fails, then retries the choice on the next launch",
+      "ok": true,
+      "detail": "Session and foreground stayed unlocked under continuing write failure; pending skip persisted after reload."
+    },
+    {
+      "name": "200% text can finish the practice without a covered action",
+      "ok": true,
+      "detail": {
+        "width": 393,
+        "height": 852
+      }
+    },
+    {
+      "name": "rapid acknowledgement and stale-window requests cannot skip a screen",
+      "ok": true,
+      "detail": "Three clicks and two stale requests retained the meeting screen and one companion."
+    },
+    {
+      "name": "recovery moves an unfinished practice back to today after midnight",
+      "ok": true,
+      "detail": "Same task identity remains visible on the current day."
+    },
+    {
+      "name": "replay replacement is atomic, concurrent-safe and removes only rehearsal history",
+      "ok": true,
+      "detail": "Abort rolled back cleanup; two starts resumed one run; first receipt and formal task retained; foreign grant rejected."
+    },
+    {
+      "name": "optional education stays until acknowledged, survives navigation and links to rereadable help",
+      "ok": true,
+      "detail": "Reminder remained after seven seconds and navigation; explicit dismissal persisted; help reopened the same explanation."
+    },
+    {
+      "name": "skip still offers an optional editor hint with no task created on the user behalf",
+      "ok": true,
+      "detail": "A skipped learner sees a self-paced editor explanation and starts with an empty real form."
+    }
+  ]
+}

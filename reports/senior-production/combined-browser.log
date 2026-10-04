@@ -1,0 +1,3 @@
+PASS senior-replay
+PASS senior-first-320-large
+PASS senior-replay-skip-from-editor (assertions passed; also recorded in combined-browser.json)

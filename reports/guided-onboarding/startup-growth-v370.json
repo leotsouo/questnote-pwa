@@ -1,0 +1,9 @@
+{
+  "status": "review",
+  "scene": "GROWTH_INVITATION_READY",
+  "checkpoint": "FINISH",
+  "geometry": {
+    "width": 393,
+    "height": 852
+  }
+}

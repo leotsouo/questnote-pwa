@@ -1,7 +1,9 @@
 /**
  * 任務 CRUD、子任務、今日計畫與完成邏輯
  */
-import { dbGetAll, dbPut, dbDelete, STORES } from './db.js';
+import { dbGet, dbGetAll, dbPut, dbDelete, STORES } from './db.js';
+import { commitTutorialTask } from './guidedOnboardingService.js';
+import { GUIDED_KEY } from './guidedOnboardingCore.js';
 import { putWithAwakeningProgress } from './petAwakeningService.js';
 import { claimTaskReward } from './rewardService.js';
 import { normalizeTask, normalizePlannedTime } from './taskMigration.js';
@@ -70,7 +72,8 @@ function buildTaskDefaults(data, now) {
 /** 取得所有任務（已正規化） */
 export async function getAllTasks() {
   const tasks = await dbGetAll(STORES.TASKS);
-  return tasks.map(normalizeFromDb);
+  const guide = tasks.some((t) => t.tutorialMode === 'replay') ? await dbGet(STORES.META, GUIDED_KEY) : null;
+  return tasks.filter((t) => t.tutorialMode !== 'replay' || (guide?.status === 'active' && t.tutorialRunId === guide.runId)).map(normalizeFromDb);
 }
 
 /** 依 ID 取得任務 */
@@ -89,7 +92,7 @@ export async function createTask(data) {
 
   const extras = buildTaskDefaults(data, now);
   const task = {
-    id: generateId(),
+    id: data.isTutorial ? `tutorial:${data.tutorialRunId}` : generateId(),
     content: data.content.trim(),
     title: extractTitle(data.content),
     priority: data.priority || 'normal',
@@ -101,8 +104,11 @@ export async function createTask(data) {
     updatedAt: now,
     completedAt: null,
     ...extras,
+    ...(data.isTutorial ? { isTutorial: true, tutorialRunId: data.tutorialRunId,
+      tutorialMode: data.tutorialMode === 'replay' ? 'replay' : 'first' } : {}),
   };
 
+  if (task.isTutorial) return commitTutorialTask(task);
   await dbPut(STORES.TASKS, task);
 
   if (extras.isPlannedToday) await recordPlanToday();
@@ -146,13 +152,13 @@ export async function updateTask(id, updates) {
       createdAt: s.createdAt || now,
       completedAt: s.completedAt ?? null,
     }));
-    if (!hadSubtasks && updated.subtasks.length > 0) {
+    if (!task.isTutorial && !hadSubtasks && updated.subtasks.length > 0) {
       await recordSubtaskCreated();
     }
   }
 
   const today = getTodayDateString();
-  if (updates.isPlannedToday && updated.plannedDate === today && !task.isPlannedToday) {
+  if (!task.isTutorial && updates.isPlannedToday && updated.plannedDate === today && !task.isPlannedToday) {
     await recordPlanToday();
   }
 
@@ -172,7 +178,7 @@ export async function addToTodayPlan(id) {
     isPlannedToday: true,
     plannedDate: today,
   });
-  await recordPlanToday();
+  if (!task.isTutorial) await recordPlanToday();
   return task;
 }
 
@@ -205,7 +211,7 @@ export async function toggleSubtaskComplete(taskId, subtaskId) {
 
   const updated = await updateTask(taskId, { subtasks });
 
-  if (justCompleted) {
+  if (justCompleted && !task.isTutorial) {
     await recordSubtaskCompleted();
   }
 
@@ -219,6 +225,10 @@ export async function toggleSubtaskComplete(taskId, subtaskId) {
 export async function toggleTaskComplete(id) {
   const task = await getTaskById(id);
   if (!task) throw new Error('任務不存在');
+  if (task.isTutorial) {
+    const reward = await claimTaskReward(task);
+    return { task: reward.task, reward: reward.amount || reward.energy ? reward : null, justCompleted: !task.completed };
+  }
 
   const now = new Date().toISOString();
 
@@ -250,14 +260,14 @@ export async function toggleTaskComplete(id) {
 export async function getTodayCompletedCount() {
   const tasks = await getAllTasks();
   const today = getTodayDateString();
-  return tasks.filter((t) => isCompletedToday(t, today)).length;
+  return tasks.filter((t) => !t.isTutorial && isCompletedToday(t, today)).length;
 }
 
 /** 今日計畫任務數 */
 export async function getTodayPlanCount() {
   const tasks = await getAllTasks();
   const today = getTodayDateString();
-  return tasks.filter((t) => !t.completed && t.plannedDate === today).length;
+  return tasks.filter((t) => !t.isTutorial && !t.completed && t.plannedDate === today).length;
 }
 
 /** 匯出所有任務（備份用） */

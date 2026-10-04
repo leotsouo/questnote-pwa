@@ -128,8 +128,11 @@ export function validateSnapshotData(data, requiredKeys = SNAPSHOT_KEYS, profile
     type: oneOf(['one_time', 'repeatable']), categoryId: id, startDate: nullable(dateKey),
     dueDate: nullable(dateKey), isPlannedToday: bool, plannedDate: nullable(dateKey),
     subtasks: list(subtask), completed: bool, rewardClaimed: bool, createdAt: timestamp,
-    updatedAt: timestamp, completedAt: nullable(timestamp), lastRewardClaimedAt: nullable(timestamp) },
-  { plannedTime: nullable(scalar((value) => typeof value === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(value), '時間格式無效')) });
+    updatedAt: timestamp, completedAt: nullable(timestamp), lastRewardClaimedAt: nullable(timestamp) }, {
+    plannedTime: nullable(scalar((value) => typeof value === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(value), '時間格式無效')),
+    isTutorial: bool, tutorialRunId: id, tutorialMode: oneOf(['first', 'replay']),
+    tutorialReward: shape({ amount: integer, energy: integer, bondAmount: integer, preview: bool }),
+  });
   const habitLog = (value, path, key) => {
     if (key.startsWith('week_')) {
       dateKey(key.slice(5), path);
