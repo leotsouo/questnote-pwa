@@ -114,9 +114,10 @@ import {
   hasLowMaterials,
 } from './workshopService.js';
 
-import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget } from './ui.js';
+import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, openTaskForm, showGuidedHome, showToast } from './ui.js';
 import { prepareOnboarding, resetOnboardingState } from './onboardingService.js';
-import { initOnboarding } from './onboardingController.js';
+import { initOnboarding, openOnboardingEducation } from './onboardingController.js';
+import { initGuidedOnboarding } from './guidedOnboardingController.js';
 import { runAppHealthCheck } from './healthCheckService.js';
 import { getServiceWorkerRegisterUrl } from './version.js';
 import { loadCatalogBundle } from './releaseCatalog.js';
@@ -302,7 +303,7 @@ async function refreshState(options = {}) {
 
 
 
-  const todayCompleted = tasks.filter((t) => isCompletedToday(t, today)).length;
+  const todayCompleted = tasks.filter((t) => !t.isTutorial && isCompletedToday(t, today)).length;
 
 
 
@@ -534,9 +535,8 @@ async function initApp() {
     applyFontSizeToDocument(appState.userPreferences.fontSize);
     applyReduceMotionClass(appState.userPreferences?.reduceMotion ?? false);
 
-    // 儘早綁定 UI，確保畫面可互動
+    // Bind handlers early; expose controls only after save and guide initialization.
     initUI(appState, refreshState, runAchievementCheck);
-    hideLoader();
 
 
 
@@ -699,7 +699,11 @@ async function initApp() {
 
     }
 
-    initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget }, onboardingAtStartup);
+    await initGuidedOnboarding(appState, { openTaskForm, showGuidedHome, showToast, refreshState, showPage: (view) => { closeModal(); switchView(view); },
+      showEducationHelp: (feature) => { closeModal(); openOnboardingEducation(feature); },
+      showGrowthHelp: () => { closeModal(); switchView('guide'); requestAnimationFrame(() => document.querySelector('#guide-growth-title')?.focus()); } });
+    initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, showToast }, onboardingAtStartup);
+    hideLoader();
 
 
 

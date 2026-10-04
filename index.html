@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#080B16" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -42,8 +42,9 @@
   <link rel="stylesheet" href="src/bond-journey.css" />
   <link rel="stylesheet" href="src/encounter-ceremony.css" />
   <link rel="stylesheet" href="src/encounter-view.css">
+  <link rel="stylesheet" href="src/guided-onboarding.css">
   <link rel="stylesheet" href="src/encounter-invitation.css">
-  <meta name="questnote-artifact" content="0283c0bc6c4529211870c246f4f7a1d18563053de7adf06b537c46b85590a192">
+  <meta name="questnote-artifact" content="b0b22f41b2ff4407b3c21e77a72eaa53ad3936b6ff2fd28da97b19c757191868">
 </head>
 <body data-theme="default">
   <div id="app-loader" class="app-loader">
@@ -518,7 +519,7 @@
         <p>完成任務，遇見夥伴，慢慢走出自己的旅程。</p>
         <details class="guide-start-details"><summary>五步快速開始</summary>
         <ol class="guide-steps">
-          <li><b class="guide-step-number" aria-hidden="true">1</b><strong>記下任務</strong><span>按任務頁右下角「＋」；今天要做的事可加入今日計畫。</span></li>
+          <li><b class="guide-step-number" aria-hidden="true">1</b><strong>記下任務</strong><span>在「今日」點「新增任務」，寫下一件今天想做的事。</span></li>
           <li><b class="guide-step-number" aria-hidden="true">2</b><strong>完成並領資源</strong><span>做完後點「完成」，獲得星塵、冒險能量與陪伴夥伴的親密度。</span></li>
           <li><b class="guide-step-number" aria-hidden="true">3</b><strong>召喚夥伴</strong><span>用星塵召喚；星塵不足時看看信箱、任務與每日祝福。</span></li>
           <li><b class="guide-step-number" aria-hidden="true">4</b><strong>收藏、陪伴與故事</strong><span>到圖鑑選一隻設為陪伴；親密度 Lv.2 起可閱讀故事，再選自己的任務或習慣完成同行約定。</span></li>
@@ -530,9 +531,17 @@
       </section>
 
       <section class="guide-growth" aria-labelledby="guide-growth-title">
-        <h2 id="guide-growth-title">帶著夥伴繼續成長</h2>
-        <p>挑一章看看。隨時可停下，進度會保留。</p>
+        <p class="growth-eyebrow">完成第一件小事之後</p>
+        <h2 id="guide-growth-title" tabindex="-1">帶著夥伴繼續成長</h2>
+        <p>從碎片、日常陪伴，到探險與送禮。每章都會帶你到真正的操作位置，可以照順序走，也能挑現在想學的。</p>
+        <p class="growth-safety-note">不用額外召喚或花光資源。先了解、稍後實作也會保留進度。</p>
         <div id="guide-chapters" class="guide-chapters"></div>
+      </section>
+      <section class="guide-quick-help" aria-labelledby="guided-feature-help-title">
+        <h2 id="guided-feature-help-title">想用到時，再來看看</h2>
+        <p>小提醒可以自行關閉；這裡隨時能再讀一次。</p>
+        <div id="guided-feature-help"></div>
+        <button id="guided-page-tour-button" type="button" class="btn btn--secondary" data-page-tour-action="start">認識其他頁面</button>
       </section>
 
       <section id="guide-pet-awakening" class="awakening-panel card" aria-label="羈絆覺醒教學" tabindex="-1"></section>
@@ -942,6 +951,7 @@
 
   <!-- 首次使用引導 -->
   <div id="onboarding-root"></div>
+  <div id="guided-onboarding-root"></div>
 
   <!-- 通用彈窗 -->
   <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">
