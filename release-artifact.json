@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "b0b22f41b2ff4407b3c21e77a72eaa53ad3936b6ff2fd28da97b19c757191868",
-  "sourceCommit": "23e3b4ca6a22b7562a1363c80047eb73f25a79c2",
+  "artifactId": "173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
+  "sourceCommit": "5473d5b226b6eaa56a97302a84a9eba33042de19",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "b0b22f41b2ff4407b3c21e77a72eaa53ad3936b6ff2fd28da97b19c757191868",
-    "sourceCommit": "23e3b4ca6a22b7562a1363c80047eb73f25a79c2",
+    "artifactId": "173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
+    "sourceCommit": "5473d5b226b6eaa56a97302a84a9eba33042de19",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -515,18 +515,18 @@
     "data/pets.json": "697d14babcb60e592c6e9c6035ad20587283e8698641221631f4b6ed38a2522c",
     "data/pools.json": "c78e7786eca9cc28ec66b8550c7a72ad2bd6d1febaf5cdf2874679b4aadc61f9",
     "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-    "index.html": "d7471116471112b88baff2ce527e6c5bbac559f3f3e9d3243dc06618d67a5f54",
+    "index.html": "f583a3df5650db76b7347beab6156c336edf461792b167a372c8f259436a6909",
     "manifest.webmanifest": "9045e56d30d015634a8d68a5b6b3cd60d813c500150fea0d48b08b4eefcb45ba",
-    "service-worker.js": "97c86453a183fd418ddbe4d7cfb4caaf005410ac19faa3223ced652364c1f734",
-    "src/achievementService.js": "283630dcf3eb0fc99e7038900b5d0e711eed768951364e7b5f12570e64be2cda",
+    "service-worker.js": "7c56d6e4e5cc61705b4947421eb8a97b8b93b65289e588e883c031e3fdf05cdb",
+    "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
     "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
-    "src/app.js": "16bb11ae8976c0346dfa9d32b2a7670eb55c50cb28f4913c13babaac020bb51b",
-    "src/backupSchema.js": "e1956b09d208b2ff81f514ebd8564f36181cea71f034641cda982b8f1c51e661",
-    "src/backupService.js": "5164e5d3c3aaf0c7aa965ed789ce18c4602193132b36658a64f49bbea957611b",
+    "src/app.js": "1723e66f9b23f561fc3d4b3ee7f9bc65434547223d19a4a27fd48ceff0e221f7",
+    "src/backupSchema.js": "3ae413baf801135d2239caf88aca3d084491effda852f8e2cdf0c2e1ed7bad31",
+    "src/backupService.js": "089b660456ca2d8f76e1a24f4cb995095d856fa3ec437f615474242e98fad1ec",
     "src/bond-journey.css": "c5ada471a6ac232974153239c91b6d4628dc5c4decf32b5f256f031f2346ee49",
     "src/bondJourneyController.js": "cfaabae2b18fbf0917cb074e878a11b557801a449a442e71ef9368124aa81805",
-    "src/bondJourneyCore.js": "7498f8a001ec668fb5a356a4449aefcdee45402c64ac4b68d8d7360efc1439f6",
-    "src/bondJourneyService.js": "7d05c1595d559999122f79aa790341c5ff935f90a048f0a6a5e3c0c51990a5d2",
+    "src/bondJourneyCore.js": "e66a1621b56f504e1d16444b518c37da4fc003e9b6a68439082b9a73aeffd762",
+    "src/bondJourneyService.js": "f8de8af6b40b44e0cb4599b70d8965fd9aaef7628c4a0410e690b0868a27cc1a",
     "src/bondJourneyView.js": "3805105dee2e07ad228477cf6beba617607fa394fccfbeea951279e78339652d",
     "src/bondStoryCatalog.js": "8f243911238e6f30377c922c787cab9b26b521dbe2fe59a9c145440c57b0a514",
     "src/bootstrap.js": "424349b05fe4e245c0e7e4dc744bea4e2717851666d12ac49f391b715558e07b",
@@ -541,7 +541,7 @@
     "src/db.js": "4755a43d2824c59f396d72ac17b4ca415834aed1a36976a8f213dcd448febb26",
     "src/deferredRenderGate.js": "cbbaf2e401be35eab6d673a935c13fef615286a554937dc497b02c4aa6aca6e5",
     "src/devService.js": "af56b92e6fcf886786f4a41d777dc355c35c0d0bd4b39fd72fc11217c4238dd4",
-    "src/dialogFocus.js": "24eb36d909579732f8b9776c4f2e2a3fec8e112d8e96194257b6b16bee49eecf",
+    "src/dialogFocus.js": "58169d9a8ae4e9cdabfa6eb165e12e4233d359915d992a4d2edc4f7b35eb97ab",
     "src/encounter-ceremony.css": "ae74aac4b2d91c35d0728cf02c049e1d0cfc09bc6c316d0d65286a3e30ed6c5f",
     "src/encounter-invitation.css": "6a258ae8be9a0532b269a289b65f0473620d8b140bfd8c35bbb99695577e2d89",
     "src/encounter-view.css": "0e05032df7a75ee20a42210b6c07e2bf57b48e0f3a7f2e415eabd33ff13f3bc3",
@@ -549,7 +549,7 @@
     "src/encounterEconomyCore.js": "5b6be21fa2f94c723e853ab69b60c20b90bf05bbf04b04532126868c7c722f1b",
     "src/encounterEconomyService.js": "7f7ed8f10ab135f512e1a0089cfc92173177602999ee29319dc867775d1361e1",
     "src/encounterScenery.js": "f94fe3d764ec0c920674f6991fe4ed271741ec1e960170a2f9e7c12baa9adef9",
-    "src/encounterView.js": "88693022dfaa8232734c601198a54d7664b5b594f3eab6e539cac94a318dafb0",
+    "src/encounterView.js": "f480512dd6961432053a9ae380dbbbba37282e3a338202319847fc2396791783",
     "src/encounterViewModel.js": "8897d6d065c40ac300e7fa0adda9bbe46d86839592a695bd291efb8eec00ad7e",
     "src/expeditionGameplay.js": "6790786d8d1b41e4b55b53133848671c7cf2df07b0e4121459500c47eb866d93",
     "src/expeditionService.js": "9c2d2275a73929efec335ff74b149904384571caead9583b3988a53e3e5f8fc0",
@@ -563,12 +563,12 @@
     "src/gachaService.js": "5d8921681d16d357bae864bacbdb2e8d453f2cac26e2445a2a4974d245858fad",
     "src/gachaTransactionCore.js": "cc06178e839ff9138aa9cc5e5d68cac47d091c5607d2e52d5f36257365ec7eed",
     "src/glacierArrivalScene.js": "328167de5397d1ebfbfe8fa5ec7338a4b8b285666fa57d598dbcd14d5121f0eb",
-    "src/guided-onboarding.css": "117c2885bd478a76237156dd2724f3eddfc69c170306ca56bcef94f07b174f56",
-    "src/guidedEducation.js": "e26d343249d9a5e724418bc7e6f6c676ea541833184e9616ed7c651a1d83d3ee",
-    "src/guidedOnboardingController.js": "f6764d34d57877b1fe52ef77930acc3f488e43825babf23cb6b0ae2f03e5a6b6",
-    "src/guidedOnboardingCore.js": "0810901552a5bb3f97a83ec01d7bc29fc40647fabbcb70195625a7b6e75d1287",
-    "src/guidedOnboardingService.js": "24ed20f8676617777321ebaab58913d447bd2b9dedfaded990fc44357ca1e1a0",
-    "src/guidedPageTour.js": "ac30fe4bcb5b38f3774954f1505834a601382c08ba90852de57fddcd979b3048",
+    "src/guided-onboarding.css": "723b833f56b36b478f1a1b534c2867a1d0ed79e6a351b51e06e0839bacae3c47",
+    "src/guidedEducation.js": "9a13d3105bc048276a585255494d1fbaef190699fed798a599a68b110cc9d801",
+    "src/guidedOnboardingController.js": "57677a225973e281e4c01048d37077a210df7dfc0f71b2bed00fdb44dc4c855b",
+    "src/guidedOnboardingCore.js": "8aaebb48cde07f48bd2c103ee4b2fd029f9269dce29ff407d0edeb200f0f2a1b",
+    "src/guidedOnboardingService.js": "fea7fd048f7ba797b837e59f25dc072e38b16c7445b24c28b88e9fcd23350d31",
+    "src/guidedPageTour.js": "37256473cf2931ec2f702b7fabccfd16012cb6327cb15ebb444371ca8ac9b4bf",
     "src/habitService.js": "ccfa3c54ce88d8333fe50e0f4de5926e27d1f8122c919b1bed2b62f160d5e240",
     "src/healthCheckService.js": "83e35ca90fb51b2029a82adac11cb96a4fec40063ce840081a05fb24092e365f",
     "src/honeylight-sugar.css": "150412ddfed5fd85d205e0d1be742e311d335b389fca4eb71bc98e93187157af",
@@ -582,14 +582,14 @@
     "src/loreService.js": "2beab9e2c2ab3418b16e638e247d1976c916b537e6a7a21d754751c54336541c",
     "src/mailboxSchema.js": "8419f90cdf00a7480de008730c75778469179793211cd784fb9d6f5a20b48ed8",
     "src/mailboxService.js": "43e71f8e06ad0a81ccfaea410f334af2663d9363275b42b006ce1f6194256158",
-    "src/onboardingController.js": "37c36039928e418c5fcd443957fb8aa2c59df910ccafb6810b9a601dae69d726",
+    "src/onboardingController.js": "4d6210b0d4d82cae78cb4d67eed9e1cb1d422f737b867d6f730ef4a22294443a",
     "src/onboardingLessons.js": "41ea3bf7636ae9a766438ab1409264b97e3458ff230b63dbd61287fb121a6f11",
-    "src/onboardingService.js": "5daaac40de0811c5fb9cb85c163ad23de030c3fcfe72e59307ae6a7915c551a1",
+    "src/onboardingService.js": "a3726b9cdcccdc9247288f89a4716ee16a0d9303141554a8c2ae985d1c87f981",
     "src/perfDiagnostics.js": "e6e5e3a4fe72ec00df1bd5469147b07d3d6cf8377e9ec691b2908af2cfd494d7",
     "src/pet-awakening.css": "d3945992fca20f6b8f832df4f35a3bd6acffee370d987eabfbe00378db636b14",
     "src/petAwakeningCatalog.js": "eebf2dfd15fa95b54f8c32b85da9b56467ebc4bf39520090e4218224b3ba26bf",
     "src/petAwakeningController.js": "e2c86c5c1074c36ac86dfc99ab901055737b6439edd955f4d089f96e53ced53b",
-    "src/petAwakeningCore.js": "7559e295947453f6f572e8b732674f04fbebf2c846e9d18b4779a361dc53ba30",
+    "src/petAwakeningCore.js": "3a263928930b7c1fe19eb4cef2d1f565e14069becf61baab39afcd40777ca4bf",
     "src/petAwakeningScene.js": "10046736290b074c6fda8106fd51c8c057b03293e7f3a5ef80a3f598af318b6c",
     "src/petAwakeningService.js": "11dd9c96125892d9eb4606aa07caabf4e91544e0a85236560c8af85a79d57f02",
     "src/petAwakeningView.js": "be314c6b1226a4b140b4ab191668f132ec3a49ece569897495bf8ff361202e2a",
@@ -601,17 +601,19 @@
     "src/poolPresentation.js": "a7a4ea67dd7e905dd70faa31527a92a119a47dc7badf3fc51a6b316fde84e5c8",
     "src/poolUnlockCore.js": "870277d0f58c7d504883d7223078a0e1bc492e7008794e2f74c6afd6d4f67463",
     "src/poolUnlockService.js": "613f0436ebf7a04743e5de02a1eaeae95b2f9d29afe8fcb79cb330c9398ded76",
-    "src/preferencesService.js": "a9083541abf0cc152debd922aaf6a33fbd671dee04b85ce5300a6b2522a58401",
+    "src/preferencesService.js": "b9228dae555679f0e1e096dc1fb65d72d6093a39cc889b067abd388a23f6aa57",
     "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
     "src/questService.js": "ae9532ad78abb8af981d3d76adb9f06f132e81e1fed945bd77a608a7dd2bfa3b",
     "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
     "src/releaseProfile.js": "512b20c341a3b11c6eeb764789fe8efc3f00fae20a732baaafef8cfec32f4061",
     "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
     "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
-    "src/reminderRules.js": "9bb5d303d85bce023ebce5c37aaaf3c7a1b0c9f0e2f9d7475916f928305a4c44",
+    "src/reminderRules.js": "f9cfd9f99703dfd3e91f12f4382716875964b09785bf67418dfdc607c5cb1c5d",
     "src/reminderService.js": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
     "src/rewardClaimService.js": "e801ad5ca9646aabdd530560a5f184a2ea99befecb53f4d59fbaeb15e594374b",
-    "src/rewardService.js": "1e45c07c593a0d63499f2576f6352fe31f1651d8f9af2d9124c0fccf92b2f422",
+    "src/rewardService.js": "c6169eb1d6cb15fd8ddfb6b54ad0a295599ac8a3a38e38903214a42c43bd2006",
+    "src/seniorMode.css": "e3945fcf911791483e34286134b74c0903215e74491b6c9234d3775d34a329d6",
+    "src/seniorModeController.js": "8400247546568d9e8a8059da30f6429e0ea10f8b42cd2eb62d7afc7e57e07bbc",
     "src/shareService.js": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
     "src/standardUrCarousel.js": "8e2f9f84a14399e61a206d39d1e75ebd1903d025a24866b9b899fe77520deae3",
     "src/styles.css": "ced435bdb4203b49079422c45ef3e339c9a860eb6ca0beef073dc5266f78d414",
@@ -621,8 +623,8 @@
     "src/swordwild-shanhe.css": "fd251695bcca1fe0e60dbeae142d3dcb0f41654b9ba3d5db019758c226f94143",
     "src/swordwildShanheScene.js": "0f61a0bcd593ccaa5fa4560102fc109324e88b78b52b55d70036fd2a317807aa",
     "src/taskFilterService.js": "687858edc36119afcb388fc3fd75ebd058d0a93117da42740c8a1f18d4b00471",
-    "src/taskMigration.js": "67055f714b759d43e1a333ce7d039619eca3537f5e83ce46ee76a0d4692f25b1",
-    "src/taskService.js": "a4a1f99f307adc58682f4e9c3bd27f89b16e51b5cd51e55f6cdd2785956ece19",
+    "src/taskMigration.js": "91951720bd10dce88273cba65f6da26e1b3f7b585d91e97fd1f3b9498841a843",
+    "src/taskService.js": "741798e711d2fa0c15b91bd043232df06e63e20dadadf034fe052ce7d23cfc36",
     "src/taskStatsService.js": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
     "src/theme-refinements.css": "34221c5c4be673822dcd050e2933e946612d6ad4f02f5077fb5aeb9496b4843b",
     "src/theme-system.css": "4276e7af30e0cb179e7bde03900818020120a1cd6d0c8e63e87aaab3f3b4a670",
@@ -630,14 +632,14 @@
     "src/themeRegistry.js": "d4c935dd737d662dffc17bcd4fe6d243aac583095ab5ac2ec43b76126df7bafb",
     "src/themeTokens.css": "7a898e987663c925e1913aafaa318d352048b294553affa068360f2d4ec3a596",
     "src/todayHabitsView.js": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
-    "src/twilightPresentation.js": "7a1fd6c84d885cdad08b38885752b1bd1ed8b0f6ed1eeaf79dd8cd35fcedb7bb",
+    "src/twilightPresentation.js": "905c328be48088db41ea7be5804ad5da84de5498f3b5ad9d3d375c2df12219ab",
     "src/ui-polish.css": "c4fa1670490cf3f39508b0f48c3bcf78f247690b6eaa03948262c309a69bfa53",
-    "src/ui.js": "ec7ddbb6fb38178b4b70f907b41e03552520808c27cec7de249e28620862628c",
+    "src/ui.js": "ffbe284936dcfe6ff3845eea2f1d5f9d64be04ce98b7b86577f0d9a056e2741e",
     "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
     "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
     "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
     "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-    "src/version.js": "f788407eead676da4b14f158fb2a554795cb92fb48d575d97bd2042d58ab9ea7",
+    "src/version.js": "d9fbee6bf364e9384a9dba5fed28c910fdc0545a733a6929b7e7933278113551",
     "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
     "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
   },
@@ -2611,36 +2613,36 @@
       "bytes": 6119
     },
     "index.html": {
-      "sha256": "a59b29c41ef1e04f8580e19bf5d4f8d4a7f072ba19427c8ebf5bea3d9cbc1149",
-      "bytes": 62157
+      "sha256": "bdd01ab6e5876c57ee90db546763b1efaefdd712fb95dd92cbc04377eb8fdd70",
+      "bytes": 64966
     },
     "manifest.webmanifest": {
       "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
       "bytes": 831
     },
     "service-worker.js": {
-      "sha256": "f276eeff0a8523040cd1c1143aa86e73c1cbef95a54aebb357c4d19ae8c9f27a",
-      "bytes": 34962
+      "sha256": "d203c5856f85f0348753d7f9936974c7833e1c3ada425e7d13a75624ed338737",
+      "bytes": 35212
     },
     "src/achievementService.js": {
-      "sha256": "283630dcf3eb0fc99e7038900b5d0e711eed768951364e7b5f12570e64be2cda",
-      "bytes": 24187
+      "sha256": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
+      "bytes": 24189
     },
     "src/adventureHandbookService.js": {
       "sha256": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
       "bytes": 22538
     },
     "src/app.js": {
-      "sha256": "16bb11ae8976c0346dfa9d32b2a7670eb55c50cb28f4913c13babaac020bb51b",
-      "bytes": 18846
+      "sha256": "1723e66f9b23f561fc3d4b3ee7f9bc65434547223d19a4a27fd48ceff0e221f7",
+      "bytes": 19774
     },
     "src/backupSchema.js": {
-      "sha256": "e1956b09d208b2ff81f514ebd8564f36181cea71f034641cda982b8f1c51e661",
-      "bytes": 26593
+      "sha256": "3ae413baf801135d2239caf88aca3d084491effda852f8e2cdf0c2e1ed7bad31",
+      "bytes": 26819
     },
     "src/backupService.js": {
-      "sha256": "5164e5d3c3aaf0c7aa965ed789ce18c4602193132b36658a64f49bbea957611b",
-      "bytes": 21209
+      "sha256": "089b660456ca2d8f76e1a24f4cb995095d856fa3ec437f615474242e98fad1ec",
+      "bytes": 21810
     },
     "src/bond-journey.css": {
       "sha256": "c5ada471a6ac232974153239c91b6d4628dc5c4decf32b5f256f031f2346ee49",
@@ -2651,12 +2653,12 @@
       "bytes": 6492
     },
     "src/bondJourneyCore.js": {
-      "sha256": "7498f8a001ec668fb5a356a4449aefcdee45402c64ac4b68d8d7360efc1439f6",
-      "bytes": 7303
+      "sha256": "e66a1621b56f504e1d16444b518c37da4fc003e9b6a68439082b9a73aeffd762",
+      "bytes": 7304
     },
     "src/bondJourneyService.js": {
-      "sha256": "7d05c1595d559999122f79aa790341c5ff935f90a048f0a6a5e3c0c51990a5d2",
-      "bytes": 8070
+      "sha256": "f8de8af6b40b44e0cb4599b70d8965fd9aaef7628c4a0410e690b0868a27cc1a",
+      "bytes": 8071
     },
     "src/bondJourneyView.js": {
       "sha256": "3805105dee2e07ad228477cf6beba617607fa394fccfbeea951279e78339652d",
@@ -2715,8 +2717,8 @@
       "bytes": 6855
     },
     "src/dialogFocus.js": {
-      "sha256": "24eb36d909579732f8b9776c4f2e2a3fec8e112d8e96194257b6b16bee49eecf",
-      "bytes": 4933
+      "sha256": "58169d9a8ae4e9cdabfa6eb165e12e4233d359915d992a4d2edc4f7b35eb97ab",
+      "bytes": 4980
     },
     "src/encounter-ceremony.css": {
       "sha256": "ae74aac4b2d91c35d0728cf02c049e1d0cfc09bc6c316d0d65286a3e30ed6c5f",
@@ -2747,8 +2749,8 @@
       "bytes": 2531
     },
     "src/encounterView.js": {
-      "sha256": "88693022dfaa8232734c601198a54d7664b5b594f3eab6e539cac94a318dafb0",
-      "bytes": 40060
+      "sha256": "f480512dd6961432053a9ae380dbbbba37282e3a338202319847fc2396791783",
+      "bytes": 41405
     },
     "src/encounterViewModel.js": {
       "sha256": "8897d6d065c40ac300e7fa0adda9bbe46d86839592a695bd291efb8eec00ad7e",
@@ -2803,28 +2805,28 @@
       "bytes": 4926
     },
     "src/guided-onboarding.css": {
-      "sha256": "117c2885bd478a76237156dd2724f3eddfc69c170306ca56bcef94f07b174f56",
-      "bytes": 10657
+      "sha256": "723b833f56b36b478f1a1b534c2867a1d0ed79e6a351b51e06e0839bacae3c47",
+      "bytes": 10754
     },
     "src/guidedEducation.js": {
-      "sha256": "e26d343249d9a5e724418bc7e6f6c676ea541833184e9616ed7c651a1d83d3ee",
-      "bytes": 2028
+      "sha256": "9a13d3105bc048276a585255494d1fbaef190699fed798a599a68b110cc9d801",
+      "bytes": 2046
     },
     "src/guidedOnboardingController.js": {
-      "sha256": "f6764d34d57877b1fe52ef77930acc3f488e43825babf23cb6b0ae2f03e5a6b6",
-      "bytes": 30751
+      "sha256": "57677a225973e281e4c01048d37077a210df7dfc0f71b2bed00fdb44dc4c855b",
+      "bytes": 31681
     },
     "src/guidedOnboardingCore.js": {
-      "sha256": "0810901552a5bb3f97a83ec01d7bc29fc40647fabbcb70195625a7b6e75d1287",
-      "bytes": 4316
+      "sha256": "8aaebb48cde07f48bd2c103ee4b2fd029f9269dce29ff407d0edeb200f0f2a1b",
+      "bytes": 4396
     },
     "src/guidedOnboardingService.js": {
-      "sha256": "24ed20f8676617777321ebaab58913d447bd2b9dedfaded990fc44357ca1e1a0",
-      "bytes": 7152
+      "sha256": "fea7fd048f7ba797b837e59f25dc072e38b16c7445b24c28b88e9fcd23350d31",
+      "bytes": 7279
     },
     "src/guidedPageTour.js": {
-      "sha256": "ac30fe4bcb5b38f3774954f1505834a601382c08ba90852de57fddcd979b3048",
-      "bytes": 5892
+      "sha256": "37256473cf2931ec2f702b7fabccfd16012cb6327cb15ebb444371ca8ac9b4bf",
+      "bytes": 5934
     },
     "src/habitService.js": {
       "sha256": "ccfa3c54ce88d8333fe50e0f4de5926e27d1f8122c919b1bed2b62f160d5e240",
@@ -2879,16 +2881,16 @@
       "bytes": 28428
     },
     "src/onboardingController.js": {
-      "sha256": "37c36039928e418c5fcd443957fb8aa2c59df910ccafb6810b9a601dae69d726",
-      "bytes": 33817
+      "sha256": "4d6210b0d4d82cae78cb4d67eed9e1cb1d422f737b867d6f730ef4a22294443a",
+      "bytes": 33974
     },
     "src/onboardingLessons.js": {
       "sha256": "41ea3bf7636ae9a766438ab1409264b97e3458ff230b63dbd61287fb121a6f11",
       "bytes": 18958
     },
     "src/onboardingService.js": {
-      "sha256": "5daaac40de0811c5fb9cb85c163ad23de030c3fcfe72e59307ae6a7915c551a1",
-      "bytes": 5969
+      "sha256": "a3726b9cdcccdc9247288f89a4716ee16a0d9303141554a8c2ae985d1c87f981",
+      "bytes": 5975
     },
     "src/perfDiagnostics.js": {
       "sha256": "e6e5e3a4fe72ec00df1bd5469147b07d3d6cf8377e9ec691b2908af2cfd494d7",
@@ -2907,8 +2909,8 @@
       "bytes": 3407
     },
     "src/petAwakeningCore.js": {
-      "sha256": "7559e295947453f6f572e8b732674f04fbebf2c846e9d18b4779a361dc53ba30",
-      "bytes": 6811
+      "sha256": "3a263928930b7c1fe19eb4cef2d1f565e14069becf61baab39afcd40777ca4bf",
+      "bytes": 6812
     },
     "src/petAwakeningScene.js": {
       "sha256": "10046736290b074c6fda8106fd51c8c057b03293e7f3a5ef80a3f598af318b6c",
@@ -2955,8 +2957,8 @@
       "bytes": 6509
     },
     "src/preferencesService.js": {
-      "sha256": "a9083541abf0cc152debd922aaf6a33fbd671dee04b85ce5300a6b2522a58401",
-      "bytes": 2712
+      "sha256": "b9228dae555679f0e1e096dc1fb65d72d6093a39cc889b067abd388a23f6aa57",
+      "bytes": 4009
     },
     "src/questIcons.js": {
       "sha256": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
@@ -2971,7 +2973,7 @@
       "bytes": 4727
     },
     "src/releaseProfile.js": {
-      "sha256": "0233b1e7879fa3073e123769018d1f307a387ee89b1159ebf933a2b619237f62",
+      "sha256": "81094621ef8060b72b10e371944607be653b46ef11cc5aec41bb733b908076ab",
       "bytes": 622
     },
     "src/reminder-settings.css": {
@@ -2983,8 +2985,8 @@
       "bytes": 7107
     },
     "src/reminderRules.js": {
-      "sha256": "9bb5d303d85bce023ebce5c37aaaf3c7a1b0c9f0e2f9d7475916f928305a4c44",
-      "bytes": 5254
+      "sha256": "f9cfd9f99703dfd3e91f12f4382716875964b09785bf67418dfdc607c5cb1c5d",
+      "bytes": 5257
     },
     "src/reminderService.js": {
       "sha256": "443462be0699934e7dc731b5a692381acb1f12f1499c237566a16b4ee2c0578b",
@@ -2995,8 +2997,16 @@
       "bytes": 4862
     },
     "src/rewardService.js": {
-      "sha256": "1e45c07c593a0d63499f2576f6352fe31f1651d8f9af2d9124c0fccf92b2f422",
-      "bytes": 11262
+      "sha256": "c6169eb1d6cb15fd8ddfb6b54ad0a295599ac8a3a38e38903214a42c43bd2006",
+      "bytes": 11266
+    },
+    "src/seniorMode.css": {
+      "sha256": "e3945fcf911791483e34286134b74c0903215e74491b6c9234d3775d34a329d6",
+      "bytes": 35461
+    },
+    "src/seniorModeController.js": {
+      "sha256": "8400247546568d9e8a8059da30f6429e0ea10f8b42cd2eb62d7afc7e57e07bbc",
+      "bytes": 14959
     },
     "src/shareService.js": {
       "sha256": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
@@ -3035,12 +3045,12 @@
       "bytes": 11051
     },
     "src/taskMigration.js": {
-      "sha256": "67055f714b759d43e1a333ce7d039619eca3537f5e83ce46ee76a0d4692f25b1",
-      "bytes": 4858
+      "sha256": "91951720bd10dce88273cba65f6da26e1b3f7b585d91e97fd1f3b9498841a843",
+      "bytes": 5128
     },
     "src/taskService.js": {
-      "sha256": "a4a1f99f307adc58682f4e9c3bd27f89b16e51b5cd51e55f6cdd2785956ece19",
-      "bytes": 8510
+      "sha256": "741798e711d2fa0c15b91bd043232df06e63e20dadadf034fe052ce7d23cfc36",
+      "bytes": 8964
     },
     "src/taskStatsService.js": {
       "sha256": "1e61c0f67426459a73b2c6ec405dbfdef87b86840a519518d9f5432fb4d2cbb5",
@@ -3071,16 +3081,16 @@
       "bytes": 2880
     },
     "src/twilightPresentation.js": {
-      "sha256": "7a1fd6c84d885cdad08b38885752b1bd1ed8b0f6ed1eeaf79dd8cd35fcedb7bb",
-      "bytes": 12186
+      "sha256": "905c328be48088db41ea7be5804ad5da84de5498f3b5ad9d3d375c2df12219ab",
+      "bytes": 12188
     },
     "src/ui-polish.css": {
       "sha256": "c4fa1670490cf3f39508b0f48c3bcf78f247690b6eaa03948262c309a69bfa53",
       "bytes": 19484
     },
     "src/ui.js": {
-      "sha256": "ec7ddbb6fb38178b4b70f907b41e03552520808c27cec7de249e28620862628c",
-      "bytes": 381707
+      "sha256": "ffbe284936dcfe6ff3845eea2f1d5f9d64be04ce98b7b86577f0d9a056e2741e",
+      "bytes": 388356
     },
     "src/uiHelpers.js": {
       "sha256": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
@@ -3099,7 +3109,7 @@
       "bytes": 695
     },
     "src/version.js": {
-      "sha256": "a409f754b2e7cb6a1ba823d15cf699b89e32148243fe6f40d9da65815b44d1ae",
+      "sha256": "b24279a2a81f9cfffc1d5028896b04be33ab704d22831e3df23023b579edd06d",
       "bytes": 1153
     },
     "src/workshopGiftView.js": {

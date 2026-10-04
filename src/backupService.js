@@ -376,6 +376,8 @@ function normalizePayloadData(rawBackup) {
       reduceMotion: userPreferences.reduceMotion,
       theme: userPreferences.theme,
       fontSize: userPreferences.fontSize,
+      readingMode: userPreferences.readingMode,
+      seniorOnboardingCompleted: userPreferences.seniorOnboardingCompleted,
     },
     taskStats: data.taskStats ?? {},
     inventory: normalizeInventory(data.inventory),
@@ -400,11 +402,18 @@ function normalizePayloadData(rawBackup) {
  * 正規化匯入資料（migration / normalize）
  * @param {object} normalizedBackup
  */
-export function migrateImportedData(normalizedBackup) {
+export function migrateImportedData(normalizedBackup, { forRestore = false } = {}) {
   const today = getTodayDateString();
 
   const tasks = (normalizedBackup.tasks || [])
     .map((task) => normalizeTask(task, today))
+    .map((task) => {
+      // Guide checkpoints are intentionally local, so an unfinished first practice
+      // cannot resume after restore. Retain user edits as an ordinary shared task.
+      if (!forRestore || !task?.isTutorial || task.tutorialMode !== 'first' || task.completed) return task;
+      const { isTutorial, tutorialRunId, tutorialMode, tutorialReward, ...restoredTask } = task;
+      return restoredTask;
+    })
     .filter(Boolean);
 
   let collection = (normalizedBackup.collection || [])
@@ -607,7 +616,7 @@ export async function restoreBackup(normalizedBackup) {
   // Raw rows in a verified historical envelope still need their legacy adapter.
   const errors = validateSnapshotData(normalizedBackup, undefined, normalizedBackup?.appVersion ?? 'current');
   if (errors.length) throw new Error('備份資料不完整或無效：' + errors.slice(0, 3).join('；'));
-  const migrated = migrateImportedData(normalizedBackup);
+  const migrated = migrateImportedData(normalizedBackup, { forRestore: true });
   await safeReplaceAllData(migrated);
   return migrated;
 }
