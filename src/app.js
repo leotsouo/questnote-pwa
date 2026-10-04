@@ -68,7 +68,7 @@ import {
 
 import { getWelcomeCompanionLine } from './companionDialogueService.js';
 
-import { initUserPreferences, getUserPreferences, applyThemeToDocument, applyFontSizeToDocument } from './preferencesService.js';
+import { initUserPreferences, getUserPreferences, applyThemeToDocument, applyFontSizeToDocument, applyReadingModeToDocument } from './preferencesService.js';
 
 import {
 
@@ -530,6 +530,7 @@ async function initApp() {
 
     await initUserPreferences();
     appState.userPreferences = await getUserPreferences();
+    applyReadingModeToDocument(appState.userPreferences.readingMode);
     applyThemeToDocument(appState.userPreferences.theme);
     applyFontSizeToDocument(appState.userPreferences.fontSize);
     applyReduceMotionClass(appState.userPreferences?.reduceMotion ?? false);
@@ -614,6 +615,7 @@ async function initApp() {
     }
 
     appState.userPreferences = await getUserPreferences();
+    applyReadingModeToDocument(appState.userPreferences.readingMode);
     applyThemeToDocument(appState.userPreferences.theme);
     applyFontSizeToDocument(appState.userPreferences.fontSize);
     applyReduceMotionClass(appState.userPreferences?.reduceMotion ?? false);
