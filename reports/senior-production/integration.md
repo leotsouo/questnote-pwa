@@ -14,3 +14,7 @@
 Agent integration_audit 負責唯讀跨服務與導覽審查、獨立交叉瀏覽器harness、備份修復／focused tests。Lead 複核其發現後採納單一disclosure及鎖交接；否決省略未完成練習備份的方案，原因是可能丟失使用者輸入，改採還原正規化。Lead 解決合併、整合runtime並執行完整回歸。之前product_audit／design_accessibility／mode_service_qa的原始設計與QA決策見reports/senior-mode。
 
 Immutable artifact、Pages及正式HTTPS結果於發布收據另記。實體 iPhone、iOS VoiceOver／原生文字放大仍需使用者驗收；不將Chromium或合成鍵盤事件宣稱實機通過。
+
+## 正式畫面複核修正
+
+最後實際正式畫面發現 .guided-learned 的 pseudo label 與 Senior visible label 重複。已僅在Senior scope移除既有教學 pseudo content，保留Normal教學標籤；同步BUILD_TIME與cache identity。追加實際computed-style斷言，17組Normal／Senior完整瀏覽器重跑通過；最終固定產物與部署結果見更新production-release.md。第一次發布的收據留在production-release-initial.md。

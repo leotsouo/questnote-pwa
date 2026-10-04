@@ -136,6 +136,7 @@ try {
     assert.equal(await page.locator('body').getAttribute('data-reading-mode'), 'senior');
     assert.deepEqual(await snapshot(), before);
     await shot('senior-empty');
+    assert.equal(await page.locator('.twilight-add-task').evaluate(node => getComputedStyle(node, '::after').content), 'none', 'Guided and Senior labels must not duplicate the action');
     await shot('senior-home');
   });
   let taskId;
