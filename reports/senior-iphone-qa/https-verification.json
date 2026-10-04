@@ -1,0 +1,117 @@
+{
+  "verifiedAt": "2026-10-04T11:24:17.206Z",
+  "url": "https://leotsouo.github.io/questnote-pwa-preview/",
+  "artifactId": "b040f52d85f544dfbaf1bc7cb10c2a4dcbeb7097bf1b6ab06a9fc06af1af2fbe",
+  "sourceCommit": "091a18f22d7ef6281337030f9b6736e6abaa1809",
+  "deployCommit": "aca1d982e9e3c734b0a06a4a0f5ec5fbe6baffbc",
+  "results": [
+    {
+      "path": "release-artifact.json",
+      "ok": true,
+      "sha256": "acb697f622425d2870e8153dc467bd06e8b872da993595d3cb60edeff6f3df2f",
+      "bytes": 174621
+    },
+    {
+      "path": "index.html",
+      "ok": true,
+      "sha256": "f1d8de75c646167d05e480ef74fbcf09347c18a4af070e593a3d30d0ee326122",
+      "bytes": 64075
+    },
+    {
+      "path": "manifest.webmanifest",
+      "ok": true,
+      "sha256": "92eebd112db700add8829cda91380b117bcf4f4d91723ea899055ebde22caad0",
+      "bytes": 869
+    },
+    {
+      "path": "service-worker.js",
+      "ok": true,
+      "sha256": "9ac61858e897b53b628dcb8a91fb44b123d2bab7f13899d71bd5611afb4bb527",
+      "bytes": 34414
+    },
+    {
+      "path": "src/bootstrap.js",
+      "ok": true,
+      "sha256": "424349b05fe4e245c0e7e4dc744bea4e2717851666d12ac49f391b715558e07b",
+      "bytes": 4505
+    },
+    {
+      "path": "src/releaseProfile.js",
+      "ok": true,
+      "sha256": "cc3c4c743fb5e606c41175271e5cd9bb8ece46dc31df61ff3f776fd9e7b3e5ea",
+      "bytes": 631
+    },
+    {
+      "path": "src/version.js",
+      "ok": true,
+      "sha256": "7a8606e68922e3aa820d6c3767d49993e8136848edbd1a3739cd4e47f9930ea4",
+      "bytes": 1141
+    },
+    {
+      "path": "src/app.js",
+      "ok": true,
+      "sha256": "efa281ee51c78822441b0b17211da41d943502276ba80bf00aaa63b9860bfb56",
+      "bytes": 19158
+    },
+    {
+      "path": "src/ui.js",
+      "ok": true,
+      "sha256": "a9826c15e8c0252e4494eb907015c4c2a88dbba044e0cc64046f8120135737ab",
+      "bytes": 386797
+    },
+    {
+      "path": "src/encounterView.js",
+      "ok": true,
+      "sha256": "f480512dd6961432053a9ae380dbbbba37282e3a338202319847fc2396791783",
+      "bytes": 41405
+    },
+    {
+      "path": "src/dialogFocus.js",
+      "ok": true,
+      "sha256": "58169d9a8ae4e9cdabfa6eb165e12e4233d359915d992a4d2edc4f7b35eb97ab",
+      "bytes": 4980
+    },
+    {
+      "path": "src/preferencesService.js",
+      "ok": true,
+      "sha256": "b9228dae555679f0e1e096dc1fb65d72d6093a39cc889b067abd388a23f6aa57",
+      "bytes": 4009
+    },
+    {
+      "path": "src/taskService.js",
+      "ok": true,
+      "sha256": "7dcd1a97e3768f3997a2f0bde15d0b20b79c6aa4a8a8f7f3e5fd9b39fb46df29",
+      "bytes": 8002
+    },
+    {
+      "path": "src/taskMigration.js",
+      "ok": true,
+      "sha256": "91951720bd10dce88273cba65f6da26e1b3f7b585d91e97fd1f3b9498841a843",
+      "bytes": 5128
+    },
+    {
+      "path": "src/backupService.js",
+      "ok": true,
+      "sha256": "0c796efc9994df47f35f3e035f618ecdc73d160357180d15aad43c063bd69657",
+      "bytes": 21283
+    },
+    {
+      "path": "src/backupSchema.js",
+      "ok": true,
+      "sha256": "5902f66ed00389a537ea0fa2d7c2cd26bfdd1ae04b53484d88592e8505d7d539",
+      "bytes": 26623
+    },
+    {
+      "path": "src/seniorModeController.js",
+      "ok": true,
+      "sha256": "220b18e847c190c29faa91f301c29981b606c6a9bbc61d3e334211d11ddf1242",
+      "bytes": 15266
+    },
+    {
+      "path": "src/seniorMode.css",
+      "ok": true,
+      "sha256": "e3945fcf911791483e34286134b74c0903215e74491b6c9234d3775d34a329d6",
+      "bytes": 35461
+    }
+  ]
+}

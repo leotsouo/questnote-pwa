@@ -1,0 +1,11 @@
+{
+  "inspectedAt": "2026-10-04T05:29:50.0335022Z",
+  "scope": [
+    "src",
+    "index.html",
+    "service-worker.js"
+  ],
+  "matches": [],
+  "activeSpeechApisFound": false,
+  "note": "Static source audit only; native iOS dictation and VoiceOver not device-tested"
+}

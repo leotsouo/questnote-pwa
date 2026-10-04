@@ -1,0 +1,277 @@
+{
+  "running": false,
+  "runId": "0b8a9b6a-7944-46ea-8390-16736d731104",
+  "passed": 18,
+  "failed": 0,
+  "results": [
+    {
+      "name": "uncontrolled first boot rejects profile-null before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects index-marker-mismatch before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects missing503 before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "uncontrolled first boot rejects corrupt before app import or database access",
+      "ok": true
+    },
+    {
+      "name": "known legacy network-first controller cannot start the new app before every legacy client closes",
+      "ok": true
+    },
+    {
+      "name": "direct first production visit verifies, activates, reloads, and initializes the actual app",
+      "ok": true
+    },
+    {
+      "name": "direct preview visit coexists with production using a separate database and controller",
+      "ok": true
+    },
+    {
+      "name": "player previews stay monochrome until the actual awakening ritual reveals color",
+      "ok": true
+    },
+    {
+      "name": "retired saved pool selection uses the active fallback without resetting player data",
+      "ok": true
+    },
+    {
+      "name": "native ten-pull SR floor spends once and the summon wallet survives return and reload",
+      "ok": true
+    },
+    {
+      "name": "summon wallet fits three themes, mobile widths and simulated 200% text without changing the save",
+      "ok": true
+    },
+    {
+      "name": "old perf/debug shortcuts cannot expose diagnostics or grant test currency",
+      "ok": true
+    },
+    {
+      "name": "evicted required assets reject 503 and wrong-generation catalog bytes without changing persistent state",
+      "ok": true
+    },
+    {
+      "name": "cleared preview shell rebuilds verified bytes while two clients and persisted state survive",
+      "ok": true
+    },
+    {
+      "name": "published fragment gift grants 50 atomically, survives reload and cannot be reclaimed",
+      "ok": true
+    },
+    {
+      "name": "both fully assembled cached apps and catalogs boot while all artifact HTTP responses are 503",
+      "ok": true
+    },
+    {
+      "name": "specified invitation commits, welcomes, sets companion and replays while every HTTP resource is 503",
+      "ok": true
+    },
+    {
+      "name": "growth chapters remain usable and resume the saved step without the network",
+      "ok": true
+    }
+  ],
+  "observations": {
+    "profile-null": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+      "requests": 25,
+      "databaseNames": []
+    },
+    "index-marker-mismatch": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。發布檔案版本不一致，請稍後重新開啟。重新載入回到 QuestNote 官網 ↗",
+      "requests": 25,
+      "databaseNames": []
+    },
+    "missing503": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+      "requests": 184,
+      "databaseNames": []
+    },
+    "corrupt": {
+      "failure": "QuestNote · 開始同行這次還沒準備好。必要檔案驗證失敗，請稍後重試。重新載入回到 QuestNote 官網 ↗",
+      "requests": 184,
+      "databaseNames": []
+    },
+    "production": {
+      "artifactId": "e7785196dd0bfa69c8469dda9a27cf110b4d95b8b5438006aadc84a54bfcd36f",
+      "catalogSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
+      "petCount": 128,
+      "controller": "http://127.0.0.1:50933/questnote-pwa/service-worker.js?artifact=e7785196dd0bfa69c8469dda9a27cf110b4d95b8b5438006aadc84a54bfcd36f"
+    },
+    "legacyTransition": {
+      "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
+      "waitingBeforeClose": true,
+      "zeroDatabasesBeforeClose": true,
+      "newArtifact": "e7785196dd0bfa69c8469dda9a27cf110b4d95b8b5438006aadc84a54bfcd36f"
+    },
+    "preview": {
+      "artifactId": "b040f52d85f544dfbaf1bc7cb10c2a4dcbeb7097bf1b6ab06a9fc06af1af2fbe",
+      "catalogSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
+      "petCount": 128,
+      "controller": "http://127.0.0.1:50933/questnote-pwa-preview/service-worker.js?artifact=b040f52d85f544dfbaf1bc7cb10c2a4dcbeb7097bf1b6ab06a9fc06af1af2fbe"
+    },
+    "playerPreview": {
+      "testReplaysRemoved": true,
+      "normalPoolEntriesPreserved": 3,
+      "unownedFormsMonochrome": true,
+      "ownedUnawakenedMonochrome": true,
+      "previewWrites": false,
+      "actualRitualPreserved": true,
+      "foodSpent": 1,
+      "awakenedColorSurvivesReload": true
+    },
+    "tenFloorWallet": {
+      "poolCount": 6,
+      "realNativeTransaction": true,
+      "results": [
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "SR"
+      ],
+      "balanceBefore": 10000,
+      "balanceAfter": 9000,
+      "duplicateFragments": [
+        9,
+        5
+      ],
+      "walletSurvivesReload": true,
+      "drawsAppliedOnce": true
+    },
+    "summonWalletResponsive": {
+      "checks": [
+        {
+          "theme": "default",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "default",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "default",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "default",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "sweet",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "sweet",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "sweet",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "sweet",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "twilight",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "twilight",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "twilight",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "twilight",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        }
+      ],
+      "simulatedTextSize": true,
+      "persistedStateUnchanged": true
+    },
+    "fragmentGift": {
+      "id": "2026-10-v362-encounter-fragments-gift-01",
+      "before": 0,
+      "after": 50,
+      "rollback": true,
+      "reloadIdempotent": true
+    },
+    "offlineInvitation": {
+      "petId": "pet_ur01",
+      "before": 202,
+      "after": 2,
+      "replay": 2,
+      "companion": true,
+      "controller": "http://127.0.0.1:50933/questnote-pwa-preview/service-worker.js?artifact=b040f52d85f544dfbaf1bc7cb10c2a4dcbeb7097bf1b6ab06a9fc06af1af2fbe"
+    },
+    "offlineGrowthLesson": {
+      "chapter": "workshop",
+      "step": "craft",
+      "resumed": true
+    }
+  },
+  "cleanupOwnedOrigin": true
+}
