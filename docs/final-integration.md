@@ -261,3 +261,7 @@ Pages `4aa9aa10dcd79810f781f8c2f40318d5d45401b6` 的 [run 37113586595](https://g
 [PR #64](https://github.com/leotsouo/questnote-pwa/pull/64) CI 通過並合併於 `6aa59e3246f44d27e4cdf6ecaee1ba10ef8073d4`。常用習慣、每日祝福、成就及工坊入口上移，教學、回報、分享及版本資訊收合於「教學與支援」，美術風格保留在設定；習慣頁移除統計外層方形底色並保留四張卡片，以 16px 間距連接內容。所有功能、美術素材與正式卡池資料保留，也保留最新一鍵領取與召喚更新。
 
 Pages `d2dba3c7b8f7f0823227af19d2cbe147dd975bcd` 的 [run 37115343269](https://github.com/leotsouo/questnote-pwa/actions/runs/37115343269) 部署成功；artifact `c65c038a0a6ed9c2db0d6b043c2c2a649ec03a3a653ebe55b40fe74f775502be`，manifest SHA-256 `853de50d8210179fb753f7ab228cd506e375e1bd0df2d49d4542324c5de142f0`。607 個 Git blobs 與 606 個正式 HTTPS 檔案全數相符。完整 npm test、召喚 assertions、16 項固定產物原生瀏覽器檢查及正式網址全新 Chrome 操作通過。[來源、截圖及發布回執](../reports/more-navigation-20261003.md)。
+
+## V3.8.0 易讀模式與最新新手教學 — 2026-10-04
+
+已等待新版教學V3.7.0完成後整合。PR #75／#76 CI通過，來源main合併eccc9f2；固定production artifact 8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96，Pages fc8a1779df1a798bc3f143aaa8a1ea3c78a6d4a2，run37202724967成功。619 Git blobs與618個HTTPS檔案（含manifest）核對通過，18項固定產物測試及正式瀏覽器模式保存通過。Normal／Senior共用資料和progression，沒有主動語音輸出。[完整驗證與發布收據](../reports/senior-production/production-release.md)。實機iPhone／VoiceOver仍待使用者驗收。

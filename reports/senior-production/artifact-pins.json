@@ -1,31 +1,31 @@
 [
   {
-    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\senior-production-artifacts\\173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
-    "artifactId": "173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
-    "manifestSha256": "e2497778fd5c2a0b99eccbb7379dee33f96e23a8b59a2f43a38a48b3cdad306b",
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\senior-production-artifacts\\8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96",
+    "artifactId": "8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96",
+    "manifestSha256": "ef56bbce49d9c2b7742f2ebb41b2fdef17b60461cc4b92504ea4eba48a2c4784",
     "profile": "production",
     "scopePath": "/questnote-pwa/",
     "verification": {
       "ok": true,
-      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\senior-production-artifacts\\173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
-      "artifactId": "173e026b448bef3001c8d220fd36465b2ec485b03b2c61acff918d10dbc66ca6",
-      "manifestSha256": "e2497778fd5c2a0b99eccbb7379dee33f96e23a8b59a2f43a38a48b3cdad306b",
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\senior-production-artifacts\\8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96",
+      "artifactId": "8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96",
+      "manifestSha256": "ef56bbce49d9c2b7742f2ebb41b2fdef17b60461cc4b92504ea4eba48a2c4784",
       "profile": "production",
       "scopePath": "/questnote-pwa/",
       "fileCount": 619
     }
   },
   {
-    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\senior-production-artifacts\\1b9116357c080056aa0d44960dc845549368a0cfce4c30bfbf58a22d3888138a",
-    "artifactId": "1b9116357c080056aa0d44960dc845549368a0cfce4c30bfbf58a22d3888138a",
-    "manifestSha256": "22353fa74aaa3a82116977c19c4f0ade35759b440a5668c21e72817072cd3eeb",
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\senior-production-artifacts\\0aa95cd1fbd2f2ad5e8e85c0bc7ba8f716b617e9ceb53f3f3228c5c8bd1a3daa",
+    "artifactId": "0aa95cd1fbd2f2ad5e8e85c0bc7ba8f716b617e9ceb53f3f3228c5c8bd1a3daa",
+    "manifestSha256": "e09f070ad23e08590d9e45ec1279c28a8cc7546b1c9083f017247a276d804046",
     "profile": "preview",
     "scopePath": "/questnote-pwa-preview/",
     "verification": {
       "ok": true,
-      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\senior-production-artifacts\\1b9116357c080056aa0d44960dc845549368a0cfce4c30bfbf58a22d3888138a",
-      "artifactId": "1b9116357c080056aa0d44960dc845549368a0cfce4c30bfbf58a22d3888138a",
-      "manifestSha256": "22353fa74aaa3a82116977c19c4f0ade35759b440a5668c21e72817072cd3eeb",
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\senior-production-artifacts\\0aa95cd1fbd2f2ad5e8e85c0bc7ba8f716b617e9ceb53f3f3228c5c8bd1a3daa",
+      "artifactId": "0aa95cd1fbd2f2ad5e8e85c0bc7ba8f716b617e9ceb53f3f3228c5c8bd1a3daa",
+      "manifestSha256": "e09f070ad23e08590d9e45ec1279c28a8cc7546b1c9083f017247a276d804046",
       "profile": "preview",
       "scopePath": "/questnote-pwa-preview/",
       "fileCount": 619
