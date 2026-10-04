@@ -1487,6 +1487,8 @@ export function switchView(viewName) {
 /** Teaching links only navigate and select filters; product controls own every write. */
 export async function openTeachingTarget({ view, filter, tab, hub, petId, detail } = {}) {
   closeModal();
+  document.querySelector('#specified-invitation-dialog[open] [data-invitation-action="close"]:not(:disabled)')?.click();
+  document.querySelector('#identity-detail-dialog[open] [data-identity-action="close-dialog"]')?.click();
   if (document.body.classList.contains('expedition-dispatch-open')) closeExpeditionDispatchModal();
   if (view === 'collection' && filter === 'owned') {
     collectionFilter = 'owned';

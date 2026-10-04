@@ -376,6 +376,17 @@ document.querySelector('#show').addEventListener('click', async () => {
         lessons: { invitation: { status: 'active', step: 'invite', practiced: [] } } });
       await load();
       await until(() => doc().querySelector('.growth-coach[data-step="invite"]'), 'growth invitation');
+      doc().querySelector('.dream-debut-skip')?.click();
+      await until(() => !doc().querySelector('.dream-debut-overlay') && !doc().querySelector('#onboarding-root')?.hidden && doc().querySelector('.growth-coach')?.getClientRects().length, 'coach restored after entry');
+      await click('[data-identity-action="invitation"]', false);
+      await until(() => doc().querySelector('#specified-invitation-dialog[open] .growth-coach'), 'coach in invitation gallery');
+      await click('[data-invitation-filter="SSR"]', false);
+      await until(() => doc().querySelector('#specified-invitation-dialog[open] .growth-coach'), 'coach restored after gallery redraw');
+      await click('[data-onboarding-action="lesson-pause"]', false);
+      await until(() => doc().querySelector('#view-guide.active') && !doc().querySelector('#specified-invitation-dialog[open]'), 'paused and dialog closed');
+      await click('[data-onboarding-action="lesson:invitation"]', false);
+      await until(() => doc().querySelector('.growth-coach[data-step="invite"]')?.getClientRects().length, 'invitation resumed');
+      assert(!doc().querySelector('.pet-detail__growth'), 'No obsolete star operation');
     }
     if (['COLLECTION_HINT', 'EDUCATION_HELP'].includes(scene)) {
       await action('finish-home'); await click('.bottom-nav [data-view="collection"]');

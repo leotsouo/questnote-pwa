@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": [
+    "coach restores after pool entry",
+    "coach mounts in native invitation gallery",
+    "gallery redraw remounts coach",
+    "pause closes native dialog and returns to guide",
+    "resume retains invite step",
+    "obsolete star controls absent"
+  ],
+  "result": {
+    "status": "review",
+    "scene": "GROWTH_INVITATION_READY",
+    "checkpoint": "FINISH",
+    "geometry": {
+      "width": 393,
+      "height": 852
+    }
+  }
+}

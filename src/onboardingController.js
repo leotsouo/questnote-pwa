@@ -162,7 +162,8 @@ function syncPresentationVisibility() {
   if (record.activeLesson || lessonCompleted) {
     // Product dialogs may replace their body. Remount only when its host changes;
     // rendering on every descendant mutation would observe our own teaching DOM.
-    if (!root.isConnected || root.parentElement !== growthHost()) render();
+    const paused = hasActivePresentation() && Boolean(document.querySelector('#confirm-cancel, .dream-bloom-overlay, .dream-debut-overlay, .summon-reveal-overlay'));
+    if (!root.isConnected || root.parentElement !== growthHost() || root.hidden !== paused) render();
     return;
   }
   const paused = hasActivePresentation();
