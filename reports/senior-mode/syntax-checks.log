@@ -1,0 +1,15 @@
+PASS src/app.js
+PASS src/backupSchema.js
+PASS src/backupService.js
+PASS src/dialogFocus.js
+PASS src/encounterView.js
+PASS src/preferencesService.js
+PASS src/seniorModeController.js
+PASS src/taskMigration.js
+PASS src/taskService.js
+PASS src/ui.js
+PASS src/version.js
+PASS service-worker.js
+PASS devtools/senior-mode.test.mjs
+PASS devtools/task-time.test.mjs
+PASS devtools/senior-mode-browser-test.mjs

@@ -1,0 +1,27 @@
+[
+  {
+    "view": "tasks",
+    "width": 320,
+    "scrollWidth": 320
+  },
+  {
+    "view": "settings",
+    "width": 320,
+    "scrollWidth": 320
+  },
+  {
+    "view": "gacha",
+    "width": 320,
+    "scrollWidth": 320
+  },
+  {
+    "view": "collection",
+    "width": 320,
+    "scrollWidth": 320
+  },
+  {
+    "view": "form",
+    "width": 254,
+    "scrollWidth": 254
+  }
+]
