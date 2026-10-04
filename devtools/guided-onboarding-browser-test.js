@@ -92,7 +92,9 @@ document.querySelector('#run').addEventListener('click', async () => {
     });
     await check('first meeting grants exactly one real companion; wrong navigation is gently blocked', async () => {
       await ack(); await step('MEET_COMPANION'); await load();
-      assert((await services.db.dbGetAll('collection')).length === 1);
+      const starters = await services.db.dbGetAll('collection');
+      assert(starters.length === 1);
+      assert(starters[0].encounterMigrationVersion === 1 && !Object.hasOwn(starters[0], 'stars') && !Object.hasOwn(starters[0], 'fragments'), 'Starter must use current encounter format');
       doc().querySelector('.bottom-nav [data-view="gacha"]').click();
       assert(doc().querySelector('#view-tasks.active')); assert((await state()).step === 'MEET_COMPANION');
       await until(() => doc().querySelector('.guided-feedback').textContent.includes('先完成'), 'gentle feedback'); return geometry();
@@ -342,7 +344,7 @@ document.querySelector('#offline').addEventListener('click', async () => {
 });
 
 // High-fidelity review snapshots seeded only in the guarded synthetic profile.
-for (const value of ['COLLECTION_HINT', 'EDUCATION_HELP', 'SKIPPED_EDITOR', 'GROWTH_STARS_READY']) {
+for (const value of ['COLLECTION_HINT', 'EDUCATION_HELP', 'SKIPPED_EDITOR', 'GROWTH_INVITATION_READY']) {
   const option = document.createElement('option'); option.value = value; option.textContent = value;
   document.querySelector('#scene').append(option);
 }
@@ -351,7 +353,7 @@ document.querySelector('#show').addEventListener('click', async () => {
     await fresh(); frame.style.width = `${document.querySelector('#review-width').value}px`; frame.style.height = '852px';
     const scene = document.querySelector('#scene').value;
     let checkpoint = ['SKIP', 'LARGE_TEXT', 'REDUCE_MOTION', 'NARROW'].includes(scene) ? 'WELCOME' : scene;
-    if (['COLLECTION_HINT', 'EDUCATION_HELP', 'GROWTH_STARS_READY'].includes(scene)) checkpoint = 'FINISH';
+    if (['COLLECTION_HINT', 'EDUCATION_HELP', 'GROWTH_INVITATION_READY'].includes(scene)) checkpoint = 'FINISH';
     if (scene === 'SKIPPED_EDITOR') checkpoint = 'WELCOME';
     if (scene === 'NARROW') { frame.style.width = '320px'; checkpoint = 'CREATE_TUTORIAL_QUEST'; }
     if (scene === 'LARGE_TEXT' || scene === 'REDUCE_MOTION') {
@@ -368,14 +370,12 @@ document.querySelector('#show').addEventListener('click', async () => {
       await services.db.dbPut('meta', { ...(await state()), step: checkpoint });
     }
     await load(); if (scene === 'SKIP') await action('skip');
-    if (scene === 'GROWTH_STARS_READY') {
+    if (scene === 'GROWTH_INVITATION_READY') {
       await action('finish-home');
-      const pet = await services.db.dbGet('collection', 'pet_n01');
-      await services.db.dbPut('collection', { ...pet, fragments: 5 });
-      await services.db.dbPut('meta', { key: 'onboardingV1', status: 'dismissed', activeLesson: 'stars',
-        lessons: { stars: { status: 'active', step: 'upgrade', practiced: [] } } });
+            await services.db.dbPut('meta', { key: 'onboardingV1', status: 'dismissed', activeLesson: 'invitation',
+        lessons: { invitation: { status: 'active', step: 'invite', practiced: [] } } });
       await load();
-      await until(() => doc().querySelector('.growth-coach[data-step="upgrade"]'), 'growth upgrade');
+      await until(() => doc().querySelector('.growth-coach[data-step="invite"]'), 'growth invitation');
     }
     if (['COLLECTION_HINT', 'EDUCATION_HELP'].includes(scene)) {
       await action('finish-home'); await click('.bottom-nav [data-view="collection"]');

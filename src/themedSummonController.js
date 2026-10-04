@@ -272,7 +272,7 @@ function fillSeal(overlay, item) {
   if (compEl) {
     if (!isNew && fragments > 0) {
       compEl.hidden = false;
-      compEl.textContent = `夢塵碎片 +${fragments}`;
+      compEl.textContent = `相遇碎片 +${fragments}`;
     } else {
       compEl.hidden = true;
       compEl.textContent = '';

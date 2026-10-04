@@ -1,5 +1,5 @@
 import { dbGet, dbPut, dbUpdateRecord, dbMutateRecords, STORES } from './db.js';
-import { normalizeEntry, getBondLevelFromExp } from './collectionService.js';
+import { normalizeEntry, createCollectionEntry, getBondLevelFromExp } from './collectionService.js';
 import { getTodayDateString } from './taskFilterService.js';
 import { GUIDED_KEY, STARTER_PET_ID, normalizeGuidedState, initialGuidedState,
   transitionGuidedState, recoverGuidedState, tutorialReward } from './guidedOnboardingCore.js';
@@ -37,8 +37,7 @@ export async function advanceGuidedOnboarding(event, detail = {}) {
       const s = transitionGuidedState(raw, event, detail);
       const puts = [{ store: STORES.META, value: s }];
       if (s.status === 'active' && s.step === 'MEET_COMPANION' && s.mode === 'first' && !items.length) {
-        puts.push({ store: STORES.COLLECTION, value: normalizeEntry({ petId: STARTER_PET_ID,
-          stars: 1, fragments: 0, bondExp: 0, isCompanion: true, obtainedAt: new Date().toISOString() }) });
+        puts.push({ store: STORES.COLLECTION, value: normalizeEntry({ ...createCollectionEntry(STARTER_PET_ID), isCompanion: true }) });
         s.starterGrantedAt = new Date().toISOString();
       }
       return { puts, result: s };

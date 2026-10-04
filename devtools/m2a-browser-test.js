@@ -54,7 +54,7 @@ try {
     assert(one.isNew && ten.success && ten.results.every((pull) => !pull.isNew), 'Duplicate semantics changed');
     assert((await b.rewards.getWallet()).stardust === 8900, 'Wrong committed debit');
     assert((await b.gacha.getGachaStats()).totalPulls === 11, 'Wrong draw count');
-    assert((await b.collection.getPetCollection('pet_n900')).fragments === 10, 'Fragments lost');
+    assert((await b.economy.getEncounterEconomy()).balance === 10, 'Fragments lost');
     assert((await b.unlock.getPoolUnlockEntry(alpha.id)).lifetimeDraws === 11, 'Wrong lifetime draws');
   });
   await test('empty, inactive, invalid-price and missing-gift catalogs fail without writes', async () => {
@@ -75,7 +75,7 @@ try {
     assert(same(before, await snapshot()), 'Insufficient ten wrote state');
   });
   for (const kind of ['throw', 'abort']) {
-    for (let at = 1; at <= 6; at++) {
+    for (let at = 1; at <= 7; at++) {
       await test(`ten threshold fault ${kind} at put ${at} rolls back debit, pity, gift and grants`, async () => {
         await seed({ poolUnlockState: { key: 'poolUnlockState', byPool: { [alpha.id]: { lifetimeDraws: 19 } } } });
         a.fault({ kind, at });
@@ -139,19 +139,19 @@ try {
     }
     await Promise.all(actions);
     const after = await a.collection.getPetCollection('pet_n900');
-    assert(after.fragments === 10 && after.bondExp === 20 && after.nickname === '安全暱稱', 'Collection fields lost');
-    await Promise.all([a.collection.addFragments('pet_n900', 1), b.collection.clearPetNickname('pet_n900')]);
+    assert((await a.economy.getEncounterEconomy()).balance === 10 && after.bondExp === 20 && after.nickname === '安全暱稱', 'Collection fields lost');
+    await Promise.all([a.gacha.pullOnce(pets, catalog, alpha.id), b.collection.clearPetNickname('pet_n900')]);
     const cleared = await a.collection.getPetCollection('pet_n900');
-    assert(cleared.fragments === 11 && cleared.nickname === null, 'Clear nickname lost fragments');
+    assert((await a.economy.getEncounterEconomy()).balance === 11 && cleared.nickname === null, 'Clear nickname lost fragments');
   });
-  await test('star upgrades and companion selection are atomic across connections', async () => {
-    await seed({ collection: [{ ...a.collection.createCollectionEntry('pet_n900'), fragments: 5 }, a.collection.createCollectionEntry('pet_r900')] });
-    const upgrades = await Promise.all([a.collection.upgradeStar('pet_n900'), b.collection.upgradeStar('pet_n900')]);
-    assert(upgrades.filter((result) => result.success).length === 1, 'Duplicate upgrade');
+  await test('specified invitation and companion selection are atomic across connections', async () => {
+    await seed({ encounterEconomy:{ key:'encounterEconomy', schemaVersion:1, migrationVersion:1, balance:200, migrationReceipt:null }, collection: [a.collection.createCollectionEntry('pet_n900'), a.collection.createCollectionEntry('pet_r900')] });
+    const invitations = await Promise.allSettled([a.economy.inviteCompanion('pet_ssr900',pets,catalog), b.economy.inviteCompanion('pet_ssr900',pets,catalog)]);
+    assert(invitations.filter((result) => result.status === 'fulfilled').length === 1 && (await a.economy.getEncounterEconomy()).balance === 100, 'Duplicate invitation');
     await Promise.all([a.collection.setCompanion('pet_n900'), b.collection.setCompanion('pet_r900')]);
     assert((await a.collection.getCollection()).filter((entry) => entry.isCompanion).length === 1, 'Multiple companions');
-    const pets = await Promise.all([a.collection.petCompanion(), b.collection.petCompanion()]);
-    assert(pets.filter((result) => result.success).length === 1, 'Pet cooldown awarded twice');
+    const petting = await Promise.all([a.collection.petCompanion(), b.collection.petCompanion()]);
+    assert(petting.filter((result) => result.success).length === 1, 'Pet cooldown awarded twice');
   });
   await test('pity/init/selection and unlock animation/backfill updates preserve concurrent draw progress', async () => {
     await seed();
@@ -173,16 +173,17 @@ try {
     assert(next.pet.id === 'pet_ur901', 'Next draw failed to use expanded pool');
   });
   await test('two threshold-crossing tens award one actual-rarity gift and distinct pool grants', async () => {
-    await seed({ collection: [{ ...a.collection.createCollectionEntry('pet_ssr911'), fragments: 7 }] });
+    await seed({ collection: [{ ...a.collection.createCollectionEntry('pet_ssr911'), encounterMigrationVersion:0, stars:1, fragments: 7 }] });
     a.random(0.99); b.random(0.99);
     const tens = await Promise.all([a.gacha.performTenPull(pets, catalog, beta.id), b.gacha.performTenPull(pets, catalog, beta.id)]);
     const first = tens.find((result) => result.unlockProgress.justUnlocked);
     assert(first && first.results.every((pull) => pull.petId === 'pet_ur910'), 'First ten did not freeze locked candidates');
-    assert((await a.collection.getPetCollection('pet_ssr911')).fragments === 17, 'Gift not exactly once at SSR compensation');
+    const expectedBalance = 7 + 10 + tens.reduce((sum, result) => sum + result.summary.totalFragments, 0);
+    assert((await a.economy.getEncounterEconomy()).balance === expectedBalance, 'Gift not exactly once at SSR compensation');
     assert((await a.unlock.getPoolUnlockEntry(beta.id)).lifetimeDraws === 20, 'Concurrent ten lifetime lost');
     await Promise.all([a.unlock.ensureUnlockRewardClaimed(beta.id, beta.unlockExpansion, pets),
       b.unlock.ensureUnlockRewardClaimed(beta.id, beta.unlockExpansion, pets)]);
-    assert((await a.collection.getPetCollection('pet_ssr911')).fragments === 17, 'Recovery repeated gift');
+    assert((await a.economy.getEncounterEconomy()).balance === expectedBalance, 'Recovery repeated gift');
     await a.gacha.performTenPull(pets, catalog, alpha.id);
     await a.gacha.performTenPull(pets, catalog, alpha.id);
     assert((await a.unlock.getIdempotentGrants()).claimedIds.length === 2, 'Pool grants collided');

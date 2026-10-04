@@ -24,7 +24,8 @@ test('explicit specialties work without changing any published pet at every star
   for (const pet of publishedPets) for (const stars of [1, 3, 5]) {
     const current = { ...pet, stars };
     const old = JSON.parse(JSON.stringify(runInNewContext(oldSource + `\ngetPetSpecialty(${JSON.stringify(current)});`)));
-    assert.deepEqual(getPetSpecialty(current), old, pet.id);
+    const actual = getPetSpecialty(current);
+    assert.deepEqual({ role:actual.role, label:actual.label, level:actual.level }, { role:old.role, label:old.label, level:old.level }, pet.id);
   }
   for (const role of ['scout', 'gatherer', 'companion', 'scholar', 'guardian']) {
     assert.equal(getPetSpecialty({ id: 'new', element: 'fire_machine', expeditionSpecialty: role }).role, role);

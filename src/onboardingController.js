@@ -382,7 +382,9 @@ function growthCompanionMarkup() {
 }
 
 function growthHost() {
-  const modal = document.querySelector('#expedition-dispatch-modal .expedition-dispatch-modal__body')
+  const modal = document.querySelector('#specified-invitation-dialog[open] .invitation-content')
+    || document.querySelector('#identity-detail-dialog[open] .dialog-body')
+    || document.querySelector('#expedition-dispatch-modal .expedition-dispatch-modal__body')
     || document.querySelector('#modal-overlay.open #modal-body');
   const view = document.querySelector('.view.active');
   const petDetail = modal?.querySelector('.pet-detail');

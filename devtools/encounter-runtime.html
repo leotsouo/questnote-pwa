@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>相遇系統 · 隔離資料驗收</title>
+<style>body{font:16px/1.7 system-ui;background:#101a2b;color:#f6eade;margin:24px}button{min-height:44px;padding:8px 16px}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+<h1>相遇系統 · 真實 IndexedDB 驗收</h1>
+<p>所有資料只寫入本頁隨機命名的測試資料庫，永遠不開啟玩家資料庫。</p>
+<button id="run">執行資料與交易驗收</button>
+<button id="app" disabled>開啟實際 App（合成舊玩家資料）</button>
+<button id="restart" disabled>重新載入驗證轉換不重發</button>
+<pre id="results" role="status">等待執行。</pre>
+<script type="module" src="./encounter-runtime.js"></script></html>

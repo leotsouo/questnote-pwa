@@ -7,7 +7,7 @@ export const GUIDED_EDUCATION = Object.freeze({
   workshop: { title: '把材料做成一份心意', body: '先看配方與你已有的材料。確認製作才會扣材料；做好後，可以選一位夥伴送禮。', lesson: 'workshop' },
   habits: { title: '每天一點點，也算前進', body: '新增一個想持續的習慣。今天做到了，就在那個習慣上打卡；不用一次設定很多個。' },
   settings: { title: '調成自己舒服的樣子', body: '可以調整字體大小、主題與減少動態效果。想保留這台裝置的紀錄，請先匯出備份，再更換裝置。' },
-  'pet-care': { title: '碎片與親密度，慢慢累積', body: '再次召喚同一位夥伴會得到牠的碎片，用來升星。完成自己的任務、摸摸或送禮會累積親密度。先看費用與條件，再決定要不要操作。', lesson: 'stars' },
+  'pet-care': { title: '相遇與親密度，慢慢累積', body: '再次相遇會得到跨卡池共用的相遇碎片，用來指定邀請新夥伴。完成自己的任務、摸摸或送禮會累積親密度。先看費用與條件，再決定要不要操作。', lesson: 'invitation' },
 });
 
 export function contextualEducation(record, feature) {

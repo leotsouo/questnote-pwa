@@ -121,10 +121,10 @@ test('chapters preserve reading position and practice evidence independently of 
 });
 
 test('understanding a chapter does not claim practice or complete other chapters', () => {
-  let state = startLesson({ status: 'completed' }, 'stars');
+  let state = startLesson({ status: 'completed' }, 'invitation');
   for (let i = 0; i < 3; i++) state = advanceLesson(state);
-  assert.equal(state.lessons.stars.status, 'understood');
-  assert.deepEqual(state.lessons.stars.practiced, []);
+  assert.equal(state.lessons.invitation.status, 'understood');
+  assert.deepEqual(state.lessons.invitation.practiced, []);
   assert.equal(state.lessons.bond.status, 'new');
   assert.equal(state.status, 'completed');
   assert.deepEqual(advanceOnboardingForEvent(state, 'star-upgraded'), state);
@@ -162,25 +162,25 @@ test('switching chapters pauses the old one; back and replay retain completed pr
 });
 
 test('malformed chapter data cannot activate multiple coaches or invent practice', () => {
-  const state = normalizeOnboardingState({ status: 'active', activeLesson: 'stars', lessons: {
-    stars: { status: 'active', step: 'unknown', practiced: ['upgrade', 'fake', 'upgrade'] },
+  const state = normalizeOnboardingState({ status: 'active', activeLesson: 'invitation', lessons: {
+    invitation: { status: 'active', step: 'unknown', practiced: ['invite', 'fake', 'invite'] },
     bond: { status: 'active', step: 'pet', practiced: 'pet' },
   } });
   assert.equal(state.status, 'paused');
-  assert.equal(state.lessons.stars.step, 'fragments');
-  assert.deepEqual(state.lessons.stars.practiced, ['upgrade']);
+  assert.equal(state.lessons.invitation.step, 'fragments');
+  assert.deepEqual(state.lessons.invitation.practiced, ['invite']);
   assert.equal(state.lessons.bond.status, 'paused');
   assert.deepEqual(state.lessons.bond.practiced, []);
 });
 
-test('teaching previews handle absent resources, full stars, cooldown and changing catalogs without writes', () => {
+test('teaching previews handle absent resources, invitation balance, cooldown and changing catalogs without writes', () => {
   const state = { enrichedCollection: [{ id: 'pet', name: '<Buddy>', owned: true, stars: 1, fragments: 2 }],
     wallet: { adventureEnergy: 1, materials: { leaf: 1 } }, inventory: { items: {} },
     craftablesCatalog: [{ id: 'food', name: '測試配方', enabled: true, recipe: { leaf: 4 }, effect: { bondExp: 7 } }],
     materialsCatalog: [{ id: 'leaf', name: '測試材料', sourceArea: '測試地區' }],
     expeditionAreas: [{ id: 'mist_forest', name: '測試森林', energyCost: 9, durationMinutes: 23 }] };
   const before = JSON.stringify(state);
-  assert.match(getLessonStepContent('stars', 'upgrade', state).body, /5 個/);
+  assert.match(getLessonStepContent('invitation', 'invite', state).body, /日常陪伴/);
   assert.match(getLessonStepContent('workshop', 'craft', state).body, /還差 3/);
   assert.match(getLessonStepContent('workshop', 'craft', state).body, /測試地區/);
   assert.match(getLessonStepContent('expedition', 'prepare', state).body, /9 點能量.*23 分鐘/);
@@ -191,8 +191,8 @@ test('teaching previews handle absent resources, full stars, cooldown and changi
   assert.match(getLessonAvailability('expedition', state), /足夠能量/);
   for (const lesson of LESSONS) for (const step of lesson.steps) assert.ok(getLessonStepContent(lesson.id, step, {}).body);
   assert.equal(JSON.stringify(state), beforeFirstJourney);
-  state.enrichedCollection[0].stars = 5;
-  assert.match(getLessonAvailability('stars', state), /滿星/);
+  state.encounterEconomy = { balance:200 };
+  assert.match(getLessonAvailability('invitation', state), /足夠邀請 SSR/);
   state.companion = { lastPettedAt: new Date().toISOString() };
   assert.match(getLessonAvailability('bond', state), /還需等/);
 });

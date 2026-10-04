@@ -14,7 +14,7 @@ const flat = () => { const data = fixture('3.4.4'); delete data.data; return dat
 const canonical = () => {
   const raw = fixture('3.4.4');
   return { app: 'QuestNote', version: 2, appVersion: '3.4.4', exportedAt: raw.exportedAt,
-    data: Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key,
+    data: Object.fromEntries(SNAPSHOT_KEYS.filter((key) => key !== 'encounterEconomy').map((key) => [key,
       key === 'campProgress' ? { key, level: 0, upgradedAt: null }
         : key === 'bondJourney' ? createBondJourney() : key === 'petAwakening' ? createPetAwakening() : raw.data[key]])) };
 };
@@ -303,4 +303,27 @@ test('claim markers that normalizers would discard or rewrite are rejected', () 
   assert.equal(validateBackup(raw).valid, false);
   const whitespace = canonical(); whitespace.data.globalMailboxState.claimedIds = ['mail', ' mail '];
   assert.equal(validateBackup(whitespace).valid, false);
+});
+
+test('encounter snapshot requires currency, reconciled collection and an honest conversion receipt', () => {
+  const old = fixture('3.4.4');
+  const migrated = migrateImportedData(normalizeBackupPayload(old));
+  const current = { app:'QuestNote', version:2, appVersion:'3.6.0', data:Object.fromEntries(SNAPSHOT_KEYS.map((key) => [key,migrated[key]])) };
+  assert.equal(validateBackup(current).valid,true);
+  const roundTrip = migrateImportedData(normalizeBackupPayload(current));
+  assert.deepEqual(roundTrip.encounterEconomy,migrated.encounterEconomy);
+  assert.deepEqual(roundTrip.collection,migrated.collection);
+  for (const change of [
+    (data) => { delete data.encounterEconomy; },
+    (data) => { data.encounterEconomy.balance = -1; },
+    (data) => { data.encounterEconomy.migrationReceipt.total++; },
+    (data) => { delete data.collection[0].encounterMigrationVersion; },
+    (data) => { data.collection[0].legacySpecialtyFloor = 6; },
+    (data) => { data.collection[0].fragments = 10; },
+  ]) {
+    const broken = structuredClone(current); change(broken.data);
+    assert.equal(validateBackup(broken).valid,false,'Inconsistent economy accepted');
+  }
+  assert.equal(roundTrip.wallet.stardust,old.data.wallet.stardust);
+  assert.equal(roundTrip.gachaStats.totalPulls,old.data.gachaStats.totalPulls);
 });

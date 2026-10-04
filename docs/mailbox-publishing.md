@@ -181,12 +181,13 @@ YYYY-MM-用途-簡稱
 
 - `stardust`
 - `adventureEnergy`
+- `encounterFragments`（V3.6.2 起支援的共用相遇碎片；信件 minAppVersion 必須至少 3.6.2）
 - `materials`（現有材料 catalog id）
 - `items`（現有工坊道具／inventory item id）
 
 禁止透過信箱直接發送：
 
-- 寵物、寵物碎片
+- 寵物、指定角色的舊寵物碎片
 - 指定 UR、抽卡保底次數
 - 稱號、成就、收藏徽章
 - 羈絆等級、探索度
@@ -198,6 +199,7 @@ YYYY-MM-用途-簡稱
 |------|----------|
 | stardust | 5000 |
 | adventureEnergy | 100 |
+| encounterFragments | 500 |
 | 單一材料 | 999 |
 | 單一道具 | 99 |
 
