@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "idleDays": 7,
+  "staleDays": 14,
+  "oldDays": 30,
+  "maxActiveManagedWorktrees": 6,
+  "logDays": 30,
+  "logCount": 20,
+  "cacheDays": 30,
+  "artifactDays": { "dependencies": 7, "generated": 7, "test-success": 7, "test-failure": 14, "backup-duplicate": 14 },
+  "thresholdsGiB": { "worktrees": [20, 30, 40], "project": [40, 60, 80], "backups": [10, 12, 15], "tests": [0.5, 1, 2], "sharedCache": [0.5, 1, 2] },
+  "protectedWorktrees": [".", ".worktrees/main-integration", ".worktrees/guided-onboarding", ".worktrees/card-pool-honeylight", ".worktrees/honeylight-animation", ".worktrees/swordwild-shanhe-release"],
+  "protectedPaths": [".dev-backups/disk-governance", ".dev-backups/release-archive", ".dev-backups/recovery", "content", "assets", "data", "src", "backend"],
+  "notes": "Unknown legacy worktrees, external App-managed worktrees, nested repositories, release evidence and unregistered artifacts are never aged into deletion. Add local protection via state/protected.json; it can only add protection."
+}

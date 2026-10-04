@@ -7,3 +7,9 @@ node_modules/
 
 .wrangler/
 backend/feedback/.dev.vars
+
+# New disposable tooling output only; tracked release reports remain assets.
+.dev/test-runs/
+.dev/generated/
+.dev/build-cache/
+.dev/dependency-cache/
