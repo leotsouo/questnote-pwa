@@ -1,0 +1,35 @@
+✔ only a truly pristine installation enters practice; every legacy status bypasses it (2.7199ms)
+✔ read acknowledgements cannot bypass creation, completion or reward observation (1.3102ms)
+✔ the full practice flow requires matching real actions and versions completion (0.221ms)
+✔ every checkpoint survives reload and reconciles committed task/receipt after interruption (0.4814ms)
+✔ replay uses a new identity and explicitly labels preview rewards (0.2855ms)
+✔ tutorial metadata survives migration and is excluded from awakening and reminders (52.699ms)
+✔ stale clicks cannot acknowledge a different step or a different replay run (0.1606ms)
+✔ education requires deliberate acknowledgement and preserves unaided task transfer (0.1876ms)
+✔ page tour covers twelve real pages and progresses to completion (1.3217ms)
+✔ pause survives serialization; resume preserves position; completed replay starts over (0.1948ms)
+✔ stale rapid next and paused actions cannot skip a lesson (0.7122ms)
+✔ invalid saved cursor is bounded without changing economy or formal task data (0.2549ms)
+✔ each lesson leads with a short action and preserves its rules behind disclosure (2.2618ms)
+✔ bond teaching covers the journey without requiring story rewards or a level upgrade (0.7787ms)
+✔ existing bond lesson progress resumes and its entry targets the owned companion (1.2285ms)
+✔ first-use eligibility requires an entirely empty profile before normal initialization (0.3511ms)
+✔ saved step and practice task survive normalization for resume (0.4441ms)
+✔ existing users retain core decisions and receive unstarted chapters without a welcome (0.3026ms)
+✔ chapters preserve reading position and practice evidence independently of core progress (0.3244ms)
+✔ understanding a chapter does not claim practice or complete other chapters (0.8904ms)
+✔ only the matching successful action at the practice step counts (0.4993ms)
+✔ switching chapters pauses the old one; back and replay retain completed practice (0.3572ms)
+✔ malformed chapter data cannot activate multiple coaches or invent practice (0.1599ms)
+✔ teaching previews handle absent resources, full stars, cooldown and changing catalogs without writes (3.1318ms)
+✔ guide advances only from successful matching product actions (0.4464ms)
+✔ creating a task after choosing to continue later attaches it to the reward step (0.1637ms)
+✔ dismissed and paused guides never advance from background actions (0.1662ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 208.9049

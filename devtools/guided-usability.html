@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QuestNote · 真人操作觀察</title>
+<style>
+body{font:18px/1.6 system-ui;background:#101a2b;color:#f4eee1;margin:20px}button,select{font:inherit;min-height:48px;padding:10px 16px;border-radius:12px;margin:4px}main{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}iframe{width:393px;max-width:100%;height:852px;border:1px solid #6f8098;border-radius:20px;background:#101a2b}aside{max-width:600px}pre{white-space:pre-wrap;font-size:14px}textarea{box-sizing:border-box;width:100%;min-height:200px;font:14px/1.6 monospace}h1{font-size:1.5rem}summary{cursor:pointer;min-height:48px}#prompt{font-size:1.3rem;max-width:850px}#status{min-height:2em}[hidden]{display:none!important}
+</style></head><body>
+<h1>QuestNote · 真人操作觀察</h1>
+<p id="prompt">準備好後，請照 App 畫面上的引導試一次。</p>
+<p id="status" role="status">尚未開始；只會使用隔離的測試紀錄。</p>
+<main><iframe id="preview" title="真正 QuestNote 操作介面"></iframe><aside>
+<details open><summary>主持人準備與觀察</summary>
+<p>每次開始都會清空專用測試資料庫。請先取得受測者同意；不輸入姓名、電話或私人任務內容。App 使用真正的任務與獎勵服務，測試紀錄只留在本頁記憶體。</p>
+<label>這次是 <select id="sample-kind"><option value="human">真人觀察</option><option value="automation-fixture">自動化演練（不算真人證據）</option></select></label>
+<label>操作經驗 <select id="familiarity"><option value="less-familiar">較少使用複雜 App</option><option value="regular">經常使用 App</option></select></label>
+<div><button id="start">開始新的觀察</button><button id="transfer" disabled>開始獨立操作</button></div>
+<p>先讓受測者自己完成引導。不要指出按鈕、替他操作或改用自動驗收。首輪結束後按「開始獨立操作」，測試會從今日列表開始，編輯器保持空白。</p>
+<p>請只讀上方的任務句。受測者若停下來，先問「你現在想做什麼？」；需要指路時，先按「我提供了協助」。不要把協助後完成算成獨立成功。</p>
+<div><button id="assisted" disabled>我提供了協助</button><button id="end" disabled>結束這次觀察</button></div>
+<p>完成後，可問：「剛才完成任務後，有什麼改變？」以及「下次想新增任務，你會怎麼做？」此頁不替主持人判定理解程度；請另記匿名觀察。</p>
+</details>
+<h2>這次操作紀錄</h2><pre id="milestones">尚無資料。</pre>
+<p>獨立成功需找到新增、提交自己的任務、回到今日並完成，而且沒有協助。時間由實際操作開始計算；不設倒數，也不自動判失敗。</p>
+<button id="export" disabled>整理本次匿名結果</button>
+<textarea id="report" aria-label="匿名觀察結果，可複製至本機私人紀錄" readonly hidden></textarea>
+<p><a href="guided-onboarding-browser-test.html">自動化驗收與畫面原型</a></p>
+</aside></main><script type="module" src="guided-usability.js"></script></body></html>

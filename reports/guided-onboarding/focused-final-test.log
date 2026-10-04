@@ -1,0 +1,25 @@
+✔ only a truly pristine installation enters practice; every legacy status bypasses it (1.3401ms)
+✔ read acknowledgements cannot bypass creation, completion or reward observation (1.2236ms)
+✔ the full practice flow requires matching real actions and versions completion (0.2514ms)
+✔ every checkpoint survives reload and reconciles committed task/receipt after interruption (0.715ms)
+✔ replay uses a new identity and explicitly labels preview rewards (0.5332ms)
+✔ tutorial metadata survives migration and is excluded from awakening and reminders (67.4184ms)
+✔ three save-compatible worlds only use authored wolf scenes for the actual wolf (0.9262ms)
+✔ text, status and action tokens retain AA contrast on their solid surfaces (5.6354ms)
+✔ three mobile scene assets decode, preserve 3:2 composition and fit the offline art budget (5.704ms)
+✔ one fixed primary icon has a real 1024 master and separate maskable safe margin (21.988ms)
+✔ new presentation dependencies and home art are included in the verified offline closure (2.4024ms)
+✔ all three user themes survive preference normalization; legacy and unknown values fall back (0.6815ms)
+✔ third theme backup restore preserves tasks, wallet, collection and progression exactly (19.8759ms)
+✔ journey counts only actual today plans and today completions, including the empty state (0.2823ms)
+✔ companion presentation escapes user names and does not pretend an empty collection owns a pet (0.493ms)
+✔ owned pets without a companion lead to collection instead of another summon (0.1968ms)
+✔ home refresh replaces the empty summon entry when the first pet becomes owned (14.9353ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 344.1346

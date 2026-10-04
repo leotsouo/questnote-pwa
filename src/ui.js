@@ -261,6 +261,7 @@ import {
   showOnboardingAfterReset,
   dismissOnboardingAfterRestore,
 } from './onboardingController.js';
+import { getGuidedTutorialDraft, showSkippedEditorHint } from './guidedOnboardingController.js';
 
 /** 稀有度中文與色彩 */
 export const RARITY_LABELS = {
@@ -895,7 +896,7 @@ function bindDelegatedEvents() {
         }
       }
 
-      if (isCompleting) {
+      if (isCompleting && !taskBefore?.isTutorial) {
         await trackQuest('complete_task');
       }
 
@@ -1484,7 +1485,11 @@ export function switchView(viewName) {
 }
 
 /** Teaching links only navigate and select filters; product controls own every write. */
-export async function openTeachingTarget({ view, filter, tab, hub, petId } = {}) {
+export async function openTeachingTarget({ view, filter, tab, hub, petId, detail } = {}) {
+  closeModal();
+  document.querySelector('#specified-invitation-dialog[open] [data-invitation-action="close"]:not(:disabled)')?.click();
+  document.querySelector('#identity-detail-dialog[open] [data-identity-action="close-dialog"]')?.click();
+  if (document.body.classList.contains('expedition-dispatch-open')) closeExpeditionDispatchModal();
   if (view === 'collection' && filter === 'owned') {
     collectionFilter = 'owned';
     collectionSeriesFilter = 'all';
@@ -1504,6 +1509,7 @@ export async function openTeachingTarget({ view, filter, tab, hub, petId } = {})
   if (view === 'collection') renderCollectionView();
   if (view === 'tasks' && hub) renderHomeHub();
   await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  if (detail && petId) openPetDetailModal(petId);
 }
 
 function bindModals() {
@@ -2040,7 +2046,7 @@ function renderTasksView() {
   renderQuestPanel();
   renderHomeHub();
   renderCompanionSection(companion, companionLine);
-  renderTodayPlanSummary(tasks, today);
+  renderTodayPlanSummary(tasks.filter((task) => !task.isTutorial), today);
   renderHabitSummary();
   renderCategoryFilters(categories);
   syncTwilightHome(state);
@@ -3109,9 +3115,9 @@ function renderTaskCard(task) {
     : `<div class="task-card__rewards"><span>${twilightIcon('spark')}${stardust} 星塵</span><span>${twilightIcon('energy')}${energy} 能量</span>${state.companion ? `<span>${twilightIcon('heart')}+${calculateBondAmount(task)} 親密度</span>` : ''}</div>`;
 
   return `<article class="task-card twilight-task-card ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
-    <button type="button" class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" aria-pressed="${task.completed}" aria-label="${task.completed ? '取消完成' : '完成'} ${escapeHtml(task.title)}">${task.completed ? twilightIcon('check') : ''}</button>
+    <button type="button" class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" aria-pressed="${task.completed}" aria-label="${task.completed ? task.isTutorial ? '已完成' : '取消完成' : '完成'} ${escapeHtml(task.title)}">${task.completed ? twilightIcon('check') : ''}</button>
     <div class="twilight-task-body">
-      <div class="task-card__meta"><span>${formatCategoryLabel(category)}</span>${task.priority !== 'normal' ? `<span class="twilight-task-priority">${escapeHtml(PRIORITY_LABELS[task.priority])}</span>` : ''}${task.dueDate || task.startDate ? `<span class="${dateClass}">${escapeHtml(dateText)}</span>` : ''}${!inPlan && !task.completed ? '<span>未排入今日</span>' : ''}</div>
+      <div class="task-card__meta"><span>${task.isTutorial ? '基本操作練習' : formatCategoryLabel(category)}</span>${task.priority !== 'normal' ? `<span class="twilight-task-priority">${escapeHtml(PRIORITY_LABELS[task.priority])}</span>` : ''}${task.dueDate || task.startDate ? `<span class="${dateClass}">${escapeHtml(dateText)}</span>` : ''}${!inPlan && !task.completed ? '<span>未排入今日</span>' : ''}</div>
       <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
       ${preview ? `<p class="task-card__preview">${escapeHtml(preview)}</p>` : ''}
       ${description ? `<details class="task-card__description"><summary>任務說明</summary><p class="task-card__preview">${escapeHtml(description)}</p></details>` : ''}
@@ -3123,12 +3129,14 @@ function renderTaskCard(task) {
   </article>`;
 }
 
-function openTaskForm(taskId = null) {
-  const task = taskId ? state.tasks.find((t) => t.id === taskId) : null;
-  const isEdit = !!task;
+export function openTaskForm(taskId = null) {
+  showSkippedEditorHint();
+  const practice = !taskId ? getGuidedTutorialDraft() : null;
+  const task = taskId ? state.tasks.find((t) => t.id === taskId) : practice;
+  const isEdit = !!taskId && !!task;
   const today = getTodayDateString();
   const categories = state.categories || [];
-  const inPlan = task ? isInTodayPlan(task, today) : false;
+  const inPlan = practice ? true : task ? isInTodayPlan(task, today) : taskViewMode === 'today';
   const subtasks = task?.subtasks || [];
 
   const categoryOptions = categories.map(
@@ -3148,6 +3156,17 @@ function openTaskForm(taskId = null) {
       <label class="form-label" for="task-content">任務內容</label>
       <textarea id="task-content" class="form-textarea" rows="4" placeholder="第一行將自動成為標題…" required>${task ? escapeHtml(task.content) : ''}</textarea>
 
+      <label class="settings-toggle form-toggle" for="task-plan-today">
+        <span class="settings-toggle__text">
+          <span class="settings-toggle__label">加入今日計畫</span>
+          <span class="settings-toggle__desc">標記為今天打算完成的任務</span>
+        </span>
+        <input type="checkbox" id="task-plan-today" class="settings-toggle__input" ${inPlan ? 'checked' : ''} />
+        <span class="settings-toggle__switch" aria-hidden="true"></span>
+      </label>
+
+      <details class="task-editor-options" ${isEdit ? 'open' : ''}>
+      <summary>分類、日期與子任務</summary>
       <label class="form-label" for="task-category">分類</label>
       <select id="task-category" class="form-select">${categoryOptions}</select>
 
@@ -3173,18 +3192,9 @@ function openTaskForm(taskId = null) {
       </div>
       <p class="form-error" id="task-date-error" hidden>開始日不可晚於截止日</p>
 
-      <label class="settings-toggle form-toggle" for="task-plan-today">
-        <span class="settings-toggle__text">
-          <span class="settings-toggle__label">加入今日計畫</span>
-          <span class="settings-toggle__desc">標記為今天打算完成的任務</span>
-        </span>
-        <input type="checkbox" id="task-plan-today" class="settings-toggle__input" ${inPlan ? 'checked' : ''} />
-        <span class="settings-toggle__switch" aria-hidden="true"></span>
-      </label>
-
       <div class="form-field">
         <label class="form-label" for="task-plan-date">安排日期</label>
-        <input type="date" id="task-plan-date" class="form-input" value="${escapeHtml(task?.plannedDate || '')}" />
+        <input type="date" id="task-plan-date" class="form-input" value="${escapeHtml(task?.plannedDate || (inPlan ? today : ''))}" />
         <div class="form-actions">
           <button type="button" class="btn btn--secondary btn--sm" data-plan-date="today">今天</button>
           <button type="button" class="btn btn--secondary btn--sm" data-plan-date="tomorrow">明天</button>
@@ -3200,6 +3210,7 @@ function openTaskForm(taskId = null) {
         <input type="text" id="subtask-new-input" class="form-input" placeholder="輸入子任務內容" maxlength="200" />
         <button type="button" class="btn btn--secondary btn--sm" id="subtask-add-btn">新增子任務</button>
       </div>
+      </details>
 
       <div class="form-actions">
         <button type="button" class="btn btn--ghost" id="form-cancel">取消</button>
@@ -3207,6 +3218,11 @@ function openTaskForm(taskId = null) {
       </div>
     </form>
   `);
+
+  if (practice) {
+    document.getElementById('task-plan-date').value = today;
+    void recordOnboardingEvent('editor-opened');
+  }
 
   document.getElementById('form-cancel')?.addEventListener('click', closeModal);
 
@@ -3324,6 +3340,7 @@ function openTaskForm(taskId = null) {
     }
 
     const payload = {
+      ...(practice || {}),
       content,
       priority,
       categoryId,
@@ -3355,7 +3372,7 @@ function openTaskForm(taskId = null) {
       }
       closeModal();
       await onRefresh();
-      await handleAchievementCheckAfterAction();
+      if (!createdTask?.isTutorial) await handleAchievementCheckAfterAction();
       if (createdTask) {
         void recordOnboardingEvent('task-created', { taskId: createdTask.id });
       }
@@ -3363,6 +3380,15 @@ function openTaskForm(taskId = null) {
       showToast(err.message || '儲存失敗', 'error');
     }
   }));
+}
+
+/** Reuse the real today list, repairing filters and interrupted modal navigation. */
+export function showGuidedHome() {
+  closeModal();
+  taskViewMode = 'today';
+  taskCategoryFilter = 'all';
+  switchView('tasks');
+  renderTasksView();
 }
 
 /** 設定首頁中樞圖示的提示紅點 */
@@ -6512,11 +6538,7 @@ function openPetDetailModal(petId) {
       ${owned && pet.isCompanion ? '<p class="companion-badge companion-badge--detail">目前陪伴中</p>' : ''}
     </div>
   `);
-
-  document.querySelector('[data-action="detail-view-image"]')?.addEventListener('click', (e) => {
-    const id = e.currentTarget.dataset.petId;
-    if (id) openPetImageViewer(id, e.currentTarget);
-  });
+  if (owned) void recordOnboardingEvent('pet-care-opened');
 
   document.querySelector('[data-action="detail-feed-pet"]')?.addEventListener('click', () => {
     openPetFeedModal(pet);
@@ -8939,9 +8961,10 @@ function renderSettingsView() {
   if (!state) return;
 
   const { tasks, wallet, collectionProgress, gachaStats, activeExpedition, userPreferences, achievementSummary } = state;
-  const completedCount = tasks.filter((t) => t.completed).length;
+  const formalTasks = tasks.filter((t) => !t.isTutorial);
+  const completedCount = formalTasks.filter((t) => t.completed).length;
 
-  setText('settings-task-count', tasks.length);
+  setText('settings-task-count', formalTasks.length);
   setText('settings-completed-count', completedCount);
   setText('settings-stardust', wallet.stardust ?? 0);
   setText('settings-energy', wallet.adventureEnergy ?? 0);

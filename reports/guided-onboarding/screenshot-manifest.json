@@ -1,0 +1,137 @@
+[
+  {
+    "file": "01-welcome.jpg",
+    "scene": "WELCOME",
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "height": 852,
+    "viewportTop": 173
+  },
+  {
+    "file": "02-meet-companion.jpg",
+    "scene": "MEET_COMPANION",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 113
+  },
+  {
+    "file": "03-home-spotlight.jpg",
+    "scene": "HOME_INTRO",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": -65
+  },
+  {
+    "file": "04-add-spotlight.jpg",
+    "scene": "OPEN_CREATE_QUEST",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": -65
+  },
+  {
+    "file": "05-prefilled-editor.jpg",
+    "scene": "CREATE_TUTORIAL_QUEST",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 173
+  },
+  {
+    "file": "06-create-cta.jpg",
+    "scene": "CREATE_TUTORIAL_QUEST",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 173
+  },
+  {
+    "file": "07-home-with-tutorial.jpg",
+    "scene": "RETURN_HOME",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": -65
+  },
+  {
+    "file": "08-complete-spotlight.jpg",
+    "scene": "COMPLETE_TUTORIAL_QUEST",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": -65
+  },
+  {
+    "file": "09-reward.jpg",
+    "scene": "REWARD_REVEAL",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 173
+  },
+  {
+    "file": "10-companion-reaction.jpg",
+    "scene": "COMPANION_REACTION",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 113
+  },
+  {
+    "file": "11-finish.jpg",
+    "scene": "FINISH",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 173
+  },
+  {
+    "file": "12-skip-confirmation.jpg",
+    "scene": "SKIP",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 173
+  },
+  {
+    "file": "13-large-text.jpg",
+    "scene": "LARGE_TEXT",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 173
+  },
+  {
+    "file": "14-reduce-motion.jpg",
+    "scene": "REDUCE_MOTION",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 393,
+    "viewportTop": 173
+  },
+  {
+    "file": "15-narrow-320.jpg",
+    "scene": "NARROW",
+    "height": 852,
+    "left": 21,
+    "top": 173,
+    "width": 320,
+    "viewportTop": 173
+  }
+]

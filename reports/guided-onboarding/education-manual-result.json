@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "helpSummaryTargets": [
+    {
+      "height": 48,
+      "text": "從今天的一件小事開始"
+    },
+    {
+      "height": 48,
+      "text": "星塵，讓你遇見新夥伴"
+    },
+    {
+      "height": 48,
+      "text": "找到已經相遇的夥伴"
+    },
+    {
+      "height": 48,
+      "text": "準備好，再一起出發"
+    },
+    {
+      "height": 48,
+      "text": "把材料做成一份心意"
+    },
+    {
+      "height": 48,
+      "text": "每天一點點，也算前進"
+    },
+    {
+      "height": 48,
+      "text": "調成自己舒服的樣子"
+    },
+    {
+      "height": 48,
+      "text": "碎片與親密度，慢慢累積"
+    }
+  ],
+  "replayLabel": "再次學習基本操作",
+  "narrowEducation": {
+    "buttons": [
+      {
+        "height": 48,
+        "text": "我知道了",
+        "width": 219.33334350585935
+      },
+      {
+        "height": 48,
+        "text": "查看使用教學",
+        "width": 219.33334350585935
+      }
+    ],
+    "pageWidth": 305,
+    "scrollWidth": 305,
+    "width": 260.66668701171875
+  },
+  "petDialogHeadings": [
+    "灰影幼狼",
+    "碎片與親密度，慢慢累積"
+  ],
+  "petCareHelpFocused": true
+}

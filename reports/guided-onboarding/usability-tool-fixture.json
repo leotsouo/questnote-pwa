@@ -1,0 +1,21 @@
+{
+  "protocolVersion": 1,
+  "humanEvidence": false,
+  "observation": {
+    "participant": "P01",
+    "sampleKind": "automation-fixture",
+    "familiarity": "less-familiar",
+    "phase": "ended",
+    "assistanceCount": 0,
+    "milestones": {
+      "started": 0,
+      "foundAddQuest": 61.5,
+      "createdOwnQuest": 98.4,
+      "returnedToToday": 98.4,
+      "pressedComplete": 107.3,
+      "completedOwnQuest": 107.4
+    },
+    "durationSeconds": 156.3,
+    "unaidedTransfer": true
+  }
+}

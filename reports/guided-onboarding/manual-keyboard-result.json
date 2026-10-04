@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "keyboard": [
+    "Tab: next allowed confirmation control",
+    "Enter: real Add opens real editor",
+    "Escape: opens skip confirmation",
+    "Enter: accessible skip alternative exits"
+  ],
+  "editorDescription": "guided-instruction",
+  "previousTargetDescriptionRestored": true,
+  "coachPresent": false,
+  "locked": false
+}

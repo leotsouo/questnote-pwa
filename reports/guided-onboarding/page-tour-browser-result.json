@@ -1,0 +1,247 @@
+{
+  "passed": true,
+  "lessons": [
+    {
+      "buttons": [
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 1 / 20\n\n任務：今日、全部與智慧視圖\n\n「今日」看今天安排的事；「全部」找其他日期的任務；「智慧」依條件整理。新增自己的任務時，可以展開分類、日期與子任務，讓大目標分成小步驟。\n\n下一步\n先到這裡，之後繼續",
+      "view": "view-tasks",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 2 / 20\n\n夥伴：日常互動與故事\n\n點首頁的夥伴可看詳情，也可以撫摸、餵食。親密度累積後，從「故事與約定」查看已解鎖的故事與同行目標。餵食前先確認物品。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-tasks",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 3 / 20\n\n每日祝福與信箱\n\n首頁的「每日祝福」可查看今天的簽到與祝福。信箱會顯示公告及可領取的禮物；先閱讀內容，再決定領取。教學不會代你簽到或領取。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-tasks",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 4 / 20\n\n圖鑑：找到你的夥伴\n\n這裡收錄所有夥伴。「已相遇」能幫你找到自己擁有的夥伴；未相遇的卡片也可以先看看。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-collection",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 5 / 20\n\n陪伴、升星與親密度\n\n點已相遇的夥伴，可查看詳情與「設為陪伴」。重複相遇得到的碎片用來升星；任務、摸摸與送禮累積親密度。先閱讀條件，再決定要不要操作。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-collection",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 6 / 20\n\n召喚：先認識這次的相遇\n\n看看目前卡池的夥伴、卡池詳情與機率。切換卡池可以認識其他系列，不必立即召喚。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-gacha",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 7 / 20\n\n星塵與召喚費用\n\n完成自己的任務會累積星塵。召喚前先確認餘額與單次、十連的費用；按下召喚會花費星塵。教學不要求召喚。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-gacha",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 8 / 20\n\n探險：先看能量與目的地\n\n完成任務獲得冒險能量。每個地區有不同時間、能量需求與收穫；先閱讀地區資訊，再選適合的目的地。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-expedition",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 9 / 20\n\n派遣、等待與領取\n\n在地區選擇隊伍，查看夥伴專長與出發條件。確認後才派遣；時間到，回到這裡領取收穫、閱讀報告。現在可以只看，不必出發。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-expedition",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        49.33333587646485,
+        49.33333587646485,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 10 / 20\n\n工坊：材料變成禮物\n\n在製作分頁看配方、已有材料與製作數量。材料不足時先去探險收集；確認製作才扣除材料。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-workshop",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        49.33333587646485,
+        49.33333587646485,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 11 / 20\n\n把心意送給夥伴\n\n切到送禮分頁，選擇已有的禮物與已相遇的夥伴，查看喜好與效果後再確認。送禮會消耗物品，也會增加親密度。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-workshop",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 12 / 20\n\n習慣：適合每天重複的小事\n\n任務是要完成的一件事；習慣適合每天練習。點「新增習慣」，設定一個小目標；可以先看表單，再取消。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-habits",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 13 / 20\n\n今天做到了，就打卡\n\n回到習慣列表，為今天做到的習慣打卡。統計會逐漸累積；不用一次建立很多個，也不用為了教學新增。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-habits",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 14 / 20\n\n成就：看見慢慢累積的進步\n\n自己的任務、收集與冒險會累積成就進度。到這裡查看條件、完成的成就與稱號；練習任務不會計入正式成就。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-achievements",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 15 / 20\n\n冒險手冊：不知道下一步時來看看\n\n手冊整理目前目標與進度。閱讀各項條件，再選想做的方向；有可領取的獎勵時，再按領取。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-handbook",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 16 / 20\n\n設定：讓畫面適合自己\n\n調整主題、字體大小與減少動態效果。每個人閱讀速度不同，可以停在這一步慢慢調整，再繼續。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-settings",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 17 / 20\n\n提醒與備份：照自己的節奏\n\n提醒可以依需要開啟，瀏覽器會另外詢問通知權限。換裝置前先匯出備份；匯入前閱讀預覽，確認內容再還原。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-settings",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 18 / 20\n\n問題回報：先預覽，再送出\n\n選擇類型，描述發生的問題與重現步驟，再預覽回報內容。只有按「送出回報」才交給開發者；請勿填入密碼或私人任務內容。現在只需認識入口。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-feedback",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        48,
+        48,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 19 / 20\n\n分享：把 QuestNote 介紹給朋友\n\n這裡可以取得正式版連結，依自己方便的方式分享給朋友。教學不會自動傳送訊息；測試版的本機網址只適合這台電腦使用。\n\n上一步\n下一步\n先到這裡，之後繼續",
+      "view": "view-share",
+      "visible": true,
+      "width": 378
+    },
+    {
+      "buttons": [
+        58.91666793823242,
+        58.91666793823242,
+        48
+      ],
+      "scrollWidth": 378,
+      "text": "接著認識 QuestNote · 20 / 20\n\n更多：之後從這裡繼續\n\n習慣、工坊、成就、手冊與設定都能從「更多」找到。「使用教學」可重看基本操作與各頁教學。接下來，新增一件自己的小事吧。\n\n上一步\n完成教學，回到今日\n先到這裡，之後繼續",
+      "view": "view-more",
+      "visible": true,
+      "width": 378
+    }
+  ],
+  "reloadResumedAt": 8,
+  "pausedResumeVerified": true,
+  "filterRerenderVerified": true
+}

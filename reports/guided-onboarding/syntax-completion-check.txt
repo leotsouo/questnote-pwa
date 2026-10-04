@@ -1,0 +1,25 @@
+PASS devtools/guided-onboarding-browser-test.js
+PASS devtools/guided-onboarding.test.mjs
+PASS devtools/guided-usability.js
+PASS service-worker.js
+PASS src/achievementService.js
+PASS src/app.js
+PASS src/backupSchema.js
+PASS src/backupService.js
+PASS src/bondJourneyCore.js
+PASS src/bondJourneyService.js
+PASS src/db.js
+PASS src/guidedEducation.js
+PASS src/guidedOnboardingController.js
+PASS src/guidedOnboardingCore.js
+PASS src/guidedOnboardingService.js
+PASS src/onboardingController.js
+PASS src/onboardingService.js
+PASS src/petAwakeningCore.js
+PASS src/reminderRules.js
+PASS src/rewardService.js
+PASS src/taskService.js
+PASS src/twilightPresentation.js
+PASS src/ui.js
+PASS src/version.js
+PASS 24 JavaScript syntax checks

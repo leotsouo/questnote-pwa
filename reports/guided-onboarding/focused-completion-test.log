@@ -1,0 +1,42 @@
+✔ only a truly pristine installation enters practice; every legacy status bypasses it (0.7387ms)
+✔ read acknowledgements cannot bypass creation, completion or reward observation (0.6785ms)
+✔ the full practice flow requires matching real actions and versions completion (0.2078ms)
+✔ every checkpoint survives reload and reconciles committed task/receipt after interruption (0.4966ms)
+✔ replay uses a new identity and explicitly labels preview rewards (0.1377ms)
+✔ tutorial metadata survives migration and is excluded from awakening and reminders (12.2279ms)
+✔ stale clicks cannot acknowledge a different step or a different replay run (0.1469ms)
+✔ education requires deliberate acknowledgement and preserves unaided task transfer (0.1829ms)
+✔ each lesson leads with a short action and preserves its rules behind disclosure (1.8442ms)
+✔ bond teaching covers the journey without requiring story rewards or a level upgrade (0.665ms)
+✔ existing bond lesson progress resumes and its entry targets the owned companion (1.1415ms)
+✔ first-use eligibility requires an entirely empty profile before normal initialization (0.2167ms)
+✔ saved step and practice task survive normalization for resume (0.2022ms)
+✔ existing users retain core decisions and receive unstarted chapters without a welcome (0.2499ms)
+✔ chapters preserve reading position and practice evidence independently of core progress (0.2051ms)
+✔ understanding a chapter does not claim practice or complete other chapters (0.1731ms)
+✔ only the matching successful action at the practice step counts (0.8138ms)
+✔ switching chapters pauses the old one; back and replay retain completed practice (0.264ms)
+✔ malformed chapter data cannot activate multiple coaches or invent practice (0.099ms)
+✔ teaching previews handle absent resources, full stars, cooldown and changing catalogs without writes (1.7495ms)
+✔ guide advances only from successful matching product actions (0.3043ms)
+✔ creating a task after choosing to continue later attaches it to the reward step (0.0649ms)
+✔ dismissed and paused guides never advance from background actions (0.1034ms)
+✔ three save-compatible worlds only use authored wolf scenes for the actual wolf (1.101ms)
+✔ text, status and action tokens retain AA contrast on their solid surfaces (3.2905ms)
+✔ three mobile scene assets decode, preserve 3:2 composition and fit the offline art budget (3.7806ms)
+✔ one fixed primary icon has a real 1024 master and separate maskable safe margin (12.0049ms)
+✔ new presentation dependencies and home art are included in the verified offline closure (1.3369ms)
+✔ all three user themes survive preference normalization; legacy and unknown values fall back (0.5731ms)
+✔ third theme backup restore preserves tasks, wallet, collection and progression exactly (12.0103ms)
+✔ journey counts only actual today plans and today completions, including the empty state (0.2669ms)
+✔ companion presentation escapes user names and does not pretend an empty collection owns a pet (0.3453ms)
+✔ owned pets without a companion lead to collection instead of another summon (0.1227ms)
+✔ home refresh replaces the empty summon entry when the first pet becomes owned (11.3661ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 195.431
