@@ -535,9 +535,8 @@ async function initApp() {
     applyFontSizeToDocument(appState.userPreferences.fontSize);
     applyReduceMotionClass(appState.userPreferences?.reduceMotion ?? false);
 
-    // 儘早綁定 UI，確保畫面可互動
+    // Bind handlers early; expose controls only after save and guide initialization.
     initUI(appState, refreshState, runAchievementCheck);
-    hideLoader();
 
 
 
@@ -704,6 +703,7 @@ async function initApp() {
       showEducationHelp: (feature) => { closeModal(); openOnboardingEducation(feature); },
       showGrowthHelp: () => { closeModal(); switchView('guide'); requestAnimationFrame(() => document.querySelector('#guide-growth-title')?.focus()); } });
     initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, showToast }, onboardingAtStartup);
+    hideLoader();
 
 
 
