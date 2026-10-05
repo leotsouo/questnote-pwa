@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "database": "QuestNoteTest-Onboarding-354ce6e4-a199-44a6-b97e-81dcd5d1d083",
+  "results": [
+    {
+      "name": "I01 repeated submit during native transaction completion delay creates one habit",
+      "ok": true,
+      "detail": {
+        "name": "flow-habit-1791193242314",
+        "count": 1
+      }
+    },
+    {
+      "name": "I01 failed write retains input, visible error, unlocks and retry saves once",
+      "ok": true,
+      "detail": {
+        "name": "flow-retry-1791193243844",
+        "failures": [
+          "habit-delay",
+          "habit-fail"
+        ]
+      }
+    },
+    {
+      "name": "I01 visible retryable error for manual screenshot and actual CTA retry",
+      "ok": true,
+      "detail": {
+        "message": "儲存失敗，請再試一次。",
+        "retainedName": "flow-visible-retry-1791193302638"
+      }
+    }
+  ]
+}

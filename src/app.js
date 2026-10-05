@@ -738,9 +738,17 @@ async function initApp() {
     }
 
     if (loader) {
-
-      loader.textContent = `載入失敗：${err.message}`;
-
+      const message = document.createElement('p');
+      message.textContent = '載入未完成，請重新載入後再試。';
+      const reload = document.createElement('button');
+      reload.type = 'button';
+      reload.className = 'btn btn--primary';
+      reload.textContent = '重新載入';
+      reload.addEventListener('click', () => window.location.reload());
+      loader.setAttribute('role', 'alert');
+      loader.replaceChildren(message, reload);
+      document.body.appendChild(loader);
+      reload.focus();
     }
 
   }

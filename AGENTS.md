@@ -14,6 +14,8 @@ Before final pool acceptance, open an interactive animation review page using th
 
 ## Shared source and collaboration
 
+Every temporary Codex/subagent worktree owns its lifecycle. Read `docs/disk-governance.md`; prefer the installed `worktree-create.ps1` wrapper (official Git add, task/owner metadata, no dependency/artifact copying or automatic install). App-managed worktrees remain supported: adopt known task metadata without bypassing App ownership. Touch activity; install only for actual execution via the producer wrapper. Finish with status, commit/integration/remote evidence, Complete or Hold plus reason, then proof-gated cleanup; never leave a large workspace without lifecycle metadata. Existing reports, Honeylight/authoring/recovery material and unknown repositories are retained, not reclassified by folder name. No force/reset/clean/prune or branch deletion. The weekly Windows task handles eligible inactive outputs/worktrees; capacity/count guardrails apply before creation.
+
 Read `docs/project-governance.md` for current branch roles and ownership. Start from current `origin/main` in a clean checkout. The old root `codex/card-pool-pipeline` checkout and historical worktrees contain preserved drafts and older snapshots; never copy their complete trees over main. Inspect both commits and uncommitted files before declaring any worktree merged or deleting it.
 
 Keep one integrator for shared `src/ui.js`, `index.html`, styles, version and service-worker changes. Feature work owns its service/controller and focused checks. Commit reviewable changes and record source integration separately from preview/production deployment. Do not merge `gh-pages` into source; it holds generated artifacts.

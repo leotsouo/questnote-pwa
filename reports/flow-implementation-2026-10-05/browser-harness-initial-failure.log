@@ -1,0 +1,19 @@
+Initial real browser harness run (parent AX observation):
+I01 repeated submit during native transaction completion delay creates one habit: FAILED
+TypeError: win is not a constructor
+at input (product-flow-browser-test.js:24)
+Cause: harness `new win().Event(...)` constructor precedence; product submit was not reached.
+Correction: use `new (win().Event)(...)`; apply the same explicit constructor form to DataTransfer and File.
+This is a test harness defect, not evidence of a product failure. Results are retained rather than overwritten.
+
+Second real browser harness run (parent AX observation):
+I01 repeated submit: timed out waiting for Habit success.
+Cause: harness expected removed #habit-form, but closeModal intentionally hides #modal-overlay and retains its children.
+Correction: success/retry wait now checks hidden overlay. No product change required.
+Fresh-origin readiness correction: current guided controller uses data-guided-action=skip then confirm-skip; legacy data-onboarding-action=skip alone does not dismiss current first-time guide.
+
+Fresh six-scenario run (parent browser observation):
+A real first-time practice including interrupted prefilled editor: PASS.
+B then failed: Hidden/disabled #btn-add-task.
+Cause: current theme exposes .twilight-add-task; legacy #btn-add-task is intentionally hidden.
+Correction: taskEntry() waits for and chooses the visible current control, with legacy fallback only if visible. Product unchanged; parent retains detailed run output separately.

@@ -1,5 +1,9 @@
 # 分支、分工與權限
 
+## 本機磁碟生命週期
+
+參照 [disk-governance.md](disk-governance.md)。任何 agent/subagent 臨時工作副本必須記 task/owner、activity 與完成/保留狀態，優先走 `scripts/worktree-create.ps1`；App managed API仍可使用，須 Adopt 已知任務，不能猜未知 owner。只在實際需要執行的環境安裝 dependencies，用 producer Run 保存初始生成雜湊及重建材料。任務完成檢查 status、成果及整合/現存遠端保存，Complete 或 Hold 並記原因，評估 generated cleanup 与正常 worktree remove。不再默默留下2–5GB副本。每週維護的 metadata、mutex、protected list、容量 guardrail 与 retention 規則均在該文件；age 不凌駕 Git safety，tracked歷史reports/作者/復原資料不自動移除。
+
 本文件是協作規則入口；部署證據見 [final-integration.md](final-integration.md)，2026-09-27 盤點見 [整合報告](../reports/branch-consolidation-2026-09-27.md)。舊 M1–M5 文件中的代理名稱與「尚未發布」描述只代表當時狀態。
 
 ## 分支用途

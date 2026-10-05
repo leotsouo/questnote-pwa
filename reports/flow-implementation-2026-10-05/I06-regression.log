@@ -1,0 +1,16 @@
+✔ older preferences stay in normal mode; invalid values never enable a different presentation (0.5805ms)
+✔ enabling, disabling and invalid mode removal preserve the original theme and text preference (0.1425ms)
+✔ mode persistence and concurrent preference updates do not change any task, pet, currency or progression (227.1644ms)
+✔ backup roundtrip preserves mode and guide status with exactly the same shared progression (31.4062ms)
+✔ invalid or conflicting backup preferences are rejected before normalization can hide corruption (6.2521ms)
+✔ optional clock metadata accepts a local HH:mm without changing planning or rewards (1.9718ms)
+✔ invalid task times reject before writing a task (0.5548ms)
+✔ backup round trips optional time and rejects malformed time before normalization (18.0183ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 420.7887

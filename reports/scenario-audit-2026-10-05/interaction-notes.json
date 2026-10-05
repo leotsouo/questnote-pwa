@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-05",
+  "source": "dcca53bcd598a446e4f1618fa63b4aec76861ba6",
+  "origin": "http://127.0.0.1:65528",
+  "database": "QuestNoteTest-Onboarding-44313763-07a8-428c-8b3a-311d4d6a7fa4",
+  "instrumentation": "Existing onboarding synthetic-only server redirects DB, blocks SW, intercepts download anchors; unchanged product modules.",
+  "observations": [
+    {
+      "id": "A1",
+      "health": "KEEP",
+      "steps": "WELCOME -> meet companion -> home intro -> click real add -> prefilled tutorial -> real submit -> real complete -> reward reveal +20 stardust +1 energy +5 bond -> finish -> return home",
+      "screenshots": [
+        "01-first-time.jpg",
+        "04-tutorial-form.jpg"
+      ]
+    },
+    {
+      "id": "C1",
+      "health": "KEEP",
+      "steps": "Reload at HOME_INTRO, same heading and CTA restored",
+      "screenshots": [
+        "02-guide-before-reload.jpg",
+        "03-guide-restored.jpg"
+      ]
+    },
+    {
+      "id": "I04",
+      "health": "IMPROVE",
+      "steps": "Normal task form entered Audit draft：明天整理書桌，尚未儲存; Close immediately returned home; reopen empty textbox with placeholder, no discard warning",
+      "screenshots": [
+        "05-unsaved-task.jpg",
+        "06-draft-lost.jpg"
+      ]
+    },
+    {
+      "id": "D1",
+      "health": "KEEP",
+      "steps": "Habit form blank name -> Create -> native required popup 請填寫這個欄位, focus habit-name, form remains",
+      "screenshots": [
+        "07-habit-invalid.jpg"
+      ]
+    },
+    {
+      "id": "B1",
+      "health": "KEEP",
+      "steps": "Saved Audit 已儲存任務 with subtask 整理書桌; reload -> task persisted and main guided coach absent",
+      "screenshots": [
+        "08-returning-saved.jpg"
+      ]
+    },
+    {
+      "id": "I06",
+      "health": "IMPROVE",
+      "steps": "Subtask completion 0/1 -> 1/1; accessible name still 完成子任務, aria-pressed null; click same-name control -> 0/1",
+      "screenshots": [
+        "09-subtask-completed-label.jpg"
+      ]
+    },
+    {
+      "id": "F1",
+      "health": "KEEP",
+      "steps": "More -> Settings -> click visible 易讀模式 label -> saved switch on, return home -> same task with explicit controls",
+      "screenshots": [
+        "10-senior-home.jpg"
+      ]
+    },
+    {
+      "id": "E1",
+      "health": "KEEP",
+      "steps": "Senior form entered Audit 易讀未儲存文字 -> Close -> 繼續編輯/放棄; continue retained exact value; close + explicit discard returned to original add control",
+      "screenshots": [
+        "11-senior-dirty-guard.jpg"
+      ]
+    }
+  ],
+  "limits": [
+    "No production APIs sent or cloud reminders enabled",
+    "No native storage quota/process termination simulation in browser",
+    "Reload proves document recreation, not all mobile background/OS reclaim behavior",
+    "No real-user comprehension or assistive-technology session",
+    "Selector role mismatches resolved via fresh DOM, not classified as product failures",
+    "Existing harness blocks SW; its unavailable update state is not a product regression",
+    "Screenshots use app-managed default viewport, not fixed device size"
+  ]
+}

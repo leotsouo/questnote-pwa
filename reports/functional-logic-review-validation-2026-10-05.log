@@ -1,0 +1,14 @@
+Functional review static validation — 2026-10-05
+Source: 1de87e441b13afddf629102d19ee1e7887d93b2c
+Index: 1411 declarations across 115 scanned files
+Diagram references: 386 distinct function-like names
+Missing source names: 0
+Scope: name-presence verification plus manual source/call-flow review; not runtime behavior validation.
+No runtime edits, browser tests, live IndexedDB probes, feedback sends or notification requests performed.
+git diff --check:
+git diff --check exit: 0
+Index source-line check: 1411 references; errors=0
+Markdown fenced blocks: 36 boundary lines; balanced=True
+index.html main views: 13; absent from overview=0
+Initial staged whitespace check: extra blank line at index EOF; removed. Final staged check recorded below.
+Final git diff --cached --check: PASS (exit 0; no whitespace errors).

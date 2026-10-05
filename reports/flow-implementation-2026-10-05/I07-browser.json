@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "database": "QuestNoteTest-Onboarding-354ce6e4-a199-44a6-b97e-81dcd5d1d083",
+  "results": [
+    {
+      "name": "I07 restore-before: neutral recovery text and preserved native DB task rows",
+      "ok": true,
+      "detail": {
+        "message": "恢復流程未完成，請先重新整理並檢查資料。",
+        "committed": false,
+        "faults": [
+          "restore-before"
+        ],
+        "tasks": 1
+      }
+    },
+    {
+      "name": "I07 restore-after: neutral recovery text and preserved native DB task rows",
+      "ok": true,
+      "detail": {
+        "message": "恢復流程未完成，請先重新整理並檢查資料。",
+        "committed": true,
+        "faults": [
+          "refresh-fail"
+        ],
+        "tasks": 1
+      }
+    }
+  ]
+}

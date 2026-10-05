@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "database": "QuestNoteTest-Onboarding-354ce6e4-a199-44a6-b97e-81dcd5d1d083",
+  "results": [
+    {
+      "name": "I01 repeated submit during native transaction completion delay creates one habit",
+      "ok": false,
+      "error": "Error: Timeout: Habit success\n    at until (http://127.0.0.1:50483/devtools/product-flow-browser-test.js:16:9)\n    at async http://127.0.0.1:50483/devtools/product-flow-browser-test.js:104:5\n    at async check (http://127.0.0.1:50483/devtools/product-flow-browser-test.js:28:25)\n    at async habits (http://127.0.0.1:50483/devtools/product-flow-browser-test.js:100:3)\n    at async HTMLButtonElement.<anonymous> (http://127.0.0.1:50483/devtools/product-flow-browser-test.js:181:30)"
+    },
+    {
+      "name": "I03 startup error is visible with reload action",
+      "ok": true,
+      "detail": {
+        "text": "載入未完成，請重新載入後再試。重新載入",
+        "fault": [
+          "startup"
+        ]
+      }
+    },
+    {
+      "name": "I03 real reload after one-shot fault returns to app",
+      "ok": true,
+      "detail": {
+        "tasks": 1
+      }
+    }
+  ]
+}

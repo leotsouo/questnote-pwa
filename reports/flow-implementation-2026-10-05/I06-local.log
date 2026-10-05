@@ -1,0 +1,2 @@
+PASS I06 actual rendered subtask control communicates next action, state and escaped identity
+RESULT 1 focused checks passed. Boundaries use mocks; browser scenarios verify native flow.

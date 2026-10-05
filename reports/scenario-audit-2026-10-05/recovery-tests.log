@@ -1,0 +1,125 @@
+✔ restore preserves edited unfinished first practice as a completable shared task without losing receipts (17.435ms)
+✔ verified historical exporters remain valid and migrate to complete snapshots (8.929ms)
+✔ pre-camp V3.4.17 backup remains importable without camp or new region fields (2.336ms)
+✔ V3.5.2 six-region backup preserves bond journey and adds fresh cloudrest progress (3.9789ms)
+✔ V3.5.3 through V3.5.5 seven-region saves migrate without inventing Lionheart rewards (4.6835ms)
+✔ partial current backup cannot masquerade as an older complete shape (0.9903ms)
+✔ every current core field is required before normalization (33.3287ms)
+✔ top-level/data and projected aliases must agree (4.1696ms)
+✔ duplicate persistent keys and malformed nested records are rejected (4.9497ms)
+✔ money, counters, booleans and dangerous object keys fail closed (5.3482ms)
+✔ future/unknown partial formats are rejected with a compatibility explanation (0.7015ms)
+✔ snapshot restoration does not roll historical quest dates forward or maximize draws (0.7554ms)
+✔ empty nested state and ID-only rows cannot be silently normalized into defaults (11.1664ms)
+✔ every serialized nested state field is required before legacy normalization (77.9329ms)
+✔ malformed nested maps, date/counter values and missing fixed entries fail closed (10.7564ms)
+✔ collection state cannot override trusted catalog presentation through companion merge (51.2395ms)
+✔ valid daily, cancelled and weekly habit logs and item usage variants remain accepted (5.8356ms)
+✔ active/completed expeditions preserve full reward records and reject partial rewards (36.0035ms)
+✔ daily history supports check-in, wheel-only and combined persisted variants (1.4146ms)
+✔ export preflight permits fresh/mixed legacy stores but refuses existing malformed state (2.7774ms)
+✔ claim markers that normalizers would discard or rewrite are rejected (2.1089ms)
+✔ encounter snapshot requires currency, reconciled collection and an honest conversion receipt (4.1102ms)
+✔ all current pets have four distinct authored chapters, two replies and unique keepsakes (18.0895ms)
+✔ new saves and old high-level pets retain their original level and start at the first story (0.5879ms)
+✔ malformed story chapters return validation errors, including array-like choices (61.6485ms)
+✔ Lv.5 habit agreements require five distinct completions (0.8551ms)
+✔ past completions and exact acceptance time are not credited (0.2988ms)
+✔ fresh matching task completion survives reload and cannot be credited twice or undone (0.267ms)
+✔ habit progress counts distinct dates, ignores weekly reward aliases and preserves nonconsecutive progress (0.292ms)
+✔ pausing excludes completions; resuming uses a new observation boundary without losing progress (0.2054ms)
+✔ already used completions cannot earn another chapter or daily reward (0.1879ms)
+✔ deleted/archived goals do not invent progress or force punishment (0.2579ms)
+✔ malformed journey snapshots are rejected without exceptions or silent defaulting (1.381ms)
+✔ locked chapters do not expose secret paragraphs and choices cannot inject markup (0.5935ms)
+✔ selectors expose only eligible goals and mark replacement progress reset (0.2026ms)
+✔ keepsakes remain private until the final story agreement is claimed (0.1141ms)
+✔ historical backup migration creates empty journeys without changing wallet, pet levels or fonts (7.6827ms)
+✔ V3.5.1 backups require journey data and preserve active, paused, completed and reward records (29.0394ms)
+✔ a configured ten replaces only its final N/R with SR, with the same cost, RNG budget and pity credit (6.6205ms)
+✔ a natural SR, SSR or UR is retained and prevents any low-rarity promotion (1.983ms)
+✔ both existing pity boundaries outrank the SR floor and reset only their own counters (0.8843ms)
+✔ a promoted duplicate grants its actual SR fragments once and leaves progression intact (0.8902ms)
+✔ single draws and unconfigured legacy pools retain their existing behavior (0.6566ms)
+✔ invalid guarantee types and missing SR candidates cannot enter a draw (0.6525ms)
+✔ single and ten preserve public result shapes, wallet fields, and within-ten duplicates (12.0854ms)
+✔ SSR and UR pity boundaries, resets, legacy standard mirrors, and other pools stay independent (1.0336ms)
+✔ every rarity uses its existing duplicate compensation without erasing progression fields (1.8624ms)
+✔ threshold single is locked; the next single can select an expanded candidate (1.2954ms)
+✔ ten freezes every candidate before unlock and grants one actual-rarity gift after its results (0.5211ms)
+✔ two new pools sharing expansion key keep separate gifts and preserve the legacy grant identity (19.5548ms)
+✔ gift recovery reconciles markers once, repairs only missing pets, and never guesses lost fragments (1.2046ms)
+✔ rejected content, insufficient money, overflow and bad RNG never mutate planner inputs (67.5766ms)
+✔ planner accepts deeply frozen snapshots and changes no original counters, catalog or collection (0.4068ms)
+✔ all twenty authored entries preserve original hashes and have distinct stories, titles and tokens (186.948ms)
+✔ no history or events at acceptance count; reducer does not mutate input (0.844ms)
+✔ task ID and habit ID/date remain globally unique after undo, replay and switching pets (1.0194ms)
+✔ only cloudrest claims with participant and a trial-era departure count (0.4449ms)
+✔ token guaranteed once, completion frees active slot and pause/resume preserves partial progress (0.8769ms)
+✔ malformed states reject duplicated credit, missing token, multiple active pets or unauthorised forms (0.9196ms)
+✔ unawakened toad uses initial art; awakened forms never mutate canonical draw art (0.5503ms)
+✔ all twenty previews and unawakened portraits use initial art, regardless of ownership; other pools unchanged (3.3328ms)
+✔ pool and full guide explain gates, trial-era departure and ritual without revealing awakened portraits (0.3488ms)
+✔ old backups default unawakened; current backups require and roundtrip progress/forms and reject malformed record (17.9071ms)
+✔ reader previews costs, rewards and workbench when food missing; escapes user nickname (0.5703ms)
+✔ bulk claims wait for each commit and summarize all reward types (3.8027ms)
+✔ partial failures preserve successful grants and identify retryable entries (0.874ms)
+✔ empty claims grant nothing; an invalid category releases the shared lock (0.2727ms)
+✔ optional clock metadata accepts a local HH:mm without changing planning or rewards (4.9722ms)
+✔ invalid task times reject before writing a task (4.3102ms)
+✔ backup round trips optional time and rejects malformed time before normalization (38.0416ms)
+✔ today shows active daily habits, with pending first and no mutation of the saved data (19.7349ms)
+✔ category filtering applies to habits without reclassifying or creating tasks (0.3124ms)
+✔ controls reflect the stored date, escape user text and retain undo after completion (3.062ms)
+✔ empty and failed loads have distinct recovery actions (0.3379ms)
+✔ growing food catalogs retain valid recipes, supported themes and explicit affinities (4.2462ms)
+✔ original six IDs, effects and recipes preserve existing inventory economics (3.2668ms)
+✔ fire affinity grants 150; dogs and misleading names cannot infer affinity (0.4044ms)
+✔ multi-affinity partners match multiple gifts without stacking; ordinary honey stays universal (0.1359ms)
+✔ recommendations prioritize eligible non-max partners then levels/exp/ID; daily limits stay last (0.33ms)
+✔ unknown affinity and zero favorite partners still allow basic gifts; universal lists never claim favorites (0.6809ms)
+✔ item-first view requires explicit item and recipient selections (0.3314ms)
+✔ exhaustion resets choices and preserves success; unowned recipient is discarded (0.1656ms)
+✔ limited/busy confirmation is disabled; max-level and basic effects are explicit (0.3487ms)
+✔ nickname HTML is escaped and old inventories/usage logs survive normalization (0.3617ms)
+✔ actual source worker installs all real assets and serves gift modules/data with the network unavailable (72.3925ms)
+ℹ tests 85
+ℹ suites 0
+ℹ pass 85
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 733.0557
+SYNTHETIC CODE TEST PASS: Two submit events before first persistence completion invoke the actual habit handler and actual createHabit; two distinct persisted rows result. In-memory persistence stub + controlled successive Date.now values, not live IndexedDB or browser interaction.
+Rows: [
+  { id: 'habit_1791158400000', name: '每天讀書' },
+  { id: 'habit_1791158400001', name: '每天讀書' }
+]
+SYNTHETIC CODE TEST PASS: persistence rejection escapes actual habit submit handler; no UI error feedback branch runs: Synthetic storage write failed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+false !== true
+
+    at file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/main-integration/[eval1]:11:8
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.18.0
+RETRY: previous synthetic craft harness omitted craftableById lookup fixture, so action was correctly rejected as unknown item before persistence. This was a harness setup failure, not a product test regression.
+SYNTHETIC CODE TEST: Synthetic inventory persistence failure
+SYNTHETIC CODE TEST PASS: actual craftItem orchestration invokes completed material debit before inventory persistence; injected inventory write rejection leaves material balance 2 (started 4), no food and no compensation. Persistence/reward API stubs only; proves orchestration failure response under controlled boundary failure, not native quota/device-kill frequency.
+PASS: actual habit submit callback + actual createHabit produce two distinct stored rows while the first write remains pending. [ 'habit_1791158400000', 'habit_1791158400001' ]
+PASS: injected persistence rejection escapes actual habit handler without inline/toast error feedback.
+PASS: actual craftItem orchestration leaves completed material debit after injected inventory write rejection; initial materials 4, final 2, no stored food.
+LIMIT: API boundaries are stubs. No native storage failure, OS termination, browser interaction, live IndexedDB, or production occurrence rate was tested.

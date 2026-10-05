@@ -1557,7 +1557,7 @@ function bindModals() {
 function dismissModal() {
   const overlay = document.getElementById('modal-overlay');
   if (!isTopDialog(overlay)) return;
-  if (overlay.querySelector('#task-form[data-saving="true"]')) return;
+  if (overlay.querySelector('#task-form[data-saving="true"], #habit-form[data-saving="true"]')) return;
   const form = overlay.querySelector('#task-form[data-dirty="true"]');
   if (isSeniorMode() && form) {
     if (form.querySelector('.senior-discard')) return;
@@ -3135,7 +3135,7 @@ function renderTaskCard(task) {
         <ul class="subtask-list">
           ${(task.subtasks || []).map((s) => `
             <li class="subtask-item ${s.completed ? 'subtask-item--done' : ''}">
-              <button type="button" class="subtask-check ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${escapeHtml(s.id)}" aria-label="完成子任務">
+              <button type="button" class="subtask-check ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${escapeHtml(s.id)}" aria-label="${s.completed ? '取消完成' : '完成'}：${escapeHtml(s.text)}" aria-pressed="${s.completed ? 'true' : 'false'}">
                 ${s.completed ? '✓' : ''}
               </button>
               <span class="subtask-text">${escapeHtml(s.text)}</span>
@@ -7837,7 +7837,7 @@ function openHabitForm(habitId = null) {
         <select class="form-select" id="habit-target">${targetOptions}</select>
       </div>
 
-      <p id="habit-form-error" class="form-error" hidden></p>
+      <p id="habit-form-error" class="form-error" role="alert" hidden></p>
 
       <div class="form-actions">
         <button type="button" class="btn btn--ghost" id="habit-form-cancel">取消</button>
@@ -7852,10 +7852,18 @@ function openHabitForm(habitId = null) {
     if (targetWrap) targetWrap.hidden = freqSelect.value !== 'weekly';
   });
 
-  document.getElementById('habit-form-cancel')?.addEventListener('click', closeModal);
+  const habitForm = document.getElementById('habit-form');
+  const cancel = document.getElementById('habit-form-cancel');
+  cancel?.addEventListener('click', () => {
+    if (habitForm?.dataset.saving !== 'true') closeModal();
+  });
 
   document.getElementById('habit-form')?.addEventListener('submit', trackUpdateActivity(async (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    if (form.dataset.saving === 'true') return;
+    const submit = form.querySelector('button[type="submit"]');
+    const submitLabel = submit.textContent;
     const errEl = document.getElementById('habit-form-error');
     const name = document.getElementById('habit-name')?.value?.trim();
     const description = document.getElementById('habit-desc')?.value?.trim();
@@ -7864,22 +7872,48 @@ function openHabitForm(habitId = null) {
     const targetPerWeek = document.getElementById('habit-target')?.value;
 
     const payload = { name, description, categoryId, frequency, targetPerWeek: Number(targetPerWeek) };
-    const result = isEdit
-      ? await updateHabit(habitId, payload)
-      : await createHabit(payload);
-
-    if (result.success) {
+    const showError = (message) => {
+      if (errEl) {
+        errEl.textContent = message;
+        errEl.hidden = false;
+      } else {
+        showToast(message, 'error');
+      }
+    };
+    if (errEl) errEl.hidden = true;
+    form.dataset.saving = 'true';
+    submit.disabled = true;
+    submit.textContent = '儲存中…';
+    if (cancel) cancel.disabled = true;
+    let saved = false;
+    try {
+      const result = isEdit
+        ? await updateHabit(habitId, payload)
+        : await createHabit(payload);
+      if (!result.success) {
+        showError(result.error || '儲存失敗');
+        return;
+      }
+      saved = true;
       closeModal();
       await onRefresh();
       renderHabitsView();
       showToast(isEdit ? '習慣已更新' : '習慣已建立', 'success');
       await handleAchievementCheckAfterAction();
-    } else {
-      if (errEl) {
-        errEl.textContent = result.error || '儲存失敗';
-        errEl.hidden = false;
+    } catch (err) {
+      console.error('[QuestNote] 習慣儲存流程失敗:', err);
+      if (saved) {
+        showToast('習慣已儲存，但畫面更新未完成。請重新整理。', 'error');
       } else {
-        showToast(result.error || '儲存失敗', 'error');
+        showError('儲存失敗，請再試一次。');
+      }
+    } finally {
+      // A detached, committed form must never submit a second create action.
+      if (!saved) {
+        form.dataset.saving = 'false';
+        submit.disabled = false;
+        submit.textContent = submitLabel;
+        if (cancel) cancel.disabled = false;
       }
     }
   }));
@@ -8954,8 +8988,9 @@ async function executeRestoreBackup() {
     setImportElementHidden('import-restoring-hint', true);
     setImportElementHidden('import-preview', true);
     setImportElementHidden('btn-import-select', false);
-    showImportError('恢復失敗，資料未完整寫入。請重新整理後再試。');
-    showToast('恢復失敗，請確認備份檔是否正確。', 'error');
+    const message = '恢復流程未完成，請先重新整理並檢查資料。';
+    showImportError(message);
+    showToast(message, 'error');
   }
 }
 
