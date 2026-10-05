@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+[TypeError: fetch failed] {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at TLSSocket.onConnectSecure (node:internal/tls/wrap:1748:34)
+      at TLSSocket.emit (node:events:509:28)
+      at TLSSocket._finishInit (node:internal/tls/wrap:1185:8)
+      at ssl.onhandshakedone (node:internal/tls/wrap:966:12) {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+
+Node.js v24.18.0
