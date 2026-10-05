@@ -1,0 +1,58 @@
+v24.18.0
+✔ anonymous report is durably inserted, retry is idempotent, altered payload cannot overwrite (26.4096ms)
+✔ there is no public list or read endpoint; disallowed origins cannot send (1.4472ms)
+✔ validation and streamed size limits reject bad input before database writes (2.6137ms)
+✔ diagnostics allowlist and parameter binding prevent extra private fields and SQL injection (2.612ms)
+{"event":"feedback_intake_failed"}
+✔ rate limit and database failure return retryable errors without false success (2.1262ms)
+✔ daily cap prevents additional inserts but still acknowledges retries (12.0374ms)
+✔ required fields reject whitespace and malformed persisted drafts recover safely (1.6139ms)
+✔ drafts survive reload, can be cleared, and storage failures are reported (0.3283ms)
+✔ diagnostics contain useful environment data without URLs, tasks or account data (0.1956ms)
+✔ environment diagnostics require opt-in; reports have stable structure and an ID (3.1388ms)
+✔ direct POST preserves special characters, omits credentials and verifies receipt (18.0915ms)
+✔ long Chinese reports are submitted intact without URL length limits (0.3981ms)
+✔ offline shell caches feedback modules and matches current version cache (4.4353ms)
+✔ failed, rate-limited and malformed replies never count as accepted (17.7929ms)
+✔ uncertain submissions reuse the exact payload after reload; receipt clears the draft (0.4823ms)
+✔ actual legacy activation evicts preview; verified navigation, module and versioned bundle recover without lifecycle or DB effects (30.1766ms)
+✔ legacy eviction followed by bad-hash never publishes unverified navigation, module or catalog bytes (5.3877ms)
+✔ legacy eviction followed by http-503 never publishes unverified navigation, module or catalog bytes (2.0259ms)
+✔ legacy eviction followed by offline never publishes unverified navigation, module or catalog bytes (1.4733ms)
+✔ partial eviction repairs only the missing canonical asset and ignores caller query versions (1.5736ms)
+✔ recovery never borrows another namespace or touches an out-of-scope URL (2.3463ms)
+✔ two concurrent clients independently receive complete verified bytes and leave one canonical cache entry (9.3229ms)
+✔ a racing wrong-generation response cannot overwrite another client’s verified repair (16.0981ms)
+✔ source checkout has no profile or hashes: a cache miss fails closed without trusting a live URL (1.8696ms)
+✔ release descriptor has no hash manifest: a cache miss fails closed without trusting a live URL (1.7082ms)
+✔ release hash manifest omits this asset: a cache miss fails closed without trusting a live URL (1.2932ms)
+✔ source checkout must not recover using stray hashes: a cache miss fails closed without trusting a live URL (1.8878ms)
+✔ persistent alarm stays on minute boundaries, cannot be postponed by sync, and survives dispatch failure (1.0155ms)
+✔ scheduler bootstrap requires a separate admin secret; health never starts background work (34.6914ms)
+✔ tomorrow crosses month/year, next local reminder respects current time and DST gaps/folds (5.6059ms)
+✔ projection excludes completed/archive/private text and titles require explicit opt-in (0.9963ms)
+✔ digest deduplicates date conditions, excludes completed habits and resets weekly goals across weeks (0.7906ms)
+✔ subscription validation blocks arbitrary URL fetches and strips private payload fields (0.437ms)
+✔ anonymous credential protects state; sync is monotonic, idempotent and CORS is restricted (10.0337ms)
+✔ parallel scheduler claims once, sends the current day and advances without a second notification (5.0982ms)
+✔ empty and expired summaries do not send; subscription expiry disables reminders (9.7003ms)
+✔ temporary failures retry at most three times and do not block the next day (6.4507ms)
+✔ a missed earlier day recovers today within its window without skipping or duplicating today (5.7146ms)
+✔ recovery never catches up after today's delivery window expires (3.3961ms)
+✔ changing to a later time can reschedule an unsent skipped day, but cannot resend an accepted day (11.4515ms)
+{"event":"reminder-schedule-completed","scheduledAt":1791189636819}
+{"event":"reminder-schedule-failed","scheduledAt":1791189696819}
+{"event":"reminder-schedule-completed","scheduledAt":1790812800000}
+✔ moving a claimed unsent reminder to a future time keeps that day eligible (6.3771ms)
+✔ scheduler health requires a completed background run, and reports a stalled or failed scheduler (4.0045ms)
+✔ a delayed platform trigger uses execution time and does not send a stale notification (3.2151ms)
+✔ Web Push payload is encrypted and decrypts using only the receiving device key (5.8969ms)
+ℹ tests 44
+ℹ suites 0
+ℹ pass 44
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 340.511
+PASS CODE reproduction: actual startup catch writes failure message to removed loader; synthetic host has no error node.

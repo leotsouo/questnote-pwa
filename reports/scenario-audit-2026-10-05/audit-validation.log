@@ -1,0 +1,66 @@
+PASS 17 required audit sections in order
+PASS 13 balanced ASCII fenced blocks
+PASS 34 artifact/source references exist with valid line bounds
+PASS synthetic database guard name and interaction notes
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'���' !== 'PNG'
+
+    at file:///C:/Users/User/OneDrive/questnote-pwa/.worktrees/main-integration/[eval1]:28:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async node:internal/modules/esm/loader:224:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:221:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '���',
+  expected: 'PNG',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.18.0
+Validation harness correction: browser screenshot bytes are JPEG, initially saved with .png extension. Renamed to .jpg and updated references without changing image bytes. This was not a product failure.
+PASS 17 required audit sections in order
+PASS 13 balanced ASCII fenced blocks
+PASS 34 artifact/source references exist with valid line bounds
+PASS synthetic database name and interaction notes
+JPEG 01-first-time.jpg: 45677 bytes SHA256 56488447c044d80933ff505d20ce642030ce914a88b406e248c6036abf677a7e
+JPEG 02-guide-before-reload.jpg: 35904 bytes SHA256 959d1b0a5e926ef5ee7ddbad628ea5dcadcfd188fc677f54ed1f24bbf2765815
+JPEG 03-guide-restored.jpg: 35904 bytes SHA256 959d1b0a5e926ef5ee7ddbad628ea5dcadcfd188fc677f54ed1f24bbf2765815
+JPEG 04-tutorial-form.jpg: 34066 bytes SHA256 c3c708d6701154f5bf982c04a30dedc20cd59e9fcb704fd65c5f1c455bfab058
+JPEG 05-unsaved-task.jpg: 22964 bytes SHA256 81bc24dcad56b9acbd95fbf83dc9f169cca2d42daee7c7874c5db6b0ae77d00d
+JPEG 06-draft-lost.jpg: 19935 bytes SHA256 0a0d5d5f2f4ff68a303c6fd33bd0baa504c9d483de4b8be10d7d25c5702d3a1e
+JPEG 07-habit-invalid.jpg: 22909 bytes SHA256 1566cb2364df90bbf4933b99f3535c86c252143517f5b6f528393287c37e6032
+JPEG 08-returning-saved.jpg: 47376 bytes SHA256 06ccac16a68377041fc54c2d0b0e3b5bffba8ad1abfa02eab44ccb70c89658a2
+JPEG 09-subtask-completed-label.jpg: 35494 bytes SHA256 347aba392d39a3a7817e3a22959634ea7316e49328589df38dc4994ca1fc66ce
+JPEG 10-senior-home.jpg: 37115 bytes SHA256 5924d55005157005abb23617f2a1476ddc676dbf4e3f7352079c36ba5d6476a3
+JPEG 11-senior-dirty-guard.jpg: 36610 bytes SHA256 e5a03ac7fa48b1994d89e5a212c6b5abbedf1092518cabdf3ed4157108ba8b90
+PASS 40 distinct source function-like names found
+LIMIT: validates references/structure; not every call-graph edge, native device behavior or occurrence rate.
+PASS node --check recovery-repro.mjs
+PASS node --check startup-repro.mjs
+PASS node --check audit-validation.mjs
+PASS 17 required audit sections in order
+PASS 13 balanced ASCII fenced blocks
+PASS 34 artifact/source references exist with valid line bounds
+PASS synthetic database name and interaction notes
+JPEG 01-first-time.jpg: 45677 bytes SHA256 56488447c044d80933ff505d20ce642030ce914a88b406e248c6036abf677a7e
+JPEG 02-guide-before-reload.jpg: 35904 bytes SHA256 959d1b0a5e926ef5ee7ddbad628ea5dcadcfd188fc677f54ed1f24bbf2765815
+JPEG 03-guide-restored.jpg: 35904 bytes SHA256 959d1b0a5e926ef5ee7ddbad628ea5dcadcfd188fc677f54ed1f24bbf2765815
+JPEG 04-tutorial-form.jpg: 34066 bytes SHA256 c3c708d6701154f5bf982c04a30dedc20cd59e9fcb704fd65c5f1c455bfab058
+JPEG 05-unsaved-task.jpg: 22964 bytes SHA256 81bc24dcad56b9acbd95fbf83dc9f169cca2d42daee7c7874c5db6b0ae77d00d
+JPEG 06-draft-lost.jpg: 19935 bytes SHA256 0a0d5d5f2f4ff68a303c6fd33bd0baa504c9d483de4b8be10d7d25c5702d3a1e
+JPEG 07-habit-invalid.jpg: 22909 bytes SHA256 1566cb2364df90bbf4933b99f3535c86c252143517f5b6f528393287c37e6032
+JPEG 08-returning-saved.jpg: 47376 bytes SHA256 06ccac16a68377041fc54c2d0b0e3b5bffba8ad1abfa02eab44ccb70c89658a2
+JPEG 09-subtask-completed-label.jpg: 35494 bytes SHA256 347aba392d39a3a7817e3a22959634ea7316e49328589df38dc4994ca1fc66ce
+JPEG 10-senior-home.jpg: 37115 bytes SHA256 5924d55005157005abb23617f2a1476ddc676dbf4e3f7352079c36ba5d6476a3
+JPEG 11-senior-dirty-guard.jpg: 36610 bytes SHA256 e5a03ac7fa48b1994d89e5a212c6b5abbedf1092518cabdf3ed4157108ba8b90
+PASS 40 distinct source function-like names found
+LIMIT: validates references/structure; not every call-graph edge, native device behavior or occurrence rate.
+PASS staged git diff --cached --check; staged files restricted to scenario audit evidence; runtime sources unchanged.
