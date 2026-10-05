@@ -1,0 +1,7 @@
+PASS I01 delayed double submit writes once and Cancel cannot dismiss pending save
+PASS I01 rejected write preserves input and permits one corrected retry
+PASS I01 service validation failure stays editable and editing uses existing identity
+PASS I01 refresh failure after committed save gives honest feedback and cannot recreate
+PASS I01 Cancel outside pending state remains a single-step exit
+PASS I01 modal Close, backdrop and Escape respect pending habit save without changing task protection
+RESULT 6 focused checks passed. Boundaries use mocks; browser scenarios verify native flow.

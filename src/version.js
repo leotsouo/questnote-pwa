@@ -4,12 +4,12 @@
  */
 import { RELEASE_PROFILE } from './releaseProfile.js';
 
-export const APP_VERSION = '3.8.0';
-export const CACHE_NAME = 'questnote-preview-cache-v380-senior-guided-labels';
+export const APP_VERSION = '3.8.1';
+export const CACHE_NAME = 'questnote-preview-cache-v381-flow-habit';
 export const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 export const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */
-export const BUILD_TIME = '2026-10-04T12:30:35.386Z';
+export const BUILD_TIME = '2026-10-05T09:29:02.000Z';
 
 export function formatDisplayVersion() {
   return `V${APP_VERSION}`;

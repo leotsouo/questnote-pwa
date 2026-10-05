@@ -1,0 +1,17 @@
+✔ older preferences stay in normal mode; invalid values never enable a different presentation (1.0888ms)
+✔ enabling, disabling and invalid mode removal preserve the original theme and text preference (0.2203ms)
+✔ mode persistence and concurrent preference updates do not change any task, pet, currency or progression (210.5806ms)
+✔ backup roundtrip preserves mode and guide status with exactly the same shared progression (29.0878ms)
+✔ invalid or conflicting backup preferences are rejected before normalization can hide corruption (4.0748ms)
+✔ today shows active daily habits, with pending first and no mutation of the saved data (2.3635ms)
+✔ category filtering applies to habits without reclassifying or creating tasks (0.2337ms)
+✔ controls reflect the stored date, escape user text and retain undo after completion (1.1494ms)
+✔ empty and failed loads have distinct recovery actions (0.1102ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 423.9149
