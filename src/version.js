@@ -5,7 +5,7 @@
 import { RELEASE_PROFILE } from './releaseProfile.js';
 
 export const APP_VERSION = '3.8.1';
-export const CACHE_NAME = 'questnote-preview-cache-v381-flow-subtask';
+export const CACHE_NAME = 'questnote-preview-cache-v381-flow-init';
 export const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 export const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */

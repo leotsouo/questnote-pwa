@@ -12,6 +12,7 @@ Baseline: `872d144`. I01/I06/I03/I07 only; I02 not approved. Historical audit re
 | Subtask control **MODIFIED I06** | renderTaskCard | src/ui.js | Derive target/action label and aria-pressed from existing completed state. |
 | Toggle subtask KEEP | toggleSubtaskComplete / task-card action callback | src/taskService.js / src/ui.js | Existing completion toggle and persistence; same click count. |
 | Easy-read labels KEEP | decorateSeniorControls | src/seniorModeController.js | Existing visible label decoration now receives accurate subtask action text. |
+| Initialization failure **MODIFIED I03** | initApp catch / hideLoader | src/app.js | Reattach existing loader with visible generic error and full-page reload action; normal successful removal unchanged. No inline reinitialization or DB reset. |
 
 ## I01 verified block
 
@@ -32,3 +33,12 @@ Local Test → actual renderTaskCard with real escaping, I06-local.log PASS.
 Scenario Test → real saved task with subtask; before label fixed/pressed null, after label cancel-complete/pressed true. Space toggles to false/complete label. Screenshots 04/05 and actual DOM observation.
 Regression Test → 8 PASS in I06-regression.log.
 Before/After → ambiguous completed action → accurate current state and next action; same layout/click count.
+
+## I03 verified block
+
+Problem → startup catch writes error to removed loader.
+Implement → reattach existing host, generic Chinese message, focused full-page reload button.
+Local Test → 2 PASS in I03-local.log; test mock lacked focus initially, corrected in test only.
+Scenario Test → guarded native open failure, real visible error/reload; clicking reload returns saved task/habits. I03-browser-initial.json includes earlier independent harness-only I01 timeout, retained honestly; both I03 checks pass.
+Regression Test → I03-regression.log, app-update and preview cache recovery; successful loader removal remains unchanged.
+Before/After → hidden feedback → visible next action without inline reinitialization or database reset.

@@ -1,0 +1,26 @@
+✔ a complete asynchronous UI action blocks updates across gaps between writes, then unlocks (0.7529ms)
+✔ explicit update activates only the installed, pinned generation with one scoped caller; never claims (20.3466ms)
+✔ another app window vetoes activation, including uncontrolled and legacy clients (4.0797ms)
+✔ preview sibling clients do not block the production scope (5.5482ms)
+✔ missing cache, wrong artifact, active worker, wrong caller and legacy skip remain fail closed (7.294ms)
+✔ bootstrap verifies new worker bytes installed at an old script URL before opening the DB/runtime (4.6565ms)
+✔ actual legacy activation evicts preview; verified navigation, module and versioned bundle recover without lifecycle or DB effects (26.8034ms)
+✔ legacy eviction followed by bad-hash never publishes unverified navigation, module or catalog bytes (4.6174ms)
+✔ legacy eviction followed by http-503 never publishes unverified navigation, module or catalog bytes (1.7873ms)
+✔ legacy eviction followed by offline never publishes unverified navigation, module or catalog bytes (1.5476ms)
+✔ partial eviction repairs only the missing canonical asset and ignores caller query versions (2.0638ms)
+✔ recovery never borrows another namespace or touches an out-of-scope URL (2.4677ms)
+✔ two concurrent clients independently receive complete verified bytes and leave one canonical cache entry (22.4985ms)
+✔ a racing wrong-generation response cannot overwrite another client’s verified repair (30.1637ms)
+✔ source checkout has no profile or hashes: a cache miss fails closed without trusting a live URL (1.9237ms)
+✔ release descriptor has no hash manifest: a cache miss fails closed without trusting a live URL (1.8016ms)
+✔ release hash manifest omits this asset: a cache miss fails closed without trusting a live URL (1.4935ms)
+✔ source checkout must not recover using stray hashes: a cache miss fails closed without trusting a live URL (2.0192ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 351.4215

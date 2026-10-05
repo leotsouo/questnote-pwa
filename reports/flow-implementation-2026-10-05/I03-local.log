@@ -1,0 +1,3 @@
+PASS I03 startup failure remains visible even when fallback UI initialization also fails
+PASS I03 success path still removes its loader using actual hideLoader closure
+RESULT 2 focused checks passed. Boundaries use mocks; browser scenarios verify native flow.
