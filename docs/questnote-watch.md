@@ -1,6 +1,6 @@
 # 每日回報與公告巡查
 
-本聊天的 Codex heartbeat 每天 Asia/Taipei 21:00 執行。必須有本機執行環境、GitHub CLI 登入及 Cloudflare 私密讀取授權。無額外 AI API 或雲端排程。無新事項保持安靜，只通知新回報、完成發布、重要異常或需要人工處理事項。
+本聊天的 Codex heartbeat 每天 Asia/Taipei 04:00 執行。必須有本機執行環境、GitHub CLI 登入及 Cloudflare 私密讀取授權。無額外 AI API 或雲端排程。無新事項保持安靜，只通知新回報、完成發布、重要異常或需要人工處理事項。
 
 ## 授權與執行
 
