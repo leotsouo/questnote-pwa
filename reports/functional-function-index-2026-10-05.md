@@ -1,5 +1,7 @@
 # QuestNote function 索引 — 2026-10-05
 
+本文件保留原盤點 baseline；實作後的來源位置請使用 [Final function index](flow-implementation-2026-10-05/function-index.md)。
+
 來源 commit：`1de87e441b13afddf629102d19ee1e7887d93b2c`。以下由來源宣告生成，包含具名 function（含私有／巢狀）與 export 箭頭函式；匿名事件、object/class methods 與 re-export 請從流程圖的 controller/module 入口追蹤。此索引表示宣告位置，不表示每個 helper 都有獨立產品入口。
 
 共 1411 個具名宣告；115 個來源檔納入掃描。

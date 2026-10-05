@@ -1,0 +1,9 @@
+Initial report check: hideLoader is a private arrow closure intentionally excluded from named declaration index. Validator now verifies that exact actual closure instead; no product change.
+PASS: 11 sections, balanced ASCII and all tags; 111 function references grounded.
+PASS: 1411 current source-line references and Markdown targets verified.
+PASS: 12 accepted JPEG signatures.
+PASS: I01 3/3, I03 2/2, I07 2/2, scenarios 5/5; fresh first-time A/checkpoint PASS separately retained.
+PASS: npm test 12 focused checks + 362 maintained test executions + 35 reveal assertions; no failures.
+PASS: 6 JS syntax checks and git diff --check.
+LIMIT: no OS/device crash, true quota, offline SW, human UX metrics or full screen-reader acceptance.
+RETAIN: I02 unapproved and unchanged conditional reliability issue; release Review gate.

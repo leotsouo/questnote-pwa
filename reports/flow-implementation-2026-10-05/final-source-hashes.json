@@ -1,0 +1,10 @@
+{
+  "productCommit": "7b5192c",
+  "version": "3.8.1",
+  "sha256": {
+    "src/ui.js": "dd018965b4e0f9325d8b0e97fb90ba4ac872771b84aed812c98438b865d015f9",
+    "src/app.js": "76eaf8e549fba88a33cc8e47df80d66bec989310770d550376b4c5833a1d3c82",
+    "src/version.js": "772dc4b4f9a8184852c2f516189fa1dd325179d9d8e08487141805fce8868d26",
+    "service-worker.js": "f2e3bab2a9a3473b92b8ba0118940cc6ecbfd5b4bc2c4f282bc8b43892f8ba24"
+  }
+}

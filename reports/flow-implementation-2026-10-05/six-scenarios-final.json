@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "database": "QuestNoteTest-Onboarding-d746961d-974a-4eaf-9fb4-e66987681d25",
+  "results": [
+    {
+      "name": "A first-time: real guided practice including interrupted editor; existing users keep guide access",
+      "ok": true,
+      "detail": {
+        "initialWelcome": false,
+        "realPracticeCompleted": false,
+        "note": "Existing synthetic profile is retained; fresh server exercises practice."
+      }
+    },
+    {
+      "name": "B returning / E cancel: direct task entry, cancel creates no task, navigation returns",
+      "ok": true
+    },
+    {
+      "name": "F I06 accessible action and state; complete and undo stay on tasks",
+      "ok": true
+    },
+    {
+      "name": "C interrupted: persisted task and subtask restore; no forced welcome on reload",
+      "ok": true
+    },
+    {
+      "name": "D invalid input: required task content prevents writes; cancel remains available",
+      "ok": true
+    }
+  ]
+}

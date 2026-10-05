@@ -1,0 +1,21 @@
+{
+  "status": "failed",
+  "database": "QuestNoteTest-Onboarding-d746961d-974a-4eaf-9fb4-e66987681d25",
+  "results": [
+    {
+      "name": "A first-time: real guided practice including interrupted editor; existing users keep guide access",
+      "ok": true,
+      "detail": {
+        "initialWelcome": true,
+        "realPracticeCompleted": true,
+        "note": "Existing synthetic profile is retained; fresh server exercises practice."
+      }
+    },
+    {
+      "name": "B returning / E cancel: direct task entry, cancel creates no task, navigation returns",
+      "ok": false,
+      "error": "Error: Hidden/disabled #btn-add-task\n    at assert (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:10:56)\n    at click (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:20:3)\n    at http://127.0.0.1:49682/devtools/product-flow-browser-test.js:154:11\n    at async check (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:28:25)\n    at async scenarios (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:152:3)\n    at async HTMLButtonElement.<anonymous> (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:216:38)"
+    }
+  ],
+  "error": "Error: B returning / E cancel: direct task entry, cancel creates no task, navigation returns\n    at assert (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:10:56)\n    at check (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:29:42)\n    at async scenarios (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:152:3)\n    at async HTMLButtonElement.<anonymous> (http://127.0.0.1:49682/devtools/product-flow-browser-test.js:216:38)"
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuestNote SAFE flow acceptance</title>
+<style>
+  body { background:#111827; color:#f4f7ff; font:15px/1.5 system-ui; padding:16px; }
+  button { padding:10px; margin:3px; font:inherit; }
+  .workspace { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+  iframe { width:390px; height:844px; border:1px solid #64748b; }
+  pre { flex:1; min-width:300px; white-space:pre-wrap; overflow-wrap:anywhere; }
+</style>
+<h1>SAFE flow：隔離真實 UI 驗收</h1>
+<p>僅專用 loopback origin、UUID DB。保留合成資料；不刪除使用者資料，不連正式提醒或回報。故障只注入本 iframe 的 IndexedDB。</p>
+<div>
+  <button data-run="scenarios">六情境與 I06 回歸</button>
+  <button data-run="habits">I01 提交／失敗／重試</button>
+  <button data-run="habit-error">I01 顯示可重試錯誤</button>
+  <button data-run="startup">I03 顯示啟動失敗</button>
+  <button data-run="retry">I03 驗證重新載入</button>
+  <button data-run="restore-before">I07 恢復提交前失敗</button>
+  <button data-run="restore-after">I07 提交後刷新失敗</button>
+</div>
+<p>啟動失敗畫面出現後，請直接點 iframe 裡的「重新載入」，再點上方驗證按鈕。自動 DOM 操作並非真人可用性測試。</p>
+<div class="workspace"><iframe id="preview" title="真實 App 390 × 844" src="about:blank"></iframe><pre id="results" aria-live="polite">尚未執行</pre></div>
+<script type="module" src="./product-flow-browser-test.js"></script>
+</html>

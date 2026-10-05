@@ -1,5 +1,7 @@
 # QuestNote 全功能 ASCII Review
 
+實作後的最新真實總圖、驗證與 function mapping：見 [Final Implementation Review](flow-implementation-2026-10-05/final-review.md) 與 [Final Function Mapping](flow-implementation-2026-10-05/function-mapping.md)。下文保留盤點時的 V3.8.0 baseline，不應當作已修正後的程式快照。
+
 盤點日期：2026-10-05。來源：維護工作區 `.worktrees/main-integration`，source commit `1de87e441b13afddf629102d19ee1e7887d93b2c`，`APP_VERSION = 3.8.0`。
 這份文件描述本機原始碼；沒有查驗正式部署。盤點時 `origin/main = 27da862ab00613c6193759d49db5a80cfe7e48f9`，與本機 HEAD 的差異僅為磁碟治理文件／工具，App 與 backend 相同。
 
