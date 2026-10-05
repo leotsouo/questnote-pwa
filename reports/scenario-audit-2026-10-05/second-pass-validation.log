@@ -1,0 +1,19 @@
+Second-pass Review validation — 2026-10-05
+Product baseline: 65d62b0
+No new browser checks; prior interaction evidence reused.
+
+CHECK 1: exit 0
+PASS: actual habit submit callback + actual createHabit produce two distinct stored rows while the first write remains pending. [ 'habit_1791158400000', 'habit_1791158400001' ]
+PASS: injected persistence rejection escapes actual habit handler without inline/toast error feedback.
+PASS: actual craftItem orchestration leaves completed material debit after injected inventory write rejection; initial materials 4, final 2, no stored food.
+LIMIT: API boundaries are stubs. No native storage failure, OS termination, browser interaction, live IndexedDB, or production occurrence rate was tested.
+
+CHECK 2: exit 0
+PASS CODE reproduction: actual startup catch writes failure message to removed loader; synthetic host has no error node.
+
+CHECK 3: exit 0
+?? reports/font-scaling-test-2026-10-01.md
+
+
+Initial validation launcher failed: python not on PATH. Replaced with Node validator; no product impact.
+PASS: 8 sections; all 7 items answered all 10 questions; only I01-I07; 3 before/after pairs; ASCII tags and code fences complete.
