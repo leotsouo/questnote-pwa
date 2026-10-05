@@ -13,6 +13,8 @@ Baseline: `872d144`. I01/I06/I03/I07 only; I02 not approved. Historical audit re
 | Toggle subtask KEEP | toggleSubtaskComplete / task-card action callback | src/taskService.js / src/ui.js | Existing completion toggle and persistence; same click count. |
 | Easy-read labels KEEP | decorateSeniorControls | src/seniorModeController.js | Existing visible label decoration now receives accurate subtask action text. |
 | Initialization failure **MODIFIED I03** | initApp catch / hideLoader | src/app.js | Reattach existing loader with visible generic error and full-page reload action; normal successful removal unchanged. No inline reinitialization or DB reset. |
+| Backup restore feedback **MODIFIED I07** | executeRestoreBackup | src/ui.js | Shared catch uses identical neutral feedback, without asserting uncommitted data or invalid file. No new phase state or retry action. |
+| Backup replacement KEEP | restoreBackup / safeReplaceAllStores / replaceAllStores | src/backupService.js / src/db.js | Existing snapshot validation and atomic all-store replacement; unchanged. |
 
 ## I01 verified block
 
@@ -42,3 +44,12 @@ Local Test → 2 PASS in I03-local.log; test mock lacked focus initially, correc
 Scenario Test → guarded native open failure, real visible error/reload; clicking reload returns saved task/habits. I03-browser-initial.json includes earlier independent harness-only I01 timeout, retained honestly; both I03 checks pass.
 Regression Test → I03-regression.log, app-update and preview cache recovery; successful loader removal remains unchanged.
 Before/After → hidden feedback → visible next action without inline reinitialization or database reset.
+
+## I07 verified block
+
+Problem → shared catch incorrectly asserts incomplete data write / invalid backup even after commit.
+Implement → identical neutral inline/toast text; no phase flags, persistence or confirmation changes.
+Local Test → 3 PASS in I07-local.log (restore failure, postcommit refresh failure, success).
+Scenario Test → guarded native transaction-creation failure before restore and readonly failure after observed native restore commit. Both show neutral text and existing task IDs remain. I07-browser.json and screenshot 07.
+Regression Test → 22 PASS in I07-regression.log.
+Before/After → unsupported data-loss/file diagnosis → reload/check-data instruction without promising committed/aborted status.

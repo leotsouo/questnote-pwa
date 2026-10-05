@@ -1,0 +1,30 @@
+✔ restore preserves edited unfinished first practice as a completable shared task without losing receipts (7.9591ms)
+✔ verified historical exporters remain valid and migrate to complete snapshots (9.3599ms)
+✔ pre-camp V3.4.17 backup remains importable without camp or new region fields (1.2604ms)
+✔ V3.5.2 six-region backup preserves bond journey and adds fresh cloudrest progress (2.2812ms)
+✔ V3.5.3 through V3.5.5 seven-region saves migrate without inventing Lionheart rewards (3.2973ms)
+✔ partial current backup cannot masquerade as an older complete shape (0.9529ms)
+✔ every current core field is required before normalization (2.874ms)
+✔ top-level/data and projected aliases must agree (1.6715ms)
+✔ duplicate persistent keys and malformed nested records are rejected (3.5304ms)
+✔ money, counters, booleans and dangerous object keys fail closed (5.0535ms)
+✔ future/unknown partial formats are rejected with a compatibility explanation (0.7616ms)
+✔ snapshot restoration does not roll historical quest dates forward or maximize draws (0.9789ms)
+✔ empty nested state and ID-only rows cannot be silently normalized into defaults (9.9075ms)
+✔ every serialized nested state field is required before legacy normalization (42.4902ms)
+✔ malformed nested maps, date/counter values and missing fixed entries fail closed (7.1429ms)
+✔ collection state cannot override trusted catalog presentation through companion merge (2.6726ms)
+✔ valid daily, cancelled and weekly habit logs and item usage variants remain accepted (0.6798ms)
+✔ active/completed expeditions preserve full reward records and reject partial rewards (5.7937ms)
+✔ daily history supports check-in, wheel-only and combined persisted variants (1.0171ms)
+✔ export preflight permits fresh/mixed legacy stores but refuses existing malformed state (2.7126ms)
+✔ claim markers that normalizers would discard or rewrite are rejected (1.8097ms)
+✔ encounter snapshot requires currency, reconciled collection and an honest conversion receipt (3.9942ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 283.906

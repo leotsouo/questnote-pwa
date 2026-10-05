@@ -1,0 +1,4 @@
+PASS I07 restore failure reports neutral consistent recovery instructions
+PASS I07 refresh failure reports neutral consistent recovery instructions
+PASS I07 successful restore still shows success panel and does not show error
+RESULT 3 focused checks passed. Boundaries use mocks; browser scenarios verify native flow.

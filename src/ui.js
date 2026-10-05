@@ -8988,8 +8988,9 @@ async function executeRestoreBackup() {
     setImportElementHidden('import-restoring-hint', true);
     setImportElementHidden('import-preview', true);
     setImportElementHidden('btn-import-select', false);
-    showImportError('恢復失敗，資料未完整寫入。請重新整理後再試。');
-    showToast('恢復失敗，請確認備份檔是否正確。', 'error');
+    const message = '恢復流程未完成，請先重新整理並檢查資料。';
+    showImportError(message);
+    showToast(message, 'error');
   }
 }
 
