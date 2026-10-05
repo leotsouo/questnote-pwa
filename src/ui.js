@@ -3135,7 +3135,7 @@ function renderTaskCard(task) {
         <ul class="subtask-list">
           ${(task.subtasks || []).map((s) => `
             <li class="subtask-item ${s.completed ? 'subtask-item--done' : ''}">
-              <button type="button" class="subtask-check ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${escapeHtml(s.id)}" aria-label="完成子任務">
+              <button type="button" class="subtask-check ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${escapeHtml(s.id)}" aria-label="${s.completed ? '取消完成' : '完成'}：${escapeHtml(s.text)}" aria-pressed="${s.completed ? 'true' : 'false'}">
                 ${s.completed ? '✓' : ''}
               </button>
               <span class="subtask-text">${escapeHtml(s.text)}</span>
