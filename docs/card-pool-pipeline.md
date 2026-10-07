@@ -4,7 +4,7 @@
 
 `sopVersion: 2` 是內部資料契約相容標記，不代表另一套 SOP；所有新卡池使用同一份現行發布流程。
 
-新真實 workspace 必須 `brief.sopVersion: 2`、`noExtraCost: true`、`productionBaseline`（`deployedCommit`、`sourceCommit`、`mainCommit`、`artifactId`、`version`、`httpsUrl`、`verifiedAt`、`unpublishedChanges`）及完整 `animationPlan`（額外含 `reason`）。Pins 是核對紀錄，CLI 格式驗證不能取代實際 HTTPS／Git 核對。已提供需求直接帶入固定三題；AI 審 brief／plan／content／prompts，人工審卡圖與最終整包，不逐階段追問。
+新真實 workspace 必須 `brief.sopVersion: 2`、`noExtraCost: true`、`productionBaseline`（`deployedCommit`、`sourceCommit`、`mainCommit`、`artifactId`、`version`、`httpsUrl`、`verifiedAt`、`unpublishedChanges`）及完整 `animationPlan`（額外含 `reason`）。新 brief 明確選 `imageReviewMode: "human" | "ai-self"`；舊 brief 缺欄位視為 `human`。Pins 是核對紀錄，CLI 格式驗證不能取代實際 HTTPS／Git 核對。已提供需求直接帶入固定三題；AI 審 brief／plan／content／prompts，卡圖依模式審查，使用者只在既定模式的最終整包 gate 核准，不逐階段追問。
 
 現行 SOP 自動 scaffold `ecosystem.json`：`schemaVersion: 1`、一個完整 craftable `food`、新增 `materials: []`、新 roster 的 `affinities`／`affinityNotes`／`specialties`（`role`、`reason`）、`expedition`（`decision: add|reuse`、`reason`、`reusedAreaIds`、`areas`）、`releaseNotes`、`runtimeHashes`。角色專長須對得上實際派遣 runtime；空偏好也需要理由。沿用地區須提供所有配方材料的來源；新增地區須完成 runtime 的故事、發現和五個里程碑。
 
@@ -14,7 +14,7 @@
 
 產圖前優先盤點已安裝、適用的外掛插件，確認不额外計費再使用；不能確認費用時不呼叫。每隻 `prompts.json` 的 `provenance` 必須含實際 `tool`、`noExtraCost: true`、`costBasis`，其他生成資訊按實際可取得內容記錄。
 
-現行 SOP approve 額外傳入 `--reviewer-type ai|human`；images 只接受 human。測試明確使用 `brief.purpose: synthetic` 和 synthetic reviewer，不構成產品核准。新真實 brief 缺 SOP marker 會拒絕 init；既有 workspace 無 marker 仍可依 legacy 格式讀取，不遷移歷史 snapshots。
+現行 SOP approve 額外傳入 `--reviewer-type ai|human`；images 依 brief 模式接受 human 或 ai，缺欄位仍只接受 human。release review 從封存的 brief 比對 images receipt；模式不符或 synthetic 都不能發布。測試明確使用 `brief.purpose: synthetic` 和 synthetic reviewer，不構成產品核准。新真實 brief 缺 SOP marker 會拒絕 init；既有 workspace 無 marker 仍可依 legacy 格式讀取，不遷移歷史 snapshots。
 
 現行 SOP candidate 額外保存 `ecosystem.json`、`companion/data/{craftables,gift-affinities,materials,expeditions}.json` 與原始 `companion-baseline/data/...` bytes。Assembler 重新驗證來源 hashes、評估與內容，將核准 companion catalogs 放入 artifact 的實際 data／precache；原 baseline 與審核輸入歸檔在 release-input。單獨更新伴隨檔案的 self-hash 無法繞過重現驗證。
 
@@ -24,7 +24,7 @@
 
 這套 CLI 把已審核的新系列與新卡池組裝成可重現的 staging candidate。它會保留每階段原始輸入、核准輸出、SHA-256、工具版本指紋與審核紀錄；不呼叫既有 pet publisher，不修改官方 `data/`、`assets/`，也沒有 deploy、promote 或覆寫已完成 candidate 的命令。
 
-Pipeline 提供 AI handoff scaffold、資料契約、審核與組裝流程。**企劃、Lore、prompt 和圖片生成仍由 AI／操作者完成，CLI 沒有串接生成服務。** 視覺品質仍需人工審卡圖；前期內容一致性由 AI review。可重現的是核准產物組裝，不是每次重新生成圖片。
+Pipeline 提供 AI handoff scaffold、資料契約、審核與組裝流程。**企劃、Lore、prompt 和圖片生成仍由 AI／操作者完成，CLI 沒有串接生成服務。** 視覺品質須依 brief 模式在實際卡片尺寸檢查並留證；前期內容一致性由 AI review。可重現的是核准產物組裝，不是每次重新生成圖片。
 
 ## 產品範圍與少量必要決策
 
@@ -42,7 +42,7 @@ Pipeline 提供 AI handoff scaffold、資料契約、審核與組裝流程。**�
 
 發布 review 必須附動畫驗收紀錄，綁定 source commit、candidate ID、production／preview artifact ID 和 manifest SHA-256，記錄實際測試與預覽網址。至少涵蓋首次／短入場、單抽、十連、每種 SSR／UR、重複稀有角色、略過、鍵盤、減少動態、圖片失敗和清場。前奏略過仍接完整 SSR+ queue；queue 略過是另一項操作。無實際預覽證據時不宣告發布準備完成。
 
-動畫／契約工具修改會使原核准鏈失效：保留舊 receipts 與 immutable candidates，從當前 hash 重新 review。已人工核准的卡圖原始 bytes 相同，可記錄 hash 比對沿用其核准，不要求重產圖片。所有舊發布產物保留歷史，但不可拿來發布新動畫。最後正式發布仍需使用者明確核准。
+動畫／契約工具修改會使原核准鏈失效：保留舊 receipts 與 immutable candidates，從當前 hash 重新 review。已依相同模式核准的卡圖原始 bytes 相同，可記錄 hash 比對沿用其核准，不要求重產圖片。所有舊發布產物保留歷史，但不可拿來發布新動畫。最後正式發布仍需使用者明確核准。
 
 一個 workspace 對應一個全新 `seriesId` 和 `poolId`，沿用 M4 單一 expansion 機制，不替換既有系列、不變更既有池候選、不新增機制或任意 HTML／程式碼模板。先確認主題、各 rarity 數量、價格／機率／保底、演出模板與有無解鎖贈禮。例如把下列內容存為尚未核准的 `brief-draft.json`：
 
@@ -65,7 +65,7 @@ Pipeline 提供 AI handoff scaffold、資料契約、審核與組裝流程。**�
 
 不解鎖時明確使用 `"unlock": null`。`presentationTemplate` 使用受控 registry 的 `default`、`dream_bloom`、`glacier_arrival` 或 `honeylight_sugar`。冰河模板供霜誓峽灣及未來適合的卡池使用，不綁定 pool ID；新增模板必須先完成 runtime、契約與呈現驗證，再鎖定 authoring 輸入。每個非零機率及保底可達 rarity 必須在 locked、unlocked 階段都有候選；不能把唯一 UR 放到解鎖後。總寵物數為 1–100。
 
-`rewardDraftId` 使用分 rarity 的穩定 roster slot：`n_1`、`r_1`、`r_2`、`sr_1` 等。`init` 在全域 authoring lock 下，從官方與所有工作區的現有 ID 後接續配置 pet ID；同時保留未發布 pool ID。**配置發生於尚未核准的 scaffold 建立階段，approve 不會修改 plan 或重配 ID。** 所以人工核准的 plan hash 已涵蓋實際 `draftId → petId` mapping。
+`rewardDraftId` 使用分 rarity 的穩定 roster slot：`n_1`、`r_1`、`r_2`、`sr_1` 等。`init` 在全域 authoring lock 下，從官方與所有工作區的現有 ID 後接續配置 pet ID；同時保留未發布 pool ID。**配置發生於尚未核准的 scaffold 建立階段，approve 不會修改 plan 或重配 ID。** 所以已審核的 plan hash 涵蓋實際 `draftId → petId` mapping。
 
 ## 操作順序
 
@@ -84,9 +84,9 @@ node scripts/card-pool.mjs status rain_lanterns
 2. **plan**：依 brief 填入 `plan.json` 的寵物名稱、設計說明和 `base`／`unlock` 階段；保留配置好的 identity。贈禮寵物必須屬於 unlock 階段。
 3. **content**：依核准 roster 完成 `series.json`、`pets.json`、`pets-lore.json`、`pool.json`。base tags 固定為 `[poolId]`，expansion tags 固定為 `[poolId + '_expanded']`；禁止加上 `standard` 等其他池 tag。
 4. **prompts**：完成 `prompts.json`，每個 pet ID 對應 `{ "prompt": "...", "negativePrompt": "...", "provenance": "..." }`。provenance 可記錄使用的生成工具、模型、版本、seed 或 reference 說明；可用的生成資訊應保留，不猜測未提供資訊。
-5. **images**：放入 `images/<petId>.png`，必須可完整解碼、正方形、至少 512 px、每張不超過 5 MB。超過 2048 px 或 2 MB 會要求審核 warning。人工檢查外觀、角色識別、裁切、透明度與 prompt／Lore 一致性。
+5. **images**：放入 `images/<petId>.png`，必須可完整解碼、正方形、至少 512 px、每張不超過 5 MB。超過 2048 px 或 2 MB 會要求審核 warning。依 brief 模式由人工或 AI 檢查外觀、角色識別、實際卡片縮圖、裁切、透明度與 prompt／Lore 一致性。
 
-美術依 [SOP：故事如何成為卡圖](new-card-pool-sop.md#故事如何成為卡圖) 執行：每隻 `plan.design` 明確寫出辨識特徵、故事動作與可見結果，content 同步名稱／Lore／描述／入場短句，prompts 保留這些具體要求。實際圖片須逐張檢查故事是否可見，再交人工審圖。這是既有五階段的審查內容，不新增 schema 欄位或 approval gate；文字與圖片修訂依原 hash 失效規則處理。
+美術依 [SOP：故事如何成為卡圖](new-card-pool-sop.md#故事如何成為卡圖) 執行：每隻 `plan.design` 明確寫出辨識特徵、故事動作與可見結果，content 同步名稱／Lore／描述／入場短句，prompts 保留這些具體要求。先在實際縮圖檢查關鍵角色再延伸全池，逐張檢查故事是否可見，依 brief 模式留審圖紀錄。文字與圖片修訂依原 hash 失效規則處理。
 
 核准命令必須帶入當前顯示的完整 SHA-256；不是從聊天中猜測或沿用舊 hash：
 
@@ -165,7 +165,7 @@ v1 **不自動搶占 stale lock，也不保證任何硬中斷後可無人值守�
 
 ## 驗證
 
-卡池入場文字、SSR／UR 時長、下一位交接、覺醒雙形態及十連略過的共用標準見 `docs/new-card-pool-sop.md`「卡池畫面與動畫的共同驗收規格」。`checks.animation.evidence` 應連到實際量測與互動紀錄；來源記憶體試演不能充當 pinned artifact 或人工最終驗收。最新來源試演另執行 `node --test devtools/companion-ceremony.test.mjs`，但 Node checks 不代替逐池動畫觀察與真機項目。
+卡池入場文字、SSR／UR 時長、下一位交接及十連略過的共用標準見 `docs/new-card-pool-sop.md`「卡池畫面與動畫的共同驗收規格」。覺醒另依 `docs/pet-awakening-implementation.md`，只在新池影響相關功能時回歸。`checks.animation.evidence` 應連到實際量測、互動紀錄與所屬環境；來源記憶體試演不能充當 pinned artifact 或人工最終驗收。最新來源試演另執行 `node --test devtools/companion-ceremony.test.mjs`，但 Node checks 不代替逐池動畫觀察與真機項目。
 
 ```text
 node --test devtools/card-pool-pipeline.test.mjs
