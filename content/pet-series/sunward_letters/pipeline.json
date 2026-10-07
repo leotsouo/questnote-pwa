@@ -586,6 +586,93 @@
       "approvedAt": "2026-10-07T18:44:22.751Z",
       "reviewer": "Codex AI self-review",
       "reviewerType": "ai"
+    },
+    {
+      "stage": "prompts",
+      "inputHash": "72a5085f21f506711c7d905621894d3723bda23c9cc2746e8ef0697b045051a6",
+      "outputHash": "c7f36a95156ae890f17b5e2dc0c43db4d2998467a33481d68d404225e16c4a1d",
+      "files": {
+        "prompts.json": "0f91184cb34d79e12cc9875aac8dd34125894af824a9eb9ae74ef0cc93a00655"
+      },
+      "toolsHash": "9d986f5a56781c897d4f7095181e7d28f4e1857bc99b8cbe1a1e24e32370a8bf",
+      "snapshot": "approvals/c7f36a95156ae890f17b5e2dc0c43db4d2998467a33481d68d404225e16c4a1d",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        }
+      ],
+      "approvedAt": "2026-10-07T18:45:09.900Z",
+      "reviewer": "Codex AI self-review",
+      "reviewerType": "ai"
     }
   ]
 }
