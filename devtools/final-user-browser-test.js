@@ -145,8 +145,13 @@ async function createTask(content, subtasks = []) {
   await click('#btn-add-task');
   await until(() => !!doc().querySelector('#task-form'), 'task form');
   enter('#task-content', content);
+  await click('#task-form .task-wizard__next');
   if (!find('#task-plan-today').checked) await click('#task-plan-today');
+  while (find('#task-form .task-wizard__next').getClientRects().length
+    && find('#task-form .task-wizard__next').hidden === false
+    && !visible(find('#subtask-new-input'))) await click('#task-form .task-wizard__next');
   for (const text of subtasks) { enter('#subtask-new-input', text); await click('#subtask-add-btn'); }
+  await click('#task-form .task-wizard__next');
   await click('#task-form [type="submit"]');
   await until(async () => !(find('#modal-overlay').classList.contains('open'))
     && (await services.taskService.getAllTasks()).some((task) => task.title === content.split('\n')[0]), 'task created');

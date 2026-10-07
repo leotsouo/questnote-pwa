@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<title>任務語音輸入測試</title>
+<div class="modal-overlay open"><form id="task-form"><section><textarea id="task-content">原文</textarea></section></form></div>
+<pre id="result">RUNNING</pre>
+<script type="module">
+  import { attachTaskVoiceInput } from '../src/taskVoiceInput.js';
+
+  const instances = [];
+  class FakeRecognition {
+    constructor() { this.aborted = false; instances.push(this); }
+    start() { this.onstart?.(); }
+    stop() { this.onend?.(); }
+    abort() { this.aborted = true; this.onend?.(); }
+    emit(text, isFinal) { this.onresult?.({ results: [{ 0: { transcript: text }, isFinal, length: 1 }] }); }
+    fail(error) { this.onerror?.({ error }); this.onend?.(); }
+  }
+  const assert = (value, message) => { if (!value) throw new Error(message); };
+  const form = document.querySelector('form');
+  const section = form.querySelector('section');
+  const input = form.querySelector('textarea');
+  try {
+    attachTaskVoiceInput(form, section, input, { Recognition: FakeRecognition, secureContext: true });
+    const button = section.querySelector('.task-voice-button');
+    const status = section.querySelector('.task-voice-status');
+    await Promise.resolve();
+    assert(button.getAttribute('aria-label') === '開始語音輸入', 'accessible start button');
+    button.click();
+    assert(button.getAttribute('aria-pressed') === 'true', 'listening state');
+    instances.at(-1).emit('口述', false);
+    assert(input.value === '原文\n口述', 'interim text appended to existing draft');
+    instances.at(-1).emit('口述完成', true);
+    assert(input.value === '原文\n口述完成', 'final text replaces interim text');
+    button.click();
+    assert(button.getAttribute('aria-pressed') === 'false', 'stop state');
+    button.click();
+    instances.at(-1).fail('not-allowed');
+    assert(status.textContent.includes('權限'), 'permission error');
+    button.click();
+    const manualSession = instances.at(-1);
+    input.value = '手動修改';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    assert(manualSession.aborted && input.value === '手動修改', 'typing stops recognition without overwriting text');
+    button.click();
+    const closingSession = instances.at(-1);
+    document.querySelector('.modal-overlay').classList.remove('open');
+    await Promise.resolve();
+    assert(closingSession.aborted, 'closing the modal releases the microphone');
+    const other = document.createElement('section');
+    const otherInput = document.createElement('textarea');
+    other.append(otherInput);
+    form.append(other);
+    attachTaskVoiceInput(form, other, otherInput, { Recognition: null, secureContext: false });
+    assert(other.querySelector('button').disabled, 'unsupported browser remains editable');
+    class FakeLocalRecognition extends FakeRecognition {
+      static availability = 'downloadable';
+      static installs = 0;
+      static async available() { return this.availability; }
+      static async install() { this.installs += 1; this.availability = 'available'; return true; }
+    }
+    const localOverlay = document.createElement('div');
+    localOverlay.className = 'modal-overlay open';
+    localOverlay.innerHTML = '<form><section><textarea id="local-input"></textarea></section></form>';
+    document.body.append(localOverlay);
+    const localForm = localOverlay.querySelector('form');
+    const localSection = localOverlay.querySelector('section');
+    const localInput = localOverlay.querySelector('textarea');
+    attachTaskVoiceInput(localForm, localSection, localInput, { Recognition: FakeLocalRecognition, secureContext: true });
+    await Promise.resolve();
+    await Promise.resolve();
+    const localButton = localSection.querySelector('.task-voice-button');
+    assert(localButton.getAttribute('aria-label') === '下載繁體中文語音套件', 'download shown before recognition');
+    localButton.click();
+    await Promise.resolve();
+    await Promise.resolve();
+    assert(FakeLocalRecognition.installs === 1, 'language pack install requested');
+    assert(localButton.getAttribute('aria-label') === '開始語音輸入', 'button ready after install');
+    localButton.click();
+    assert(instances.at(-1).processLocally === true, 'recognition runs locally');
+    document.querySelector('#result').textContent = 'PASS: draft, stop, errors, cleanup, unsupported fallback, local language pack install and recognition';
+  } catch (error) {
+    document.querySelector('#result').textContent = `FAIL: ${error.stack}`;
+  }
+</script>
+</html>

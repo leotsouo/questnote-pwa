@@ -51,6 +51,7 @@ try {
   await page.locator('#btn-add-task').click(); await page.locator('#task-content').fill('明天要繳電費\nPRIVATE LONG TEXT');
   await page.locator('[data-plan-date="tomorrow"]').click();
   const tomorrow = await page.locator('#task-plan-date').inputValue();
+  while (await page.locator('.task-wizard__next').isVisible()) await page.locator('.task-wizard__next').click();
   await page.locator('#task-form button[type="submit"]').click();
   await page.getByRole('heading', { name: /明日計畫/ }).waitFor();
   console.log('PASS: tomorrow date picker saves a future plan and displays the tomorrow section');
