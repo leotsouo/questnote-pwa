@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "1746fac9daab6e1608cfb298ef1b3e67e4e8d637",
+  "candidateId": "f0ddd51a16e30c31f7f2262e4804e366ed452ddcfe4de16132b13ef521b87fbf",
+  "candidateManifestSha256": "c8901c7b8fa645b29b15f1f31479a5136b313a9900c8bb167519b2cfe8499059",
+  "previewUrl": "http://127.0.0.1:51616/questnote-pwa-preview/",
+  "artifacts": {
+    "production": {
+      "scopePath": "/questnote-pwa/",
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\ee44ee416cbd1d42897bc79f431fd250b1c36bf727d80e243142a560e23325ed",
+      "artifactId": "ee44ee416cbd1d42897bc79f431fd250b1c36bf727d80e243142a560e23325ed",
+      "manifestSha256": "bc7544603afb95bae634aee837426d31aa3323492f637890439b981a6bd7b72a"
+    },
+    "preview": {
+      "scopePath": "/questnote-pwa-preview/",
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\55be4cc8b8700a5c454308078a4113d1169d20396bf38cd58eb9537d7dd51dae",
+      "artifactId": "55be4cc8b8700a5c454308078a4113d1169d20396bf38cd58eb9537d7dd51dae",
+      "manifestSha256": "7d036c8467b41d7b1c48a041e28ada906bdd78392fbdccb78d93ae273c31609b"
+    }
+  },
+  "checks": {
+    "animation": {
+      "evidence": "Final preview artifact 55be4cc8 served at http://127.0.0.1:54984/animation-review/: actual modules played 3.4s entry, both SSR and UR reveals (UR 960x960 source), reduced-motion and fixed ten-pull, skip/continue; summary retained duplicate positions 1/6 and 5/10. Actual V3.8.7 app pool switch and 393x852 card were inspected at http://127.0.0.1:51616/questnote-pwa-preview/ with no horizontal overflow.",
+      "status": "pass"
+    },
+    "workshop": {
+      "evidence": "Final artifact browser run 2c073184-47de-4f9d-b656-29011833f40d at http://127.0.0.1:54137/test/ passed actual crafting item_sunward_grain_ring and favorite gifting (150 bond EXP) in isolated save.",
+      "status": "pass"
+    },
+    "specialties": {
+      "evidence": "Same final artifact browser run dispatched pet_n41 with gatherer specialty from reviewed companion content.",
+      "status": "pass"
+    },
+    "region": {
+      "evidence": "Reviewed ecosystem reuses mist_forest and harvest_fields with existing offline images and materials; no new region content required. Final artifact offline checks passed.",
+      "status": "reuse"
+    },
+    "transactions": {
+      "evidence": "Final artifact browser run 2c073184-47de-4f9d-b656-29011833f40d passed 19/19: native ten-pull charged 1000 once (10000 to 9000), SR floor in tenth slot, duplicate fragments [9,5], wallet survived reload; invitations and gifts idempotent offline. npm test passed.",
+      "status": "pass"
+    },
+    "serviceWorker": {
+      "evidence": "Same final 19/19 run verified production ee44ee41 and preview 55be4cc8 isolated controllers/DBs, legacy-client waiting, corrupt/missing asset refusal, cache recovery and complete offline boot.",
+      "status": "pass"
+    }
+  }
+}
