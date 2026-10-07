@@ -258,5 +258,29 @@
       "bond_item",
       "lionheart_inverse_oath"
     ]
+  },
+  {
+    "id": "item_sunward_grain_ring",
+    "name": "晴雨穀圈",
+    "type": "favorite_bond_item",
+    "rarity": "R",
+    "description": "雨後以森林嫩葉包裹豐穗護符的穀香小圈。自然與田園喜好的夥伴特別喜愛。",
+    "enabled": true,
+    "favoriteTags": [
+      "nature",
+      "harvest"
+    ],
+    "effect": {
+      "bondExp": 75,
+      "favoriteBonusBondExp": 150
+    },
+    "recipe": {
+      "forest_leaf": 3,
+      "harvest_charm": 3
+    },
+    "futureTags": [
+      "bond_item",
+      "sunward_letters"
+    ]
   }
 ]
