@@ -48,6 +48,22 @@ async function runTests() {
     catch (error) { cases.push({ name, ok: false, error: error.stack }); skipThemedSummon(); skipSummonReveal(); }
     output.textContent = JSON.stringify(cases, null, 2);
   }
+  for (const animationKey of ['dream_bloom', 'glacier_arrival', 'honeylight_sugar', 'swordwild_shanhe', 'lionheart_inverse_oath']) {
+    for (const mode of ['single', 'ten']) for (const reduceMotion of [false, true]) {
+      await test(`${animationKey} ${mode} reduced=${reduceMotion} has no circular omen and remains closable`, async () => {
+        const results = Array.from({ length: mode === 'ten' ? 10 : 1 }, () => sample('N'));
+        const before = JSON.stringify(results);
+        const pending = playThemedSummon({ animationKey, results, reduceMotion });
+        await waitFor(() => document.querySelector('.dream-bloom-overlay'), 'pool overlay');
+        const overlay = document.querySelector('.dream-bloom-overlay');
+        assert(!overlay.querySelector('.dream-bloom-omen, [data-role="omen"]'), 'Circular omen remains');
+        if (animationKey === 'honeylight_sugar') assert(overlay.querySelector('.sugar-scene__candy'), 'Candy scenery was removed');
+        overlay.querySelector('[data-action="skip"]').click();
+        await closeSummary();
+        assert((await pending).ok && JSON.stringify(results) === before, 'Removal changed results or blocked cleanup');
+      });
+    }
+  }
   await test('unsupported template fails closed', async () => {
     assert((await playThemedSummon({ animationKey: '__proto__', results: [sample('N')] })).fallback, 'Unknown key played');
     assert(!document.querySelector('.dream-bloom-overlay'), 'Unknown key created DOM');
@@ -68,6 +84,7 @@ async function runTests() {
     const results = [sample('N')], before = JSON.stringify(results);
     const pending = summon(results, { reduceMotion: false });
     await waitFor(() => document.querySelector(`.dream-bloom-overlay[data-state="${phase}"]`), phase);
+    assert(!document.querySelector('.dream-bloom-omen'), 'Circular omen appeared during the ritual');
     const button = document.querySelector('[data-action="skip"]'); button.click(); button.click();
     await closeSummary();
     assert((await pending).ok && JSON.stringify(results) === before, 'Skip altered results');
