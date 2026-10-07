@@ -24,6 +24,7 @@
     attachTaskVoiceInput(form, section, input, { Recognition: FakeRecognition, secureContext: true });
     const button = section.querySelector('.task-voice-button');
     const status = section.querySelector('.task-voice-status');
+    await Promise.resolve();
     assert(button.getAttribute('aria-label') === '開始語音輸入', 'accessible start button');
     button.click();
     assert(button.getAttribute('aria-pressed') === 'true', 'listening state');
@@ -52,7 +53,32 @@
     form.append(other);
     attachTaskVoiceInput(form, other, otherInput, { Recognition: null, secureContext: false });
     assert(other.querySelector('button').disabled, 'unsupported browser remains editable');
-    document.querySelector('#result').textContent = 'PASS: start, interim/final text, stop, permission error, manual edit, close cleanup, unsupported fallback';
+    class FakeLocalRecognition extends FakeRecognition {
+      static availability = 'downloadable';
+      static installs = 0;
+      static async available() { return this.availability; }
+      static async install() { this.installs += 1; this.availability = 'available'; return true; }
+    }
+    const localOverlay = document.createElement('div');
+    localOverlay.className = 'modal-overlay open';
+    localOverlay.innerHTML = '<form><section><textarea id="local-input"></textarea></section></form>';
+    document.body.append(localOverlay);
+    const localForm = localOverlay.querySelector('form');
+    const localSection = localOverlay.querySelector('section');
+    const localInput = localOverlay.querySelector('textarea');
+    attachTaskVoiceInput(localForm, localSection, localInput, { Recognition: FakeLocalRecognition, secureContext: true });
+    await Promise.resolve();
+    await Promise.resolve();
+    const localButton = localSection.querySelector('.task-voice-button');
+    assert(localButton.getAttribute('aria-label') === '下載繁體中文語音套件', 'download shown before recognition');
+    localButton.click();
+    await Promise.resolve();
+    await Promise.resolve();
+    assert(FakeLocalRecognition.installs === 1, 'language pack install requested');
+    assert(localButton.getAttribute('aria-label') === '開始語音輸入', 'button ready after install');
+    localButton.click();
+    assert(instances.at(-1).processLocally === true, 'recognition runs locally');
+    document.querySelector('#result').textContent = 'PASS: draft, stop, errors, cleanup, unsupported fallback, local language pack install and recognition';
   } catch (error) {
     document.querySelector('#result').textContent = `FAIL: ${error.stack}`;
   }
