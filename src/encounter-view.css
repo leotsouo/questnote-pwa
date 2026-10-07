@@ -287,3 +287,8 @@ body[data-reduce-motion="true"] :is(.identity-surface, .identity-dialog, .identi
 .identity-surface .collection-milestones-header {
   padding-right: 0;
 }
+
+/* Keep every rarity visible at phone widths using the current theme palette. */
+.identity-surface .collection-filter-group { margin: 18px 0; }
+.identity-surface .collection-filter-heading { font-size: 1rem; color: var(--color-text-main); }
+.identity-surface .collection-rarity-filters button { min-width: 44px; flex: 0 0 auto; }

@@ -41,6 +41,7 @@ let collectionScope = 'all';
 let view = 'pool';
 let collection = new Map();
 let filter = 'all';
+let rarityFilter = 'all';
 let density = 'compact';
 let query = '';
 let dialogOpener = null;
@@ -125,7 +126,10 @@ function renderCollection() {
   screen.innerHTML = `<div class="page-intro"><div><p class="eyebrow">OUR ADVENTURE JOURNAL</p><h1>${isSeniorMode() ? '寵物與收藏' : '相遇，寫成旅程。'}</h1><p class="page-description">熟悉的夥伴，和還未寫下的故事。</p></div></div>${poolSelector()}
     <section class="collection-progress"><p><strong>${count} / ${list.length}</strong> <span class="subtle">位夥伴已相遇</span></p><p class="subtle">每次相遇，都留下一頁自己的記錄。</p><progress max="${list.length}" value="${count}" aria-label="${escapeHtml(collectionScopeName())}，${count} 位已相遇，共 ${list.length} 位"></progress></section>
     <section id="encounter-collection-milestones" class="collection-milestones-panel card" aria-label="收藏里程碑"></section>
-    <div class="filters" aria-label="收藏狀態">${[['all','全部夥伴'],['owned','已相遇'],['unowned','尚未相遇']].map(([key,label]) => `<button data-filter="${key}" aria-pressed="${filter === key}">${label}</button>`).join('')}</div>
+    <section class="collection-filter-group" aria-label="圖鑑分類篩選"><h2 class="collection-filter-heading">分類篩選</h2>
+    <div class="filters collection-rarity-filters" role="group" aria-label="稀有度">${[['all','全部稀有度'], ...RARITIES.map((rarity) => [rarity,rarity])].map(([key,label]) => `<button type="button" data-rarity-filter="${key}" aria-pressed="${rarityFilter === key}">${label}</button>`).join('')}</div>
+    <div class="filters" role="group" aria-label="收藏狀態">${[['all','全部夥伴'],['owned','已相遇'],['unowned','尚未相遇']].map(([key,label]) => `<button data-filter="${key}" aria-pressed="${filter === key}">${label}</button>`).join('')}</div>
+    </section>
     <div class="filters" aria-label="卡片密度"><button data-density="compact" aria-pressed="${density === 'compact'}">精簡卡片</button><button data-density="expanded" aria-pressed="${density === 'expanded'}">展開卡片</button></div>
     <label class="search-label">尋找名字或稱號<input id="identity-collection-search" type="search" value="${escapeHtml(query)}" placeholder="輸入你記得的名字…"></label>
     <div id="identity-collection-results"></div>`;
@@ -135,7 +139,7 @@ function renderCollection() {
 }
 
 function renderCollectionCards() {
-  const list = collectionCandidates().filter((pet) => (filter === 'all' || (filter === 'owned' ? owned(pet) : !owned(pet))) && `${pet.name} ${pet.title || ''}`.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
+  const list = collectionCandidates().filter((pet) => (rarityFilter === 'all' || pet.rarity === rarityFilter) && (filter === 'all' || (filter === 'owned' ? owned(pet) : !owned(pet))) && `${pet.name} ${pet.title || ''}`.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
   document.getElementById('identity-collection-results').innerHTML = list.length ? `<p class="subtle" role="status" style="margin-top:16px">${list.length} 位夥伴 · 未相遇角色保留灰階預覽與名字</p><div class="collection-grid ${density === 'expanded' ? 'expanded' : ''}">${list.map((pet) => miniCard(pet, { grayscale: true, title: density === 'expanded' })).join('')}</div>` : `<section class="empty-state"><h2 role="status">這一頁還是空白。</h2><p class="subtle">試試其他名字或篩選，讓故事慢慢展開。</p><button data-identity-action="clear-filter">顯示全部夥伴</button></section>`;
 }
 
@@ -382,7 +386,15 @@ document.addEventListener('click', async (event) => {
 
   if (button.dataset.pet) { petDetail(byId(button.dataset.pet)); return; }
   if (button.dataset.resultPet) { petDetail(byId(button.dataset.resultPet), true); return; }
-  if (button.dataset.filter) { filter = button.dataset.filter; renderCollection(); return; }
+  if (button.dataset.rarityFilter || button.dataset.filter) {
+    const attribute = button.dataset.rarityFilter ? 'data-rarity-filter' : 'data-filter';
+    const value = button.getAttribute(attribute);
+    if (attribute === 'data-rarity-filter') rarityFilter = value;
+    else filter = value;
+    renderCollection();
+    screen.querySelector(`[${attribute}="${value}"]`)?.focus({ preventScroll: true });
+    return;
+  }
   if (button.dataset.density) { density = button.dataset.density; renderCollection(); return; }
   if (button.dataset.phaseStep) { phase(button.dataset.phaseStep); return; }
   const action = button.dataset.identityAction;
@@ -417,8 +429,8 @@ document.addEventListener('click', async (event) => {
     document.getElementById('identity-announcement').textContent = `${byId(button.dataset.petId).name}已設為陪伴夥伴。`;
   }
   if (action === 'reveal-detail') { const pet = activeResult.pet; closeReveal(); petDetail(pet); }
-  if (action === 'reveal-collection') { filter = 'all'; query = ''; closeReveal(); appActions.switchView('collection'); screen.focus(); }
-  if (action === 'clear-filter') { filter = 'all'; query = ''; renderCollection(); }
+  if (action === 'reveal-collection') { filter = 'all'; rarityFilter = 'all'; query = ''; closeReveal(); appActions.switchView('collection'); screen.focus(); }
+  if (action === 'clear-filter') { filter = 'all'; rarityFilter = 'all'; collectionScope = 'all'; query = ''; renderCollection(); screen.querySelector('[data-rarity-filter="all"]')?.focus({ preventScroll: true }); }
 });
 
 document.addEventListener('change', (event) => {
