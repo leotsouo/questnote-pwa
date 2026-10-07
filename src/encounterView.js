@@ -93,7 +93,7 @@ function renderPool() {
   const hero = byId(presentation().heroPetId) || list.find((pet) => pet.rarity === 'UR') || list[0];
   const support = (presentation().featuredPetIds || list.filter((pet) => pet.rarity === 'UR' && pet.id !== hero.id).slice(0, 3).map((pet) => pet.id)).map(byId).filter((pet) => pet && list.some((row) => row.id === pet.id));
   screen.innerHTML = `<div class="page-intro pool-heading"><h1>${isSeniorMode() ? '召喚你的下一位夥伴' : '下一位同行者。'}</h1>${isSeniorMode() ? '<p class="page-description">完成任務獲得星塵，再用星塵隨機召喚夥伴。每一次相遇都會儲存在收藏。</p>' : ''}</div>
-    ${poolSelector()}<section class="summon-sanctuary" data-world="${ceremonyPresentation(selected).animationKey}">
+    ${poolSelector()}<section class="summon-sanctuary" data-world="${ceremonyPresentation(selected).animationKey}" data-pool-id="${escapeHtml(selected.id)}">
     <div class="sanctuary-scenery" aria-hidden="true"></div>
     <header class="sanctuary-heading"><h2>${escapeHtml(selected.name)}</h2><span>${escapeHtml(selected.presentation?.badge || '星光相遇')}</span></header>
     <div class="pool-layout"><div class="pool-stage"><button class="hero-card rank-${hero.rarity}" data-pet="${hero.id}" aria-label="預覽 ${escapeHtml(identityLabel(hero, owned(hero)))}">
