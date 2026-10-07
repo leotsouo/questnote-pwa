@@ -4687,6 +4687,144 @@ body[data-theme="default"] .toast--info {
   padding: var(--space-2);
 }
 
+/* 新增任務：一次呈現一個主要問題。 */
+.task-form--wizard .task-wizard__step[hidden],
+.task-form--wizard .form-actions > [hidden] {
+  display: none !important;
+}
+
+.task-form--wizard .task-wizard__progress {
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-border);
+}
+
+.task-form--wizard .task-wizard__progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-primary);
+  transition: width 180ms ease;
+}
+
+.task-form--wizard .task-wizard__step {
+  min-height: 13rem;
+}
+
+.task-form--wizard .task-wizard__eyebrow {
+  margin: var(--space-4) 0 var(--space-1);
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.task-form--wizard .task-wizard__step h3 {
+  margin: 0;
+  color: var(--color-text-main);
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
+  line-height: 1.35;
+}
+
+.task-form--wizard .task-wizard__step h3:focus {
+  outline: none;
+}
+
+.task-form--wizard .task-wizard__hint {
+  margin: var(--space-2) 0 var(--space-4);
+  color: var(--color-text-muted);
+}
+
+.task-form--wizard .task-wizard__step > .form-label:first-of-type {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.task-form--wizard #task-content {
+  display: block;
+  width: 100%;
+  min-height: 8rem;
+  padding-right: 4rem;
+}
+
+.task-form--wizard .task-voice-field {
+  position: relative;
+}
+
+.task-form--wizard .task-voice-button {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  background: var(--color-bg-elevated);
+  color: var(--color-text-main);
+  cursor: pointer;
+}
+
+.task-form--wizard .task-voice-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.task-form--wizard .task-voice-button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.task-form--wizard .task-voice-button.is-listening {
+  background: var(--color-primary);
+  color: var(--color-bg-elevated);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 24%, transparent);
+}
+
+.task-form--wizard .task-voice-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.task-form--wizard .task-voice-status {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-muted);
+  font-size: max(var(--font-size-sm), .8125rem);
+}
+
+.task-form--wizard .task-wizard__review {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.task-form--wizard .task-wizard__review p {
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.task-form--wizard > .form-actions:last-child {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.task-form--wizard #form-cancel {
+  margin-right: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .task-form--wizard .task-wizard__progress span { transition: none; }
+}
+
 .task-card__meta {
   flex-wrap: wrap;
   gap: var(--space-1);
