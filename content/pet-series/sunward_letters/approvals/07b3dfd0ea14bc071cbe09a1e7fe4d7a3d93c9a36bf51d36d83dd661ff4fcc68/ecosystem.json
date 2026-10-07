@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "food": {
+    "id": "item_sunward_grain_ring",
+    "name": "晴雨穀圈",
+    "type": "favorite_bond_item",
+    "rarity": "R",
+    "description": "雨後以森林嫩葉包裹豐穗護符的穀香小圈。自然與田園喜好的夥伴特別喜愛。",
+    "enabled": true,
+    "favoriteTags": [
+      "nature",
+      "harvest"
+    ],
+    "effect": {
+      "bondExp": 75,
+      "favoriteBonusBondExp": 150
+    },
+    "recipe": {
+      "forest_leaf": 3,
+      "harvest_charm": 3
+    },
+    "futureTags": [
+      "bond_item",
+      "sunward_letters"
+    ]
+  },
+  "materials": [],
+  "affinities": {
+    "pet_n41": [
+      "harvest"
+    ],
+    "pet_n42": [
+      "nature"
+    ],
+    "pet_n43": [
+      "nature"
+    ],
+    "pet_r44": [
+      "harvest"
+    ],
+    "pet_r45": [
+      "nature"
+    ],
+    "pet_r46": [
+      "nature"
+    ],
+    "pet_sr38": [
+      "harvest"
+    ],
+    "pet_sr39": [
+      "nature"
+    ],
+    "pet_sr40": [
+      "nature"
+    ],
+    "pet_ssr27": [
+      "harvest"
+    ],
+    "pet_ssr28": [
+      "nature"
+    ],
+    "pet_ur21": [
+      "harvest",
+      "nature"
+    ]
+  },
+  "affinityNotes": {
+    "pet_n41": "牠每天在田邊採集穀粒，喜歡帶有田園氣息的食物。",
+    "pet_n42": "牠喜歡林間葉香，也珍惜能替信件遮雨的寬葉。",
+    "pet_n43": "牠常停在森林濕石旁，偏好清淡的自然氣息。",
+    "pet_r44": "牠常走田野與坡道，喜歡穀香補給。",
+    "pet_r45": "牠偏愛森林枝葉的氣味，因為樹梢是牠的路標。",
+    "pet_r46": "牠常收集河岸木枝與嫩葉，偏好自然材料的香氣。",
+    "pet_sr38": "牠和田埂上的夥伴一起縫補晴布，喜歡穀香點心。",
+    "pet_sr39": "牠夜間停在林木間，偏好自然葉香而非耀眼的禮物。",
+    "pet_sr40": "牠熟悉溪岸草葉，喜歡自然氣味的補給。",
+    "pet_ssr27": "牠常在田邊布標上歇息，喜歡穀香與暖陽。",
+    "pet_ssr28": "牠在森林與草坡間巡行，偏愛清淡葉香。",
+    "pet_ur21": "牠珍惜兩地夥伴共同採集的葉與穀，兩種氣息都喜歡。"
+  },
+  "specialties": {
+    "pet_n41": {
+      "role": "gatherer",
+      "reason": "採集沿路穀粒並辨認田埂素材；內容以 expeditionSpecialty=gatherer 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_n42": {
+      "role": "guardian",
+      "reason": "護住隊伍的信件與補給；內容以 expeditionSpecialty=guardian 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_n43": {
+      "role": "scout",
+      "reason": "先確認潮濕石階的安全路線；內容以 expeditionSpecialty=scout 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_r44": {
+      "role": "guardian",
+      "reason": "在強風中守住隊伍的路標；內容以 expeditionSpecialty=guardian 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_r45": {
+      "role": "scout",
+      "reason": "從空中探查能越過積水的高路；內容以 expeditionSpecialty=scout 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_r46": {
+      "role": "gatherer",
+      "reason": "收集木枝與可用的河岸素材；內容以 expeditionSpecialty=gatherer 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_sr38": {
+      "role": "companion",
+      "reason": "在同行時協助辨認路線並照看夥伴；內容以 expeditionSpecialty=companion 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_sr39": {
+      "role": "scholar",
+      "reason": "解讀霧中回聲與路標線索；內容以 expeditionSpecialty=scholar 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_sr40": {
+      "role": "scout",
+      "reason": "探查淺溪與可用的渡口；內容以 expeditionSpecialty=scout 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_ssr27": {
+      "role": "companion",
+      "reason": "在長路中與隊伍核對顏色記號；內容以 expeditionSpecialty=companion 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_ssr28": {
+      "role": "guardian",
+      "reason": "守住岔路並保護同行者的步調；內容以 expeditionSpecialty=guardian 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    },
+    "pet_ur21": {
+      "role": "scout",
+      "reason": "從高處探查兩地之間完整的安全路線；內容以 expeditionSpecialty=scout 明確設定，並須核對 getPetSpecialty() 的實際派遣角色。"
+    }
+  },
+  "expedition": {
+    "decision": "reuse",
+    "reason": "故事發生在既有迷霧森林與豐穗遠郊之間，沒有獨立的新探索、獎勵或材料需求；沿用兩地可讓新增食物的嫩葉與護符都實際取得。",
+    "reusedAreaIds": [
+      "mist_forest",
+      "harvest_fields"
+    ],
+    "areas": []
+  },
+  "releaseNotes": "晴信原野新增 12 位夥伴：N 3、R 3、SR 3、SSR 2、UR 1，全部首抽開放，沒有解鎖或贈寵。沿用 100/1000 星塵、N/R/SR/SSR/UR 55/30/10/3/2、SSR 30/UR 100 保底及十連 SR 保障。新食物晴雨穀圈使用森林嫩葉 3 與豐穗護符 3；一般送禮 +75，符合自然/田園偏好時總共 +150、不疊加。逐隻偏好與派遣專長依實際資料核對。故事沿用迷霧森林與豐穗遠郊，不增加地區或材料；召喚沿用共用演出，沒有本池專屬場景。圖片、交易、預覽、離線與人工整包驗收需綁定後續固定產物；本 authoring 內容本身不代表發布。",
+  "runtimeHashes": {
+    "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0",
+    "src/expeditionService.js": "9c2d2275a73929efec335ff74b149904384571caead9583b3988a53e3e5f8fc0",
+    "src/explorationService.js": "5c6aa487dbfc34b838227550db64bbeb7190b1cd991b445e69e0deae33dccaaa",
+    "src/expeditionGameplay.js": "6790786d8d1b41e4b55b53133848671c7cf2df07b0e4121459500c47eb866d93"
+  }
+}

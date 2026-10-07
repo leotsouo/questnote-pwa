@@ -95,7 +95,7 @@ const pool = { id: 'sunward_letters', name: '晴信原野', active: true, cost: 
   presentation: { themeKey: 'default', animationKey: 'none', heroPetId: 'pet_ur21',
     featuredPetIds: ['pet_ssr27', 'pet_ssr28', 'pet_sr38'], badge: '雨後新篇',
     eyebrow: '路標曾被雨帶走，回家的方向沒有。', tagline: '把未送達的心意，一段一段接回來。',
-    debutLines: [], debutLabel: '', detailsNote: '12 位夥伴從第一抽全部開放；無額外解鎖或贈寵。十連至少一位 SR 以上，沿用現行價格、機率與各池保底。',
+    debutLines: ['雨停後，路標散落在兩地之間。', '跟著夥伴們，把每封信送到家。'], debutLabel: '晴信原野登場', detailsNote: '12 位夥伴從第一抽全部開放；無額外解鎖或贈寵。十連至少一位 SR 以上，沿用現行價格、機率與各池保底。',
     candidateNote: '僅含晴信原野 12 位夥伴，沿用共用召喚揭露；不含其他系列。' } };
 const ecosystemPath = path.join(root, 'ecosystem.json');
 const ecosystem = JSON.parse(await fs.readFile(ecosystemPath, 'utf8'));
