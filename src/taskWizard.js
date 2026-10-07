@@ -1,3 +1,5 @@
+import { attachTaskVoiceInput } from './taskVoiceInput.js';
+
 const QUESTIONS = [
   ['想完成什麼事？', '先寫下這件事，換行可以補充說明。'],
   ['打算什麼時候做？', '選擇今天、明天、其他日期，或暫時不安排。'],
@@ -36,6 +38,7 @@ export function initTaskWizard(form) {
   contentError.textContent = '請先寫下想完成的事。';
   contentError.hidden = true;
   sections[0].append(contentError);
+  const voiceInput = attachTaskVoiceInput(form, sections[0], form.querySelector('#task-content'));
   const toggle = form.querySelector('label[for="task-plan-today"]');
   if (toggle) sections[1].append(toggle);
   sections[1].append(form.querySelector('#task-plan-date').closest('.form-field'));
@@ -102,6 +105,7 @@ export function initTaskWizard(form) {
     }));
   }
   function goTo(index) {
+    if (current === 0 && index > 0) voiceInput.stop();
     current = Math.max(0, Math.min(index, sections.length - 1));
     sections.forEach((section, i) => { section.hidden = i !== current; });
     progress.setAttribute('aria-valuenow', String(current + 1));

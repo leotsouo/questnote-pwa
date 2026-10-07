@@ -4745,7 +4745,57 @@ body[data-theme="default"] .toast--info {
 }
 
 .task-form--wizard #task-content {
+  display: block;
+  width: 100%;
   min-height: 8rem;
+  padding-right: 4rem;
+}
+
+.task-form--wizard .task-voice-field {
+  position: relative;
+}
+
+.task-form--wizard .task-voice-button {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  background: var(--color-bg-elevated);
+  color: var(--color-text-main);
+  cursor: pointer;
+}
+
+.task-form--wizard .task-voice-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.task-form--wizard .task-voice-button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.task-form--wizard .task-voice-button.is-listening {
+  background: var(--color-primary);
+  color: var(--color-bg-elevated);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 24%, transparent);
+}
+
+.task-form--wizard .task-voice-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.task-form--wizard .task-voice-status {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-muted);
+  font-size: max(var(--font-size-sm), .8125rem);
 }
 
 .task-form--wizard .task-wizard__review {

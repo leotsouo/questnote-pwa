@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.8.3
+ * QuestNote Service Worker — V3.8.4
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v383-task-wizard';
+const CACHE_NAME = 'questnote-preview-cache-v384-task-voice';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -112,6 +112,7 @@ const PRECACHE_URLS = [
   'src/guided-onboarding.css',
   'src/taskService.js',
   'src/taskWizard.js',
+  'src/taskVoiceInput.js',
   'src/reminderRules.js',
   'src/reminderService.js',
   'src/reminderController.js',
