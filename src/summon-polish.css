@@ -74,6 +74,41 @@ body[data-theme] #view-gacha #gacha-panel[data-pool-id="sunward_letters"] :is(.g
   transform: translateY(0);
 }
 .dream-debut-overlay[data-pool-id="sunward_letters"].is-reduced .dream-debut-stage::after { transition: none; }
+.dream-debut-overlay[data-pool-id="sunward_letters"] .dream-debut-copy {
+  position: absolute;
+  bottom: max(12dvh, calc(env(safe-area-inset-bottom, 0px) + 36px));
+  width: min(calc(100% - 48px), 34rem);
+  max-width: none;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  gap: 12px;
+  border-radius: 1rem;
+  background: rgba(15, 43, 45, .83);
+  box-shadow: 0 16px 48px rgba(8, 24, 26, .28);
+}
+.dream-debut-overlay[data-pool-id="sunward_letters"] .pool-entry-name {
+  margin: 0;
+  color: #fff0bf;
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  line-height: 1.35;
+}
+.dream-debut-overlay[data-pool-id="sunward_letters"] .dream-debut-line {
+  display: grid;
+  gap: .25rem;
+  max-width: 100%;
+  padding: 0;
+  background: none;
+  color: #f8f3df;
+  font-size: .85rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+.dream-debut-overlay[data-pool-id="sunward_letters"] .dream-debut-line__seg { display: block; }
+.dream-debut-overlay[data-pool-id="sunward_letters"] .dream-debut-continue {
+  color: #f8f3df;
+  font-size: .75rem;
+  line-height: 1.5;
+}
 #view-gacha #gacha-pool-switcher { margin-bottom: var(--space-4); }
 #view-gacha #gacha-pool-switcher[hidden] { display: none; }
 #view-gacha .gacha-pool-switcher__label { color: var(--pool-text-secondary, var(--color-text-secondary)); }
