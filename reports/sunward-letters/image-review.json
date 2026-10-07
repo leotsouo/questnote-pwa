@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "poolId": "sunward_letters",
+  "imageReviewMode": "ai-self",
+  "reviewEnvironment": "original PNGs and a 160px/card contact sheet",
+  "tool": "image_gen.imagegen (built-in)",
+  "selected": [
+    {
+      "id": "pet_n41",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-92127cca-7bf7-403f-91dc-4e832e19c506.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_n41.png",
+      "originalSha256": "72f148a33c7f9fde4b871cb4276f334dc48b76214648a5a307cb85ce689ac3f9",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2956548,
+      "prompt": "approved prompt",
+      "review": "Field mouse, wheat bell and repeated dry-path markers read at card scale; ears, feet and tail are intact.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_n42",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-da1401d7-e369-4ded-b9ed-b62554cb08c8.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_n42.png",
+      "originalSha256": "abc047429482cc2aa6435e8c3c0df21b57e66eb48694e2a5cbe47cd2c87cde9e",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3097890,
+      "prompt": "approved prompt",
+      "review": "Hedgehog lifts a wet leaf over a letter; quills, face and envelope are legible and uncropped.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_n43",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-abbfe35b-51f0-49ab-ba15-c186eab5d10e.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_n43.png",
+      "originalSha256": "dfb372aba5092ad417eab36bc8c774cda4757413e6eaa8e30280ff5681bc3b24",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2735371,
+      "prompt": "approved prompt",
+      "review": "Snail, golden shell and wet wayfinding trail are distinct; complete feelers and shell stay in frame.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_r44",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-036efcc5-85f5-414c-bd1a-607b12a85d44.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_r44.png",
+      "originalSha256": "d70a499ded9466606e52874452697fcb452fd7eabce0b6eeb5580369343049c3",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3293766,
+      "prompt": "approved prompt",
+      "review": "Goat braces the repaired sign against wind; horns, hooves and the tied ribbon are visible.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_r45",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-a45a9484-c25f-4e81-abbf-117938acc528.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_r45.png",
+      "originalSha256": "8700b47ee6978dadceb3717e4b083045f260f0d1a4257708ff9afe2e519c744e",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2931225,
+      "prompt": "approved prompt",
+      "review": "Swift carries a yellow guide ribbon between eave and tree; wings and tail are intact.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_r46",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-5a7983e5-1104-4d5e-ae4b-c59bfa03b319.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_r46.png",
+      "originalSha256": "cd942ae99a600de75d7e6e5dbbf124d73fd6d3fe4b4f12f4670ff2fbadb26cff",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3256393,
+      "prompt": "approved prompt",
+      "review": "Beaver secures the stream crossing beside an addressed letter; tail, paws and dam read clearly.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_sr38",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-1fa1131f-9f77-4ef0-862a-0658cd4c3439.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_sr38.png",
+      "originalSha256": "e8eeece1970ba746c5e0ff85ad363c18469d9b06b03412a53cfd7e36bbb2df45",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3421141,
+      "prompt": "approved prompt",
+      "review": "Fox anchors the patched sun cloth and exposes the route below; silhouette and prop read at card scale.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_sr39",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-7310a672-d05d-4087-91d1-412f49030694.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_sr39.png",
+      "originalSha256": "7a748a85e56ebd20369e9dbbc27c64ec52235c02842ed0236e93afaa551b9624",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2931063,
+      "prompt": "approved prompt",
+      "review": "Owl calls across the mist toward a distant sign; sound rings and open beak show the action.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_sr40",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-c66a3160-dacd-42c4-8026-8b221b428326.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_sr40.png",
+      "originalSha256": "bf005e7ab0abd69c6cce0ee2f8375c36baac4083dfc8ee7ae4e801a687fa8b6d",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3248025,
+      "prompt": "approved prompt",
+      "review": "Otter leaps with a recovered scroll; the river splash and route banner show the outcome.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_ssr27",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-f8f74741-90ee-4528-bb0a-077a1cc8b781.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_ssr27.png",
+      "originalSha256": "d1d2ccdaa9bb3a19768f187e968a1e605da16e0af3a97ff8fe26cc7d75db594e",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3033159,
+      "prompt": "approved prompt",
+      "review": "Small bird fastens a luminous banner to the route; iridescent wings and sequential markers remain visible.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_ssr28",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-778b896c-459e-482c-a4a1-d17240a70ed6.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_ssr28.png",
+      "originalSha256": "bf086c0afa6f461fd684ab4c83b71e04787269823d4b5f0d9e5a9ca62ff9bbf9",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3346993,
+      "prompt": "approved prompt",
+      "review": "White deer threads the route cloth through the wayfinding posts; full antlers and legs stay inside the crop.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    },
+    {
+      "id": "pet_ur21",
+      "source": "C:/Users/User/.codex/generated_images/01a1179d-cd47-7fb2-af67-724eeba6e06a/exec-eabfb491-1f15-4279-9db7-f4c199006684.png",
+      "originalPath": "content/pet-series/sunward_letters/images/pet_ur21.png",
+      "originalSha256": "7bedbd5812b1650650ba4cb8142ea9f188398117864ac044e5bbfd0b6d8c4bec",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3080748,
+      "prompt": "recorded composition override",
+      "review": "Crane raises the communal route cloth over forest and field; both wings, feet and cloth are complete after the composition revision.",
+      "cardScaleReviewed": true,
+      "accepted": true
+    }
+  ],
+  "rejected": [
+    {
+      "id": "pet_n41",
+      "path": "reports/sunward-letters/first-attempts/pet_n41.png",
+      "reason": "Actual first invocation prompt was not retained verbatim; replaced with a traceable approved-prompt generation.",
+      "sha256": "678f658dee43cf68380ee8942ac25bd3d4c28519e413bb70ea09cf69ad996ef9"
+    },
+    {
+      "id": "pet_ur21",
+      "path": "reports/sunward-letters/first-attempts/pet_ur21.png",
+      "reason": "Actual first invocation prompt was not retained verbatim; replaced with a traceable generation.",
+      "sha256": "276d993802a2f77a39ff4351291800d7b3cce8d6c209d8f6a4c4b0b235e519f9"
+    },
+    {
+      "id": "pet_ur21",
+      "path": "reports/sunward-letters/first-attempts/pet_ur21-approved-prompt-cropped.png",
+      "reason": "Approved prompt generation clipped a wing; replaced with a composition override and complete silhouette.",
+      "sha256": "f52755d91741fcdaeae2996de003884c7175fadaee36a1d2d40cdeda9975c704"
+    }
+  ]
+}
