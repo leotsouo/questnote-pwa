@@ -143,6 +143,7 @@ export function attachTaskVoiceInput(form, section, input, options = {}) {
     session.maxAlternatives = 1;
     session.onstart = () => {
       if (recognition !== session) return;
+      button.disabled = false;
       setActive(true);
       status.textContent = '正在聆聽…再點一次麥克風即可結束。';
     };
@@ -168,10 +169,12 @@ export function attachTaskVoiceInput(form, section, input, options = {}) {
       setActive(false);
       if (!lastError) status.textContent = input.value !== baseText ? '語音已填入，請確認內容後繼續。' : '已停止聆聽，可以再點麥克風重試。';
     };
-    status.textContent = '正在啟動麥克風…';
+    button.disabled = true;
+    status.textContent = '正在等待麥克風啟動；首次使用請在系統提示中允許權限。';
     try { session.start(); }
     catch {
       recognition = null;
+      button.disabled = false;
       setActive(false);
       status.textContent = '無法啟動語音辨識，請再試一次。';
     }

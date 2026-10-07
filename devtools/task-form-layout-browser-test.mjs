@@ -10,7 +10,8 @@ try {
   await context.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   const page = await context.newPage();
   await page.goto(origin + '/index.html');
-  await page.locator('#onboarding-root [data-onboarding-action="skip"]').click();
+  await page.locator('[data-guided-action="skip"]').click();
+  await page.locator('[data-guided-action="confirm-skip"]').click();
   await page.evaluate(async () => (await import('/src/ui.js')).switchView('tasks'));
   await page.locator('[data-action="empty-add-task"]:visible').first().click();
   await page.locator('#task-form').waitFor();
@@ -31,14 +32,20 @@ try {
           const body = document.querySelector('#modal-body');
           const form = document.querySelector('#task-form');
           const bounds = body.getBoundingClientRect();
+          const start = form.querySelector('#task-start-date').getBoundingClientRect();
+          const due = form.querySelector('#task-due-date').getBoundingClientRect();
           const overflow = [...form.querySelectorAll('input:not([type="hidden"]), textarea, select, button, .settings-toggle__text')]
             .filter((el) => {
               const rect = el.getBoundingClientRect();
               return rect.width > 0 && (rect.left < bounds.left - 1 || rect.right > bounds.right + 1);
             }).map((el) => el.id || el.className);
           return { width: body.clientWidth, scrollWidth: body.scrollWidth, overflow,
+            datesStacked: due.top >= start.bottom - 1,
+            datesSideBySide: due.left >= start.right - 1,
             scrollable: body.scrollHeight > body.clientHeight, touchAction: getComputedStyle(body).touchAction };
         });
+        if (width <= 600) assert.ok(result.datesStacked, `${width}/${theme}/${fontSize}: date fields should stack ${JSON.stringify(result)}`);
+        if (width > 600 && fontSize === 16) assert.ok(result.datesSideBySide, 'Desktop date fields remain side by side');
         assert.ok(result.scrollWidth <= result.width + 1, `${width}/${theme}/${fontSize}: horizontal overflow ${JSON.stringify(result)}`);
         assert.deepEqual(result.overflow, [], 'All form controls fit without clipping');
         assert.equal(result.touchAction, 'pan-y pinch-zoom');
