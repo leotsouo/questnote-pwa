@@ -4,12 +4,12 @@
  */
 import { RELEASE_PROFILE } from './releaseProfile.js';
 
-export const APP_VERSION = '3.8.1';
-export const CACHE_NAME = 'questnote-production-app-f6b0b5a7fa5731725d71094d33af3fd0a1d8b677810d672f131682d9bd3bbfa8';
+export const APP_VERSION = '3.8.2';
+export const CACHE_NAME = 'questnote-production-app-a15c113eaf7cc4ab42e9225ea059da1271227ee4991f26b266e85238880f89fb';
 export const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 export const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */
-export const BUILD_TIME = '2026-10-05T09:29:02.000Z';
+export const BUILD_TIME = '2026-10-07T07:44:51.817Z';
 
 export function formatDisplayVersion() {
   return `V${APP_VERSION}`;
@@ -31,5 +31,5 @@ export function formatBuildTimeLocal() {
 }
 
 export function getServiceWorkerRegisterUrl() {
-  return './service-worker.js?artifact=f6b0b5a7fa5731725d71094d33af3fd0a1d8b677810d672f131682d9bd3bbfa8';
+  return './service-worker.js?artifact=a15c113eaf7cc4ab42e9225ea059da1271227ee4991f26b266e85238880f89fb';
 }
