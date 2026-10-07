@@ -15,6 +15,7 @@ import { normalizeWallet, DEFAULT_MATERIALS } from './rewardService.js';
 import { ENCOUNTER_ECONOMY_KEY, normalizeEncounterEconomy, earnEncounterFragments } from './encounterEconomyCore.js';
 import { normalizeInventory, DEFAULT_ITEM_IDS, getMaterialName, getItemName } from './workshopService.js';
 import { isDebugMode, isAuthorLocalDevMode } from './devService.js';
+import { consolidateMailboxMessages } from './mailboxPresentation.js';
 import {
   MAILBOX_ACTION_VIEWS,
   MAILBOX_REWARD_LIMITS,
@@ -457,6 +458,7 @@ export function buildMailboxViewModel(payload, state, options = {}) {
     ...sortGroup(unread),
     ...sortGroup(rest),
   ];
+  ordered = consolidateMailboxMessages(ordered);
 
   if (filter === 'unread') {
     ordered = ordered.filter((m) => m.status.unread);
@@ -464,7 +466,7 @@ export function buildMailboxViewModel(payload, state, options = {}) {
     ordered = ordered.filter((m) => m.status.claimable);
   }
 
-  const unreadCount = enriched.filter((m) => m.status.unread).length;
+  const unreadCount = consolidateMailboxMessages(enriched).filter((m) => m.status.unread).length;
   const claimableCount = claimable.length;
 
   let defaultFilter = 'all';
@@ -477,7 +479,7 @@ export function buildMailboxViewModel(payload, state, options = {}) {
     unreadCount,
     claimableCount,
     defaultFilter,
-    totalVisible: enriched.length,
+    totalVisible: consolidateMailboxMessages(enriched).length,
   };
 }
 
@@ -488,7 +490,7 @@ export function getMailboxBadgeSummary(viewModel) {
   let ariaLabel = '開啟信箱';
   const parts = [];
   if (unreadCount > 0) parts.push(`${unreadCount} 封未讀`);
-  if (claimableCount > 0) parts.push(`${claimableCount} 封可領取`);
+  if (claimableCount > 0) parts.push(`${claimableCount} 份附件可領取`);
   if (parts.length) ariaLabel = `開啟信箱，${parts.join('，')}`;
   return {
     unreadCount,

@@ -4546,7 +4546,57 @@ function buildMailboxListItem(msg) {
   return li;
 }
 
+function buildMailboxBundleDetail(msg) {
+  const wrap = document.createElement('div');
+  wrap.className = 'mailbox-detail';
+  const back = document.createElement('button');
+  back.type = 'button';
+  back.className = 'mailbox-detail__back';
+  back.dataset.action = 'mailbox-back-list';
+  back.textContent = '← 返回列表';
+  const title = document.createElement('h3');
+  title.className = 'mailbox-detail__title';
+  title.textContent = msg.title;
+  const body = document.createElement('p');
+  body.className = 'mailbox-detail__body';
+  body.textContent = msg.body;
+  wrap.append(back, title, body);
+  for (const member of msg.memberMessages) {
+    const attachment = document.createElement('div');
+    attachment.className = 'mailbox-reward-preview';
+    const heading = document.createElement('p');
+    heading.className = 'mailbox-reward-preview__title';
+    heading.textContent = member.title;
+    const preview = document.createElement('p');
+    preview.textContent = member.rewardError ? '此附件資料格式有誤'
+      : formatMailboxRewardPreview(member.reward).map((line) => line.text).join('、');
+    const status = document.createElement('p');
+    status.className = 'mailbox-detail__claim-note';
+    status.textContent = getClaimStatusLabel(member.status.claimStatus)
+      + (member.expiresAt ? ` · 期限 ${formatMailboxDate(member.expiresAt)}` : ' · 無領取期限');
+    const action = document.createElement('button');
+    action.type = 'button';
+    action.className = 'btn btn--secondary mailbox-detail__action-btn';
+    action.dataset.action = 'mailbox-open-message';
+    action.dataset.messageId = member.id;
+    action.textContent = '查看原信';
+    attachment.append(heading, preview, status, action);
+    if (member.status.claimable) {
+      const claim = document.createElement('button');
+      claim.type = 'button';
+      claim.className = 'btn btn--primary mailbox-detail__claim-btn';
+      claim.dataset.action = 'mailbox-claim';
+      claim.dataset.messageId = member.id;
+      claim.textContent = '領取附件';
+      attachment.appendChild(claim);
+    }
+    wrap.appendChild(attachment);
+  }
+  return wrap;
+}
+
 function buildMailboxDetailElement(msg) {
+  if (msg.memberMessages) return buildMailboxBundleDetail(msg);
   // 重新解析狀態（單封，避免把其他 local-dev 併進來干擾）
   const vm = buildMailboxViewModel(
     { messages: [msg] },
@@ -4672,7 +4722,8 @@ function findMailboxMessageById(messageId) {
     filter: 'all',
     appVersion: APP_VERSION,
   });
-  return vm.allVisible.find((m) => m.id === messageId)
+  return vm.messages.find((m) => m.id === messageId)
+    || vm.allVisible.find((m) => m.id === messageId)
     || (mailboxPayload.messages || []).find((m) => m.id === messageId)
     || getLocalDevMailboxMessages(getMailboxCatalogs()).find((m) => m.id === messageId)
     || null;
@@ -4681,7 +4732,10 @@ function findMailboxMessageById(messageId) {
 async function openMailboxMessageDetail(messageId) {
   mailboxSelectedId = messageId;
   try {
-    mailboxStateLocal = await markMailboxMessageRead(messageId);
+    const message = findMailboxMessageById(messageId);
+    for (const member of message?.memberMessages || [{ id: messageId }]) {
+      mailboxStateLocal = await markMailboxMessageRead(member.id);
+    }
   } catch (err) {
     console.warn('[QuestNote] 標記已讀失敗:', err);
   }

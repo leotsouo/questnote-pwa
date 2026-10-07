@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-07T20:02:07.527Z",
+  "generatedAt": "2026-10-07T20:10:18.649Z",
   "messages": [
     {
       "id": "2026-10-v362-encounter-fragments-gift-01",
@@ -166,7 +166,7 @@
       "publishedAt": "2026-09-23T23:19:33+08:00",
       "expiresAt": null,
       "priority": "high",
-      "enabled": true,
+      "enabled": false,
       "minAppVersion": "3.4.11",
       "maxAppVersion": null,
       "icon": "❄️",
@@ -209,7 +209,7 @@
       "publishedAt": "2026-07-26T12:00:00+08:00",
       "expiresAt": null,
       "priority": "normal",
-      "enabled": true,
+      "enabled": false,
       "minAppVersion": "3.0.0",
       "maxAppVersion": null,
       "icon": "📮",

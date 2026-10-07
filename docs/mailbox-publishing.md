@@ -271,6 +271,16 @@ YYYY-MM-用途-簡稱
 
 不要把動態信箱 JSON 放進 App Shell precache；它由 Network First 動態取得。
 
+## 信箱統整（V3.8.7 來源變更，尚未發布）
+
+既有贈禮以「歡迎與常駐贈禮」「近期更新贈禮」兩個入口呈現，搭配現有 V3.8.6 公告，2026-10-08 的全部清單共三個入口。過時且無獎勵的 V3.0.0、V3.4.11 公告停用；原始資料仍保留。
+
+統整僅是顯示層，`src/mailboxPresentation.js` 以明確的既有 ID 分組。原始贈禮信件的 ID、獎勵、版本條件和期限不變，也不把多封獎勵改成新 ID 發送。`buildMailboxViewModel().messages` 是顯示入口，`allVisible` 保留逐封原信供領獎與教學查詢；`claimableCount` 表示可領附件數，未讀數與總數表示入口數。開啟贈禮入口會標記各原信已讀，不會自動領獎；一鍵領取仍依原 ID 在交易內逐筆防重複。每份附件可單独領取，並可查看原信。
+
+期限與版本過濾先於分組；到期附件不顯示、不發放，部分已領者只領到剩餘附件。以後新信仍獨立顯示，若要納入統整，需明確更新分組清單並驗證。此功能需要發布新版 App（來源版本 V3.8.7），只發布 JSON 無法讓舊版 App 合併贈禮入口；App 與信箱資料須一起驗收。本次沒有 push 或部署。
+
+驗證：`node --test devtools/mailbox-consolidation.test.mjs`；瀏覽器先啟動 `node devtools/browser-test-server.mjs 8793`，再設定既有 Playwright 模組路徑 `PLAYWRIGHT_MODULE`，執行 `node devtools/mailbox-consolidation-browser-test.mjs http://127.0.0.1:8793`。瀏覽器使用獨立 context、阻擋正式站等外部連線，僅寫測試 origin 的資料。
+
 ---
 
 ## 哪些欄位發布後不要隨意改
