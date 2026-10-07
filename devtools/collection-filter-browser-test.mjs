@@ -25,6 +25,8 @@ try {
     if (await skip.isVisible()) { await skip.click(); await page.locator('[data-guided-action="confirm-skip"]').click(); }
     await page.locator('.nav-item[data-view="collection"]').click();
     const surface = page.locator('#view-collection .identity-surface');
+    assert.equal(await surface.locator('[data-density]').count(), 0, 'No card density controls');
+    assert.equal(await surface.getByRole('button', { name: /精簡卡片|展開卡片/ }).count(), 0);
     const selectRarity = async rarity => {
       const button = surface.locator(`[data-rarity-filter="${rarity}"]`);
       await button.click();

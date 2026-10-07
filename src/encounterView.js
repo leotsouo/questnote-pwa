@@ -42,7 +42,6 @@ let view = 'pool';
 let collection = new Map();
 let filter = 'all';
 let rarityFilter = 'all';
-let density = 'compact';
 let query = '';
 let dialogOpener = null;
 let revealOpener = null;
@@ -130,7 +129,6 @@ function renderCollection() {
     <div class="filters collection-rarity-filters" role="group" aria-label="稀有度">${[['all','全部稀有度'], ...RARITIES.map((rarity) => [rarity,rarity])].map(([key,label]) => `<button type="button" data-rarity-filter="${key}" aria-pressed="${rarityFilter === key}">${label}</button>`).join('')}</div>
     <div class="filters" role="group" aria-label="收藏狀態">${[['all','全部夥伴'],['owned','已相遇'],['unowned','尚未相遇']].map(([key,label]) => `<button data-filter="${key}" aria-pressed="${filter === key}">${label}</button>`).join('')}</div>
     </section>
-    <div class="filters" aria-label="卡片密度"><button data-density="compact" aria-pressed="${density === 'compact'}">精簡卡片</button><button data-density="expanded" aria-pressed="${density === 'expanded'}">展開卡片</button></div>
     <label class="search-label">尋找名字或稱號<input id="identity-collection-search" type="search" value="${escapeHtml(query)}" placeholder="輸入你記得的名字…"></label>
     <div id="identity-collection-results"></div>`;
   appActions.renderCollectionMilestones?.();
@@ -140,7 +138,7 @@ function renderCollection() {
 
 function renderCollectionCards() {
   const list = collectionCandidates().filter((pet) => (rarityFilter === 'all' || pet.rarity === rarityFilter) && (filter === 'all' || (filter === 'owned' ? owned(pet) : !owned(pet))) && `${pet.name} ${pet.title || ''}`.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
-  document.getElementById('identity-collection-results').innerHTML = list.length ? `<p class="subtle" role="status" style="margin-top:16px">${list.length} 位夥伴 · 未相遇角色保留灰階預覽與名字</p><div class="collection-grid ${density === 'expanded' ? 'expanded' : ''}">${list.map((pet) => miniCard(pet, { grayscale: true, title: density === 'expanded' })).join('')}</div>` : `<section class="empty-state"><h2 role="status">這一頁還是空白。</h2><p class="subtle">試試其他名字或篩選，讓故事慢慢展開。</p><button data-identity-action="clear-filter">顯示全部夥伴</button></section>`;
+  document.getElementById('identity-collection-results').innerHTML = list.length ? `<p class="subtle" role="status" style="margin-top:16px">${list.length} 位夥伴 · 未相遇角色保留灰階預覽與名字</p><div class="collection-grid">${list.map((pet) => miniCard(pet, { grayscale: true })).join('')}</div>` : `<section class="empty-state"><h2 role="status">這一頁還是空白。</h2><p class="subtle">試試其他名字或篩選，讓故事慢慢展開。</p><button data-identity-action="clear-filter">顯示全部夥伴</button></section>`;
 }
 
 function render() {
@@ -395,7 +393,6 @@ document.addEventListener('click', async (event) => {
     screen.querySelector(`[${attribute}="${value}"]`)?.focus({ preventScroll: true });
     return;
   }
-  if (button.dataset.density) { density = button.dataset.density; renderCollection(); return; }
   if (button.dataset.phaseStep) { phase(button.dataset.phaseStep); return; }
   const action = button.dataset.identityAction;
   if (action === 'app-pet-detail' || action === 'app-nickname') { dialog.close(); if (reveal.open) closeReveal(); action === 'app-pet-detail' ? appActions.openPetDetail(button.dataset.petId) : appActions.openNickname(button.dataset.petId); return; }
