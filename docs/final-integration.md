@@ -265,3 +265,6 @@ Pages `d2dba3c7b8f7f0823227af19d2cbe147dd975bcd` 的 [run 37115343269](https://g
 ## V3.8.0 易讀模式與最新新手教學 — 2026-10-04
 
 已等待新版教學V3.7.0完成後整合。PR #75／#76 CI通過，來源main合併eccc9f2；固定production artifact 8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96，Pages fc8a1779df1a798bc3f143aaa8a1ea3c78a6d4a2，run37202724967成功。619 Git blobs與618個HTTPS檔案（含manifest）核對通過，18項固定產物測試及正式瀏覽器模式保存通過。Normal／Senior共用資料和progression，沒有主動語音輸出。[完整驗證與發布收據](../reports/senior-production/production-release.md)。實機iPhone／VoiceOver仍待使用者驗收。
+## V3.8.1 流程安全改善 — 2026-10-05
+
+使用者明確要求部署。PR #78 CI 通過，main 合併 `c4c3117`；production artifact `f6b0b5a7fa5731725d71094d33af3fd0a1d8b677810d672f131682d9bd3bbfa8`，Pages `6bb8931`、[run 37297068513](https://github.com/leotsouo/questnote-pwa/actions/runs/37297068513) 成功。619 Git blobs 與 618 HTTPS 檔案全數核對，18 項固定產物瀏覽器驗收通過。發布習慣提交保護、子任務名稱／狀態、初始化重載回復與備份錯誤回饋；保留 catalog、公告、存檔格式與後端。I02 工坊條件式故障一致性風險延後，正式既有 browser 仍受其他視窗開啟的正常更新 guard 阻擋；不宣稱該 client 已啟用新版。[完整部署收據](../reports/flow-deployment-2026-10-05/production-release.md)。

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QuestNote 圖鑑篩選檢視</title>
+<style>html,body,iframe{margin:0;width:100%;height:100%;border:0}body{overflow:hidden}</style>
+<iframe id="app" src="../index.html" title="修復後的圖鑑"></iframe>
+<script type="module">
+const frame = document.getElementById('app');
+frame.addEventListener('load', () => {
+  const doc = frame.contentDocument;
+  // The isolated local acceptance server owns the database; this viewer clicks UI only.
+  if (!frame.contentWindow.__questNoteOnboardingTest) return;
+  const timer = setInterval(() => {
+    const skip = doc.querySelector('[data-guided-action="skip"]');
+    const confirm = doc.querySelector('[data-guided-action="confirm-skip"]');
+    if (confirm) { confirm.click(); return; }
+    if (skip) { skip.click(); return; }
+    const nav = doc.querySelector('.nav-item[data-view="collection"]');
+    if (!nav || doc.getElementById('app-loader')?.getClientRects().length) return;
+    nav.click();
+    const ur = doc.querySelector('#view-collection .identity-surface [data-rarity-filter="UR"]');
+    if (!ur) return;
+    ur.click();
+    doc.querySelector('.collection-filter-group').scrollIntoView({ block: 'start' });
+    clearInterval(timer);
+  }, 200);
+});
+</script>
+</html>

@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-05T10:18:49.455Z",
+  "artifactId": "8502e35740918ec4897d6d3646ae3303c689e129283e542c3ed66369a3ad0a96",
+  "sourceCommit": "86af668460aeb15e69c6ebdea6f0edeab3c9a236",
+  "manifestSha256": "ef56bbce49d9c2b7742f2ebb41b2fdef17b60461cc4b92504ea4eba48a2c4784",
+  "catalogSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
+  "mailboxSha256": "e8debc69c43050d18fcc88a1f7ed3a9db54684e1dd7638e1050c7274baf930d1",
+  "pagesCommit": "fc8a1779df1a798bc3f143aaa8a1ea3c78a6d4a2"
+}

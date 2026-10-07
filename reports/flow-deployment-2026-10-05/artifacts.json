@@ -1,0 +1,16 @@
+{
+  "production": {
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\05\\01a10b1b-1567-75b3-b3cd-4f5cec637647\\questnote-flow-release\\f6b0b5a7fa5731725d71094d33af3fd0a1d8b677810d672f131682d9bd3bbfa8",
+    "artifactId": "f6b0b5a7fa5731725d71094d33af3fd0a1d8b677810d672f131682d9bd3bbfa8",
+    "manifestSha256": "f977f61617a586debe17e30825a850ad66748bc8cf29a95383cf04f21222b71d",
+    "scopePath": "/questnote-pwa/",
+    "fileCount": 619
+  },
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\05\\01a10b1b-1567-75b3-b3cd-4f5cec637647\\questnote-flow-release\\1f84598bd6d9ba590b08161c88f33ed9d9b9cf702a55f0e73efc09f434c68a5d",
+    "artifactId": "1f84598bd6d9ba590b08161c88f33ed9d9b9cf702a55f0e73efc09f434c68a5d",
+    "manifestSha256": "38a072527df01fa25691354ea44655586bf43a8c7885b7b963eaf551a125acaf",
+    "scopePath": "/questnote-pwa-preview/",
+    "fileCount": 619
+  }
+}
