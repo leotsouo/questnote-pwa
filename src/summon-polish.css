@@ -23,6 +23,30 @@ body[data-theme] #view-gacha .page-title {
   background: var(--pool-surface-strong, var(--pool-surface, var(--color-bg-card)));
   border-color: var(--pool-border, var(--color-border));
 }
+/* 晴信原野 uses the shared reveal scene, with a distinct rain-cleared pool surface. */
+body[data-theme] #view-gacha #gacha-panel[data-pool-id="sunward_letters"] {
+  --pool-text-primary: #f8f3df;
+  --pool-text-secondary: #d1e2d3;
+  --pool-surface: #244f4b;
+  --pool-surface-strong: #173a3a;
+  --pool-border: #a9d2a4;
+  --pool-accent: #f4d486;
+  --pool-accent-text: #243624;
+  color: var(--pool-text-primary);
+  background: radial-gradient(ellipse at 78% 8%, #5e8575 0%, transparent 54%), linear-gradient(150deg, #153c40, #2e5544 74%, #72684a);
+  border-color: var(--pool-border);
+}
+body[data-theme] #view-gacha #gacha-panel[data-pool-id="sunward_letters"] #btn-pull:not(:disabled) {
+  color: var(--pool-accent-text);
+  background: var(--pool-accent);
+}
+body[data-theme] #view-gacha #gacha-panel[data-pool-id="sunward_letters"] :is(.gacha-theme-stage__name, .gacha-theme-stage__eyebrow, .gacha-theme-stage__tagline, .gacha-theme-stage__meta, .gacha-theme-hero__name, .gacha-theme-details, .gacha-theme-details dd) {
+  color: var(--pool-text-primary);
+}
+body[data-theme] #view-gacha #gacha-panel[data-pool-id="sunward_letters"] :is(.gacha-theme-hero__cap, .gacha-theme-featured__item, .gacha-theme-details) {
+  background: var(--pool-surface);
+  border-color: var(--pool-border);
+}
 #view-gacha #gacha-pool-switcher { margin-bottom: var(--space-4); }
 #view-gacha #gacha-pool-switcher[hidden] { display: none; }
 #view-gacha .gacha-pool-switcher__label { color: var(--pool-text-secondary, var(--color-text-secondary)); }
