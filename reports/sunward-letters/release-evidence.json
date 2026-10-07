@@ -43,5 +43,18 @@
       "evidence": "Same final 19/19 run verified production ee44ee41 and preview 55be4cc8 isolated controllers/DBs, legacy-client waiting, corrupt/missing asset refusal, cache recovery and complete offline boot.",
       "status": "pass"
     }
+  },
+  "humanAcceptance": {
+    "reviewer": "user (this chat)",
+    "acceptedAt": "2026-10-07T20:13:36Z",
+    "packageHash": "0e1290bce15e048bd5adac4ccb8c8656592371e4a3de5ed622cfea515970207a",
+    "originalPhrase": "通過 可以發佈"
+  },
+  "publicationAuthorization": {
+    "reviewer": "user (this chat)",
+    "approvedAt": "2026-10-07T20:13:36Z",
+    "packageHash": "0e1290bce15e048bd5adac4ccb8c8656592371e4a3de5ed622cfea515970207a",
+    "phrase": "可以發布",
+    "originalPhrase": "通過 可以發佈"
   }
 }
