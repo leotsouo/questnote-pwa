@@ -10,7 +10,8 @@
 | --- | --- |
 | 待驗收 `packageHash` | `dbd4edac53f41bfdeecc9b16b95d0ab85b6cf1441d566dfb2f2cd978935ad3bd` |
 | Reviewed source commit | `c2e5f9556c57eae3289df2679907db2998179e54` |
-| 最新納入的 `origin/main` | `6b9f60fca7ee69bdadf627f6d93ea84a83f926d5` |
+| 最新納入的 App 來源主線 | `6b9f60fca7ee69bdadf627f6d93ea84a83f926d5` |
+| 後續獨立信箱主線 | `61d7a139ad4f1225828b5633c9efdd7d2e39a4dd`，已合入分支；信箱不屬於固定 App 產物 |
 | Candidate ID | `0b00ab77a5a8aad3cf9e93271d98a25c91df1d89ee9d7faf4837d105f7944cda` |
 | Candidate manifest SHA-256 | `ef369dc1c14761d5fb961c879222c7e158b4360296d6e67dc58a793c1d3a4bcb` |
 | Production artifact ID | `aa7b16b74f1d9e8a122a20ecbb41b54ed2a0c9fdd3e53fd1a6053f980829b692` |
@@ -33,4 +34,4 @@
 
 實體手機、已安裝 PWA 的觸控／鍵盤／跨網路更新仍需真機確認。網站發布後須依 SOP 比對 Pages 建置、`gh-pages` Git blobs、正式 HTTPS 每個非獨立信箱檔案的 bytes／SHA，並確認正式畫面與離線載入。`data/global-mailbox.json` 應保留現行獨立公告，不用舊 artifact 覆寫。
 
-來源尚未合併 `main`；production artifact 尚未推送 `gh-pages`；正式 HTTPS 尚未更新。只有使用者對本頁**新的** `packageHash` 完成整包驗收並再次明確說「可以發布」，才能記錄新 acceptance／authorization，執行來源整合與正式站部署。
+來源尚未合併 `main`；production artifact 尚未推送 `gh-pages`；正式 HTTPS 尚未更新。主線於本整包固定後新增的 `61d7a13` 只改動獨立 `data/global-mailbox.json`，分支已保留，後續部署須沿用最新信箱而非產物封存的舊版。只有使用者對本頁**新的** `packageHash` 完成整包驗收並再次明確說「可以發布」，才能記錄新 acceptance／authorization，執行來源整合與正式站部署。
