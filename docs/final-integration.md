@@ -268,3 +268,7 @@ Pages `d2dba3c7b8f7f0823227af19d2cbe147dd975bcd` 的 [run 37115343269](https://g
 ## V3.8.1 流程安全改善 — 2026-10-05
 
 使用者明確要求部署。PR #78 CI 通過，main 合併 `c4c3117`；production artifact `f6b0b5a7fa5731725d71094d33af3fd0a1d8b677810d672f131682d9bd3bbfa8`，Pages `6bb8931`、[run 37297068513](https://github.com/leotsouo/questnote-pwa/actions/runs/37297068513) 成功。619 Git blobs 與 618 HTTPS 檔案全數核對，18 項固定產物瀏覽器驗收通過。發布習慣提交保護、子任務名稱／狀態、初始化重載回復與備份錯誤回饋；保留 catalog、公告、存檔格式與後端。I02 工坊條件式故障一致性風險延後，正式既有 browser 仍受其他視窗開啟的正常更新 guard 阻擋；不宣稱該 client 已啟用新版。[完整部署收據](../reports/flow-deployment-2026-10-05/production-release.md)。
+
+## V3.8.2 圖鑑分類篩選 — 2026-10-07
+
+使用者驗收 UR 篩選，要求移除精簡／展開卡片並發布。PR #79 CI 通過並合併 `5682767`；production artifact `a15c113eaf7cc4ab42e9225ea059da1271227ee4991f26b266e85238880f89fb`，Pages `cc1fd1e`、run `37590060044` 成功。619 個 Git blobs、618 個正式 HTTPS 檔案全部雜湊一致；完整 npm test、手機／主題篩選、18 項原生產物驗收及正式新隔離瀏覽器檢查通過。正式 UR 顯示 19 張卡，卡片密度切換已移除，維持目前預設排版；卡池／公告／存檔格式與後端保留。[發布收據](../reports/collection-production-20261007/README.md)。
