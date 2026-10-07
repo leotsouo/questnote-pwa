@@ -21,7 +21,8 @@ const hash = (value) => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value
 
 export function checkSopBrief(brief) {
   const p = brief.productionBaseline;
-  if (brief.sopVersion !== 2 || brief.noExtraCost !== true || !object(p)
+  if (brief.sopVersion !== 2 || brief.noExtraCost !== true
+    || (brief.imageReviewMode !== undefined && !['human', 'ai-self'].includes(brief.imageReviewMode)) || !object(p)
     || ![p.deployedCommit, p.sourceCommit, p.mainCommit].every((v) => /^[a-f0-9]{40}$/.test(v || ''))
     || !hash(p.artifactId) || !plain(p.version) || !plain(p.unpublishedChanges)
     || !Number.isFinite(Date.parse(p.verifiedAt)) || !/^https:\/\//.test(p.httpsUrl || '')

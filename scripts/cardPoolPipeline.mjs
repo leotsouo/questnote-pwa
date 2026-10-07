@@ -491,12 +491,14 @@ export async function approvePipelineStage(root, id, stage, exactHash, { acknowl
     const validation = await validateThrough(root, id, stage);
     assert(validation.ok, 'STAGE_INVALID', validation.errors.map((entry) => entry.message).join('; '));
     assert(!validation.warnings.length || acknowledgeWarnings, 'WARNINGS_UNREVIEWED', 'Review and acknowledge the current warnings');
-    const { dir, state } = await loadWorkspace(root, id);
+    const { dir, state, brief } = await loadWorkspace(root, id);
     if (state.sopVersion === 2) {
       assert(plain(reviewer) && (['ai', 'human'].includes(reviewerType)
         || (state.purpose === 'synthetic' && reviewerType === 'synthetic')), 'REVIEWER_REQUIRED', 'SOP 2 requires an explicit truthful reviewer type');
-      assert(stage !== 'images' || reviewerType === 'human' || (state.purpose === 'synthetic' && reviewerType === 'synthetic'),
-        'HUMAN_IMAGES_REQUIRED', 'Real pool artwork requires human review');
+      const imageReviewerType = brief.imageReviewMode === 'ai-self' ? 'ai' : 'human';
+      assert(stage !== 'images' || reviewerType === imageReviewerType || (state.purpose === 'synthetic' && reviewerType === 'synthetic'),
+        imageReviewerType === 'human' ? 'HUMAN_IMAGES_REQUIRED' : 'AI_IMAGES_REQUIRED',
+        `Artwork review mode requires ${imageReviewerType} review`);
     }
     const snapshot = await archiveStage(dir, current);
     const refreshed = await loadPipelineStatus(root, id);

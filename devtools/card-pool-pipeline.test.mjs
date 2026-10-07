@@ -561,8 +561,8 @@ test('companion hashes revoke downstream reviews, preserve candidates and detect
   assert.equal((await loadPipelineStatus(root, 'sop_fixture')).errors[0].code, 'BASELINE_DRIFT');
 });
 
-test('real SOP artwork requires explicit human reviewer; internal stages accept AI reviews', async (t) => {
-  const definition = sopBrief('real_review_fixture'); delete definition.purpose;
+test('human-mode SOP artwork requires explicit human reviewer; internal stages accept AI reviews', async (t) => {
+  const definition = { ...sopBrief('real_review_fixture'), imageReviewMode: 'human' }; delete definition.purpose;
   const { root } = await setupSop(t, definition);
   for (const stage of PIPELINE_STAGES.slice(0, 4)) {
     const status = await loadPipelineStatus(root, definition.seriesId);
@@ -573,4 +573,35 @@ test('real SOP artwork requires explicit human reviewer; internal stages accept 
   await assert.rejects(approvePipelineStage(root, definition.seriesId, 'images', status.stages[4].outputHash,
     { acknowledgeWarnings: true, reviewer: 'AI fixture', reviewerType: 'ai' }), { code: 'HUMAN_IMAGES_REQUIRED' });
   assert.equal((await loadPipelineStatus(root, definition.seriesId)).readyToStage, false);
+  await approvePipelineStage(root, definition.seriesId, 'images', status.stages[4].outputHash,
+    { acknowledgeWarnings: true, reviewer: 'Human fixture', reviewerType: 'human' });
+  assert.equal((await loadPipelineStatus(root, definition.seriesId)).readyToStage, true);
+});
+
+test('ai-self brief accepts AI image review and rejects human or synthetic receipts', async (t) => {
+  const definition = { ...sopBrief('ai_self_review_fixture'), imageReviewMode: 'ai-self' }; delete definition.purpose;
+  const { root } = await setupSop(t, definition);
+  for (const stage of PIPELINE_STAGES.slice(0, 4)) {
+    const status = await loadPipelineStatus(root, definition.seriesId);
+    await approvePipelineStage(root, definition.seriesId, stage, status.stages.find((s) => s.stage === stage).outputHash,
+      { acknowledgeWarnings: true, reviewer: 'AI fixture', reviewerType: 'ai' });
+  }
+  const status = await loadPipelineStatus(root, definition.seriesId);
+  for (const reviewerType of ['human', 'synthetic']) {
+    await assert.rejects(approvePipelineStage(root, definition.seriesId, 'images', status.stages[4].outputHash,
+      { acknowledgeWarnings: true, reviewer: 'Wrong mode fixture', reviewerType }),
+    { code: reviewerType === 'synthetic' ? 'REVIEWER_REQUIRED' : 'AI_IMAGES_REQUIRED' });
+  }
+  await approvePipelineStage(root, definition.seriesId, 'images', status.stages[4].outputHash,
+    { acknowledgeWarnings: true, reviewer: 'AI fixture', reviewerType: 'ai' });
+  const candidate = await stagePoolCandidate(root, definition.seriesId);
+  const approvals = await read(path.join(candidate.candidateDir, 'approvals.json'));
+  assert.equal(approvals.brief.imageReviewMode, 'ai-self');
+  assert.equal(approvals.receipts.find((receipt) => receipt.stage === 'images').reviewerType, 'ai');
+});
+
+test('SOP brief rejects unknown artwork review mode', async (t) => {
+  const root = await setup(t);
+  await assert.rejects(createPipelineWorkspace(root, { ...sopBrief('bad_review_mode'), imageReviewMode: 'unknown' }),
+    { code: 'SOP_BRIEF_INVALID' });
 });

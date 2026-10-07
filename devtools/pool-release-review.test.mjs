@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { releaseReviewHash, releaseReviewDecision } from '../scripts/poolReleaseReview.mjs';
+import { releaseReviewHash, releaseReviewDecision, artworkReviewMatchesBrief } from '../scripts/poolReleaseReview.mjs';
 
 const evidence = () => ({ sourceCommit: 'a'.repeat(40), candidateId: 'b'.repeat(64), candidateManifestSha256: 'c'.repeat(64),
   artifacts: { preview: { artifactDir: 'ignored-local-path', artifactId: 'd'.repeat(64), manifestSha256: 'e'.repeat(64), scopePath: '/preview/' },
@@ -29,10 +29,30 @@ test('changes to either artifact, source, candidate or acceptance evidence inval
     (e) => { e.artifacts.preview.artifactId = '4'.repeat(64); },
     (e) => { e.artifacts.production.manifestSha256 = '5'.repeat(64); },
     (e) => { e.checks.workshop.evidence += ' altered'; },
+    (e) => { e.humanAcceptance.packageHash = '6'.repeat(64); },
+    (e) => { e.publicationAuthorization.packageHash = '7'.repeat(64); },
+    (e) => { e.humanAcceptance.acceptedAt = 'invalid'; },
+    (e) => { e.publicationAuthorization.reviewer = ''; },
   ]) {
     const modified = structuredClone(original); change(modified);
     assert.equal(releaseReviewDecision(modified).releaseReady, false);
   }
   original.artifacts.preview.artifactDir = 'moved-but-byte-identical-directory';
   assert.equal(releaseReviewHash(original), packageHash, 'Locations do not replace immutable byte identity');
+});
+
+test('archived artwork receipt must match human, ai-self or legacy brief mode', () => {
+  const approvals = (imageReviewMode, reviewerType, purpose) => ({
+    brief: { sopVersion: 2, ...(imageReviewMode === undefined ? {} : { imageReviewMode }), ...(purpose ? { purpose } : {}) },
+    receipts: [{ stage: 'images', reviewer: 'actual reviewer', reviewerType }],
+  });
+  assert.equal(artworkReviewMatchesBrief(approvals('human', 'human')), true);
+  assert.equal(artworkReviewMatchesBrief(approvals('ai-self', 'ai')), true);
+  assert.equal(artworkReviewMatchesBrief(approvals(undefined, 'human')), true);
+  for (const item of [approvals('human', 'ai'), approvals('ai-self', 'human'), approvals(undefined, 'ai'),
+    approvals('unknown', 'human'), approvals('ai-self', 'synthetic'), approvals('ai-self', 'ai', 'synthetic')]) {
+    assert.equal(artworkReviewMatchesBrief(item), false);
+  }
+  const missingReviewer = approvals('ai-self', 'ai'); missingReviewer.receipts[0].reviewer = '';
+  assert.equal(artworkReviewMatchesBrief(missingReviewer), false);
 });

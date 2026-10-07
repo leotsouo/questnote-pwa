@@ -27,11 +27,20 @@ export function releaseReviewDecision(evidence) {
     nextGate: !humanAccepted ? 'human_whole_package_acceptance' : !publicationAuthorized ? 'explicit_publication_authorization' : 'publish_reviewed_bytes' };
 }
 
+export function artworkReviewMatchesBrief(approvals) {
+  const brief = approvals?.brief;
+  if (brief?.sopVersion !== 2 || brief.purpose === 'synthetic'
+    || (brief.imageReviewMode !== undefined && !['human', 'ai-self'].includes(brief.imageReviewMode))) return false;
+  const expected = brief.imageReviewMode === 'ai-self' ? 'ai' : 'human';
+  const receipt = approvals.receipts?.find((item) => item.stage === 'images');
+  return receipt?.reviewerType === expected && plain(receipt.reviewer);
+}
+
 export async function checkPoolReleaseReview(evidence) {
   require(evidence?.schemaVersion === 1 && /^[a-f0-9]{40}$/.test(evidence.sourceCommit || ''), 'Review requires a source commit');
   require(plain(evidence.previewUrl) && /^https?:\/\//.test(evidence.previewUrl), 'Review requires actual isolated preview URL');
   const manifests = [];
-  let humanArtworkApproved = true;
+  let artworkApproved = true;
   let candidate;
   for (const profile of ['preview', 'production']) {
     const pins = evidence.artifacts?.[profile];
@@ -53,8 +62,7 @@ export async function checkPoolReleaseReview(evidence) {
     }
     candidate = c;
     const approvals = JSON.parse(await fs.readFile(path.join(pins.artifactDir, 'release-input/approvals.json')));
-    humanArtworkApproved &&= approvals.brief?.sopVersion === 2 && approvals.brief?.purpose !== 'synthetic'
-      && approvals.receipts?.find((r) => r.stage === 'images')?.reviewerType === 'human';
+    artworkApproved &&= artworkReviewMatchesBrief(approvals);
     manifests.push(manifest);
   }
   require(manifests[0].profile.contentBundleSha256 === manifests[1].profile.contentBundleSha256
@@ -66,7 +74,7 @@ export async function checkPoolReleaseReview(evidence) {
     const reuse = key === 'region' && ecosystem.expedition.decision === 'reuse';
     require((check?.status === 'pass' || (reuse && check?.status === 'reuse')) && plain(check?.evidence), `Missing actual ${key} acceptance evidence`);
   }
-  require(humanArtworkApproved, 'Synthetic content or artwork without human approval cannot become release ready');
+  require(artworkApproved, 'Synthetic content or artwork review mode mismatch cannot become release ready');
   return { ok: true, ...releaseReviewDecision(evidence),
     limitations: 'Local review records are not signed identities; verify actual human consent and linked browser evidence before publishing.' };
 }
