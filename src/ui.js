@@ -9,6 +9,7 @@ import { LOCAL_ART_PREVIEW, renderLocalIdentityView } from './localArtPreview.js
 import { buildWorkshopGiftView } from './workshopGiftView.js';
 import { initFilterGestures } from './filterGestureController.js';
 import { trackUpdateActivity } from './updateActivity.js';
+import { initTaskWizard } from './taskWizard.js';
 import { claimAllAvailableRewards, isBulkClaimInProgress } from './rewardClaimService.js';
 import { updateControlsHtml, refreshUpdateControls } from './updateController.js';
 import { initReminders, renderReminderSettings } from './reminderController.js';
@@ -3358,9 +3359,11 @@ export function openTaskForm(taskId = null) {
 
   renderSubtaskFormList();
 
+  let wizard = null;
   document.getElementById('task-form')?.addEventListener('submit', trackUpdateActivity(async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
+    if (wizard && !wizard.isReview()) { wizard.next(); return; }
     if (form.dataset.saving === 'true') return;
     const content = document.getElementById('task-content').value.trim();
     const priority = document.getElementById('task-priority').value;
@@ -3379,6 +3382,7 @@ export function openTaskForm(taskId = null) {
 
     const dateCheck = validateDateRange(startDate, dueDate);
     if (!dateCheck.valid) {
+      wizard?.goTo(4);
       const options = dateError?.closest('details');
       if (options) options.open = true;
       if (dateError) {
@@ -3457,6 +3461,7 @@ export function openTaskForm(taskId = null) {
       showToast(err.message || '儲存失敗', 'error');
     } finally { form.dataset.saving = 'false'; submit.disabled = false; }
   }));
+  if (!isEdit && !practice) wizard = initTaskWizard(document.getElementById('task-form'));
 }
 
 /** Reuse the real today list, repairing filters and interrupted modal navigation. */

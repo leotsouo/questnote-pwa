@@ -98,6 +98,15 @@ async function closeModal() {
   await page.locator('#modal-close').click();
   await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
 }
+async function wizardStep(target) {
+  while (Number(await page.locator('.task-wizard__step:visible').getAttribute('data-wizard-step')) < target) {
+    await page.locator('.task-wizard__next').click();
+  }
+}
+async function finishWizard() {
+  await wizardStep(5);
+  await page.locator('#task-form button[type="submit"]').click();
+}
 
 try {
   const guard = await (await fetch(`${base}/__onboarding_test_guard__`)).json();
@@ -163,10 +172,11 @@ try {
       'Senior date shortcuts must override legacy modal flex layout');
     await shot('senior-add-top');
     await page.locator('#task-content').fill('晚上吃藥');
+    await wizardStep(1);
     await page.locator('#task-planned-time').fill('20:00');
-    assert.equal(await page.locator('.senior-form-options').getAttribute('open'), null);
+    assert.equal(await page.locator('.task-wizard__step:visible').getAttribute('data-wizard-step'), '1');
     await shot('senior-add');
-    await page.locator('#task-form button[type="submit"]').click();
+    await finishWizard();
     await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
     await page.waitForFunction(async () => (await window.seniorTest.taskService.getAllTasks()).some((task) => task.title === '晚上吃藥'));
     const task = (await taskRows()).find((row) => row.title === '晚上吃藥');
@@ -215,10 +225,10 @@ try {
   await check('error feedback remains readable and dirty forms prevent accidental dismissal', async () => {
     await page.getByRole('button', { name: '新增任務', exact: true }).filter({ visible: true }).first().click();
     await page.locator('#task-content').fill('未儲存的任務');
-    await page.locator('.senior-form-options summary').click();
+    await wizardStep(4);
     await page.locator('#task-start-date').fill('2026-10-05');
     await page.locator('#task-due-date').fill('2026-10-04');
-    await page.locator('#task-form button[type="submit"]').click();
+    await finishWizard();
     await page.locator('#task-date-error').waitFor({ state: 'visible' });
     await shot('senior-error');
     await page.locator('#modal-close').click();
@@ -276,8 +286,7 @@ try {
     assert.equal(semantics.role, 'dialog');
     assert.equal(semantics.modal, 'true');
     assert.match(semantics.name, /新增任務/);
-    const submit = page.locator('#task-form button[type="submit"]');
-    await submit.focus();
+    await page.locator('.task-wizard__next').focus();
     await page.keyboard.press('Tab');
     assert.equal(await page.evaluate(() => !!document.activeElement.closest('#modal-overlay')), true);
     await page.keyboard.press('Escape');
@@ -410,8 +419,9 @@ try {
   await check('normal mode task create/edit/complete/delete still uses the same working services', async () => {
     await page.getByRole('button', { name: '新增任務', exact: true }).filter({ visible: true }).first().click();
     await page.locator('#task-content').fill('一般模式回歸任務');
+    await wizardStep(1);
     if (!(await page.locator('#task-plan-today').isChecked())) await page.locator('label[for="task-plan-today"]').click();
-    await page.locator('#task-form button[type="submit"]').click();
+    await finishWizard();
     await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
     await page.waitForFunction(async () => (await window.seniorTest.taskService.getAllTasks()).some((row) => row.title === '一般模式回歸任務'));
     const task = (await taskRows()).find((row) => row.title === '一般模式回歸任務');
@@ -437,7 +447,7 @@ try {
       await nav('tasks');
       await page.getByRole('button', { name: '新增任務', exact: true }).filter({ visible: true }).first().click();
       await page.locator('#task-content').fill(`${longTitle}\n${notes}`);
-      await page.locator('#task-form .task-editor-options summary').click();
+      await wizardStep(4);
       const input = page.locator('#subtask-new-input');
       await input.fill('注音選字中');
       for (const data of [{ isComposing: true, keyCode: 13 }, { isComposing: false, keyCode: 229 }]) {
@@ -457,7 +467,7 @@ try {
       assert.equal(await page.locator('#subtask-form-list .subtask-form-item').count(), 1, 'ordinary Enter still adds exactly one subtask');
       assert.equal(await input.inputValue(), '');
       assert.equal((await taskRows()).some((task) => task.title === longTitle), false, 'subtask input must not submit the parent task');
-      await page.locator('#task-form button[type="submit"]').click();
+      await finishWizard();
       await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
       await page.waitForFunction(async (title) => (await window.seniorTest.taskService.getAllTasks()).some((task) => task.title === title), longTitle);
       const task = (await taskRows()).find((task) => task.title === longTitle);

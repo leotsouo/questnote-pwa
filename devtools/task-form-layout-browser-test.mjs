@@ -15,6 +15,7 @@ try {
   await page.locator('[data-action="empty-add-task"]:visible').first().click();
   await page.locator('#task-form').waitFor();
   await page.locator('#task-content').fill('測試任務\n' + '很長的任務內容'.repeat(30));
+  for (let i = 0; i < 4; i += 1) await page.locator('.task-wizard__next').click();
   await page.locator('#subtask-new-input').fill('子任務'.repeat(40));
   await page.locator('#subtask-add-btn').click();
   for (const width of [320, 360, 390, 430, 768]) {
@@ -40,17 +41,18 @@ try {
         });
         assert.ok(result.scrollWidth <= result.width + 1, `${width}/${theme}/${fontSize}: horizontal overflow ${JSON.stringify(result)}`);
         assert.deepEqual(result.overflow, [], 'All form controls fit without clipping');
-        assert.ok(result.scrollable, 'Vertical scrolling is available');
         assert.equal(result.touchAction, 'pan-y pinch-zoom');
         const bounds = await page.locator('#modal-body').boundingBox();
-        await page.mouse.move(bounds.x + 4, bounds.y + 80);
-        await page.mouse.wheel(500, 3000);
-        await page.waitForTimeout(100);
-        const scroll = await page.locator('#modal-body').evaluate((el) => ({ x: el.scrollLeft, y: el.scrollTop }));
-        assert.equal(scroll.x, 0, 'Diagonal scrolling cannot move the form horizontally');
-        assert.ok(scroll.y > 0, 'Vertical wheel scrolling works');
-        await page.locator('#task-form button[type="submit"]').scrollIntoViewIfNeeded();
-        await assert.doesNotReject(() => page.locator('#task-form button[type="submit"]').click({ trial: true }), 'Submit remains reachable');
+        if (result.scrollable) {
+          await page.mouse.move(bounds.x + 4, bounds.y + 80);
+          await page.mouse.wheel(500, 3000);
+          await page.waitForTimeout(100);
+          const scroll = await page.locator('#modal-body').evaluate((el) => ({ x: el.scrollLeft, y: el.scrollTop }));
+          assert.equal(scroll.x, 0, 'Diagonal scrolling cannot move the form horizontally');
+          assert.ok(scroll.y > 0, 'Vertical wheel scrolling works when content exceeds the viewport');
+        }
+        await page.locator('.task-wizard__next').scrollIntoViewIfNeeded();
+        await assert.doesNotReject(() => page.locator('.task-wizard__next').click({ trial: true }), 'Next remains reachable');
         console.log(`PASS ${width}px ${theme} ${fontSize}px`);
       }
     }
