@@ -1,0 +1,22 @@
+{
+  "id": "sunward_letters",
+  "name": "晴信原野",
+  "active": true,
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "petFilter": {
+    "poolTags": [
+      "sunward_letters"
+    ]
+  }
+}

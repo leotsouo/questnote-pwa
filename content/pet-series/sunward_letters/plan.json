@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "pets": [
+    {
+      "draftId": "n_1",
+      "petId": "pet_n41",
+      "rarity": "N",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "n_2",
+      "petId": "pet_n42",
+      "rarity": "N",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "n_3",
+      "petId": "pet_n43",
+      "rarity": "N",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "r_1",
+      "petId": "pet_r44",
+      "rarity": "R",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "r_2",
+      "petId": "pet_r45",
+      "rarity": "R",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "r_3",
+      "petId": "pet_r46",
+      "rarity": "R",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "sr_1",
+      "petId": "pet_sr38",
+      "rarity": "SR",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "sr_2",
+      "petId": "pet_sr39",
+      "rarity": "SR",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "sr_3",
+      "petId": "pet_sr40",
+      "rarity": "SR",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "ssr_1",
+      "petId": "pet_ssr27",
+      "rarity": "SSR",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "ssr_2",
+      "petId": "pet_ssr28",
+      "rarity": "SSR",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    },
+    {
+      "draftId": "ur_1",
+      "petId": "pet_ur21",
+      "rarity": "UR",
+      "name": "",
+      "design": "",
+      "phase": "base"
+    }
+  ]
+}
