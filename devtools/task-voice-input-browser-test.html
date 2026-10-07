@@ -47,6 +47,29 @@
     document.querySelector('.modal-overlay').classList.remove('open');
     await Promise.resolve();
     assert(closingSession.aborted, 'closing the modal releases the microphone');
+    class SlowRecognition extends FakeRecognition {
+      start() { this.starts = (this.starts || 0) + 1; }
+      allow() { this.onstart?.(); }
+    }
+    const slowOverlay = document.createElement('div');
+    slowOverlay.className = 'modal-overlay open';
+    slowOverlay.innerHTML = '<form><section><textarea id="slow-input"></textarea></section></form>';
+    document.body.append(slowOverlay);
+    const slowForm = slowOverlay.querySelector('form');
+    const slowSection = slowOverlay.querySelector('section');
+    attachTaskVoiceInput(slowForm, slowSection, slowSection.querySelector('textarea'), { Recognition: SlowRecognition, secureContext: true });
+    await Promise.resolve();
+    const slowButton = slowSection.querySelector('button');
+    slowButton.click();
+    const slowSession = instances.at(-1);
+    assert(slowButton.disabled && slowSession.starts === 1, 'permission wait prevents repeated starts');
+    assert(slowSection.querySelector('.task-voice-status').textContent.includes('權限'), 'first use explains permission prompt');
+    slowButton.click();
+    assert(slowSession.starts === 1, 'second tap cannot start another permission request');
+    slowSession.allow();
+    assert(!slowButton.disabled && slowButton.getAttribute('aria-pressed') === 'true', 'microphone button recovers after permission');
+    slowButton.click();
+    assert(!slowButton.disabled, 'stop recovers button');
     const other = document.createElement('section');
     const otherInput = document.createElement('textarea');
     other.append(otherInput);
