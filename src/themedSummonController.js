@@ -207,7 +207,6 @@ function createOverlay({ mode, reduceMotion, highestRarity, poolName, animationK
     <div class="dream-bloom-stage">
       <div class="dream-bloom-dust" data-role="dust" aria-hidden="true"></div>
       <div class="dream-bloom-ripple" data-role="ripple" aria-hidden="true"></div>
-      <div class="dream-bloom-omen" data-role="omen" aria-hidden="true"></div>
       <div class="dream-bloom-buds" data-role="buds" aria-hidden="true"></div>
       <div class="dream-bloom-crest" data-role="crest" aria-hidden="true"></div>
       <article class="dream-bloom-seal" data-role="seal" hidden>
@@ -240,8 +239,6 @@ function createOverlay({ mode, reduceMotion, highestRarity, poolName, animationK
     overlay.querySelectorAll('[data-role="dust"], [data-role="ripple"], [data-role="buds"], [data-role="crest"]').forEach((node) => node.remove());
   }
   if (sceneFactory) overlay.querySelector('.dream-bloom-bg')?.replaceWith(sceneFactory());
-  // The glacier's sunrise is part of its landscape, not a second generic omen.
-  if (glacier) overlay.querySelector('[data-role="omen"]')?.remove();
 
   return overlay;
 }
