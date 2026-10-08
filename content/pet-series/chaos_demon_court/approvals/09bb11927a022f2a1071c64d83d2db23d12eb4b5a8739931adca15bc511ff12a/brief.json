@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sopVersion": 2,
+  "seriesId": "chaos_demon_court",
+  "poolId": "chaos_demon_court",
+  "seriesName": "黯冠王庭・混世降臨",
+  "concept": "織界各地仍保留原有故事，黯冠王庭以裂冠侵蝕七色星路。全員20位原生形態為非人形魔獸，僅UR3與SSR4完成既有流程後覺醒為美型成年人形惡魔。王庭仍是具有自身意志的反派勢力。",
+  "rarityPlan": {
+    "N": 3,
+    "R": 5,
+    "SR": 5,
+    "SSR": 4,
+    "UR": 3
+  },
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "presentationTemplate": "chaos_demon_court",
+  "unlock": null,
+  "releaseVersion": "3.9.0",
+  "imageReviewMode": "ai-self",
+  "noExtraCost": true,
+  "productionBaseline": {
+    "version": "3.8.9",
+    "deployedCommit": "ce35b1f859b2b9ed5de5bd05c01b06651499c7ab",
+    "sourceCommit": "f515c683e187d64241fefef48ae9739006d2a2da",
+    "mainCommit": "e53fc8358445c3fb2a23a8d2c3bbe2eab55c2056",
+    "artifactId": "77a4435d96191ec2fdd61197dbb98319e6f8ec00d7c1983793a125debf9e4d54",
+    "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+    "verifiedAt": "2026-10-08T11:00:12.354Z",
+    "unpublishedChanges": "main only adds maintained documentation over the reviewed V3.8.9 deployment. This branch adds original controlled dark-court presentation and darkcrown exploration support, verified locally and not published. Existing official pet/pool/lore catalog bytes remain unchanged."
+  },
+  "animationPlan": {
+    "decision": "dedicated",
+    "reason": "裂冠侵蝕七色星路是本池共通世界與真正反派的故事動作，使用原創受控黑塔／裂冠模板。",
+    "storyboard": "首次及切池完整入場：七路亮起→裂冠旋聚→黑塔界線延伸，沿用共通入場時鐘。單抽及十連前奏均為3秒：路線聚合→裂冠開裂→稀有度預兆→固定結果；不修改經濟或結果。",
+    "rarityNotes": "UR黯冠／裂月／終鐘使用crown/moon/bell；SSR荊誓／鏡宴／灰律／蝕星使用thorn/mirror/law/star。十連依既有SSR+queue展示；重複稀有角色也完整展示本體。",
+    "motionNotes": "保留前奏略過與queue略過、Escape鍵盤、reduce-motion共通時鐘、圖片失敗回退、可重播；覺醒先交易後演出，僅7位公開人形，未覺醒／未收藏／召喚永遠顯示非人形本體。"
+  },
+  "awakeningScope": {
+    "initialCount": 20,
+    "eligibleCount": 7,
+    "rarities": [
+      "SSR",
+      "UR"
+    ],
+    "areaId": "darkcrown_border",
+    "foodId": "item_chaos_ember_tart",
+    "schemaVersion": 1
+  },
+  "artDirection": "Dark Fantasy 90s Retro Anime Bishounen & Pop Anime"
+}

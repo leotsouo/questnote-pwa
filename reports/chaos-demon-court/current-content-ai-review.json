@@ -1,0 +1,50 @@
+{
+  "seriesId": "darkcrown_court_release",
+  "reviewerType": "ai",
+  "reviews": [
+    {
+      "stage": "brief",
+      "hash": "ae09e15552c4c6735953f01b5921a452c1bcc1585961fd8d0b57b7e597f37e9c",
+      "checks": [
+        "user-approved 20/7 scope preserved",
+        "fresh corrected runtime baseline",
+        "allocated IDs stable",
+        "dedicated controlled template and AI self-review"
+      ]
+    },
+    {
+      "stage": "plan",
+      "hash": "fe5b584e9bff6c9a86d019e0b20759ad9782809f824e9c4e092dd33313ac5e49",
+      "checks": [
+        "user-approved 20/7 scope preserved",
+        "fresh corrected runtime baseline",
+        "allocated IDs stable",
+        "dedicated controlled template and AI self-review"
+      ]
+    },
+    {
+      "stage": "content",
+      "hash": "78c8958039c79fcb5b18d25f2403e22e4498c38d2c5e1ccaff912482b4cc7f8f",
+      "checks": [
+        "20 unique names and IDs; all canonical forms beasts",
+        "all 80 bond chapters authored and seven Lv5 hints precede separate trial",
+        "new 75/150 food with real forest_leaf/lava_core sources",
+        "all explicit specialties match runtime; affinity reasons provided",
+        "darkcrown five stories/milestones and complete dispatch terms",
+        "old candidate sets and catalog rows preserved by validator"
+      ]
+    },
+    {
+      "stage": "prompts",
+      "hash": "0f6caefa4bed42c070d6a7d571512df27184f2843acb179aabe11f8589e83d78",
+      "checks": [
+        "all 20 canonical prompts request nonhuman anatomy",
+        "each has signature/action/consequence and review sizes",
+        "seven paired adult demon prompts preserved separately",
+        "built-in tool and user-confirmed existing subscription provenance; no paid API"
+      ]
+    }
+  ],
+  "artworkApproval": "pending; source PNG candidates not yet approved",
+  "limitations": "This records content/contracts review; does not substitute for native UI, artwork, artifact or publication acceptance."
+}

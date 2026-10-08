@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "chaos_demon_court",
+  "seriesName": "黯冠王庭・混世降臨",
+  "description": "織界各地仍保留原有故事，黯冠王庭以裂冠侵蝕七色星路。全員20位原生形態為非人形魔獸，僅UR3與SSR4完成既有流程後覺醒為美型成年人形惡魔。王庭仍是具有自身意志的反派勢力。",
+  "rarityPlan": {
+    "N": 3,
+    "R": 5,
+    "SR": 5,
+    "SSR": 4,
+    "UR": 3
+  },
+  "releaseVersion": "3.9.0"
+}

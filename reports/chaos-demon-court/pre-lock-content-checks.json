@@ -1,0 +1,1337 @@
+{
+  "type": "pre-lock pure contract preflight; not approval",
+  "ecosystem": {
+    "ok": true,
+    "errors": [],
+    "catalogs": {
+      "data/craftables.json": [
+        {
+          "id": "item_small_spirit_food",
+          "name": "小份靈食",
+          "type": "bond_item",
+          "rarity": "N",
+          "description": "用森林嫩葉製成的基礎靈食，味道清淡但很容易被各種寵物接受。",
+          "effect": {
+            "bondExp": 10
+          },
+          "recipe": {
+            "forest_leaf": 2
+          },
+          "enabled": true,
+          "futureTags": [
+            "bond_item"
+          ]
+        },
+        {
+          "id": "item_warm_snack",
+          "name": "溫暖點心",
+          "type": "bond_item",
+          "rarity": "R",
+          "description": "嫩葉與熔岩核心混合烘焙，帶有溫暖的氣息。",
+          "effect": {
+            "bondExp": 25
+          },
+          "recipe": {
+            "forest_leaf": 4,
+            "lava_core": 1
+          },
+          "enabled": true,
+          "futureTags": [
+            "bond_item"
+          ]
+        },
+        {
+          "id": "item_stardust_candy",
+          "name": "星塵糖果",
+          "type": "bond_item",
+          "rarity": "SR",
+          "description": "星界碎片與機械零件調和而成的稀有糖果。",
+          "effect": {
+            "bondExp": 50
+          },
+          "recipe": {
+            "forest_leaf": 3,
+            "machine_part": 2,
+            "star_shard": 1
+          },
+          "enabled": true,
+          "futureTags": [
+            "bond_item"
+          ]
+        },
+        {
+          "id": "item_fire_meat",
+          "name": "火光肉乾",
+          "type": "favorite_bond_item",
+          "rarity": "SR",
+          "description": "熔岩核心燻製的肉乾，喜歡火系禮物的夥伴尤其喜愛。",
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "lava_core": 3,
+            "forest_leaf": 2
+          },
+          "enabled": true,
+          "futureTags": [
+            "bond_item",
+            "bond_unlock"
+          ],
+          "favoriteTags": [
+            "fire"
+          ]
+        },
+        {
+          "id": "item_machine_biscuit",
+          "name": "機巧能量餅",
+          "type": "favorite_bond_item",
+          "rarity": "SR",
+          "description": "古代齒輪與星界能量壓製的機械系專用能量餅。",
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "machine_part": 4,
+            "star_shard": 1
+          },
+          "enabled": true,
+          "futureTags": [
+            "bond_item",
+            "bond_unlock"
+          ],
+          "favoriteTags": [
+            "machine"
+          ]
+        },
+        {
+          "id": "item_astral_honey",
+          "name": "星界蜜糖",
+          "type": "bond_item",
+          "rarity": "SSR",
+          "description": "星界碎片與多種材料慢火熬製的高階通用蜜糖，所有夥伴皆可享用，沒有星界喜好加成。",
+          "effect": {
+            "bondExp": 100
+          },
+          "recipe": {
+            "star_shard": 3,
+            "forest_leaf": 8,
+            "machine_part": 2
+          },
+          "enabled": true,
+          "futureTags": [
+            "bond_item",
+            "future_awakening"
+          ]
+        },
+        {
+          "id": "item_leaf_dumpling",
+          "name": "嫩葉靈糰",
+          "type": "favorite_bond_item",
+          "rarity": "SR",
+          "description": "森林嫩葉揉成的清香靈糰，喜歡自然禮物的夥伴尤其喜愛。",
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "forest_leaf": 8
+          },
+          "favoriteTags": [
+            "nature"
+          ],
+          "enabled": true,
+          "futureTags": [
+            "bond_item",
+            "bond_unlock"
+          ]
+        },
+        {
+          "id": "item_star_crisp",
+          "name": "星晶酥",
+          "type": "favorite_bond_item",
+          "rarity": "SR",
+          "description": "星界碎片點綴的酥點，與喜歡星界禮物的夥伴共鳴。",
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "star_shard": 1,
+            "forest_leaf": 6
+          },
+          "favoriteTags": [
+            "astral"
+          ],
+          "enabled": true,
+          "futureTags": [
+            "bond_item",
+            "bond_unlock"
+          ]
+        },
+        {
+          "id": "item_aurora_cream",
+          "name": "極光冰酪",
+          "type": "favorite_bond_item",
+          "rarity": "SR",
+          "description": "極光冰晶凝成的清涼冰酪，喜歡冰霜禮物的夥伴尤其喜愛。",
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "aurora_ice": 3,
+            "forest_leaf": 2
+          },
+          "favoriteTags": [
+            "frost"
+          ],
+          "enabled": true,
+          "futureTags": [
+            "bond_item",
+            "bond_unlock"
+          ]
+        },
+        {
+          "id": "item_harvest_rice_cake",
+          "name": "豐穗米餅",
+          "type": "favorite_bond_item",
+          "rarity": "SR",
+          "description": "帶有豐穗護符祝福的米餅，適合喜歡田園禮物的夥伴。",
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "harvest_charm": 3,
+            "forest_leaf": 2
+          },
+          "favoriteTags": [
+            "harvest"
+          ],
+          "enabled": true,
+          "futureTags": [
+            "bond_item",
+            "bond_unlock"
+          ]
+        },
+        {
+          "id": "item_pine_trail_riceball",
+          "name": "松香行旅糰",
+          "type": "favorite_bond_item",
+          "rarity": "R",
+          "description": "以靈性嫩葉包住田園補給的溫熱小糰，帶著清淡松香，適合在山亭歇腳時分享。自然與田園喜好的夥伴特別喜歡。",
+          "enabled": true,
+          "favoriteTags": [
+            "nature",
+            "harvest"
+          ],
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "forest_leaf": 6,
+            "harvest_charm": 2
+          },
+          "futureTags": [
+            "bond_item",
+            "swordwild_shanhe_v3"
+          ]
+        },
+        {
+          "id": "item_lionheart_gear_crisp",
+          "name": "爐香齒輪酥",
+          "type": "favorite_bond_item",
+          "rarity": "SR",
+          "description": "工坊以齒輪靈質塑形、爐熱烘焙而成的可食用酥點，適合喜歡機械與火系禮物的夥伴。",
+          "enabled": true,
+          "favoriteTags": [
+            "machine",
+            "fire"
+          ],
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "machine_part": 3,
+            "forest_leaf": 4,
+            "lava_core": 1
+          },
+          "futureTags": [
+            "bond_item",
+            "lionheart_inverse_oath"
+          ]
+        },
+        {
+          "id": "item_sunward_grain_ring",
+          "name": "晴雨穀圈",
+          "type": "favorite_bond_item",
+          "rarity": "R",
+          "description": "雨後以森林嫩葉包裹豐穗護符的穀香小圈。自然與田園喜好的夥伴特別喜愛。",
+          "enabled": true,
+          "favoriteTags": [
+            "nature",
+            "harvest"
+          ],
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "forest_leaf": 3,
+            "harvest_charm": 3
+          },
+          "futureTags": [
+            "bond_item",
+            "sunward_letters"
+          ]
+        },
+        {
+          "id": "item_chaos_ember_tart",
+          "name": "黯莓餘燼塔",
+          "type": "favorite_bond_item",
+          "rarity": "R",
+          "description": "以森林嫩葉裹住暖燼莓香的小塔；黯紫外皮下留有暖意。喜愛餘燼與星界的夥伴特別喜愛，也用於黯冠王庭的化身儀式。",
+          "enabled": true,
+          "favoriteTags": [
+            "fire",
+            "astral"
+          ],
+          "effect": {
+            "bondExp": 75,
+            "favoriteBonusBondExp": 150
+          },
+          "recipe": {
+            "forest_leaf": 3,
+            "lava_core": 3
+          },
+          "futureTags": [
+            "bond_item",
+            "darkcrown_court"
+          ]
+        }
+      ],
+      "data/materials.json": [
+        {
+          "id": "forest_leaf",
+          "name": "森林嫩葉",
+          "rarity": "N",
+          "description": "迷霧森林中常見的靈性嫩葉，適合製作基礎親密度道具。",
+          "category": "nature",
+          "sourceArea": "迷霧森林",
+          "futureTags": [
+            "crafting",
+            "bond_item",
+            "future_area_unlock"
+          ]
+        },
+        {
+          "id": "lava_core",
+          "name": "熔岩核心",
+          "rarity": "R",
+          "description": "熔岩裂谷中凝結出的火熱核心，常用於製作火系與行動力相關道具。",
+          "category": "fire",
+          "sourceArea": "熔岩裂谷",
+          "futureTags": [
+            "crafting",
+            "bond_item",
+            "awakening"
+          ]
+        },
+        {
+          "id": "machine_part",
+          "name": "古代齒輪",
+          "rarity": "R",
+          "description": "古代機械遺跡中發現的精密零件，適合製作機械型寵物喜好的道具。",
+          "category": "machine",
+          "sourceArea": "古代機械遺跡",
+          "futureTags": [
+            "crafting",
+            "bond_item",
+            "workshop_upgrade"
+          ]
+        },
+        {
+          "id": "star_shard",
+          "name": "星界碎片",
+          "rarity": "SR",
+          "description": "星界裂縫中漂浮的稀有碎片，蘊含高密度星光能量。",
+          "category": "rare",
+          "sourceArea": "星界裂縫",
+          "futureTags": [
+            "crafting",
+            "bond_item",
+            "bond_unlock",
+            "future_awakening"
+          ]
+        },
+        {
+          "id": "aurora_ice",
+          "name": "極光冰晶",
+          "rarity": "R",
+          "description": "極北冰岸凝結的極光結晶，蘊含寒霜靈性。",
+          "category": "ice",
+          "sourceArea": "極北冰岸",
+          "futureTags": [
+            "crafting",
+            "bond_item",
+            "future_area_unlock"
+          ]
+        },
+        {
+          "id": "harvest_charm",
+          "name": "豐穗護符",
+          "rarity": "N",
+          "description": "豐穗遠郊田埂間拾得的護符，帶有踏實的田野氣息。",
+          "category": "nature",
+          "sourceArea": "豐穗遠郊",
+          "futureTags": [
+            "crafting",
+            "bond_item",
+            "future_area_unlock"
+          ]
+        }
+      ],
+      "data/gift-affinities.json": {
+        "schemaVersion": 1,
+        "giftAffinityTags": {
+          "pet_n01": [],
+          "pet_n02": [],
+          "pet_n03": [],
+          "pet_n04": [
+            "fire"
+          ],
+          "pet_n05": [
+            "nature"
+          ],
+          "pet_n06": [],
+          "pet_n07": [],
+          "pet_n08": [],
+          "pet_n09": [],
+          "pet_n10": [],
+          "pet_r01": [],
+          "pet_r02": [
+            "fire"
+          ],
+          "pet_r03": [],
+          "pet_r04": [],
+          "pet_r05": [
+            "frost"
+          ],
+          "pet_r06": [],
+          "pet_r07": [],
+          "pet_r08": [],
+          "pet_sr01": [],
+          "pet_sr02": [
+            "fire"
+          ],
+          "pet_sr03": [],
+          "pet_sr04": [
+            "machine"
+          ],
+          "pet_sr05": [
+            "frost"
+          ],
+          "pet_sr06": [],
+          "pet_ssr01": [
+            "fire"
+          ],
+          "pet_ssr02": [],
+          "pet_ssr03": [
+            "machine"
+          ],
+          "pet_ssr04": [],
+          "pet_ur01": [
+            "astral"
+          ],
+          "pet_ur02": [],
+          "pet_ur03": [
+            "machine"
+          ],
+          "pet_ur04": [],
+          "pet_sp01": [
+            "harvest"
+          ],
+          "pet_sp02": [],
+          "pet_sp03": [
+            "fire"
+          ],
+          "pet_sp04": [
+            "frost"
+          ],
+          "pet_sp05": [],
+          "pet_sp06": [
+            "machine",
+            "astral"
+          ],
+          "pet_sp08": [
+            "frost"
+          ],
+          "pet_sp09": [
+            "frost"
+          ],
+          "pet_sp10": [
+            "astral"
+          ],
+          "pet_sp11": [],
+          "pet_sp12": [
+            "nature",
+            "harvest"
+          ],
+          "pet_sp13": [
+            "astral"
+          ],
+          "pet_n11": [],
+          "pet_n12": [],
+          "pet_n13": [],
+          "pet_n14": [],
+          "pet_n15": [],
+          "pet_n16": [
+            "nature",
+            "harvest"
+          ],
+          "pet_r09": [],
+          "pet_r10": [
+            "nature"
+          ],
+          "pet_r11": [],
+          "pet_r12": [
+            "fire"
+          ],
+          "pet_sr07": [],
+          "pet_sr08": [
+            "machine"
+          ],
+          "pet_n17": [],
+          "pet_n18": [],
+          "pet_n19": [],
+          "pet_r13": [],
+          "pet_r14": [],
+          "pet_r15": [
+            "nature"
+          ],
+          "pet_sr09": [],
+          "pet_sr10": [],
+          "pet_sr11": [],
+          "pet_ssr05": [],
+          "pet_ssr06": [],
+          "pet_ur05": [
+            "nature"
+          ],
+          "pet_r16": [
+            "nature"
+          ],
+          "pet_sr12": [],
+          "pet_ssr07": [],
+          "pet_ur06": [],
+          "pet_n20": [
+            "fire"
+          ],
+          "pet_n21": [],
+          "pet_n22": [],
+          "pet_r17": [],
+          "pet_r18": [
+            "fire"
+          ],
+          "pet_r19": [],
+          "pet_sr13": [
+            "nature"
+          ],
+          "pet_sr14": [
+            "frost"
+          ],
+          "pet_sr15": [],
+          "pet_ssr08": [],
+          "pet_ssr09": [],
+          "pet_ur07": [],
+          "pet_n26": [],
+          "pet_n27": [],
+          "pet_n28": [],
+          "pet_r23": [],
+          "pet_r24": [],
+          "pet_r25": [],
+          "pet_sr19": [],
+          "pet_sr20": [],
+          "pet_ssr12": [],
+          "pet_ssr13": [],
+          "pet_ur09": [],
+          "pet_ur10": [],
+          "pet_n36": [
+            "nature"
+          ],
+          "pet_n37": [
+            "harvest"
+          ],
+          "pet_n38": [
+            "nature"
+          ],
+          "pet_r36": [
+            "fire",
+            "harvest"
+          ],
+          "pet_r37": [
+            "harvest"
+          ],
+          "pet_r38": [
+            "nature"
+          ],
+          "pet_r39": [
+            "nature"
+          ],
+          "pet_r40": [
+            "nature"
+          ],
+          "pet_sr30": [
+            "nature"
+          ],
+          "pet_sr31": [
+            "frost"
+          ],
+          "pet_sr32": [
+            "nature"
+          ],
+          "pet_sr33": [
+            "harvest"
+          ],
+          "pet_sr34": [
+            "frost"
+          ],
+          "pet_ssr21": [
+            "nature"
+          ],
+          "pet_ssr22": [
+            "frost"
+          ],
+          "pet_ssr23": [
+            "nature"
+          ],
+          "pet_ssr24": [
+            "nature"
+          ],
+          "pet_ur16": [
+            "harvest"
+          ],
+          "pet_ur17": [
+            "fire"
+          ],
+          "pet_ur18": [
+            "nature"
+          ],
+          "pet_n39": [
+            "machine"
+          ],
+          "pet_n40": [
+            "nature"
+          ],
+          "pet_r41": [
+            "machine"
+          ],
+          "pet_r42": [
+            "frost"
+          ],
+          "pet_r43": [
+            "fire"
+          ],
+          "pet_sr35": [
+            "machine"
+          ],
+          "pet_sr36": [
+            "frost"
+          ],
+          "pet_sr37": [
+            "fire"
+          ],
+          "pet_ssr25": [
+            "machine"
+          ],
+          "pet_ssr26": [
+            "nature"
+          ],
+          "pet_ur19": [
+            "nature"
+          ],
+          "pet_ur20": [
+            "fire",
+            "machine"
+          ],
+          "pet_n41": [
+            "harvest"
+          ],
+          "pet_n42": [
+            "nature"
+          ],
+          "pet_n43": [
+            "nature"
+          ],
+          "pet_r44": [
+            "harvest"
+          ],
+          "pet_r45": [
+            "nature"
+          ],
+          "pet_r46": [
+            "nature"
+          ],
+          "pet_sr38": [
+            "harvest"
+          ],
+          "pet_sr39": [
+            "nature"
+          ],
+          "pet_sr40": [
+            "nature"
+          ],
+          "pet_ssr27": [
+            "harvest"
+          ],
+          "pet_ssr28": [
+            "nature"
+          ],
+          "pet_ur21": [
+            "harvest",
+            "nature"
+          ],
+          "pet_n47": [
+            "fire"
+          ],
+          "pet_n48": [
+            "machine"
+          ],
+          "pet_n49": [
+            "nature"
+          ],
+          "pet_r52": [
+            "astral"
+          ],
+          "pet_r53": [
+            "machine"
+          ],
+          "pet_r54": [
+            "astral"
+          ],
+          "pet_r55": [
+            "nature",
+            "harvest"
+          ],
+          "pet_r56": [
+            "fire"
+          ],
+          "pet_sr46": [
+            "fire"
+          ],
+          "pet_sr47": [
+            "frost"
+          ],
+          "pet_sr48": [
+            "frost"
+          ],
+          "pet_sr49": [
+            "astral"
+          ],
+          "pet_sr50": [
+            "nature"
+          ],
+          "pet_ssr33": [
+            "nature",
+            "fire"
+          ],
+          "pet_ssr34": [
+            "astral"
+          ],
+          "pet_ssr35": [
+            "machine",
+            "fire"
+          ],
+          "pet_ssr36": [
+            "astral"
+          ],
+          "pet_ur25": [
+            "fire",
+            "astral"
+          ],
+          "pet_ur26": [
+            "frost",
+            "astral"
+          ],
+          "pet_ur27": [
+            "astral"
+          ]
+        }
+      },
+      "data/expeditions.json": {
+        "version": 2,
+        "areas": [
+          {
+            "id": "mist_forest",
+            "name": "迷霧森林",
+            "description": "薄霧繚繞的初階探險地，適合剛起步的夥伴。",
+            "unlock": {
+              "type": "default"
+            },
+            "energyCost": 3,
+            "durationMinutes": 15,
+            "rewards": {
+              "stardust": {
+                "min": 15,
+                "max": 30
+              },
+              "material": {
+                "id": "forest_leaf",
+                "name": "森林之葉",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 5
+            }
+          },
+          {
+            "id": "lava_rift",
+            "name": "熔岩裂谷",
+            "description": "熾熱裂谷深處藏有熔岩核心，需火屬性夥伴引路。",
+            "unlock": {
+              "type": "fire_pet",
+              "elements": [
+                "火",
+                "fire"
+              ],
+              "keywords": [
+                "火",
+                "焰",
+                "熔岩"
+              ],
+              "hint": "擁有火屬性或名稱／描述含「火」「焰」「熔岩」的寵物"
+            },
+            "energyCost": 5,
+            "durationMinutes": 60,
+            "rewards": {
+              "stardust": {
+                "min": 30,
+                "max": 60
+              },
+              "material": {
+                "id": "lava_core",
+                "name": "熔岩核心",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 10
+            }
+          },
+          {
+            "id": "machine_ruins",
+            "name": "古代機械遺跡",
+            "description": "失落文明的機械殘骸，機械系夥伴能解讀遺跡密碼。",
+            "unlock": {
+              "type": "mechanical_pet",
+              "elements": [
+                "機械",
+                "mechanical",
+                "machine"
+              ],
+              "keywords": [
+                "機械",
+                "機神",
+                "鋼",
+                "鐵"
+              ],
+              "hint": "擁有機械類型或名稱／描述含「機械」「機神」「鋼」「鐵」的寵物"
+            },
+            "energyCost": 5,
+            "durationMinutes": 60,
+            "rewards": {
+              "stardust": {
+                "min": 30,
+                "max": 60
+              },
+              "material": {
+                "id": "machine_part",
+                "name": "機械零件",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 10
+            }
+          },
+          {
+            "id": "astral_rift",
+            "name": "星界裂縫",
+            "description": "連接星界的裂縫，僅 UR 夥伴能穩定穿越。",
+            "unlock": {
+              "type": "ur_pet",
+              "hint": "擁有至少 1 隻 UR 寵物"
+            },
+            "energyCost": 10,
+            "durationMinutes": 240,
+            "rewards": {
+              "stardust": {
+                "min": 80,
+                "max": 150
+              },
+              "material": {
+                "id": "star_shard",
+                "name": "星界碎片",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 20
+            }
+          },
+          {
+            "id": "polar_shore",
+            "name": "極北冰岸",
+            "description": "極光與寒潮交會的北境海岸，維京戰魂曾在此遠征，極光白熊與北海霸主亦在此守護。需極寒或北境系夥伴引路，方能穿越風雪。",
+            "unlock": {
+              "type": "frost_pet",
+              "elements": [
+                "冰",
+                "ice",
+                "frost",
+                "aurora"
+              ],
+              "poolTags": [
+                "frost_spirit",
+                "nordic_spirit",
+                "ocean_spirit"
+              ],
+              "keywords": [
+                "冰",
+                "極",
+                "寒",
+                "霜",
+                "北",
+                "潮",
+                "維京",
+                "極光",
+                "玄冰",
+                "晶龍",
+                "暴雪",
+                "冰岸"
+              ],
+              "hint": "擁有 frost／nordic 標籤，或名稱／描述含「冰」「極」「北境」「極光」的夥伴"
+            },
+            "energyCost": 6,
+            "durationMinutes": 90,
+            "rewards": {
+              "stardust": {
+                "min": 40,
+                "max": 75
+              },
+              "material": {
+                "id": "aurora_ice",
+                "name": "極光冰晶",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 12
+            }
+          },
+          {
+            "id": "harvest_fields",
+            "name": "豐穗遠郊",
+            "description": "稻浪與村落交錯的田園邊境，稻穗守望者日夜巡守田埂。適合踏實、耐心的夥伴，在這裡一步一印累積成果。",
+            "unlock": {
+              "type": "rustic_pet",
+              "elements": [
+                "木",
+                "harvest",
+                "sprout",
+                "sprout_nature"
+              ],
+              "poolTags": [
+                "rustic_spirit",
+                "daily_spirit"
+              ],
+              "keywords": [
+                "稻",
+                "田",
+                "村落",
+                "田野",
+                "豐收",
+                "萌芽",
+                "守望",
+                "田園",
+                "耕耘",
+                "苔蘚",
+                "豆芽",
+                "守護"
+              ],
+              "hint": "擁有 rustic／daily 標籤，或名稱／描述含「稻」「田」「萌芽」「守護」的夥伴"
+            },
+            "energyCost": 6,
+            "durationMinutes": 90,
+            "rewards": {
+              "stardust": {
+                "min": 35,
+                "max": 70
+              },
+              "material": {
+                "id": "harvest_charm",
+                "name": "豐穗護符",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 12
+            }
+          },
+          {
+            "id": "cloudrest_trail",
+            "name": "雲棧古道",
+            "description": "穿過竹林、雪線與山亭的古道。與珍禽異獸修整斷橋，把能走的路留給後來者。",
+            "unlock": {
+              "type": "default"
+            },
+            "energyCost": 3,
+            "durationMinutes": 30,
+            "rewards": {
+              "stardust": {
+                "min": 25,
+                "max": 45
+              },
+              "material": {
+                "id": "forest_leaf",
+                "name": "森林嫩葉",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 8
+            }
+          },
+          {
+            "id": "lionheart_city",
+            "name": "獅心城",
+            "description": "高崖與試飛塔隔城對峙。循著銅門、培育溫室與逆造工坊，見證人們模仿完美生命、劍走偏鋒追逐神的代價。回收工坊提供可用古代齒輪。",
+            "unlock": {
+              "type": "default"
+            },
+            "energyCost": 5,
+            "durationMinutes": 60,
+            "rewards": {
+              "stardust": {
+                "min": 30,
+                "max": 60
+              },
+              "material": {
+                "id": "machine_part",
+                "name": "古代齒輪",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 10
+            }
+          },
+          {
+            "id": "darkcrown_border",
+            "name": "黯冠邊境",
+            "description": "黑塔裂冠試圖吞沒七色星路；沿著抵抗侵蝕的界石前進，找回每位生命自己的名字。邊境補給仍能採到森林嫩葉。",
+            "unlock": {
+              "type": "default"
+            },
+            "energyCost": 5,
+            "durationMinutes": 60,
+            "rewards": {
+              "stardust": {
+                "min": 30,
+                "max": 60
+              },
+              "material": {
+                "id": "forest_leaf",
+                "name": "森林嫩葉",
+                "min": 1,
+                "max": 2
+              },
+              "bondExp": 10
+            }
+          }
+        ]
+      }
+    }
+  },
+  "content": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[0].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[1].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[2].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[3].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[4].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[5].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[6].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[7].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[8].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[9].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[10].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[11].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[12].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[13].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[14].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[15].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[16].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[17].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[18].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PET_NO_STANDARD",
+        "message": "新寵物未加入 standard，不會進入目前標準召喚",
+        "path": "pets[19].poolTags"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_n47 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_n48 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_n49 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_r52 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_r53 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_r54 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_r55 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_r56 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_sr46 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_sr47 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_sr48 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_sr49 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_sr50 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ssr33 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ssr34 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ssr35 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ssr36 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ur25 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ur26 缺少 prompt 紀錄"
+      },
+      {
+        "level": "warning",
+        "code": "PROMPT_MISSING",
+        "message": "pet_ur27 缺少 prompt 紀錄"
+      }
+    ]
+  },
+  "contract": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "pools": [
+      {
+        "id": "darkcrown_court",
+        "name": "黯冠王庭・混世降臨",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "darkcrown_court"
+          ]
+        },
+        "presentation": {
+          "themeKey": "chaos_demon_court",
+          "animationKey": "chaos_demon_court",
+          "heroPetId": "pet_ur25",
+          "badge": "裂冠降臨",
+          "eyebrow": "織界 · 黯冠王庭",
+          "tagline": "七色星路仍有名字，黑塔的裂冠正試圖吞下它們。",
+          "featuredPetIds": [
+            "pet_ur26",
+            "pet_ur27",
+            "pet_ssr33",
+            "pet_ssr34"
+          ],
+          "debutLines": [
+            "七色星路",
+            "裂冠吞光",
+            "王庭降臨"
+          ],
+          "debutLabel": "黯冠王庭降臨",
+          "detailsNote": "二十位原生魔獸；七位 UR／SSR 可完成羈絆覺醒，揭曉人形惡魔。",
+          "candidateNote": "本池不含標準池角色；同一角色雙形態保留相同稀有度與收藏。"
+        },
+        "unlockExpansion": null
+      }
+    ],
+    "previews": [
+      {
+        "poolId": "darkcrown_court",
+        "locked": 20,
+        "unlocked": 20
+      }
+    ]
+  }
+}

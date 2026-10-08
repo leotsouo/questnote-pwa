@@ -1,0 +1,16 @@
+{
+  "reviewerType": "ai",
+  "briefHash": "09bb11927a022f2a1071c64d83d2db23d12eb4b5a8739931adca15bc511ff12a",
+  "planHash": "23a424c19e5ebe046c130c00859666380c5525bcd6c1d716403e5e4429368e12",
+  "checks": [
+    "20 nonhuman original forms",
+    "exactly UR3+SSR4 eligible",
+    "no cadre naming",
+    "sovereign is UR without literal king required",
+    "existing world stories preserved",
+    "AI self-review and confirmed built-in credits",
+    "dedicated runtime template tested",
+    "correct new region and ritual food; existing economy unchanged"
+  ],
+  "artworkApproval": "not granted; candidates require crop and anatomy review"
+}

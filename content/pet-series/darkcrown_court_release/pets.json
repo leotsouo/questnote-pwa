@@ -1,0 +1,332 @@
+{
+  "pets": [
+    {
+      "id": "pet_n50",
+      "name": "微燼小蜥",
+      "rarity": "N",
+      "image": "assets/pets/pet_n50.png",
+      "description": "牠趴在餘燼旁吹動一顆火星；火星沿石縫串起短紅線。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "餘燼",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "guardian"
+    },
+    {
+      "id": "pet_n51",
+      "name": "碎冠甲蟲",
+      "rarity": "N",
+      "image": "assets/pets/pet_n51.png",
+      "description": "牠推著一小片裂冠穿過石階；碎片留下金黑摩擦痕，後方小石块翻起。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "灰律銅機",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "gatherer"
+    },
+    {
+      "id": "pet_n52",
+      "name": "暮紗幼蛛",
+      "rarity": "N",
+      "image": "assets/pets/pet_n52.png",
+      "description": "牠在門縫補好一道銀黑網线；露珠停在網上形成細小預警光點。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "黯棘",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "scholar"
+    },
+    {
+      "id": "pet_r57",
+      "name": "幽燈影狐",
+      "rarity": "R",
+      "image": "assets/pets/pet_r57.png",
+      "description": "牠叼著幽燈在岔路回望；燈光投出錯誤出口，但真路的草仍向另一側傾斜。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "蝕星",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "scout"
+    },
+    {
+      "id": "pet_r58",
+      "name": "銹齒穴鼬",
+      "rarity": "R",
+      "image": "assets/pets/pet_r58.png",
+      "description": "牠用前爪卸下路橋一顆螺栓；橋板微沉，銹粉留下可追查足跡。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "灰律銅機",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "gatherer"
+    },
+    {
+      "id": "pet_r59",
+      "name": "緘信墨梟",
+      "rarity": "R",
+      "image": "assets/pets/pet_r59.png",
+      "description": "牠用爪壓住未送達的信，低頭吹去封口光；封蠟影子化作黑羽，紙面仍保留收件者痕跡。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "蝕星",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "scholar"
+    },
+    {
+      "id": "pet_r60",
+      "name": "逆芽棘兔",
+      "rarity": "R",
+      "image": "assets/pets/pet_r60.png",
+      "description": "牠在路標根部種下朝內彎曲的刺芽；刺芽把箭頭拽偏，旁邊正常嫩芽仍向陽。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "黯棘／逆芽",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "gatherer"
+    },
+    {
+      "id": "pet_r61",
+      "name": "煤焰角羊",
+      "rarity": "R",
+      "image": "assets/pets/pet_r61.png",
+      "description": "牠用前蹄推動燃煤越過熄火界線；一條低矮火帶封路，火外石碑仍清晰可讀。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "餘燼",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "guardian"
+    },
+    {
+      "id": "pet_sr51",
+      "name": "燼羽夜鴉",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr51.png",
+      "description": "牠展開完整雙翼掠過信路，攫取路標上的一束光；路標陰影逆轉、遠方仍有紙鳶引路。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "餘燼",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "scout"
+    },
+    {
+      "id": "pet_sr52",
+      "name": "縛潮玄蛇",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr52.png",
+      "description": "牠盤繞一塊潮汐界石，身軀形成完整波浪曲線；海水沿身體抬起，界石下方留下乾涸通道。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "裂月霜潮",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "scout"
+    },
+    {
+      "id": "pet_sr53",
+      "name": "斷祈霜狼",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr53.png",
+      "description": "牠踏入北境誓火外圈，抬爪踩碎一片凝霜；冰裂沿地面伸展，橙色誓火保留一條安全線。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "裂月霜潮",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "guardian"
+    },
+    {
+      "id": "pet_sr54",
+      "name": "噬夢絨蝠",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr54.png",
+      "description": "牠倒懸花庭拱枝，抓住飄過的一段夢光；夢光變成暗色絲卷，一朵花的色彩退去。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "蝕星",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "companion"
+    },
+    {
+      "id": "pet_sr55",
+      "name": "棘令黑鹿",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr55.png",
+      "description": "牠以荊角抬起倒塌路標並旋向禁行方向；腳下長出刺牆，原路仍在刺牆外發亮。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "魔獸",
+      "element": "黯棘",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "gatherer"
+    },
+    {
+      "id": "pet_ssr37",
+      "name": "荊誓・洛恩",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr37.png",
+      "description": "角麒以分枝荊角挑開一卷懸浮誓文上的紅線；山路承諾化成帶刺橋索，红线撕裂處仍有一根金線未斷。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "荊誓角麒",
+      "element": "黯棘／餘燼",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "guardian",
+      "presentation": {
+        "revealKey": "chaos_thorn",
+        "revealCaption": "荊誓線 · 荊誓・洛恩"
+      }
+    },
+    {
+      "id": "pet_ssr38",
+      "name": "鏡宴・奈璃",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr38.png",
+      "description": "銀狐以前爪翻動糖晶前的一片裂鏡，回首看向鏡中宴席；鏡宴越華麗，真實糖晶的光越暗，仍有一顆保持暖光。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "鏡宴銀狐",
+      "element": "蝕星",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "companion",
+      "presentation": {
+        "revealKey": "chaos_mirror",
+        "revealCaption": "鏡宴 · 鏡宴・奈璃"
+      }
+    },
+    {
+      "id": "pet_ssr39",
+      "name": "灰律・奧鉻",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr39.png",
+      "description": "銅鴉用完整雙爪抓住一枚符文齒輪並將其扭停；蒸汽在齒間結成灰晶，遠方獅心爐火仍明亮。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "灰律銅鴉",
+      "element": "灰律銅機／餘燼",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "scholar",
+      "presentation": {
+        "revealKey": "chaos_law",
+        "revealCaption": "律輪 · 灰律・奧鉻"
+      }
+    },
+    {
+      "id": "pet_ssr40",
+      "name": "蝕星獄獅",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr40.png",
+      "description": "獄獅前爪踩住通往城門的光链，低頭咆哮；锁鏈被壓成黑晶，城門外碎星沿地面倒流。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "蝕星獄獅",
+      "element": "蝕星",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "guardian",
+      "presentation": {
+        "revealKey": "chaos_star",
+        "revealCaption": "星鏈 · 蝕星獄獅"
+      }
+    },
+    {
+      "id": "pet_ur28",
+      "name": "黯冠・無晝",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur28.png",
+      "description": "古龍盤踞黑塔石座，以完整前爪壓住七色星路交會的界石，抬頭令裂冠日環吞光；界石裂出紅黑晶脈，七色星路仍各自保留一線抵抗，塔外階石崩裂。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "黯冠古龍",
+      "element": "餘燼／蝕星",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "guardian",
+      "presentation": {
+        "revealKey": "chaos_crown",
+        "revealCaption": "界石 · 黯冠・無晝"
+      }
+    },
+    {
+      "id": "pet_ur29",
+      "name": "裂月・瑟因",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur29.png",
+      "description": "魔鰩以月刃角穿過潮汐上方的月光，展開完整鰭面劃出一道通道；水幕沿角劃開的線停在半空，北境誓火在通道邊緣留下暖色界線。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "裂月魔鰩",
+      "element": "裂月霜潮／蝕星",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "scout",
+      "presentation": {
+        "revealKey": "chaos_moon",
+        "revealCaption": "潮汐門 · 裂月・瑟因"
+      }
+    },
+    {
+      "id": "pet_ur30",
+      "name": "終鐘・維爾",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur30.png",
+      "description": "夢蛾停在懸鐘弓架上，以前足抵住鐘舌，翅紋向花庭夢光展開；靜音波紋在花間凝成透明黑玻璃，仍有一朵暖光花抵住封存。",
+      "poolTags": [
+        "darkcrown_court_release"
+      ],
+      "seriesId": "darkcrown_court_release",
+      "speciesType": "終鐘夢蛾",
+      "element": "蝕星",
+      "visualTheme": "Dark Fantasy 90s Retro Anime & Pop Anime",
+      "expeditionSpecialty": "scholar",
+      "presentation": {
+        "revealKey": "chaos_bell",
+        "revealCaption": "終鐘 · 終鐘・維爾"
+      }
+    }
+  ]
+}
