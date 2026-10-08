@@ -162,7 +162,6 @@ const PRECACHE_URLS = [
   'src/expeditionGameplay.js',
   'src/campService.js',
   'src/explorationService.js',
-  'src/darkcrownExploration.js',
   'src/workshopService.js',
   'src/workshopGiftView.js',
   'src/ui.js',
