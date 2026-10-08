@@ -133,6 +133,8 @@ try {
       const { dbGet, dbPut, STORES } = await import('/src/db.js');
       const pet = await dbGet(STORES.COLLECTION, 'pet_ur17');
       await dbPut(STORES.COLLECTION, { ...pet, bondExp: 50, bondLevel: 2 });
+      const wallet = await dbGet(STORES.META, 'wallet');
+      await dbPut(STORES.META, { ...wallet, key: 'wallet', adventureEnergy: 300 });
       const { createTask } = await import('/src/taskService.js');
       return (await createTask({ content: '測試同行目標', priority: 'normal', planToday: true })).id;
     });
@@ -151,6 +153,10 @@ try {
     const readJourney = () => page.evaluate(async () => (await import('/src/bondJourneyService.js')).getBondJourney());
     assert.equal((await readJourney()).active, null, 'Review never creates agreement');
     await checkSubpageLayouts('bond confirmation');
+    if (process.env.WIZARD_SCREENSHOTS && origin.endsWith(':4193')) {
+      await page.waitForFunction(() => !document.querySelector('#toast-container')?.children.length);
+      await page.screenshot({ path: path.join(process.env.WIZARD_SCREENSHOTS, 'agreement-wizard.png') });
+    }
     await page.locator('[data-bond-action="back-target"]').click();
     assert.equal(await page.locator('#bond-source-id').inputValue(), taskId, 'Back retains target');
     await page.locator('[data-bond-action="review"]').click();
@@ -186,6 +192,70 @@ try {
     await dialog.locator('#companion-feed-workshop-btn').click();
     assert.equal(await dialog.evaluate((el) => el.open), false);
     await page.locator('#view-workshop.active').waitFor();
+    await page.locator('.nav-item[data-view="expedition"]').click();
+    const dispatch = page.locator('#expedition-dispatch-modal');
+    const expeditionState = () => page.evaluate(async () => {
+      const { dbGet, STORES } = await import('/src/db.js');
+      const { getAllExpeditions } = await import('/src/expeditionService.js');
+      return { wallet: await dbGet(STORES.META, 'wallet'), trips: await getAllExpeditions() };
+    });
+    const beforeDispatch = await expeditionState();
+    await page.locator('[data-action="open-dispatch"][data-area-id="mist_forest"]').click();
+    await dispatch.locator('[data-dispatch-step="1"]').waitFor();
+    const lockedOptions = dispatch.locator('#dispatch-area-select option').filter({ hasText: '尚未解鎖' });
+    const lockedArea = await lockedOptions.count() ? await lockedOptions.first().getAttribute('value') : null;
+    if (lockedArea) {
+      await dispatch.locator('#dispatch-area-select').selectOption(lockedArea);
+      assert.equal(await dispatch.locator('[data-action="dispatch-next"]').isEnabled(), false);
+      await dispatch.locator('#dispatch-area-select').selectOption('mist_forest');
+    }
+    await dispatch.locator('[data-action="dispatch-next"]').click();
+    await dispatch.locator('[data-dispatch-step="2"]').waitFor();
+    assert.equal(await dispatch.locator('[data-action="dispatch-next"]').isEnabled(), false, 'Empty team cannot advance');
+    await dispatch.locator('[data-action="dispatch-select-pet"][data-pet-id="pet_ur17"]').click();
+    await dispatch.locator('[data-action="dispatch-next"]').click();
+    await dispatch.locator('[data-dispatch-step="3"]').waitFor();
+    assert.deepEqual(await expeditionState(), beforeDispatch, 'Review does not charge or dispatch');
+    for (const width of [909, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      for (const theme of ['default', 'sweet', 'twilight']) {
+        await page.evaluate((value) => { document.documentElement.dataset.theme = value; document.body.dataset.theme = value; }, theme);
+        assert.equal(await dispatch.locator('.expedition-dispatch-modal__content').evaluate((el) => el.scrollWidth <= el.clientWidth + 1), true, `dispatch ${theme} ${width} fit`);
+        await page.evaluate(() => { document.documentElement.dataset.fontSize = 'extra-large'; });
+        assert.equal(await dispatch.locator('.expedition-dispatch-modal__content').evaluate((el) => el.scrollWidth <= el.clientWidth + 1), true, `dispatch ${theme} ${width} extra-large fit`);
+        await page.evaluate(() => { document.documentElement.dataset.fontSize = 'standard'; });
+      }
+    }
+    if (process.env.WIZARD_SCREENSHOTS && origin.endsWith(':4193')) await page.screenshot({ path: path.join(process.env.WIZARD_SCREENSHOTS, 'dispatch-wizard.png') });
+    await dispatch.locator('[data-action="dispatch-back"]').click();
+    assert.equal(await dispatch.locator('[data-action="dispatch-select-pet"][data-pet-id="pet_ur17"]').getAttribute('aria-pressed'), 'true');
+    await dispatch.locator('[data-action="dispatch-back"]').click();
+    assert.equal(await dispatch.locator('#dispatch-area-select').inputValue(), 'mist_forest');
+    await dispatch.locator('[data-action="dispatch-close"]').first().click();
+    assert.deepEqual(await expeditionState(), beforeDispatch, 'Cancel does not charge or dispatch');
+    await page.locator('[data-action="open-dispatch"][data-area-id="mist_forest"]').click();
+    await dispatch.locator('[data-action="dispatch-next"]').click();
+    await dispatch.locator('[data-action="dispatch-select-pet"][data-pet-id="pet_ur17"]').click();
+    await dispatch.locator('[data-action="dispatch-next"]').click();
+    await page.evaluate(async () => {
+      const { dbGet, dbPut, STORES } = await import('/src/db.js');
+      await dbPut(STORES.META, { ...await dbGet(STORES.META, 'wallet'), adventureEnergy: 0 });
+    });
+    await dispatch.locator('[data-action="dispatch-confirm"]').click();
+    await page.getByText(/冒險能量不足（需要/).waitFor();
+    assert.equal((await expeditionState()).trips.length, beforeDispatch.trips.length, 'Stale wallet rejected atomically');
+    await page.evaluate(async (wallet) => {
+      const { dbPut, STORES } = await import('/src/db.js');
+      await dbPut(STORES.META, wallet);
+    }, beforeDispatch.wallet);
+    await dispatch.locator('[data-action="dispatch-confirm"]').evaluate((button) => { button.click(); button.click(); });
+    await dispatch.waitFor({ state: 'detached' });
+    const dispatched = await expeditionState();
+    assert.equal(dispatched.trips.length, beforeDispatch.trips.length + 1);
+    const trip = dispatched.trips.find((trip) => !beforeDispatch.trips.some((before) => before.id === trip.id));
+    assert.equal(trip.areaId, 'mist_forest');
+    assert.ok(trip.petIds.includes('pet_ur17'));
+    assert.equal(dispatched.wallet.adventureEnergy, beforeDispatch.wallet.adventureEnergy - trip.energyCost);
     assert.deepEqual(errors, []);
     console.log(`PASS ${origin}: inline gift, stock, recipient, refresh, 6 layouts, story, awakening and empty-stock workshop`);
     await context.close();

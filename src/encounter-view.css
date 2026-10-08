@@ -100,6 +100,15 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 .identity-dialog::backdrop { background: #08101dd9; }
 .journal-wizard-steps { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 0; margin: 0 0 24px; list-style: none; color: var(--color-text-muted); font-size: .8rem; }
 .journal-wizard-steps [aria-current="step"] { color: var(--color-primary); font-weight: 700; border-bottom: 2px solid currentColor; padding-bottom: 6px; }
+#expedition-dispatch-modal [hidden] { display: none !important; }
+#expedition-dispatch-modal .expedition-dispatch-modal__content { background: var(--color-bg-main); color: var(--color-text-main); border: 1px solid var(--color-border); border-radius: 18px; }
+#expedition-dispatch-modal :is(.expedition-dispatch-modal__header, .expedition-dispatch-modal__footer, .expedition-dispatch-modal__preview) { background: var(--color-bg-main); border-color: var(--color-border); color: var(--color-text-main); }
+#expedition-dispatch-modal .dispatch-question { font-family: var(--font-display); font-size: 1.35rem; margin: 0 0 20px; }
+#expedition-dispatch-modal .journal-wizard-steps { margin-bottom: 16px; }
+#expedition-dispatch-modal .expedition-dispatch-modal__footer { flex-wrap: wrap; gap: 8px; }
+#expedition-dispatch-modal .expedition-dispatch-confirm-button { background: var(--color-primary); color: var(--color-bg-main); }
+#expedition-dispatch-modal .expedition-dispatch-cancel-button { background: var(--color-bg-card); color: var(--color-text-main); border-color: var(--color-border); }
+#expedition-dispatch-modal #dispatch-area-select { width: 100%; min-width: 0; color: var(--color-text-main); background: var(--color-bg-card); }
 .identity-dialog .journal-portrait { display: block; width: 100%; padding: 0; margin: 0; border: 0; background: transparent; border-radius: 12px; cursor: zoom-in; }
 .identity-dialog .journal-portrait .detail-art { margin: 0; }
 .identity-dialog .journal-name-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; }

@@ -373,6 +373,8 @@ let currentTasksView = 'tasks';
 let dispatchAreaId = null;
 let dispatchSelectedPetIds = [];
 let dispatchObjective = 'explore';
+let dispatchStep = 1;
+let dispatchBusy = false;
 let journeyArchiveExpanded = false;
 let dispatchKeydownHandler = null;
 let achievementFilter = 'all';
@@ -7222,6 +7224,7 @@ function openExpeditionDispatchModal(areaId) {
     return;
   }
   dispatchAreaId = areaId;
+  dispatchStep = 1;
 
   // 先選目標，再用推薦或手動組隊。
   dispatchSelectedPetIds = [];
@@ -7234,6 +7237,13 @@ function openExpeditionDispatchModal(areaId) {
     overlay.className = 'expedition-dispatch-modal';
     document.body.appendChild(overlay);
     overlay.addEventListener('click', trackUpdateActivity(handleDispatchModalClick));
+    overlay.addEventListener('change', (event) => {
+      if (dispatchBusy || dispatchStep !== 1 || event.target.id !== 'dispatch-area-select') return;
+      if (!state.expeditionAreas.some((area) => area.id === event.target.value)) return;
+      dispatchAreaId = event.target.value;
+      renderExpeditionDispatchModal();
+      overlay.querySelector('#dispatch-area-select')?.focus();
+    });
   }
   rememberDialogFocus(overlay);
   document.body.classList.add('expedition-dispatch-open');
@@ -7252,6 +7262,7 @@ function openExpeditionDispatchModal(areaId) {
 
 /** 關閉派遣選單 Modal */
 function closeExpeditionDispatchModal() {
+  if (dispatchBusy) return;
   const overlay = document.getElementById('expedition-dispatch-modal');
   if (overlay) overlay.remove();
   document.body.classList.remove('expedition-dispatch-open');
@@ -7266,6 +7277,7 @@ function closeExpeditionDispatchModal() {
 
 /** 派遣 Modal 點擊委派（背景 / 關閉 / 選寵物 / 確認） */
 function handleDispatchModalClick(e) {
+  if (dispatchBusy) return;
   const overlay = document.getElementById('expedition-dispatch-modal');
   if (
     e.target === overlay ||
@@ -7275,8 +7287,19 @@ function handleDispatchModalClick(e) {
     return;
   }
   const t = e.target.closest('[data-action]');
-  if (!t) return;
+  if (!t || t.disabled) return;
   const action = t.dataset.action;
+  if (action === 'dispatch-next' || action === 'dispatch-back') {
+    if (action === 'dispatch-next') {
+      const area = state.expeditionAreas.find((area) => area.id === dispatchAreaId);
+      if (!area || !checkAreaUnlock(area, getOwnedPets()).unlocked || state.activeExpedition) return;
+      if (dispatchStep === 2 && !dispatchSelectedPetIds.length) return;
+    }
+    dispatchStep = Math.max(1, Math.min(3, dispatchStep + (action === 'dispatch-next' ? 1 : -1)));
+    renderExpeditionDispatchModal();
+    overlay.querySelector('.dispatch-question')?.focus();
+    return;
+  }
   if (action === 'dispatch-close') {
     closeExpeditionDispatchModal();
     return;
@@ -7312,8 +7335,8 @@ function handleDispatchModalClick(e) {
     return;
   }
   if (action === 'dispatch-confirm') {
-    confirmExpeditionDispatch(dispatchAreaId, dispatchSelectedPetIds);
-    return;
+    if (dispatchStep !== 3) return;
+    return confirmExpeditionDispatch(dispatchAreaId, [...dispatchSelectedPetIds]);
   }
 }
 
@@ -7356,13 +7379,16 @@ function renderExpeditionDispatchModal() {
 
   overlay.innerHTML = `
     <div class="expedition-dispatch-modal__backdrop"></div>
-    <div class="expedition-dispatch-modal__content" role="dialog" aria-modal="true" aria-label="派遣探險">
+    <div class="expedition-dispatch-modal__content" role="dialog" aria-modal="true" aria-label="派遣探險" data-dispatch-step="${dispatchStep}">
       <div class="expedition-dispatch-modal__header">
         <h2 class="expedition-dispatch-modal__title">派遣探險</h2>
         <button type="button" class="expedition-dispatch-modal__close" data-action="dispatch-close" aria-label="關閉">✕</button>
       </div>
       <div class="expedition-dispatch-modal__body">
-        <div class="expedition-dispatch-modal__area-summary">
+        <ol class="journal-wizard-steps" aria-label="探險出發步驟">${['目的地', '隊伍', '確認出發'].map((label, i) => `<li ${dispatchStep === i + 1 ? 'aria-current="step"' : ''}>${i + 1} · ${label}</li>`).join('')}</ol>
+        <h3 class="dispatch-question" tabindex="-1">${dispatchStep === 1 ? '這次想往哪裡走？' : dispatchStep === 2 ? '想和誰一起出發？' : '準備好一起出發了嗎？'}</h3>
+        ${dispatchStep === 1 ? `<label class="bond-field" for="dispatch-area-select">目的地<select id="dispatch-area-select" class="form-input">${state.expeditionAreas.map((destination) => `<option value="${escapeHtml(destination.id)}" ${destination.id === dispatchAreaId ? 'selected' : ''}>${escapeHtml(destination.name)}${checkAreaUnlock(destination, getOwnedPets()).unlocked ? '' : ' · 尚未解鎖'}</option>`).join('')}</select></label>` : ''}
+        <div class="expedition-dispatch-modal__area-summary" ${dispatchStep === 2 ? 'hidden' : ''}>
           <img class="expedition-dispatch-area__image" src="${expeditionAreaImageUrl(area.id)}" alt="">
           <h3 class="expedition-dispatch-area__name">${escapeHtml(area.name)}</h3>
           <p class="expedition-dispatch-area__desc">${escapeHtml(area.description)}</p>
@@ -7379,14 +7405,14 @@ function renderExpeditionDispatchModal() {
           ${!unlocked ? `<p class="expedition-dispatch-area__unlock">解鎖條件：${escapeHtml(hint)}</p>` : ''}
           ${state.activeExpedition ? '<p class="expedition-dispatch-area__unlock">領取目前旅程的獎勵後，就能再次派遣。</p>' : ''}
         </div>
-        <section class="expedition-dispatch-modal__objective-section" aria-labelledby="dispatch-objective-title">
-          <h3 class="expedition-dispatch-modal__pet-title" id="dispatch-objective-title">1. 選擇探險目標</h3>
+        <section class="expedition-dispatch-modal__objective-section" aria-labelledby="dispatch-objective-title" ${dispatchStep !== 2 ? 'hidden' : ''}>
+          <h3 class="expedition-dispatch-modal__pet-title" id="dispatch-objective-title">這趟旅程想收穫什麼？</h3>
           <div class="expedition-objectives" role="group" aria-label="探險目標">
             ${Object.entries(EXPEDITION_OBJECTIVES).map(([id, entry]) => `<button type="button" class="expedition-objective ${dispatchObjective === id ? 'is-selected' : ''}" data-action="dispatch-objective" data-objective="${id}" aria-pressed="${dispatchObjective === id}"><strong>${entry.label}</strong><span>${entry.description}</span></button>`).join('')}
           </div>
         </section>
-        <div class="expedition-dispatch-modal__pet-section">
-          <h3 class="expedition-dispatch-modal__pet-title">2. 選擇 1～3 隻出發寵物</h3>
+        <div class="expedition-dispatch-modal__pet-section" ${dispatchStep !== 2 ? 'hidden' : ''}>
+          <h3 class="expedition-dispatch-modal__pet-title">選擇 1～3 位同行夥伴</h3>
           <div class="expedition-recommendation">
             <p class="expedition-recommendation__summary" aria-live="polite">${recommendations.recommended.length
               ? `推薦${recommendations.label}專長夥伴，${recommendations.benefit}。依專長等級優先排序，可一鍵帶入前 ${recommendations.teamPetIds.length} 隻後調整隊伍。`
@@ -7409,14 +7435,16 @@ function renderExpeditionDispatchModal() {
             ${petListHtml}
           </div>
         </div>
-      </div>
-      <div class="expedition-dispatch-modal__preview">
+      <div class="expedition-dispatch-modal__preview" ${dispatchStep !== 3 ? 'hidden' : ''}>
+        <p>確認後才會扣除能量並開始旅程；返回修改不會扣除。</p>
         <div class="expedition-dispatch-preview__full">${previewHtml}</div>
         <div class="expedition-dispatch-preview__compact">${selectedPets.length} 隻同行 · ${EXPEDITION_OBJECTIVES[dispatchObjective].label}<br>消耗 ${terms.energyCost} 能量 · ${formatDuration(terms.durationMinutes)}<details><summary>隊伍與收穫</summary><p>${previewHtml}</p></details></div>
       </div>
+      </div>
       <div class="expedition-dispatch-modal__footer">
         <button type="button" class="expedition-dispatch-cancel-button" data-action="dispatch-close">取消</button>
-        <button type="button" class="expedition-dispatch-confirm-button" data-action="dispatch-confirm" ${canConfirm ? '' : 'disabled'}>${confirmLabel}</button>
+        ${dispatchStep > 1 ? '<button type="button" class="expedition-dispatch-cancel-button" data-action="dispatch-back">上一步</button>' : ''}
+        ${dispatchStep < 3 ? `<button type="button" class="expedition-dispatch-confirm-button" data-action="dispatch-next" ${!unlocked || state.activeExpedition || (dispatchStep === 2 && !selectedPets.length) ? 'disabled' : ''}>${dispatchStep === 1 ? '下一步 · 選隊伍' : '下一步 · 確認出發'}</button>` : `<button type="button" class="expedition-dispatch-confirm-button" data-action="dispatch-confirm" ${canConfirm ? '' : 'disabled'}>${canConfirm ? '確認出發' : confirmLabel}</button>`}
       </div>
     </div>`;
 }
@@ -7458,6 +7486,7 @@ function buildDispatchPetOptionHtml(pet) {
 
 /** 確認派遣：完整檢查後呼叫原本 startExpedition 邏輯 */
 async function confirmExpeditionDispatch(areaId, petIds) {
+  if (dispatchBusy || dispatchStep !== 3) return;
   if (!areaId) {
     showToast('找不到地區資料', 'error');
     return;
@@ -7494,19 +7523,30 @@ async function confirmExpeditionDispatch(areaId, petIds) {
     '#expedition-dispatch-modal [data-action="dispatch-confirm"]'
   );
   if (confirmBtn) confirmBtn.disabled = true;
-
+  dispatchBusy = true;
+  let committed = false;
   try {
     // 呼叫原本探險開始邏輯（扣能量、建立 expedition 狀態、倒數）
     await startExpedition(petIds, areaId, state.expeditionAreas, state.allPets, dispatchObjective);
+    committed = true;
     await trackQuest('start_expedition');
+    dispatchBusy = false;
     closeExpeditionDispatchModal();
     await onRefresh({ renderMode: ['expedition', 'tasks'] });
     startExpeditionTimer();
     showToast(`已派遣 ${pets.length} 隻夥伴前往${area.name}`, 'success');
     void recordOnboardingEvent('expedition-started', { areaId, petId: petIds[0] });
   } catch (err) {
-    if (confirmBtn) confirmBtn.disabled = false;
-    showToast(err.message || '無法開始探險', 'warning');
+    dispatchBusy = false;
+    if (committed) {
+      closeExpeditionDispatchModal();
+      showToast('隊伍已出發，但畫面更新失敗；請重新整理查看旅程。', 'warning');
+    } else {
+      if (confirmBtn) confirmBtn.disabled = false;
+      showToast(err.message || '無法開始探險', 'warning');
+    }
+  } finally {
+    dispatchBusy = false;
   }
 }
 
