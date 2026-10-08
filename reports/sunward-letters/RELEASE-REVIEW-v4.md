@@ -29,4 +29,4 @@
 - 右側預覽已停在「晴信原野」主卡面。預覽帳戶為全新隔離存檔，星塵 0，因此召喚按鈕暫時不可用；不代表卡池未載入。
 - 仍待真實手機與已安裝 PWA 驗證觸控、鍵盤和更新；正式發布後另需 Pages 成功及 HTTPS 逐檔雜湊回讀。
 
-本包 `poolReleaseReview.mjs` 回傳 `ok: true`、`releaseReady: false`，下一關是使用者對**新雜湊**完成整包驗收。來源尚未合併、production artifact 尚未推送正式站。檢視後若決定發布，需對 `369fa577d0cb216eebfec558b6986513bc2f3d5214def3ca165828f51cfe90f4` 再明確說「可以發布」。
+2026-10-08 17:37（台北），使用者對 packageHash `369fa577d0cb216eebfec558b6986513bc2f3d5214def3ca165828f51cfe90f4` 明確表示「通過可以發佈 去跑更新流程」。此核准對應上述 preview／production artifact ID。使用者已知晴信原野的 `animationKey` 為 `none`，並在之後改定新 SOP 為所有池必須有 3000ms 前奏；目前包仍未符合該新要求。此發布依使用者對此確切整包的明確決定執行，不能據此把本包記成符合新動畫規格。
