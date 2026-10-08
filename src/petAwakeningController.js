@@ -1,4 +1,4 @@
-import { startPetAwakening, pausePetAwakening, awakenPet, setAwakeningForm } from './petAwakeningService.js';
+import { acceptDemonFinalTask, startPetAwakening, pausePetAwakening, awakenPet, setAwakeningForm } from './petAwakeningService.js';
 import { renderAwakeningReader, initialAwakeningPortrait } from './petAwakeningView.js';
 import { playAwakeningScene } from './petAwakeningScene.js';
 import { trackUpdateActivity } from './updateActivity.js';
@@ -15,7 +15,9 @@ export function createAwakeningController({ getState, refresh, openModal, closeM
     if (!pet() || !reader() || !document.getElementById('modal-overlay')?.classList.contains('open')) return;
     const state = getState();
     const display = pet().owned ? pet() : initialAwakeningPortrait(pet(), state.awakeningCatalog);
+    const draft = document.getElementById('demon-final-answer')?.value;
     openModal(renderAwakeningReader(pet(), state, portrait(display)));
+    if (draft !== undefined && document.getElementById('demon-final-answer')) document.getElementById('demon-final-answer').value = draft;
     document.getElementById('awakening-question')?.focus({ preventScroll: true });
   }
   async function reload() {
@@ -58,6 +60,10 @@ export function createAwakeningController({ getState, refresh, openModal, closeM
       await navigate(name, actionPetId);
       installReturn();
       return;
+    }
+    if (name === 'answer') {
+      await acceptDemonFinalTask(actionPetId, document.getElementById('demon-final-answer')?.value);
+      showToast('惡魔的趣味已排入今日，沒有截止日；完成後即可繼續覺醒。', 'success');
     }
     if (name === 'start') await startPetAwakening(actionPetId);
     if (name === 'pause') await pausePetAwakening(actionPetId);
