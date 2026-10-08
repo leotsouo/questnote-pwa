@@ -1,8 +1,9 @@
 {
   "tool": "built-in image_gen",
-  "source": "reports/chaos-demon-court/images/darkcrown-border-original.png",
-  "originalSha256": "ab87a08341e03911ea24dd32cd645eff02b22eb0770ac9369023774eb7685920",
+  "source": "reports/chaos-demon-court/images/darkcrown-border-framing-revision-1.png",
+  "originalSha256": "027f2e593fd8308bb43731f394d906ea67d1a559b185ed85215c6eea2a9d07c0",
   "image": "assets/expeditions/darkcrown_border.webp",
-  "sha256": "da052e4339fd391da812af264e8506d97b0bf0eea95a828b2ecbe0ef2f6d5450",
-  "actualUiReview": "pending"
+  "sha256": "689d9423da5acb1a983147ff18dfb5103953fec35fa52ec0908abf1417149d34",
+  "actualUiReview": "pending corrected wide map/dispatch checks",
+  "previous": "da052e4339fd391da812af264e8506d97b0bf0eea95a828b2ecbe0ef2f6d5450"
 }
