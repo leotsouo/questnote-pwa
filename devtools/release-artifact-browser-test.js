@@ -316,7 +316,8 @@ try {
     ]);
     assert(core.validatePetAwakening(progress).length === 0, 'Invalid owned ritual fixture');
     const journey = bond.createBondJourney();
-    journey.byPet[petId] = { chapters: { 5: { choiceId:'gentle', readAt:at, completedAt:at, claimedAt:at } } };
+    journey.byPet[petId] = { chapters: Object.fromEntries([2, 3, 4, 5].map(level => [level, { choiceId:'gentle', readAt:at, completedAt:at, claimedAt:at }])) };
+    assert(bond.validateBondJourney(journey).length === 0, 'Valid sequential story fixture required');
     await db.dbPut(db.STORES.COLLECTION, collection.normalizeCollectionItem({ ...collection.createCollectionEntry(petId,at), bondExp:500, bondLevel:5 }));
     await db.dbPut(db.STORES.META, progress);
     await db.dbPut(db.STORES.META, journey);
