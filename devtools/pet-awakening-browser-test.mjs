@@ -20,6 +20,12 @@ async function load(target = page) {
   await target.locator('#app-loader').waitFor({ state: 'hidden' });
   await target.waitForFunction(() => document.querySelector('#guide-tutorial-status')?.textContent);
   const skip = target.locator('.onboarding-dialog [data-onboarding-action="skip"]'); if (await skip.isVisible()) await skip.click();
+  await target.waitForFunction(() => document.body.classList.contains('guided-learned') || document.querySelector('[data-guided-action="skip"]') || document.querySelector('.today-habit-card'));
+  if (await target.locator('[data-guided-action="skip"]').isVisible()) {
+    await target.locator('[data-guided-action="skip"]').click();
+    await target.locator('[data-guided-action="confirm-skip"]').click();
+    await target.locator('.guided-coach').waitFor({ state: 'detached' });
+  }
   await target.evaluate(async () => {
     if (!window.__questNoteOnboardingTest) throw Error('Synthetic database guard missing');
     const names = ['db', 'petAwakeningService', 'petAwakeningCore', 'petAwakeningCatalog', 'petAwakeningView', 'petAwakeningScene', 'collectionService', 'taskService', 'habitService', 'expeditionService', 'bondJourneyService', 'bondJourneyCore', 'backupService', 'achievementService', 'rewardService', 'ui', 'releaseCatalog'];
@@ -108,15 +114,15 @@ try {
   });
   await check('actual mobile reader switches forms, replays/escapes animation, and remembers form after reload', async () => {
     await load(); await page.locator('.bottom-nav [data-view="collection"]').click();
-    const selector = '.collection-card[data-pet-id="pet_ur17"] [data-action="view-detail"]';
-    await page.locator(selector).click(); await page.locator('[data-awake-open="pet_ur17"]').click();
+    const selector = '[data-pet="pet_ur17"]';
+    await page.locator(selector).click(); await page.locator('[data-identity-action="app-pet-detail"]').click(); await page.locator('[data-awake-open="pet_ur17"]').click();
     await page.locator('[data-awake-action="initial"]').click(); await page.waitForFunction(() => document.querySelector('.awakening-reader')?.textContent.includes('目前：初遇相'));
     assert.equal((await read()).byPet.pet_ur17.form, 'initial');
     await page.locator('[data-awake-action="replay"]').click(); await page.locator('.awakening-scene').waitFor(); await page.keyboard.press('Escape'); await page.locator('.awakening-scene').waitFor({ state: 'detached' });
     assert.equal((await read()).byPet.pet_ur17.form, 'initial');
     await page.screenshot({ path: path.join(reports, 'mobile-awakening-reader.png'), fullPage: true });
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
-    await load(); await page.locator('.bottom-nav [data-view="collection"]').click(); await page.locator(selector).click();
+    await load(); await page.locator('.bottom-nav [data-view="collection"]').click(); await page.locator(selector).click(); await page.locator('[data-identity-action="app-pet-detail"]').click();
     await page.locator('[data-awake-open="pet_ur17"]').click(); await page.waitForFunction(() => document.querySelector('.awakening-reader')?.textContent.includes('目前：初遇相'));
     await page.locator('[data-awake-action="awakened"]').click(); await page.waitForFunction(() => document.querySelector('.awakening-reader')?.textContent.includes('目前：覺醒相'));
     assert.ok(await page.locator('.awakening-reader img').first().getAttribute('src').then((s) => s.includes('awakened-')));

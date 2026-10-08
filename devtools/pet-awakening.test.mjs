@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { createPetAwakening, validatePetAwakening, normalizePetAwakening, beginPetAwakening, advancePetAwakening, awakeningEvents, AWAKENING_PET_IDS } from '../src/petAwakeningCore.js';
 import { validateAwakeningCatalog } from '../src/petAwakeningCatalog.js';
-import { awakeningPortrait, initialAwakeningPortrait, renderAwakeningGuide, renderAwakeningReader } from '../src/petAwakeningView.js';
+import { awakeningPortrait, initialAwakeningPortrait, renderAwakeningGuide, renderAwakeningReader, awakeningWizardStep } from '../src/petAwakeningView.js';
 import { awakeningDuration, awakeningSceneHtml } from '../src/petAwakeningScene.js';
 import { validateBackup, migrateImportedData, normalizeBackupPayload } from '../src/backupService.js';
 import { SNAPSHOT_KEYS } from '../src/backupSchema.js';
@@ -135,7 +135,38 @@ test('old backups default unawakened; current backups require and roundtrip prog
 });
 test('reader previews costs, rewards and workbench when food missing; escapes user nickname', () => {
   const pet = { id: 'pet_ur17', name: '<script>bad</script>', owned: true, bondLevel: 5 };
-  const html = renderAwakeningReader(pet, { awakeningCatalog: catalog, petAwakening: ready(), inventory: { items: {} } }, '');
-  assert.ok(html.includes('前往工坊製作')); assert.ok(html.includes('松香行旅糰')); assert.ok(html.includes('disabled'));
+  const html = renderAwakeningReader(pet, { awakeningCatalog: catalog, petAwakening: ready(), inventory: { items: {} },
+    bondJourney: { byPet: { [pet.id]: { chapters: { 5: { claimedAt: at } } } } } }, '');
+  assert.ok(html.includes('前往工坊製作')); assert.ok(html.includes('松香行旅糰')); assert.ok(!html.includes('data-awake-action="awaken"'));
   assert.ok(!html.includes('<script>')); assert.ok(html.includes('覺醒篇章'));
+});
+
+test('wizard independently checks every gate and blocks stale or inconsistent ritual state', () => {
+  const pet = { id: 'pet_ur17', name: '丹砂鎮嶺蛤', owned: true, bondLevel: 5 };
+  const state = { awakeningCatalog: catalog, petAwakening: ready(), inventory: { items: { item_pine_trail_riceball: 1 } },
+    bondJourney: { byPet: { [pet.id]: { chapters: { 5: { claimedAt: at } } } } } };
+  assert.equal(awakeningWizardStep(pet, state), 'ritual');
+  assert.equal(awakeningWizardStep({ ...pet, owned: false }, state), 'owned');
+  assert.equal(awakeningWizardStep({ ...pet, bondLevel: 4, legacySpecialtyFloor: 5 }, state), 'bond');
+  assert.equal(awakeningWizardStep(pet, { ...state, bondJourney: null }), 'story');
+  assert.equal(awakeningWizardStep(pet, { ...state, inventory: { items: {} } }), 'food');
+  assert.equal(awakeningWizardStep(pet, { ...state, awakeningError: 'load failed' }), 'error');
+  const broken = structuredClone(state); broken.petAwakening.byPet[pet.id].tokenGrantedAt = null;
+  assert.equal(awakeningWizardStep(pet, broken), 'error');
+  const html = renderAwakeningReader(pet, state);
+  assert.equal((html.match(/class="btn btn--primary"/g) || []).length, 1);
+  assert.ok(html.includes('1 枚＋松香行旅糰 1 份'));
+});
+
+test('wizard skips completed parallel expedition, retains paused progress and detects another active trial', () => {
+  const pet = { id: 'pet_ur17', owned: true, bondLevel: 5 };
+  const state = { petAwakening: start(), bondJourney: { byPet: { [pet.id]: { chapters: { 5: { claimedAt: at } } } } } };
+  state.petAwakening = advancePetAwakening(state.petAwakening, [expedition()]);
+  assert.equal(awakeningWizardStep(pet, state), 'daily');
+  const record = state.petAwakening.byPet[pet.id];
+  record.status = 'paused'; state.petAwakening.activePetId = null;
+  assert.equal(awakeningWizardStep(pet, state), 'paused');
+  state.petAwakening.activePetId = 'pet_ur16';
+  assert.equal(awakeningWizardStep(pet, state), 'conflict');
+  assert.equal(record.expeditionKey, 'expedition:e1');
 });
