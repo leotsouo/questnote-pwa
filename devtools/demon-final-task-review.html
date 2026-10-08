@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>? ? ? · 互動檢視</title><style>html,body{margin:0;height:100%;background:#101b2d;color:#eee;font:14px system-ui}header{padding:10px 14px}iframe{width:100%;height:calc(100% - 46px);border:0}#status{margin-left:12px;color:#cdb6f3}</style><script src="/__onboarding_db_guard__.js"></script></head><body><header>? ? ? · 隔離互動預覽<span id="status">準備中…</span></header><iframe title="QuestNote 互動預覽"></iframe><script type="module">
+import { dbPut } from '/src/db.js';
+import { addPetToCollection, getPetCollection } from '/src/collectionService.js';
+import { createBondJourney } from '/src/bondJourneyCore.js';
+import { beginPetAwakening, advancePetAwakening } from '/src/petAwakeningCore.js';
+import { normalizeWallet } from '/src/rewardService.js';
+const status=document.getElementById('status');
+try {
+  const id='pet_ur28', at=new Date(Date.now()-60000).toISOString(), later=new Date(Date.now()-30000).toISOString();
+  await addPetToCollection(id); await dbPut('collection',{...await getPetCollection(id),bondLevel:5,bondExp:500});
+  const journey=createBondJourney();journey.byPet[id]={chapters:Object.fromEntries([2,3,4,5].map(lv=>[lv,{choiceId:'gentle',readAt:at,completedAt:at,claimedAt:at}]))};await dbPut('meta',journey);
+  const ready=advancePetAwakening(beginPetAwakening(null,id,at),[...[1,2,3].map(n=>({key:'task:review_'+n,at:later})),{key:'expedition:review',at:later,startedAt:at,areaId:'darkcrown_border',petIds:[id]}]);
+  await dbPut('meta',ready);await dbPut('meta',{key:'inventory',items:{item_chaos_ember_tart:1},itemUsageLogs:{}});await dbPut('meta',normalizeWallet({stardust:1000,adventureEnergy:100}));
+  const frame=document.querySelector('iframe');frame.src='/index.html';let stage=0,tries=0;
+  const timer=setInterval(()=>{
+    const d=frame.contentDocument;if(!d)return;
+    if(++tries>300){clearInterval(timer);status.textContent='可從圖鑑 → 黯冠 → 羈絆覺醒檢視';return;}
+    for(const selector of ['[data-onboarding-action="skip"]','[data-guided-action="confirm-skip"]','[data-guided-action="skip"]']){const b=d.querySelector(selector);if(b&&b.getClientRects().length){b.click();return;}}
+    if(d.querySelector('#app-loader')?.getClientRects().length)return;
+    if(stage===0){const b=d.querySelector('.bottom-nav [data-view="collection"]');if(b){b.click();stage++;}return;}
+    if(stage===1){const b=d.querySelector('[data-pet="pet_ur28"]');if(b){b.click();stage++;}return;}
+    if(stage===2){const awake=d.querySelector('[data-awake-open="pet_ur28"]');if(awake){awake.click();stage=4;return;}const b=d.querySelector('[data-identity-action="app-pet-detail"]');if(b){b.click();stage++;}return;}
+    if(stage===3){const b=d.querySelector('[data-awake-open="pet_ur28"]');if(b){b.click();stage++;}return;}
+    if(d.querySelector('#demon-final-answer')){clearInterval(timer);status.textContent='可直接回答、查看今日任務並完成覺醒';}
+  },300);
+}catch(e){status.textContent=e.message;}
+</script></body></html>

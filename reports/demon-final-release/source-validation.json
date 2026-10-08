@@ -1,0 +1,116 @@
+{
+  "status": "passed",
+  "testedAt": "2026-10-08T15:42:43.968Z",
+  "sourceCommit": "90ada53051e31aae5eddece912e985c5d7b54862",
+  "commands": [
+    {
+      "command": "npm run test",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run pools:validate",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run images:check",
+      "exitCode": 0
+    }
+  ],
+  "nodeSummary": [
+    "ℹ tests 354",
+    "ℹ pass 354",
+    "ℹ fail 0",
+    "ℹ tests 14",
+    "ℹ pass 14",
+    "ℹ fail 0",
+    "ℹ tests 12",
+    "ℹ pass 12",
+    "ℹ fail 0"
+  ],
+  "nativeFocused": {
+    "testedAt": "2026-10-08T15:37:37.457Z",
+    "purpose": "guarded synthetic-only awakening functional acceptance",
+    "results": [
+      {
+        "name": "actual app starts; all twenty awakening entries load without existing save changes",
+        "ok": true,
+        "detail": {
+          "database": "QuestNoteTest-Onboarding-da186dcd-6915-493b-9f75-f8529e24f06c",
+          "version": "3.9.1"
+        }
+      },
+      {
+        "name": "owned + Lv5 + claimed Lv5 gates and existing eligible progression",
+        "ok": true,
+        "detail": {
+          "missing": true,
+          "low": true,
+          "noStory": true,
+          "oldId": "bae5ec68-01f6-4afe-86e5-1518e5a1f1b0"
+        }
+      },
+      {
+        "name": "dark court final question, locked Today task, backup and all seven atomic rituals",
+        "ok": true,
+        "detail": {
+          "native": [
+            {
+              "id": "pet_ssr37",
+              "taskId": "demon_final_pet_ssr37",
+              "backup": true,
+              "locked": true,
+              "awakened": true
+            },
+            {
+              "id": "pet_ssr38",
+              "taskId": "demon_final_pet_ssr38",
+              "backup": true,
+              "locked": true,
+              "awakened": true
+            },
+            {
+              "id": "pet_ssr39",
+              "taskId": "demon_final_pet_ssr39",
+              "backup": true,
+              "locked": true,
+              "awakened": true
+            },
+            {
+              "id": "pet_ssr40",
+              "taskId": "demon_final_pet_ssr40",
+              "backup": true,
+              "locked": true,
+              "awakened": true
+            },
+            {
+              "id": "pet_ur28",
+              "taskId": "demon_final_pet_ur28",
+              "backup": true,
+              "locked": true,
+              "awakened": true
+            },
+            {
+              "id": "pet_ur29",
+              "taskId": "demon_final_pet_ur29",
+              "backup": true,
+              "locked": true,
+              "awakened": true
+            },
+            {
+              "id": "pet_ur30",
+              "taskId": "demon_final_pet_ur30",
+              "backup": true,
+              "locked": true,
+              "awakened": true
+            }
+          ],
+          "mobileUI": true,
+          "desktopUI": true,
+          "requiredAnswer": true
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  "limitation": "Physical iPhone and installed PWA touch/update are device-only checks"
+}

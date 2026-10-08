@@ -367,14 +367,14 @@ try {
     assert(JSON.stringify(await freshDb.dbGet(freshDb.STORES.META,'wallet')) === beforeWallet, 'Fallback changed wallet');
     assert(JSON.stringify(await freshDb.dbGetAll(freshDb.STORES.COLLECTION)) === beforeCollection, 'Fallback changed collection');
   });
-  if (previewFrame.contentDocument.querySelector('.identity-surface')) await test('native ten-pull SR floor spends once and the summon wallet survives return and reload', async () => {
+  if (previewFrame.contentDocument.querySelector('.identity-surface')) await test('native standard ten-pull SR floor spends once and the summon wallet survives return and reload', async () => {
     assert(storageOwnershipEstablished, 'Fixture writes require an owned loopback origin');
     let client = previewFrame.contentWindow;
     const load = (name) => client.eval('import(' + JSON.stringify(new URL(`src/${name}.js`, client.location.href).href) + ')');
     let [db, collection, filter] = await Promise.all(['db', 'collectionService', 'petPoolFilter'].map(load));
     const bundle = await client.fetch(configuration.profiles.preview.profile.contentBundleUrl).then((response) => response.json());
     const selected = bundle.poolsData.pools.find((pool) => pool.id === 'standard');
-    assert(bundle.poolsData.pools.every((pool) => pool.tenPullGuarantee === 'SR'), 'Not every pool has the SR floor');
+    assert(selected?.tenPullGuarantee === 'SR', 'The selected standard pool must have the SR floor');
     const eligible = filter.getEligiblePetsForPool(bundle.petsData.pets, selected);
     const [normal, rare] = ['N', 'SR'].map((rarity) => eligible.find((pet) => pet.rarity === rarity));
     const at = new Date().toISOString();

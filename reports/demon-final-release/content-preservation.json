@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "pets": 160,
+  "catalogSemanticEqual": true,
+  "resources": [
+    {
+      "file": "assets/expeditions/astral_rift.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/cloudrest_trail.svg",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/cloudrest_trail.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/darkcrown_border.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/harvest_fields.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/lava_rift.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/lionheart_city.svg",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/lionheart_city.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/machine_ruins.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/mist_forest.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "assets/expeditions/polar_shore.webp",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "data/expeditions.json",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "data/global-mailbox.json",
+      "verification": "exact-bytes"
+    },
+    {
+      "file": "data/pet-awakening.json",
+      "verification": "same-JSON-values"
+    }
+  ]
+}
