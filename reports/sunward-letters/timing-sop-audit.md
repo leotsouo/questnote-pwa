@@ -14,3 +14,7 @@
 補充：本池道路裝飾在入場第 400ms 啟動，CSS 轉場長 `0.96 × 3400 = 3264ms`，理論上到第 3664ms 才停止；控制器在第 3400ms 已可繼續。這是裝飾動作與操作就緒時點的差異，不應把 3400ms 說成所有像素皆停止的時間。
 
 依據：`src/summonTiming.js`、`src/themedSummonController.js`、`src/encounterCeremony.js`、`src/encounterView.js`、`src/summonRevealService.js`、`data/pools.json` 與固定產物 `reports/sunward-letters/animation-review.html`。本次僅釐清 SOP 的條件規格，未修改已組裝的 App 產物。
+
+## 後續規格決定（2026-10-08）
+
+使用者決定所有新卡池都必須有抽卡前奏；正常模式不分主題／共用視覺，固定 3000ms，禁止 `animationKey: "none"`。上表「SOP 修訂後規格」記錄的是前一次核對當時的處理方式，已由此決定取代。晴信原野目前 source 與固定 artifacts 仍是 `animationKey: "none"`，因此尚未符合這項新規格；其產物須在後續動畫方案與實際演出完成並重審後，才能作為符合新規格的候選。
