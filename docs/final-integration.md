@@ -278,3 +278,10 @@ Pages `d2dba3c7b8f7f0823227af19d2cbe147dd975bcd` 的 [run 37115343269](https://g
 PR #84 已合併於 `5af21f55127b1920ba2baec8f1de1dbc4ef3d905`；CI 的完整 `npm test`、`pools:validate` 及 `images:check` 通過。使用者核准 packageHash `369fa577d0cb216eebfec558b6986513bc2f3d5214def3ca165828f51cfe90f4` 後，production artifact `af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a` 已推送至 `gh-pages` commit `76cefea20bd5de44da225cc24fb147a20ae18db8`；[Pages run 37758910237](https://github.com/leotsouo/questnote-pwa/actions/runs/37758910237) 成功。665 個 Git blobs 與核准 artifact 相符；正式 HTTPS 663 個一般檔案及 manifest 雜湊回讀一致。固定產物瀏覽器驗收 19/19 通過。
 
 此確切包的 `animationKey` 仍為 `none`，使用者在知悉該差異後核准發布；所以本次不記為符合新 SOP 的 3000ms 抽卡前奏。新 SOP 與 pipeline guide 已同步規定所有後續新池都必須有 3000ms 前奏，減少動態為 500ms。未清除玩家資料或強制啟用 service worker；已安裝 PWA 的實際更新仍需裝置確認。詳見[整包驗收與發布紀錄](../reports/sunward-letters/RELEASE-REVIEW-v4.md)。
+
+
+## 2026-10-08 黯冠王庭 V3.9.0 正式發布
+
+PR [#87](https://github.com/leotsouo/questnote-pwa/pull/87) 完整 CI 通過並合併，source merge `912d153a6de35874a827f08588e7b984154167ca`。使用者接受 packageHash `d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa` 並明確授權發布；核准 production artifact `e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8` 以原 bytes 發布，gh-pages `606c347120d26d7240f24fe69a7369f77a242707`，Pages [37788794219](https://github.com/leotsouo/questnote-pwa/actions/runs/37788794219) 成功。
+
+771 Git blobs／769 HTTPS 資源加 manifest 全部雜湊通過；正式隔離 Chrome 確認 20 位魔獸與 7 位覺醒人形、地區、新版 SW、离線重載且無 page errors。舊版到固定 production 的原生更新及存檔保留另於 loopback 通過；實體 iPhone／已安裝 PWA 尚待實機。來源 authoring catalogs 已精確 promotion，legacy compatibility snapshot 保留。完整證據見 [publication receipt](../reports/chaos-demon-court/publication-receipt.json)。

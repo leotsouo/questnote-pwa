@@ -50,3 +50,12 @@ AI 自審不取代最終整包的人類驗收。依 docs/new-card-pool-sop.md，
 整包 hash：d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa
 
 若接受這份確切整包，可回覆：「接受整包 d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa，可以發布」。同一次明確授權可同時記錄整包驗收與發布同意。
+
+
+## 正式發布完成
+
+使用者明確表示「接受整包，可以發布」，授權綁定上述 packageHash。PR #87 已合併為 source main `912d153a6de35874a827f08588e7b984154167ca`；完整 CI 通過。核准 production artifact 原始 bytes 直接發布為 gh-pages `606c347120d26d7240f24fe69a7369f77a242707`，未重建。Pages run [37788794219](https://github.com/leotsouo/questnote-pwa/actions/runs/37788794219) 成功。
+
+771 個 Git blobs 全部符合核准 artifact；769 個正式 HTTPS 資源及 manifest 逐檔長度／SHA-256 符合，`.nojekyll` 僅作 Git 建置標記。全新隔離 Chrome 確認正式版 3.9.0、20 新角色、7 組覺醒、55 張圖、1672×941 地區、原生 SW 及離線重載，無 page errors。既有 3.8.9 → 本 production artifact 的原生更新／存檔保留證據見 update-offline.json。實體 iPhone／已安裝 PWA 的裝置驗證仍待實機，未冒充通過。
+
+已審核候選亦保存為新的 authoring source catalogs／assets；逐項比對與正式 effective bundle 相同，舊 rows 與 legacy compatibility snapshot 保留。來源與部署 revision 分別記錄，不將 generated gh-pages 回灌來源。詳見 publication-receipt.json、production-https.json、production-https-browser.json。
