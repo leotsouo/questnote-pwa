@@ -285,3 +285,7 @@ PR #84 已合併於 `5af21f55127b1920ba2baec8f1de1dbc4ef3d905`；CI 的完整 `n
 PR [#87](https://github.com/leotsouo/questnote-pwa/pull/87) 完整 CI 通過並合併，source merge `912d153a6de35874a827f08588e7b984154167ca`。使用者接受 packageHash `d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa` 並明確授權發布；核准 production artifact `e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8` 以原 bytes 發布，gh-pages `606c347120d26d7240f24fe69a7369f77a242707`，Pages [37788794219](https://github.com/leotsouo/questnote-pwa/actions/runs/37788794219) 成功。
 
 771 Git blobs／769 HTTPS 資源加 manifest 全部雜湊通過；正式隔離 Chrome 確認 20 位魔獸與 7 位覺醒人形、地區、新版 SW、离線重載且無 page errors。舊版到固定 production 的原生更新及存檔保留另於 loopback 通過；實體 iPhone／已安裝 PWA 尚待實機。來源 authoring catalogs 已精確 promotion，legacy compatibility snapshot 保留。完整證據見 [publication receipt](../reports/chaos-demon-court/publication-receipt.json)。
+
+# V3.9.1 黯冠最終覺醒互動已發布 — 2026-10-08
+
+使用者「通過，推上正式版」核准後，[PR #89](https://github.com/leotsouo/questnote-pwa/pull/89) 經 CI 合併於 `634fd1697c5152c95f39e5f60121bb2369fa935a`。回答前「? ? ?」與「回答這個可怕的傢伙」，回答後「哈、哈、哈……」才揭示惡魔的趣味與鎖定今日任務；完成後才能最終覺醒。正式 artifact `2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2`，gh-pages `d8ce527a93f7f457f01e248eeeb2d2f806eee7b6`，[Pages 37804253330](https://github.com/leotsouo/questnote-pwa/actions/runs/37804253330) 成功。全套來源測試、18 項固定 artifact 瀏覽器、七位夥伴交易與備份、舊版升級及正式原生 SW 離線驗證通過；保留 160 位角色／8 池。詳見[發布收據](../reports/demon-final-release/README.md)。
