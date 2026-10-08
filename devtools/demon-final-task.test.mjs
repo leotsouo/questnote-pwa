@@ -25,9 +25,17 @@ test('all seven dark court partners require an answer and completion before food
     const pet = { id, owned: true, bondLevel: 5, name: '<惡魔>' };
     const state = { awakeningCatalog: catalog, petAwakening: ready(id), bondJourney: { byPet: { [id]: { chapters: { 5: { claimedAt: at } } } } }, inventory: { items: { item_chaos_ember_tart: 1 } }, tasks: [] };
     assert.equal(awakeningWizardStep(pet, state), 'demon-question');
-    assert.ok(renderAwakeningReader(pet, state).includes(DEMON_QUESTION));
+    const before = renderAwakeningReader(pet, state);
+    assert.ok(before.includes(DEMON_QUESTION));
+    assert.match(before, /id="awakening-question"[^>]*>\? \? \?</);
+    assert.ok(!before.includes('惡魔的趣味'));
+    assert.ok(!before.includes('不能編輯') && !before.includes('不能刪除'));
     state.tasks = [task(id)];
     assert.equal(awakeningWizardStep(pet, state), 'demon-task');
+    const after = renderAwakeningReader(pet, state);
+    assert.ok(after.includes('惡魔的趣味'));
+    assert.ok(after.includes('哈、哈、哈……'));
+    assert.ok(after.includes('不能編輯、刪除或移出今日'));
     state.tasks[0].completed = true; state.tasks[0].completedAt = later;
     assert.equal(awakeningWizardStep(pet, state), 'ritual');
     state.inventory.items = {};

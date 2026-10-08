@@ -63,7 +63,7 @@ export function createAwakeningController({ getState, refresh, openModal, closeM
     }
     if (name === 'answer') {
       await acceptDemonFinalTask(actionPetId, document.getElementById('demon-final-answer')?.value);
-      showToast('惡魔的趣味已排入今日，沒有截止日；完成後即可繼續覺醒。', 'success');
+      showToast('惡魔的趣味已排入今日。這個約定不能刪除，只能完成；沒有截止日。', 'success');
     }
     if (name === 'start') await startPetAwakening(actionPetId);
     if (name === 'pause') await pausePetAwakening(actionPetId);
