@@ -60,5 +60,16 @@
     "Final human whole-package acceptance and explicit 可以發布 are pending.",
     "AI artwork tool previews are automatically displayed by the image tool despite ai-self; no human artwork receipt was invented."
   ],
-  "packageHash": "d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa"
+  "packageHash": "d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa",
+  "humanAcceptance": {
+    "reviewer": "Human user in Codex task 01a11ae4-9529-7d93-8b69-11991f7a9089",
+    "acceptedAt": "2026-10-08T13:43:25.188Z",
+    "packageHash": "d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa"
+  },
+  "publicationAuthorization": {
+    "reviewer": "Human user in Codex task 01a11ae4-9529-7d93-8b69-11991f7a9089",
+    "approvedAt": "2026-10-08T13:43:25.188Z",
+    "packageHash": "d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa",
+    "phrase": "可以發布"
+  }
 }
