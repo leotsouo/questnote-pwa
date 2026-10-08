@@ -1,3 +1,4 @@
+import { openDailyRace, closeDailyRace, dailyRaceEntryHtml } from './dailyRaceController.js';
 import { inviteCompanion, acknowledgeEncounterMigration, getEncounterEconomy } from './encounterEconomyService.js';
 import { intimacySummary } from './invitationPresentation.js';
 import { renderEncounterView, presentCommittedEncounters } from './encounterView.js';
@@ -1028,6 +1029,11 @@ function bindDelegatedEvents() {
       renderDailyBlessingSection();
     } else if (action === 'daily-check-in') {
       await handleDailyCheckIn();
+    } else if (action === 'daily-open-race') {
+      await openDailyRace({ pets: state.allPets || [],
+        ownedIds: (state.enrichedCollection || []).filter(p => p.owned).map(p => p.id),
+        imageHtml: petImageHtml, openModal, refresh: () => onRefresh(),
+        reduceMotion: state.userPreferences?.reduceMotion ?? false });
     } else if (action === 'daily-open-wheel') {
       await openDailyWheelModal();
     } else if (action === 'companion-view-image') {
@@ -1602,6 +1608,7 @@ function dismissModal() {
 }
 
 export function openModal(contentHtml) {
+  closeDailyRace();
   const overlay = document.getElementById('modal-overlay');
   const body = document.getElementById('modal-body');
   if (!overlay?.classList.contains('open')) rememberDialogFocus(overlay);
@@ -1614,6 +1621,7 @@ export function openModal(contentHtml) {
 }
 
 export function closeModal() {
+  closeDailyRace();
   const overlay = document.getElementById('modal-overlay');
   const wasOpen = overlay?.classList.contains('open');
   overlay?.classList.remove('open');
@@ -1834,7 +1842,7 @@ export function petImageHtml(pet, options = {}) {
   const originalSrc = pet.fallbackImage || getPetImageSrc(pet);
   const loadAttr = eager || loading === 'eager' ? 'eager' : loading;
   const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
-  const onerror = "if(this.dataset.originalSrc&&this.src!==new URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.classList.add('is-error');var f=this.closest('.pet-image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');}";
+  const onerror = "if(this.dataset.originalSrc&&this.src!==new globalThis.URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.classList.add('is-error');var f=this.closest('.pet-image-frame');if(f){f.classList.remove('is-loading');f.classList.add('is-error');var label=f.querySelector('.pet-image-frame__fallback');if(label)label.textContent='?';}";
   const fallbackAttr = originalSrc ? ` data-original-src="${escapeHtml(originalSrc)}"` : '';
   const placeholder = framed
     ? `<div class="pet-image-frame pet-image-frame--${size} is-error" role="img" aria-label="圖片暫時無法載入"><span class="pet-image-frame__fallback" aria-hidden="true">?</span></div>`
@@ -1850,7 +1858,7 @@ export function petImageHtml(pet, options = {}) {
   }
 
   if (!framed) {
-    const onErrorLegacy = `if(this.dataset.originalSrc&&this.src!==new URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} pet-img--placeholder',innerHTML:'<span>?</span>'}))`;
+    const onErrorLegacy = `if(this.dataset.originalSrc&&this.src!==new globalThis.URL(this.dataset.originalSrc,location.href).href){this.src=this.dataset.originalSrc;return;}this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} pet-img--placeholder',innerHTML:'<span>?</span>'}))`;
     return `<img class="${cls} is-loading" src="${escapeHtml(src)}"${fallbackAttr} alt="${escapeHtml(petDisplayName(pet))}" loading="${loadAttr}" decoding="async" onload="this.classList.add('is-loaded')" onerror="${onErrorLegacy}" />`;
   }
 
@@ -2588,7 +2596,7 @@ function renderDailyBlessingSection() {
   if (!homeEl) return;
 
   const { html, hasPending } = buildDailyBlessingCardData();
-  homeEl.innerHTML = html;
+  homeEl.innerHTML = html + dailyRaceEntryHtml();
 
   if (hasPending) {
     homeEl.classList.add('daily-blessing-section--pending');
@@ -3924,7 +3932,7 @@ function openPetFeedModal(companion) {
   if (src) warmPetImageCache(src).catch(() => {});
 
   const rarityClass = `rarity-${companion.rarity}`;
-  const onError = `if(this.dataset.fallbackSrc&&this.src!==new URL(this.dataset.fallbackSrc,location.href).href){this.src=this.dataset.fallbackSrc;return;}this.onerror=null;this.classList.add('companion-image-preview__img--error')`;
+  const onError = `if(this.dataset.fallbackSrc&&this.src!==new globalThis.URL(this.dataset.fallbackSrc,location.href).href){this.src=this.dataset.fallbackSrc;return;}this.onerror=null;this.classList.add('companion-image-preview__img--error')`;
   const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
   const feedSection = buildPetFeedSection(companion);
   const imageHtml = src

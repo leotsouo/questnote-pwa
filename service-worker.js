@@ -43,6 +43,8 @@ const PRECACHE_HASHES = null;
 /** 需要預快取的資源（相對於 SW 所在目錄） */
 const PRECACHE_URLS = [
   'src/dailyRaceCore.js',
+  'src/dailyRaceController.js',
+  'src/daily-race.css',
   'src/dailyRaceService.js',
   'src/seniorMode.css',
   'src/seniorModeController.js',
@@ -389,12 +391,15 @@ self.addEventListener('install', (event) => {
         const url = resolveUrl(path);
         const response = await fetch(url, { cache: 'reload' });
         if (!response.ok) throw new Error(`Required asset unavailable: ${path} (${response.status})`);
+        // Drain each body immediately: no-store responses can otherwise occupy all
+        // HTTP connections while Promise.all waits for the remaining response headers.
+        const body = await response.arrayBuffer();
         if (PRECACHE_HASHES) {
-          const digest = await crypto.subtle.digest('SHA-256', await response.clone().arrayBuffer());
+          const digest = await crypto.subtle.digest('SHA-256', body);
           const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
           if (hash !== PRECACHE_HASHES[path]) throw new Error(`Required asset mismatch: ${path}`);
         }
-        return [url, response];
+        return [url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers })];
       }));
       const cache = await caches.open(CACHE_NAME);
       await Promise.all(entries.map(([url, response]) => cache.put(url, response)));

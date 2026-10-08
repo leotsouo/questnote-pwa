@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 import { prepareRaceDay, settleRace, racePayout, normalizeDailyRace, validateDailyRace, randomRaceIndex } from '../src/dailyRaceCore.js';
 import { normalizeBackupPayload, migrateImportedData, validateBackup } from '../src/backupService.js';
 import { validateStoredSnapshot, SNAPSHOT_KEYS } from '../src/backupSchema.js';
@@ -12,6 +13,48 @@ const day = () => prepareRaceDay(null, date, pets, () => 0);
 const bet = (round = 0, stake = 100) => ({ date, round, mode: 'bet', selectedId: 'pet_r0', stake });
 const settle = (state, wallet = { key: 'wallet', stardust: 1500 }, request = bet(), winner = 0) =>
   settleRace(state, wallet, request, date, now, () => winner);
+
+test('worker drains limited no-store connections and serves race assets offline', async () => {
+  const handlers = {}, entries = new Map(), waiting = [];
+  const base = 'https://race-test.invalid/';
+  let active = 0, calls = 0, offline = false;
+  const cache = {
+    match: async request => entries.get(typeof request === 'string' ? request : request.url)?.clone(),
+    put: async (request, response) => entries.set(request, response.clone()),
+  };
+  runInNewContext(readFileSync(new URL('../service-worker.js', import.meta.url), 'utf8'), {
+    URL, Request, Response, Uint8Array, setTimeout, clearTimeout, AbortController,
+    caches: { open: async () => cache },
+    self: { location: { href: base + 'service-worker.js' }, addEventListener: (name, handler) => { handlers[name] = handler; } },
+    fetch: async request => {
+      assert.equal(offline, false, 'Offline race assets must come from precache');
+      calls++;
+      if (active >= 3) await new Promise(resolve => waiting.push(resolve));
+      active++;
+      return { ok: true, status: 200, statusText: 'OK', headers: { 'Cache-Control': 'no-store' },
+        arrayBuffer: async () => {
+          const bytes = readFileSync(new URL('..' + new URL(request).pathname, import.meta.url));
+          active--; waiting.shift()?.();
+          return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+        },
+      };
+    },
+  });
+  let installing, timer;
+  handlers.install({ waitUntil: promise => { installing = promise; } });
+  try {
+    await Promise.race([installing, new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Precache connection deadlock')), 3000); })]);
+  } finally { clearTimeout(timer); }
+  assert.equal(active, 0);
+  const installedCalls = calls;
+  offline = true;
+  for (const asset of ['src/dailyRaceCore.js', 'src/dailyRaceService.js', 'src/dailyRaceController.js', 'src/daily-race.css']) {
+    let response;
+    handlers.fetch({ request: new Request(base + asset), respondWith: promise => { response = promise; } });
+    assert.equal(await (await response).text(), readFileSync(new URL('../' + asset, import.meta.url), 'utf8'));
+  }
+  assert.equal(calls, installedCalls);
+});
 
 test('four equally sized winning outcomes; no rarity/history/amount bias; exact 95% return', () => {
   for (const stake of [5, 100, 500]) {
