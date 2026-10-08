@@ -1,0 +1,248 @@
+{
+  "status": "pass",
+  "artifactId": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0",
+  "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+  "environment": "Pinned effective catalog, same reviewed pure planner; native seven dispatch claims also passed",
+  "checks": [
+    {
+      "petId": "pet_n50",
+      "role": "guardian",
+      "label": "守護",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_n51",
+      "role": "gatherer",
+      "label": "採集",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_n52",
+      "role": "scholar",
+      "label": "解讀",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_r57",
+      "role": "scout",
+      "label": "探路",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_r58",
+      "role": "gatherer",
+      "label": "採集",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_r59",
+      "role": "scholar",
+      "label": "解讀",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_r60",
+      "role": "gatherer",
+      "label": "採集",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_r61",
+      "role": "guardian",
+      "label": "守護",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_sr51",
+      "role": "scout",
+      "label": "探路",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_sr52",
+      "role": "scout",
+      "label": "探路",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_sr53",
+      "role": "guardian",
+      "label": "守護",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_sr54",
+      "role": "companion",
+      "label": "同行",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_sr55",
+      "role": "gatherer",
+      "label": "採集",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_ssr37",
+      "role": "guardian",
+      "label": "守護",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_ssr38",
+      "role": "companion",
+      "label": "同行",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_ssr39",
+      "role": "scholar",
+      "label": "解讀",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_ssr40",
+      "role": "guardian",
+      "label": "守護",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_ur28",
+      "role": "guardian",
+      "label": "守護",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_ur29",
+      "role": "scout",
+      "label": "探路",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    },
+    {
+      "petId": "pet_ur30",
+      "role": "scholar",
+      "label": "解讀",
+      "level1": 1,
+      "level5": 5,
+      "objectives": [
+        "explore",
+        "gather",
+        "bond"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+  "fullNodeTestCounts": [
+    350,
+    14,
+    12
+  ],
+  "totalNodeTests": 376,
+  "productSafetyChecks": 12,
+  "logs": ".dev-backups/test-runs/darkcrown-final-20261008-c",
+  "poolValidation": "pass",
+  "sourceImageChecks": "pass",
+  "targetedLatestSourceTests": 10
+}

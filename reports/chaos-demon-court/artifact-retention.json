@@ -1,0 +1,57 @@
+{
+  "outputRoot": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008",
+  "retention": "hold",
+  "reason": "Final reviewed and superseded immutable artifacts retained; no cleanup authorized",
+  "producer": "scripts/prepare-release.mjs",
+  "governanceLimitation": "Assembler requires outside source repo, installed producer wrapper accepts only inside registered worktree. These outputs explicitly held outside automatic deletion registry. Source worktree lifecycle Hold references this ledger.",
+  "artifacts": [
+    {
+      "artifactId": "6c8b661ce5ff0aa0bfa8de7076802e31f9e7ee55c07163e57b33501d5430bc71",
+      "profile": "preview",
+      "sourceCommit": "236a0aecf32821f0a0073842bb3c0b87233806d1",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\6c8b661ce5ff0aa0bfa8de7076802e31f9e7ee55c07163e57b33501d5430bc71"
+    },
+    {
+      "artifactId": "92827396077aac462f98eb98333a937f193f7ed2c18b252f9978f522f33a6f3f",
+      "profile": "production",
+      "sourceCommit": "819bd7bc1b6beda8dcc4fda7bbdb23efe9860a74",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\92827396077aac462f98eb98333a937f193f7ed2c18b252f9978f522f33a6f3f"
+    },
+    {
+      "artifactId": "a0711ce16e367a7dc6b745eccba881d23b5bdeb5ea2b49d44901cb35876acc5f",
+      "profile": "preview",
+      "sourceCommit": "173ee074fab8ff8f03f4d620ce53926a581d99a7",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\a0711ce16e367a7dc6b745eccba881d23b5bdeb5ea2b49d44901cb35876acc5f"
+    },
+    {
+      "artifactId": "ac42dce79676d8ac8f258a44203c14033f11818389d0ef7adeba654241ff909d",
+      "profile": "preview",
+      "sourceCommit": "819bd7bc1b6beda8dcc4fda7bbdb23efe9860a74",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\ac42dce79676d8ac8f258a44203c14033f11818389d0ef7adeba654241ff909d"
+    },
+    {
+      "artifactId": "ba253a8024678d9b84dfd8264686212901b0029e4822bc4974ab6fc6910dac21",
+      "profile": "production",
+      "sourceCommit": "236a0aecf32821f0a0073842bb3c0b87233806d1",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\ba253a8024678d9b84dfd8264686212901b0029e4822bc4974ab6fc6910dac21"
+    },
+    {
+      "artifactId": "c5f424dbf7e98ccab54721ee245a762cd58485aaf4ca131d8933b000a9462e56",
+      "profile": "production",
+      "sourceCommit": "173ee074fab8ff8f03f4d620ce53926a581d99a7",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\c5f424dbf7e98ccab54721ee245a762cd58485aaf4ca131d8933b000a9462e56"
+    },
+    {
+      "artifactId": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+      "profile": "production",
+      "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8"
+    },
+    {
+      "artifactId": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0",
+      "profile": "preview",
+      "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0"
+    }
+  ]
+}

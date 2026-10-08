@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "previousArtifactId": "77a4435d96191ec2fdd61197dbb98319e6f8ec00d7c1983793a125debf9e4d54",
+  "proposedArtifactId": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+  "oldCatalogRowsUnchanged": 294,
+  "oldAssetsUnchanged": 510,
+  "newPets": 20,
+  "newAwakeningPairs": 7
+}

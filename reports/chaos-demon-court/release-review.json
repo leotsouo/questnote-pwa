@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+  "candidateId": "303bcc646872e6eabeda7891637754069d1a7c553557f03e69ae70295246c543",
+  "candidateManifestSha256": "60112e9633063446dffde570715d4be387102d0be62fd1fad79cf55283d0c5cb",
+  "previewUrl": "http://127.0.0.1:51348/darkcrown-review/",
+  "artifacts": {
+    "preview": {
+      "artifactId": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0",
+      "manifestSha256": "f1dac3d9856c363821b797af3745ded24dfd8723d380dbc2314ccb1946d6822c",
+      "scopePath": "/questnote-pwa-preview/",
+      "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb"
+    },
+    "production": {
+      "artifactId": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+      "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+      "manifestSha256": "07c670e1d5cd29d9930d0335dca8c4cce44ec4a02322cb474e422824ca7f2dbb",
+      "scopePath": "/questnote-pwa/",
+      "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb"
+    }
+  },
+  "baseline": {
+    "verifiedAt": "2026-10-08T12:20:42.936Z",
+    "url": "https://leotsouo.github.io/questnote-pwa/release-artifact.json",
+    "mainCommit": "e53fc8358445c3fb2a23a8d2c3bbe2eab55c2056",
+    "deployedCommit": "ce35b1f859b2b9ed5de5bd05c01b06651499c7ab",
+    "descriptorSha256": "cfe2fd59eed26971b036c417ff2ac3374a43730e41379dc7806ddd4d8ff052d8",
+    "artifactId": "77a4435d96191ec2fdd61197dbb98319e6f8ec00d7c1983793a125debf9e4d54",
+    "sourceCommit": "f515c683e187d64241fefef48ae9739006d2a2da"
+  },
+  "checks": {
+    "animation": {
+      "status": "pass",
+      "evidence": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0; http://127.0.0.1:51348/darkcrown-review/; Windows Chrome isolated loopback, actual pinned modules/styles/images. 26 normal/reduced entry/single/ten/rare/awakening/skip/fallback checks, 9 actual encounter handoff/repeated result checks, no viewer DB, 24 actual background comparisons across all three themes. Server closes after test; local acceptance, not hosted HTTPS or physical-device acceptance.; pinned-animation-acceptance.json sha256=3556e8c88bee8a3e44cbce3ac80125bfd6b9650146fde78a7fe27712a91ebef0; pinned-encounter-handoff-acceptance.json sha256=f5767fb5de010df17365e99f275687bf6b44871fdb03cd41ca02acf3300032ff; pinned-native-flow-acceptance.json sha256=fe3bbad8664c1b602364718ae3df1dabc727caafba0193b98293f40214c10501"
+    },
+    "workshop": {
+      "status": "pass",
+      "evidence": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0; native IndexedDB private loopback: 9 tarts crafted using 27 forest_leaf/27 lava_core, explicit 75/150 gifts, seven ritual items consumed exactly once.; pinned-native-flow-acceptance.json sha256=fe3bbad8664c1b602364718ae3df1dabc727caafba0193b98293f40214c10501"
+    },
+    "specialties": {
+      "status": "pass",
+      "evidence": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0; all 20 explicit roles at Lv1/Lv5 and explore/gather/bond planner checked; seven native dispatch claims. Fixture ownership and expedited completion clock, real effective catalogs/services.; specialties-acceptance.json sha256=180a05fa68f8cbd2e536d461220bac6273fdaa7581d8f3f47693bd7292c60d58; pinned-native-flow-acceptance.json sha256=fe3bbad8664c1b602364718ae3df1dabc727caafba0193b98293f40214c10501"
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0 map/dispatch at 393/1280; generated 1672x941 WebP actual loading/crop, black tower and resisting routes recognizable. e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8 updated worker serves region offline. Confirmed built-in imagegen, source/edit prompt/hash retained.; region-art-provenance.json sha256=61d9a039b41fe550bfb3e2db56a53e2bc67ad30f812de20d62b9c9459950954a; pinned-native-flow-acceptance.json sha256=fe3bbad8664c1b602364718ae3df1dabc727caafba0193b98293f40214c10501; update-offline.json sha256=744ad9511df25b2f7a8950687676edcba0326ff8054ee9cbeeb8e076014968a9"
+    },
+    "transactions": {
+      "status": "pass",
+      "evidence": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0; all seven real trial/task/dispatch/ritual services with native IndexedDB; concurrent ritual calls fulfill once/reject once, consume one tart/token, wallet/collection identity preserved, current backup validates, two forms switch. Existing 294 catalog rows/510 assets unchanged; complete 376 Node plus product/reveal checks.; pinned-native-flow-acceptance.json sha256=fe3bbad8664c1b602364718ae3df1dabc727caafba0193b98293f40214c10501; formal-content-preserved.json sha256=1f8bbe6fea86eaeb02bb07f759a1f342cdfb32dd97d65ea2312f1072fcec39e0; final-regression-summary.json sha256=f58f0c438dac476784dea794581e976d489a301321ed242964c36c0bce3d3aa7"
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8; exact formal V3.8.9 -> V3.9.0 on isolated production-profile loopback. Native update banner activation, original pet/story preserved, old cache removed, new region and seven already-viewed pairs available offline, replay/forms/backup offline. Existing lazy pet-image cache policy retained. Both 771-file artifacts independently verified; exact formal text fetched and manifest-hash checked. No new production deployment or device/hosted-preview acceptance claimed.; update-offline.json sha256=744ad9511df25b2f7a8950687676edcba0326ff8054ee9cbeeb8e076014968a9; artifact-verification.json sha256=efb6814f64cf8ea9690943a9484cb1f0f5a388157d9e52e9f8d433b15879a8f2; formal-snapshot-recovery.json sha256=54881d2dd526c2c954dddf338c11e029941824b9432c00c26f5e854dd5baadc2"
+    }
+  },
+  "limitations": [
+    "No new hosted preview, formal deployment or physical iPhone check performed.",
+    "Final human whole-package acceptance and explicit 可以發布 are pending.",
+    "AI artwork tool previews are automatically displayed by the image tool despite ai-self; no human artwork receipt was invented."
+  ],
+  "packageHash": "d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa"
+}

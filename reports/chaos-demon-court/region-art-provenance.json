@@ -4,6 +4,24 @@
   "originalSha256": "027f2e593fd8308bb43731f394d906ea67d1a559b185ed85215c6eea2a9d07c0",
   "image": "assets/expeditions/darkcrown_border.webp",
   "sha256": "689d9423da5acb1a983147ff18dfb5103953fec35fa52ec0908abf1417149d34",
-  "actualUiReview": "pending corrected wide map/dispatch checks",
+  "actualUiReview": {
+    "status": "pass",
+    "artifactId": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0",
+    "viewports": [
+      393,
+      1280
+    ],
+    "views": [
+      "map card",
+      "dispatch dialog"
+    ],
+    "findings": "黑塔全輪廓可見；地圖卡保留完整裂冠日環，較寬的派遣裁切保留可辨識日環弧形、塔身和抵抗光路。載入無錯誤，離線證據另見 update-offline.json。",
+    "evidence": [
+      "pinned-region-card-393.png",
+      "pinned-region-card-1280.png",
+      "pinned-region-dispatch-393.png",
+      "pinned-region-dispatch-1280.png"
+    ]
+  },
   "previous": "da052e4339fd391da812af264e8506d97b0bf0eea95a828b2ecbe0ef2f6d5450"
 }

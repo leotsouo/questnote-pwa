@@ -1,0 +1,138 @@
+{
+  "status": "pass",
+  "reviewMode": "ai-self",
+  "artifactId": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0",
+  "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+  "viewer": "http://127.0.0.1:51348/darkcrown-review/",
+  "environment": "Windows Chrome headless, isolated loopback; actual pinned modules/styles/images, no game database",
+  "checks": [
+    {
+      "check": "complete debut and pool-switch entry",
+      "width": 393,
+      "status": "pass"
+    },
+    {
+      "check": "complete debut and pool-switch entry",
+      "width": 1280,
+      "status": "pass"
+    },
+    {
+      "check": "complete single rare reveal",
+      "petId": "pet_ssr37",
+      "status": "pass"
+    },
+    {
+      "check": "complete single rare reveal",
+      "petId": "pet_ssr38",
+      "status": "pass"
+    },
+    {
+      "check": "complete single rare reveal",
+      "petId": "pet_ssr39",
+      "status": "pass"
+    },
+    {
+      "check": "complete single rare reveal",
+      "petId": "pet_ssr40",
+      "status": "pass"
+    },
+    {
+      "check": "complete single rare reveal",
+      "petId": "pet_ur28",
+      "status": "pass"
+    },
+    {
+      "check": "complete single rare reveal",
+      "petId": "pet_ur29",
+      "status": "pass"
+    },
+    {
+      "check": "complete single rare reveal",
+      "petId": "pet_ur30",
+      "status": "pass"
+    },
+    {
+      "check": "intro skipped, all seven rare queue items and ten summary retained",
+      "status": "pass"
+    },
+    {
+      "check": "reduced replay summon and awakening",
+      "petId": "pet_ssr37",
+      "status": "pass"
+    },
+    {
+      "check": "reduced replay summon and awakening",
+      "petId": "pet_ssr38",
+      "status": "pass"
+    },
+    {
+      "check": "reduced replay summon and awakening",
+      "petId": "pet_ssr39",
+      "status": "pass"
+    },
+    {
+      "check": "reduced replay summon and awakening",
+      "petId": "pet_ssr40",
+      "status": "pass"
+    },
+    {
+      "check": "reduced replay summon and awakening",
+      "petId": "pet_ur28",
+      "status": "pass"
+    },
+    {
+      "check": "reduced replay summon and awakening",
+      "petId": "pet_ur29",
+      "status": "pass"
+    },
+    {
+      "check": "reduced replay summon and awakening",
+      "petId": "pet_ur30",
+      "status": "pass"
+    },
+    {
+      "check": "complete original to humanoid awakening",
+      "petId": "pet_ssr37",
+      "status": "pass"
+    },
+    {
+      "check": "complete original to humanoid awakening",
+      "petId": "pet_ssr38",
+      "status": "pass"
+    },
+    {
+      "check": "complete original to humanoid awakening",
+      "petId": "pet_ssr39",
+      "status": "pass"
+    },
+    {
+      "check": "complete original to humanoid awakening",
+      "petId": "pet_ssr40",
+      "status": "pass"
+    },
+    {
+      "check": "complete original to humanoid awakening",
+      "petId": "pet_ur28",
+      "status": "pass"
+    },
+    {
+      "check": "complete original to humanoid awakening",
+      "petId": "pet_ur29",
+      "status": "pass"
+    },
+    {
+      "check": "complete original to humanoid awakening",
+      "petId": "pet_ur30",
+      "status": "pass"
+    },
+    {
+      "check": "skip intro preserves queue; Escape skips remaining display queue and closes cleanly",
+      "status": "pass"
+    },
+    {
+      "check": "image fallback and keyboard cleanup",
+      "status": "pass"
+    }
+  ],
+  "pageErrors": []
+}

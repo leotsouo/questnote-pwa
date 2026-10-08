@@ -40,3 +40,6 @@ content/pet-series/sunward_letters/** -text whitespace=cr-at-eol
 content/pet-series/chaos_demon_court/** -text
 content/pet-series/darkcrown_court/** -text
 content/pet-series/darkcrown_court_release/** -text
+
+# Dark court final evidence binds exact bytes and package hashes.
+reports/chaos-demon-court/** -text whitespace=cr-at-eol

@@ -1,0 +1,436 @@
+{
+  "status": "pass",
+  "artifactId": "fde4a729f8d92ce7f8a5745e21efad4ab54c8daddfc681c23b2a9d4ac3c1f8b0",
+  "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+  "environment": "Windows Chrome native IndexedDB isolated loopback preview; fixture ownership and sped-up expedition clock, actual catalogs and services",
+  "result": {
+    "database": "QuestNotePreviewDB",
+    "initialCount": 20,
+    "awakenableCount": 7,
+    "crafted": {
+      "success": true,
+      "message": "製作完成：黯莓餘燼塔 x9",
+      "itemId": "item_chaos_ember_tart",
+      "quantity": 9,
+      "itemName": "黯莓餘燼塔"
+    },
+    "materialsUsed": {
+      "forest_leaf": 27,
+      "lava_core": 27
+    },
+    "gift": {
+      "success": true,
+      "bondExp": 150,
+      "isFavorite": true,
+      "matchedTags": [
+        "fire"
+      ],
+      "reason": "喜歡火系禮物",
+      "leveledUp": true,
+      "newLevel": 3,
+      "itemName": "黯莓餘燼塔",
+      "message": "牠很喜歡這份禮物！親密度 +150"
+    },
+    "bonuses": [
+      {
+        "petId": "pet_n50",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "fire"
+        ],
+        "reason": "喜歡火系禮物"
+      },
+      {
+        "petId": "pet_n51",
+        "isFavorite": false,
+        "bondExp": 75,
+        "matchedTags": [],
+        "reason": "非喜好禮物，獲得基本效果"
+      },
+      {
+        "petId": "pet_n52",
+        "isFavorite": false,
+        "bondExp": 75,
+        "matchedTags": [],
+        "reason": "非喜好禮物，獲得基本效果"
+      },
+      {
+        "petId": "pet_r57",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "astral"
+        ],
+        "reason": "喜歡星界禮物"
+      },
+      {
+        "petId": "pet_r58",
+        "isFavorite": false,
+        "bondExp": 75,
+        "matchedTags": [],
+        "reason": "非喜好禮物，獲得基本效果"
+      },
+      {
+        "petId": "pet_r59",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "astral"
+        ],
+        "reason": "喜歡星界禮物"
+      },
+      {
+        "petId": "pet_r60",
+        "isFavorite": false,
+        "bondExp": 75,
+        "matchedTags": [],
+        "reason": "非喜好禮物，獲得基本效果"
+      },
+      {
+        "petId": "pet_r61",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "fire"
+        ],
+        "reason": "喜歡火系禮物"
+      },
+      {
+        "petId": "pet_sr51",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "fire"
+        ],
+        "reason": "喜歡火系禮物"
+      },
+      {
+        "petId": "pet_sr52",
+        "isFavorite": false,
+        "bondExp": 75,
+        "matchedTags": [],
+        "reason": "非喜好禮物，獲得基本效果"
+      },
+      {
+        "petId": "pet_sr53",
+        "isFavorite": false,
+        "bondExp": 75,
+        "matchedTags": [],
+        "reason": "非喜好禮物，獲得基本效果"
+      },
+      {
+        "petId": "pet_sr54",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "astral"
+        ],
+        "reason": "喜歡星界禮物"
+      },
+      {
+        "petId": "pet_sr55",
+        "isFavorite": false,
+        "bondExp": 75,
+        "matchedTags": [],
+        "reason": "非喜好禮物，獲得基本效果"
+      },
+      {
+        "petId": "pet_ssr37",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "fire"
+        ],
+        "reason": "喜歡火系禮物"
+      },
+      {
+        "petId": "pet_ssr38",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "astral"
+        ],
+        "reason": "喜歡星界禮物"
+      },
+      {
+        "petId": "pet_ssr39",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "fire"
+        ],
+        "reason": "喜歡火系禮物"
+      },
+      {
+        "petId": "pet_ssr40",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "astral"
+        ],
+        "reason": "喜歡星界禮物"
+      },
+      {
+        "petId": "pet_ur28",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "fire",
+          "astral"
+        ],
+        "reason": "喜歡火系、星界禮物"
+      },
+      {
+        "petId": "pet_ur29",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "astral"
+        ],
+        "reason": "喜歡星界禮物"
+      },
+      {
+        "petId": "pet_ur30",
+        "isFavorite": true,
+        "bondExp": 150,
+        "matchedTags": [
+          "astral"
+        ],
+        "reason": "喜歡星界禮物"
+      }
+    ],
+    "trials": [
+      {
+        "petId": "pet_ssr37",
+        "status": "awakened",
+        "attempts": [
+          "fulfilled",
+          "rejected"
+        ],
+        "consumed": 1,
+        "walletUnchanged": true,
+        "collectionUnchanged": true
+      },
+      {
+        "petId": "pet_ssr38",
+        "status": "awakened",
+        "attempts": [
+          "fulfilled",
+          "rejected"
+        ],
+        "consumed": 1,
+        "walletUnchanged": true,
+        "collectionUnchanged": true
+      },
+      {
+        "petId": "pet_ssr39",
+        "status": "awakened",
+        "attempts": [
+          "fulfilled",
+          "rejected"
+        ],
+        "consumed": 1,
+        "walletUnchanged": true,
+        "collectionUnchanged": true
+      },
+      {
+        "petId": "pet_ssr40",
+        "status": "awakened",
+        "attempts": [
+          "fulfilled",
+          "rejected"
+        ],
+        "consumed": 1,
+        "walletUnchanged": true,
+        "collectionUnchanged": true
+      },
+      {
+        "petId": "pet_ur28",
+        "status": "awakened",
+        "attempts": [
+          "fulfilled",
+          "rejected"
+        ],
+        "consumed": 1,
+        "walletUnchanged": true,
+        "collectionUnchanged": true
+      },
+      {
+        "petId": "pet_ur29",
+        "status": "awakened",
+        "attempts": [
+          "fulfilled",
+          "rejected"
+        ],
+        "consumed": 1,
+        "walletUnchanged": true,
+        "collectionUnchanged": true
+      },
+      {
+        "petId": "pet_ur30",
+        "status": "awakened",
+        "attempts": [
+          "fulfilled",
+          "rejected"
+        ],
+        "consumed": 1,
+        "walletUnchanged": true,
+        "collectionUnchanged": true
+      }
+    ],
+    "backupValidation": {
+      "valid": true,
+      "warnings": [],
+      "profile": "complete-current-shape"
+    }
+  },
+  "regionChecks": [
+    {
+      "width": 393,
+      "mapImage": "loaded",
+      "dispatchImage": "loaded"
+    },
+    {
+      "width": 1280,
+      "mapImage": "loaded",
+      "dispatchImage": "loaded"
+    }
+  ],
+  "collectionChecks": [
+    {
+      "width": 393,
+      "imagesLoaded": 20,
+      "objectFit": "contain"
+    },
+    {
+      "width": 1280,
+      "imagesLoaded": 20,
+      "objectFit": "contain"
+    }
+  ],
+  "backgroundChecks": [
+    {
+      "theme": "default",
+      "poolId": "standard",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "default",
+      "poolId": "eternal_slumber_bloom",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "default",
+      "poolId": "frost_oath_fjord",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "default",
+      "poolId": "honeylight_sugar_garden_v2",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "default",
+      "poolId": "swordwild_shanhe_v3",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "default",
+      "poolId": "lionheart_inverse_oath",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "default",
+      "poolId": "sunward_letters",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "default",
+      "poolId": "darkcrown_court_release",
+      "darkCourtScene": true
+    },
+    {
+      "theme": "sweet",
+      "poolId": "standard",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "sweet",
+      "poolId": "eternal_slumber_bloom",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "sweet",
+      "poolId": "frost_oath_fjord",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "sweet",
+      "poolId": "honeylight_sugar_garden_v2",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "sweet",
+      "poolId": "swordwild_shanhe_v3",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "sweet",
+      "poolId": "lionheart_inverse_oath",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "sweet",
+      "poolId": "sunward_letters",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "sweet",
+      "poolId": "darkcrown_court_release",
+      "darkCourtScene": true
+    },
+    {
+      "theme": "twilight",
+      "poolId": "standard",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "twilight",
+      "poolId": "eternal_slumber_bloom",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "twilight",
+      "poolId": "frost_oath_fjord",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "twilight",
+      "poolId": "honeylight_sugar_garden_v2",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "twilight",
+      "poolId": "swordwild_shanhe_v3",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "twilight",
+      "poolId": "lionheart_inverse_oath",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "twilight",
+      "poolId": "sunward_letters",
+      "darkCourtScene": false
+    },
+    {
+      "theme": "twilight",
+      "poolId": "darkcrown_court_release",
+      "darkCourtScene": true
+    }
+  ],
+  "unawakenedHumanPreviewHidden": true,
+  "pageErrors": []
+}

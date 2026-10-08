@@ -1,0 +1,62 @@
+{
+  "verifiedAt": "2026-10-08T13:18:39.938Z",
+  "status": "all mismatching Git archive text files recovered from formal HTTPS and exact manifest hashes",
+  "artifactId": "77a4435d96191ec2fdd61197dbb98319e6f8ec00d7c1983793a125debf9e4d54",
+  "checks": [
+    {
+      "file": "data/craftables.json",
+      "url": "https://leotsouo.github.io/questnote-pwa/data/craftables.json",
+      "sha256": "5958969e53e8f18927e1e2df3d37452d2adfc5a01a630ee46b8edae9b3272a67"
+    },
+    {
+      "file": "data/expeditions.json",
+      "url": "https://leotsouo.github.io/questnote-pwa/data/expeditions.json",
+      "sha256": "1dbacba9d13d4addaa03b8348dd2abc42a0d12175bc13176444990041a601984"
+    },
+    {
+      "file": "data/gift-affinities.json",
+      "url": "https://leotsouo.github.io/questnote-pwa/data/gift-affinities.json",
+      "sha256": "a618b649406845f3eb3863ff399b25979b771e474a68bb39c54ff2ce0a05fc26"
+    },
+    {
+      "file": "data/materials.json",
+      "url": "https://leotsouo.github.io/questnote-pwa/data/materials.json",
+      "sha256": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c"
+    },
+    {
+      "file": "data/pet-series.json",
+      "url": "https://leotsouo.github.io/questnote-pwa/data/pet-series.json",
+      "sha256": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57"
+    },
+    {
+      "file": "data/pets-lore.json",
+      "url": "https://leotsouo.github.io/questnote-pwa/data/pets-lore.json",
+      "sha256": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f"
+    },
+    {
+      "file": "data/pets.json",
+      "url": "https://leotsouo.github.io/questnote-pwa/data/pets.json",
+      "sha256": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00"
+    },
+    {
+      "file": "data/releases/9c715f04f60de26ec55eefb26b7366e945e7ad6aa37a8b409f7d0d7fefe6f3c5/catalog.json",
+      "url": "https://leotsouo.github.io/questnote-pwa/data/releases/9c715f04f60de26ec55eefb26b7366e945e7ad6aa37a8b409f7d0d7fefe6f3c5/catalog.json",
+      "sha256": "9c715f04f60de26ec55eefb26b7366e945e7ad6aa37a8b409f7d0d7fefe6f3c5"
+    },
+    {
+      "file": "manifest.webmanifest",
+      "url": "https://leotsouo.github.io/questnote-pwa/manifest.webmanifest",
+      "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28"
+    },
+    {
+      "file": "src/petAwakeningController.js",
+      "url": "https://leotsouo.github.io/questnote-pwa/src/petAwakeningController.js",
+      "sha256": "b8dcf1fcbaa42872f1fd0e9ba4f3c4b2400bf67bdf726b67adc16820b369653f"
+    },
+    {
+      "file": "src/releaseProfile.js",
+      "url": "https://leotsouo.github.io/questnote-pwa/src/releaseProfile.js",
+      "sha256": "e2fe352bb5c66c2599c6546c1eeb52ac6c968c4815881dfbe5bdc2b64022ff90"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "preview": {
+    "artifactId": "a0711ce16e367a7dc6b745eccba881d23b5bdeb5ea2b49d44901cb35876acc5f",
+    "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\a0711ce16e367a7dc6b745eccba881d23b5bdeb5ea2b49d44901cb35876acc5f",
+    "manifestSha256": "86f934a1cbe41afed0a9a14432ae0b430b7d3516d698b6c6c2ce81e9f18936cc",
+    "scopePath": "/questnote-pwa-preview/",
+    "sourceCommit": "173ee074fab8ff8f03f4d620ce53926a581d99a7"
+  },
+  "production": {
+    "artifactId": "c5f424dbf7e98ccab54721ee245a762cd58485aaf4ca131d8933b000a9462e56",
+    "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\c5f424dbf7e98ccab54721ee245a762cd58485aaf4ca131d8933b000a9462e56",
+    "manifestSha256": "0c128a0f50d2ef856e0fecaf04e72901bee9903a47102f23c5fb40444d52ceaf",
+    "scopePath": "/questnote-pwa/",
+    "sourceCommit": "173ee074fab8ff8f03f4d620ce53926a581d99a7"
+  }
+}

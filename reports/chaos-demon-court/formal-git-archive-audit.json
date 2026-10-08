@@ -1,0 +1,71 @@
+{
+  "artifactId": "77a4435d96191ec2fdd61197dbb98319e6f8ec00d7c1983793a125debf9e4d54",
+  "mismatches": [
+    {
+      "file": "data/craftables.json",
+      "expected": "5958969e53e8f18927e1e2df3d37452d2adfc5a01a630ee46b8edae9b3272a67",
+      "actual": "46dff5e817cbfe431d8b98d5910db9d04fb341f9a0054d522e91c962cd3f02c2",
+      "bytes": 6625
+    },
+    {
+      "file": "data/expeditions.json",
+      "expected": "1dbacba9d13d4addaa03b8348dd2abc42a0d12175bc13176444990041a601984",
+      "actual": "63c6ef4c5120a6b3a9d6896aaf3712d6b6623af8c89b42a071ffff9cfbf47fda",
+      "bytes": 6651
+    },
+    {
+      "file": "data/gift-affinities.json",
+      "expected": "a618b649406845f3eb3863ff399b25979b771e474a68bb39c54ff2ce0a05fc26",
+      "actual": "fe07391c96d2675f27b0b590c255c878fd81d17d801cf2be29743aa359448994",
+      "bytes": 4689
+    },
+    {
+      "file": "data/materials.json",
+      "expected": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
+      "actual": "bc5daf82206250d784400fa9010893b502da8f2a773a2b792c6b4f2e31e35518",
+      "bytes": 2066
+    },
+    {
+      "file": "data/pet-series.json",
+      "expected": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57",
+      "actual": "bb13440208aa76ea0178ee2167f7612b363daa409d8ef4f09d478ae30bd16715",
+      "bytes": 515
+    },
+    {
+      "file": "data/pets-lore.json",
+      "expected": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
+      "actual": "255b939626e8680a8c463af4ce95e9f7bbf8ee5ff1ffc7f4c4dbe4099cb6f163",
+      "bytes": 178923
+    },
+    {
+      "file": "data/pets.json",
+      "expected": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
+      "actual": "e0b56c37ce68e8e0205436f5fea907da4af2eefe742be56bb76eb68bc17da051",
+      "bytes": 30350
+    },
+    {
+      "file": "data/releases/9c715f04f60de26ec55eefb26b7366e945e7ad6aa37a8b409f7d0d7fefe6f3c5/catalog.json",
+      "expected": "9c715f04f60de26ec55eefb26b7366e945e7ad6aa37a8b409f7d0d7fefe6f3c5",
+      "actual": "b296385db120c33fced8a92468b5bfa53a456e11e7727c8bd115a90610a7798b",
+      "bytes": 690427
+    },
+    {
+      "file": "manifest.webmanifest",
+      "expected": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
+      "actual": "b8eeccc7f8e5f51d1670437ff7e7b466fd55ad16801dbad11073acd56efc3b9f",
+      "bytes": 864
+    },
+    {
+      "file": "src/petAwakeningController.js",
+      "expected": "b8dcf1fcbaa42872f1fd0e9ba4f3c4b2400bf67bdf726b67adc16820b369653f",
+      "actual": "3a29d21d925835ae2c1a8aca3863d4dea9a76ee29165287a8ae3ac629127f0fa",
+      "bytes": 6274
+    },
+    {
+      "file": "src/releaseProfile.js",
+      "expected": "e2fe352bb5c66c2599c6546c1eeb52ac6c968c4815881dfbe5bdc2b64022ff90",
+      "actual": "3a724cfc42fec690b6ae5f1bd735318e5aa1f53e2dc1a0d6fe572a740ac05062",
+      "bytes": 635
+    }
+  ]
+}
