@@ -12,9 +12,16 @@ export const LOCAL_ART_PREVIEW = isLocalArtPreview({
 });
 
 let renderer = null;
-export function installLocalIdentityRenderer(value) {
+let journalOpener = null;
+export function installLocalIdentityRenderer(value, openJournal) {
   if (!LOCAL_ART_PREVIEW) throw new Error('Local art review is unavailable on this origin');
   renderer = value;
+  journalOpener = openJournal;
+}
+
+export function openLocalCompanionJournal(petId) {
+  if (!LOCAL_ART_PREVIEW || !journalOpener) return false;
+  return journalOpener(petId);
 }
 
 export function renderLocalIdentityView(view, state, refresh, actions) {

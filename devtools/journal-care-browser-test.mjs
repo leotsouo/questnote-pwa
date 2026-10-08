@@ -25,7 +25,10 @@ try {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(origin + '/');
-    await page.waitForFunction(() => document.querySelector('.identity-surface'));
+    await page.waitForFunction(() => document.querySelector('.identity-surface')).catch(async (error) => {
+      console.error(errors, await page.locator('body').innerText());
+      throw error;
+    });
     await page.evaluate(async () => {
       const { dbPut, STORES } = await import('/src/db.js');
       const { createCollectionEntry } = await import('/src/collectionService.js');
@@ -43,6 +46,21 @@ try {
     await page.locator('.collection-card button[data-pet="pet_ur17"]').click();
     const dialog = page.locator('#identity-detail-dialog');
     await dialog.locator('#companion-feed-btn').waitFor();
+    await dialog.locator('[data-identity-action="set-companion"]').click();
+    await dialog.getByRole('button', { name: '正在與你同行', exact: true }).waitFor();
+    await dialog.getByRole('button', { name: '關閉', exact: true }).click();
+    await page.locator('.nav-item[data-view="tasks"]').click();
+    await page.locator('[data-action="companion-feed"]:visible').click();
+    await dialog.locator('#companion-feed-btn').waitFor();
+    assert.equal(await page.locator('#view-tasks').evaluate((el) => el.classList.contains('active')), true, 'Homepage feed keeps its return location');
+    assert.equal(await page.locator('#modal-overlay').isVisible(), false);
+    assert.equal(await dialog.locator('.detail-identity .pet-name').textContent(), '丹砂鎮嶺蛤');
+    assert.equal(await dialog.locator('#companion-feed-select').evaluate((el) => document.activeElement === el), true, 'Feed shortcut focuses food picker');
+    await dialog.getByRole('button', { name: '關閉', exact: true }).click();
+    await page.locator('[data-action="companion-view-detail"]:visible').first().click();
+    await page.locator('[data-action="detail-feed-pet"]').click();
+    await dialog.locator('#companion-feed-btn').waitFor();
+    await page.locator('#modal-overlay').waitFor({ state: 'hidden' });
     assert.equal(await dialog.getByText('養成與餵食', { exact: true }).count(), 0);
     const read = () => page.evaluate(async () => {
       const db = await import('/src/db.js');
@@ -73,6 +91,7 @@ try {
     await page.locator('#modal-body .bond-reader').waitFor();
     assert.equal(await dialog.evaluate((el) => el.open), false, 'Story reader is not trapped behind journal');
     await page.locator('#modal-close').click();
+    await page.locator('.nav-item[data-view="collection"]').click();
     await page.locator('.collection-card button[data-pet="pet_ur17"]').click();
     await dialog.locator('[data-awake-open]').click();
     await page.locator('#modal-overlay').waitFor({ state: 'visible' });

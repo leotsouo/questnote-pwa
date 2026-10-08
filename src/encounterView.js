@@ -172,7 +172,14 @@ function keepDialogFocus(event) {
   }
 }
 
-function petDetail(pet, returnToBatch = false) {
+export function openCompanionJournal(petId) {
+  const pet = byId(petId);
+  if (!pet || !appActions) return false;
+  petDetail(pet, false, true);
+  return true;
+}
+
+function petDetail(pet, returnToBatch = false, fromCaller = false) {
   detailReturnsToBatch = returnToBatch;
   const entry = collection.get(pet.id);
   const isOwned = !!entry;
@@ -193,8 +200,8 @@ function petDetail(pet, returnToBatch = false) {
     <p class="detail-copy">${escapeHtml(isOwned ? pet.lore : publicIntro(pet))}</p>
     ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p>${normalGreeting(pet) ? `<blockquote>${escapeHtml(normalGreeting(pet))}</blockquote>` : ''}</section>` : ''}
     <section class="detail-section"><h3>相處，才會揭開的故事</h3>${isOwned ? [2,3,4,5].map((level) => `<p>親密度 Lv.${level} · ${entry.bondLevel >= level ? escapeHtml(pet.bondUnlocks?.[level] || '已解鎖') : '故事尚未解鎖'}</p>`).join('') : '<p>相遇後可閱讀完整背景；專屬對話與羈絆章節隨親密度逐步揭開。</p>'}</section>
-    ${isOwned ? `<section class="detail-section"><h3>你的專屬稱呼</h3><button data-identity-action="app-nickname" data-pet-id="${pet.id}">修改暱稱</button></section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-identity-action="${returnToBatch ? 'return-batch' : view === 'collection' ? 'close-dialog' : 'preview'}">${returnToBatch ? '返回本次相遇' : view === 'collection' ? '返回圖鑑' : '返回本池夥伴'}</button>`);
-  if (isOwned) appActions.mountJournalCare(dialog.querySelector('[data-journal-care]'), pet.id, () => petDetail(byId(pet.id), returnToBatch));
+    ${isOwned ? `<section class="detail-section"><h3>你的專屬稱呼</h3><button data-identity-action="app-nickname" data-pet-id="${pet.id}">修改暱稱</button></section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-identity-action="${fromCaller ? 'close-dialog' : returnToBatch ? 'return-batch' : view === 'collection' ? 'close-dialog' : 'preview'}">${fromCaller ? '返回上一頁' : returnToBatch ? '返回本次相遇' : view === 'collection' ? '返回圖鑑' : '返回本池夥伴'}</button>`);
+  if (isOwned) appActions.mountJournalCare(dialog.querySelector('[data-journal-care]'), pet.id, () => petDetail(byId(pet.id), returnToBatch, fromCaller));
   if (isSeniorMode()) {
     // Keep care actions visible; optional narrative uses disclosure, not another data model.
     dialog.querySelectorAll('.detail-section').forEach((section) => {

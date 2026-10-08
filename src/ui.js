@@ -1,8 +1,8 @@
 import { inviteCompanion, acknowledgeEncounterMigration, getEncounterEconomy } from './encounterEconomyService.js';
 import { intimacySummary } from './invitationPresentation.js';
-import { renderEncounterView, presentCommittedEncounters } from './encounterView.js';
+import { renderEncounterView, presentCommittedEncounters, openCompanionJournal } from './encounterView.js';
 import { playCeremonyEntry } from './encounterCeremony.js';
-import { LOCAL_ART_PREVIEW, renderLocalIdentityView } from './localArtPreview.js';
+import { LOCAL_ART_PREVIEW, renderLocalIdentityView, openLocalCompanionJournal } from './localArtPreview.js';
 /**
  * UI 渲染與互動邏輯
  */
@@ -3963,48 +3963,17 @@ function mountJournalCare(host, petId, refreshJournal) {
 
 function openPetFeedModal(companion) {
   if (!companion?.id || companion.owned === false) return;
-
-  const src = getPetImageSrc(companion);
-  if (src) warmPetImageCache(src).catch(() => {});
-
-  const rarityClass = `rarity-${companion.rarity}`;
-  const onError = `if(this.dataset.fallbackSrc&&this.src!==new URL(this.dataset.fallbackSrc,location.href).href){this.src=this.dataset.fallbackSrc;return;}this.onerror=null;this.classList.add('companion-image-preview__img--error')`;
-  const onload = "this.classList.add('is-loaded');this.closest('.pet-image-frame')?.classList.remove('is-loading')";
-  const feedSection = buildPetFeedSection(companion);
-  const imageHtml = src
-    ? `<div class="companion-image-preview__frame pet-image-frame pet-image-frame--lg is-loading">
-          <img
-            class="companion-image-preview__img companion-image-preview__img--interactive is-loading"
-            src="${escapeHtml(src)}"
-            data-fallback-src="${escapeHtml(companion.fallbackImage || '')}"
-            alt="${escapeHtml(petDisplayName(companion))}"
-            loading="eager"
-            decoding="async"
-            onload="${onload}"
-            onerror="${onError}"
-          />
-          <span class="pet-image-frame__fallback" aria-hidden="true">圖片載入中</span>
-        </div>`
-    : '<div class="companion-image-preview__frame pet-image-frame pet-image-frame--lg is-error" role="img" aria-label="圖片暫時無法載入"><span class="pet-image-frame__fallback">圖片暫時無法載入</span></div>';
-
-  openModal(`
-    <div class="companion-image-preview companion-image-preview--feed ${rarityClass}">
-      <div class="companion-image-preview__stage" id="companion-preview-stage">
-        <div class="companion-preview-hearts" id="companion-preview-hearts" aria-hidden="true"></div>
-        ${imageHtml}
-      </div>
-      <h2 class="companion-image-preview__name">${escapeHtml(petDisplayName(companion))}</h2>
-      ${petOriginalNameHtml(companion)}
-      <div class="companion-image-preview__meta">
-        <span class="badge badge--rarity ${rarityClass}">${companion.rarity}</span>
-        <span class="companion-bond-label">親密度 Lv.${companion.bondLevel || 1}</span>
-      </div>
-      ${feedSection}
-      <p class="companion-image-preview__hint">點圖片可看原圖 · 餵食會消耗一份工坊道具</p>
-    </div>
-  `);
-
-  bindPetFeedInteractions(companion);
+  // Refresh the journal's model without navigating away from the caller's page.
+  renderCollectionView();
+  closeModal();
+  const opened = LOCAL_ART_PREVIEW
+    ? openLocalCompanionJournal(companion.id)
+    : openCompanionJournal(companion.id);
+  if (!opened) return;
+  const care = document.querySelector('#identity-detail-dialog [data-journal-care]');
+  const control = care?.querySelector('#companion-feed-select, #companion-feed-workshop-btn');
+  control?.focus({ preventScroll: true });
+  care?.scrollIntoView({ block: 'start', behavior: 'instant' });
 }
 
 /** 陪伴寵物未變時只更新圖片 src（避免整卡重建） */
