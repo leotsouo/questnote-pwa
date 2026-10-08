@@ -358,3 +358,18 @@ test('encounter snapshot requires currency, reconciled collection and an honest 
   assert.equal(roundTrip.wallet.stardust,old.data.wallet.stardust);
   assert.equal(roundTrip.gachaStats.totalPulls,old.data.gachaStats.totalPulls);
 });
+
+test('V3.8.9 eight-region save adds a blank darkcrown without changing old rewards or awakening', () => {
+  const baseline=migrateImportedData(normalizeBackupPayload(fixture('3.4.4')));
+  const data=Object.fromEntries(SNAPSHOT_KEYS.map(key=>[key,baseline[key]]));
+  delete data.explorationProgress.areas.darkcrown_border;
+  const raw={app:'QuestNote',version:2,appVersion:'3.8.9',data};
+  assert.equal(validateBackup(raw).valid,true);
+  const migrated=migrateImportedData(normalizeBackupPayload(raw));
+  assert.equal(migrated.explorationProgress.areas.darkcrown_border.progress,0);
+  assert.deepEqual(migrated.explorationProgress.areas.darkcrown_border.claimedMilestones,[]);
+  assert.deepEqual(migrated.explorationProgress.areas.cloudrest_trail,data.explorationProgress.areas.cloudrest_trail);
+  assert.deepEqual(migrated.petAwakening,data.petAwakening);
+  assert.equal(migrated.wallet.stardust,data.wallet.stardust);
+  assert.equal(validateBackup({...raw,appVersion:'3.9.0'}).valid,false);
+});

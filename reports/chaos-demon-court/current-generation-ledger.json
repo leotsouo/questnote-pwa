@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-08T11:35:59.326Z",
+  "costBasis": "User confirmed built-in imagegen existing subscription/credits; no paid API. This is authorization, not independently verified billing.",
+  "status": "generated candidates; not artwork approval",
+  "events": [
+    {
+      "draftId": "ur_2",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-a8b5f275-0f21-40ec-b10c-52736960ce26.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ur_2",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "ur_3",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-496915e9-e844-4680-9360-001e9f8d6392.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ur_3",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-cc49ec4d-5e89-4121-b2ae-1972e206a239.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ssr_1",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-00c9839c-5fda-4894-9332-2213e79d5224.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ssr_2",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "awakened",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-03cb5fa2-4db7-43b0-b2a0-66307665ca39.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ssr_2",
+        "form": "awakened"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-4548211a-975a-4a17-afe8-a6808e8f3ba0.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ssr_3",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "awakened",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-cad79cba-5abc-41ae-b09f-3e2cd1245caa.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ssr_3",
+        "form": "awakened"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-f9cc5860-46e2-4385-bcc9-5b592be7e9e7.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ssr_4",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "awakened",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-862bc77e-14ae-4133-95b8-7ca9e93424b9.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "ssr_4",
+        "form": "awakened"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "sr_1",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-2a76d281-3504-46e4-a2a3-762ef455ef0a.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "sr_1",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "sr_2",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-db068587-8c75-4e65-9f0d-3ea3d6aac8ab.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "sr_2",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "sr_3",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-1cb61d2e-7fd2-4205-8851-fd20d6142a2d.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "sr_3",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "sr_4",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-aefd8fb5-0e23-47e7-9c66-822c4c85550b.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "sr_4",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "sr_5",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-09aedb22-5b95-4b8d-8835-e02c0728c076.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "sr_5",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "r_1",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-0d2bdff3-5142-4535-8841-1ee317a5929a.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "r_1",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "r_2",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-93348394-1551-4901-8952-b3bc904e978e.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "r_2",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "r_3",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-57b896b1-8e8b-4795-a505-9227e401339e.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "r_3",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "r_4",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-fc979937-54b2-4fc9-be9a-56dc06d4b69b.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "r_4",
+        "form": "initial"
+      },
+      "promptAppendix": null
+    },
+    {
+      "draftId": "r_5",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-1d7a6540-0ce8-4296-942f-30dc9bca5a57.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "r_5",
+        "form": "initial"
+      },
+      "promptAppendix": " Composition priority: the COMPLETE single nonhuman silhouette fits within the INNER80% of the canvas, with clearly visible background gaps on ALL sides."
+    },
+    {
+      "draftId": "n_1",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-cb61e8ab-c11a-42e3-9431-e06e6f17c1c3.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "n_1",
+        "form": "initial"
+      },
+      "promptAppendix": " Composition priority: the COMPLETE single nonhuman silhouette fits within the INNER80% of the canvas, with clearly visible background gaps on ALL sides."
+    },
+    {
+      "draftId": "n_2",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-3248a248-49d8-4f77-a0e8-10c4de13eff2.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "n_2",
+        "form": "initial"
+      },
+      "promptAppendix": " Composition priority: the COMPLETE single nonhuman silhouette fits within the INNER80% of the canvas, with clearly visible background gaps on ALL sides."
+    },
+    {
+      "draftId": "n_3",
+      "form": "initial",
+      "kind": "original",
+      "tool": "built-in image_gen",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-d9134819-f162-42cb-a0af-4c2d3a9a5413.png",
+      "promptReference": {
+        "file": "form-prompts-draft.json",
+        "draftId": "n_3",
+        "form": "initial"
+      },
+      "promptAppendix": " Composition priority: the COMPLETE single nonhuman silhouette fits within the INNER80% of the canvas, with clearly visible background gaps on ALL sides."
+    },
+    {
+      "draftId": "ur_2",
+      "form": "initial",
+      "kind": "revision-1",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-6aa6aa93-f6b3-4dd7-9e20-5a2d3ad960b5.png",
+      "referencedImage": "ur_2-initial-original.png",
+      "editIntent": "Zoom out and restore cropped fins/wings, preserving story action and species. Full call is in the conversation tool record."
+    },
+    {
+      "draftId": "ur_3",
+      "form": "initial",
+      "kind": "revision-1",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-7911aec7-cdd6-445d-a023-28071d68c782.png",
+      "referencedImage": "ur_3-initial-original.png",
+      "editIntent": "Zoom out and restore cropped fins/wings, preserving story action and species. Full call is in the conversation tool record."
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "initial",
+      "kind": "revision-1",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-9d7e697f-4ffd-4ab6-a90f-ad36bdfd4482.png",
+      "referencedImage": "ssr_3-initial-original.png",
+      "editIntent": "Zoom out and restore cropped fins/wings, preserving story action and species. Full call is in the conversation tool record."
+    },
+    {
+      "draftId": "ur_2",
+      "form": "awakened",
+      "kind": "framing-revision-1",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-1c13ddc2-619e-4f4c-b3c2-5ec1a36fc6ed.png",
+      "prompt": "One targeted framing correction to this original adult anime demon portrait: shrink and move the existing character/primary props down to leave a clear8% illustrated background safe margin around the COMPLETE horn tips, crown/bell arch, weapon ends and active hands. Restore any cut-off outer tips. Preserve the exact attractive adult face, hair, demon identity, outfit, meaningful story action and consequence. Face stays large and clear, at least25% image height; hands and the active story medium remain readable. Do not add wings, characters, words or border. Preserve opaque square1990s cel anime illustration. Do not redesign the character.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/ur_2-revision-1.png"
+      ]
+    },
+    {
+      "draftId": "ur_3",
+      "form": "awakened",
+      "kind": "framing-revision-1",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-b167af3e-5a54-4702-847f-0666066c725f.png",
+      "prompt": "One targeted framing correction to this original adult anime demon portrait: shrink and move the existing character/primary props down to leave a clear8% illustrated background safe margin around the COMPLETE horn tips, crown/bell arch, weapon ends and active hands. Restore any cut-off outer tips. Preserve the exact attractive adult face, hair, demon identity, outfit, meaningful story action and consequence. Face stays large and clear, at least25% image height; hands and the active story medium remain readable. Do not add wings, characters, words or border. Preserve opaque square1990s cel anime illustration. Do not redesign the character.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/ur_3-revision-1.png"
+      ]
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "awakened",
+      "kind": "framing-revision-1",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-d31a4a6d-01db-4848-93c9-60fafc3824f5.png",
+      "prompt": "One targeted framing correction to this original adult anime demon portrait: shrink and move the existing character/primary props down to leave a clear8% illustrated background safe margin around the COMPLETE horn tips, crown/bell arch, weapon ends and active hands. Restore any cut-off outer tips. Preserve the exact attractive adult face, hair, demon identity, outfit, meaningful story action and consequence. Face stays large and clear, at least25% image height; hands and the active story medium remain readable. Do not add wings, characters, words or border. Preserve opaque square1990s cel anime illustration. Do not redesign the character.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/ssr_1-revision-1.png"
+      ]
+    },
+    {
+      "draftId": "ur_1",
+      "form": "initial",
+      "kind": "revision-1",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-464360c3-4eb8-4908-93b7-60ad2c8d60dc.png",
+      "editIntent": "Restore complete four-leg/two-wing silhouette and zoom out. Full call is in the conversation tool record."
+    },
+    {
+      "draftId": "ur_1",
+      "form": "initial",
+      "kind": "revision-2",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-3d5f2642-c278-4035-bbe7-755bb19d6719.png",
+      "editIntent": "Restore complete four-leg/two-wing silhouette and zoom out. Full call is in the conversation tool record."
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 1,
+  "status": "two-form-production-prompts-draft-not-pipeline-approved",
+  "counts": {
+    "initial": 20,
+    "awakened": 7,
+    "total": 27
+  },
+  "prompts": [
+    {
+      "draftId": "ur_1",
+      "form": "initial",
+      "name": "黯冠・無晝",
+      "rarity": "UR",
+      "prompt": "Create one square original QuestNote collectible card of \"黯冠・無晝\", NON-HUMAN original form, 黯冠古龍. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足古龍、黑曜鱗、猩紅翼膜、與人形一致的破環雙角、金黑裂冠輪廓. Story action: 古龍盤踞黑塔石座，以完整前爪壓住七色星路交會的界石，抬頭令裂冠日環吞光. Visible consequence: 界石裂出紅黑晶脈，七色星路仍各自保留一線抵抗，塔外階石崩裂. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "pilot-generation-in-progress"
+      }
+    },
+    {
+      "draftId": "ur_1",
+      "form": "awakened",
+      "name": "黯冠・無晝",
+      "rarity": "UR",
+      "prompt": "Create one square original QuestNote collectible card of \"黯冠・無晝\", awakened adult bishounen humanoid demon form. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tone hard cel-shadow color shapes, simplified painted fantasy background. One attractive fully clothed mature adult humanoid demon with a clear individual face and silhouette. Species-to-human identity pairing: 覺醒人形保留黑髮對應黑鱗、紅袍對應翼膜、同樣破環雙角與猩紅眼；王座姿態與掌控裂冠的動作一致. Power and motive: 抹去誓約、記憶與名字的差異，使萬物服從唯一意志. Story action: 他抬起一隻手，將跨越七地的光路扭成黑色日環. Visible result: 遠方仍有七道不同顏色的光抵住侵蝕；王座旁的石階碎裂但不傷角色. Head including complete horns about30-35% image height,face,hands and story medium clear at160px. Leave6% safe margin around complete horn tips and primary props, avoid ornate clutter. Opaque background,minimum1024px. No labels,border,logo,watermark,gore,nudity,existing-franchise likeness,extra/missing limbs.",
+      "originalPreAwakeningPrompt": "Create one finished square collectible character illustration for QuestNote, 1024x1024 or larger. Single adult male demon sovereign, original character \"黯冠・無晝\", no text anywhere. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime. Premium hand-drawn 1990s cel anime key art, delicate attractive mature male face with serious predatory calm, clean decisive ink contours, strong graphic 2-3 tier cel shadows, subtle painted background and restrained printed grain. NOT photorealistic, NOT CGI, NOT generic western comic. Design signature: 破環雙角、黑色長髮、猩紅內襯長袍、懸浮裂冠. Story moment: 他抬起一隻手，將跨越七地的光路扭成黑色日環. Visible result: 遠方仍有七道不同顏色的光抵住侵蝕；王座旁的石階碎裂但不傷角色. A threatening regal villain with agency, neither a cute mascot nor a redeemed saint. Keep one coherent adult humanoid body with correct hands, two arms and two legs; long dark robe fully clothed, boots visible. One hand raised palm facing a large broken black solar crown ring behind and above him, its red crack-light curves toward exactly seven small colored route-lights in the far background. The other hand rests on a black throne arm. Noble cheekbones and bright sharp crimson eyes, long black hair and asymmetrical red mantle lining. Two swept broken-ring horns; keep every horn tip and entire floating crown within canvas safe margin. Low viewpoint three-quarter seated posture, full figure readable; dominant head/upper-body/raised hand should retain clarity at 384px thumbnail. Background: black tower terrace, shattered stair edges and tiny seven-region route colors, not another character. Palette obsidian black, crimson, cold gray-violet and dark gold, clear light separation on face and hand. Dark atmosphere with clear readable linework; no gore, wounds, nudity, sexualization, labels, card border, logo, watermark, copyrighted character resemblance, cropped horns, extra fingers, extra limbs. Opaque illustrated background.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "existing-pilot-and-revisions-review-pending"
+      }
+    },
+    {
+      "draftId": "ur_2",
+      "form": "initial",
+      "name": "裂月・瑟因",
+      "rarity": "UR",
+      "prompt": "Create one square original QuestNote collectible card of \"裂月・瑟因\", NON-HUMAN original form, 裂月魔鰩. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整非人形巨型魔鰩、銀紫背紋、兩片寬胸鰭、長尾、額前单側月刃角. Story action: 魔鰩以月刃角穿過潮汐上方的月光，展開完整鰭面劃出一道通道. Visible consequence: 水幕沿角劃開的線停在半空，北境誓火在通道邊緣留下暖色界線. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "ur_2",
+      "form": "awakened",
+      "name": "裂月・瑟因",
+      "rarity": "UR",
+      "prompt": "Create one square original QuestNote collectible card of \"裂月・瑟因\", awakened adult bishounen humanoid demon form. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tone hard cel-shadow color shapes, simplified painted fantasy background. One attractive fully clothed mature adult humanoid demon with a clear individual face and silhouette. Species-to-human identity pairing: 覺醒銀髮對應銀紋、紫披風對應鰭面、保留單側月角，月刃的能力成為手持弧刃. Power and motive: 掌控往返各地的裂隙，想成為下一位王. Story action: 他將弧刃穿過一面完整的月光，切開峽灣通往王庭的潮汐門. Visible result: 切口外的水停在半空，北境誓火在門邊抵抗. Head including complete horns about30-35% image height,face,hands and story medium clear at160px. Leave6% safe margin around complete horn tips and primary props, avoid ornate clutter. Opaque background,minimum1024px. No labels,border,logo,watermark,gore,nudity,existing-franchise likeness,extra/missing limbs.",
+      "originalPreAwakeningPrompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"裂月・瑟因\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 銀白長髮、單側月刃角、紫黑披甲、完整弧刃. Actual story action: 他將弧刃穿過一面完整的月光，切開峽灣通往王庭的潮汐門. Visible consequence: 切口外的水停在半空，北境誓火在門邊抵抗. Character motive: 掌控往返各地的裂隙，想成為下一位王. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "existing-pilot-and-revisions-review-pending"
+      }
+    },
+    {
+      "draftId": "ur_3",
+      "form": "initial",
+      "name": "終鐘・維爾",
+      "rarity": "UR",
+      "prompt": "Create one square original QuestNote collectible card of \"終鐘・維爾\", NON-HUMAN original form, 終鐘夢蛾. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整六足非人形巨蛾、紫黑絨毛、琥珀复眼、鐘形觸角弧紋、两對完整鐘環翅紋. Story action: 夢蛾停在懸鐘弓架上，以前足抵住鐘舌，翅紋向花庭夢光展開. Visible consequence: 靜音波紋在花間凝成透明黑玻璃，仍有一朵暖光花抵住封存. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "ur_3",
+      "form": "awakened",
+      "name": "終鐘・維爾",
+      "rarity": "UR",
+      "prompt": "Create one square original QuestNote collectible card of \"終鐘・維爾\", awakened adult bishounen humanoid demon form. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tone hard cel-shadow color shapes, simplified painted fantasy background. One attractive fully clothed mature adult humanoid demon with a clear individual face and silhouette. Species-to-human identity pairing: 覺醒金眼與紫髮保留梦蛾色彩，鐘形角冠對應觸角弧紋，高領衣領對應絨毛；仍以指尖止鐘. Power and motive: 讓世界停止變化，將所有未來封存在收藏中. Story action: 他按住漂浮銅鐘的鐘舌，抽走花庭一段夢境的聲音. Visible result: 靜音波紋凝成黑玻璃，花海邊緣仍有一朵發光花抵住. Head including complete horns about30-35% image height,face,hands and story medium clear at160px. Leave6% safe margin around complete horn tips and primary props, avoid ornate clutter. Opaque background,minimum1024px. No labels,border,logo,watermark,gore,nudity,existing-franchise likeness,extra/missing limbs.",
+      "originalPreAwakeningPrompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"終鐘・維爾\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 暗金眼、鐘形角冠、黑紫禮服、無指針銅鐘. Actual story action: 他按住漂浮銅鐘的鐘舌，抽走花庭一段夢境的聲音. Visible consequence: 靜音波紋凝成黑玻璃，花海邊緣仍有一朵發光花抵住. Character motive: 讓世界停止變化，將所有未來封存在收藏中. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "existing-pilot-and-revisions-review-pending"
+      }
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "initial",
+      "name": "荊誓・洛恩",
+      "rarity": "SSR",
+      "prompt": "Create one square original QuestNote collectible card of \"荊誓・洛恩\", NON-HUMAN original form, 荊誓角麒. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足原創鹿形魔獸、酒紅鬃、分枝荊棘角、黑蹄、額前封蠟色紋. Story action: 角麒以分枝荊角挑開一卷懸浮誓文上的紅線. Visible consequence: 山路承諾化成帶刺橋索，红线撕裂處仍有一根金線未斷. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "awakened",
+      "name": "荊誓・洛恩",
+      "rarity": "SSR",
+      "prompt": "Create one square original QuestNote collectible card of \"荊誓・洛恩\", awakened adult bishounen humanoid demon form. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tone hard cel-shadow color shapes, simplified painted fantasy background. One attractive fully clothed mature adult humanoid demon with a clear individual face and silhouette. Species-to-human identity pairing: 覺醒紅髮、荊角、黑手套與封蠟誓卷一致；故事從角挑紅線變成手撕誓文. Power and motive: 將承諾變成束縛人的條款. Story action: 他以荊棘指尖在誓卷上撕開一條紅線. Visible result: 山路上的承諾化成帶刺橋索，仍有一根金線未断. Head including complete horns about30-35% image height,face,hands and story medium clear at160px. Leave6% safe margin around complete horn tips and primary props, avoid ornate clutter. Opaque background,minimum1024px. No labels,border,logo,watermark,gore,nudity,existing-franchise likeness,extra/missing limbs.",
+      "originalPreAwakeningPrompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"荊誓・洛恩\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 酒紅短髮、荊棘角、纏荊黑手套、封蠟誓卷. Actual story action: 他以荊棘指尖在誓卷上撕開一條紅線. Visible consequence: 山路上的承諾化成帶刺橋索，仍有一根金線未断. Character motive: 將承諾變成束縛人的條款. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "existing-pilot-and-revisions-review-pending"
+      }
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "initial",
+      "name": "鏡宴・奈璃",
+      "rarity": "SSR",
+      "prompt": "Create one square original QuestNote collectible card of \"鏡宴・奈璃\", NON-HUMAN original form, 鏡宴銀狐. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足銀白狐狸、单條长狐尾、蝶纹耳缘、紫紅眼、裂鏡尾光. Story action: 銀狐以前爪翻動糖晶前的一片裂鏡，回首看向鏡中宴席. Visible consequence: 鏡宴越華麗，真實糖晶的光越暗，仍有一顆保持暖光. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "awakened",
+      "name": "鏡宴・奈璃",
+      "rarity": "SSR",
+      "prompt": "Create one square original QuestNote collectible card of \"鏡宴・奈璃\", awakened adult bishounen humanoid demon form. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tone hard cel-shadow color shapes, simplified painted fantasy background. One attractive fully clothed mature adult humanoid demon with a clear individual face and silhouette. Species-to-human identity pairing: 覺醒白金髮與蝶形角飾保留銀狐與耳纹，鏡片凝成手持托盤，誘惑與情報角色不變. Power and motive: 用完美幻象誘人放棄真實分享. Story action: 她將一顆糖晶放在裂鏡前，指尖翻轉鏡面. Visible result: 鏡中宴席越華麗，真實糖晶的光越暗. Head including complete horns about30-35% image height,face,hands and story medium clear at160px. Leave6% safe margin around complete horn tips and primary props, avoid ornate clutter. Opaque background,minimum1024px. No labels,border,logo,watermark,gore,nudity,existing-franchise likeness,extra/missing limbs.",
+      "originalPreAwakeningPrompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"鏡宴・奈璃\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 白金髮、蝶形角飾、黑紅高領衣、裂鏡托盤. Actual story action: 她將一顆糖晶放在裂鏡前，指尖翻轉鏡面. Visible consequence: 鏡中宴席越華麗，真實糖晶的光越暗. Character motive: 用完美幻象誘人放棄真實分享. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "initial",
+      "name": "灰律・奧鉻",
+      "rarity": "SSR",
+      "prompt": "Create one square original QuestNote collectible card of \"灰律・奧鉻\", NON-HUMAN original form, 灰律銅鴉. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整雙翼非人形暗銅渡鴉、灰藍羽、金屬彎角、齒輪胸環；魔獸並非舊池角色改造. Story action: 銅鴉用完整雙爪抓住一枚符文齒輪並將其扭停. Visible consequence: 蒸汽在齒間結成灰晶，遠方獅心爐火仍明亮. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "awakened",
+      "name": "灰律・奧鉻",
+      "rarity": "SSR",
+      "prompt": "Create one square original QuestNote collectible card of \"灰律・奧鉻\", awakened adult bishounen humanoid demon form. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tone hard cel-shadow color shapes, simplified painted fantasy background. One attractive fully clothed mature adult humanoid demon with a clear individual face and silhouette. Species-to-human identity pairing: 覺醒灰藍髮、金屬惡魔角與暗銅肩甲呼應羽色角形，停轉齒輪環仍是能力媒介. Power and motive: 利用創造者的執念，把生命化成可控制的造物. Story action: 他握住齒輪環，扭停一枚正在運作的符文齒輪. Visible result: 蒸汽在齒間結成灰晶，遠處爐光仍亮. Head including complete horns about30-35% image height,face,hands and story medium clear at160px. Leave6% safe margin around complete horn tips and primary props, avoid ornate clutter. Opaque background,minimum1024px. No labels,border,logo,watermark,gore,nudity,existing-franchise likeness,extra/missing limbs.",
+      "originalPreAwakeningPrompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"灰律・奧鉻\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 灰藍髮、金屬紋惡魔角、暗銅肩甲、停轉齒輪環. Actual story action: 他握住齒輪環，扭停一枚正在運作的符文齒輪. Visible consequence: 蒸汽在齒間結成灰晶，遠處爐光仍亮. Character motive: 利用創造者的執念，把生命化成可控制的造物. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "initial",
+      "name": "蝕星獄獅",
+      "rarity": "SSR",
+      "prompt": "Create one square original QuestNote collectible card of \"蝕星獄獅\", NON-HUMAN original form, 蝕星獄獅. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足獅形、黑曜鬃、胸前星裂、长獅尾、星痕角. Story action: 獄獅前爪踩住通往城門的光链，低頭咆哮. Visible consequence: 锁鏈被壓成黑晶，城門外碎星沿地面倒流. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "awakened",
+      "name": "蝕星獄獅",
+      "rarity": "SSR",
+      "prompt": "Create one square original QuestNote collectible card of \"蝕星獄獅\", awakened adult bishounen humanoid demon form. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tone hard cel-shadow color shapes, simplified painted fantasy background. One attractive mature adult male lion-themed demon, long black mane-like hair, gold eyes, star-scar horns, dark open-chestplate with visible glowing star-shaped motif but fully clothed, gripping the dark chain in one hand. Species-to-human identity pairing: 覺醒為黯金眼成年美型獅系惡魔，黑色长髮如鬃、胸前星裂飾、星痕角；以手握光链延续守門姿態. Power and motive: 守住王庭入口並吞噬逃離者留下的星光. Story action: He grips a light chain as it turns to black crystal, guarding the tower gate while star fragments reverse flow. Visible result: 锁鏈被壓成黑晶，城門外有碎星沿地面倒流. Head including complete horns about30-35% image height,face,hands and story medium clear at160px. Leave6% safe margin around complete horn tips and primary props, avoid ornate clutter. Opaque background,minimum1024px. No labels,border,logo,watermark,gore,nudity,existing-franchise likeness,extra/missing limbs.",
+      "originalPreAwakeningPrompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"蝕星獄獅\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整四足獅形、黑曜鬃毛、胸前星形裂痕、長獅尾. Actual story action: 牠前爪踩住一根通往城門的發光锁鏈，低頭咆哮. Visible consequence: 锁鏈被壓成黑晶，城門外有碎星沿地面倒流. Character motive: 守住王庭入口並吞噬逃離者留下的星光. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "sr_1",
+      "form": "initial",
+      "name": "燼羽夜鴉",
+      "rarity": "SR",
+      "prompt": "Create one square original QuestNote collectible card of \"燼羽夜鴉\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 黑鴉全翼、羽緣暗紅、喙旁燼光. Story action: 牠展開完整雙翼掠過信路，攫取路標上的一束光. Visible consequence: 路標陰影逆轉、遠方仍有紙鳶引路. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "sr_2",
+      "form": "initial",
+      "name": "縛潮玄蛇",
+      "rarity": "SR",
+      "prompt": "Create one square original QuestNote collectible card of \"縛潮玄蛇\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 單頭長蛇、青黑鱗、銀環尾紋、無肢體. Story action: 牠盤繞一塊潮汐界石，身軀形成完整波浪曲線. Visible consequence: 海水沿身體抬起，界石下方留下乾涸通道. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "sr_3",
+      "form": "initial",
+      "name": "斷祈霜狼",
+      "rarity": "SR",
+      "prompt": "Create one square original QuestNote collectible card of \"斷祈霜狼\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 灰白完整狼形、紫黑霜鬃、額頭裂紋. Story action: 牠踏入北境誓火外圈，抬爪踩碎一片凝霜. Visible consequence: 冰裂沿地面伸展，橙色誓火保留一條安全線. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "sr_4",
+      "form": "initial",
+      "name": "噬夢絨蝠",
+      "rarity": "SR",
+      "prompt": "Create one square original QuestNote collectible card of \"噬夢絨蝠\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整蝙蝠翼膜、柔黑絨毛、琥珀眼、月牙耳. Story action: 牠倒懸花庭拱枝，抓住飄過的一段夢光. Visible consequence: 夢光變成暗色絲卷，一朵花的色彩退去. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "sr_5",
+      "form": "initial",
+      "name": "棘令黑鹿",
+      "rarity": "SR",
+      "prompt": "Create one square original QuestNote collectible card of \"棘令黑鹿\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 四足鹿形、完整分枝荊角、暗綠毛、金色細眼. Story action: 牠以荊角抬起倒塌路標並旋向禁行方向. Visible consequence: 腳下長出刺牆，原路仍在刺牆外發亮. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "r_1",
+      "form": "initial",
+      "name": "幽燈影狐",
+      "rarity": "R",
+      "prompt": "Create one square original QuestNote collectible card of \"幽燈影狐\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 三角狐耳、单条完整尾巴、青色幽燈. Story action: 牠叼著幽燈在岔路回望. Visible consequence: 燈光投出錯誤出口，但真路的草仍向另一側傾斜. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "r_2",
+      "form": "initial",
+      "name": "銹齒穴鼬",
+      "rarity": "R",
+      "prompt": "Create one square original QuestNote collectible card of \"銹齒穴鼬\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 長身鼬形、暗銅小齒輪背袋、明亮黑眼. Story action: 牠用前爪卸下路橋一顆螺栓. Visible consequence: 橋板微沉，銹粉留下可追查足跡. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "r_3",
+      "form": "initial",
+      "name": "緘信墨梟",
+      "rarity": "R",
+      "prompt": "Create one square original QuestNote collectible card of \"緘信墨梟\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整貓頭鷹形、墨藍羽、信封状胸纹. Story action: 牠用爪壓住未送達的信，低頭吹去封口光. Visible consequence: 封蠟影子化作黑羽，紙面仍保留收件者痕跡. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "r_4",
+      "form": "initial",
+      "name": "逆芽棘兔",
+      "rarity": "R",
+      "prompt": "Create one square original QuestNote collectible card of \"逆芽棘兔\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整長兔耳、暗紫绒毛、小棘芽背包. Story action: 牠在路標根部種下朝內彎曲的刺芽. Visible consequence: 刺芽把箭頭拽偏，旁邊正常嫩芽仍向陽. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "r_5",
+      "form": "initial",
+      "name": "煤焰角羊",
+      "rarity": "R",
+      "prompt": "Create one square original QuestNote collectible card of \"煤焰角羊\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整羊形、煤黑卷角、暗橙蹄痕. Story action: 牠用前蹄推動燃煤越過熄火界線. Visible consequence: 一條低矮火帶封路，火外石碑仍清晰可讀. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "n_1",
+      "form": "initial",
+      "name": "微燼小蜥",
+      "rarity": "N",
+      "prompt": "Create one square original QuestNote collectible card of \"微燼小蜥\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足小蜥、長尾、背部小燼點. Story action: 牠趴在餘燼旁吹動一顆火星. Visible consequence: 火星沿石縫串起短紅線. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "n_2",
+      "form": "initial",
+      "name": "碎冠甲蟲",
+      "rarity": "N",
+      "prompt": "Create one square original QuestNote collectible card of \"碎冠甲蟲\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整六足甲蟲、王冠状角、暗金甲殼. Story action: 牠推著一小片裂冠穿過石階. Visible consequence: 碎片留下金黑摩擦痕，後方小石块翻起. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    },
+    {
+      "draftId": "n_3",
+      "form": "initial",
+      "name": "暮紗幼蛛",
+      "rarity": "N",
+      "prompt": "Create one square original QuestNote collectible card of \"暮紗幼蛛\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整八足小蛛、紫黑腹部、細銀絲. Story action: 牠在門縫補好一道銀黑網线. Visible consequence: 露珠停在網上形成細小預警光點. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-generated"
+      }
+    }
+  ]
+}

@@ -48,7 +48,7 @@ try {
   page = await context.newPage(); page.setDefaultTimeout(20000); page.on('pageerror', (e) => errors.push(e.message));
   await check('actual app starts; all twenty awakening entries load without existing save changes', async () => {
     await load(); assert.equal((await read()).activePetId, null);
-    assert.equal(await page.evaluate(async () => (await window.awakeTest.petAwakeningCatalog.loadAwakeningCatalog()).pets.length), 20);
+    assert.equal(await page.evaluate(async () => (await window.awakeTest.petAwakeningCatalog.loadAwakeningCatalog()).pets.filter(p=>!/^pet_(ur(28|29|30)|ssr(37|38|39|40))$/.test(p.petId)).length), 20);
     return { database: await page.evaluate(async () => (await window.awakeTest.db.openDB()).name), version: await page.evaluate(async () => (await import('/src/version.js')).APP_VERSION) };
   });
   await check('owned + Lv5 + claimed Lv5 gates and existing eligible progression', async () => {

@@ -286,6 +286,50 @@
         "detailsNote": "12 位夥伴從第一抽全部開放；無額外解鎖或贈寵。十連至少一位 SR 以上，沿用現行價格、機率與各池保底。",
         "candidateNote": "僅含晴信原野 12 位夥伴，沿用共用召喚揭露；不含其他系列。"
       }
+    },
+    {
+      "id": "darkcrown_court_release",
+      "name": "黯冠王庭・混世降臨",
+      "active": true,
+      "cost": 100,
+      "rates": {
+        "N": 0.55,
+        "R": 0.3,
+        "SR": 0.1,
+        "SSR": 0.03,
+        "UR": 0.02
+      },
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      },
+      "petFilter": {
+        "poolTags": [
+          "darkcrown_court_release"
+        ]
+      },
+      "presentation": {
+        "themeKey": "chaos_demon_court",
+        "animationKey": "chaos_demon_court",
+        "heroPetId": "pet_ur28",
+        "featuredPetIds": [
+          "pet_ur29",
+          "pet_ur30",
+          "pet_ssr37",
+          "pet_ssr38"
+        ],
+        "badge": "裂冠降臨",
+        "eyebrow": "織界 · 黯冠王庭",
+        "tagline": "七色星路仍有名字，黑塔的裂冠正試圖吞下它們。",
+        "debutLines": [
+          "七色星路",
+          "裂冠吞光",
+          "王庭降臨"
+        ],
+        "debutLabel": "黯冠王庭降臨",
+        "detailsNote": "二十位原生魔獸；七位 UR／SSR 可完成羈絆覺醒，揭曉人形惡魔。",
+        "candidateNote": "本池不含標準池角色；同一角色雙形態保留相同稀有度與收藏。"
+      }
     }
   ],
   "schemaVersion": 1

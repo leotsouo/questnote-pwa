@@ -8,8 +8,10 @@ import { awakeningPortrait, initialAwakeningPortrait, renderAwakeningGuide, rend
 import { awakeningDuration, awakeningSceneHtml } from '../src/petAwakeningScene.js';
 import { validateBackup, migrateImportedData, normalizeBackupPayload } from '../src/backupService.js';
 import { SNAPSHOT_KEYS } from '../src/backupSchema.js';
+import { SWORDWILD_AWAKENING_IDS } from '../src/petAwakeningProfiles.js';
 import { APP_VERSION } from '../src/version.js';
 const catalog = JSON.parse(readFileSync(new URL('../data/pet-awakening.json', import.meta.url)));
+const legacyEntries = catalog.pets.filter(p => SWORDWILD_AWAKENING_IDS.includes(p.petId));
 const pets = JSON.parse(readFileSync(new URL('../data/pets.json', import.meta.url))).pets;
 const at = '2026-10-02T02:00:00.000Z';
 const later = '2026-10-02T03:00:00.000Z';
@@ -21,9 +23,9 @@ const awake = () => { const s = ready(); Object.assign(s.byPet.pet_ur17, { statu
 
 test('all twenty authored entries preserve original hashes and have distinct stories, titles and tokens', () => {
   assert.deepEqual(validateAwakeningCatalog(catalog), []);
-  assert.deepEqual(catalog.pets.map((p) => p.petId).sort(), [...AWAKENING_PET_IDS].sort());
-  for (const field of ['title', 'tokenName', 'trialTitle']) assert.equal(new Set(catalog.pets.map((p) => p[field])).size, 20);
-  for (const p of catalog.pets) {
+  assert.deepEqual(legacyEntries.map((p) => p.petId).sort(), [...SWORDWILD_AWAKENING_IDS].sort());
+  for (const field of ['title', 'tokenName', 'trialTitle']) assert.equal(new Set(legacyEntries.map((p) => p[field])).size, 20);
+  for (const p of legacyEntries) {
     for (const [image, digest] of [[p.initialImage, p.initialSha256], [p.awakenedImage, p.awakenedSha256]]) {
       if (!image) continue;
       assert.equal(createHash('sha256').update(readFileSync(new URL(`../${image.original}`, import.meta.url))).digest('hex'), digest);
@@ -88,7 +90,7 @@ test('unawakened toad uses initial art; awakened forms never mutate canonical dr
   assert.ok(awakeningSceneHtml(catalog.pets.find((p) => p.petId === pet.id), pet).includes('pet_ur17-awakened-'));
 });
 test('all twenty previews and unawakened portraits use initial art, regardless of ownership; other pools unchanged', () => {
-  for (const entry of catalog.pets) {
+  for (const entry of legacyEntries) {
     const pet = pets.find((p) => p.id === entry.petId);
     const original = structuredClone(pet);
     for (const owned of [true, false]) {

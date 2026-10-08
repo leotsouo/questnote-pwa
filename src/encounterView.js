@@ -1,6 +1,7 @@
 import { invitationEntry, reencounterMoment, fragmentBalance, intimacySummary, createInvitationController } from './invitationPresentation.js';
 import { invitationCandidates } from './encounterEconomyCore.js';
 import { getPetSpecialty } from './expeditionGameplay.js';
+import { getAwakeningProfile } from './petAwakeningProfiles.js';
 import { initialAwakeningPortrait } from './petAwakeningView.js';
 import { RARITIES, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, encounterResults } from './encounterViewModel.js';
 import { normalizePoolDefinition, resolveActivePool } from './poolContentContract.js';
@@ -178,15 +179,17 @@ function petDetail(pet, returnToBatch = false) {
   const isOwned = !!entry;
   const species = { griffin:'格里芬', biomechanical_chimera:'生體機械奇美拉' }[pet.speciesType] || '';
   const awakening = awakeningCatalog?.pets.find((row) => row.petId === pet.id);
-  const form = previewForms.get(pet.id) || 'initial';
+
   const isAwakened = isOwned && !!appState.petAwakening?.byPet?.[pet.id]?.awakenedAt;
+  const darkAwakening = getAwakeningProfile(pet.id)?.poolId === 'darkcrown_court_release';
+  const form = darkAwakening && !isAwakened ? 'initial' : previewForms.get(pet.id) || 'initial';
   const lockedAwakeningPreview = awakening && form === 'awakened' && !isAwakened;
   const official = canonicalPets.find((row) => row.id === pet.id) || pet;
   const artwork = awakening && form === 'awakened' ? awakening.awakenedImage ? { ...pet, image:awakening.awakenedImage.original, imageVariants:awakening.awakenedImage } : official : pet;
   showDialog(isOwned ? '夥伴手記' : '初識夥伴', `${imageHtml(artwork,'stage',false,`detail-art${lockedAwakeningPreview ? ' awakening-art-preview' : ''}`)}
     <div class="detail-identity"><h3 class="pet-name">${escapeHtml(pet.name)}</h3><p class="pet-title">${escapeHtml(pet.title)}</p>${cues(pet)}<p class="subtle" style="margin-top:10px">${escapeHtml([pet.element ? `${pet.element}屬性` : '',species].filter(Boolean).join(' · '))}</p></div>
     ${isOwned ? `<div class="companion-actions">${entry.nickname ? `<p class="subtle">你的稱呼：${escapeHtml(entry.nickname)} · 日常陪伴使用暱稱</p>` : ''}<button class="${entry.isCompanion ? '' : 'primary'}" data-identity-action="set-companion" data-pet-id="${pet.id}" ${entry.isCompanion ? 'disabled' : ''}>${entry.isCompanion ? '正在與你同行' : '設為陪伴'}</button><p class="subtle">切換後，首頁會顯示這位同行者。</p></div>` : ''}
-    ${awakening ? `<section class="detail-section"><h3>羈絆覺醒 · ${isAwakened ? '形態欣賞' : '形態預覽'}</h3><p>目前${isAwakened ? '欣賞' : '預覽'}：${form === 'awakened' ? '覺醒相' : '初遇相'} · 覺醒後仍是同一位夥伴</p><div class="awakening-form-options"><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="initial" aria-pressed="${form === 'initial'}">初遇相</button><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="awakened" aria-pressed="${form === 'awakened'}">覺醒相${isAwakened ? '' : ' · 黑白預覽'}</button></div><p>${isAwakened ? '已完成覺醒，可欣賞兩種形態。' : '覺醒相以黑白預覽；完成羈絆覺醒後，揭曉全彩造型與專屬演出。'}</p></section>` : ''}
+    ${awakening && (!darkAwakening || isAwakened) ? `<section class="detail-section"><h3>羈絆覺醒 · ${isAwakened ? '形態欣賞' : '形態預覽'}</h3><p>目前${isAwakened ? '欣賞' : '預覽'}：${form === 'awakened' ? '覺醒相' : '初遇相'} · 覺醒後仍是同一位夥伴</p><div class="awakening-form-options"><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="initial" aria-pressed="${form === 'initial'}">初遇相</button><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="awakened" aria-pressed="${form === 'awakened'}">覺醒相${isAwakened ? '' : ' · 黑白預覽'}</button></div><p>${isAwakened ? '已完成覺醒，可欣賞兩種形態。' : '覺醒相以黑白預覽；完成羈絆覺醒後，揭曉全彩造型與專屬演出。'}</p></section>` : ''}
     <p class="detail-copy">${escapeHtml(isOwned ? pet.lore : publicIntro(pet))}</p>
     ${isOwned ? intimacySummary(entry.bondLevel, getPetSpecialty({ ...pet, ...entry }), entry.legacySpecialtyFloor) : ''}
     ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p>${normalGreeting(pet) ? `<blockquote>${escapeHtml(normalGreeting(pet))}</blockquote>` : ''}</section>` : ''}

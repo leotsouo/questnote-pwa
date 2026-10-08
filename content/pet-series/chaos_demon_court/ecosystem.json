@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "food": null,
+  "materials": [],
+  "affinities": {
+    "pet_n44": [],
+    "pet_n45": [],
+    "pet_n46": [],
+    "pet_r47": [],
+    "pet_r48": [],
+    "pet_r49": [],
+    "pet_r50": [],
+    "pet_r51": [],
+    "pet_sr41": [],
+    "pet_sr42": [],
+    "pet_sr43": [],
+    "pet_sr44": [],
+    "pet_sr45": [],
+    "pet_ssr29": [],
+    "pet_ssr30": [],
+    "pet_ssr31": [],
+    "pet_ssr32": [],
+    "pet_ur22": [],
+    "pet_ur23": [],
+    "pet_ur24": []
+  },
+  "affinityNotes": {
+    "pet_n44": "",
+    "pet_n45": "",
+    "pet_n46": "",
+    "pet_r47": "",
+    "pet_r48": "",
+    "pet_r49": "",
+    "pet_r50": "",
+    "pet_r51": "",
+    "pet_sr41": "",
+    "pet_sr42": "",
+    "pet_sr43": "",
+    "pet_sr44": "",
+    "pet_sr45": "",
+    "pet_ssr29": "",
+    "pet_ssr30": "",
+    "pet_ssr31": "",
+    "pet_ssr32": "",
+    "pet_ur22": "",
+    "pet_ur23": "",
+    "pet_ur24": ""
+  },
+  "specialties": {
+    "pet_n44": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_n45": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_n46": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_r47": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_r48": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_r49": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_r50": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_r51": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_sr41": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_sr42": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_sr43": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_sr44": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_sr45": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_ssr29": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_ssr30": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_ssr31": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_ssr32": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_ur22": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_ur23": {
+      "role": "",
+      "reason": ""
+    },
+    "pet_ur24": {
+      "role": "",
+      "reason": ""
+    }
+  },
+  "expedition": {
+    "decision": "",
+    "reason": "",
+    "reusedAreaIds": [],
+    "areas": []
+  },
+  "releaseNotes": "",
+  "runtimeHashes": {
+    "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0",
+    "src/expeditionService.js": "9c2d2275a73929efec335ff74b149904384571caead9583b3988a53e3e5f8fc0",
+    "src/explorationService.js": "d22cad8561ffccdd34c1c41e6de04d861716fecd368b20111c5b2fcee7996a35",
+    "src/expeditionGameplay.js": "b2f4559924a3f15314c238b4dc19e3b364a41b516013c3262a397f1687f57a6e"
+  }
+}

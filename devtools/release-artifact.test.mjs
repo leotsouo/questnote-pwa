@@ -39,9 +39,11 @@ test('release artifact preparation is immutable, isolated and content complete',
     for (const directory of ['src', 'data']) await fs.cp(path.join(repository, directory), path.join(projectRoot, directory), { recursive: true });
     await fs.cp(path.join(repository, 'content/release-compatibility'), path.join(projectRoot, 'content/release-compatibility'), { recursive: true });
     for (const name of ['index.html', 'manifest.webmanifest', 'service-worker.js']) await fs.copyFile(path.join(repository, name), path.join(projectRoot, name));
+    const expeditions = JSON.parse(await fs.readFile(path.join(repository, 'data/expeditions.json')));
+    const regionImages = expeditions.areas.map((area) => 'assets/expeditions/' + area.id + '.webp');
     const pets = JSON.parse(await fs.readFile(path.join(projectRoot, 'data/pets.json'))).pets;
     const images = [...new Set(pets.flatMap((pet) => [pet.image, ...Object.values(pet.imageVariants || {})]))];
-    images.push('assets/icons/icon-192.png', 'assets/icons/icon-512.png', ...THEME_ASSET_FIXTURES);
+    images.push(...regionImages, 'assets/icons/icon-192.png', 'assets/icons/icon-512.png', ...THEME_ASSET_FIXTURES);
     // Tiny stand-ins exercise file closure/hash checks; these tests do not claim
     // image dimension or artistic validation (the production image tools own it).
     for (const name of images) {

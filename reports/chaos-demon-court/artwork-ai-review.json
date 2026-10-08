@@ -1,0 +1,18 @@
+{
+  "reviewerType": "ai",
+  "reviewMode": "ai-self",
+  "status": "source artwork approved; final pinned artifact animation/region acceptance pending",
+  "checks": {
+    "count": "20 nonhuman originals +7 adult clothed demon awakened forms",
+    "decode": "All 27 opaque square PNGs fully decoded at 1254 px",
+    "identity": "Original and awakened pairs share crown/moon/bell/thorn/mirror/law/star signatures and colors",
+    "framing": "Targeted wing/horn/ear/tail corrections inspected; no missing major silhouette in contain render",
+    "cardSize": "27 real source collection renderer cards at 320,393,1280 px; all load, no horizontal overflow",
+    "story": "Signature, action and consequence compared with approved plan/lore; no literal 幹部 names",
+    "destination": "Generated landscape original inspected; actual map/dispatch/offline acceptance reserved for pinned artifact"
+  },
+  "knownLimits": [
+    "Built-in image tools display their tool previews automatically despite ai-self; no human art consent receipt was fabricated",
+    "Source card review is not final artifact animation evidence"
+  ]
+}

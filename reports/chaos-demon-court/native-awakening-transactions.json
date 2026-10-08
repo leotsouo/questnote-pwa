@@ -1,0 +1,23 @@
+{
+  "mode": "synthetic fixtures; not final content acceptance",
+  "origin": "http://127.0.0.1:57864",
+  "status": "pass",
+  "result": {
+    "wrong": null,
+    "ready": "ready",
+    "missingFood": "需要一份黯莓餘燼塔；試煉進度與信物已保留。",
+    "retained": "ready",
+    "attempts": [
+      "fulfilled",
+      "rejected"
+    ],
+    "status": "awakened",
+    "newFood": 0,
+    "oldFood": 2,
+    "tokenOnce": true,
+    "form": "initial",
+    "walletPreserved": true,
+    "collectionPreserved": true,
+    "database": "QuestNoteDB"
+  }
+}

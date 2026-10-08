@@ -1,0 +1,25 @@
+{
+  "resolved": [
+    {
+      "issue": "Obsolete src/darkcrownExploration.js precache entry",
+      "resolution": "Removed and source SW/full regressions pass"
+    },
+    {
+      "issue": "Current encounter UI used generic dark court background and allowed pre-awakening human previews",
+      "resolution": "Connected controlled scene and gated dark court humanoid previews; actual three-theme/all-pool and no-preview tests pass"
+    },
+    {
+      "issue": "Formal Git archive applied text byte transforms",
+      "resolution": "11 resources recovered from formal HTTPS with exact manifest hashes; original tar held"
+    },
+    {
+      "issue": "Update test old onboarding selectors and not-yet-viewed image assumptions",
+      "resolution": "Completed current guided introduction; preload pairs before testing existing lazy offline policy"
+    }
+  ],
+  "remaining": [
+    "Human whole-package acceptance and explicit 可以發布",
+    "After authorization: source integration, deployment, formal HTTPS/hash and installed-worker readback"
+  ],
+  "runtimeFailuresRemaining": 0
+}

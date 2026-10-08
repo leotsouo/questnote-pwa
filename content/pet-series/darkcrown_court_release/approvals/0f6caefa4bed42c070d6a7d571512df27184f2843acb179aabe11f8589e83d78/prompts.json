@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "prompts": {
+    "pet_n50": {
+      "prompt": "Create one square original QuestNote collectible card of \"微燼小蜥\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足小蜥、長尾、背部小燼點. Story action: 牠趴在餘燼旁吹動一顆火星. Visible consequence: 火星沿石縫串起短紅線. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "n_1"
+      }
+    },
+    "pet_n51": {
+      "prompt": "Create one square original QuestNote collectible card of \"碎冠甲蟲\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整六足甲蟲、王冠状角、暗金甲殼. Story action: 牠推著一小片裂冠穿過石階. Visible consequence: 碎片留下金黑摩擦痕，後方小石块翻起. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "n_2"
+      }
+    },
+    "pet_n52": {
+      "prompt": "Create one square original QuestNote collectible card of \"暮紗幼蛛\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整八足小蛛、紫黑腹部、細銀絲. Story action: 牠在門縫補好一道銀黑網线. Visible consequence: 露珠停在網上形成細小預警光點. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "n_3"
+      }
+    },
+    "pet_r57": {
+      "prompt": "Create one square original QuestNote collectible card of \"幽燈影狐\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 三角狐耳、单条完整尾巴、青色幽燈. Story action: 牠叼著幽燈在岔路回望. Visible consequence: 燈光投出錯誤出口，但真路的草仍向另一側傾斜. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "r_1"
+      }
+    },
+    "pet_r58": {
+      "prompt": "Create one square original QuestNote collectible card of \"銹齒穴鼬\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 長身鼬形、暗銅小齒輪背袋、明亮黑眼. Story action: 牠用前爪卸下路橋一顆螺栓. Visible consequence: 橋板微沉，銹粉留下可追查足跡. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "r_2"
+      }
+    },
+    "pet_r59": {
+      "prompt": "Create one square original QuestNote collectible card of \"緘信墨梟\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整貓頭鷹形、墨藍羽、信封状胸纹. Story action: 牠用爪壓住未送達的信，低頭吹去封口光. Visible consequence: 封蠟影子化作黑羽，紙面仍保留收件者痕跡. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "r_3"
+      }
+    },
+    "pet_r60": {
+      "prompt": "Create one square original QuestNote collectible card of \"逆芽棘兔\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整長兔耳、暗紫绒毛、小棘芽背包. Story action: 牠在路標根部種下朝內彎曲的刺芽. Visible consequence: 刺芽把箭頭拽偏，旁邊正常嫩芽仍向陽. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "r_4"
+      }
+    },
+    "pet_r61": {
+      "prompt": "Create one square original QuestNote collectible card of \"煤焰角羊\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整羊形、煤黑卷角、暗橙蹄痕. Story action: 牠用前蹄推動燃煤越過熄火界線. Visible consequence: 一條低矮火帶封路，火外石碑仍清晰可讀. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "r_5"
+      }
+    },
+    "pet_sr51": {
+      "prompt": "Create one square original QuestNote collectible card of \"燼羽夜鴉\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 黑鴉全翼、羽緣暗紅、喙旁燼光. Story action: 牠展開完整雙翼掠過信路，攫取路標上的一束光. Visible consequence: 路標陰影逆轉、遠方仍有紙鳶引路. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "sr_1"
+      }
+    },
+    "pet_sr52": {
+      "prompt": "Create one square original QuestNote collectible card of \"縛潮玄蛇\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 單頭長蛇、青黑鱗、銀環尾紋、無肢體. Story action: 牠盤繞一塊潮汐界石，身軀形成完整波浪曲線. Visible consequence: 海水沿身體抬起，界石下方留下乾涸通道. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "sr_2"
+      }
+    },
+    "pet_sr53": {
+      "prompt": "Create one square original QuestNote collectible card of \"斷祈霜狼\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 灰白完整狼形、紫黑霜鬃、額頭裂紋. Story action: 牠踏入北境誓火外圈，抬爪踩碎一片凝霜. Visible consequence: 冰裂沿地面伸展，橙色誓火保留一條安全線. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "sr_3"
+      }
+    },
+    "pet_sr54": {
+      "prompt": "Create one square original QuestNote collectible card of \"噬夢絨蝠\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整蝙蝠翼膜、柔黑絨毛、琥珀眼、月牙耳. Story action: 牠倒懸花庭拱枝，抓住飄過的一段夢光. Visible consequence: 夢光變成暗色絲卷，一朵花的色彩退去. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "sr_4"
+      }
+    },
+    "pet_sr55": {
+      "prompt": "Create one square original QuestNote collectible card of \"棘令黑鹿\", NON-HUMAN original form, 魔獸. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 四足鹿形、完整分枝荊角、暗綠毛、金色細眼. Story action: 牠以荊角抬起倒塌路標並旋向禁行方向. Visible consequence: 腳下長出刺牆，原路仍在刺牆外發亮. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "sr_5"
+      }
+    },
+    "pet_ssr37": {
+      "prompt": "Create one square original QuestNote collectible card of \"荊誓・洛恩\", NON-HUMAN original form, 荊誓角麒. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足原創鹿形魔獸、酒紅鬃、分枝荊棘角、黑蹄、額前封蠟色紋. Story action: 角麒以分枝荊角挑開一卷懸浮誓文上的紅線. Visible consequence: 山路承諾化成帶刺橋索，红线撕裂處仍有一根金線未斷. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "ssr_1"
+      }
+    },
+    "pet_ssr38": {
+      "prompt": "Create one square original QuestNote collectible card of \"鏡宴・奈璃\", NON-HUMAN original form, 鏡宴銀狐. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足銀白狐狸、单條长狐尾、蝶纹耳缘、紫紅眼、裂鏡尾光. Story action: 銀狐以前爪翻動糖晶前的一片裂鏡，回首看向鏡中宴席. Visible consequence: 鏡宴越華麗，真實糖晶的光越暗，仍有一顆保持暖光. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "ssr_2"
+      }
+    },
+    "pet_ssr39": {
+      "prompt": "Create one square original QuestNote collectible card of \"灰律・奧鉻\", NON-HUMAN original form, 灰律銅鴉. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整雙翼非人形暗銅渡鴉、灰藍羽、金屬彎角、齒輪胸環；魔獸並非舊池角色改造. Story action: 銅鴉用完整雙爪抓住一枚符文齒輪並將其扭停. Visible consequence: 蒸汽在齒間結成灰晶，遠方獅心爐火仍明亮. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "ssr_3"
+      }
+    },
+    "pet_ssr40": {
+      "prompt": "Create one square original QuestNote collectible card of \"蝕星獄獅\", NON-HUMAN original form, 蝕星獄獅. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足獅形、黑曜鬃、胸前星裂、长獅尾、星痕角. Story action: 獄獅前爪踩住通往城門的光链，低頭咆哮. Visible consequence: 锁鏈被壓成黑晶，城門外碎星沿地面倒流. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "ssr_4"
+      }
+    },
+    "pet_ur28": {
+      "prompt": "Create one square original QuestNote collectible card of \"黯冠・無晝\", NON-HUMAN original form, 黯冠古龍. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整四足古龍、黑曜鱗、猩紅翼膜、與人形一致的破環雙角、金黑裂冠輪廓. Story action: 古龍盤踞黑塔石座，以完整前爪壓住七色星路交會的界石，抬頭令裂冠日環吞光. Visible consequence: 界石裂出紅黑晶脈，七色星路仍各自保留一線抵抗，塔外階石崩裂. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "ur_1"
+      }
+    },
+    "pet_ur29": {
+      "prompt": "Create one square original QuestNote collectible card of \"裂月・瑟因\", NON-HUMAN original form, 裂月魔鰩. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整非人形巨型魔鰩、銀紫背紋、兩片寬胸鰭、長尾、額前单側月刃角. Story action: 魔鰩以月刃角穿過潮汐上方的月光，展開完整鰭面劃出一道通道. Visible consequence: 水幕沿角劃開的線停在半空，北境誓火在通道邊緣留下暖色界線. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "ur_2"
+      }
+    },
+    "pet_ur30": {
+      "prompt": "Create one square original QuestNote collectible card of \"終鐘・維爾\", NON-HUMAN original form, 終鐘夢蛾. Dark Fantasy 90s Retro Anime & Pop Anime, clean bold hand-drawn anime ink contours,2-3 tier hard cel shadow blocks, simplified painted fantasy background. Exactly one species-readable nonhuman creature, no human face/hands/torso or human clothes. Signature: 完整六足非人形巨蛾、紫黑絨毛、琥珀复眼、鐘形觸角弧紋、两對完整鐘環翅紋. Story action: 夢蛾停在懸鐘弓架上，以前足抵住鐘舌，翅紋向花庭夢光展開. Visible consequence: 靜音波紋在花間凝成透明黑玻璃，仍有一朵暖光花抵住封存. Creature dominates75% of canvas; face, primary action and key story medium clear at160px. Entire body, horns,wings,tails and limb tips have6% safe margins. Correct species anatomy and limb count. Obsidian black,deep crimson,gray-violet,dark gold with a small regional resistance accent. Opaque background,minimum1024px. No words,labels,border,logo,watermark,gore,nudity,copyrighted character,extra/missing limbs.",
+      "negativePrompt": "human form, human face, human hands, human clothes, labels, borders, logos, watermarks, gore, nudity, cropped key horns, incorrect species anatomy, extra or missing limbs",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "originalForm": "non-human beast",
+        "draftId": "ur_3"
+      }
+    }
+  }
+}

@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.8.9
+ * QuestNote Service Worker — V3.9.0
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v389-awakening-wizard';
+const CACHE_NAME = 'questnote-preview-cache-v390-chaos-court';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -63,8 +63,10 @@ const PRECACHE_URLS = [
   'src/encounterCeremony.js',
   'src/encounterScenery.js',
   'src/lionheart.css',
+  'src/chaos-demon-court.css',
   'src/pet-awakening.css',
   'src/petAwakeningCore.js',
+  'src/petAwakeningProfiles.js',
   'src/petAwakeningCatalog.js',
   'src/petAwakeningService.js',
   'src/petAwakeningView.js',
@@ -136,6 +138,7 @@ const PRECACHE_URLS = [
   'src/honeylightSugarScene.js',
   'src/swordwildShanheScene.js',
   'src/lionheartScene.js',
+  'src/chaosDemonCourtScene.js',
   'src/collectionService.js',
   'src/bondJourneyCore.js',
   'src/bondJourneyService.js',
@@ -202,6 +205,7 @@ const PRECACHE_URLS = [
   'assets/expeditions/polar_shore.webp',
   'assets/expeditions/harvest_fields.webp',
   'assets/expeditions/cloudrest_trail.webp',
+  'assets/expeditions/darkcrown_border.webp',
 ];
 
 function resolveUrl(path) {

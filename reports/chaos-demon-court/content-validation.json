@@ -1,0 +1,949 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "level": "error",
+      "code": "RECIPE_INVALID",
+      "message": "Food recipe must reference obtainable materials with positive integer quantities",
+      "path": "ecosystem.json"
+    },
+    {
+      "level": "error",
+      "code": "REGION_RUNTIME_INCOMPLETE",
+      "message": "New region needs actual discovery, story and all five valid runtime milestones",
+      "path": "ecosystem.json"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[0].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[1].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[2].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[3].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[4].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[5].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[6].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[7].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[8].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[9].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[10].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[11].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[12].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[13].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[14].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[15].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[16].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[17].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[18].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[19].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[140].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[141].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[142].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[143].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[144].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[145].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[146].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[147].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[148].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[149].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[150].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[151].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[152].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[153].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[154].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[155].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[156].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[157].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[158].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "LORE_SUMMON_EMPTY",
+      "message": "summon 必須為非空字串",
+      "path": "lore[159].dialogues.summon"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_n47"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_n47"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_n48"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_n48"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_n49"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_n49"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_r52"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_r52"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_r53"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_r53"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_r54"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_r54"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_r55"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_r55"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_r56"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_r56"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_sr46"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_sr46"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_sr47"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_sr47"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_sr48"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_sr48"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_sr49"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_sr49"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_sr50"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_sr50"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_ssr33"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_ssr33"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_ssr34"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_ssr34"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_ssr35"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_ssr35"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_ssr36"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_ssr36"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_ur25"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_ur25"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_ur26"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_ur26"
+    },
+    {
+      "level": "error",
+      "code": "PROMPT_REQUIRED",
+      "message": "Every pet needs prompt and negativePrompt strings",
+      "path": "pet_ur27"
+    },
+    {
+      "level": "error",
+      "code": "GENERATION_COST_UNCONFIRMED",
+      "message": "Record the actual tool/plugin and confirmed no-extra-cost basis before generation",
+      "path": "pet_ur27"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_n47.png'",
+      "path": "images/pet_n47.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_n48.png'",
+      "path": "images/pet_n48.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_n49.png'",
+      "path": "images/pet_n49.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_r52.png'",
+      "path": "images/pet_r52.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_r53.png'",
+      "path": "images/pet_r53.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_r54.png'",
+      "path": "images/pet_r54.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_r55.png'",
+      "path": "images/pet_r55.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_r56.png'",
+      "path": "images/pet_r56.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_sr46.png'",
+      "path": "images/pet_sr46.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_sr47.png'",
+      "path": "images/pet_sr47.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_sr48.png'",
+      "path": "images/pet_sr48.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_sr49.png'",
+      "path": "images/pet_sr49.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_sr50.png'",
+      "path": "images/pet_sr50.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_ssr33.png'",
+      "path": "images/pet_ssr33.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_ssr34.png'",
+      "path": "images/pet_ssr34.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_ssr35.png'",
+      "path": "images/pet_ssr35.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_ssr36.png'",
+      "path": "images/pet_ssr36.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_ur25.png'",
+      "path": "images/pet_ur25.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_ur26.png'",
+      "path": "images/pet_ur26.png"
+    },
+    {
+      "level": "error",
+      "code": "ENOENT",
+      "message": "ENOENT: no such file or directory, lstat 'C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\content\\pet-series\\darkcrown_court\\images\\pet_ur27.png'",
+      "path": "images/pet_ur27.png"
+    }
+  ],
+  "warnings": [
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[0].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[1].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[2].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[3].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[4].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[5].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[6].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[7].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[8].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[9].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[10].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[11].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[12].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[13].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[14].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[15].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[16].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[17].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[18].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PET_NO_STANDARD",
+      "message": "新寵物未加入 standard，不會進入目前標準召喚",
+      "path": "pets[19].poolTags"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_n47 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_n48 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_n49 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_r52 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_r53 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_r54 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_r55 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_r56 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_sr46 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_sr47 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_sr48 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_sr49 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_sr50 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_ssr33 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_ssr34 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_ssr35 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_ssr36 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_ur25 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_ur26 缺少 prompt 紀錄"
+    },
+    {
+      "level": "warning",
+      "code": "PROMPT_MISSING",
+      "message": "pet_ur27 缺少 prompt 紀錄"
+    }
+  ],
+  "previews": [
+    {
+      "poolId": "standard",
+      "locked": 56,
+      "unlocked": 56
+    },
+    {
+      "poolId": "eternal_slumber_bloom",
+      "locked": 12,
+      "unlocked": 16
+    },
+    {
+      "poolId": "frost_oath_fjord",
+      "locked": 12,
+      "unlocked": 12
+    },
+    {
+      "poolId": "honeylight_sugar_garden_v2",
+      "locked": 12,
+      "unlocked": 12
+    },
+    {
+      "poolId": "swordwild_shanhe_v3",
+      "locked": 20,
+      "unlocked": 20
+    },
+    {
+      "poolId": "lionheart_inverse_oath",
+      "locked": 12,
+      "unlocked": 12
+    },
+    {
+      "poolId": "sunward_letters",
+      "locked": 12,
+      "unlocked": 12
+    },
+    {
+      "poolId": "darkcrown_court",
+      "locked": 20,
+      "unlocked": 20
+    }
+  ],
+  "changes": {
+    "pets": {
+      "added": [
+        "pet_n47",
+        "pet_n48",
+        "pet_n49",
+        "pet_r52",
+        "pet_r53",
+        "pet_r54",
+        "pet_r55",
+        "pet_r56",
+        "pet_sr46",
+        "pet_sr47",
+        "pet_sr48",
+        "pet_sr49",
+        "pet_sr50",
+        "pet_ssr33",
+        "pet_ssr34",
+        "pet_ssr35",
+        "pet_ssr36",
+        "pet_ur25",
+        "pet_ur26",
+        "pet_ur27"
+      ],
+      "changed": [],
+      "removed": []
+    },
+    "pools": {
+      "added": [
+        "darkcrown_court"
+      ],
+      "changed": [],
+      "removed": []
+    },
+    "lore": {
+      "added": [
+        "pet_n47",
+        "pet_n48",
+        "pet_n49",
+        "pet_r52",
+        "pet_r53",
+        "pet_r54",
+        "pet_r55",
+        "pet_r56",
+        "pet_sr46",
+        "pet_sr47",
+        "pet_sr48",
+        "pet_sr49",
+        "pet_sr50",
+        "pet_ssr33",
+        "pet_ssr34",
+        "pet_ssr35",
+        "pet_ssr36",
+        "pet_ur25",
+        "pet_ur26",
+        "pet_ur27"
+      ],
+      "changed": [],
+      "removed": []
+    },
+    "series": {
+      "added": [
+        "darkcrown_court"
+      ],
+      "changed": [],
+      "removed": []
+    }
+  }
+}

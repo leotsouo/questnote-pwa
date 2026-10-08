@@ -2,6 +2,7 @@
 import { playPoolDebutPresentation, playThemedSummon } from './themedSummonController.js';
 import { playSummonReveal, isRevealQueueSkipped } from './summonRevealService.js';
 import { normalizePoolDefinition } from './poolContentContract.js';
+import { createChaosDemonCourtScene } from './chaosDemonCourtScene.js';
 import { createLionheartScene } from './lionheartScene.js';
 import { createSwordwildShanheScene } from './swordwildShanheScene.js';
 import { createGlacierArrivalScene } from './glacierArrivalScene.js';
@@ -21,7 +22,7 @@ export function createPoolScenery(pool) {
   if (pool.id === 'standard') return createEncounterScenery('stars');
   if (pool.id === 'eternal_slumber_bloom') return createEncounterScenery('bloom');
   const key = ceremonyPresentation(pool).animationKey;
-  const factories = { lionheart_inverse_oath: createLionheartScene, swordwild_shanhe: createSwordwildShanheScene, glacier_arrival: createGlacierArrivalScene, honeylight_sugar: createHoneylightSugarScene };
+  const factories = { chaos_demon_court: createChaosDemonCourtScene, lionheart_inverse_oath: createLionheartScene, swordwild_shanhe: createSwordwildShanheScene, glacier_arrival: createGlacierArrivalScene, honeylight_sugar: createHoneylightSugarScene };
   if (factories[key]) return factories[key]();
   const scene = document.createElement('div');
   scene.className = 'identity-mirror-scene';

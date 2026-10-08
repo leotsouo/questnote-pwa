@@ -1,0 +1,93 @@
+[
+  {
+    "id": "ur_3",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-ec58f899-a656-496a-bbd9-acc80562de89.png",
+    "destination": "reports/chaos-demon-court/images/ur_3-initial-revision-2.png",
+    "prompt": {
+      "prompt": "One framing correction only: zoom out the ENTIRE existing fantasy creature illustration substantially. Fit the COMPLETE creature silhouette inside the inner75% of the square, with an obvious10-12% gap of illustrated atmospheric background at all four sides. Restore all wing/antler/horn/ear tips, feet and entire tail that were cropped. Preserve the exact nonhuman anatomy, colors, expression, primary story action and its visible consequence. Make the background expand, rather than making the creature larger. Keep every silhouette tip clearly separated from the canvas edges. No new humans, words, border or extra creatures. Preserve opaque square90s cel anime fantasy style. Full silhouette containment is the priority.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/ur_3-initial-revision-1.png"
+      ]
+    },
+    "mode": "edit",
+    "tool": "image_gen.imagegen"
+  },
+  {
+    "id": "ssr_3",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-0e89df94-551d-4eab-9f8b-6867099fd001.png",
+    "destination": "reports/chaos-demon-court/images/ssr_3-initial-revision-2.png",
+    "prompt": {
+      "prompt": "One framing correction only: zoom out the ENTIRE existing fantasy creature illustration substantially. Fit the COMPLETE creature silhouette inside the inner75% of the square, with an obvious10-12% gap of illustrated atmospheric background at all four sides. Restore all wing/antler/horn/ear tips, feet and entire tail that were cropped. Preserve the exact nonhuman anatomy, colors, expression, primary story action and its visible consequence. Make the background expand, rather than making the creature larger. Keep every silhouette tip clearly separated from the canvas edges. No new humans, words, border or extra creatures. Preserve opaque square90s cel anime fantasy style. Full silhouette containment is the priority.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/ssr_3-initial-revision-1.png"
+      ]
+    },
+    "mode": "edit",
+    "tool": "image_gen.imagegen"
+  },
+  {
+    "id": "sr_5",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-bfa9297f-44a4-43d9-9977-816884baf251.png",
+    "destination": "reports/chaos-demon-court/images/sr_5-initial-revision-1.png",
+    "prompt": {
+      "prompt": "One framing correction only: zoom out the ENTIRE existing fantasy creature illustration substantially. Fit the COMPLETE creature silhouette inside the inner75% of the square, with an obvious10-12% gap of illustrated atmospheric background at all four sides. Restore all wing/antler/horn/ear tips, feet and entire tail that were cropped. Preserve the exact nonhuman anatomy, colors, expression, primary story action and its visible consequence. Make the background expand, rather than making the creature larger. Keep every silhouette tip clearly separated from the canvas edges. No new humans, words, border or extra creatures. Preserve opaque square90s cel anime fantasy style. Full silhouette containment is the priority.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/sr_5-initial-original.png"
+      ]
+    },
+    "mode": "edit",
+    "tool": "image_gen.imagegen"
+  },
+  {
+    "id": "r_1",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-cc89ebf6-1c4a-4583-aff6-a729e0125769.png",
+    "destination": "reports/chaos-demon-court/images/r_1-initial-revision-1.png",
+    "prompt": {
+      "prompt": "ONE correction only: zoom out this entire existing nonhuman creature illustration substantially, and extend the same background seamlessly. The complete creature must fit within the inner75% of the square with an obvious10-12% background gap on all sides. Restore complete ear/antler tips, full tail and all feet. Keep the face, species, colors, personality, primary story action and visible consequence exactly the same. Do not enlarge the subject, add humans, change anatomy or add extra creatures. Preserve opaque square90s cel anime fantasy art, no text or card border. The canvas must no longer cut any ear, horn or tail tip.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/r_1-initial-original.png"
+      ]
+    },
+    "mode": "edit",
+    "tool": "image_gen.imagegen"
+  },
+  {
+    "id": "r_3",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-d0c2ce37-76d4-406b-b885-b0ec867c5faf.png",
+    "destination": "reports/chaos-demon-court/images/r_3-initial-revision-1.png",
+    "prompt": {
+      "prompt": "ONE correction only: zoom out this entire existing nonhuman creature illustration substantially, and extend the same background seamlessly. The complete creature must fit within the inner75% of the square with an obvious10-12% background gap on all sides. Restore complete ear/antler tips, full tail and all feet. Keep the face, species, colors, personality, primary story action and visible consequence exactly the same. Do not enlarge the subject, add humans, change anatomy or add extra creatures. Preserve opaque square90s cel anime fantasy art, no text or card border. The canvas must no longer cut any ear, horn or tail tip.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/r_3-initial-original.png"
+      ]
+    },
+    "mode": "edit",
+    "tool": "image_gen.imagegen"
+  },
+  {
+    "id": "r_4",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-b0f45e8e-d6b7-46e8-a0be-fec9123cb8eb.png",
+    "destination": "reports/chaos-demon-court/images/r_4-initial-revision-1.png",
+    "prompt": {
+      "prompt": "ONE correction only: zoom out this entire existing nonhuman creature illustration substantially, and extend the same background seamlessly. The complete creature must fit within the inner75% of the square with an obvious10-12% background gap on all sides. Restore complete ear/antler tips, full tail and all feet. Keep the face, species, colors, personality, primary story action and visible consequence exactly the same. Do not enlarge the subject, add humans, change anatomy or add extra creatures. Preserve opaque square90s cel anime fantasy art, no text or card border. The canvas must no longer cut any ear, horn or tail tip.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/r_4-initial-original.png"
+      ]
+    },
+    "mode": "edit",
+    "tool": "image_gen.imagegen"
+  },
+  {
+    "id": "sr_2",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-747a11c9-2cb6-4af3-aa7e-f42df7694109.png",
+    "destination": "reports/chaos-demon-court/images/sr_2-initial-revision-1.png",
+    "prompt": {
+      "prompt": "One correction only: zoom this original nonhuman demon serpent composition out far enough to show the COMPLETE continuous coiled body and tapered tail tip, plus all horn tips, with a clear10% atmospheric background gap at all four edges. Keep the exact serpent identity, obsidian scales, red accents, tide-binding chains, meaningful action and split/frozen waves. Do not add legs, wings, people or another snake. Extend the same painted anime fantasy background; don't crop the final coil. Preserve opaque square1990s cel anime card, no text or border.",
+      "referenced_image_paths": [
+        "C:/Users/User/.codex/worktrees/chaos-demon-court/questnote-pwa/reports/chaos-demon-court/images/sr_2-initial-original.png"
+      ]
+    },
+    "mode": "edit",
+    "tool": "image_gen.imagegen"
+  }
+]

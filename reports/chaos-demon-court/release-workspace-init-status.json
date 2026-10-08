@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "darkcrown_court_release",
+  "toolsHash": "7a46bb063e520c004545249559ec8f20db18605afba9d24f53c7e22842997474",
+  "baselineHash": "97aea494977a47a9fc4b506180342771fefb8221521815daf4a6e247972017df",
+  "errors": [],
+  "stages": [
+    {
+      "stage": "brief",
+      "inputHash": "2ec938fb9e5ac215828061d41911abaf821b333e241aa87cef59d0c382fdaf2c",
+      "outputHash": "ae09e15552c4c6735953f01b5921a452c1bcc1585961fd8d0b57b7e597f37e9c",
+      "files": {
+        "brief.json": "9a2b073ab2206c757136a666909742c5b76f5864d6ca777e7a1bbf589024eb97"
+      },
+      "missing": [],
+      "approved": false,
+      "status": "awaiting_review"
+    },
+    {
+      "stage": "plan",
+      "inputHash": "ae09e15552c4c6735953f01b5921a452c1bcc1585961fd8d0b57b7e597f37e9c",
+      "outputHash": "40c9e980aedb831e4d65d139a57306bfab2390ab1f0d5b961d56f0fb7c3662b2",
+      "files": {
+        "plan.json": "317260cbf54e22e19fc4d9263d513dc494d4f79709c9a234e1230ff3f2711e32"
+      },
+      "missing": [],
+      "approved": false,
+      "status": "awaiting_review"
+    },
+    {
+      "stage": "content",
+      "inputHash": "40c9e980aedb831e4d65d139a57306bfab2390ab1f0d5b961d56f0fb7c3662b2",
+      "outputHash": "bc32abad376fb50a6cc1519ec04e57ab2e0e5564496f0c02826df623c8d1faee",
+      "files": {
+        "series.json": "47b82e3de31179adadecc2be317257b8143746b42a67b01c16aecaa7ae886b78",
+        "pets.json": "4c91004ae75ea4a4d86c669ed9d68df06d711cbec4e0b389d220e50e90e12196",
+        "pets-lore.json": "00b284e04e3caf7e64f5c98ef140479a7356b2ceeb8bc36fd1b120492077a0d1",
+        "pool.json": "a295b2be8c492b212c5dcd14ab48e2557c988fa3572da2bc9e9e6929942cfb65",
+        "ecosystem.json": "9c2d01350236388fec08a8abb800c31e0dd60183a6b4b48b33275f17bcf323cb"
+      },
+      "missing": [],
+      "approved": false,
+      "status": "awaiting_review"
+    },
+    {
+      "stage": "prompts",
+      "inputHash": "bc32abad376fb50a6cc1519ec04e57ab2e0e5564496f0c02826df623c8d1faee",
+      "outputHash": "10e1a02c48d665036980e1fd02b743a0ab42c866dae41b166edae223a81a86e6",
+      "files": {
+        "prompts.json": "d06699e785aecbee0f3e55bcf537a2450cd521357a77c406088fa2a84792a1a5"
+      },
+      "missing": [],
+      "approved": false,
+      "status": "awaiting_review"
+    },
+    {
+      "stage": "images",
+      "inputHash": "10e1a02c48d665036980e1fd02b743a0ab42c866dae41b166edae223a81a86e6",
+      "outputHash": null,
+      "files": {},
+      "missing": [
+        "images/pet_n50.png",
+        "images/pet_n51.png",
+        "images/pet_n52.png",
+        "images/pet_r57.png",
+        "images/pet_r58.png",
+        "images/pet_r59.png",
+        "images/pet_r60.png",
+        "images/pet_r61.png",
+        "images/pet_sr51.png",
+        "images/pet_sr52.png",
+        "images/pet_sr53.png",
+        "images/pet_sr54.png",
+        "images/pet_sr55.png",
+        "images/pet_ssr37.png",
+        "images/pet_ssr38.png",
+        "images/pet_ssr39.png",
+        "images/pet_ssr40.png",
+        "images/pet_ur28.png",
+        "images/pet_ur29.png",
+        "images/pet_ur30.png"
+      ],
+      "approved": false,
+      "status": "missing"
+    }
+  ],
+  "nextStage": "brief",
+  "readyToStage": false
+}

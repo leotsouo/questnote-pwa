@@ -1,0 +1,72 @@
+[
+  {
+    "id": "ur_1",
+    "form": "initial",
+    "file": "ur_1-initial-revision-1.png"
+  },
+  {
+    "id": "ur_1",
+    "form": "awakened",
+    "file": "ur_1-revision-2.png"
+  },
+  {
+    "id": "ur_2",
+    "form": "initial",
+    "file": "ur_2-initial-original.png"
+  },
+  {
+    "id": "ur_2",
+    "form": "awakened",
+    "file": "ur_2-revision-1.png"
+  },
+  {
+    "id": "ur_3",
+    "form": "initial",
+    "file": "ur_3-initial-original.png"
+  },
+  {
+    "id": "ur_3",
+    "form": "awakened",
+    "file": "ur_3-revision-1.png"
+  },
+  {
+    "id": "ssr_1",
+    "form": "initial",
+    "file": "ssr_1-initial-original.png"
+  },
+  {
+    "id": "ssr_1",
+    "form": "awakened",
+    "file": "ssr_1-revision-1.png"
+  },
+  {
+    "id": "ssr_2",
+    "form": "initial",
+    "file": "ssr_2-initial-original.png"
+  },
+  {
+    "id": "ssr_2",
+    "form": "awakened",
+    "file": "ssr_2-awakened-original.png"
+  },
+  {
+    "id": "ssr_3",
+    "form": "initial",
+    "file": "ssr_3-initial-original.png"
+  },
+  {
+    "id": "ssr_3",
+    "form": "awakened",
+    "file": "ssr_3-awakened-original.png"
+  },
+  {
+    "id": "ssr_4",
+    "form": "initial",
+    "file": "ssr_4-initial-original.png"
+  },
+  {
+    "id": "ssr_4",
+    "form": "awakened",
+    "file": "ssr_4-awakened-original.png"
+  }
+]

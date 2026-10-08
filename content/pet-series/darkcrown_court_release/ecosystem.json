@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "food": {
+    "id": "item_chaos_ember_tart",
+    "name": "黯莓餘燼塔",
+    "type": "favorite_bond_item",
+    "rarity": "R",
+    "description": "以森林嫩葉裹住暖燼莓香的小塔；黯紫外皮下留有暖意。喜愛餘燼與星界的夥伴特別喜愛，也用於黯冠王庭的化身儀式。",
+    "enabled": true,
+    "favoriteTags": [
+      "fire",
+      "astral"
+    ],
+    "effect": {
+      "bondExp": 75,
+      "favoriteBonusBondExp": 150
+    },
+    "recipe": {
+      "forest_leaf": 3,
+      "lava_core": 3
+    },
+    "futureTags": [
+      "bond_item",
+      "darkcrown_court_release"
+    ]
+  },
+  "materials": [],
+  "affinities": {
+    "pet_n50": [
+      "fire"
+    ],
+    "pet_n51": [
+      "machine"
+    ],
+    "pet_n52": [
+      "nature"
+    ],
+    "pet_r57": [
+      "astral"
+    ],
+    "pet_r58": [
+      "machine"
+    ],
+    "pet_r59": [
+      "astral"
+    ],
+    "pet_r60": [
+      "nature",
+      "harvest"
+    ],
+    "pet_r61": [
+      "fire"
+    ],
+    "pet_sr51": [
+      "fire"
+    ],
+    "pet_sr52": [
+      "frost"
+    ],
+    "pet_sr53": [
+      "frost"
+    ],
+    "pet_sr54": [
+      "astral"
+    ],
+    "pet_sr55": [
+      "nature"
+    ],
+    "pet_ssr37": [
+      "nature",
+      "fire"
+    ],
+    "pet_ssr38": [
+      "astral"
+    ],
+    "pet_ssr39": [
+      "machine",
+      "fire"
+    ],
+    "pet_ssr40": [
+      "astral"
+    ],
+    "pet_ur28": [
+      "fire",
+      "astral"
+    ],
+    "pet_ur29": [
+      "frost",
+      "astral"
+    ],
+    "pet_ur30": [
+      "astral"
+    ]
+  },
+  "affinityNotes": {
+    "pet_n50": "微燼小蜥的完整四足小蜥、長尾、背部小燼點與微燼的故事能力對應fire喜好，不按稀有度給予額外收益。",
+    "pet_n51": "碎冠甲蟲的完整六足甲蟲、王冠状角、暗金甲殼與碎冠的故事能力對應machine喜好，不按稀有度給予額外收益。",
+    "pet_n52": "暮紗幼蛛的完整八足小蛛、紫黑腹部、細銀絲與暮紗的故事能力對應nature喜好，不按稀有度給予額外收益。",
+    "pet_r57": "幽燈影狐的三角狐耳、单条完整尾巴、青色幽燈與幽燈的故事能力對應astral喜好，不按稀有度給予額外收益。",
+    "pet_r58": "銹齒穴鼬的長身鼬形、暗銅小齒輪背袋、明亮黑眼與銹齒的故事能力對應machine喜好，不按稀有度給予額外收益。",
+    "pet_r59": "緘信墨梟的完整貓頭鷹形、墨藍羽、信封状胸纹與墨信的故事能力對應astral喜好，不按稀有度給予額外收益。",
+    "pet_r60": "逆芽棘兔的完整長兔耳、暗紫绒毛、小棘芽背包與逆芽的故事能力對應nature／harvest喜好，不按稀有度給予額外收益。",
+    "pet_r61": "煤焰角羊的完整羊形、煤黑卷角、暗橙蹄痕與煤焰的故事能力對應fire喜好，不按稀有度給予額外收益。",
+    "pet_sr51": "燼羽夜鴉的黑鴉全翼、羽緣暗紅、喙旁燼光與燼羽的故事能力對應fire喜好，不按稀有度給予額外收益。",
+    "pet_sr52": "縛潮玄蛇的單頭長蛇、青黑鱗、銀環尾紋、無肢體與潮索的故事能力對應frost喜好，不按稀有度給予額外收益。",
+    "pet_sr53": "斷祈霜狼的灰白完整狼形、紫黑霜鬃、額頭裂紋與霜祈的故事能力對應frost喜好，不按稀有度給予額外收益。",
+    "pet_sr54": "噬夢絨蝠的完整蝙蝠翼膜、柔黑絨毛、琥珀眼、月牙耳與夢絨的故事能力對應astral喜好，不按稀有度給予額外收益。",
+    "pet_sr55": "棘令黑鹿的四足鹿形、完整分枝荊角、暗綠毛、金色細眼與棘令的故事能力對應nature喜好，不按稀有度給予額外收益。",
+    "pet_ssr37": "荊誓・洛恩的完整四足原創鹿形魔獸、酒紅鬃、分枝荊棘角、黑蹄、額前封蠟色紋與荊誓線的故事能力對應nature／fire喜好，不按稀有度給予額外收益。",
+    "pet_ssr38": "鏡宴・奈璃的完整四足銀白狐狸、单條长狐尾、蝶纹耳缘、紫紅眼、裂鏡尾光與鏡宴的故事能力對應astral喜好，不按稀有度給予額外收益。",
+    "pet_ssr39": "灰律・奧鉻的完整雙翼非人形暗銅渡鴉、灰藍羽、金屬彎角、齒輪胸環；魔獸並非舊池角色改造與律輪的故事能力對應machine／fire喜好，不按稀有度給予額外收益。",
+    "pet_ssr40": "蝕星獄獅的完整四足獅形、黑曜鬃、胸前星裂、长獅尾、星痕角與星鏈的故事能力對應astral喜好，不按稀有度給予額外收益。",
+    "pet_ur28": "黯冠・無晝的完整四足古龍、黑曜鱗、猩紅翼膜、與人形一致的破環雙角、金黑裂冠輪廓與界石的故事能力對應fire／astral喜好，不按稀有度給予額外收益。",
+    "pet_ur29": "裂月・瑟因的完整非人形巨型魔鰩、銀紫背紋、兩片寬胸鰭、長尾、額前单側月刃角與潮汐門的故事能力對應frost／astral喜好，不按稀有度給予額外收益。",
+    "pet_ur30": "終鐘・維爾的完整六足非人形巨蛾、紫黑絨毛、琥珀复眼、鐘形觸角弧紋、两對完整鐘環翅紋與終鐘的故事能力對應astral喜好，不按稀有度給予額外收益。"
+  },
+  "specialties": {
+    "pet_n50": {
+      "role": "guardian",
+      "reason": "牠趴在餘燼旁吹動一顆火星；以此行動對應既有guardian派遣專長，不新增收益規則。"
+    },
+    "pet_n51": {
+      "role": "gatherer",
+      "reason": "牠推著一小片裂冠穿過石階；以此行動對應既有gatherer派遣專長，不新增收益規則。"
+    },
+    "pet_n52": {
+      "role": "scholar",
+      "reason": "牠在門縫補好一道銀黑網线；以此行動對應既有scholar派遣專長，不新增收益規則。"
+    },
+    "pet_r57": {
+      "role": "scout",
+      "reason": "牠叼著幽燈在岔路回望；以此行動對應既有scout派遣專長，不新增收益規則。"
+    },
+    "pet_r58": {
+      "role": "gatherer",
+      "reason": "牠用前爪卸下路橋一顆螺栓；以此行動對應既有gatherer派遣專長，不新增收益規則。"
+    },
+    "pet_r59": {
+      "role": "scholar",
+      "reason": "牠用爪壓住未送達的信，低頭吹去封口光；以此行動對應既有scholar派遣專長，不新增收益規則。"
+    },
+    "pet_r60": {
+      "role": "gatherer",
+      "reason": "牠在路標根部種下朝內彎曲的刺芽；以此行動對應既有gatherer派遣專長，不新增收益規則。"
+    },
+    "pet_r61": {
+      "role": "guardian",
+      "reason": "牠用前蹄推動燃煤越過熄火界線；以此行動對應既有guardian派遣專長，不新增收益規則。"
+    },
+    "pet_sr51": {
+      "role": "scout",
+      "reason": "牠展開完整雙翼掠過信路，攫取路標上的一束光；以此行動對應既有scout派遣專長，不新增收益規則。"
+    },
+    "pet_sr52": {
+      "role": "scout",
+      "reason": "牠盤繞一塊潮汐界石，身軀形成完整波浪曲線；以此行動對應既有scout派遣專長，不新增收益規則。"
+    },
+    "pet_sr53": {
+      "role": "guardian",
+      "reason": "牠踏入北境誓火外圈，抬爪踩碎一片凝霜；以此行動對應既有guardian派遣專長，不新增收益規則。"
+    },
+    "pet_sr54": {
+      "role": "companion",
+      "reason": "牠倒懸花庭拱枝，抓住飄過的一段夢光；以此行動對應既有companion派遣專長，不新增收益規則。"
+    },
+    "pet_sr55": {
+      "role": "gatherer",
+      "reason": "牠以荊角抬起倒塌路標並旋向禁行方向；以此行動對應既有gatherer派遣專長，不新增收益規則。"
+    },
+    "pet_ssr37": {
+      "role": "guardian",
+      "reason": "角麒以分枝荊角挑開一卷懸浮誓文上的紅線；以此行動對應既有guardian派遣專長，不新增收益規則。"
+    },
+    "pet_ssr38": {
+      "role": "companion",
+      "reason": "銀狐以前爪翻動糖晶前的一片裂鏡，回首看向鏡中宴席；以此行動對應既有companion派遣專長，不新增收益規則。"
+    },
+    "pet_ssr39": {
+      "role": "scholar",
+      "reason": "銅鴉用完整雙爪抓住一枚符文齒輪並將其扭停；以此行動對應既有scholar派遣專長，不新增收益規則。"
+    },
+    "pet_ssr40": {
+      "role": "guardian",
+      "reason": "獄獅前爪踩住通往城門的光链，低頭咆哮；以此行動對應既有guardian派遣專長，不新增收益規則。"
+    },
+    "pet_ur28": {
+      "role": "guardian",
+      "reason": "古龍盤踞黑塔石座，以完整前爪壓住七色星路交會的界石，抬頭令裂冠日環吞光；以此行動對應既有guardian派遣專長，不新增收益規則。"
+    },
+    "pet_ur29": {
+      "role": "scout",
+      "reason": "魔鰩以月刃角穿過潮汐上方的月光，展開完整鰭面劃出一道通道；以此行動對應既有scout派遣專長，不新增收益規則。"
+    },
+    "pet_ur30": {
+      "role": "scholar",
+      "reason": "夢蛾停在懸鐘弓架上，以前足抵住鐘舌，翅紋向花庭夢光展開；以此行動對應既有scholar派遣專長，不新增收益規則。"
+    }
+  },
+  "expedition": {
+    "decision": "add",
+    "reason": "王庭的裂冠侵蝕需要獨立邊境入口，五個篇章連起既有地區而保留舊故事。",
+    "reusedAreaIds": [
+      "lava_rift"
+    ],
+    "areas": [
+      {
+        "id": "darkcrown_border",
+        "name": "黯冠邊境",
+        "description": "黑塔裂冠試圖吞沒七色星路；沿著抵抗侵蝕的界石前進，找回每位生命自己的名字。邊境補給仍能採到森林嫩葉。",
+        "unlock": {
+          "type": "default"
+        },
+        "energyCost": 5,
+        "durationMinutes": 60,
+        "rewards": {
+          "stardust": {
+            "min": 30,
+            "max": 60
+          },
+          "material": {
+            "id": "forest_leaf",
+            "name": "森林嫩葉",
+            "min": 1,
+            "max": 2
+          },
+          "bondExp": 10
+        }
+      }
+    ]
+  },
+  "releaseNotes": "新增20位原生非人形魔獸、7位高階羈絆覺醒候選、黯莓餘燼塔及黯冠邊境。舊故事、經濟、存檔與派遣收益規則保留；食物素材來自邊境森林嫩葉及既有熔岩裂谷。",
+  "runtimeHashes": {
+    "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0",
+    "src/expeditionService.js": "9c2d2275a73929efec335ff74b149904384571caead9583b3988a53e3e5f8fc0",
+    "src/explorationService.js": "bbaaac585f58074440e45f9320f140981e850a3e2e0f79bcb7c0f489d2ba5b42",
+    "src/expeditionGameplay.js": "b2f4559924a3f15314c238b4dc19e3b364a41b516013c3262a397f1687f57a6e"
+  }
+}

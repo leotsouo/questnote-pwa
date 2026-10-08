@@ -1,0 +1,9 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "edit",
+  "referencedImagePaths": [
+    "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\questnote-pwa\\reports\\chaos-demon-court\\images\\darkcrown-border-original.png"
+  ],
+  "generatedOriginal": "C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-2e439d48-b311-4143-a980-28591258fbe2.png",
+  "prompt": "Reframe this same QuestNote landscape expedition illustration for 黯冠邊境, preserving the original black tower, broken crimson eclipse ring, seven distinct colored resistance routes and stone bridge with one tiny lantern traveler. Zoom out and lower the tower and the COMPLETE eclipse ring so their entire silhouettes fit in the central vertical 60% of this 16:9 image. Keep the main bridge and lantern traveler also within that central vertical 60%, because the App uses wide map and dispatch cards that crop some sky and foreground. Add atmospheric dark sky above and fog/stone foreground below, without adding extra towers in front of the main tower. Maintain Dark Fantasy 90s retro cel anime ink, deep gray-violet black/red palette and original story of resistant routes; no text, UI, labels, border, watermark, modern objects, gore. Opaque landscape at least 1672x941."
+}
