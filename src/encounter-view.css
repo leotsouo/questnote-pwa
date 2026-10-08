@@ -98,6 +98,46 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 :is(.identity-surface, .identity-dialog, .identity-review) .empty-state button { margin-top: 16px; }
 .identity-dialog { width: min(calc(100% - 16px), 700px); max-width: calc(100% - 16px); max-height: calc(100dvh - 32px); padding: 0; color: var(--color-text-main); background: var(--color-bg-main); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow-y: auto; overscroll-behavior: contain; }
 .identity-dialog::backdrop { background: #08101dd9; }
+/* Companion subpages share the journal palette while retaining their own flows. */
+#modal-overlay.companion-journal-modal { background: #08101dd9; }
+#modal-overlay.companion-journal-modal .modal { width: min(720px, calc(100vw - 24px)); max-width: 720px; padding: 0; background: var(--color-bg-main); color: var(--color-text-main); border: 1px solid var(--color-border); border-radius: 18px; box-shadow: none; }
+#modal-overlay.companion-journal-modal #modal-body { padding: 0 22px 24px; }
+.companion-journal-modal .journal-modal-header { position: sticky; top: 0; z-index: 2; margin: 0 -22px 24px; padding: 20px 88px 20px 22px; min-height: 68px; background: var(--color-bg-main); border-bottom: 1px solid var(--color-border); font-size: .95rem; font-weight: 600; }
+#modal-overlay.companion-journal-modal #modal-close { top: 12px; right: 16px; z-index: 3; width: 44px; height: 44px; border-radius: 10px; background: var(--color-bg-card); color: var(--color-text-main); border: 1px solid var(--color-border); }
+.companion-journal-modal :is(.nickname-modal, .bond-reader, .awakening-reader) { max-width: none; padding: 0; color: var(--color-text-main); line-height: 1.75; }
+.companion-journal-modal :is(h2, h3, .modal-title) { font-family: var(--font-display); color: var(--color-text-main); text-align: left; }
+.companion-journal-modal .modal-title { margin: 4px 0 20px; padding: 0; font-size: 1.4rem; }
+.companion-journal-modal .journal-eyebrow { color: var(--color-text-muted); font-size: .75rem; letter-spacing: .08em; margin: 0 0 8px; }
+.companion-journal-modal .nickname-modal__pet { display: grid; justify-items: start; gap: 6px; margin: 0 0 22px; padding: 16px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); }
+.companion-journal-modal .nickname-modal__pet .pet-image { border-radius: 12px; }
+.companion-journal-modal .nickname-modal__pet :is(p, .pet-original-name) { margin: 0; text-align: left; color: var(--color-text-muted); }
+.companion-journal-modal .nickname-modal__field { margin: 20px 0 12px; }
+.companion-journal-modal :is(input, select, textarea) { max-width: 100%; min-width: 0; min-height: 44px; box-sizing: border-box; font: inherit; color: var(--color-text-main); background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 10px; padding: 10px 12px; }
+.companion-journal-modal :is(.nickname-modal__hint, .nickname-modal__counter, .bond-note, .awakening-wizard__note, .awakening-wizard__eyebrow) { color: var(--color-text-muted); }
+.companion-journal-modal .nickname-modal__counter--over { color: var(--color-danger); }
+.companion-journal-modal .btn { min-height: 44px; height: auto; max-width: 100%; padding: 10px 15px; font: inherit; font-size: .9rem; white-space: normal; color: var(--color-text-main); background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 10px; box-shadow: none; }
+.companion-journal-modal .btn--primary { color: var(--color-bg-main); background: var(--color-primary); border-color: var(--color-primary); }
+.companion-journal-modal .btn:disabled { opacity: .6; }
+.companion-journal-modal :is(button, input, select, textarea):focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; }
+.companion-journal-modal .nickname-modal__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.companion-journal-modal :is(.bond-chapter, .bond-agreement, .bond-ending, .bond-keepsake, .awakening-wizard__stage) { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; box-shadow: none; }
+.companion-journal-modal .bond-reader__header { padding-right: 0; }
+.companion-journal-modal .bond-choices > .btn[aria-pressed="true"] { border-color: var(--color-primary); outline: 1px solid var(--color-primary); }
+.companion-journal-modal .awakening-wizard__layout { gap: 20px; }
+.companion-journal-modal .awakening-wizard__conditions { padding-top: 18px; border-top: 1px solid var(--color-border); }
+.companion-journal-modal #demon-final-answer { background: var(--color-bg-card); border-color: var(--color-primary); }
+#pet-image-viewer .pet-image-viewer__content { background: var(--color-bg-main); color: var(--color-text-main); border: 1px solid var(--color-border); border-radius: 18px; box-shadow: none; }
+#pet-image-viewer .pet-image-viewer__header { background: var(--color-bg-main); border-bottom: 1px solid var(--color-border); padding: 20px 70px 18px 22px; }
+#pet-image-viewer .pet-image-viewer__title { font-family: var(--font-display); color: var(--color-text-main); }
+#pet-image-viewer :is(.pet-image-viewer__subtitle, .pet-image-viewer__meta, .pet-image-viewer__hint, .pet-image-viewer__loading) { color: var(--color-text-muted); }
+#pet-image-viewer .pet-image-viewer__hint { background: var(--color-bg-main); }
+#pet-image-viewer .pet-image-viewer__image-frame { background: var(--color-bg-card); border-color: var(--color-border); }
+#pet-image-viewer .pet-image-viewer__close { background: var(--color-bg-card); color: var(--color-text-main); border: 1px solid var(--color-border); border-radius: 10px; }
+@media (max-width: 480px) {
+  #modal-overlay.companion-journal-modal #modal-body { padding: 0 16px 20px; }
+  .companion-journal-modal .journal-modal-header { margin-inline: -16px; padding-left: 16px; }
+  .companion-journal-modal .nickname-modal__actions .btn { flex: 1 1 100px; }
+}
 .identity-dialog .journal-care { margin-bottom: 28px; scroll-margin-top: 84px; }
 .identity-dialog .journal-care-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .identity-dialog .journal-care-heading > span { color: var(--color-primary); font-size: .85rem; }

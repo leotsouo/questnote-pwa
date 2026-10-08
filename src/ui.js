@@ -65,7 +65,6 @@ import {
   getPetCooldownRemaining,
   formatCooldown,
   updatePetBondUnlocks,
-  getBondUnlocksByLevel,
 } from './collectionService.js';
 import {
   COLLECTION_RARITY_ORDER,
@@ -93,7 +92,6 @@ import {
   randomStatusInterval,
   EXPEDITION_COMPLETE_MSG,
 } from './expeditionStatusService.js';
-import { getBondUnlockText } from './loreService.js';
 import {
   downloadBackup,
   readBackupFile,
@@ -488,7 +486,8 @@ function openNicknameModal(petId) {
 
   openModal(`
     <div class="nickname-modal">
-      <h2 class="modal-title">設定寵物暱稱</h2>
+      <p class="journal-eyebrow">只屬於你們的稱呼</p>
+      <h2 class="modal-title">想怎麼稱呼牠？</h2>
       <div class="nickname-modal__pet">
         ${petImageHtml(pet, { size: 'md' })}
         <p class="nickname-modal__original">原始名稱：${escapeHtml(originalName)}</p>
@@ -522,7 +521,7 @@ function openNicknameModal(petId) {
   updateCounter();
   input?.addEventListener('input', updateCounter);
 
-  document.getElementById('nickname-cancel')?.addEventListener('click', closeModal);
+  document.getElementById('nickname-cancel')?.addEventListener('click', () => openPetDetailModal(petId));
 
   document.getElementById('nickname-clear')?.addEventListener('click', trackUpdateActivity(async () => {
     const result = await clearPetNickname(petId);
@@ -610,7 +609,7 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
   try {
     initTwilightChrome();
     const bondJourneyController = createBondJourneyController({ getState: () => state, refresh: (...args) => onRefresh(...args),
-      openModal, closeModal, showToast, switchView,
+      openModal, closeModal, showToast, switchView, openDetail: openPetDetailModal,
       portrait: (pet) => petImageHtml(pet, { size: 'md', loading: 'eager', eager: true }) });
     bondJourneyController.mount();
     createAwakeningController({ getState: () => state, refresh: (...args) => onRefresh(...args),
@@ -1606,6 +1605,14 @@ export function openModal(contentHtml) {
   const body = document.getElementById('modal-body');
   if (!overlay?.classList.contains('open')) rememberDialogFocus(overlay);
   if (body) body.innerHTML = contentHtml;
+  const companionPage = body?.querySelector('.nickname-modal, .bond-reader, .awakening-reader');
+  overlay?.classList.toggle('companion-journal-modal', !!companionPage);
+  if (companionPage) {
+    const header = document.createElement('div');
+    header.className = 'journal-modal-header';
+    header.textContent = '夥伴手記';
+    body.prepend(header);
+  }
   overlay?.classList.add('open');
   document.body.classList.add('modal-open');
   if (body) body.scrollTop = 0;
@@ -1631,6 +1638,13 @@ export function closeModal() {
 /* ─── V2.6.1 寵物原圖放大檢視器（獨立 overlay，可疊在其他 modal 之上） ─── */
 
 let petImageViewerLastFocus = null;
+let petImageViewerReturn = null;
+
+function openJournalImage(petId) {
+  openPetImageViewer(petId);
+  if (document.getElementById('pet-image-viewer')) petImageViewerReturn = () => openPetDetailModal(petId);
+  else openPetDetailModal(petId);
+}
 
 /**
  * 依 petId 開啟寵物原圖檢視器（自 enrichedCollection / allPets / companion 取資料）。
@@ -1791,6 +1805,9 @@ export function closePetImageViewer() {
   }
   if (overlay) restoreDialogFocus(overlay);
   petImageViewerLastFocus = null;
+  const returnToJournal = petImageViewerReturn;
+  petImageViewerReturn = null;
+  if (overlay) returnToJournal?.();
 }
 
 /** 確認彈窗 */
@@ -3926,6 +3943,7 @@ function bindPetFeedInteractions(companion, { root = document, onFed, onWorkshop
 function mountJournalCare(host, petId, refreshJournal) {
   const pet = state.enrichedCollection.find((entry) => entry.id === petId && entry.owned);
   if (!host || !pet) return;
+  void recordOnboardingEvent('pet-care-opened');
   host.dataset.journalPetId = petId;
   const progress = getBondProgress(pet.bondExp ?? 0, pet.bondLevel ?? 1);
   const specialty = getPetSpecialty(pet);
@@ -4999,24 +5017,6 @@ const BOND_UNLOCK_MESSAGES = {
   5: '羈絆解放！解鎖羈絆外框與故事',
 };
 
-/** 下一個解鎖提示文字 */
-const BOND_NEXT_UNLOCK = {
-  1: '下一個解鎖：Lv.2 親近台詞',
-  2: '下一個解鎖：Lv.3 羈絆徽章',
-  3: '下一個解鎖：Lv.4 首頁陪伴特效',
-  4: '下一個解鎖：Lv.5 羈絆外框與故事',
-  5: '羈絆已完全解放',
-};
-
-/** 已解鎖項目顯示名稱 */
-const BOND_UNLOCK_ITEM_LABELS = {
-  dialogueLv2: '親近台詞',
-  badgeLv3: '羈絆徽章',
-  homeEffectLv4: '首頁陪伴特效',
-  bondFrameLv5: '羈絆外框',
-  bondStoryLv5: '羈絆故事',
-};
-
 /** 取得羈絆徽章 HTML（Lv.3 以上顯示；Lv.5 顯示羈絆解放） */
 function bondBadgeHtml(pet) {
   const bondLevel = pet?.bondLevel ?? 0;
@@ -5146,7 +5146,7 @@ function renderGachaPoolSwitcher() {
 }
 
 function renderGachaView() {
-  if (renderLocalIdentityView('gacha', state, onRefresh, { switchView, mountJournalCare, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) return;
+  if (renderLocalIdentityView('gacha', state, onRefresh, { switchView, mountJournalCare, openImage: openJournalImage, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) return;
   if (renderEncounterView('gacha', state, onRefresh, encounterActions())) return;
   const pool = getSelectedGachaPool();
   syncTwilightGacha(state, pool);
@@ -6410,7 +6410,7 @@ function renderCollectionSeriesFilters() {
 }
 
 function renderCollectionView() {
-  if (renderLocalIdentityView('collection', state, onRefresh, { switchView, mountJournalCare, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) { collectionRenderGate.clear(); return; }
+  if (renderLocalIdentityView('collection', state, onRefresh, { switchView, mountJournalCare, openImage: openJournalImage, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) { collectionRenderGate.clear(); return; }
   if (renderEncounterView('collection', state, onRefresh, encounterActions())) { collectionRenderGate.clear(); return; }
   renderCollectionProgressSummary();
   renderCollectionMilestones();
@@ -6543,162 +6543,11 @@ function renderCollectionCard(pet, imageOptions = {}) {
 
 /** 圖鑑詳情彈窗 */
 function openPetDetailModal(petId) {
-  const pet = state.enrichedCollection.find((p) => p.id === petId);
-  if (!pet) return;
-
-  const owned = pet.owned;
-  const rarityClass = `rarity-${pet.rarity}`;
-  const bondLevel = pet.bondLevel ?? 0;
-  const bondLiberated = owned && bondLevel >= 5;
-
-  let bondStatusSection = '';
-  if (owned) {
-    const st = pet.bondUnlockState || {};
-    const unlockedItems = getBondUnlocksByLevel(bondLevel)
-      .filter((k) => BOND_UNLOCK_ITEM_LABELS[k])
-      .map((k) => BOND_UNLOCK_ITEM_LABELS[k]);
-    const unlockedHtml = unlockedItems.length
-      ? unlockedItems.map((t) => `<span class="bond-status-card__chip">${escapeHtml(t)}</span>`).join('')
-      : '<span class="bond-status-card__chip bond-status-card__chip--none">尚未解鎖羈絆內容</span>';
-    const nextHint = BOND_NEXT_UNLOCK[Math.min(Math.max(bondLevel, 1), 5)];
-    const liberatedLabel = st.bondLiberated
-      ? '<span class="bond-liberated-label">羈絆解放</span>'
-      : '';
-    const storyHtml = renderBondDetail(pet, state);
-    bondStatusSection = `
-      <section class="bond-section">
-        <div class="bond-section__title-row">
-          <h3 class="bond-section__title">羈絆狀態</h3>
-          ${liberatedLabel}
-        </div>
-        <div class="bond-status-card ${st.bondLiberated ? 'is-unlocked' : 'is-locked'}">
-          <p class="bond-status-card__level">目前親密度 Lv.${bondLevel || 1}</p>
-          <div class="bond-status-card__chips">${unlockedHtml}</div>
-          <p class="bond-status-card__next">${escapeHtml(nextHint)}</p>
-        </div>
-        <h3 class="bond-section__title bond-section__title--story">羈絆故事</h3>
-        ${storyHtml}
-      </section>`;
-  }
-
-  let bondSection = '';
-  if (owned && pet.bondUnlocks && Object.keys(pet.bondUnlocks).length > 0) {
-    const levels = [2, 3, 4, 5];
-    bondSection = `
-      <section class="pet-detail__bond">
-        <h3 class="pet-detail__subtitle">親密度解鎖</h3>
-        <ul class="bond-unlock-list">
-          ${levels
-            .map((lv) => {
-              const text = getBondUnlockText(pet, lv);
-              if (!text) return '';
-              const unlocked = bondLevel >= lv;
-              return `<li class="bond-unlock ${unlocked ? 'bond-unlock--open' : ''}">
-                <span class="bond-unlock__lv">Lv.${lv}</span>
-                <span class="bond-unlock__text">${unlocked ? escapeHtml(text) : '???'}</span>
-              </li>`;
-            })
-            .join('')}
-        </ul>
-      </section>`;
-  }
-
-  const personalityTags =
-    pet.personality?.length > 0
-      ? pet.personality.map((p) => `<span class="tag">${escapeHtml(p)}</span>`).join('')
-      : '';
-
-  const nicknameSection = owned
-    ? `
-      <section class="pet-detail__nickname card">
-        <h3 class="pet-detail__subtitle">暱稱</h3>
-        ${
-          pet.nickname
-            ? `<p class="pet-detail__display-name">${escapeHtml(petDisplayName(pet))}</p>
-               <p class="pet-original-name">原名：${escapeHtml(petOriginalName(pet))}</p>`
-            : `<p class="pet-detail__display-name">${escapeHtml(petOriginalName(pet))}</p>
-               <p class="pet-detail__nickname-empty">尚未設定暱稱</p>`
-        }
-        <div class="pet-detail__nickname-actions">
-          <button type="button" class="btn btn--secondary btn--sm" data-action="edit-nickname" data-pet-id="${pet.id}">${pet.nickname ? '修改暱稱' : '設定暱稱'}</button>
-          ${pet.nickname ? `<button type="button" class="btn btn--ghost btn--sm" data-action="clear-nickname" data-pet-id="${pet.id}">清除暱稱</button>` : ''}
-        </div>
-      </section>`
-    : '';
-
-  openModal(`
-    <div class="pet-detail pet-detail-card ${rarityClass} ${bondLiberated ? 'is-bond-liberated' : ''}">
-      <div class="pet-detail__hero">
-        ${owned
-          ? `<button type="button" class="pet-detail-image-button" data-action="detail-view-image" data-pet-id="${pet.id}" aria-label="查看 ${escapeHtml(petDisplayName(pet))} 原圖">
-               ${petImageHtml(pet, { size: 'lg', loading: 'eager', eager: true })}
-             </button>`
-          : petImageHtml(pet, { size: 'lg', preview: true, loading: 'lazy' })}
-      </div>
-      ${owned ? '<p class="pet-detail__image-hint">點擊圖片查看原圖</p>' : ''}
-      <h2 class="pet-detail__name">${owned ? escapeHtml(petDisplayName(pet)) : '???'}</h2>
-      ${owned && pet.nickname ? `<p class="pet-original-name pet-original-name--center">原名：${escapeHtml(petOriginalName(pet))}</p>` : ''}
-      ${owned && pet.title ? `<p class="pet-detail__title">${escapeHtml(pet.title)}</p>` : ''}
-      <div class="pet-detail__badges">
-        <span class="badge badge--rarity ${rarityClass}">${pet.rarity}</span>
-        ${pet.element ? `<span class="badge badge--element">${escapeHtml(pet.element)}</span>` : ''}
-      </div>
-      ${personalityTags ? `<div class="pet-detail__tags">${personalityTags}</div>` : ''}
-      ${owned ? intimacySummary(bondLevel || 1, getPetSpecialty(pet), pet.legacySpecialtyFloor) : ''}
-      ${owned ? `<p class="pet-detail__specialty">探險專長：${escapeHtml(getPetSpecialty(pet).label)} Lv.${getPetSpecialty(pet).level}。親密度與日常同行逐步培養專長；不同稀有度都能在合適隊伍中派上用場。</p>` : ''}
-      ${owned ? `<p class="pet-detail__gift-affinity">禮物喜好：${escapeHtml(getGiftAffinityTags(pet).map((tag) => GIFT_TAG_LABELS[tag]).join('、') || '通用禮物；目前沒有主題喜好')}</p>` : ''}
-      ${owned ? `<p class="pet-detail__bond-lv">親密度 Lv.${bondLevel || 1}</p>` : ''}
-      ${owned ? `<button type="button" class="btn btn--primary btn--block pet-detail__feed-button" data-action="detail-feed-pet" data-pet-id="${escapeHtml(pet.id)}">餵食</button>` : ''}
-      <p class="pet-detail__desc">${escapeHtml(pet.description)}</p>
-      ${owned && pet.lore ? `<p class="pet-detail__lore">${escapeHtml(pet.lore)}</p>` : ''}
-      ${!owned ? '<p class="pet-detail__locked">召喚解鎖後，可閱讀完整背景與親密度故事。</p>' : ''}
-      ${bondStatusSection}
-      ${renderAwakeningDetail(pet, state)}
-      ${bondSection}
-      ${nicknameSection}
-      ${
-        owned && !pet.isCompanion
-          ? `<button class="btn btn--companion btn--block" data-action="set-companion-detail" data-pet-id="${pet.id}">設為陪伴</button>`
-          : ''
-      }
-      ${owned && pet.isCompanion ? '<p class="companion-badge companion-badge--detail">目前陪伴中</p>' : ''}
-    </div>
-  `);
-  if (owned) void recordOnboardingEvent('pet-care-opened');
-
-  document.querySelector('[data-action="detail-feed-pet"]')?.addEventListener('click', () => {
-    openPetFeedModal(pet);
-  });
-
-  document.querySelector('[data-action="set-companion-detail"]')?.addEventListener('click', trackUpdateActivity(async (e) => {
-    const id = e.target.dataset.petId;
-    if (id) {
-      await setCompanion(id);
-      closeModal();
-      await onRefresh({ renderMode: ['collection', 'tasks'] });
-      showToast('已設為陪伴寵物', 'success');
-      void recordOnboardingEvent('companion-set', { petId: id });
-    }
-  }));
-
-  document.querySelector('[data-action="edit-nickname"]')?.addEventListener('click', (e) => {
-    const id = e.target.dataset.petId;
-    if (id) openNicknameModal(id);
-  });
-
-  document.querySelector('[data-action="clear-nickname"]')?.addEventListener('click', trackUpdateActivity(async (e) => {
-    const id = e.target.dataset.petId;
-    if (!id) return;
-    const result = await clearPetNickname(id);
-    if (!result.success) {
-      showToast(result.message || '暱稱儲存失敗，請稍後再試。', 'error');
-      return;
-    }
-    closeModal();
-    await onRefresh({ renderMode: ['collection'] });
-    openPetDetailModal(id);
-    showToast('暱稱已清除', 'success');
-  }));
+  if (!state.enrichedCollection.some((pet) => pet.id === petId)) return;
+  renderCollectionView();
+  closeModal();
+  if (LOCAL_ART_PREVIEW) openLocalCompanionJournal(petId);
+  else openCompanionJournal(petId);
 }
 
 /* ─── 探險頁 ─── */
@@ -9352,7 +9201,7 @@ function encounterActions() {
       catch (error) { await onRefresh({ renderMode:['gacha','collection'] }); throw error; }
     },
     async dismissMigration() { await acknowledgeEncounterMigration(); state.encounterEconomy = await getEncounterEconomy(); },
-    switchView, mountJournalCare, openPetDetail: openPetDetailModal, openNickname: openNicknameModal,
+    switchView, mountJournalCare, openImage: openJournalImage, openPetDetail: openPetDetailModal, openNickname: openNicknameModal,
     isBusy: () => isGachaPullInProgress() || !!maybePlayPoolDebut._inflight,
     isExpanded: (id) => shouldShowAwakenedPresentation(getUnlockEntryForPool(id)),
     draw: (count) => {

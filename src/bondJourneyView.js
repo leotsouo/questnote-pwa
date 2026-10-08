@@ -38,7 +38,7 @@ export function renderBondDetail(pet, state) {
 export function renderBondOverview(pet, state, portrait = '') {
   const journey = journeyOf(state);
   const story = findBondStory(state.bondStories, pet.id);
-  if (!story) return `<div class="bond-reader"><h2 class="modal-title">夥伴故事</h2><p>這位夥伴的故事暫時無法載入，請稍後重試。</p>${button('重新載入', 'retry')}${button('關閉', 'close', '', true)}</div>`;
+  if (!story) return `<div class="bond-reader"><h2 class="modal-title">夥伴故事</h2><p>這位夥伴的故事暫時無法載入，請稍後重試。</p>${button('重新載入', 'retry')}${button('返回夥伴手記', 'close', '', true)}</div>`;
   const summary = getBondSummary(journey, pet, story);
   const active = summary.active;
   const other = journey.active && !active;
@@ -61,7 +61,7 @@ export function renderBondOverview(pet, state, portrait = '') {
       ${button(journey.displayPetId === pet.id ? '收起展示' : '展示在陪伴頁與營地', 'display', '', true)}</section>
       <section class="bond-agreement"><h3>日常同行</h3><p>完成任務或習慣 1 次，星塵 +${DAILY_COMPANION_REWARD}。所有夥伴合計每天可領一次。</p>
       ${claimedToday ? '<p class="bond-note">今天已領取，明天再一起走一小段。</p>' : !journey.active ? button('選擇日常目標', 'select', 'data-level="0"') : ''}</section>` : ''}
-    ${button('關閉', 'close', '', true)}</div>`;
+    ${button('返回夥伴手記', 'close', '', true)}</div>`;
 }
 
 export function renderAgreement(active, state) {

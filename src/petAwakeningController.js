@@ -28,7 +28,7 @@ export function createAwakeningController({ getState, refresh, openModal, closeM
     const currentRequest = ++requestId;
     petId = id;
     clearReturn();
-    openModal(`<section class="awakening-reader" data-awakening-pet="${id}" aria-busy="true"><h2>羈絆覺醒</h2><p>正在讀取試煉…</p><button class="btn" data-awake-action="close">返回角色詳情</button></section>`);
+    openModal(`<section class="awakening-reader" data-awakening-pet="${id}" aria-busy="true"><h2>羈絆覺醒</h2><p>正在讀取試煉…</p><button class="btn" data-awake-action="close">返回夥伴手記</button></section>`);
     await refresh({ renderMode: ['tasks', 'collection', 'expedition'] });
     if (currentRequest === requestId) render();
   }

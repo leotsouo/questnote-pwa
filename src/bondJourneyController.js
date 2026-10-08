@@ -3,7 +3,7 @@ import { loadBondStories, chooseBondResponse, startBondAgreement, syncBondJourne
 import { renderBondOverview, renderBondChapter, renderBondSelector } from './bondJourneyView.js';
 import { trackUpdateActivity } from './updateActivity.js';
 
-export function createBondJourneyController({ getState, refresh, openModal, closeModal, showToast, switchView, portrait }) {
+export function createBondJourneyController({ getState, refresh, openModal, closeModal, showToast, switchView, portrait, openDetail }) {
   let petId = null;
   let screen = 'overview';
   let chapter = 2;
@@ -13,6 +13,10 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
   let busy = false;
   let mounted = false;
   const pet = () => getState().enrichedCollection?.find((item) => item.id === petId && item.owned);
+  function returnToJournal() {
+    closeModal();
+    if (petId) openDetail?.(petId);
+  }
   function render() {
     // A dismissed reader must stay closed when an asynchronous load finishes.
     if (!document.getElementById('modal-overlay')?.classList.contains('open')) return;
@@ -28,7 +32,7 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
     screen = 'overview';
     previewChoice = null;
     // Capture the opener before refresh replaces the home view.
-    openModal('<section class="bond-reader" aria-busy="true"><h2>夥伴故事</h2><p>正在讀取同行紀錄…</p><button class="btn" data-bond-action="close">關閉</button></section>');
+    openModal('<section class="bond-reader" aria-busy="true"><h2>夥伴故事</h2><p>正在讀取同行紀錄…</p><button class="btn" data-bond-action="close">返回夥伴手記</button></section>');
     getState().bondStories = await loadBondStories();
     await refresh({ renderMode: ['tasks', 'collection', 'expedition'] });
     render();
@@ -36,7 +40,7 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
   async function handle(target) {
     const state = getState();
     const action = target.dataset.bondAction;
-    if (action === 'close') { closeModal(); return; }
+    if (action === 'close') { returnToJournal(); return; }
     if (action === 'retry') { await open(petId); return; }
     if (action === 'overview') { screen = 'overview'; render(); return; }
     if (action === 'chapter') { chapter = Number(target.dataset.level); previewChoice = null; screen = 'chapter'; render(); return; }
@@ -105,7 +109,7 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
     document.addEventListener('click', trackUpdateActivity(async (event) => {
       const target = event.target.closest('[data-bond-open], [data-bond-action]');
       if (!target || target.disabled) return;
-      if (target.dataset.bondAction === 'close') { event.preventDefault(); closeModal(); return; }
+      if (target.dataset.bondAction === 'close') { event.preventDefault(); returnToJournal(); return; }
       if (busy) return;
       event.preventDefault();
       busy = true;

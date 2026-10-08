@@ -22,6 +22,20 @@ try {
     const context = await browser.newContext({ viewport: { width: 909, height: 764 }, serviceWorkers: 'block' });
     await context.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
     const page = await context.newPage();
+    const checkSubpageLayouts = async (label) => {
+      for (const width of [909, 390]) {
+        await page.setViewportSize({ width, height: 844 });
+        for (const theme of ['default', 'sweet', 'twilight']) {
+          await page.evaluate((value) => { document.documentElement.dataset.theme = value; document.body.dataset.theme = value; }, theme);
+          const modal = page.locator('#modal-body');
+          assert.equal(await modal.evaluate((el) => el.scrollWidth <= el.clientWidth + 1), true, `${label}: ${theme} ${width} horizontal fit`);
+          assert.ok(await page.locator('.companion-journal-modal .journal-modal-header').isVisible());
+          await page.evaluate(() => { document.documentElement.dataset.fontSize = 'extra-large'; });
+          assert.equal(await modal.evaluate((el) => el.scrollWidth <= el.clientWidth + 1), true, `${label}: ${theme} ${width} extra-large font fit`);
+          await page.evaluate(() => { document.documentElement.dataset.fontSize = 'standard'; });
+        }
+      }
+    };
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(origin + '/');
@@ -58,10 +72,24 @@ try {
     assert.equal(await dialog.locator('#companion-feed-select').evaluate((el) => document.activeElement === el), true, 'Feed shortcut focuses food picker');
     await dialog.getByRole('button', { name: '關閉', exact: true }).click();
     await page.locator('[data-action="companion-view-detail"]:visible').first().click();
-    await page.locator('[data-action="detail-feed-pet"]').click();
     await dialog.locator('#companion-feed-btn').waitFor();
     await page.locator('#modal-overlay').waitFor({ state: 'hidden' });
     assert.equal(await dialog.getByText('養成與餵食', { exact: true }).count(), 0);
+    await dialog.locator('[data-identity-action="app-nickname"]').click();
+    await page.locator('#nickname-input').fill('小丹');
+    await checkSubpageLayouts('nickname');
+    assert.ok(await page.locator('.companion-journal-modal .journal-modal-header').isVisible());
+    await page.locator('#nickname-save').click();
+    await dialog.getByText('你的稱呼：小丹 · 日常陪伴使用暱稱', { exact: true }).waitFor();
+    await dialog.locator('[data-identity-action="app-nickname"]').click();
+    await page.locator('#nickname-input').fill('不儲存');
+    await page.locator('#nickname-cancel').click();
+    await dialog.getByText('你的稱呼：小丹 · 日常陪伴使用暱稱', { exact: true }).waitFor();
+    await dialog.locator('[data-identity-action="app-image"]').click();
+    await page.locator('#pet-image-viewer.is-open').waitFor();
+    assert.equal(await dialog.evaluate((el) => el.open), false);
+    await page.getByRole('button', { name: '關閉原圖檢視', exact: true }).click();
+    await dialog.locator('#companion-feed-btn').waitFor();
     const read = () => page.evaluate(async () => {
       const db = await import('/src/db.js');
       return { inventory: await db.dbGet(db.STORES.META, 'inventory'), pet: await db.dbGet(db.STORES.COLLECTION, 'pet_ur17'), other: await db.dbGet(db.STORES.COLLECTION, 'pet_n01') };
@@ -82,7 +110,7 @@ try {
     for (const width of [909, 390]) {
       await page.setViewportSize({ width, height: 844 });
       for (const theme of ['default', 'sweet', 'twilight']) {
-        await page.evaluate((value) => { document.body.dataset.theme = value; }, theme);
+        await page.evaluate((value) => { document.documentElement.dataset.theme = value; document.body.dataset.theme = value; }, theme);
         assert.equal(await dialog.evaluate((el) => el.scrollWidth <= el.clientWidth + 1), true, `${theme} ${width}: horizontal fit`);
         assert.ok(await dialog.locator('#companion-feed-btn').isVisible());
       }
@@ -90,14 +118,21 @@ try {
     await dialog.locator('[data-bond-open]').click();
     await page.locator('#modal-body .bond-reader').waitFor();
     assert.equal(await dialog.evaluate((el) => el.open), false, 'Story reader is not trapped behind journal');
-    await page.locator('#modal-close').click();
-    await page.locator('.nav-item[data-view="collection"]').click();
-    await page.locator('.collection-card button[data-pet="pet_ur17"]').click();
+    await page.locator('[data-bond-screen="overview"]').waitFor();
+    await checkSubpageLayouts('story');
+    await page.locator('[data-bond-action="close"]').click();
+    await dialog.locator('#companion-feed-btn').waitFor();
     await dialog.locator('[data-awake-open]').click();
     await page.locator('#modal-overlay').waitFor({ state: 'visible' });
     assert.equal(await dialog.evaluate((el) => el.open), false);
-    await page.locator('#modal-close').click();
-    await page.locator('.collection-card button[data-pet="pet_ur17"]').click();
+    await page.locator('.awakening-wizard').waitFor();
+    await checkSubpageLayouts('awakening');
+    if (process.env.JOURNAL_SCREENSHOT && origin.endsWith(':4193')) {
+      await page.waitForFunction(() => !document.querySelector('#toast-container')?.children.length);
+      await page.screenshot({ path: process.env.JOURNAL_SCREENSHOT });
+    }
+    await page.locator('[data-awake-action="close"]').click();
+    await dialog.locator('#companion-feed-btn').waitFor();
     for (let i = 0; i < 2; i += 1) {
       await dialog.locator('#companion-feed-btn').click();
       await page.waitForFunction((expected) => document.querySelector('#companion-feed-select')?.textContent.includes(`×${expected}`) || !!document.querySelector('#companion-feed-workshop-btn'), 1 - i);
