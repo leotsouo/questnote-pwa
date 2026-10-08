@@ -30,3 +30,11 @@
 - 仍待真實手機與已安裝 PWA 驗證觸控、鍵盤和更新；正式發布後另需 Pages 成功及 HTTPS 逐檔雜湊回讀。
 
 2026-10-08 17:37（台北），使用者對 packageHash `369fa577d0cb216eebfec558b6986513bc2f3d5214def3ca165828f51cfe90f4` 明確表示「通過可以發佈 去跑更新流程」。此核准對應上述 preview／production artifact ID。使用者已知晴信原野的 `animationKey` 為 `none`，並在之後改定新 SOP 為所有池必須有 3000ms 前奏；目前包仍未符合該新要求。此發布依使用者對此確切整包的明確決定執行，不能據此把本包記成符合新動畫規格。
+
+## 正式發布紀錄
+
+- PR #84 已合併；`main` 為 `5af21f55127b1920ba2baec8f1de1dbc4ef3d905`。PR CI 的 `npm test`、卡池資料驗證與圖片驗證通過。
+- Production artifact `af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a` 以 byte-identical tree 推送到 `gh-pages` commit `76cefea20bd5de44da225cc24fb147a20ae18db8`；Pages run [37758910237](https://github.com/leotsouo/questnote-pwa/actions/runs/37758910237) 成功。
+- 正式 HTTPS `release-artifact.json` 回讀 artifact ID、manifest SHA-256 `e08a2d79be599f3496097392dbc6a6d870ac2875784e6441d7e5285cf198c8bf` 與 source commit 相符。663 個一般 HTTPS 檔案逐一通過長度及 SHA-256 核對，manifest 本身也相符；`.nojekyll` 是部署標記，不由 HTTPS 路徑提供。版本模組回讀為 3.8.8。
+- 發布按使用者對確切 packageHash 的核准執行。晴信原野仍沒有抽卡前奏，這是本次明確接受的規格差異，不能當作新 SOP 動畫驗收通過。未清除正式存檔，也未強制啟用等待中的 service worker。
+- 實機手機與已安裝 PWA 的更新仍待裝置驗證；使用者可在線關閉其他 QuestNote 視窗後正常重開，讓 verified service worker 更新。

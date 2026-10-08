@@ -36,11 +36,11 @@ Pipeline 提供 AI handoff scaffold、資料契約、審核與組裝流程。**�
 
 ### 動畫也是企劃與發布的必要項目
 
-每個新的真實卡池都在 `brief.animationPlan` 明確填入：`decision`（`dedicated`／`reuse`／`none`）、`storyboard`（入場和抽卡分鏡／時長）、`rarityNotes`（SSR／UR 演出與十連順序）、`motionNotes`（略過、減少動態、失敗回退）。重用或無動畫要寫明理由；省略欄位僅供舊 workspace 相容，不能作為新池已完成演出的證據。這些內容隨 brief bytes 進入現有 exact-hash 核准鏈，不新增隱藏的聊天核准。
+每個新的真實卡池都在 `brief.animationPlan` 明確填入：`decision`（`dedicated`／`reuse`；新池禁止 `none`）、`storyboard`（入場和抽卡分鏡／時長）、`rarityNotes`（SSR／UR 演出與十連順序）、`motionNotes`（略過、減少動態、失敗回退）。所有卡池正常模式都必須有可播放的 3000ms 抽卡前奏，不因專屬／沿用或主題／共用視覺而變更時長；減少動態使用 500ms 前奏。runtime registry 的 `none` 僅供舊 catalog 相容，不代表新池可省略動畫。省略欄位僅供舊 workspace 相容，不能作為新池已完成演出的證據。這些內容隨 brief bytes 進入現有 exact-hash 核准鏈，不新增隱藏的聊天核准。
 
 新增模板先完成受控 registry、runtime、離線資源 closure 與呈現驗證，再鎖定 authoring 輸入。蜜光糖庭使用 `honeylight_sugar`，UR 可用 `caramel`／`cream` reveal key；全部是本地 CSS／SVG，無付費生成或音效。catalog 只能指定受控 key 和純文字，不能放可執行模板。
 
-發布 review 必須附動畫驗收紀錄，綁定 source commit、candidate ID、production／preview artifact ID 和 manifest SHA-256，記錄實際測試與預覽網址。至少涵蓋首次／短入場、單抽、十連、每種 SSR／UR、重複稀有角色、略過、鍵盤、減少動態、圖片失敗和清場。前奏略過仍接完整 SSR+ queue；queue 略過是另一項操作。無實際預覽證據時不宣告發布準備完成。
+發布 review 必須附動畫驗收紀錄，綁定 source commit、candidate ID、production／preview artifact ID 和 manifest SHA-256，記錄實際測試與預覽網址。至少涵蓋首次／切換完整入場、每種稀有度的單抽與十連前奏、每種 SSR／UR、重複稀有角色、略過、鍵盤、減少動態、圖片失敗和清場。前奏略過仍接完整 SSR+ queue；queue 略過是另一項操作。無實際預覽證據時不宣告發布準備完成。
 
 動畫／契約工具修改會使原核准鏈失效：保留舊 receipts 與 immutable candidates，從當前 hash 重新 review。已依相同模式核准的卡圖原始 bytes 相同，可記錄 hash 比對沿用其核准，不要求重產圖片。所有舊發布產物保留歷史，但不可拿來發布新動畫。最後正式發布仍需使用者明確核准。
 
