@@ -54,3 +54,11 @@
 測試產物 wrapper 兩次因既有 OneDrive policy 檔案驗證失敗而拒絕產生輸出，故本次測試只輸出 stdout，未另存截圖或測試產物，也未修改治理規則。sandbox 中的 loopback origin 無法由桌面瀏覽器連線，改用經核准的本機隔離伺服器與瀏覽器後驗證通過。
 
 本階段完成設計及原型，尚未接入產品、沒有存檔遷移、沒有推送或部署。後續先確認此代表流程的方向，再替換現有覺醒 reader 和入口，接入服務及返回導航，執行原生 IndexedDB 整合、跨分頁、離線與完整產品回歸，最後才擴展其他畫面。
+
+## 檢視修正：回覆後仍能載入圖片
+
+2026-10-08 使用者檢視時發現覺醒卡面空白。實際核對：頁面 img 的 naturalWidth 為 0，本機 origin 連線遭 ECONNREFUSED；前一輪的工具 session 伺服器已停止，已載入的頁面仍在，但新圖片請求失敗。
+
+提供使用者持續檢視時，須以 `Start-Process -FilePath 'C:/Program Files/nodejs/node.exe' -ArgumentList @('devtools/onboarding-browser-server.mjs','57206') -WorkingDirectory <checkout> -WindowStyle Hidden -PassThru` 啟動獨立本機程序，不能依賴回合內的終端 session。僅綁定 127.0.0.1，不改系統啟動設定；檢視結束時只停止本次明確建立的 PID。
+
+原型圖片依序使用對應形態的 card、stage、original；全失敗時顯示「圖片暫時無法載入」及重試按鈕。重試保留覺醒及試煉進度，不重新消耗材料；未覺醒仍僅使用初遇圖。瀏覽器驗證新增攔截圖片請求的失敗與恢復情境。

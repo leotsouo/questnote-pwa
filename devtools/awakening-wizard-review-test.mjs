@@ -65,6 +65,28 @@ try {
   await preset('food'); await question('行旅糰');
   assert.equal(await page.locator('[data-action="awaken"]').count(), 0);
   await visit('food'); await question('共赴'); checks.push('Missing food blocks ritual and resumes after crafting');
+  // Use a fresh context so already decoded images cannot satisfy the failure case.
+  const failedContext = await browser.newContext();
+  let blockImages = true;
+  await failedContext.route('**/*', (route) => {
+    const url = new URL(route.request().url());
+    return url.origin !== base || (blockImages && url.pathname.startsWith('/assets/pets/')) ? route.abort() : route.continue();
+  });
+  const failedPage = await failedContext.newPage();
+  await failedPage.goto(`${base}/devtools/awakening-wizard-review.html`);
+  await failedPage.locator('.review-bar details').evaluate((el) => { el.open = true; });
+  await failedPage.locator('#scenario').selectOption('awakened');
+  await failedPage.locator('#reset').click();
+  await failedPage.locator('[data-action="open"]').click();
+  await failedPage.locator('[data-action="retry-image"]').waitFor();
+  assert.ok((await failedPage.locator('.portrait-caption').textContent()).includes('圖片暫時無法載入'));
+  blockImages = false;
+  await failedPage.locator('[data-action="retry-image"]').click();
+  await failedPage.waitForFunction(() => { const img = document.querySelector('.portrait'); return img.complete && img.naturalWidth > 0; });
+  assert.equal(await failedPage.locator('[data-action="retry-image"]').count(), 0);
+  assert.ok((await failedPage.locator('.stage').textContent()).includes('覺醒完成'));
+  await failedContext.close();
+  checks.push('Failed images offer retry; retry restores awakened artwork without losing wizard state');
   await preset('conflict'); await question('暫停'); await act('switch'); await question('小事');
   checks.push('Another active trial requires explicit pause and switch');
   for (const width of [320, 393, 736, 1024]) {

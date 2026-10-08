@@ -91,10 +91,22 @@ function render(focus = false) {
   const image = state.awakened && state.form === 'awakened' ? entry.awakenedImage?.card || pet.imageVariants.card : entry.initialImage.card;
   app.setAttribute('aria-busy', 'false');
   app.innerHTML = `<div class="crumb">圖鑑 / 劍隱山河 / ${escape(entry.name)}${inside ? ' / 羈絆覺醒' : ''}</div><div class="layout"><aside class="identity"><div class="art"><img class="portrait" src="${image}" alt="${escape(entry.name)}${state.awakened && state.form === 'awakened' ? '覺醒相' : '初遇相'}"><p class="portrait-caption">${state.awakened && state.form === 'awakened' ? '覺醒相' : '初遇相'}</p></div><div><p class="eyebrow">${entry.rarity} · 劍隱山河</p><h1>${escape(entry.name)}</h1><p class="subtle">${state.owned ? `已收藏 · 親密度 Lv.${state.level}` : '尚未收藏'}</p><p class="story subtle">${escape(entry.signature)}</p></div></aside><section>${inside ? `<p class="eyebrow">一諾同行 · 羈絆覺醒</p><p class="fact">${escape(entry.trialTitle)}${state.paused ? ' · 已暫停' : ''}</p><div class="stepper" aria-hidden="true">${Array.from({ length: 8 }, (_, i) => `<span class="${i < rank ? 'passed' : ''}"></span>`).join('')}</div><p class="fact">${rank < 3 ? '準備資格' : rank === 3 ? '接下約定' : rank < 6 ? '守諾試煉' : rank === 6 ? '準備材料' : rank === 7 ? '完成儀式' : '新的同行'}</p><section class="stage" aria-labelledby="question">${content(current)}${destination ? destinationHtml() : ''}<p class="status" role="status" aria-live="polite">${escape(announcement)}</p></section>${conditions()}<div class="meta-actions">${button('close', '稍後繼續 · 返回角色詳情')}${state.started && !state.paused && !state.token && !state.awakened ? button('pause', '暫停試煉') : ''}</div><p class="phase-note">離開會保留已完成的步驟，試煉仍繼續計入；只有「暫停試煉」停止計入。覺醒是可選養成，不扣親密度、星塵或碎片，不改稀有度或派遣收益。</p>` : `<p class="eyebrow">角色手記</p><h2>每一次同行，都留下新的故事。</h2><p>與${escape(entry.name)}培養親密度，閱讀同行篇章，記錄你們走過的山河。</p><div class="entry"><h3>羈絆覺醒</h3><p>${state.awakened ? '你們已完成約定，查看新的姿態與故事。' : state.paused ? '試煉已暫停，已完成的進度保留。' : state.started ? `日常 ${state.daily}/3 · 古道同行 ${state.expedition ? '已完成' : '尚未完成'}。接著走完你們的約定。` : '一次一個步驟，陪牠完成守諾旅程。'}</p>${button('open', state.awakened ? '查看覺醒與形態' : state.started ? '繼續覺醒旅程' : '開始覺醒旅程', true)}</div><p class="phase-note">設計選定此處為唯一操作入口。卡池頁保留簡短介紹，引導到圖鑑角色詳情。</p>`}</section></div>`;
-  app.querySelector('.portrait').addEventListener('error', (event) => {
-    const img = event.currentTarget;
-    if (!img.dataset.fallback) { img.dataset.fallback = 'true'; img.src = state.awakened && state.form === 'awakened' ? pet.image : entry.initialImage.original; }
-  });
+  const img = app.querySelector('.portrait');
+  const caption = app.querySelector('.portrait-caption');
+  const formLabel = caption.textContent;
+  const awakenedForm = state.awakened && state.form === 'awakened';
+  const candidates = [...new Set([image,
+    awakenedForm ? entry.awakenedImage?.stage || pet.imageVariants?.stage : entry.initialImage.stage,
+    awakenedForm ? entry.awakenedImage?.original || pet.image : entry.initialImage.original])].filter(Boolean);
+  let candidateIndex = 0;
+  const imageFailed = () => {
+    if (++candidateIndex < candidates.length) { img.src = candidates[candidateIndex]; return; }
+    caption.innerHTML = `${formLabel} · 圖片暫時無法載入<br>${button('retry-image', '重試圖片')}`;
+    caption.setAttribute('role', 'status');
+  };
+  img.addEventListener('error', imageFailed);
+  img.addEventListener('load', () => { caption.textContent = formLabel; caption.removeAttribute('role'); });
+  if (img.complete && !img.naturalWidth) imageFailed();
   if (focus) { const target = app.querySelector('#question') || app.querySelector('h2'); target.tabIndex = -1; target.focus(); }
 }
 
