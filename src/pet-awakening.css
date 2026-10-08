@@ -35,3 +35,15 @@
 @media(max-width:360px){.awakening-scene{padding:12px}.awakening-scene__words p{font-size:13px}.awakening-scene__portraits{width:82vw}.awakening-scene__words h2{font-size:23px}}@media(prefers-reduced-motion:reduce){.awakening-panel *{scroll-behavior:auto}}
 
 .awakening-reader .awakening-wizard__portrait .pet-image-frame{width:100%;height:auto;aspect-ratio:1}.awakening-reader .awakening-wizard__portrait .pet-img{width:100%;height:100%;max-height:none;object-fit:contain}@media(max-width:600px){.awakening-reader .awakening-wizard__portrait .pet-image-frame{width:130px;margin:auto}}
+
+/* Keep the promise identifiable in every theme, including completed cards. */
+body[data-theme] #view-tasks .task-card.twilight-task-card.task-card--demon-final {
+  border: 2px solid #ab68cf;
+  padding: 16px 10px;
+  border-radius: 12px;
+  border-inline-start: 5px solid #ab68cf;
+  box-shadow: 0 0 0 1px #ab68cf33, 0 3px 14px #73379022;
+}
+.task-card--demon-final .task-card__meta, .demon-task-note { color: var(--color-text-main); }
+.demon-task-note { font-size: .8rem; margin: .5rem; }
+#demon-final-answer { display: block; width: 100%; box-sizing: border-box; margin: .7rem 0; padding: .7rem; color: var(--color-text-main); background: var(--color-surface); border: 2px solid #ab68cf; border-radius: 10px; font: inherit; }

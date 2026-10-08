@@ -5,6 +5,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { isDemonFinalTask } from '../src/demonFinalTaskCore.js';
 import { escapeHtml } from '../src/uiHelpers.js';
 
 const ui = fs.readFileSync(new URL('../src/ui.js', import.meta.url), 'utf8');
@@ -195,7 +196,7 @@ if (!requested || requested === 'I06') {
       getDateBadgeClass: () => '', formatDateBadgeText: () => '',
       isInTodayPlan: () => true, getSubtaskProgress: (task) => ({ total: task.subtasks.length,
         done: task.subtasks.filter((s) => s.completed).length, percent: 0 }),
-      escapeHtml,
+      escapeHtml, isDemonFinalTask,
       twilightIcon: () => '', isSeniorMode: () => false, formatCategoryLabel: () => '一般',
       PRIORITY_LABELS: {},
     });

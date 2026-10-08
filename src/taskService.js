@@ -1,7 +1,8 @@
 /**
  * 任務 CRUD、子任務、今日計畫與完成邏輯
  */
-import { dbGet, dbGetAll, dbPut, dbDelete, STORES } from './db.js';
+import { isDemonFinalTask } from './demonFinalTaskCore.js';
+import { dbGet, dbGetAll, dbPut, dbMutateRecords, STORES } from './db.js';
 import { commitTutorialTask } from './guidedOnboardingService.js';
 import { GUIDED_KEY } from './guidedOnboardingCore.js';
 import { putWithAwakeningProgress } from './petAwakeningService.js';
@@ -12,6 +13,7 @@ import {
   validateDateRange,
   isCompletedBeforeDue,
   isCompletedToday,
+  isInTodayPlan,
 } from './taskFilterService.js';
 import {
   recordPlanToday,
@@ -168,7 +170,10 @@ export async function updateTask(id, updates) {
 
 /** 刪除任務 */
 export async function deleteTask(id) {
-  await dbDelete(STORES.TASKS, id);
+  await dbMutateRecords([{ store: STORES.TASKS, key: id }], ([task]) => {
+    if (isDemonFinalTask(task)) throw Error('惡魔的趣味不能刪除，只能完成；沒有完成期限。');
+    return { deletes: [{ store: STORES.TASKS, key: id }] };
+  });
 }
 
 /** 加入今日計畫 */
@@ -232,6 +237,7 @@ export async function toggleTaskComplete(id) {
 
   const now = new Date().toISOString();
 
+  if (task.completed && isDemonFinalTask(task)) return { task, reward: null, justCompleted: false };
   if (task.completed) {
     const updated = await updateTask(id, {
       completed: false,
@@ -267,7 +273,7 @@ export async function getTodayCompletedCount() {
 export async function getTodayPlanCount() {
   const tasks = await getAllTasks();
   const today = getTodayDateString();
-  return tasks.filter((t) => !t.isTutorial && !t.completed && t.plannedDate === today).length;
+  return tasks.filter((t) => !t.isTutorial && !t.completed && isInTodayPlan(t, today)).length;
 }
 
 /** 匯出所有任務（備份用） */

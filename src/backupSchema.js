@@ -3,6 +3,7 @@ import { validateEncounterEconomy } from './encounterEconomyCore.js';
 import { SUPPORTED_THEMES } from './themeRegistry.js';
 import { FONT_SIZES, READING_MODES } from './preferencesService.js';
 import { validateBondJourney } from './bondJourneyCore.js';
+import { validateDemonFinalTask, isDemonFinalTask } from './demonFinalTaskCore.js';
 import { validatePetAwakening } from './petAwakeningCore.js';
 const BASE_KEYS = ['tasks', 'wallet', 'collection', 'gachaStats', 'expeditions',
   'achievements', 'taskStats', 'userPreferences', 'habits'];
@@ -130,6 +131,7 @@ export function validateSnapshotData(data, requiredKeys = SNAPSHOT_KEYS, profile
     subtasks: list(subtask), completed: bool, rewardClaimed: bool, createdAt: timestamp,
     updatedAt: timestamp, completedAt: nullable(timestamp), lastRewardClaimedAt: nullable(timestamp) }, {
     plannedTime: nullable(scalar((value) => typeof value === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(value), '時間格式無效')),
+    systemTask: oneOf(['demon-final']), awakeningPetId: id,
     isTutorial: bool, tutorialRunId: id, tutorialMode: oneOf(['first', 'replay']),
     tutorialReward: shape({ amount: integer, energy: integer, bondAmount: integer, preview: bool }),
   });
@@ -208,6 +210,14 @@ export function validateSnapshotData(data, requiredKeys = SNAPSHOT_KEYS, profile
     });
   };
   checkRows(data.tasks, 'id', 'tasks');
+  for (const task of Array.isArray(data.tasks) ? data.tasks : []) {
+    if (isDemonFinalTask(task) || task?.systemTask === 'demon-final') {
+      for (const error of validateDemonFinalTask(task)) fail('tasks', error);
+      if (!isDemonFinalTask(task)) fail('tasks', '惡魔的趣味任務 ID 無效');
+      const progress = data.petAwakening?.byPet?.[task.awakeningPetId];
+      if (!['ready', 'awakened'].includes(progress?.status) || (progress?.awakenedAt && !task.completed)) fail('tasks', '惡魔的趣味與覺醒進度矛盾');
+    }
+  }
   checkRows(data.habits, 'id', 'habits');
   checkRows(data.expeditions, 'id', 'expeditions');
   checkRows(data.collection, 'petId', 'collection', true);

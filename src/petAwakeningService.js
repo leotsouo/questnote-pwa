@@ -1,3 +1,5 @@
+import { DEMON_TASK_TITLE, needsDemonFinalTask, demonFinalTaskId, demonFinalTaskComplete, assertDemonTaskUpdate } from './demonFinalTaskCore.js';
+import { getTodayDateString } from './taskFilterService.js';
 import { dbGet, dbMutateRecords, STORES } from './db.js';
 import { normalizeInventory } from './workshopService.js';
 import { AWAKENING_KEY, normalizePetAwakening, awakeningEvents, advancePetAwakening, beginPetAwakening } from './petAwakeningCore.js';
@@ -16,9 +18,10 @@ export async function syncPetAwakening() {
 /** Completion and progress commit together; ordinary edits also retain event deduplication. */
 export async function putWithAwakeningProgress(store, value) {
   const events = store === STORES.TASKS ? awakeningEvents([value]) : awakeningEvents([], [value]);
-  return dbMutateRecords([stateRead, { store, key: value.id }], ([raw]) => ({
-    puts: [{ store, value }, ...(raw ? [{ store: STORES.META, value: advancePetAwakening(raw, events) }] : [])], result: value,
-  }));
+  return dbMutateRecords([stateRead, { store, key: value.id }], ([raw, current]) => {
+    if (store === STORES.TASKS) assertDemonTaskUpdate(current, value);
+    return { puts: [{ store, value }, ...(raw ? [{ store: STORES.META, value: advancePetAwakening(raw, events) }] : [])], result: value };
+  });
 }
 export async function startPetAwakening(petId) {
   if (!(await loadAwakeningCatalog()).pets.some((p) => p.petId === petId)) throw Error('這位夥伴尚未開放覺醒');
@@ -49,6 +52,7 @@ export async function awakenPet(petId) {
     const s = advancePetAwakening(raw, awakeningEvents(tasks, habits, expeditions));
     const p = s.byPet[petId];
     if (!pet || pet.owned === false || pet.bondLevel < 5 || !journey?.byPet?.[petId]?.chapters?.[5]?.claimedAt || p?.status !== 'ready') throw Error('試煉尚未完成或已經覺醒');
+    if (needsDemonFinalTask(petId) && !demonFinalTaskComplete(tasks, petId)) throw Error('請先回答並完成「惡魔的趣味」，才能最終覺醒。');
     const inventory = normalizeInventory(items);
     const profile = getAwakeningProfile(petId);
     if (!profile) throw Error('這位夥伴尚未開放覺醒');
@@ -67,5 +71,26 @@ export async function setAwakeningForm(petId, form) {
     if (!s.byPet[petId]?.awakenedAt) throw Error('完成覺醒後可切換形態');
     s.byPet[petId].form = form;
     return putState(s);
+  });
+}
+
+/** One deterministic task per partner; parallel submissions retain the first answer. */
+export async function acceptDemonFinalTask(petId, answer) {
+  const content = typeof answer === 'string' ? answer.trim() : '';
+  if (!content || content.length > 2000) throw Error('請回答一件想完成的事（1 至 2000 字）。');
+  if (!needsDemonFinalTask(petId) || !(await loadAwakeningCatalog()).pets.some((p) => p.petId === petId)) throw Error('這位夥伴沒有惡魔的趣味試煉');
+  return dbMutateRecords([stateRead, { store: STORES.TASKS, key: demonFinalTaskId(petId) },
+    { store: STORES.COLLECTION, key: petId }, { store: STORES.META, key: 'bondJourney' }], ([raw, existing, pet, journey]) => {
+    const progress = normalizePetAwakening(raw).byPet[petId];
+    if (progress?.status !== 'ready' || !pet || pet.owned === false || pet.bondLevel < 5
+      || !journey?.byPet?.[petId]?.chapters?.[5]?.claimedAt) throw Error('完成守諾試煉後，夥伴才會提出最後的問題。');
+    if (existing) return { puts: [], result: existing };
+    const now = new Date().toISOString();
+    const task = { id: demonFinalTaskId(petId), systemTask: 'demon-final', awakeningPetId: petId,
+      title: DEMON_TASK_TITLE, content: DEMON_TASK_TITLE + '\n' + content, priority: 'important', type: 'one_time', categoryId: 'general',
+      startDate: null, dueDate: null, plannedDate: getTodayDateString(), isPlannedToday: true, plannedTime: null,
+      subtasks: [], completed: false, rewardClaimed: false, createdAt: now, updatedAt: now,
+      completedAt: null, lastRewardClaimedAt: null };
+    return { puts: [{ store: STORES.TASKS, value: task }], result: task };
   });
 }

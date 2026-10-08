@@ -14,13 +14,13 @@ const base = await new Promise((resolve, reject) => { let output = ''; child.std
 let browser; let context; let page;
 const results = []; const errors = [];
 const read = () => page.evaluate(() => window.awakeTest.petAwakeningService.getPetAwakening());
-async function check(name, cb) { const result = { name, ok: false }; try { result.detail = await cb(); result.ok = true; } catch (error) { result.error = error.stack; await page.screenshot({ path: path.join(reports, 'failure.png'), fullPage: true }).catch(() => {}); } results.push(result); console.log(`${result.ok ? 'PASS' : 'FAIL'} ${name}${result.error ? '\n' + result.error : ''}`); assert.ok(result.ok, name); }
+async function check(name, cb) { if (process.env.QUESTNOTE_AWAKENING_FOCUS === 'demon-final' && !/^(actual app starts|owned \+ Lv5|dark court final)/.test(name)) return; const result = { name, ok: false }; try { result.detail = await cb(); result.ok = true; } catch (error) { result.error = error.stack; await page.screenshot({ path: path.join(reports, 'failure.png'), fullPage: true }).catch(() => {}); } results.push(result); console.log(`${result.ok ? 'PASS' : 'FAIL'} ${name}${result.error ? '\n' + result.error : ''}`); assert.ok(result.ok, name); }
 async function load(target = page) {
   await target.goto(`${base}/index.html`);
   await target.locator('#app-loader').waitFor({ state: 'hidden' });
   await target.waitForFunction(() => document.querySelector('#guide-tutorial-status')?.textContent);
   const skip = target.locator('.onboarding-dialog [data-onboarding-action="skip"]'); if (await skip.isVisible()) await skip.click();
-  await target.waitForFunction(() => document.body.classList.contains('guided-learned') || document.querySelector('[data-guided-action="skip"]') || document.querySelector('.today-habit-card'));
+  await target.waitForFunction(() => document.body.classList.contains('guided-learned') || document.querySelector('[data-guided-action="skip"]') || document.querySelector('.today-habit-card') || document.querySelector('.task-card'));
   if (await target.locator('[data-guided-action="skip"]').isVisible()) {
     await target.locator('[data-guided-action="skip"]').click();
     await target.locator('[data-guided-action="confirm-skip"]').click();
@@ -169,6 +169,99 @@ try {
     await card.locator('[data-action="habit-uncomplete"]').waitFor();
     assert.deepEqual((await read()).byPet.pet_ur16.eventKeys, completed.byPet.pet_ur16.eventKeys);
     return { habitId: id, trialCredit: 1, preservedAfterUndo: true };
+  });
+  await check('dark court final question, locked Today task, backup and all seven atomic rituals', async () => {
+    await page.evaluate(async () => {
+      const s = window.awakeTest;
+      const ids = (await import('/src/petAwakeningProfiles.js')).DARKCOURT_AWAKENING_IDS;
+      const state = await s.petAwakeningService.getPetAwakening();
+      if (state.activePetId) await s.petAwakeningService.pausePetAwakening(state.activePetId);
+      const journey = await s.db.dbGet('meta', 'bondJourney');
+      let raw = await s.petAwakeningService.getPetAwakening();
+      const at = new Date(Date.now() - 60000).toISOString();
+      const later = new Date(Date.now() - 30000).toISOString();
+      for (const id of ids) {
+        await s.collectionService.addPetToCollection(id);
+        const p = await s.collectionService.getPetCollection(id);
+        await s.db.dbPut('collection', { ...p, bondLevel: 5, bondExp: 500 });
+        journey.byPet[id] = { chapters: Object.fromEntries([2, 3, 4, 5].map(lv => [lv, { choiceId: 'gentle', readAt: at, completedAt: at, claimedAt: at }])) };
+        raw = s.petAwakeningCore.beginPetAwakening(raw, id, at);
+        raw = s.petAwakeningCore.advancePetAwakening(raw, [
+          ...[1,2,3].map(n => ({ key: 'task:final_fixture_' + id + '_' + n, at: later })),
+          { key: 'expedition:final_fixture_' + id, at: later, startedAt: at, areaId: 'darkcrown_border', petIds: [id] },
+        ]);
+      }
+      await s.db.dbPut('meta', journey); await s.db.dbPut('meta', raw);
+      const inv = await s.db.dbGet('meta', 'inventory');
+      inv.items.item_chaos_ember_tart = 7; await s.db.dbPut('meta', inv);
+    });
+    await load();
+    await page.locator('.bottom-nav [data-view="collection"]').click();
+    await page.locator('[data-pet="pet_ur28"]').click();
+    await page.locator('[data-identity-action="app-pet-detail"]').click();
+    await page.locator('[data-awake-open="pet_ur28"]').click();
+    await page.locator('#demon-final-answer').waitFor();
+    await page.locator('[data-awake-action="answer"]').click();
+    await page.locator('[data-awake-error]').filter({ hasText: '請回答' }).waitFor();
+    const question = await page.locator('.awakening-wizard__message').textContent();
+    assert.ok(question.includes('你最近有哪件事'));
+    await page.locator('#demon-final-answer').fill('完成一直拖延、對自己有幫助的整理 <script>');
+    await page.locator('.awakening-reader').screenshot({ path: path.join(reports, 'demon-question-mobile.png') });
+    await page.locator('[data-awake-action="answer"]').click();
+    await page.locator('[data-awakening-step="demon-task"]').waitFor();
+    await page.locator('[data-awake-action="daily"]').click();
+    const card = page.locator('.task-card[data-id="demon_final_pet_ur28"]');
+    await card.waitFor();
+    await page.locator('#modal-overlay').waitFor({ state: 'hidden' });
+    assert.equal(await card.locator('[data-action="delete"], [data-action="edit"], [data-action="unplan-today"]').count(), 0);
+    assert.equal(await card.evaluate(el => getComputedStyle(el).borderLeftWidth), '5px');
+    await card.screenshot({ path: path.join(reports, 'demon-task-mobile.png'), animations: 'disabled' });
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    const native = await page.evaluate(async () => {
+      const s = window.awakeTest; const ids = (await import('/src/petAwakeningProfiles.js')).DARKCOURT_AWAKENING_IDS;
+      const reject = async fn => { try { await fn(); return false; } catch { return true; } };
+      const out = [];
+      for (const id of ids) {
+        const taskId = 'demon_final_' + id;
+        const before = await s.db.dbGet('meta', 'inventory');
+        if (!await reject(() => s.petAwakeningService.awakenPet(id))) throw Error('bypassed missing final task');
+        if (JSON.stringify(before) !== JSON.stringify(await s.db.dbGet('meta', 'inventory'))) throw Error('food deducted on blocked awakening');
+        const answers = await Promise.all([
+          s.petAwakeningService.acceptDemonFinalTask(id, '整理自己的生活'),
+          s.petAwakeningService.acceptDemonFinalTask(id, '不應覆蓋前一個回答'),
+        ]);
+        if (answers[0].content !== answers[1].content) throw Error('duplicate submission changed answer');
+        for (const fn of [() => s.taskService.deleteTask(taskId), () => s.taskService.removeFromTodayPlan(taskId),
+          () => s.taskService.updateTask(taskId, { content: '換一件事' }), () => s.taskService.updateTask(taskId, { systemTask: null })]) {
+          if (!await reject(fn)) throw Error('system lock bypass');
+        }
+        const backup = await s.backupService.exportBackup();
+        await s.backupService.importBackup(backup);
+        const restored = await s.taskService.getTaskById(taskId);
+        if (restored.systemTask !== 'demon-final') throw Error('backup lost task lock');
+        const sections = (await import('/src/taskFilterService.js')).getTodayViewSections([restored], '2027-01-01');
+        if (sections.plannedIncomplete.length !== 1 || restored.dueDate !== null) throw Error('task lost Today persistence');
+        await s.taskService.toggleTaskComplete(taskId);
+        await s.taskService.toggleTaskComplete(taskId);
+        if (!(await s.taskService.getTaskById(taskId)).completed) throw Error('undo allowed');
+        const result = await Promise.allSettled([s.petAwakeningService.awakenPet(id), s.petAwakeningService.awakenPet(id)]);
+        if (result.filter(r => r.status === 'fulfilled').length !== 1) throw Error('ritual not atomic');
+        out.push({ id, taskId, backup: true, locked: true, awakened: true });
+      }
+      const final = await s.backupService.exportBackup(); await s.backupService.importBackup(final);
+      if ((await s.db.dbGet('meta', 'inventory')).items.item_chaos_ember_tart !== 0) throw Error('wrong ritual food cost');
+      return out;
+    });
+    assert.equal(native.length, 7);
+    await load();
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.locator('.bottom-nav [data-view="collection"]').click();
+    await page.locator('[data-pet="pet_ur28"]').click();
+    await page.locator('[data-identity-action="app-pet-detail"]').click();
+    await page.locator('[data-awake-open="pet_ur28"]').click();
+    await page.locator('[data-awakening-step="done"]').waitFor();
+    await page.locator('.awakening-reader').screenshot({ path: path.join(reports, 'demon-awakened-desktop.png') });
+    return { native, mobileUI: true, desktopUI: true, requiredAnswer: true };
   });
   assert.deepEqual(errors, []); console.log(`Awakening acceptance: ${results.length} checks passed`);
 } finally {

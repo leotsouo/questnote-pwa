@@ -83,6 +83,7 @@ import { applyReadingModeToDocument } from './preferencesService.js';
 import { initSeniorModeController, syncSeniorPresentation, isSeniorMode, seniorFeedback, seniorTaskCreated, seniorTaskFormClosed, composeSeniorTaskForm, decorateSeniorControls } from './seniorModeController.js';
 import { twilightIcon, getCompanionScene, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
 import { createBondJourneyController } from './bondJourneyController.js';
+import { isDemonFinalTask } from './demonFinalTaskCore.js';
 import { getAwakeningProfile, getPoolAwakeningProfile } from './petAwakeningProfiles.js';
 import { createAwakeningController } from './petAwakeningController.js';
 import { renderAwakeningDetail, renderAwakeningHome, renderAwakeningGuide, initialAwakeningPortrait } from './petAwakeningView.js';
@@ -3170,7 +3171,8 @@ function renderTaskCard(task) {
   ` : '';
 
 
-  const planBtn = !task.completed
+  const demonTask = isDemonFinalTask(task);
+  const planBtn = !demonTask && !task.completed
     ? inPlan
       ? `<button class="btn btn--ghost btn--sm" data-action="unplan-today">移出今日</button>`
       : `<button class="btn btn--ghost btn--sm" data-action="plan-today">加入今日</button>`
@@ -3186,21 +3188,22 @@ function renderTaskCard(task) {
     ? `<div class="task-card__rewards"><span>${twilightIcon('check')}獎勵已領取</span></div>`
     : `<div class="task-card__rewards"><span>${twilightIcon('spark')}${stardust} 星塵</span><span>${twilightIcon('energy')}${energy} 能量</span>${state.companion ? `<span>${twilightIcon('heart')}+${calculateBondAmount(task)} 親密度</span>` : ''}</div>`;
 
-  const completeButton = `<button type="button" class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" ${task.isTutorial && task.completed ? 'disabled' : ''} aria-pressed="${task.completed}" aria-label="${task.completed ? task.isTutorial ? '已完成' : '取消完成' : '完成'} ${escapeHtml(task.title)}">${task.completed ? twilightIcon('check') : ''}<span class="senior-label">${task.completed ? task.isTutorial ? '已完成' : '取消完成' : '完成任務'}</span></button>`;
-  return `<article class="task-card twilight-task-card ${priorityClass} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
+  const completeButton = `<button type="button" class="task-check ${task.completed ? 'checked' : ''}" data-action="toggle" ${(task.isTutorial || demonTask) && task.completed ? 'disabled' : ''} aria-pressed="${task.completed}" aria-label="${task.completed ? (task.isTutorial || demonTask) ? '已完成' : '取消完成' : '完成'} ${escapeHtml(task.title)}">${task.completed ? twilightIcon('check') : ''}<span class="senior-label">${task.completed ? (task.isTutorial || demonTask) ? '已完成' : '取消完成' : '完成任務'}</span></button>`;
+  return `<article class="task-card twilight-task-card ${priorityClass} ${demonTask ? 'task-card--demon-final' : ''} ${task.completed ? 'task-card--done' : ''} ${justCompleted ? 'task-card--just-done' : ''}" data-id="${escapeHtml(task.id)}">
     ${isSeniorMode() ? '' : completeButton}
     <div class="twilight-task-body">
-      <div class="task-card__meta"><span>${task.isTutorial ? '基本操作練習' : formatCategoryLabel(category)}</span>${task.priority !== 'normal' ? `<span class="twilight-task-priority">${escapeHtml(PRIORITY_LABELS[task.priority])}</span>` : ''}${task.dueDate || task.startDate ? `<span class="${dateClass}">${escapeHtml(dateText)}</span>` : ''}${!inPlan && !task.completed ? '<span>未排入今日</span>' : ''}</div>
+      <div class="task-card__meta"><span>${demonTask ? '惡魔的趣味 · 覺醒約定 · 無期限' : task.isTutorial ? '基本操作練習' : formatCategoryLabel(category)}</span>${task.priority !== 'normal' ? `<span class="twilight-task-priority">${escapeHtml(PRIORITY_LABELS[task.priority])}</span>` : ''}${task.dueDate || task.startDate ? `<span class="${dateClass}">${escapeHtml(dateText)}</span>` : ''}${!inPlan && !task.completed ? '<span>未排入今日</span>' : ''}</div>
       <h3 class="task-card__title">${escapeHtml(task.title)}</h3>
       ${task.plannedTime ? `<p class="task-card__time">安排時間 ${escapeHtml(task.plannedTime)}</p>` : ''}
       ${preview ? `<p class="task-card__preview">${escapeHtml(preview)}</p>` : ''}
       ${description ? `<details class="task-card__description"><summary>任務說明</summary><p class="task-card__preview">${escapeHtml(description)}</p></details>` : ''}
       ${subtasksHtml}
       ${rewardsHtml}
+      ${demonTask ? '<p class="demon-task-note">夥伴的約定 · 只能完成，無完成期限</p>' : ''}
       ${expandBtn ? `<div class="twilight-task-expander">${expandBtn}</div>` : ''}
     </div>
-    ${isSeniorMode() ? `<div class="senior-task-actions">${completeButton}<button type="button" class="btn btn--ghost" data-action="edit">編輯任務</button></div>` : ''}
-    <details class="twilight-task-menu"><summary aria-label="${escapeHtml(task.title)}：更多操作">${twilightIcon('more')}<span class="senior-label">更多操作</span></summary><div class="task-card__actions">${planBtn}<button type="button" class="btn btn--ghost btn--sm" data-action="edit">編輯</button><button type="button" class="btn btn--ghost btn--sm btn--danger" data-action="delete">刪除</button></div></details>
+    ${isSeniorMode() ? `<div class="senior-task-actions">${completeButton}${demonTask ? '' : '<button type="button" class="btn btn--ghost" data-action="edit">編輯任務</button>'}</div>` : ''}
+    ${demonTask ? '' : `<details class="twilight-task-menu"><summary aria-label="${escapeHtml(task.title)}：更多操作">${twilightIcon('more')}<span class="senior-label">更多操作</span></summary><div class="task-card__actions">${planBtn}<button type="button" class="btn btn--ghost btn--sm" data-action="edit">編輯</button><button type="button" class="btn btn--ghost btn--sm btn--danger" data-action="delete">刪除</button></div></details>`}
   </article>`;
 }
 

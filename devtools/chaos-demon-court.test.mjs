@@ -73,6 +73,8 @@ test('dark wizard requires its own food and leaves initial canonical draw appear
   const pet={id,name:'黯冠',rarity:'UR',owned:true,bondLevel:5,image:'beast.png'};
   const entry={petId:id,name:'黯冠',tokenName:'裂冠信物',trialTitle:'七路之約',initialImage:{original:'beast.png'},awakenedImage:{original:'human.png'},story:['one','two'],dialogue:['one','two','three']};
   const state={petAwakening:ready,bondJourney:{byPet:{[id]:{chapters:{5:{claimedAt:at}}}}},inventory:{items:{item_pine_trail_riceball:1}},awakeningCatalog:{pets:[entry]}};
+  assert.equal(awakeningWizardStep(pet,state),'demon-question');
+  state.tasks=[{id:'demon_final_'+id,systemTask:'demon-final',awakeningPetId:id,title:'惡魔的趣味',content:'惡魔的趣味\n完成約定',type:'one_time',startDate:null,dueDate:null,plannedDate:'2026-10-08',subtasks:[],completed:true,completedAt:later}];
   assert.equal(awakeningWizardStep(pet,state),'food');
   assert.ok(renderAwakeningReader(pet,state).includes('黯莓餘燼塔'));
   state.inventory.items.item_chaos_ember_tart=1;
