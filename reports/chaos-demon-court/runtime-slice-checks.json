@@ -1,0 +1,58 @@
+{
+  "status": "preliminary runtime slice only; not pinned artifact acceptance",
+  "checks": [
+    {
+      "check": "entry and keyboard cleanup",
+      "width": 393,
+      "status": "pass"
+    },
+    {
+      "check": "entry and keyboard cleanup",
+      "width": 1280,
+      "status": "pass"
+    },
+    {
+      "check": "rare reveal",
+      "motif": "crown",
+      "rarity": "UR",
+      "status": "pass"
+    },
+    {
+      "check": "rare reveal",
+      "motif": "moon",
+      "rarity": "UR",
+      "status": "pass"
+    },
+    {
+      "check": "rare reveal",
+      "motif": "bell",
+      "rarity": "UR",
+      "status": "pass"
+    },
+    {
+      "check": "rare reveal",
+      "motif": "thorn",
+      "rarity": "SSR",
+      "status": "pass"
+    },
+    {
+      "check": "rare reveal",
+      "motif": "mirror",
+      "rarity": "SSR",
+      "status": "pass"
+    },
+    {
+      "check": "rare reveal",
+      "motif": "law",
+      "rarity": "SSR",
+      "status": "pass"
+    },
+    {
+      "check": "rare reveal",
+      "motif": "star",
+      "rarity": "SSR",
+      "status": "pass"
+    }
+  ],
+  "pageErrors": []
+}
