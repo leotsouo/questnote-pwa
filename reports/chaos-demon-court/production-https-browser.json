@@ -1,0 +1,328 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-08T14:05:02.531Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "artifactId": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+  "freshIsolatedBrowserStorage": true,
+  "offlineReload": true,
+  "detail": {
+    "version": "3.9.0",
+    "artifactId": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+    "database": "QuestNoteDB",
+    "pets": [
+      "pet_n50",
+      "pet_n51",
+      "pet_n52",
+      "pet_r57",
+      "pet_r58",
+      "pet_r59",
+      "pet_r60",
+      "pet_r61",
+      "pet_sr51",
+      "pet_sr52",
+      "pet_sr53",
+      "pet_sr54",
+      "pet_sr55",
+      "pet_ssr37",
+      "pet_ssr38",
+      "pet_ssr39",
+      "pet_ssr40",
+      "pet_ur28",
+      "pet_ur29",
+      "pet_ur30"
+    ],
+    "pairs": [
+      "pet_ur28",
+      "pet_ur29",
+      "pet_ur30",
+      "pet_ssr37",
+      "pet_ssr38",
+      "pet_ssr39",
+      "pet_ssr40"
+    ],
+    "dimensions": [
+      {
+        "src": "assets/pets/variants/pet_n50-card-384-e1497568099e.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_n50-stage-960-e1497568099e.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_n51-card-384-d3c4f3228a3c.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_n51-stage-960-d3c4f3228a3c.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_n52-card-384-1d3f1e174cc7.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_n52-stage-960-1d3f1e174cc7.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_r57-card-384-829824efd529.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_r57-stage-960-829824efd529.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_r58-card-384-307fa77f71e5.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_r58-stage-960-307fa77f71e5.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_r59-card-384-0bd1158dbaf9.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_r59-stage-960-0bd1158dbaf9.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_r60-card-384-8bb02433b264.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_r60-stage-960-8bb02433b264.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_r61-card-384-77793df3127d.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_r61-stage-960-77793df3127d.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_sr51-card-384-518205270e7e.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_sr51-stage-960-518205270e7e.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_sr52-card-384-701547b5e65e.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_sr52-stage-960-701547b5e65e.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_sr53-card-384-cd1b6ddfcc30.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_sr53-stage-960-cd1b6ddfcc30.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_sr54-card-384-fa95fc1b06e9.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_sr54-stage-960-fa95fc1b06e9.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_sr55-card-384-ba5792965b7d.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_sr55-stage-960-ba5792965b7d.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_ssr37-card-384-3f8f8f80b5d8.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_ssr37-stage-960-3f8f8f80b5d8.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_ssr38-card-384-cd751bb19ef0.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_ssr38-stage-960-cd751bb19ef0.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_ssr39-card-384-52ab5f0716e2.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_ssr39-stage-960-52ab5f0716e2.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_ssr40-card-384-8749b511b29a.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_ssr40-stage-960-8749b511b29a.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_ur28-card-384-5a28ce020209.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_ur28-stage-960-5a28ce020209.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_ur29-card-384-66302377ac10.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_ur29-stage-960-66302377ac10.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/variants/pet_ur30-card-384-b8b412a84e4a.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/variants/pet_ur30-stage-960-b8b412a84e4a.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur28-awakened-aad0bb7e6cb4-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur28-awakened-aad0bb7e6cb4-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur29-awakened-78057f120705-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur29-awakened-78057f120705-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur30-awakened-b05c22b304bb-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ur30-awakened-b05c22b304bb-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/awakening/pet_ssr37-awakened-1f3d3d993efc-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ssr37-awakened-1f3d3d993efc-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/awakening/pet_ssr38-awakened-98c5658396a8-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ssr38-awakened-98c5658396a8-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/awakening/pet_ssr39-awakened-a88de493e815-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ssr39-awakened-a88de493e815-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "assets/pets/awakening/pet_ssr40-awakened-66bc952921e6-card.webp",
+        "width": 384,
+        "height": 384
+      },
+      {
+        "src": "assets/pets/awakening/pet_ssr40-awakened-66bc952921e6-stage.webp",
+        "width": 960,
+        "height": 960
+      },
+      {
+        "src": "./assets/expeditions/darkcrown_border.webp",
+        "width": 1672,
+        "height": 941
+      }
+    ],
+    "caches": [
+      "questnote-production-app-e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+      "questnote-production-pet-images-v1",
+      "questnote-production-mailbox-runtime-v1"
+    ]
+  },
+  "pageErrors": [],
+  "upgradeEvidence": "update-offline.json: native exact prior formal artifact to this production artifact on isolated loopback; physical installed PWA not tested"
+}

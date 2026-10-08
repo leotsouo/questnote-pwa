@@ -1,0 +1,36 @@
+{
+  "status": "published-and-verified",
+  "at": "2026-10-08T14:06:14.355Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "version": "3.9.0",
+  "packageHash": "d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa",
+  "artifactId": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+  "manifestSha256": "07c670e1d5cd29d9930d0335dca8c4cce44ec4a02322cb474e422824ca7f2dbb",
+  "reviewedRuntimeSourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+  "sourceMergeCommit": "912d153a6de35874a827f08588e7b984154167ca",
+  "sourcePr": "https://github.com/leotsouo/questnote-pwa/pull/87",
+  "sourceCi": "https://github.com/leotsouo/questnote-pwa/actions/runs/37788244740",
+  "deploymentCommit": "606c347120d26d7240f24fe69a7369f77a242707",
+  "pagesRun": "https://github.com/leotsouo/questnote-pwa/actions/runs/37788794219",
+  "gitVerifiedFiles": 771,
+  "httpsVerifiedFilesIncludingManifest": 770,
+  "gitOnlyMarker": ".nojekyll",
+  "browser": {
+    "freshPrivateStorage": true,
+    "newPets": 20,
+    "newAwakeningPairs": 7,
+    "imageLoads": 55,
+    "nativeWorker": true,
+    "offlineReload": true,
+    "pageErrors": []
+  },
+  "updateEvidence": "update-offline.json: exact formal 3.8.9 to accepted production artifact, native update banner, original save/story preserved, old cache removed, private loopback",
+  "resolvedFailures": [
+    "Raw-byte verifier exceeded its 512MB buffer; changed to 32-file batches and all blobs passed.",
+    "Source promotion exposed two release test fixtures that omitted newly cataloged expedition art; copied all catalog regions; 25 targeted assertions and complete PR CI passed."
+  ],
+  "remaining": [
+    "Physical iPhone / installed PWA touch and update acceptance requires an actual device."
+  ],
+  "retention": "Hold authoring inputs, immutable artifacts and release/recovery evidence; no cleanup requested"
+}

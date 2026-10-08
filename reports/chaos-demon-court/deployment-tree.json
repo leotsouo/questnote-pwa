@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-08T13:50:17.882Z",
+  "packageHash": "d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa",
+  "artifactId": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+  "manifestSha256": "07c670e1d5cd29d9930d0335dca8c4cce44ec4a02322cb474e422824ca7f2dbb",
+  "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+  "parent": "ce35b1f859b2b9ed5de5bd05c01b06651499c7ab",
+  "tree": "df62be49403cf72a2a8ba876be62c432cbb978b6",
+  "deploymentCommit": "606c347120d26d7240f24fe69a7369f77a242707",
+  "verifiedFiles": 771,
+  "method": "Raw hash-object stdin; isolated Git index; every committed blob SHA-256 verified; no checkout EOL filters; no push"
+}
