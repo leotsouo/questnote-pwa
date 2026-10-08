@@ -10,6 +10,25 @@ const paragraphs = (lines) => lines.map((line) => `<p>${escapeHtml(line).replace
 const name = (pet) => pet.nickname || pet.name || '夥伴';
 const journeyOf = (state) => state.bondJourney || createBondJourney();
 
+function bondWizardSteps(step) {
+  return `<ol class="journal-wizard-steps" aria-label="同行約定步驟">${['故事回應', '選目標', '確認約定'].map((label, i) => `<li ${step === i + 1 ? 'aria-current="step"' : ''}>${i + 1} · ${label}</li>`).join('')}</ol>`;
+}
+
+export function renderBondConfirmation(pet, state, chapter, type, sourceId, replacing = false) {
+  const journey = journeyOf(state);
+  const item = type === 'task'
+    ? state.tasks?.find((task) => task.id === sourceId && !task.completed && !journey.usedEventKeys.includes(`task:${task.id}`))
+    : state.habits?.find((habit) => habit.id === sourceId && habit.isActive && !habit.archivedAt);
+  const target = type === 'task' ? 1 : HABIT_TARGETS[chapter] || 1;
+  return `<section class="bond-reader" data-bond-screen="confirm">${bondWizardSteps(3)}
+    <p class="bond-eyebrow">與 ${escapeHtml(name(pet))} 同行</p><h2 class="modal-title">就一起完成這件事，好嗎？</h2>
+    ${item ? `<div class="bond-agreement"><h3>${escapeHtml(item.title || item.name)}</h3><p>${type === 'task' ? '任務' : '習慣'} · ${target} ${type === 'task' ? '次完成' : '個不同日期的打卡'}</p><p>完成可獲得星塵 +${chapter ? CHAPTER_REWARDS[chapter] : DAILY_COMPANION_REWARD}。</p></div>` : '<p role="alert">這個目標已無法使用，請返回重新選擇。</p>'}
+    <p>按下確認後才開始計入新的完成，沒有期限，也不必連續打卡。</p>
+    ${replacing ? '<p class="bond-note">確認更換後，原約定進度會從 0 開始；返回或取消不會更換目標。</p>' : ''}
+    <div class="bond-actions">${button('上一步 · 選目標', 'back-target', '', true)}${button(replacing ? '確認更換約定' : '確認接受約定', 'start', item ? '' : 'disabled')}</div>
+    ${button('暫時不約定', 'overview', '', true)}</section>`;
+}
+
 export function renderBondKeepsake(state) {
   const journey = journeyOf(state);
   const story = findBondStory(state.bondStories, journey.displayPetId);
@@ -74,7 +93,7 @@ export function renderAgreement(active, state) {
     ${!exists && active.status !== 'ready' ? '<p class="bond-note">原目標已刪除或封存。可以更換目標，故事會保留。</p>' : ''}
     <div class="bond-actions">${active.status === 'ready' ? button('收下回應與獎勵', 'claim') : `${exists ? button('前往目標', 'go-source') : ''}
       ${button(active.status === 'paused' ? '繼續約定' : '暫停約定', active.status === 'paused' ? 'resume' : 'pause', '', true)}
-      ${button('更換目標', 'replace', '', true)}${active.status === 'paused' ? button('結束約定', 'end', '', true) : ''}`}</div></section>`;
+      ${button('更換目標', 'replace', active.status === 'paused' ? '' : 'disabled title="先暫停約定即可更換目標"', true)}${active.status === 'paused' ? button('結束約定', 'end', '', true) : ''}`}</div></section>`;
 }
 
 export function renderBondChapter(pet, state, level, previewChoice = null) {
@@ -84,7 +103,7 @@ export function renderBondChapter(pet, state, level, previewChoice = null) {
   const saved = journey.byPet[pet.id]?.chapters[level];
   const choice = chapter.choices.find((item) => item.id === (previewChoice || saved?.choiceId));
   const active = journey.active?.petId === pet.id && journey.active?.chapter === level ? journey.active : null;
-  return `<div class="bond-reader" data-bond-screen="chapter"><span class="bond-eyebrow">${escapeHtml(name(pet))} · 第 ${level - 1}/4 章</span><h2 class="modal-title">${escapeHtml(chapter.title)}</h2>
+  return `<div class="bond-reader" data-bond-screen="chapter">${!saved?.claimedAt && !active ? bondWizardSteps(1) : ''}<span class="bond-eyebrow">${escapeHtml(name(pet))} · 第 ${level - 1}/4 章</span><h2 class="modal-title">${escapeHtml(chapter.title)}</h2>
     <div class="bond-story-text">${paragraphs(chapter.paragraphs)}</div><p class="bond-note">你想怎麼回應牠？兩種回應都能繼續同一段故事。</p>
     <div class="bond-choices">${chapter.choices.map((item) => `<button type="button" class="btn btn--secondary" data-bond-action="choice" data-level="${level}" data-choice="${item.id}" aria-pressed="${choice?.id === item.id}">${escapeHtml(item.label)}</button>`).join('')}</div>
     ${choice ? `<div class="bond-reply" role="status">${paragraphs([choice.reply])}</div>` : ''}
@@ -93,17 +112,17 @@ export function renderBondChapter(pet, state, level, previewChoice = null) {
     ${button('返回章節列表', 'overview', '', true)}</div>`;
 }
 
-export function renderBondSelector(pet, state, chapter, type, replacing = false) {
+export function renderBondSelector(pet, state, chapter, type, replacing = false, selectedId = '') {
   const journey = journeyOf(state);
   const items = type === 'task' ? (state.tasks || []).filter((task) => !task.completed && !journey.usedEventKeys.includes(`task:${task.id}`))
     : (state.habits || []).filter((habit) => habit.isActive && !habit.archivedAt);
   const target = type === 'task' ? 1 : HABIT_TARGETS[chapter];
-  return `<div class="bond-reader" data-bond-screen="selector"><span class="bond-eyebrow">與 ${escapeHtml(name(pet))} 同行</span><h2 class="modal-title">${replacing ? '更換同行目標' : '選擇同行目標'}</h2>
+  return `<div class="bond-reader" data-bond-screen="selector">${bondWizardSteps(2)}<span class="bond-eyebrow">與 ${escapeHtml(name(pet))} 同行</span><h2 class="modal-title">${replacing ? '這次想換成哪個目標？' : '想讓牠陪你完成什麼？'}</h2>
     <p>只計入${replacing ? '更換' : '接受'}之後的新完成。沒有期限，也不需要連續打卡。</p>
     ${replacing ? '<p class="bond-note">約定已暫停。更換後進度從 0 開始；已計入的完成紀錄不會再次使用。</p>' : ''}
     <label class="bond-field" for="bond-source-type">目標種類<select class="form-input" id="bond-source-type"><option value="task" ${type === 'task' ? 'selected' : ''}>完成一項任務</option><option value="habit" ${type === 'habit' ? 'selected' : ''}>累積習慣打卡</option></select></label>
-    ${items.length ? `<label class="bond-field" for="bond-source-id">選擇目標<select class="form-input" id="bond-source-id"><option value="">請選擇</option>${items.map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.title || item.name)}</option>`).join('')}</select></label>
-      <p class="bond-note">需要 ${target} ${type === 'habit' ? '個不同日期的打卡' : '次完成'}；獎勵星塵 +${chapter ? CHAPTER_REWARDS[chapter] : DAILY_COMPANION_REWARD}。</p>${button('接受約定', 'start', 'id="bond-start" disabled')}`
+    ${items.length ? `<label class="bond-field" for="bond-source-id">選擇目標<select class="form-input" id="bond-source-id"><option value="">請選擇</option>${items.map((item) => `<option value="${escapeHtml(item.id)}" ${item.id === selectedId ? 'selected' : ''}>${escapeHtml(item.title || item.name)}</option>`).join('')}</select></label>
+      <p class="bond-note">需要 ${target} ${type === 'habit' ? '個不同日期的打卡' : '次完成'}；獎勵星塵 +${chapter ? CHAPTER_REWARDS[chapter] : DAILY_COMPANION_REWARD}。</p>${button('下一步 · 確認約定', 'review', `id="bond-start" ${items.some((item) => item.id === selectedId) ? '' : 'disabled'}`)}`
       : `<p>目前沒有可選的${type === 'task' ? '未完成任務' : '有效習慣'}。</p>${button(type === 'task' ? '前往任務頁' : '前往習慣頁', 'go-create')}`}
-    ${button('返回約定', 'overview', '', true)}</div>`;
+    ${button('上一步', 'back-story', '', true)}</div>`;
 }

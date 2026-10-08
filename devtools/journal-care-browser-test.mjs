@@ -129,11 +129,41 @@ try {
         assert.ok(await dialog.locator('#companion-feed-btn').isVisible());
       }
     }
+    const taskId = await page.evaluate(async () => {
+      const { dbGet, dbPut, STORES } = await import('/src/db.js');
+      const pet = await dbGet(STORES.COLLECTION, 'pet_ur17');
+      await dbPut(STORES.COLLECTION, { ...pet, bondExp: 50, bondLevel: 2 });
+      const { createTask } = await import('/src/taskService.js');
+      return (await createTask({ content: '測試同行目標', priority: 'normal', planToday: true })).id;
+    });
     await dialog.locator('[data-bond-open]').click();
     await page.locator('#modal-body .bond-reader').waitFor();
     assert.equal(await dialog.evaluate((el) => el.open), false, 'Story reader is not trapped behind journal');
     await page.locator('[data-bond-screen="overview"]').waitFor();
     await checkSubpageLayouts('story');
+    await page.locator('[data-bond-action="chapter"][data-level="2"]').click();
+    await page.locator('[data-bond-action="choice"]').first().click();
+    await page.locator('[data-bond-action="select"]').click();
+    await page.locator('#bond-source-type').selectOption('task');
+    await page.locator('#bond-source-id').selectOption(taskId);
+    await page.locator('[data-bond-action="review"]').click();
+    await page.locator('[data-bond-screen="confirm"]').waitFor();
+    const readJourney = () => page.evaluate(async () => (await import('/src/bondJourneyService.js')).getBondJourney());
+    assert.equal((await readJourney()).active, null, 'Review never creates agreement');
+    await checkSubpageLayouts('bond confirmation');
+    await page.locator('[data-bond-action="back-target"]').click();
+    assert.equal(await page.locator('#bond-source-id').inputValue(), taskId, 'Back retains target');
+    await page.locator('[data-bond-action="review"]').click();
+    await page.locator('[data-bond-action="overview"]').click();
+    assert.equal((await readJourney()).active, null, 'Cancel never creates agreement');
+    await page.locator('[data-bond-action="chapter"][data-level="2"]').click();
+    await page.locator('[data-bond-action="select"]').click();
+    await page.locator('#bond-source-type').selectOption('task');
+    await page.locator('#bond-source-id').selectOption(taskId);
+    await page.locator('[data-bond-action="review"]').click();
+    await page.locator('[data-bond-action="start"]').click();
+    await page.locator('[data-bond-screen="overview"]').waitFor();
+    assert.equal((await readJourney()).active.sourceId, taskId, 'Final confirmation creates selected agreement');
     await page.locator('[data-bond-action="close"]').click();
     await dialog.locator('#companion-feed-btn').waitFor();
     await dialog.locator('[data-awake-open]').click();

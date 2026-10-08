@@ -1,6 +1,6 @@
 import { loadBondStories, chooseBondResponse, startBondAgreement, syncBondJourney,
   controlBondAgreement, claimBondAgreement, displayBondKeepsake } from './bondJourneyService.js';
-import { renderBondOverview, renderBondChapter, renderBondSelector } from './bondJourneyView.js';
+import { renderBondOverview, renderBondChapter, renderBondSelector, renderBondConfirmation } from './bondJourneyView.js';
 import { trackUpdateActivity } from './updateActivity.js';
 
 export function createBondJourneyController({ getState, refresh, openModal, closeModal, showToast, switchView, portrait, openDetail }) {
@@ -8,6 +8,7 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
   let screen = 'overview';
   let chapter = 2;
   let sourceType = 'task';
+  let sourceId = '';
   let replacing = false;
   let previewChoice = null;
   let busy = false;
@@ -24,13 +25,15 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
     if (!p) { closeModal(); return; }
     const state = getState();
     if (screen === 'chapter') openModal(renderBondChapter(p, state, chapter, previewChoice));
-    else if (screen === 'selector') openModal(renderBondSelector(p, state, chapter, sourceType, replacing));
+    else if (screen === 'selector') openModal(renderBondSelector(p, state, chapter, sourceType, replacing, sourceId));
+    else if (screen === 'confirm') openModal(renderBondConfirmation(p, state, chapter, sourceType, sourceId, replacing));
     else openModal(renderBondOverview(p, state, portrait(p)));
   }
   async function open(id) {
     petId = id;
     screen = 'overview';
     previewChoice = null;
+    sourceId = '';
     // Capture the opener before refresh replaces the home view.
     openModal('<section class="bond-reader" aria-busy="true"><h2>夥伴故事</h2><p>正在讀取同行紀錄…</p><button class="btn" data-bond-action="close">返回夥伴手記</button></section>');
     getState().bondStories = await loadBondStories();
@@ -56,15 +59,25 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
     if (action === 'select' || action === 'replace') {
       replacing = action === 'replace';
       chapter = replacing ? state.bondJourney.active.chapter : Number(target.dataset.level);
-      if (replacing) await controlBondAgreement('pause');
+      if (replacing && state.bondJourney.active.status !== 'paused') throw new Error('請先暫停目前約定，再更換目標。');
       await refresh({ renderMode: ['tasks'] });
       sourceType = state.tasks?.some((task) => !task.completed && !state.bondJourney.usedEventKeys.includes(`task:${task.id}`)) ? 'task' : 'habit';
+      sourceId = '';
       screen = 'selector';
       render();
       return;
     }
+    if (action === 'review') {
+      sourceId = document.getElementById('bond-source-id')?.value || '';
+      if (!sourceId) throw new Error('請先選擇一項目標。');
+      screen = 'confirm';
+      render();
+      return;
+    }
+    if (action === 'back-target') { screen = 'selector'; render(); return; }
+    if (action === 'back-story') { screen = chapter && !replacing ? 'chapter' : 'overview'; render(); return; }
     if (action === 'start') {
-      const sourceId = document.getElementById('bond-source-id')?.value;
+      if (screen !== 'confirm') return;
       if (!sourceId) throw new Error('請先選擇一項目標。');
       await startBondAgreement(petId, chapter, sourceType, sourceId, { replace: replacing });
       screen = 'overview';
@@ -129,8 +142,9 @@ export function createBondJourneyController({ getState, refresh, openModal, clos
     }));
     document.addEventListener('change', (event) => {
       if (busy || screen !== 'selector') return;
-      if (event.target.id === 'bond-source-type') { sourceType = event.target.value; render(); }
+      if (event.target.id === 'bond-source-type') { sourceType = event.target.value; sourceId = ''; render(); }
       if (event.target.id === 'bond-source-id') {
+        sourceId = event.target.value;
         const start = document.getElementById('bond-start');
         if (start) start.disabled = !event.target.value;
       }
