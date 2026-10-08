@@ -607,11 +607,30 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
   uiInitialized = true;
   try {
     initTwilightChrome();
-    createBondJourneyController({ getState: () => state, refresh: (...args) => onRefresh(...args),
+    const bondJourneyController = createBondJourneyController({ getState: () => state, refresh: (...args) => onRefresh(...args),
       openModal, closeModal, showToast, switchView,
-      portrait: (pet) => petImageHtml(pet, { size: 'md', loading: 'eager', eager: true }) }).mount();
+      portrait: (pet) => petImageHtml(pet, { size: 'md', loading: 'eager', eager: true }) });
+    bondJourneyController.mount();
     createAwakeningController({ getState: () => state, refresh: (...args) => onRefresh(...args),
-      openModal, closeModal, showToast, switchView, portrait: (pet) => petImageHtml(pet, { size: 'md', loading: 'eager', eager: true }) }).mount();
+      openModal, closeModal, showToast, openDetail: openPetDetailModal,
+      portrait: (pet) => petImageHtml(pet, { size: 'md', loading: 'eager', eager: true }),
+      navigate: async (action, petId) => {
+        if (action === 'story') { switchView('collection'); await bondJourneyController.open(petId); }
+        if (action === 'bond') { switchView('collection'); openPetFeedModal(state.enrichedCollection.find((pet) => pet.id === petId)); }
+        if (action === 'daily') { taskViewMode = 'today'; switchView('tasks'); renderTasksView(); }
+        if (action === 'summon') { state.gachaStats = await setSelectedPoolId('swordwild_shanhe_v3'); switchView('gacha'); }
+        if (action === 'expedition') {
+          switchView('expedition');
+          if (!state.activeExpedition) {
+            openExpeditionDispatchModal('cloudrest_trail');
+            dispatchSelectedPetIds = [petId]; renderExpeditionDispatchModal();
+          }
+        }
+        if (action === 'workshop') {
+          await openTeachingTarget({ view: 'workshop', tab: 'craft' });
+          document.querySelector('[data-action="craft-item"][data-item-id="item_pine_trail_riceball"]')?.closest('article')?.scrollIntoView({ block: 'center' });
+        }
+      } }).mount();
     initQuestIconLanguage();
     bindNavigation();
     initFilterGestures();
@@ -6526,7 +6545,7 @@ function openPetDetailModal(petId) {
     const liberatedLabel = st.bondLiberated
       ? '<span class="bond-liberated-label">羈絆解放</span>'
       : '';
-    const storyHtml = renderBondDetail(pet, state) + renderAwakeningDetail(pet, state);
+    const storyHtml = renderBondDetail(pet, state);
     bondStatusSection = `
       <section class="bond-section">
         <div class="bond-section__title-row">
@@ -6615,6 +6634,7 @@ function openPetDetailModal(petId) {
       ${owned && pet.lore ? `<p class="pet-detail__lore">${escapeHtml(pet.lore)}</p>` : ''}
       ${!owned ? '<p class="pet-detail__locked">召喚解鎖後，可閱讀完整背景與親密度故事。</p>' : ''}
       ${bondStatusSection}
+      ${renderAwakeningDetail(pet, state)}
       ${bondSection}
       ${nicknameSection}
       ${

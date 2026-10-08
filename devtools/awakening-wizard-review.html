@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="../">
+  <title>羈絆覺醒 · 流程設計</title>
+  <link rel="stylesheet" href="src/pet-awakening.css">
+  <link rel="stylesheet" href="devtools/awakening-wizard-review.css">
+</head>
+<body>
+  <header class="review-bar"><div><strong>羈絆覺醒 · 互動設計</strong><p>示範資料只存於本頁記憶體；按鈕模擬完成，不操作你的存檔。</p></div><details><summary>檢視情境</summary><div class="review-controls"><label>角色<select id="character"></select></label><label>起始狀態<select id="scenario"><option value="fresh">從資格準備開始</option><option value="eligible">已達資格，尚未接下</option><option value="active" selected>試煉中，完成 1 / 3</option><option value="paused">已暫停，完成 1 / 3</option><option value="conflict">另一位夥伴試煉中</option><option value="food">試煉完成，缺少食物</option><option value="ready">所有條件達成</option><option value="awakened">已覺醒</option></select></label><button id="reset" type="button">套用情境</button></div></details></header>
+  <main id="app" aria-busy="true"><p role="status">準備旅程中…</p></main>
+  <script type="module" src="devtools/awakening-wizard-review.js"></script>
+</body>
+</html>
