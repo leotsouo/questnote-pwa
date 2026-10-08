@@ -30,7 +30,7 @@ export function renderAwakeningGuide({ compact = false } = {}) {
 }
 export function renderAwakeningDetail(pet, state) {
   const entry = state.awakeningCatalog?.pets.find((p) => p.petId === pet.id);
-  if (!entry || !pet.owned) return '';
+  if (!entry) return '';
   const p = state.petAwakening?.byPet[pet.id];
   const ready = (pet.bondLevel || 1) >= 5 && state.bondJourney?.byPet[pet.id]?.chapters?.[5]?.claimedAt;
   const hint = p?.awakenedAt ? '已覺醒 · 可切換形態與重播演出' : p?.status === 'ready' ? '信物已取得 · 等待完成儀式'
@@ -46,33 +46,60 @@ export function renderAwakeningHome(state) {
   const entry = state.awakeningCatalog?.pets.find((p) => p.petId === id);
   if (!entry) return '';
   const p = s.byPet[id];
-  return `<section class="awakening-panel awakening-home"><h3>${escape(entry.name)} · ${escape(entry.trialTitle)}</h3><p>${p.status === 'ready' ? '信物已取得，準備與牠共赴此約。' : `日常完成 ${p.eventKeys.length}/3 · 古道同行 ${p.expeditionKey ? 1 : 0}/1${p.status === 'paused' ? ' · 已暫停' : ''}`}</p><button type="button" class="btn btn--secondary" data-awake-open="${escape(id)}">查看覺醒試煉</button></section>`;
+  return `<section class="awakening-panel awakening-home"><h3>${escape(entry.name)} · ${escape(entry.trialTitle)}</h3><p>${p.status === 'ready' ? '信物已取得，準備與牠共赴此約。' : `日常完成 ${p.eventKeys.length}/3 · 古道同行 ${p.expeditionKey ? 1 : 0}/1${p.status === 'paused' ? ' · 已暫停' : ''}`}</p><button type="button" class="btn btn--secondary" data-awake-detail="${escape(id)}">前往角色詳情繼續旅程</button></section>`;
 }
-export function renderAwakeningReader(pet, state, portrait) {
+export function awakeningWizardStep(pet, state) {
+  if (state.awakeningError) return 'error';
+  const p = state.petAwakening?.byPet?.[pet.id];
+  if (!pet.owned) return 'owned';
+  if (p?.awakenedAt) return 'done';
+  if ((pet.bondLevel || 1) < 5) return 'bond';
+  if (!state.bondJourney?.byPet?.[pet.id]?.chapters?.[5]?.claimedAt) return 'story';
+  if (p?.status === 'paused') return state.petAwakening?.activePetId ? 'conflict' : 'paused';
+  if (!p) return state.petAwakening?.activePetId ? 'conflict' : 'start';
+  if (p.eventKeys.length < 3) return 'daily';
+  if (!p.expeditionKey) return 'expedition';
+  if (p.status !== 'ready' || !p.tokenGrantedAt || p.tokenConsumedAt) return 'error';
+  return (state.inventory?.items?.item_pine_trail_riceball || 0) >= 1 ? 'ritual' : 'food';
+}
+
+export function renderAwakeningReader(pet, state, portrait = '') {
   const entry = state.awakeningCatalog?.pets.find((p) => p.petId === pet.id);
   if (!entry) return '<p>這位夥伴尚未開放覺醒。</p>';
-  const p = state.petAwakening?.byPet[pet.id];
-  const eligible = (pet.bondLevel || 1) >= 5 && state.bondJourney?.byPet[pet.id]?.chapters?.[5]?.claimedAt;
-  const activeId = state.petAwakening?.activePetId;
-  const another = activeId && activeId !== pet.id;
+  const p = state.petAwakening?.byPet?.[pet.id];
+  const step = awakeningWizardStep(pet, state);
   const food = state.inventory?.items?.item_pine_trail_riceball || 0;
-  const button = (action, label, disabled = false) => `<button class="btn btn--secondary" type="button" data-awake-action="${action}"${disabled ? ' disabled' : ''}>${label}</button>`;
+  const button = (action, label, primary = false) => `<button class="btn ${primary ? 'btn--primary' : 'btn--secondary'}" type="button" data-awake-action="${action}">${label}</button>`;
+  const steps = {
+    owned: ['先和這位夥伴相遇，好嗎？', '收藏之後，這段守諾旅程才屬於你們。', '目前尚未收藏。', 'summon', '前往劍隱山河召喚'],
+    bond: ['先讓你們更熟悉彼此，好嗎？', '等牠願意把最後一段同行故事交給你。', `親密度 Lv.${pet.bondLevel || 1} / Lv.5`, 'bond', '前往親密度養成'],
+    story: ['聽聽牠最後一段同行故事，好嗎？', '讀完故事並領取 Lv.5 獎勵，才能接下新的約定。', '親密度已達 Lv.5；最後一章尚未領獎。', 'story', '開啟同行故事'],
+    start: ['願意和牠接下這個約定嗎？', entry.invitation, '接下後完成三筆新任務／習慣，及一次牠參隊的新古道派遣領獎；兩項可並行。', 'start', '接下守諾試煉'],
+    conflict: ['要把目前的約定先暫停嗎？', '一次只陪一位夥伴完成試煉。另一位的既有進度會保留。', '暫停另一位後，接下或恢復這位夥伴的約定。', 'switch', '暫停另一位，繼續此約'],
+    paused: ['要繼續你們的約定嗎？', '上次留下的腳步還在，從這裡繼續就好。', `日常 ${p?.eventKeys.length || 0}/3 · 古道同行 ${p?.expeditionKey ? 1 : 0}/1。暫停期間不計入。`, 'start', '恢復試煉'],
+    daily: ['今天，先一起完成一件小事？', '每一筆新完成，都讓你們更靠近這個約定。', `接下後的新任務／習慣 ${p?.eventKeys.length || 0}/3；還差 ${3 - (p?.eventKeys.length || 0)} 筆。`, 'daily', '前往今日任務／習慣'],
+    expedition: ['一起走一趟雲棧古道，好嗎？', '讓牠加入隊伍，帶著你們的約定出發。', '必須接下後出發；牠當隊長或隊員皆可，領取派遣獎勵才算完成。', 'expedition', '前往雲棧古道'],
+    food: ['準備一份行旅糰，好嗎？', '信物已經在你手中，儀式還差最後一份心意。', `${entry.tokenName} 1 枚已保留 · 松香行旅糰需要 1 份，目前 ${food} 份。`, 'workshop', '前往工坊製作'],
+    ritual: ['準備與牠共赴此約了嗎？', '你們走過的每一步，都已成為彼此的承諾。', `全部條件已核對。儀式會使用「${entry.tokenName} 1 枚＋松香行旅糰 1 份」。`, 'awaken', '完成覺醒 · 使用信物與行旅糰'],
+    error: ['重新核對你們的旅程，好嗎？', '覺醒紀錄暫時無法核對，原始資料已保留。', '請重試，確認完成紀錄後再繼續。', 'retry', '重新讀取進度'],
+  };
   let body = '';
-  if (p?.awakenedAt) {
-    body = `<p class="awakening-mark">已覺醒 · ${escape(entry.title)}</p>${entry.story.map((text) => `<p>${escape(text)}</p>`).join('')}
-      <h3>形態選擇</h3><p>目前：${p.form === 'initial' ? '初遇相' : '覺醒相'}。形態不影響稀有度或派遣收益。</p>
-      <div class="awakening-panel__actions">${button('initial', '初遇相', p.form === 'initial')}${button('awakened', '覺醒相', p.form === 'awakened')}${button('replay', '重播覺醒演出')}</div>
+  if (step === 'done') {
+    body = `<p class="awakening-mark">✓ 已覺醒 · ${escape(entry.title)}</p><h2 id="awakening-question" tabindex="-1">牠以新的姿態，繼續與你同行。</h2>${entry.story.map((text) => `<p>${escape(text)}</p>`).join('')}
+      <p>目前：${p.form === 'initial' ? '初遇相' : '覺醒相'}。形態不影響稀有度或派遣收益。</p>
+      <div class="awakening-panel__actions">${button(p.form === 'initial' ? 'awakened' : 'initial', p.form === 'initial' ? '切換覺醒相' : '切換初遇相', true)}${button('replay', '重播覺醒演出')}</div>
       <p>稱號「${escape(entry.title)}」已開放，可到稱號管理裝備。</p>`;
   } else {
-    body = `<p>${escape(entry.invitation)}</p><p>親密度 Lv.5：${(pet.bondLevel || 1) >= 5 ? '已達成' : '尚未達成'}<br>Lv.5 同行故事：${state.bondJourney?.byPet[pet.id]?.chapters?.[5]?.claimedAt ? '已完成' : '尚未完成'}</p>`;
-    if (p) body += `<h3>守諾試煉${p.status === 'paused' ? ' · 已暫停' : ''}</h3><p>日常完成 ${p.eventKeys.length}/3</p><progress value="${p.eventKeys.length}" max="3" aria-label="日常完成進度"></progress><p>雲棧古道同行 ${p.expeditionKey ? 1 : 0}/1</p><p>只計入接下後的新完成與參隊派遣領獎；暫停期間不計入。</p>`;
-    else body += '<p>接下後，完成三筆任務／習慣，並與牠走一次雲棧古道、領取派遣獎勵。</p>';
-    body += `<h3>覺醒儀式</h3><p>${escape(entry.tokenName)}：${p?.tokenGrantedAt ? '已取得 1 枚' : '完成試煉保證取得'}<br>松香行旅糰：需要 1 份，目前 ${food} 份</p><p>完成後開放雙形態、覺醒篇章、稱號「${escape(entry.title)}」與專屬陪伴回應。</p><div class="awakening-panel__actions">`;
-    if (p?.status === 'ready') body += button('awaken', '與牠共赴此約', food < 1) + (food < 1 ? button('workshop', '前往工坊製作') : '');
-    else if (p?.status === 'active') body += button('pause', '暫停試煉') + button('expedition', '前往雲棧古道');
-    else if (another) body += '<p>另一位夥伴正在試煉；暫停後可切換，進度會保留。</p>' + button('pause-other', '暫停目前試煉');
-    else body += button('start', p ? '恢復試煉' : '接下守諾試煉', !eligible);
-    body += '</div>';
+    const [question, words, fact, action, label] = steps[step];
+    body = `<h2 id="awakening-question" tabindex="-1">${escape(question)}</h2><p class="awakening-wizard__message">${escape(words)}</p><p>${escape(fact)}</p>${step === 'daily' ? `<progress value="${p.eventKeys.length}" max="3" aria-label="日常完成進度"></progress>` : ''}<div class="awakening-panel__actions">${button(action, label, true)}</div>`;
+    if (step === 'daily' && !p.expeditionKey) body += `<div class="awakening-panel__actions">${button('expedition', '也可以先去古道同行')}</div>`;
   }
-  return `<section class="awakening-reader"><h2>${escape(pet.name)} · ${escape(entry.trialTitle)}</h2>${portrait}${body}<p data-awake-error class="awakening-error" role="alert"></p><div class="awakening-panel__actions">${button('close', '關閉')}</div></section>`;
+  const conditions = [
+    [pet.owned, '已收藏這位夥伴'], [(pet.bondLevel || 1) >= 5, '親密度 Lv.5'],
+    [state.bondJourney?.byPet?.[pet.id]?.chapters?.[5]?.claimedAt, '已領取 Lv.5 同行故事獎勵'],
+    [p, `已接下試煉${p?.status === 'paused' ? '（已暫停）' : ''}`], [p?.eventKeys.length === 3, `日常完成 ${p?.eventKeys.length || 0}/3`],
+    [p?.expeditionKey, `雲棧古道同行 ${p?.expeditionKey ? 1 : 0}/1`], [p?.tokenGrantedAt, `${entry.tokenName}：${p?.tokenConsumedAt ? '已使用' : p?.tokenGrantedAt ? '已取得 1 枚' : '完成試煉保證取得'}`],
+    [food >= 1 || p?.awakenedAt, `松香行旅糰：${p?.awakenedAt ? '儀式已使用 1 份' : `需要 1 份，目前 ${food} 份`}`],
+  ];
+  return `<section class="awakening-reader awakening-wizard" data-awakening-pet="${escape(pet.id)}" data-awakening-step="${step}"><header><p class="awakening-wizard__eyebrow">一諾同行 · 羈絆覺醒</p><h3>${escape(pet.name)} · ${escape(entry.trialTitle)}</h3></header><div class="awakening-wizard__layout"><div class="awakening-wizard__portrait">${portrait}</div><div class="awakening-wizard__stage" aria-labelledby="awakening-question">${body}<p data-awake-error class="awakening-error" role="alert"></p></div></div>${step === 'error' ? '' : `<details class="awakening-wizard__conditions"><summary>查看全部條件與目前進度</summary><ul>${conditions.map(([ok, text]) => `<li>${ok ? '✓' : '○'} ${escape(text)}</li>`).join('')}</ul><p>只計入接下／恢復後的新完成；派遣必須接下後出發、參隊並領獎。暫停不清空進度。完成後開放雙形態、覺醒篇章、稱號與專屬陪伴回應。</p></details>`}<div class="awakening-panel__actions">${button('close', '稍後繼續 · 返回角色詳情')}${p?.status === 'active' ? button('pause', '暫停試煉') : ''}</div><p class="awakening-wizard__note">離開會保留進度，試煉仍繼續計入；只有暫停停止計入。覺醒是可選養成，不扣親密度、星塵或碎片。</p></section>`;
 }
