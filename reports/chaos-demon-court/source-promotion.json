@@ -1,0 +1,268 @@
+{
+  "status": "passed",
+  "at": "2026-10-08T13:50:15.629Z",
+  "candidateId": "303bcc646872e6eabeda7891637754069d1a7c553557f03e69ae70295246c543",
+  "approvedPackageHash": "d3c5f500075478d2c9e21bb3858c08cd21181b017da9d5a2f0be196551b376fa",
+  "catalogSha256": "7302d5825ce74e803fb4bdb9d644ed2d1bc25dca2e7e69e7325dcfed2f8c4bf9",
+  "previousCatalogRowsPreserved": true,
+  "copied": [
+    {
+      "path": "assets/pets/pet_n50.png",
+      "sha256": "e1497568099e134b448b08a692a6720f9600e234713e134bff25b4a3573097ce"
+    },
+    {
+      "path": "assets/pets/pet_n51.png",
+      "sha256": "d3c4f3228a3cd347660fd07fe2b9a5807dbcb2280f7abc0ffb6389171fe9debf"
+    },
+    {
+      "path": "assets/pets/pet_n52.png",
+      "sha256": "1d3f1e174cc70362a3a83e1a408fd2e30183f451c39aaf73df2fac3565e2a6bd"
+    },
+    {
+      "path": "assets/pets/pet_r57.png",
+      "sha256": "829824efd529de0b41fde8828ac3973ca365769c6c9887fea4aa4aabd93f29a8"
+    },
+    {
+      "path": "assets/pets/pet_r58.png",
+      "sha256": "307fa77f71e5d0c792e18f216b94baff2ad2100788b7f5a4fff79fd769546ffc"
+    },
+    {
+      "path": "assets/pets/pet_r59.png",
+      "sha256": "0bd1158dbaf9cdc6c326dbd3701d28e338cac0b0ac799526ed1555b0f6b14c5a"
+    },
+    {
+      "path": "assets/pets/pet_r60.png",
+      "sha256": "8bb02433b264a7d4c6adb1d92891b0f6961cbaad2f3a11c5fb6898e8cd695b98"
+    },
+    {
+      "path": "assets/pets/pet_r61.png",
+      "sha256": "77793df3127d101ce016aa3e43a519d74f020ad1524a3cc30be64693b50bec55"
+    },
+    {
+      "path": "assets/pets/pet_sr51.png",
+      "sha256": "518205270e7e557423f0ebf15460f7b871dea8fb0344227e2d62e289ac798fe9"
+    },
+    {
+      "path": "assets/pets/pet_sr52.png",
+      "sha256": "701547b5e65e241ff6886b60220decfc8fde3abf194118d797a9427a84c4ac81"
+    },
+    {
+      "path": "assets/pets/pet_sr53.png",
+      "sha256": "cd1b6ddfcc3012e6ce935bd30ca94d057174fa9e9201b9e76c83785b560898d2"
+    },
+    {
+      "path": "assets/pets/pet_sr54.png",
+      "sha256": "fa95fc1b06e9f0a0ba4973a610aa8031aa2655fb4825653ff80cf76742fb5db4"
+    },
+    {
+      "path": "assets/pets/pet_sr55.png",
+      "sha256": "ba5792965b7dd7def5712dcc144310e5d42b8e6f40ea3d9d05b212cd70f49c8c"
+    },
+    {
+      "path": "assets/pets/pet_ssr37.png",
+      "sha256": "3f8f8f80b5d89c4cca1b85a8625130b80613a8f1506143e8f35bb8c034b33019"
+    },
+    {
+      "path": "assets/pets/pet_ssr38.png",
+      "sha256": "cd751bb19ef086a8d14514614510b31458e5e5ddfc5460aeaa4d34b03c1f3b52"
+    },
+    {
+      "path": "assets/pets/pet_ssr39.png",
+      "sha256": "52ab5f0716e2530d8ea715c9334b72cd6df94ccfefc04d096b901ddd67b34fe9"
+    },
+    {
+      "path": "assets/pets/pet_ssr40.png",
+      "sha256": "8749b511b29a21a264a2dc701d32966d7ace7344ebdc5d7d4557c4c4160639d9"
+    },
+    {
+      "path": "assets/pets/pet_ur28.png",
+      "sha256": "5a28ce020209d5ef6f5ca5b7e32d71e8876775cb1b2e24539d35a6dcd838d9d7"
+    },
+    {
+      "path": "assets/pets/pet_ur29.png",
+      "sha256": "66302377ac10f92cb54f52896da722e5380a04c9a5bb5a8b66f15765cd76470c"
+    },
+    {
+      "path": "assets/pets/pet_ur30.png",
+      "sha256": "b8b412a84e4a76691e06ccdf7865f237f144bcd5d505738bce8b76e826bdf26b"
+    },
+    {
+      "path": "assets/pets/variants/pet_n50-card-384-e1497568099e.webp",
+      "sha256": "45ca751589bbcf29edc36070500bb6617df4ed420a7bdc30dc90b2d899ac1fef"
+    },
+    {
+      "path": "assets/pets/variants/pet_n50-stage-960-e1497568099e.webp",
+      "sha256": "a4002e92c9745f9f82dd7b9c05bcb4460aab14ef1a93501c70988d041480a4e8"
+    },
+    {
+      "path": "assets/pets/variants/pet_n51-card-384-d3c4f3228a3c.webp",
+      "sha256": "ead91fc92e55b82b59a082d3d010f9b8401aab3e6435f7f99745f2171418b0ea"
+    },
+    {
+      "path": "assets/pets/variants/pet_n51-stage-960-d3c4f3228a3c.webp",
+      "sha256": "0df5437bf3c01542eb6cd269cfd281cb1fcf51c35f820bc5780bdbdcdf4b16ea"
+    },
+    {
+      "path": "assets/pets/variants/pet_n52-card-384-1d3f1e174cc7.webp",
+      "sha256": "8416e4e52cd43caf8451bdb7481496b536df8f80de4ceea691a19e8cfd6b86c8"
+    },
+    {
+      "path": "assets/pets/variants/pet_n52-stage-960-1d3f1e174cc7.webp",
+      "sha256": "900b79b7bd2c44198cf6acd989c88ffde2f701b514c9a0942b8cee999d9c95ec"
+    },
+    {
+      "path": "assets/pets/variants/pet_r57-card-384-829824efd529.webp",
+      "sha256": "a6465d957a40ae36b6397c4278c7892e2ec0a11a8f25b45b51a3fe293de9adf1"
+    },
+    {
+      "path": "assets/pets/variants/pet_r57-stage-960-829824efd529.webp",
+      "sha256": "c255d94451d66b906150e1fb46c013aed8ad1322f27a6fd5ce80b8d99dc73610"
+    },
+    {
+      "path": "assets/pets/variants/pet_r58-card-384-307fa77f71e5.webp",
+      "sha256": "95050ab8b6c46ca67c22ed5ee23a154b8752c512dad6f9bfa518cc4daf7aa76c"
+    },
+    {
+      "path": "assets/pets/variants/pet_r58-stage-960-307fa77f71e5.webp",
+      "sha256": "7fedab1700304f7a65eb8883dffa5cd9411def2c11c5da31e3db47de935d3d55"
+    },
+    {
+      "path": "assets/pets/variants/pet_r59-card-384-0bd1158dbaf9.webp",
+      "sha256": "3c4011c24a8040ae8056371db60314b1f985ee5cc6bc1f72a1cae42ba60d317d"
+    },
+    {
+      "path": "assets/pets/variants/pet_r59-stage-960-0bd1158dbaf9.webp",
+      "sha256": "b03ebd304129b98b1dd9486b1d75b26490c77157ff3390d7f44dae0afc383e14"
+    },
+    {
+      "path": "assets/pets/variants/pet_r60-card-384-8bb02433b264.webp",
+      "sha256": "eef379dd859764181fbb08716f6f7bcb3196f5f486a96572085cb417dff6da21"
+    },
+    {
+      "path": "assets/pets/variants/pet_r60-stage-960-8bb02433b264.webp",
+      "sha256": "e73f43581360e5bdd3323550170cbb8c16c667f959e7f2260a3cd3b3765685fb"
+    },
+    {
+      "path": "assets/pets/variants/pet_r61-card-384-77793df3127d.webp",
+      "sha256": "0a2805e59fce3003bb835a141e6002dbf31baf15cf98656fd3d111077fe3bd3b"
+    },
+    {
+      "path": "assets/pets/variants/pet_r61-stage-960-77793df3127d.webp",
+      "sha256": "48022d80ecf95e2a7e3d4a08e6736b22759ad98d375d9c8433f451ed1bc9da82"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr51-card-384-518205270e7e.webp",
+      "sha256": "f9b91c37ba2e86b6e2d356cc01c66bc0392a547c2c05dd817c4d101cbdf955c7"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr51-stage-960-518205270e7e.webp",
+      "sha256": "d41c1d0d5f042bb1e1862ce433a3783a97e364c332809cce45b6524611e5266d"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr52-card-384-701547b5e65e.webp",
+      "sha256": "96e43209a4ef674e9f7b56ac7aaebd83f064db8afd4faa4437207bc04b666a10"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr52-stage-960-701547b5e65e.webp",
+      "sha256": "8261b51652dd1494749e623a323602c5d0b104100283438ab85453bb212ea72c"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr53-card-384-cd1b6ddfcc30.webp",
+      "sha256": "30d0f66c822de83a6512538402a55099f7b83f5e073eb4e7f4baf084de0d87b9"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr53-stage-960-cd1b6ddfcc30.webp",
+      "sha256": "a39d39776ad3a447ca76ea1e3e96abfef22dbb0f00136dfb1ca1ee255de56d00"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr54-card-384-fa95fc1b06e9.webp",
+      "sha256": "0bee79b685b7eccb9dba0cbe47dc657d22225f9553fa3ffdcb6dafbea71deb19"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr54-stage-960-fa95fc1b06e9.webp",
+      "sha256": "b3824f19b68d16d738c97c80ffdf47dffbe7c8912d0395cfb9b880306b86a461"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr55-card-384-ba5792965b7d.webp",
+      "sha256": "9f6a76f3e299822c7c3357cbccd7081db7a78621dc85a4a516bc26b5d4e58b14"
+    },
+    {
+      "path": "assets/pets/variants/pet_sr55-stage-960-ba5792965b7d.webp",
+      "sha256": "9c63843162aafe5c83d77593da952d31f63a60d40ed29b79a5c625efe7b08935"
+    },
+    {
+      "path": "assets/pets/variants/pet_ssr37-card-384-3f8f8f80b5d8.webp",
+      "sha256": "cd25396f2ba2097fe5e819413c558e35e26bda44ae73e7796e0115947f3a5cf6"
+    },
+    {
+      "path": "assets/pets/variants/pet_ssr37-stage-960-3f8f8f80b5d8.webp",
+      "sha256": "dd75e06b76f2d2fa5ac997bd9cff7f54bb58c35ef4650732b757b25697499f85"
+    },
+    {
+      "path": "assets/pets/variants/pet_ssr38-card-384-cd751bb19ef0.webp",
+      "sha256": "ea1855127989bc501563b43fd6b52fd4111625fee1e4acfe4ead3ce103644cb2"
+    },
+    {
+      "path": "assets/pets/variants/pet_ssr38-stage-960-cd751bb19ef0.webp",
+      "sha256": "f202a33cc5b6ea12fc1e86813c9109a142313d337ab6edc655af744062ea85fe"
+    },
+    {
+      "path": "assets/pets/variants/pet_ssr39-card-384-52ab5f0716e2.webp",
+      "sha256": "8476c1aa1ceca118a0a8a6c842dc68df1a9493ab98dbb2b7eaa384f8194fa602"
+    },
+    {
+      "path": "assets/pets/variants/pet_ssr39-stage-960-52ab5f0716e2.webp",
+      "sha256": "a73033c0c5e53ca81b0261b9fe1d96f8094735911c122433abcfe17468ff8e8d"
+    },
+    {
+      "path": "assets/pets/variants/pet_ssr40-card-384-8749b511b29a.webp",
+      "sha256": "81524e7c4be13140346d25bf3f9c7a34684cc473c18079a1d153d9b86fae9c53"
+    },
+    {
+      "path": "assets/pets/variants/pet_ssr40-stage-960-8749b511b29a.webp",
+      "sha256": "d7e214f06dbaf23ad817adee75e7ee322538197e8c92ae9d37a5dab1f779b2ae"
+    },
+    {
+      "path": "assets/pets/variants/pet_ur28-card-384-5a28ce020209.webp",
+      "sha256": "8915db24290195f1588efc8d9ee512067632eb8b13c7d6f47f9b18507d924c73"
+    },
+    {
+      "path": "assets/pets/variants/pet_ur28-stage-960-5a28ce020209.webp",
+      "sha256": "4472719474bac5ae9f10f0313d7139692601a641d8a94b5cbf193c00e720a6ab"
+    },
+    {
+      "path": "assets/pets/variants/pet_ur29-card-384-66302377ac10.webp",
+      "sha256": "46c7d7ccd711c57f658ed01739646603d28ab1d4f5915d272ad87e10955e8e0d"
+    },
+    {
+      "path": "assets/pets/variants/pet_ur29-stage-960-66302377ac10.webp",
+      "sha256": "3671e1da2604afabeb035bfcfdae94169e225090c6f62da51716359bbfd99359"
+    },
+    {
+      "path": "assets/pets/variants/pet_ur30-card-384-b8b412a84e4a.webp",
+      "sha256": "8c3f19a61e0a2130e5f08245aae94448356f5d51664f7846b78ae622d2e455cc"
+    },
+    {
+      "path": "assets/pets/variants/pet_ur30-stage-960-b8b412a84e4a.webp",
+      "sha256": "5c0013e506f12e3c0459c24dd27fe95841277a9dabdc4639b86607356ef80b91"
+    },
+    {
+      "path": "data/craftables.json",
+      "sha256": "ba908bbcc7faf7e6ea4bb18a34e93a7997f26399d60dde20225d94d2a1783745"
+    },
+    {
+      "path": "data/expeditions.json",
+      "sha256": "496ef240b43b875282d3ae8259766914a8583db9a663f19d67cb97b009452de6"
+    },
+    {
+      "path": "data/gift-affinities.json",
+      "sha256": "4e9f7825aeeebf71e29f41f02af4f2621b383479c783c30a17768171d497ff55"
+    },
+    {
+      "path": "data/materials.json",
+      "sha256": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c"
+    }
+  ],
+  "legacyCompatibilitySnapshotChanged": false,
+  "productionArtifactRebuilt": false
+}

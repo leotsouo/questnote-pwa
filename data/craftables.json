@@ -282,5 +282,29 @@
       "bond_item",
       "sunward_letters"
     ]
+  },
+  {
+    "id": "item_chaos_ember_tart",
+    "name": "黯莓餘燼塔",
+    "type": "favorite_bond_item",
+    "rarity": "R",
+    "description": "以森林嫩葉裹住暖燼莓香的小塔；黯紫外皮下留有暖意。喜愛餘燼與星界的夥伴特別喜愛，也用於黯冠王庭的化身儀式。",
+    "enabled": true,
+    "favoriteTags": [
+      "fire",
+      "astral"
+    ],
+    "effect": {
+      "bondExp": 75,
+      "favoriteBonusBondExp": 150
+    },
+    "recipe": {
+      "forest_leaf": 3,
+      "lava_core": 3
+    },
+    "futureTags": [
+      "bond_item",
+      "darkcrown_court_release"
+    ]
   }
 ]
