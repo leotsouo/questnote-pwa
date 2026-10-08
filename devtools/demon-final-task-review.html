@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>惡魔的趣味 · 互動檢視</title><style>html,body{margin:0;height:100%;background:#101b2d;color:#eee;font:14px system-ui}header{padding:10px 14px}iframe{width:100%;height:calc(100% - 46px);border:0}#status{margin-left:12px;color:#cdb6f3}</style><script src="/__onboarding_db_guard__.js"></script></head><body><header>惡魔的趣味 · 隔離互動預覽<span id="status">準備中…</span></header><iframe title="QuestNote 互動預覽"></iframe><script type="module">
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>? ? ? · 互動檢視</title><style>html,body{margin:0;height:100%;background:#101b2d;color:#eee;font:14px system-ui}header{padding:10px 14px}iframe{width:100%;height:calc(100% - 46px);border:0}#status{margin-left:12px;color:#cdb6f3}</style><script src="/__onboarding_db_guard__.js"></script></head><body><header>? ? ? · 隔離互動預覽<span id="status">準備中…</span></header><iframe title="QuestNote 互動預覽"></iframe><script type="module">
 import { dbPut } from '/src/db.js';
 import { addPetToCollection, getPetCollection } from '/src/collectionService.js';
 import { createBondJourney } from '/src/bondJourneyCore.js';
@@ -20,7 +20,7 @@ try {
     if(d.querySelector('#app-loader')?.getClientRects().length)return;
     if(stage===0){const b=d.querySelector('.bottom-nav [data-view="collection"]');if(b){b.click();stage++;}return;}
     if(stage===1){const b=d.querySelector('[data-pet="pet_ur28"]');if(b){b.click();stage++;}return;}
-    if(stage===2){const b=d.querySelector('[data-identity-action="app-pet-detail"]');if(b){b.click();stage++;}return;}
+    if(stage===2){const awake=d.querySelector('[data-awake-open="pet_ur28"]');if(awake){awake.click();stage=4;return;}const b=d.querySelector('[data-identity-action="app-pet-detail"]');if(b){b.click();stage++;}return;}
     if(stage===3){const b=d.querySelector('[data-awake-open="pet_ur28"]');if(b){b.click();stage++;}return;}
     if(d.querySelector('#demon-final-answer')){clearInterval(timer);status.textContent='可直接回答、查看今日任務並完成覺醒';}
   },300);
