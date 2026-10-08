@@ -26,3 +26,9 @@
 @keyframes chaos-crown-turn { from { transform:rotate(-70deg) scale(.65); opacity:.2; } to { transform:rotate(0) scale(1); opacity:1; } }
 @keyframes chaos-mark-rise { 0%,25% { opacity:0; transform:translateY(35px); } 65%,100% { opacity:1; transform:translateY(0); } }
 @media (prefers-reduced-motion:reduce) { .chaos-court-scene * { animation:none!important; transition:none!important; } .chaos-mark { opacity:1; } .chaos-rift { stroke-dashoffset:0; } }
+
+.awakening-scene--darkcourt { background:#100e1b; color:#f7e6d1; }
+.awakening-scene--darkcourt .awakening-scene__sky { background:radial-gradient(ellipse at 50% 25%,#582b3f,#100e1b 70%); }
+.awakening-scene--darkcourt .awakening-ridges { fill:#191421; stroke:#8d636a; }
+.awakening-scene--darkcourt .awakening-trace { fill:none; stroke:#e5b783; }
+.awakening-scene--darkcourt :is(.awakening-scene__eyebrow,.awakening-scene__title) { color:#f3d5ae; }

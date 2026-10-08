@@ -83,6 +83,7 @@ import { applyReadingModeToDocument } from './preferencesService.js';
 import { initSeniorModeController, syncSeniorPresentation, isSeniorMode, seniorFeedback, seniorTaskCreated, seniorTaskFormClosed, composeSeniorTaskForm, decorateSeniorControls } from './seniorModeController.js';
 import { twilightIcon, getCompanionScene, initTwilightChrome, syncTwilightHome, syncTwilightGacha, setTwilightCompanionLine, reactTwilightCompanion } from './twilightPresentation.js';
 import { createBondJourneyController } from './bondJourneyController.js';
+import { getAwakeningProfile, getPoolAwakeningProfile } from './petAwakeningProfiles.js';
 import { createAwakeningController } from './petAwakeningController.js';
 import { renderAwakeningDetail, renderAwakeningHome, renderAwakeningGuide, initialAwakeningPortrait } from './petAwakeningView.js';
 import { renderBondHome, renderBondDetail, renderBondKeepsake } from './bondJourneyView.js';
@@ -615,20 +616,22 @@ export function initUI(appState, refreshCallback, achievementCheckCallback) {
       openModal, closeModal, showToast, openDetail: openPetDetailModal,
       portrait: (pet) => petImageHtml(pet, { size: 'md', loading: 'eager', eager: true }),
       navigate: async (action, petId) => {
+        const profile = getAwakeningProfile(petId);
+        if (!profile) return;
         if (action === 'story') { switchView('collection'); await bondJourneyController.open(petId); }
         if (action === 'bond') { switchView('collection'); openPetFeedModal(state.enrichedCollection.find((pet) => pet.id === petId)); }
         if (action === 'daily') { taskViewMode = 'today'; switchView('tasks'); renderTasksView(); }
-        if (action === 'summon') { state.gachaStats = await setSelectedPoolId('swordwild_shanhe_v3'); switchView('gacha'); }
+        if (action === 'summon') { state.gachaStats = await setSelectedPoolId(profile.poolId); switchView('gacha'); }
         if (action === 'expedition') {
           switchView('expedition');
           if (!state.activeExpedition) {
-            openExpeditionDispatchModal('cloudrest_trail');
+            openExpeditionDispatchModal(profile.areaId);
             dispatchSelectedPetIds = [petId]; renderExpeditionDispatchModal();
           }
         }
         if (action === 'workshop') {
           await openTeachingTarget({ view: 'workshop', tab: 'craft' });
-          document.querySelector('[data-action="craft-item"][data-item-id="item_pine_trail_riceball"]')?.closest('article')?.scrollIntoView({ block: 'center' });
+          document.querySelector(`[data-action="craft-item"][data-item-id="${profile.foodId}"]`)?.closest('article')?.scrollIntoView({ block: 'center' });
         }
       } }).mount();
     initQuestIconLanguage();
@@ -5143,7 +5146,7 @@ function renderGachaView() {
   renderGachaThemeStage(pool);
   const awakeningGuide = document.getElementById('gacha-pet-awakening-guide');
   const awakeningToggle = document.getElementById('gacha-pet-awakening-toggle');
-  const hasPetAwakening = normalizePoolPresentation(pool)?.animationKey === 'swordwild_shanhe';
+  const hasPetAwakening = !!getPoolAwakeningProfile(pool.id);
   if (awakeningGuidePoolId !== pool.id) {
     awakeningGuidePoolId = pool.id;
     awakeningGuideExpanded = false;
@@ -5154,7 +5157,7 @@ function renderGachaView() {
   }
   if (awakeningGuide) {
     awakeningGuide.hidden = !hasPetAwakening || !awakeningGuideExpanded;
-    if (hasPetAwakening) awakeningGuide.innerHTML = renderAwakeningGuide({ compact: true });
+    if (hasPetAwakening) awakeningGuide.innerHTML = renderAwakeningGuide({ compact: true, poolId: pool.id });
   }
   setText('gacha-pool-name', pool.name);
   setText('gacha-stardust', stardust);

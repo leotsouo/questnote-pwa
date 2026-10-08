@@ -9,6 +9,7 @@ const marks = Object.freeze({
   law: '<circle cx="500" cy="300" r="95"/><path d="M500 185v230M385 300h230m-195-80 160 160m0-160-160 160"/>',
   star: '<path d="m500 170 32 90 96 10-74 60 24 95-78-55-78 55 24-95-74-60 96-10Z"/>',
 });
+export const chaosMotifMarkup = (motif) => marks[CHAOS_MOTIFS.includes(motif) ? motif : 'crown'];
 export function createChaosDemonCourtScene(motif = 'crown') {
   const scene = document.createElement('div');
   scene.className = 'chaos-court-scene';

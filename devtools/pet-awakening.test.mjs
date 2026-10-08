@@ -8,6 +8,7 @@ import { awakeningPortrait, initialAwakeningPortrait, renderAwakeningGuide, rend
 import { awakeningDuration, awakeningSceneHtml } from '../src/petAwakeningScene.js';
 import { validateBackup, migrateImportedData, normalizeBackupPayload } from '../src/backupService.js';
 import { SNAPSHOT_KEYS } from '../src/backupSchema.js';
+import { SWORDWILD_AWAKENING_IDS } from '../src/petAwakeningProfiles.js';
 import { APP_VERSION } from '../src/version.js';
 const catalog = JSON.parse(readFileSync(new URL('../data/pet-awakening.json', import.meta.url)));
 const pets = JSON.parse(readFileSync(new URL('../data/pets.json', import.meta.url))).pets;
@@ -21,7 +22,7 @@ const awake = () => { const s = ready(); Object.assign(s.byPet.pet_ur17, { statu
 
 test('all twenty authored entries preserve original hashes and have distinct stories, titles and tokens', () => {
   assert.deepEqual(validateAwakeningCatalog(catalog), []);
-  assert.deepEqual(catalog.pets.map((p) => p.petId).sort(), [...AWAKENING_PET_IDS].sort());
+  assert.deepEqual(catalog.pets.map((p) => p.petId).sort(), [...SWORDWILD_AWAKENING_IDS].sort());
   for (const field of ['title', 'tokenName', 'trialTitle']) assert.equal(new Set(catalog.pets.map((p) => p[field])).size, 20);
   for (const p of catalog.pets) {
     for (const [image, digest] of [[p.initialImage, p.initialSha256], [p.awakenedImage, p.awakenedSha256]]) {

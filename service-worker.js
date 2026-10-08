@@ -66,6 +66,7 @@ const PRECACHE_URLS = [
   'src/chaos-demon-court.css',
   'src/pet-awakening.css',
   'src/petAwakeningCore.js',
+  'src/petAwakeningProfiles.js',
   'src/petAwakeningCatalog.js',
   'src/petAwakeningService.js',
   'src/petAwakeningView.js',

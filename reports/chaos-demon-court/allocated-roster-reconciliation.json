@@ -1,0 +1,110 @@
+{
+  "superseded": [
+    "chaos_demon_court",
+    "darkcrown_court"
+  ],
+  "current": "darkcrown_court_release",
+  "reason": "Preserve immutable prior baselines and reservations; final current-source content/ecosystem preflight all pass",
+  "mapping": [
+    {
+      "draftId": "n_1",
+      "petId": "pet_n50",
+      "rarity": "N"
+    },
+    {
+      "draftId": "n_2",
+      "petId": "pet_n51",
+      "rarity": "N"
+    },
+    {
+      "draftId": "n_3",
+      "petId": "pet_n52",
+      "rarity": "N"
+    },
+    {
+      "draftId": "r_1",
+      "petId": "pet_r57",
+      "rarity": "R"
+    },
+    {
+      "draftId": "r_2",
+      "petId": "pet_r58",
+      "rarity": "R"
+    },
+    {
+      "draftId": "r_3",
+      "petId": "pet_r59",
+      "rarity": "R"
+    },
+    {
+      "draftId": "r_4",
+      "petId": "pet_r60",
+      "rarity": "R"
+    },
+    {
+      "draftId": "r_5",
+      "petId": "pet_r61",
+      "rarity": "R"
+    },
+    {
+      "draftId": "sr_1",
+      "petId": "pet_sr51",
+      "rarity": "SR"
+    },
+    {
+      "draftId": "sr_2",
+      "petId": "pet_sr52",
+      "rarity": "SR"
+    },
+    {
+      "draftId": "sr_3",
+      "petId": "pet_sr53",
+      "rarity": "SR"
+    },
+    {
+      "draftId": "sr_4",
+      "petId": "pet_sr54",
+      "rarity": "SR"
+    },
+    {
+      "draftId": "sr_5",
+      "petId": "pet_sr55",
+      "rarity": "SR"
+    },
+    {
+      "draftId": "ssr_1",
+      "petId": "pet_ssr37",
+      "rarity": "SSR"
+    },
+    {
+      "draftId": "ssr_2",
+      "petId": "pet_ssr38",
+      "rarity": "SSR"
+    },
+    {
+      "draftId": "ssr_3",
+      "petId": "pet_ssr39",
+      "rarity": "SSR"
+    },
+    {
+      "draftId": "ssr_4",
+      "petId": "pet_ssr40",
+      "rarity": "SSR"
+    },
+    {
+      "draftId": "ur_1",
+      "petId": "pet_ur28",
+      "rarity": "UR"
+    },
+    {
+      "draftId": "ur_2",
+      "petId": "pet_ur29",
+      "rarity": "UR"
+    },
+    {
+      "draftId": "ur_3",
+      "petId": "pet_ur30",
+      "rarity": "UR"
+    }
+  ]
+}

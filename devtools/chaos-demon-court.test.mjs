@@ -34,7 +34,8 @@ test('new SSR motifs cannot leak to low rarities or replace UR identity', () => 
   assert.throws(() => resolvePetRevealKey({rarity:'SSR',presentation:{revealKey:'chaos_crown'}}));
 });
 
-import { DARKCROWN_EXPLORATION, DARKCROWN_STORIES } from '../src/darkcrownExploration.js';
+import { AREA_STORIES as DARKCROWN_STORIES, AREA_EXPLORATION_DEFS } from '../src/explorationService.js';
+const DARKCROWN_EXPLORATION = AREA_EXPLORATION_DEFS.darkcrown_border;
 import { planExpeditionResult } from '../src/expeditionGameplay.js';
 import { createDefaultExplorationProgress, advanceExplorationRecord } from '../src/explorationService.js';
 test('darkcrown real planner and five milestone stories preserve separate old regions', () => {
@@ -48,3 +49,35 @@ test('darkcrown real planner and five milestone stories preserve separate old re
   assert.ok(planned.event.text.includes('七地'));
 });
 
+
+import { beginPetAwakening, advancePetAwakening, validatePetAwakening } from '../src/petAwakeningCore.js';
+import { DARKCOURT_AWAKENING_IDS, getAwakeningProfile } from '../src/petAwakeningProfiles.js';
+import { awakeningWizardStep, renderAwakeningReader, renderAwakeningGuide, awakeningPortrait } from '../src/petAwakeningView.js';
+test('exactly seven allocated high-rank IDs use darkcrown; wrong area and low ranks cannot count', () => {
+  const at='2026-10-08T00:00:00.000Z',later='2026-10-08T00:01:00.000Z';
+  assert.equal(DARKCOURT_AWAKENING_IDS.length,7);
+  for(const id of DARKCOURT_AWAKENING_IDS) {
+    const started=beginPetAwakening(null,id,at);
+    const event={key:'expedition:test',at:later,startedAt:at,petIds:[id]};
+    assert.equal(advancePetAwakening(started,[{...event,areaId:'cloudrest_trail'}]).byPet[id].expeditionKey,null);
+    const right=advancePetAwakening(started,[{...event,areaId:'darkcrown_border'}]);
+    assert.equal(right.byPet[id].expeditionKey,event.key);
+    assert.deepEqual(validatePetAwakening(right),[]);
+    assert.equal(getAwakeningProfile(id).foodId,'item_chaos_ember_tart');
+  }
+  for(const id of ['pet_sr51','pet_r57','pet_n50']) assert.throws(()=>beginPetAwakening(null,id,at));
+});
+test('dark wizard requires its own food and leaves initial canonical draw appearance intact', () => {
+  const id='pet_ur28',at='2026-10-08T00:00:00.000Z',later='2026-10-08T00:01:00.000Z';
+  const ready=advancePetAwakening(beginPetAwakening(null,id,at),[1,2,3].map(n=>({key:'task:'+n,at:later})).concat({key:'expedition:1',at:later,startedAt:at,areaId:'darkcrown_border',petIds:[id]}));
+  const pet={id,name:'黯冠',rarity:'UR',owned:true,bondLevel:5,image:'beast.png'};
+  const entry={petId:id,name:'黯冠',tokenName:'裂冠信物',trialTitle:'七路之約',initialImage:{original:'beast.png'},awakenedImage:{original:'human.png'},story:['one','two'],dialogue:['one','two','three']};
+  const state={petAwakening:ready,bondJourney:{byPet:{[id]:{chapters:{5:{claimedAt:at}}}}},inventory:{items:{item_pine_trail_riceball:1}},awakeningCatalog:{pets:[entry]}};
+  assert.equal(awakeningWizardStep(pet,state),'food');
+  assert.ok(renderAwakeningReader(pet,state).includes('黯莓餘燼塔'));
+  state.inventory.items.item_chaos_ember_tart=1;
+  assert.equal(awakeningWizardStep(pet,state),'ritual');
+  assert.equal(awakeningPortrait(pet,ready,state.awakeningCatalog).image,'beast.png');
+  assert.ok(renderAwakeningGuide({compact:true,poolId:'darkcrown_court_release'}).includes('七位 UR／SSR'));
+  assert.ok(!renderAwakeningGuide({compact:true,poolId:'darkcrown_court_release'}).includes('松香行旅糰'));
+});
