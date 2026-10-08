@@ -327,6 +327,7 @@ export async function replaceAllStores(payload) {
       if (payload.inventory) metaStore.put(payload.inventory);
       if (payload.workshopStats) metaStore.put(payload.workshopStats);
       if (payload.dailyCheckIn) metaStore.put(payload.dailyCheckIn);
+      if (payload.dailyRace) metaStore.put(payload.dailyRace);
       if (payload.questProgress) metaStore.put(payload.questProgress);
       if (payload.explorationProgress) metaStore.put(payload.explorationProgress);
       if (payload.campProgress) metaStore.put(payload.campProgress);

@@ -1,3 +1,4 @@
+import { validateDailyRace } from './dailyRaceCore.js';
 import { validateEncounterEconomy } from './encounterEconomyCore.js';
 /** Backup profiles verified against historical exporters; no database or DOM access. */
 import { SUPPORTED_THEMES } from './themeRegistry.js';
@@ -9,7 +10,7 @@ const BASE_KEYS = ['tasks', 'wallet', 'collection', 'gachaStats', 'expeditions',
   'achievements', 'taskStats', 'userPreferences', 'habits'];
 const ADDITIONS = ['inventory', 'workshopStats', 'dailyCheckIn', 'questProgress',
   'explorationProgress', 'collectionMilestones', 'globalMailboxState',
-  'poolDebutSeen', 'poolUnlockState', 'idempotentGrants', 'campProgress', 'bondJourney', 'petAwakening', 'encounterEconomy'];
+  'poolDebutSeen', 'poolUnlockState', 'idempotentGrants', 'campProgress', 'bondJourney', 'petAwakening', 'encounterEconomy', 'dailyRace'];
 export const SNAPSHOT_KEYS = [...BASE_KEYS, ...ADDITIONS];
 // Counts come from actual versioned exports, not inferred release dates.
 const LEGACY_PROFILES = {
@@ -317,6 +318,7 @@ export function validateSnapshotData(data, requiredKeys = SNAPSHOT_KEYS, profile
       visit(item, next);
     }
   };
+  if (Object.hasOwn(data, 'dailyRace')) errors.push(...validateDailyRace(data.dailyRace));
   if (Object.hasOwn(data, 'bondJourney')) errors.push(...validateBondJourney(data.bondJourney));
   if (Object.hasOwn(data, 'petAwakening')) errors.push(...validatePetAwakening(data.petAwakening));
   if (Object.hasOwn(data, 'encounterEconomy')) {
@@ -383,7 +385,8 @@ export function validateBackupEnvelope(raw, currentVersion) {
   const preAwakeningRelease = actual[0] < 3 || (actual[0] === 3
     && (actual[1] < 5 || (actual[1] === 5 && (actual[2] ?? 0) < 5)));
   const preEncounterRelease = actual[0] < 3 || (actual[0] === 3 && actual[1] < 6);
-  const additions = LEGACY_PROFILES[version] ?? (preCampRelease ? 10 : preBondRelease ? 11 : preAwakeningRelease ? ADDITIONS.length - 2 : preEncounterRelease ? ADDITIONS.length - 1 : ADDITIONS.length);
+  const preRaceRelease = actual[0] < 3 || (actual[0] === 3 && (actual[1] < 9 || (actual[1] === 9 && (actual[2] ?? 0) < 2)));
+  const additions = LEGACY_PROFILES[version] ?? (preCampRelease ? 10 : preBondRelease ? 11 : preAwakeningRelease ? 12 : preEncounterRelease ? 13 : preRaceRelease ? 14 : ADDITIONS.length);
   const required = [...BASE_KEYS, ...ADDITIONS.slice(0, additions)];
   const errors = validateSnapshotData(data, required, version);
   if (isRecord(data)) {

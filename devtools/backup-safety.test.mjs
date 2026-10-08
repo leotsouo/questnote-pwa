@@ -15,7 +15,7 @@ const flat = () => { const data = fixture('3.4.4'); delete data.data; return dat
 const canonical = () => {
   const raw = fixture('3.4.4');
   return { app: 'QuestNote', version: 2, appVersion: '3.4.4', exportedAt: raw.exportedAt,
-    data: Object.fromEntries(SNAPSHOT_KEYS.filter((key) => key !== 'encounterEconomy').map((key) => [key,
+    data: Object.fromEntries(SNAPSHOT_KEYS.filter((key) => !['encounterEconomy', 'dailyRace'].includes(key)).map((key) => [key,
       key === 'campProgress' ? { key, level: 0, upgradedAt: null }
         : key === 'bondJourney' ? createBondJourney() : key === 'petAwakening' ? createPetAwakening() : raw.data[key]])) };
 };
