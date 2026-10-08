@@ -25,10 +25,12 @@ test('strict verifier accepts assembler output and rejects unsafe or inconsisten
     for (const name of ['index.html', 'manifest.webmanifest', 'service-worker.js', '.nojekyll']) {
       await fs.copyFile(path.join(repository, name), path.join(source, name));
     }
+    const expeditions = JSON.parse(await fs.readFile(path.join(repository, 'data/expeditions.json')));
+    const regionImages = expeditions.areas.map((area) => 'assets/expeditions/' + area.id + '.webp');
     const pets = JSON.parse(await fs.readFile(path.join(source, 'data/pets.json'))).pets;
     const images = new Set(pets.flatMap((pet) => [pet.image, ...Object.values(pet.imageVariants || {})]));
     images.add('assets/icons/icon-192.png'); images.add('assets/icons/icon-512.png');
-    for (const name of THEME_ASSET_FIXTURES) images.add(name);
+    for (const name of [...THEME_ASSET_FIXTURES, ...regionImages]) images.add(name);
     for (const name of images) {
       await fs.mkdir(path.dirname(path.join(source, name)), { recursive: true });
       if (name.startsWith('assets/expeditions/')) await fs.copyFile(path.join(repository, name), path.join(source, name));
