@@ -206,6 +206,7 @@ const PRECACHE_URLS = [
   'assets/expeditions/polar_shore.webp',
   'assets/expeditions/harvest_fields.webp',
   'assets/expeditions/cloudrest_trail.webp',
+  'assets/expeditions/darkcrown_border.webp',
 ];
 
 function resolveUrl(path) {

@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "scope": "exact source collection renderer/styles; pinned artifact acceptance pending",
+  "checks": [
+    {
+      "width": 320,
+      "completeImages": 27,
+      "overflow": false,
+      "objectFit": "contain"
+    },
+    {
+      "width": 393,
+      "completeImages": 27,
+      "overflow": false,
+      "objectFit": "contain"
+    },
+    {
+      "width": 1280,
+      "completeImages": 27,
+      "overflow": false,
+      "objectFit": "contain"
+    }
+  ],
+  "pageErrors": [],
+  "noGameDatabase": true
+}

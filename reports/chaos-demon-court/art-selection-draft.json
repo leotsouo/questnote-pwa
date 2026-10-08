@@ -1,0 +1,140 @@
+{
+  "status": "candidate selection, pending framing corrections and actual UI review",
+  "images": [
+    {
+      "draftId": "ur_1",
+      "form": "initial",
+      "file": "ur_1-initial-revision-2.png"
+    },
+    {
+      "draftId": "ur_2",
+      "form": "initial",
+      "file": "ur_2-initial-revision-1.png"
+    },
+    {
+      "draftId": "ur_3",
+      "form": "initial",
+      "file": "ur_3-initial-revision-2.png"
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "initial",
+      "file": "ssr_1-initial-revision-1.png"
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "initial",
+      "file": "ssr_2-initial-original.png"
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "initial",
+      "file": "ssr_3-initial-revision-2.png"
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "initial",
+      "file": "ssr_4-initial-original.png"
+    },
+    {
+      "draftId": "sr_1",
+      "form": "initial",
+      "file": "sr_1-initial-revision-1.png"
+    },
+    {
+      "draftId": "sr_2",
+      "form": "initial",
+      "file": "sr_2-initial-revision-1.png"
+    },
+    {
+      "draftId": "sr_3",
+      "form": "initial",
+      "file": "sr_3-initial-original.png"
+    },
+    {
+      "draftId": "sr_4",
+      "form": "initial",
+      "file": "sr_4-initial-revision-1.png"
+    },
+    {
+      "draftId": "sr_5",
+      "form": "initial",
+      "file": "sr_5-initial-revision-1.png"
+    },
+    {
+      "draftId": "r_1",
+      "form": "initial",
+      "file": "r_1-initial-revision-1.png"
+    },
+    {
+      "draftId": "r_2",
+      "form": "initial",
+      "file": "r_2-initial-original.png"
+    },
+    {
+      "draftId": "r_3",
+      "form": "initial",
+      "file": "r_3-initial-revision-1.png"
+    },
+    {
+      "draftId": "r_4",
+      "form": "initial",
+      "file": "r_4-initial-revision-1.png"
+    },
+    {
+      "draftId": "r_5",
+      "form": "initial",
+      "file": "r_5-initial-original.png"
+    },
+    {
+      "draftId": "n_1",
+      "form": "initial",
+      "file": "n_1-initial-original.png"
+    },
+    {
+      "draftId": "n_2",
+      "form": "initial",
+      "file": "n_2-initial-original.png"
+    },
+    {
+      "draftId": "n_3",
+      "form": "initial",
+      "file": "n_3-initial-original.png"
+    },
+    {
+      "draftId": "ur_1",
+      "form": "awakened",
+      "file": "ur_1-revision-2.png"
+    },
+    {
+      "draftId": "ur_2",
+      "form": "awakened",
+      "file": "ur_2-awakened-framing-revision-1.png"
+    },
+    {
+      "draftId": "ur_3",
+      "form": "awakened",
+      "file": "ur_3-awakened-framing-revision-1.png"
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "awakened",
+      "file": "ssr_1-awakened-framing-revision-1.png"
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "awakened",
+      "file": "ssr_2-awakened-original.png"
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "awakened",
+      "file": "ssr_3-awakened-original.png"
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "awakened",
+      "file": "ssr_4-awakened-original.png"
+    }
+  ]
+}

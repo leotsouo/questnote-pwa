@@ -1,0 +1,399 @@
+{
+  "status": "selected after AI candidate review; actual App review pending",
+  "images": [
+    {
+      "draftId": "ur_1",
+      "form": "initial",
+      "file": "ur_1-initial-revision-2.png",
+      "petId": "pet_ur28",
+      "name": "黯冠・無晝",
+      "sha256": "5a28ce020209d5ef6f5ca5b7e32d71e8876775cb1b2e24539d35a6dcd838d9d7",
+      "bytes": 2966134,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ur28-initial-5a28ce020209.png",
+        "card": "assets/pets/awakening/pet_ur28-initial-5a28ce020209-card.webp",
+        "stage": "assets/pets/awakening/pet_ur28-initial-5a28ce020209-stage.webp"
+      }
+    },
+    {
+      "draftId": "ur_2",
+      "form": "initial",
+      "file": "ur_2-initial-revision-1.png",
+      "petId": "pet_ur29",
+      "name": "裂月・瑟因",
+      "sha256": "66302377ac10f92cb54f52896da722e5380a04c9a5bb5a8b66f15765cd76470c",
+      "bytes": 3320280,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ur29-initial-66302377ac10.png",
+        "card": "assets/pets/awakening/pet_ur29-initial-66302377ac10-card.webp",
+        "stage": "assets/pets/awakening/pet_ur29-initial-66302377ac10-stage.webp"
+      }
+    },
+    {
+      "draftId": "ur_3",
+      "form": "initial",
+      "file": "ur_3-initial-revision-2.png",
+      "petId": "pet_ur30",
+      "name": "終鐘・維爾",
+      "sha256": "b8b412a84e4a76691e06ccdf7865f237f144bcd5d505738bce8b76e826bdf26b",
+      "bytes": 3203128,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ur30-initial-b8b412a84e4a.png",
+        "card": "assets/pets/awakening/pet_ur30-initial-b8b412a84e4a-card.webp",
+        "stage": "assets/pets/awakening/pet_ur30-initial-b8b412a84e4a-stage.webp"
+      }
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "initial",
+      "file": "ssr_1-initial-revision-1.png",
+      "petId": "pet_ssr37",
+      "name": "荊誓・洛恩",
+      "sha256": "3f8f8f80b5d89c4cca1b85a8625130b80613a8f1506143e8f35bb8c034b33019",
+      "bytes": 3070121,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ssr37-initial-3f8f8f80b5d8.png",
+        "card": "assets/pets/awakening/pet_ssr37-initial-3f8f8f80b5d8-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr37-initial-3f8f8f80b5d8-stage.webp"
+      }
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "initial",
+      "file": "ssr_2-initial-original.png",
+      "petId": "pet_ssr38",
+      "name": "鏡宴・奈璃",
+      "sha256": "cd751bb19ef086a8d14514614510b31458e5e5ddfc5460aeaa4d34b03c1f3b52",
+      "bytes": 2934043,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ssr38-initial-cd751bb19ef0.png",
+        "card": "assets/pets/awakening/pet_ssr38-initial-cd751bb19ef0-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr38-initial-cd751bb19ef0-stage.webp"
+      }
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "initial",
+      "file": "ssr_3-initial-revision-2.png",
+      "petId": "pet_ssr39",
+      "name": "灰律・奧鉻",
+      "sha256": "52ab5f0716e2530d8ea715c9334b72cd6df94ccfefc04d096b901ddd67b34fe9",
+      "bytes": 3028835,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ssr39-initial-52ab5f0716e2.png",
+        "card": "assets/pets/awakening/pet_ssr39-initial-52ab5f0716e2-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr39-initial-52ab5f0716e2-stage.webp"
+      }
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "initial",
+      "file": "ssr_4-initial-original.png",
+      "petId": "pet_ssr40",
+      "name": "蝕星獄獅",
+      "sha256": "8749b511b29a21a264a2dc701d32966d7ace7344ebdc5d7d4557c4c4160639d9",
+      "bytes": 3142486,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ssr40-initial-8749b511b29a.png",
+        "card": "assets/pets/awakening/pet_ssr40-initial-8749b511b29a-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr40-initial-8749b511b29a-stage.webp"
+      }
+    },
+    {
+      "draftId": "sr_1",
+      "form": "initial",
+      "file": "sr_1-initial-revision-1.png",
+      "petId": "pet_sr51",
+      "name": "燼羽夜鴉",
+      "sha256": "518205270e7e557423f0ebf15460f7b871dea8fb0344227e2d62e289ac798fe9",
+      "bytes": 3236874,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "sr_2",
+      "form": "initial",
+      "file": "sr_2-initial-revision-1.png",
+      "petId": "pet_sr52",
+      "name": "縛潮玄蛇",
+      "sha256": "701547b5e65e241ff6886b60220decfc8fde3abf194118d797a9427a84c4ac81",
+      "bytes": 3409919,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "sr_3",
+      "form": "initial",
+      "file": "sr_3-initial-original.png",
+      "petId": "pet_sr53",
+      "name": "斷祈霜狼",
+      "sha256": "cd1b6ddfcc3012e6ce935bd30ca94d057174fa9e9201b9e76c83785b560898d2",
+      "bytes": 3377865,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "sr_4",
+      "form": "initial",
+      "file": "sr_4-initial-revision-1.png",
+      "petId": "pet_sr54",
+      "name": "噬夢絨蝠",
+      "sha256": "fa95fc1b06e9f0a0ba4973a610aa8031aa2655fb4825653ff80cf76742fb5db4",
+      "bytes": 3111401,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "sr_5",
+      "form": "initial",
+      "file": "sr_5-initial-revision-1.png",
+      "petId": "pet_sr55",
+      "name": "棘令黑鹿",
+      "sha256": "ba5792965b7dd7def5712dcc144310e5d42b8e6f40ea3d9d05b212cd70f49c8c",
+      "bytes": 3253711,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "r_1",
+      "form": "initial",
+      "file": "r_1-initial-revision-1.png",
+      "petId": "pet_r57",
+      "name": "幽燈影狐",
+      "sha256": "829824efd529de0b41fde8828ac3973ca365769c6c9887fea4aa4aabd93f29a8",
+      "bytes": 3136079,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "r_2",
+      "form": "initial",
+      "file": "r_2-initial-original.png",
+      "petId": "pet_r58",
+      "name": "銹齒穴鼬",
+      "sha256": "307fa77f71e5d0c792e18f216b94baff2ad2100788b7f5a4fff79fd769546ffc",
+      "bytes": 2574689,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "r_3",
+      "form": "initial",
+      "file": "r_3-initial-revision-1.png",
+      "petId": "pet_r59",
+      "name": "緘信墨梟",
+      "sha256": "0bd1158dbaf9cdc6c326dbd3701d28e338cac0b0ac799526ed1555b0f6b14c5a",
+      "bytes": 2824009,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "r_4",
+      "form": "initial",
+      "file": "r_4-initial-revision-1.png",
+      "petId": "pet_r60",
+      "name": "逆芽棘兔",
+      "sha256": "8bb02433b264a7d4c6adb1d92891b0f6961cbaad2f3a11c5fb6898e8cd695b98",
+      "bytes": 2905622,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "r_5",
+      "form": "initial",
+      "file": "r_5-initial-original.png",
+      "petId": "pet_r61",
+      "name": "煤焰角羊",
+      "sha256": "77793df3127d101ce016aa3e43a519d74f020ad1524a3cc30be64693b50bec55",
+      "bytes": 3088546,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "n_1",
+      "form": "initial",
+      "file": "n_1-initial-original.png",
+      "petId": "pet_n50",
+      "name": "微燼小蜥",
+      "sha256": "e1497568099e134b448b08a692a6720f9600e234713e134bff25b4a3573097ce",
+      "bytes": 2399061,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "n_2",
+      "form": "initial",
+      "file": "n_2-initial-original.png",
+      "petId": "pet_n51",
+      "name": "碎冠甲蟲",
+      "sha256": "d3c4f3228a3cd347660fd07fe2b9a5807dbcb2280f7abc0ffb6389171fe9debf",
+      "bytes": 2990515,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "n_3",
+      "form": "initial",
+      "file": "n_3-initial-original.png",
+      "petId": "pet_n52",
+      "name": "暮紗幼蛛",
+      "sha256": "1d3f1e174cc70362a3a83e1a408fd2e30183f451c39aaf73df2fac3565e2a6bd",
+      "bytes": 2779714,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true
+    },
+    {
+      "draftId": "ur_1",
+      "form": "awakened",
+      "file": "ur_1-revision-2.png",
+      "petId": "pet_ur28",
+      "name": "黯冠・無晝",
+      "sha256": "aad0bb7e6cb43ca9b1f1ba561f20492628f79c3ac34560ebe8d18394bdb32f4f",
+      "bytes": 2489567,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ur28-awakened-aad0bb7e6cb4.png",
+        "card": "assets/pets/awakening/pet_ur28-awakened-aad0bb7e6cb4-card.webp",
+        "stage": "assets/pets/awakening/pet_ur28-awakened-aad0bb7e6cb4-stage.webp"
+      }
+    },
+    {
+      "draftId": "ur_2",
+      "form": "awakened",
+      "file": "ur_2-awakened-framing-revision-1.png",
+      "petId": "pet_ur29",
+      "name": "裂月・瑟因",
+      "sha256": "78057f120705a5edfcbe337291bdfe46b928678606d500ef050ca127f1cb909c",
+      "bytes": 2836216,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ur29-awakened-78057f120705.png",
+        "card": "assets/pets/awakening/pet_ur29-awakened-78057f120705-card.webp",
+        "stage": "assets/pets/awakening/pet_ur29-awakened-78057f120705-stage.webp"
+      }
+    },
+    {
+      "draftId": "ur_3",
+      "form": "awakened",
+      "file": "ur_3-awakened-framing-revision-1.png",
+      "petId": "pet_ur30",
+      "name": "終鐘・維爾",
+      "sha256": "b05c22b304bb6cdfaaa798e67b9770055d4469a0b528524202c153d0986f21b7",
+      "bytes": 3259842,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ur30-awakened-b05c22b304bb.png",
+        "card": "assets/pets/awakening/pet_ur30-awakened-b05c22b304bb-card.webp",
+        "stage": "assets/pets/awakening/pet_ur30-awakened-b05c22b304bb-stage.webp"
+      }
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "awakened",
+      "file": "ssr_1-awakened-framing-revision-1.png",
+      "petId": "pet_ssr37",
+      "name": "荊誓・洛恩",
+      "sha256": "1f3d3d993efcefa01cde599a247927ab20205350e3de5d2d28aeba3ee0e6c3f3",
+      "bytes": 2596353,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ssr37-awakened-1f3d3d993efc.png",
+        "card": "assets/pets/awakening/pet_ssr37-awakened-1f3d3d993efc-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr37-awakened-1f3d3d993efc-stage.webp"
+      }
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "awakened",
+      "file": "ssr_2-awakened-original.png",
+      "petId": "pet_ssr38",
+      "name": "鏡宴・奈璃",
+      "sha256": "98c5658396a8ee113e1af2d4ef25e6103e6bf3c25562b9304f68c9f7198ec343",
+      "bytes": 2819545,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ssr38-awakened-98c5658396a8.png",
+        "card": "assets/pets/awakening/pet_ssr38-awakened-98c5658396a8-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr38-awakened-98c5658396a8-stage.webp"
+      }
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "awakened",
+      "file": "ssr_3-awakened-original.png",
+      "petId": "pet_ssr39",
+      "name": "灰律・奧鉻",
+      "sha256": "a88de493e815bae9dfd7be75d267d547fbab293c3e246d7c14153763910c176d",
+      "bytes": 2681506,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ssr39-awakened-a88de493e815.png",
+        "card": "assets/pets/awakening/pet_ssr39-awakened-a88de493e815-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr39-awakened-a88de493e815-stage.webp"
+      }
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "awakened",
+      "file": "ssr_4-awakened-original.png",
+      "petId": "pet_ssr40",
+      "name": "蝕星獄獅",
+      "sha256": "66bc952921e66188516cc5b84ae7db3c6c0b9b645f7c48410cb91828346d3eb5",
+      "bytes": 2881939,
+      "width": 1254,
+      "height": 1254,
+      "opaque": true,
+      "paths": {
+        "original": "assets/pets/awakening/pet_ssr40-awakened-66bc952921e6.png",
+        "card": "assets/pets/awakening/pet_ssr40-awakened-66bc952921e6-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr40-awakened-66bc952921e6-stage.webp"
+      }
+    }
+  ]
+}

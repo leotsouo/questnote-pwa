@@ -1,0 +1,48 @@
+{
+  "reviewerType": "ai",
+  "legacyCount": 20,
+  "newCount": 7,
+  "principles": [
+    "原生魔獸與覺醒人形同名同稀有度",
+    "反派力量與身份保留，同行讓角色面對選擇及後果",
+    "七份故事、信物與称号不同",
+    "人形僅在完成試煉與儀式後顯示"
+  ],
+  "entries": [
+    {
+      "petId": "pet_ur28",
+      "trialTitle": "留住未被吞沒的名字",
+      "signature": "破環雙角連起七路，界石留下自由裂隙"
+    },
+    {
+      "petId": "pet_ur29",
+      "trialTitle": "讓潮門留下返回的路",
+      "signature": "月刃獨角與銀紫潮光，斷潮之中留一道回流"
+    },
+    {
+      "petId": "pet_ur30",
+      "trialTitle": "聽見鐘聲之外的夢",
+      "signature": "金鐘翼紋化為鐘飾，停住的花重新落下一瓣"
+    },
+    {
+      "petId": "pet_ssr37",
+      "trialTitle": "把誓言交還立誓的人",
+      "signature": "紅鬃荊角保留金線，契紙裂開卻不傷握紙的手"
+    },
+    {
+      "petId": "pet_ssr38",
+      "trialTitle": "讓鏡宴有一張真實的席位",
+      "signature": "銀狐耳與鏡尾化成鏡飾，虛席之中一盞燈不再重影"
+    },
+    {
+      "petId": "pet_ssr39",
+      "trialTitle": "為規則留下停止的刻度",
+      "signature": "銅角齒輪胸紋延續，灰階齒輪停在不夾傷人的一格"
+    },
+    {
+      "petId": "pet_ssr40",
+      "trialTitle": "將星鏈的另一端握回自己手中",
+      "signature": "黑獅星裂與角形延續，星鏈鬆開一段仍握在手中"
+    }
+  ]
+}

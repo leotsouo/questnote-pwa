@@ -1,0 +1,202 @@
+{
+  "reviewerType": "ai",
+  "mode": "ai-self",
+  "reviewSizes": [
+    160,
+    224
+  ],
+  "status": "in-progress; no blanket approval",
+  "scope": "20 original beasts and 7 paired adult demon forms",
+  "observations": [
+    {
+      "draftId": "ur_1",
+      "form": "initial",
+      "file": "ur_1-initial-revision-2.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "ur_2",
+      "form": "initial",
+      "file": "ur_2-initial-revision-1.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "ur_3",
+      "form": "initial",
+      "file": "ur_3-initial-revision-1.png",
+      "status": "framing-correction-required",
+      "notes": "Left moth wing outline still reaches/cuts left edge; revision 2 generating."
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "initial",
+      "file": "ssr_1-initial-revision-1.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "initial",
+      "file": "ssr_2-initial-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "initial",
+      "file": "ssr_3-initial-revision-1.png",
+      "status": "framing-correction-required",
+      "notes": "Left raven wing edge still too close/cut; revision 2 generating."
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "initial",
+      "file": "ssr_4-initial-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "sr_1",
+      "form": "initial",
+      "file": "sr_1-initial-revision-1.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "sr_2",
+      "form": "initial",
+      "file": "sr_2-initial-original.png",
+      "status": "framing-correction-required",
+      "notes": "Lower serpent coil/tail framing needs correction."
+    },
+    {
+      "draftId": "sr_3",
+      "form": "initial",
+      "file": "sr_3-initial-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "sr_4",
+      "form": "initial",
+      "file": "sr_4-initial-revision-1.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "sr_5",
+      "form": "initial",
+      "file": "sr_5-initial-original.png",
+      "status": "framing-correction-required",
+      "notes": "Antler branches reach/cut top edge; revision generating."
+    },
+    {
+      "draftId": "r_1",
+      "form": "initial",
+      "file": "r_1-initial-original.png",
+      "status": "framing-correction-required",
+      "notes": "Large tail reaches/cuts top edge; revision generating."
+    },
+    {
+      "draftId": "r_2",
+      "form": "initial",
+      "file": "r_2-initial-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "r_3",
+      "form": "initial",
+      "file": "r_3-initial-original.png",
+      "status": "framing-correction-required",
+      "notes": "Owl ear tufts/wings clipped; revision generating."
+    },
+    {
+      "draftId": "r_4",
+      "form": "initial",
+      "file": "r_4-initial-original.png",
+      "status": "framing-correction-required",
+      "notes": "Rabbit ear tips clipped; revision generating."
+    },
+    {
+      "draftId": "r_5",
+      "form": "initial",
+      "file": "r_5-initial-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "n_1",
+      "form": "initial",
+      "file": "n_1-initial-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "n_2",
+      "form": "initial",
+      "file": "n_2-initial-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "n_3",
+      "form": "initial",
+      "file": "n_3-initial-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Species readable and nonhuman; primary signature/action distinguishable at card size."
+    },
+    {
+      "draftId": "ur_1",
+      "form": "awakened",
+      "file": "ur_1-revision-2.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Adult fully clothed demon identity and pair motif visible; inspect complete key horn/prop margins at stage size."
+    },
+    {
+      "draftId": "ur_2",
+      "form": "awakened",
+      "file": "ur_2-awakened-framing-revision-1.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Adult fully clothed demon identity and pair motif visible; inspect complete key horn/prop margins at stage size."
+    },
+    {
+      "draftId": "ur_3",
+      "form": "awakened",
+      "file": "ur_3-awakened-framing-revision-1.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Adult fully clothed demon identity and pair motif visible; inspect complete key horn/prop margins at stage size."
+    },
+    {
+      "draftId": "ssr_1",
+      "form": "awakened",
+      "file": "ssr_1-awakened-framing-revision-1.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Adult fully clothed demon identity and pair motif visible; inspect complete key horn/prop margins at stage size."
+    },
+    {
+      "draftId": "ssr_2",
+      "form": "awakened",
+      "file": "ssr_2-awakened-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Adult fully clothed demon identity and pair motif visible; inspect complete key horn/prop margins at stage size."
+    },
+    {
+      "draftId": "ssr_3",
+      "form": "awakened",
+      "file": "ssr_3-awakened-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Adult fully clothed demon identity and pair motif visible; inspect complete key horn/prop margins at stage size."
+    },
+    {
+      "draftId": "ssr_4",
+      "form": "awakened",
+      "file": "ssr_4-awakened-original.png",
+      "status": "provisional visual pass; final card/stage/UI checks pending",
+      "notes": "Adult fully clothed demon identity and pair motif visible; inspect complete key horn/prop margins at stage size."
+    }
+  ],
+  "extraChecks": "UR1 revision2 clearly has four separated legs plus two complete wings and a complete curled tail; its seven-route boundary stone action remains readable. All 27 selected candidates decode fully; no generated images are approved yet."
+}
