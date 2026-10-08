@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-08T15:35:48.272Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "version": "3.9.0",
+  "artifactId": "e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+  "manifestSha256": "07c670e1d5cd29d9930d0335dca8c4cce44ec4a02322cb474e422824ca7f2dbb",
+  "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\chaos-demon-court\\release-artifacts-20261008\\e56076f5bccb67c548bcfa7188cfd6078323d1769ba585b96e918862b5877ef8",
+  "sourceCommit": "b6178312c32f7119ea978d5e04d6c37a77ea79bb",
+  "catalogUrl": "data/releases/7302d5825ce74e803fb4bdb9d644ed2d1bc25dca2e7e69e7325dcfed2f8c4bf9/catalog.json",
+  "catalogSha256": "7302d5825ce74e803fb4bdb9d644ed2d1bc25dca2e7e69e7325dcfed2f8c4bf9",
+  "pets": 160,
+  "pools": 8,
+  "mailboxSha256": "47eb1f9a8761869bde7cb006630b95aaaa6898ddba2c9e413c5ee70f41b144ab"
+}

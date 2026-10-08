@@ -1,0 +1,16 @@
+{
+  "production": {
+    "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\demon-final-release\\release-artifacts-20261008\\2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+    "artifactId": "2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+    "manifestSha256": "6e475ec25563c9e80a5dd7bddbcd0377c057cc075693760f2f09258b1a0d6410",
+    "scopePath": "/questnote-pwa/",
+    "sourceCommit": "90ada53051e31aae5eddece912e985c5d7b54862"
+  },
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\demon-final-release\\release-artifacts-20261008\\efb99065ac6773b2ece478658d6014ee1045555ba5d9cc0fd8559a050acf50b0",
+    "artifactId": "efb99065ac6773b2ece478658d6014ee1045555ba5d9cc0fd8559a050acf50b0",
+    "manifestSha256": "8cda157c2367b77d67cb73a66a6dfe419da0f7a79ad1aefbaefb84cbeb492f97",
+    "scopePath": "/questnote-pwa-preview/",
+    "sourceCommit": "90ada53051e31aae5eddece912e985c5d7b54862"
+  }
+}
