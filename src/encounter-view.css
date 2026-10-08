@@ -226,6 +226,13 @@ body[data-reduce-motion="true"] :is(.identity-surface, .identity-dialog, .identi
 .identity-surface .summon-sanctuary[data-world="glacier_arrival"] { background:#173643; --sanctuary-accent:#eac797; }
 .identity-surface .summon-sanctuary[data-world="honeylight_sugar"] { background:#422e43; --sanctuary-accent:#f8d8b5; }
 .identity-surface .summon-sanctuary[data-world="swordwild_shanhe"] { background:#172c2a; --sanctuary-accent:#dacb98; }
+.identity-surface .summon-sanctuary[data-pool-id="sunward_letters"] {
+  --sanctuary-accent:#f4d486;
+  background:radial-gradient(ellipse at 82% 6%,#779b82 0%,transparent 46%),linear-gradient(160deg,#183c45,#285648 68%,#5e6145);
+  border-color:#acd2a4;
+}
+.identity-surface .summon-sanctuary[data-pool-id="sunward_letters"] .sanctuary-scenery { display:none; }
+.identity-surface .summon-sanctuary[data-pool-id="sunward_letters"] .hero-card { border-color:#d5ca95; }
 .identity-surface .sanctuary-scenery { position:absolute; inset:0; z-index:-1; opacity:.45; pointer-events:none; }
 .identity-surface .sanctuary-scenery::after { content:''; position:absolute; inset:0; background:linear-gradient(transparent,#0b1a24c9 70%); }
 .identity-surface .sanctuary-scenery *, .identity-surface .sanctuary-scenery *::before, .identity-surface .sanctuary-scenery *::after { animation:none !important; }

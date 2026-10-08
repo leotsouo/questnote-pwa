@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.8.7
+ * QuestNote Service Worker — V3.8.8
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-88179f282a1fd57cf7ee262de9ad745559d4033d895dc458552618fc9c3022c5';
+const CACHE_NAME = 'questnote-production-app-af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,14 +40,14 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "88179f282a1fd57cf7ee262de9ad745559d4033d895dc458552618fc9c3022c5",
-  "sourceCommit": "61d7a139ad4f1225828b5633c9efdd7d2e39a4dd",
+  "artifactId": "af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a",
+  "sourceCommit": "6952649fc3ce644c7656a43d2047450df5886e01",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
   "cacheNamespace": "questnote-production-",
-  "contentBundleSha256": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
-  "contentBundleUrl": "data/releases/da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d/catalog.json"
+  "contentBundleSha256": "dc5db85d1a11033cf2f2b8bcd7f8d55b82eb79e4921b49784663b140fd7e67c1",
+  "contentBundleUrl": "data/releases/dc5db85d1a11033cf2f2b8bcd7f8d55b82eb79e4921b49784663b140fd7e67c1/catalog.json"
 };
 const PRECACHE_HASHES = {
   "assets/brand/questnote-icon-180.png": "568c5f586481050de3c0263794de557f36acb340346eba7db1a9cdc7b000f9bf",
@@ -76,19 +76,19 @@ const PRECACHE_HASHES = {
   "data/achievements.json": "b7d57297344dc4223a8eefc72d42d9f9cdd44c4f812f1e59b3d7aeb2d592db6e",
   "data/bond-stories.json": "28ec8e13ae77f6582ba068d08bd94407305746c8d59bb51035227e46ce59c045",
   "data/categories.json": "166e8f4de44f41d6ec27b3a6b1780f9cd155aa599371b443c92537949276ebe1",
-  "data/craftables.json": "f49345c56b3010389d60ec9c03ec7f44f57b89b9662a2c3ec55d8381fe7fcd73",
+  "data/craftables.json": "5958969e53e8f18927e1e2df3d37452d2adfc5a01a630ee46b8edae9b3272a67",
   "data/dailyWheelRewards.json": "98f1fb5b3dc5e49fb0815cf60842bc53fd34e604baf540b4d0e2946929030f12",
   "data/expeditions.json": "1dbacba9d13d4addaa03b8348dd2abc42a0d12175bc13176444990041a601984",
-  "data/gift-affinities.json": "78237d48ef4403e33458a39e1d5fb477501d0bf119ef956e3b8f917492cb6027",
+  "data/gift-affinities.json": "a618b649406845f3eb3863ff399b25979b771e474a68bb39c54ff2ce0a05fc26",
   "data/materials.json": "ef3aa0d8d7833c5c15504634de7680d43a7404a4012a1377d7d540796125c08c",
   "data/pet-awakening.json": "4c14254cbceee967c88d2e8491fddb2be046603315cd6a9d12830889c6dda169",
   "data/pet-series.json": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57",
   "data/pets-lore.json": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
   "data/pets.json": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
-  "data/releases/da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d/catalog.json": "da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d",
+  "data/releases/dc5db85d1a11033cf2f2b8bcd7f8d55b82eb79e4921b49784663b140fd7e67c1/catalog.json": "dc5db85d1a11033cf2f2b8bcd7f8d55b82eb79e4921b49784663b140fd7e67c1",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "f30fc67a695dbe45d6ce83c9aab9c326df0b1f8a317e82e3de369c8e5577e774",
+  "index.html": "77e3cb9d6ecc95f49994b9aa7c787d8f62820cacf3b30a4b85056c470997ba2f",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
   "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
@@ -116,12 +116,12 @@ const PRECACHE_HASHES = {
   "src/dialogFocus.js": "4f57540c2d50ec2ff6a82c7996940466e21b2a212f349a963897bfa76a094a67",
   "src/encounter-ceremony.css": "ae74aac4b2d91c35d0728cf02c049e1d0cfc09bc6c316d0d65286a3e30ed6c5f",
   "src/encounter-invitation.css": "6a258ae8be9a0532b269a289b65f0473620d8b140bfd8c35bbb99695577e2d89",
-  "src/encounter-view.css": "78a58d8541ff24234e07512fd05890396aa9c7efc412a2998aa9bab29cf15db7",
-  "src/encounterCeremony.js": "ef6ca19a8f26da4b47ab53d8f698ed29a441eeac65508c63de4c7167a58d9dec",
+  "src/encounter-view.css": "bd10931683af90471ce816323702830d111a7bd4ddc96fabaa3a2f045ac6479a",
+  "src/encounterCeremony.js": "19c331eda4567de1d4467f031d267cc9b51175ac2af57e216275931c2ac2bfb0",
   "src/encounterEconomyCore.js": "5b6be21fa2f94c723e853ab69b60c20b90bf05bbf04b04532126868c7c722f1b",
   "src/encounterEconomyService.js": "7f7ed8f10ab135f512e1a0089cfc92173177602999ee29319dc867775d1361e1",
   "src/encounterScenery.js": "f94fe3d764ec0c920674f6991fe4ed271741ec1e960170a2f9e7c12baa9adef9",
-  "src/encounterView.js": "48038ba42c1d4c84dbe2267d7b4a80d0e5566035dcca823ecf5fb0db6e596787",
+  "src/encounterView.js": "62ece5235de3e2901cce05c4d2514a03fe85b665219c66b26edf376fcf589517",
   "src/encounterViewModel.js": "8897d6d065c40ac300e7fa0adda9bbe46d86839592a695bd291efb8eec00ad7e",
   "src/expeditionGameplay.js": "6790786d8d1b41e4b55b53133848671c7cf2df07b0e4121459500c47eb866d93",
   "src/expeditionService.js": "9c2d2275a73929efec335ff74b149904384571caead9583b3988a53e3e5f8fc0",
@@ -177,7 +177,7 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
   "src/questService.js": "ae9532ad78abb8af981d3d76adb9f06f132e81e1fed945bd77a608a7dd2bfa3b",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "4d354ff4cd797255d01956fdaf020e1bde4220e1b93a20c8ed6c325e79a88680",
+  "src/releaseProfile.js": "79afc800d95fffb5649254a78e00048f2275f0ff7d0e6373562b76e28601db46",
   "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "f9cfd9f99703dfd3e91f12f4382716875964b09785bf67418dfdc607c5cb1c5d",
@@ -189,7 +189,7 @@ const PRECACHE_HASHES = {
   "src/shareService.js": "33e2b0f4ef31925680287ba7b8e0d04009ef5f149075b6adca84447212b7686c",
   "src/standardUrCarousel.js": "8e2f9f84a14399e61a206d39d1e75ebd1903d025a24866b9b899fe77520deae3",
   "src/styles.css": "62a748102053cf60c0ecf078cf6726952b15fe95f9a90bd9fa34d2e05fd94582",
-  "src/summon-polish.css": "e832165ec56373e338d2af2c80c0cdde109c2d4455094c4e4d8eadb2cd3d1ec0",
+  "src/summon-polish.css": "247f7bcd99b0fc1473af045c82301c0eebbfd11aaf54203bcabab989e5d9722a",
   "src/summonRevealService.js": "2f1f9df8041a1bc35d2d42e2a250df80f74c95718aad0d1d7cd46288496c92fa",
   "src/summonTiming.js": "076431aef8d6fe9bb4c3ad5bd82ca3c985be10c4b02ed50dae086f6f619c7ae5",
   "src/swordwild-shanhe.css": "fd251695bcca1fe0e60dbeae142d3dcb0f41654b9ba3d5db019758c226f94143",
@@ -202,18 +202,18 @@ const PRECACHE_HASHES = {
   "src/taskWizard.js": "2e34043e20dc9808b0e05c09daf714124c8e3e867216ea9d9188530d9ac9fe1c",
   "src/theme-refinements.css": "34221c5c4be673822dcd050e2933e946612d6ad4f02f5077fb5aeb9496b4843b",
   "src/theme-system.css": "4276e7af30e0cb179e7bde03900818020120a1cd6d0c8e63e87aaab3f3b4a670",
-  "src/themedSummonController.js": "2bf0a6917aebcf4450c6e32c1f8577f42d82e413587749985352a814e3baecd0",
+  "src/themedSummonController.js": "1573dbe3cc638254cfbe45936682978b628ca8e64e042d2d6425b88e82d1e97b",
   "src/themeRegistry.js": "d4c935dd737d662dffc17bcd4fe6d243aac583095ab5ac2ec43b76126df7bafb",
   "src/themeTokens.css": "7a898e987663c925e1913aafaa318d352048b294553affa068360f2d4ec3a596",
   "src/todayHabitsView.js": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
   "src/twilightPresentation.js": "905c328be48088db41ea7be5804ad5da84de5498f3b5ad9d3d375c2df12219ab",
   "src/ui-polish.css": "84d6af7a8206e91be084e1e9b868d51b1bbb4da50550936ccb4c24724e350f5e",
-  "src/ui.js": "292866834a6e0b35122e1da1a936eb20ebeefc138c6a89c7d63bf608988563b4",
+  "src/ui.js": "5a8bb426c5fa9c0b1f42e9a32361a58545cc4a8cb466af49dc2ed001926e8167",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "0aea2cd29d5032001a0a0db397c91058e43597986335da6558f369260b65af71",
+  "src/version.js": "00c66b91dc4a67883b0f01241e87cb8cdc5621f6160b3ba8681d3a0cc9ac31ab",
   "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
   "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
 };
@@ -256,7 +256,7 @@ const PRECACHE_URLS = [
   "data/pets-lore.json",
   "data/pets.json",
   "data/pools.json",
-  "data/releases/da32429aa6caf259c31f6fb8b613585144bb7ccfc653733cff583b099f03456d/catalog.json",
+  "data/releases/dc5db85d1a11033cf2f2b8bcd7f8d55b82eb79e4921b49784663b140fd7e67c1/catalog.json",
   "data/titles.json",
   "index.html",
   "manifest.webmanifest",
@@ -681,3 +681,5 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(networkFirstWithCache(request));
 });
+
+

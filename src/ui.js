@@ -5067,6 +5067,7 @@ function renderGachaUnavailable() {
   }
   const panel = document.getElementById('gacha-panel');
   panel?.removeAttribute('data-pool-theme');
+  panel?.removeAttribute('data-pool-id');
   panel?.removeAttribute('data-pool-phase');
   const name = document.getElementById('gacha-pool-name');
   if (name) { name.hidden = false; name.textContent = '目前沒有可用的召喚卡池'; }
@@ -5317,6 +5318,8 @@ function renderGachaThemeStage(pool) {
   const awakened = model.awakened;
 
   if (panel) {
+    if (pool?.id) panel.dataset.poolId = pool.id;
+    else panel.removeAttribute('data-pool-id');
     if (themeAttr) panel.dataset.poolTheme = themeAttr;
     else panel.removeAttribute('data-pool-theme');
     if (awakened) panel.dataset.poolPhase = 'awakened';
