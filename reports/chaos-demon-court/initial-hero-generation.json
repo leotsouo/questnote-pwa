@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "draftId": "ur_1",
+  "form": "initial",
+  "sourceFile": "images/ur_1-initial-original.png",
+  "prompt": "Generate a NEW square collectible card illustration for the original character 黯冠・無晝 in his true original NON-HUMAN form. The supplied picture is only a visual-language reference for the same character's later humanoid awakened form; do not copy the humanoid anatomy or turn the dragon into a humanoid. Original form: one majestic nonhuman ancient DRAGON with exactly four reptilian legs plus two full bat-like wings, long intact tail, black obsidian scales, deep crimson wing membranes, crimson reptile eyes, and exactly two curved broken-ring horns matching the reference character. Low regal crouched dragon posture on a black basalt throne ledge, dragon head broad and angular with a reptilian snout, no human face, no human hands, no clothes. Head, horns, gripping foreclaw and entire two wing tips/long tail must all fit within6% safe frame margin. Main dragon dominates about75% of canvas; head and foreclaw clear at160px thumbnail. Story action: one foreclaw presses a dark boundary stone where seven tiny differently colored star-paths meet, while a large cracked black solar crown ring hovers behind the dragon. Red-black crystal veins spread from the foreclaw and stone; the seven light paths remain visibly resisting outside his control. Keep solar ring entirely inside frame. Dark Fantasy 90s Retro Anime, clean thick anime ink outlines, bold2-3 tier hard cel shading, graphic black/crimson/violet/gold Pop Anime light blocks and simplified hand-painted fantasy backdrop. A real ominous demon sovereign, not cute, not a generic unrelated pet. No extra creatures, text, card frame, logos, watermarks, gore, nudity, extra legs, extra wings, hidden claws or cropped horns. Preserve identity links: same broken-ring horns, crimson gaze, crimson cloak-like membranes, black/gold palette, throne/crown/route control imagery. Opaque illustrated square background,minimum1024px.",
+  "outputHint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089 as C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-ecc0d329-fdec-4bd7-b30a-c1c0317408ad.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "tool": "built-in image_gen",
+  "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+  "review": {
+    "status": "needs-framing-revision",
+    "observed": "非人形古龍與人形候選具相同黑金雙角、猩紅眼、紅色翼膜/袍襯、裂冠與七地光路。前爪控制星路界石的動作与可见红黑晶脉符合设定。",
+    "issues": [
+      "左右翼緣被畫面截斷，未達完整翼尖安全邊界",
+      "部分後足被石台/身軀遮擋，需改善四足辨讀"
+    ],
+    "acceptance": "僅原型，未通過pipeline images或真實App卡片/覺醒流程驗收"
+  }
+}

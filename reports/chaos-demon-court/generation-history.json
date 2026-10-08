@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "tool": "built-in image_gen",
+  "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+  "model": "not exposed",
+  "seed": "not exposed",
+  "initialPromptFile": "prompts-draft.json",
+  "revisions": [
+    {
+      "draftId": "ur_2",
+      "prompt": "Edit this original dark fantasy character card. Keep the same silver-haired adult demon, purple cloak, single moon-shaped horn and huge arc blade splitting moonlight above the tide gate. Recompose as a large waist-up action portrait, head including horn about 35% of frame height, face and gripping hand unmistakable at160px. Show the complete arc blade diagonally across the right half, both tips safely inside6% margin. Remove the large wings, reduce ornate golden armor to broad clean dark-violet plates. The blade touches a light crescent and clearly splits it; stopped water and a small orange northern oath-fire must be visible behind it. Strong clean 1990s hand-drawn anime ink lines, hard cel shading, graphic pop-anime color blocks, attractive adult bishounen face. Different from a seated king, this is an ambitious warrior making a precise cut. Preserve single original character, opaque square background. No text, labels, logos, borders, third-party characters, gore or nudity.",
+      "outputHint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089 as C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-0876f637-8d6c-48a0-a377-8c76ec66324e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "draftId": "ur_3",
+      "prompt": "Edit this original dark fantasy character card. Keep the adult golden-eyed demon, unnumbered bronze bell, pale flowers and the glassy silence waves. Recompose as close three-quarter waist-up ritual portrait, head and complete bell-crown horns about35% of frame height, hand touching the bell's actual clapper clearly visible. Give him long cool lavender hair and a distinct high-collared black-purple ceremonial formal coat with broad clean shapes, no plated armor and no wings. Put a moderately sized complete bronze bell to the right of his face, simple clear bell outline and clapper under it. His finger holds that clapper still, dark transparent concentric silence rings run through flowers, with one warm glowing flower resisting. Simplify background to dream-garden arch shapes. Elegant reserved adult bishounen face, 1990s anime ink lines and hard cel shadows, pop-anime graphic colors. Entire horns and bell fit inside6% margin. Preserve single original character, opaque square background. No text, labels, logos, borders, third-party characters, gore or nudity.",
+      "outputHint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089 as C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-29741e77-ce59-486f-94d9-9ce61bcb0c37.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "draftId": "ssr_1",
+      "prompt": "Edit this original dark fantasy character card. Keep the red-haired adult demon with complete thorn horns, sealed parchment contract and thorn bridge symbolism. Recompose as a large chest-up plotting portrait, face and horns occupy about35% of height, two hands and the parchment occupy lower middle. Replace heavily ornate armor with clean high-collared black coat and black thorn-wrapped gloves. Remove wings. Show a thick visible red glowing line across the parchment being torn by thorn-gloved fingers; behind it a single gold oath-thread survives while a thorn bridge forms. Face,hands,thorn horn shape and torn red line clear at160px. Simplify background architecture to broad muted shapes. Attractive shrewd adult anime face, clean1990s ink lines,2-3 tone hard cel shading, pop-anime color accents. All horn tips, fingers and parchment fit within6% margin. Preserve single original character, opaque square background. No text, labels, logos, borders, third-party characters, gore or nudity.",
+      "outputHint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089 as C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-1e1551bb-0b5e-4a11-9f9c-10686f3f9d0c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    }
+  ],
+  "heroRevisions": [
+    {
+      "output": "images/ur_1-revision-1.png",
+      "instruction": "Recompose waist-up, enlarge face/raised hand, simplify foreground and architecture; preserve original demon and solar crown/route lights.",
+      "promptSource": "Exact tool arguments in this chat; summarized here, not an exact prompt transcript."
+    },
+    {
+      "output": "images/ur_1-revision-2.png",
+      "instruction": "Preserve revision1; move complete horns downward to restore6% top margin, keep face readable at160px.",
+      "promptSource": "Exact tool arguments in this chat; summarized here, not an exact prompt transcript."
+    }
+  ],
+  "region": {
+    "prompt": "Create one original finished landscape destination illustration, 16:9 aspect ratio at least 1536x864, for QuestNote expedition '黯冠邊境'. Dark fantasy in 1990s hand-painted anime background art with clean bold ink silhouettes and hard colored light contrasts, controlled Pop Anime crimson/purple accents, no photorealistic or CGI look. A singular black basalt demon court tower with a recognizable BROKEN CROWN outline stands right of center across a ravine. A giant cracked black solar ring floats behind the upper tower, within frame not cropped. Seven small distinct regional colored light paths cross the distant landscape toward the ravine, but an obsidian thorn wall has broken their connections. In the lower center a surviving gold route crosses a worn stone bridge and stops at the wall; one tiny distant fully clothed traveler silhouette holding a small lantern stands on the safe approach to make exploration visible, no close-up faces. Wherever the wall touches the route, red-black crystals grow; where the route resists, thin gold seams light the dark stone. One large tower landmark and broken bridge/route must remain recognizable in a small map-card 16:9 crop and taller dispatch-dialog crop. Keep tower, ring and surviving route within central70% width/height, leave simplified dark sky on upper-left for UI overlays. Palette obsidian and gray-violet with deep crimson and tiny resistance colors. Readable dark shapes, avoid overwhelming black. Opaque full painted raster scene, no text, logos, labels, border, gore, nudity or copyrighted setting. Not a placeholder or icon.",
+    "outputHint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089 as C:\\Users\\User\\.codex\\generated_images\\01a11ae4-9529-7d93-8b69-11991f7a9089\\exec-fbe47459-801c-40da-8dc2-b77c997f1836.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  "uiLimitation": "Built-in generator automatically previews outputs; no mid-stage human image/animation approval requested. AI owns review. Actual final artifact viewer remains internal.",
+  "status": "preserved-awakened-pilots-and-one-initial-pilot; no-approved-candidate",
+  "originalHumanPurpose": "7位UR/SSR覺醒候選；禁止用於初遇卡面"
+}

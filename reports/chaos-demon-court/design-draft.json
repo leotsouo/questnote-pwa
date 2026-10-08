@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "design-draft-not-pipeline-approved",
+  "status": "revised-draft-awaiting-awakening-runtime-support",
   "seriesId": "chaos_demon_court",
   "poolId": "chaos_demon_court",
   "seriesName": "黯冠王庭・混世降臨",
@@ -16,7 +16,7 @@
   "userRequirements": {
     "theme": "同一世界的真正反派系列，混世魔王核心為UR，其他高階角色分布UR與SSR，名字不出現幹部，魔王不必直稱魔王",
     "art": "Dark Fantasy 90s Retro Anime Bishounen & Pop Anime",
-    "forms": "UR與部分SSR為美型人形惡魔，其餘魔獸",
+    "forms": "所有20位初遇為非人形魔獸；UR/SSR共7位覺醒後為美型人形惡魔，其他保留魔獸",
     "worldScope": "共通世界觀與本池連結既有地區，保留舊角色故事",
     "generationAuthorization": "確認，使用內建 imagegen 的現有訂閱／額度"
   },
@@ -24,18 +24,18 @@
     "tool": "built-in image_gen",
     "noExtraCost": true,
     "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
-    "reviewStatus": "pending-actual-image-review"
+    "reviewStatus": "7-paired-form-awakening-runtime-not-implemented; original-human-pilots-are-awakened-candidates-only"
   },
   "productionBaseline": {
-    "version": "3.8.8",
-    "deployedCommit": "76cefea20bd5de44da225cc24fb147a20ae18db8",
-    "sourceCommit": "6952649fc3ce644c7656a43d2047450df5886e01",
-    "mainCommit": "5af21f55127b1920ba2baec8f1de1dbc4ef3d905",
-    "artifactId": "af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a",
+    "version": "3.8.9",
+    "deployedCommit": "ce35b1f859b2b9ed5de5bd05c01b06651499c7ab",
+    "sourceCommit": "f515c683e187d64241fefef48ae9739006d2a2da",
+    "mainCommit": "d1ec87a569c7e49a0436f12a59fb6c8182ecfa45",
+    "artifactId": "77a4435d96191ec2fdd61197dbb98319e6f8ec00d7c1983793a125debf9e4d54",
     "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
     "descriptorUrl": "https://leotsouo.github.io/questnote-pwa/release-artifact.json",
-    "verifiedAt": "2026-10-08T09:55:57.952Z",
-    "unpublishedChanges": "來源到 main 僅 SOP 與發布證據六個檔案有差異；本次未帶入 root 或 main-integration 的未提交修改。正式 HTTPS version 與 descriptor pins 已讀回，尚待全量 bytes 比對。"
+    "verifiedAt": "2026-10-08T10:01:15.7301398Z",
+    "unpublishedChanges": "V3.8.9 awakening wizard was published during design. New descriptor bytes match gh-pages Git blob; reviewed source f515c68 and main d1ec87a have no tree difference. Rebase this report-only branch onto latest main before locked authoring. Full artifact file and browser acceptance remains pending."
   },
   "world": {
     "name": "織界",
@@ -50,11 +50,11 @@
       "lionheart_inverse_oath": "獅心城原有自然與人工生命衝突，被灰律利用；不宣稱舊角色早已服務魔王",
       "sunward_letters": "晴信原野的信與修路，是小獸們對斷絕連結的直接反抗"
     },
-    "summoning": "玩家召來的是受星路契約約束的同行化身。合作是互相制衡、試探與短期共同利益，不表示反派被洗白。此為內容設定，不新增化身存檔欄位或戰鬥系統。"
+    "summoning": "玩家召來的是受星路契約約束的非人形原生化身。UR/SSR七位履行覺醒試煉後才顯露美型人形；SR/R/N保留魔獸。合作不等於反派洗白；同一寵物ID不新增抽卡候選或第二份收藏。"
   },
   "artDirection": {
     "palette": "黑曜黑、血紅、灰紫、冷銀與少量黯金，和每地的一束抵抗色形成對比",
-    "rendering": "1990年代手繪賽璐璐動畫感；乾淨墨線、2至3階硬邊陰影、精細瞳孔、復古背景、少量印刷顆粒與醒目Pop Anime色块。人形角色為成年美型惡魔，完整服装；魔獸保留清楚物種。",
+    "rendering": "1990年代手繪賽璐璐動畫感；乾淨墨線、2至3階硬邊陰影、精細瞳孔、復古背景、少量印刷顆粒與醒目Pop Anime色块。人形角色為成年美型惡魔，完整服装；魔獸保留清楚物種。 初遇卡圖全為非人形；成年美型人形只用於7位UR/SSR覺醒。",
     "avoid": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。"
   },
   "gameplay": {
@@ -113,91 +113,139 @@
       "draftId": "ur_1",
       "rarity": "UR",
       "name": "黯冠・無晝",
-      "form": "人形惡魔",
+      "form": "魔獸",
       "design": {
-        "signature": "破環雙角、黑色長髮、猩紅內襯長袍、懸浮裂冠",
-        "storyAction": "他抬起一隻手，將跨越七地的光路扭成黑色日環",
-        "visibleConsequence": "遠方仍有七道不同顏色的光抵住侵蝕；王座旁的石階碎裂但不傷角色",
-        "composition": "方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作"
+        "visibleConsequence": "界石裂出紅黑晶脈，七色星路仍各自保留一線抵抗，塔外階石崩裂",
+        "signature": "完整四足古龍、黑曜鱗、猩紅翼膜、與人形一致的破環雙角、金黑裂冠輪廓",
+        "storyAction": "古龍盤踞黑塔石座，以完整前爪壓住七色星路交會的界石，抬頭令裂冠日環吞光",
+        "composition": "原生魔獸單主角佔約70%畫面；完整角翼尾爪留6%安全邊界，故事媒介清楚；384px與160px可辨。"
       },
       "motive": "抹去誓約、記憶與名字的差異，使萬物服從唯一意志",
       "relationship": "王庭主宰；與玩家訂立限制化身力量的契約，未被洗白",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakenedDesign": {
+        "signature": "破環雙角、黑色長髮、猩紅內襯長袍、懸浮裂冠",
+        "storyAction": "他抬起一隻手，將跨越七地的光路扭成黑色日環",
+        "visibleConsequence": "遠方仍有七道不同顏色的光抵住侵蝕；王座旁的石階碎裂但不傷角色",
+        "composition": "角色臉部與上身主導構圖；完整雙角與手指保留至少6%安全邊界，不強制露出雙腿；384px與160px縮圖讀得出表情、施術動作與裂冠。"
+      },
+      "initialSpecies": "黯冠古龍",
+      "awakeningEligible": true
     },
     {
       "draftId": "ur_2",
       "rarity": "UR",
       "name": "裂月・瑟因",
-      "form": "人形惡魔",
+      "form": "魔獸",
       "design": {
+        "visibleConsequence": "水幕沿角劃開的線停在半空，北境誓火在通道邊緣留下暖色界線",
+        "signature": "完整非人形巨型魔鰩、銀紫背紋、兩片寬胸鰭、長尾、額前单側月刃角",
+        "storyAction": "魔鰩以月刃角穿過潮汐上方的月光，展開完整鰭面劃出一道通道",
+        "composition": "原生魔獸單主角佔約70%畫面；完整角翼尾爪留6%安全邊界，故事媒介清楚；384px與160px可辨。"
+      },
+      "motive": "掌控往返各地的裂隙，想成為下一位王",
+      "relationship": "無晝最危險的武力盟友，服從中藏著奪位之心",
+      "reviewStatus": "pending",
+      "awakenedDesign": {
         "signature": "銀白長髮、單側月刃角、紫黑披甲、完整弧刃",
         "storyAction": "他將弧刃穿過一面完整的月光，切開峽灣通往王庭的潮汐門",
         "visibleConsequence": "切口外的水停在半空，北境誓火在門邊抵抗",
         "composition": "方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作"
       },
-      "motive": "掌控往返各地的裂隙，想成為下一位王",
-      "relationship": "無晝最危險的武力盟友，服從中藏著奪位之心",
-      "reviewStatus": "pending"
+      "initialSpecies": "裂月魔鰩",
+      "awakeningEligible": true
     },
     {
       "draftId": "ur_3",
       "rarity": "UR",
       "name": "終鐘・維爾",
-      "form": "人形惡魔",
+      "form": "魔獸",
       "design": {
+        "visibleConsequence": "靜音波紋在花間凝成透明黑玻璃，仍有一朵暖光花抵住封存",
+        "signature": "完整六足非人形巨蛾、紫黑絨毛、琥珀复眼、鐘形觸角弧紋、两對完整鐘環翅紋",
+        "storyAction": "夢蛾停在懸鐘弓架上，以前足抵住鐘舌，翅紋向花庭夢光展開",
+        "composition": "原生魔獸單主角佔約70%畫面；完整角翼尾爪留6%安全邊界，故事媒介清楚；384px與160px可辨。"
+      },
+      "motive": "讓世界停止變化，將所有未來封存在收藏中",
+      "relationship": "掌管記憶與禁術，效忠的其實是永恆而非王",
+      "reviewStatus": "pending",
+      "awakenedDesign": {
         "signature": "暗金眼、鐘形角冠、黑紫禮服、無指針銅鐘",
         "storyAction": "他按住漂浮銅鐘的鐘舌，抽走花庭一段夢境的聲音",
         "visibleConsequence": "靜音波紋凝成黑玻璃，花海邊緣仍有一朵發光花抵住",
         "composition": "方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作"
       },
-      "motive": "讓世界停止變化，將所有未來封存在收藏中",
-      "relationship": "掌管記憶與禁術，效忠的其實是永恆而非王",
-      "reviewStatus": "pending"
+      "initialSpecies": "終鐘夢蛾",
+      "awakeningEligible": true
     },
     {
       "draftId": "ssr_1",
       "rarity": "SSR",
       "name": "荊誓・洛恩",
-      "form": "人形惡魔",
+      "form": "魔獸",
       "design": {
+        "visibleConsequence": "山路承諾化成帶刺橋索，红线撕裂處仍有一根金線未斷",
+        "signature": "完整四足原創鹿形魔獸、酒紅鬃、分枝荊棘角、黑蹄、額前封蠟色紋",
+        "storyAction": "角麒以分枝荊角挑開一卷懸浮誓文上的紅線",
+        "composition": "原生魔獸單主角佔約70%畫面；完整角翼尾爪留6%安全邊界，故事媒介清楚；384px與160px可辨。"
+      },
+      "motive": "將承諾變成束縛人的條款",
+      "relationship": "王庭立約者，與劍隱山河的守諾理念衝突",
+      "reviewStatus": "pending",
+      "awakenedDesign": {
         "signature": "酒紅短髮、荊棘角、纏荊黑手套、封蠟誓卷",
         "storyAction": "他以荊棘指尖在誓卷上撕開一條紅線",
         "visibleConsequence": "山路上的承諾化成帶刺橋索，仍有一根金線未断",
         "composition": "方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作"
       },
-      "motive": "將承諾變成束縛人的條款",
-      "relationship": "王庭立約者，與劍隱山河的守諾理念衝突",
-      "reviewStatus": "pending"
+      "initialSpecies": "荊誓角麒",
+      "awakeningEligible": true
     },
     {
       "draftId": "ssr_2",
       "rarity": "SSR",
       "name": "鏡宴・奈璃",
-      "form": "人形惡魔",
+      "form": "魔獸",
       "design": {
+        "visibleConsequence": "鏡宴越華麗，真實糖晶的光越暗，仍有一顆保持暖光",
+        "signature": "完整四足銀白狐狸、单條长狐尾、蝶纹耳缘、紫紅眼、裂鏡尾光",
+        "storyAction": "銀狐以前爪翻動糖晶前的一片裂鏡，回首看向鏡中宴席",
+        "composition": "原生魔獸單主角佔約70%畫面；完整角翼尾爪留6%安全邊界，故事媒介清楚；384px與160px可辨。"
+      },
+      "motive": "用完美幻象誘人放棄真實分享",
+      "relationship": "誘惑與情報統領，覬覦蜜光糖庭的温暖",
+      "reviewStatus": "pending",
+      "awakenedDesign": {
         "signature": "白金髮、蝶形角飾、黑紅高領衣、裂鏡托盤",
         "storyAction": "她將一顆糖晶放在裂鏡前，指尖翻轉鏡面",
         "visibleConsequence": "鏡中宴席越華麗，真實糖晶的光越暗",
         "composition": "方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作"
       },
-      "motive": "用完美幻象誘人放棄真實分享",
-      "relationship": "誘惑與情報統領，覬覦蜜光糖庭的温暖",
-      "reviewStatus": "pending"
+      "initialSpecies": "鏡宴銀狐",
+      "awakeningEligible": true
     },
     {
       "draftId": "ssr_3",
       "rarity": "SSR",
       "name": "灰律・奧鉻",
-      "form": "人形惡魔",
+      "form": "魔獸",
       "design": {
+        "visibleConsequence": "蒸汽在齒間結成灰晶，遠方獅心爐火仍明亮",
+        "signature": "完整雙翼非人形暗銅渡鴉、灰藍羽、金屬彎角、齒輪胸環；魔獸並非舊池角色改造",
+        "storyAction": "銅鴉用完整雙爪抓住一枚符文齒輪並將其扭停",
+        "composition": "原生魔獸單主角佔約70%畫面；完整角翼尾爪留6%安全邊界，故事媒介清楚；384px與160px可辨。"
+      },
+      "motive": "利用創造者的執念，把生命化成可控制的造物",
+      "relationship": "王庭造物師，企圖利用獅心城既有衝突",
+      "reviewStatus": "pending",
+      "awakenedDesign": {
         "signature": "灰藍髮、金屬紋惡魔角、暗銅肩甲、停轉齒輪環",
         "storyAction": "他握住齒輪環，扭停一枚正在運作的符文齒輪",
         "visibleConsequence": "蒸汽在齒間結成灰晶，遠處爐光仍亮",
         "composition": "方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作"
       },
-      "motive": "利用創造者的執念，把生命化成可控制的造物",
-      "relationship": "王庭造物師，企圖利用獅心城既有衝突",
-      "reviewStatus": "pending"
+      "initialSpecies": "灰律銅鴉",
+      "awakeningEligible": true
     },
     {
       "draftId": "ssr_4",
@@ -205,14 +253,22 @@
       "name": "蝕星獄獅",
       "form": "魔獸",
       "design": {
-        "signature": "完整四足獅形、黑曜鬃毛、胸前星形裂痕、長獅尾",
-        "storyAction": "牠前爪踩住一根通往城門的發光锁鏈，低頭咆哮",
-        "visibleConsequence": "锁鏈被壓成黑晶，城門外有碎星沿地面倒流",
-        "composition": "方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作"
+        "visibleConsequence": "锁鏈被壓成黑晶，城門外碎星沿地面倒流",
+        "signature": "完整四足獅形、黑曜鬃、胸前星裂、长獅尾、星痕角",
+        "storyAction": "獄獅前爪踩住通往城門的光链，低頭咆哮",
+        "composition": "原生魔獸單主角佔約70%畫面；完整角翼尾爪留6%安全邊界，故事媒介清楚；384px與160px可辨。"
       },
       "motive": "守住王庭入口並吞噬逃離者留下的星光",
       "relationship": "王庭鎮門魔獸，與造物奇美拉明確區分",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakenedDesign": {
+        "visibleConsequence": "星碎片沿地面倒流，門外光路被鏈條壓低",
+        "composition": "成年美型人形、臉與手握鏈動作大而清楚、角尖與鏈條留安全邊界",
+        "storyAction": "牠幻化成人形，握住正在黑晶化的光鏈，守在王庭門前",
+        "signature": "黯金眼成年美型獅系惡魔、黑鬃長髮、星痕角與胸前星裂飾"
+      },
+      "initialSpecies": "蝕星獄獅",
+      "awakeningEligible": true
     },
     {
       "draftId": "sr_1",
@@ -227,7 +283,8 @@
       },
       "motive": "截斷消息與呼援",
       "relationship": "空中斥候",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "sr_2",
@@ -242,7 +299,8 @@
       },
       "motive": "替裂月控制潮汐通道",
       "relationship": "裂隙航路守衛",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "sr_3",
@@ -257,7 +315,8 @@
       },
       "motive": "以寒意分開本來互相守望的伙伴",
       "relationship": "北境突襲者",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "sr_4",
@@ -272,7 +331,8 @@
       },
       "motive": "收集被終鐘禁止發生的夢",
       "relationship": "夢境捕手",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "sr_5",
@@ -287,7 +347,8 @@
       },
       "motive": "把通往彼此的道路導向王庭",
       "relationship": "邊界巡守",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "r_1",
@@ -302,7 +363,8 @@
       },
       "motive": "誘導旅人走錯路",
       "relationship": "引路與欺瞞",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "r_2",
@@ -317,7 +379,8 @@
       },
       "motive": "拆除抵抗勢力的小型設施",
       "relationship": "機械採集",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "r_3",
@@ -332,7 +395,8 @@
       },
       "motive": "封存不利於王庭的消息",
       "relationship": "信路監察",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "r_4",
@@ -347,7 +411,8 @@
       },
       "motive": "讓修補的道路重新失去方向",
       "relationship": "植物採集與干擾",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "r_5",
@@ -362,7 +427,8 @@
       },
       "motive": "維持邊界封鎖的火源",
       "relationship": "王庭火線守衛",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "n_1",
@@ -377,7 +443,8 @@
       },
       "motive": "照看王庭殘火，怕被強者踩到",
       "relationship": "火源跑腿",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "n_2",
@@ -392,7 +459,8 @@
       },
       "motive": "替高階角色收集丢失的飾物",
       "relationship": "碎片採集",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     },
     {
       "draftId": "n_3",
@@ -407,7 +475,8 @@
       },
       "motive": "以蛛網回報入侵，對王庭外世界好奇",
       "relationship": "哨網織工",
-      "reviewStatus": "pending"
+      "reviewStatus": "pending",
+      "awakeningEligible": false
     }
   ],
   "releaseGate": "AI自審內容、卡圖與動畫。整包實測與packageHash準備完成後，由使用者驗收並明確說可以發布；不得以本需求或產圖授權冒充最後整包發布核准。"

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "imageReviewMode": "ai-self",
+  "stage": "representative-art-pilot",
+  "overallStatus": "product-direction-revised-to-beast-initial-and-seven-human-awakenings; no-final-approval",
+  "reviewer": "Codex AI",
+  "reviewedAt": "2026-10-08T10:04:58.749Z",
+  "environment": "loopback internal concept page at 127.0.0.1:4189; 384px and 160px image previews, not production/artifact UI",
+  "sourceBaseline": "d1ec87a569c7e49a0436f12a59fb6c8182ecfa45",
+  "generationTool": "built-in image_gen",
+  "model": "not exposed by tool",
+  "seed": "not exposed by tool",
+  "results": [
+    {
+      "draftId": "ur_1",
+      "original": "images/ur_1-original.png",
+      "status": "pilot-thumb-pass-artifact-crop-pending",
+      "selected": "images/ur_1-revision-2.png",
+      "findings": [
+        "Original face too small at160px; rejected for card readability",
+        "Revision1 has clear face but left horn clipped; rejected",
+        "Revision2 actually reviewed at384px and160px: face, complete horn tips, raised hand and sovereign silhouette readable.",
+        "No gore or nudity; one adult humanoid demon, plausible arms/hands",
+        "Black solar ring and colored distant routes communicate crown control and resistance"
+      ],
+      "limits": [
+        "No actual App/artifact acceptance yet",
+        "Large ring still reaches top edge; must assess actual App crop before final images approval"
+      ],
+      "formPurpose": "awakened-candidate-only"
+    },
+    {
+      "draftId": "ur_2",
+      "original": "images/ur_2-original.png",
+      "status": "needs-revision",
+      "findings": [
+        "Moon-cut tidal gate and arc blade readable",
+        "Face is too small at160px, upper body needs larger composition",
+        "Highly ornate armor and large wings overwhelm single-sided moon-horn signature",
+        "Revision1 has larger readable face, single moon-horn and visible gripping hand; full arc blade still too close to right edge, requires safe-margin correction."
+      ],
+      "selected": "images/ur_2-revision-1.png",
+      "formPurpose": "awakened-candidate-only"
+    },
+    {
+      "draftId": "ur_3",
+      "original": "images/ur_3-original.png",
+      "status": "needs-revision",
+      "findings": [
+        "Bell, silent dark glass and flower resistance express intended story",
+        "Face small at160px and costume too similar to other armored URs",
+        "Recompose as larger ritual portrait with distinct formal cleric silhouette; preserve actual bell contact",
+        "Revision1 differentiates lavender hair, formal coat, bell and clapper contact; crown horn tips and bell arch still clipped at top, requires safe-margin correction."
+      ],
+      "selected": "images/ur_3-revision-1.png",
+      "formPurpose": "awakened-candidate-only"
+    },
+    {
+      "draftId": "ssr_1",
+      "original": "images/ssr_1-original.png",
+      "status": "needs-revision",
+      "findings": [
+        "Thorn and sealed contract provide distinct role",
+        "At160px, tearing red line is too subtle; enlarge hands and contract",
+        "Keep red hair and thorn horns; reduce wing/armor visual competition",
+        "Revision1 clearly shows torn contract red-line and surviving gold oath-thread; central horn tip clipped at top, requires safe-margin correction."
+      ],
+      "selected": "images/ssr_1-revision-1.png",
+      "formPurpose": "awakened-candidate-only"
+    }
+  ],
+  "technical": "5 initial/revision PNGs fully decoded:1254x1254,all >=512px,<5MB; all >2MB require pipeline warning acknowledgement if selected. Revision2 check recorded separately.",
+  "blocked": {
+    "code": "DISK_GOVERNANCE_POLICY_LOCAL_VERIFICATION_FAILED",
+    "details": "Source and installed wrappers both reject OneDrive policy metadata; elevated Adopt also fails. Tool reads show ReparsePoint/OneDrive-managed attributes. No checks disabled; central registration remains incomplete.",
+    "impact": "Hold locked pipeline authoring and dependency-producing release work until governance path is resolved. Story draft and preserved pilot images remain reusable."
+  },
+  "remaining": [
+    "Revise three other representative cards before expanding to remaining16",
+    "Resolve central lifecycle and governed execution",
+    "Rebase report-only work onto verified latest main",
+    "Controlled animation template support before pipeline init",
+    "Pipeline init/allocation; full20-character content,dialogues,bond stories,affinities and actual specialties",
+    "Generate16 remaining character images and destination art after pilot passes",
+    "Food recipe and expedition runtime evidence",
+    "Immutable preview/production artifacts,internal animation viewer and flow/cache tests",
+    "Human whole-package acceptance and explicit 可以發布 tied to packageHash"
+  ]
+}

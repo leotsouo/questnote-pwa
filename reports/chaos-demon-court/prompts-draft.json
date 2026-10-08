@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "status": "superseded-by-form-prompts-draft.json; preserve-as-original-generation-provenance-only",
+  "prompts": [
+    {
+      "draftId": "ur_1",
+      "name": "黯冠・無晝",
+      "rarity": "UR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, 1024x1024 or larger. Single adult male demon sovereign, original character \"黯冠・無晝\", no text anywhere. Dark Fantasy 90s Retro Anime Bishounen & Pop Anime. Premium hand-drawn 1990s cel anime key art, delicate attractive mature male face with serious predatory calm, clean decisive ink contours, strong graphic 2-3 tier cel shadows, subtle painted background and restrained printed grain. NOT photorealistic, NOT CGI, NOT generic western comic. Design signature: 破環雙角、黑色長髮、猩紅內襯長袍、懸浮裂冠. Story moment: 他抬起一隻手，將跨越七地的光路扭成黑色日環. Visible result: 遠方仍有七道不同顏色的光抵住侵蝕；王座旁的石階碎裂但不傷角色. A threatening regal villain with agency, neither a cute mascot nor a redeemed saint. Keep one coherent adult humanoid body with correct hands, two arms and two legs; long dark robe fully clothed, boots visible. One hand raised palm facing a large broken black solar crown ring behind and above him, its red crack-light curves toward exactly seven small colored route-lights in the far background. The other hand rests on a black throne arm. Noble cheekbones and bright sharp crimson eyes, long black hair and asymmetrical red mantle lining. Two swept broken-ring horns; keep every horn tip and entire floating crown within canvas safe margin. Low viewpoint three-quarter seated posture, full figure readable; dominant head/upper-body/raised hand should retain clarity at 384px thumbnail. Background: black tower terrace, shattered stair edges and tiny seven-region route colors, not another character. Palette obsidian black, crimson, cold gray-violet and dark gold, clear light separation on face and hand. Dark atmosphere with clear readable linework; no gore, wounds, nudity, sexualization, labels, card border, logo, watermark, copyrighted character resemblance, cropped horns, extra fingers, extra limbs. Opaque illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "generated-initial-original"
+      }
+    },
+    {
+      "draftId": "ur_2",
+      "name": "裂月・瑟因",
+      "rarity": "UR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"裂月・瑟因\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 銀白長髮、單側月刃角、紫黑披甲、完整弧刃. Actual story action: 他將弧刃穿過一面完整的月光，切開峽灣通往王庭的潮汐門. Visible consequence: 切口外的水停在半空，北境誓火在門邊抵抗. Character motive: 掌控往返各地的裂隙，想成為下一位王. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "ur_3",
+      "name": "終鐘・維爾",
+      "rarity": "UR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"終鐘・維爾\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 暗金眼、鐘形角冠、黑紫禮服、無指針銅鐘. Actual story action: 他按住漂浮銅鐘的鐘舌，抽走花庭一段夢境的聲音. Visible consequence: 靜音波紋凝成黑玻璃，花海邊緣仍有一朵發光花抵住. Character motive: 讓世界停止變化，將所有未來封存在收藏中. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "ssr_1",
+      "name": "荊誓・洛恩",
+      "rarity": "SSR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"荊誓・洛恩\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 酒紅短髮、荊棘角、纏荊黑手套、封蠟誓卷. Actual story action: 他以荊棘指尖在誓卷上撕開一條紅線. Visible consequence: 山路上的承諾化成帶刺橋索，仍有一根金線未断. Character motive: 將承諾變成束縛人的條款. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "ssr_2",
+      "name": "鏡宴・奈璃",
+      "rarity": "SSR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"鏡宴・奈璃\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 白金髮、蝶形角飾、黑紅高領衣、裂鏡托盤. Actual story action: 她將一顆糖晶放在裂鏡前，指尖翻轉鏡面. Visible consequence: 鏡中宴席越華麗，真實糖晶的光越暗. Character motive: 用完美幻象誘人放棄真實分享. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "ssr_3",
+      "name": "灰律・奧鉻",
+      "rarity": "SSR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"灰律・奧鉻\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One fully clothed adult attractive humanoid demon, elegant dangerous presence. Signature: 灰藍髮、金屬紋惡魔角、暗銅肩甲、停轉齒輪環. Actual story action: 他握住齒輪環，扭停一枚正在運作的符文齒輪. Visible consequence: 蒸汽在齒間結成灰晶，遠處爐光仍亮. Character motive: 利用創造者的執念，把生命化成可控制的造物. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "ssr_4",
+      "name": "蝕星獄獅",
+      "rarity": "SSR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"蝕星獄獅\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整四足獅形、黑曜鬃毛、胸前星形裂痕、長獅尾. Actual story action: 牠前爪踩住一根通往城門的發光锁鏈，低頭咆哮. Visible consequence: 锁鏈被壓成黑晶，城門外有碎星沿地面倒流. Character motive: 守住王庭入口並吞噬逃離者留下的星光. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "sr_1",
+      "name": "燼羽夜鴉",
+      "rarity": "SR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"燼羽夜鴉\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 黑鴉全翼、羽緣暗紅、喙旁燼光. Actual story action: 牠展開完整雙翼掠過信路，攫取路標上的一束光. Visible consequence: 路標陰影逆轉、遠方仍有紙鳶引路. Character motive: 截斷消息與呼援. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "sr_2",
+      "name": "縛潮玄蛇",
+      "rarity": "SR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"縛潮玄蛇\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 單頭長蛇、青黑鱗、銀環尾紋、無肢體. Actual story action: 牠盤繞一塊潮汐界石，身軀形成完整波浪曲線. Visible consequence: 海水沿身體抬起，界石下方留下乾涸通道. Character motive: 替裂月控制潮汐通道. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "sr_3",
+      "name": "斷祈霜狼",
+      "rarity": "SR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"斷祈霜狼\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 灰白完整狼形、紫黑霜鬃、額頭裂紋. Actual story action: 牠踏入北境誓火外圈，抬爪踩碎一片凝霜. Visible consequence: 冰裂沿地面伸展，橙色誓火保留一條安全線. Character motive: 以寒意分開本來互相守望的伙伴. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "sr_4",
+      "name": "噬夢絨蝠",
+      "rarity": "SR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"噬夢絨蝠\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整蝙蝠翼膜、柔黑絨毛、琥珀眼、月牙耳. Actual story action: 牠倒懸花庭拱枝，抓住飄過的一段夢光. Visible consequence: 夢光變成暗色絲卷，一朵花的色彩退去. Character motive: 收集被終鐘禁止發生的夢. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "sr_5",
+      "name": "棘令黑鹿",
+      "rarity": "SR",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"棘令黑鹿\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 四足鹿形、完整分枝荊角、暗綠毛、金色細眼. Actual story action: 牠以荊角抬起倒塌路標並旋向禁行方向. Visible consequence: 腳下長出刺牆，原路仍在刺牆外發亮. Character motive: 把通往彼此的道路導向王庭. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "r_1",
+      "name": "幽燈影狐",
+      "rarity": "R",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"幽燈影狐\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 三角狐耳、单条完整尾巴、青色幽燈. Actual story action: 牠叼著幽燈在岔路回望. Visible consequence: 燈光投出錯誤出口，但真路的草仍向另一側傾斜. Character motive: 誘導旅人走錯路. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "r_2",
+      "name": "銹齒穴鼬",
+      "rarity": "R",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"銹齒穴鼬\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 長身鼬形、暗銅小齒輪背袋、明亮黑眼. Actual story action: 牠用前爪卸下路橋一顆螺栓. Visible consequence: 橋板微沉，銹粉留下可追查足跡. Character motive: 拆除抵抗勢力的小型設施. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "r_3",
+      "name": "緘信墨梟",
+      "rarity": "R",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"緘信墨梟\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整貓頭鷹形、墨藍羽、信封状胸纹. Actual story action: 牠用爪壓住未送達的信，低頭吹去封口光. Visible consequence: 封蠟影子化作黑羽，紙面仍保留收件者痕跡. Character motive: 封存不利於王庭的消息. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "r_4",
+      "name": "逆芽棘兔",
+      "rarity": "R",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"逆芽棘兔\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整長兔耳、暗紫绒毛、小棘芽背包. Actual story action: 牠在路標根部種下朝內彎曲的刺芽. Visible consequence: 刺芽把箭頭拽偏，旁邊正常嫩芽仍向陽. Character motive: 讓修補的道路重新失去方向. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "r_5",
+      "name": "煤焰角羊",
+      "rarity": "R",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"煤焰角羊\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整羊形、煤黑卷角、暗橙蹄痕. Actual story action: 牠用前蹄推動燃煤越過熄火界線. Visible consequence: 一條低矮火帶封路，火外石碑仍清晰可讀. Character motive: 維持邊界封鎖的火源. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "n_1",
+      "name": "微燼小蜥",
+      "rarity": "N",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"微燼小蜥\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整四足小蜥、長尾、背部小燼點. Actual story action: 牠趴在餘燼旁吹動一顆火星. Visible consequence: 火星沿石縫串起短紅線. Character motive: 照看王庭殘火，怕被強者踩到. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "n_2",
+      "name": "碎冠甲蟲",
+      "rarity": "N",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"碎冠甲蟲\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整六足甲蟲、王冠状角、暗金甲殼. Actual story action: 牠推著一小片裂冠穿過石階. Visible consequence: 碎片留下金黑摩擦痕，後方小石块翻起. Character motive: 替高階角色收集丢失的飾物. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    },
+    {
+      "draftId": "n_3",
+      "name": "暮紗幼蛛",
+      "rarity": "N",
+      "prompt": "Create one finished square collectible character illustration for QuestNote, minimum 1024x1024, single original character \"暮紗幼蛛\". Dark Fantasy 90s Retro Anime Bishounen & Pop Anime, hand-drawn 1990s cel anime, clean expressive ink contours, 2-3 tier hard-edged cel shading, graphic purple/red/black color shapes and painted fantasy background. One clearly recognizable fantasy animal with species-accurate body and correct limb count, no human face or humanoid posture. Signature: 完整八足小蛛、紫黑腹部、細銀絲. Actual story action: 牠在門縫補好一道銀黑網线. Visible consequence: 露珠停在網上形成細小預警光點. Character motive: 以蛛網回報入侵，對王庭外世界好奇. Composition: 方形單角色，主體與完整角翼尾爪武器皆在安全邊界內；縮至384與手機卡片尺寸仍讀得出主要特徵；背景不得搶過臉與動作. Face and primary action readable at 384px. Keep entire wings, horns, tails, legs and weapons inside safe margin. Palette obsidian black, crimson, cold gray-violet, dark gold with one small regional resistance color. Original dark villain faction, no existing franchise character, no labels, border or text, opaque full illustrated background.",
+      "negativePrompt": "無血腥、肢解、裸露、現成作品角色、文字水印。禁止以單純黑暗背景取代故事；不用相同臉和相同站姿做所有高階角色。；無多餘或缺失肢體、模糊臉、畫面邊緣裁切辨識特徵；禁止以科幻裝甲或寫實3D替代復古動畫。",
+      "provenance": {
+        "tool": "built-in image_gen",
+        "noExtraCost": true,
+        "costBasis": "使用者確認使用內建工具的現有訂閱／額度；不使用另付費API。並非工具自行驗證帳戶計費。",
+        "status": "not-yet-generated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "status": "technical-pilot-file-check-pass",
+  "visualApproval": false,
+  "scope": "pilot PNG decode,dimensions,size,hashes only; not runtime,WebP,offline or release acceptance",
+  "images": [
+    {
+      "path": "images\\darkcrown-border-original.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 2423433,
+      "sha256": "ab87a08341e03911ea24dd32cd645eff02b22eb0770ac9369023774eb7685920",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ssr_1-original.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 2991087,
+      "sha256": "2d4e1ba82cf4b35463ae187e875e80595bf99e81b4dbcdf06dd3909895e58a86",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ssr_1-revision-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 2631738,
+      "sha256": "9a681f5adc6fbff1e745ef102ad1aaff0b86c4e9ad0b1ff170d6a3a7928e9edc",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ur_1-initial-original.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 3020522,
+      "sha256": "b9fbd74936bf042edb72fc08d6ca19e593aed697216282c0c3a27b401203a4ec",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ur_1-original.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 2963973,
+      "sha256": "7a7d3552045fe3f78e8d670f389eac62795752440874316a3a4241883f344f28",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ur_1-revision-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 2529964,
+      "sha256": "0f4ecda79d9baa47cd66e9fc51532de7c7b9fa1b85ce0fbaf93b3210f52a5c6d",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ur_1-revision-2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 2489567,
+      "sha256": "aad0bb7e6cb43ca9b1f1ba561f20492628f79c3ac34560ebe8d18394bdb32f4f",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ur_2-original.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 3356739,
+      "sha256": "683b00059dd784f95da75f1b86454b2480f9639db391233bcdc68172239bc738",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ur_2-revision-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 2954318,
+      "sha256": "4ca7fc2c993e810294cfce639a0caa59229a932c3a6174f872b5e5819cdf7fb7",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ur_3-original.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 3371335,
+      "sha256": "04bb89cad8ebf09096706711a68b11db7fb0e6c79201509edc94fe1f8b28fe21",
+      "warningOver2MB": true
+    },
+    {
+      "path": "images\\ur_3-revision-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 3286639,
+      "sha256": "1a78e678ca150ddfd8b0722c648d9f0b222d04c7a0cd9b1d231228a591889923",
+      "warningOver2MB": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "descriptorMatchesGitBlob": true,
+  "contentKeys": [
+    "schemaVersion",
+    "petsData",
+    "poolsData",
+    "loreData",
+    "seriesCatalog"
+  ],
+  "verificationScope": "descriptor exact bytes, live version and catalog readback; not full publication acceptance",
+  "deployedCommit": "ce35b1f859b2b9ed5de5bd05c01b06651499c7ab",
+  "verifiedAt": "2026-10-08T10:01:15.7301398Z",
+  "contentBundleUrl": "data/releases/9c715f04f60de26ec55eefb26b7366e945e7ad6aa37a8b409f7d0d7fefe6f3c5/catalog.json",
+  "sourceCommit": "f515c683e187d64241fefef48ae9739006d2a2da",
+  "scopePath": "/questnote-pwa/",
+  "mainCommit": "d1ec87a569c7e49a0436f12a59fb6c8182ecfa45",
+  "artifactId": "77a4435d96191ec2fdd61197dbb98319e6f8ec00d7c1983793a125debf9e4d54",
+  "descriptorSha256": "cfe2fd59eed26971b036c417ff2ac3374a43730e41379dc7806ddd4d8ff052d8"
+}
