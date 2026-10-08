@@ -18,8 +18,7 @@ function Assert-QuestLocal([string]$Path,[string]$Root){
 }
 function Read-QuestJson([string]$Path){
  Assert-QuestLocal $Path ([IO.Path]::GetDirectoryName((Get-QuestPath $Path)))
- $scan=[QuestDiskNative]::Scan($Path);if($scan.Unknown.Count -or $scan.Files.Count -ne 1){throw "JSON metadata is not a verified local file: $Path"}
- return ([IO.File]::ReadAllText($Path)|ConvertFrom-Json -AsHashtable)
+ return ([QuestDiskNative]::ReadLocalMetadata($Path)|ConvertFrom-Json -AsHashtable)
 }
 function Get-QuestContext([string]$Root,[string]$Policy,[string]$State){
  if(-not $Root){$manifest="$PSScriptRoot/../runtime-manifest.json";if(Test-Path -LiteralPath $manifest){$Root=(Read-QuestJson $manifest).root}else{$gitCommon=Invoke-QuestGit $PSScriptRoot @('rev-parse','--path-format=absolute','--git-common-dir');$Root=[IO.Path]::GetDirectoryName($gitCommon)}}

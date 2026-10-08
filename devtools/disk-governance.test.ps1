@@ -12,6 +12,18 @@ function AgeFixtures {
  $s=[QuestDiskNative]::Scan($repo);foreach($f in $s.Files){[IO.File]::SetLastWriteTimeUtc($f.Path,[DateTime]::UtcNow.AddDays(-31))}
 }
 try{
+ # Metadata reads allow known fully local Cloud Files tags, never recall or name-surrogate links.
+ [QuestDiskNative]::CheckMetadataAttributes(0x20,0)
+ [QuestDiskNative]::CheckMetadataAttributes(0x420,([Convert]::ToUInt32('9000001a',16)))
+ [QuestDiskNative]::CheckMetadataAttributes(0x420,([Convert]::ToUInt32('9000f01a',16)))
+ Assert $true 'Metadata accepts regular files and local recognized Cloud Files tags'
+ foreach($case in @(@(0x10,0),@(0x1000,0),@(0x40000,0),@(0x400000,0),@(0x420,([Convert]::ToUInt32('a000000c',16))),@(0x420,([Convert]::ToUInt32('a0000003',16))),@(0x420,([Convert]::ToUInt32('80000042',16))))){
+  $rejected=$false;try{[QuestDiskNative]::CheckMetadataAttributes([uint32]$case[0],[uint32]$case[1])}catch{$rejected=$true}
+  Assert $rejected "Metadata rejects unsafe attributes/tag $($case[0])/$($case[1])"
+ }
+ [IO.Directory]::CreateDirectory($fixture)|Out-Null
+ [IO.File]::WriteAllText("$fixture/local-metadata.json",'{"schema":1,"value":"local"}')
+ Assert ((Read-QuestJson "$fixture/local-metadata.json").value -eq 'local') 'Real native no-recall handle reads exact local JSON'
  [IO.Directory]::CreateDirectory($repo)|Out-Null;Git $repo @('init','-b','main')|Out-Null;Git $repo @('config','user.name','Governance Fixture')|Out-Null;Git $repo @('config','user.email','fixture@example.invalid')|Out-Null
  [IO.File]::WriteAllText("$repo/.gitignore",".worktrees/`n.dev-backups/`nnode_modules/`n")
  [IO.File]::WriteAllText("$repo/README.md",'synthetic source')

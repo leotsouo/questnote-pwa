@@ -34,6 +34,20 @@ public static class QuestDiskNative {
   if((t.Attributes&0x441000)!=0)throw new IOException("Cloud recall/offline ancestor");
   if((t.Attributes&1024)!=0 && ((t.Tag&0xffff0fff)!=0x9000001a || (t.Tag&0x20000000)!=0))throw new IOException("Junction/symlink/unknown reparse ancestor");
  }
+ // Metadata may be a hydrated Cloud Files placeholder; deletion/Scan remain stricter.
+ public static void CheckMetadataAttributes(uint attributes,uint tag){
+  if((attributes&0x441010)!=0)throw new IOException("Metadata is a directory or requires cloud recall");
+  if((attributes&1024)!=0 && ((tag&0xffff0fff)!=0x9000001a || (tag&0x20000000)!=0))throw new IOException("Metadata is a symlink/junction/unknown reparse point");
+ }
+ public static string ReadLocalMetadata(string p){
+  // OPEN_REPARSE_POINT | OPEN_NO_RECALL; read-only sharing prevents replacement during validation/read.
+  using var h=CreateFileW(Long(p),0x80000000,1,IntPtr.Zero,3,0x00300000,IntPtr.Zero);Check(!h.IsInvalid);
+  TagInfo t;Standard s;Check(GetFileInformationByHandleEx(h,9,out t,(uint)Marshal.SizeOf<TagInfo>()));
+  CheckMetadataAttributes(t.Attributes,t.Tag);Check(GetFileInformationByHandleEx(h,1,out s,(uint)Marshal.SizeOf<Standard>()));
+  if(s.Directory||s.Length>67108864)throw new IOException("Metadata is not a bounded regular file");
+  using var stream=new FileStream(h,FileAccess.Read);using var reader=new StreamReader(stream,System.Text.Encoding.UTF8,true);
+  return reader.ReadToEnd();
+ }
  public static QuestDiskScan Scan(string root){
   var result=new QuestDiskScan();var stack=new Stack<string>();stack.Push(System.IO.Path.GetFullPath(root));
   if(File.Exists(root)){try{string p=System.IO.Path.GetFullPath(root);using var h=CreateFileW(Long(p),0,7,IntPtr.Zero,3,0x00200000,IntPtr.Zero);Check(!h.IsInvalid);Info i;Standard s;Check(GetFileInformationByHandle(h,out i));Check(GetFileInformationByHandleEx(h,1,out s,(uint)Marshal.SizeOf<Standard>()));if((i.Attributes&0x441400)!=0)result.Unknown.Add(p+": reparse/cloud file");else result.Files.Add(new QuestDiskFile{Path=p,Bytes=s.Length,Allocated=s.Allocation,Links=s.Links,Id=Identity(i),Attributes=i.Attributes,Modified=File.GetLastWriteTimeUtc(p)});}catch(Exception e){result.Unknown.Add(root+": "+e.Message);}return result;}
