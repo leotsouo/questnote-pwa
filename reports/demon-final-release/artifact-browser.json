@@ -1,8 +1,8 @@
 {
   "running": false,
-  "runId": "db1636bd-9cd3-4da3-a408-734b04b4bb93",
-  "passed": 16,
-  "failed": 2,
+  "runId": "b7a5ae75-bef5-4bf0-9f22-377d646cae36",
+  "passed": 18,
+  "failed": 0,
   "results": [
     {
       "name": "uncontrolled first boot rejects profile-null before app import or database access",
@@ -41,38 +41,12 @@
       "ok": true
     },
     {
-      "name": "native ten-pull SR floor spends once and the summon wallet survives return and reload",
-      "ok": false,
-      "error": "Error: Not every pool has the SR floor\n    at assert (http://127.0.0.1:53082/test/suite.js:5:64)\n    at http://127.0.0.1:53082/test/suite.js:377:5\n    at async test (http://127.0.0.1:53082/test/suite.js:23:9)\n    at async http://127.0.0.1:53082/test/suite.js:370:72",
-      "clients": [
-        {
-          "url": "http://127.0.0.1:53082/questnote-pwa/",
-          "active": "view-tasks",
-          "workshop": "\n      \n        \n              \n                \n                  森林嫩葉\n                  N\n                \n                數量：0\n                迷霧森林中常見的靈性嫩葉，適合製作基礎親密度道具。\n                來源：迷霧森林、雲棧古道、黯冠邊境\n                製作羈絆未來解鎖\n              \n              \n                \n                  熔岩核心\n                  R\n                \n                數量：0\n                熔岩裂谷中凝結出的火熱核心，常用於製作火系與行動力相關道具。\n                來源：熔岩裂谷\n                製作羈絆覺醒\n              \n              \n                \n                  古代齒輪\n                  R\n                \n                數量：0\n                古代機械遺跡中發現的精密零件，適合製作機械型寵物喜好的道具。\n                來源：古代機械遺跡、獅心城\n                製作羈絆工坊升級\n              \n              \n                \n                  星界碎片\n                  SR\n                \n                數量：0\n                星界裂縫中漂浮的稀有碎片，蘊含高密度星光能量。\n                來源：星界裂縫\n                製作羈絆羈絆解放\n              \n              \n                \n                  極光冰晶\n                  R\n                \n                數量：0\n                極北冰岸凝結的極光結晶，蘊含寒霜靈性。\n                來源：極北冰岸\n                製作羈絆未來解鎖\n              \n              \n                \n                  豐穗護符\n                  N\n                \n                數量：0\n                豐穗遠郊田埂間拾得的護符，帶有踏實的田野氣息。\n                來源：豐穗遠郊\n                製作羈絆未來解鎖\n              \n      "
-        },
-        {
-          "url": "http://127.0.0.1:53082/questnote-pwa-preview/?retired-pool-fixture=1",
-          "active": "view-tasks",
-          "workshop": "\n      \n        \n              \n                \n                  森林嫩葉\n                  N\n                \n                數量：0\n                迷霧森林中常見的靈性嫩葉，適合製作基礎親密度道具。\n                來源：迷霧森林、雲棧古道、黯冠邊境\n                製作羈絆未來解鎖\n              \n              \n                \n                  熔岩核心\n                  R\n                \n                數量：0\n                熔岩裂谷中凝結出的火熱核心，常用於製作火系與行動力相關道具。\n                來源：熔岩裂谷\n                製作羈絆覺醒\n              \n              \n                \n                  古代齒輪\n                  R\n                \n                數量：0\n                古代機械遺跡中發現的精密零件，適合製作機械型寵物喜好的道具。\n                來源：古代機械遺跡、獅心城\n                製作羈絆工坊升級\n              \n              \n                \n                  星界碎片\n                  SR\n                \n                數量：0\n                星界裂縫中漂浮的稀有碎片，蘊含高密度星光能量。\n                來源：星界裂縫\n                製作羈絆羈絆解放\n              \n              \n                \n                  極光冰晶\n                  R\n                \n                數量：0\n                極北冰岸凝結的極光結晶，蘊含寒霜靈性。\n                來源：極北冰岸\n                製作羈絆未來解鎖\n              \n              \n                \n                  豐穗護符\n                  N\n                \n                數量：0\n                豐穗遠郊田埂間拾得的護符，帶有踏實的田野氣息。\n                來源：豐穗遠郊\n                製作羈絆未來解鎖\n              \n      "
-        }
-      ]
+      "name": "native standard ten-pull SR floor spends once and the summon wallet survives return and reload",
+      "ok": true
     },
     {
       "name": "summon wallet fits three themes, mobile widths and simulated 200% text without changing the save",
-      "ok": false,
-      "error": "Error: Responsive view changed the actual balance\n    at assert (http://127.0.0.1:53082/test/suite.js:5:64)\n    at http://127.0.0.1:53082/test/suite.js:452:11\n    at async test (http://127.0.0.1:53082/test/suite.js:23:9)\n    at async http://127.0.0.1:53082/test/suite.js:429:69",
-      "clients": [
-        {
-          "url": "http://127.0.0.1:53082/questnote-pwa/",
-          "active": "view-tasks",
-          "workshop": "\n      \n        \n              \n                \n                  森林嫩葉\n                  N\n                \n                數量：0\n                迷霧森林中常見的靈性嫩葉，適合製作基礎親密度道具。\n                來源：迷霧森林、雲棧古道、黯冠邊境\n                製作羈絆未來解鎖\n              \n              \n                \n                  熔岩核心\n                  R\n                \n                數量：0\n                熔岩裂谷中凝結出的火熱核心，常用於製作火系與行動力相關道具。\n                來源：熔岩裂谷\n                製作羈絆覺醒\n              \n              \n                \n                  古代齒輪\n                  R\n                \n                數量：0\n                古代機械遺跡中發現的精密零件，適合製作機械型寵物喜好的道具。\n                來源：古代機械遺跡、獅心城\n                製作羈絆工坊升級\n              \n              \n                \n                  星界碎片\n                  SR\n                \n                數量：0\n                星界裂縫中漂浮的稀有碎片，蘊含高密度星光能量。\n                來源：星界裂縫\n                製作羈絆羈絆解放\n              \n              \n                \n                  極光冰晶\n                  R\n                \n                數量：0\n                極北冰岸凝結的極光結晶，蘊含寒霜靈性。\n                來源：極北冰岸\n                製作羈絆未來解鎖\n              \n              \n                \n                  豐穗護符\n                  N\n                \n                數量：0\n                豐穗遠郊田埂間拾得的護符，帶有踏實的田野氣息。\n                來源：豐穗遠郊\n                製作羈絆未來解鎖\n              \n      "
-        },
-        {
-          "url": "http://127.0.0.1:53082/questnote-pwa-preview/?retired-pool-fixture=1",
-          "active": "view-tasks",
-          "workshop": "\n      \n        \n              \n                \n                  森林嫩葉\n                  N\n                \n                數量：0\n                迷霧森林中常見的靈性嫩葉，適合製作基礎親密度道具。\n                來源：迷霧森林、雲棧古道、黯冠邊境\n                製作羈絆未來解鎖\n              \n              \n                \n                  熔岩核心\n                  R\n                \n                數量：0\n                熔岩裂谷中凝結出的火熱核心，常用於製作火系與行動力相關道具。\n                來源：熔岩裂谷\n                製作羈絆覺醒\n              \n              \n                \n                  古代齒輪\n                  R\n                \n                數量：0\n                古代機械遺跡中發現的精密零件，適合製作機械型寵物喜好的道具。\n                來源：古代機械遺跡、獅心城\n                製作羈絆工坊升級\n              \n              \n                \n                  星界碎片\n                  SR\n                \n                數量：0\n                星界裂縫中漂浮的稀有碎片，蘊含高密度星光能量。\n                來源：星界裂縫\n                製作羈絆羈絆解放\n              \n              \n                \n                  極光冰晶\n                  R\n                \n                數量：0\n                極北冰岸凝結的極光結晶，蘊含寒霜靈性。\n                來源：極北冰岸\n                製作羈絆未來解鎖\n              \n              \n                \n                  豐穗護符\n                  N\n                \n                數量：0\n                豐穗遠郊田埂間拾得的護符，帶有踏實的田野氣息。\n                來源：豐穗遠郊\n                製作羈絆未來解鎖\n              \n      "
-        }
-      ]
+      "ok": true
     },
     {
       "name": "old perf/debug shortcuts cannot expose diagnostics or grant test currency",
@@ -128,7 +102,7 @@
       "artifactId": "2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
       "catalogSha256": "71aefb86f17b64f793d310a9ac10b28e0d670bfdc6c4e1a09f269bc24af7a014",
       "petCount": 160,
-      "controller": "http://127.0.0.1:53082/questnote-pwa/service-worker.js?artifact=2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2"
+      "controller": "http://127.0.0.1:64928/questnote-pwa/service-worker.js?artifact=2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2"
     },
     "legacyTransition": {
       "baselineCommit": "aada9a73e6cf0381fc03359dafd78b70b274cce2",
@@ -140,7 +114,7 @@
       "artifactId": "efb99065ac6773b2ece478658d6014ee1045555ba5d9cc0fd8559a050acf50b0",
       "catalogSha256": "71aefb86f17b64f793d310a9ac10b28e0d670bfdc6c4e1a09f269bc24af7a014",
       "petCount": 160,
-      "controller": "http://127.0.0.1:53082/questnote-pwa-preview/service-worker.js?artifact=efb99065ac6773b2ece478658d6014ee1045555ba5d9cc0fd8559a050acf50b0"
+      "controller": "http://127.0.0.1:64928/questnote-pwa-preview/service-worker.js?artifact=efb99065ac6773b2ece478658d6014ee1045555ba5d9cc0fd8559a050acf50b0"
     },
     "playerPreview": {
       "testReplaysRemoved": true,
@@ -151,6 +125,132 @@
       "actualRitualPreserved": true,
       "foodSpent": 1,
       "awakenedColorSurvivesReload": true
+    },
+    "tenFloorWallet": {
+      "poolCount": 8,
+      "realNativeTransaction": true,
+      "results": [
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "SR"
+      ],
+      "balanceBefore": 10000,
+      "balanceAfter": 9000,
+      "duplicateFragments": [
+        9,
+        5
+      ],
+      "walletSurvivesReload": true,
+      "drawsAppliedOnce": true
+    },
+    "summonWalletResponsive": {
+      "checks": [
+        {
+          "theme": "default",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "default",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "default",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "default",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "sweet",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "sweet",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "sweet",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "sweet",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "twilight",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "twilight",
+          "width": 320,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "twilight",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 100,
+          "walletWidth": 126.359375,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "twilight",
+          "width": 393,
+          "height": 852,
+          "fontPercent": 200,
+          "walletWidth": 218.703125,
+          "horizontalOverflow": false
+        }
+      ],
+      "simulatedTextSize": true,
+      "persistedStateUnchanged": true
     },
     "fragmentGift": {
       "id": "2026-10-v362-encounter-fragments-gift-01",
@@ -165,7 +265,7 @@
       "after": 2,
       "replay": 2,
       "companion": true,
-      "controller": "http://127.0.0.1:53082/questnote-pwa-preview/service-worker.js?artifact=efb99065ac6773b2ece478658d6014ee1045555ba5d9cc0fd8559a050acf50b0"
+      "controller": "http://127.0.0.1:64928/questnote-pwa-preview/service-worker.js?artifact=efb99065ac6773b2ece478658d6014ee1045555ba5d9cc0fd8559a050acf50b0"
     },
     "offlineGrowthLesson": {
       "chapter": "workshop",
