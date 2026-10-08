@@ -98,6 +98,16 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 :is(.identity-surface, .identity-dialog, .identity-review) .empty-state button { margin-top: 16px; }
 .identity-dialog { width: min(calc(100% - 16px), 700px); max-width: calc(100% - 16px); max-height: calc(100dvh - 32px); padding: 0; color: var(--color-text-main); background: var(--color-bg-main); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow-y: auto; overscroll-behavior: contain; }
 .identity-dialog::backdrop { background: #08101dd9; }
+.identity-dialog .journal-portrait { display: block; width: 100%; padding: 0; margin: 0; border: 0; background: transparent; border-radius: 12px; cursor: zoom-in; }
+.identity-dialog .journal-portrait .detail-art { margin: 0; }
+.identity-dialog .journal-name-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; }
+.identity-dialog .journal-name { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.identity-dialog .journal-name .pet-name { margin: 0; overflow-wrap: anywhere; }
+.identity-dialog .journal-edit-name { display: inline-flex; align-items: center; justify-content: center; width: 44px; min-width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--color-text-muted); }
+.identity-dialog .journal-companion { flex-shrink: 0; min-height: 44px; margin: 0; }
+.identity-dialog .journal-lore summary { cursor: pointer; min-height: 44px; padding-block: 10px; font-weight: 600; }
+.identity-dialog .journal-lore .detail-copy { margin: 12px 0 0; }
+.identity-dialog :is(.journal-portrait, .journal-edit-name, .journal-lore summary):focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; }
 /* Companion subpages share the journal palette while retaining their own flows. */
 #modal-overlay.companion-journal-modal { background: #08101dd9; }
 #modal-overlay.companion-journal-modal .modal { width: min(720px, calc(100vw - 24px)); max-width: 720px; padding: 0; background: var(--color-bg-main); color: var(--color-text-main); border: 1px solid var(--color-border); border-radius: 18px; box-shadow: none; }

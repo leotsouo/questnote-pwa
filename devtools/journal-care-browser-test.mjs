@@ -60,6 +60,20 @@ try {
     await page.locator('.collection-card button[data-pet="pet_ur17"]').click();
     const dialog = page.locator('#identity-detail-dialog');
     await dialog.locator('#companion-feed-btn').waitFor();
+    assert.equal(await dialog.locator('.companion-actions, .awakening-form-options').count(), 0, 'Redundant standalone sections removed');
+    assert.equal(await dialog.getByText('你的專屬稱呼', { exact: true }).count(), 0);
+    assert.equal(await dialog.getByText('查看夥伴原圖', { exact: true }).count(), 0);
+    assert.equal(await dialog.locator('.journal-lore').evaluate((el) => el.open), false, 'Background story starts collapsed');
+    await dialog.locator('.journal-lore summary').click();
+    assert.ok(await dialog.locator('.journal-lore .detail-copy').isVisible());
+    await dialog.locator('.journal-lore summary').click();
+    assert.equal(await dialog.locator('.journal-name-row [data-identity-action="set-companion"]').count(), 1);
+    assert.equal(await dialog.locator('.journal-name [data-identity-action="app-nickname"]').count(), 1);
+    assert.equal(await dialog.locator('.journal-portrait img').count(), 1);
+    if (process.env.JOURNAL_COMPACT_SCREENSHOT && origin.endsWith(':4193')) {
+      await dialog.locator('.journal-name-row').scrollIntoViewIfNeeded();
+      await page.screenshot({ path: process.env.JOURNAL_COMPACT_SCREENSHOT });
+    }
     await dialog.locator('[data-identity-action="set-companion"]').click();
     await dialog.getByRole('button', { name: '正在與你同行', exact: true }).waitFor();
     await dialog.getByRole('button', { name: '關閉', exact: true }).click();
@@ -85,7 +99,7 @@ try {
     await page.locator('#nickname-input').fill('不儲存');
     await page.locator('#nickname-cancel').click();
     await dialog.getByText('你的稱呼：小丹 · 日常陪伴使用暱稱', { exact: true }).waitFor();
-    await dialog.locator('[data-identity-action="app-image"]').click();
+    await dialog.locator('.journal-portrait').press('Enter');
     await page.locator('#pet-image-viewer.is-open').waitFor();
     assert.equal(await dialog.evaluate((el) => el.open), false);
     await page.getByRole('button', { name: '關閉原圖檢視', exact: true }).click();
