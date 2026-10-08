@@ -1,6 +1,7 @@
 import { dbGet, dbMutateRecords, STORES } from './db.js';
 import { normalizeInventory } from './workshopService.js';
 import { AWAKENING_KEY, normalizePetAwakening, awakeningEvents, advancePetAwakening, beginPetAwakening } from './petAwakeningCore.js';
+import { getAwakeningProfile } from './petAwakeningProfiles.js';
 import { loadAwakeningCatalog } from './petAwakeningCatalog.js';
 const stateRead = { store: STORES.META, key: AWAKENING_KEY };
 const sourceReads = [{ store: STORES.TASKS, all: true }, { store: STORES.HABITS, all: true }, { store: STORES.EXPEDITIONS, all: true }];
@@ -49,9 +50,11 @@ export async function awakenPet(petId) {
     const p = s.byPet[petId];
     if (!pet || pet.owned === false || pet.bondLevel < 5 || !journey?.byPet?.[petId]?.chapters?.[5]?.claimedAt || p?.status !== 'ready') throw Error('試煉尚未完成或已經覺醒');
     const inventory = normalizeInventory(items);
-    const count = inventory.items.item_pine_trail_riceball || 0;
-    if (!Number.isSafeInteger(count) || count < 1) throw Error('需要一份松香行旅糰；試煉進度與信物已保留。');
-    inventory.items.item_pine_trail_riceball = count - 1;
+    const profile = getAwakeningProfile(petId);
+    if (!profile) throw Error('這位夥伴尚未開放覺醒');
+    const count = inventory.items[profile.foodId] || 0;
+    if (!Number.isSafeInteger(count) || count < 1) throw Error(`需要一份${profile.foodName}；試煉進度與信物已保留。`);
+    inventory.items[profile.foodId] = count - 1;
     const now = new Date(Math.max(Date.now(), Date.parse(p.tokenGrantedAt))).toISOString();
     p.status = 'awakened'; p.awakenedAt = now; p.tokenConsumedAt = now; p.form = 'awakened';
     return { puts: [{ store: STORES.META, value: s }, { store: STORES.META, value: inventory }], result: { state: s, entry } };
