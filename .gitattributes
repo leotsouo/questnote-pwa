@@ -35,3 +35,8 @@ data/expeditions.json -text
 # Sunward Letters exact-byte authoring snapshots and candidates.
 content/pet-series/sunward_letters/** -text whitespace=cr-at-eol
 
+
+# Dark court authoring workspaces preserve exact review bytes and prior reservations.
+content/pet-series/chaos_demon_court/** -text
+content/pet-series/darkcrown_court/** -text
+content/pet-series/darkcrown_court_release/** -text
