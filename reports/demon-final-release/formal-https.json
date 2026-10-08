@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-08T15:55:23.306Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "artifactId": "2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+  "manifestSha256": "6e475ec25563c9e80a5dd7bddbcd0377c057cc075693760f2f09258b1a0d6410",
+  "verifiedFiles": 762,
+  "totalHttpFiles": 762,
+  "gitOnlyMarker": ".nojekyll",
+  "failed": [],
+  "retries": [
+    {
+      "name": "assets/pets/awakening/pet_r38-initial-19ab20662541-card.webp",
+      "error": "TypeError: fetch failed",
+      "result": "passed original pinned SHA256 and byte length on retry"
+    }
+  ],
+  "completedAt": "2026-10-08T15:55:47.388Z"
+}

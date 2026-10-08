@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-08T15:54:23.570Z",
+  "environment": "Fresh private headless Chrome, mobile viewport; no physical iPhone claim",
+  "artifactId": "2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+  "online": {
+    "version": "3.9.1",
+    "controller": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+    "caches": [
+      "questnote-production-app-2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2"
+    ],
+    "body": "載入 QuestNote…\n\n星塵\n0\n冒險能量\n0\n今日完成\n0\n可抽卡\n0\n可領成就\n0\n今日\n全部\n智慧\n每日祝福\n冒險任務\n稱號\n任務\n召喚\n圖鑑\n探險\n更多"
+  },
+  "offline": {
+    "version": "3.9.1",
+    "controller": "https://leotsouo.github.io/questnote-pwa/service-worker.js?artifact=2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+    "body": "QuestNote\n星夜遠行\n\n10月8日星期四\n\n把今天，\n點成星光。\n\n冒險的起點\n\n等待第一位夥伴\n\n完成任務，讓第一次相遇更近一步。\n\n“\n\n每一次完成，都在為新的相遇累積星塵。\n\n今日旅程\n0 / 0 件完成\n從一件小事，展開你的旅程。\n\nTHE NIGHT JOURNEY\n\n今日任務0 件待完成\n星塵\n0\n冒險能量\n0\n今日完成\n0\n可抽卡\n0\n可領成就\n0\n今日\n全部\n智慧\n全部\n一般\n課業\n專題\n生活\n健康\n工作\n其他\n\n今天還沒有安排任務\n\n挑 1～3 件最重要的事，讓你的夥伴陪你完成。\n\n從待排程任務選擇\n今日習慣 0 / 0\n管理習慣 ›\n\n每日習慣會自動列在這裡，和今天的任務一起完成。\n\n新增每日習慣\n每日祝福\n冒險任務\n稱號\n任務\n召喚\n圖鑑\n探險\n更多\n相遇\n動手\n一起成長\n灰影幼狼陪你一起出發\n從一件小事，一起出發\n\n我們會一起新增、完成一個練習任務。只需幾分鐘，不用先想內容。\n\n第一位夥伴會在下一步與你相遇。\n\n一起試一次\n略過教學"
+  },
+  "errors": []
+}
