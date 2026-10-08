@@ -3853,10 +3853,10 @@ function buildPetFeedSection(companion) {
     <p class="companion-preview-bond">親密度 Lv.${companion.bondLevel ?? 1} · ${progress.current}/${progress.max || 'MAX'}</p>`;
 }
 
-function bindPetFeedInteractions(companion) {
+function bindPetFeedInteractions(companion, { root = document, onFed, onWorkshop, onError } = {}) {
   const stage = document.getElementById('companion-preview-stage');
   const img = stage?.querySelector('.companion-image-preview__img--interactive');
-  const feedBtn = document.getElementById('companion-feed-btn');
+  const feedBtn = root.querySelector('#companion-feed-btn');
 
   // 點圖片仍可查看原圖，不會誤觸消耗道具。
   img?.addEventListener('click', (e) => {
@@ -3864,7 +3864,8 @@ function bindPetFeedInteractions(companion) {
     openPetImageViewer(companion.id);
   });
 
-  document.getElementById('companion-feed-workshop-btn')?.addEventListener('click', () => {
+  root.querySelector('#companion-feed-workshop-btn')?.addEventListener('click', () => {
+    onWorkshop?.();
     closeModal();
     void openTeachingTarget({ view: 'workshop', tab: 'craft' });
   });
@@ -3872,7 +3873,7 @@ function bindPetFeedInteractions(companion) {
   feedBtn?.addEventListener('click', trackUpdateActivity(async (e) => {
     e.stopPropagation();
     if (feedBtn.disabled) return;
-    const select = document.getElementById('companion-feed-select');
+    const select = root.querySelector('#companion-feed-select');
     const itemId = select?.value;
     if (!itemId) {
       showToast('請先選擇要餵食的食物', 'warning');
@@ -3883,6 +3884,7 @@ function bindPetFeedInteractions(companion) {
     try {
       const result = await useBondItem(itemId, companion.id, state.allPets);
       if (!result.success) {
+        onError?.(result.message);
         showToast(result.message, 'warning');
         feedBtn.disabled = false;
         return;
@@ -3890,10 +3892,12 @@ function bindPetFeedInteractions(companion) {
       consumed = true;
       void recordOnboardingEvent('gift-given', { petId: companion.id, itemId });
       await trackQuest('gift_pet');
-      closeModal();
+      if (!onFed) closeModal();
       await onRefresh({ renderMode: ['tasks', 'collection', 'workshop'] });
       const updated = state.enrichedCollection.find((pet) => pet.id === companion.id);
-      if (updated) {
+      if (onFed) {
+        onFed(result);
+      } else if (updated) {
         openPetFeedModal(updated);
         playCompanionComfortEffect();
       }
@@ -3908,6 +3912,7 @@ function bindPetFeedInteractions(companion) {
       }
       await handleAchievementCheckAfterAction();
     } catch (err) {
+      onError?.(consumed ? '餵食已完成，請重新開啟手記確認進度。' : '暫時無法確認餵食結果，請重新開啟手記檢查庫存。');
       closeModal();
       console.warn('[QuestNote] 餵食後處理失敗:', err);
       showToast(consumed
@@ -3915,6 +3920,45 @@ function bindPetFeedInteractions(companion) {
         : '餵食狀態無法確認，請重新開啟 App 檢查庫存', 'warning', 4000);
     }
   }));
+}
+
+/** The journal and feeding modal share the same inventory and atomic gift action. */
+function mountJournalCare(host, petId, refreshJournal) {
+  const pet = state.enrichedCollection.find((entry) => entry.id === petId && entry.owned);
+  if (!host || !pet) return;
+  host.dataset.journalPetId = petId;
+  const progress = getBondProgress(pet.bondExp ?? 0, pet.bondLevel ?? 1);
+  const specialty = getPetSpecialty(pet);
+  const affinity = getGiftAffinityTags(pet).map((tag) => GIFT_TAG_LABELS[tag]).join('、') || '通用禮物';
+  host.className = 'journal-care detail-section';
+  host.innerHTML = `<div class="journal-care-heading"><div><p class="eyebrow">每一天，都更熟悉一點</p><h3>一起走下去</h3></div><span>親密度 Lv.${pet.bondLevel || 1}</span></div>
+    <progress max="${progress.max || 1}" value="${progress.max ? progress.current : 1}" aria-label="親密度進度"></progress>
+    <p class="journal-care-progress">${progress.max ? `${progress.current} / ${progress.max} · 慢慢累積你們的默契` : '已達最高親密度 · 繼續寫下同行回憶'}</p>
+    <p>${escapeHtml(specialty.label)}專長 Lv.${specialty.level} · 喜歡${escapeHtml(affinity)}</p>
+    ${buildPetFeedSection(pet)}
+    <p class="journal-care-status" role="status" aria-live="polite"></p>
+    <section class="detail-section"><h3>故事與同行約定</h3>${renderBondDetail(pet, state)}</section>
+    ${renderAwakeningDetail(pet, state)}`;
+  // Let existing story / awakening controllers open their reader above the page.
+  host.onclick = (event) => {
+    if (event.target.closest('[data-bond-open], [data-awake-open]')) host.closest('dialog')?.close();
+  };
+  bindPetFeedInteractions(pet, {
+    root: host,
+    onWorkshop: () => host.closest('dialog')?.close(),
+    onError: (message) => { if (host.isConnected) host.querySelector('.journal-care-status').textContent = message; },
+    onFed: (result) => {
+      if (!host.isConnected || host.dataset.journalPetId !== petId || !host.closest('dialog')?.open) return;
+      const journal = host.closest('dialog');
+      const scrollTop = journal.scrollTop;
+      if (refreshJournal) refreshJournal();
+      else mountJournalCare(host, petId);
+      const updatedHost = journal.querySelector('[data-journal-care]');
+      updatedHost.querySelector('.journal-care-status').textContent = `${result.isFavorite ? '牠很喜歡這份禮物。' : '收下了你的心意。'}親密度 +${result.bondExp}`;
+      updatedHost.querySelector('#companion-feed-btn, #companion-feed-workshop-btn')?.focus({ preventScroll: true });
+      journal.scrollTop = scrollTop;
+    },
+  });
 }
 
 function openPetFeedModal(companion) {
@@ -5133,7 +5177,7 @@ function renderGachaPoolSwitcher() {
 }
 
 function renderGachaView() {
-  if (renderLocalIdentityView('gacha', state, onRefresh, { switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) return;
+  if (renderLocalIdentityView('gacha', state, onRefresh, { switchView, mountJournalCare, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) return;
   if (renderEncounterView('gacha', state, onRefresh, encounterActions())) return;
   const pool = getSelectedGachaPool();
   syncTwilightGacha(state, pool);
@@ -6397,7 +6441,7 @@ function renderCollectionSeriesFilters() {
 }
 
 function renderCollectionView() {
-  if (renderLocalIdentityView('collection', state, onRefresh, { switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) { collectionRenderGate.clear(); return; }
+  if (renderLocalIdentityView('collection', state, onRefresh, { switchView, mountJournalCare, openPetDetail: openPetDetailModal, openNickname: openNicknameModal })) { collectionRenderGate.clear(); return; }
   if (renderEncounterView('collection', state, onRefresh, encounterActions())) { collectionRenderGate.clear(); return; }
   renderCollectionProgressSummary();
   renderCollectionMilestones();
@@ -9339,7 +9383,7 @@ function encounterActions() {
       catch (error) { await onRefresh({ renderMode:['gacha','collection'] }); throw error; }
     },
     async dismissMigration() { await acknowledgeEncounterMigration(); state.encounterEconomy = await getEncounterEconomy(); },
-    switchView, openPetDetail: openPetDetailModal, openNickname: openNicknameModal,
+    switchView, mountJournalCare, openPetDetail: openPetDetailModal, openNickname: openNicknameModal,
     isBusy: () => isGachaPullInProgress() || !!maybePlayPoolDebut._inflight,
     isExpanded: (id) => shouldShowAwakenedPresentation(getUnlockEntryForPool(id)),
     draw: (count) => {

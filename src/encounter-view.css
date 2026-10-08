@@ -98,6 +98,26 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 :is(.identity-surface, .identity-dialog, .identity-review) .empty-state button { margin-top: 16px; }
 .identity-dialog { width: min(calc(100% - 16px), 700px); max-width: calc(100% - 16px); max-height: calc(100dvh - 32px); padding: 0; color: var(--color-text-main); background: var(--color-bg-main); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow-y: auto; overscroll-behavior: contain; }
 .identity-dialog::backdrop { background: #08101dd9; }
+.identity-dialog .journal-care { margin-bottom: 28px; }
+.identity-dialog .journal-care-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.identity-dialog .journal-care-heading > span { color: var(--color-primary); font-size: .85rem; }
+.identity-dialog .journal-care .eyebrow { margin-bottom: 5px; font-size: .7rem; letter-spacing: .08em; }
+.identity-dialog .journal-care progress { display: block; width: 100%; height: 6px; margin: 14px 0 8px; accent-color: var(--color-primary); }
+.identity-dialog .journal-care .journal-care-progress { margin-bottom: 6px; }
+.identity-dialog .journal-care .companion-preview-feed { margin: 20px 0 0; padding: 18px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); box-shadow: none; text-align: left; }
+.identity-dialog .journal-care .companion-preview-feed__title { font-family: var(--font-display); color: var(--color-text-main); }
+.identity-dialog .journal-care .companion-preview-feed__picker { display: grid; gap: 8px; margin: 14px 0; }
+.identity-dialog .journal-care .companion-preview-feed__label { font-size: .8rem; color: var(--color-text-muted); }
+.identity-dialog .journal-care select { min-width: 0; width: 100%; max-width: 100%; font-size: 1rem; }
+.identity-dialog .journal-care button { white-space: normal; height: auto; }
+.identity-dialog .journal-care #companion-feed-btn { background: var(--color-primary); color: var(--color-bg-main); border-color: var(--color-primary); }
+.identity-dialog .journal-care .companion-preview-bond { display: none; }
+.identity-dialog .journal-care .journal-care-status { margin-top: 8px; color: var(--color-primary); }
+.identity-dialog .journal-care .awakening-panel { padding: 18px 0 0; margin-top: 22px; border: 0; border-top: 1px solid var(--color-border); border-radius: 0; background: none; box-shadow: none; }
+.identity-dialog .journal-care .bond-detail-entry { padding: 0; background: none; border: 0; }
+.identity-dialog .journal-care .bond-detail-entry button, .identity-dialog .journal-care .awakening-panel button { margin-top: 12px; }
+.identity-dialog .journal-care .awakening-panel h3 { color: var(--color-text-main); }
+.identity-dialog .journal-care [data-bond-open], .identity-dialog .journal-care [data-awake-open] { background: var(--color-bg-card); color: var(--color-text-main); border: 1px solid var(--color-border); box-shadow: none; }
 :is(.identity-surface, .identity-dialog, .identity-review) .dialog-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; position: sticky; top: 0; z-index: 2; background: var(--color-bg-main); border-bottom: 1px solid var(--color-border); }
 :is(.identity-surface, .identity-dialog, .identity-review) .dialog-header h2 { font-size: .95rem; }
 :is(.identity-surface, .identity-dialog, .identity-review) .dialog-header button { padding: 6px 12px; font-size: .75rem; flex-shrink: 0; }

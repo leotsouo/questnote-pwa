@@ -9,7 +9,8 @@ function seed() {
   stores.meta.set('wallet', { key: 'wallet', stardust: 30000, adventureEnergy: 300, materials: {} });
   stores.meta.set('gachaStats', { key: 'gachaStats', selectedPoolId: 'lionheart_inverse_oath' });
   stores.meta.set('onboardingV1', { key: 'onboardingV1', schemaVersion: 2, status: 'dismissed' });
-  for (const petId of ['pet_n01', 'pet_n09', 'pet_n39', 'pet_r41', 'pet_ssr25', 'pet_ur20']) {
+  stores.meta.set('inventory', { key: 'inventory', items: { item_small_spirit_food: 3 } });
+  for (const petId of ['pet_n01', 'pet_n09', 'pet_n39', 'pet_r41', 'pet_ssr25', 'pet_ur20', 'pet_ur17']) {
     stores.collection.set(petId, { petId, stars: petId === 'pet_ur20' ? 5 : 1, bondLevel: 1, bondExp: 0,
       fragments: 0, isCompanion: petId === 'pet_n01', nickname: petId === 'pet_n01' ? '小灰' : null,
       lastPettedAt: null, obtainedAt: '2026-10-02T00:00:00.000Z' });

@@ -1,6 +1,5 @@
-import { invitationEntry, reencounterMoment, fragmentBalance, intimacySummary, createInvitationController } from './invitationPresentation.js';
+import { invitationEntry, reencounterMoment, fragmentBalance, createInvitationController } from './invitationPresentation.js';
 import { invitationCandidates } from './encounterEconomyCore.js';
-import { getPetSpecialty } from './expeditionGameplay.js';
 import { getAwakeningProfile } from './petAwakeningProfiles.js';
 import { initialAwakeningPortrait } from './petAwakeningView.js';
 import { RARITIES, poolCandidates, identityLabel, basePetRate, publicIntro, normalGreeting, encounterResults } from './encounterViewModel.js';
@@ -190,11 +189,12 @@ function petDetail(pet, returnToBatch = false) {
     <div class="detail-identity"><h3 class="pet-name">${escapeHtml(pet.name)}</h3><p class="pet-title">${escapeHtml(pet.title)}</p>${cues(pet)}<p class="subtle" style="margin-top:10px">${escapeHtml([pet.element ? `${pet.element}屬性` : '',species].filter(Boolean).join(' · '))}</p></div>
     ${isOwned ? `<div class="companion-actions">${entry.nickname ? `<p class="subtle">你的稱呼：${escapeHtml(entry.nickname)} · 日常陪伴使用暱稱</p>` : ''}<button class="${entry.isCompanion ? '' : 'primary'}" data-identity-action="set-companion" data-pet-id="${pet.id}" ${entry.isCompanion ? 'disabled' : ''}>${entry.isCompanion ? '正在與你同行' : '設為陪伴'}</button><p class="subtle">切換後，首頁會顯示這位同行者。</p></div>` : ''}
     ${awakening && (!darkAwakening || isAwakened) ? `<section class="detail-section"><h3>羈絆覺醒 · ${isAwakened ? '形態欣賞' : '形態預覽'}</h3><p>目前${isAwakened ? '欣賞' : '預覽'}：${form === 'awakened' ? '覺醒相' : '初遇相'} · 覺醒後仍是同一位夥伴</p><div class="awakening-form-options"><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="initial" aria-pressed="${form === 'initial'}">初遇相</button><button data-identity-action="awakening-form" data-pet-id="${pet.id}" data-form="awakened" aria-pressed="${form === 'awakened'}">覺醒相${isAwakened ? '' : ' · 黑白預覽'}</button></div><p>${isAwakened ? '已完成覺醒，可欣賞兩種形態。' : '覺醒相以黑白預覽；完成羈絆覺醒後，揭曉全彩造型與專屬演出。'}</p></section>` : ''}
+    ${isOwned ? '<div data-journal-care></div>' : ''}
     <p class="detail-copy">${escapeHtml(isOwned ? pet.lore : publicIntro(pet))}</p>
-    ${isOwned ? intimacySummary(entry.bondLevel, getPetSpecialty({ ...pet, ...entry }), entry.legacySpecialtyFloor) : ''}
     ${isOwned && pet.personality?.length ? `<section class="detail-section"><h3>認識牠的個性</h3><p>${escapeHtml(pet.personality.join(' · '))}</p>${normalGreeting(pet) ? `<blockquote>${escapeHtml(normalGreeting(pet))}</blockquote>` : ''}</section>` : ''}
     <section class="detail-section"><h3>相處，才會揭開的故事</h3>${isOwned ? [2,3,4,5].map((level) => `<p>親密度 Lv.${level} · ${entry.bondLevel >= level ? escapeHtml(pet.bondUnlocks?.[level] || '已解鎖') : '故事尚未解鎖'}</p>`).join('') : '<p>相遇後可閱讀完整背景；專屬對話與羈絆章節隨親密度逐步揭開。</p>'}</section>
-    ${isOwned ? `<section class="detail-section"><h3>一起走下去</h3><button data-identity-action="app-pet-detail" data-pet-id="${pet.id}">養成與餵食</button><button data-identity-action="app-nickname" data-pet-id="${pet.id}">修改暱稱</button><p>在完整 App 的養成頁，可以修改暱稱、餵食、培養親密度與閱讀同行故事。</p></section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-identity-action="${returnToBatch ? 'return-batch' : view === 'collection' ? 'close-dialog' : 'preview'}">${returnToBatch ? '返回本次相遇' : view === 'collection' ? '返回圖鑑' : '返回本池夥伴'}</button>`);
+    ${isOwned ? `<section class="detail-section"><h3>你的專屬稱呼</h3><button data-identity-action="app-nickname" data-pet-id="${pet.id}">修改暱稱</button></section>` : `<section class="detail-section"><p>你可以先記住牠的名字，讓下一次相遇更熟悉。</p></section>`}<button class="text-button" data-identity-action="${returnToBatch ? 'return-batch' : view === 'collection' ? 'close-dialog' : 'preview'}">${returnToBatch ? '返回本次相遇' : view === 'collection' ? '返回圖鑑' : '返回本池夥伴'}</button>`);
+  if (isOwned) appActions.mountJournalCare(dialog.querySelector('[data-journal-care]'), pet.id, () => petDetail(byId(pet.id), returnToBatch));
   if (isSeniorMode()) {
     // Keep care actions visible; optional narrative uses disclosure, not another data model.
     dialog.querySelectorAll('.detail-section').forEach((section) => {
