@@ -91,7 +91,7 @@ export function renderAwakeningReader(pet, state, portrait = '') {
     paused: ['要繼續你們的約定嗎？', '上次留下的腳步還在，從這裡繼續就好。', `日常 ${p?.eventKeys.length || 0}/3 · ${journeyLabel} ${p?.expeditionKey ? 1 : 0}/1。暫停期間不計入。`, 'start', '恢復試煉'],
     daily: ['今天，先一起完成一件小事？', '每一筆新完成，都讓你們更靠近這個約定。', `接下後的新任務／習慣 ${p?.eventKeys.length || 0}/3；還差 ${3 - (p?.eventKeys.length || 0)} 筆。`, 'daily', '前往今日任務／習慣'],
     expedition: [`一起走一趟${areaName}，好嗎？`, '讓牠加入隊伍，帶著你們的約定出發。', '必須接下後出發；牠當隊長或隊員皆可，領取派遣獎勵才算完成。', 'expedition', `前往${areaName}`],
-    'demon-question': ['? ? ?', DEMON_QUESTION, '', 'answer', '立下約定 · 設為今日任務'],
+    'demon-question': ['? ? ?', DEMON_QUESTION, '', 'answer', '回答這個可怕的傢伙'],
     'demon-task': ['惡魔的趣味 · 等待你完成', '夥伴記住了你的回答，並將它設為今日任務。這個約定不能編輯、刪除或移出今日，只能完成；沒有截止日，完成後才能最終覺醒。', findDemonFinalTask(state.tasks, pet.id)?.content.split('\n').slice(1).join('\n') || '', 'daily', '前往完成惡魔的趣味'],
     food: [`準備一份${foodName}，好嗎？`, '信物已經在你手中，儀式還差最後一份心意。', `${entry.tokenName} 1 枚已保留 · ${foodName}需要 1 份，目前 ${food} 份。`, 'workshop', '前往工坊製作'],
     ritual: ['準備與牠共赴此約了嗎？', '你們走過的每一步，都已成為彼此的承諾。', `全部條件已核對。儀式會使用「${entry.tokenName} 1 枚＋${foodName} 1 份」。`, 'awaken', `完成覺醒 · 使用信物與${foodName}`],
