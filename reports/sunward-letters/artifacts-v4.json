@@ -1,0 +1,14 @@
+{
+  "production": {
+    "scopePath": "/questnote-pwa/",
+    "artifactId": "af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a",
+    "manifestSha256": "e08a2d79be599f3496097392dbc6a6d870ac2875784e6441d7e5285cf198c8bf",
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a"
+  },
+  "preview": {
+    "scopePath": "/questnote-pwa-preview/",
+    "artifactId": "96c966d318832ec5582d1bd39a5bce717d7fbbff760a5957b1f1f983b5c3e8d6",
+    "manifestSha256": "9034c744ea09b16179725e538b98f48009644a1dd7268b76bf19a79e31e011b4",
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\96c966d318832ec5582d1bd39a5bce717d7fbbff760a5957b1f1f983b5c3e8d6"
+  }
+}

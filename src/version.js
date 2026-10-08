@@ -4,8 +4,8 @@
  */
 import { RELEASE_PROFILE } from './releaseProfile.js';
 
-export const APP_VERSION = '3.8.8';
-export const CACHE_NAME = 'questnote-preview-cache-v388-awakening-wizard';
+export const APP_VERSION = '3.8.9';
+export const CACHE_NAME = 'questnote-preview-cache-v389-awakening-wizard';
 export const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 export const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 /** ISO 8601 — 每次發佈請更新 */

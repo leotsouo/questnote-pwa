@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="/questnote-pwa-preview/">
+  <title>晴信原野 · 固定產物動畫自審</title>
+  <link rel="stylesheet" href="src/styles.css"><link rel="stylesheet" href="src/ui-polish.css">
+  <link rel="stylesheet" href="src/summon-polish.css"><link rel="stylesheet" href="src/honeylight-sugar.css">
+  <link rel="stylesheet" href="src/swordwild-shanhe.css"><link rel="stylesheet" href="src/lionheart.css">
+  <link rel="stylesheet" href="src/pet-awakening.css"><link rel="stylesheet" href="src/themeTokens.css">
+  <link rel="stylesheet" href="src/theme-system.css"><link rel="stylesheet" href="src/theme-refinements.css">
+  <link rel="stylesheet" href="src/reminder-settings.css"><link rel="stylesheet" href="src/font-size-settings.css">
+  <link rel="stylesheet" href="src/bond-journey.css"><link rel="stylesheet" href="src/encounter-ceremony.css">
+  <link rel="stylesheet" href="src/encounter-view.css"><link rel="stylesheet" href="src/guided-onboarding.css">
+  <link rel="stylesheet" href="src/encounter-invitation.css"><link rel="stylesheet" href="src/seniorMode.css">
+  <style>
+    html,body{height:auto;min-height:100%;overflow:auto;background:#14383b;color:#f8f3df}
+    main{max-width:880px;margin:auto;padding:24px 16px 70px;font:16px/1.6 system-ui,sans-serif}
+    h1{font-size:clamp(26px,6vw,42px);margin:8px 0}h2{font-size:21px}
+    section{padding:18px;margin:20px 0;border:1px solid #a9d2a4;border-radius:12px;background:#244f4b}
+    button,select{min-height:44px;border:1px solid #f4d486;border-radius:8px;padding:8px 12px;font:inherit}
+    button{color:#243624;background:#f4d486;cursor:pointer}button:disabled{opacity:.55;cursor:wait}
+    .controls,.cards{display:flex;flex-wrap:wrap;gap:10px}.cards button{display:flex;align-items:center;gap:8px}
+    .cards img,#result img{width:64px;height:64px;object-fit:cover}#result img{width:min(100%,320px);height:auto;aspect-ratio:1}
+    #result{min-height:40px}small,.note{color:#d1e2d3}code{overflow-wrap:anywhere}
+  </style>
+</head>
+<body data-theme="default"><main>
+  <small>內部 AI 自審 · 固定結果，不呼叫抽卡、扣款、收藏或保底 API</small>
+  <h1>晴信原野 · 動畫檢視</h1>
+  <p>共用 3.4 秒入場控制器配本池雨後道路背景；抽卡不新增專屬儀式，SSR／UR 使用正式共用角色登場。固定十連依原索引呈現同次重複。</p>
+  <p id="artifact"></p><label><input type="checkbox" id="reduced"> 減少動態</label>
+  <section><h2>入場與切換</h2><div class="controls"><button data-action="entry" disabled>完整入場</button><button data-action="switch" disabled>切換卡池完整登場</button></div></section>
+  <section><h2>固定單抽／十連</h2><div class="controls"><select id="single" aria-label="指定角色"></select><button data-action="single" disabled>播放單抽</button><button data-action="ten" disabled>播放十連</button><button data-action="next" hidden>下一位</button><button data-action="skip" hidden>略過至總覽</button></div><div id="result" aria-live="polite"></div></section>
+  <section><h2>稀有角色逐隻登場</h2><div id="rare" class="cards"></div></section>
+  <p id="status" role="status">載入固定產物…</p>
+</main>
+<script type="module">
+  import { playPoolDebutPresentation } from './src/themedSummonController.js';
+  import { playSummonReveal } from './src/summonRevealService.js';
+  const config = await fetch('/animation-review/config.json').then(r => { if (!r.ok) throw Error('config'); return r.json(); });
+  const { pool, pets, artifactId } = config;
+  const byId = new Map(pets.map(p => [p.id,p]));
+  const fixedIds = ['pet_n41','pet_r44','pet_sr38','pet_ssr27','pet_ur21','pet_n41','pet_r45','pet_sr39','pet_ssr28','pet_ur21'];
+  const fixed = fixedIds.map(id => byId.get(id));
+  const result = document.querySelector('#result'); const status = document.querySelector('#status');
+  document.querySelector('#artifact').textContent = `Preview artifact ${artifactId} · ${pool.name}`;
+  for (const pet of pets) {
+    const option = document.createElement('option'); option.value = pet.id; option.textContent = `${pet.rarity} ${pet.name}`; document.querySelector('#single').append(option);
+    if (!['SSR','UR'].includes(pet.rarity)) continue;
+    const button = document.createElement('button'); button.dataset.action = 'rare'; button.dataset.pet = pet.id;
+    const image = document.createElement('img'); image.src = pet.imageVariants.card; image.alt = '';
+    button.append(image, `${pet.rarity} ${pet.name}`); document.querySelector('#rare').append(button);
+  }
+  let busy = false; let queue = null; let index = 0;
+  const img = pet => `<img src="${pet.imageVariants.card}" alt="${pet.name}">`;
+  const draw = async pet => {
+    if (['SSR','UR'].includes(pet.rarity)) await playSummonReveal({ pet, rarity:pet.rarity, reduceMotion:document.querySelector('#reduced').checked, presentationKey:pool.presentation.animationKey });
+    result.innerHTML = `${img(pet)}<p>${pet.rarity} · ${pet.name}</p>`;
+  };
+  const summary = () => { result.innerHTML = `<p>固定十連總覽，含第 1／6 位與第 5／10 位重複：</p><div class="cards">${fixed.map((pet,i) => `<span>${i+1}. ${img(pet)} ${pet.name}</span>`).join('')}</div>`; queue=null; document.querySelector('[data-action=next]').hidden=true; document.querySelector('[data-action=skip]').hidden=true; };
+  const next = async () => { if (!queue) return; if (index>=queue.length) { summary(); return; } const pet=queue[index++]; status.textContent=`第 ${index} / ${queue.length} 位`; await draw(pet); document.querySelector('[data-action=next]').textContent=index>=queue.length?'查看總覽':'下一位'; };
+  document.querySelectorAll('[data-action]').forEach(button => button.disabled=false);
+  status.textContent='已就緒；演出可略過、繼續或重播。';
+  document.querySelector('main').addEventListener('click', async event => {
+    const button=event.target.closest('[data-action]'); if (!button || busy) return;
+    const action=button.dataset.action; if (action==='skip') { summary(); return; }
+    busy=true; document.querySelectorAll('[data-action]').forEach(b => b.disabled=true);
+    try {
+      if (action==='entry'||action==='switch') { await playPoolDebutPresentation({poolId:pool.id,poolName:pool.name,presentation:pool.presentation,reduceMotion:document.querySelector('#reduced').checked}); status.textContent='完整入場已結束，可重播。'; }
+      else if (action==='rare') { await draw(byId.get(button.dataset.pet)); status.textContent='稀有角色登場已結束，可重播。'; }
+      else if (action==='single') { await draw(byId.get(document.querySelector('#single').value)); status.textContent='固定單抽已結束，可重播。'; }
+      else if (action==='ten') { queue=fixed; index=0; document.querySelector('[data-action=next]').hidden=false; document.querySelector('[data-action=skip]').hidden=false; await next(); }
+      else if (action==='next') await next();
+    } catch(error) { status.textContent=`播放失敗：${error.message}`; }
+    finally { busy=false; document.querySelectorAll('[data-action]').forEach(b => b.disabled=false); }
+  });
+</script></body></html>

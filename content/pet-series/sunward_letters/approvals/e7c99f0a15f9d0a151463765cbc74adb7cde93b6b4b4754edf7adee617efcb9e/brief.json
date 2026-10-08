@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sopVersion": 2,
+  "noExtraCost": true,
+  "imageReviewMode": "ai-self",
+  "seriesId": "sunward_letters",
+  "poolId": "sunward_letters",
+  "seriesName": "晴信原野",
+  "concept": "一場暴雨沖散迷霧森林與豐穗遠郊之間的路標與未送達的信。十二位小獸用種子、葉片和紙鳶般的補丁重新標記道路：不是把天氣變好，而是在雨停以前也讓彼此找得到回家的方向。整體感受是雨後清新、溫柔的希望與重新連結。原創架空故事，不借用特定文化作品或角色。",
+  "rarityPlan": {
+    "N": 3,
+    "R": 3,
+    "SR": 3,
+    "SSR": 2,
+    "UR": 1
+  },
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "presentationTemplate": "default",
+  "unlock": null,
+  "releaseVersion": "3.8.7",
+  "productionBaseline": {
+    "deployedCommit": "cc1fd1e7672288dd5a222bcd0fc99fa9395c75fd",
+    "sourceCommit": "56827677682cf089a19698c6af2131b61c841b07",
+    "mainCommit": "62d64188f78d2c957159346dfc4d26c47873c615",
+    "artifactId": "a15c113eaf7cc4ab42e9225ea059da1271227ee4991f26b266e85238880f89fb",
+    "version": "3.8.2",
+    "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+    "verifiedAt": "2026-10-07T18:38:08Z",
+    "unpublishedChanges": "Production V3.8.2 source is 5682767. Current main adds the verified release receipt and AI self-review pipeline/SOP support at 26d074c, b22ae30 and 62d6418; these commits are source-only and do not change official catalogs. The production artifact and six live pools remain the authoring baseline. The HTTPS app displayed V3.8.2; gh-pages manifest and commit were checked through GitHub. Recheck live manifest bytes before staging because the existing browser Service Worker intercepted direct manifest navigation."
+  },
+  "interview": {
+    "theme": "交給 AI：自行決定主題、地域、故事與情緒；選定雨後修復路標的晴信原野。",
+    "art": "交給 AI：預設十二隻，物種、稀有度與畫風由 AI 設計；禁止血腥、人形化與現成作品角色，卡圖須有辨識特徵、故事動作與可見結果。",
+    "experience": "交給 AI：地區與演出自行評估；沿用迷霧森林與豐穗遠郊，無額外解鎖或贈寵，使用現行共用召喚動畫。"
+  },
+  "storyDirection": {
+    "conflict": "風雨沖掉兩地之間的路標，急件與返家的路一起失去方向。",
+    "relationships": "小獸們分工探路、補路、收集材料與護送；最強的夥伴負責把大家共同完成的路線連成一幅天空地圖。",
+    "visualLanguage": "雨後暖青、麥金與少量珊瑚色；清楚的真實動物輪廓、手作路標與可見的風向或水痕，不使用舊池的墨山、冰海、糖庭或機械誓約語言。",
+    "boundaries": "不新增神話或跨系統能力，不把災難與流離當作裝飾，不使用現成作品角色；每張卡片以幫助同伴的具體瞬間表現希望。"
+  },
+  "animationPlan": {
+    "decision": "none",
+    "reason": "本池重點是十二張可讀的故事卡圖；現行共用召喚流程已提供稀有度與抽卡揭露。現有專屬場景都與冰海、糖庭、山河或獅心敘事綁定，套用會誤導主題，因此不製作本池專屬入場或抽卡場景。",
+    "storyboard": "使用 QuestNote 現行共用召喚畫面與結果揭露；卡池文字敘述雨後修路、未送達的信與夥伴會合。無本池專屬地景分鏡。",
+    "rarityNotes": "沿用共用 N 至 UR 的稀有度順序、SSR/UR 揭露時間與十連逐張/總覽行為；不宣稱舊池場景為本池專屬動畫。",
+    "motionNotes": "沿用共用略過、Escape、焦點保護、減少動態及載圖失敗回退；固定結果檢視不寫錢包、抽卡或收藏。"
+  }
+}
+

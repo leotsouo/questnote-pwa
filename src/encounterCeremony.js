@@ -32,7 +32,7 @@ export function createPoolScenery(pool) {
 
 export async function playCeremonyEntry(pool, { reduceMotion }) {
   const sceneFactory = ['standard','eternal_slumber_bloom'].includes(pool.id) ? () => createPoolScenery(pool) : undefined;
-  await withLegacyScene(() => playPoolDebutPresentation({ poolName: pool.name, presentation: ceremonyPresentation(pool), reduceMotion, sceneFactory }));
+  await withLegacyScene(() => playPoolDebutPresentation({ poolId: pool.id, poolName: pool.name, presentation: ceremonyPresentation(pool), reduceMotion, sceneFactory }));
 }
 
 async function withLegacyScene(play) {
