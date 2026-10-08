@@ -21,14 +21,14 @@ const get = async (file) => {
 };
 const manifestBytes = await get('release-artifact.json'); assert.equal(sha(manifestBytes), pins.manifestSha256, 'Formal manifest');
 const manifest = JSON.parse(manifestBytes); assert.equal(manifest.artifactId, pins.artifactId);
-const files = Object.keys(manifest.files); const checks = []; let next = 0;
+const files = Object.keys(manifest.files).filter((file) => file !== ".nojekyll"); const checks = []; let next = 0;
 await Promise.all(Array.from({ length: 4 }, async () => {
   while (next < files.length) {
     const file = files[next++]; const bytes = await get(file);
-    assert.equal(sha(bytes), manifest.files[file].sha256, file); checks.push({ path: file, sha256: sha(bytes), bytes: bytes.length });
+    assert.equal(bytes.length, manifest.files[file].bytes, file); assert.equal(sha(bytes), manifest.files[file].sha256, file); checks.push({ path: file, sha256: sha(bytes), bytes: bytes.length });
   }
 }));
 await fs.writeFile(path.join(report, 'production-https.json'), JSON.stringify({ status: 'passed', verifiedAt: new Date().toISOString(), httpsUrl: base,
   artifactId: pins.artifactId, manifestSha256: pins.manifestSha256, sourceCommit: manifest.sourceCommit, packageHash: decision.packageHash,
-  verifiedFiles: checks.length + 1, checks: checks.sort((a, b) => a.path.localeCompare(b.path)) }, null, 2) + '\n');
+  gitOnlyFiles: [".nojekyll"], verifiedFiles: checks.length + 1, checks: checks.sort((a, b) => a.path.localeCompare(b.path)) }, null, 2) + '\n');
 console.log(`PASS formal manifest and all ${checks.length} files match the approved artifact`);
