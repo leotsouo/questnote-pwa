@@ -33,3 +33,18 @@ test('new SSR motifs cannot leak to low rarities or replace UR identity', () => 
   assert.throws(() => resolvePetRevealKey({rarity:'UR',presentation:{revealKey:'chaos_thorn'}}));
   assert.throws(() => resolvePetRevealKey({rarity:'SSR',presentation:{revealKey:'chaos_crown'}}));
 });
+
+import { DARKCROWN_EXPLORATION, DARKCROWN_STORIES } from '../src/darkcrownExploration.js';
+import { planExpeditionResult } from '../src/expeditionGameplay.js';
+import { createDefaultExplorationProgress, advanceExplorationRecord } from '../src/explorationService.js';
+test('darkcrown real planner and five milestone stories preserve separate old regions', () => {
+  assert.deepEqual(DARKCROWN_EXPLORATION.milestones.map(m=>m.percent),[10,25,50,75,100]);
+  for(const m of DARKCROWN_EXPLORATION.milestones) assert.ok(DARKCROWN_STORIES[m.storyId].length>80);
+  const state=createDefaultExplorationProgress();const old=structuredClone(state.areas.cloudrest_trail);
+  const result=advanceExplorationRecord(state,'darkcrown_border',100);
+  assert.equal(result.record.areas.darkcrown_border.progress,100);
+  assert.deepEqual(result.record.areas.cloudrest_trail,old);
+  const planned=planExpeditionResult({id:'darkcrown_border',rewards:{stardust:{min:30,max:60},material:{id:'forest_leaf',min:1,max:2},bondExp:10}},[{id:'pet_sr99',name:'固定魔獸',rarity:'SR',expeditionSpecialty:'scholar'}],'explore',()=>0);
+  assert.ok(planned.event.text.includes('七地'));
+});
+

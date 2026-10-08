@@ -8,6 +8,7 @@
  */
 import { dbGet, dbPut, dbMutateRecords, STORES } from './db.js';
 import { normalizeWallet } from './rewardService.js';
+import { DARKCROWN_STORIES, DARKCROWN_EXPLORATION } from './darkcrownExploration.js';
 import { MATERIAL_LABELS } from './expeditionService.js';
 
 const EXPLORATION_PROGRESS_KEY = 'explorationProgress';
@@ -25,6 +26,7 @@ const REWARD_ITEM_LABELS = {
 
 /** 地區故事文字（達到對應探索度後解鎖顯示） */
 export const AREA_STORIES = {
+  ...DARKCROWN_STORIES,
   lionheart_city_story_10: "獅心城銅門上的浮雕只有天然羽翼與獅身。居民說，天律之冕・格里芬不需要任何人工增強，牠的血肉、感知與魔法本就完整。學院把每一次展翼都記進冊頁，城名也隨著這份崇敬流傳。",
   lionheart_city_story_25: "逆造工坊的舊筆記起初只記羽翼曲線，後來卻添上器官接口、壓力管線與人工骨架。人們不再滿足於觀察完美；他們要讓血肉跨過自身的限制。校準鴞說，那是一條追逐神的道路，盤根龜卻看見溫室裡被忽略的自然幼苗。",
   lionheart_city_story_50: "培育室的紀錄留下第一次自主呼吸：獅首奇美拉的胸腹起伏，人工器官隨之運作，機械翼面一節節張開。牠看向牆上的格里芬圖譜，沒有等待下一道口令。工匠曾想重現原型，眼前的生命卻已開始要求自己的名字與選擇。",
@@ -48,6 +50,7 @@ export const AREA_STORIES = {
  * 每個已登錄地區都保留探索進度與里程碑。
  */
 export const AREA_EXPLORATION_DEFS = {
+  darkcrown_border: DARKCROWN_EXPLORATION,
   lionheart_city: {
     "areaId": "lionheart_city",
     "name": "獅心城",
@@ -306,6 +309,8 @@ export const EXPLORATION_AREA_IDS = Object.keys(AREA_EXPLORATION_DEFS);
 
 /** 徽章顯示名稱（以里程碑 title 為準，這裡提供備援對照） */
 const BADGE_LABELS = {
+  badge_darkcrown_50: '七路守燈徽章',
+  badge_darkcrown_100: '裂冠守望徽章',
   badge_lionheart_witness: '逆造見證者',
   badge_mist_forest_50: '森林巡行徽章',
   badge_mist_forest_100: '迷霧森林完成徽章',
