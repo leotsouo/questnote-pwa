@@ -272,3 +272,9 @@ Pages `d2dba3c7b8f7f0823227af19d2cbe147dd975bcd` 的 [run 37115343269](https://g
 ## V3.8.2 圖鑑分類篩選 — 2026-10-07
 
 使用者驗收 UR 篩選，要求移除精簡／展開卡片並發布。PR #79 CI 通過並合併 `5682767`；production artifact `a15c113eaf7cc4ab42e9225ea059da1271227ee4991f26b266e85238880f89fb`，Pages `cc1fd1e`、run `37590060044` 成功。619 個 Git blobs、618 個正式 HTTPS 檔案全部雜湊一致；完整 npm test、手機／主題篩選、18 項原生產物驗收及正式新隔離瀏覽器檢查通過。正式 UR 顯示 19 張卡，卡片密度切換已移除，維持目前預設排版；卡池／公告／存檔格式與後端保留。[發布收據](../reports/collection-production-20261007/README.md)。
+
+## V3.8.8 晴信原野卡池 — 2026-10-08
+
+PR #84 已合併於 `5af21f55127b1920ba2baec8f1de1dbc4ef3d905`；CI 的完整 `npm test`、`pools:validate` 及 `images:check` 通過。使用者核准 packageHash `369fa577d0cb216eebfec558b6986513bc2f3d5214def3ca165828f51cfe90f4` 後，production artifact `af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a` 已推送至 `gh-pages` commit `76cefea20bd5de44da225cc24fb147a20ae18db8`；[Pages run 37758910237](https://github.com/leotsouo/questnote-pwa/actions/runs/37758910237) 成功。665 個 Git blobs 與核准 artifact 相符；正式 HTTPS 663 個一般檔案及 manifest 雜湊回讀一致。固定產物瀏覽器驗收 19/19 通過。
+
+此確切包的 `animationKey` 仍為 `none`，使用者在知悉該差異後核准發布；所以本次不記為符合新 SOP 的 3000ms 抽卡前奏。新 SOP 與 pipeline guide 已同步規定所有後續新池都必須有 3000ms 前奏，減少動態為 500ms。未清除玩家資料或強制啟用 service worker；已安裝 PWA 的實際更新仍需裝置確認。詳見[整包驗收與發布紀錄](../reports/sunward-letters/RELEASE-REVIEW-v4.md)。
