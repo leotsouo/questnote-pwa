@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "c2e5f9556c57eae3289df2679907db2998179e54",
+  "candidateId": "0b00ab77a5a8aad3cf9e93271d98a25c91df1d89ee9d7faf4837d105f7944cda",
+  "candidateManifestSha256": "ef369dc1c14761d5fb961c879222c7e158b4360296d6e67dc58a793c1d3a4bcb",
+  "previewUrl": "http://127.0.0.1:50137/questnote-pwa-preview/",
+  "artifacts": {
+    "production": {
+      "scopePath": "/questnote-pwa/",
+      "artifactId": "aa7b16b74f1d9e8a122a20ecbb41b54ed2a0c9fdd3e53fd1a6053f980829b692",
+      "manifestSha256": "3a5eca233afc3445c20732200ddb1b9c1cae834d2753ad196a0f29962409b168",
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\aa7b16b74f1d9e8a122a20ecbb41b54ed2a0c9fdd3e53fd1a6053f980829b692"
+    },
+    "preview": {
+      "scopePath": "/questnote-pwa-preview/",
+      "artifactId": "d981811c6005106c132368374e093150f356265b3d349a26f44e7296dcf94152",
+      "manifestSha256": "4162017b01ea38ef061bf95b4bc2a8398dcc7301fe7bbe965e8c74bafc470b0b",
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\d981811c6005106c132368374e093150f356265b3d349a26f44e7296dcf94152"
+    }
+  },
+  "checks": {
+    "animation": {
+      "evidence": "V3.8.8 source c2e5f95 includes upstream shared-omen removal, with sunward using native animationKey none. Prior visual module review of the unchanged native SSR/UR and 160px art remains applicable; final fixed-artifact browser run 2c959c47-9021-4e90-8694-dbb59c505f2b on production aa7b16b7 and preview d981811c passed 19/19, including native ten-pull, reduced/mobile layouts and cleanup. Upstream omen removal separately passed 34 actual browser animation cases in reports/summon-omen-removal/validation.md.",
+      "status": "pass"
+    },
+    "workshop": {
+      "evidence": "Final V3.8.8 fixed-artifact browser run 2c959c47-9021-4e90-8694-dbb59c505f2b at http://127.0.0.1:50137/test/ passed crafting item_sunward_grain_ring and favorite gifting (150 bond EXP).",
+      "status": "pass"
+    },
+    "specialties": {
+      "evidence": "Same final V3.8.8 browser run dispatched pet_n41 with gatherer specialty.",
+      "status": "pass"
+    },
+    "region": {
+      "evidence": "Reviewed ecosystem reuses mist_forest and harvest_fields; eight published region illustrations and offline cache passed image validation.",
+      "status": "reuse"
+    },
+    "transactions": {
+      "evidence": "Final V3.8.8 fixed-artifact browser run 2c959c47-9021-4e90-8694-dbb59c505f2b passed 19/19: native ten-pull charged 1000 once (10000 to 9000), SR floor, duplicate fragments [9,5], wallet survived reload; merged source npm test and pool release smoke passed.",
+      "status": "pass"
+    },
+    "serviceWorker": {
+      "evidence": "Final V3.8.8 19/19 browser run verified production aa7b16b7 and preview d981811c isolated controllers/DBs, legacy-client waiting, corrupt/missing asset refusal, cache recovery and complete offline boot.",
+      "status": "pass"
+    }
+  }
+}

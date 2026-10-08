@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "6952649fc3ce644c7656a43d2047450df5886e01",
+  "candidateId": "0b00ab77a5a8aad3cf9e93271d98a25c91df1d89ee9d7faf4837d105f7944cda",
+  "candidateManifestSha256": "ef369dc1c14761d5fb961c879222c7e158b4360296d6e67dc58a793c1d3a4bcb",
+  "previewUrl": "http://127.0.0.1:60946/questnote-pwa-preview/",
+  "artifacts": {
+    "production": {
+      "scopePath": "/questnote-pwa/",
+      "artifactId": "af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a",
+      "manifestSha256": "e08a2d79be599f3496097392dbc6a6d870ac2875784e6441d7e5285cf198c8bf",
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\af250b58a7a712856ce2b67d3df1eaac80242158fcde8b4e7d12ec37dc9e324a"
+    },
+    "preview": {
+      "scopePath": "/questnote-pwa-preview/",
+      "artifactId": "96c966d318832ec5582d1bd39a5bce717d7fbbff760a5957b1f1f983b5c3e8d6",
+      "manifestSha256": "9034c744ea09b16179725e538b98f48009644a1dd7268b76bf19a79e31e011b4",
+      "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\96c966d318832ec5582d1bd39a5bce717d7fbbff760a5957b1f1f983b5c3e8d6"
+    }
+  },
+  "checks": {
+    "animation": {
+      "evidence": "Rebuilt V3.8.8 production af250b58 and preview 96c966d3 include current origin/main 61d7a13 and matching mailbox bytes. Clean viewer at http://127.0.0.1:60946/questnote-pwa-preview/ was visually inspected with 晴信原野 selected, 晴界丹鶴 UR art and 12-character pool. Prior actual native SSR/UR animation module and 160px art review remains applicable; final fixed-artifact browser run 39c730aa-74fc-43bf-a7e0-16fd47c5a0bd passed 19/19, including native summon, mobile layouts, offline and cleanup.",
+      "status": "pass"
+    },
+    "workshop": {
+      "evidence": "Rebuilt fixed-artifact browser run 39c730aa-74fc-43bf-a7e0-16fd47c5a0bd at http://127.0.0.1:52918/test/ passed crafting item_sunward_grain_ring and favorite gifting (150 bond EXP).",
+      "status": "pass"
+    },
+    "specialties": {
+      "evidence": "Same rebuilt fixed-artifact browser run dispatched pet_n41 with gatherer specialty.",
+      "status": "pass"
+    },
+    "region": {
+      "evidence": "Reviewed ecosystem reuses mist_forest and harvest_fields; eight published region illustrations and offline cache passed image validation. Latest main changed only mailbox since the prior image check.",
+      "status": "reuse"
+    },
+    "transactions": {
+      "evidence": "Rebuilt fixed-artifact browser run 39c730aa-74fc-43bf-a7e0-16fd47c5a0bd passed 19/19: native ten-pull charged 1000 once (10000 to 9000), SR floor, duplicate fragments [9,5], wallet survived reload; full npm test rerun against latest merged main.",
+      "status": "pass"
+    },
+    "serviceWorker": {
+      "evidence": "Rebuilt 19/19 browser run verified production af250b58 and preview 96c966d3 isolated controllers/DBs, legacy-client waiting, corrupt/missing asset refusal, cache recovery and complete offline boot.",
+      "status": "pass"
+    }
+  },
+  "humanAcceptance": {
+    "reviewer": "user",
+    "acceptedAt": "2026-10-08T17:37:15+08:00",
+    "packageHash": "369fa577d0cb216eebfec558b6986513bc2f3d5214def3ca165828f51cfe90f4"
+  },
+  "publicationAuthorization": {
+    "reviewer": "user",
+    "approvedAt": "2026-10-08T17:37:15+08:00",
+    "packageHash": "369fa577d0cb216eebfec558b6986513bc2f3d5214def3ca165828f51cfe90f4",
+    "phrase": "可以發布",
+    "verbatimPhrase": "通過可以發佈 去跑更新流程"
+  }
+}

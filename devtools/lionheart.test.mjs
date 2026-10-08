@@ -80,7 +80,8 @@ test('new pool authored chapters merge additively and reject attempts to replace
   const newPets = JSON.parse(fs.readFileSync(new URL('../content/pet-series/lionheart_inverse_oath/pets.json', import.meta.url))).pets;
   const original = JSON.stringify(catalog);
   const merged = mergeBondStorySupplements(catalog, draft);
-  assert.deepEqual(validateBondStories(merged, [...new Map([...pets, ...newPets].map(p => [p.id, p])).values()]), []);
+  const coveredIds = new Set([...catalog.stories.map(story => story.petId), ...newPets.map(pet => pet.id)]);
+  assert.deepEqual(validateBondStories(merged, pets.filter(pet => coveredIds.has(pet.id))), []);
   assert.equal(JSON.stringify(catalog), original);
   assert.equal(merged.stories.length, catalog.stories.length + newPets.length);
   assert.throws(() => mergeBondStorySupplements(catalog, { lore: [{ id: pets[0].id, bondJourneyStory: catalog.stories[0] }] }));

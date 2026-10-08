@@ -1,0 +1,14 @@
+{
+  "production": {
+    "scopePath": "/questnote-pwa/",
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\ee44ee416cbd1d42897bc79f431fd250b1c36bf727d80e243142a560e23325ed",
+    "artifactId": "ee44ee416cbd1d42897bc79f431fd250b1c36bf727d80e243142a560e23325ed",
+    "manifestSha256": "bc7544603afb95bae634aee837426d31aa3323492f637890439b981a6bd7b72a"
+  },
+  "preview": {
+    "scopePath": "/questnote-pwa-preview/",
+    "artifactDir": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\07\\01a1179d-cd47-7fb2-af67-724eeba6e06a\\sunward-release\\55be4cc8b8700a5c454308078a4113d1169d20396bf38cd58eb9537d7dd51dae",
+    "artifactId": "55be4cc8b8700a5c454308078a4113d1169d20396bf38cd58eb9537d7dd51dae",
+    "manifestSha256": "7d036c8467b41d7b1c48a041e28ada906bdd78392fbdccb78d93ae273c31609b"
+  }
+}

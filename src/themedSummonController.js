@@ -636,6 +636,7 @@ export async function playPoolDebutPresentation(options = {}) {
 
   const overlay = document.createElement('div');
   overlay.className = 'dream-debut-overlay';
+  if (options.poolId) overlay.dataset.poolId = options.poolId;
   overlay.dataset.layout = 'shared';
   overlay.dataset.duration = String(readyMs);
   overlay.dataset.dissolveDuration = String(dissolveMs);

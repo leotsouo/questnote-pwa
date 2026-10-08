@@ -1,0 +1,184 @@
+{
+  "pets": [
+    {
+      "id": "pet_n41",
+      "name": "麥鈴田鼠",
+      "rarity": "N",
+      "image": "assets/pets/pet_n41.png",
+      "description": "一聲鈴，就是一條路。暴雨後，田埂的路標倒成一排，麥鈴田鼠以為只要跑得夠快就能帶大家回家，卻在泥地裡繞回原點。牠學會先看草莖受風的方向，再把小麥穗鈴繫在安全的岔口。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "field_mouse",
+      "element": "田野",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "gatherer"
+    },
+    {
+      "id": "pet_n42",
+      "name": "雨針刺蝟",
+      "rarity": "N",
+      "image": "assets/pets/pet_n42.png",
+      "description": "葉下保住的回信。雨針刺蝟撿到一封濕信，急著送出去，刺尖卻差點勾破薄薄的信紙。牠改用鼻尖推動寬葉，讓信封先在葉下避雨，等路乾了才護送。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "hedgehog",
+      "element": "森林",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "guardian"
+    },
+    {
+      "id": "pet_n43",
+      "name": "露痕蝸牛",
+      "rarity": "N",
+      "image": "assets/pets/pet_n43.png",
+      "description": "最慢的方向線。露痕蝸牛曾被快跑的夥伴留在後面，卻第一個發現積水石階旁仍有一條高處可走。牠用一路留下的露痕把那條安全線慢慢畫出來，讓晚到的人也能跟上。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "amber_snail",
+      "element": "露水",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "scout"
+    },
+    {
+      "id": "pet_r44",
+      "name": "逆風山羊",
+      "rarity": "R",
+      "image": "assets/pets/pet_r44.png",
+      "description": "迎著風站穩。逆風山羊曾把路標頂得更歪，以為力氣大就能對抗風，差點讓隊伍走向滑坡。牠學會用蹄先穩住木樁，再等麥鈴田鼠確認方向，兩者一起把布條拉直。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "mountain_goat",
+      "element": "山風",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "guardian"
+    },
+    {
+      "id": "pet_r45",
+      "name": "簷下雨燕",
+      "rarity": "R",
+      "image": "assets/pets/pet_r45.png",
+      "description": "把高處連成線。簷下雨燕飛得最快，卻曾把細布條送到沒有人看得見的樹梢。牠學會先看地上的小獸站在哪裡，再把方向線掛在所有人都能看見的高度。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "swift",
+      "element": "風",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "scout"
+    },
+    {
+      "id": "pet_r46",
+      "name": "補岸河狸",
+      "rarity": "R",
+      "image": "assets/pets/pet_r46.png",
+      "description": "先讓水換一條路。補岸河狸看到破岸時急著堆高木枝，卻發現水仍從底部沖走剛修好的路。牠改從低處引水，讓破口旁的草苗與信袋重新露出乾地。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "beaver",
+      "element": "溪流",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "gatherer"
+    },
+    {
+      "id": "pet_sr38",
+      "name": "晴布赤狐",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr38.png",
+      "description": "讓影子替大家指路。晴布赤狐第一次把縫好的晴布藏在洞裡，怕風又把大家辛苦修好的東西吹走。看到遠處有小獸迷路，牠終於把晴布帶上高石，讓影子指向乾路。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "red_fox",
+      "element": "晴光",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "companion"
+    },
+    {
+      "id": "pet_sr39",
+      "name": "迴聲夜梟",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr39.png",
+      "description": "霧裡的第二個回音。迴聲夜梟曾把自己聽見的每個回音都當成回答，結果在霧裡繞著同一棵樹飛了三圈。牠開始分辨樹幹與路標的回聲，耐心等到第二個清楚的回音才替夥伴指路。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "barn_owl",
+      "element": "夜聲",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "scholar"
+    },
+    {
+      "id": "pet_sr40",
+      "name": "渡溪水獺",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr40.png",
+      "description": "把信筒帶回岸上。渡溪水獺最愛搶先跳進溪裡，一次追著漂走的紅繩信筒，差點忘記岸上夥伴正在等牠。牠把信筒穩穩銜回乾石，先確認對岸的藍布路標，才讓大家一個個過溪。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "river_otter",
+      "element": "溪流",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "scout"
+    },
+    {
+      "id": "pet_ssr27",
+      "name": "霓羽山雀",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr27.png",
+      "description": "雨後的色邊。霓羽山雀想讓所有布標都閃亮，結果遠看反而分不出哪條路往哪裡。牠只替每條岔路留下一種水珠折光，讓顏色成為真正有用的約定。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "tit",
+      "element": "折光",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "companion"
+    },
+    {
+      "id": "pet_ssr28",
+      "name": "織風白鹿",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr28.png",
+      "description": "兩條都能走的路。織風白鹿曾想把所有布帶接成唯一的路，卻讓急著送信與需要歇腳的夥伴擠在一處。牠以鹿角輕挑繩結，把路分成兩條互不相撞的通道，讓不同步伐都能抵達。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "white_deer",
+      "element": "風",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "guardian"
+    },
+    {
+      "id": "pet_ur21",
+      "name": "晴界丹鶴",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur21.png",
+      "description": "天空終於連成地圖。晴界丹鶴從高處看見所有路，卻曾忘記地上的夥伴還需要一個接一個能踩穩的路標。牠等大家縫好長幅路線布才展翼升空，讓陽光沿布帶照亮連續的乾路，將各自修好的路接成一幅共同的地圖。",
+      "poolTags": [
+        "sunward_letters"
+      ],
+      "seriesId": "sunward_letters",
+      "speciesType": "red_crowned_crane",
+      "element": "光",
+      "visualTheme": "rainwashed_meadow",
+      "expeditionSpecialty": "scout"
+    }
+  ]
+}

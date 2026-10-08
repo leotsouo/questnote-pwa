@@ -31,3 +31,7 @@ data/craftables.json -text
 data/gift-affinities.json -text
 data/materials.json -text
 data/expeditions.json -text
+
+# Sunward Letters exact-byte authoring snapshots and candidates.
+content/pet-series/sunward_letters/** -text whitespace=cr-at-eol
+

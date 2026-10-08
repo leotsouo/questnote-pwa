@@ -1,0 +1,40 @@
+{
+  "id": "sunward_letters",
+  "name": "晴信原野",
+  "active": true,
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "tenPullGuarantee": "SR",
+  "petFilter": {
+    "poolTags": [
+      "sunward_letters"
+    ]
+  },
+  "presentation": {
+    "themeKey": "default",
+    "animationKey": "none",
+    "heroPetId": "pet_ur21",
+    "featuredPetIds": [
+      "pet_ssr27",
+      "pet_ssr28",
+      "pet_sr38"
+    ],
+    "badge": "雨後新篇",
+    "eyebrow": "路標曾被雨帶走，回家的方向沒有。",
+    "tagline": "把未送達的心意，一段一段接回來。",
+    "debutLines": [],
+    "debutLabel": "",
+    "detailsNote": "12 位夥伴從第一抽全部開放；無額外解鎖或贈寵。十連至少一位 SR 以上，沿用現行價格、機率與各池保底。",
+    "candidateNote": "僅含晴信原野 12 位夥伴，沿用共用召喚揭露；不含其他系列。"
+  }
+}
