@@ -1,0 +1,15 @@
+{
+  "results": [
+    "Casino icon shares mailbox row, old blessing entry removed, decorative coin rain appears",
+    "Missing card and original images reach framed and legacy fallbacks without errors",
+    "Real entry, confirmation, 20-second animation and receipt match committed balance",
+    "Free watch consumes one round without currency; skip reveals saved outcome",
+    "Closing during animation and reloading preserves all three settled rounds",
+    "Native IDB serializes two tabs: exactly one bet/settlement",
+    "Aborted wallet write rolls back the race receipt as well",
+    "Real backup export/import restores race data and wallet atomically",
+    "Reduced motion reveals directly; desktop receipt and mobile layouts render",
+    "Native service worker reload and a new race complete fully offline"
+  ],
+  "errors": []
+}
