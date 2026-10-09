@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "devtools/pool-awakening-flip-preview.html"
+        ],
+        "createdAt": "2026-10-09T20:03:17.626Z",
+        "reason": "Codex reviewed: read-only fixture imports incumbent CSS; its heading has no page-title class and no gradient text declarations"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "devtools/pool-awakening-flip-preview.html"
+        ],
+        "createdAt": "2026-10-09T20:03:17.748Z",
+        "reason": "Codex reviewed: read-only fixture and new flip component declare no glow shadows; shared incumbent CSS was scanned"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "devtools/pool-awakening-flip-preview.html"
+        ],
+        "createdAt": "2026-10-09T20:15:29.767Z",
+        "reason": "Codex reviewed: this read-only fixture deliberately reuses the incumbent twilight theme semantic tokens rgb(243,239,230); the task extends existing card preview design and does not authorize a new palette"
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          "devtools/pool-awakening-flip-preview.html"
+        ],
+        "createdAt": "2026-10-09T20:15:29.933Z",
+        "reason": "Codex reviewed: #779b82 is from imported encounter-view.css sanctuary scenery scoped to identity-surface; this fixture only has identity-dialog and mounts no sanctuary or halo"
+      }
+    ]
+  }
+}

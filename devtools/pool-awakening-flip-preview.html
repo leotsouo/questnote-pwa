@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>卡池覺醒翻面預覽</title>
+  <link rel="stylesheet" href="../src/themeTokens.css">
+  <link rel="stylesheet" href="../src/encounter-view.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 16px; background: var(--color-bg-main); color: var(--color-text-main); font-family: var(--font-body); }
+    .preview-review { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .preview-review h1 { margin-bottom: 12px; }
+    .preview-review label { display: block; margin: 20px 0; }
+    .preview-review select { margin-top: 8px; }
+  </style>
+</head>
+<body data-theme="twilight">
+  <main class="identity-dialog preview-review">
+    <h1>卡池覺醒翻面預覽</h1>
+    <p class="subtle">互動展示 · 點擊卡片查看初遇／覺醒造型</p>
+    <label>選擇夥伴<select id="preview-pet"></select></label>
+    <label><input id="preview-reduce" type="checkbox"> 減少動態效果</label>
+    <div id="preview-card"></div>
+  </main>
+  <script type="module">
+    import { loadCatalogBundle } from '../src/releaseCatalog.js';
+    import { loadAwakeningCatalog } from '../src/petAwakeningCatalog.js';
+    import { getAwakeningProfile } from '../src/petAwakeningProfiles.js';
+    import { renderPoolAwakeningPreview, bindPoolAwakeningPreview } from '../src/poolAwakeningPreview.js';
+    const [bundle, catalog] = await Promise.all([loadCatalogBundle(), loadAwakeningCatalog()]);
+    const pets = bundle.petsData.pets;
+    const picker = document.getElementById('preview-pet');
+    for (const entry of catalog.pets) {
+      const pet = pets.find((row) => row.id === entry.petId);
+      picker.add(new Option(`${getAwakeningProfile(pet.id).name} · ${pet.rarity} ${pet.name}`, pet.id));
+    }
+    function render() {
+      const host = document.getElementById('preview-card');
+      host.innerHTML = renderPoolAwakeningPreview(pets.find((row) => row.id === picker.value), catalog);
+      bindPoolAwakeningPreview(host.firstElementChild, { reduceMotion: () => document.getElementById('preview-reduce').checked || matchMedia('(prefers-reduced-motion: reduce)').matches });
+    }
+    picker.addEventListener('change', render);
+    render();
+  </script>
+</body>
+</html>

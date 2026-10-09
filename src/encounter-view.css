@@ -13,6 +13,21 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 :is(.identity-surface, .identity-dialog, .identity-review) select { width: 100%; min-height: 44px; background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 9px 12px; border-radius: 10px; }
 :is(.identity-surface, .identity-dialog, .identity-review) img { max-width: 100%; display: block; }
 .identity-dialog img.awakening-art-preview { filter: grayscale(1); }
+.pool-form-preview-cue { display: block; color: var(--color-primary); font-size: .8rem; margin-top: 6px; }
+.pool-form-preview-intro { margin-block: 12px !important; color: var(--color-primary); line-height: 1.6; }
+.pool-form-preview { margin-bottom: 20px; }
+.identity-dialog .pool-form-preview__button { display: block; width: 100%; padding: 0; border: 0; background: transparent; perspective: 1000px; }
+.pool-form-preview__card { display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); width: min(100%, 420px); aspect-ratio: 1; margin: 0 auto; transform-style: preserve-3d; transition: transform var(--motion-page, 220ms) var(--motion-ease, cubic-bezier(0.77, 0, 0.175, 1)); }
+.pool-form-preview.is-awakened .pool-form-preview__card { transform: rotateY(180deg); }
+.pool-form-preview__face { grid-area: 1 / 1; min-width: 0; overflow: hidden; border-radius: var(--radius-lg); background: var(--color-bg-card); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.pool-form-preview__face--back { transform: rotateY(180deg); }
+.pool-form-preview__face img { width: 100%; height: 100%; object-fit: contain; }
+.pool-form-preview__hint { display: block; padding: 12px; color: var(--color-primary); font-weight: 600; }
+.pool-form-preview__status { text-align: center; font-weight: 600; margin-bottom: 8px !important; }
+.pool-form-preview.is-instant .pool-form-preview__card { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .pool-form-preview__card { transition: none; }
+}
 .identity-surface .pool-select-heading { display:flex; align-items:center; justify-content:space-between; gap:8px 12px; flex-wrap:wrap; margin-bottom:8px; }
 .identity-surface .summon-wallet { display:flex; align-items:center; gap:8px; flex-wrap:wrap; max-width:100%; padding:4px 12px; border:1px solid var(--color-border); border-radius:999px; background:var(--color-bg-card); font-size:.8rem; }
 .identity-surface .summon-wallet strong { min-width:0; overflow-wrap:anywhere; font-size:1rem; font-variant-numeric:tabular-nums; color:var(--color-primary); }
