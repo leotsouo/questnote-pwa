@@ -18,6 +18,7 @@ const ELEMENT_ROLES = [
 ];
 const RARITY_BONUS = { N: 0, R: 0.02, SR: 0.04, SSR: 0.06, UR: 0.08 };
 const AREA_DISCOVERIES = {
+  aurora_feast_garden: "雲橋盡頭的舊食譜只畫了兩副碗筷：真正留住香氣的是等待與共食。",
   darkcrown_border: '界石裂縫仍映出七地各自的顏色；裂冠的黑影尚未抹去任何一條歸路。',
   lionheart_city: '封存試驗紀錄指出，人工翼設計已從模仿格里芬轉向突破格里芬。',
   mist_forest: '霧中露出一條通往古石碑的小路。',
