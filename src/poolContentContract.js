@@ -4,6 +4,7 @@ import { getEligiblePetsForPool } from './petPoolFilter.js';
 export const POOL_CONTENT_SCHEMA_VERSION = 1;
 export const POOL_RARITIES = Object.freeze(['N', 'R', 'SR', 'SSR', 'UR']);
 export const POOL_THEME_REGISTRY = Object.freeze({
+  aurora_fairy_feast: Object.freeze({ cssTheme: 'aurora_fairy_feast' }),
   default: Object.freeze({ cssTheme: null }),
   dream_bloom: Object.freeze({ cssTheme: 'eternal_slumber_bloom' }),
   glacier_arrival: Object.freeze({ cssTheme: 'glacier_arrival' }),
@@ -12,7 +13,7 @@ export const POOL_THEME_REGISTRY = Object.freeze({
   chaos_demon_court: Object.freeze({ cssTheme: 'chaos_demon_court' }),
   lionheart_inverse_oath: Object.freeze({ cssTheme: 'lionheart_inverse_oath' }),
 });
-export const POOL_SUMMON_REGISTRY = Object.freeze({ none: true, chaos_demon_court: true, dream_bloom: true, glacier_arrival: true, honeylight_sugar: true, swordwild_shanhe: true, lionheart_inverse_oath: true });
+export const POOL_SUMMON_REGISTRY = Object.freeze({ aurora_fairy_feast: true, none: true, chaos_demon_court: true, dream_bloom: true, glacier_arrival: true, honeylight_sugar: true, swordwild_shanhe: true, lionheart_inverse_oath: true });
 export const POOL_UNLOCK_REGISTRY = Object.freeze({ pool_unlock: true, morning_garden_unlock: true });
 export const PET_REVEAL_REGISTRY = Object.freeze({ chaos_crown: true, chaos_moon: true, chaos_bell: true, chaos_thorn: true, chaos_mirror: true, chaos_law: true, chaos_star: true, ssr: true, ur: true, moon: true, petal: true, caramel: true, cream: true, sword_eagle: true, sword_toad: true, sword_ape: true, lionheart_griffin: true, lionheart_chimera: true });
 

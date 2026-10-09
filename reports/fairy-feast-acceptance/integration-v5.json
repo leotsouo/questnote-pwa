@@ -1,0 +1,32 @@
+{
+  "baseline": "baseline-v5.json",
+  "sourceCommit": "966c4c6848e1050484ba81f0d574d6299d438b2c",
+  "previewArtifactId": "7fbc10f80bbb0019665fc207930d0396d08491c4d57df380a21fdb82fd3da94c",
+  "productionArtifactId": "2235b544cd0e05856ee8bda232c79ef6f4361e2cc7128dae805c4e4512d07e31",
+  "approvedPoolContentUnchanged": true,
+  "approvedGlassCssUnchanged": true,
+  "changedSourceFiles": [
+    "index.html",
+    "service-worker.js",
+    "src/daily-race.css",
+    "src/dailyRaceController.js",
+    "src/theme-refinements.css",
+    "src/ui.js",
+    "src/version.js",
+    "src/dailyRaceScene.js"
+  ],
+  "preservedCurrentMainGitBlobs": [
+    "src/dailyRaceScene.js",
+    "src/dailyRaceController.js",
+    "src/daily-race.css",
+    "src/ui.js",
+    "src/theme-refinements.css"
+  ],
+  "tests": {
+    "npm": "pass (.dev-backups/fairy-v5-validation/npm-test-recheck.log)",
+    "pools": "pass",
+    "images": "pass",
+    "poolRelease": "pass"
+  },
+  "limits": "Browser viewport is not a physical phone; formal HTTPS and formal SW update pending new exact-package acceptance."
+}

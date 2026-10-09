@@ -1,0 +1,23 @@
+{
+  "petId": "pet_ssr42",
+  "form": "initial",
+  "version": 2,
+  "asset": "images/pet_ssr42.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-eaec2173-8775-4b19-aaaa-97064a5ee789.png",
+  "prompt": "Edit this SAME swan illustration only to widen the composition. Zoom OUT and reposition the single swan slightly to the center so its COMPLETE closed-wing body, all feather/tail tips on the left, both webbed feet, head and S-shaped neck are inside square with at least 8% margin. No part of the swan touches any image edge. Reduce redundant gold hanging chains and peripheral kitchen objects; keep the pearl/lilac gauze collar and one violet bow. Preserve natural swan species, exact gentle face, periwinkle-violet palette, beautifully painted feathers, lace softness, single ingredient-pictogram recipe book, single steaming pot and three distinct aroma layers. Keep the book and pot near its neck, clearly linked by visible steam. Add quiet cloud space around silhouette rather than more objects. One natural swan only, no text/collage/humans/antlers/owl ears. Full landscape behind stays soft and lower contrast than swan.",
+  "references": [
+    "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-31ccac57-3133-4fed-9ea1-cc8f5d056c07.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Complete swan tail/feet/head now inside frame; neck and ingredient book remain legible, layered aroma carries readable pictograms. Main head/neck and single pot clear; background still rich, check 320px review. Selected for human review.",
+  "selected": true
+}

@@ -1,0 +1,7 @@
+{
+  "phrase": "可以發布",
+  "reviewer": "QuestNote user",
+  "recordedAt": "2026-10-09T19:21:33.706Z",
+  "packageHash": "a8e43a6b500a343b6b1ad27a9cfc3e65ef6c70a3e1e2877c2ba9fa6f047c8dbd",
+  "scope": "Approved exact v4 package in this conversation. Before publish, origin/main advanced to V3.9.4; integration requires replacement artifact and new exact-package acceptance under SOP. No v4 deployment performed."
+}

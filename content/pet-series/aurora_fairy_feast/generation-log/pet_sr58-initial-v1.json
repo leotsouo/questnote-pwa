@@ -1,0 +1,24 @@
+{
+  "petId": "pet_sr58",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_sr58.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-d8164450-84fe-42a3-8977-867a0de97eb4.png",
+  "prompt": "Use case: stylized-concept. Input deer image ONLY palette and painted quality reference; no copied deer organs, jewels, wings, human or antlers. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE squirrel spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 桃露茶栗. Recognizable features: 桃粉大尾、白色蕾絲背帶與茶葉籃. Story action: 把不同成熟度的果子分放進晨宴與夜宴食籃. Visible consequence: 果籃由凌亂變成有次序的粉白與藍紫兩列. Composition: 松鼠尾與雙籃清楚分層；贈寵保持靈獸. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. ONE natural peach-pink SQUIRREL with bushy curled tail, small tufted ears, four paws and white lace straps for small tea-leaf basket, NO dress or crown. Squirrel sits at low cloud-garden bench sorting small ripe peaches into TWO clearly separate baskets, one dawn pink-white, one dusk blue-violet. Forepaws move one fruit between an unsorted small pile and sorted baskets, tea leaves visible; organization must read as story action. Entire squirrel/tail and baskets in central 70%, quiet terrace with blurred aurora, minimal SR magic/gold. Gentle warm pastel ambient light, elegant embroidered straps and one pink bow. Preserve squirrel nose/face and natural small paws, no giant fox plume or human hands.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+    ]
+  },
+  "aiReview": "Tufted squirrel ears and complete curled tail, small natural paws sort peach into dawn basket beside distinct violet dusk basket. Small tea-leaf backpack and lace straps readable. Rear paws partially obscured by foreground basket, no visible anatomy duplication. Gift remains animal.",
+  "selected": true,
+  "humanApproval": null
+}

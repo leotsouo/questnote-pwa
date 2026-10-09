@@ -1,0 +1,24 @@
+{
+  "petId": "pet_ssr41",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_ssr41-v1.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-38e423c2-dff1-42cc-adf8-3864ce36967b.png",
+  "prompt": "Use case: stylized-concept. Input image is a STYLE/PALETTE reference only, change animal species and story completely; never copy its deer or antlers. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE fox spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 櫻紗靈狐. Recognizable features: 粉白狐尾、櫻花蕾絲領與雙緞帶. Story action: 用尾尖卷起花瓣，替破裂的點心收攏外皮. Visible consequence: 裂口被花紋封住，熱香留在分給旅人的食盒裡. Composition: 狐臉、尾巴與食盒構成單一動作，避免變成無故事的服飾展示. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Distinctive SSR signature skill and memorable silhouette. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+    ]
+  },
+  "aiReview": "Fox face, ribbons and visible flower-to-cracked-pastry action readable. Several unrequested tails; retain as draft and correct to one tail before selection.",
+  "selected": false,
+  "humanApproval": null
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "aurora_fairy_feast",
+  "seriesName": "霓霞仙膳",
+  "description": "仙女喜歡下凡做美食；初遇全部呈現靈獸，只有 SSR／UR 可覺醒為仙女，其餘永遠保持靈獸。 雲上宴席的光與香逐漸消散；她們發現只收藏珍貴材料留不住滋味，必須真正陪伴、烹調並分享。",
+  "rarityPlan": {
+    "N": 2,
+    "R": 2,
+    "SR": 4,
+    "SSR": 2,
+    "UR": 2
+  },
+  "releaseVersion": "3.9.3"
+}

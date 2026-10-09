@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-09T15:18:55.265Z",
+  "scope": "Proposal/reference review only; no runtime catalogs changed or release gates signed.",
+  "checks": {
+    "roster12": true,
+    "uniqueNamesAndKeys": true,
+    "palette6And6": true,
+    "urOnePerPalette": true,
+    "onlySsrUrAwakening": true,
+    "initial10Expanded12GiftIncluded": true,
+    "designCoverage": true,
+    "supportedAffinities": true,
+    "specialtiesMatchRuntimeWithExplicitField": true,
+    "foodMatchingRecipients11": true,
+    "regionFiveMilestones": true,
+    "animationCommonTiming": true,
+    "fiveReferencesExactOriginalBytes": true,
+    "htmlScriptSyntax": true,
+    "noPlayerDatabaseOrTransactions": true
+  },
+  "imageDecoding": "System.Drawing decoded all five original PNG files; dimensions/hashes in references.json.",
+  "browserReview": {
+    "url": "http://127.0.0.1:4189/content/pool-proposals/aurora_fairy_feast/review.html",
+    "environment": "Local concept page, not App/artifact",
+    "widths": [
+      1280,
+      393,
+      320
+    ],
+    "allImagesLoaded": true,
+    "horizontalOverflow": false,
+    "largeImageToggle": true,
+    "visualFindings": "320px comparisons split the subject; design-board details shrink. Use separate full-frame beast/fairy cards. Region landmark readable; exact App crop/offline pending.",
+    "tool": "Built-in CUA in-app browser",
+    "priorFailures": [
+      "BrowserAct CLI blocked by Windows application control policy; no reinstall attempted.",
+      "Sandbox loopback inaccessible; restarted own server with reviewed local-only access and successfully checked fresh tab."
+    ]
+  },
+  "deferred": [
+    "Human artwork feedback/approval",
+    "Formal SOP2 authoring/AI hash gates",
+    "Standalone final cards and four fairy forms",
+    "Controlled runtime support and integration tests",
+    "Pinned artifact, App crop, animation, transactions, service worker/offline",
+    "Final human package acceptance/publication authorization"
+  ]
+}

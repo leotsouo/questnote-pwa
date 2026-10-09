@@ -2880,6 +2880,250 @@
         "card": "assets/pets/variants/pet_ur30-card-384-b8b412a84e4a.webp",
         "stage": "assets/pets/variants/pet_ur30-stage-960-b8b412a84e4a.webp"
       }
+    },
+    {
+      "id": "pet_n53",
+      "name": "糖霧粉蝶",
+      "rarity": "N",
+      "image": "assets/pets/pet_n53.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "butterfly",
+      "element": "木",
+      "visualTheme": "pastel_pink_white",
+      "expeditionSpecialty": "companion",
+      "description": "糖霧粉蝶是霓霞膳庭的蝴蝶靈獸，輕扇翅膀把糖粉吹向一片剛出爐的餅；糖粉形成可辨的小花紋。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n53-card-384-4c8fa5ae4d8d.webp",
+        "stage": "assets/pets/variants/pet_n53-stage-960-4c8fa5ae4d8d.webp"
+      }
+    },
+    {
+      "id": "pet_n54",
+      "name": "紫露星螢",
+      "rarity": "N",
+      "image": "assets/pets/pet_n54.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "firefly",
+      "element": "星光",
+      "visualTheme": "pastel_blue_violet",
+      "expeditionSpecialty": "scout",
+      "description": "紫露星螢是霓霞膳庭的螢火蟲靈獸，在夜宴後沿空食籃飛行，帶採集隊回家；露珠依序點亮成路標，最遠的雲橋重新可見。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_n54-card-384-55c447a85fc9.webp",
+        "stage": "assets/pets/variants/pet_n54-stage-960-55c447a85fc9.webp"
+      }
+    },
+    {
+      "id": "pet_r62",
+      "name": "花綃糖雀",
+      "rarity": "R",
+      "image": "assets/pets/pet_r62.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "small songbird",
+      "element": "木",
+      "visualTheme": "pastel_pink_white",
+      "expeditionSpecialty": "gatherer",
+      "description": "花綃糖雀是霓霞膳庭的雀鳥靈獸，將一片完好的花瓣放在剛完成的小塔上；塔面形成最後一圈花冠，桌邊同伴抬頭等待。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r62-card-384-af4ed89455a3.webp",
+        "stage": "assets/pets/variants/pet_r62-stage-960-af4ed89455a3.webp"
+      }
+    },
+    {
+      "id": "pet_r63",
+      "name": "夜莓綺蝟",
+      "rarity": "R",
+      "image": "assets/pets/pet_r63.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "hedgehog",
+      "element": "火",
+      "visualTheme": "pastel_blue_violet",
+      "expeditionSpecialty": "guardian",
+      "description": "夜莓綺蝟是霓霞膳庭的刺蝟靈獸，在風口護住莓醬小灶，仔細攪動鍋邊；將要熄滅的火恢復溫穩，莓醬不再溢出。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_r63-card-384-f4768ee015d5.webp",
+        "stage": "assets/pets/variants/pet_r63-stage-960-f4768ee015d5.webp"
+      }
+    },
+    {
+      "id": "pet_sr56",
+      "name": "奶霜綺兔",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr56.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "rabbit",
+      "element": "木",
+      "visualTheme": "pastel_pink_white",
+      "expeditionSpecialty": "gatherer",
+      "description": "奶霜綺兔是霓霞膳庭的兔靈獸，扶穩盛著奶霜與花瓣的食籃跨過雲階；搖晃的奶霜仍完整留下花瓣紋，食籃安全送到膳亭。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr56-card-384-6b41a649f4af.webp",
+        "stage": "assets/pets/variants/pet_sr56-stage-960-6b41a649f4af.webp"
+      }
+    },
+    {
+      "id": "pet_sr57",
+      "name": "藍糖霧貂",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr57.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "marten",
+      "element": "冰霜",
+      "visualTheme": "pastel_blue_violet",
+      "expeditionSpecialty": "scout",
+      "description": "藍糖霧貂是霓霞膳庭的貂靈獸，先探身試踩覆著夜露的窄橋，回頭招呼慢步夥伴；霧中顯出一串安全的糖光足印。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr57-card-384-18c2fd287fad.webp",
+        "stage": "assets/pets/variants/pet_sr57-stage-960-18c2fd287fad.webp"
+      }
+    },
+    {
+      "id": "pet_sr58",
+      "name": "桃露茶栗",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr58.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "squirrel",
+      "element": "木",
+      "visualTheme": "pastel_pink_white",
+      "expeditionSpecialty": "gatherer",
+      "description": "桃露茶栗是霓霞膳庭的松鼠靈獸，把不同成熟度的果子分放進晨宴與夜宴食籃；果籃由凌亂變成有次序的粉白與藍紫兩列。",
+      "poolTags": [
+        "aurora_fairy_feast_expanded"
+      ],
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr58-card-384-d7377d5bfceb.webp",
+        "stage": "assets/pets/variants/pet_sr58-stage-960-d7377d5bfceb.webp"
+      }
+    },
+    {
+      "id": "pet_sr59",
+      "name": "紫盞雲狸",
+      "rarity": "SR",
+      "image": "assets/pets/pet_sr59.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "cat",
+      "element": "星光",
+      "visualTheme": "pastel_blue_violet",
+      "expeditionSpecialty": "companion",
+      "description": "紫盞雲狸是霓霞膳庭的貓靈獸，靠著食盒陪晚歸夥伴等茶放涼；茶面倒映兩個靠近的影子，周圍夜霧散開。",
+      "poolTags": [
+        "aurora_fairy_feast_expanded"
+      ],
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_sr59-card-384-4c2b4508f450.webp",
+        "stage": "assets/pets/variants/pet_sr59-stage-960-4c2b4508f450.webp"
+      }
+    },
+    {
+      "id": "pet_ssr41",
+      "name": "櫻紗靈狐",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr41.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "fox",
+      "element": "木",
+      "visualTheme": "pastel_pink_white",
+      "expeditionSpecialty": "companion",
+      "description": "櫻紗靈狐是霓霞膳庭的狐狸靈獸，用尾尖卷起花瓣，替破裂的點心收攏外皮；裂口被花紋封住，熱香留在分給旅人的食盒裡。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "補好一盒溫柔"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ssr41-card-384-205a668df54d.webp",
+        "stage": "assets/pets/variants/pet_ssr41-stage-960-205a668df54d.webp"
+      }
+    },
+    {
+      "id": "pet_ssr42",
+      "name": "霧靛羽鵠",
+      "rarity": "SSR",
+      "image": "assets/pets/pet_ssr42.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "swan",
+      "element": "星光",
+      "visualTheme": "pastel_blue_violet",
+      "expeditionSpecialty": "scholar",
+      "description": "霧靛羽鵠是霓霞膳庭的天鵝靈獸，沿蒸氣中的香紋尋找遺失的調味次序；混濁香霧分成清楚的藍紫層次，古食譜浮出圖案。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "presentation": {
+        "revealKey": "ssr",
+        "revealCaption": "讀香的夜羽"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ssr42-card-384-4e56c8918de4.webp",
+        "stage": "assets/pets/variants/pet_ssr42-stage-960-4e56c8918de4.webp"
+      }
+    },
+    {
+      "id": "pet_ur31",
+      "name": "月露雪鹿",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur31.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "white deer",
+      "element": "冰霜",
+      "visualTheme": "pastel_pink_white",
+      "expeditionSpecialty": "scout",
+      "description": "月露雪鹿是霓霞膳庭的白鹿靈獸，以低頭的鹿角引下花露，落進待凝的果塔；露滴沿塔面結成光潔花紋，雲階亮起柔白歸路。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "presentation": {
+        "revealKey": "ur",
+        "revealCaption": "晨露照席者"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ur31-card-384-d7a7f5b56ef5.webp",
+        "stage": "assets/pets/variants/pet_ur31-stage-960-d7a7f5b56ef5.webp"
+      }
+    },
+    {
+      "id": "pet_ur32",
+      "name": "曜夜玄鴞",
+      "rarity": "UR",
+      "image": "assets/pets/pet_ur32.png",
+      "seriesId": "aurora_fairy_feast",
+      "speciesType": "eagle owl",
+      "element": "星光",
+      "visualTheme": "pastel_blue_violet",
+      "expeditionSpecialty": "guardian",
+      "description": "曜夜玄鴞是霓霞膳庭的雕鴞靈獸，在夜灶旁展翼穩住風，讓莓香慢慢升起；散亂的香霧被聚成一條極光，引回晚歸的夥伴。",
+      "poolTags": [
+        "aurora_fairy_feast"
+      ],
+      "presentation": {
+        "revealKey": "ur",
+        "revealCaption": "晚歸守灶者"
+      },
+      "imageVariants": {
+        "card": "assets/pets/variants/pet_ur32-card-384-7d3d88cccae6.webp",
+        "stage": "assets/pets/variants/pet_ur32-stage-960-7d3d88cccae6.webp"
+      }
     }
   ]
 }

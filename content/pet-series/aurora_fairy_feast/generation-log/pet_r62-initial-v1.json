@@ -1,0 +1,24 @@
+{
+  "petId": "pet_r62",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_r62.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-aa61980a-5661-4e8c-9911-5557fa004f61.png",
+  "prompt": "Use case: stylized-concept. Input deer card is ONLY palette/material/paint style reference; NO copied deer anatomy, antlers, crowns or jewelry. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE small songbird spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 花綃糖雀. Recognizable features: 白粉短羽、綃帶尾飾與花瓣嘴銜. Story action: 將一片完好的花瓣放在剛完成的小塔上. Visible consequence: 塔面形成最後一圈花冠，桌邊同伴抬頭等待. Composition: 小鳥與單一果塔足夠，不堆滿金飾. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. ONE small natural finch/songbird with white-pink short feathers, small normal beak, two bird legs and two CLOSED wings, one gauze ribbon on its short tail. The bird stands on a low pastry stand and carefully lowers ONE intact cherry petal from its beak onto a small fruit tart, completing its circle of petal decoration. Main bird and single tart occupy center 65%; full feet, head and tail within square with 12% margins. Simple daytime cloud kitchen shelf, a soft distant pavilion and a few blurred blooms. R rarity everyday life, no giant wings or aureole, minimal magic sparkle and gold, exquisite pastel milky pink-white Ambient Light. Clear natural animal silhouette; no human hands, fairy, second bird, collage or letters.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+    ]
+  },
+  "aiReview": "Natural small songbird with two legs, closed feather wings, pink-white short feathers. Beak-held petal clearly completes ring on fruit tart. Tail ribbon larger than planned but bird outline and story remain legible, all key anatomy in frame. R effect restrained, no fairy.",
+  "selected": true,
+  "humanApproval": null
+}
