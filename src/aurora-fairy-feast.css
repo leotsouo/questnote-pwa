@@ -17,6 +17,16 @@
 body[data-theme] .summon-reveal-overlay.is-fairy-reveal:is([data-theme="ssr"],[data-theme="ur"]) :is(.summon-reveal-name,.summon-reveal-title,.summon-reveal-caption) { color:#fff5fa; background:#463758; border-radius:8px; padding:4px 8px; width:fit-content; margin-inline:auto; text-shadow:none; }
 body[data-theme] .summon-reveal-overlay.is-fairy-reveal:is([data-theme="ssr"],[data-theme="ur"]) :is(.summon-reveal-title,.summon-reveal-caption) { font-size:1rem; line-height:1.45; }
 body[data-theme] .summon-reveal-overlay.is-fairy-reveal .summon-reveal-skip { color:#fff5fa; background:#463758; border-color:#dec9e2; min-height:44px; }
+/* A quiet portrait panel; empty metadata must never become a decorative dot. */
+.summon-reveal-overlay.is-fairy-reveal .fairy-feast-scene { opacity:.28; }
+.summon-reveal-overlay.is-fairy-reveal :is(.summon-reveal-aura,.summon-reveal-ring,.summon-reveal-particles) { display:none; }
+body[data-theme] .summon-reveal-overlay.is-fairy-reveal .summon-reveal-card { box-sizing:border-box; width:min(86vw,440px); padding:18px 18px 20px; gap:12px; border:1px solid #e9d5e5; border-radius:24px; background:linear-gradient(145deg,#f8edf4,#e5ddf2); box-shadow:0 20px 70px #211b3c55; }
+body[data-theme] .summon-reveal-overlay.is-fairy-reveal .summon-reveal-pet-frame { width:min(70vw,46dvh,360px); height:min(70vw,46dvh,360px); border-radius:16px; overflow:hidden; background:#e2d5e8; }
+body[data-theme] .summon-reveal-overlay.is-fairy-reveal .summon-reveal-pet-image { width:100%; height:100%; object-fit:cover; filter:none; }
+body[data-theme] .summon-reveal-overlay.is-fairy-reveal .summon-reveal-rarity { font-size:1rem; line-height:1.3; letter-spacing:.2em; color:#72512d; background:#fff8ec; -webkit-text-fill-color:#72512d; padding:5px 14px; border:1px solid #cbb18a; border-radius:999px; text-shadow:none; }
+body[data-theme] .summon-reveal-overlay.is-fairy-reveal:is([data-theme="ssr"],[data-theme="ur"]) :is(.summon-reveal-name,.summon-reveal-title,.summon-reveal-caption) { color:#463758; background:none; padding:0; border-radius:0; max-width:100%; min-height:0; }
+body[data-theme] .summon-reveal-overlay.is-fairy-reveal .summon-reveal-name { font-size:clamp(1.25rem,4.8vw,1.6rem); line-height:1.4; }
+body[data-theme] .summon-reveal-overlay.is-fairy-reveal :is(.summon-reveal-title,.summon-reveal-caption):empty { display:none; }
 [data-pool-theme=aurora_fairy_feast] { background:linear-gradient(125deg,#f7e6ee,#e0e9fa 48%,#8275a5); color:#342c4b; border-color:#b3a1c6; }
 [data-pool-theme=aurora_fairy_feast] :is(h2,h3,.pool-panel__tagline,.pool-panel__eyebrow) { color:#342c4b; }
 .awakening-scene--fairy { background:#554765; color:#fff5fa; }
