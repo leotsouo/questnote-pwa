@@ -204,6 +204,7 @@ const PRECACHE_URLS = [
   'data/gift-affinities.json',
   'assets/brand/questnote-icon-192.png',
   'assets/icons/icon-512.png',
+  'assets/expeditions/aurora_feast_garden.webp',
   'assets/expeditions/lionheart_city.webp',
   'assets/expeditions/mist_forest.webp',
   'assets/expeditions/lava_rift.webp',

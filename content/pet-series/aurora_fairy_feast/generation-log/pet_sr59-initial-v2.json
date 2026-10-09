@@ -1,0 +1,23 @@
+{
+  "petId": "pet_sr59",
+  "form": "initial",
+  "version": 2,
+  "asset": "images/pet_sr59.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-2aac8b5b-0d9d-4caf-8b81-f52458010788.png",
+  "prompt": "Targeted edit: zoom OUT this SAME cat card so the entire naturally curled lavender-gray cat, complete back/flank on LEFT, both ears, its full single curled tail and paws are visible INSIDE the square. Keep at least 10% margin around cat; make it occupy only central 60% not fill image edges. Preserve exact gentle face, violet eyes, sheer neck scarf, cup-crescent pendant, tea cooling steam, reflection of cat and empty chair, small closed pastry box. Reposition tea cup on lower-right while cat sits centered-left but WITH SPACE between cat and all edges. Natural animal anatomy; no second animal/human/fairy/wings, no huge jewelry. Simplify peripheral hanging chains and foreground flowers; quiet dusky cloud veranda and one lantern, softly blurred background. Same beautiful painted pastel quality, no text/frame/collage.",
+  "references": [
+    "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-56e2d1a2-eff9-42fc-ad2d-84b76be00937.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Complete curled cat body/tail now inside frame with breathing room; two front paws and tucked hindquarters natural. Cup reflection, thinning steam and closed pastry box remain visible. No fairy form or added organs. Selected for human review.",
+  "selected": true
+}

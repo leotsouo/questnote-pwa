@@ -1,0 +1,23 @@
+{
+  "petId": "pet_ssr41",
+  "form": "initial",
+  "version": 2,
+  "asset": "images/pet_ssr41.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-6f50fca3-c90d-418a-9aa1-f19177a149ad.png",
+  "prompt": "Edit this same beautiful white/petal-pink fox card with ONE targeted anatomy correction: give the fox exactly ONE natural long bushy fox tail, rising in an elegant arc behind its body and curling its SINGLE tip toward the cracked pastry box to guide the cherry petals. Remove all other tails and disconnected tail plumes. Preserve its face, natural four fox legs, cherry lace collar and pink ribbon, story action (single tail tip guiding petal magic to mend pastry), exquisite painted style and dawn cloud kitchen atmosphere. One fox only, one continuous tail from its haunches to its clear tip. Keep ears, feet and complete tail inside square with margins. Reduce excess background detail slightly. No human, antlers, wings, text or collage.",
+  "references": [
+    "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-38e423c2-dff1-42cc-adf8-3864ce36967b.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+    ]
+  },
+  "aiReview": "Tail plumes reduced to a dominant high arc and curled tip; fox face/ears and feet inside square. Flower strand visibly reaches cracked pastry. Curl attachment partly hidden by body, note in human review; no extra animal species/limbs. Reference version preserved.",
+  "selected": true
+}

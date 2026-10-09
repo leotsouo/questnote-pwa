@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "representative-human-approved-runtime-next",
+  "status": "full-art-human-review-pending",
   "poolId": "aurora_fairy_feast",
   "name": "霓霞仙膳",
   "imageReviewMode": "human",
@@ -520,5 +520,19 @@
     "Finish remaining cards and four fairy forms, human exact-image review",
     "Stage pinned artifacts, full flow/animation/offline checks and final human package acceptance",
     "Await explicit 可以發布 bound to current packageHash before merge/push/deploy"
-  ]
+  ],
+  "currentCheckpoint": {
+    "stage": "images",
+    "humanApprovalPending": true,
+    "artSetHash": "e10eee23efcd018c589073d229c25fcc01f7b5a46dc217c5180afa251b248620",
+    "reviewPage": "content/pet-series/aurora_fairy_feast/review.html",
+    "report": "reports/fairy-feast-art-review/README.md",
+    "approvedAiStages": [
+      "brief",
+      "plan",
+      "content",
+      "prompts"
+    ],
+    "next": "Human review of the new exact art set, then images approval and staging; no final acceptance or publication authorization."
+  }
 }

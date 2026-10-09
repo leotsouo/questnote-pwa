@@ -1,0 +1,23 @@
+{
+  "petId": "pet_ur32",
+  "form": "initial",
+  "version": 2,
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-fe77de25-a9e6-41a8-9fc8-d32ab2d76de1.png",
+  "prompt": "Edit the supplied owl card, preserving the SAME eagle owl identity, violet-blue eyes, elegant moon crown (jewelry not horns), feather coloring, delicate golden jewelry, berry-hearth action and illustrated quality. Targeted composition correction: zoom OUT substantially so the COMPLETE main owl, BOTH complete spread wings from shoulder to every outermost wing tip, ear tufts, feet and full tail remain inside the square image with at least 8% safe margin on every side. Fit a horizontal spread-wing silhouette within this square; do not leave any feather touching/crossing frame edges. Keep ONE main owl only, REMOVE the small flying owl flock at top. Reduce background detail and concentrate the composition into main owl on ledge, small warm berry hearth below and one fragrance ribbon climbing into aurora. Moon crown only, NO oversized antler shapes or dragon horns. Same warm gentle dusky blue-violet fairy cooking world, subtly lighten feathers to periwinkle-violet, controlled pastel ambient light, lace and ribbons. Preserve coherent animal anatomy and clear confident tender face. Full-frame one standalone square card, no text/collage/inset/human figure. Do not crop wings for dramatic scale.",
+  "references": [
+    "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-281be08c-fe00-47d0-8ab2-7c570e89d996.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Full main owl with complete feathers, tail and feet now inside frame; flock removed, berry-hearth/fragrance/aurora read clearly. Wing safe margins still narrow laterally: review actual small card and human acceptance. Crown keeps feather/jewelry shapes. Selected for human review, not human-approved.",
+  "selected": true,
+  "asset": "images/pet_ur32.png"
+}

@@ -1,0 +1,25 @@
+{
+  "petId": "pet_ssr41",
+  "form": "awakened",
+  "version": 1,
+  "asset": "awakening-images/pet_ssr41.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-b7a2d9e6-aa70-461d-a5b2-4e4a13f174da.png",
+  "prompt": "Use case: stylized-concept. ONE standalone square full-frame illustration of the AWAKENED ADULT FAIRY of Cherry Silk Fox. Input image 1 is SAME CHARACTER continuity: white-petal-pink fox, cherry flowers, lace collar, double ribbon, single flowing tail and flower-sealed pastry box. Input image 2 is STYLE for elegant adult fairies only; never copy the deer antlers. ONE adult woman mid-twenties, gentle mischievous kind expression, peach-pink long hair, small natural white fox ears, ONE soft pink-white fox tail that curls behind her and remains fully within frame, no antlers/horns. Modest fully lined pink/ivory gown, floral lace sleeves, delicate double bows, layered chiffon, small translucent fairy wings. Entire standing figure and slippers, complete tail and wings within square with generous safe margin. She stands by ONE pastry box, carefully bringing two broken edges of a steamed flower bun together with one hand; the other guides a cherry petal that visibly seals the crack with a flower seam. Naturally formed five-fingered hands, no multiple limbs, no separate fox. One dominant focus on face, hands and pastry. Quiet cloud-kitchen dawn pavilion, milky pink-white macaroon colors, pale lilac/peach Ambient Light, less elaborate ornament than UR; exquisite luminous painted lace and gauze, no blown highlights. No text/frame/collage/inset/childlike figure/sensual pose.",
+  "references": [
+    "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-6f50fca3-c90d-418a-9aa1-f19177a149ad.png",
+    "C:/Users/User/OneDrive/questnote-pwa/.worktrees/fairy-feast-20261009/content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-awakened-v1.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+    ]
+  },
+  "aiReview": "Adult fairy with fox ears, one curled tail, cherry lace and bows; natural hand action visibly closes pastry crack. Shoes and main wings fit frame. Dress train reaches left edge, principal identity/action remains clear. Human review pending.",
+  "selected": true,
+  "humanApproval": null
+}
