@@ -902,6 +902,7 @@ function bindDelegatedEvents() {
       const cardEl = target.closest('.task-card');
       const taskBefore = state.tasks.find((t) => t.id === id);
       const isCompleting = taskBefore && !taskBefore.completed;
+      const encounterDateBefore = state.encounterEconomy?.dailyReceipt?.date;
 
       if (cardEl && isCompleting && !isSeniorMode()) {
         cardEl.classList.add('task-card--completing');
@@ -929,11 +930,6 @@ function bindDelegatedEvents() {
         recentlyCompletedTaskIds.add(id);
         setTimeout(() => recentlyCompletedTaskIds.delete(id), 2500);
 
-        if (result.reward && !isSeniorMode()) {
-          showRewardToast(result.reward.amount, result.reward.energy);
-        } else if (!isSeniorMode()) {
-          showToast('任務已完成', 'success');
-        }
       }
 
       if (isCompleting && !taskBefore?.isTutorial) {
@@ -942,10 +938,17 @@ function bindDelegatedEvents() {
 
       await onRefresh();
 
+      const receipt = state.encounterEconomy?.dailyReceipt;
+      const encounterGain = isCompleting && receipt?.source === 'task' && receipt.sourceId === id && receipt.date !== encounterDateBefore ? receipt.amount : 0;
+      if (isCompleting && !isSeniorMode()) {
+        if (result.reward) showRewardToast(result.reward.amount, result.reward.energy, encounterGain);
+        else showToast(`任務已完成${encounterGain ? ` · 相遇碎片 +${encounterGain}` : ''}`, 'success');
+      }
+
       if (isSeniorMode()) {
         const reward = result.reward;
         seniorFeedback(isCompleting
-          ? `已完成「${taskBefore.title}」。${reward ? `獲得 ${reward.amount} 星塵、${reward.energy || 0} 冒險能量${reward.bond ? '，也增進了夥伴的親密度' : ''}。` : '完成狀態已儲存；這次沒有重複發放獎勵。'}`
+          ? `已完成「${taskBefore.title}」。${reward ? `獲得 ${reward.amount} 星塵、${reward.energy || 0} 冒險能量${reward.bond ? '，也增進了夥伴的親密度' : ''}。` : '完成狀態已儲存。'}${encounterGain ? `今日相遇碎片增加 ${encounterGain} 枚，已儲存。` : ''}`
           : `「${taskBefore.title}」已改回未完成。已領獎勵不會重複發放。`, 'success');
         syncSeniorPresentation();
         document.querySelector(`.task-card[data-id="${CSS.escape(String(id))}"] [data-action="toggle"]`)?.focus({ preventScroll: true });
@@ -2065,6 +2068,7 @@ async function handleHabitCompletion(action, id, card) {
   if (habitActionBusy) return;
   const restoreFocus = card?.contains(document.activeElement);
   const view = card?.closest('.view');
+  const encounterDateBefore = state.encounterEconomy?.dailyReceipt?.date;
   habitActionBusy = true;
   const buttons = '[data-action="habit-complete"], [data-action="habit-uncomplete"]';
   document.querySelectorAll(buttons).forEach((button) => { button.disabled = true; });
@@ -2080,6 +2084,8 @@ async function handleHabitCompletion(action, id, card) {
     await onRefresh({ renderMode: ['habits', 'tasks'] });
     if (completing) {
       const parts = [];
+      const receipt = state.encounterEconomy?.dailyReceipt;
+      if (receipt?.source === 'habit' && receipt.sourceId === id && receipt.date !== encounterDateBefore) parts.push(`相遇碎片 +${receipt.amount}`);
       if (result.stardustGiven > 0) parts.push(`星塵 +${result.stardustGiven}`);
       if (result.energyGiven > 0) parts.push(`冒險能量 +${result.energyGiven}`);
       if (result.bondGiven > 0) parts.push('親密度 +1');
@@ -5058,8 +5064,8 @@ async function notifyBondUnlocks(petId) {
   }
 }
 
-function showRewardToast(amount, energy = 0) {
-  seniorFeedback(`已獲得 ${amount} 星塵、${energy} 冒險能量。`, 'success');
+function showRewardToast(amount, energy = 0, encounterFragments = 0) {
+  seniorFeedback(`已獲得 ${amount} 星塵、${energy} 冒險能量。${encounterFragments ? `相遇碎片 +${encounterFragments}。` : ''}`, 'success');
   if (isSeniorMode()) return;
   const toast = document.createElement('div');
   toast.className = 'reward-toast reward-toast--reward';
@@ -5067,6 +5073,7 @@ function showRewardToast(amount, energy = 0) {
   if (energy > 0) {
     text += `<span class="reward-toast__energy">＋<strong class="toast-highlight">${energy}</strong> 冒險能量</span>`;
   }
+  if (encounterFragments > 0) text += `<span class="reward-toast__energy">相遇碎片 ＋${encounterFragments}</span>`;
   toast.innerHTML = text;
   (document.getElementById('toast-container') || document.body).appendChild(toast);
   requestAnimationFrame(() => toast.classList.add('show'));
