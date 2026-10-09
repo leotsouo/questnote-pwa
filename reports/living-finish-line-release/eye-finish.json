@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "artifactId": "525797ca1b745d90a897c1066619dad37575799d22c8534f65a015f0a876274d",
+  "markers": [
+    {
+      "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+      "height": 55,
+      "eyes": 1
+    },
+    {
+      "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+      "height": 55,
+      "eyes": 1
+    },
+    {
+      "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+      "height": 55,
+      "eyes": 1
+    },
+    {
+      "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+      "height": 55,
+      "eyes": 1
+    }
+  ]
+}

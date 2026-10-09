@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-09T20:50:45.103Z",
+  "pagesCommit": "d0796e2dd1c361622c86d58a0c850bab6eb57eb6",
+  "artifactId": "af81a876ca6928ffbf219fb8d4cecbee348a33d3a0bbc587b08bb5962f9e3331",
+  "manifestSha256": "14bacb17be129cfdbe45dbd9a305466ce97add8fb2b110da159d8dd225e5c72c",
+  "oldProduction": {
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\release-archive\\awakening-v398\\af81a876ca6928ffbf219fb8d4cecbee348a33d3a0bbc587b08bb5962f9e3331",
+    "artifactId": "af81a876ca6928ffbf219fb8d4cecbee348a33d3a0bbc587b08bb5962f9e3331",
+    "manifestSha256": "14bacb17be129cfdbe45dbd9a305466ce97add8fb2b110da159d8dd225e5c72c",
+    "scopePath": "/questnote-pwa/"
+  },
+  "mailboxSha256": "da2acfbd0c9fb9956691f4ba85a4235b87dcedf43f0de3f2c752e8f920295046"
+}
