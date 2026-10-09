@@ -1,3 +1,4 @@
+import { mountRaceScene } from './dailyRaceScene.js';
 import { getDailyRaces, playDailyRace } from './dailyRaceService.js';
 import { RACE_TRACKS, racePayout } from './dailyRaceCore.js';
 import { getWallet } from './rewardService.js';
@@ -15,15 +16,15 @@ export const dailyRaceEntryHtml = () => `<section class="race-entry card" aria-l
 export async function openDailyRace({ pets, ownedIds = [], imageHtml, openModal, refresh, reduceMotion = false }) {
   openModal('<section id="daily-race-panel" class="daily-race" aria-label="星辰夥伴賽"><h2 class="modal-title">星辰夥伴賽</h2><p role="status">正在準備賽道…</p></section>');
   const root = document.getElementById('daily-race-panel');
-  let alive = true, frame = 0, state, wallet, roundIndex = 0, selectedId = null, stake = 5, busy = false, error = '';
-  let skip = null;
+  let alive = true, state, wallet, roundIndex = 0, selectedId = null, stake = 5, busy = false, error = '';
+  let skip = null, scene = null;
   const knownPets = new Map(pets.map(p => [p.id, p]));
   const owned = new Set(ownedIds);
   const pet = id => knownPets.get(id) || { id, name: '旅途中的夥伴' };
   const name = id => pet(id).name || pet(id).title || id;
   const picture = id => imageHtml(pet(id), { size: 'sm', eager: true });
   const live = () => alive && root.isConnected;
-  dispose = () => { alive = false; cancelAnimationFrame(frame); root.onclick = null; root.oninput = null; };
+  dispose = () => { alive = false; scene?.dispose(); root.onclick = null; root.oninput = null; };
 
   function receipt(round) {
     const r = round.result;
@@ -120,29 +121,13 @@ export async function openDailyRace({ pets, ownedIds = [], imageHtml, openModal,
 
   function animate() {
     const round = state.day.rounds[roundIndex];
-    const track = RACE_TRACKS[round.track];
-    root.innerHTML = `<div class="race-heading"><span class="race-kicker">第 ${roundIndex + 1} 場 · ${track.name}</span><h2 class="modal-title" tabindex="-1">星光旅程，出發！</h2></div>
-      <div class="race-arena" aria-label="賽跑動畫">${round.petIds.map((id, index) => `<div class="race-lane"><span class="race-lane__name">${index + 1} · ${esc(name(id))}</span><div class="race-path"><div class="race-runner" data-runner="${index}">${picture(id)}</div></div></div>`).join('')}</div>
-      <p class="race-commentary" role="status">${track.line}</p><button type="button" class="btn btn--secondary" data-race-action="skip">略過動畫，查看賽果</button><p class="race-note">結果已保存，關閉也不會遺失。</p>`;
-    root.querySelector('h2').focus();
-    let finished = false;
-    skip = () => { if (finished || !live()) return; finished = true; cancelAnimationFrame(frame); skip = null; draw(true); };
-    const start = performance.now();
-    const lines = [track.line, '夥伴們各自找到步調，沿著星光前進。', '賽道轉過彎角，觀眾為每位選手加油。', '終點的旗幟就在前方。'];
-    let lastLine = -1;
-    function step(now) {
-      if (!live() || finished) return;
-      const t = Math.min(1, (now - start) / 10000);
-      root.querySelectorAll('[data-runner]').forEach((runner, index) => {
-        const end = round.petIds[index] === round.result.winnerId ? 1 : 0.76 + index * 0.035;
-        const progress = Math.max(0, Math.min(end, end * t + Math.sin(t * Math.PI * 2 + index) * 0.04 * Math.sin(t * Math.PI)));
-        runner.style.left = `${progress * 100}%`;
-      });
-      const line = Math.min(3, Math.floor(t * 4));
-      if (line !== lastLine) { root.querySelector('.race-commentary').textContent = lines[line]; lastLine = line; }
-      if (t === 1) skip(); else frame = requestAnimationFrame(step);
-    }
-    frame = requestAnimationFrame(step);
+    scene?.dispose();
+    scene = mountRaceScene(root, {
+      pets: round.petIds.map(pet), winnerId: round.result.winnerId,
+      imageHtml: p => picture(p.id),
+      onComplete: () => { skip = null; scene = null; if (live()) draw(true); },
+    });
+    skip = scene.skip;
   }
 
   root.onclick = trackUpdateActivity(async event => {
