@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "status": "human-review-pending",
+  "petKey": "moon_dew_deer",
+  "name": "月露雪鹿",
+  "imageReviewMode": "human",
+  "humanApproval": null,
+  "formalImagesReceipt": null,
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image generation consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed true, usedPercent 23, credits.hasCredits false and balance 0 before generation. No API key, third-party paid service, purchase or reset was used.",
+    "modelReported": null,
+    "seedReported": null
+  },
+  "directionFeedback": {
+    "phrase": "進行下一步",
+    "scope": "Proceed with proposed representative art direction; not exact-image approval."
+  },
+  "images": [
+    {
+      "form": "initial",
+      "file": "artwork/moon-dew-deer-initial-v1.png",
+      "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-ac583fa3-dc93-4c57-8f2d-b31bc9772078.png",
+      "prompt": "Use case: stylized-concept. Create ONE standalone square 1:1 full-frame premium fantasy pet-card illustration for QuestNote, with NO card frame, NO text, NO split layout, NO collage or inset panels. Input image 1 is a STYLE/CHARACTER REFERENCE: the white deer design board; preserve the deer itself, flower-branch antlers, moon-drop jewels, white silky fur and soft pink ribbons. Input image 2 is a STORY/LIGHTING REFERENCE: the cooking comparison, borrow the flower-dew dessert action and warm translucent pastel light, but never reproduce its split layout or human figure. Subject: Moon Dew Snow Deer, a graceful magical WHITE DEER, animal form only, full animal anatomy, four slender deer legs and hooves, dignified UR presence. Show the complete deer body and complete magnificent flowering antlers, leaving a small safe margin, the deer about two-thirds of the image, clear lavender eyes. It lowers its head with poised elegance toward a single porcelain fruit tart on a stone ledge; a few luminous dew drops are visibly guided from its flowering antlers onto the tart, where each drop leaves a crisp glowing petal pattern. The action must read without lore. One dominant focus: deer head/antlers and tart linked by the dew arc. Delicate lace collar, tasteful blush ribbon, pearl and crystal moon-drop ornaments; keep natural deer silhouette, no hands, no wings, no unicorn horn. Background: quiet floating cloud kitchen pavilion with distant East Asian inspired cloud terraces, soft aurora and dawn ambient light, reduced background detail and lower contrast than subject. Palette: milky white, petal pink, pale lilac, buttercream gold highlights, opalescent pastel aurora, elegant warm gentleness. Highly detailed luminous illustrated fantasy rendering matching the supplied references, fine silky fur and translucent fabric, soft readable face, no harsh glare that erases anatomy. Beautiful adult-fantasy atmosphere, no humanoid/fairy anywhere. FULL-FRAME SINGLE DEER ART, not a concept sheet.",
+      "references": [
+        "references/moon-dew-deer-design-board.png",
+        "references/moon-dew-deer-cooking.png"
+      ],
+      "sha256": "d7a7f5b56ef5fcf87a53736ed8a809d08f71d9cda06955a4d95858e5151c4b75",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2759019,
+      "sourceFileTimeUtc": "2026-10-09T15:25:51.8590869Z"
+    },
+    {
+      "form": "awakened",
+      "file": "artwork/moon-dew-deer-awakened-v1.png",
+      "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-9a4aa83d-4cd9-489d-ba1c-a55ad87a5c31.png",
+      "prompt": "Use case: stylized-concept. Create ONE standalone square 1:1 premium fantasy card illustration of the AWAKENED ADULT FAIRY form of Moon Dew Snow Deer for QuestNote. No text, no card frame, no collage, no split layout, no inset portraits, no deer or second character. Input image 1 is the character/style REFERENCE board: derive the adult fairy's elegant face, silver-white hair, pink-white lace and long translucent chiffon gown from its fairy reference. Input image 2 is the finished BEAST-FORM continuity REFERENCE: carry across its cherry-blossom antlers, crescent/moon-drop crystals, lavender-pink eyes, and its one fruit tart in the same softly illuminated cloud kitchen. Present one clearly adult woman, mid-twenties, graceful mature facial proportions, calm warm expression, modest fully lined white-and-blush gown with finely rendered lace, ribbons, gauzy overskirt and delicate pearl/crystal jewelry; no lingerie, no cleavage emphasis, no childlike proportions. Show her entire figure including the flowing skirt hem, complete antler crown and complete fine translucent fairy wings, with clear breathing room around the silhouette. She is the awakening of this SAME deer: elegant small white deer ears and flower-branch antler crown with a dangling moon crystal, recognizable lavender eyes, silver-white cascading hair, petal-pink ribbon. Scene/story action: standing beside a stone cooking ledge, one hand delicately guides drops of luminous flower dew above the single fruit tart and her other hand steadies the porcelain serving plate; the drops visibly become a crisp glowing flower pattern on the cream, surrounded by a restrained luminous arc. Hands naturally formed, five fingers each, no floating whisk, no duplicated dessert. One main focus on her expressive face, hands and tart. Keep the background quiet and softer than the subject: floating East Asian inspired cloud terraces, delicate pavilion columns, pastel aurora at dawn. Palette milky white, blush pink, pale lilac, buttercream highlights; satin Ambient Light, translucent chiffon layers with visible seams and embroidery, controlled bloom, skin and lace never blown out. Dreamlike premium illustrated fantasy style, finely painted fabric and hair, gentle elegance matching the references; she has UR presence without aggressive or sensual pose. FULL-FRAME SINGLE ADULT FAIRY CARD, fully readable at small card size; no settings board.",
+      "references": [
+        "references/moon-dew-deer-design-board.png",
+        "artwork/moon-dew-deer-initial-v1.png"
+      ],
+      "sha256": "e705aafeecfdb8e8b5a94f5e628809938e8283eed04a1ad3b04b3fc2c3dc474f",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3206174,
+      "sourceFileTimeUtc": "2026-10-09T15:27:39.7849541Z"
+    }
+  ],
+  "aiVisualReview": {
+    "status": "reviewable-with-framing-notes",
+    "strengths": [
+      "Independent full-frame square images, no split layout, text or inset panels",
+      "Shared flower-branch antlers, moon drops, eye palette and one flower-fruit tart",
+      "Visible dew guidance and flower pattern connect story action to consequence",
+      "Pastel pink-white lace, ribbons and gauze match supplied references"
+    ],
+    "notes": [
+      "Some antler branch tips approach/cross the upper boundary in both images; final framing may require more top margin.",
+      "Fairy gown extends beyond the bottom edge; full hem was requested but not completely shown. Treat as draft and resolve framing before formal image approval.",
+      "Original dawn cloud background remains visually rich; confirm subject clarity at actual App card size before formal acceptance."
+    ]
+  },
+  "validation": {
+    "verifiedAt": "2026-10-09T15:31:20.065Z",
+    "originalByteCopies": true,
+    "sha256": true,
+    "square1254": true,
+    "completePngDecode": "System.Drawing",
+    "reviewHtmlScriptSyntax": true,
+    "browser": {
+      "environment": "Local concept review, not App/artifact",
+      "widths": [
+        1280,
+        393,
+        320
+      ],
+      "allImagesLoaded": true,
+      "horizontalOverflow": false,
+      "cardSizeVisualReview": true
+    },
+    "humanStatus": "pending",
+    "remaining": "Human feedback and final framing correction before formal images gate; App crop/offline/animation not tested."
+  }
+}

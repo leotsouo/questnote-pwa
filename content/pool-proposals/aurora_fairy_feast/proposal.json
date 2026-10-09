@@ -123,7 +123,8 @@
     "geometry": "Cloud bridge, kitchen, fragrance and aurora share scene coordinates; instance-unique SVG clip/paint IDs.",
     "review": "Later pinned-artifact interactive viewer must include entry/switch, single/ten pulls with duplicates, both UR and both SSR, normal/reduced-motion/replay/skip; no draw/wallet/collection API calls."
   },
-  "nextGate": "Human feedback on supplied concept art; AI owns remaining planning/content/prompts reviews. No human receipt, candidate, final package acceptance or publication authorization exists.",
+  "representativeArt": {"manifest":"representative-art-v1.json","status":"human-review-pending","forms":["initial","awakened"],"humanApproval":null,"framingCorrectionPending":true},
+  "nextGate": "Human feedback on the two new Moon Dew Snow Deer cards; concept direction continued by user, no exact-image or publication approval.",
   "formalAuthoringStatus": "not-initialized-runtime-support-not-yet-reviewed",
   "implementationOrder": ["Preserve references, review story/art at card size", "Produce independent light-UR beast/fairy representative pair after human art feedback", "Implement controlled theme/unlock/region/awakening support in a separately verified checkpoint", "Initialize SOP2 authoring at reviewed source and allocate real IDs; transfer design fields, build content/ecosystem/prompts and AI receipts", "Finish remaining cards and four fairy forms, human exact-image review", "Stage pinned artifacts, full flow/animation/offline checks and final human package acceptance", "Await explicit 可以發布 bound to current packageHash before merge/push/deploy"]
 }

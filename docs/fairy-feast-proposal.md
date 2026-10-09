@@ -4,6 +4,18 @@
 
 已帶入使用者訪談，不重新問工程細節：仙女喜歡下凡做美食，抽到時都是靈獸；**只有 SSR／UR 可以覺醒成仙女**，N／R／SR 保持靈獸。12 隻、2 UR、整池深淺各六；新地區、特殊解鎖、贈寵、專屬演出全部納入。採 `human` 中途審圖。
 
+接續紀錄：使用者說「進行下一步」，已按代表切片方向製作月露雪鹿獨立靈獸／仙女卡；尚未取得這兩張新圖的人工核准。深色 UR 名稱統一使用繁體「曜夜玄鴞」，不改企劃 key 或既有原圖 bytes。
+
+## 月露雪鹿代表切片：新作雙形態
+
+![月露雪鹿獨立靈獸卡](../content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png)
+
+![月露雪鹿獨立仙女卡](../content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-awakened-v1.png)
+
+兩張各 1254×1254，已保存工具輸出原 bytes，完整解碼與 SHA-256。原提示詞、reference、費用依據與製作時間見 [representative-art-v1.json](../content/pool-proposals/aurora_fairy_feast/representative-art-v1.json)。使用內建 imagegen，消耗既有 Codex included usage；未使用付費外部 API。
+
+AI 判讀：花角、月滴、眼色與果塔連續，故事動作可見，蕾絲與薄紗符合方向；雙圖已獨立成幅。但部分花角靠近／越過上緣，仙女裙襬未完整入框，背景細節仍豐富。保留為中途可審閱草稿，不標為正式 images 通過；最終圖片核准前要解決構圖邊緣並檢查真實 App 卡面。
+
 ## 一個故事，晨昏兩席
 
 霓霞膳庭的宴席正在失去光與香。仙女們化為靈獸下凡，最初以為只要帶回珍貴食材就能補好；她們在陪伴玩家、採集與烹調後，才懂得真正留下滋味的是等待與分享。
@@ -89,7 +101,7 @@
 
 已完成：重新核對正式 V3.9.2 基準；從 origin/main 建立乾淨隔離分支；保存五張原圖與雜湊；完整 12 隻前期企劃、偏好／專長、食物、地區、解鎖／贈寵及演出方案；AI 初步故事／美術審閱。
 
-目前人工節點只需要針對這批圖片的造型、配色與氣氛提出意見。名稱、Lore、提示詞與工程細節由 AI 接續，不新增逐份企劃人工核准。尚未生成新圖，也沒有把拼貼轉成正式素材。
+目前人工節點只需要針對新的月露雪鹿雙形態卡圖提出美術意見；五張原圖仍保留為參考。名稱、Lore、提示詞與工程細節由 AI 接續，不新增逐份企劃人工核准。已有代表新圖，尚未接入正式素材。
 
 下一步依序：中途美術回饋→代表 UR 雙形態獨立成圖→受控 theme／解鎖／地區／覺醒支援與必要驗證、獨立 commit→在 reviewed source 初始化 SOP2 authoring→AI brief／plan／content／prompts exact-hash gates→完成卡圖及四位覺醒圖、中途人工 images gate→staging／固定 artifact／動畫檢視與整包驗證→最終人工驗收及同 packageHash 的「可以發布」。本池具有覺醒變更，必須納入適用覺醒回歸。
 
