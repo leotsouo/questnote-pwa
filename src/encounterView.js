@@ -10,7 +10,8 @@ import { delay } from './imagePreloadService.js';
 import { SUMMON_TIMING } from './summonTiming.js';
 import { isSeniorMode, seniorFeedback, syncSeniorPresentation } from './seniorModeController.js';
 import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
-import { poolNavigation, searchPoolDirectory } from './poolDirectory.js';
+import { POOL_NAVIGATION, poolNavigation, searchPoolDirectory } from './poolDirectory.js';
+import { recommendationCopy, recommendationState } from './poolRecommendation.js';
 
 const modalHost = document.createElement('div');
 modalHost.className = 'encounter-dialogs';
@@ -46,6 +47,7 @@ let filter = 'all';
 let rarityFilter = 'all';
 let query = '';
 let seriesQuery = '';
+let recommendationTimer = null;
 let dialogOpener = null;
 let revealOpener = null;
 let revealFocusAction = '';
@@ -94,7 +96,7 @@ function poolSelector() {
       <div class="pool-browse-heading"><span>左右滑動，選擇你的下一站</span><button type="button" data-identity-action="series-directory" aria-haspopup="dialog" ${busy ? 'disabled' : ''}>全部系列 <span aria-hidden="true">↗</span></button></div>
       <nav class="pool-navigation" aria-label="看圖選擇卡池">${entries.map((row) => {
         const hero = directoryHero(row);
-        return `<button type="button" data-directory-pool="${escapeHtml(row.id)}" aria-label="${escapeHtml(row.name)}${row.id === navigation.featured?.id ? '，最新登場' : ''}" aria-pressed="${row.id === selected}" ${busy ? 'disabled' : ''}><span class="pool-cover">${hero ? imageHtml(hero, 'card', true) : ''}${row.id === navigation.featured?.id ? '<span class="pool-new-label">新登場</span>' : ''}</span><strong>${escapeHtml(row.name)}</strong></button>`;
+        return `<button type="button" data-directory-pool="${escapeHtml(row.id)}" aria-label="${escapeHtml(row.name)}${row.id === navigation.featured?.id ? '，最新登場' : ''}" aria-pressed="${row.id === selected}" ${busy ? 'disabled' : ''}><span class="pool-cover">${hero ? imageHtml(hero, 'card', true) : ''}${row.id === navigation.featured?.id ? '<span class="pool-new-label" data-recommendation-badge>新登場</span>' : ''}</span><strong>${escapeHtml(row.name)}</strong></button>`;
       }).join('')}</nav></section>`;
   }
   return `<div class="pool-select"><div class="pool-select-heading"><label for="identity-pool-select-${view}">${isCollection ? '瀏覽系列' : '探索世界'}</label>${isCollection ? '' : `<div class="summon-wallet" role="status" aria-live="polite" aria-atomic="true"><span>星塵總量</span><strong>${balance}</strong></div>`}</div><select ${appActions.isBusy() ? 'disabled' : ''} id="identity-pool-select-${view}">${isCollection ? '<option value="all">全部系列</option>' : ''}${pools.map((row) => `<option value="${row.id}" ${row.id === selected ? 'selected' : ''}>${escapeHtml(row.name)}</option>`).join('')}</select></div>`;
@@ -126,9 +128,52 @@ function renderSeriesDirectory() {
     const available = poolCandidates(pets, row, isExpanded(row.id));
     const hero = directoryHero(row);
     return `<button type="button" class="series-directory-entry" data-directory-pool="${escapeHtml(row.id)}" aria-pressed="${row.id === poolId}" ${displayBusy || appActions.isBusy() ? 'disabled' : ''}>
-      <span class="series-gallery-cover">${hero ? imageHtml(hero, 'card', true, 'series-directory-art') : ''}${row.id === poolId ? '<span class="series-gallery-badge">目前探索 ✓</span>' : row.id === navigation.featured?.id ? '<span class="series-gallery-badge">最新登場</span>' : ''}</span><span class="series-directory-copy"><strong>${escapeHtml(row.name)}</strong><span class="series-directory-status">${available.length} 位可相遇 <span aria-hidden="true">→</span></span></span></button>`;
+      <span class="series-gallery-cover">${hero ? imageHtml(hero, 'card', true, 'series-directory-art') : ''}${row.id === poolId ? '<span class="series-gallery-badge">目前探索 ✓</span>' : row.id === navigation.featured?.id ? '<span class="series-gallery-badge" data-recommendation-badge>最新登場</span>' : ''}</span><span class="series-directory-copy"><strong>${escapeHtml(row.name)}</strong><span class="series-directory-status">${available.length} 位可相遇 <span aria-hidden="true">→</span></span></span></button>`;
   }).join('')}</div>` : '<p class="series-directory-empty">找不到符合的系列，請試試其他名稱或故事關鍵字。</p>'}`;
+  refreshPoolRecommendation();
 }
+
+function refreshPoolRecommendation() {
+  clearTimeout(recommendationTimer);
+  recommendationTimer = null;
+  const host = document.querySelector('#view-gacha.active .identity-surface');
+  if (LOCAL_ART_PREVIEW || document.hidden || !host || !pools.length) return;
+  const now = Date.now();
+  const state = recommendationState(POOL_NAVIGATION.recommendation, now);
+  const navigation = poolNavigation(pools, POOL_NAVIGATION, now);
+  const selectedId = host.querySelector('.summon-sanctuary')?.dataset.poolId;
+  const copy = selectedId === POOL_NAVIGATION.featuredPoolId ? recommendationCopy(state) : null;
+  const label = host.querySelector('.pool-selection-note');
+  label.textContent = copy?.label || (selectedId === navigation.featured?.id ? '最新登場' : '持續開放');
+  if (state.status === 'active' && copy) label.setAttribute('role', 'timer');
+  else label.removeAttribute('role');
+  label.setAttribute('aria-live', 'off');
+  const note = host.querySelector('.pool-recommendation-note');
+  note.hidden = !copy;
+  if (copy) {
+    note.querySelector('[data-recommendation-date-label]').textContent = copy.dateLabel;
+    const time = note.querySelector('time');
+    time.dateTime = copy.dateTime;
+    time.textContent = copy.dateText;
+    note.querySelector('[data-recommendation-explanation]').textContent = copy.explanation;
+  }
+  // Change text only: never replace controls, move focus, reorder an open gallery or touch a draw.
+  for (const root of [host, dialog]) {
+    for (const badge of root.querySelectorAll('[data-recommendation-badge]')) {
+      badge.hidden = badge.closest('[data-directory-pool]').dataset.directoryPool !== navigation.featured?.id;
+    }
+  }
+  for (const button of host.querySelectorAll('.pool-navigation [data-directory-pool]')) {
+    const row = pools.find((entry) => entry.id === button.dataset.directoryPool);
+    button.setAttribute('aria-label', row.name + (row.id === navigation.featured?.id ? '，最新登場' : ''));
+  }
+  if (state.nextUpdateAt !== null) recommendationTimer = setTimeout(refreshPoolRecommendation, Math.max(1, state.nextUpdateAt - now));
+}
+
+document.addEventListener('visibilitychange', refreshPoolRecommendation);
+window.addEventListener('pageshow', refreshPoolRecommendation);
+window.addEventListener('focus', refreshPoolRecommendation);
+window.addEventListener('pagehide', () => { clearTimeout(recommendationTimer); recommendationTimer = null; });
 
 async function selectDirectoryPool(id) {
   if (displayBusy || appActions.isBusy() || !pools.some((row) => row.id === id && row.active)) return;
@@ -159,6 +204,7 @@ function renderPool() {
       <span class="hero-portal">${imageHtml(hero, 'stage', false, 'hero-art')}</span>
       <span class="hero-caption"><span class="hero-caption-copy"><span class="art-label">焦點夥伴 · 點擊認識</span><span class="pet-name">${escapeHtml(hero.name)}</span><span class="pet-title">${escapeHtml(hero.title)}</span></span>${cues(hero)}</span>
     </button><div class="summon-dock"><div class="summon-buttons"><button class="primary" ${displayBusy || appActions.isBusy() || appState.wallet.stardust < selected.cost ? 'disabled' : ''} data-identity-action="summon" data-pet-id="${hero.id}"><span>${isSeniorMode() ? '召喚 1 位夥伴' : '啟動相遇'}</span><small>單次 · ${selected.cost} 星塵</small></button><button ${displayBusy || appActions.isBusy() || appState.wallet.stardust < selected.cost * 10 ? 'disabled' : ''} data-identity-action="summon-ten"><span>${isSeniorMode() ? '召喚 10 次' : '十連相遇'}</span><small>十次 · ${selected.cost * 10} 星塵</small></button></div><p>${walletHint(selected)}</p></div></div></div></section>
+    <aside class="pool-recommendation-note" aria-label="推薦期資訊" hidden><p><span data-recommendation-date-label></span> <time></time>（台灣時間 UTC+8）</p><p data-recommendation-explanation></p></aside>
     ${invitationEntry(appState.encounterEconomy?.balance || 0)}
     <div class="pool-copy"><p class="eyebrow">${escapeHtml(selected.presentation?.badge || '持續開放的相遇')}</p><h2>${escapeHtml(selected.name)}</h2>
       <p class="pool-lore">${escapeHtml(selected.presentation?.tagline || '循著星光，認識願意與你一起前進的夥伴。')}</p>
@@ -178,6 +224,7 @@ function renderPool() {
     screen.querySelector('.pool-select').after(dock);
   }
   syncSeniorPresentation();
+  refreshPoolRecommendation();
 }
 
 function renderCollection() {

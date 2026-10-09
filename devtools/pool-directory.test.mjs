@@ -10,7 +10,7 @@ const pets = JSON.parse(fs.readFileSync(new URL('../data/pets.json', import.meta
 
 test('Every active series stays available without changing catalog or saved draw rules', () => {
   const before = JSON.stringify(pools);
-  const model = poolNavigation(pools);
+  const model = poolNavigation(pools, { ...POOL_NAVIGATION, recommendation: null });
   assert.deepEqual(model.entries.map((row) => row.id), pools.filter((row) => row.active).map((row) => row.id));
   assert.equal(model.featured.id, POOL_NAVIGATION.featuredPoolId);
   assert.equal(model.standard.id, 'standard');

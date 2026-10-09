@@ -370,3 +370,8 @@ body[data-reading-mode="senior"] .identity-surface .summon-sanctuary .hero-capti
 body[data-reading-mode="senior"] .identity-surface .pool-navigation button { flex-basis:7rem; }
 body[data-reading-mode="senior"] .identity-surface :is(.pool-navigation strong,.pool-browse-heading > span,.pool-browse-heading button,.pool-new-label),
 body[data-reading-mode="senior"] .identity-dialog :is(.series-directory-copy > strong,.series-directory-status,.series-gallery-badge,.series-search summary,.series-gallery-heading .subtle) { font-size:1rem; }
+
+.identity-surface .pool-recommendation-note { padding:12px 0 0; color:var(--color-text-muted); font-size:.8rem; line-height:1.7; overflow-wrap:anywhere; }
+.identity-surface .pool-recommendation-note p + p { margin-top:4px; }
+.identity-surface .pool-recommendation-note time, .identity-surface .pool-selection-note[role="timer"] { font-variant-numeric:tabular-nums; }
+body[data-reading-mode="senior"] .identity-surface .pool-recommendation-note { font-size:1rem; }
