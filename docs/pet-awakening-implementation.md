@@ -2,7 +2,7 @@
 
 2026-10-02：覺醒與雲棧古道地圖已隨 V3.5.5 正式發布，見[發布紀錄](../reports/awakening-implementation/production-release.md)。後續依要求加入教學與初遇預覽：V3.5.6 預覽隨正式版升至 V3.5.7 作廢；V3.5.8 候選以 V3.5.7 為基準，因 V3.5.8 獅心城發布而失效；V3.5.9 候選重建後，正式站再發布 V3.5.9 獅心城美術修正版。現已接回最新主線與正式基準，製作 V3.5.10 候選，等待最新整包驗收；舊包核准不適用。本文件獨立維護，不加入新卡池 SOP。原始討論：[設計草案](pet-awakening-system.md)。
 
-## 2026-10-10 卡池覺醒造型預覽（V3.9.8 本機候選）
+## 2026-10-10 卡池覺醒造型預覽（V3.9.8）
 
 依使用者最新要求，卡池開放主動預覽全彩覺醒造型，取代本文件下方歷史版本的「卡池保留覺醒造型驚喜」限制。現有覺醒目錄涵蓋劍隱山河二十位、黯冠王庭七位與霓霞仙膳四位，共三十一位；按角色資料判斷是否提供翻面，不將整池所有角色誤標成可覺醒。
 
@@ -10,7 +10,7 @@
 
 `poolAwakeningPreview.js` 使用 canonical 角色與既有覺醒目錄解析兩相，兼容劍隱山河以 canonical 卡圖作覺醒相的舊格式。覺醒舞台圖按首次翻面載入，失敗嘗試覺醒原圖；都失敗時保留初遇相並可重試。CSS transition 沿用動態 token，支援中途翻回；系統／App 減少動態、長輩模式及鍵盤啟動直接切換。元件不呼叫抽卡、錢包、收藏或覺醒持久化服務。召喚與收藏養成維持原有行為，沒有資料或門檻遷移。
 
-互動展示：`devtools/pool-awakening-flip-preview.html`，載入實際元件與三十一位素材，不載入 App、開啟資料庫或呼叫抽卡。驗證：`devtools/pool-awakening-preview.test.mjs`、`devtools/pool-awakening-preview-browser-test.mjs`、`npm test`；瀏覽器以受隔離的 loopback origin 執行實際卡池 renderer，測試期間拒絕所有 IndexedDB 寫入與遊戲交易。這是本機來源候選，尚未推送、整合或發布。
+互動展示：`devtools/pool-awakening-flip-preview.html`，載入實際元件與三十一位素材，不載入 App、開啟資料庫或呼叫抽卡。驗證：`devtools/pool-awakening-preview.test.mjs`、`devtools/pool-awakening-preview-browser-test.mjs`、`npm test`；瀏覽器以受隔離的 loopback origin 執行實際卡池 renderer，測試期間拒絕所有 IndexedDB 寫入與遊戲交易。來源已由 PR #99 整合；正式發布及不可變產物證據見[發布紀錄](../reports/pool-awakening-release-v398/production-release.md)。
 
 ## 卡圖（歷史版本紀錄）
 
