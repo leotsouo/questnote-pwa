@@ -1,3 +1,4 @@
+import { normalizeDailyRace } from './dailyRaceCore.js';
 import { planEncounterMigration, normalizeEncounterEconomy } from './encounterEconomyCore.js';
 /**
  * 備份與恢復服務 — QuestNote V2.3
@@ -52,6 +53,7 @@ const DATA_KEYS = [
   'inventory',
   'workshopStats',
   'dailyCheckIn',
+  'dailyRace',
   'questProgress',
   'explorationProgress',
   'campProgress',
@@ -81,6 +83,8 @@ function buildDataPayload({
   inventory,
   workshopStats,
   dailyCheckIn,
+
+  dailyRace,
   questProgress,
   explorationProgress,
   campProgress,
@@ -135,6 +139,8 @@ function buildDataPayload({
     inventory,
     workshopStats,
     dailyCheckIn,
+
+    dailyRace,
     questProgress,
     explorationProgress,
     campProgress,
@@ -383,6 +389,7 @@ function normalizePayloadData(rawBackup) {
     inventory: normalizeInventory(data.inventory),
     workshopStats: normalizeWorkshopStats(data.workshopStats),
     dailyCheckIn: normalizeDailyCheckIn(data.dailyCheckIn),
+    dailyRace: normalizeDailyRace(data.dailyRace),
     questProgress: normalizeQuestProgress(data.questProgress),
     explorationProgress: normalizeExplorationProgress(data.explorationProgress),
     campProgress: normalizeCampProgress(data.campProgress),
@@ -467,6 +474,7 @@ export function migrateImportedData(normalizedBackup, { forRestore = false } = {
   const inventory = normalizeInventory(normalizedBackup.inventory);
   const workshopStats = normalizeWorkshopStats(normalizedBackup.workshopStats);
   const dailyCheckIn = normalizeDailyCheckIn(normalizedBackup.dailyCheckIn);
+  const dailyRace = normalizeDailyRace(normalizedBackup.dailyRace);
   // Restore the snapshot's dates; normal app reads perform any subsequent rollover.
   const questProgress = normalizeQuestProgress(normalizedBackup.questProgress);
   const explorationProgress = normalizeExplorationProgress(normalizedBackup.explorationProgress);
@@ -494,6 +502,8 @@ export function migrateImportedData(normalizedBackup, { forRestore = false } = {
     inventory,
     workshopStats,
     dailyCheckIn,
+
+    dailyRace,
     questProgress,
     explorationProgress,
     campProgress,
@@ -594,6 +604,7 @@ export async function safeReplaceAllData(migratedData) {
     inventory: migratedData.inventory,
     workshopStats: migratedData.workshopStats,
     dailyCheckIn: migratedData.dailyCheckIn,
+    dailyRace: migratedData.dailyRace,
     questProgress: migratedData.questProgress,
     explorationProgress: migratedData.explorationProgress,
     campProgress: migratedData.campProgress,

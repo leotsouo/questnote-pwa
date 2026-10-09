@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.9.1
+ * QuestNote Service Worker — V3.9.2
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2';
+const CACHE_NAME = 'questnote-production-app-58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
-  "sourceCommit": "90ada53051e31aae5eddece912e985c5d7b54862",
+  "artifactId": "58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
+  "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -89,13 +89,13 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/71aefb86f17b64f793d310a9ac10b28e0d670bfdc6c4e1a09f269bc24af7a014/catalog.json": "71aefb86f17b64f793d310a9ac10b28e0d670bfdc6c4e1a09f269bc24af7a014",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "4a3c27aee5cc4b508a4aab4130f43956a7cd540581ee73eeb709c5c43ca9b6c7",
+  "index.html": "9cfb765fb6da7fa781e656937c1a3f9906ce61556223e4aee4bd06cf8d7fc747",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
   "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
   "src/app.js": "6a859ee004d1e4e7ce7f296a7cee411ec2665b6fd11c4bf006452bdc3a1e838d",
-  "src/backupSchema.js": "4cef57044fa6105689f449194735a4a66f86e25cdb7f05488126977134458281",
-  "src/backupService.js": "9e9ca7cd150120514485ed521b391c7ba22f2838796c6d5adfed1a73945670b2",
+  "src/backupSchema.js": "264c81adcc18e06228665d2e3c065ed3fa7f4034b86a4eeb88e8d3df09040d72",
+  "src/backupService.js": "f05f44849396d7574014fcffc8e725d5a70fb77a990f1543b953eadcade39aa3",
   "src/bond-journey.css": "c5ada471a6ac232974153239c91b6d4628dc5c4decf32b5f256f031f2346ee49",
   "src/bondJourneyController.js": "cfaabae2b18fbf0917cb074e878a11b557801a449a442e71ef9368124aa81805",
   "src/bondJourneyCore.js": "e66a1621b56f504e1d16444b518c37da4fc003e9b6a68439082b9a73aeffd762",
@@ -112,8 +112,12 @@ const PRECACHE_HASHES = {
   "src/collectionService.js": "45609153f022cfdcb2d0997c5785a214178a44be471c5ad61789626039f62869",
   "src/companionDialogueService.js": "ca84154fbb28fadbaa176f46c02079b8be2c9863f4567d5c2cc6c29347998876",
   "src/companionService.js": "3974b56613aea67e80f7659caa9dbca0d9397f298948f1f98c9e60b8e446d6aa",
+  "src/daily-race.css": "8baf1c529689bd4db2b10cc75adbd36782d117fd2a3e4aaa810768cca3e4a8d7",
   "src/dailyCheckInService.js": "8edd56d8918232f5c1d19ce46e3a39686d761b73a0e28fe0a6bbc170661575ad",
-  "src/db.js": "4755a43d2824c59f396d72ac17b4ca415834aed1a36976a8f213dcd448febb26",
+  "src/dailyRaceController.js": "da18c1a279fe908f344c07641f88123ee3248f0c691e798de73a29f11dd2b413",
+  "src/dailyRaceCore.js": "da617bee480b168f6c4b16fdcb808232bc9fbd8d326b4731610ec74f41f195bd",
+  "src/dailyRaceService.js": "596bad5fa9990981fbcc08dc02660b55bde6edc50233ef5954b338ddcbbd3755",
+  "src/db.js": "9f446987af07e3ef18a2bc0bed7a76794ae9ed66352325b75037b016d80ac321",
   "src/deferredRenderGate.js": "cbbaf2e401be35eab6d673a935c13fef615286a554937dc497b02c4aa6aca6e5",
   "src/demonFinalTaskCore.js": "679bfb63ddd422db89d70895fed008c61c5bb87ba28414b2067b68fa8302177a",
   "src/devService.js": "af56b92e6fcf886786f4a41d777dc355c35c0d0bd4b39fd72fc11217c4238dd4",
@@ -182,7 +186,7 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
   "src/questService.js": "ae9532ad78abb8af981d3d76adb9f06f132e81e1fed945bd77a608a7dd2bfa3b",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "a0fbb7c36e70ec0b7718c17b9fec864c17a19837726e57ce7c8543310a0b56d3",
+  "src/releaseProfile.js": "b04751160ae6f632100b4dcee11ca9660a6e6ef14221004947668794661bd0b2",
   "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "f9cfd9f99703dfd3e91f12f4382716875964b09785bf67418dfdc607c5cb1c5d",
@@ -213,12 +217,12 @@ const PRECACHE_HASHES = {
   "src/todayHabitsView.js": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
   "src/twilightPresentation.js": "905c328be48088db41ea7be5804ad5da84de5498f3b5ad9d3d375c2df12219ab",
   "src/ui-polish.css": "84d6af7a8206e91be084e1e9b868d51b1bbb4da50550936ccb4c24724e350f5e",
-  "src/ui.js": "78d11560bf4ce16cfd606f7bbe07914d6347c2a5ae5606a1eeb254c1f6e21a6e",
+  "src/ui.js": "9d51657d608769c61a8d98ccbe0958b783ed2c853147796f9351e47021499c20",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "d3d2ba23fa03a2bb72e06e0e28c03c0c2de920261ba2ea321ffb8fad88c15491",
+  "src/version.js": "3f83eff1a1b675663698650f1fde1c0eb520fa36133d8e725d2740ab93bfc167",
   "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
   "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
 };
@@ -287,7 +291,11 @@ const PRECACHE_URLS = [
   "src/collectionService.js",
   "src/companionDialogueService.js",
   "src/companionService.js",
+  "src/daily-race.css",
   "src/dailyCheckInService.js",
+  "src/dailyRaceController.js",
+  "src/dailyRaceCore.js",
+  "src/dailyRaceService.js",
   "src/db.js",
   "src/deferredRenderGate.js",
   "src/demonFinalTaskCore.js",
@@ -576,12 +584,15 @@ self.addEventListener('install', (event) => {
         const url = resolveUrl(path);
         const response = await fetch(url, { cache: 'reload' });
         if (!response.ok) throw new Error(`Required asset unavailable: ${path} (${response.status})`);
+        // Drain each body immediately: no-store responses can otherwise occupy all
+        // HTTP connections while Promise.all waits for the remaining response headers.
+        const body = await response.arrayBuffer();
         if (PRECACHE_HASHES) {
-          const digest = await crypto.subtle.digest('SHA-256', await response.clone().arrayBuffer());
+          const digest = await crypto.subtle.digest('SHA-256', body);
           const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
           if (hash !== PRECACHE_HASHES[path]) throw new Error(`Required asset mismatch: ${path}`);
         }
-        return [url, response];
+        return [url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers })];
       }));
       const cache = await caches.open(CACHE_NAME);
       await Promise.all(entries.map(([url, response]) => cache.put(url, response)));
