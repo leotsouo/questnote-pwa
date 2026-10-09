@@ -19,5 +19,7 @@ for (const profile of ['preview', 'production']) {
 }
 const report = path.join(root, 'reports/fairy-feast-acceptance');
 await fs.mkdir(report, { recursive: true });
-await fs.writeFile(path.join(report, 'artifacts.json'), JSON.stringify(artifacts, null, 2) + '\n', { flag: 'wx' });
+const reportName = process.argv[3] || 'artifacts.json';
+if (!/^artifacts(?:-v\d+)?\.json$/.test(reportName)) throw Error('Invalid artifact report name');
+await fs.writeFile(path.join(report, reportName), JSON.stringify(artifacts, null, 2) + '\n', { flag: 'wx' });
 console.log(JSON.stringify(artifacts, null, 2));

@@ -1,4 +1,24 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/questnote-pwa-preview/"><title>霓霞仙膳 · 隔離工程檢查</title><style>body{font:16px/1.7 system-ui;margin:auto;padding:20px;max-width:1000px}button{font:inherit;padding:12px;min-height:44px}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style></head><body><h1>霓霞仙膳 · 隔離工程檢查</h1><p>只在本機全新 origin 的 preview 測試存檔操作，使用確切產物模組。此頁與動畫檢視分開。</p><button id="run">執行交易、料理、派遣及覺醒檢查</button><ol id="results"></ol><pre id="report"></pre><section><button id="animation-run">執行動畫順序與略過檢查</button><pre id="animation-report"></pre></section>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/questnote-pwa-preview/"><title>霓霞仙膳 · 隔離工程檢查</title><style>body{font:16px/1.7 system-ui;margin:auto;padding:20px;max-width:1000px}button{font:inherit;padding:12px;min-height:44px}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style><link rel="stylesheet" href="src/styles.css" />
+<link rel="stylesheet" href="src/daily-race.css" />
+<link rel="stylesheet" href="src/ui-polish.css" />
+<link rel="stylesheet" href="src/summon-polish.css" />
+<link rel="stylesheet" href="src/honeylight-sugar.css" />
+<link rel="stylesheet" href="src/swordwild-shanhe.css" />
+<link rel="stylesheet" href="src/aurora-fairy-feast.css" />
+<link rel="stylesheet" href="src/lionheart.css" />
+<link rel="stylesheet" href="src/chaos-demon-court.css" />
+<link rel="stylesheet" href="src/pet-awakening.css" />
+<link rel="stylesheet" href="src/themeTokens.css" />
+<link rel="stylesheet" href="src/theme-system.css" />
+<link rel="stylesheet" href="src/theme-refinements.css" />
+<link rel="stylesheet" href="src/reminder-settings.css" />
+<link rel="stylesheet" href="src/font-size-settings.css" />
+<link rel="stylesheet" href="src/bond-journey.css" />
+<link rel="stylesheet" href="src/encounter-ceremony.css" />
+<link rel="stylesheet" href="src/encounter-view.css">
+<link rel="stylesheet" href="src/guided-onboarding.css">
+<link rel="stylesheet" href="src/encounter-invitation.css">
+<link rel="stylesheet" href="src/seniorMode.css"></head><body><h1>霓霞仙膳 · 隔離工程檢查</h1><p>只在本機全新 origin 的 preview 測試存檔操作，使用確切產物模組。此頁與動畫檢視分開。</p><button id="run">執行交易、料理、派遣及覺醒檢查</button><ol id="results"></ol><pre id="report"></pre>
 <script type="module">
 import { dbGet, dbGetAll, dbPut, STORES } from './src/db.js';
 import { normalizeWallet } from './src/rewardService.js';
@@ -46,5 +66,61 @@ document.getElementById('run').onclick=async()=>{
   const backup=await exportBackup();check(validateBackup(backup).valid,'備份無法驗證');const snapshot=JSON.stringify(await getPetAwakening());await importBackup(backup);await importBackup(backup);check(JSON.stringify(await getPetAwakening())===snapshot,'重複匯入遺失覺醒');record('新舊備份相容','目前備份連續還原兩次，四位覺醒與材料狀態保持');
   document.getElementById('report').textContent=JSON.stringify({status:'pass',artifactId:config.artifactId,sourceCommit:config.sourceCommit,origin:location.origin,checkedAt:new Date().toISOString(),checks},null,2);
  }catch(error){document.getElementById('report').textContent=JSON.stringify({status:'fail',error:error.message,checks},null,2);}
+};
+</script><section><h2>隔離動畫驗收</h2><p>固定結果，只播放實際 artifact 動畫，不抽卡、不扣款、不寫收藏。</p><button id="animation-run">執行動畫順序／略過／圖片失敗檢查</button><pre id="animation-report"></pre></section>
+<script type="module">
+import { playPoolDebutPresentation, playThemedSummon, skipThemedSummon } from './src/themedSummonController.js';
+import { dbGet, dbGetAll, STORES } from './src/db.js';
+const output=document.getElementById('animation-report');
+const assert=(condition,message)=>{if(!condition)throw Error(message);};
+const saved=async()=>JSON.stringify(await Promise.all([dbGet(STORES.META,'wallet'),dbGet(STORES.META,'gachaStats'),dbGet(STORES.META,'poolUnlockState'),dbGetAll(STORES.COLLECTION)]));
+document.getElementById('animation-run').onclick=async()=>{
+ document.getElementById('animation-run').disabled=true;
+ const config=await fetch('/review-config.json').then(r=>r.json());const {pool,pets}=config;
+ const checks=[];let active;let driver;const seen=new WeakSet();let reveals=[];let summary=[];let failedImage=false;let interrupted=false;
+ const update=()=>output.textContent=JSON.stringify({running:true,artifactId:config.artifactId,checks},null,2);
+ const fixed=['pet_n53','pet_r62','pet_sr56','pet_ssr41','pet_ur31','pet_ur32','pet_n54','pet_ur31','pet_ssr42','pet_ur32'];
+ const rows=(ids)=>{const obtained=new Set();return ids.map(id=>{const pet=structuredClone(pets.find(p=>p.id===id));const isNew=!obtained.has(id);obtained.add(id);return {pet,petId:id,rarity:pet.rarity,isNew,duplicateFragments:isNew?0:5};});};
+ const run=async(name,options,ids=fixed)=>{
+  active=options;reveals=[];summary=[];failedImage=false;interrupted=false;update();
+  const before=await saved();const input=rows(ids);
+  if(options.badImage)for(const row of input){row.pet.image='/intentionally-missing-card.png';row.pet.imageVariants={card:row.pet.image,stage:row.pet.image};}
+  const original=JSON.stringify(input);const start=performance.now();
+  const result=options.debut?await playPoolDebutPresentation({poolName:pool.name,presentation:pool.presentation,reduceMotion:options.reduce}):await playThemedSummon({results:input,mode:ids.length===1?'single':'ten',reduceMotion:options.reduce,poolName:pool.name,animationKey:pool.presentation.animationKey});
+  assert(await saved()===before,'動畫改變玩家交易狀態');assert(JSON.stringify(input)===original,'動畫改寫既定結果');
+  if(!options.debut){assert(result.ok,'動畫沒有完成');if(ids.length===10)assert(JSON.stringify(summary)===JSON.stringify(input.map(r=>r.pet.name)),'十連結果遺失或重排');}
+  if(options.verifyQueue){const expected=input.filter(r=>['SSR','UR'].includes(r.rarity)).map(r=>r.pet.name);assert(JSON.stringify(reveals)===JSON.stringify(expected),'稀有揭示順序或重複項目遺失');}
+  if(options.badImage)assert(failedImage,'未觀察到圖片失敗備援');
+  checks.push({name,status:'pass',milliseconds:Math.round(performance.now()-start),reveals,summary,failedImage,transactionStateUnchanged:true});update();
+ };
+ driver=setInterval(()=>{
+  if(!active)return;
+  const debut=document.querySelector('.dream-debut-overlay');const debutButton=debut?.querySelector('[data-role="skip"]');
+  if(debutButton && (active.skipEntry || debutButton.textContent.includes('繼續')))debutButton.click();
+  const reveal=document.querySelector('.summon-reveal-overlay');
+  if(reveal && !seen.has(reveal)){seen.add(reveal);reveals.push(reveal.querySelector('.summon-reveal-name')?.textContent||'');}
+  if(reveal?.querySelector('.summon-reveal-fallback-label'))failedImage=true;
+  const next=reveal?.querySelector('.summon-reveal-skip');
+  if(active.interrupt && reveal && !interrupted){interrupted=true;skipThemedSummon();}
+  else if(next && (active.skipReveal || next.textContent==='繼續')){next.click();if(active.doubleClick)next.click();}
+  const intro=document.querySelector('.dream-bloom-overlay [data-action="skip"]');
+  if(active.skipIntro && intro && !intro.hidden)intro.click();
+  const close=document.querySelector('.dream-bloom-overlay [data-action="close"]');
+  if(close && !close.hidden){summary=[...document.querySelectorAll('.dream-bloom-mini-seal__name')].map(e=>e.textContent);close.click();}
+ },80);
+ try{
+  await run('完整登場與繼續',{debut:true,reduce:false});
+  await run('切換卡池完整登場',{debut:true,reduce:false});
+  await run('登場提前略過',{debut:true,skipEntry:true});
+  await run('單抽一般卡完整前奏',{reduce:false},['pet_n53']);
+  await run('正常十連雙UR／兩SSR及重複',{reduce:false,verifyQueue:true});
+  await run('減少動態十連及繼續連點',{reduce:true,verifyQueue:true,doubleClick:true});
+  await run('略過前奏仍保留稀有順序',{reduce:true,skipIntro:true,verifyQueue:true});
+  await run('略過揭示仍有完整十連',{reduce:false,skipIntro:true,skipReveal:true});
+  await run('圖片失敗仍有完整結果',{reduce:true,badImage:true,verifyQueue:true});
+  await run('外部中斷仍保留完整結果',{reduce:true,interrupt:true});
+  output.textContent=JSON.stringify({status:'pass',running:false,artifactId:config.artifactId,checkedAt:new Date().toISOString(),checks},null,2);
+ }catch(error){output.textContent=JSON.stringify({status:'fail',running:false,artifactId:config.artifactId,error:error.message,checks},null,2);}
+ finally{clearInterval(driver);document.getElementById('animation-run').disabled=false;}
 };
 </script></body></html>
