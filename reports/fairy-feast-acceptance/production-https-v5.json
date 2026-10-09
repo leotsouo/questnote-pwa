@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-09T19:47:51.036Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "artifactId": "2235b544cd0e05856ee8bda232c79ef6f4361e2cc7128dae805c4e4512d07e31",
+  "sourceCommit": "966c4c6848e1050484ba81f0d574d6299d438b2c",
+  "manifestSha256": "88e3db37adf4a3eb0dfb942067fbdb47e6e21dd285ed893aef6ef5480262cc97",
+  "checkedFiles": 840,
+  "mismatches": [],
+  "failures": [],
+  "firstPass": "production-https-first-pass-v5.json",
+  "retries": [
+    {
+      "name": "assets/pets/variants/pet_r08-card-384-8c8ff1c02c44.webp",
+      "checkedAt": "2026-10-09T19:47:51.035Z",
+      "http": 200,
+      "hashMatches": true
+    }
+  ]
+}

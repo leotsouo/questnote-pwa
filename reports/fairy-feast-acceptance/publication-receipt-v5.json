@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-09T19:47:21.413Z",
+  "phase": "Published exact approved artifact; Pages, CI, committed blobs and full formal HTTPS hashes passed",
+  "version": "3.9.5",
+  "packageHash": "def02180dcfa99d0ffc50ee6a2468148f469715731bec5472a93f69614c03f70",
+  "artifactId": "2235b544cd0e05856ee8bda232c79ef6f4361e2cc7128dae805c4e4512d07e31",
+  "manifestSha256": "88e3db37adf4a3eb0dfb942067fbdb47e6e21dd285ed893aef6ef5480262cc97",
+  "reviewedSourceCommit": "966c4c6848e1050484ba81f0d574d6299d438b2c",
+  "sourceMergeCommit": "2c1b95ada8d655020bbb15792baee432004950ee",
+  "sourcePr": "https://github.com/leotsouo/questnote-pwa/pull/97",
+  "deploymentCommit": "c8ef5ab07d3a2de35078444e663338883662ace0",
+  "pagesRun": "https://github.com/leotsouo/questnote-pwa/actions/runs/37982103181",
+  "pagesStatus": "success",
+  "sourcePromotion": "source-promotion-v5.json",
+  "browserTests": {
+    "passed": 19,
+    "failed": 0,
+    "environment": "isolated loopback production/preview artifacts; legacy worker transition, cached recovery and offline app flows"
+  },
+  "formalClient": {
+    "actualDisplayedVersion": "3.8.5",
+    "normalUpdateAttempt": "blocked by other open QuestNote windows",
+    "bypassedProtection": false,
+    "scope": "User-owned clients not forcibly closed; extra verification tab closed"
+  },
+  "pending": [
+    "Existing-client update after other QuestNote windows close",
+    "Physical-device validation",
+    "Library prepared-upload / 3 library_file_id"
+  ],
+  "formalHttps": {
+    "status": "passed",
+    "checkedFiles": 840,
+    "checkedAt": "2026-10-09T19:47:51.036Z",
+    "evidence": "production-https-v5.json",
+    "initialTransient503Retried": true
+  }
+}
