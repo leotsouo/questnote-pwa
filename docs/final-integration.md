@@ -293,3 +293,7 @@ PR [#87](https://github.com/leotsouo/questnote-pwa/pull/87) 完整 CI 通過並�
 ## V3.9.2 星辰夥伴賽已發布 — 2026-10-09
 
 使用者檢視預覽後要求「幫我推上正式版」。[PR #91](https://github.com/leotsouo/questnote-pwa/pull/91) 經 CI 合併於 `bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf`；production artifact `58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2`，gh-pages `48be5954b60dcd1c27d5d192922f6753b1e5597b`，[Pages 37876583079](https://github.com/leotsouo/questnote-pwa/actions/runs/37876583079) 成功。768 Git blobs 與 767 正式 HTTPS 檔案全部雜湊一致；完整來源測試、18 項固定產物瀏覽器、下注／備份／離線流程、V3.9.1 舊存檔升級及正式私有 Chrome 驗收通過。每日祝福入口，每日三場、四位等機率選手、原子結算與可略過動畫；保留 160 位角色／8 池及最新公告。實體手機及既有安裝 PWA 尚待裝置驗收。詳見[發布回執](../reports/daily-race-release/README.md)。
+
+## V3.9.3 星辰賭場與四種賽跑演出已發布 — 2026-10-10
+
+使用者明確授權後，[PR #93](https://github.com/leotsouo/questnote-pwa/pull/93) 經 CI 合併於 `affa93df83eaeb9f0ceb418a31a0176bd6b461a3`。入口移至信箱同排骰子圖示，進場星幣雨、四種隨機 20 秒演出，正式介面不顯示劇本名稱。production artifact `29f573c8b16810a89354b46383dc00dee6a92e02d3d79d31959c585fa91d77da`，gh-pages `fd3a084b2132d8e305c6561d1f2c171554021604`，[Pages 37958793695](https://github.com/leotsouo/questnote-pwa/actions/runs/37958793695) 成功。769 Git blobs 與 768 HTTPS 檔案全數相符；完整來源測試、10 組來源瀏覽器、18 項固定產物、V3.9.2 舊存檔（含賽事）升級、正式私有 Chrome 與離線验收通過。右側既有正式 client 仍受其他視窗更新保護；實體手機尚待裝置驗收。[發布回執](../reports/casino-race-release/README.md)。
