@@ -1,10 +1,46 @@
 {
   "schemaVersion": 1,
-  "status": "human-review-pending",
+  "status": "human-approved",
   "petKey": "moon_dew_deer",
   "name": "月露雪鹿",
   "imageReviewMode": "human",
-  "humanApproval": null,
+  "humanApproval": {
+    "reviewer": "QuestNote user",
+    "reviewerType": "human",
+    "recordedAt": "2026-10-09T15:57:51.155Z",
+    "phrase": "都通過，繼續推進SOP",
+    "scope": "Five supplied concept references and the two Moon Dew Snow Deer standalone cards displayed on the current review page. Does not approve future images, final package or publication.",
+    "files": [
+      {
+        "file": "references/moon-dew-deer-cooking.png",
+        "sha256": "c290a06ec89d9c45e22b1b4781c4be8291464247542712ac98d59366661f6fa5"
+      },
+      {
+        "file": "references/night-owl-cooking.png",
+        "sha256": "42bf1f16f98bcdf549ca8d6417481a323070fa7682a692e235f8aa4bbbecbab3"
+      },
+      {
+        "file": "references/aurora-feast-garden.png",
+        "sha256": "b8a13fed01ca8e889c960487ccf950997222ebc2956222a4105fe6c35535185b"
+      },
+      {
+        "file": "references/moon-dew-deer-design-board.png",
+        "sha256": "71be6dc19a9205cde0aa0bf4fe051deaa0a6a35180d5d8884166d567633ca2be"
+      },
+      {
+        "file": "references/night-owl-design-board.png",
+        "sha256": "8bc81e1c28c170d93c6aaaa287890ddc5b66cd2e2e25671b7cf903772317d348"
+      },
+      {
+        "file": "artwork/moon-dew-deer-initial-v1.png",
+        "sha256": "d7a7f5b56ef5fcf87a53736ed8a809d08f71d9cda06955a4d95858e5151c4b75"
+      },
+      {
+        "file": "artwork/moon-dew-deer-awakened-v1.png",
+        "sha256": "e705aafeecfdb8e8b5a94f5e628809938e8283eed04a1ad3b04b3fc2c3dc474f"
+      }
+    ]
+  },
   "formalImagesReceipt": null,
   "provenance": {
     "tool": "image_gen.imagegen",
@@ -61,7 +97,8 @@
       "Some antler branch tips approach/cross the upper boundary in both images; final framing may require more top margin.",
       "Fairy gown extends beyond the bottom edge; full hem was requested but not completely shown. Treat as draft and resolve framing before formal image approval.",
       "Original dawn cloud background remains visually rich; confirm subject clarity at actual App card size before formal acceptance."
-    ]
+    ],
+    "framingResolution": "User accepted displayed framing with existing edge/hem notes; preserve these exact bytes. Actual App card rendering remains to verify."
   },
   "validation": {
     "verifiedAt": "2026-10-09T15:31:20.065Z",
@@ -81,7 +118,7 @@
       "horizontalOverflow": false,
       "cardSizeVisualReview": true
     },
-    "humanStatus": "pending",
-    "remaining": "Human feedback and final framing correction before formal images gate; App crop/offline/animation not tested."
+    "humanStatus": "approved",
+    "remaining": "Future images need their own human review; App crop/offline/animation not yet tested."
   }
 }

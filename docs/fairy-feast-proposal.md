@@ -101,14 +101,16 @@ AI 判讀：花角、月滴、眼色與果塔連續，故事動作可見，蕾�
 
 已完成：重新核對正式 V3.9.2 基準；從 origin/main 建立乾淨隔離分支；保存五張原圖與雜湊；完整 12 隻前期企劃、偏好／專長、食物、地區、解鎖／贈寵及演出方案；AI 初步故事／美術審閱。
 
-目前人工節點只需要針對新的月露雪鹿雙形態卡圖提出美術意見；五張原圖仍保留為參考。名稱、Lore、提示詞與工程細節由 AI 接續，不新增逐份企劃人工核准。已有代表新圖，尚未接入正式素材。
+使用者已以「都通過，繼續推進SOP」核准目前頁面的五張概念參考與月露雪鹿雙形態成圖；七個原檔 SHA-256 已記錄於 human-art-approval-20261009.json。代表圖保留目前構圖；後續新圖仍須中途人工審閱。名稱、Lore、提示詞與工程細節由 AI 接續。
 
 下一步依序：中途美術回饋→代表 UR 雙形態獨立成圖→受控 theme／解鎖／地區／覺醒支援與必要驗證、獨立 commit→在 reviewed source 初始化 SOP2 authoring→AI brief／plan／content／prompts exact-hash gates→完成卡圖及四位覺醒圖、中途人工 images gate→staging／固定 artifact／動畫檢視與整包驗證→最終人工驗收及同 packageHash 的「可以發布」。本池具有覺醒變更，必須納入適用覺醒回歸。
 
-尚未完成：正式 pet IDs、受控 runtime 註冊、正式 authoring／receipts、12 張獨立初遇卡、4 張仙女卡、正式地區 WebP、實際動畫、flow／離線／artifact 驗證、人工圖片核准及最終驗收。不 merge、不 push、不部署。
+尚未完成：正式 pet IDs、受控 runtime 註冊、正式 authoring／receipts、12 張獨立初遇卡、4 張仙女卡、正式地區 WebP、實際動畫、flow／離線／artifact 驗證、其餘新圖人工核准及最終驗收。不 merge、不 push、不部署。
 
 ## 核對基準
 
 正式 HTTPS：V3.9.2；部署 `48be5954b60dcd1c27d5d192922f6753b1e5597b`；source `bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf`；main `7b7fb0b093c052338811e1ca4c64f3a2dc4a8601`。2026-10-09 23:04（台灣時間）讀回 manifest，SHA-256 `1fa1a59af449f5824ff13b4f872d9b14983295cdc3381cc78c1f36f9eafb7268` 與正式收據一致；version bytes 符合 manifest，Git descriptor artifact identity 一致。Main 多出的兩次提交都是發布收據文件，沒有未發布 runtime 差異。另一工作分支的 V3.9.7 不作本池基準。
 
 `artifact-manifest.json` URL 回應 404，正式 manifest 實際是 `release-artifact.json`；已改用正確資源核對。不把歷史全量發布測試稱為本次重跑。開始後續實作前需再次確認遠端與正式基準未漂移。
+
+2026-10-09 核准續辦：擴充角色只使用 aurora_fairy_feast_expanded 標籤，避免二十抽前混入初始名單。地區解鎖同時接受初始／擴充兩個明確標籤，沒有其他主題的寵物可提前解鎖。

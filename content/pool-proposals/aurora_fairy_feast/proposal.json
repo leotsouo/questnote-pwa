@@ -1,10 +1,46 @@
 {
   "schemaVersion": 1,
-  "status": "proposal-human-artwork-review-pending",
+  "status": "representative-human-approved-runtime-next",
   "poolId": "aurora_fairy_feast",
   "name": "霓霞仙膳",
   "imageReviewMode": "human",
-  "humanArtworkApproval": null,
+  "humanArtworkApproval": {
+    "reviewer": "QuestNote user",
+    "reviewerType": "human",
+    "recordedAt": "2026-10-09T15:57:51.155Z",
+    "phrase": "都通過，繼續推進SOP",
+    "scope": "Five supplied concept references and the two Moon Dew Snow Deer standalone cards displayed on the current review page. Does not approve future images, final package or publication.",
+    "files": [
+      {
+        "file": "references/moon-dew-deer-cooking.png",
+        "sha256": "c290a06ec89d9c45e22b1b4781c4be8291464247542712ac98d59366661f6fa5"
+      },
+      {
+        "file": "references/night-owl-cooking.png",
+        "sha256": "42bf1f16f98bcdf549ca8d6417481a323070fa7682a692e235f8aa4bbbecbab3"
+      },
+      {
+        "file": "references/aurora-feast-garden.png",
+        "sha256": "b8a13fed01ca8e889c960487ccf950997222ebc2956222a4105fe6c35535185b"
+      },
+      {
+        "file": "references/moon-dew-deer-design-board.png",
+        "sha256": "71be6dc19a9205cde0aa0bf4fe051deaa0a6a35180d5d8884166d567633ca2be"
+      },
+      {
+        "file": "references/night-owl-design-board.png",
+        "sha256": "8bc81e1c28c170d93c6aaaa287890ddc5b66cd2e2e25671b7cf903772317d348"
+      },
+      {
+        "file": "artwork/moon-dew-deer-initial-v1.png",
+        "sha256": "d7a7f5b56ef5fcf87a53736ed8a809d08f71d9cda06955a4d95858e5151c4b75"
+      },
+      {
+        "file": "artwork/moon-dew-deer-awakened-v1.png",
+        "sha256": "e705aafeecfdb8e8b5a94f5e628809938e8283eed04a1ad3b04b3fc2c3dc474f"
+      }
+    ]
+  },
   "publicationAuthorization": null,
   "productionBaseline": {
     "version": "3.9.2",
@@ -23,9 +59,17 @@
     "theme": "仙女喜歡下凡做美食；初遇全部呈現靈獸，只有 SSR／UR 可覺醒為仙女，其餘永遠保持靈獸。",
     "count": 12,
     "urCount": 2,
-    "paletteSplit": { "light": 6, "dark": 6 },
+    "paletteSplit": {
+      "light": 6,
+      "dark": 6
+    },
     "style": "優雅溫柔；粉白與藍紫各半，蕾絲、蝴蝶結、薄紗、Ambient Light、馬卡龍與極光色；深色是柔和暮藍紫，避免黑紅惡魔風。",
-    "specialExperience": { "newRegion": true, "specialUnlock": true, "giftPet": true, "dedicatedAnimation": true },
+    "specialExperience": {
+      "newRegion": true,
+      "specialUnlock": true,
+      "giftPet": true,
+      "dedicatedAnimation": true
+    },
     "interviewComplete": true
   },
   "story": {
@@ -33,21 +77,280 @@
     "conflict": "雲上宴席的光與香逐漸消散；她們發現只收藏珍貴材料留不住滋味，必須真正陪伴、烹調並分享。",
     "relationships": "月露雪鹿照看清晨的花露與甜點，曜夜玄鴞守著夜灶與返航路；十位夥伴從採集、和麵、傳香到奉茶共同接起晨昏宴席。",
     "resolution": "晨昏兩道香氣重新匯入中央膳鼎，回家的雲橋亮起；四位 SSR／UR 在與玩家的羈絆儀式後顯現仙女真身。",
-    "boundaries": ["原創仙境，不冒稱特定神話的正史", "仙女使用成年女性造型，優雅非挑逗", "保留清楚的動物輪廓，不以人形拼圖代替初遇卡", "不讓 N／R／SR 取得仙女形態"]
+    "boundaries": [
+      "原創仙境，不冒稱特定神話的正史",
+      "仙女使用成年女性造型，優雅非挑逗",
+      "保留清楚的動物輪廓，不以人形拼圖代替初遇卡",
+      "不讓 N／R／SR 取得仙女形態"
+    ]
   },
   "roster": [
-    { "key": "moon_dew_deer", "name": "月露雪鹿", "rarity": "UR", "palette": "light", "species": "白鹿", "awakening": true, "availability": "initial", "element": "冰霜", "specialty": "scout", "affinityTags": ["nature", "frost"], "affinityReason": "珍惜晨露與花葉的清甜，喜歡清涼自然的食物。", "awakeningTitle": "月露司膳仙姬", "design": { "signature": "花枝鹿角、月滴吊飾、粉白薄紗與晶透蹄", "action": "以低頭的鹿角引下花露，落進待凝的果塔", "consequence": "露滴沿塔面結成光潔花紋，雲階亮起柔白歸路", "composition": "完整鹿身占主畫面，頭角與果塔形成視線連線；獨立 1:1，不含人形或設定板" } },
-    { "key": "night_radiance_owl", "name": "曜夜玄鴞", "rarity": "UR", "palette": "dark", "species": "雕鴞", "awakening": true, "availability": "initial", "element": "星光", "specialty": "guardian", "affinityTags": ["astral", "fire"], "affinityReason": "守夜灶並觀察星火，喜歡帶著暖意的星界料理。", "awakeningTitle": "曜夜守灶仙姬", "design": { "signature": "完整巨翼、紫藍眼、月冠與羽緣金絲", "action": "在夜灶旁展翼穩住風，讓莓香慢慢升起", "consequence": "散亂的香霧被聚成一條極光，引回晚歸的夥伴", "composition": "展翼建立 UR 威儀，羽毛與眼睛在小卡可辨；遠景減量，不增加惡魔角或人形" } },
-    { "key": "cherry_silk_fox", "name": "櫻紗靈狐", "rarity": "SSR", "palette": "light", "species": "狐狸", "awakening": true, "availability": "initial", "element": "木", "specialty": "companion", "affinityTags": ["nature", "harvest"], "affinityReason": "用果香與穀物安慰疲憊旅人，重視一起吃飯。", "awakeningTitle": "櫻紗點心仙子", "design": { "signature": "粉白狐尾、櫻花蕾絲領與雙緞帶", "action": "用尾尖卷起花瓣，替破裂的點心收攏外皮", "consequence": "裂口被花紋封住，熱香留在分給旅人的食盒裡", "composition": "狐臉、尾巴與食盒構成單一動作，避免變成無故事的服飾展示" } },
-    { "key": "indigo_mist_swan", "name": "霧靛羽鵠", "rarity": "SSR", "palette": "dark", "species": "天鵝", "awakening": true, "availability": "initial", "element": "星光", "specialty": "scholar", "affinityTags": ["astral", "frost"], "affinityReason": "辨讀蒸氣層次與夜露溫度，偏愛清澈柔和的味道。", "awakeningTitle": "霧靛調香仙子", "design": { "signature": "暮靛長頸、銀紫羽紗與珠鏈", "action": "沿蒸氣中的香紋尋找遺失的調味次序", "consequence": "混濁香霧分成清楚的藍紫層次，古食譜浮出圖案", "composition": "S 形長頸與香紋呼應，保持天鵝本體，不增加人手" } },
-    { "key": "cream_bow_rabbit", "name": "奶霜綺兔", "rarity": "SR", "palette": "light", "species": "兔", "awakening": false, "availability": "initial", "element": "木", "specialty": "gatherer", "affinityTags": ["nature", "harvest"], "affinityReason": "搜集嫩葉與穀香，喜歡容易分享的小點心。", "design": { "signature": "奶白耳、粉色耳結與蕾絲小圍裙", "action": "扶穩盛著奶霜與花瓣的食籃跨過雲階", "consequence": "搖晃的奶霜仍完整留下花瓣紋，食籃安全送到膳亭", "composition": "耳與籃是主要辨識點，保持兔足與兔身" } },
-    { "key": "blue_sugar_marten", "name": "藍糖霧貂", "rarity": "SR", "palette": "dark", "species": "貂", "awakening": false, "availability": "initial", "element": "冰霜", "specialty": "scout", "affinityTags": ["frost", "nature"], "affinityReason": "在涼霧中探路採糖，偏愛清甜的花露。", "design": { "signature": "灰藍長身、紫緞腰結與糖霜尾尖", "action": "先探身試踩覆著夜露的窄橋，回頭招呼慢步夥伴", "consequence": "霧中顯出一串安全的糖光足印", "composition": "長身側影與回望形成方向感，不把深色畫成純黑" } },
-    { "key": "peach_tea_squirrel", "name": "桃露茶栗", "rarity": "SR", "palette": "light", "species": "松鼠", "awakening": false, "availability": "expansion", "element": "木", "specialty": "gatherer", "affinityTags": ["nature", "harvest"], "affinityReason": "整理果實與花茶，愛惜採收的材料。", "design": { "signature": "桃粉大尾、白色蕾絲背帶與茶葉籃", "action": "把不同成熟度的果子分放進晨宴與夜宴食籃", "consequence": "果籃由凌亂變成有次序的粉白與藍紫兩列", "composition": "松鼠尾與雙籃清楚分層；贈寵保持靈獸" } },
-    { "key": "violet_cup_cat", "name": "紫盞雲狸", "rarity": "SR", "palette": "dark", "species": "貓", "awakening": false, "availability": "expansion", "element": "星光", "specialty": "companion", "affinityTags": ["astral", "nature"], "affinityReason": "把溫茶送到旅人手邊，喜歡柔和的花香。", "design": { "signature": "灰紫貓毛、透明頸紗與杯形月飾", "action": "靠著食盒陪晚歸夥伴等茶放涼", "consequence": "茶面倒映兩個靠近的影子，周圍夜霧散開", "composition": "貓臉和茶盞為近景，避免只有大面積特效" } },
-    { "key": "floral_silk_bird", "name": "花綃糖雀", "rarity": "R", "palette": "light", "species": "雀鳥", "awakening": false, "availability": "initial", "element": "木", "specialty": "gatherer", "affinityTags": ["nature"], "affinityReason": "從落花中挑選完整花瓣做料理裝飾。", "design": { "signature": "白粉短羽、綃帶尾飾與花瓣嘴銜", "action": "將一片完好的花瓣放在剛完成的小塔上", "consequence": "塔面形成最後一圈花冠，桌邊同伴抬頭等待", "composition": "小鳥與單一果塔足夠，不堆滿金飾" } },
-    { "key": "night_jam_hedgehog", "name": "夜莓綺蝟", "rarity": "R", "palette": "dark", "species": "刺蝟", "awakening": false, "availability": "initial", "element": "火", "specialty": "guardian", "affinityTags": ["fire", "harvest"], "affinityReason": "看守小灶熬莓醬，喜歡熟果與暖穀香。", "design": { "signature": "莓紫短刺、暮藍圍巾與小木勺", "action": "在風口護住莓醬小灶，仔細攪動鍋邊", "consequence": "將要熄滅的火恢復溫穩，莓醬不再溢出", "composition": "明確刺蝟輪廓，火光溫柔，避開戰鬥姿態" } },
-    { "key": "sugar_mist_butterfly", "name": "糖霧粉蝶", "rarity": "N", "palette": "light", "species": "蝴蝶", "awakening": false, "availability": "initial", "element": "木", "specialty": "companion", "affinityTags": ["nature"], "affinityReason": "停在花糖旁與夥伴分享微小甜意。", "design": { "signature": "淡粉透明蝶翼與自然蕾絲狀翼脈", "action": "輕扇翅膀把糖粉吹向一片剛出爐的餅", "consequence": "糖粉形成可辨的小花紋", "composition": "少量光點，蝶翼與餅上的花紋在縮圖仍讀得清" } },
-    { "key": "violet_dew_firefly", "name": "紫露星螢", "rarity": "N", "palette": "dark", "species": "螢火蟲", "awakening": false, "availability": "initial", "element": "星光", "specialty": "scout", "affinityTags": ["astral", "nature"], "affinityReason": "以微光帶路尋花露，喜歡不刺眼的星界氣息。", "design": { "signature": "紫藍翅鞘、露珠腹光與細小緞帶", "action": "在夜宴後沿空食籃飛行，帶採集隊回家", "consequence": "露珠依序點亮成路標，最遠的雲橋重新可見", "composition": "放大主螢，背景保留路標而不是整片光海" } }
+    {
+      "key": "moon_dew_deer",
+      "name": "月露雪鹿",
+      "rarity": "UR",
+      "palette": "light",
+      "species": "白鹿",
+      "awakening": true,
+      "availability": "initial",
+      "element": "冰霜",
+      "specialty": "scout",
+      "affinityTags": [
+        "nature",
+        "frost"
+      ],
+      "affinityReason": "珍惜晨露與花葉的清甜，喜歡清涼自然的食物。",
+      "awakeningTitle": "月露司膳仙姬",
+      "design": {
+        "signature": "花枝鹿角、月滴吊飾、粉白薄紗與晶透蹄",
+        "action": "以低頭的鹿角引下花露，落進待凝的果塔",
+        "consequence": "露滴沿塔面結成光潔花紋，雲階亮起柔白歸路",
+        "composition": "完整鹿身占主畫面，頭角與果塔形成視線連線；獨立 1:1，不含人形或設定板"
+      }
+    },
+    {
+      "key": "night_radiance_owl",
+      "name": "曜夜玄鴞",
+      "rarity": "UR",
+      "palette": "dark",
+      "species": "雕鴞",
+      "awakening": true,
+      "availability": "initial",
+      "element": "星光",
+      "specialty": "guardian",
+      "affinityTags": [
+        "astral",
+        "fire"
+      ],
+      "affinityReason": "守夜灶並觀察星火，喜歡帶著暖意的星界料理。",
+      "awakeningTitle": "曜夜守灶仙姬",
+      "design": {
+        "signature": "完整巨翼、紫藍眼、月冠與羽緣金絲",
+        "action": "在夜灶旁展翼穩住風，讓莓香慢慢升起",
+        "consequence": "散亂的香霧被聚成一條極光，引回晚歸的夥伴",
+        "composition": "展翼建立 UR 威儀，羽毛與眼睛在小卡可辨；遠景減量，不增加惡魔角或人形"
+      }
+    },
+    {
+      "key": "cherry_silk_fox",
+      "name": "櫻紗靈狐",
+      "rarity": "SSR",
+      "palette": "light",
+      "species": "狐狸",
+      "awakening": true,
+      "availability": "initial",
+      "element": "木",
+      "specialty": "companion",
+      "affinityTags": [
+        "nature",
+        "harvest"
+      ],
+      "affinityReason": "用果香與穀物安慰疲憊旅人，重視一起吃飯。",
+      "awakeningTitle": "櫻紗點心仙子",
+      "design": {
+        "signature": "粉白狐尾、櫻花蕾絲領與雙緞帶",
+        "action": "用尾尖卷起花瓣，替破裂的點心收攏外皮",
+        "consequence": "裂口被花紋封住，熱香留在分給旅人的食盒裡",
+        "composition": "狐臉、尾巴與食盒構成單一動作，避免變成無故事的服飾展示"
+      }
+    },
+    {
+      "key": "indigo_mist_swan",
+      "name": "霧靛羽鵠",
+      "rarity": "SSR",
+      "palette": "dark",
+      "species": "天鵝",
+      "awakening": true,
+      "availability": "initial",
+      "element": "星光",
+      "specialty": "scholar",
+      "affinityTags": [
+        "astral",
+        "frost"
+      ],
+      "affinityReason": "辨讀蒸氣層次與夜露溫度，偏愛清澈柔和的味道。",
+      "awakeningTitle": "霧靛調香仙子",
+      "design": {
+        "signature": "暮靛長頸、銀紫羽紗與珠鏈",
+        "action": "沿蒸氣中的香紋尋找遺失的調味次序",
+        "consequence": "混濁香霧分成清楚的藍紫層次，古食譜浮出圖案",
+        "composition": "S 形長頸與香紋呼應，保持天鵝本體，不增加人手"
+      }
+    },
+    {
+      "key": "cream_bow_rabbit",
+      "name": "奶霜綺兔",
+      "rarity": "SR",
+      "palette": "light",
+      "species": "兔",
+      "awakening": false,
+      "availability": "initial",
+      "element": "木",
+      "specialty": "gatherer",
+      "affinityTags": [
+        "nature",
+        "harvest"
+      ],
+      "affinityReason": "搜集嫩葉與穀香，喜歡容易分享的小點心。",
+      "design": {
+        "signature": "奶白耳、粉色耳結與蕾絲小圍裙",
+        "action": "扶穩盛著奶霜與花瓣的食籃跨過雲階",
+        "consequence": "搖晃的奶霜仍完整留下花瓣紋，食籃安全送到膳亭",
+        "composition": "耳與籃是主要辨識點，保持兔足與兔身"
+      }
+    },
+    {
+      "key": "blue_sugar_marten",
+      "name": "藍糖霧貂",
+      "rarity": "SR",
+      "palette": "dark",
+      "species": "貂",
+      "awakening": false,
+      "availability": "initial",
+      "element": "冰霜",
+      "specialty": "scout",
+      "affinityTags": [
+        "frost",
+        "nature"
+      ],
+      "affinityReason": "在涼霧中探路採糖，偏愛清甜的花露。",
+      "design": {
+        "signature": "灰藍長身、紫緞腰結與糖霜尾尖",
+        "action": "先探身試踩覆著夜露的窄橋，回頭招呼慢步夥伴",
+        "consequence": "霧中顯出一串安全的糖光足印",
+        "composition": "長身側影與回望形成方向感，不把深色畫成純黑"
+      }
+    },
+    {
+      "key": "peach_tea_squirrel",
+      "name": "桃露茶栗",
+      "rarity": "SR",
+      "palette": "light",
+      "species": "松鼠",
+      "awakening": false,
+      "availability": "expansion",
+      "element": "木",
+      "specialty": "gatherer",
+      "affinityTags": [
+        "nature",
+        "harvest"
+      ],
+      "affinityReason": "整理果實與花茶，愛惜採收的材料。",
+      "design": {
+        "signature": "桃粉大尾、白色蕾絲背帶與茶葉籃",
+        "action": "把不同成熟度的果子分放進晨宴與夜宴食籃",
+        "consequence": "果籃由凌亂變成有次序的粉白與藍紫兩列",
+        "composition": "松鼠尾與雙籃清楚分層；贈寵保持靈獸"
+      }
+    },
+    {
+      "key": "violet_cup_cat",
+      "name": "紫盞雲狸",
+      "rarity": "SR",
+      "palette": "dark",
+      "species": "貓",
+      "awakening": false,
+      "availability": "expansion",
+      "element": "星光",
+      "specialty": "companion",
+      "affinityTags": [
+        "astral",
+        "nature"
+      ],
+      "affinityReason": "把溫茶送到旅人手邊，喜歡柔和的花香。",
+      "design": {
+        "signature": "灰紫貓毛、透明頸紗與杯形月飾",
+        "action": "靠著食盒陪晚歸夥伴等茶放涼",
+        "consequence": "茶面倒映兩個靠近的影子，周圍夜霧散開",
+        "composition": "貓臉和茶盞為近景，避免只有大面積特效"
+      }
+    },
+    {
+      "key": "floral_silk_bird",
+      "name": "花綃糖雀",
+      "rarity": "R",
+      "palette": "light",
+      "species": "雀鳥",
+      "awakening": false,
+      "availability": "initial",
+      "element": "木",
+      "specialty": "gatherer",
+      "affinityTags": [
+        "nature"
+      ],
+      "affinityReason": "從落花中挑選完整花瓣做料理裝飾。",
+      "design": {
+        "signature": "白粉短羽、綃帶尾飾與花瓣嘴銜",
+        "action": "將一片完好的花瓣放在剛完成的小塔上",
+        "consequence": "塔面形成最後一圈花冠，桌邊同伴抬頭等待",
+        "composition": "小鳥與單一果塔足夠，不堆滿金飾"
+      }
+    },
+    {
+      "key": "night_jam_hedgehog",
+      "name": "夜莓綺蝟",
+      "rarity": "R",
+      "palette": "dark",
+      "species": "刺蝟",
+      "awakening": false,
+      "availability": "initial",
+      "element": "火",
+      "specialty": "guardian",
+      "affinityTags": [
+        "fire",
+        "harvest"
+      ],
+      "affinityReason": "看守小灶熬莓醬，喜歡熟果與暖穀香。",
+      "design": {
+        "signature": "莓紫短刺、暮藍圍巾與小木勺",
+        "action": "在風口護住莓醬小灶，仔細攪動鍋邊",
+        "consequence": "將要熄滅的火恢復溫穩，莓醬不再溢出",
+        "composition": "明確刺蝟輪廓，火光溫柔，避開戰鬥姿態"
+      }
+    },
+    {
+      "key": "sugar_mist_butterfly",
+      "name": "糖霧粉蝶",
+      "rarity": "N",
+      "palette": "light",
+      "species": "蝴蝶",
+      "awakening": false,
+      "availability": "initial",
+      "element": "木",
+      "specialty": "companion",
+      "affinityTags": [
+        "nature"
+      ],
+      "affinityReason": "停在花糖旁與夥伴分享微小甜意。",
+      "design": {
+        "signature": "淡粉透明蝶翼與自然蕾絲狀翼脈",
+        "action": "輕扇翅膀把糖粉吹向一片剛出爐的餅",
+        "consequence": "糖粉形成可辨的小花紋",
+        "composition": "少量光點，蝶翼與餅上的花紋在縮圖仍讀得清"
+      }
+    },
+    {
+      "key": "violet_dew_firefly",
+      "name": "紫露星螢",
+      "rarity": "N",
+      "palette": "dark",
+      "species": "螢火蟲",
+      "awakening": false,
+      "availability": "initial",
+      "element": "星光",
+      "specialty": "scout",
+      "affinityTags": [
+        "astral",
+        "nature"
+      ],
+      "affinityReason": "以微光帶路尋花露，喜歡不刺眼的星界氣息。",
+      "design": {
+        "signature": "紫藍翅鞘、露珠腹光與細小緞帶",
+        "action": "在夜宴後沿空食籃飛行，帶採集隊回家",
+        "consequence": "露珠依序點亮成路標，最遠的雲橋重新可見",
+        "composition": "放大主螢，背景保留路標而不是整片光海"
+      }
+    }
   ],
   "specialUnlock": {
     "status": "proposed-not-configured",
@@ -56,7 +359,10 @@
     "title": "晨昏共席",
     "initialCount": 10,
     "expandedCount": 12,
-    "addedKeys": ["peach_tea_squirrel", "violet_cup_cat"],
+    "addedKeys": [
+      "peach_tea_squirrel",
+      "violet_cup_cat"
+    ],
     "giftKey": "peach_tea_squirrel",
     "giftCount": 1,
     "giftIncludedInRoster": true,
@@ -65,7 +371,10 @@
     "duplicatePolicy": "Use existing first-encounter/duplicate-fragment transaction; no additional pet and no repeated gift on replay, reload or cross-tab recovery."
   },
   "awakening": {
-    "eligibleRarities": ["SSR", "UR"],
+    "eligibleRarities": [
+      "SSR",
+      "UR"
+    ],
     "eligibleCount": 4,
     "approach": "Extend controlled awakening profile and catalog, preserving schemaVersion 1 and existing atomic ceremony flow.",
     "trial": "Owned pet, bond Lv.5 and claimed Lv.5 story; after accepting trial, three new task/habit completions and a new dispatch to aurora_feast_garden with this pet, followed by reward claim.",
@@ -75,12 +384,26 @@
   "food": {
     "id": "item_aurora_flower_tart",
     "name": "霓霞花露塔",
-    "recipe": { "forest_leaf": 2, "aurora_flower_dew": 3 },
-    "favoriteTags": ["nature", "astral"],
+    "recipe": {
+      "forest_leaf": 2,
+      "aurora_flower_dew": 3
+    },
+    "favoriteTags": [
+      "nature",
+      "astral"
+    ],
     "bondExp": 75,
     "favoriteBonusBondExp": 150,
     "effectNote": "Matching total 150, not 75+150. Existing daily/transaction limits apply.",
-    "sources": { "forest_leaf": ["mist_forest", "cloudrest_trail"], "aurora_flower_dew": ["aurora_feast_garden"] },
+    "sources": {
+      "forest_leaf": [
+        "mist_forest",
+        "cloudrest_trail"
+      ],
+      "aurora_flower_dew": [
+        "aurora_feast_garden"
+      ]
+    },
     "matchingRosterCount": 11,
     "nonmatchingKey": "night_jam_hedgehog"
   },
@@ -89,21 +412,65 @@
     "id": "aurora_feast_garden",
     "name": "霓霞膳庭",
     "description": "雲上採香花園與晨昏膳亭；循香尋路、修復雲橋，再把花露帶回人間的工坊。",
-    "unlock": { "type": "rustic_pet", "poolTags": ["aurora_fairy_feast"], "hint": "擁有任一霓霞仙膳靈獸即可前往" },
-    "unlockApproach": "Existing generic trait matcher supports explicit poolTags and custom hint; do not add broad keyword/element matches that allow unrelated pets. Expansion pets also retain the shared base series tag.",
+    "unlock": {
+      "type": "rustic_pet",
+      "poolTags": [
+        "aurora_fairy_feast",
+        "aurora_fairy_feast_expanded"
+      ],
+      "hint": "擁有任一霓霞仙膳靈獸即可前往"
+    },
+    "unlockApproach": "Use both explicit base and expansion tags in the existing generic matcher. Expansion pets must not carry the base tag, preventing appearance before the twenty-draw unlock.",
     "durationMinutes": 60,
     "energyCost": 5,
-    "rewards": { "stardust": { "min": 30, "max": 60 }, "material": { "id": "aurora_flower_dew", "name": "霓霞花露", "min": 1, "max": 2 }, "bondExp": 10 },
+    "rewards": {
+      "stardust": {
+        "min": 30,
+        "max": 60
+      },
+      "material": {
+        "id": "aurora_flower_dew",
+        "name": "霓霞花露",
+        "min": 1,
+        "max": 2
+      },
+      "bondExp": 10
+    },
     "story": "中央膳鼎的香氣失散成晨露與夜霧；採集隊走過重新亮起的雲階，找回花露和分享食物的方法。",
     "discovery": "雲橋盡頭的舊食譜只畫了兩副碗筷：真正留住香氣的是等待與共食。",
     "milestones": [
-      { "progress": 10, "name": "沿香入庭", "story": "第一串露光標出通往膳亭的石階。", "stardust": 30 },
-      { "progress": 25, "name": "晨露採香", "story": "採集隊學會留下未熟的花露，不再一次摘空花園。", "stardust": 50 },
-      { "progress": 50, "name": "夜灶留火", "story": "夜宴的小火為晚歸者一直留著，兩道香氣開始靠近。", "stardust": 80 },
-      { "progress": 75, "name": "雲橋共渡", "story": "食籃接力跨過薄霧，晨宴與夜宴第一次互換食物。", "stardust": 100 },
-      { "progress": 100, "name": "霓霞共席", "story": "晨昏香氣回到膳鼎，所有席位都有一份為同行者留下的點心。", "stardust": 150 }
+      {
+        "progress": 10,
+        "name": "沿香入庭",
+        "story": "第一串露光標出通往膳亭的石階。",
+        "stardust": 30
+      },
+      {
+        "progress": 25,
+        "name": "晨露採香",
+        "story": "採集隊學會留下未熟的花露，不再一次摘空花園。",
+        "stardust": 50
+      },
+      {
+        "progress": 50,
+        "name": "夜灶留火",
+        "story": "夜宴的小火為晚歸者一直留著，兩道香氣開始靠近。",
+        "stardust": 80
+      },
+      {
+        "progress": 75,
+        "name": "雲橋共渡",
+        "story": "食籃接力跨過薄霧，晨宴與夜宴第一次互換食物。",
+        "stardust": 100
+      },
+      {
+        "progress": 100,
+        "name": "霓霞共席",
+        "story": "晨昏香氣回到膳鼎，所有席位都有一份為同行者留下的點心。",
+        "stardust": 150
+      }
     ],
-    "artworkStatus": "user-supplied-concept-human-review-pending",
+    "artworkStatus": "concept-human-approved-runtime-format-and-App-review-pending",
     "targetArtwork": "assets/expeditions/aurora_feast_garden.webp",
     "artworkAcceptance": "16:9 at least 960x540; complete decode, map-card and dispatch-dialog desktop/mobile crops, failed-load usability, artifact inclusion/precache/offline. Concept file 1672x941 is near 16:9, not final runtime WebP."
   },
@@ -113,8 +480,18 @@
     "entry": "Cloud stair appears, dawn and dusk food baskets approach the central pavilion, two fragrance trails meet at the feast bowl; official pool name followed by two lines and continue prompt.",
     "entryMs": 3400,
     "entryFadeMs": 550,
-    "preludeMs": [650, 750, 900, 700],
-    "prelude": ["花露凝光", "晨昏開席", "香氣織成緞帶", "靈獸輪廓顯現"],
+    "preludeMs": [
+      650,
+      750,
+      900,
+      700
+    ],
+    "prelude": [
+      "花露凝光",
+      "晨昏開席",
+      "香氣織成緞帶",
+      "靈獸輪廓顯現"
+    ],
     "ssrMs": 2500,
     "urMs": 4500,
     "reducedMotionEntryMs": 500,
@@ -123,8 +500,25 @@
     "geometry": "Cloud bridge, kitchen, fragrance and aurora share scene coordinates; instance-unique SVG clip/paint IDs.",
     "review": "Later pinned-artifact interactive viewer must include entry/switch, single/ten pulls with duplicates, both UR and both SSR, normal/reduced-motion/replay/skip; no draw/wallet/collection API calls."
   },
-  "representativeArt": {"manifest":"representative-art-v1.json","status":"human-review-pending","forms":["initial","awakened"],"humanApproval":null,"framingCorrectionPending":true},
-  "nextGate": "Human feedback on the two new Moon Dew Snow Deer cards; concept direction continued by user, no exact-image or publication approval.",
+  "representativeArt": {
+    "manifest": "representative-art-v1.json",
+    "status": "human-approved",
+    "forms": [
+      "initial",
+      "awakened"
+    ],
+    "humanApproval": "human-art-approval-20261009.json",
+    "framingCorrectionPending": false
+  },
+  "nextGate": "Complete controlled runtime support and remaining artwork, then human exact-image review of newly generated images.",
   "formalAuthoringStatus": "not-initialized-runtime-support-not-yet-reviewed",
-  "implementationOrder": ["Preserve references, review story/art at card size", "Produce independent light-UR beast/fairy representative pair after human art feedback", "Implement controlled theme/unlock/region/awakening support in a separately verified checkpoint", "Initialize SOP2 authoring at reviewed source and allocate real IDs; transfer design fields, build content/ecosystem/prompts and AI receipts", "Finish remaining cards and four fairy forms, human exact-image review", "Stage pinned artifacts, full flow/animation/offline checks and final human package acceptance", "Await explicit 可以發布 bound to current packageHash before merge/push/deploy"]
+  "implementationOrder": [
+    "Preserve references, review story/art at card size",
+    "Produce independent light-UR beast/fairy representative pair after human art feedback",
+    "Implement controlled theme/unlock/region/awakening support in a separately verified checkpoint",
+    "Initialize SOP2 authoring at reviewed source and allocate real IDs; transfer design fields, build content/ecosystem/prompts and AI receipts",
+    "Finish remaining cards and four fairy forms, human exact-image review",
+    "Stage pinned artifacts, full flow/animation/offline checks and final human package acceptance",
+    "Await explicit 可以發布 bound to current packageHash before merge/push/deploy"
+  ]
 }
