@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.9.3
+ * QuestNote Service Worker — V3.9.8
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-2235b544cd0e05856ee8bda232c79ef6f4361e2cc7128dae805c4e4512d07e31';
+const CACHE_NAME = 'questnote-production-app-af81a876ca6928ffbf219fb8d4cecbee348a33d3a0bbc587b08bb5962f9e3331';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,14 +40,14 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "2235b544cd0e05856ee8bda232c79ef6f4361e2cc7128dae805c4e4512d07e31",
-  "sourceCommit": "966c4c6848e1050484ba81f0d574d6299d438b2c",
+  "artifactId": "af81a876ca6928ffbf219fb8d4cecbee348a33d3a0bbc587b08bb5962f9e3331",
+  "sourceCommit": "ef418f80f8a88272fa802ab3c9bddd6e1241b672",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
   "cacheNamespace": "questnote-production-",
-  "contentBundleSha256": "559a95ea01c6b2ea6428346ed1bf6d1d46d940247369d57a31f0c81c137233d2",
-  "contentBundleUrl": "data/releases/559a95ea01c6b2ea6428346ed1bf6d1d46d940247369d57a31f0c81c137233d2/catalog.json"
+  "contentBundleSha256": "53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046",
+  "contentBundleUrl": "data/releases/53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046/catalog.json"
 };
 const PRECACHE_HASHES = {
   "assets/brand/questnote-icon-180.png": "568c5f586481050de3c0263794de557f36acb340346eba7db1a9cdc7b000f9bf",
@@ -83,20 +83,20 @@ const PRECACHE_HASHES = {
   "data/expeditions.json": "34620b7aaf50f26d91d560050c76acc71dab148510e6275e1dfe6c73f272aca2",
   "data/gift-affinities.json": "9de6c95bd696bf98955c0fd04ffcf0ad3a23dd9667a9b388ae8329000eab324b",
   "data/materials.json": "e301faa6c4f7d8c5ca4bc771d189917cab56f07f3457883bad84849489969455",
-  "data/pet-awakening.json": "3ff5161ac3d276653c6341158f5b830b445f93bc4f4c7905158e8cc4bfeb6409",
+  "data/pet-awakening.json": "8763088091b95b9eff801668889add2cdff1d6529137c24d11ede8e7260357c5",
   "data/pet-series.json": "b176c710383e78b2e0b6d543bfce5d4244438dfabf2b38806c972f9b555dbc57",
   "data/pets-lore.json": "77dce9e5fbab60b01bf31d5b2e73564c4feeadd8f63380c18bebfec128d6123f",
   "data/pets.json": "a90c6afec9c1d7f95f6dff52020ece50c18d820e5c386a0a067618e9b20b9d00",
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
-  "data/releases/559a95ea01c6b2ea6428346ed1bf6d1d46d940247369d57a31f0c81c137233d2/catalog.json": "559a95ea01c6b2ea6428346ed1bf6d1d46d940247369d57a31f0c81c137233d2",
+  "data/releases/53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046/catalog.json": "53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "53bbaee6698ea28e2eb1f85ed8d528317ad4ee3a9d0c6da51eda380a776fcf6a",
+  "index.html": "61a8916e90c00648821e07158b62df92174c69bb975d0e9f10d86be339113dec",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
   "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
   "src/app.js": "6a859ee004d1e4e7ce7f296a7cee411ec2665b6fd11c4bf006452bdc3a1e838d",
-  "src/aurora-fairy-feast.css": "1257ed271007548d4556a8c19c9948b6221ac7c91cd5a3b8e1382fba1aff2feb",
-  "src/auroraFairyScene.js": "e541a90166e670c6f687ef34eb499dcdbcfc88fb877e9c436ab36d286276c361",
+  "src/aurora-fairy-feast.css": "ab9065ef79cd852cac4df844bc3eb61c4923a89bed4f259dd88d40c3c1ab24cd",
+  "src/auroraFairyScene.js": "923dd1fd463546907f90ac6ad11b2609d01251fce91efbcad52bd4e4390403d4",
   "src/backupSchema.js": "3fc63f7f15df349cfe941c855ae9b08c26301635fc2eae7315659e23863dabd9",
   "src/backupService.js": "f178428819ec117dc10491e578ecb02dd7f9736e1c0b163b736db1392c9e2dee",
   "src/bond-journey.css": "c5ada471a6ac232974153239c91b6d4628dc5c4decf32b5f256f031f2346ee49",
@@ -128,17 +128,17 @@ const PRECACHE_HASHES = {
   "src/dialogFocus.js": "4f57540c2d50ec2ff6a82c7996940466e21b2a212f349a963897bfa76a094a67",
   "src/encounter-ceremony.css": "ae74aac4b2d91c35d0728cf02c049e1d0cfc09bc6c316d0d65286a3e30ed6c5f",
   "src/encounter-invitation.css": "6a258ae8be9a0532b269a289b65f0473620d8b140bfd8c35bbb99695577e2d89",
-  "src/encounter-view.css": "bd10931683af90471ce816323702830d111a7bd4ddc96fabaa3a2f045ac6479a",
-  "src/encounterCeremony.js": "27923f44dc58b7a4ccbd29c67e526075845b1bb06ab5cc7f2b6567fb39d78db4",
+  "src/encounter-view.css": "4348fd88299cffa7b77e506386af3b7b948f976a7de073dd4e08461c98503ba4",
+  "src/encounterCeremony.js": "3b4f57608663561e35e4c84be191237faad5dda659e517fd7cd37e48026b879d",
   "src/encounterEconomyCore.js": "5b6be21fa2f94c723e853ab69b60c20b90bf05bbf04b04532126868c7c722f1b",
   "src/encounterEconomyService.js": "7f7ed8f10ab135f512e1a0089cfc92173177602999ee29319dc867775d1361e1",
   "src/encounterScenery.js": "f94fe3d764ec0c920674f6991fe4ed271741ec1e960170a2f9e7c12baa9adef9",
-  "src/encounterView.js": "fbda8f7c41640843bb5a3e3efb82d36fda8468fb86d8868d187debf1b88ad4e7",
+  "src/encounterView.js": "548214a0ad356ee02d0ee25065eaa376097e8d158bb5d911c564546a6b85d672",
   "src/encounterViewModel.js": "8897d6d065c40ac300e7fa0adda9bbe46d86839592a695bd291efb8eec00ad7e",
-  "src/expeditionGameplay.js": "336da891b7fc35170af4b798704de3da669945e754f945b4ad7e1f711d45fd1d",
-  "src/expeditionService.js": "f07679b891fd4ece328b0ac0af032a0c995a46ba1f162a966ac6b908576b88fe",
+  "src/expeditionGameplay.js": "27663ced39bf8c562a021f47c04e6170c5e40c06d051520cfe0d73a93e3d162a",
+  "src/expeditionService.js": "5dabcb16917d0b37e8bf6e9fac0b7f6fc99845e8ad766dd959104fe5cfe0ac0e",
   "src/expeditionStatusService.js": "99e665eea61bc0de3f9dcc6a1f1cfe01c17914f27b4bf3ce6347ef7d7302e3e5",
-  "src/explorationService.js": "4f535540771ad9164d022aa40e7c2fd46bb4c4cb054c84bad73646aa9e496c1f",
+  "src/explorationService.js": "c83b5a3d12a35cf3f99009bce9983981d6b46c1ed9f8ff50463b2eff3c9c30b2",
   "src/feedbackConfig.js": "77e9eda8efe76ad2ea3d1d216d10be01bb219c954c6c619e925d8e2aeafe49f7",
   "src/feedbackController.js": "9ff600987abd7476b7e6e1bfecb9610ba93588dc0b0930b3c3378c8c78b83e76",
   "src/feedbackService.js": "f96898f3d97d6dc86157f65aae8e8f2b763f222b04bf778aab386276d8bb9310",
@@ -171,17 +171,18 @@ const PRECACHE_HASHES = {
   "src/onboardingService.js": "a3726b9cdcccdc9247288f89a4716ee16a0d9303141554a8c2ae985d1c87f981",
   "src/perfDiagnostics.js": "e6e5e3a4fe72ec00df1bd5469147b07d3d6cf8377e9ec691b2908af2cfd494d7",
   "src/pet-awakening.css": "cedd4a35bc82055d63d1291bc82ba86a1ff344dbb3d9b37d9fd9171c408c21f9",
-  "src/petAwakeningCatalog.js": "0225998d6d84a161abf2b207c4af985b35e62edaf16577ad43164a83f975caf8",
+  "src/petAwakeningCatalog.js": "f8f96727d4d7858b4ba7f06c6c4e85bc380d77101e1e619cf390594680b3248c",
   "src/petAwakeningController.js": "d9bf0458a9cf4ed26e128ea7dadc626bed240c1c41947ddb76037398db9cdc33",
   "src/petAwakeningCore.js": "d95680994395d6c8ccddd889f8fd623a24d9b3c6271b76024061b8ee19c768e3",
-  "src/petAwakeningProfiles.js": "9b851e97538df94c3ee6fbdbae4187dcb07ef9d3d0fcf6ac1e88511a4c64ddd6",
-  "src/petAwakeningScene.js": "249bbdc04b962309bc7fe53a980feefdf10a3e70c40b28952da3df6229a4b8c6",
+  "src/petAwakeningProfiles.js": "cab3c3852844e09469b63a2302f73daa510c32b6ac112b1d827a44a0caebff4c",
+  "src/petAwakeningScene.js": "9dcd92cb7226ea5c9da85c90c8a6882f28c36671aff0edb1cd139450ed916f60",
   "src/petAwakeningService.js": "6ede963157205f75fbf0e20dfbd7d6b699dc380b1b9da6172fc3674fdece04d6",
-  "src/petAwakeningView.js": "18e78b9dc95b4414dbe73ce34459bce41359d7903d4484ca1883385a6e8d69a1",
+  "src/petAwakeningView.js": "abbd39538d28f510e58dfb7faa2e89233025b5fb23be81ecef9567895ab3a73a",
   "src/petDataSchema.js": "2520849bac99b64337a17ed7836294749a1ff7fe9820391a0f9a71e6f1a7172b",
   "src/petPoolFilter.js": "8aab1c055fbdcd40209864ab4ec8b489cb284c73bcded88fa8a45e7b4eacb6db",
   "src/poolAwakeningController.js": "9db87f801c43d1fe4a69e8b0c91a119ae0e6622f0d477246b606aa56eabf3b51",
-  "src/poolContentContract.js": "1ae79b74f5bfe949448eaed6a820bfda52e1e322886872f97d25a5d534c78bfd",
+  "src/poolAwakeningPreview.js": "9b8a5b6c4aea6ca36fcab3683077519b56873e927c3931cdb7513a73c7c5c6df",
+  "src/poolContentContract.js": "a4628d92d441bd091a8ef2c7d0e464c4a5fb9c189670b352e1f35b5310b76e6b",
   "src/poolDebutService.js": "e820255c52313e465679be1f1ba2a26492dfe0aca7cbfbd8f3627716552e7f7c",
   "src/poolPresentation.js": "1b7ea97b7009174328e43af8050d4f0d67da9e535fd222e8ade2c544a05661bf",
   "src/poolUnlockCore.js": "870277d0f58c7d504883d7223078a0e1bc492e7008794e2f74c6afd6d4f67463",
@@ -190,7 +191,7 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
   "src/questService.js": "ae9532ad78abb8af981d3d76adb9f06f132e81e1fed945bd77a608a7dd2bfa3b",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "ef3c6b70c3325407604d4879b015e68224c96b46dab372dd5a6ee128c6e78e03",
+  "src/releaseProfile.js": "6015eb9a67689239a5cf138d2734ede37a85693c789ee69fdea361859d60d5d7",
   "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "f9cfd9f99703dfd3e91f12f4382716875964b09785bf67418dfdc607c5cb1c5d",
@@ -203,7 +204,7 @@ const PRECACHE_HASHES = {
   "src/standardUrCarousel.js": "8e2f9f84a14399e61a206d39d1e75ebd1903d025a24866b9b899fe77520deae3",
   "src/styles.css": "62a748102053cf60c0ecf078cf6726952b15fe95f9a90bd9fa34d2e05fd94582",
   "src/summon-polish.css": "247f7bcd99b0fc1473af045c82301c0eebbfd11aaf54203bcabab989e5d9722a",
-  "src/summonRevealService.js": "670fbdb42453e36bc96bd881a14acc2fa4f8321066ad3d19df11d4bba3b23757",
+  "src/summonRevealService.js": "9336c84e34de82110ad54c10b3b69ec29a945e5b1e4a2f70ec1d06d63fcbd136",
   "src/summonTiming.js": "076431aef8d6fe9bb4c3ad5bd82ca3c985be10c4b02ed50dae086f6f619c7ae5",
   "src/swordwild-shanhe.css": "fd251695bcca1fe0e60dbeae142d3dcb0f41654b9ba3d5db019758c226f94143",
   "src/swordwildShanheScene.js": "0f61a0bcd593ccaa5fa4560102fc109324e88b78b52b55d70036fd2a317807aa",
@@ -215,7 +216,7 @@ const PRECACHE_HASHES = {
   "src/taskWizard.js": "2e34043e20dc9808b0e05c09daf714124c8e3e867216ea9d9188530d9ac9fe1c",
   "src/theme-refinements.css": "370638cec0f341c32b1646084a1ad9917240d494cb4b2b197040aa753010fe95",
   "src/theme-system.css": "4276e7af30e0cb179e7bde03900818020120a1cd6d0c8e63e87aaab3f3b4a670",
-  "src/themedSummonController.js": "5e3d4d6810ea8cb2794b10fc09e604330cb6bea14ed6de8ee1c737bee8917908",
+  "src/themedSummonController.js": "33b7c08c03cb9b076111071cd1409c569ed50bcb25e4ea23123fc6eb31cee784",
   "src/themeRegistry.js": "d4c935dd737d662dffc17bcd4fe6d243aac583095ab5ac2ec43b76126df7bafb",
   "src/themeTokens.css": "7a898e987663c925e1913aafaa318d352048b294553affa068360f2d4ec3a596",
   "src/todayHabitsView.js": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
@@ -226,7 +227,7 @@ const PRECACHE_HASHES = {
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "2eaa58138451e3dbb188a904ce93785056f8bd0150996a8dad6d24527f563322",
+  "src/version.js": "03da3e8ec7027e266891d5b5a2f8ab0b2d7ea17a8168dbf610b77fc6664bd059",
   "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
   "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
 };
@@ -271,7 +272,7 @@ const PRECACHE_URLS = [
   "data/pets-lore.json",
   "data/pets.json",
   "data/pools.json",
-  "data/releases/559a95ea01c6b2ea6428346ed1bf6d1d46d940247369d57a31f0c81c137233d2/catalog.json",
+  "data/releases/53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046/catalog.json",
   "data/titles.json",
   "index.html",
   "manifest.webmanifest",
@@ -364,6 +365,7 @@ const PRECACHE_URLS = [
   "src/petDataSchema.js",
   "src/petPoolFilter.js",
   "src/poolAwakeningController.js",
+  "src/poolAwakeningPreview.js",
   "src/poolContentContract.js",
   "src/poolDebutService.js",
   "src/poolPresentation.js",

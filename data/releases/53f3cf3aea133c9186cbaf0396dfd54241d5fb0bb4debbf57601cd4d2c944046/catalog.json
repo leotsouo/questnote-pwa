@@ -3129,6 +3129,395 @@
       }
     ]
   },
+  "poolsData": {
+    "pools": [
+      {
+        "id": "standard",
+        "name": "星旅之原",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "standard"
+          ]
+        },
+        "tenPullGuarantee": "SR"
+      },
+      {
+        "id": "eternal_slumber_bloom",
+        "name": "永眠花海",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "eternal_slumber_bloom"
+          ]
+        },
+        "presentation": {
+          "themeKey": "eternal_slumber_bloom",
+          "badge": "限定系列",
+          "eyebrow": "月皇花已於長夜中甦醒",
+          "tagline": "將散落的夢塵投入鏡池，喚醒沉睡於花庭深處的生命。",
+          "heroPetId": "pet_ur05",
+          "featuredPetIds": [
+            "pet_ssr05",
+            "pet_ssr06"
+          ],
+          "animationKey": "dream_bloom"
+        },
+        "unlockExpansion": {
+          "key": "morning_garden",
+          "threshold": 20,
+          "progressScope": "lifetime_pool_draws",
+          "extraPoolTags": [
+            "eternal_slumber_bloom_awakened"
+          ],
+          "rewardPetId": "pet_r16",
+          "animationKey": "morning_garden_unlock",
+          "title": "晨醒花庭",
+          "unlockMessage": "沉眠有歸，甦醒有時。"
+        },
+        "tenPullGuarantee": "SR"
+      },
+      {
+        "id": "frost_oath_fjord",
+        "name": "霜誓峽灣",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "frost_oath_fjord"
+          ]
+        },
+        "presentation": {
+          "themeKey": "glacier_arrival",
+          "animationKey": "glacier_arrival",
+          "heroPetId": "pet_ur07",
+          "featuredPetIds": [
+            "pet_ssr08",
+            "pet_ssr09",
+            "pet_n20"
+          ],
+          "badge": "北境新地域",
+          "eyebrow": "循著誓火，抵達冰河盡頭的船港。",
+          "tagline": "風雪越烈，誓約越亮。",
+          "debutLines": [
+            "冰壁之間",
+            "誓火引路",
+            "霜誓峽灣"
+          ],
+          "debutLabel": "抵達霜誓峽灣",
+          "detailsNote": "十二隻遠航夥伴從第一抽起皆可抽取；無抽數解鎖或額外贈寵。主打角色不另加權。",
+          "candidateNote": "僅含霜誓峽灣 12 隻夥伴，不含其他系列寵物。"
+        },
+        "tenPullGuarantee": "SR"
+      },
+      {
+        "id": "honeylight_sugar_garden_v2",
+        "name": "蜜光糖庭",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "honeylight_sugar_garden_v2"
+          ]
+        },
+        "presentation": {
+          "themeKey": "honeylight_sugar",
+          "animationKey": "honeylight_sugar",
+          "heroPetId": "pet_ur10",
+          "featuredPetIds": [
+            "pet_ur09",
+            "pet_ssr12",
+            "pet_ssr13"
+          ],
+          "badge": "糖庭新地域",
+          "eyebrow": "糖晶溫室與暖香烘焙街，為每一個小進展留下甜味。",
+          "tagline": "每一步努力，都值得一點甜。",
+          "detailsNote": "12 隻皆從第一抽開放，無解鎖、無贈寵。雙 UR：焦糖布蕾海獺、千層奶霜天鵝；主打角色不另加權。",
+          "candidateNote": "僅含蜜光糖庭 12 隻夥伴，不含其他系列寵物。",
+          "debutLabel": "蜜光糖庭登場",
+          "debutLines": [
+            "糖庭亮起",
+            "甜蜜相遇"
+          ]
+        },
+        "tenPullGuarantee": "SR"
+      },
+      {
+        "id": "swordwild_shanhe_v3",
+        "name": "劍隱山河",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "swordwild_shanhe_v3"
+          ]
+        },
+        "presentation": {
+          "themeKey": "swordwild_shanhe",
+          "animationKey": "swordwild_shanhe",
+          "heroPetId": "pet_ur16",
+          "featuredPetIds": [
+            "pet_ur17",
+            "pet_ur18",
+            "pet_ssr21",
+            "pet_ssr22"
+          ],
+          "badge": "山河新篇",
+          "eyebrow": "山重，而一諾更重。",
+          "tagline": "替每個同行者，留一段能走的路。",
+          "debutLines": [
+            "一諾入山",
+            "百川同行",
+            "劍隱山河"
+          ],
+          "debutLabel": "踏入雲棧古道",
+          "detailsNote": "20 隻夥伴從第一抽全部開放，無抽數解鎖或贈寵。三 UR：玄翎重岳雕、丹砂鎮嶺蛤、素心劍猿；主打角色不另加權。同一稀有度內依既有抽卡規則選取。",
+          "candidateNote": "僅含劍隱山河20隻夥伴；不含其他系列。專屬山河啟卷入場、劍光赴約抽獎與三UR故事揭露。"
+        },
+        "tenPullGuarantee": "SR"
+      },
+      {
+        "id": "lionheart_inverse_oath",
+        "name": "逆造之誓",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "lionheart_inverse_oath"
+          ]
+        },
+        "presentation": {
+          "themeKey": "lionheart_inverse_oath",
+          "animationKey": "lionheart_inverse_oath",
+          "heroPetId": "pet_ur19",
+          "featuredPetIds": [
+            "pet_ur20",
+            "pet_ssr25",
+            "pet_ssr26"
+          ],
+          "badge": "獅心城系列",
+          "eyebrow": "完美的原型，逆造的挑戰",
+          "tagline": "他們仰望完美，卻造出了向神露齒的生命。",
+          "debutLines": [
+            "仰望天律",
+            "逆造之誓",
+            "獅心城"
+          ],
+          "debutLabel": "獅心城・逆造之誓登場"
+        },
+        "tenPullGuarantee": "SR"
+      },
+      {
+        "id": "sunward_letters",
+        "name": "晴信原野",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "tenPullGuarantee": "SR",
+        "petFilter": {
+          "poolTags": [
+            "sunward_letters"
+          ]
+        },
+        "presentation": {
+          "themeKey": "default",
+          "animationKey": "none",
+          "heroPetId": "pet_ur21",
+          "featuredPetIds": [
+            "pet_ssr27",
+            "pet_ssr28",
+            "pet_sr38"
+          ],
+          "badge": "雨後新篇",
+          "eyebrow": "路標曾被雨帶走，回家的方向沒有。",
+          "tagline": "把未送達的心意，一段一段接回來。",
+          "debutLines": [
+            "雨停後，路標散落在兩地之間。",
+            "跟著夥伴們，把每封信送到家。"
+          ],
+          "debutLabel": "晴信原野登場",
+          "detailsNote": "12 位夥伴從第一抽全部開放；無額外解鎖或贈寵。十連至少一位 SR 以上，沿用現行價格、機率與各池保底。",
+          "candidateNote": "僅含晴信原野 12 位夥伴，沿用共用召喚揭露；不含其他系列。"
+        }
+      },
+      {
+        "id": "darkcrown_court_release",
+        "name": "黯冠王庭・混世降臨",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "darkcrown_court_release"
+          ]
+        },
+        "presentation": {
+          "themeKey": "chaos_demon_court",
+          "animationKey": "chaos_demon_court",
+          "heroPetId": "pet_ur28",
+          "featuredPetIds": [
+            "pet_ur29",
+            "pet_ur30",
+            "pet_ssr37",
+            "pet_ssr38"
+          ],
+          "badge": "裂冠降臨",
+          "eyebrow": "織界 · 黯冠王庭",
+          "tagline": "七色星路仍有名字，黑塔的裂冠正試圖吞下它們。",
+          "debutLines": [
+            "七色星路",
+            "裂冠吞光",
+            "王庭降臨"
+          ],
+          "debutLabel": "黯冠王庭降臨",
+          "detailsNote": "二十位原生魔獸；七位 UR／SSR 可完成羈絆覺醒，揭曉人形惡魔。",
+          "candidateNote": "本池不含標準池角色；同一角色雙形態保留相同稀有度與收藏。"
+        }
+      },
+      {
+        "id": "aurora_fairy_feast",
+        "name": "霓霞仙膳",
+        "active": true,
+        "cost": 100,
+        "rates": {
+          "N": 0.55,
+          "R": 0.3,
+          "SR": 0.1,
+          "SSR": 0.03,
+          "UR": 0.02
+        },
+        "pity": {
+          "ssr": 30,
+          "ur": 100
+        },
+        "petFilter": {
+          "poolTags": [
+            "aurora_fairy_feast"
+          ]
+        },
+        "presentation": {
+          "themeKey": "aurora_fairy_feast",
+          "animationKey": "aurora_fairy_feast",
+          "heroPetId": "pet_ur31",
+          "featuredPetIds": [
+            "pet_ur32",
+            "pet_ssr41",
+            "pet_ssr42"
+          ],
+          "badge": "晨昏共席",
+          "eyebrow": "靈獸赴宴 · 羈絆成仙",
+          "tagline": "把人間的溫柔，帶回雲上的餐桌。",
+          "debutLabel": "霓霞仙膳登場",
+          "debutLines": [
+            "花露循香，晨昏相迎",
+            "為同行者留一席溫暖"
+          ]
+        },
+        "unlockExpansion": {
+          "key": "morning_evening_feast",
+          "threshold": 20,
+          "progressScope": "lifetime_pool_draws",
+          "extraPoolTags": [
+            "aurora_fairy_feast_expanded"
+          ],
+          "rewardPetId": "pet_sr58",
+          "animationKey": "pool_unlock",
+          "title": "晨昏共席",
+          "unlockMessage": "二十次相遇，晨宴與夜宴終於坐在同一桌。桃露茶栗與紫盞雲狸加入候選，桃露茶栗一位前來同行。"
+        },
+        "tenPullGuarantee": "SR"
+      }
+    ],
+    "schemaVersion": 1
+  },
   "loreData": {
     "version": 1,
     "description": "寵物個性化內容，以 id 對應 pets.json。新增寵物只需更新此檔，無需改核心 JS。",
@@ -18446,394 +18835,5 @@
         "order": 100
       }
     ]
-  },
-  "poolsData": {
-    "pools": [
-      {
-        "id": "standard",
-        "name": "星旅之原",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "petFilter": {
-          "poolTags": [
-            "standard"
-          ]
-        },
-        "tenPullGuarantee": "SR"
-      },
-      {
-        "id": "eternal_slumber_bloom",
-        "name": "永眠花海",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "petFilter": {
-          "poolTags": [
-            "eternal_slumber_bloom"
-          ]
-        },
-        "presentation": {
-          "themeKey": "eternal_slumber_bloom",
-          "badge": "限定系列",
-          "eyebrow": "月皇花已於長夜中甦醒",
-          "tagline": "將散落的夢塵投入鏡池，喚醒沉睡於花庭深處的生命。",
-          "heroPetId": "pet_ur05",
-          "featuredPetIds": [
-            "pet_ssr05",
-            "pet_ssr06"
-          ],
-          "animationKey": "dream_bloom"
-        },
-        "unlockExpansion": {
-          "key": "morning_garden",
-          "threshold": 20,
-          "progressScope": "lifetime_pool_draws",
-          "extraPoolTags": [
-            "eternal_slumber_bloom_awakened"
-          ],
-          "rewardPetId": "pet_r16",
-          "animationKey": "morning_garden_unlock",
-          "title": "晨醒花庭",
-          "unlockMessage": "沉眠有歸，甦醒有時。"
-        },
-        "tenPullGuarantee": "SR"
-      },
-      {
-        "id": "frost_oath_fjord",
-        "name": "霜誓峽灣",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "petFilter": {
-          "poolTags": [
-            "frost_oath_fjord"
-          ]
-        },
-        "presentation": {
-          "themeKey": "glacier_arrival",
-          "animationKey": "glacier_arrival",
-          "heroPetId": "pet_ur07",
-          "featuredPetIds": [
-            "pet_ssr08",
-            "pet_ssr09",
-            "pet_n20"
-          ],
-          "badge": "北境新地域",
-          "eyebrow": "循著誓火，抵達冰河盡頭的船港。",
-          "tagline": "風雪越烈，誓約越亮。",
-          "debutLines": [
-            "冰壁之間",
-            "誓火引路",
-            "霜誓峽灣"
-          ],
-          "debutLabel": "抵達霜誓峽灣",
-          "detailsNote": "十二隻遠航夥伴從第一抽起皆可抽取；無抽數解鎖或額外贈寵。主打角色不另加權。",
-          "candidateNote": "僅含霜誓峽灣 12 隻夥伴，不含其他系列寵物。"
-        },
-        "tenPullGuarantee": "SR"
-      },
-      {
-        "id": "honeylight_sugar_garden_v2",
-        "name": "蜜光糖庭",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "petFilter": {
-          "poolTags": [
-            "honeylight_sugar_garden_v2"
-          ]
-        },
-        "presentation": {
-          "themeKey": "honeylight_sugar",
-          "animationKey": "honeylight_sugar",
-          "heroPetId": "pet_ur10",
-          "featuredPetIds": [
-            "pet_ur09",
-            "pet_ssr12",
-            "pet_ssr13"
-          ],
-          "badge": "糖庭新地域",
-          "eyebrow": "糖晶溫室與暖香烘焙街，為每一個小進展留下甜味。",
-          "tagline": "每一步努力，都值得一點甜。",
-          "detailsNote": "12 隻皆從第一抽開放，無解鎖、無贈寵。雙 UR：焦糖布蕾海獺、千層奶霜天鵝；主打角色不另加權。",
-          "candidateNote": "僅含蜜光糖庭 12 隻夥伴，不含其他系列寵物。",
-          "debutLabel": "蜜光糖庭登場",
-          "debutLines": [
-            "糖庭亮起",
-            "甜蜜相遇"
-          ]
-        },
-        "tenPullGuarantee": "SR"
-      },
-      {
-        "id": "swordwild_shanhe_v3",
-        "name": "劍隱山河",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "petFilter": {
-          "poolTags": [
-            "swordwild_shanhe_v3"
-          ]
-        },
-        "presentation": {
-          "themeKey": "swordwild_shanhe",
-          "animationKey": "swordwild_shanhe",
-          "heroPetId": "pet_ur16",
-          "featuredPetIds": [
-            "pet_ur17",
-            "pet_ur18",
-            "pet_ssr21",
-            "pet_ssr22"
-          ],
-          "badge": "山河新篇",
-          "eyebrow": "山重，而一諾更重。",
-          "tagline": "替每個同行者，留一段能走的路。",
-          "debutLines": [
-            "一諾入山",
-            "百川同行",
-            "劍隱山河"
-          ],
-          "debutLabel": "踏入雲棧古道",
-          "detailsNote": "20 隻夥伴從第一抽全部開放，無抽數解鎖或贈寵。三 UR：玄翎重岳雕、丹砂鎮嶺蛤、素心劍猿；主打角色不另加權。同一稀有度內依既有抽卡規則選取。",
-          "candidateNote": "僅含劍隱山河20隻夥伴；不含其他系列。專屬山河啟卷入場、劍光赴約抽獎與三UR故事揭露。"
-        },
-        "tenPullGuarantee": "SR"
-      },
-      {
-        "id": "lionheart_inverse_oath",
-        "name": "逆造之誓",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "petFilter": {
-          "poolTags": [
-            "lionheart_inverse_oath"
-          ]
-        },
-        "presentation": {
-          "themeKey": "lionheart_inverse_oath",
-          "animationKey": "lionheart_inverse_oath",
-          "heroPetId": "pet_ur19",
-          "featuredPetIds": [
-            "pet_ur20",
-            "pet_ssr25",
-            "pet_ssr26"
-          ],
-          "badge": "獅心城系列",
-          "eyebrow": "完美的原型，逆造的挑戰",
-          "tagline": "他們仰望完美，卻造出了向神露齒的生命。",
-          "debutLines": [
-            "仰望天律",
-            "逆造之誓",
-            "獅心城"
-          ],
-          "debutLabel": "獅心城・逆造之誓登場"
-        },
-        "tenPullGuarantee": "SR"
-      },
-      {
-        "id": "sunward_letters",
-        "name": "晴信原野",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "tenPullGuarantee": "SR",
-        "petFilter": {
-          "poolTags": [
-            "sunward_letters"
-          ]
-        },
-        "presentation": {
-          "themeKey": "default",
-          "animationKey": "none",
-          "heroPetId": "pet_ur21",
-          "featuredPetIds": [
-            "pet_ssr27",
-            "pet_ssr28",
-            "pet_sr38"
-          ],
-          "badge": "雨後新篇",
-          "eyebrow": "路標曾被雨帶走，回家的方向沒有。",
-          "tagline": "把未送達的心意，一段一段接回來。",
-          "debutLines": [
-            "雨停後，路標散落在兩地之間。",
-            "跟著夥伴們，把每封信送到家。"
-          ],
-          "debutLabel": "晴信原野登場",
-          "detailsNote": "12 位夥伴從第一抽全部開放；無額外解鎖或贈寵。十連至少一位 SR 以上，沿用現行價格、機率與各池保底。",
-          "candidateNote": "僅含晴信原野 12 位夥伴，沿用共用召喚揭露；不含其他系列。"
-        }
-      },
-      {
-        "id": "darkcrown_court_release",
-        "name": "黯冠王庭・混世降臨",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "petFilter": {
-          "poolTags": [
-            "darkcrown_court_release"
-          ]
-        },
-        "presentation": {
-          "themeKey": "chaos_demon_court",
-          "animationKey": "chaos_demon_court",
-          "heroPetId": "pet_ur28",
-          "featuredPetIds": [
-            "pet_ur29",
-            "pet_ur30",
-            "pet_ssr37",
-            "pet_ssr38"
-          ],
-          "badge": "裂冠降臨",
-          "eyebrow": "織界 · 黯冠王庭",
-          "tagline": "七色星路仍有名字，黑塔的裂冠正試圖吞下它們。",
-          "debutLines": [
-            "七色星路",
-            "裂冠吞光",
-            "王庭降臨"
-          ],
-          "debutLabel": "黯冠王庭降臨",
-          "detailsNote": "二十位原生魔獸；七位 UR／SSR 可完成羈絆覺醒，揭曉人形惡魔。",
-          "candidateNote": "本池不含標準池角色；同一角色雙形態保留相同稀有度與收藏。"
-        }
-      },
-      {
-        "id": "aurora_fairy_feast",
-        "name": "霓霞仙膳",
-        "active": true,
-        "cost": 100,
-        "rates": {
-          "N": 0.55,
-          "R": 0.3,
-          "SR": 0.1,
-          "SSR": 0.03,
-          "UR": 0.02
-        },
-        "pity": {
-          "ssr": 30,
-          "ur": 100
-        },
-        "petFilter": {
-          "poolTags": [
-            "aurora_fairy_feast"
-          ]
-        },
-        "presentation": {
-          "themeKey": "aurora_fairy_feast",
-          "animationKey": "aurora_fairy_feast",
-          "heroPetId": "pet_ur31",
-          "featuredPetIds": [
-            "pet_ur32",
-            "pet_ssr41",
-            "pet_ssr42"
-          ],
-          "badge": "晨昏共席",
-          "eyebrow": "靈獸赴宴 · 羈絆成仙",
-          "tagline": "把人間的溫柔，帶回雲上的餐桌。",
-          "debutLabel": "霓霞仙膳登場",
-          "debutLines": [
-            "花露循香，晨昏相迎",
-            "為同行者留一席溫暖"
-          ]
-        },
-        "unlockExpansion": {
-          "key": "morning_evening_feast",
-          "threshold": 20,
-          "progressScope": "lifetime_pool_draws",
-          "extraPoolTags": [
-            "aurora_fairy_feast_expanded"
-          ],
-          "rewardPetId": "pet_sr58",
-          "animationKey": "pool_unlock",
-          "title": "晨昏共席",
-          "unlockMessage": "二十次相遇，晨宴與夜宴終於坐在同一桌。桃露茶栗與紫盞雲狸加入候選，桃露茶栗一位前來同行。"
-        },
-        "tenPullGuarantee": "SR"
-      }
-    ],
-    "schemaVersion": 1
   }
 }
