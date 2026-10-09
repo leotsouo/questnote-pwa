@@ -9,10 +9,11 @@
 import { playPoolDebutPresentation, playThemedSummon } from './src/themedSummonController.js';
 import { playSummonReveal } from './src/summonRevealService.js';
 import { playAwakeningScene } from './src/petAwakeningScene.js';
+import { APP_VERSION } from './src/version.js';
 const config = await fetch('/review-config.json').then(response => response.json());
 await Promise.all(config.styles.map(href => new Promise((resolve, reject) => {const link=document.createElement('link');link.rel='stylesheet';link.href=href;link.onload=resolve;link.onerror=reject;document.head.append(link);} )));
 const { pool, pets, awakenings, artifactId } = config;
-document.getElementById('artifact').textContent = `V3.9.3 · artifact ${artifactId}`;
+document.getElementById('artifact').textContent = `V${APP_VERSION} · artifact ${artifactId}`;
 const status = document.getElementById('status'), result=document.getElementById('result'), metrics=[];
 const byId = new Map(pets.map(pet => [pet.id,pet]));
 const fixedIds=['pet_n53','pet_r62','pet_sr56','pet_ssr41','pet_ur31','pet_n53','pet_ssr42','pet_ur32','pet_sr57','pet_ur31'];

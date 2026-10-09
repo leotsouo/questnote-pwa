@@ -1,0 +1,20 @@
+{
+  "artifactId": "7fbc10f80bbb0019665fc207930d0396d08491c4d57df380a21fdb82fd3da94c",
+  "origin": "http://127.0.0.1:62566",
+  "status": "pass",
+  "test": "HTTP503 local server fault; app reload rendered wallet 10436, energy 92, new region 100%, dispatch dialog usable; no actual airplane-mode or physical-device test",
+  "images": [
+    {
+      "height": 900,
+      "loaded": true,
+      "src": "http://127.0.0.1:62566/questnote-pwa-preview/assets/expeditions/aurora_feast_garden.webp",
+      "width": 1600
+    },
+    {
+      "height": 900,
+      "loaded": true,
+      "src": "http://127.0.0.1:62566/questnote-pwa-preview/assets/expeditions/aurora_feast_garden.webp",
+      "width": 1600
+    }
+  ]
+}
