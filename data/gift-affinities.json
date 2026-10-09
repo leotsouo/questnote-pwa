@@ -361,6 +361,52 @@
     ],
     "pet_ur30": [
       "astral"
+    ],
+    "pet_n53": [
+      "nature"
+    ],
+    "pet_n54": [
+      "astral",
+      "nature"
+    ],
+    "pet_r62": [
+      "nature"
+    ],
+    "pet_r63": [
+      "fire",
+      "harvest"
+    ],
+    "pet_sr56": [
+      "nature",
+      "harvest"
+    ],
+    "pet_sr57": [
+      "frost",
+      "nature"
+    ],
+    "pet_sr58": [
+      "nature",
+      "harvest"
+    ],
+    "pet_sr59": [
+      "astral",
+      "nature"
+    ],
+    "pet_ssr41": [
+      "nature",
+      "harvest"
+    ],
+    "pet_ssr42": [
+      "astral",
+      "frost"
+    ],
+    "pet_ur31": [
+      "nature",
+      "frost"
+    ],
+    "pet_ur32": [
+      "astral",
+      "fire"
     ]
   }
 }
