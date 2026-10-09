@@ -289,3 +289,7 @@ PR [#87](https://github.com/leotsouo/questnote-pwa/pull/87) 完整 CI 通過並�
 # V3.9.1 黯冠最終覺醒互動已發布 — 2026-10-08
 
 使用者「通過，推上正式版」核准後，[PR #89](https://github.com/leotsouo/questnote-pwa/pull/89) 經 CI 合併於 `634fd1697c5152c95f39e5f60121bb2369fa935a`。回答前「? ? ?」與「回答這個可怕的傢伙」，回答後「哈、哈、哈……」才揭示惡魔的趣味與鎖定今日任務；完成後才能最終覺醒。正式 artifact `2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2`，gh-pages `d8ce527a93f7f457f01e248eeeb2d2f806eee7b6`，[Pages 37804253330](https://github.com/leotsouo/questnote-pwa/actions/runs/37804253330) 成功。全套來源測試、18 項固定 artifact 瀏覽器、七位夥伴交易與備份、舊版升級及正式原生 SW 離線驗證通過；保留 160 位角色／8 池。詳見[發布收據](../reports/demon-final-release/README.md)。
+
+## V3.9.2 星辰夥伴賽已發布 — 2026-10-09
+
+使用者檢視預覽後要求「幫我推上正式版」。[PR #91](https://github.com/leotsouo/questnote-pwa/pull/91) 經 CI 合併於 `bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf`；production artifact `58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2`，gh-pages `48be5954b60dcd1c27d5d192922f6753b1e5597b`，[Pages 37876583079](https://github.com/leotsouo/questnote-pwa/actions/runs/37876583079) 成功。768 Git blobs 與 767 正式 HTTPS 檔案全部雜湊一致；完整來源測試、18 項固定產物瀏覽器、下注／備份／離線流程、V3.9.1 舊存檔升級及正式私有 Chrome 驗收通過。每日祝福入口，每日三場、四位等機率選手、原子結算與可略過動畫；保留 160 位角色／8 池及最新公告。實體手機及既有安裝 PWA 尚待裝置驗收。詳見[發布回執](../reports/daily-race-release/README.md)。

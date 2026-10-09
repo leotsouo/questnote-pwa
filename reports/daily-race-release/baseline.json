@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-09T02:37:29.153Z",
+  "pagesCommit": "83da938f1c8a6bbe388b211e15c76b96156fa089",
+  "artifactId": "2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+  "manifestSha256": "6e475ec25563c9e80a5dd7bddbcd0377c057cc075693760f2f09258b1a0d6410",
+  "oldProduction": {
+    "artifactDir": "C:\\Users\\User\\.codex\\worktrees\\demon-final-release\\release-artifacts-20261008\\2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+    "artifactId": "2859e1fac40801a11596e187e56f7f4b0f96567da4a4bfd918674ed22634e6a2",
+    "manifestSha256": "6e475ec25563c9e80a5dd7bddbcd0377c057cc075693760f2f09258b1a0d6410",
+    "scopePath": "/questnote-pwa/",
+    "sourceCommit": "90ada53051e31aae5eddece912e985c5d7b54862"
+  },
+  "mailboxSha256": "78ead11960d5d574d320fa7b0286d423828925f116c2110c5ea5064eb9f6f957"
+}
