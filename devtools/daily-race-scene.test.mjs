@@ -1,46 +1,67 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { raceSceneFrame, RACE_SCENE_MS } from '../src/dailyRaceScene.js';
+import { raceSceneFrame, RACE_SCENE_MS, RACE_SCRIPTS, pickRaceScript } from '../src/dailyRaceScene.js';
 
-test('every saved winner is the sole finisher across the complete animation', () => {
-  for (let winner = 0; winner < 4; winner++) {
+test('all four scripts preserve each saved winner throughout their full timeline', () => {
+  for (const script of RACE_SCRIPTS) for (let winner = 0; winner < 4; winner++) {
     let crossed = false;
     for (let tick = 0; tick <= 1000; tick++) {
-      const state = raceSceneFrame(tick / 1000, winner);
+      const state = raceSceneFrame(tick / 1000, winner, script.id);
       state.positions.forEach((position, index) => {
         assert.ok(position >= 0 && position <= 1);
-        if (position >= state.finish) { assert.equal(index, winner); crossed = true; }
+        if (position >= state.finish) { assert.equal(index, winner, script.id); crossed = true; }
       });
     }
-    assert.ok(crossed);
+    assert.ok(crossed, script.id);
   }
 });
 
-test('the chase changes leaders and replays the same choreography', () => {
-  for (let winner = 0; winner < 4; winner++) {
-    const leaders = new Set([.29, .60, .73, .94].map(t => {
-      const a = raceSceneFrame(t, winner);
-      assert.deepEqual(a, raceSceneFrame(t, winner));
-      return a.positions.indexOf(Math.max(...a.positions));
-    }));
-    assert.equal(leaders.size, 4);
+test('twenty-second scripts give all five commentary beats four seconds each', () => {
+  assert.equal(RACE_SCENE_MS, 20000);
+  for (const script of RACE_SCRIPTS) {
+    const durations = new Map();
+    for (let tick = 0; tick < 2000; tick++) {
+      const state = raceSceneFrame(tick / 2000, 0, script.id);
+      durations.set(state.phase, (durations.get(state.phase) || 0) + 10);
+      assert.deepEqual(state, raceSceneFrame(tick / 2000, 0, script.id));
+    }
+    assert.equal(durations.size, 5);
+    for (const duration of durations.values()) assert.equal(duration, 4000);
   }
-  assert.equal(raceSceneFrame(1, 0).phase, 'sprint');
-  assert.equal(RACE_SCENE_MS, 30000);
+});
+
+test('uniform random bytes map equally to the four scripts without race or bet inputs', () => {
+  const counts = new Map(RACE_SCRIPTS.map(s => [s.id, 0]));
+  for (let byte = 0; byte < 256; byte++) {
+    const id = pickRaceScript(() => byte); counts.set(id, counts.get(id) + 1);
+  }
+  assert.deepEqual([...counts.values()], [64, 64, 64, 64]);
+  assert.throws(() => pickRaceScript(() => 256));
   assert.throws(() => raceSceneFrame(.5, -1));
+  assert.throws(() => raceSceneFrame(.5, 0, 'unknown'));
 });
 
-test('each commentary has five seconds and the finish changes direction repeatedly', () => {
-  const durations = new Map(); let last = raceSceneFrame(0, 0), turns = 0, direction = 0;
-  for (let tick = 0; tick < 3000; tick++) {
-    const frame = raceSceneFrame(tick / 3000, 0);
-    durations.set(frame.phase, (durations.get(frame.phase) || 0) + 10);
-    const next = Math.sign(frame.finish - last.finish);
+test('sleep pauses the leader, wrong-way reverses everyone, only the eye wanders', () => {
+  for (let winner = 0; winner < 4; winner++) {
+    const asleep = raceSceneFrame(.45, winner, 'nap');
+    const later = raceSceneFrame(.55, winner, 'nap');
+    assert.notEqual(asleep.sleepingIndex, winner);
+    assert.equal(asleep.positions[asleep.sleepingIndex], later.positions[asleep.sleepingIndex]);
+    const early = raceSceneFrame(.22, winner, 'wrong-way');
+    const late = raceSceneFrame(.38, winner, 'wrong-way');
+    assert.ok(early.backwards && late.backwards);
+    assert.ok(late.positions.every((p, i) => p < early.positions[i]));
+  }
+  for (const id of ['normal', 'nap', 'wrong-way']) {
+    for (let tick = 0; tick <= 100; tick++) assert.equal(raceSceneFrame(tick / 100, 0, id).finish, .9);
+  }
+  let last = raceSceneFrame(0, 0), turns = 0, direction = 0;
+  for (let tick = 1; tick <= 1000; tick++) {
+    const current = raceSceneFrame(tick / 1000, 0);
+    const next = Math.sign(current.finish - last.finish);
     if (next && direction && next !== direction) turns++;
     if (next) direction = next;
-    last = frame;
+    last = current;
   }
-  assert.equal(durations.size, 6);
-  for (const duration of durations.values()) assert.equal(duration, 5000);
   assert.ok(turns >= 5);
 });
