@@ -95,24 +95,41 @@ if (mode === 'assemble') {
     console.log('PASS byte-exact deployment tree ' + commit);
   } else {
     const base = 'https://leotsouo.github.io/questnote-pwa/';
+    const retries = [];
     const get = async (name) => {
-      const response = await fetch(base + name + '?release-check=' + pins.production.artifactId);
-      assert.equal(response.status, 200, name);
-      return Buffer.from(await response.arrayBuffer());
+      for (let attempt = 1; attempt <= 4; attempt++) {
+        try {
+          const response = await fetch(base + name + '?release-check=' + pins.production.artifactId, { signal: AbortSignal.timeout(45000) });
+          if ([408, 429, 500, 502, 503, 504].includes(response.status) && attempt < 4) {
+            await response.body?.cancel();
+            retries.push({ name, attempt, status: response.status });
+          } else {
+            assert.equal(response.status, 200, name);
+            return Buffer.from(await response.arrayBuffer());
+          }
+        } catch (error) {
+          if (attempt === 4 || !['TypeError', 'TimeoutError'].includes(error.name)) throw error;
+          retries.push({ name, attempt, error: error.cause?.code || error.name });
+        }
+        await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
+      }
     };
     const manifestBytes = await get('release-artifact.json');
     assert.equal(hash(manifestBytes), pins.production.manifestSha256);
     const manifest = JSON.parse(manifestBytes);
     const entries = Object.entries(manifest.files).filter(([name]) => name !== '.nojekyll');
     let index = 0;
-    await Promise.all(Array.from({ length: 8 }, async () => {
+    let checked = 0;
+    await Promise.all(Array.from({ length: 4 }, async () => {
       while (index < entries.length) {
         const [name, entry] = entries[index++];
         const bytes = await get(name);
         assert.equal(bytes.length, entry.bytes, name); assert.equal(hash(bytes), entry.sha256, name);
+        checked++;
+        if (checked % 100 === 0) console.log('Verified HTTPS files: ' + checked + '/' + entries.length);
       }
     }));
-    await save('live-verification.json', { ok: true, checkedAt: new Date().toISOString(), url: base, artifactId: manifest.artifactId, sourceCommit: manifest.sourceCommit, manifestSha256: pins.production.manifestSha256, checkedHttpsFiles: entries.length + 1 });
+    await save('live-verification.json', { ok: true, checkedAt: new Date().toISOString(), url: base, artifactId: manifest.artifactId, sourceCommit: manifest.sourceCommit, manifestSha256: pins.production.manifestSha256, checkedHttpsFiles: entries.length + 1, retries });
     console.log('PASS exact HTTPS release: ' + (entries.length + 1) + ' files');
   }
 }
