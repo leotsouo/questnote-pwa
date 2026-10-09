@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "preparedAt": "2026-10-09T16:23:26.825Z",
+  "parent": "48be5954b60dcd1c27d5d192922f6753b1e5597b",
+  "tree": "fd32ddc8ba653c7e16ef4799a17bc31b3a264dcf",
+  "deploymentCommit": "fd3a084b2132d8e305c6561d1f2c171554021604",
+  "verifiedFiles": 769,
+  "artifactId": "29f573c8b16810a89354b46383dc00dee6a92e02d3d79d31959c585fa91d77da",
+  "manifestSha256": "d120f859248aa6d8bbf2a3dd6b2d5c7ef53ded298e06e560baa4717605e3c1c2",
+  "sourceCommit": "affa93df83eaeb9f0ceb418a31a0176bd6b461a3"
+}

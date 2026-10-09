@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-09T16:18:15.070Z",
+  "pagesCommit": "48be5954b60dcd1c27d5d192922f6753b1e5597b",
+  "artifactId": "58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
+  "manifestSha256": "1fa1a59af449f5824ff13b4f872d9b14983295cdc3381cc78c1f36f9eafb7268",
+  "oldProduction": {
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v392-build-3\\artifacts\\58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
+    "artifactId": "58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
+    "manifestSha256": "1fa1a59af449f5824ff13b4f872d9b14983295cdc3381cc78c1f36f9eafb7268",
+    "scopePath": "/questnote-pwa/",
+    "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf"
+  },
+  "mailboxSha256": "78ead11960d5d574d320fa7b0286d423828925f116c2110c5ea5064eb9f6f957"
+}

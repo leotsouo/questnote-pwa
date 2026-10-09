@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
+import { RACE_SCENE_MS } from '../src/dailyRaceScene.js';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
 const output = path.resolve(process.argv[2]);
@@ -44,7 +45,7 @@ try {
   async function open() {
     await page.evaluate(() => window.raceTest.ui.closeModal());
     await page.locator('.bottom-nav [data-view="tasks"]').click();
-    const entry = page.locator('[data-action="daily-open-race"]');
+    const entry = page.locator('.page-header--tasks [data-action="daily-open-race"]');
     if (!await entry.isVisible()) await page.locator('[data-hub="blessing"]').click();
     await entry.click();
     await page.locator('.race-rounds').waitFor();
@@ -60,6 +61,10 @@ try {
   await page.evaluate(() => window.raceTest.rewardService.setStardust(2000));
   await load();
   await open();
+  assert.equal(await page.locator('.casino-coin-rain > span').count(), 24);
+  assert.equal(await page.locator('#homeDailyBlessingContainer [data-action="daily-open-race"]').count(), 0);
+  assert.equal(await page.locator('#btn-global-mailbox').evaluate(el => !!el.parentElement.querySelector('.casino-entry-btn')), true);
+  results.push('Casino icon shares mailbox row, old blessing entry removed, decorative coin rain appears');
   // Inline handlers have document.URL (a string) in their scope chain.
   // Exercise both image fallbacks instead of relying on a random offline miss.
   await page.evaluate(() => {
@@ -86,24 +91,26 @@ try {
   assert.match(await page.locator('#daily-race-panel').innerText(), /1,500/);
   assert.match(await page.locator('#daily-race-panel').innerText(), /380/);
   await page.locator('[data-race-play="bet"]').click();
-  await page.locator('.race-arena').waitFor();
+  await page.locator('.race-show__arena').waitFor();
+  assert.equal(await page.locator('.race-show h2').innerText(), '比賽進行中');
+  assert.doesNotMatch(await page.locator('.race-show').innerText(), /劇本|正常賽跑|領先太多|全部跑反|今天不想上班/);
   const committed = await snapshot();
   const r = committed.state.day.rounds[0].result;
   assert.equal(committed.wallet.stardust, 2000 - 100 + r.payout);
   await page.screenshot({ path: path.join(output, 'mobile-running.png'), fullPage: false });
-  await page.locator('.race-receipt').waitFor({ timeout: 20000 });
-  results.push('Real entry, confirmation, 10-second animation and receipt match committed balance');
+  await page.locator('.race-receipt').waitFor({ timeout: RACE_SCENE_MS + 15000 });
+  results.push('Real entry, confirmation, 20-second animation and receipt match committed balance');
   await page.locator('[data-race-round="1"]').click();
   await page.locator('[data-race-action="watch"]').click();
   await page.locator('[data-race-play="watch"]').click();
-  await page.locator('[data-race-action="skip"]').click();
+  await page.locator('[data-scene-skip]').click();
   await page.locator('.race-receipt').waitFor();
   assert.equal((await snapshot()).wallet.stardust, committed.wallet.stardust);
   results.push('Free watch consumes one round without currency; skip reveals saved outcome');
   await page.locator('[data-race-round="2"]').click();
   await choose('5');
   await page.locator('[data-race-play="bet"]').click();
-  await page.locator('.race-arena').waitFor();
+  await page.locator('.race-show__arena').waitFor();
   const interrupted = await snapshot();
   await page.evaluate(() => window.raceTest.ui.closeModal());
   await load(); await open();
@@ -159,7 +166,7 @@ try {
   await page.locator('[data-race-action="watch"]').click();
   await page.locator('[data-race-play="watch"]').click();
   await page.locator('.race-receipt').waitFor();
-  assert.equal(await page.locator('.race-arena').count(), 0);
+  assert.equal(await page.locator('.race-show__arena').count(), 0);
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.screenshot({ path: path.join(output, 'desktop-receipt.png'), fullPage: false });
   results.push('Reduced motion reveals directly; desktop receipt and mobile layouts render');

@@ -1,0 +1,2275 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "theme": "default",
+      "size": "standard",
+      "width": 320,
+      "name": {
+        "left": 149.0625,
+        "right": 186.265625,
+        "top": 22.25,
+        "bottom": 35.75,
+        "width": 37.203125
+      },
+      "text": {
+        "left": 149.0625,
+        "right": 186.265625,
+        "top": 22.25,
+        "bottom": 34.25,
+        "width": 37.203125
+      },
+      "word": {
+        "left": 18,
+        "right": 137.0625,
+        "top": 15,
+        "bottom": 43,
+        "width": 119.0625
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "standard",
+      "width": 375,
+      "name": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "standard",
+      "width": 390,
+      "name": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "standard",
+      "width": 414,
+      "name": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "standard",
+      "width": 768,
+      "name": {
+        "left": 331.890625,
+        "right": 373.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 331.890625,
+        "right": 373.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 191,
+        "right": 319.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "standard",
+      "width": 1440,
+      "name": {
+        "left": 667.890625,
+        "right": 709.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 667.890625,
+        "right": 709.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 527,
+        "right": 655.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "large",
+      "width": 320,
+      "name": {
+        "left": 18,
+        "right": 64.203125,
+        "top": 42,
+        "bottom": 58.875,
+        "width": 46.203125
+      },
+      "text": {
+        "left": 18,
+        "right": 64.203125,
+        "top": 42,
+        "bottom": 57,
+        "width": 46.203125
+      },
+      "word": {
+        "left": 18,
+        "right": 159.171875,
+        "top": 10,
+        "bottom": 38,
+        "width": 141.171875
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "large",
+      "width": 375,
+      "name": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "large",
+      "width": 390,
+      "name": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "large",
+      "width": 414,
+      "name": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "large",
+      "width": 768,
+      "name": {
+        "left": 356.453125,
+        "right": 407.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 356.453125,
+        "right": 407.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 191,
+        "right": 344.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "large",
+      "width": 1440,
+      "name": {
+        "left": 692.453125,
+        "right": 743.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 692.453125,
+        "right": 743.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 527,
+        "right": 680.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "extra-large",
+      "width": 320,
+      "name": {
+        "left": 18,
+        "right": 73.203125,
+        "top": 46.390625,
+        "bottom": 66.640625,
+        "width": 55.203125
+      },
+      "text": {
+        "left": 18,
+        "right": 73.203125,
+        "top": 47.390625,
+        "bottom": 65.390625,
+        "width": 55.203125
+      },
+      "word": {
+        "left": 18,
+        "right": 181.28125,
+        "top": 10,
+        "bottom": 42.390625,
+        "width": 163.28125
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "extra-large",
+      "width": 375,
+      "name": {
+        "left": 22,
+        "right": 83.203125,
+        "top": 50,
+        "bottom": 72.5,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 22,
+        "right": 83.203125,
+        "top": 51,
+        "bottom": 71,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 10,
+        "bottom": 46,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "extra-large",
+      "width": 390,
+      "name": {
+        "left": 22,
+        "right": 83.203125,
+        "top": 50,
+        "bottom": 72.5,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 22,
+        "right": 83.203125,
+        "top": 51,
+        "bottom": 71,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 10,
+        "bottom": 46,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "extra-large",
+      "width": 414,
+      "name": {
+        "left": 212.03125,
+        "right": 273.234375,
+        "top": 17.75,
+        "bottom": 40.25,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 212.03125,
+        "right": 273.234375,
+        "top": 18.75,
+        "bottom": 38.75,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 11,
+        "bottom": 47,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "extra-large",
+      "width": 768,
+      "name": {
+        "left": 381.03125,
+        "right": 442.234375,
+        "top": 17.75,
+        "bottom": 40.25,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 381.03125,
+        "right": 442.234375,
+        "top": 18.75,
+        "bottom": 38.75,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 191,
+        "right": 369.03125,
+        "top": 11,
+        "bottom": 47,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "default",
+      "size": "extra-large",
+      "width": 1440,
+      "name": {
+        "left": 717.03125,
+        "right": 778.234375,
+        "top": 17.75,
+        "bottom": 40.25,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 717.03125,
+        "right": 778.234375,
+        "top": 18.75,
+        "bottom": 38.75,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 527,
+        "right": 705.03125,
+        "top": 11,
+        "bottom": 47,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "星夜遠行"
+    },
+    {
+      "theme": "sweet",
+      "size": "standard",
+      "width": 320,
+      "name": {
+        "left": 149.0625,
+        "right": 186.265625,
+        "top": 22.25,
+        "bottom": 35.75,
+        "width": 37.203125
+      },
+      "text": {
+        "left": 149.0625,
+        "right": 186.265625,
+        "top": 22.25,
+        "bottom": 34.25,
+        "width": 37.203125
+      },
+      "word": {
+        "left": 18,
+        "right": 137.0625,
+        "top": 15,
+        "bottom": 43,
+        "width": 119.0625
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "standard",
+      "width": 375,
+      "name": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "standard",
+      "width": 390,
+      "name": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "standard",
+      "width": 414,
+      "name": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 204.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "standard",
+      "width": 768,
+      "name": {
+        "left": 331.890625,
+        "right": 373.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 331.890625,
+        "right": 373.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 191,
+        "right": 319.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "standard",
+      "width": 1440,
+      "name": {
+        "left": 667.890625,
+        "right": 709.09375,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 41.203125
+      },
+      "text": {
+        "left": 667.890625,
+        "right": 709.09375,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 41.203125
+      },
+      "word": {
+        "left": 527,
+        "right": 655.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "large",
+      "width": 320,
+      "name": {
+        "left": 18,
+        "right": 64.203125,
+        "top": 42,
+        "bottom": 58.875,
+        "width": 46.203125
+      },
+      "text": {
+        "left": 18,
+        "right": 64.203125,
+        "top": 42,
+        "bottom": 57,
+        "width": 46.203125
+      },
+      "word": {
+        "left": 18,
+        "right": 159.171875,
+        "top": 10,
+        "bottom": 38,
+        "width": 141.171875
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "large",
+      "width": 375,
+      "name": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "large",
+      "width": 390,
+      "name": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "large",
+      "width": 414,
+      "name": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 187.453125,
+        "right": 238.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "large",
+      "width": 768,
+      "name": {
+        "left": 356.453125,
+        "right": 407.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 356.453125,
+        "right": 407.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 191,
+        "right": 344.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "large",
+      "width": 1440,
+      "name": {
+        "left": 692.453125,
+        "right": 743.65625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 51.203125
+      },
+      "text": {
+        "left": 692.453125,
+        "right": 743.65625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 51.203125
+      },
+      "word": {
+        "left": 527,
+        "right": 680.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "extra-large",
+      "width": 320,
+      "name": {
+        "left": 18,
+        "right": 73.203125,
+        "top": 46.390625,
+        "bottom": 66.640625,
+        "width": 55.203125
+      },
+      "text": {
+        "left": 18,
+        "right": 73.203125,
+        "top": 47.390625,
+        "bottom": 65.390625,
+        "width": 55.203125
+      },
+      "word": {
+        "left": 18,
+        "right": 181.28125,
+        "top": 10,
+        "bottom": 42.390625,
+        "width": 163.28125
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "extra-large",
+      "width": 375,
+      "name": {
+        "left": 22,
+        "right": 83.203125,
+        "top": 50,
+        "bottom": 72.5,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 22,
+        "right": 83.203125,
+        "top": 51,
+        "bottom": 71,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 10,
+        "bottom": 46,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "extra-large",
+      "width": 390,
+      "name": {
+        "left": 22,
+        "right": 83.203125,
+        "top": 50,
+        "bottom": 72.5,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 22,
+        "right": 83.203125,
+        "top": 51,
+        "bottom": 71,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 10,
+        "bottom": 46,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "extra-large",
+      "width": 414,
+      "name": {
+        "left": 212.03125,
+        "right": 273.234375,
+        "top": 17.75,
+        "bottom": 40.25,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 212.03125,
+        "right": 273.234375,
+        "top": 18.75,
+        "bottom": 38.75,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 11,
+        "bottom": 47,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "extra-large",
+      "width": 768,
+      "name": {
+        "left": 381.03125,
+        "right": 442.234375,
+        "top": 17.75,
+        "bottom": 40.25,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 381.03125,
+        "right": 442.234375,
+        "top": 18.75,
+        "bottom": 38.75,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 191,
+        "right": 369.03125,
+        "top": 11,
+        "bottom": 47,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "sweet",
+      "size": "extra-large",
+      "width": 1440,
+      "name": {
+        "left": 717.03125,
+        "right": 778.234375,
+        "top": 17.75,
+        "bottom": 40.25,
+        "width": 61.203125
+      },
+      "text": {
+        "left": 717.03125,
+        "right": 778.234375,
+        "top": 18.75,
+        "bottom": 38.75,
+        "width": 61.203125
+      },
+      "word": {
+        "left": 527,
+        "right": 705.03125,
+        "top": 11,
+        "bottom": 47,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "晨光花園"
+    },
+    {
+      "theme": "twilight",
+      "size": "standard",
+      "width": 320,
+      "name": {
+        "left": 18,
+        "right": 73.8125,
+        "top": 42,
+        "bottom": 55.5,
+        "width": 55.8125
+      },
+      "text": {
+        "left": 18,
+        "right": 73.8125,
+        "top": 42,
+        "bottom": 54,
+        "width": 55.8125
+      },
+      "word": {
+        "left": 18,
+        "right": 137.0625,
+        "top": 10,
+        "bottom": 38,
+        "width": 119.0625
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "standard",
+      "width": 375,
+      "name": {
+        "left": 162.890625,
+        "right": 224.703125,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 61.8125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 224.703125,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 61.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "standard",
+      "width": 390,
+      "name": {
+        "left": 162.890625,
+        "right": 224.703125,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 61.8125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 224.703125,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 61.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "standard",
+      "width": 414,
+      "name": {
+        "left": 162.890625,
+        "right": 224.703125,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 61.8125
+      },
+      "text": {
+        "left": 162.890625,
+        "right": 224.703125,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 61.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 150.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "standard",
+      "width": 768,
+      "name": {
+        "left": 331.890625,
+        "right": 393.703125,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 61.8125
+      },
+      "text": {
+        "left": 331.890625,
+        "right": 393.703125,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 61.8125
+      },
+      "word": {
+        "left": 191,
+        "right": 319.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "standard",
+      "width": 1440,
+      "name": {
+        "left": 667.890625,
+        "right": 729.703125,
+        "top": 21.5,
+        "bottom": 36.5,
+        "width": 61.8125
+      },
+      "text": {
+        "left": 667.890625,
+        "right": 729.703125,
+        "top": 21.5,
+        "bottom": 35.5,
+        "width": 61.8125
+      },
+      "word": {
+        "left": 527,
+        "right": 655.890625,
+        "top": 15,
+        "bottom": 43,
+        "width": 128.890625
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "large",
+      "width": 320,
+      "name": {
+        "left": 18,
+        "right": 87.3125,
+        "top": 42,
+        "bottom": 58.875,
+        "width": 69.3125
+      },
+      "text": {
+        "left": 18,
+        "right": 87.3125,
+        "top": 42,
+        "bottom": 57,
+        "width": 69.3125
+      },
+      "word": {
+        "left": 18,
+        "right": 159.171875,
+        "top": 10,
+        "bottom": 38,
+        "width": 141.171875
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "large",
+      "width": 375,
+      "name": {
+        "left": 22,
+        "right": 98.8125,
+        "top": 44,
+        "bottom": 62.75,
+        "width": 76.8125
+      },
+      "text": {
+        "left": 22,
+        "right": 98.8125,
+        "top": 45,
+        "bottom": 61,
+        "width": 76.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 10,
+        "bottom": 40,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "large",
+      "width": 390,
+      "name": {
+        "left": 22,
+        "right": 98.8125,
+        "top": 44,
+        "bottom": 62.75,
+        "width": 76.8125
+      },
+      "text": {
+        "left": 22,
+        "right": 98.8125,
+        "top": 45,
+        "bottom": 61,
+        "width": 76.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 10,
+        "bottom": 40,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "large",
+      "width": 414,
+      "name": {
+        "left": 187.453125,
+        "right": 264.265625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 76.8125
+      },
+      "text": {
+        "left": 187.453125,
+        "right": 264.265625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 76.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 175.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "large",
+      "width": 768,
+      "name": {
+        "left": 356.453125,
+        "right": 433.265625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 76.8125
+      },
+      "text": {
+        "left": 356.453125,
+        "right": 433.265625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 76.8125
+      },
+      "word": {
+        "left": 191,
+        "right": 344.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "large",
+      "width": 1440,
+      "name": {
+        "left": 692.453125,
+        "right": 769.265625,
+        "top": 19.625,
+        "bottom": 38.375,
+        "width": 76.8125
+      },
+      "text": {
+        "left": 692.453125,
+        "right": 769.265625,
+        "top": 20.625,
+        "bottom": 36.625,
+        "width": 76.8125
+      },
+      "word": {
+        "left": 527,
+        "right": 680.453125,
+        "top": 14,
+        "bottom": 44,
+        "width": 153.453125
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "extra-large",
+      "width": 320,
+      "name": {
+        "left": 18,
+        "right": 100.8125,
+        "top": 46.390625,
+        "bottom": 66.640625,
+        "width": 82.8125
+      },
+      "text": {
+        "left": 18,
+        "right": 100.8125,
+        "top": 47.390625,
+        "bottom": 65.390625,
+        "width": 82.8125
+      },
+      "word": {
+        "left": 18,
+        "right": 181.28125,
+        "top": 10,
+        "bottom": 42.390625,
+        "width": 163.28125
+      },
+      "entry": {
+        "left": 206,
+        "right": 250,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 262,
+        "right": 306,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 320,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "extra-large",
+      "width": 375,
+      "name": {
+        "left": 22,
+        "right": 113.8125,
+        "top": 50,
+        "bottom": 72.5,
+        "width": 91.8125
+      },
+      "text": {
+        "left": 22,
+        "right": 113.8125,
+        "top": 51,
+        "bottom": 71,
+        "width": 91.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 10,
+        "bottom": 46,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 261,
+        "right": 305,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 317,
+        "right": 361,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 375,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "extra-large",
+      "width": 390,
+      "name": {
+        "left": 22,
+        "right": 113.8125,
+        "top": 50,
+        "bottom": 72.5,
+        "width": 91.8125
+      },
+      "text": {
+        "left": 22,
+        "right": 113.8125,
+        "top": 51,
+        "bottom": 71,
+        "width": 91.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 10,
+        "bottom": 46,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 276,
+        "right": 320,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 332,
+        "right": 376,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 390,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "extra-large",
+      "width": 414,
+      "name": {
+        "left": 22,
+        "right": 113.8125,
+        "top": 50,
+        "bottom": 72.5,
+        "width": 91.8125
+      },
+      "text": {
+        "left": 22,
+        "right": 113.8125,
+        "top": 51,
+        "bottom": 71,
+        "width": 91.8125
+      },
+      "word": {
+        "left": 22,
+        "right": 200.03125,
+        "top": 10,
+        "bottom": 46,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 300,
+        "right": 344,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 356,
+        "right": 400,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 414,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "extra-large",
+      "width": 768,
+      "name": {
+        "left": 381.03125,
+        "right": 472.84375,
+        "top": 17.75,
+        "bottom": 40.25,
+        "width": 91.8125
+      },
+      "text": {
+        "left": 381.03125,
+        "right": 472.84375,
+        "top": 18.75,
+        "bottom": 38.75,
+        "width": 91.8125
+      },
+      "word": {
+        "left": 191,
+        "right": 369.03125,
+        "top": 11,
+        "bottom": 47,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 485,
+        "right": 529,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 541,
+        "right": 585,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 768,
+      "label": "暮光冒險手帳"
+    },
+    {
+      "theme": "twilight",
+      "size": "extra-large",
+      "width": 1440,
+      "name": {
+        "left": 717.03125,
+        "right": 808.84375,
+        "top": 17.75,
+        "bottom": 40.25,
+        "width": 91.8125
+      },
+      "text": {
+        "left": 717.03125,
+        "right": 808.84375,
+        "top": 18.75,
+        "bottom": 38.75,
+        "width": 91.8125
+      },
+      "word": {
+        "left": 527,
+        "right": 705.03125,
+        "top": 11,
+        "bottom": 47,
+        "width": 178.03125
+      },
+      "entry": {
+        "left": 821,
+        "right": 865,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "mail": {
+        "left": 877,
+        "right": 921,
+        "top": 8,
+        "bottom": 52,
+        "width": 44
+      },
+      "viewport": 1440,
+      "label": "暮光冒險手帳"
+    }
+  ],
+  "casinoEntryOpens": true,
+  "errors": []
+}

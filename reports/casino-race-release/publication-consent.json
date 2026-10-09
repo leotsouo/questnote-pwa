@@ -1,0 +1,23 @@
+{
+  "grantedAt": "2026-10-09T16:18:38.215Z",
+  "request": "現在可以推到正式版；隱藏劇本名稱、入口放郵件旁、進場錢雨動畫",
+  "pr": "https://github.com/leotsouo/questnote-pwa/pull/93",
+  "sourceCommit": "affa93df83eaeb9f0ceb418a31a0176bd6b461a3",
+  "artifacts": {
+    "production": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v393-build\\artifacts\\29f573c8b16810a89354b46383dc00dee6a92e02d3d79d31959c585fa91d77da",
+      "artifactId": "29f573c8b16810a89354b46383dc00dee6a92e02d3d79d31959c585fa91d77da",
+      "manifestSha256": "d120f859248aa6d8bbf2a3dd6b2d5c7ef53ded298e06e560baa4717605e3c1c2",
+      "scopePath": "/questnote-pwa/",
+      "sourceCommit": "affa93df83eaeb9f0ceb418a31a0176bd6b461a3"
+    },
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v393-build\\artifacts\\7add88b89400c52e0ce5e49eea375c3d4049af3308bbb75b4cc3762768fa279f",
+      "artifactId": "7add88b89400c52e0ce5e49eea375c3d4049af3308bbb75b4cc3762768fa279f",
+      "manifestSha256": "cfc9daf0d7f21d88e63becf7bb509ac342dfa0db21a4de288d2eb92233d4d72b",
+      "scopePath": "/questnote-pwa-preview/",
+      "sourceCommit": "affa93df83eaeb9f0ceb418a31a0176bd6b461a3"
+    }
+  },
+  "purpose": "Publish accepted four 20-second races, casino entry and star-coin rain as V3.9.3"
+}
