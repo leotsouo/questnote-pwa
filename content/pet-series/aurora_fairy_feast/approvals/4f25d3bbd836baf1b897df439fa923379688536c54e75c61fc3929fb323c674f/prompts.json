@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "prompts": {
+    "pet_n53": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE butterfly spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 糖霧粉蝶. Recognizable features: 淡粉透明蝶翼與自然蕾絲狀翼脈. Story action: 輕扇翅膀把糖粉吹向一片剛出爐的餅. Visible consequence: 糖粉形成可辨的小花紋. Composition: 少量光點，蝶翼與餅上的花紋在縮圖仍讀得清. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+        ]
+      }
+    },
+    "pet_n54": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE firefly spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 紫露星螢. Recognizable features: 紫藍翅鞘、露珠腹光與細小緞帶. Story action: 在夜宴後沿空食籃飛行，帶採集隊回家. Visible consequence: 露珠依序點亮成路標，最遠的雲橋重新可見. Composition: 放大主螢，背景保留路標而不是整片光海. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+        ]
+      }
+    },
+    "pet_r62": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE small songbird spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 花綃糖雀. Recognizable features: 白粉短羽、綃帶尾飾與花瓣嘴銜. Story action: 將一片完好的花瓣放在剛完成的小塔上. Visible consequence: 塔面形成最後一圈花冠，桌邊同伴抬頭等待. Composition: 小鳥與單一果塔足夠，不堆滿金飾. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+        ]
+      }
+    },
+    "pet_r63": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE hedgehog spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 夜莓綺蝟. Recognizable features: 莓紫短刺、暮藍圍巾與小木勺. Story action: 在風口護住莓醬小灶，仔細攪動鍋邊. Visible consequence: 將要熄滅的火恢復溫穩，莓醬不再溢出. Composition: 明確刺蝟輪廓，火光溫柔，避開戰鬥姿態. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+        ]
+      }
+    },
+    "pet_sr56": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE rabbit spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 奶霜綺兔. Recognizable features: 奶白耳、粉色耳結與蕾絲小圍裙. Story action: 扶穩盛著奶霜與花瓣的食籃跨過雲階. Visible consequence: 搖晃的奶霜仍完整留下花瓣紋，食籃安全送到膳亭. Composition: 耳與籃是主要辨識點，保持兔足與兔身. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+        ]
+      }
+    },
+    "pet_sr57": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE marten spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 藍糖霧貂. Recognizable features: 灰藍長身、紫緞腰結與糖霜尾尖. Story action: 先探身試踩覆著夜露的窄橋，回頭招呼慢步夥伴. Visible consequence: 霧中顯出一串安全的糖光足印. Composition: 長身側影與回望形成方向感，不把深色畫成純黑. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+        ]
+      }
+    },
+    "pet_sr58": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE squirrel spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 桃露茶栗. Recognizable features: 桃粉大尾、白色蕾絲背帶與茶葉籃. Story action: 把不同成熟度的果子分放進晨宴與夜宴食籃. Visible consequence: 果籃由凌亂變成有次序的粉白與藍紫兩列. Composition: 松鼠尾與雙籃清楚分層；贈寵保持靈獸. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+        ]
+      }
+    },
+    "pet_sr59": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE cat spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 紫盞雲狸. Recognizable features: 灰紫貓毛、透明頸紗與杯形月飾. Story action: 靠著食盒陪晚歸夥伴等茶放涼. Visible consequence: 茶面倒映兩個靠近的影子，周圍夜霧散開. Composition: 貓臉和茶盞為近景，避免只有大面積特效. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+        ]
+      }
+    },
+    "pet_ssr41": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE fox spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 櫻紗靈狐. Recognizable features: 粉白狐尾、櫻花蕾絲領與雙緞帶. Story action: 用尾尖卷起花瓣，替破裂的點心收攏外皮. Visible consequence: 裂口被花紋封住，熱香留在分給旅人的食盒裡. Composition: 狐臉、尾巴與食盒構成單一動作，避免變成無故事的服飾展示. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Distinctive SSR signature skill and memorable silhouette. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+        ]
+      }
+    },
+    "pet_ssr42": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE swan spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 霧靛羽鵠. Recognizable features: 暮靛長頸、銀紫羽紗與珠鏈. Story action: 沿蒸氣中的香紋尋找遺失的調味次序. Visible consequence: 混濁香霧分成清楚的藍紫層次，古食譜浮出圖案. Composition: S 形長頸與香紋呼應，保持天鵝本體，不增加人手. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Distinctive SSR signature skill and memorable silhouette. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+        ]
+      }
+    },
+    "pet_ur31": {
+      "prompt": "Use case: stylized-concept. Create ONE standalone square 1:1 full-frame premium fantasy pet-card illustration for QuestNote, with NO card frame, NO text, NO split layout, NO collage or inset panels. Input image 1 is a STYLE/CHARACTER REFERENCE: the white deer design board; preserve the deer itself, flower-branch antlers, moon-drop jewels, white silky fur and soft pink ribbons. Input image 2 is a STORY/LIGHTING REFERENCE: the cooking comparison, borrow the flower-dew dessert action and warm translucent pastel light, but never reproduce its split layout or human figure. Subject: Moon Dew Snow Deer, a graceful magical WHITE DEER, animal form only, full animal anatomy, four slender deer legs and hooves, dignified UR presence. Show the complete deer body and complete magnificent flowering antlers, leaving a small safe margin, the deer about two-thirds of the image, clear lavender eyes. It lowers its head with poised elegance toward a single porcelain fruit tart on a stone ledge; a few luminous dew drops are visibly guided from its flowering antlers onto the tart, where each drop leaves a crisp glowing petal pattern. The action must read without lore. One dominant focus: deer head/antlers and tart linked by the dew arc. Delicate lace collar, tasteful blush ribbon, pearl and crystal moon-drop ornaments; keep natural deer silhouette, no hands, no wings, no unicorn horn. Background: quiet floating cloud kitchen pavilion with distant East Asian inspired cloud terraces, soft aurora and dawn ambient light, reduced background detail and lower contrast than subject. Palette: milky white, petal pink, pale lilac, buttercream gold highlights, opalescent pastel aurora, elegant warm gentleness. Highly detailed luminous illustrated fantasy rendering matching the supplied references, fine silky fur and translucent fabric, soft readable face, no harsh glare that erases anatomy. Beautiful adult-fantasy atmosphere, no humanoid/fairy anywhere. FULL-FRAME SINGLE DEER ART, not a concept sheet.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+        ]
+      }
+    },
+    "pet_ur32": {
+      "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE eagle owl spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 曜夜玄鴞. Recognizable features: 完整巨翼、紫藍眼、月冠與羽緣金絲. Story action: 在夜灶旁展翼穩住風，讓莓香慢慢升起. Visible consequence: 散亂的香霧被聚成一條極光，引回晚歸的夥伴. Composition: 展翼建立 UR 威儀，羽毛與眼睛在小卡可辨；遠景減量，不增加惡魔角或人形. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Legendary UR guardian presence with broad controlled environmental reaction. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+      "negativePrompt": "text, card border, split composition, collage, inset, second main character, humanoid initial form, fairy initial form, cropped wing tips, cropped feet or ears, extra legs, fused limbs, unreadable story action, blown highlights, black-red demon palette",
+      "provenance": {
+        "tool": "image_gen.imagegen",
+        "noExtraCost": true,
+        "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+        "modelReported": null,
+        "seedReported": null,
+        "references": [
+          "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+        ]
+      }
+    }
+  }
+}

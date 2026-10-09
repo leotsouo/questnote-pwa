@@ -1,0 +1,53 @@
+{
+  "id": "aurora_fairy_feast",
+  "name": "霓霞仙膳",
+  "active": true,
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "petFilter": {
+    "poolTags": [
+      "aurora_fairy_feast"
+    ]
+  },
+  "presentation": {
+    "themeKey": "aurora_fairy_feast",
+    "animationKey": "aurora_fairy_feast",
+    "heroPetId": "pet_ur31",
+    "featuredPetIds": [
+      "pet_ur32",
+      "pet_ssr41",
+      "pet_ssr42"
+    ],
+    "badge": "晨昏共席",
+    "eyebrow": "靈獸赴宴 · 羈絆成仙",
+    "tagline": "把人間的溫柔，帶回雲上的餐桌。",
+    "debutLabel": "霓霞仙膳登場",
+    "debutLines": [
+      "花露循香，晨昏相迎",
+      "為同行者留一席溫暖"
+    ]
+  },
+  "unlockExpansion": {
+    "key": "morning_evening_feast",
+    "threshold": 20,
+    "progressScope": "lifetime_pool_draws",
+    "extraPoolTags": [
+      "aurora_fairy_feast_expanded"
+    ],
+    "rewardPetId": "pet_sr58",
+    "animationKey": "pool_unlock",
+    "title": "晨昏共席",
+    "unlockMessage": "二十次相遇，晨宴與夜宴終於坐在同一桌。桃露茶栗與紫盞雲狸加入候選，桃露茶栗一位前來同行。"
+  },
+  "tenPullGuarantee": "SR"
+}
