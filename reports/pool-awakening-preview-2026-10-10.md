@@ -1,6 +1,6 @@
 # 卡池覺醒翻面預覽驗證
 
-2026-10-10（Asia/Taipei）。本機候選 V3.9.8，分支 `codex/pool-awakening-preview`，基於 fetch 後的 `origin/main` `fa5a13e785a0d3a1f9eac5967425437dcf8537ea`。保留根目錄與 main-integration 既有草稿；未推送、合併或部署。
+2026-10-10（Asia/Taipei）。以下為本機候選 V3.9.8 的驗收歷史，分支 `codex/pool-awakening-preview`，基於 fetch 後的 `origin/main` `fa5a13e785a0d3a1f9eac5967425437dcf8537ea`。保留根目錄與 main-integration 既有草稿。後續已依使用者「推上正式版」指示整合及發布，最新結果見[正式發布紀錄](pool-awakening-release-v398/production-release.md)。
 
 卡池角色詳情以實際兩相素材提供全彩翻面；焦點與全部夥伴卡片提供入口提示。劍隱山河 20 位、黯冠王庭 7 位、霓霞仙膳 4 位，共 31 位。只顯示造型預覽，不寫覺醒狀態、收藏、錢包、形態偏好或獎勵。既有召喚、養成與儀式流程保留。新增 module 已列入 SW precache，版本及 cache 名稱同步。
 
