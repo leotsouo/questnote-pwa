@@ -1,0 +1,14 @@
+{
+  "preview": {
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\release-archive\\pool-lifecycle-v3910\\00cf5d0451515e638267fec287dfb62c624402a55d3fdf7bf6d9f00dd46cd243",
+    "artifactId": "00cf5d0451515e638267fec287dfb62c624402a55d3fdf7bf6d9f00dd46cd243",
+    "manifestSha256": "4b82668e83f35b5340dbe751556b2c698ee01669545da475ead7903fe4acf048",
+    "scopePath": "/questnote-pwa-preview/"
+  },
+  "production": {
+    "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\release-archive\\pool-lifecycle-v3910\\4b81cf66353c89177b5e9ba17eeaf2ab72795a20036763471166ef61d7c10671",
+    "artifactId": "4b81cf66353c89177b5e9ba17eeaf2ab72795a20036763471166ef61d7c10671",
+    "manifestSha256": "757762a177e490f78b7eae99b428e6fa636112e43d72ac416ad8470bb0095bc5",
+    "scopePath": "/questnote-pwa/"
+  }
+}

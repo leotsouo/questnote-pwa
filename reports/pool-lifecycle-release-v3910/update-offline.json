@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "testedAt": "2026-10-09T21:06:52.736Z",
+  "from": "3.9.9",
+  "to": "3.9.10",
+  "previousArtifactId": "525797ca1b745d90a897c1066619dad37575799d22c8534f65a015f0a876274d",
+  "artifactId": "4b81cf66353c89177b5e9ba17eeaf2ab72795a20036763471166ef61d7c10671",
+  "savedPetAndStoryPreserved": true,
+  "dailyAwardOnceAndOfflineBackupPreserved": true,
+  "oldCacheRemoved": true,
+  "offlineForms": 31,
+  "backupVersion": "3.9.10",
+  "environment": "fresh synthetic loopback; no player storage accessed"
+}
