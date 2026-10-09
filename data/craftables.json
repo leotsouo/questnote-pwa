@@ -306,5 +306,29 @@
       "bond_item",
       "darkcrown_court_release"
     ]
+  },
+  {
+    "id": "item_aurora_flower_tart",
+    "name": "霓霞花露塔",
+    "type": "favorite_bond_item",
+    "rarity": "R",
+    "enabled": true,
+    "description": "以森林嫩葉托住膳庭花露的果塔；普通送禮增加75親密經驗，符合偏好時總共150，也用於霓霞仙膳四位稀有夥伴的覺醒儀式。",
+    "favoriteTags": [
+      "nature",
+      "astral"
+    ],
+    "effect": {
+      "bondExp": 75,
+      "favoriteBonusBondExp": 150
+    },
+    "recipe": {
+      "forest_leaf": 2,
+      "aurora_flower_dew": 3
+    },
+    "futureTags": [
+      "bond_item",
+      "aurora_fairy_feast"
+    ]
   }
 ]

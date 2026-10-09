@@ -751,6 +751,134 @@
         "card": "assets/pets/awakening/pet_ssr40-awakened-66bc952921e6-card.webp",
         "stage": "assets/pets/awakening/pet_ssr40-awakened-66bc952921e6-stage.webp"
       }
+    },
+    {
+      "petId": "pet_ssr41",
+      "name": "櫻紗靈狐",
+      "rarity": "SSR",
+      "trialTitle": "把晨昏香氣帶回同一席",
+      "tokenName": "晨露共席信物",
+      "title": "櫻紗點心仙子",
+      "visual": "fairy_petal",
+      "signature": "粉白狐尾、櫻花蕾絲領與雙緞帶",
+      "invitation": "櫻紗靈狐邀你沿霓霞膳庭同行。接受試煉後完成三次新的日常，並完成一次新的膳庭派遣及領取；以霓霞花露塔和共席信物，迎接仙女形態。",
+      "story": [
+        "櫻紗靈狐用尾尖卷起花瓣，替破裂的點心收攏外皮。裂口被花紋封住，熱香留在分給旅人的食盒裡。牠曾想獨自留住最美的滋味，卻發現香氣只有在分享時才會長久。",
+        "你和牠記下三次日常與一次膳庭同行。花露塔映起晨昏光影，粉白狐尾、櫻花蕾絲領與雙緞帶化入仙女的衣飾；櫻紗點心仙子為晚歸的你留下一席，仍願意用熟悉的靈獸模樣陪你走路。"
+      ],
+      "dialogue": [
+        "你的那一席，我一直留著。",
+        "晨露與暮香，都能成為我們共席的溫暖。",
+        "做完今天這一步，再一起嚐一口吧。"
+      ],
+      "initialSha256": "205a668df54df6a8fe39ac8b7673585ddb9b4bccc4ba6b6966dd2e004ccdb046",
+      "initialImage": {
+        "original": "assets/pets/awakening/pet_ssr41-initial-205a668df54d.png",
+        "card": "assets/pets/awakening/pet_ssr41-initial-205a668df54d-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr41-initial-205a668df54d-stage.webp"
+      },
+      "awakenedSha256": "1f33cdc7ae574d838f35fc29e6ca3133788ec5b6b0ecc4a4874d6ae448e9af1a",
+      "awakenedImage": {
+        "original": "assets/pets/awakening/pet_ssr41-awakened-1f33cdc7ae57.png",
+        "card": "assets/pets/awakening/pet_ssr41-awakened-1f33cdc7ae57-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr41-awakened-1f33cdc7ae57-stage.webp"
+      }
+    },
+    {
+      "petId": "pet_ssr42",
+      "name": "霧靛羽鵠",
+      "rarity": "SSR",
+      "trialTitle": "把晨昏香氣帶回同一席",
+      "tokenName": "暮香共席信物",
+      "title": "霧靛調香仙子",
+      "visual": "fairy_mist",
+      "signature": "暮靛長頸、銀紫羽紗與珠鏈",
+      "invitation": "霧靛羽鵠邀你沿霓霞膳庭同行。接受試煉後完成三次新的日常，並完成一次新的膳庭派遣及領取；以霓霞花露塔和共席信物，迎接仙女形態。",
+      "story": [
+        "霧靛羽鵠沿蒸氣中的香紋尋找遺失的調味次序。混濁香霧分成清楚的藍紫層次，古食譜浮出圖案。牠曾想獨自留住最美的滋味，卻發現香氣只有在分享時才會長久。",
+        "你和牠記下三次日常與一次膳庭同行。花露塔映起晨昏光影，暮靛長頸、銀紫羽紗與珠鏈化入仙女的衣飾；霧靛調香仙子為晚歸的你留下一席，仍願意用熟悉的靈獸模樣陪你走路。"
+      ],
+      "dialogue": [
+        "你的那一席，我一直留著。",
+        "晨露與暮香，都能成為我們共席的溫暖。",
+        "做完今天這一步，再一起嚐一口吧。"
+      ],
+      "initialSha256": "4e56c8918de4433b9a1509035ac851de1a92b689971a43552eacbeb58cc16789",
+      "initialImage": {
+        "original": "assets/pets/awakening/pet_ssr42-initial-4e56c8918de4.png",
+        "card": "assets/pets/awakening/pet_ssr42-initial-4e56c8918de4-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr42-initial-4e56c8918de4-stage.webp"
+      },
+      "awakenedSha256": "378df386bed97d2231a70ac631d0981a7d61dfd36f7811737c3ec5e85707c91b",
+      "awakenedImage": {
+        "original": "assets/pets/awakening/pet_ssr42-awakened-378df386bed9.png",
+        "card": "assets/pets/awakening/pet_ssr42-awakened-378df386bed9-card.webp",
+        "stage": "assets/pets/awakening/pet_ssr42-awakened-378df386bed9-stage.webp"
+      }
+    },
+    {
+      "petId": "pet_ur31",
+      "name": "月露雪鹿",
+      "rarity": "UR",
+      "trialTitle": "把晨昏香氣帶回同一席",
+      "tokenName": "晨露共席信物",
+      "title": "月露司膳仙姬",
+      "visual": "fairy_dew",
+      "signature": "花枝鹿角、月滴吊飾、粉白薄紗與晶透蹄",
+      "invitation": "月露雪鹿邀你沿霓霞膳庭同行。接受試煉後完成三次新的日常，並完成一次新的膳庭派遣及領取；以霓霞花露塔和共席信物，迎接仙女形態。",
+      "story": [
+        "月露雪鹿以低頭的鹿角引下花露，落進待凝的果塔。露滴沿塔面結成光潔花紋，雲階亮起柔白歸路。牠曾想獨自留住最美的滋味，卻發現香氣只有在分享時才會長久。",
+        "你和牠記下三次日常與一次膳庭同行。花露塔映起晨昏光影，花枝鹿角、月滴吊飾、粉白薄紗與晶透蹄化入仙女的衣飾；月露司膳仙姬為晚歸的你留下一席，仍願意用熟悉的靈獸模樣陪你走路。"
+      ],
+      "dialogue": [
+        "你的那一席，我一直留著。",
+        "晨露與暮香，都能成為我們共席的溫暖。",
+        "做完今天這一步，再一起嚐一口吧。"
+      ],
+      "initialSha256": "d7a7f5b56ef5fcf87a53736ed8a809d08f71d9cda06955a4d95858e5151c4b75",
+      "initialImage": {
+        "original": "assets/pets/awakening/pet_ur31-initial-d7a7f5b56ef5.png",
+        "card": "assets/pets/awakening/pet_ur31-initial-d7a7f5b56ef5-card.webp",
+        "stage": "assets/pets/awakening/pet_ur31-initial-d7a7f5b56ef5-stage.webp"
+      },
+      "awakenedSha256": "e705aafeecfdb8e8b5a94f5e628809938e8283eed04a1ad3b04b3fc2c3dc474f",
+      "awakenedImage": {
+        "original": "assets/pets/awakening/pet_ur31-awakened-e705aafeecfd.png",
+        "card": "assets/pets/awakening/pet_ur31-awakened-e705aafeecfd-card.webp",
+        "stage": "assets/pets/awakening/pet_ur31-awakened-e705aafeecfd-stage.webp"
+      }
+    },
+    {
+      "petId": "pet_ur32",
+      "name": "曜夜玄鴞",
+      "rarity": "UR",
+      "trialTitle": "把晨昏香氣帶回同一席",
+      "tokenName": "暮香共席信物",
+      "title": "曜夜守灶仙姬",
+      "visual": "fairy_hearth",
+      "signature": "完整巨翼、紫藍眼、月冠與羽緣金絲",
+      "invitation": "曜夜玄鴞邀你沿霓霞膳庭同行。接受試煉後完成三次新的日常，並完成一次新的膳庭派遣及領取；以霓霞花露塔和共席信物，迎接仙女形態。",
+      "story": [
+        "曜夜玄鴞在夜灶旁展翼穩住風，讓莓香慢慢升起。散亂的香霧被聚成一條極光，引回晚歸的夥伴。牠曾想獨自留住最美的滋味，卻發現香氣只有在分享時才會長久。",
+        "你和牠記下三次日常與一次膳庭同行。花露塔映起晨昏光影，完整巨翼、紫藍眼、月冠與羽緣金絲化入仙女的衣飾；曜夜守灶仙姬為晚歸的你留下一席，仍願意用熟悉的靈獸模樣陪你走路。"
+      ],
+      "dialogue": [
+        "你的那一席，我一直留著。",
+        "晨露與暮香，都能成為我們共席的溫暖。",
+        "做完今天這一步，再一起嚐一口吧。"
+      ],
+      "initialSha256": "7d3d88cccae680772412dfc0ae7ae2c4945d2289510711e9444e3287a7dabbd3",
+      "initialImage": {
+        "original": "assets/pets/awakening/pet_ur32-initial-7d3d88cccae6.png",
+        "card": "assets/pets/awakening/pet_ur32-initial-7d3d88cccae6-card.webp",
+        "stage": "assets/pets/awakening/pet_ur32-initial-7d3d88cccae6-stage.webp"
+      },
+      "awakenedSha256": "fd374ec64bd9d9ad5b49eb0dcc3c238be16b39105e063091d197d3db31a5ad2d",
+      "awakenedImage": {
+        "original": "assets/pets/awakening/pet_ur32-awakened-fd374ec64bd9.png",
+        "card": "assets/pets/awakening/pet_ur32-awakened-fd374ec64bd9-card.webp",
+        "stage": "assets/pets/awakening/pet_ur32-awakened-fd374ec64bd9-stage.webp"
+      }
     }
   ]
 }

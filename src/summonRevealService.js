@@ -1,3 +1,4 @@
+import { createAuroraFairyScene } from './auroraFairyScene.js';
 /**
  * SSR / UR 抽卡演出特效 — V3.4.3
  *
@@ -321,6 +322,11 @@ export function createSummonRevealOverlay({ rarity, pet, reduceMotion, theme, pr
     const motif = resolvedTheme === 'lionheart_griffin' ? 'griffin' : resolvedTheme === 'lionheart_chimera' ? 'chimera' : pet?.expeditionSpecialty === 'gatherer' ? 'roots' : 'bridge';
     overlay.classList.add('is-lionheart-reveal');
     overlay.querySelector('.summon-reveal-bg').replaceWith(createLionheartScene(motif));
+  }
+  if (!fallback && presentationKey === 'aurora_fairy_feast') {
+    overlay.classList.add('is-fairy-reveal');
+    const motifs = { pet_ur31: 'dew', pet_ur32: 'hearth', pet_ssr41: 'petal', pet_ssr42: 'mist' };
+    overlay.querySelector('.summon-reveal-bg').replaceWith(createAuroraFairyScene(motifs[pet?.id]));
   }
   const chaosMotif = resolvedTheme?.startsWith('chaos_') ? resolvedTheme.slice(6) : null;
   if (!fallback && (presentationKey === 'chaos_demon_court' || CHAOS_MOTIFS.includes(chaosMotif))) {

@@ -25,6 +25,11 @@ const REWARD_ITEM_LABELS = {
 
 /** 地區故事文字（達到對應探索度後解鎖顯示） */
 export const AREA_STORIES = {
+  aurora_feast_garden_story_10: "第一串露光標出通往膳亭的石階。",
+  aurora_feast_garden_story_25: "採集隊學會留下未熟的花露，不再一次摘空花園。",
+  aurora_feast_garden_story_50: "夜宴的小火為晚歸者一直留著，兩道香氣開始靠近。",
+  aurora_feast_garden_story_75: "食籃接力跨過薄霧，晨宴與夜宴第一次互換食物。",
+  aurora_feast_garden_story_100: "晨昏香氣回到膳鼎，所有席位都有一份為同行者留下的點心。",
   darkcrown_border_story_10: "邊境界石刻著七條仍有顏色的路：霧林、火脈、機械遺跡、星界、北境、田野與雲棧。旅人把這片由不同記憶織成的大地稱作織界。黑塔伸出的裂冠正試圖將它們染成同一個名字；你們先替一條熄滅的路重新點燈。",
   darkcrown_border_story_25: "暮紗幼蛛封住信封，緘信墨梟卻將沒有署名的信送出塔外。王庭的魔獸並非失去思考的影子：牠們各有欲望，也各有不願交出的記憶。你們在逆芽棘兔挖出的裂縫找到一張舊路圖，七地的故事依然保留自己的筆跡。",
   darkcrown_border_story_50: "裂月魔鰩划開潮汐門，終鐘夢蛾令鐘下的夢花停在盛開之前。黯冠古龍壓住交界石，要求萬物只聽一道意志。你們沒有擊碎界石，而是把七地傳來的不同回聲留在裂縫裡，讓每一條路仍能走向自己的地方。",
@@ -53,6 +58,58 @@ export const AREA_STORIES = {
  * 每個已登錄地區都保留探索進度與里程碑。
  */
 export const AREA_EXPLORATION_DEFS = {
+  aurora_feast_garden: {
+  "areaId": "aurora_feast_garden",
+  "name": "霓霞膳庭",
+  "increment": 4,
+  "milestones": [
+    {
+      "percent": 10,
+      "title": "沿香入庭",
+      "description": "第一串露光標出通往膳亭的石階。",
+      "storyId": "aurora_feast_garden_story_10",
+      "reward": {
+        "stardust": 30
+      }
+    },
+    {
+      "percent": 25,
+      "title": "晨露採香",
+      "description": "採集隊學會留下未熟的花露，不再一次摘空花園。",
+      "storyId": "aurora_feast_garden_story_25",
+      "reward": {
+        "stardust": 50
+      }
+    },
+    {
+      "percent": 50,
+      "title": "夜灶留火",
+      "description": "夜宴的小火為晚歸者一直留著，兩道香氣開始靠近。",
+      "storyId": "aurora_feast_garden_story_50",
+      "reward": {
+        "stardust": 80
+      }
+    },
+    {
+      "percent": 75,
+      "title": "雲橋共渡",
+      "description": "食籃接力跨過薄霧，晨宴與夜宴第一次互換食物。",
+      "storyId": "aurora_feast_garden_story_75",
+      "reward": {
+        "stardust": 100
+      }
+    },
+    {
+      "percent": 100,
+      "title": "霓霞共席",
+      "description": "晨昏香氣回到膳鼎，所有席位都有一份為同行者留下的點心。",
+      "storyId": "aurora_feast_garden_story_100",
+      "reward": {
+        "stardust": 150
+      }
+    }
+  ]
+},
   darkcrown_border: {
   "areaId": "darkcrown_border",
   "name": "黯冠邊境",

@@ -1,4 +1,5 @@
 import { preloadImage, preloadImages, waitForPreloadWithTimeout } from './imagePreloadService.js';
+import { fairyMotifMarkup } from './auroraFairyScene.js';
 import { chaosMotifMarkup } from './chaosDemonCourtScene.js';
 import { getAwakeningProfile } from './petAwakeningProfiles.js';
 const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -26,9 +27,10 @@ const motifs = {
 export function awakeningSceneHtml(entry, pet) {
   const profile = getAwakeningProfile(entry.petId);
   const dark = profile?.poolId === 'darkcrown_court_release';
-  const world = dark ? '<path class="awakening-ridges" d="M0 600V490l280-50V280l100-45V145l100-100 100 100v90l100 45v160l280 50v110Z"/>' : '<path class="awakening-ridges" d="M0 450 180 160 340 390 530 120 700 350 850 180 960 430V600H0Z"/>';
-  const motif = dark ? '<g class="awakening-trace">' + chaosMotifMarkup(entry.visual.replace(/^chaos_/, '')) + '</g>' : motifs[entry.visual] || motifs.honey;
-  return `<section class="awakening-scene awakening-scene--${escape(entry.visual)}${dark ? ' awakening-scene--darkcourt' : ''}" role="dialog" aria-modal="true" aria-label="${escape(entry.name)}覺醒演出" tabindex="-1">
+  const fairy = profile?.poolId === 'aurora_fairy_feast';
+  const world = fairy ? '<path class="awakening-ridges" d="M0 600V480Q480 320 960 480V600ZM260 380h440L480 240ZM310 380v140m340-140v140"/>' : dark ? '<path class="awakening-ridges" d="M0 600V490l280-50V280l100-45V145l100-100 100 100v90l100 45v160l280 50v110Z"/>' : '<path class="awakening-ridges" d="M0 450 180 160 340 390 530 120 700 350 850 180 960 430V600H0Z"/>';
+  const motif = fairy ? '<g class="awakening-trace">' + fairyMotifMarkup(entry.visual.replace(/^fairy_/, '')) + '</g>' : dark ? '<g class="awakening-trace">' + chaosMotifMarkup(entry.visual.replace(/^chaos_/, '')) + '</g>' : motifs[entry.visual] || motifs.honey;
+  return `<section class="awakening-scene awakening-scene--${escape(entry.visual)}${fairy ? ' awakening-scene--fairy' : dark ? ' awakening-scene--darkcourt' : ''}" role="dialog" aria-modal="true" aria-label="${escape(entry.name)}覺醒演出" tabindex="-1">
     <div class="awakening-scene__sky"></div><div class="awakening-scene__clouds"></div>
     <svg class="awakening-scene__world" viewBox="0 0 960 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${world}${motif}</svg>
     <div class="awakening-scene__portraits"><img class="awakening-before" src="${escape(entry.initialImage.stage)}" alt="${escape(entry.name)}初遇相"><img class="awakening-after" src="${escape(entry.awakenedImage?.stage || pet.imageVariants?.stage || pet.image)}" alt="${escape(entry.name)}覺醒相"></div>

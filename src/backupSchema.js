@@ -37,7 +37,7 @@ const QUEST_TARGETS = {
   weekly: { weekly_complete_tasks_20: 20, weekly_complete_habits_10: 10,
     weekly_checkin_5: 5, weekly_expedition_5: 5, weekly_gift_5: 5 },
 };
-const AREA_IDS = ['mist_forest', 'lava_rift', 'machine_ruins', 'astral_rift', 'polar_shore', 'harvest_fields', 'cloudrest_trail', 'lionheart_city', 'darkcrown_border'];
+const AREA_IDS = ['mist_forest', 'lava_rift', 'machine_ruins', 'astral_rift', 'polar_shore', 'harvest_fields', 'cloudrest_trail', 'lionheart_city', 'darkcrown_border', 'aurora_feast_garden'];
 const COLLECTION_MILESTONE_IDS = ['collection_005', 'collection_010', 'collection_020',
   'collection_030', 'collection_040', 'collection_050', 'collection_all', 'rarity_first_sr',
   'rarity_first_ssr', 'rarity_first_ur', 'rarity_all_n', 'rarity_all_r', 'rarity_sr_5',
