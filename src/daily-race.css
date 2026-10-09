@@ -110,8 +110,8 @@ body.reduce-motion .casino-coin-rain { display:none; }
 @keyframes race-blink { 0%,45%,49%,100% { transform:scaleY(1); } 47% { transform:scaleY(.12); } }
 @media (prefers-reduced-motion:reduce) { .race-show__eye { animation:none; } }
 
-/* The living finish is just an eye: no flag, striped body or legs. */
-.race-show__finish--eye { background:none; width:24px; }
+/* The eye stays attached to the moving striped finish line. */
+.race-show__finish--eye { width:24px; }
 .race-show__finish--eye .race-show__eye { top:19px; left:0; width:24px; height:20px; }
 .race-show__finish--eye .race-show__eye::after { top:5px; left:8px; width:7px; height:9px; }
 .race-show[data-script="living-finish"] .race-show__path { background:linear-gradient(#3e5755,#304644); border-top:2px solid #b5c8b280; border-bottom:2px solid #b5c8b280; border-left:3px solid #e9dfbb; border-radius:3px; }
