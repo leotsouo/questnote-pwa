@@ -1,0 +1,138 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "id": "normal",
+      "finishLines": [
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        }
+      ]
+    },
+    {
+      "id": "living-finish",
+      "finishLines": [
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 24,
+          "height": 55,
+          "left": "70%",
+          "eyes": 1
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 24,
+          "height": 55,
+          "left": "70%",
+          "eyes": 1
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 24,
+          "height": 55,
+          "left": "70%",
+          "eyes": 1
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 24,
+          "height": 55,
+          "left": "70%",
+          "eyes": 1
+        }
+      ]
+    },
+    {
+      "id": "nap",
+      "finishLines": [
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        }
+      ]
+    },
+    {
+      "id": "wrong-way",
+      "finishLines": [
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        },
+        {
+          "background": "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0px, rgba(255, 255, 255, 0.6) 5px, rgba(22, 37, 59, 0.6) 5px, rgba(22, 37, 59, 0.6) 10px)",
+          "width": 22,
+          "height": 55,
+          "left": "90%",
+          "eyes": 0
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
