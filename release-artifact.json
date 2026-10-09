@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
-  "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf",
+  "artifactId": "29f573c8b16810a89354b46383dc00dee6a92e02d3d79d31959c585fa91d77da",
+  "sourceCommit": "affa93df83eaeb9f0ceb418a31a0176bd6b461a3",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
-    "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf",
+    "artifactId": "29f573c8b16810a89354b46383dc00dee6a92e02d3d79d31959c585fa91d77da",
+    "sourceCommit": "affa93df83eaeb9f0ceb418a31a0176bd6b461a3",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -654,9 +654,9 @@
     "data/pets.json": "6a3cc6a0a050f8f7e6bfcbc20f27410e44a85e9c78eb96568474b353749524e7",
     "data/pools.json": "219f6127669cffabeb772046fcb5857d138972addc9d1a1c7576d798a07332ca",
     "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-    "index.html": "4b36d6b45e895936d3b3a52b4fd7cf2e85c8b51d44396b9fb33f7741384fe6a9",
+    "index.html": "e2f3bc635df57332269e1a0cd8b27e81e564916fc800b0604a43dacff1e97622",
     "manifest.webmanifest": "9045e56d30d015634a8d68a5b6b3cd60d813c500150fea0d48b08b4eefcb45ba",
-    "service-worker.js": "919688ee7bc677f45e17d5bef2ddfe7a47d12139deda2c02f2fe25d0fbeec0db",
+    "service-worker.js": "a54b0eace6f5fe50ba297dcd72002074c51c6165aa8423a383992a946a1a0a59",
     "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
     "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
     "src/app.js": "6a859ee004d1e4e7ce7f296a7cee411ec2665b6fd11c4bf006452bdc3a1e838d",
@@ -678,10 +678,11 @@
     "src/collectionService.js": "45609153f022cfdcb2d0997c5785a214178a44be471c5ad61789626039f62869",
     "src/companionDialogueService.js": "ca84154fbb28fadbaa176f46c02079b8be2c9863f4567d5c2cc6c29347998876",
     "src/companionService.js": "3974b56613aea67e80f7659caa9dbca0d9397f298948f1f98c9e60b8e446d6aa",
-    "src/daily-race.css": "8baf1c529689bd4db2b10cc75adbd36782d117fd2a3e4aaa810768cca3e4a8d7",
+    "src/daily-race.css": "7a87e4ee369b0646744b3ca4904cbc678263956bcfc23e83ebdfcd904978f71e",
     "src/dailyCheckInService.js": "8edd56d8918232f5c1d19ce46e3a39686d761b73a0e28fe0a6bbc170661575ad",
-    "src/dailyRaceController.js": "da18c1a279fe908f344c07641f88123ee3248f0c691e798de73a29f11dd2b413",
+    "src/dailyRaceController.js": "dc04f90ea68b12d3901973807b0b87b408dce064bb2697b46499b951e1abaccc",
     "src/dailyRaceCore.js": "da617bee480b168f6c4b16fdcb808232bc9fbd8d326b4731610ec74f41f195bd",
+    "src/dailyRaceScene.js": "68ee842fa24b57add4a5a3c3a8ecf1757c7bedf3cbc932bc53510aaceaf8c079",
     "src/dailyRaceService.js": "596bad5fa9990981fbcc08dc02660b55bde6edc50233ef5954b338ddcbbd3755",
     "src/db.js": "9f446987af07e3ef18a2bc0bed7a76794ae9ed66352325b75037b016d80ac321",
     "src/deferredRenderGate.js": "cbbaf2e401be35eab6d673a935c13fef615286a554937dc497b02c4aa6aca6e5",
@@ -783,12 +784,12 @@
     "src/todayHabitsView.js": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
     "src/twilightPresentation.js": "905c328be48088db41ea7be5804ad5da84de5498f3b5ad9d3d375c2df12219ab",
     "src/ui-polish.css": "84d6af7a8206e91be084e1e9b868d51b1bbb4da50550936ccb4c24724e350f5e",
-    "src/ui.js": "9d51657d608769c61a8d98ccbe0958b783ed2c853147796f9351e47021499c20",
+    "src/ui.js": "d039cda72d71e93c9ca87ce19f4666346eaf460777f1dc783af36e811c2a69c3",
     "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
     "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
     "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
     "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-    "src/version.js": "c9022129b4e54768a81916d3ce8b02d76c73430343ea025164aa182c5a5dbde6",
+    "src/version.js": "7d311a0ffab0bf5d07acc015e158a9190a778eca7527dc0a0228c7dc935e858d",
     "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
     "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
   },
@@ -3318,16 +3319,16 @@
       "bytes": 6119
     },
     "index.html": {
-      "sha256": "9cfb765fb6da7fa781e656937c1a3f9906ce61556223e4aee4bd06cf8d7fc747",
-      "bytes": 65082
+      "sha256": "26c017dbf4e25f97c8caaba47acc497c87b9f833573d37be80ab85d8165a8858",
+      "bytes": 66180
     },
     "manifest.webmanifest": {
       "sha256": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
       "bytes": 831
     },
     "service-worker.js": {
-      "sha256": "9b102fa86bde0803d41ff9e4429217ff30f5eb12efa1376c03796b7be565a76d",
-      "bytes": 36915
+      "sha256": "09463df23c7b16041f81a34ad9eeea6a85b623efb5a562124f4211748af3670d",
+      "bytes": 37037
     },
     "src/achievementService.js": {
       "sha256": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
@@ -3414,20 +3415,24 @@
       "bytes": 3307
     },
     "src/daily-race.css": {
-      "sha256": "8baf1c529689bd4db2b10cc75adbd36782d117fd2a3e4aaa810768cca3e4a8d7",
-      "bytes": 5677
+      "sha256": "7a87e4ee369b0646744b3ca4904cbc678263956bcfc23e83ebdfcd904978f71e",
+      "bytes": 12514
     },
     "src/dailyCheckInService.js": {
       "sha256": "8edd56d8918232f5c1d19ce46e3a39686d761b73a0e28fe0a6bbc170661575ad",
       "bytes": 12195
     },
     "src/dailyRaceController.js": {
-      "sha256": "da18c1a279fe908f344c07641f88123ee3248f0c691e798de73a29f11dd2b413",
-      "bytes": 13346
+      "sha256": "dc04f90ea68b12d3901973807b0b87b408dce064bb2697b46499b951e1abaccc",
+      "bytes": 11837
     },
     "src/dailyRaceCore.js": {
       "sha256": "da617bee480b168f6c4b16fdcb808232bc9fbd8d326b4731610ec74f41f195bd",
       "bytes": 6193
+    },
+    "src/dailyRaceScene.js": {
+      "sha256": "68ee842fa24b57add4a5a3c3a8ecf1757c7bedf3cbc932bc53510aaceaf8c079",
+      "bytes": 9777
     },
     "src/dailyRaceService.js": {
       "sha256": "596bad5fa9990981fbcc08dc02660b55bde6edc50233ef5954b338ddcbbd3755",
@@ -3710,7 +3715,7 @@
       "bytes": 4727
     },
     "src/releaseProfile.js": {
-      "sha256": "b04751160ae6f632100b4dcee11ca9660a6e6ef14221004947668794661bd0b2",
+      "sha256": "42285e3572d7468cfc9bd40049e3e0d2df14d6c76ab7ca32e8e91564477b75fc",
       "bytes": 622
     },
     "src/reminder-settings.css": {
@@ -3834,8 +3839,8 @@
       "bytes": 19527
     },
     "src/ui.js": {
-      "sha256": "9d51657d608769c61a8d98ccbe0958b783ed2c853147796f9351e47021499c20",
-      "bytes": 392469
+      "sha256": "d039cda72d71e93c9ca87ce19f4666346eaf460777f1dc783af36e811c2a69c3",
+      "bytes": 392426
     },
     "src/uiHelpers.js": {
       "sha256": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
@@ -3854,7 +3859,7 @@
       "bytes": 695
     },
     "src/version.js": {
-      "sha256": "3f83eff1a1b675663698650f1fde1c0eb520fa36133d8e725d2740ab93bfc167",
+      "sha256": "7121d206b7eeacd16204c698bbb9b31089100944695d4fc38828af1e9191ba7e",
       "bytes": 1153
     },
     "src/workshopGiftView.js": {

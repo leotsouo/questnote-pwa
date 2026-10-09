@@ -1,4 +1,4 @@
-import { openDailyRace, closeDailyRace, dailyRaceEntryHtml } from './dailyRaceController.js';
+import { openDailyRace, closeDailyRace } from './dailyRaceController.js';
 import { inviteCompanion, acknowledgeEncounterMigration, getEncounterEconomy } from './encounterEconomyService.js';
 import { intimacySummary } from './invitationPresentation.js';
 import { renderEncounterView, presentCommittedEncounters } from './encounterView.js';
@@ -2596,7 +2596,7 @@ function renderDailyBlessingSection() {
   if (!homeEl) return;
 
   const { html, hasPending } = buildDailyBlessingCardData();
-  homeEl.innerHTML = html + dailyRaceEntryHtml();
+  homeEl.innerHTML = html;
 
   if (hasPending) {
     homeEl.classList.add('daily-blessing-section--pending');

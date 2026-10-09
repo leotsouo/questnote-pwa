@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.9.2
+ * QuestNote Service Worker — V3.9.3
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2';
+const CACHE_NAME = 'questnote-production-app-29f573c8b16810a89354b46383dc00dee6a92e02d3d79d31959c585fa91d77da';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
-  "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf",
+  "artifactId": "29f573c8b16810a89354b46383dc00dee6a92e02d3d79d31959c585fa91d77da",
+  "sourceCommit": "affa93df83eaeb9f0ceb418a31a0176bd6b461a3",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -89,7 +89,7 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/71aefb86f17b64f793d310a9ac10b28e0d670bfdc6c4e1a09f269bc24af7a014/catalog.json": "71aefb86f17b64f793d310a9ac10b28e0d670bfdc6c4e1a09f269bc24af7a014",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "9cfb765fb6da7fa781e656937c1a3f9906ce61556223e4aee4bd06cf8d7fc747",
+  "index.html": "26c017dbf4e25f97c8caaba47acc497c87b9f833573d37be80ab85d8165a8858",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
   "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
@@ -112,10 +112,11 @@ const PRECACHE_HASHES = {
   "src/collectionService.js": "45609153f022cfdcb2d0997c5785a214178a44be471c5ad61789626039f62869",
   "src/companionDialogueService.js": "ca84154fbb28fadbaa176f46c02079b8be2c9863f4567d5c2cc6c29347998876",
   "src/companionService.js": "3974b56613aea67e80f7659caa9dbca0d9397f298948f1f98c9e60b8e446d6aa",
-  "src/daily-race.css": "8baf1c529689bd4db2b10cc75adbd36782d117fd2a3e4aaa810768cca3e4a8d7",
+  "src/daily-race.css": "7a87e4ee369b0646744b3ca4904cbc678263956bcfc23e83ebdfcd904978f71e",
   "src/dailyCheckInService.js": "8edd56d8918232f5c1d19ce46e3a39686d761b73a0e28fe0a6bbc170661575ad",
-  "src/dailyRaceController.js": "da18c1a279fe908f344c07641f88123ee3248f0c691e798de73a29f11dd2b413",
+  "src/dailyRaceController.js": "dc04f90ea68b12d3901973807b0b87b408dce064bb2697b46499b951e1abaccc",
   "src/dailyRaceCore.js": "da617bee480b168f6c4b16fdcb808232bc9fbd8d326b4731610ec74f41f195bd",
+  "src/dailyRaceScene.js": "68ee842fa24b57add4a5a3c3a8ecf1757c7bedf3cbc932bc53510aaceaf8c079",
   "src/dailyRaceService.js": "596bad5fa9990981fbcc08dc02660b55bde6edc50233ef5954b338ddcbbd3755",
   "src/db.js": "9f446987af07e3ef18a2bc0bed7a76794ae9ed66352325b75037b016d80ac321",
   "src/deferredRenderGate.js": "cbbaf2e401be35eab6d673a935c13fef615286a554937dc497b02c4aa6aca6e5",
@@ -186,7 +187,7 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
   "src/questService.js": "ae9532ad78abb8af981d3d76adb9f06f132e81e1fed945bd77a608a7dd2bfa3b",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "b04751160ae6f632100b4dcee11ca9660a6e6ef14221004947668794661bd0b2",
+  "src/releaseProfile.js": "42285e3572d7468cfc9bd40049e3e0d2df14d6c76ab7ca32e8e91564477b75fc",
   "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "f9cfd9f99703dfd3e91f12f4382716875964b09785bf67418dfdc607c5cb1c5d",
@@ -217,12 +218,12 @@ const PRECACHE_HASHES = {
   "src/todayHabitsView.js": "51a16e89416241eda1e105e2fe1d2ce6c6f846a7943f65dd81603432e956879a",
   "src/twilightPresentation.js": "905c328be48088db41ea7be5804ad5da84de5498f3b5ad9d3d375c2df12219ab",
   "src/ui-polish.css": "84d6af7a8206e91be084e1e9b868d51b1bbb4da50550936ccb4c24724e350f5e",
-  "src/ui.js": "9d51657d608769c61a8d98ccbe0958b783ed2c853147796f9351e47021499c20",
+  "src/ui.js": "d039cda72d71e93c9ca87ce19f4666346eaf460777f1dc783af36e811c2a69c3",
   "src/uiHelpers.js": "875f08583510e7c246eebeff4b39d6a7273d2643f6a2a2931281672c6c4d7de6",
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "3f83eff1a1b675663698650f1fde1c0eb520fa36133d8e725d2740ab93bfc167",
+  "src/version.js": "7121d206b7eeacd16204c698bbb9b31089100944695d4fc38828af1e9191ba7e",
   "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
   "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
 };
@@ -295,6 +296,7 @@ const PRECACHE_URLS = [
   "src/dailyCheckInService.js",
   "src/dailyRaceController.js",
   "src/dailyRaceCore.js",
+  "src/dailyRaceScene.js",
   "src/dailyRaceService.js",
   "src/db.js",
   "src/deferredRenderGate.js",
