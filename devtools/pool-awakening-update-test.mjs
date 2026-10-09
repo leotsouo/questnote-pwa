@@ -41,7 +41,9 @@ try {
     await collection.addPetToCollection('pet_ur17');
     await db.dbPut('collection', { ...await collection.getPetCollection('pet_ur17'), bondLevel: 5, bondExp: 500 });
     const journey = (await import('./src/bondJourneyCore.js')).createBondJourney();
-    journey.byPet.pet_ur17 = { chapters: {} }; await db.dbPut('meta', journey);
+    const at = new Date(Date.now() - 10000).toISOString();
+    journey.byPet.pet_ur17 = { chapters: Object.fromEntries([2, 3, 4, 5].map((level) => [level, { choiceId: 'gentle', readAt: at, completedAt: at, claimedAt: at }])) };
+    await db.dbPut('meta', journey);
     return { pet: await collection.getPetCollection('pet_ur17'), journey, version: (await import('./src/version.js')).APP_VERSION };
   });
   assert.equal(before.version, '3.9.5');
