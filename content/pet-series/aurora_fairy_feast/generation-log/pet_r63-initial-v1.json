@@ -1,0 +1,24 @@
+{
+  "petId": "pet_r63",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_r63.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-8950be5e-876d-4a8f-b68a-30b79cff715c.png",
+  "prompt": "Use case: stylized-concept. Reference owl board ONLY twilight paint quality and soft violet palette; NO owl features, wings, moon crown, humans or collage. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE hedgehog spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 夜莓綺蝟. Recognizable features: 莓紫短刺、暮藍圍巾與小木勺. Story action: 在風口護住莓醬小灶，仔細攪動鍋邊. Visible consequence: 將要熄滅的火恢復溫穩，莓醬不再溢出. Composition: 明確刺蝟輪廓，火光溫柔，避開戰鬥姿態. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. ONE natural small HEDGEHOG with rounded snout, short violet-blue quills, four small hedgehog paws, a simple dusky blue scarf. Sits safely beside a TINY berry-jam stove, one forepaw bracing a small wood spoon in pot while body shields flame from breeze, no human hands. Small pot has calm glossy purple-red jam contained below rim and one warm low flame, not battle fire. Entire hedgehog/quills/paws fully inside frame, 10% margin, central 60%; one pot with spoon not floating. Quiet moonlit cloud kitchen nook, modest R-scale lace scarf edging, minimal gold and magic. One dominant intimate focus, soft dusky periwinkle/lavender/ivory light, no aggressive black/red palette.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Hedgehog quills/snout and small paws distinguish species; wooden spoon reaches calm berry jam over low warm stove. Blue scarf blown sideways gives wind-control context. Rear far paw partly behind stove, primary body complete, no fairy or wings.",
+  "selected": true,
+  "humanApproval": null
+}

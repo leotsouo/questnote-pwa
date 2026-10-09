@@ -1,0 +1,24 @@
+{
+  "petId": "pet_ur32",
+  "form": "awakened",
+  "version": 1,
+  "asset": "awakening-images/pet_ur32.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-49d66929-22f4-4920-917c-00b1b91226d2.png",
+  "prompt": "Use case: stylized-concept. Generate ONE standalone square full-frame card illustration of the awakened ADULT FAIRY of the referenced eagle owl. Reference image 1 is SAME CHARACTER continuity: its soft twilight violet/periwinkle feathers, blue-violet eyes, crescent jewelry and berry hearth. Reference image 2 is the original STYLE/COSTUME reference board: borrow only the adult fairy's gentle elegant face, dark wavy hair, violet ribbons, intricate modest white-lilac lace gown and feather shawl; do NOT reproduce the collage, split layout or owl figure. One adult woman mid-twenties ONLY, refined mature proportions, long violet-black wavy hair, gentle calm expression, simple crescent tiara with small feather sprays, beautiful lined lavender gown with lace sleeves, flowing translucent gauze, graceful bows, delicate transparent blue-violet fairy wings. Full seated figure including skirt hem and both slippers inside frame with 8% margins; no huge spread wings that get cropped. She tends a small warm berry-hearth beside her, one hand gently cups the steam and the other steadies the spoon in its ceramic bowl; warm berry fragrance visibly forms a blue-violet aurora trail leading towards a distant cloud bridge. Natural hands five fingers, no extra limbs. Warm gentle evening Ambient Light, dusky blue/purple and pastel lavender, silvery white lace, muted gold crystal accents, no harsh black/red evil palette, no demon or antlers, no owl anywhere, no childlike figure, no sensual pose. Focus on her recognizable face and the hearth action. Quiet cloud pavilion background subordinate to main character. Premium dreamy painted fantasy matching the reference quality. No text/frame/collage/inset.",
+  "references": [
+    "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-fe77de25-a9e6-41a8-9fc8-d32ab2d76de1.png",
+    "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Adult fairy, readable moon/feather continuity; both slippers and principal wings visible, natural steam-guiding hands and warm berry hearth. Lace/gauze/bows and gentle dusk palette fit direction. Skirt trains reach edges; human/App crop review pending.",
+  "selected": true
+}

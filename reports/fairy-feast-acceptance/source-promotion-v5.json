@@ -1,0 +1,235 @@
+{
+  "recordedAt": "2026-10-09T19:36:02.662Z",
+  "candidateId": "2ccbb39bc330f69224010b6af9fd95df85fcabfd64e04ed46cd786f1285f4c03",
+  "scope": "Reviewed candidate source promotion only; immutable production artifact remains unchanged; legacy compatibility snapshot untouched",
+  "files": [
+    {
+      "file": "data/pets.json",
+      "sha256": "7b3b124f4bec86b058407bcb08b420d0cf205df6f36606dbf3182337394b84d6",
+      "oldCount": 160,
+      "newCount": 172,
+      "oldEntriesPreserved": true
+    },
+    {
+      "file": "data/pools.json",
+      "sha256": "12fa2b0cf8f9542160e982016edfc81366025116217560feba3935129c134592",
+      "oldCount": 8,
+      "newCount": 9,
+      "oldEntriesPreserved": true
+    },
+    {
+      "file": "data/pets-lore.json",
+      "sha256": "f3470729057634278e95aefb8e5132e462bdf33af02158cbe302b2a82523ceb4",
+      "oldCount": 160,
+      "newCount": 172,
+      "oldEntriesPreserved": true
+    },
+    {
+      "file": "data/pet-series.json",
+      "sha256": "65b8110a33a100c09181bbc26d158e0ffa4e604811b1da8f67efb1ff89aa72fe",
+      "oldCount": 8,
+      "newCount": 9,
+      "oldEntriesPreserved": true
+    },
+    {
+      "file": "assets/pets/pet_n53.png",
+      "sha256": "4c8fa5ae4d8d71e03226fefa7294534a08f3610fb783b94cf29fff128d1122d2",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_n54.png",
+      "sha256": "55c447a85fc95451b8196166f65a88f3c24f0c0c2ce06c0bfbe2b7d9da82ac9d",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_r62.png",
+      "sha256": "af4ed89455a3ca82d2eab80abcde2a06b688523877fef9521fb9d7d5f1d551f1",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_r63.png",
+      "sha256": "f4768ee015d599586d35850aecdeebe00a2d46e6b0f5f29de5af776a92ade440",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_sr56.png",
+      "sha256": "6b41a649f4af3e1fa43111492615ce70f157a71283a8530913b80a662572ae3d",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_sr57.png",
+      "sha256": "18c2fd287fad1c7022b49196f4ae12106fb37a73d1d5a9ce4eea05c4d23cee99",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_sr58.png",
+      "sha256": "d7377d5bfceb65e5110ce9a3e12fa76193465a4eb3900b5f401021baa6afdedb",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_sr59.png",
+      "sha256": "4c2b4508f450cfb2d0ba441918b505de697fa26e7319eb513269cfa04d68de45",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_ssr41.png",
+      "sha256": "205a668df54df6a8fe39ac8b7673585ddb9b4bccc4ba6b6966dd2e004ccdb046",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_ssr42.png",
+      "sha256": "4e56c8918de4433b9a1509035ac851de1a92b689971a43552eacbeb58cc16789",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_ur31.png",
+      "sha256": "d7a7f5b56ef5fcf87a53736ed8a809d08f71d9cda06955a4d95858e5151c4b75",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/pet_ur32.png",
+      "sha256": "7d3d88cccae680772412dfc0ae7ae2c4945d2289510711e9444e3287a7dabbd3",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n53-card-384-4c8fa5ae4d8d.webp",
+      "sha256": "187d88257d8144bb436bd7a231036a442608212334b4a7f995b5756b940798cb",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n53-stage-960-4c8fa5ae4d8d.webp",
+      "sha256": "62582be1bc4364f569f00d151bb25a526802bf5c16f9b7aaa2e322acb4782e7c",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n54-card-384-55c447a85fc9.webp",
+      "sha256": "b9db53acbd126aa32243de1110dd5f469d882f21bf4432948356187d144f2496",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_n54-stage-960-55c447a85fc9.webp",
+      "sha256": "de82f1d7a3c5e9189f225ec62ed0ee7bf3ab83f83869704360d43687686e2458",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r62-card-384-af4ed89455a3.webp",
+      "sha256": "460770daa073155ee4a8e2e1277f85aa6434774f0e852907207dda63e3091190",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r62-stage-960-af4ed89455a3.webp",
+      "sha256": "66b6a200ea1e6c67228dfaa42c01e78a5dd5f83a46ad65bd15fcc7aa21f68c85",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r63-card-384-f4768ee015d5.webp",
+      "sha256": "c32f2cef359382f0c0a88cc9040b3fe9e8a669c64e140a619672bbfe93184c12",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_r63-stage-960-f4768ee015d5.webp",
+      "sha256": "5eaa0d01df6cce058be2f2c14511544d90dcabf594641167ca1f8ccc2ab69cb8",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr56-card-384-6b41a649f4af.webp",
+      "sha256": "74f66a4375cdb31b900eb78ef0b32b0e766388e290ec7083f5f5fcb52830c168",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr56-stage-960-6b41a649f4af.webp",
+      "sha256": "281a144ffd65a7c78e740b9d8cd0b08e0a1976ef3b7e9638392b2d72a2d3a950",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr57-card-384-18c2fd287fad.webp",
+      "sha256": "ba72337fc69ae4e79b2657b1651125193f8f30cbb3d5bf4376754a70c7bd4827",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr57-stage-960-18c2fd287fad.webp",
+      "sha256": "bd7f662b8d8ffc8fd6b11d8c923cbf5c9e687aecc1b0eadddc7d47e551e73a7b",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr58-card-384-d7377d5bfceb.webp",
+      "sha256": "fc170e4e728920008a4b2ffb2e32612b56a1236064941738847ff15b94aaa87d",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr58-stage-960-d7377d5bfceb.webp",
+      "sha256": "ac8cf80652dcd8ac4398c54eeafed5d2795166cc61d4e60bb555677130aec4ec",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr59-card-384-4c2b4508f450.webp",
+      "sha256": "41db6004f6a86fadc8e6c23b27051b33ef9f1ec500e8c02d029e0b6775a94f47",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_sr59-stage-960-4c2b4508f450.webp",
+      "sha256": "03cd1957b1e2c58e27e72567a9fc461c797cc1a23d537ef745dfe07761e1fc17",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr41-card-384-205a668df54d.webp",
+      "sha256": "a8440c14a84e1736a62924fe446af3159a1dda97765a5561c0288168c2855480",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr41-stage-960-205a668df54d.webp",
+      "sha256": "3ffa99a3594988ea7298b640cd3290c14fa73094ff42c63ef685c69d1d39e223",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr42-card-384-4e56c8918de4.webp",
+      "sha256": "1d13bb6dc87ed0d1f8050f42a757cf8c4ef0de98e464fe809a5191ea097b5227",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ssr42-stage-960-4e56c8918de4.webp",
+      "sha256": "a1719fc98c22a0e23dbfb35679423b5ee4dce45ea69d6cf64ff09fcfe8abce91",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur31-card-384-d7a7f5b56ef5.webp",
+      "sha256": "f9f3f8a846b3bd7310ded7fbec21010f13294320493ca54f15e1bf11830cee42",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur31-stage-960-d7a7f5b56ef5.webp",
+      "sha256": "dd07371a2fc4eccb51a774016e244f90f05aaf89ab27916059afb90c16f8b50e",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur32-card-384-7d3d88cccae6.webp",
+      "sha256": "f8e508f5d851646fa9ba4e7128e2b623ff2c8c85b6246386f5333c3e97cd4ad3",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "assets/pets/variants/pet_ur32-stage-960-7d3d88cccae6.webp",
+      "sha256": "958e0b0e1e978a11489b1f57a96666761f6c20dcaf3b617e67f7a2533e181dbd",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "data/craftables.json",
+      "sha256": "95b82ff59299bd33178a64ae801d3725d6ad0a9812db9f2e0743633bfce56a4f",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "data/expeditions.json",
+      "sha256": "34620b7aaf50f26d91d560050c76acc71dab148510e6275e1dfe6c73f272aca2",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "data/gift-affinities.json",
+      "sha256": "9de6c95bd696bf98955c0fd04ffcf0ad3a23dd9667a9b388ae8329000eab324b",
+      "exactCandidateBytes": true
+    },
+    {
+      "file": "data/materials.json",
+      "sha256": "e301faa6c4f7d8c5ca4bc771d189917cab56f07f3457883bad84849489969455",
+      "exactCandidateBytes": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "petId": "pet_n53",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_n53.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-f2ab5b43-2363-42bb-9564-b8d1ee2002eb.png",
+  "prompt": "Use case: stylized-concept. Input image ONLY painterly pastel light/material style, no deer organs/antlers/jewelry or human/fairy. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE butterfly spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 糖霧粉蝶. Recognizable features: 淡粉透明蝶翼與自然蕾絲狀翼脈. Story action: 輕扇翅膀把糖粉吹向一片剛出爐的餅. Visible consequence: 糖粉形成可辨的小花紋. Composition: 少量光點，蝶翼與餅上的花紋在縮圖仍讀得清. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. ONE natural delicate butterfly, clearly insect head/antennae and six fine legs, TWO pairs of transparent pale pink wings with natural lace-like veins, all four wing tips inside square with 12% safe margin. Butterfly hovers just above ONE small freshly baked flower biscuit on porcelain saucer. Wingbeat blows a fine trail of sugar dust downwards, visibly leaving a simple flower pattern on biscuit; a few sugar grains suffice, no grand magic halo. Focus butterfly and biscuit central 65%, gentle ordinary N cooking moment on cloud kitchen windowsill, softly blurred daylight, low background detail, milky ivory/pink/pale lilac Ambient Light. No bows attached to each wing, no clothes, no large gemstones or crowns, no mammal face, no humanoid body, no second butterfly, no letters.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+    ]
+  },
+  "aiReview": "One insect butterfly with natural antennae/fine legs and lace-veined pink wings; full principal tips inside frame, far pair partially overlaps at oblique angle. Sugar trail visibly lands in flower pattern on biscuit. No humanoid body, clothes or legendary halo, N cooking action readable.",
+  "selected": true,
+  "humanApproval": null
+}

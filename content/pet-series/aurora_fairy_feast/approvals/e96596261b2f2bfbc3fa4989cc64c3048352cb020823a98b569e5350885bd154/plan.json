@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "pets": [
+    {
+      "draftId": "n_1",
+      "petId": "pet_n53",
+      "rarity": "N",
+      "name": "糖霧粉蝶",
+      "phase": "base",
+      "design": "辨識特徵：淡粉透明蝶翼與自然蕾絲狀翼脈。故事動作：輕扇翅膀把糖粉吹向一片剛出爐的餅。可見結果：糖粉形成可辨的小花紋。構圖與限制：少量光點，蝶翼與餅上的花紋在縮圖仍讀得清。本池原創，保留蝴蝶本體；初遇只呈現靈獸。",
+      "key": "sugar_mist_butterfly",
+      "palette": "light",
+      "awakening": false
+    },
+    {
+      "draftId": "n_2",
+      "petId": "pet_n54",
+      "rarity": "N",
+      "name": "紫露星螢",
+      "phase": "base",
+      "design": "辨識特徵：紫藍翅鞘、露珠腹光與細小緞帶。故事動作：在夜宴後沿空食籃飛行，帶採集隊回家。可見結果：露珠依序點亮成路標，最遠的雲橋重新可見。構圖與限制：放大主螢，背景保留路標而不是整片光海。本池原創，保留螢火蟲本體；初遇只呈現靈獸。",
+      "key": "violet_dew_firefly",
+      "palette": "dark",
+      "awakening": false
+    },
+    {
+      "draftId": "r_1",
+      "petId": "pet_r62",
+      "rarity": "R",
+      "name": "花綃糖雀",
+      "phase": "base",
+      "design": "辨識特徵：白粉短羽、綃帶尾飾與花瓣嘴銜。故事動作：將一片完好的花瓣放在剛完成的小塔上。可見結果：塔面形成最後一圈花冠，桌邊同伴抬頭等待。構圖與限制：小鳥與單一果塔足夠，不堆滿金飾。本池原創，保留雀鳥本體；初遇只呈現靈獸。",
+      "key": "floral_silk_bird",
+      "palette": "light",
+      "awakening": false
+    },
+    {
+      "draftId": "r_2",
+      "petId": "pet_r63",
+      "rarity": "R",
+      "name": "夜莓綺蝟",
+      "phase": "base",
+      "design": "辨識特徵：莓紫短刺、暮藍圍巾與小木勺。故事動作：在風口護住莓醬小灶，仔細攪動鍋邊。可見結果：將要熄滅的火恢復溫穩，莓醬不再溢出。構圖與限制：明確刺蝟輪廓，火光溫柔，避開戰鬥姿態。本池原創，保留刺蝟本體；初遇只呈現靈獸。",
+      "key": "night_jam_hedgehog",
+      "palette": "dark",
+      "awakening": false
+    },
+    {
+      "draftId": "sr_1",
+      "petId": "pet_sr56",
+      "rarity": "SR",
+      "name": "奶霜綺兔",
+      "phase": "base",
+      "design": "辨識特徵：奶白耳、粉色耳結與蕾絲小圍裙。故事動作：扶穩盛著奶霜與花瓣的食籃跨過雲階。可見結果：搖晃的奶霜仍完整留下花瓣紋，食籃安全送到膳亭。構圖與限制：耳與籃是主要辨識點，保持兔足與兔身。本池原創，保留兔本體；初遇只呈現靈獸。",
+      "key": "cream_bow_rabbit",
+      "palette": "light",
+      "awakening": false
+    },
+    {
+      "draftId": "sr_2",
+      "petId": "pet_sr57",
+      "rarity": "SR",
+      "name": "藍糖霧貂",
+      "phase": "base",
+      "design": "辨識特徵：灰藍長身、紫緞腰結與糖霜尾尖。故事動作：先探身試踩覆著夜露的窄橋，回頭招呼慢步夥伴。可見結果：霧中顯出一串安全的糖光足印。構圖與限制：長身側影與回望形成方向感，不把深色畫成純黑。本池原創，保留貂本體；初遇只呈現靈獸。",
+      "key": "blue_sugar_marten",
+      "palette": "dark",
+      "awakening": false
+    },
+    {
+      "draftId": "sr_3",
+      "petId": "pet_sr58",
+      "rarity": "SR",
+      "name": "桃露茶栗",
+      "phase": "unlock",
+      "design": "辨識特徵：桃粉大尾、白色蕾絲背帶與茶葉籃。故事動作：把不同成熟度的果子分放進晨宴與夜宴食籃。可見結果：果籃由凌亂變成有次序的粉白與藍紫兩列。構圖與限制：松鼠尾與雙籃清楚分層；贈寵保持靈獸。本池原創，保留松鼠本體；初遇只呈現靈獸。",
+      "key": "peach_tea_squirrel",
+      "palette": "light",
+      "awakening": false
+    },
+    {
+      "draftId": "sr_4",
+      "petId": "pet_sr59",
+      "rarity": "SR",
+      "name": "紫盞雲狸",
+      "phase": "unlock",
+      "design": "辨識特徵：灰紫貓毛、透明頸紗與杯形月飾。故事動作：靠著食盒陪晚歸夥伴等茶放涼。可見結果：茶面倒映兩個靠近的影子，周圍夜霧散開。構圖與限制：貓臉和茶盞為近景，避免只有大面積特效。本池原創，保留貓本體；初遇只呈現靈獸。",
+      "key": "violet_cup_cat",
+      "palette": "dark",
+      "awakening": false
+    },
+    {
+      "draftId": "ssr_1",
+      "petId": "pet_ssr41",
+      "rarity": "SSR",
+      "name": "櫻紗靈狐",
+      "phase": "base",
+      "design": "辨識特徵：粉白狐尾、櫻花蕾絲領與雙緞帶。故事動作：用尾尖卷起花瓣，替破裂的點心收攏外皮。可見結果：裂口被花紋封住，熱香留在分給旅人的食盒裡。構圖與限制：狐臉、尾巴與食盒構成單一動作，避免變成無故事的服飾展示。本池原創，保留狐狸本體；初遇只呈現靈獸。",
+      "key": "cherry_silk_fox",
+      "palette": "light",
+      "awakening": true
+    },
+    {
+      "draftId": "ssr_2",
+      "petId": "pet_ssr42",
+      "rarity": "SSR",
+      "name": "霧靛羽鵠",
+      "phase": "base",
+      "design": "辨識特徵：暮靛長頸、銀紫羽紗與珠鏈。故事動作：沿蒸氣中的香紋尋找遺失的調味次序。可見結果：混濁香霧分成清楚的藍紫層次，古食譜浮出圖案。構圖與限制：S 形長頸與香紋呼應，保持天鵝本體，不增加人手。本池原創，保留天鵝本體；初遇只呈現靈獸。",
+      "key": "indigo_mist_swan",
+      "palette": "dark",
+      "awakening": true
+    },
+    {
+      "draftId": "ur_1",
+      "petId": "pet_ur31",
+      "rarity": "UR",
+      "name": "月露雪鹿",
+      "phase": "base",
+      "design": "辨識特徵：花枝鹿角、月滴吊飾、粉白薄紗與晶透蹄。故事動作：以低頭的鹿角引下花露，落進待凝的果塔。可見結果：露滴沿塔面結成光潔花紋，雲階亮起柔白歸路。構圖與限制：完整鹿身占主畫面，頭角與果塔形成視線連線；獨立 1:1，不含人形或設定板。本池原創，保留白鹿本體；初遇只呈現靈獸。",
+      "key": "moon_dew_deer",
+      "palette": "light",
+      "awakening": true
+    },
+    {
+      "draftId": "ur_2",
+      "petId": "pet_ur32",
+      "rarity": "UR",
+      "name": "曜夜玄鴞",
+      "phase": "base",
+      "design": "辨識特徵：完整巨翼、紫藍眼、月冠與羽緣金絲。故事動作：在夜灶旁展翼穩住風，讓莓香慢慢升起。可見結果：散亂的香霧被聚成一條極光，引回晚歸的夥伴。構圖與限制：展翼建立 UR 威儀，羽毛與眼睛在小卡可辨；遠景減量，不增加惡魔角或人形。本池原創，保留雕鴞本體；初遇只呈現靈獸。",
+      "key": "night_radiance_owl",
+      "palette": "dark",
+      "awakening": true
+    }
+  ]
+}

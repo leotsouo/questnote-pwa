@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.9.5
+ * QuestNote Service Worker — V3.9.6
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v395-pool-directory';
+const CACHE_NAME = 'questnote-preview-cache-v396-visual-pools';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -42,6 +42,8 @@ const PRECACHE_HASHES = null;
 
 /** 需要預快取的資源（相對於 SW 所在目錄） */
 const PRECACHE_URLS = [
+  'src/auroraFairyScene.js',
+  'src/aurora-fairy-feast.css',
   'src/dailyRaceScene.js',
   'src/dailyRaceCore.js',
   'src/dailyRaceController.js',
@@ -204,6 +206,7 @@ const PRECACHE_URLS = [
   'data/gift-affinities.json',
   'assets/brand/questnote-icon-192.png',
   'assets/icons/icon-512.png',
+  'assets/expeditions/aurora_feast_garden.webp',
   'assets/expeditions/lionheart_city.webp',
   'assets/expeditions/mist_forest.webp',
   'assets/expeditions/lava_rift.webp',

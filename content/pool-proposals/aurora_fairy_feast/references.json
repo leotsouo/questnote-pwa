@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "preservedAt": "2026-10-09T15:13:05.9234464Z",
+  "files": [
+    {
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT 圖像 2026年10月9日 下午10_58_53.png",
+      "file": "references/moon-dew-deer-cooking.png",
+      "role": "light UR cooking comparison",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3052893,
+      "sha256": "c290a06ec89d9c45e22b1b4781c4be8291464247542712ac98d59366661f6fa5",
+      "provenance": "User-supplied concept; original generator/model/prompt/seed/cost unverified",
+      "library_file_id": null,
+      "humanApproved": true,
+      "approvalScope": "Concept direction and reference version",
+      "approvalRecord": "human-art-approval-20261009.json"
+    },
+    {
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT 圖像 2026年10月9日 下午10_58_49.png",
+      "file": "references/night-owl-cooking.png",
+      "role": "dark UR cooking comparison",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3171334,
+      "sha256": "42bf1f16f98bcdf549ca8d6417481a323070fa7682a692e235f8aa4bbbecbab3",
+      "provenance": "User-supplied concept; original generator/model/prompt/seed/cost unverified",
+      "library_file_id": null,
+      "humanApproved": true,
+      "approvalScope": "Concept direction and reference version",
+      "approvalRecord": "human-art-approval-20261009.json"
+    },
+    {
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT 圖像 2026年10月9日 下午10_58_44.png",
+      "file": "references/aurora-feast-garden.png",
+      "role": "region concept",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3067997,
+      "sha256": "b8a13fed01ca8e889c960487ccf950997222ebc2956222a4105fe6c35535185b",
+      "provenance": "User-supplied concept; original generator/model/prompt/seed/cost unverified",
+      "library_file_id": null,
+      "humanApproved": true,
+      "approvalScope": "Concept direction and reference version",
+      "approvalRecord": "human-art-approval-20261009.json"
+    },
+    {
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT 圖像 2026年10月9日 下午10_58_39.png",
+      "file": "references/moon-dew-deer-design-board.png",
+      "role": "light UR design board",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3018874,
+      "sha256": "71be6dc19a9205cde0aa0bf4fe051deaa0a6a35180d5d8884166d567633ca2be",
+      "provenance": "User-supplied concept; original generator/model/prompt/seed/cost unverified",
+      "library_file_id": null,
+      "humanApproved": true,
+      "approvalScope": "Concept direction and reference version",
+      "approvalRecord": "human-art-approval-20261009.json"
+    },
+    {
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT 圖像 2026年10月9日 下午10_58_22.png",
+      "file": "references/night-owl-design-board.png",
+      "role": "dark UR design board",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3355287,
+      "sha256": "8bc81e1c28c170d93c6aaaa287890ddc5b66cd2e2e25671b7cf903772317d348",
+      "provenance": "User-supplied concept; original generator/model/prompt/seed/cost unverified",
+      "library_file_id": null,
+      "humanApproved": true,
+      "approvalScope": "Concept direction and reference version",
+      "approvalRecord": "human-art-approval-20261009.json"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "sopVersion": 2,
+  "seriesId": "aurora_fairy_feast",
+  "poolId": "aurora_fairy_feast",
+  "seriesName": "霓霞仙膳",
+  "concept": "仙女喜歡下凡做美食；初遇全部呈現靈獸，只有 SSR／UR 可覺醒為仙女，其餘永遠保持靈獸。 雲上宴席的光與香逐漸消散；她們發現只收藏珍貴材料留不住滋味，必須真正陪伴、烹調並分享。",
+  "rarityPlan": {
+    "N": 2,
+    "R": 2,
+    "SR": 4,
+    "SSR": 2,
+    "UR": 2
+  },
+  "cost": 100,
+  "rates": {
+    "N": 0.55,
+    "R": 0.3,
+    "SR": 0.1,
+    "SSR": 0.03,
+    "UR": 0.02
+  },
+  "pity": {
+    "ssr": 30,
+    "ur": 100
+  },
+  "presentationTemplate": "aurora_fairy_feast",
+  "unlock": {
+    "key": "morning_evening_feast",
+    "threshold": 20,
+    "rewardDraftId": "sr_3"
+  },
+  "releaseVersion": "3.9.3",
+  "imageReviewMode": "human",
+  "noExtraCost": true,
+  "productionBaseline": {
+    "version": "3.9.2",
+    "deployedCommit": "48be5954b60dcd1c27d5d192922f6753b1e5597b",
+    "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf",
+    "mainCommit": "7b7fb0b093c052338811e1ca4c64f3a2dc4a8601",
+    "artifactId": "58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
+    "manifestSha256": "1fa1a59af449f5824ff13b4f872d9b14983295cdc3381cc78c1f36f9eafb7268",
+    "versionSha256": "3f83eff1a1b675663698650f1fde1c0eb520fa36133d8e725d2740ab93bfc167",
+    "httpsUrl": "https://leotsouo.github.io/questnote-pwa/",
+    "verifiedAt": "2026-10-09T15:52:23.3742484Z",
+    "unpublishedChanges": "Main differs from released source only by the V3.9.2 release receipt commits 6205acb and 7b7fb0b. Other worktree features including V3.9.7 are excluded.",
+    "verificationScope": "Fetched main and gh-pages; live release-artifact.json SHA-256 and artifact identity match deployment receipt/Git descriptor; live version bytes match manifest. This is baseline verification, not whole-package acceptance or new pool release verification."
+  },
+  "animationPlan": {
+    "decision": "dedicated",
+    "reason": "Morning/evening food-sharing story differs from Honeylight's candy garden; retain common timing with new cloud-kitchen visual composition.",
+    "storyboard": "Cloud stair appears, dawn and dusk food baskets approach the central pavilion, two fragrance trails meet at the feast bowl; official pool name followed by two lines and continue prompt.",
+    "rarityNotes": "SSR 2500ms／UR 4500ms，以花露、守灶、櫻花、香霧形成各自辨識點；初遇始終靈獸。",
+    "motionNotes": "共用3400ms入場、3000ms前奏、等待繼續、略過與Escape；減少動態500ms。場景共用SVG座標；不改交易。"
+  },
+  "awakeningScope": {
+    "rarities": [
+      "SSR",
+      "UR"
+    ],
+    "count": 4,
+    "regionId": "aurora_feast_garden",
+    "foodId": "item_aurora_flower_tart"
+  },
+  "paletteSplit": {
+    "light": 6,
+    "dark": 6
+  },
+  "referenceApproval": "content/pool-proposals/aurora_fairy_feast/human-art-approval-20261009.json"
+}

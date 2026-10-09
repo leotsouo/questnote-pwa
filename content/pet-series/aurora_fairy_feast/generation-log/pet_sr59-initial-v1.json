@@ -1,0 +1,24 @@
+{
+  "petId": "pet_sr59",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_sr59-v1.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-56e2d1a2-eff9-42fc-ad2d-84b76be00937.png",
+  "prompt": "Use case: stylized-concept. Reference board ONLY color/material/paint-quality style; DO NOT copy owl/humans/collage, no feather organs or crown. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE cat spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 紫盞雲狸. Recognizable features: 灰紫貓毛、透明頸紗與杯形月飾. Story action: 靠著食盒陪晚歸夥伴等茶放涼. Visible consequence: 茶面倒映兩個靠近的影子，周圍夜霧散開. Composition: 貓臉和茶盞為近景，避免只有大面積特效. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. ONE gentle natural small CAT with lavender-gray coat, translucent neck scarf and little cup-shaped crescent pendant; NO human dress/hands or wings. Cat rests comfortably next to ONE warm tea cup and small closed pastry box; patient expression looking at cup cooling, visible soft steam thinning into calm dusk haze. Reflection of cat and an empty companion's seat together in tea, no second animal. Entire curled cat body, tail and all visible paws within frame with 10% margin, central subject at 60%. Intimate SR quiet cloud verandah, blurred aurora and warm single lantern. Low decoration count, minimal gold, pastel dusty violet/periwinkle/ivory ambient light, readable cat silhouette and cup.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Strong patient cat face, translucent scarf/cup pendant, tea reflection of cat and empty seat, closed box. Cat left flank cut by frame; preserve v1 and widen composition.",
+  "selected": false,
+  "humanApproval": null
+}

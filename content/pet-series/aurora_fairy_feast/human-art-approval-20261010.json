@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "QuestNote user",
+  "reviewerType": "human",
+  "recordedAt": "2026-10-09T18:13:17.444Z",
+  "phrase": "通過繼續SOP",
+  "scope": "The exact full art set displayed on the intermediate human review page; no final package acceptance or publication authorization.",
+  "artSetHash": "e10eee23efcd018c589073d229c25fcc01f7b5a46dc217c5180afa251b248620",
+  "files": [
+    {
+      "petId": "pet_n53",
+      "form": "initial",
+      "file": "images/pet_n53.png",
+      "sha256": "4c8fa5ae4d8d71e03226fefa7294534a08f3610fb783b94cf29fff128d1122d2",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2312620,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_n54",
+      "form": "initial",
+      "file": "images/pet_n54.png",
+      "sha256": "55c447a85fc95451b8196166f65a88f3c24f0c0c2ce06c0bfbe2b7d9da82ac9d",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2448175,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_r62",
+      "form": "initial",
+      "file": "images/pet_r62.png",
+      "sha256": "af4ed89455a3ca82d2eab80abcde2a06b688523877fef9521fb9d7d5f1d551f1",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2348735,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_r63",
+      "form": "initial",
+      "file": "images/pet_r63.png",
+      "sha256": "f4768ee015d599586d35850aecdeebe00a2d46e6b0f5f29de5af776a92ade440",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3154605,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_sr56",
+      "form": "initial",
+      "file": "images/pet_sr56.png",
+      "sha256": "6b41a649f4af3e1fa43111492615ce70f157a71283a8530913b80a662572ae3d",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2463302,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_sr57",
+      "form": "initial",
+      "file": "images/pet_sr57.png",
+      "sha256": "18c2fd287fad1c7022b49196f4ae12106fb37a73d1d5a9ce4eea05c4d23cee99",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3007391,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_sr58",
+      "form": "initial",
+      "file": "images/pet_sr58.png",
+      "sha256": "d7377d5bfceb65e5110ce9a3e12fa76193465a4eb3900b5f401021baa6afdedb",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2925816,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_sr59",
+      "form": "initial",
+      "file": "images/pet_sr59.png",
+      "sha256": "4c2b4508f450cfb2d0ba441918b505de697fa26e7319eb513269cfa04d68de45",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2683085,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_ssr41",
+      "form": "initial",
+      "file": "images/pet_ssr41.png",
+      "sha256": "205a668df54df6a8fe39ac8b7673585ddb9b4bccc4ba6b6966dd2e004ccdb046",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2735538,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_ssr41",
+      "form": "awakened",
+      "file": "awakening-images/pet_ssr41.png",
+      "sha256": "1f33cdc7ae574d838f35fc29e6ca3133788ec5b6b0ecc4a4874d6ae448e9af1a",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3061373,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_ssr42",
+      "form": "initial",
+      "file": "images/pet_ssr42.png",
+      "sha256": "4e56c8918de4433b9a1509035ac851de1a92b689971a43552eacbeb58cc16789",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3129539,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_ssr42",
+      "form": "awakened",
+      "file": "awakening-images/pet_ssr42.png",
+      "sha256": "378df386bed97d2231a70ac631d0981a7d61dfd36f7811737c3ec5e85707c91b",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3441380,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_ur31",
+      "form": "initial",
+      "file": "images/pet_ur31.png",
+      "sha256": "d7a7f5b56ef5fcf87a53736ed8a809d08f71d9cda06955a4d95858e5151c4b75",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2759019,
+      "humanApproved": true,
+      "approvalRecord": "../../pool-proposals/aurora_fairy_feast/human-art-approval-20261009.json"
+    },
+    {
+      "petId": "pet_ur31",
+      "form": "awakened",
+      "file": "awakening-images/pet_ur31.png",
+      "sha256": "e705aafeecfdb8e8b5a94f5e628809938e8283eed04a1ad3b04b3fc2c3dc474f",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3206174,
+      "humanApproved": true,
+      "approvalRecord": "../../pool-proposals/aurora_fairy_feast/human-art-approval-20261009.json"
+    },
+    {
+      "petId": "pet_ur32",
+      "form": "initial",
+      "file": "images/pet_ur32.png",
+      "sha256": "7d3d88cccae680772412dfc0ae7ae2c4945d2289510711e9444e3287a7dabbd3",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3141486,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "petId": "pet_ur32",
+      "form": "awakened",
+      "file": "awakening-images/pet_ur32.png",
+      "sha256": "fd374ec64bd9d9ad5b49eb0dcc3c238be16b39105e063091d197d3db31a5ad2d",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3548264,
+      "humanApproved": false,
+      "approvalRecord": null
+    },
+    {
+      "form": "region",
+      "file": "../../../assets/expeditions/aurora_feast_garden.webp",
+      "sha256": "c2c3fbe789b07c3dbba001e2f0ddbe9d0e10fe09df607f772ed85acd77920940",
+      "width": 1600,
+      "height": 900,
+      "bytes": 474510,
+      "humanApproved": false,
+      "sourceConceptApproved": true
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "status": "pass",
+  "running": false,
+  "artifactId": "6f189b3e4544d6ebe00f1461b89af654ea35c0e9fc3d8900e7a1ba6bb776b494",
+  "checkedAt": "2026-10-09T19:02:28.671Z",
+  "checks": [
+    {
+      "name": "完整登場與繼續",
+      "status": "pass",
+      "milliseconds": 4021,
+      "reveals": [],
+      "summary": [],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "切換卡池完整登場",
+      "status": "pass",
+      "milliseconds": 4000,
+      "reveals": [],
+      "summary": [],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "登場提前略過",
+      "status": "pass",
+      "milliseconds": 292,
+      "reveals": [],
+      "summary": [],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "單抽一般卡完整前奏",
+      "status": "pass",
+      "milliseconds": 3083,
+      "reveals": [],
+      "summary": [],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "正常十連雙UR／兩SSR及重複",
+      "status": "pass",
+      "milliseconds": 27673,
+      "reveals": [
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "summary": [
+        "糖霧粉蝶",
+        "花綃糖雀",
+        "奶霜綺兔",
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "紫露星螢",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "減少動態十連及繼續連點",
+      "status": "pass",
+      "milliseconds": 5047,
+      "reveals": [
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "summary": [
+        "糖霧粉蝶",
+        "花綃糖雀",
+        "奶霜綺兔",
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "紫露星螢",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "略過前奏仍保留稀有順序",
+      "status": "pass",
+      "milliseconds": 4551,
+      "reveals": [
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "summary": [
+        "糖霧粉蝶",
+        "花綃糖雀",
+        "奶霜綺兔",
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "紫露星螢",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "略過揭示仍有完整十連",
+      "status": "pass",
+      "milliseconds": 229,
+      "reveals": [
+        "櫻紗靈狐"
+      ],
+      "summary": [
+        "糖霧粉蝶",
+        "花綃糖雀",
+        "奶霜綺兔",
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "紫露星螢",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "圖片失敗仍有完整結果",
+      "status": "pass",
+      "milliseconds": 5044,
+      "reveals": [
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "summary": [
+        "糖霧粉蝶",
+        "花綃糖雀",
+        "奶霜綺兔",
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "紫露星螢",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "failedImage": true,
+      "transactionStateUnchanged": true
+    },
+    {
+      "name": "外部中斷仍保留完整結果",
+      "status": "pass",
+      "milliseconds": 644,
+      "reveals": [
+        "櫻紗靈狐"
+      ],
+      "summary": [
+        "糖霧粉蝶",
+        "花綃糖雀",
+        "奶霜綺兔",
+        "櫻紗靈狐",
+        "月露雪鹿",
+        "曜夜玄鴞",
+        "紫露星螢",
+        "月露雪鹿",
+        "霧靛羽鵠",
+        "曜夜玄鴞"
+      ],
+      "failedImage": false,
+      "transactionStateUnchanged": true
+    }
+  ]
+}

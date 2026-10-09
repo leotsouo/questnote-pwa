@@ -1,0 +1,24 @@
+{
+  "petId": "pet_sr56",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_sr56.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-bde9f8e3-d767-4f9f-9599-da9564d4c951.png",
+  "prompt": "Use case: stylized-concept. Input deer image is ONLY painted palette/quality reference, DO NOT copy deer antlers, anatomy, jewelry or composition. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE rabbit spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 奶霜綺兔. Recognizable features: 奶白耳、粉色耳結與蕾絲小圍裙. Story action: 扶穩盛著奶霜與花瓣的食籃跨過雲階. Visible consequence: 搖晃的奶霜仍完整留下花瓣紋，食籃安全送到膳亭. Composition: 耳與籃是主要辨識點，保持兔足與兔身. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Milky white, petal pink, pale lilac, macaroon dawn colors. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. Clear natural rabbit, exactly four rabbit paws and two long ears, one small white tail, pastel pink ear bow and SMALL lace apron. Animal and story basket together occupy center 65%, framed with 10% breathing space. Rabbit leans carefully onto one shallow cloud step while its FOREPAWS gently brace one woven basket of porcelain cream bowls and petals. Cream remains smooth with petal pattern despite tilted step; no spoon floating. Smaller SR-scale quiet kitchen garden, less gold/jewelry than UR. No humanoid stance/dress/wings.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png"
+    ]
+  },
+  "aiReview": "Two complete rabbit ears, natural four paws and small tail; forepaws brace basket while hind paws cross separate steps. Petal cream stays stable, pink bow/lace small apron readable. One animal, no fairy or extra wings; full main outline inside frame.",
+  "selected": true,
+  "humanApproval": null
+}

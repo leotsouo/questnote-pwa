@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "57f1db0bab7e405ca6ad7eefd453e1af6145330f",
+  "candidateId": "2ccbb39bc330f69224010b6af9fd95df85fcabfd64e04ed46cd786f1285f4c03",
+  "candidateManifestSha256": "0ec9a7681fcf6aec2ef230dee6aed118aa21cd19d4ceb1e5e865b655a7d90c94",
+  "previewUrl": "http://127.0.0.1:56134/review/",
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\ff10-v2\\3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db",
+      "artifactId": "3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db",
+      "manifestSha256": "930c05d3a7561fc0e887eeafd1dab6b0eaf7ebded20dbd980be8f59bef00bbee",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\ff10-v2\\cbd4ee6902dcb3b770b01dbc05bb0327b62c7c3670678a08147d2c55b09f8ddb",
+      "artifactId": "cbd4ee6902dcb3b770b01dbc05bb0327b62c7c3670678a08147d2c55b09f8ddb",
+      "manifestSha256": "67cbfa71a479d217e3be21b9adaa9585a76d203591f25d43895b6865b9320ef0",
+      "scopePath": "/questnote-pwa/"
+    }
+  },
+  "checks": {
+    "animation": {
+      "status": "pass",
+      "evidence": "reports/fairy-feast-acceptance/README.md; artifact 3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db; actual local preview browser evidence, transactions-modern-v2.json and animations-v2.json; serviceWorker HTTP503 fault injection and npm update protocol tests; production HTTPS and physical device pending."
+    },
+    "workshop": {
+      "status": "pass",
+      "evidence": "reports/fairy-feast-acceptance/README.md; artifact 3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db; actual local preview browser evidence, transactions-modern-v2.json and animations-v2.json; serviceWorker HTTP503 fault injection and npm update protocol tests; production HTTPS and physical device pending."
+    },
+    "specialties": {
+      "status": "pass",
+      "evidence": "reports/fairy-feast-acceptance/README.md; artifact 3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db; actual local preview browser evidence, transactions-modern-v2.json and animations-v2.json; serviceWorker HTTP503 fault injection and npm update protocol tests; production HTTPS and physical device pending."
+    },
+    "region": {
+      "status": "pass",
+      "evidence": "reports/fairy-feast-acceptance/README.md; artifact 3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db; actual local preview browser evidence, transactions-modern-v2.json and animations-v2.json; serviceWorker HTTP503 fault injection and npm update protocol tests; production HTTPS and physical device pending."
+    },
+    "transactions": {
+      "status": "pass",
+      "evidence": "reports/fairy-feast-acceptance/README.md; artifact 3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db; actual local preview browser evidence, transactions-modern-v2.json and animations-v2.json; serviceWorker HTTP503 fault injection and npm update protocol tests; production HTTPS and physical device pending."
+    },
+    "serviceWorker": {
+      "status": "pass",
+      "evidence": "reports/fairy-feast-acceptance/README.md; artifact 3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db; actual local preview browser evidence, transactions-modern-v2.json and animations-v2.json; serviceWorker HTTP503 fault injection and npm update protocol tests; production HTTPS and physical device pending."
+    }
+  },
+  "humanAcceptance": null,
+  "publicationAuthorization": null
+}

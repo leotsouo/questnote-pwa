@@ -1,0 +1,25 @@
+{
+  "petId": "pet_ssr42",
+  "form": "awakened",
+  "version": 1,
+  "asset": "awakening-images/pet_ssr42.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-8a0ed263-d3db-424c-8818-b47218242e82.png",
+  "prompt": "Use case: stylized-concept. ONE standalone square full-frame illustration of the AWAKENED ADULT FAIRY of Indigo Mist Swan. Input image 1 is same-character continuity: swan's elegant S-neck poise, silver/periwinkle feathers, violet pearl chain, single recipe-pictogram book and three aroma layers. Input image 2 is painted fairy STYLE only, never copy owl crown or dark hair identity. ONE adult woman mid-twenties, refined composed face, long silvery-periwinkle hair neatly draped over one shoulder, gentle thoughtful eyes. Modest fully lined soft indigo/lavender gown with feather-lace shoulders, gauzy flowing skirt, pale purple ribbon and fine pearl chain; small iridescent translucent fairy wings. Entire standing figure with skirt hem and slippers inside square, margin around all wings and hair. At ONE small steaming porcelain pot she reads an open recipe book with ingredient pictograms only, one hand supporting book, the other gently tracing the aroma; mist visibly separates into three blue/violet/pale cream ingredient layers above pot. Natural five-fingered hands. Swan-derived elegance without beak/animal head or giant bird wings, no separate swan/owl. Quiet cloud kitchen at blue hour, soft dusky blue-violet pastel aurora Ambient Light, no evil black-red colors. Exquisite painted lace and gauze matching references, SSR scale rather than grand UR coronation. No text/border/collage/inset, no readable book text, no childlike figure/sensual pose.",
+  "references": [
+    "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-eaec2173-8775-4b19-aaaa-97064a5ee789.png",
+    "C:/Users/User/OneDrive/questnote-pwa/.worktrees/fairy-feast-20261009/content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Adult fairy with silvery violet hair, feather-lace shawl, pearl chain and complete main wings/slippers. Supports pictogram book and traces three ingredient aroma layers, maintaining same swan story. Dress train reaches side edge; principal figure and action readable. Human review pending.",
+  "selected": true,
+  "humanApproval": null
+}

@@ -1,0 +1,24 @@
+{
+  "petId": "pet_sr57",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_sr57.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-1170f516-65f7-4972-84ec-bdb215494474.png",
+  "prompt": "Use case: stylized-concept. Input owl board ONLY painted quality and soft blue-violet palette reference; no owls, humans, crown, collage or borrowed owl organs. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE marten spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 藍糖霧貂. Recognizable features: 灰藍長身、紫緞腰結與糖霜尾尖. Story action: 先探身試踩覆著夜露的窄橋，回頭招呼慢步夥伴. Visible consequence: 霧中顯出一串安全的糖光足印. Composition: 長身側影與回望形成方向感，不把深色畫成純黑. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. ONE natural slender marten, long weasel-shaped body, rounded small ears, four paws and ONE long fluffy tail with sugar-white tip, a small purple waist bow. It stretches to test a narrow cloudy bridge, looks back towards the viewer while leaving a short row of distinct glowing sugar footprints across safe planks. Animal centered and occupies 60%, full tail/paws/ears 10% inside edges. Quiet moonlit cloud bridge with single kitchen pavilion far back; no decorative table or cauldron, restrained SR-scale magic, only fine scarf/bow not full dress. Soft painted fur, pastel dusk blue/violet, gentle clever expression.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Long marten body, rounded ears, four paws (rear far side partly occluded) and sugar-white tail tip; looks back while moving over bridge. Clear sequential glowing footprints and violet bow, no human form. Tail approaches right edge but remains visible; human review pending.",
+  "selected": true,
+  "humanApproval": null
+}

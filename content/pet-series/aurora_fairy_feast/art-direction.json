@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "source": "Original QuestNote fantasy. User-supplied design references guide style, not historical or mythological attribution.",
+  "rows": [
+    {
+      "petId": "pet_n53",
+      "key": "sugar_mist_butterfly",
+      "name": "糖霧粉蝶",
+      "palette": "light",
+      "awakening": false,
+      "awakeningTitle": null,
+      "design": {
+        "signature": "淡粉透明蝶翼與自然蕾絲狀翼脈",
+        "action": "輕扇翅膀把糖粉吹向一片剛出爐的餅",
+        "consequence": "糖粉形成可辨的小花紋",
+        "composition": "少量光點，蝶翼與餅上的花紋在縮圖仍讀得清"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_n54",
+      "key": "violet_dew_firefly",
+      "name": "紫露星螢",
+      "palette": "dark",
+      "awakening": false,
+      "awakeningTitle": null,
+      "design": {
+        "signature": "紫藍翅鞘、露珠腹光與細小緞帶",
+        "action": "在夜宴後沿空食籃飛行，帶採集隊回家",
+        "consequence": "露珠依序點亮成路標，最遠的雲橋重新可見",
+        "composition": "放大主螢，背景保留路標而不是整片光海"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_r62",
+      "key": "floral_silk_bird",
+      "name": "花綃糖雀",
+      "palette": "light",
+      "awakening": false,
+      "awakeningTitle": null,
+      "design": {
+        "signature": "白粉短羽、綃帶尾飾與花瓣嘴銜",
+        "action": "將一片完好的花瓣放在剛完成的小塔上",
+        "consequence": "塔面形成最後一圈花冠，桌邊同伴抬頭等待",
+        "composition": "小鳥與單一果塔足夠，不堆滿金飾"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_r63",
+      "key": "night_jam_hedgehog",
+      "name": "夜莓綺蝟",
+      "palette": "dark",
+      "awakening": false,
+      "awakeningTitle": null,
+      "design": {
+        "signature": "莓紫短刺、暮藍圍巾與小木勺",
+        "action": "在風口護住莓醬小灶，仔細攪動鍋邊",
+        "consequence": "將要熄滅的火恢復溫穩，莓醬不再溢出",
+        "composition": "明確刺蝟輪廓，火光溫柔，避開戰鬥姿態"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_sr56",
+      "key": "cream_bow_rabbit",
+      "name": "奶霜綺兔",
+      "palette": "light",
+      "awakening": false,
+      "awakeningTitle": null,
+      "design": {
+        "signature": "奶白耳、粉色耳結與蕾絲小圍裙",
+        "action": "扶穩盛著奶霜與花瓣的食籃跨過雲階",
+        "consequence": "搖晃的奶霜仍完整留下花瓣紋，食籃安全送到膳亭",
+        "composition": "耳與籃是主要辨識點，保持兔足與兔身"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_sr57",
+      "key": "blue_sugar_marten",
+      "name": "藍糖霧貂",
+      "palette": "dark",
+      "awakening": false,
+      "awakeningTitle": null,
+      "design": {
+        "signature": "灰藍長身、紫緞腰結與糖霜尾尖",
+        "action": "先探身試踩覆著夜露的窄橋，回頭招呼慢步夥伴",
+        "consequence": "霧中顯出一串安全的糖光足印",
+        "composition": "長身側影與回望形成方向感，不把深色畫成純黑"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_sr58",
+      "key": "peach_tea_squirrel",
+      "name": "桃露茶栗",
+      "palette": "light",
+      "awakening": false,
+      "awakeningTitle": null,
+      "design": {
+        "signature": "桃粉大尾、白色蕾絲背帶與茶葉籃",
+        "action": "把不同成熟度的果子分放進晨宴與夜宴食籃",
+        "consequence": "果籃由凌亂變成有次序的粉白與藍紫兩列",
+        "composition": "松鼠尾與雙籃清楚分層；贈寵保持靈獸"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_sr59",
+      "key": "violet_cup_cat",
+      "name": "紫盞雲狸",
+      "palette": "dark",
+      "awakening": false,
+      "awakeningTitle": null,
+      "design": {
+        "signature": "灰紫貓毛、透明頸紗與杯形月飾",
+        "action": "靠著食盒陪晚歸夥伴等茶放涼",
+        "consequence": "茶面倒映兩個靠近的影子，周圍夜霧散開",
+        "composition": "貓臉和茶盞為近景，避免只有大面積特效"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_ssr41",
+      "key": "cherry_silk_fox",
+      "name": "櫻紗靈狐",
+      "palette": "light",
+      "awakening": true,
+      "awakeningTitle": "櫻紗點心仙子",
+      "design": {
+        "signature": "粉白狐尾、櫻花蕾絲領與雙緞帶",
+        "action": "用尾尖卷起花瓣，替破裂的點心收攏外皮",
+        "consequence": "裂口被花紋封住，熱香留在分給旅人的食盒裡",
+        "composition": "狐臉、尾巴與食盒構成單一動作，避免變成無故事的服飾展示"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_ssr42",
+      "key": "indigo_mist_swan",
+      "name": "霧靛羽鵠",
+      "palette": "dark",
+      "awakening": true,
+      "awakeningTitle": "霧靛調香仙子",
+      "design": {
+        "signature": "暮靛長頸、銀紫羽紗與珠鏈",
+        "action": "沿蒸氣中的香紋尋找遺失的調味次序",
+        "consequence": "混濁香霧分成清楚的藍紫層次，古食譜浮出圖案",
+        "composition": "S 形長頸與香紋呼應，保持天鵝本體，不增加人手"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_ur31",
+      "key": "moon_dew_deer",
+      "name": "月露雪鹿",
+      "palette": "light",
+      "awakening": true,
+      "awakeningTitle": "月露司膳仙姬",
+      "design": {
+        "signature": "花枝鹿角、月滴吊飾、粉白薄紗與晶透蹄",
+        "action": "以低頭的鹿角引下花露，落進待凝的果塔",
+        "consequence": "露滴沿塔面結成光潔花紋，雲階亮起柔白歸路",
+        "composition": "完整鹿身占主畫面，頭角與果塔形成視線連線；獨立 1:1，不含人形或設定板"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    },
+    {
+      "petId": "pet_ur32",
+      "key": "night_radiance_owl",
+      "name": "曜夜玄鴞",
+      "palette": "dark",
+      "awakening": true,
+      "awakeningTitle": "曜夜守灶仙姬",
+      "design": {
+        "signature": "完整巨翼、紫藍眼、月冠與羽緣金絲",
+        "action": "在夜灶旁展翼穩住風，讓莓香慢慢升起",
+        "consequence": "散亂的香霧被聚成一條極光，引回晚歸的夥伴",
+        "composition": "展翼建立 UR 威儀，羽毛與眼睛在小卡可辨；遠景減量，不增加惡魔角或人形"
+      },
+      "source": "本池原創；沿用已核准的粉白／暮藍紫視覺語言，不引用特定歷史神祇。"
+    }
+  ]
+}

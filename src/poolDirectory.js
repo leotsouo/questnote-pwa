@@ -1,6 +1,6 @@
 // Display policy only. Draw rules and saved selection remain owned by gacha services.
 export const POOL_NAVIGATION = Object.freeze({
-  featuredPoolId: 'darkcrown_court_release',
+  featuredPoolId: 'aurora_fairy_feast',
   standardPoolId: 'standard',
 });
 

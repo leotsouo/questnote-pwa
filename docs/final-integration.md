@@ -301,3 +301,8 @@ PR [#87](https://github.com/leotsouo/questnote-pwa/pull/87) 完整 CI 通過並�
 ## V3.9.4 賭場入口排版修正已發布 — 2026-10-10
 
 使用者明確要求發布後，[PR #95](https://github.com/leotsouo/questnote-pwa/pull/95) 經 CI 合併於 `3c12083e77a927b0096fbf0acf9acca636c4dff2`。首頁替賭場／信箱預留完整空間，窄螢幕標題換行，修正暮光冒險手帳被遮住。production artifact `03c5e6ec03a3fb116f9a8431e906649f9098bf64e87557b4435210706b74f0a6`，gh-pages `43ca5ca1099ed9e5d306e52c92d7f4911aa8d329`，[Pages 37974581251](https://github.com/leotsouo/questnote-pwa/actions/runs/37974581251) 成功。769 Git blobs 與 768 HTTPS 檔案一致；來源 54 組排版、完整 npm test、固定產物 18 項、V3.9.3 存檔升級及正式原生 SW／離線驗收通過。實體手機尚待裝置驗收。[發布回執](../reports/casino-entry-layout-release/README.md)。
+
+
+## V3.9.5 霓霞仙膳已發布 — 2026-10-10
+
+使用者明確核准 V3.9.5 整合包；[PR #97](https://github.com/leotsouo/questnote-pwa/pull/97) 經 CI 合併於 `2c1b95ada8d655020bbb15792baee432004950ee`，保留 V3.9.4 競賽／賭場排版。12 隻靈獸、4 位 SSR／UR 仙女覺醒、霓霞膳庭、料理、20 抽解鎖／贈寵、晨昏雲廚與玻璃罩發布。核准 production artifact `2235b544cd0e05856ee8bda232c79ef6f4361e2cc7128dae805c4e4512d07e31` 原 bytes 推送 gh-pages `c8ef5ab07d3a2de35078444e663338883662ace0`，[Pages 37982103181](https://github.com/leotsouo/questnote-pwa/actions/runs/37982103181) 成功；840 Git blobs 與 840 HTTPS 檔案全部相符。完整來源測試、10 動畫、11 交易與 19 固定產物瀏覽器檢查通過。authoring catalog／資源已 promotion，舊 entries 與固定 legacy snapshot 保留。既有正式 client 的正常更新仍等待其他視窗關閉，未繞過保護；實體手機與 Library IDs 尚待完成。詳見[發布回執](../reports/fairy-feast-acceptance/PUBLISHED-v5.md)。

@@ -1,0 +1,24 @@
+{
+  "petId": "pet_n54",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_n54.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-895c8b1a-2bef-4984-aa49-2cace8009bdf.png",
+  "prompt": "Use case: stylized-concept. Reference board ONLY soft twilight palette and painted quality, no owl/humans/feathers/collage or crowns. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE firefly spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 紫露星螢. Recognizable features: 紫藍翅鞘、露珠腹光與細小緞帶. Story action: 在夜宴後沿空食籃飛行，帶採集隊回家. Visible consequence: 露珠依序點亮成路標，最遠的雲橋重新可見. Composition: 放大主螢，背景保留路標而不是整片光海. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Intimate everyday cooking moment, restrained effects appropriate to rarity. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. ONE unmistakable FIREFLY beetle spirit: elongated segmented insect body, small dark violet head with normal antennae, six slender insect legs, two hard smooth blue-violet elytra partly opened over two thin transparent flight wings, one softly glowing opal-purple abdomen. NO butterfly wings or moth fur face. Tiny lavender ribbon tied behind thorax without hiding anatomy. Firefly shown large central near ONE empty woven food basket after evening feast, flying toward a distant cloud bridge; a SHORT sequence of three dew drops lights up in its trail, making the returning path visible. Complete insect wings/antennae/legs within square with12%margin. Intimate N-level gentle scouting moment, no grand halo or big crown, minimal objects, quiet cloudy blue-violet garden, blurred kitchen lantern in distance, soft pale violet aurora Ambient Light, no aggressive black/red.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Recognizable beetle-style firefly with segmented glowing abdomen, antennae, insect legs, opened elytra and transparent flight wings; carries empty basket along three lit dew markers toward cloud bridge. Story action shifts from flying beside basket to carrying it, preserves return-path consequence. Full principal insect body/tips inside frame, trailing ribbon approaches edge; human review pending.",
+  "selected": true,
+  "humanApproval": null
+}

@@ -9,6 +9,8 @@ const { chromium } = process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE
   ? createRequire(import.meta.url)(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE)
   : await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
+const catalog = JSON.parse(await fs.readFile(path.join(root, 'data/pools.json'), 'utf8')).pools.filter((row) => row.active);
+const { POOL_NAVIGATION } = await import('../src/poolDirectory.js');
 const output = path.resolve(process.argv[2] || '.dev-backups/test-runs/pool-directory-browser');
 assert.ok(output.startsWith(path.join(root, '.dev-backups', 'test-runs') + path.sep));
 await fs.mkdir(output, { recursive:true });
@@ -59,7 +61,8 @@ try {
   await settle('standard');
   const dismissTour = page.getByRole('button', { name:'我知道了', exact:true });
   if (await dismissTour.isVisible()) await dismissTour.click();
-  assert.equal(await page.locator('.pool-navigation button').count(), 3);
+  assert.equal(await page.locator('.pool-navigation button').count(), catalog.length);
+  assert.deepEqual((await page.locator('.pool-navigation [data-directory-pool]').evaluateAll((nodes) => nodes.map((node) => node.dataset.directoryPool))).sort(), catalog.map((row) => row.id).sort());
   const snapshot = () => page.evaluate(async () => {
     const db = await import('/src/db.js');
     const stats = await db.dbGet(db.STORES.META, 'gachaStats');
@@ -70,7 +73,19 @@ try {
   await page.locator('[data-identity-action="series-directory"]').click();
   const rows = page.locator('#identity-series-results [data-directory-pool]');
   const ids = await rows.evaluateAll((nodes) => nodes.map((node) => node.dataset.directoryPool));
-  assert.equal(ids.length, 8);
+  assert.deepEqual([...ids].sort(), catalog.map((row) => row.id).sort());
+  assert.equal(await page.locator('#identity-series-search').isVisible(), false);
+  assert.notEqual(await page.evaluate(() => document.activeElement?.tagName), 'INPUT');
+  await page.keyboard.press('Shift+Tab');
+  assert.equal(await page.evaluate(() => document.activeElement === document.querySelector('#identity-series-results [data-directory-pool]:last-child')), true);
+  await page.keyboard.press('Tab');
+  assert.equal(await page.evaluate(() => document.activeElement?.dataset.identityAction), 'close-dialog');
+  // The complete browse-and-select path never needs the keyboard or a search query.
+  await page.locator('#identity-series-results [data-directory-pool="eternal_slumber_bloom"]').click();
+  await settle('eternal_slumber_bloom');
+  assert.equal(await snapshot(), before);
+  await page.locator('[data-identity-action="series-directory"]').click();
+  await page.locator('.series-search summary').click();
   await page.locator('#identity-series-search').fill('花海');
   assert.equal(await rows.count(), 1);
   assert.match(await rows.innerText(), /12 位可相遇/);
@@ -84,11 +99,22 @@ try {
   await page.reload();
   await page.locator('.bottom-nav [data-view="gacha"]').click();
   await settle('eternal_slumber_bloom');
-  assert.match(await page.locator('.pool-selection-note').innerText(), /永眠花海/);
-  evidence.push('8 series available; name/empty search; flower lock count; persisted selection and no economic/collection writes');
+  assert.match(await page.locator('.sanctuary-heading h2').innerText(), /永眠花海/);
+  evidence.push(`${catalog.length} series available without typing or input autofocus; optional name/empty search; flower lock count; persisted selection and no economic/collection writes`);
 
-  await page.locator('.pool-navigation [data-directory-pool="darkcrown_court_release"]').click();
-  await settle('darkcrown_court_release');
+  await page.locator(`.pool-navigation [data-directory-pool="${POOL_NAVIGATION.featuredPoolId}"]`).click();
+  await settle(POOL_NAVIGATION.featuredPoolId);
+  assert.ok(await page.evaluate(() => document.querySelector('[data-identity-action="summon"]').getBoundingClientRect().bottom <= document.querySelector('.bottom-nav').getBoundingClientRect().top), '393px first screen exposes summon action above navigation');
+  await page.screenshot({ path:path.join(output, 'summon-phone.png') });
+  await page.screenshot({ path:path.join(output, 'summon-latest-393.png'), fullPage:true });
+  const lastPoolId = await page.locator('.pool-navigation [data-directory-pool]').last().getAttribute('data-directory-pool');
+  await page.locator('.pool-navigation [data-directory-pool]').last().click();
+  await settle(lastPoolId);
+  assert.ok(await page.evaluate(() => {
+    const rail = document.querySelector('.pool-navigation').getBoundingClientRect();
+    const active = document.querySelector('.pool-navigation [aria-pressed="true"]').getBoundingClientRect();
+    return active.left >= rail.left - 1 && active.right <= rail.right + 1;
+  }), 'Offscreen pool selection remains visible after rendering');
   await page.locator('.pool-navigation [data-directory-pool="standard"]').click();
   await settle('standard');
   assert.equal(await snapshot(), before);
@@ -105,6 +131,9 @@ try {
           document.documentElement.style.fontSize = fontSize === '200%' ? '32px' : '';
         }, { theme, fontSize });
         assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${width}/${theme}/${fontSize}: page overflow`);
+        if (fontSize === 'standard') {
+          await page.screenshot({ path:path.join(output, `summon-${theme}-${width}.png`), fullPage:true });
+        }
         await page.locator('[data-identity-action="series-directory"]').click();
         assert.ok(await page.evaluate(() => {
           const node = document.getElementById('identity-detail-dialog');
@@ -128,8 +157,9 @@ try {
   await page.locator('.bottom-nav [data-view="gacha"]').click();
   await settle('standard');
   assert.ok(await page.locator('.summon-dock').isVisible());
+  assert.ok(await page.evaluate(() => getComputedStyle(document.querySelector('.hero-caption')).position === 'static'));
   await page.locator('[data-identity-action="series-directory"]').click();
-  assert.equal(await rows.count(), 8);
+  assert.equal(await rows.count(), catalog.length);
   await page.keyboard.press('Escape');
   await page.evaluate(async () => { await (await import('/src/preferencesService.js')).setReadingMode('normal'); });
   await page.reload();

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "baselineArtifactId": "3213888277fd6b9a7f278083d450b79d0ae38234939744544cedc055bc1b11db",
+  "currentArtifactId": "3c3129e65f6408e314e82dce807a2c888d9f3b90aaf150c6905a26425d9bc37d",
+  "sourceCommit": "3e3d5f1fb43846603d36d0ec1362a64a7b0fee27",
+  "changedSourceFiles": [
+    "src/aurora-fairy-feast.css"
+  ],
+  "contentBundleUnchanged": true,
+  "assetDifferences": [],
+  "scope": "Reuse v2 transaction, workshop, specialty, region and local HTTP503 service-worker evidence; runtime JS, service-worker source, catalog and assets are unchanged. v4 animation and glass viewport checks are current. Production HTTPS and physical device are not tested."
+}

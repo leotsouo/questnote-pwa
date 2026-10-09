@@ -1,0 +1,24 @@
+{
+  "petId": "pet_ssr42",
+  "form": "initial",
+  "version": 1,
+  "asset": "images/pet_ssr42-v1.png",
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-31ccac57-3133-4fed-9ea1-cc8f5d056c07.png",
+  "prompt": "Use case: stylized-concept. Input board is ONLY a painted STYLE/material/soft dusk PALETTE reference; DO NOT copy its owl, humans, collage, crown or feather anatomy. Draw a natural long-necked SWAN with one body, one beak, two closed wings, no owl ears. Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE swan spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 霧靛羽鵠. Recognizable features: 暮靛長頸、銀紫羽紗與珠鏈. Story action: 沿蒸氣中的香紋尋找遺失的調味次序. Visible consequence: 混濁香霧分成清楚的藍紫層次，古食譜浮出圖案. Composition: S 形長頸與香紋呼應，保持天鵝本體，不增加人手. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Distinctive SSR signature skill and memorable silhouette. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims. Keep one clear S-curved neck, gently bending towards a steaming porcelain cauldron and an open old recipe book with pictograms only, no readable letters. Swirling aroma separates into three clean blue-violet layers that reveal ingredient pictograms over the book. Complete swan body and feet visible on cloud kitchen ledge. Moderate SSR jewelry only, no huge crown or moon disk.",
+  "references": [
+    "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+  ],
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Clear S-shaped swan neck, webbed feet, ingredient-pictogram book and layered blue/violet steam. Tail/outer feather ends touch the left frame; retain v1 and widen framing before selection.",
+  "selected": false,
+  "humanApproval": null
+}

@@ -1,0 +1,20 @@
+{
+  "petId": "pet_ur32",
+  "form": "initial",
+  "version": 1,
+  "sourcePath": "C:/Users/User/.codex/generated_images/01a12128-0532-7652-9351-1c88a618e074/exec-281be08c-fe00-47d0-8ab2-7c570e89d996.png",
+  "prompt": "Create ONE standalone square full-frame premium illustrated fantasy pet card, no text, border, collage or inset. ONE eagle owl spirit beast ONLY, unmistakable natural animal anatomy, no human/fairy figure, no hybrid organs. Character 曜夜玄鴞. Recognizable features: 完整巨翼、紫藍眼、月冠與羽緣金絲. Story action: 在夜灶旁展翼穩住風，讓莓香慢慢升起. Visible consequence: 散亂的香霧被聚成一條極光，引回晚歸的夥伴. Composition: 展翼建立 UR 威儀，羽毛與眼睛在小卡可辨；遠景減量，不增加惡魔角或人形. All wing tips, ears, antlers, tails and feet must remain within frame with generous margin. Clearly readable subject at 320px. Graceful gentle cloud-kitchen world, softly layered lace, ribbons, gauze and satin Ambient Light. Soft dusk periwinkle, blue and violet, pale lilac aurora, warm ivory accent; never solid black or aggressive red. Legendary UR guardian presence with broad controlled environmental reaction. Quiet cloud terraces and restrained background, crisp animal face and central story prop, richly painted fur/feathers and delicate fabric matching approved references. Original QuestNote fantasy, no historical deity claims.",
+  "provenance": {
+    "tool": "image_gen.imagegen",
+    "noExtraCost": true,
+    "costBasis": "Built-in image_gen.imagegen consumes included Codex usage per https://learn.chatgpt.com/docs/image-generation. Session ordinaryUsageAllowed confirmed, no paid API, subscription, purchase or credits used. Model and seed unavailable.",
+    "modelReported": null,
+    "seedReported": null,
+    "references": [
+      "content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png"
+    ]
+  },
+  "aiReview": "Main owl strong identity/berry-hearth/aurora continuity, but primary wing tips clipped on top and side, several small background owls compete. Retain original, correct framing before selection.",
+  "selected": false,
+  "asset": "images/pet_ur32-v1.png"
+}

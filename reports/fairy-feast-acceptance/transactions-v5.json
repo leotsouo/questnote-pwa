@@ -1,0 +1,64 @@
+{
+  "status": "pass",
+  "artifactId": "7fbc10f80bbb0019665fc207930d0396d08491c4d57df380a21fdb82fd3da94c",
+  "sourceCommit": "966c4c6848e1050484ba81f0d574d6299d438b2c",
+  "origin": "http://127.0.0.1:62566",
+  "checkedAt": "2026-10-09T19:26:20.404Z",
+  "checks": [
+    {
+      "name": "固定產物與角色集合",
+      "evidence": "7fbc10f80bbb0019665fc207930d0396d08491c4d57df380a21fdb82fd3da94c／160 舊角色＋12 新角色",
+      "status": "pass"
+    },
+    {
+      "name": "完整羈絆故事",
+      "evidence": "所有角色都有四章，包含本池 12 隻",
+      "status": "pass"
+    },
+    {
+      "name": "料理製作與送禮",
+      "evidence": "兩份扣葉4／花露6；符合偏好總共150，普通75",
+      "status": "pass"
+    },
+    {
+      "name": "逐隻專長、偏好及地區解鎖",
+      "evidence": "12 隻 × 1／5星；初始與擴充靈獸均可解鎖，空集合不可",
+      "status": "pass"
+    },
+    {
+      "name": "派遣與花露實際領取",
+      "evidence": "60分鐘／5能量，重複領獎拒絕；僅測試縮短等待時間",
+      "status": "pass"
+    },
+    {
+      "name": "五個探索里程碑",
+      "evidence": "10次並行請領只成功5次，星塵410與五段故事",
+      "status": "pass"
+    },
+    {
+      "name": "十連、同次重複與二十抽擴充",
+      "evidence": "兩次十連扣2000，SR保障，擴充與贈寵在實際交易中完成",
+      "status": "pass"
+    },
+    {
+      "name": "雙 UR 保底",
+      "evidence": "第100抽兩個候選都能選到",
+      "status": "pass"
+    },
+    {
+      "name": "抽卡原子交易",
+      "evidence": "只有一次費用時，兩次並行僅一次成功",
+      "status": "pass"
+    },
+    {
+      "name": "四位 SSR／UR 完整試煉與形態切換",
+      "evidence": "舊事件不計入；每位3個新任務＋新膳庭派遣領取，料理各扣一次；SR及未達條件拒絕",
+      "status": "pass"
+    },
+    {
+      "name": "新舊備份相容",
+      "evidence": "目前備份連續還原兩次，四位覺醒與材料狀態保持",
+      "status": "pass"
+    }
+  ]
+}

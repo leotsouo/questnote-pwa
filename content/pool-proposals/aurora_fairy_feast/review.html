@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>霓霞仙膳｜代表卡圖審閱</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #342c49; background: #f8f5fc; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { width: min(1100px, 100%); margin: auto; padding: 28px 20px 60px; }
+    h1 { margin: 8px 0 12px; font-size: clamp(1.65rem, 5vw, 2.4rem); }
+    h2 { margin-top: 36px; }
+    p, li { line-height: 1.8; }
+    a { color: #694a96; }
+    .status { padding: 14px 18px; background: #eee7f7; border-radius: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px; }
+    article { min-width: 0; padding: 18px; background: white; border: 1px solid #e5dcec; border-radius: 14px; }
+    article h3 { margin-top: 0; }
+    figure { margin: 0 auto; width: min(320px, 100%); }
+    img { display: block; width: 100%; height: auto; background: #eee7f7; }
+    figcaption { font-size: .85rem; line-height: 1.7; margin-top: 8px; }
+    .region { max-width: 740px; margin: 0 auto; }
+    .region figure { width: min(640px, 100%); }
+    .crop figure { width: min(320px, 100%); }
+    .crop img { aspect-ratio: 16 / 9; object-fit: cover; }
+    .table { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #e5dcec; vertical-align: top; }
+    .small { font-size: .85rem; color: #675b76; }
+    button { padding: 12px 18px; border: 1px solid #cdbade; background: white; color: #523776; border-radius: 8px; cursor: pointer; font: inherit; }
+    body.large-art figure { width: 100%; }
+    @media (max-width: 500px) { main { padding-inline: 16px; } article { padding: 12px; } th, td { padding-inline: 5px; font-size: .9rem; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="small">QuestNote · 代表卡圖審閱 · 2026-10-09 · 美術 v1／企劃 v2</p>
+    <h1>霓霞仙膳</h1>
+    <p>仙女化為靈獸下凡，從烹調與分享中找回雲上宴席消失的光與香。</p>
+    <p class="status"><strong>人工審圖待回饋</strong>　12 隻／深淺各六／2 UR。只有 2 SSR＋2 UR 可覺醒為仙女。這是概念審閱頁，未接入正式 App，也沒有審圖核准或發布授權。</p>
+    <p>建議：兩張設定板定造型，兩張料理對照定故事動作；正式初遇靈獸與覺醒仙女各自製作獨立完整卡圖。先完成月露雪鹿雙形態代表切片，再擴展。</p>
+    <button id="size" type="button" aria-pressed="false">切換較大參考圖</button>
+    <h2>新作 · 月露雪鹿雙形態</h2>
+    <p>依「進行下一步」製作的兩張獨立 1:1 草稿。只供中途審圖，尚未正式核准；造型沿用設定板，料理動作延續花露果塔。</p>
+    <div class="grid">
+      <article><h3>初遇 · 靈獸卡</h3><figure><a href="artwork/moon-dew-deer-initial-v1.png" target="_blank" rel="noopener"><img src="artwork/moon-dew-deer-initial-v1.png" alt="新作月露雪鹿獨立靈獸卡：花角引露入果塔"></a><figcaption>1254×1254。白鹿、花角、月滴與果塔形成一個完整故事畫面；正式抽卡將使用靈獸形態。</figcaption></figure></article>
+      <article><h3>覺醒 · 月露司膳仙姬</h3><figure><a href="artwork/moon-dew-deer-awakened-v1.png" target="_blank" rel="noopener"><img src="artwork/moon-dew-deer-awakened-v1.png" alt="新作月露雪鹿獨立仙女卡：蕾絲長裙與花露果塔"></a><figcaption>1254×1254。沿用花角、月滴、眼色與果塔；仙女只在完成覺醒後揭露。</figcaption></figure></article>
+    </div>
+    <p class="status">AI 檢查註記：兩張花角頂端仍接近／越過畫框；仙女裙襬未完整留在框內。雙形態與料理動作已可審閱，但最終成圖仍需處理邊緣留白。<a href="representative-art-v1.json">原檔雜湊、提示詞與生成紀錄</a></p>
+    <h2>UR 造型主參考</h2>
+    <div class="grid">
+      <article><h3>淺色 · 月露雪鹿</h3><figure><a href="references/moon-dew-deer-design-board.png" target="_blank" rel="noopener"><img src="references/moon-dew-deer-design-board.png" alt="月露雪鹿與粉白仙女造型設定板"></a><figcaption>完整鹿身、花枝鹿角、粉白蕾絲與薄紗。縮至 320px 後設定細節變小，所以正式卡圖移除拼貼小格。</figcaption></figure><p>建議動作：引花露入果塔，露滴凝成花紋；完整鹿身與果塔建立視線連線。仙女形態沿用花角與月滴。</p></article>
+      <article><h3>深色 · 曜夜玄鴞</h3><figure><a href="references/night-owl-design-board.png" target="_blank" rel="noopener"><img src="references/night-owl-design-board.png" alt="曜夜玄鴞巨翼與藍紫仙女造型設定板"></a><figcaption>巨翼、月冠、金紫羽緣更有 UR 分量；正式卡面移除設定拼貼，保留柔和暮藍紫。</figcaption></figure><p>建議動作：展翼護住夜灶，散香聚成返航極光；仙女沿用月冠、羽紗與暖灶光，避免惡魔感。</p></article>
+    </div>
+    <h2>料理與雙形態連續性</h2>
+    <div class="grid">
+      <article><h3>月露雪鹿 · 料理對照</h3><figure><a href="references/moon-dew-deer-cooking.png" target="_blank" rel="noopener"><img src="references/moon-dew-deer-cooking.png" alt="白鹿和仙女製作花果點心的左右對照"></a><figcaption>可借用料理動作與光影；左右分割會縮小角色，不能直接成為正式初遇卡。</figcaption></figure></article>
+      <article><h3>曜夜玄鴞 · 料理對照</h3><figure><a href="references/night-owl-cooking.png" target="_blank" rel="noopener"><img src="references/night-owl-cooking.png" alt="玄鴞和仙女在夜灶製作莓果料理的左右對照"></a><figcaption>暖光與藍紫環境符合主題；收翼圓眼較可愛，正式 UR 建議採設定板的巨翼與目光。</figcaption></figure></article>
+    </div>
+    <h2>新探險地區 · 霓霞膳庭</h2>
+    <article class="region"><figure><a href="references/aurora-feast-garden.png" target="_blank" rel="noopener"><img src="references/aurora-feast-garden.png" alt="雲上膳亭、中央膳鼎、採集隊和花露田地"></a><figcaption>1672×941 原圖。中央膳鼎與雲階是縮圖主辨識點；人物可作細節，不依賴人物數量識別地區。</figcaption></figure><p>擁有本池任一靈獸即可前往；派遣 60 分鐘、能量 5，帶回霓霞花露。完整故事與五個探索里程碑見企劃。</p></article>
+    <article class="region crop"><h3>320px／16:9 構圖示意</h3><figure><img src="references/aurora-feast-garden.png" alt="霓霞膳庭在320px寬與16比9的構圖示意"><figcaption>僅為參考圖縮圖檢查，未套用 App 地圖卡或派遣視窗；載入、實際裁切、離線驗收待正式素材與 artifact。</figcaption></figure></article>
+    <h2>整池名單</h2>
+    <div class="table"><table><thead><tr><th>稀有度</th><th>淺色</th><th>深色</th><th>覺醒</th></tr></thead><tbody>
+      <tr><td>UR</td><td>月露雪鹿</td><td>曜夜玄鴞</td><td>可</td></tr>
+      <tr><td>SSR</td><td>櫻紗靈狐</td><td>霧靛羽鵠</td><td>可</td></tr>
+      <tr><td>SR</td><td>奶霜綺兔</td><td>藍糖霧貂</td><td>保持靈獸</td></tr>
+      <tr><td>SR</td><td>桃露茶栗</td><td>紫盞雲狸</td><td>保持靈獸</td></tr>
+      <tr><td>R</td><td>花綃糖雀</td><td>夜莓綺蝟</td><td>保持靈獸</td></tr>
+      <tr><td>N</td><td>糖霧粉蝶</td><td>紫露星螢</td><td>保持靈獸</td></tr>
+    </tbody></table></div>
+    <h2>特殊體驗提案</h2>
+    <ul><li>初始 10 隻；累積本池 20 抽後，晨昏共席加入兩位 SR，總數仍為 12 隻。</li><li>解鎖固定贈送 SR 桃露茶栗，重複依既有碎片規則；贈寵已在 12 隻內。</li><li>霓霞花露塔：森林之葉 ×2＋花露 ×3，普通 +75／偏好符合總共 +150。</li><li>只有四位 SSR／UR 走既有 Lv.5→日常與派遣試煉→信物與食物儀式；不增加戰力或抽卡機率。</li><li>專屬晨昏膳亭演出沿用共用時長；本頁沒有動畫或交易模擬。</li></ul>
+    <p class="small">正式基準：V3.9.2 · source bc216baa · main 7b7fb0b · artifact 58f2c847…b7fe2。原圖由使用者提供，生成 metadata 未核實；沒有 Library ID。詳細內容：<a href="../../../docs/fairy-feast-proposal.md">企劃文件</a>／<a href="proposal.json">結構化企劃</a>／<a href="references.json">原圖來源與雜湊</a>。</p>
+  </main>
+  <script>
+    document.getElementById('size').addEventListener('click', (event) => {
+      const large = document.body.classList.toggle('large-art');
+      event.currentTarget.setAttribute('aria-pressed', String(large));
+      event.currentTarget.textContent = large ? '回到 320px 參考圖' : '切換較大參考圖';
+    });
+  </script>
+</body>
+</html>
