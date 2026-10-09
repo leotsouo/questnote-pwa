@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-09T20:39:57.264Z",
+  "artifactId": "af81a876ca6928ffbf219fb8d4cecbee348a33d3a0bbc587b08bb5962f9e3331",
+  "sourceCommit": "ef418f80f8a88272fa802ab3c9bddd6e1241b672",
+  "manifestSha256": "14bacb17be129cfdbe45dbd9a305466ce97add8fb2b110da159d8dd225e5c72c",
+  "scriptIds": [
+    "normal",
+    "living-finish",
+    "nap",
+    "wrong-way"
+  ],
+  "deployed": [
+    {
+      "name": "src/dailyRaceScene.js",
+      "sha256": "b2ae89af2974ad06786675c0de2301402a3cac29db1aa5a439b4378d12079abe"
+    },
+    {
+      "name": "src/daily-race.css",
+      "sha256": "7c2700113eceb18ea8df599f1846b0d17c85b53cf7441c87659dbd1a820417c7"
+    },
+    {
+      "name": "src/dailyRaceController.js",
+      "sha256": "89bdd08a6604d605e57bce2340234285b571babd7d88459a191dacdabba8b16f"
+    },
+    {
+      "name": "src/version.js",
+      "sha256": "03da3e8ec7027e266891d5b5a2f8ab0b2d7ea17a8168dbf610b77fc6664bd059"
+    }
+  ]
+}
