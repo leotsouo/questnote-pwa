@@ -4,9 +4,8 @@ import { recommendationState } from './poolRecommendation.js';
 export const POOL_NAVIGATION = Object.freeze({
   featuredPoolId: 'aurora_fairy_feast',
   standardPoolId: 'standard',
-  // Set explicit ISO timestamps with timezone only when the launch date is confirmed.
-  // First rollout begins at this feature's formal launch, not the series' old release date.
-  recommendation: null,
+  // First recommendation window for this feature launch, not the series' historical release.
+  recommendation: Object.freeze({ startsAt:'2026-10-10T06:00:00+08:00', endsAt:'2026-10-24T06:00:00+08:00' }),
 });
 
 export function poolNavigation(pools, policy = POOL_NAVIGATION, now = Date.now()) {
