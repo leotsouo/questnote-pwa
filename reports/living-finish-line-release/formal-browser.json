@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-09T21:11:39.104Z",
+  "url": "https://leotsouo.github.io/questnote-pwa/",
+  "marker": "525797ca1b745d90a897c1066619dad37575799d22c8534f65a015f0a876274d",
+  "version": "3.9.9",
+  "controller": {
+    "artifactId": "525797ca1b745d90a897c1066619dad37575799d22c8534f65a015f0a876274d",
+    "scopePath": "/questnote-pwa/"
+  },
+  "freshPrivateContext": true,
+  "titleClearOfControls": true,
+  "layout": {
+    "masthead": {
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "bottom": 58
+    },
+    "title": {
+      "left": 162.890625,
+      "right": 224.703125,
+      "top": 21.5,
+      "bottom": 36.5
+    },
+    "casino": {
+      "left": 276,
+      "right": 320,
+      "top": 8,
+      "bottom": 52
+    },
+    "mail": {
+      "left": 332,
+      "right": 376,
+      "top": 8,
+      "bottom": 52
+    }
+  },
+  "raceEntryVisible": true,
+  "entrants": 4,
+  "offlineReload": true,
+  "userExistingStorageUsed": false,
+  "backendTestMessagesSent": false,
+  "errors": []
+}

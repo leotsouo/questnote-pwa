@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "artifactId": "525797ca1b745d90a897c1066619dad37575799d22c8534f65a015f0a876274d",
+  "initialCatalog": {
+    "pets": 172,
+    "pools": 9
+  },
+  "balanceAfterBet": 3400,
+  "savedResult": {
+    "mode": "bet",
+    "selectedId": "pet_r06",
+    "stake": 500,
+    "payout": 1900,
+    "winnerId": "pet_r06",
+    "settledAt": "2026-10-09T20:54:31.169Z"
+  },
+  "backupRoundTrip": true,
+  "offlineReload": true,
+  "offlineFreeRace": true,
+  "errors": []
+}

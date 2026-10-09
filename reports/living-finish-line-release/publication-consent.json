@@ -1,0 +1,22 @@
+{
+  "grantedAt": "2026-10-09T20:51:03.877Z",
+  "request": "推上正式版；恢復活眼終點線本體",
+  "sourceCommit": "0db8ba2d73c3aaee3d751805b51378acf82d52e9",
+  "artifacts": {
+    "production": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v399-build-2\\artifacts\\525797ca1b745d90a897c1066619dad37575799d22c8534f65a015f0a876274d",
+      "artifactId": "525797ca1b745d90a897c1066619dad37575799d22c8534f65a015f0a876274d",
+      "manifestSha256": "8550c4f328104368b0182d492f58f288640963186a622f5315021b7afe6c8dec",
+      "scopePath": "/questnote-pwa/",
+      "sourceCommit": "0db8ba2d73c3aaee3d751805b51378acf82d52e9"
+    },
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v399-build-2\\artifacts\\8dfb4f128b4aa535ee6ee59fd8a2f4e8f461fba53cdcca2f3c220c7a5199bb19",
+      "artifactId": "8dfb4f128b4aa535ee6ee59fd8a2f4e8f461fba53cdcca2f3c220c7a5199bb19",
+      "manifestSha256": "d96ebf7442542203f8efcf8026bdfcd5d58aea75e14220fcb8bd9c2a931f9843",
+      "scopePath": "/questnote-pwa-preview/",
+      "sourceCommit": "0db8ba2d73c3aaee3d751805b51378acf82d52e9"
+    }
+  },
+  "purpose": "Publish validated living eye finish line fix as V3.9.9"
+}
