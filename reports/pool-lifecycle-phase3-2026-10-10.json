@@ -1,0 +1,261 @@
+{
+  "scope": "Source-based scenarios, not observed player averages; all resource balances start at zero.",
+  "period": "Two complete Monday–Sunday weeks; mature daily participation starts at streak 30; weekday-only starts after a weekend break; no spending except draws.",
+  "scenarios": [
+    {
+      "name": "平日輕量",
+      "daily": {
+        "normal": 1,
+        "important": 0,
+        "habits": 1,
+        "pet": 0
+      },
+      "weekdaysOnly": true,
+      "first": {
+        "days": 10,
+        "parts": {
+          "tasks": 200,
+          "habits": 50,
+          "checkIn": 260,
+          "dailyQuests": 500,
+          "weeklyQuests": 500
+        },
+        "total": 1510,
+        "pulls": 15,
+        "remainder": 10
+      },
+      "mature": {
+        "days": 10,
+        "parts": {
+          "tasks": 200,
+          "habits": 50,
+          "checkIn": 260,
+          "dailyQuests": 500,
+          "weeklyQuests": 500
+        },
+        "total": 1510,
+        "pulls": 15,
+        "remainder": 10
+      }
+    },
+    {
+      "name": "每日輕量",
+      "daily": {
+        "normal": 1,
+        "important": 0,
+        "habits": 1,
+        "pet": 0
+      },
+      "weekdaysOnly": false,
+      "first": {
+        "days": 14,
+        "parts": {
+          "tasks": 280,
+          "habits": 70,
+          "checkIn": 610,
+          "dailyQuests": 700,
+          "weeklyQuests": 500
+        },
+        "total": 2160,
+        "pulls": 21,
+        "remainder": 60
+      },
+      "mature": {
+        "days": 14,
+        "parts": {
+          "tasks": 280,
+          "habits": 70,
+          "checkIn": 280,
+          "dailyQuests": 700,
+          "weeklyQuests": 500
+        },
+        "total": 1830,
+        "pulls": 18,
+        "remainder": 30
+      }
+    },
+    {
+      "name": "每日穩定",
+      "daily": {
+        "normal": 3,
+        "important": 0,
+        "habits": 2,
+        "pet": 1
+      },
+      "weekdaysOnly": false,
+      "first": {
+        "days": 14,
+        "parts": {
+          "tasks": 840,
+          "habits": 140,
+          "checkIn": 610,
+          "dailyQuests": 1680,
+          "weeklyQuests": 1460
+        },
+        "total": 4730,
+        "pulls": 47,
+        "remainder": 30
+      },
+      "mature": {
+        "days": 14,
+        "parts": {
+          "tasks": 840,
+          "habits": 140,
+          "checkIn": 280,
+          "dailyQuests": 1680,
+          "weeklyQuests": 1460
+        },
+        "total": 4400,
+        "pulls": 44,
+        "remainder": 0
+      }
+    },
+    {
+      "name": "每日積極",
+      "daily": {
+        "normal": 3,
+        "important": 1,
+        "habits": 4,
+        "pet": 1
+      },
+      "weekdaysOnly": false,
+      "first": {
+        "days": 14,
+        "parts": {
+          "tasks": 1470,
+          "habits": 280,
+          "checkIn": 610,
+          "dailyQuests": 1680,
+          "weeklyQuests": 1460
+        },
+        "total": 5500,
+        "pulls": 55,
+        "remainder": 0
+      },
+      "mature": {
+        "days": 14,
+        "parts": {
+          "tasks": 1470,
+          "habits": 280,
+          "checkIn": 280,
+          "dailyQuests": 1680,
+          "weeklyQuests": 1460
+        },
+        "total": 5170,
+        "pulls": 51,
+        "remainder": 70
+      }
+    }
+  ],
+  "wheel": {
+    "dailyMean": 17.5,
+    "fourteenDayMean": 245,
+    "guaranteedStardust": 0
+  },
+  "invitationCosts": {
+    "SSR": 100,
+    "UR": 200
+  },
+  "duplicatesNeededIfEveryDuplicateHasSameRarity": {
+    "N": {
+      "SSR": 100,
+      "UR": 200
+    },
+    "R": {
+      "SSR": 50,
+      "UR": 100
+    },
+    "SR": {
+      "SSR": 20,
+      "UR": 40
+    },
+    "SSR": {
+      "SSR": 10,
+      "UR": 20
+    },
+    "UR": {
+      "SSR": 5,
+      "UR": 10
+    }
+  },
+  "activePools": [
+    {
+      "id": "standard",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    },
+    {
+      "id": "eternal_slumber_bloom",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    },
+    {
+      "id": "frost_oath_fjord",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    },
+    {
+      "id": "honeylight_sugar_garden_v2",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    },
+    {
+      "id": "swordwild_shanhe_v3",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    },
+    {
+      "id": "lionheart_inverse_oath",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    },
+    {
+      "id": "sunward_letters",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    },
+    {
+      "id": "darkcrown_court_release",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    },
+    {
+      "id": "aurora_fairy_feast",
+      "cost": 100,
+      "pity": {
+        "ssr": 30,
+        "ur": 100
+      }
+    }
+  ],
+  "proposedActiveDayGrant": {
+    "fragments": 10,
+    "SSRActiveDays": 10,
+    "URActiveDays": 20,
+    "implemented": false
+  }
+}
