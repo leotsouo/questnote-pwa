@@ -21,6 +21,8 @@
 
 設計檢查的 gradient-text／dark-glow 為共用未使用樣式誤掃，僅在獨立測試頁持久化忽略；展示頁縮小樣式引用後自動掃描無問題。既有 App 樣式中的稀有度邊線、敘事引用邊線屬本次範圍外，保留原設計。没有對全站套用忽略。
 
+Stop hook 再核對：歷史 `devtools/pool-awakening-preview.html` 與前一來源 revision 的差異為零；CSS 稀有度上邊線與敘事 blockquote 左邊線已存在於 `fa5a13e`。這些既有項目保留，不擴大本任務或追加忽略。新展示頁的 cream-palette 是沿用 twilight 的既有語意色彩，按維持既有設計的例外處理；radial-halo 的 `#779b82` 來自匯入但未掛載的 sanctuary scenery，屬誤判。兩者只對新展示頁追加持久化忽略；沒有修改 App 視覺或 runtime。完整 detector 輸出存於登記為 hold 的 `.dev-backups/impeccable-stop-triage.json`。
+
 互動展示：`devtools/pool-awakening-flip-preview.html`。執行 `node devtools/onboarding-browser-server.mjs 0` 後，使用其 loopback port 開啟該頁；展示不載入 App 或遊戲交易。
 
 實體 iPhone 尚未檢查；本次完成本機來源與桌面／手機 viewport 驗證，正式發布須另走既有 artifact 流程。
