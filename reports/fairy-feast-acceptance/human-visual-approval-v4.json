@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "QuestNote user",
+  "phrase": "通過",
+  "recordedAt": "2026-10-09T19:17:16.024Z",
+  "scope": "v4 glass-dome visual revision approved in this conversation; does not imply publication authorization",
+  "artifacts": {
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\ff10-v4\\3c3129e65f6408e314e82dce807a2c888d9f3b90aaf150c6905a26425d9bc37d",
+      "artifactId": "3c3129e65f6408e314e82dce807a2c888d9f3b90aaf150c6905a26425d9bc37d",
+      "manifestSha256": "a50092e0ddb886d5b5a3def9f988fa9b844d193b6f2ea804d0106211dce93e57",
+      "scopePath": "/questnote-pwa-preview/"
+    },
+    "production": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.dev-backups\\ff10-v4\\34eb274f8aafe7f4853b48905257b58075f16cb7a9828a578c3ce0fea2704833",
+      "artifactId": "34eb274f8aafe7f4853b48905257b58075f16cb7a9828a578c3ce0fea2704833",
+      "manifestSha256": "b82c1bd4ede4a907207f375f59eb5868811bd7815c786e391324ddb090eba3a5",
+      "scopePath": "/questnote-pwa/"
+    }
+  }
+}
