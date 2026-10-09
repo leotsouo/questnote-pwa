@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { raceSceneFrame } from '../src/dailyRaceScene.js';
+import { raceSceneFrame, RACE_SCENE_MS } from '../src/dailyRaceScene.js';
 
 test('every saved winner is the sole finisher across the complete animation', () => {
   for (let winner = 0; winner < 4; winner++) {
@@ -25,6 +25,22 @@ test('the chase changes leaders and replays the same choreography', () => {
     }));
     assert.equal(leaders.size, 4);
   }
-  assert.equal(raceSceneFrame(1, 0).phase, 'photo');
+  assert.equal(raceSceneFrame(1, 0).phase, 'sprint');
+  assert.equal(RACE_SCENE_MS, 30000);
   assert.throws(() => raceSceneFrame(.5, -1));
+});
+
+test('each commentary has five seconds and the finish changes direction repeatedly', () => {
+  const durations = new Map(); let last = raceSceneFrame(0, 0), turns = 0, direction = 0;
+  for (let tick = 0; tick < 3000; tick++) {
+    const frame = raceSceneFrame(tick / 3000, 0);
+    durations.set(frame.phase, (durations.get(frame.phase) || 0) + 10);
+    const next = Math.sign(frame.finish - last.finish);
+    if (next && direction && next !== direction) turns++;
+    if (next) direction = next;
+    last = frame;
+  }
+  assert.equal(durations.size, 6);
+  for (const duration of durations.values()) assert.equal(duration, 5000);
+  assert.ok(turns >= 5);
 });

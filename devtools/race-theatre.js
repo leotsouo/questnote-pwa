@@ -24,7 +24,7 @@ try {
       reducedMotion: document.querySelector('#reduced').checked,
       onComplete() {
         scene = null;
-        stage.innerHTML = `<div class="result"><span class="eyebrow">賽事結束 · 終點已回到工作崗位</span><h2 tabindex="-1">${escapeHtml(winner.name)} 獲勝！</h2>${image(winner)}<p>恭喜第一位追上「準時下班夢想」的選手。</p><span class="badge">本場最佳逃跑獎：終點線 🏁</span></div>`;
+        stage.innerHTML = `<div class="result"><span class="eyebrow">賽事結束 · 終點還在東張西望</span><h2 tabindex="-1">${escapeHtml(winner.name)} 獲勝！</h2>${image(winner)}<p>終於追上了！那顆眼睛看起來還不太服氣。</p><span class="badge">本場最佳逃跑獎：終點線 🏁</span></div>`;
         stage.querySelector('h2').focus(); play.textContent = '再看一次';
       },
     });

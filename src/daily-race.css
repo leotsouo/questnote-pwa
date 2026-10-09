@@ -83,27 +83,26 @@
 .race-show__finish { position:absolute; top:0; width:22px; height:55px; transform:translateX(-50%); background:repeating-linear-gradient(0deg,#fff9 0 5px,#16253b99 5px 10px); border-radius:4px; text-align:center; z-index:1; }
 .race-show__finish > span { position:absolute; top:-6px; left:0; font-size:19px; }
 .race-show__finish i { position:absolute; bottom:-8px; left:0; color:#ffde86; font-style:normal; font-weight:900; }
-.race-show__marshal { position:absolute; top:27px; right:6px; font-size:25px; opacity:0; transform:translateX(80px); }
-.race-show__marshal > span { font-size:34px; color:#f5d487; }
-.race-show__marshal small { position:absolute; white-space:nowrap; right:25px; top:-17px; font-size:.65rem; color:#fff0b9; }
-.race-show__capture { position:absolute; inset:auto 0 10px; text-align:center; font-size:.7rem; letter-spacing:.16em; color:#ffe3a2; opacity:0; }
 .race-show__broadcast { padding:16px 0 8px; min-height:104px; }
 .race-show__live { font-size:.68rem; letter-spacing:.12em; color:var(--color-text-secondary,#bdc9df); }
 .race-show__broadcast p { font-size:.95rem; line-height:1.6; margin:5px 0 0; }
 .race-show > button { min-height:44px; }
-.race-show:is([data-phase="run"],[data-phase="chase"],[data-phase="rescue"],[data-phase="sprint"]) .race-show__portrait { animation:race-trot .23s infinite alternate ease-in-out; }
-.race-show:is([data-phase="chase"],[data-phase="rescue"],[data-phase="sprint"]) .race-show__dust { opacity:.8; }
+.race-show:is([data-phase="run"],[data-phase="chase"],[data-phase="tease"],[data-phase="sprint"]) .race-show__portrait { animation:race-trot .23s infinite alternate ease-in-out; }
+.race-show:is([data-phase="chase"],[data-phase="tease"],[data-phase="sprint"]) .race-show__dust { opacity:.8; }
 .race-show[data-phase="escape"] .race-show__reaction { opacity:1; }
-.race-show:is([data-phase="escape"],[data-phase="chase"],[data-phase="rescue"]) .race-show__finish i { animation:race-legs .16s infinite alternate; }
-.race-show[data-phase="rescue"] .race-show__marshal { opacity:1; transform:translateX(0); transition:transform .5s; }
-.race-show[data-phase="sprint"] .race-show__marshal { opacity:1; transform:translateX(0); }
-.race-show[data-phase="sprint"] .race-show__marshal small { font-size:0; }
-.race-show[data-phase="sprint"] .race-show__marshal small::after { content:'已逮捕 ✓'; font-size:.65rem; }
-.race-show[data-phase="photo"] .race-show__capture { opacity:1; }
-.race-show[data-phase="photo"] .race-show__runner:not(.is-winner) { opacity:.6; }
+.race-show:is([data-phase="escape"],[data-phase="chase"],[data-phase="tease"]) .race-show__finish i { animation:race-legs .16s infinite alternate; }
 .race-show .is-winner .race-show__portrait { border-color:#ffe3a2; box-shadow:0 0 0 4px #ffe3a233,0 0 25px #ffd98670; }
 .race-show .is-winner .race-show__reaction { opacity:1; font-size:0; }
 .race-show .is-winner .race-show__reaction::after { content:'冠軍'; font-size:.65rem; }
 @keyframes race-trot { from { transform:translateY(1px) rotate(-4deg); } to { transform:translateY(-4px) rotate(4deg); } }
 @keyframes race-legs { from { transform:scaleX(1); } to { transform:scaleX(-1); } }
 @media (prefers-reduced-motion:reduce) { .race-show * { animation:none !important; transition:none !important; } }
+
+.race-show__eye { position:absolute; top:20px; left:3px; width:17px; height:15px; border-radius:50%; background:#fffbea; border:1px solid #263347; box-shadow:0 1px 4px #0005; overflow:hidden; animation:race-blink 5s infinite; }
+.race-show__eye::after { content:''; position:absolute; top:4px; left:5px; width:6px; height:7px; border-radius:50%; background:#172437; transform:translateX(var(--eye-look,-3px)); transition:transform .3s; }
+.race-show__broadcast { min-height:106px; margin:0 0 12px; padding:12px 14px; background:#243649; border-left:3px solid #dfc58a; border-radius:10px; }
+.race-show__broadcast p { color:#edf2fc; font-size:1rem; }
+.race-show > button { margin-top:16px; }
+.race-show.is-reduced * { animation:none !important; transition:none !important; }
+@keyframes race-blink { 0%,45%,49%,100% { transform:scaleY(1); } 47% { transform:scaleY(.12); } }
+@media (prefers-reduced-motion:reduce) { .race-show__eye { animation:none; } }
