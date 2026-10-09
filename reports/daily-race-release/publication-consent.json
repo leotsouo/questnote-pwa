@@ -1,0 +1,23 @@
+{
+  "grantedAt": "2026-10-09T02:37:48.036Z",
+  "request": "幫我推上正式版",
+  "pr": "https://github.com/leotsouo/questnote-pwa/pull/91",
+  "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf",
+  "artifacts": {
+    "production": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v392-build-3\\artifacts\\58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
+      "artifactId": "58f2c847388b6b2028fac79fbb42f6a54bea7a88732e3ba5292a0bdbf7b72fe2",
+      "manifestSha256": "1fa1a59af449f5824ff13b4f872d9b14983295cdc3381cc78c1f36f9eafb7268",
+      "scopePath": "/questnote-pwa/",
+      "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf"
+    },
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v392-build-3\\artifacts\\a753cf1ed0eacdee1dd1bf925e2a8cda754fd4e770dde164617713ae95526d30",
+      "artifactId": "a753cf1ed0eacdee1dd1bf925e2a8cda754fd4e770dde164617713ae95526d30",
+      "manifestSha256": "f94817f24aca673f74d9e6c3c86b1b0199646d2c96aa24645226ce91cabb1374",
+      "scopePath": "/questnote-pwa-preview/",
+      "sourceCommit": "bc216baa9bfbf8aabaf1f7347b3ca98baf0702bf"
+    }
+  },
+  "purpose": "Publish reviewed daily companion race MVP as V3.9.2"
+}
