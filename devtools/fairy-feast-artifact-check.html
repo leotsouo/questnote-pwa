@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="src/seniorMode.css"></head><body><h1>霓霞仙膳 · 隔離工程檢查</h1><p>只在本機全新 origin 的 preview 測試存檔操作，使用確切產物模組。此頁與動畫檢視分開。</p><button id="run">執行交易、料理、派遣及覺醒檢查</button><ol id="results"></ol><pre id="report"></pre>
 <script type="module">
 import { dbGet, dbGetAll, dbPut, STORES } from './src/db.js';
+import { createCollectionEntry } from './src/collectionService.js';
 import { normalizeWallet } from './src/rewardService.js';
 import { loadCatalogBundle } from './src/releaseCatalog.js';
 import { RELEASE_PROFILE } from './src/releaseProfile.js';
@@ -47,7 +48,7 @@ document.getElementById('run').onclick=async()=>{
   check(allPets.length===172&&pets.length===12,'新舊角色集合錯誤');record('固定產物與角色集合',RELEASE_PROFILE.artifactId+'／160 舊角色＋12 新角色');
   const stories=await loadBondStories();check(validateBondStories(stories,allPets).length===0,'羈絆故事驗證失敗');record('完整羈絆故事','所有角色都有四章，包含本池 12 隻');
   const wallet=normalizeWallet(null);Object.assign(wallet,{stardust:20000,adventureEnergy:200,materials:{forest_leaf:100,aurora_flower_dew:100}});await dbPut(STORES.META,wallet);await dbPut(STORES.META,{key:'inventory',items:{},itemUsageLogs:{}});
-  for(const pet of pets)await dbPut(STORES.COLLECTION,{petId:pet.id,owned:true,stars:1,fragments:0,bondExp:0,bondLevel:1,isCompanion:false,obtainedAt:new Date().toISOString()});
+  for(const pet of pets)await dbPut(STORES.COLLECTION,createCollectionEntry(pet.id,new Date().toISOString()));
   const craftables=await loadCraftables();await loadGiftAffinities();const food=craftables.find(food=>food.id==='item_aurora_flower_tart');check(food,'新料理不存在');
   check((await craftItem(food.id,2)).success,'料理製作失敗');const after=await dbGet(STORES.META,'wallet');check(after.materials.forest_leaf===96&&after.materials.aurora_flower_dew===94,'料理扣料錯誤');
   const favorite=pets.find(pet=>pet.id==='pet_ur31'),ordinary=pets.find(pet=>pet.id==='pet_r63');check(getFavoriteBonus(food,favorite).bondExp===150&&getFavoriteBonus(food,ordinary).bondExp===75,'喜好加成錯誤');

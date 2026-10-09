@@ -24,6 +24,8 @@ const styles = [...html.matchAll(/<link[^>]+href="([^"]+\.css)"/g)].map(match =>
 const config = { artifactId: preview.artifactId, sourceCommit: preview.manifest.sourceCommit,
   scopePath: preview.scopePath, pool, pets, catalog, styles, awakenings: awakening.pets.filter(pet => pets.some(row => row.id === pet.petId)) };
 const pages = { '/review/': 'devtools/fairy-feast-animation-review.html', '/checks/': 'devtools/fairy-feast-artifact-check.html' };
+const networkTest = process.argv.includes('--network-test');
+let networkFault = false;
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
 const server = http.createServer(async (request, response) => {
   try {
@@ -32,6 +34,12 @@ const server = http.createServer(async (request, response) => {
     const pathname = decodeURIComponent(new URL(request.url, origin).pathname);
     if (pathname.includes('\\') || pathname.split('/').some(part => part === '..' || part === '.')) throw Error('Unsafe path');
     response.setHeader('Cache-Control', 'no-store');
+    if (networkTest && ['/network-fault/', '/network-restore/'].includes(pathname)) {
+      networkFault = pathname === '/network-fault/';
+      response.setHeader('Content-Type', 'text/html; charset=utf-8');
+      response.end(`<h1>本機驗收：${networkFault ? '網路失效（HTTP 503）' : '網路恢復'}</h1><p>僅此隔離測試伺服器。</p><a href="${preview.scopePath}index.html">重開預覽 App</a><a href="/network-restore/">恢復</a>`); return;
+    }
+    if (networkFault) { response.writeHead(503).end('Local QA network fault'); return; }
     if (pathname === '/review-config.json') {
       response.setHeader('Content-Type', mime['.json']); response.end(JSON.stringify(config)); return;
     }
