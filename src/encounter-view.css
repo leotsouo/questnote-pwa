@@ -16,6 +16,27 @@ body[data-theme="twilight"] :is(.identity-surface, .identity-dialog, .identity-r
 .identity-surface .pool-select-heading { display:flex; align-items:center; justify-content:space-between; gap:8px 12px; flex-wrap:wrap; margin-bottom:8px; }
 .identity-surface .summon-wallet { display:flex; align-items:center; gap:8px; flex-wrap:wrap; max-width:100%; padding:4px 12px; border:1px solid var(--color-border); border-radius:999px; background:var(--color-bg-card); font-size:.8rem; }
 .identity-surface .summon-wallet strong { min-width:0; overflow-wrap:anywhere; font-size:1rem; font-variant-numeric:tabular-nums; color:var(--color-primary); }
+.identity-surface .pool-navigation-heading { font-size:.9rem; }
+.identity-surface .pool-navigation { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+.identity-surface .pool-navigation button { display:flex; flex-direction:column; gap:4px; min-width:0; text-align:left; padding:12px; }
+.identity-surface .pool-navigation strong { font-size:.9rem; overflow-wrap:anywhere; }
+.identity-surface .pool-navigation span { font-size:.75rem; color:var(--color-text-muted); overflow-wrap:anywhere; }
+.identity-surface .pool-navigation [aria-pressed="true"], .identity-dialog .series-directory-entry[aria-pressed="true"] { border-color:var(--color-primary); box-shadow:inset 0 0 0 1px var(--color-primary); }
+.identity-surface .pool-selection-note { margin-top:8px; color:var(--color-text-muted); font-size:.75rem; overflow-wrap:anywhere; }
+.identity-dialog .series-result-count { margin:14px 0 8px; }
+.identity-dialog .series-directory { display:grid; gap:10px; }
+.identity-dialog .series-directory-entry { display:grid; grid-template-columns:64px minmax(0,1fr); gap:12px; width:100%; text-align:left; padding:12px; align-items:start; }
+.identity-dialog .series-directory-art { width:64px; aspect-ratio:1; object-fit:contain; border-radius:8px; background:var(--color-bg-card-soft); }
+.identity-dialog .series-directory-copy { display:flex; flex-direction:column; gap:5px; min-width:0; overflow-wrap:anywhere; }
+.identity-dialog .series-directory-copy > span { font-size:.8rem; color:var(--color-text-muted); }
+.identity-dialog .series-directory-copy .series-directory-status { font-size:.75rem; color:var(--color-primary); }
+.identity-dialog .series-directory-empty { padding:20px 0; color:var(--color-text-muted); }
+@media (max-width:360px) {
+  .identity-surface .pool-navigation { grid-template-columns:minmax(0,1fr); }
+  .identity-surface .pool-navigation button { flex-direction:row; align-items:center; flex-wrap:wrap; gap:6px 12px; }
+  .identity-dialog .series-directory-entry { grid-template-columns:48px minmax(0,1fr); gap:8px; padding:10px; }
+  .identity-dialog .series-directory-art { width:48px; }
+}
 :is(.identity-surface, .identity-dialog, .identity-review) h1, :is(.identity-surface, .identity-dialog, .identity-review) h2, :is(.identity-surface, .identity-dialog, .identity-review) h3, :is(.identity-surface, .identity-dialog, .identity-review) p { margin: 0; }
 :is(.identity-surface, .identity-dialog, .identity-review) h1, :is(.identity-surface, .identity-dialog, .identity-review) h2, :is(.identity-surface, .identity-dialog, .identity-review) h3 { line-height: 1.35; }
 :is(.identity-surface, .identity-dialog, .identity-review) h1 { font-size: 1.75rem; font-family: var(--font-display); font-weight: 600; }

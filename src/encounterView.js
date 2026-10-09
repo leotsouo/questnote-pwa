@@ -10,6 +10,7 @@ import { delay } from './imagePreloadService.js';
 import { SUMMON_TIMING } from './summonTiming.js';
 import { isSeniorMode, seniorFeedback, syncSeniorPresentation } from './seniorModeController.js';
 import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
+import { poolNavigation, searchPoolDirectory } from './poolDirectory.js';
 
 const modalHost = document.createElement('div');
 modalHost.className = 'encounter-dialogs';
@@ -44,6 +45,7 @@ let collection = new Map();
 let filter = 'all';
 let rarityFilter = 'all';
 let query = '';
+let seriesQuery = '';
 let dialogOpener = null;
 let revealOpener = null;
 let revealFocusAction = '';
@@ -84,7 +86,51 @@ function poolSelector() {
   const isCollection = view === 'collection';
   const selected = isCollection ? collectionScope : poolId;
   const balance = (appState.wallet?.stardust || 0).toLocaleString('zh-TW');
+  if (!isCollection) {
+    const navigation = poolNavigation(pools);
+    const busy = displayBusy || appActions.isBusy();
+    const entry = (row, label, description = row?.name) => `<button type="button" data-directory-pool="${escapeHtml(row?.id || '')}" aria-pressed="${!!row && row.id === selected}" ${busy || !row ? 'disabled' : ''}><strong>${label}</strong><span>${escapeHtml(description || '目前未安排')}</span></button>`;
+    return `<section class="pool-select" aria-label="探索世界"><div class="pool-select-heading"><h2 class="pool-navigation-heading">探索世界</h2><div class="summon-wallet" role="status" aria-live="polite" aria-atomic="true"><span>星塵總量</span><strong>${balance}</strong></div></div>
+      <nav class="pool-navigation" aria-label="卡池入口">${entry(navigation.featured, '最新登場')}${entry(navigation.standard, '星旅之原', navigation.standard ? '大陸各地的相遇' : '')}<button type="button" data-identity-action="series-directory" aria-haspopup="dialog" ${busy ? 'disabled' : ''}><strong>全部系列</strong><span>${navigation.entries.length} 個系列 · 自由選擇</span></button></nav>
+      <p class="pool-selection-note">目前探索：<strong>${escapeHtml(pool().name)}</strong> · 持續開放</p></section>`;
+  }
   return `<div class="pool-select"><div class="pool-select-heading"><label for="identity-pool-select-${view}">${isCollection ? '瀏覽系列' : '探索世界'}</label>${isCollection ? '' : `<div class="summon-wallet" role="status" aria-live="polite" aria-atomic="true"><span>星塵總量</span><strong>${balance}</strong></div>`}</div><select ${appActions.isBusy() ? 'disabled' : ''} id="identity-pool-select-${view}">${isCollection ? '<option value="all">全部系列</option>' : ''}${pools.map((row) => `<option value="${row.id}" ${row.id === selected ? 'selected' : ''}>${escapeHtml(row.name)}</option>`).join('')}</select></div>`;
+}
+
+function openSeriesDirectory() {
+  if (displayBusy || appActions.isBusy()) return;
+  seriesQuery = '';
+  showDialog('全部系列', `<p class="subtle">歷代系列持續開放。選擇喜歡的世界，再開始相遇。</p><label class="search-label" for="identity-series-search">尋找系列<input id="identity-series-search" type="search" placeholder="輸入系列名稱或故事關鍵字" autocomplete="off"></label><p id="identity-series-count" class="subtle series-result-count" role="status"></p><div id="identity-series-results"></div>`);
+  renderSeriesDirectory();
+  dialog.querySelector('#identity-series-search').focus();
+}
+
+function renderSeriesDirectory() {
+  const navigation = poolNavigation(pools);
+  const list = searchPoolDirectory(navigation.entries, seriesQuery);
+  const results = dialog.querySelector('#identity-series-results');
+  dialog.querySelector('#identity-series-count').textContent = `${list.length} 個系列`;
+  results.innerHTML = `${list.length ? `<div class="series-directory">${list.map((row) => {
+    const available = poolCandidates(pets, row, isExpanded(row.id));
+    const hero = byId(row.presentation?.heroPetId) || available.find((pet) => pet.rarity === 'UR') || available[0];
+    return `<button type="button" class="series-directory-entry" data-directory-pool="${escapeHtml(row.id)}" aria-pressed="${row.id === poolId}" ${displayBusy || appActions.isBusy() ? 'disabled' : ''}>
+      ${hero ? imageHtml(hero, 'card', true, 'series-directory-art') : ''}<span class="series-directory-copy"><strong>${escapeHtml(row.name)}</strong><span>${escapeHtml(row.presentation?.tagline || '循著星光，認識願意與你一起前進的夥伴。')}</span><span class="series-directory-status">${available.length} 位可相遇 · ${row.id === poolId ? '目前探索' : '持續開放'}${row.id === navigation.featured?.id ? ' · 最新登場' : ''}</span></span></button>`;
+  }).join('')}</div>` : '<p class="series-directory-empty">找不到符合的系列，請試試其他名稱或故事關鍵字。</p>'}`;
+}
+
+async function selectDirectoryPool(id) {
+  if (displayBusy || appActions.isBusy() || !pools.some((row) => row.id === id && row.active)) return;
+  if (dialog.open) dialog.close();
+  if (id === poolId) return;
+  displayBusy = true;
+  screen.querySelectorAll('[data-directory-pool], [data-identity-action="series-directory"], [data-identity-action="summon"], [data-identity-action="summon-ten"]').forEach((control) => { control.disabled = true; });
+  try { await appActions.selectPool(id); }
+  finally {
+    displayBusy = false;
+    render();
+    const target = screen.querySelector(`[data-directory-pool="${poolId}"]`) || screen.querySelector('[data-identity-action="series-directory"]');
+    target?.focus({ preventScroll: true });
+  }
 }
 
 function renderPool() {
@@ -100,7 +146,7 @@ function renderPool() {
     <div class="pool-layout"><div class="pool-stage"><button class="hero-card rank-${hero.rarity}" data-pet="${hero.id}" aria-label="預覽 ${escapeHtml(identityLabel(hero, owned(hero)))}">
       <span class="hero-portal">${imageHtml(hero, 'stage', false, 'hero-art')}</span>
       <span class="hero-caption"><span class="art-label">本池焦點 · 點擊認識</span><span class="pet-name">${escapeHtml(hero.name)}</span><span class="pet-title">${escapeHtml(hero.title)}</span>${cues(hero)}</span>
-    </button><div class="summon-dock"><div class="summon-buttons"><button class="primary" ${appActions.isBusy() || appState.wallet.stardust < selected.cost ? 'disabled' : ''} data-identity-action="summon" data-pet-id="${hero.id}"><span>${isSeniorMode() ? '召喚 1 位夥伴' : '啟動相遇'}</span><small>單次 · ${selected.cost} 星塵</small></button><button ${appActions.isBusy() || appState.wallet.stardust < selected.cost * 10 ? 'disabled' : ''} data-identity-action="summon-ten"><span>${isSeniorMode() ? '召喚 10 次' : '十連相遇'}</span><small>十次 · ${selected.cost * 10} 星塵</small></button></div><p>${walletHint(selected)}</p></div></div></div></section>
+    </button><div class="summon-dock"><div class="summon-buttons"><button class="primary" ${displayBusy || appActions.isBusy() || appState.wallet.stardust < selected.cost ? 'disabled' : ''} data-identity-action="summon" data-pet-id="${hero.id}"><span>${isSeniorMode() ? '召喚 1 位夥伴' : '啟動相遇'}</span><small>單次 · ${selected.cost} 星塵</small></button><button ${displayBusy || appActions.isBusy() || appState.wallet.stardust < selected.cost * 10 ? 'disabled' : ''} data-identity-action="summon-ten"><span>${isSeniorMode() ? '召喚 10 次' : '十連相遇'}</span><small>十次 · ${selected.cost * 10} 星塵</small></button></div><p>${walletHint(selected)}</p></div></div></div></section>
     ${invitationEntry(appState.encounterEconomy?.balance || 0)}
     <div class="pool-copy"><p class="eyebrow">${escapeHtml(selected.presentation?.badge || '持續開放的相遇')}</p><h2>${escapeHtml(selected.name)}</h2>
       <p class="pool-lore">${escapeHtml(selected.presentation?.tagline || '循著星光，認識願意與你一起前進的夥伴。')}</p>
@@ -384,6 +430,7 @@ document.addEventListener('click', async (event) => {
   const button = event.target.closest('button');
   if (!button) return;
   if (button.dataset.collectionMilestoneAction) return;
+  if (button.hasAttribute('data-directory-pool')) { await selectDirectoryPool(button.dataset.directoryPool); return; }
 
   if (button.dataset.pet) { petDetail(byId(button.dataset.pet)); return; }
   if (button.dataset.resultPet) { petDetail(byId(button.dataset.resultPet), true); return; }
@@ -398,6 +445,7 @@ document.addEventListener('click', async (event) => {
   }
   if (button.dataset.phaseStep) { phase(button.dataset.phaseStep); return; }
   const action = button.dataset.identityAction;
+  if (action === 'series-directory') openSeriesDirectory();
   if (action === 'app-pet-detail' || action === 'app-nickname') { dialog.close(); if (reveal.open) closeReveal(); action === 'app-pet-detail' ? appActions.openPetDetail(button.dataset.petId) : appActions.openNickname(button.dataset.petId); return; }
   if (action === 'invitation') openInvitation();
   if (action === 'preview') poolPreview();
@@ -445,6 +493,7 @@ document.addEventListener('change', (event) => {
 document.addEventListener('input', (event) => {
   if (LOCAL_ART_PREVIEW) return;
   if (event.target.id === 'identity-collection-search') { query = event.target.value; renderCollectionCards(); }
+  if (event.target.id === 'identity-series-search') { seriesQuery = event.target.value; renderSeriesDirectory(); }
 });
 dialog.addEventListener('close', () => {
   if (reveal.open && !activeBatch?.summary) return;
@@ -506,7 +555,7 @@ export function renderEncounterView(name, state, refresh, actions) {
 async function runDraw(count) {
   if (displayBusy || appActions.isBusy()) return;
   displayBusy = true;
-  screen.querySelectorAll('[data-identity-action="summon"], [data-identity-action="summon-ten"], select').forEach((control) => { control.disabled = true; });
+  screen.querySelectorAll('[data-identity-action="summon"], [data-identity-action="summon-ten"], [data-directory-pool], [data-identity-action="series-directory"], select').forEach((control) => { control.disabled = true; });
   try { await appActions.draw(count); }
   finally { displayBusy = false; render(); }
 }

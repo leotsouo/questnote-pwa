@@ -117,6 +117,8 @@ candidate 保存原 companion baseline bytes、審核輸入與合併後 companio
 
 執行 `npm test`、JS 語法檢查、`npm run pools:validate`、`npm run images:check`、`npm run test:pool:release`。新增內容時，不用固定總數取代資料引用、專長、偏好及地區覆蓋檢查。
 
+採用三個固定探索入口的版本，新池整包須同步 `src/poolDirectory.js` 的 `POOL_NAVIGATION.featuredPoolId`，並驗證「最新登場」指向本池、「全部系列」仍可找到與選取歷代 active 系列。推薦指向隨核准整包發布，不先單獨更改正式站；推薦曝光不修改候選、價格、解鎖、各池保底或已儲存選池。推薦期日期與倒數須依後續定版政策設定，不由目錄順序猜測。
+
 在隔離 preview 實際驗證：入場／單抽／十連／SSR／UR 順序與重複角色、各階段略過／連點／鍵盤／減少動態／圖片失敗與中斷；工坊製作→選角送禮；逐隻專長與派遣效果；新增地區解鎖→派遣→領獎→里程碑；無重抽／重複扣款／領獎、存檔相容及 service worker 更新。不要操作正式玩家 DB 或把 synthetic 測試結果當成實際卡池驗收。
 
 ### 卡池畫面與動畫的共同驗收規格
