@@ -60,10 +60,11 @@ test('only the four allocated SSR/UR accept fairy awakening; trial requires its 
 
 test('old awakening catalogs still validate; fairy expansion fails closed for partial/invalid pairs', () => {
   assert.deepEqual(validateAwakeningCatalog(catalog), []);
+  const legacy = catalog.pets.filter(pet => !FAIRY_AWAKENING_IDS.includes(pet.petId));
   const entries=FAIRY_AWAKENING_IDS.map((petId,i)=>({ ...catalog.pets[0],petId,rarity:petId.startsWith('pet_ur')?'UR':'SSR',visual:['fairy_petal','fairy_mist','fairy_dew','fairy_hearth'][i],
     awakenedImage:catalog.pets.find(p=>p.awakenedImage).awakenedImage,awakenedSha256:'a'.repeat(64) }));
-  assert.ok(validateAwakeningCatalog({...catalog,pets:[...catalog.pets,entries[0]]}).length);
-  assert.deepEqual(validateAwakeningCatalog({...catalog,pets:[...catalog.pets,...entries]}), []);
+  assert.ok(validateAwakeningCatalog({...catalog,pets:[...legacy,entries[0]]}).length);
+  assert.deepEqual(validateAwakeningCatalog({...catalog,pets:[...legacy,...entries]}), []);
   entries[0].rarity='SR';
-  assert.ok(validateAwakeningCatalog({...catalog,pets:[...catalog.pets,...entries]}).length);
+  assert.ok(validateAwakeningCatalog({...catalog,pets:[...legacy,...entries]}).length);
 });

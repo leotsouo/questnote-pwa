@@ -769,6 +769,176 @@
       "approvedAt": "2026-10-09T16:08:57.118Z",
       "reviewer": "Codex",
       "reviewerType": "ai"
+    },
+    {
+      "stage": "images",
+      "inputHash": "4f25d3bbd836baf1b897df439fa923379688536c54e75c61fc3929fb323c674f",
+      "outputHash": "0d3f538043292f31f50ddb69b5067ad58a0fe1f4cd5c135eb9645398420af416",
+      "files": {
+        "images/pet_n53.png": "4c8fa5ae4d8d71e03226fefa7294534a08f3610fb783b94cf29fff128d1122d2",
+        "images/pet_n54.png": "55c447a85fc95451b8196166f65a88f3c24f0c0c2ce06c0bfbe2b7d9da82ac9d",
+        "images/pet_r62.png": "af4ed89455a3ca82d2eab80abcde2a06b688523877fef9521fb9d7d5f1d551f1",
+        "images/pet_r63.png": "f4768ee015d599586d35850aecdeebe00a2d46e6b0f5f29de5af776a92ade440",
+        "images/pet_sr56.png": "6b41a649f4af3e1fa43111492615ce70f157a71283a8530913b80a662572ae3d",
+        "images/pet_sr57.png": "18c2fd287fad1c7022b49196f4ae12106fb37a73d1d5a9ce4eea05c4d23cee99",
+        "images/pet_sr58.png": "d7377d5bfceb65e5110ce9a3e12fa76193465a4eb3900b5f401021baa6afdedb",
+        "images/pet_sr59.png": "4c2b4508f450cfb2d0ba441918b505de697fa26e7319eb513269cfa04d68de45",
+        "images/pet_ssr41.png": "205a668df54df6a8fe39ac8b7673585ddb9b4bccc4ba6b6966dd2e004ccdb046",
+        "images/pet_ssr42.png": "4e56c8918de4433b9a1509035ac851de1a92b689971a43552eacbeb58cc16789",
+        "images/pet_ur31.png": "d7a7f5b56ef5fcf87a53736ed8a809d08f71d9cda06955a4d95858e5151c4b75",
+        "images/pet_ur32.png": "7d3d88cccae680772412dfc0ae7ae2c4945d2289510711e9444e3287a7dabbd3"
+      },
+      "toolsHash": "e13ca923bb583426e68656b5395325b67fecf58fe548c59f20c42b51fa8a4066",
+      "snapshot": "approvals/0d3f538043292f31f50ddb69b5067ad58a0fe1f4cd5c135eb9645398420af416",
+      "reviewedWarnings": [
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[0].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[1].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[2].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[3].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[4].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[5].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[6].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[7].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[8].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[9].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[10].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "PET_NO_STANDARD",
+          "message": "新寵物未加入 standard，不會進入目前標準召喚",
+          "path": "pets[11].poolTags"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_n53.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_n54.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r62.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_r63.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr56.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr57.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr58.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_sr59.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ssr41.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ssr42.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ur31.png"
+        },
+        {
+          "level": "warning",
+          "code": "IMAGE_LARGE",
+          "message": "Review large image dimensions or byte size",
+          "path": "images/pet_ur32.png"
+        }
+      ],
+      "approvedAt": "2026-10-09T18:10:38.370Z",
+      "reviewer": "QuestNote user",
+      "reviewerType": "human"
     }
   ]
 }

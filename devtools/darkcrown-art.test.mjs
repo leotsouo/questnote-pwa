@@ -13,7 +13,7 @@ const authored=JSON.parse(fs.readFileSync(new URL('content/pet-series/darkcrown_
 const hash=b=>createHash('sha256').update(b).digest('hex');
 test('actual seven complete pairs keep original beast bytes, names and controlled rarity',()=>{
  assert.deepEqual(validateAwakeningCatalog(catalog),[]);
- assert.equal(catalog.pets.length,27);
+ assert.equal(catalog.pets.filter(p=>SWORDWILD_AWAKENING_IDS.includes(p.petId)||DARKCOURT_AWAKENING_IDS.includes(p.petId)).length,27);
  const dark=catalog.pets.filter(p=>DARKCOURT_AWAKENING_IDS.includes(p.petId));assert.equal(dark.length,7);
  for(const field of ['tokenName','title','trialTitle'])assert.equal(new Set(dark.map(p=>p[field])).size,7);
  for(const p of dark){
