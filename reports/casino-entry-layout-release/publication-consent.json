@@ -1,0 +1,23 @@
+{
+  "grantedAt": "2026-10-09T18:32:32.339Z",
+  "request": "發布到正式站；賭場入口不遮住暮光冒險手帳",
+  "pr": "https://github.com/leotsouo/questnote-pwa/pull/95",
+  "sourceCommit": "3c12083e77a927b0096fbf0acf9acca636c4dff2",
+  "artifacts": {
+    "production": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v394-build\\artifacts\\03c5e6ec03a3fb116f9a8431e906649f9098bf64e87557b4435210706b74f0a6",
+      "artifactId": "03c5e6ec03a3fb116f9a8431e906649f9098bf64e87557b4435210706b74f0a6",
+      "manifestSha256": "4b8860f948624d9c0f4b914417c2147e668c3006e5314d0b14a720aeecb0a3de",
+      "scopePath": "/questnote-pwa/",
+      "sourceCommit": "3c12083e77a927b0096fbf0acf9acca636c4dff2"
+    },
+    "preview": {
+      "artifactDir": "C:\\Users\\User\\OneDrive\\questnote-pwa\\.worktrees\\daily-companion-race\\.dev-backups\\release-runs\\v394-build\\artifacts\\d4fa052e9437f0210966f7b47305b39bea9551204be7551a78230b522824cf5a",
+      "artifactId": "d4fa052e9437f0210966f7b47305b39bea9551204be7551a78230b522824cf5a",
+      "manifestSha256": "87b6a59acc7f9bb43629be638fad2174b516de4c8a0b481968ffa60d5107dd73",
+      "scopePath": "/questnote-pwa-preview/",
+      "sourceCommit": "3c12083e77a927b0096fbf0acf9acca636c4dff2"
+    }
+  },
+  "purpose": "Publish validated casino entrance title layout fix as V3.9.4"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "artifactId": "03c5e6ec03a3fb116f9a8431e906649f9098bf64e87557b4435210706b74f0a6",
+  "initialCatalog": {
+    "pets": 160,
+    "pools": 8
+  },
+  "balanceAfterBet": 1500,
+  "savedResult": {
+    "mode": "bet",
+    "selectedId": "pet_r37",
+    "stake": 500,
+    "payout": 0,
+    "winnerId": "pet_sr05",
+    "settledAt": "2026-10-09T18:34:59.682Z"
+  },
+  "backupRoundTrip": true,
+  "offlineReload": true,
+  "offlineFreeRace": true,
+  "errors": []
+}

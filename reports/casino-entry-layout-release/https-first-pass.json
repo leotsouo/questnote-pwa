@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "httpStatus": 503,
+  "path": "assets/pets/awakening/pet_ssr24-initial-0676110f7a3d-stage.webp",
+  "verificationComplete": false,
+  "followup": "Full HTTPS hash verification rerun with concurrency 4 and bounded transient-response retries; original size/SHA256 checks retained"
+}
