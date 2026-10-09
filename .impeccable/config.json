@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/encounter-view.css"
+        ],
+        "createdAt": "2026-10-09T20:06:50.897Z",
+        "reason": "Agent review: line 139 is a semantic blockquote for an owned pet greeting in encounterView.js, with a 2px quotation rule, not a card side-tab. Existing since 6fb96150; preserve quotation styling."
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "src/encounter-view.css"
+        ],
+        "createdAt": "2026-10-09T20:06:51.115Z",
+        "reason": "Agent review: rank-SSR, rank-UR and rank-SR encode collectible rarity; UR uses a double border and text labels also identify rarity. Existing since 6fb96150; redesigned summon hero explicitly overrides border to zero. Preserve reveal rarity cues."
+      }
+    ]
+  }
+}
