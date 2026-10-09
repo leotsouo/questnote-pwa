@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "fixtureOnly": true,
+  "evidence": [
+    "Native task completion grants 10; same-day task/habit completion and cancel/redo do not duplicate fragments",
+    "Advancing the local day earns the next 10; clock rollback does not grant another award",
+    "Real export and import normalization retain balance and the advancing-day receipt",
+    "393px and 1280px native summon/invitation screens show saved daily progress; gallery is selectable without typing and without spending",
+    "Offline reload retains receipt, fragments and truthful daily progress"
+  ],
+  "pageErrors": []
+}

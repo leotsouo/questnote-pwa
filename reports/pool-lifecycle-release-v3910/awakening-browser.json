@@ -1,0 +1,31 @@
+{
+  "testedAt": "2026-10-09T20:56:44.305Z",
+  "sourceBase": "fa5a13e",
+  "results": [
+    {
+      "name": "all 31 unowned partners in three pools show correct full-color forms and flip back",
+      "ok": true
+    },
+    {
+      "name": "desktop flip, fast reversal, reopen reset, and keyboard focus",
+      "ok": true
+    },
+    {
+      "name": "phone card fits and reduced motion works for OS, app preference, and senior mode",
+      "ok": true
+    },
+    {
+      "name": "image failure retains initial art, retries, and original fallback works",
+      "ok": true
+    },
+    {
+      "name": "ordinary pools have no preview controls and preview never writes progress or rewards",
+      "ok": true
+    },
+    {
+      "name": "interactive review page uses the real component and all 31 partners without database access",
+      "ok": true
+    }
+  ],
+  "pageErrors": []
+}

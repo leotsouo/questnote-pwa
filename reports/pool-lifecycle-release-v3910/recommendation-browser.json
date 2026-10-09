@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "fixtureOnly": true,
+  "fixture": {
+    "startsAt": "2026-10-10T00:00:00+08:00",
+    "endsAt": "2026-10-24T00:00:00+08:00"
+  },
+  "evidence": [
+    "Unchanged real app loads synthetic schedule; upcoming and active states preserve access; New York device displays exact Taipei deadline without live-region spam",
+    "Days/hours and hours/minutes refresh after resume; exact expiry updates text only, retaining open-gallery search, focus, DOM controls and all saved draw state",
+    "Expired recommendation drops from the lead position on normal redraw; offline reload preserves selected series, wallet, collection, unlock and pity",
+    "Expiry during both native single and ten draws leaves reveal, committed results and selected pool intact; controls recover afterward"
+  ]
+}

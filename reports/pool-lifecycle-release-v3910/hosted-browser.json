@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "checkedAt": "2026-10-09T21:19:19.702Z",
+  "artifactId": "4b81cf66353c89177b5e9ba17eeaf2ab72795a20036763471166ef61d7c10671",
+  "version": "3.9.10",
+  "dailyAwardOnce": true,
+  "visualPoolEntry": true,
+  "offlineReceiptPreserved": true,
+  "pageErrors": [],
+  "environment": "Fresh disposable Chromium on formal HTTPS; no existing player data or backend writes"
+}
