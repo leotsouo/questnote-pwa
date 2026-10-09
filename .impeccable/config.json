@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          ".worktrees/pool-lifecycle-navigation/src/encounter-view.css"
+        ],
+        "createdAt": "2026-10-09T21:23:22.948Z",
+        "reason": "Agent review: line 154 is the semantic 2px blockquote rule for a pet greeting, not a card side-tab. Match the existing worktree exception in the root hook scope."
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          ".worktrees/pool-lifecycle-navigation/src/encounter-view.css"
+        ],
+        "createdAt": "2026-10-09T21:23:24.523Z",
+        "reason": "Agent review: lines 95-97 encode collectible SSR/UR/SR rarity, with accompanying text labels; summon hero overrides the border. Preserve the reviewed rarity cue and match the existing worktree exception in the root hook scope."
+      }
+    ]
+  }
+}
