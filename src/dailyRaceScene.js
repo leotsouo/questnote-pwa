@@ -103,8 +103,8 @@ export function mountRaceScene(root, { pets, winnerId, imageHtml, onComplete, re
   if (!script) throw new Error('Invalid race script');
   let frame = 0, disposed = false, phase = '';
   const reduced = reducedMotion || matchMedia('(prefers-reduced-motion: reduce)').matches;
-  root.innerHTML = `<section class="race-show" data-phase="ready" data-script="${scriptId}" aria-label="${esc(script.title)}：賽跑小劇場">
-    <header class="race-show__heading"><span class="race-kicker">星辰體育台 · 今日特別轉播</span><h2 tabindex="-1">${esc(script.title)}</h2><p>20 秒賽事 · ${esc(script.label)}</p></header>
+  root.innerHTML = `<section class="race-show" data-phase="ready" data-script="${scriptId}" aria-label="星辰夥伴賽：比賽進行中">
+    <header class="race-show__heading"><span class="race-kicker">星辰體育台 · 今日特別轉播</span><h2 tabindex="-1">比賽進行中</h2><p>星辰夥伴賽</p></header>
     <div class="race-show__broadcast"><span class="race-show__live">● 現場播報</span><p role="status" aria-live="polite"></p></div>
     <div class="race-show__arena" aria-label="四位夥伴的賽跑">
       <div class="race-show__sky" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span></div>

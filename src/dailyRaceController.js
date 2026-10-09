@@ -8,23 +8,18 @@ const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<'
 let dispose = null;
 export function closeDailyRace() { dispose?.(); dispose = null; }
 
-export const dailyRaceEntryHtml = () => `<section class="race-entry card" aria-label="星辰夥伴賽">
-  <span class="race-entry__star" aria-hidden="true">✦</span><div><strong>星辰夥伴賽</strong>
-  <p>四位夥伴，一段星光旅程。每天三場，也能免費觀賽。</p></div>
-  <button type="button" class="btn btn--secondary" data-action="daily-open-race">前往賽場</button></section>`;
-
 export async function openDailyRace({ pets, ownedIds = [], imageHtml, openModal, refresh, reduceMotion = false }) {
-  openModal('<section id="daily-race-panel" class="daily-race" aria-label="星辰夥伴賽"><h2 class="modal-title">星辰夥伴賽</h2><p role="status">正在準備賽道…</p></section>');
+  openModal('<section id="daily-race-panel" class="daily-race" aria-label="星辰賭場"><h2 class="modal-title">星辰賭場</h2><p role="status">正在準備賽道…</p></section>');
   const root = document.getElementById('daily-race-panel');
   let alive = true, state, wallet, roundIndex = 0, selectedId = null, stake = 5, busy = false, error = '';
-  let skip = null, scene = null;
+  let skip = null, scene = null, rainTimer = 0;
   const knownPets = new Map(pets.map(p => [p.id, p]));
   const owned = new Set(ownedIds);
   const pet = id => knownPets.get(id) || { id, name: '旅途中的夥伴' };
   const name = id => pet(id).name || pet(id).title || id;
   const picture = id => imageHtml(pet(id), { size: 'sm', eager: true });
   const live = () => alive && root.isConnected;
-  dispose = () => { alive = false; scene?.dispose(); root.onclick = null; root.oninput = null; };
+  dispose = () => { alive = false; clearTimeout(rainTimer); scene?.dispose(); root.onclick = null; root.oninput = null; };
 
   function receipt(round) {
     const r = round.result;
@@ -49,7 +44,7 @@ export async function openDailyRace({ pets, ownedIds = [], imageHtml, openModal,
     const track = RACE_TRACKS[round.track];
     const completed = state.day.rounds.filter(r => r.result).length;
     root.innerHTML = `<header class="race-heading"><span class="race-kicker">DAILY STARDUST RUN · ${esc(state.day.date)}</span>
-      <h2 class="modal-title" tabindex="-1">星辰夥伴賽</h2><p>今天已完成 ${completed} / 3 場 · 星塵餘額 ${wallet.stardust}</p></header>
+      <h2 class="modal-title" tabindex="-1">星辰賭場</h2><p>今天已完成 ${completed} / 3 場 · 星塵餘額 ${wallet.stardust}</p></header>
       <nav class="race-rounds" aria-label="選擇今日賽事">${state.day.rounds.map((r, i) => `<button type="button" class="btn btn--ghost" data-race-round="${i}" aria-pressed="${i === roundIndex}">第 ${i + 1} 場${r.result ? ' · 已完成' : ''}</button>`).join('')}</nav>
       <div class="race-track-title"><span aria-hidden="true">${track.symbol}</span><div><h3>${track.name}</h3><p>${track.line}</p></div></div>
       <p class="race-error" role="alert">${esc(error)}</p>
@@ -154,8 +149,15 @@ export async function openDailyRace({ pets, ownedIds = [], imageHtml, openModal,
       roundIndex = next < 0 ? 0 : next;
       draw(true);
     } catch (e) {
-      if (live()) root.innerHTML = `<h2 class="modal-title">星辰夥伴賽</h2><p role="alert">${esc(e.message)}</p><button type="button" class="btn btn--secondary" data-race-action="retry">重新載入</button>`;
+      if (live()) root.innerHTML = `<h2 class="modal-title">星辰賭場</h2><p role="alert">${esc(e.message)}</p><button type="button" class="btn btn--secondary" data-race-action="retry">重新載入</button>`;
     }
   }
   await load();
+  if (live() && state && !reduceMotion && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const rain = document.createElement('div');
+    rain.className = 'casino-coin-rain'; rain.setAttribute('aria-hidden', 'true');
+    rain.innerHTML = Array.from({ length: 24 }, (_, i) => '<span style="--coin-x:' + ((i * 37) % 100) + '%;--coin-delay:' + ((i % 6) * .1) + 's;--coin-spin:' + (i % 2 ? 420 : -380) + 'deg"></span>').join('');
+    root.append(rain);
+    rainTimer = setTimeout(() => rain.remove(), 3000);
+  }
 }
