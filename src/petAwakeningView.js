@@ -26,7 +26,7 @@ export function renderAwakeningGuide({ compact = false, poolId } = {}) {
   if (!profile) return '';
   const { areaName, foodName } = profile;
   const title = compact ? `初遇只是開始 · ${profile.countLabel}` : `${profile.name} · 羈絆覺醒教學`;
-  return `<h2>${title}</h2>${compact ? '' : `<p>${profile.countLabel}</p>`}<p>卡池預覽與召喚結果呈現「初遇相」。培養羈絆、完成覺醒後，才會揭曉新的造型與專屬演出。</p>
+  return `<h2>${title}</h2>${compact ? '' : `<p>${profile.countLabel}</p>`}<p>召喚結果呈現「初遇相」。在卡池點開可覺醒夥伴的卡片，即可翻面預覽全彩覺醒造型；培養羈絆、完成覺醒後，開放雙形態切換與專屬演出。</p>
     <ol><li><strong>培養羈絆</strong>：擁有角色，親密度達 Lv.5，並領取該角色 Lv.5 同行故事獎勵。</li>
     <li><strong>接下守諾試煉</strong>：到「圖鑑 → 角色詳情 → 羈絆覺醒」。接下後完成三筆任務／習慣，並讓牠參加一次接下後出發的${areaName}派遣，再領取派遣獎勵。</li>
     ${needsDemonFinalTask(profile.petIds[0]) ? '<li><strong>? ? ?</strong>：完成守諾試煉後，夥伴還有一個問題想問你。</li>' : ''}

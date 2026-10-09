@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "devtools/pool-awakening-flip-preview.html"
+        ],
+        "createdAt": "2026-10-09T20:03:17.626Z",
+        "reason": "Codex reviewed: read-only fixture imports incumbent CSS; its heading has no page-title class and no gradient text declarations"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "devtools/pool-awakening-flip-preview.html"
+        ],
+        "createdAt": "2026-10-09T20:03:17.748Z",
+        "reason": "Codex reviewed: read-only fixture and new flip component declare no glow shadows; shared incumbent CSS was scanned"
+      }
+    ]
+  }
+}
