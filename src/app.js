@@ -565,8 +565,8 @@ async function initApp() {
   await ensureEncounterMigration();
 
     await initGachaStats();
-    // Each App launch starts on standard; later refreshes retain manual selection.
-    await setSelectedPoolId('standard');
+    // First-time players start on standard; a chosen series survives relaunch.
+    if (!(await getGachaStats()).selectedPoolId) await setSelectedPoolId('standard');
 
   await ensurePoolUnlockLegacyBackfillMarked();
 

@@ -279,11 +279,16 @@ try {
     await delay(120);
     for (const poolId of ['swordwild_shanhe_v3', 'eternal_slumber_bloom', 'standard']) {
       const selector = document.querySelector('#identity-pool-select-pool');
-      selector.value = poolId;
-      selector.dispatchEvent(new previewFrame.contentWindow.Event('change', { bubbles: true }));
+      if (selector) {
+        selector.value = poolId;
+        selector.dispatchEvent(new previewFrame.contentWindow.Event('change', { bubbles: true }));
+      } else {
+        document.querySelector('[data-identity-action="series-directory"]').click();
+        document.querySelector(`#identity-series-results [data-directory-pool="${poolId}"]`).click();
+      }
       await until(() => document.querySelector('.dream-debut-overlay'), `normal full entry on change to ${poolId}`);
       document.querySelector('.dream-debut-overlay [data-role="skip"]').click();
-      await until(() => !document.querySelector('.dream-debut-overlay') && document.querySelector('#identity-pool-select-pool')?.value === poolId, 'entry complete');
+      await until(() => !document.querySelector('.dream-debut-overlay') && document.querySelector('.summon-sanctuary')?.dataset.poolId === poolId && !document.querySelector('[data-identity-action="series-directory"]')?.disabled, 'entry complete');
       await until(async () => (await db.dbGet(db.STORES.META, 'poolDebutSeen'))?.seenPoolIds?.includes(poolId), 'entry receipt committed before next change');
       await delay(50);
       assert(!document.querySelector('[data-identity-action="replay-debut"], [data-identity-action="preview-awakening"], [data-identity-action="replay-awakening"]'), 'Player pool still exposes a test replay');

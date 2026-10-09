@@ -9,6 +9,14 @@ const report = path.resolve(process.argv[2]);
 const previousPins = JSON.parse(await fs.readFile(process.argv[3])).production;
 const pins = JSON.parse(await fs.readFile(path.join(report, 'artifacts.json'))).production;
 for (const pin of [previousPins, pins]) await verifyReleaseArtifact({ ...pin, profile: 'production' });
+const artifactVersion = async (pin) => {
+  const source = await fs.readFile(path.join(pin.artifactDir, 'src/version.js'), 'utf8');
+  const version = source.match(/export const APP_VERSION = '([^']+)'/)?.[1];
+  assert.ok(version, 'Verified artifact version required');
+  return version;
+};
+const previousVersion = await artifactVersion(previousPins);
+const expectedVersion = await artifactVersion(pins);
 let usingOld = true;
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.webmanifest': 'application/manifest+json' };
 const server = http.createServer(async (request, response) => {
@@ -46,7 +54,7 @@ try {
     await db.dbPut('meta', journey);
     return { pet: await collection.getPetCollection('pet_ur17'), journey, version: (await import('./src/version.js')).APP_VERSION };
   });
-  assert.equal(before.version, '3.9.5');
+  assert.equal(before.version, previousVersion);
   usingOld = false;
   await page.evaluate(async () => (await navigator.serviceWorker.getRegistration()).update());
   await page.locator('#update-banner [data-app-update="apply"]').waitFor({ timeout: 90000 });
@@ -57,9 +65,21 @@ try {
     return { pet: await (await import('./src/collectionService.js')).getPetCollection('pet_ur17'), journey: await db.dbGet('meta', 'bondJourney'), version: (await import('./src/version.js')).APP_VERSION, database: (await db.openDB()).name, caches: await caches.keys() };
   });
   assert.deepEqual(after.pet, before.pet); assert.deepEqual(after.journey, before.journey);
-  assert.equal(after.version, '3.9.8'); assert.equal(after.database, 'QuestNoteDB');
+  assert.equal(after.version, expectedVersion); assert.equal(after.database, 'QuestNoteDB');
   assert.ok(after.caches.some((name) => name.includes(pins.artifactId)));
   assert.ok(!after.caches.some((name) => name.includes(previousPins.artifactId)));
+  const daily = await page.evaluate(async () => {
+    const db = await import('./src/db.js');
+    const tasks = await import('./src/taskService.js');
+    const before = await db.dbGet('meta', 'encounterEconomy');
+    const task = await tasks.createTask({ content:'升級後每日相遇驗證' });
+    await tasks.toggleTaskComplete(task.id);
+    const saved = await db.dbGet('meta', 'encounterEconomy');
+    await tasks.toggleTaskComplete(task.id); await tasks.toggleTaskComplete(task.id);
+    return { before, saved, retried:await db.dbGet('meta', 'encounterEconomy') };
+  });
+  assert.equal(daily.saved.balance, daily.before.balance + 10);
+  assert.deepEqual(daily.retried, daily.saved);
   async function allForms() {
     return page.evaluate(async () => {
       const preview = await import('./src/poolAwakeningPreview.js');
@@ -93,8 +113,10 @@ try {
   await context.setOffline(true); await page.reload({ waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => document.querySelector('#guide-tutorial-status')?.textContent);
   assert.equal(await allForms(), 31);
-  const backupVersion = await page.evaluate(async () => (await (await import('./src/backupService.js')).exportBackup()).appVersion);
-  assert.equal(backupVersion, '3.9.8');
-  await fs.writeFile(path.join(report, 'update-offline.json'), JSON.stringify({ ok: true, testedAt: new Date().toISOString(), from: before.version, to: after.version, previousArtifactId: previousPins.artifactId, artifactId: pins.artifactId, savedPetAndStoryPreserved: true, oldCacheRemoved: true, offlineForms: 31, backupVersion, environment: 'fresh synthetic loopback; no player storage accessed' }, null, 2) + '\n');
-  console.log('PASS V3.9.5 -> V3.9.8 native update, save preservation, all 31 forms online/offline and backup');
+  const backup = await page.evaluate(async () => (await (await import('./src/backupService.js')).exportBackup()));
+  const backupVersion = backup.appVersion;
+  assert.deepEqual(backup.data.encounterEconomy, daily.saved);
+  assert.equal(backupVersion, expectedVersion);
+  await fs.writeFile(path.join(report, 'update-offline.json'), JSON.stringify({ ok: true, testedAt: new Date().toISOString(), from: before.version, to: after.version, previousArtifactId: previousPins.artifactId, artifactId: pins.artifactId, savedPetAndStoryPreserved: true, dailyAwardOnceAndOfflineBackupPreserved:true, oldCacheRemoved: true, offlineForms: 31, backupVersion, environment: 'fresh synthetic loopback; no player storage accessed' }, null, 2) + '\n');
+  console.log(`PASS V${previousVersion} -> V${expectedVersion} native update, save preservation, all 31 forms online/offline and backup`);
 } finally { await context.close(); await browser.close(); await new Promise((resolve) => server.close(resolve)); }

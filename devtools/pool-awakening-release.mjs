@@ -7,6 +7,7 @@ import { execFileSync, spawn } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { prepareReleaseArtifact } from '../scripts/releaseArtifact.mjs';
 import { verifyReleaseArtifact } from '../scripts/verify-release-artifact.mjs';
+import { APP_VERSION } from '../src/version.js';
 const root = path.resolve(import.meta.dirname, '..');
 const [mode, reportArg, outputArg] = process.argv.slice(2);
 assert.ok(['assemble', 'browser', 'tree', 'live'].includes(mode));
@@ -75,7 +76,7 @@ if (mode === 'assemble') {
     git(['read-tree', '--empty'], { env });
     git(['update-index', '--index-info'], { env, input: entries.join('\n') + '\n' });
     const tree = git(['write-tree'], { env }).toString().trim();
-    const commit = git(['commit-tree', tree, '-p', parent], { input: 'V3.9.8: publish awakening flip preview artifact ' + pins.production.artifactId + '\n' }).toString().trim();
+    const commit = git(['commit-tree', tree, '-p', parent], { input: `V${APP_VERSION}: publish verified artifact ${pins.production.artifactId}\n` }).toString().trim();
     assert.deepEqual(git(['ls-tree', '-r', '--name-only', '-z', commit]).toString().split('\0').filter(Boolean).sort(), names);
     for (let offset = 0; offset < names.length; offset += 32) {
       const group = names.slice(offset, offset + 32);

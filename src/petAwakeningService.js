@@ -5,6 +5,8 @@ import { normalizeInventory } from './workshopService.js';
 import { AWAKENING_KEY, normalizePetAwakening, awakeningEvents, advancePetAwakening, beginPetAwakening } from './petAwakeningCore.js';
 import { getAwakeningProfile } from './petAwakeningProfiles.js';
 import { loadAwakeningCatalog } from './petAwakeningCatalog.js';
+import { dailyEncounterReceipt, applyDailyEncounter } from './dailyEncounterCore.js';
+import { planEncounterMigration } from './encounterEconomyCore.js';
 const stateRead = { store: STORES.META, key: AWAKENING_KEY };
 const sourceReads = [{ store: STORES.TASKS, all: true }, { store: STORES.HABITS, all: true }, { store: STORES.EXPEDITIONS, all: true }];
 const putState = (s, result = s) => ({ puts: [{ store: STORES.META, value: s }], result });
@@ -18,9 +20,19 @@ export async function syncPetAwakening() {
 /** Completion and progress commit together; ordinary edits also retain event deduplication. */
 export async function putWithAwakeningProgress(store, value) {
   const events = store === STORES.TASKS ? awakeningEvents([value]) : awakeningEvents([], [value]);
-  return dbMutateRecords([stateRead, { store, key: value.id }], ([raw, current]) => {
+  const date = getTodayDateString();
+  return dbMutateRecords([stateRead, { store, key: value.id },
+    { store:STORES.META, key:'encounterEconomy' }, { store:STORES.COLLECTION, all:true }], ([raw, current, economy, collection]) => {
     if (store === STORES.TASKS) assertDemonTaskUpdate(current, value);
-    return { puts: [{ store, value }, ...(raw ? [{ store: STORES.META, value: advancePetAwakening(raw, events) }] : [])], result: value };
+    const puts = [{ store, value }, ...(raw ? [{ store: STORES.META, value: advancePetAwakening(raw, events) }] : [])];
+    const receipt = dailyEncounterReceipt({ source:store === STORES.TASKS ? 'task' : store === STORES.HABITS ? 'habit' : null, current, next:value, date });
+    if (receipt) {
+      const plan = planEncounterMigration({ economy, collection });
+      if (applyDailyEncounter(plan.economy, receipt)) {
+        puts.push({ store:STORES.META, value:plan.economy }, ...plan.changedCollection.map(entry => ({ store:STORES.COLLECTION, value:entry })));
+      }
+    }
+    return { puts, result: value };
   });
 }
 export async function startPetAwakening(petId) {
