@@ -1,0 +1,112 @@
+{
+  "base": "https://questnote.taste-compare.com",
+  "checks": [
+    {
+      "name": "responsive 320px, clear first-screen story, UTM",
+      "pass": true
+    },
+    {
+      "name": "demo 320px: once-only rewards, reset, reload, no persistence",
+      "pass": true
+    },
+    {
+      "name": "product tabs and keyboard 320px",
+      "pass": true
+    },
+    {
+      "name": "responsive 375px, clear first-screen story, UTM",
+      "pass": true
+    },
+    {
+      "name": "demo 375px: once-only rewards, reset, reload, no persistence",
+      "pass": true
+    },
+    {
+      "name": "product tabs and keyboard 375px",
+      "pass": true
+    },
+    {
+      "name": "initial browser performance observations (unthrottled, not field Core Web Vitals)",
+      "pass": true,
+      "cls": 0,
+      "lcpMs": 684,
+      "transferredBytes": 114055,
+      "jsBytes": 10054
+    },
+    {
+      "name": "responsive 393px, clear first-screen story, UTM",
+      "pass": true
+    },
+    {
+      "name": "demo 393px: once-only rewards, reset, reload, no persistence",
+      "pass": true
+    },
+    {
+      "name": "product tabs and keyboard 393px",
+      "pass": true
+    },
+    {
+      "name": "393px accessibility: axe WCAG A/AA, sticky CTA visibility",
+      "pass": true
+    },
+    {
+      "name": "responsive 430px, clear first-screen story, UTM",
+      "pass": true
+    },
+    {
+      "name": "demo 430px: once-only rewards, reset, reload, no persistence",
+      "pass": true
+    },
+    {
+      "name": "product tabs and keyboard 430px",
+      "pass": true
+    },
+    {
+      "name": "responsive 768px, clear first-screen story, UTM",
+      "pass": true
+    },
+    {
+      "name": "demo 768px: once-only rewards, reset, reload, no persistence",
+      "pass": true
+    },
+    {
+      "name": "product tabs and keyboard 768px",
+      "pass": true
+    },
+    {
+      "name": "responsive 1440px, clear first-screen story, UTM",
+      "pass": true
+    },
+    {
+      "name": "demo 1440px: once-only rewards, reset, reload, no persistence",
+      "pass": true
+    },
+    {
+      "name": "product tabs and keyboard 1440px",
+      "pass": true
+    },
+    {
+      "name": "reduced motion, keyboard completion, no-logo campaign stress screenshot",
+      "pass": true
+    },
+    {
+      "name": "internal routes, assets, legal draft labels, custom 404",
+      "pass": true
+    },
+    {
+      "name": "SEO, canonical, OG/X metadata, 1200×630 pixels, anchor links",
+      "pass": true
+    },
+    {
+      "name": "no JavaScript: story and actual distribution remain available",
+      "pass": true
+    },
+    {
+      "name": "no browser runtime errors or broken requested assets",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "badResponses": [],
+  "testedAt": "2026-09-30T20:50:11.639Z"
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://questnote.taste-compare.com/sitemap.xml

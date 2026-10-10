@@ -1,0 +1,12 @@
+{
+  "source": "47aa64973b0865e3e73362a6c7994949b8e7670b",
+  "previewBrowserChecks": 25,
+  "preview": "https://76a67ea7.questnote-marketing.pages.dev",
+  "platformPreviews": "Visual simulations, not native platform retrieval",
+  "dnsChanges": false,
+  "productionCrawlerChecks": 32,
+  "production": "https://questnote.taste-compare.com/",
+  "productionDeployment": "41561a8c-a093-48b7-8a08-a423d5b6da30",
+  "staticOnly": true,
+  "previewCrawlerChecks": 32
+}

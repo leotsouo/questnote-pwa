@@ -1,0 +1,121 @@
+{
+  "base": "http://127.0.0.1:8035",
+  "phase": "local",
+  "cases": [
+    {
+      "name": "safari",
+      "width": 320,
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1",
+      "embedded": false,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "line",
+      "width": 320,
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1 Line/14.0.0",
+      "embedded": true,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "safari",
+      "width": 375,
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1",
+      "embedded": false,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "line",
+      "width": 375,
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1 Line/14.0.0",
+      "embedded": true,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "safari",
+      "width": 393,
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1",
+      "embedded": false,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "line",
+      "width": 393,
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1 Line/14.0.0",
+      "embedded": true,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "safari",
+      "width": 430,
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1",
+      "embedded": false,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "line",
+      "width": 430,
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1 Line/14.0.0",
+      "embedded": true,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "chrome",
+      "width": 393,
+      "ua": "Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/130.0.0.0 Mobile Safari/537.36",
+      "embedded": false,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "android-webview",
+      "width": 393,
+      "ua": "Mozilla/5.0 (Linux; Android 14; wv) AppleWebKit/537.36 Chrome/130.0.0.0 Mobile Safari/537.36",
+      "embedded": true,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "ipad",
+      "width": 768,
+      "ua": "Mozilla/5.0 (iPad; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1",
+      "embedded": false,
+      "pass": true,
+      "clipboardFallback": true,
+      "keyboard": true,
+      "axe": true
+    },
+    {
+      "name": "desktop-direct",
+      "pass": true
+    }
+  ],
+  "platform": "Browser user-agent emulation, not physical iPhone or native installation"
+}

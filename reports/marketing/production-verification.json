@@ -1,0 +1,287 @@
+{
+  "url": "https://questnote.taste-compare.com",
+  "verifiedFiles": 27,
+  "sourceAssetBytes": 841512,
+  "headers": {
+    "access-control-allow-origin": "*",
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cache-control": "public, max-age=0, must-revalidate, no-transform",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a436188c5fc1fe01-SIN",
+    "connection": "keep-alive",
+    "content-length": "14877",
+    "content-security-policy": "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+    "content-type": "text/html; charset=utf-8",
+    "date": "Wed, 30 Sep 2026 20:49:44 GMT",
+    "etag": "\"43a9af472bc6879c7d10437312cfb6e6\"",
+    "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "permissions-policy": "camera=(), microphone=(), geolocation=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=CJ0qoSVwr6LMm89YRfvhlvHN21ClcIQUhVkqo7GrW%2B4ZO1vCWryWN7t3dEK3Gb4ptFQkKCvXo%2FHYPYXjPWzQkHTG1nTO9TYBf7ltoU%2B1fSZt2d%2B2Ga8wcd4nkj1tT2wT0Ny5%2BcYEm9lKfiz0F6yev%2FG8GfFq7NNhhtc%3D\"}]}",
+    "server": "cloudflare",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY"
+  },
+  "labProfile": "393 × 852, 1.6Mbps / 150ms, CPU ×4, cold HTTP cache after DNS/TLS warm-up; raw cold navigation also retained. Simulated Chromium, not field Core Web Vitals.",
+  "rawCold": {
+    "lcpMs": 10528,
+    "cls": 0,
+    "navigation": {
+      "name": "https://questnote.taste-compare.com/",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 19873.5,
+      "navigationId": 6818,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "h2",
+      "renderBlockingStatus": "non-blocking",
+      "contentType": "text/html",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 10,
+      "domainLookupStart": 11.299999952316284,
+      "domainLookupEnd": 9148.5,
+      "connectStart": 9148.5,
+      "secureConnectionStart": 9218.200000047684,
+      "connectEnd": 9297.799999952316,
+      "requestStart": 9298,
+      "responseStart": 9414.200000047684,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 9414.200000047684,
+      "responseEnd": 9548.799999952316,
+      "transferSize": 15177,
+      "encodedBodySize": 14877,
+      "decodedBodySize": 14877,
+      "responseStatus": 200,
+      "serverTiming": [
+        {
+          "name": "cfCacheStatus",
+          "duration": 0,
+          "description": "DYNAMIC"
+        },
+        {
+          "name": "cfEdge",
+          "duration": 7,
+          "description": ""
+        },
+        {
+          "name": "cfOrigin",
+          "duration": 27,
+          "description": ""
+        }
+      ],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 9555.200000047684,
+      "domContentLoadedEventStart": 10477.599999904633,
+      "domContentLoadedEventEnd": 10477.700000047684,
+      "domComplete": 19871.5,
+      "loadEventStart": 19872.299999952316,
+      "loadEventEnd": 19873.5,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "low"
+      }
+    },
+    "resources": [
+      {
+        "url": "https://questnote.taste-compare.com/assets/night-720.webp",
+        "transfer": 51180,
+        "decoded": 50880
+      },
+      {
+        "url": "https://questnote.taste-compare.com/styles.css",
+        "transfer": 18370,
+        "decoded": 18070
+      },
+      {
+        "url": "https://questnote.taste-compare.com/assets/favicon.png",
+        "transfer": 1786,
+        "decoded": 1486
+      },
+      {
+        "url": "https://questnote.taste-compare.com/main.js",
+        "transfer": 2471,
+        "decoded": 6216
+      },
+      {
+        "url": "https://questnote.taste-compare.com/config.js",
+        "transfer": 1087,
+        "decoded": 1385
+      },
+      {
+        "url": "https://questnote.taste-compare.com/demo.js",
+        "transfer": 690,
+        "decoded": 825
+      },
+      {
+        "url": "https://questnote.taste-compare.com/analytics.js",
+        "transfer": 1107,
+        "decoded": 1628
+      },
+      {
+        "url": "https://questnote.taste-compare.com/assets/twilight-720.webp",
+        "transfer": 37364,
+        "decoded": 37064
+      },
+      {
+        "url": "https://static.cloudflareinsights.com/beacon.min.js",
+        "transfer": 0,
+        "decoded": 0
+      },
+      {
+        "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+        "transfer": 0,
+        "decoded": 0
+      },
+      {
+        "url": "https://questnote.taste-compare.com/assets/favicon.png",
+        "transfer": 0,
+        "decoded": 1486
+      }
+    ]
+  },
+  "metrics": {
+    "lcpMs": 2624,
+    "cls": 0,
+    "navigation": {
+      "name": "https://questnote.taste-compare.com/",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 2867.899999856949,
+      "navigationId": 9183,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "h2",
+      "renderBlockingStatus": "non-blocking",
+      "contentType": "text/html",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 3.799999952316284,
+      "domainLookupStart": 3.799999952316284,
+      "domainLookupEnd": 3.799999952316284,
+      "connectStart": 3.799999952316284,
+      "secureConnectionStart": 3.799999952316284,
+      "connectEnd": 3.799999952316284,
+      "requestStart": 5.8999998569488525,
+      "responseStart": 102.39999985694885,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 102.39999985694885,
+      "responseEnd": 253.89999985694885,
+      "transferSize": 15177,
+      "encodedBodySize": 14877,
+      "decodedBodySize": 14877,
+      "responseStatus": 200,
+      "serverTiming": [
+        {
+          "name": "cfCacheStatus",
+          "duration": 0,
+          "description": "DYNAMIC"
+        },
+        {
+          "name": "cfEdge",
+          "duration": 3,
+          "description": ""
+        },
+        {
+          "name": "cfOrigin",
+          "duration": 14,
+          "description": ""
+        }
+      ],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 2037,
+      "domContentLoadedEventStart": 2452.5,
+      "domContentLoadedEventEnd": 2452.5999999046326,
+      "domComplete": 2867.5999999046326,
+      "loadEventStart": 2867.7000000476837,
+      "loadEventEnd": 2867.899999856949,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "low"
+      }
+    },
+    "resources": [
+      {
+        "url": "https://questnote.taste-compare.com/assets/night-720.webp",
+        "transfer": 51180,
+        "decoded": 50880
+      },
+      {
+        "url": "https://questnote.taste-compare.com/styles.css",
+        "transfer": 18370,
+        "decoded": 18070
+      },
+      {
+        "url": "https://questnote.taste-compare.com/main.js",
+        "transfer": 2471,
+        "decoded": 6216
+      },
+      {
+        "url": "https://questnote.taste-compare.com/assets/favicon.png",
+        "transfer": 1786,
+        "decoded": 1486
+      },
+      {
+        "url": "https://questnote.taste-compare.com/config.js",
+        "transfer": 1087,
+        "decoded": 1385
+      },
+      {
+        "url": "https://questnote.taste-compare.com/demo.js",
+        "transfer": 690,
+        "decoded": 825
+      },
+      {
+        "url": "https://questnote.taste-compare.com/analytics.js",
+        "transfer": 1107,
+        "decoded": 1628
+      },
+      {
+        "url": "https://questnote.taste-compare.com/assets/twilight-720.webp",
+        "transfer": 37364,
+        "decoded": 37064
+      },
+      {
+        "url": "https://static.cloudflareinsights.com/beacon.min.js",
+        "transfer": 0,
+        "decoded": 0
+      },
+      {
+        "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+        "transfer": 0,
+        "decoded": 0
+      },
+      {
+        "url": "https://questnote.taste-compare.com/assets/favicon.png",
+        "transfer": 1786,
+        "decoded": 1486
+      }
+    ]
+  },
+  "checkedAt": "2026-09-30T20:50:19.126Z"
+}
