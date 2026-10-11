@@ -1,6 +1,6 @@
 # 首頁新增任務文字溢出修正
 
-來源基準：`origin/main` `59fb831b8aac12357bb5ec52dea15f4c65f5a21e`（V3.9.10），已用遠端 main ref 核對。修正分支 `codex/fix-add-task-overflow`，來源版本更新為 V3.9.11；尚未 push、合併或部署。
+來源基準：`origin/main` `59fb831b8aac12357bb5ec52dea15f4c65f5a21e`（V3.9.10），已用遠端 main ref 核對。修正分支 `codex/fix-add-task-overflow`，來源版本更新為 V3.9.11。後續已經PR #105整合並發布至正式站，詳見[正式發布收據](add-task-layout-production-2026-10-11.md)；以下保留修正階段的重現與驗證紀錄。
 
 ## 重現與原因
 
