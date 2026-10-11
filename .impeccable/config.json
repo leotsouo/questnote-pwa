@@ -56,6 +56,15 @@
         ],
         "createdAt": "2026-10-09T20:15:29.933Z",
         "reason": "Codex reviewed: #779b82 is from imported encounter-view.css sanctuary scenery scoped to identity-surface; this fixture only has identity-dialog and mounts no sanctuary or halo"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/guided-onboarding.css"
+        ],
+        "createdAt": "2026-10-11T08:52:24.764Z",
+        "reason": "Agent: existing main tutorial practice callout warns that users may preserve resources and defer practice (src/onboardingController.js:338); a semantic instructional note, not a generic card accent. Preserve incumbent design outside the add-task overflow fix."
       }
     ]
   }
