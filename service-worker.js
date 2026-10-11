@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.9.10
+ * QuestNote Service Worker — V3.9.11
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-4b81cf66353c89177b5e9ba17eeaf2ab72795a20036763471166ef61d7c10671';
+const CACHE_NAME = 'questnote-production-app-0ce07b33df5ba32f8f0d2ad682146cbaeda948c8ca32f240070be970c43454fd';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "4b81cf66353c89177b5e9ba17eeaf2ab72795a20036763471166ef61d7c10671",
-  "sourceCommit": "8403a3062f6af25548ca7f461157eee335ec5e9a",
+  "artifactId": "0ce07b33df5ba32f8f0d2ad682146cbaeda948c8ca32f240070be970c43454fd",
+  "sourceCommit": "d918497f44ef020324254d0790be56341d228572",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -90,7 +90,7 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046/catalog.json": "53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046",
   "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
-  "index.html": "12aaf345850fdda3923dc43e8d36ba91800357a87653213b897535d51310342a",
+  "index.html": "6f66bf1df7df46ddfd2637f4e0b6ca1cbe231d0528737864df25c03067cc1f7e",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
   "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
@@ -148,7 +148,7 @@ const PRECACHE_HASHES = {
   "src/gachaService.js": "5d8921681d16d357bae864bacbdb2e8d453f2cac26e2445a2a4974d245858fad",
   "src/gachaTransactionCore.js": "cc06178e839ff9138aa9cc5e5d68cac47d091c5607d2e52d5f36257365ec7eed",
   "src/glacierArrivalScene.js": "328167de5397d1ebfbfe8fa5ec7338a4b8b285666fa57d598dbcd14d5121f0eb",
-  "src/guided-onboarding.css": "723b833f56b36b478f1a1b534c2867a1d0ed79e6a351b51e06e0839bacae3c47",
+  "src/guided-onboarding.css": "ebaaece25bd8993b2e61741b1fbd725b6a7739d25fa04a7aeb6ae2513a7a0058",
   "src/guidedEducation.js": "9a13d3105bc048276a585255494d1fbaef190699fed798a599a68b110cc9d801",
   "src/guidedOnboardingController.js": "c3968533d4674ce697097d669221a38f413da966291fb6ec8eaccac1236883c9",
   "src/guidedOnboardingCore.js": "8aaebb48cde07f48bd2c103ee4b2fd029f9269dce29ff407d0edeb200f0f2a1b",
@@ -194,7 +194,7 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "7f9395e0af7db0fda7fa273e793275c94d5b8e3bdd2fb249b726e5f6c2046ad0",
   "src/questService.js": "ae9532ad78abb8af981d3d76adb9f06f132e81e1fed945bd77a608a7dd2bfa3b",
   "src/releaseCatalog.js": "38ac32aedef26d927638ef7413ec78520c0f9d114623a4a61283d488d99cbb4a",
-  "src/releaseProfile.js": "56c214637f76d97b5eb34ed90ccde5ba26c4c09a3249dd535063410e22495494",
+  "src/releaseProfile.js": "ec91667ff82619acc479d33a09174ab9f118ca81e915cfd28263c2f88cc6ca6e",
   "src/reminder-settings.css": "e90f6e75ac50b3fef946c454c4849f3322cd4e0c06c0b10feb718fef60a878b4",
   "src/reminderController.js": "4ba72d19acca52c417445956521d97ce57b3873b1a61924840fdc47b8a9ad5b5",
   "src/reminderRules.js": "f9cfd9f99703dfd3e91f12f4382716875964b09785bf67418dfdc607c5cb1c5d",
@@ -230,7 +230,7 @@ const PRECACHE_HASHES = {
   "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
   "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
   "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-  "src/version.js": "8817d2be9aa95fa2ad9d05b63f0f03ce8c5af84a7a7e9f82e8b90a109c97ef63",
+  "src/version.js": "f22baa404ce5d95fb8f5f3984d4ae1361c9d6e8e905e88d5dcea3b0cd0c1bbe7",
   "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
   "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
 };

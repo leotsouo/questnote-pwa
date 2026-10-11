@@ -25,7 +25,8 @@
 .guided-hold { position: relative; overflow: hidden; isolation: isolate; touch-action: none; user-select: none; }
 .guided-hold-progress { position: absolute; inset: 0; background: rgba(137, 166, 189, .25); transform: scaleX(0); transform-origin: left; z-index: -1; }
 .is-holding .guided-hold-progress { transform: scaleX(1); transition: transform 1.5s linear; }
-.guided-active :is(#btn-add-task, .twilight-add-task), .guided-learned .twilight-add-task { display: flex; align-items: center; gap: 6px; width: auto !important; height: auto; min-height: 48px; padding: 10px 12px; border-radius: 16px; font-size: 1rem; }
+/* Labelled entries must override the theme's fixed icon button and shared grid geometry. */
+body[data-theme].guided-active :is(#btn-add-task, .twilight-add-task), body[data-theme].guided-learned .twilight-add-task { display: flex; align-items: center; gap: 6px; width: auto !important; height: auto; min-height: 48px; padding: 10px 12px; border-radius: 16px; font-size: 1rem; line-height: 1.5; }
 .guided-active .twilight-add-task::after, .guided-learned .twilight-add-task::after { content: '新增任務'; white-space: nowrap; }
 .guided-active .task-check, .guided-learned .task-check { width: 68px !important; min-width: 68px; height: 48px !important; font-size: .9rem; border-radius: 14px; }
 .guided-active #btn-add-task::after { content: '新增任務'; }

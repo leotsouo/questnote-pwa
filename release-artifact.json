@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "4b81cf66353c89177b5e9ba17eeaf2ab72795a20036763471166ef61d7c10671",
-  "sourceCommit": "8403a3062f6af25548ca7f461157eee335ec5e9a",
+  "artifactId": "0ce07b33df5ba32f8f0d2ad682146cbaeda948c8ca32f240070be970c43454fd",
+  "sourceCommit": "d918497f44ef020324254d0790be56341d228572",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "4b81cf66353c89177b5e9ba17eeaf2ab72795a20036763471166ef61d7c10671",
-    "sourceCommit": "8403a3062f6af25548ca7f461157eee335ec5e9a",
+    "artifactId": "0ce07b33df5ba32f8f0d2ad682146cbaeda948c8ca32f240070be970c43454fd",
+    "sourceCommit": "d918497f44ef020324254d0790be56341d228572",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -707,7 +707,7 @@
     "data/dailyWheelRewards.json": "98f1fb5b3dc5e49fb0815cf60842bc53fd34e604baf540b4d0e2946929030f12",
     "data/expeditions.json": "34620b7aaf50f26d91d560050c76acc71dab148510e6275e1dfe6c73f272aca2",
     "data/gift-affinities.json": "9de6c95bd696bf98955c0fd04ffcf0ad3a23dd9667a9b388ae8329000eab324b",
-    "data/global-mailbox.json": "da2acfbd0c9fb9956691f4ba85a4235b87dcedf43f0de3f2c752e8f920295046",
+    "data/global-mailbox.json": "0f2cf40578f9f70d06b0ccf9d60f9c1623ba8d5267a99a6923244ee406183ef9",
     "data/materials.json": "e301faa6c4f7d8c5ca4bc771d189917cab56f07f3457883bad84849489969455",
     "data/pet-awakening.json": "8763088091b95b9eff801668889add2cdff1d6529137c24d11ede8e7260357c5",
     "data/pet-series.json": "65b8110a33a100c09181bbc26d158e0ffa4e604811b1da8f67efb1ff89aa72fe",
@@ -717,7 +717,7 @@
     "data/titles.json": "318675b79872dfabccc4b8beb99f77eb248a40e5e50bbbd4e4dc24886b3a1398",
     "index.html": "e509b01d9b2eab0855c423382f2b2ff6d14a5703676161b36787ca5abff93c2e",
     "manifest.webmanifest": "9045e56d30d015634a8d68a5b6b3cd60d813c500150fea0d48b08b4eefcb45ba",
-    "service-worker.js": "ce1cb0eb499f22744a56da04aad80b9d03cb10e094591e8de540b01f9ac5fb18",
+    "service-worker.js": "58b577fb8b6ba148b8a671349d9867b9f106f7813a725ceca06923e673b6c89a",
     "src/achievementService.js": "98d9cc071a70f849b2e856563e1e2ad0663164cc2b9747c18f259f1dff497620",
     "src/adventureHandbookService.js": "94d08c97deeb211f9f2aa5c50d482af46a13d957c8ad0e6da703172d43ced6d7",
     "src/app.js": "531e1c70612faa257a4cf0a034ad830611d14f5ae557b466422e8a33b6e069bf",
@@ -774,7 +774,7 @@
     "src/gachaService.js": "5d8921681d16d357bae864bacbdb2e8d453f2cac26e2445a2a4974d245858fad",
     "src/gachaTransactionCore.js": "cc06178e839ff9138aa9cc5e5d68cac47d091c5607d2e52d5f36257365ec7eed",
     "src/glacierArrivalScene.js": "328167de5397d1ebfbfe8fa5ec7338a4b8b285666fa57d598dbcd14d5121f0eb",
-    "src/guided-onboarding.css": "723b833f56b36b478f1a1b534c2867a1d0ed79e6a351b51e06e0839bacae3c47",
+    "src/guided-onboarding.css": "ebaaece25bd8993b2e61741b1fbd725b6a7739d25fa04a7aeb6ae2513a7a0058",
     "src/guidedEducation.js": "9a13d3105bc048276a585255494d1fbaef190699fed798a599a68b110cc9d801",
     "src/guidedOnboardingController.js": "c3968533d4674ce697097d669221a38f413da966291fb6ec8eaccac1236883c9",
     "src/guidedOnboardingCore.js": "8aaebb48cde07f48bd2c103ee4b2fd029f9269dce29ff407d0edeb200f0f2a1b",
@@ -856,7 +856,7 @@
     "src/updateActivity.js": "a7032e043a14561ad07ab521b649a2bd508aeca6801376066fcab701e3d2b641",
     "src/updateController.js": "e038b05c3fa2e97158cb3a363996e34b10eba3f243dc5284ec540ea0753c93b9",
     "src/updateProtocol.js": "53e770213f0074208c348d7d4a12d68cad79404637eddbe7c2f7c8d3c2cd39c0",
-    "src/version.js": "c8f1ffe0c73ce3122c1312204f257f3fa1d9e9c203cfaa32b3e5e502f615211a",
+    "src/version.js": "3be00f483cef917dcf9ec75a1aa2af6efe731a6fd0d6e3f5230409832172694b",
     "src/workshopGiftView.js": "6ea791929caaee1e1127cbb23bac061f155bcf24cc6071b78db5d84e5509bb2c",
     "src/workshopService.js": "9df4a6002291dc73eea2c92a1c6db2bbb10c67e2f24ca085757aeb74cddbcdf0"
   },
@@ -3594,8 +3594,8 @@
       "bytes": 5888
     },
     "data/global-mailbox.json": {
-      "sha256": "da2acfbd0c9fb9956691f4ba85a4235b87dcedf43f0de3f2c752e8f920295046",
-      "bytes": 29345
+      "sha256": "0f2cf40578f9f70d06b0ccf9d60f9c1623ba8d5267a99a6923244ee406183ef9",
+      "bytes": 31120
     },
     "data/materials.json": {
       "sha256": "e301faa6c4f7d8c5ca4bc771d189917cab56f07f3457883bad84849489969455",
@@ -3630,7 +3630,7 @@
       "bytes": 6119
     },
     "index.html": {
-      "sha256": "12aaf345850fdda3923dc43e8d36ba91800357a87653213b897535d51310342a",
+      "sha256": "6f66bf1df7df46ddfd2637f4e0b6ca1cbe231d0528737864df25c03067cc1f7e",
       "bytes": 66244
     },
     "manifest.webmanifest": {
@@ -3638,7 +3638,7 @@
       "bytes": 831
     },
     "service-worker.js": {
-      "sha256": "c77090deb63dfed0654c0741202fb6263cba439f67c36c63087243c294de7c4f",
+      "sha256": "b36665f67480f08fb075a0f3fc8b9a8b0dd46a268d4f3fe1024474880fb2e90d",
       "bytes": 37984
     },
     "src/achievementService.js": {
@@ -3866,8 +3866,8 @@
       "bytes": 4926
     },
     "src/guided-onboarding.css": {
-      "sha256": "723b833f56b36b478f1a1b534c2867a1d0ed79e6a351b51e06e0839bacae3c47",
-      "bytes": 10754
+      "sha256": "ebaaece25bd8993b2e61741b1fbd725b6a7739d25fa04a7aeb6ae2513a7a0058",
+      "bytes": 10898
     },
     "src/guidedEducation.js": {
       "sha256": "9a13d3105bc048276a585255494d1fbaef190699fed798a599a68b110cc9d801",
@@ -4050,7 +4050,7 @@
       "bytes": 4727
     },
     "src/releaseProfile.js": {
-      "sha256": "56c214637f76d97b5eb34ed90ccde5ba26c4c09a3249dd535063410e22495494",
+      "sha256": "ec91667ff82619acc479d33a09174ab9f118ca81e915cfd28263c2f88cc6ca6e",
       "bytes": 622
     },
     "src/reminder-settings.css": {
@@ -4194,7 +4194,7 @@
       "bytes": 695
     },
     "src/version.js": {
-      "sha256": "8817d2be9aa95fa2ad9d05b63f0f03ce8c5af84a7a7e9f82e8b90a109c97ef63",
+      "sha256": "f22baa404ce5d95fb8f5f3984d4ae1361c9d6e8e905e88d5dcea3b0cd0c1bbe7",
       "bytes": 1154
     },
     "src/workshopGiftView.js": {
