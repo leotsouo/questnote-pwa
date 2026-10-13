@@ -283,22 +283,13 @@ const ARCHIVED_MODULES = [
 ];
 
 /**
- * 檢查孤兒模組是否已封存且未被執行路徑引用
+ * 檢查已退役的孤兒模組沒有回到執行路徑。
+ * 這些模組已從 repo 移除（原始碼保留在 git tag pre-cleanup-2026-10-14）。
  */
 async function checkArchivedModules() {
   const warnings = [];
 
-  const readmeRes = await fetch('./src/_archive/README.md');
-  if (!readmeRes.ok) {
-    throw new Error('src/_archive/README.md 不存在');
-  }
-
   for (const file of ARCHIVED_MODULES) {
-    const archivedRes = await fetch(`./src/_archive/${file}`);
-    if (!archivedRes.ok) {
-      throw new Error(`${file} 未封存於 src/_archive/`);
-    }
-
     const legacyRes = await fetch(`./src/${file}`);
     if (legacyRes.ok) {
       warnings.push(`src/${file} 仍存在於原路徑`);
@@ -333,7 +324,7 @@ async function checkArchivedModules() {
   if (warnings.length) {
     return `ok with warnings: ${warnings.join('; ')}`;
   }
-  return '4 modules archived';
+  return '4 retired modules stay out of the runtime';
 }
 
 /** 預期保留 renderAll 的呼叫情境（靜態分析用） */
