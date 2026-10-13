@@ -18,7 +18,7 @@ test('actual seven complete pairs keep original beast bytes, names and controlle
  for(const field of ['tokenName','title','trialTitle'])assert.equal(new Set(dark.map(p=>p[field])).size,7);
  for(const p of dark){
   const pet=authored.find(x=>x.id===p.petId);assert.ok(pet);assert.equal(p.name,pet.name);assert.equal(p.rarity,pet.rarity);
-  assert.equal(hash(fs.readFileSync(new URL('content/pet-series/darkcrown_court_release/images/'+p.petId+'.png',root))),p.initialSha256);
+  assert.equal(hash(fs.readFileSync(new URL('assets/pets/'+p.petId+'.png',root))),p.initialSha256);
   for(const form of ['initial','awakened']){assert.equal(hash(fs.readFileSync(new URL(p[form+'Image'].original,root))),p[form+'Sha256']);for(const k of ['card','stage'])assert.ok(fs.statSync(new URL(p[form+'Image'][k],root)).size>1000);}
   const state={byPet:{[p.petId]:{awakenedAt:'2026-10-08T00:00:00Z',form:'awakened'}}};
   assert.equal(awakeningPortrait({...pet,owned:true},createPetAwakening(),catalog).image,p.initialImage.original);
