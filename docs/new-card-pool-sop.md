@@ -4,9 +4,9 @@
 
 **需求訪談與企劃之前，先同步最新正式版。** Fetch 最新 `origin/main`、`gh-pages`，讀取正式 HTTPS 的版本、release descriptor／artifact manifest，核對部署 commit、artifact ID、reviewed source commit 與核對時間。來源 main 最新不等於正式版最新；記錄 main 尚未發布的差異及處理方式，不把生成的 gh-pages 複製回 source。
 
-從最新 `origin/main` 建立乾淨 `codex/` 功能分支，先完成必要 runtime／契約支援，再以核對過的內容建立新的 authoring workspace。若有未發布內容，先完成 reconciliation；不可混入本池且未經驗收。舊 workspace 的 baseline、receipts、卡圖和 candidates 不重寫。
+在已跟上最新 `origin/main` 的 `dev` 分支上工作（不另開分支或 worktree，見 [CLAUDE.md](../CLAUDE.md)），先完成必要 runtime／契約支援，再以核對過的內容建立新的 authoring workspace。若有未發布內容，先完成 reconciliation；不可混入本池且未經驗收。舊 workspace 的 baseline、receipts、卡圖和 candidates 不重寫。
 
-此 SOP 從下一池開始。蜜光糖庭與既有正式內容不補做；歷史 workspace／candidate 保持原格式。
+此 SOP 從下一池開始。既有正式內容不補做。已發布卡池的歷史 workspace／candidate 依文末「發布完成後清理草稿」處理，完整原貌保留在 git tag。
 
 ## 固定訪談與預設
 
@@ -171,7 +171,7 @@ V3.5.21 相容性標準：UI 與交易必須共用 `resolveActivePool`，不能�
 
 ### 動畫檢視與證據
 
-最終整包驗收前，必須製作可操作的動畫檢視頁並由 AI 實際檢查。`human` 模式主動開啟並提供使用者可重開的連結；`ai-self` 模式只保留內部檢視頁與證據，使用者不看動畫。不能只交文字說明、靜態卡圖或自動測試紀錄，也不能要求耗費星塵、抽到稀有角色才能檢視。
+最終整包驗收前，必須製作可操作的動畫檢視頁並由 AI 實際檢查。檢視頁放在預覽站的固定審查路徑 `https://leotsouo.github.io/questnote-pwa-preview/reports/review/`，用 `npm run preview:deploy -- --review-dir <資料夾>` 覆蓋；頁面原始檔與截圖、錄影留在 `.dev-backups/evidence/`，不進 git。`human` 模式主動開啟並提供使用者可重開的連結；`ai-self` 模式只保留內部檢視頁與證據，使用者不看動畫。不能只交文字說明、靜態卡圖或自動測試紀錄，也不能要求耗費星塵、抽到稀有角色才能檢視。
 
 播放頁直接使用待發布 artifact 的實際動畫模組、樣式、卡圖與 presentation 資料，標示 artifact ID；展示用固定結果與真實抽卡交易分開，不呼叫抽卡、扣款、收藏、保底或補償 API。至少提供完整入場、切換卡池完整登場、單抽、十連、每一隻 UR，以及所有有演出的 SSR；十連包含重複角色以查看揭露順序。提供正常／減少動態切換、重播、略過與繼續操作。
 
@@ -184,3 +184,16 @@ final review JSON 包含 `schemaVersion: 1`、`sourceCommit`、`candidateId`、`
 重新執行檢查須 `releaseReady: true`；缺少驗收／授權時 CLI 回傳非零 exit code。任何卡圖、內容、來源、預覽或 production artifact 的實質修改，都重建受影響產物並重新驗收最新 packageHash。紀錄不是數位簽章，工具不能替代真實人工同意，也沒有發布命令。
 
 核准後才合併發布來源、推送核准的生成產物。記錄來源 PR／merge、部署 commit、Pages 成功、正式 HTTPS bytes／hashes 與 service worker 更新結果；保存舊產物與歷史證據。不把 source merge 當成已發布。
+
+## 證據放哪裡
+
+截圖、瀏覽器錄影、審圖頁、動畫檢視頁與 log 一律放在被 ignore 的 `.dev-backups/evidence/<池 ID>/`。`checks.*.evidence` 與 PR 只寫文字結論、量測數字、hash 與環境；`reports/` 只留精簡的 markdown 摘要（必要時加小型 JSON）。本文件前面提到的歷史 `reports/...` 路徑，其圖片與審查包已移出 repo，需要時從 tag `pre-cleanup-2026-10-14` 取回。
+
+## 發布完成後清理草稿
+
+創作期間，`content/pet-series/<seriesId>/` 的工作副本、`approvals/`、`staging/`、候選圖與修訂版都可以存在於 `dev`。正式發布並完成 HTTPS 驗證、來源 catalog promotion 之後，在下一個 commit 清理：
+
+1. 先打一個 tag（例如 `pool-<seriesId>-released`）並 push，完整 workspace 的原貌由它保留。
+2. 只保留仍會被 `npm test`、`npm run pools:validate`、`npm run images:check`、`npm run test:pool:release`、release 組裝或 runtime 讀到的檔案；hash 鎖定且驗證工具會讀的檔案原樣保留，不改位元組。
+3. 其餘（`approvals/` 快照、`staging/` candidate、原始 PNG、候選與淘汰圖、審查素材）移除。正式使用的圖片已在 `assets/`，catalog 已在 `data/`。
+4. 跑上述四組驗證，全綠才 commit，並在 PR 寫下移除的類別與前後大小。

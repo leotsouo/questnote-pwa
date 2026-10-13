@@ -1,4 +1,4 @@
-/** Authenticated, read-only D1 export for Codex. Never ship this script or token in the App. */
+/** Authenticated, read-only D1 export for Claude. Never ship this script or token in the App. */
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 

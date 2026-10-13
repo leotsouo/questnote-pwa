@@ -3,7 +3,6 @@
 *.publish.tmp
 node_modules/
 .npm-cache/
-.worktrees/
 
 .wrangler/
 backend/feedback/.dev.vars
@@ -13,3 +12,16 @@ backend/feedback/.dev.vars
 .dev/generated/
 .dev/build-cache/
 .dev/dependency-cache/
+
+# Evidence stays out of git: screenshots, recordings, HTML review pages and logs go in
+# .dev-backups/evidence/. reports/ keeps concise markdown summaries (and small JSON) only.
+reports/**/*.png
+reports/**/*.jpg
+reports/**/*.jpeg
+reports/**/*.webp
+reports/**/*.gif
+reports/**/*.mp4
+reports/**/*.webm
+reports/**/*.html
+reports/**/*.log
+reports/**/*.zip
