@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "questnote",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["devtools/serve.mjs"],
+      "port": 8000
+    }
+  ]
+}
