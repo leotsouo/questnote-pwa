@@ -67,6 +67,8 @@ const PRECACHE_URLS = [
   'src/styles/12-themed-pools.css',
   'src/styles/13-feedback-workshop-camp.css',
   'src/styleParts.js',
+  'src/uiSourceParts.js',
+  'src/ui/dailyWheelView.js',
   'src/ui-polish.css',
   'src/rewardClaimService.js',
   'src/summon-polish.css',

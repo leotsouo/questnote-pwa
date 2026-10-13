@@ -3,6 +3,7 @@
  */
 import { openDB, dbGetAll, dbPut, dbDelete, STORES } from './db.js';
 import { APP_STYLE_PARTS } from './styleParts.js';
+import { UI_SOURCE_PARTS } from './uiSourceParts.js';
 import { normalizeTask } from './taskMigration.js';
 import { normalizeWallet, DEFAULT_MATERIALS } from './rewardService.js';
 import { normalizeEntry, normalizeCollectionItem } from './collectionService.js';
@@ -67,15 +68,22 @@ import {
   getEligiblePetsForPool,
 } from './petPoolFilter.js';
 
-/**
- * The base stylesheet is split into ordered parts (src/styles/). Static checks read them
- * as one text, in cascade order, exactly as the former single styles.css.
- */
-async function fetchAppStyles() {
-  const responses = await Promise.all(APP_STYLE_PARTS.map((part) => fetch(`./${part}`)));
+/** Static source checks read a split file's parts as one text, in order. */
+async function fetchSourceParts(parts, separator) {
+  const responses = await Promise.all(parts.map((part) => fetch(`./${part}`)));
   const ok = responses.every((response) => response.ok);
-  const text = ok ? (await Promise.all(responses.map((response) => response.text()))).join('') : '';
+  const text = ok ? (await Promise.all(responses.map((response) => response.text()))).join(separator) : '';
   return { ok, text: async () => text };
+}
+
+/** The base stylesheet parts (src/styles/) in cascade order, exactly as the former single styles.css. */
+function fetchAppStyles() {
+  return fetchSourceParts(APP_STYLE_PARTS, '');
+}
+
+/** src/ui.js followed by the view modules extracted from it (src/ui/). */
+function fetchUiSource() {
+  return fetchSourceParts(UI_SOURCE_PARTS, '\n');
 }
 
 const DATA_FILES = [
@@ -299,7 +307,7 @@ async function checkArchivedModules() {
 
   const [appRes, uiRes, swRes] = await Promise.all([
     fetch('./src/app.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./service-worker.js'),
   ]);
 
@@ -341,7 +349,7 @@ const EXPECTED_RENDER_ALL_CONTEXTS = [
  */
 async function checkRenderSystem() {
   const [uiRes, appRes] = await Promise.all([
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./src/app.js'),
   ]);
   if (!uiRes.ok || !appRes.ok) {
@@ -443,7 +451,7 @@ async function checkPetImageSystem() {
   const [petsRes, swRes, uiRes, preloadRes] = await Promise.all([
     fetch('./data/pets.json'),
     fetch('./service-worker.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./src/imagePreloadService.js'),
   ]);
 
@@ -592,7 +600,7 @@ async function checkVersionInfo() {
   const [versionRes, indexRes, uiRes, cssRes] = await Promise.all([
     fetch('./src/version.js'),
     fetch('./index.html'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetchAppStyles(),
   ]);
 
@@ -667,7 +675,7 @@ async function checkVersionInfo() {
 async function checkSweetToastContrast() {
   const [cssRes, uiRes] = await Promise.all([
     fetchAppStyles(),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
   ]);
 
   if (!cssRes.ok || !uiRes.ok) {
@@ -747,7 +755,7 @@ async function checkSweetToastContrast() {
  * V2.3.8 — 召喚頁星塵同步檢查（靜態分析 ui.js）
  */
 async function checkGachaSync() {
-  const uiRes = await fetch('./src/ui.js');
+  const uiRes = await fetchUiSource();
   if (!uiRes.ok) throw new Error('無法讀取 ui.js');
   const uiText = await uiRes.text();
   const notes = [];
@@ -863,7 +871,7 @@ async function checkSweetContrast() {
 async function checkSummonReveal() {
   const [svcRes, uiRes, cssRes, devRes, swRes, indexRes] = await Promise.all([
     fetch('./src/summonRevealService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetchAppStyles(),
     fetch('./src/devService.js'),
     fetch('./service-worker.js'),
@@ -1006,7 +1014,7 @@ async function checkSummonReveal() {
 async function checkQuestSystem() {
   const [svcRes, uiRes, indexRes, backupRes, swRes] = await Promise.all([
     fetch('./src/questService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./index.html'),
     fetch('./src/backupService.js'),
     fetch('./service-worker.js'),
@@ -1163,7 +1171,7 @@ async function checkQuestPanelVisual() {
   const [cssRes, indexRes, uiRes] = await Promise.all([
     fetchAppStyles(),
     fetch('./index.html'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
   ]);
   if (!cssRes.ok || !indexRes.ok || !uiRes.ok) {
     throw new Error('無法讀取 styles.css / index.html / ui.js');
@@ -1255,7 +1263,7 @@ async function checkBondSystem() {
   const [collectionRes, dialogueRes, uiRes, backupRes] = await Promise.all([
     fetch('./src/collectionService.js'),
     fetch('./src/companionDialogueService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./src/backupService.js'),
   ]);
   if (!collectionRes.ok || !dialogueRes.ok || !uiRes.ok || !backupRes.ok) {
@@ -1411,7 +1419,7 @@ async function checkBondContrast() {
  */
 async function checkPetImageViewer() {
   const [uiRes, swRes] = await Promise.all([
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./service-worker.js'),
   ]);
   if (!uiRes.ok) throw new Error('無法讀取 ui.js');
@@ -1525,7 +1533,7 @@ async function checkPetImageViewerContrast() {
  */
 async function checkExpeditionDispatchUX() {
   const [uiRes, cssRes] = await Promise.all([
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetchAppStyles(),
   ]);
   if (!uiRes.ok || !cssRes.ok) throw new Error('無法讀取 ui.js / styles.css');
@@ -1639,7 +1647,7 @@ async function checkExpeditionDispatchUX() {
 async function checkExplorationSystem() {
   const [svcRes, uiRes, indexRes, backupRes, achRes, swRes] = await Promise.all([
     fetch('./src/explorationService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./index.html'),
     fetch('./src/backupService.js'),
     fetch('./data/achievements.json'),
@@ -1963,7 +1971,7 @@ async function checkTypographyScale() {
  */
 async function checkStabilityReadabilityPolish() {
   const [uiRes, cssRes, versionRes] = await Promise.all([
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetchAppStyles(),
     fetch('./src/version.js'),
   ]);
@@ -2092,7 +2100,7 @@ async function checkStabilityReadabilityPolish() {
  */
 async function checkCompanionWheelHotfix() {
   const [uiRes, cssRes, versionRes] = await Promise.all([
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetchAppStyles(),
     fetch('./src/version.js'),
   ]);
@@ -2248,7 +2256,7 @@ async function checkCollectionMilestones() {
     fetch('./data/pets.json'),
     fetch('./src/collectionMilestoneService.js'),
     fetch('./src/rewardService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./index.html'),
     fetchAppStyles(),
     fetch('./src/backupService.js'),
@@ -2420,7 +2428,7 @@ async function checkCollectionMilestones() {
 async function checkAdventureHandbook() {
   const [svcRes, uiRes, indexRes, cssRes, swRes, backupRes, versionRes] = await Promise.all([
     fetch('./src/adventureHandbookService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./index.html'),
     fetchAppStyles(),
     fetch('./service-worker.js'),
@@ -2686,7 +2694,7 @@ async function checkGlobalMailbox() {
   const [mailboxRes, mailboxServiceRes, uiRes, swRes, versionRes, backupRes, cssRes, indexRes] = await Promise.all([
     fetch('./data/global-mailbox.json'),
     fetch('./src/mailboxService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./service-worker.js'),
     fetch('./src/version.js'),
     fetch('./src/backupService.js'),
@@ -3035,7 +3043,7 @@ async function checkMailboxDevTools() {
 
   const [devRes, uiRes, indexRes, swRes, schemaRes, serviceRes, serverRes, pubHtmlRes, pubJsRes, backupRes] = await Promise.all([
     fetch('./src/devService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./index.html'),
     fetch('./service-worker.js'),
     fetch('./src/mailboxSchema.js'),
@@ -3227,7 +3235,7 @@ async function checkPetSeriesBuilder() {
     fetch('./src/petPoolFilter.js'),
     fetch('./src/gachaService.js'),
     fetch('./index.html'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./service-worker.js'),
     fetch('./src/backupService.js'),
     fetch('./src/version.js'),
@@ -3475,7 +3483,7 @@ async function checkMorningGardenAwakening() {
     fetch('./src/poolUnlockService.js'),
     fetch('./src/poolAwakeningController.js'),
     fetch('./src/backupService.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
   ]);
 
   if (!petsRes.ok) throw new Error('無法讀取 pets.json');
@@ -3599,7 +3607,7 @@ async function checkRevealFlowV343() {
     fetch('./service-worker.js'),
     fetch('./src/summonRevealService.js'),
     fetch('./src/themedSummonController.js'),
-    fetch('./src/ui.js'),
+    fetchUiSource(),
     fetch('./src/db.js'),
     fetch('./data/pets.json'),
     fetch('./data/pets-lore.json'),
