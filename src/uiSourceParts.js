@@ -9,4 +9,5 @@ export const UI_SOURCE_PARTS = Object.freeze([
   'src/ui/mailboxView.js',
   'src/ui/achievementsView.js',
   'src/ui/settingsView.js',
+  'src/ui/expeditionView.js',
 ]);

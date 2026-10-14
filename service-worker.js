@@ -73,6 +73,7 @@ const PRECACHE_URLS = [
   'src/ui/mailboxView.js',
   'src/ui/achievementsView.js',
   'src/ui/settingsView.js',
+  'src/ui/expeditionView.js',
   'src/ui-polish.css',
   'src/rewardClaimService.js',
   'src/summon-polish.css',
