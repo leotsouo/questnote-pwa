@@ -35,7 +35,7 @@ QuestNote 是純靜態的瀏覽器 PWA（任務、習慣、寵物收藏、召喚
 
 ## 專案結構
 
-`index.html` 載入 `src/bootstrap.js` 再載入 `src/app.js`；`src/ui.js` 負責畫面組裝，從它拆出的畫面模組放在 `src/ui/`（清單在 `src/uiSourceParts.js`），各功能的 service 負責持久化。基礎樣式是 `src/styles/` 底下依序載入的 13 個檔（順序即 cascade，清單在 `src/styleParts.js`；`src/styles.css` 只是給開發工具用的 `@import` 入口），其後是 `src/ui-polish.css`、`src/summon-polish.css` 與各功能 CSS。新增或搬動這些檔案時，`index.html`、`service-worker.js` 的 precache 與對應清單要一起改，`devtools/style-parts.test.mjs`、`devtools/daily-wheel-view.test.mjs` 會檢查。`service-worker.js` 管理驗證過的離線快取。catalog 在 `data/`，寵物圖片在 `assets/`，卡池草稿在 `content/pet-series/`，工具在 `scripts/` 與 `devtools/`，文件在 `docs/`。`backend/feedback/` 與 `backend/reminders/` 是獨立的 Cloudflare Worker。
+`index.html` 載入 `src/bootstrap.js` 再載入 `src/app.js`；`src/ui.js` 負責 `initUI`、事件綁定、導覽與重繪協調，各畫面（任務、召喚、圖鑑、探險、工坊、信箱、設定等）放在 `src/ui/` 的模組裡（清單在 `src/uiSourceParts.js`）。這些模組不 import `ui.js`；它們需要的 `state` 與共用 helper 由 `initUI` 每次執行時透過各模組的 `connect…()` 注入，`ui.js` 要改模組內的狀態時用模組匯出的 setter 或狀態物件（如 `taskListUi`、`gachaSessionUi`）。各功能的 service 負責持久化。基礎樣式是 `src/styles/` 底下依序載入的 13 個檔（順序即 cascade，清單在 `src/styleParts.js`；`src/styles.css` 只是給開發工具用的 `@import` 入口），其後是 `src/ui-polish.css`、`src/summon-polish.css` 與各功能 CSS。新增或搬動這些檔案時，`index.html`、`service-worker.js` 的 precache 與對應清單要一起改，`devtools/style-parts.test.mjs`、`devtools/daily-wheel-view.test.mjs` 會檢查。`service-worker.js` 管理驗證過的離線快取。catalog 在 `data/`，寵物圖片在 `assets/`，卡池草稿在 `content/pet-series/`，工具在 `scripts/` 與 `devtools/`，文件在 `docs/`。`backend/feedback/` 與 `backend/reminders/` 是獨立的 Cloudflare Worker。
 
 ## 開發與測試
 
