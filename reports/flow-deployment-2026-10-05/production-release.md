@@ -16,7 +16,7 @@
 
 正式瀏覽器能啟動，但已存在的 controller 仍提供舊 generation（觀察 index marker `b0b22f41b2ff4407b3c21e77a72eaa53ad3936b6ff2fd28da97b19c757191868`）。實際按正常「更新並重新載入」後，仍受到另一個 QuestNote 視窗的既有保護限制；沒有清 site data、強制 activation、關閉不屬於本輪的使用者視窗，亦沒有建立測試任務或貨幣。因此正式 browser 中的 V3.8.1 啟用驗證尚未完成；正式 CDN 的 V3.8.1 bytes 已全數獨立驗證。代理建立的測試分頁與 localhost server 已關閉。
 
-![正式舊 client 的更新保護提示](live-update-guard.jpg)
+正式舊 client 的更新保護提示（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/flow-deployment-2026-10-05/live-update-guard.jpg`）
 
 使用者請關閉其他 QuestNote 分頁／視窗，再按「更新並重新載入」；不要清除網站資料。
 

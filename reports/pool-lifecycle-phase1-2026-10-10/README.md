@@ -28,7 +28,7 @@
 
 ## 代表畫面
 
-![393px 手機系列目錄](directory-393.png)
+393px 手機系列目錄（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-lifecycle-phase1-2026-10-10/directory-393.png`）
 
 截圖 SHA-256：`665AF54A34A0952147F1EBD17740AD662B4BCDF62E9045488B23988A580167C1`。
 

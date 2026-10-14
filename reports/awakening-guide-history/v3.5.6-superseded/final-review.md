@@ -3,7 +3,7 @@
 整包識別：`707a6b5aa3d90201cdbabd1e6cd91808f9459cbca8df8a8a4294a2ffcc276470`
 
 - [隔離 HTTPS 預覽（整包）](https://leotsouo.github.io/questnote-pwa-preview/?release-review=0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4)
-- [實際部署版檢視截圖](preview-https-393.png)
+- 實際部署版檢視截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/awakening-guide-history/v3.5.6-superseded/preview-https-393.png`）
 - [手機版操作測試](preview-browser.json)
 - 固定 preview：`0088d32ea80e8a6e224c1ca1fa141e8d221a6d1c82b9a9018c2cbc585cfe3cb4`（manifest SHA256 `e1863952241e2721c0fb662e2eb160ebd56ba3df746bf0f3220ea7fc6522f53b`）
 - 固定 production：`20bb8033f3a8559649dfa671708c344776f99d4bbdcbb1fdd2071353e31e021a`（manifest SHA256 `9d19d02ff0721f599c3ab29bf7bee4f06afd09b0afd4b0c81c8d18ac53100020`）

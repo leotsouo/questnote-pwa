@@ -39,9 +39,9 @@
 
 已保存並檢視的代表畫面：
 
-![習慣失敗保留輸入與重試入口](08-habit-retry-error.jpg)
-![易讀子任務顯示取消完成與目標](10-senior-subtask-after.jpg)
-![啟動失敗的可見重新載入](12-init-error-final.jpg)
+習慣失敗保留輸入與重試入口（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/flow-implementation-2026-10-05/08-habit-retry-error.jpg`）
+易讀子任務顯示取消完成與目標（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/flow-implementation-2026-10-05/10-senior-subtask-after.jpg`）
+啟動失敗的可見重新載入（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/flow-implementation-2026-10-05/12-init-error-final.jpg`）
 
 其他 accepted 截圖 01–11 與逐步描述见 manual-scenario-notes.md。
 

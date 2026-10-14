@@ -23,7 +23,7 @@
 
 ## 審閱與發布綁定
 
-- [完整內容審閱](review.html)：二十張圖、取材、Lore、故事、偏好與專長。
+- 完整內容審閱（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/swordwild-release/review.html`）：二十張圖、取材、Lore、故事、偏好與專長。
 - [隔離 App 預覽](https://leotsouo.github.io/questnote-pwa-preview/?release-review=5443bd90acc5)；preview部署提交 b39a9437fa8ec53294ccdcd7d3c4c3b1b6b42d9e。
 - [實際卡池驗收](pool-browser.json)、[SW驗收](artifact-browser.json)、[HTTPS讀回](preview-https.json)。
 - reviewed source commit：`0d450279da0eb31aa01439ba7d875ee5ca28a173`。

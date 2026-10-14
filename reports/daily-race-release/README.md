@@ -21,7 +21,7 @@
 - V3.9.1 到 V3.9.2 原生 SW 更新通過；測試存檔的 2,468 星塵、收藏及所有既有玩家進度欄位保持一致，新賽事初始為空。信箱背景更新正常改變 `lastFetchedAt`／`lastSeenGeneratedAt`；閱讀及領取進度保持一致。
 - gzip 回應、更新後舊快取移除、離線啟動與觀賽通過。
 - 768 個部署 Git blobs 全數與固定產物雜湊一致；767 個正式 HTTPS 檔案（含 manifest，不含 `.nojekyll`）全部回讀一致。
-- 正式網址全新隔離 Chrome 確認 V3.9.2、頁面 marker／原生 SW artifactId 相同、四位賽事選手、離線重載與賽事入口，無 page errors。見 [正式瀏覽器證據](formal-browser.json)、[線上截圖](formal-mobile-race.png)及[離線截圖](formal-offline-race.png)。
+- 正式網址全新隔離 Chrome 確認 V3.9.2、頁面 marker／原生 SW artifactId 相同、四位賽事選手、離線重載與賽事入口，無 page errors。見 [正式瀏覽器證據](formal-browser.json)、線上截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/daily-race-release/formal-mobile-race.png`）及離線截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/daily-race-release/formal-offline-race.png`）。
 
 ## 證據與範圍
 

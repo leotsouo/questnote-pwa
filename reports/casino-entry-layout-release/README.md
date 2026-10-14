@@ -16,7 +16,7 @@
 - 固定 production／preview 原生瀏覽器 18/18 通過；正式產物另驗證 320／390／414px 暮光標題與兩個按鈕無重疊、入口開啟、下注／保存結果、備份、略過及離線觀賽。
 - V3.9.3 → V3.9.4 原生 SW 更新：2,468 星塵、收藏、已完成賽事及所有玩家進度一致；只排除信箱擷取時間 metadata。gzip、舊快取移除與離線重載通過。
 - 769 個部署 Git blobs 及 768 個正式 HTTPS 檔案全部與固定產物一致。
-- 正式站全新隔離 Chrome 確認 V3.9.4、頁面／原生 SW artifactId 相同、暮光標題未重疊、賭場四位選手、離線啟動，無 page errors。見 [正式瀏覽器](formal-browser.json)、[正式首頁截圖](formal-casino-header.png)與[離線截圖](formal-offline-race.png)。
+- 正式站全新隔離 Chrome 確認 V3.9.4、頁面／原生 SW artifactId 相同、暮光標題未重疊、賭場四位選手、離線啟動，無 page errors。見 [正式瀏覽器](formal-browser.json)、正式首頁截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/casino-entry-layout-release/formal-casino-header.png`）與離線截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/casino-entry-layout-release/formal-offline-race.png`）。
 
 首次正式回讀有一張既有覺醒圖片回傳 HTTP 503，故全套回讀判為失敗。第二輪降低並行請求至四個，對暫時 HTTP 錯誤最多重試三次，再對所有成功回應照原 size／SHA-256 規則核對；完整結果與 retry 明細已保存。失敗診斷保留並登記 review。
 

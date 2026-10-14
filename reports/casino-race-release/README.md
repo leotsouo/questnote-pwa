@@ -27,7 +27,7 @@
 - 固定 production／preview 產物原生瀏覽器 18/18 通過；正式產物下注 500、1900 總返還揭示、隱藏劇本名稱、保存賽果、備份與離線觀賽通過，無 page errors。
 - V3.9.2 → V3.9.3 原生 SW 更新通過；2,468 星塵、收藏、已完成賽事及所有玩家進度欄位一致。僅排除信箱背景擷取時間欄位；閱讀／領取紀錄保持一致。gzip、舊快取移除與離線啟動通過。
 - 769 個部署 Git blobs 與 768 個正式 HTTPS 檔案（含 manifest、不含 .nojekyll）全部雜湊一致。
-- 正式網址全新私有 Chrome：V3.9.3、頁面／SW artifactId 一致、賭場入口、四位選手、離線重載通過，無 page errors。見 [正式驗收](formal-browser.json)、[線上](formal-mobile-race.png)及[離線畫面](formal-offline-race.png)。
+- 正式網址全新私有 Chrome：V3.9.3、頁面／SW artifactId 一致、賭場入口、四位選手、離線重載通過，無 page errors。見 [正式驗收](formal-browser.json)、線上（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/casino-race-release/formal-mobile-race.png`）及離線畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/casino-race-release/formal-offline-race.png`）。
 
 ## 限制與保留
 

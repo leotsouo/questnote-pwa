@@ -16,6 +16,6 @@
 
 正式瀏覽器現有 V3.4.32 狀態偵測並驗證 waiting 更新；套用時因另一個正式 App 視窗仍開著而被保護機制擋住。未繞過、未關閉不可見視窗、未清除 storage、未寫入正式測試資料。因此確認發布 bytes 成功，未宣稱這個既有視窗已完成升級。關閉其他正式 App 視窗／分頁後，在更多按「更新並重新載入」即可。
 
-![正式站更新保護狀態](production-update-gate.png)
+正式站更新保護狀態（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/workshop-typography/production-update-gate.png`）
 
 未更新 hosted preview 或部署後端；保留既有未追蹤字體測試報告。實機字級與輔助技術仍需裝置驗收。

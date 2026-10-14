@@ -13,7 +13,7 @@
 
 [新 UI 瀏覽器驗收](browser-checks.json) 實測教學跳轉／焦點、二十位初遇、覺醒前後造型、重載形態、保底 UR 單抽與十連（略過且僅扣款一次）、其他卡池隱藏、320／393／1280px 無溢出。使用 UUID 合成資料庫，未操作正式玩家存檔。
 
-![手機版展開覺醒說明](mobile-pool-guide.png)
+手機版展開覺醒說明（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/awakening-guide-history/v3.5.6-superseded/mobile-pool-guide.png`）
 
 ## 檢視
 

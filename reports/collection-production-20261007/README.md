@@ -14,4 +14,4 @@
 
 本機發布材料與工具位於 `.dev-backups/collection-production-20261007`、`.dev-backups/release-collection.mjs`；固定產物留在 TEMP/questnote-collection-releases-20261007，來源與組裝器仍可重建。瀏覽器 screenshot / diagnostics 已由 producer 登記為 hold，不清理失敗診斷。初次 18 項產物驗收成功，追加畫面檢查受到測試最後留下的 all503 故障注入影響；改用全新無注入 server 補驗通過，未改產品。Git 大批 blob 驗證超出 128MiB buffer，改為分批核對；最後 HTTPS 驗證另遇短暫 DNS/TLS 中斷，恢復後重試。
 
-![正式版 UR 圖鑑](live-ur-mobile.png)
+正式版 UR 圖鑑（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/collection-production-20261007/live-ur-mobile.png`）

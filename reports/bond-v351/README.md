@@ -22,12 +22,12 @@
 
 | 驗證 | 結果 | 證據 |
 | --- | --- | --- |
-| 完整 `npm test` | 231 + 11 + 5 = 247 項通過，0 失敗；召喚邏輯斷言通過 | [Node log](node-tests.log) |
-| 故事／備份 focused checks | 34 項通過，含 16 項新親密度檢查 | [focused log](bond-focused-tests.log) |
-| JavaScript 語法 | 16 個新增／修改檔案通過 | [syntax log](syntax-check.log) |
-| 卡池與圖片 | 目錄通過；96 隻 × 2 尺寸圖片通過 | [catalog](catalog-check.log)、[images](image-check.log) |
-| 卡池發布 rehearsal | synthetic pipeline／交易／兩種 profile 組裝通過，不代表新增卡池已獲人工發布核准 | [smoke log](release-smoke.log) |
-| 真實 App 操作 | 11 個情境通過；runtime errors = 0 | [browser JSON](browser-results.json)、[log](browser-run.log) |
+| 完整 `npm test` | 231 + 11 + 5 = 247 項通過，0 失敗；召喚邏輯斷言通過 | Node log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/node-tests.log`） |
+| 故事／備份 focused checks | 34 項通過，含 16 項新親密度檢查 | focused log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/bond-focused-tests.log`） |
+| JavaScript 語法 | 16 個新增／修改檔案通過 | syntax log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/syntax-check.log`） |
+| 卡池與圖片 | 目錄通過；96 隻 × 2 尺寸圖片通過 | catalog（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/catalog-check.log`）、images（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/image-check.log`） |
+| 卡池發布 rehearsal | synthetic pipeline／交易／兩種 profile 組裝通過，不代表新增卡池已獲人工發布核准 | smoke log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/release-smoke.log`） |
+| 真實 App 操作 | 11 個情境通過；runtime errors = 0 | [browser JSON](browser-results.json)、log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/browser-run.log`） |
 | 主題／尺寸／字體 | default、sweet、twilight × 320／393／1280 × standard／extra-large，共 18 組；無水平溢出、有效操作至少 44px、鍵盤焦點受控 | [browser JSON](browser-results.json) |
 | 完整產物與原生 SW | 12 項通過，含首開檢查、舊 worker 升級、多分頁快取修復、preview／production DB 隔離、離線啟動與教學；清理測試 origin 成功 | [artifact JSON](artifact-browser-results.json) |
 
@@ -44,7 +44,7 @@ GitHub Ubuntu / Node 24 CI 也已通過相同 runtime snapshot 的 npm test、�
 | preview | `099c9e88f51393a8896d971dfe52e02bac01bafc92a5bac9341b56eaf5e99a86` | `/questnote-pwa-preview/` |
 | production | `cbadd4b1789bfca0cee65ceac1e5353751a2de5ea263c00955653d6264589c61` | `/questnote-pwa/` |
 
-兩者包含相同完整內容 bundle `8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df`；各有 416 個檔案（含 manifest）。不可變目錄保存在系統暫存 `questnote-bond-v351/<artifact-id>/`；實際路徑見 [preview](artifact-preview.log)／[production](artifact-production.log)。沒有 push `gh-pages`、部署公開 preview 或發布正式站；產物仍標記 `releaseReady: false`。
+兩者包含相同完整內容 bundle `8475965d22917f5594a56ba6b5bba21e9c4aa22c4b160b4c000e32608e2bc5df`；各有 416 個檔案（含 manifest）。不可變目錄保存在系統暫存 `questnote-bond-v351/<artifact-id>/`；實際路徑見 preview（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/artifact-preview.log`）／production（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/artifact-production.log`）。沒有 push `gh-pages`、部署公開 preview 或發布正式站；產物仍標記 `releaseReady: false`。
 
 11 情境驗收使用這份最終 preview 包，最後一個情境直接完成離線故事與領獎。兩個包另通過獨立完整性驗證與 12 項 native artifact 驗收。身份綁定見 [artifact-verification.json](artifact-verification.json)。
 
@@ -54,13 +54,13 @@ GitHub Ubuntu / Node 24 CI 也已通過相同 runtime snapshot 的 npm test、�
 
 320px、特大字體的三種主題；章節與下方內容皆可自然捲動。
 
-![default](320-default-large.png)
-![sweet](320-sweet-large.png)
-![twilight](320-twilight-large.png)
+default（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/320-default-large.png`）
+sweet（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/320-sweet-large.png`）
+twilight（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/320-twilight-large.png`）
 
 實際離線完成約定並領取故事後續：
 
-![offline](offline-complete-393.png)
+offline（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/offline-complete-393.png`）
 
 計畫與維護入口見 [v3.5.1-bond-plan.md](../../docs/v3.5.1-bond-plan.md)。本機 tracing 留在 ignored `.dev-backups/bond-v351/`。
 

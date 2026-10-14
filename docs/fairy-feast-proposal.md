@@ -8,9 +8,9 @@
 
 ## 月露雪鹿代表切片：新作雙形態
 
-![月露雪鹿獨立靈獸卡](../content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png)
+月露雪鹿獨立靈獸卡（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-initial-v1.png`）
 
-![月露雪鹿獨立仙女卡](../content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-awakened-v1.png)
+月露雪鹿獨立仙女卡（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pool-proposals/aurora_fairy_feast/artwork/moon-dew-deer-awakened-v1.png`）
 
 兩張各 1254×1254，已保存工具輸出原 bytes，完整解碼與 SHA-256。原提示詞、reference、費用依據與製作時間見 [representative-art-v1.json](../content/pool-proposals/aurora_fairy_feast/representative-art-v1.json)。使用內建 imagegen，消耗既有 Codex included usage；未使用付費外部 API。
 
@@ -67,31 +67,31 @@ AI 判讀：花角、月滴、眼色與果塔連續，故事動作可見，蕾�
 
 **月露雪鹿・料理對照**（原檔尾碼 58_53）：
 
-![月露雪鹿料理對照](../content/pool-proposals/aurora_fairy_feast/references/moon-dew-deer-cooking.png)
+月露雪鹿料理對照（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pool-proposals/aurora_fairy_feast/references/moon-dew-deer-cooking.png`）
 
 優點：花角、月滴、粉白材質與料理動作一致；靈獸與仙女有連續辨識點。待修：插畫被分成左右兩半，小卡中主角只占半幅；頭角、花、珠與高亮背景競爭。可借用「花露引向果塔」的動作，正式成圖應獨立畫完整鹿身。
 
 **曜夜玄鴞・料理對照**（58_49）：
 
-![曜夜玄鴞料理對照](../content/pool-proposals/aurora_fairy_feast/references/night-owl-cooking.png)
+曜夜玄鴞料理對照（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pool-proposals/aurora_fairy_feast/references/night-owl-cooking.png`）
 
 優點：暮藍紫、月冠、羽披與暖灶形成良好對照。待修：圓眼、收翼的可愛姿態讓 UR 分量弱於設定板；不能只讓一支漂浮打蛋器代替牠的故事動作。建議採展翼護火、香霧聚成返航極光。
 
 **霓霞膳庭・地區候選**（58_44）：
 
-![霓霞膳庭](../content/pool-proposals/aurora_fairy_feast/references/aurora-feast-garden.png)
+霓霞膳庭（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pool-proposals/aurora_fairy_feast/references/aurora-feast-garden.png`）
 
 優點：中央膳鼎、採集者、田地、花露與雲橋清楚支持故事；可作地區方向候選。待驗：大量暖金粉色與蜜光糖庭可能接近，正式卡池背景應增加柔暮藍紫的晨昏分區；縮成 320px 地區卡時採集者非常小，不能用人物數量作唯一辨識點。原圖 1672×941，接近 16:9，後續需製作合規 WebP 並實測雙畫面裁切。
 
 **月露雪鹿・造型設定板**（58_39）：
 
-![月露雪鹿設定板](../content/pool-proposals/aurora_fairy_feast/references/moon-dew-deer-design-board.png)
+月露雪鹿設定板（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pool-proposals/aurora_fairy_feast/references/moon-dew-deer-design-board.png`）
 
 完整鹿身與鹿角、長裙薄紗、蕾絲及極光氣氛比料理對照更適合建立 UR 主視覺。建議以此為造型主參考，再帶入料理對照的故事動作；底部臉、髮、服飾等小格僅作製作參考，正式卡圖不保留設定板拼貼。
 
 **曜夜玄鴞・造型設定板**（58_22）：
 
-![曜夜玄鴞設定板](../content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png)
+曜夜玄鴞設定板（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pool-proposals/aurora_fairy_feast/references/night-owl-design-board.png`）
 
 巨翼、精準目光、月冠與金紫羽緣更符合 UR 地位，仙女形態保留羽紗與月飾。建議以此為造型主參考，用料理對照的暖光讓她仍然溫柔；避免過度銳利、純黑紅配色或惡魔造型。正式靈獸與仙女各自一張，保持身份連續。
 

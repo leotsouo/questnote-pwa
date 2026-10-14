@@ -46,9 +46,9 @@ reload and is included in valid export/restore snapshots. Defaults remain unchan
 - Original local origin retained one completed task, 345 dust, 5 energy, zero
   owned pets; it correctly shows the waiting-for-a-companion scene, not a fake pet.
 
-Screenshots: [picker](theme-picker.jpg), [320px home](home-320.jpg),
-[summon](gacha.jpg), [collection](collection.jpg), [map](expedition.jpg),
-[home](home.jpg). Screenshots of populated views use explicitly labeled UI-test
+Screenshots: picker（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-theme/theme-picker.jpg`）, 320px home（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-theme/home-320.jpg`）,
+summon（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-theme/gacha.jpg`）, collection（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-theme/collection.jpg`）, map（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-theme/expedition.jpg`）,
+home（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-theme/home.jpg`）. Screenshots of populated views use explicitly labeled UI-test
 tasks with actual catalog pets on isolated localhost port 8937.
 
 This is browser viewport validation. Native iPhone safe-area, installed PWA,

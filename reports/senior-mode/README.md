@@ -51,9 +51,9 @@
 
 | 狀態 | 驗證 | 證據與界線 |
 | --- | --- | --- |
-| 通過 | 完整維護測試349項，另35條 reveal-flow assertions | [完整日誌](unit-tests.log)，無失敗、無省略；初輪日誌另存 |
-| 通過 | 15個修改／新增 JavaScript 語法檢查 | [語法日誌](syntax-checks.log) |
-| 通過 | 隔離 Chromium 瀏覽器16組流程 | [結果](browser-results.json)、[CLI日誌](browser-tests.log)；全新原生IndexedDB，非正式資料，阻擋非loopback請求 |
+| 通過 | 完整維護測試349項，另35條 reveal-flow assertions | 完整日誌（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/senior-mode/unit-tests.log`），無失敗、無省略；初輪日誌另存 |
+| 通過 | 15個修改／新增 JavaScript 語法檢查 | 語法日誌（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/senior-mode/syntax-checks.log`） |
+| 通過 | 隔離 Chromium 瀏覽器16組流程 | [結果](browser-results.json)、CLI日誌（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/senior-mode/browser-tests.log`）；全新原生IndexedDB，非正式資料，阻擋非loopback請求 |
 | 通過 | 254個可見操作目標 | [尺寸資料](touch-targets.json)，測量六個主要 view 與任務modal；均達44×44 CSS px，checkbox／radio以label觸控區計 |
 | 通過 | 60組 reflow | [詳細資料](reflow-measurements.json)，三主題×320/393/430/852px×五個surface，extra-large字級；沒有文件橫向捲動 |
 | 通過 | 200%文字＋WCAG文字間距 | [資料](200percent-spacing.json)，320px的首頁、設定、召喚、收藏、表單；可換行無文件overflow |
@@ -86,7 +86,7 @@ Agents按檔案責任分工，同一個隔離worktree內沒有多人同時修改
 
 ## F. 畫面與下一步
 
-開啟 [截圖比較畫廊](index.html) 可比較Normal／Senior首頁、表單與設定，並查看完成、獎勵、召喚、寵物、收藏、重要modal、empty、error及大字範例。PNG包含全頁與viewport版本，均來自實際runtime。
+開啟 截圖比較畫廊（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/senior-mode/index.html`） 可比較Normal／Senior首頁、表單與設定，並查看完成、獎勵、召喚、寵物、收藏、重要modal、empty、error及大字範例。PNG包含全頁與viewport版本，均來自實際runtime。
 
 本機使用：從本worktree透過HTTP開啟App，前往「更多 → 設定 → 顯示與操作 → 易讀模式」。自動化重跑：`npm test`、`npm run test:senior:browser`（需要可用Playwright；可用`QUESTNOTE_PLAYWRIGHT_PACKAGE`指定本機安裝）與Node24。
 

@@ -28,11 +28,11 @@
 
 最終美術判定：可發布。實際驗證了角色焦點、按鈕與費用可讀性、三主題、大字模式、鍵盤操作與減少動態效果。放大費用後的手機首屏按鈕邊緣曾超出底部導覽 1px，已調整間距並重跑全部畫面流程通過。
 
-![手機召喚](summon-phone.png)
+手機召喚（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-lifecycle-release-v3910/summon-phone.png`）
 
-![指定邀請](invitation-phone.png)
+指定邀請（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-lifecycle-release-v3910/invitation-phone.png`）
 
-![桌面暮色主題](summon-desktop.png)
+桌面暮色主題（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-lifecycle-release-v3910/summon-desktop.png`）
 
 本次沒有新增 detector 忽略；整合雙方既有的檔案限定例外，CSS 檢測沒有新發現。
 
@@ -60,6 +60,6 @@
 - [正式 HTTPS 瀏覽器驗收](hosted-browser.json)：全新隔離 Chromium，載入正確 artifact、實際完成任務 +10、取消重做不重領、選池入口可用、離線保留收據，page errors 為 0。沒有操作使用者原有瀏覽器資料，也沒有向後端送出測試內容。
 - 設計 hook 的 `side-tab` 對應角色引言 blockquote；`border-accent-on-rounded` 對應稀有度提示。均保留既有檔案限定例外，不擴成全域忽略。真正可讀性與首屏按鈕問題已修正，沒有未處理的本輪設計阻擋項。
 
-![正式站手機畫面](hosted-summon-phone.png)
+正式站手機畫面（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-lifecycle-release-v3910/hosted-summon-phone.png`）
 
 本輪改善已完成並正式發布。後續是實體 iPhone／VoiceOver 驗收，以及第 14／28／42 天的真實使用回饋；不宣稱已完成尚未發生的營運觀察。下一池依營運規則準備，總池合併與共享保底維持獨立決策。

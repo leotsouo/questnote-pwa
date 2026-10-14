@@ -20,11 +20,11 @@
 
 原版：
 
-![1 原版](01-guide-before.png)
+1 原版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/01-guide-before.png`）
 
 新版：
 
-![1 新版](guide-after.png)
+1 新版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/guide-after.png`）
 
 ### 2. 日常累積 — 已改善
 
@@ -36,11 +36,11 @@
 
 原版：
 
-![2 原版](02-bond-before.png)
+2 原版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/02-bond-before.png`）
 
 新版：
 
-![2 新版](after-01.png)
+2 新版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/after-01.png`）
 
 ### 3. 撫摸夥伴 — 已改善
 
@@ -52,11 +52,11 @@
 
 原版：
 
-![3 原版](03-bond-before.png)
+3 原版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/03-bond-before.png`）
 
 新版：
 
-![3 新版](after-02.png)
+3 新版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/after-02.png`）
 
 ### 4. 解鎖故事 — 已改善
 
@@ -68,11 +68,11 @@
 
 原版：
 
-![4 原版](04-bond-before.png)
+4 原版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/04-bond-before.png`）
 
 新版：
 
-![4 新版](after-03.png)
+4 新版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/after-03.png`）
 
 ### 5. 故事回應 — 已改善
 
@@ -84,11 +84,11 @@
 
 原版：
 
-![5 原版](05-bond-before.png)
+5 原版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/05-bond-before.png`）
 
 新版：
 
-![5 新版](after-04.png)
+5 新版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/after-04.png`）
 
 ### 6. 同行約定 — 已改善
 
@@ -100,11 +100,11 @@
 
 原版：
 
-![6 原版](06-bond-before.png)
+6 原版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/06-bond-before.png`）
 
 新版：
 
-![6 新版](after-05.png)
+6 新版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/after-05.png`）
 
 ### 7. 同行紀念 — 已改善
 
@@ -116,21 +116,21 @@
 
 原版：
 
-![7 原版](07-bond-before.png)
+7 原版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/07-bond-before.png`）
 
 新版：
 
-![7 新版](after-06.png)
+7 新版（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/after-06.png`）
 
 ## 行為與驗證
 
 - 本次逐步操作六個親密度步驟，確認標題、文字、進度與前後導航；不重設使用者的預覽資料。
 - 實際以 Enter 展開、收合原生 details；同行約定完整規則可見。
 - 預設獎勵步驟在 320×640、390×844、1280×900：沒有橫向溢出、內部捲動或遮住底部選單；六個操作目標高度均為 44px。量測見 [layout-checks.json](layout-checks.json)。展開完整規則時允許內部捲動。
-- npm test：234 + 11 + 5，共 250 項通過、0 失敗，另有 summon 邏輯斷言通過；其中 15 項教學測試驗證短文與完整規則相容性。[完整記錄](tests.log)。
+- npm test：234 + 11 + 5，共 250 項通過、0 失敗，另有 summon 邏輯斷言通過；其中 15 項教學測試驗證短文與完整規則相容性。完整記錄（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/tests.log`）。
 - 修改 JS 語法檢查及 git diff --check 通過。完整 npm test 執行於 cd236eb；其後 743d8c6 僅修正章節卡片單欄 CSS，已在本機預覽目視確認。
 
-![鍵盤展開完整規則](rules-final.png)
+鍵盤展開完整規則（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/rules-final.png`）
 
 ## 證據範圍與待驗證
 
@@ -148,7 +148,7 @@
 
 來源 b3faee5，preview artifact 54f7a959ebd6d9baa9431ba4e639ef2a1fff6f8d22ea17691f7ab041d8643cda。僅本機預覽，未正式發布。
 
-![固定位置教學](fixed-position.png)
+固定位置教學（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/fixed-position.png`）
 
 ## 緊湊卡片修正：固定上緣、自然高度
 
@@ -158,15 +158,15 @@
 
 原版固定高度 380px，短說明後留下大量空白。新版預設約 269px，主要操作與補充列緊密相連；標題仍固定在原本位置。
 
-![本次修改前](compact-before.png)
+本次修改前（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/compact-before.png`）
 
-![本次修改後](compact-after.png)
+本次修改後（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/compact-after.png`）
 
 ### 2. 展開規則 — 已改善
 
 以 Enter 展開原生補充規則，實際 top=302 保持不變，高度由約 269px 增至 326px，卡片尾端邊距仍約 16px。鍵盤收合亦正常。
 
-![展開規則](compact-rules.png)
+展開規則（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/teaching-design-audit/compact-rules.png`）
 
 ### 驗證範圍
 

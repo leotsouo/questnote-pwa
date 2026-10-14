@@ -20,7 +20,7 @@
 - [artifact-browser.json](artifact-browser.json)：最終 production／preview 原始 bytes 的 12/12 native browser 驗收，包含舊 SW 過渡、profile隔離、503離線與成長教學。
 - [actual-update-browser.json](actual-update-browser.json)：真正 V3.4.33 → V3.4.34 的 8/8 一鍵更新驗收，五個 stores／theme／未儲存文字保留、多視窗與進行中操作阻擋、完全快取503可更新。
 - [manual-app-acceptance.json](manual-app-acceptance.json)：真實內容、隔離測試玩家，單抽／十連雙UR演出、故事原圖與reload持久化；最後公開簡介收斂前後僅此一欄不同，且最終產物已重新跑兩套 native 驗收。實體 iPhone 安裝／standalone 尚無桌面可替代的 device 證據。
-- [final-app-preview.jpg](final-app-preview.jpg)；可互動預覽：http://127.0.0.1:58456/questnote-pwa-preview/（本機 server 需繼續執行）。3000 測試星塵與全12隻收藏只在隔離預覽，不是正式贈寵設定。
+- final-app-preview.jpg（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/honeylight-sugar-garden-v2/final-app-preview.jpg`）；可互動預覽：http://127.0.0.1:58456/questnote-pwa-preview/（本機 server 需繼續執行）。3000 測試星塵與全12隻收藏只在隔離預覽，不是正式贈寵設定。
 
 ## 最後一個發布關卡
 

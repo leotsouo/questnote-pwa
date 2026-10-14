@@ -14,7 +14,7 @@ This is a local source/preview adjustment; production is still V3.4.26.
 ## Validation
 
 - `npm test`: all 183 Node cases plus summon/reveal assertions passed.
-  [Output](npm-test.log).
+  Output（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-pet-prompt/npm-test.log`）.
 - Syntax checks passed for twilightPresentation, version and Service Worker;
   `git diff --check` passed.
 - Actual App checks used disposable loopback browser contexts, blocked Service
@@ -27,7 +27,7 @@ This is a local source/preview adjustment; production is still V3.4.26.
   label. No horizontal overflow or uncaught app errors occurred.
   [Geometry results](after-checks.json).
 - Before screenshots loaded the unchanged origin/main presentation/CSS in memory;
-  no source reset or user save was used. [Visual comparison](comparison.html).
+  no source reset or user save was used. Visual comparison（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-pet-prompt/comparison.html`）.
 
 Physical iPhone native status-bar acceptance remains separate from these
 layout checks. The previous safe-area fix is retained.

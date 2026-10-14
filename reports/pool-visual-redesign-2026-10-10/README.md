@@ -38,11 +38,11 @@
 
 ### 召喚頁
 
-![召喚頁，393 × 852](summon-phone.png)
+召喚頁，393 × 852（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-visual-redesign-2026-10-10/summon-phone.png`）
 
 ### 全部系列
 
-![圖像系列畫廊](series-gallery.png)
+圖像系列畫廊（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-visual-redesign-2026-10-10/series-gallery.png`）
 
 ## 來源與技能
 

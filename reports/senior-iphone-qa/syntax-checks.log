@@ -1,4 +1,0 @@
-PASS src/ui.js
-PASS src/version.js
-PASS service-worker.js
-PASS devtools/senior-mode-browser-test.mjs

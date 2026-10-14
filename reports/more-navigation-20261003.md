@@ -31,14 +31,14 @@
 
 | 狀態 | 截圖 |
 | --- | --- |
-| 調整前手機畫面 | [before-mobile.png](more-navigation-20261003/before-mobile.png) |
-| 調整後手機畫面 | [after-mobile.png](more-navigation-20261003/after-mobile.png) |
-| 支援區塊展開 | [after-support-expanded.png](more-navigation-20261003/after-support-expanded.png) |
-| 晨光花園 | [after-sweet.png](more-navigation-20261003/after-sweet.png) |
-| 暮光冒險手帳 | [after-twilight.png](more-navigation-20261003/after-twilight.png) |
-| 320px 特大字體 | [after-320-extra-large-collapsed.png](more-navigation-20261003/after-320-extra-large-collapsed.png) |
-| 320px 特大字體展開 | [after-320-extra-large-expanded.png](more-navigation-20261003/after-320-extra-large-expanded.png) |
-| 桌面 | [after-desktop.png](more-navigation-20261003/after-desktop.png) |
+| 調整前手機畫面 | before-mobile.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/before-mobile.png`） |
+| 調整後手機畫面 | after-mobile.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/after-mobile.png`） |
+| 支援區塊展開 | after-support-expanded.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/after-support-expanded.png`） |
+| 晨光花園 | after-sweet.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/after-sweet.png`） |
+| 暮光冒險手帳 | after-twilight.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/after-twilight.png`） |
+| 320px 特大字體 | after-320-extra-large-collapsed.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/after-320-extra-large-collapsed.png`） |
+| 320px 特大字體展開 | after-320-extra-large-expanded.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/after-320-extra-large-expanded.png`） |
+| 桌面 | after-desktop.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/after-desktop.png`） |
 
 長頁的全頁截圖會把固定底部導覽列畫在擷取當下的可視區位置；實際操作已逐一捲動、點擊與驗證各入口。正式 iPhone 裝置尚未驗收。
 
@@ -50,9 +50,9 @@
 
 完整 `npm test` 再次通過 303 個 Node 測試與揭曉流程 assertions；版本／SW 語法與 `git diff --check` 通過。僅完成來源與本機預覽，尚未發布。
 
-- [修正後手機畫面](more-navigation-20261003/habit-layout/after-default-mobile.png)
-- [修正前桌面畫面](more-navigation-20261003/habit-layout/before-desktop.png)
-- [修正後桌面畫面](more-navigation-20261003/habit-layout/after-desktop.png)
+- 修正後手機畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/habit-layout/after-default-mobile.png`）
+- 修正前桌面畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/habit-layout/before-desktop.png`）
+- 修正後桌面畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/habit-layout/after-desktop.png`）
 - [量測與驗收結果](more-navigation-20261003/habit-layout/results.json)
 
 ## 首次發布準備（已由新主線取代，未推送）
@@ -77,7 +77,7 @@ production artifact 為 `c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5c
 
 整合後 `npm test` 三組分別通過 292、14、12 項（總執行 318 項，包含套件原本重複執行的一鍵領取測試），reveal-flow assertions、JS 語法、卡池與圖片驗證皆通過。新版產物原生瀏覽器驗收 16 項通過，更多頁實際支援入口與習慣透明外層驗收通過；沒有使用玩家的正式資料庫或送出正式回報。
 
-初次部署準備 commit `127920b0dfd716edd24bdb02b018adfc49ca436d` 的 607 個 staged／committed Git blobs 全數與產物一致，沒有移除檔案。見 [當時的 deployment-preparation.json](more-navigation-20261003/release/superseded-v3524-pre-claim-publication/deployment-preparation.json)、[原生瀏覽器驗收](more-navigation-20261003/release/artifact-browser-qa.json)及[更多頁](more-navigation-20261003/release/assembled-more.png)／[習慣頁](more-navigation-20261003/release/assembled-habits.png)截圖。本節是發布前準備；後续接續新正式基線的成功紀錄見發布回執。
+初次部署準備 commit `127920b0dfd716edd24bdb02b018adfc49ca436d` 的 607 個 staged／committed Git blobs 全數與產物一致，沒有移除檔案。見 [當時的 deployment-preparation.json](more-navigation-20261003/release/superseded-v3524-pre-claim-publication/deployment-preparation.json)、[原生瀏覽器驗收](more-navigation-20261003/release/artifact-browser-qa.json)及更多頁（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/release/assembled-more.png`）／習慣頁（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/release/assembled-habits.png`）截圖。本節是發布前準備；後续接續新正式基線的成功紀錄見發布回執。
 
 ## 正式發布回執 — V3.5.24
 
@@ -94,5 +94,5 @@ production artifact 為 `c33e24557bbf95f242eb6728ddf03f6f709e166afe795ca60a46d5c
 - [完整發布回執](more-navigation-20261003/release/production-receipt.json)
 - [逐檔 HTTPS 驗證](more-navigation-20261003/release/live-verification.json)
 - [正式瀏覽器驗收](more-navigation-20261003/release/production-browser.json)
-- [正式更多頁截圖](more-navigation-20261003/release/production-more-393.png)
-- [正式習慣頁截圖](more-navigation-20261003/release/production-habits-393.png)
+- 正式更多頁截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/release/production-more-393.png`）
+- 正式習慣頁截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/more-navigation-20261003/release/production-habits-393.png`）

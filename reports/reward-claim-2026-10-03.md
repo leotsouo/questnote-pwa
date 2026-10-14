@@ -24,14 +24,14 @@
 - 108 組版面：六個區域 × 320／393／1280px × 星夜／花園／暮光 × 標準／特大字體。
 - 六個區域實際按鈕領取、每日／每週跨分頁、信箱跨篩選、重複領取無發獎、未讀保留。收藏里程碑的單項領取與篩選也驗證不影響卡片篩選。
 - 重複簽到／轉盤／任務只成功一次；批次鎖生效。注入無效獎勵的 transaction 中止時，資源與領取紀錄皆不寫入。
-- 詳細結果：[瀏覽器驗證 JSON](reward-claim/results.json)、[測試紀錄](claim-all-npm-test.log)、[瀏覽器紀錄](reward-claim-browser.log)。
+- 詳細結果：[瀏覽器驗證 JSON](reward-claim/results.json)、測試紀錄（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/claim-all-npm-test.log`）、瀏覽器紀錄（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/reward-claim-browser.log`）。
 
 ## 畫面
 
-[互動式畫面檢視](reward-claim-preview.html) 可切換區域與主題。畫面皆來自隔離存檔。
+互動式畫面檢視（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/reward-claim-preview.html`） 可切換區域與主題。畫面皆來自隔離存檔。
 
-![花園主題收藏里程碑](reward-claim/sweet-collection.png)
+花園主題收藏里程碑（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/reward-claim/sweet-collection.png`）
 
-![暮光主題冒險任務](reward-claim/twilight-quests.png)
+暮光主題冒險任務（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/reward-claim/twilight-quests.png`）
 
-![星夜主題信箱](reward-claim/default-mailbox.png)
+星夜主題信箱（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/reward-claim/default-mailbox.png`）

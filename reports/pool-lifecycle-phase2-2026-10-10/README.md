@@ -14,13 +14,13 @@
 
 隔離瀏覽器伺服器臨時提供 2026-10-10 00:00 至 2026-10-24 00:00（UTC+8）的合成安排；未修改來源設定或正式資料。裝置時區設為紐約，截止時間仍顯示台灣時間。
 
-![推薦期倒數，測試日期](active-preview-393.png)
+推薦期倒數，測試日期（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-lifecycle-phase2-2026-10-10/active-preview-393.png`）
 
 完整頁面截圖會包含固定底部導覽；下圖為捲動至資訊區的實際可讀畫面。
 
-![截止時間與持續開放說明，測試日期](deadline-details-preview.png)
+截止時間與持續開放說明，測試日期（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-lifecycle-phase2-2026-10-10/deadline-details-preview.png`）
 
-![到期仍可抽取，測試日期](ended-preview-393.png)
+到期仍可抽取，測試日期（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/pool-lifecycle-phase2-2026-10-10/ended-preview-393.png`）
 
 ## 驗證結果
 
