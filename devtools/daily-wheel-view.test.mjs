@@ -60,9 +60,19 @@ test('every view module extracted from ui.js is listed for source checks and pre
   const fs = await import('node:fs');
   const { UI_SOURCE_PARTS } = await import('../src/uiSourceParts.js');
   const read = (file) => fs.readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
-  const extracted = [...read('src/ui.js').matchAll(/from '\.\/(ui\/[^']+\.js)'/g)].map((match) => `src/${match[1]}`);
-  assert.ok(extracted.includes('src/ui/dailyWheelView.js'));
-  assert.deepEqual([...UI_SOURCE_PARTS], ['src/ui.js', ...extracted]);
+  const modules = fs.readdirSync(new URL('../src/ui/', import.meta.url)).filter((name) => name.endsWith('.js')).map((name) => `src/ui/${name}`);
+  assert.ok(modules.includes('src/ui/dailyWheelView.js'));
+  assert.equal(UI_SOURCE_PARTS[0], 'src/ui.js');
+  assert.deepEqual([...UI_SOURCE_PARTS].slice(1).sort(), [...modules].sort());
   const worker = read('service-worker.js');
-  for (const file of [...extracted, 'src/uiSourceParts.js']) assert.ok(worker.includes(`'${file}',`), `${file} missing from PRECACHE_URLS`);
+  for (const file of [...modules, 'src/uiSourceParts.js']) assert.ok(worker.includes(`'${file}',`), `${file} missing from PRECACHE_URLS`);
+  // Each module is reached from ui.js or a sibling module, and none imports ui.js back.
+  const imported = new Set();
+  for (const file of UI_SOURCE_PARTS) {
+    const text = read(file);
+    const prefix = file === 'src/ui.js' ? /from '\.\/(ui\/[^']+\.js)'/g : /from '\.\/([^']+\.js)'/g;
+    for (const [, target] of text.matchAll(prefix)) imported.add(file === 'src/ui.js' ? `src/${target}` : `src/ui/${target}`);
+    if (file !== 'src/ui.js') assert.ok(!/from '\.\.\/ui\.js'/.test(text), `${file} must not import ui.js`);
+  }
+  for (const file of modules) assert.ok(imported.has(file), `${file} is not imported by ui.js or another view module`);
 });
