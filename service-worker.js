@@ -82,6 +82,7 @@ const PRECACHE_URLS = [
   'src/ui/companionView.js',
   'src/ui/taskFormView.js',
   'src/ui/taskListView.js',
+  'src/ui/modalHost.js',
   'src/ui-polish.css',
   'src/rewardClaimService.js',
   'src/summon-polish.css',
