@@ -81,6 +81,7 @@ const PRECACHE_URLS = [
   'src/ui/dailyBlessingView.js',
   'src/ui/companionView.js',
   'src/ui/taskFormView.js',
+  'src/ui/taskListView.js',
   'src/ui-polish.css',
   'src/rewardClaimService.js',
   'src/summon-polish.css',
