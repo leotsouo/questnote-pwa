@@ -6,6 +6,7 @@ import { readFileSync } from 'fs';
 import { pathToFileURL } from 'url';
 import { createRequire } from 'module';
 import { isDeepStrictEqual } from 'node:util';
+import { UI_SOURCE_PARTS } from '../src/uiSourceParts.js';
 
 const root = process.cwd();
 const pets = JSON.parse(readFileSync(`${root}/data/pets.json`, 'utf8')).pets;
@@ -15,7 +16,7 @@ const versionText = readFileSync(`${root}/src/version.js`, 'utf8');
 const swText = readFileSync(`${root}/service-worker.js`, 'utf8');
 const themedText = readFileSync(`${root}/src/themedSummonController.js`, 'utf8');
 const svcText = readFileSync(`${root}/src/summonRevealService.js`, 'utf8');
-const uiText = readFileSync(`${root}/src/ui.js`, 'utf8');
+const uiText = UI_SOURCE_PARTS.map((file) => readFileSync(`${root}/${file}`, 'utf8')).join('\n');
 const dbText = readFileSync(`${root}/src/db.js`, 'utf8');
 
 let failed = 0;
