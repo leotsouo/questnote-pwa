@@ -76,6 +76,7 @@ const PRECACHE_URLS = [
   'src/ui/expeditionView.js',
   'src/ui/habitsView.js',
   'src/ui/workshopView.js',
+  'src/ui/collectionView.js',
   'src/ui-polish.css',
   'src/rewardClaimService.js',
   'src/summon-polish.css',
