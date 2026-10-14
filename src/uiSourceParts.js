@@ -16,4 +16,5 @@ export const UI_SOURCE_PARTS = Object.freeze([
   'src/ui/gachaView.js',
   'src/ui/dailyBlessingView.js',
   'src/ui/companionView.js',
+  'src/ui/taskFormView.js',
 ]);
