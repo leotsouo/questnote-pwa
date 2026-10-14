@@ -7,4 +7,5 @@ export const UI_SOURCE_PARTS = Object.freeze([
   'src/ui/dailyWheelView.js',
   'src/ui/handbookView.js',
   'src/ui/mailboxView.js',
+  'src/ui/achievementsView.js',
 ]);
