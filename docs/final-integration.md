@@ -1,3 +1,14 @@
+# V3.10.1 畫面模組拆分已發布 — 2026-10-15
+
+[PR #106](https://github.com/leotsouo/questnote-pwa/pull/106) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `5526319e56207538bbc9966f9abdf1a3ad9967b5`。這次 `src/ui.js` 從 9,186 行拆成 1,945 行，各畫面移到 `src/ui/` 的 15 個模組，不刻意改動畫面或存檔格式；同一個 PR 也包含前一輪的流程統一與 repo 瘦身。正式 artifact `6a1fc3078ec7a65fd2a6fb9fa8c8ee43294c5c6fdfaf51e66ca4696c778309d1`，gh-pages `ed0d98e362047a295b9623e6248f91ecf8a4b86a`；865 個 Git blob 與 865 個正式 HTTPS 檔案逐檔相符，`dev` 已 fast-forward 到 `main`。
+
+這是 `release:production` 第一次正式執行，中途停過兩次：
+
+- 腳本合併 PR 後要切到 `main` 時，同一個資料夾裡另一個 session 有未提交的修改。先把它存到 stash，發布完成後再還原到 `dev`。
+- 信箱檢查擋下：artifact 裡的 `data/global-mailbox.json` 是 CRLF（31,502 bytes），但 `main` 與 gh-pages 都是 LF（31,120 bytes）。原因是 Windows `core.autocrlf=true` 讓 1,189 個工作檔維持 CRLF，而 `git status` 仍顯示乾淨，artifact 又是從工作檔組裝。將這些檔案從 index 改寫回 LF 後，從合併後的步驟續跑完成。之後 `scripts/lib/deploy.mjs` 的 `assertCleanCheckout` 會在組裝前自動做同樣的改寫（`11c84aa`）。在那之前用工作檔組裝的預覽 artifact 也含 CRLF 檔案；瀏覽器行為相同，下一次 `preview:deploy` 會更正。
+
+證據：`.dev-backups/evidence/release-v3.10.1.json`。
+
 # V3.5.9 獅心城探險插畫與卡池配色已發布 — 2026-10-02
 
 [PR #53](https://github.com/leotsouo/questnote-pwa/pull/53) 經 CI 合併於 `3a88db8f227e710c13324860197b73c1ce880573`。依使用者「生成後直接發到正式版」授權，獅心城新增正式探險插畫，卡池改用黃銅與蒸汽藍灰背景；SOP 與自動發布檢查補上所有新增地區的圖像、裁切與離線驗收。正式 artifact `fc6946ae230b2583071b1e814227d1c8e175b185750fe96e3fe7834b3e9d50e0`，gh-pages `9a01e6af5d643b4df88e3e89130595eebb6e76ef`，[Pages 36989205700](https://github.com/leotsouo/questnote-pwa/actions/runs/36989205700) 成功；598 個 Git 檔案與 598 個正式 HTTPS 檔案全部符合固定產物。12 項功能、10 項動畫、8 項升級／離線及三主題手機／桌面畫面驗證通過；保留 128 位寵物／6 池、既有 UR 動畫與最新信箱修正。[完整發布收據](../reports/lionheart/v359-publication.md)。
