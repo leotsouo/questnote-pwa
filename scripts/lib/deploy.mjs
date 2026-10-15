@@ -1,5 +1,6 @@
 /** Shared helpers for preview:deploy and release:production. Nothing here force-pushes or rewrites history. */
 import fs from 'node:fs/promises';
+import { rmSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
@@ -39,9 +40,31 @@ export function log(message) { console.log(`[deploy] ${message}`); }
 export function assertCleanCheckout(expectedBranch) {
   const branch = git(PROJECT_ROOT, ['rev-parse', '--abbrev-ref', 'HEAD']);
   if (branch !== expectedBranch) throw new Error(`Run this from the ${expectedBranch} branch (currently ${branch}).`);
-  const status = git(PROJECT_ROOT, ['status', '--porcelain']);
+  // Judge local changes with the checkout's own line-ending settings; CRLF-only differences are not changes.
+  const status = execFileSync('git', ['-C', PROJECT_ROOT, 'status', '--porcelain'],
+    { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
   if (status) throw new Error(`Working tree is not clean; commit first.\n${status}`);
+  normalizeCheckoutLineEndings();
   return git(PROJECT_ROOT, ['rev-parse', 'HEAD']);
+}
+
+/**
+ * Artifacts are read from the working tree. With core.autocrlf=true a Windows checkout can hold CRLF
+ * copies of LF blobs that `status` still reports as clean, so the artifact would not match HEAD byte
+ * for byte. On a clean tree, rewrite those files from the index (content is unchanged).
+ */
+function normalizeCheckoutLineEndings() {
+  const drifted = git(PROJECT_ROOT, ['ls-files', '--eol']).split('\n')
+    .map((line) => line.split('\t'))
+    .filter(([info, file]) => file && /^i\/lf\s+w\/crlf\b/.test(info))
+    .map(([, file]) => file);
+  if (!drifted.length) return;
+  for (const file of drifted) rmSync(path.join(PROJECT_ROOT, file));
+  git(PROJECT_ROOT, ['checkout-index', '-f', '-u', '--stdin'],
+    { input: `${drifted.join('\n')}\n`, stdio: ['pipe', 'pipe', 'pipe'] });
+  const status = git(PROJECT_ROOT, ['status', '--porcelain']);
+  if (status) throw new Error(`Line-ending normalization left changes; inspect before retrying.\n${status}`);
+  log(`Rewrote ${drifted.length} CRLF working copies of LF files from the index.`);
 }
 
 export async function assembleAndVerify(target) {
