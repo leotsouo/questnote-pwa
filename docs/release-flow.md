@@ -34,18 +34,28 @@ npm run release:production -- --confirm 可以發布
 
 腳本依序做以下事情，任何一步失敗就停下，不會略過：
 
-1. 確認本機 `dev` 等於 `origin/dev`，且 `origin/main` 沒有 `dev` 缺少的 commit（有的話先合併、重新預覽、重新確認）。
-2. 等 PR 的 CI 全部通過，把 draft 轉為 ready，用 **merge commit** 合併（不 squash，`dev` 才能 fast-forward 跟上）。
+1. 確認本機 `dev` 等於 `origin/dev`。`origin/main` 比 `dev` 多出來的 commit 如果**全部只改** `data/global-mailbox.json`（信箱巡查的信件），自動 merge 進 `dev`（merge，不 rebase）並推上去，等 PR 的 CI 重跑後繼續；只要有其他檔案就停下來（先合併、重新預覽、重新確認）。
+2. 等 PR 的 CI 全部通過。合併前一刻再檢查一次：工作區要乾淨，`dev` 要仍等於 `origin/dev`（等 CI 的時間不短，這中間不要在這個資料夾做別的事）。把 draft 轉為 ready，用 **merge commit** 合併（不 squash，`dev` 才能 fast-forward 跟上）。
 3. 切到 `main` 並 fast-forward，從這個確切的 commit 組裝 production artifact 並驗證。
 4. 核對 `gh-pages` 上的 `data/global-mailbox.json` 與 `main` 相同（不同代表有信件只發到一邊，停下來照信箱流程處理）。
 5. 把 `gh-pages` 的內容換成 artifact，核對每個 blob，正常 push。
 6. 等 Pages 換版，用正式 HTTPS 逐檔讀回比對 SHA-256。
 7. 切回 `dev`，fast-forward 到 `main` 並 push。
-8. 把結果寫到 `.dev-backups/evidence/release-v<版本>.json` 並印出摘要。
+8. 把結果寫到 `.dev-backups/evidence/release-v<版本>.json`。
+9. **自動收尾**：在 `docs/final-integration.md` 最上面加這個版本的發布紀錄（版本、PR、merge commit、artifact ID、gh-pages commit、驗證檔案數；「這次改了什麼」取 PR 說明的「一句話」，沒有就用這輪的 commit 標題清單），commit 並推 `dev`，然後開下一輪的「持續整合：dev → main」PR（已有開著的 PR 就沿用）。這一步每個動作都先檢查是否做過，重跑不會重複寫入或重複開 PR。
+10. 印出摘要，並把收尾結果補進證據檔。
 
-完成後由 Claude 在 `dev` 的 `docs/final-integration.md` 加一小段發布紀錄（版本、PR、source commit、artifact ID、gh-pages commit、驗證檔案數），這個 commit 推上去時開下一輪的「持續整合：dev → main」PR。
+**寫給 PR 說明的人：** 「一句話」要寫成發布之後讀也成立的句子（不要寫「正式版仍是 V3.10.2」這種只在發布前成立的話）。格式是 `**一句話：** …` 單獨一段，或 `## 一句話…` 標題後接一段。
 
-`npm run release:production -- --dry-run` 只從目前的 checkout 組裝並驗證 production artifact，不合併、不推送，可隨時用來確認組裝沒問題。
+**中途停下來怎麼辦：** 每一步失敗都會停下並印出原因。PR 已經合併之後才失敗（例如工作區不乾淨、信箱不一致、HTTPS 驗證逾時），處理完原因後執行：
+
+```bash
+npm run release:production -- --confirm 可以發布 --resume
+```
+
+`--resume` 找出最近一個已合併的 dev → main PR，確認它的 merge commit 在 `origin/main` 上（`main` 之後多了信箱巡查的 commit 沒關係），然後從組裝正式 artifact 起接著做。發布步驟本身可重複執行（內容相同就不會產生新 commit），所以發布已經成功、只是收尾失敗時，同一個指令只會補完收尾。
+
+`npm run release:production -- --dry-run` 只從目前的 checkout 組裝並驗證 production artifact，不合併、不推送，可隨時用來確認組裝沒問題；同時會印出「發布紀錄預覽」（`recordPreview`），讓你在說「可以發布」之前先看到紀錄會寫什麼。
 
 ## 這套流程不包含的事
 
