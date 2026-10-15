@@ -16,4 +16,4 @@ PR #36 後續發布 V3.4.42，以修復嵌入式瀏覽器啟動問題。Pages co
 
 本次未更改任務規則、存檔結構、正式 DB、卡池資料、信箱或後端。裝置實際觸控行為尚未在 iPhone/Android 實機驗收。
 
-驗收輸出見 [PWA 測試](artifact-browser-results.json)、[V3.4.41 表單版面](production-artifact-layout.json)、[V3.4.41 HTTPS 雜湊](production-live-hashes.json)、[V3.4.42 現行 HTTPS 核對](current-production-validation.json) 與 [表單截圖](assembled-production.png)。
+驗收輸出見 [PWA 測試](artifact-browser-results.json)、[V3.4.41 表單版面](production-artifact-layout.json)、[V3.4.41 HTTPS 雜湊](production-live-hashes.json)、[V3.4.42 現行 HTTPS 核對](current-production-validation.json) 與 表單截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/task-form-layout/assembled-production.png`）。

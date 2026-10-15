@@ -12,7 +12,7 @@
 
 ## 實際驗證
 
-- npm test：283 + 11 + 5 = 299 項通過，既有 reveal-flow assertions 通過；記錄見 [glacier-dawn-tests.log](glacier-dawn-tests.log)。修改的四個 JavaScript 檔案 node --check 與 git diff --check 通過。
+- npm test：283 + 11 + 5 = 299 項通過，既有 reveal-flow assertions 通過；記錄見 glacier-dawn-tests.log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/glacier-dawn-tests.log`）。修改的四個 JavaScript 檔案 node --check 與 git diff --check 通過。
 - Windows Chromium 完整 App／393 × 852：日出核心範圍 x154–239、y213–298；正常演出 3.4 秒、一次完成。十連 rarityOmen 階段沒有舊菱形或通用 omen，SVG 漸層引用均可在各自地景內解析。
 - 1024 × 768：太陽核心從 y271–374 上升到 y128–230，SVG transform 從 translateY(140) 到 0；山脊遮擋、紅帆、碼頭與倒影完整，沒有水平溢出。
 - 星夜遠行／晨光花園／暮光冒險手帳，393 × 852：減少動態皆為 animation:none、transform:none，日出終點一致，無水平溢出。320 × 852／200%：root 32px，文字區 x24–296，太陽仍完整，沒有水平溢出。
@@ -24,11 +24,11 @@
 
 ## 畫面證據與 SOP
 
-- [修正前手機登場](screenshots/glacier-dawn-before-393.png)
-- [修正後手機登場](screenshots/glacier-dawn-after-393.png)
-- [十連前奏](screenshots/glacier-dawn-ten-393.png)
-- [桌機日出](screenshots/glacier-dawn-desktop.png)
-- [320px／200%／減少動態](screenshots/glacier-dawn-320-200.png)
+- 修正前手機登場（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/glacier-dawn-before-393.png`）
+- 修正後手機登場（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/glacier-dawn-after-393.png`）
+- 十連前奏（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/glacier-dawn-ten-393.png`）
+- 桌機日出（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/glacier-dawn-desktop.png`）
+- 320px／200%／減少動態（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/glacier-dawn-320-200.png`）
 
 可操作對照頁：<http://127.0.0.1:4193/reports/companion-app-test/ceremony.html>。[新卡池 SOP](../../docs/new-card-pool-sop.md) 補入共同地景座標、特製前奏替換通用元素、SVG ID 隔離與畫面驗收規則。
 

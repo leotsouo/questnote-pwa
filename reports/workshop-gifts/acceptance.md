@@ -9,7 +9,7 @@
 - [browser-results.json](browser-results.json)：11/11 原生 IndexedDB 與實際工坊 UI 檢查通過。只使用 `QuestNoteTest-Onboarding-*` 的伺服器隨機測試資料庫，不開啟使用者 DB，也不送出正式 feedback。
 - 涵蓋先選禮物、切換禮物清除收禮者、火系 +150／非喜好犬型 +75、實際配方扣料、喜好名單為空、通用蜜糖 +100、每日 5 份、最高等級、快速連點與服務並行呼叫，以及最後一份成功訊息保留。
 - 三種主題在 393px、320px 的工坊內容均無橫向溢出。另以瀏覽器實際點擊「確認贈送 1 份」，看到火光肉乾 ×2 → ×1、赤焰獅崽 Lv.1 → Lv.3、今日收禮 0/5 → 1/5。
-- [mobile-preview.png](mobile-preview.png)：隔離資料的推薦／確認畫面。
+- mobile-preview.png（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/workshop-gifts/mobile-preview.png`）：隔離資料的推薦／確認畫面。
 - Node 執行實際 `service-worker.js` 的 install/fetch handler，預快取完整真實來源檔案後切斷網路，新增禮物模組、設定與配方仍以相同位元組從快取回傳，首頁 navigation 也成功；不是僅檢查清單字串。
 
 ## 尚未驗證

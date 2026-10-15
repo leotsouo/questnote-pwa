@@ -1,5 +1,0 @@
-
-> images:check
-> node devtools/build-pet-images.mjs check
-
-check: 116 pets × 2 sizes verified

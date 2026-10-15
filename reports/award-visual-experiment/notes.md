@@ -126,10 +126,10 @@ prototype.
   verification; physical iPhone Safari, actual notch/home-indicator and Dynamic
   Type remain untested.
 
-Screenshots: [CURRENT](before.jpg), [AWARD CONCEPT](after.jpg),
-[current full page](before-full.jpg), [concept full page](after-full.jpg),
-[concept page bottom](after-bottom.jpg), [320px concept](concept-320-final.jpg),
-[actual app audit](audit-live-current.jpg).
+Screenshots: CURRENT（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/award-visual-experiment/before.jpg`）, AWARD CONCEPT（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/award-visual-experiment/after.jpg`）,
+current full page（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/award-visual-experiment/before-full.jpg`）, concept full page（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/award-visual-experiment/after-full.jpg`）,
+concept page bottom（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/award-visual-experiment/after-bottom.jpg`）, 320px concept（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/award-visual-experiment/concept-320-final.jpg`）,
+actual app audit（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/award-visual-experiment/audit-live-current.jpg`）.
 
 Next screens for evaluation only: **圖鑑 → 召喚 → 探險**. They would extend character
 identity, the reward-to-companion moment and the shared adventure. None was

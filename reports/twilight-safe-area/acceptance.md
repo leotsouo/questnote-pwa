@@ -24,7 +24,7 @@ the separate hosted Preview was not updated. The preserved root checkout was not
 
 - `npm ci` completed with Node 24.18.0. `npm test` passed all 183 Node cases
   (177 maintained cases and six theme cases), plus the summon/reveal logic assertions.
-  See [full output](npm-test.log).
+  See full output（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-safe-area/npm-test.log`）.
 - `node --check` passed for the changed preferences/version modules, Service Worker,
   and the focused browser check. `git diff --check` passed.
 - The focused [browser check](../../devtools/twilight-safe-area-browser-test.mjs)
@@ -37,7 +37,7 @@ the separate hosted Preview was not updated. The preserved root checkout was not
   corner pixels, bond clearance, no horizontal overflow, paper footer, theme
   switching, and persisted theme/tasks after startup. Empty home is also checked.
 - Inspected the homepage, settings, empty state, narrow and desktop screenshots.
-  The [comparison page](comparison.html) shows the original and fixed layouts.
+  The comparison page（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-safe-area/comparison.html`） shows the original and fixed layouts.
   Baseline screenshots load the original CSS/preferences from `origin/main` in
   memory, without resetting or replacing checkout files. Random companion dialogue
   may differ; the companion/task fixture configuration is identical.

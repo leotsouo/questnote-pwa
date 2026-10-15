@@ -24,8 +24,8 @@ publishing branch; the source checkout was never copied directly to Pages.
 - A fresh disposable hosted browser confirmed V3.4.26, the matching verified
   worker, persisted root/body twilight styling and no horizontal overflow after
   reload. No user browser storage or production feedback submissions were used.
-  See [observations](live-browser.json), [home](live-home.png) and
-  [settings](live-settings.png). These screenshots use simulated 59/34px insets.
+  See [observations](live-browser.json), home（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-safe-area/live-home.png`） and
+  settings（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-safe-area/live-settings.png`）. These screenshots use simulated 59/34px insets.
 
 The existing approved 84-pet / three-pool bundle
 `3dfd5055f9c2d2d288ab7e235d4c85202899f0ecba49a1b2473d505ba3e9ff32`

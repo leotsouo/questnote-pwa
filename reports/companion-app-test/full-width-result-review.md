@@ -23,4 +23,4 @@
 
 已更新 `docs/new-card-pool-sop.md`：不能以正方形小圖冒充結果卡片滿版，須量測圖片與結果容器左右邊緣一致，驗證確切回報角色／Theme／流程並標示版本。工程通過，人工最終體驗仍待使用者確認；iPhone VoiceOver、原生字級及觸覺仍為實機待驗。
 
-截圖：[使用者回報](screenshots/full-width-crow-before.png)、[正常十連桌機](screenshots/full-width-crow-ten-desktop.png)、[393px 滿版結果](screenshots/full-width-crow-393.png)、[320px／200%](screenshots/full-width-crow-320-200.png)。前後對照：http://127.0.0.1:4193/reports/companion-app-test/ceremony.html。
+截圖：使用者回報（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/full-width-crow-before.png`）、正常十連桌機（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/full-width-crow-ten-desktop.png`）、393px 滿版結果（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/full-width-crow-393.png`）、320px／200%（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/full-width-crow-320-200.png`）。前後對照：http://127.0.0.1:4193/reports/companion-app-test/ceremony.html。

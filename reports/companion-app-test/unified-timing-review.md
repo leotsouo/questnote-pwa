@@ -37,4 +37,4 @@ Windows Chromium，完整 App 記憶體試演，393 × 852／星夜遠行。數�
 - [SOP](../../docs/new-card-pool-sop.md) 已補共同秒數、原生／新版一致、CSS 時間同步、減少動態／fallback 例外與實測證據。
 - 本機 [可操作 App](http://127.0.0.1:4193/) 與 [畫面對照](http://127.0.0.1:4193/reports/companion-app-test/ceremony.html) 已更新。截圖保留五池 UR 結果及大字畫面；逆造之誓基準另有完整時間測量。
 
-記錄：[repository tests](unified-timing-tests.log)、[展示 tests](unified-timing-session-tests.log)、[browser measurements](unified-timing-browser-qa.json)。工程及桌面體驗已驗證；使用者最終體驗尚未簽收，iPhone Safari、VoiceOver、原生字級、觸覺及裝置效能仍待真機。本機未啟用 SW，不作正式部署／離線 PWA 驗收證據。
+記錄：repository tests（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/unified-timing-tests.log`）、展示 tests（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/unified-timing-session-tests.log`）、[browser measurements](unified-timing-browser-qa.json)。工程及桌面體驗已驗證；使用者最終體驗尚未簽收，iPhone Safari、VoiceOver、原生字級、觸覺及裝置效能仍待真機。本機未啟用 SW，不作正式部署／離線 PWA 驗收證據。

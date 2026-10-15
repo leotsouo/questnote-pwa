@@ -37,7 +37,7 @@ Production: <https://leotsouo.github.io/questnote-pwa/>.
 Select **更多 → 美術風格 → 暮光冒險手帳**. The two earlier themes remain available.
 The hosted page displayed V3.4.25 with an active service worker after natural
 close/reopen activation. The 393 × 852 picker had no horizontal overflow and
-showed all three choices with twilight selected; [live screenshot](live-theme-picker.jpg).
+showed all three choices with twilight selected; live screenshot（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/twilight-theme/live-theme-picker.jpg`）.
 Older open clients may need to close their App windows and reopen online for the
 verified worker update. Do not clear site data. Physical iPhone standalone, keyboard
 and safe-area behavior remain device-specific acceptance.

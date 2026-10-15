@@ -30,7 +30,7 @@ candidate.json、catalog.json、validation.json、approvals.json 均由原生 Pi
 
 ## Browser 素材驗證
 
-[STAGING-REVIEW.html](../content/pet-series/frost_oath_fjord/STAGING-REVIEW.html) 僅讀 immutable candidate 的 PNG／WebP；沒有載入 App、bootstrap、SW 或 IndexedDB。隱藏的 loopback browser tab 顯示 12 cards，48/48 個 card img 成功解碼384；實際檢查縮圖、UR篩選及960 dialog，放大圖與原始PNG引用正確。未設置 viewport override，未聲稱此次完成正式 App 或手機PWA验收。
+STAGING-REVIEW.html（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pet-series/frost_oath_fjord/STAGING-REVIEW.html`） 僅讀 immutable candidate 的 PNG／WebP；沒有載入 App、bootstrap、SW 或 IndexedDB。隱藏的 loopback browser tab 顯示 12 cards，48/48 個 card img 成功解碼384；實際檢查縮圖、UR篩選及960 dialog，放大圖與原始PNG引用正確。未設置 viewport override，未聲稱此次完成正式 App 或手機PWA验收。
 
 本機預覽服務在 127.0.0.1:8129，根目錄限制於該 authoring workspace；若服務結束，可直接開啟靜態 HTML。HTML 在 candidate 之外，不影響 candidate hash。
 

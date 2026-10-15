@@ -53,4 +53,4 @@ Service Worker 預快取新增 core、service、controller、CSS，App 與快取
 - 對修改的 `.js`／`.mjs` 執行 `node --check`。
 - `devtools/daily-race-browser-test.mjs <output-directory>`：Playwright 原生 IndexedDB、Chrome、手機與桌面視窗、三種主題、下注／免費觀賽／略過／關閉／重載、雙分頁競爭、寫入失敗回滾、備份往返、減少動態及離線重載。
 
-瀏覽器驗收使用臨時 localhost origin 與 `QuestNoteTest-Onboarding-*` 合成資料庫。需要可用的 Playwright 與 Chrome，或用 `QUESTNOTE_PLAYWRIGHT_PACKAGE` 指定套件、`QUESTNOTE_BROWSER_CHANNEL` 指定瀏覽器。依磁碟治理規則，透過 `scripts/worktree-artifact.ps1 -Action Run` 執行 `devtools/daily-race-checks.mjs browser <output-directory>`；完整測試可使用同一 runner 的 `suite` 模式。輸出目錄必須是新的、專用 ignored 路徑。
+瀏覽器驗收使用臨時 localhost origin 與 `QuestNoteTest-Onboarding-*` 合成資料庫。需要可用的 Playwright 與 Chrome，或用 `QUESTNOTE_PLAYWRIGHT_PACKAGE` 指定套件、`QUESTNOTE_BROWSER_CHANNEL` 指定瀏覽器。執行 `node devtools/daily-race-checks.mjs browser <output-directory>`；完整測試可使用同一 runner 的 `suite` 模式。輸出目錄使用 `.dev-backups/evidence/` 底下新的專用路徑。

@@ -31,11 +31,11 @@
 
 Before 圖含驗收工具外框，內部 app iframe 為 390×844；After 為純 390×844 截圖。所有圖均來自實際產品 DOM／CSS 與 synthetic 資料，非設計 mockup。
 
-- [Before 標準池 Default](before-standard-default-390.jpg) · [Sweet](before-standard-sweet-390.jpg)
-- [Before 永眠花海 Default](before-dream-default-390.jpg) · [Sweet](before-dream-sweet-390.jpg)
-- [After 標準池 Default](after-standard-default-390.jpg) · [Sweet](after-standard-sweet-390.jpg)
-- [After 永眠花海 Default](after-dream-default-390.jpg) · [Sweet](after-dream-sweet-390.jpg)
-- [After 晨醒](after-awakened-default-390.jpg) · [星塵不足 Sweet](after-insufficient-sweet-390.jpg)
+- Before 標準池 Default（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/before-standard-default-390.jpg`） · Sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/before-standard-sweet-390.jpg`）
+- Before 永眠花海 Default（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/before-dream-default-390.jpg`） · Sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/before-dream-sweet-390.jpg`）
+- After 標準池 Default（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/after-standard-default-390.jpg`） · Sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/after-standard-sweet-390.jpg`）
+- After 永眠花海 Default（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/after-dream-default-390.jpg`） · Sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/after-dream-sweet-390.jpg`）
+- After 晨醒（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/after-awakened-default-390.jpg`） · 星塵不足 Sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/after-insufficient-sweet-390.jpg`）
 
 ## 驗收
 
@@ -46,7 +46,7 @@ Before 圖含驗收工具外框，內部 app iframe 為 390×844；After 為純 
 - M4 native browser：10 cases 通過，含無主題解鎖、legacy locked/awakened、全部池 inactive、安全文案、SSR gift normal/fallback、moon reveal、debut cleanup、pending unlock resume。[輸出](pool-contract-browser.json)
 - 真正 UI 抽卡：390×844，兩主題共 16 cases 通過。快速連點單抽只扣 75 一次；十連確認的 Cancel/Escape/×/backdrop 還原同一結果 DOM、焦點與全資料快照；同池改價拒絕舊報價；成功十連扣 750、10 張結果、10 個 N 重複碎片、正確 counters；關閉後解除鎖定且不再寫入。[輸出](draw-browser.json)
 - 原生 Tab 手動確認：卡池 selector → 單抽 → 十連；焦點 outline 可見。操作 description 只引用當前價格。
-- 桌面 1280×844、永眠花海兩主題各 21 checks 通過；沿用既有置中 app 寬度，沒有橫向溢出。[Default 輸出](desktop-default.txt) · [Sweet 輸出](desktop-sweet.txt) · [Default 截圖](after-dream-default-desktop.jpg) · [Sweet 截圖](after-dream-sweet-desktop.jpg)
+- 桌面 1280×844、永眠花海兩主題各 21 checks 通過；沿用既有置中 app 寬度，沒有橫向溢出。[Default 輸出](desktop-default.txt) · [Sweet 輸出](desktop-sweet.txt) · Default 截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/after-dream-default-desktop.jpg`） · Sweet 截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/summon-polish/after-dream-sweet-desktop.jpg`）
 - 瀏覽器測試使用 Reduced Motion 模式；新樣式不新增動畫，也不改原有 reveal/debut/awakening controllers。
 
 抽卡 harness 首跑曾誤讀上一輪已關閉 modal 內保留的 DOM。修正為等待「新節點、open modal、正確主題及結果種類」後重跑通過；沒有因此修改產品交易或 resolver。

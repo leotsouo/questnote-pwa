@@ -36,7 +36,7 @@ generation sidecars 和未選稿須隨整個 authoring workspace 一起備存；
 
 12 張原圖皆在生成工具輸出中逐張視閱。檢查物種、角色配件、動作、色調、全圖邊界、解剖與可辨識文字。沒有把 schema 通過當成人類品質批准；目前是製作者建議交付的版本。
 
-[IMAGE-REVIEW.html](../content/pet-series/frost_oath_fjord/IMAGE-REVIEW.html) 使用原 PNG，提供完整圖、48／80 px 方圖、96 px 圓形 cover 模擬，另有 rarity 篩選與放大 dialog。無 App 啟動、IndexedDB、SW 或生成按鈕。
+IMAGE-REVIEW.html（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`content/pet-series/frost_oath_fjord/IMAGE-REVIEW.html`） 使用原 PNG，提供完整圖、48／80 px 方圖、96 px 圓形 cover 模擬，另有 rarity 篩選與放大 dialog。無 App 啟動、IndexedDB、SW 或生成按鈕。
 
 使用隱藏的本機 browser tab 實際看過全部縮圖。DOM 檢查：12 cards、48/48 預覽 img 載入成功，naturalWidth 1254；正常瀏覽器 viewport 為 1280，document scrollWidth 1265，未設 viewport override。UR filter 顯示 1 張，放大 dialog 對應正確主打。沒有宣稱本輪做手機或正式 App UI 驗收。
 

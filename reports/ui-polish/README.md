@@ -97,12 +97,12 @@ No framework, schema, catalog, gacha transaction, pool contract or pipeline chan
 
 ## Screenshots
 
-![Default tasks, 390×844](tasks-default-390.png)
-![Sweet tasks, 390×844](tasks-sweet-390.png)
-![Default collection cards, 390×844](collection-default-390.png)
-![Sweet UR cards, 390×844](collection-sweet-390.png)
-![Default task modal, 390×844](modal-default-390.png)
-![Sweet task modal, 390×844](modal-sweet-390.png)
+Default tasks, 390×844（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/ui-polish/tasks-default-390.png`）
+Sweet tasks, 390×844（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/ui-polish/tasks-sweet-390.png`）
+Default collection cards, 390×844（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/ui-polish/collection-default-390.png`）
+Sweet UR cards, 390×844（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/ui-polish/collection-sweet-390.png`）
+Default task modal, 390×844（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/ui-polish/modal-default-390.png`）
+Sweet task modal, 390×844（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/ui-polish/modal-sweet-390.png`）
 
 ## Reproduce
 

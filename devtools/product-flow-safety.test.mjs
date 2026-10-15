@@ -7,8 +7,10 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { isDemonFinalTask } from '../src/demonFinalTaskCore.js';
 import { escapeHtml } from '../src/uiHelpers.js';
+import { UI_SOURCE_PARTS } from '../src/uiSourceParts.js';
 
-const ui = fs.readFileSync(new URL('../src/ui.js', import.meta.url), 'utf8');
+// ui.js and the view modules extracted from it, read as one text.
+const ui = UI_SOURCE_PARTS.map((file) => fs.readFileSync(new URL(`../${file}`, import.meta.url), 'utf8')).join('\n');
 const app = fs.readFileSync(new URL('../src/app.js', import.meta.url), 'utf8');
 const requested = process.argv[2];
 if (requested && !['I01', 'I06', 'I03', 'I07'].includes(requested)) {

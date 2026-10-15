@@ -38,6 +38,7 @@ import {
   buildPoolPreview,
 } from '../../src/petDataSchema.js';
 import { getEligiblePetsForPool } from '../../src/petPoolFilter.js';
+import { APP_STYLE_PARTS } from '../../src/styleParts.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const HOST = '127.0.0.1';
@@ -249,7 +250,7 @@ async function handleApi(req, res, url) {
 
   // App styles for preview iframe
   if (req.method === 'GET' && url.pathname === '/api/app-styles.css') {
-    const css = await fs.readFile(path.join(PROJECT_ROOT, 'src', 'styles.css'));
+    const css = Buffer.concat(await Promise.all(APP_STYLE_PARTS.map((part) => fs.readFile(path.join(PROJECT_ROOT, part)))));
     res.writeHead(200, { 'Content-Type': 'text/css; charset=utf-8', 'Cache-Control': 'no-store' });
     res.end(css);
     return;

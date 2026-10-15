@@ -10,7 +10,7 @@
 
 食物、偏好、材料、探險 baseline 和四個相關 runtime 檔案納入 baseline hashes；`ecosystem.json` 納入 content approval。缺漏或未完成時不能 approve/stage。新模板、tags、專長或地區 runtime 支援先完成，再 init 鎖定 baseline。新的標準池僅一種食物／至多一個新地區；較大規模先另行擴充契約，不繞過限制。
 
-新增地區必須依 [SOP 地區圖片要求](new-card-pool-sop.md#新增探險地區的圖片是必交項目) 完成生成插畫與雙畫面驗收。先在 reviewed source 放入 `assets/expeditions/<areaId>.webp`，不是將未受支援的非寵物資源塞進 candidate。Assembler 在合併有效 companion catalogs 後驗證所有地區圖片；缺圖、無法完整解碼、尺寸／比例錯誤均拒絕組裝。執行 `npm run images:check` 核對來源 precache；地區圖片隨 sourceFiles 及 artifact files hash 固定，並進入發布後的 HTTPS／离線驗證。產圖紀錄與審圖證據保存於 reports，保留既有卡池 hash 鏈。
+新增地區必須依 [SOP 地區圖片要求](new-card-pool-sop.md#新增探險地區的圖片是必交項目) 完成生成插畫與雙畫面驗收。先在 reviewed source 放入 `assets/expeditions/<areaId>.webp`，不是將未受支援的非寵物資源塞進 candidate。Assembler 在合併有效 companion catalogs 後驗證所有地區圖片；缺圖、無法完整解碼、尺寸／比例錯誤均拒絕組裝。執行 `npm run images:check` 核對來源 precache；地區圖片隨 sourceFiles 及 artifact files hash 固定，並進入發布後的 HTTPS／离線驗證。產圖紀錄與審圖證據保存於被 ignore 的 `.dev-backups/evidence/`，文字結論寫進 PR 與 `reports/` 的 markdown 摘要。
 
 產圖前優先盤點已安裝、適用的外掛插件，確認不额外計費再使用；不能確認費用時不呼叫。每隻 `prompts.json` 的 `provenance` 必須含實際 `tool`、`noExtraCost: true`、`costBasis`，其他生成資訊按實際可取得內容記錄。
 
@@ -129,7 +129,7 @@ assets/pets/*.png     當前核准的新原圖
 assets/pets/variants/*.webp
 ```
 
-`candidate.files` 精確列出所有其他檔案的 SHA-256，不含自己的 hash；M3A assembler 另封存 candidate.json。文字 snapshots 在 approvals.json 以 base64 保存原始 bytes（包括 prompts 和 provenance），歷次圖片 snapshot 用 hash/index 指向工作區保留的 revision；當前圖片原文已在 candidate assets。正式發布前應備存**整個 authoring workspace**，才能連同所有舊圖片 revision 一起保留。
+`candidate.files` 精確列出所有其他檔案的 SHA-256，不含自己的 hash；M3A assembler 另封存 candidate.json。文字 snapshots 在 approvals.json 以 base64 保存原始 bytes（包括 prompts 和 provenance），歷次圖片 snapshot 用 hash/index 指向工作區保留的 revision；當前圖片原文已在 candidate assets。正式發布後先打 tag 保留**整個 authoring workspace**（連同所有舊圖片 revision），再依 [SOP：發布完成後清理草稿](new-card-pool-sop.md#發布完成後清理草稿) 移除不再被驗證工具讀取的 staging、approvals 與候選圖。
 
 衍生圖沿用既有 384 card／960 stage 設定，WebP quality 82、effort 5、不放大原圖。512 px 原圖產生 384 card 與 512 stage；stage 檔名仍包含目標上限 960。variant 名稱包含原 PNG hash，candidate manifest 包含实际 WebP hash 與 encoder 版本指紋。
 

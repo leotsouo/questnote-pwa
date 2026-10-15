@@ -69,29 +69,29 @@ Welcome、首頁、新增、editor、已建立、完成、reward、reaction、fi
 
 ## 15. Screenshot Matrix
 
-[可點開完整圖庫](screenshots.html)。14 張 393×852 + 1 張 320×852；均為瀏覽器真實 App raster，從完整 screenshot 裁出 iframe，沒有重畫 UI。checkpoint fixture 僅在 guard 過的 synthetic profile 注入，不當作真實流程行為證據。預填表單與 Create CTA 是同一真正畫面的兩次擷取。
+可點開完整圖庫（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots.html`）。14 張 393×852 + 1 張 320×852；均為瀏覽器真實 App raster，從完整 screenshot 裁出 iframe，沒有重畫 UI。checkpoint fixture 僅在 guard 過的 synthetic profile 注入，不當作真實流程行為證據。預填表單與 Create CTA 是同一真正畫面的兩次擷取。
 
-本輪另補四張：[圖鑑漸進提示](screenshots/16-collection-education.jpg)、[教學中心重讀](screenshots/17-education-help.jpg)、[略過後真實空白 editor](screenshots/18-skipped-editor.jpg)、[320px 圖鑑提示](screenshots/19-education-320.jpg)。新增截圖座標與尺寸另存 [manifest](education-screenshot-manifest.json)。[人工 DOM 檢查](education-manual-result.json) 確認重播入口文案、8 個教學說明入口皆 48px，320px 提示無橫向溢出且兩個按鈕皆 48px。
+本輪另補四張：圖鑑漸進提示（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/16-collection-education.jpg`）、教學中心重讀（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/17-education-help.jpg`）、略過後真實空白 editor（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/18-skipped-editor.jpg`）、320px 圖鑑提示（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/19-education-320.jpg`）。新增截圖座標與尺寸另存 [manifest](education-screenshot-manifest.json)。[人工 DOM 檢查](education-manual-result.json) 確認重播入口文案、8 個教學說明入口皆 48px，320px 提示無橫向溢出且兩個按鈕皆 48px。
 
 養成視窗的主要標題保留「灰影幼狼」，小提醒位於名稱之後；從視窗開教學中心時，等關閉視窗的焦點還原完成，再將焦點放到對應說明。CUA 實際鍵盤 Enter 驗證 `petCareHelpFocused: true`；這是瀏覽器焦點證據，仍不能代替手機螢幕閱讀器驗收。
 
 | # | 畫面 | 檔案 |
 | --- | --- | --- |
-| 1 | Welcome | [畫面](screenshots/01-welcome.jpg) |
-| 2 | Meet Companion | [畫面](screenshots/02-meet-companion.jpg) |
-| 3 | Home Spotlight | [畫面](screenshots/03-home-spotlight.jpg) |
-| 4 | Add Quest Spotlight | [畫面](screenshots/04-add-spotlight.jpg) |
-| 5 | Prefilled Tutorial Quest | [畫面](screenshots/05-prefilled-editor.jpg) |
-| 6 | Create CTA | [畫面](screenshots/06-create-cta.jpg) |
-| 7 | Home with Tutorial Quest | [畫面](screenshots/07-home-with-tutorial.jpg) |
-| 8 | Complete Spotlight | [畫面](screenshots/08-complete-spotlight.jpg) |
-| 9 | Reward | [畫面](screenshots/09-reward.jpg) |
-| 10 | Companion Reaction | [畫面](screenshots/10-companion-reaction.jpg) |
-| 11 | Finish | [畫面](screenshots/11-finish.jpg) |
-| 12 | Skip Confirmation | [畫面](screenshots/12-skip-confirmation.jpg) |
-| 13 | Large Text | [畫面](screenshots/13-large-text.jpg) |
-| 14 | Reduce Motion | [畫面](screenshots/14-reduce-motion.jpg) |
-| 15 | 320px 真實 editor | [畫面](screenshots/15-narrow-320.jpg) |
+| 1 | Welcome | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/01-welcome.jpg`） |
+| 2 | Meet Companion | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/02-meet-companion.jpg`） |
+| 3 | Home Spotlight | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/03-home-spotlight.jpg`） |
+| 4 | Add Quest Spotlight | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/04-add-spotlight.jpg`） |
+| 5 | Prefilled Tutorial Quest | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/05-prefilled-editor.jpg`） |
+| 6 | Create CTA | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/06-create-cta.jpg`） |
+| 7 | Home with Tutorial Quest | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/07-home-with-tutorial.jpg`） |
+| 8 | Complete Spotlight | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/08-complete-spotlight.jpg`） |
+| 9 | Reward | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/09-reward.jpg`） |
+| 10 | Companion Reaction | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/10-companion-reaction.jpg`） |
+| 11 | Finish | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/11-finish.jpg`） |
+| 12 | Skip Confirmation | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/12-skip-confirmation.jpg`） |
+| 13 | Large Text | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/13-large-text.jpg`） |
+| 14 | Reduce Motion | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/14-reduce-motion.jpg`） |
+| 15 | 320px 真實 editor | 畫面（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/15-narrow-320.jpg`） |
 
 ## 16. Usability Test Plan
 
@@ -137,11 +137,11 @@ Welcome、首頁、新增、editor、已建立、完成、reward、reaction、fi
 ## 20. Automated Test Result
 
 - [最終瀏覽器結果](browser-result.json)：**21/21 passed**。真正 App、表單、native IndexedDB；覆蓋 abort/重試、防重、replay、四種 migration、skip、320px 三主題、大字／減少動態、200% 完整流程與單獨第二正式任務；新增舊畫面連點、跨日、重播清理／交易 rollback／不同 run 領獎拒絕、慢閱讀提示與重看、略過後空白 editor。持續儲存失敗與 foreground 也維持解鎖。
-- [本輪完整 Node 結果](npm-test-completion.log)：**300 + 14 + 12 = 326/326 passed**，reveal-flow assertions 通過。執行 package.json 的相同所有測試命令，對 Node test 加 `--test-concurrency=1`，處理本機低磁碟空間。包含 8 個 guided core／漸進教育檢查。
+- 本輪完整 Node 結果（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/npm-test-completion.log`）：**300 + 14 + 12 = 326/326 passed**，reveal-flow assertions 通過。執行 package.json 的相同所有測試命令，對 Node test 加 `--test-concurrency=1`，處理本機低磁碟空間。包含 8 個 guided core／漸進教育檢查。
 - [本輪語法檢查](syntax-completion-check.txt)：**24/24 passed**。
-- 本輪補強後的 [focused tests](focused-completion-test.log)：**34/34 passed**，包含舊教學章節、舊畫面操作防重、讀取確認與無提示第二任務、首頁旅程排除練習及三主題回歸。
-- [原始並行結果](npm-test.log)：292/298；6 個失敗來自 ENOSPC（release fixture 複製滿磁碟，包括父測試失敗），保留原始記錄；序列重跑全部通過。
-- [本輪 release dry-run](artifact-completion-dry-run.log)：612 個來源檔通過組裝規劃；新 modules/style 在 precache closure。dryRun=true、releaseReady=false、liveBaseline=UNKNOWN；沒有生成可發布產物、沒有部署。
+- 本輪補強後的 focused tests（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/focused-completion-test.log`）：**34/34 passed**，包含舊教學章節、舊畫面操作防重、讀取確認與無提示第二任務、首頁旅程排除練習及三主題回歸。
+- 原始並行結果（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/npm-test.log`）：292/298；6 個失敗來自 ENOSPC（release fixture 複製滿磁碟，包括父測試失敗），保留原始記錄；序列重跑全部通過。
+- 本輪 release dry-run（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/artifact-completion-dry-run.log`）：612 個來源檔通過組裝規劃；新 modules/style 在 precache closure。dryRun=true、releaseReady=false、liveBaseline=UNKNOWN；沒有生成可發布產物、沒有部署。
 
 ## 21. Simulator / Native Test Result
 
@@ -163,9 +163,9 @@ iPhone Safari／主畫面 PWA 與 Android Chrome：真正安裝、首次慢網�
 
 教學採頁面內卡片與實際控制項標示，不鎖頁面、不計時、不代為召喚、派遣、製作、領獎、發送回報或分享。可上一步、暫停，進度存在獨立 META checkpoint；重新開啟續接，「更多 → 使用教學」可恢復或重看。多次快速點擊使用 expectedCursor 防止越過步驟。圖鑑篩選重繪後會保留教學卡。
 
-驗證：原 npm test 全套 326/326 通過，新增頁面狀態測試 4/4 通過（已加入 npm test/test:guided）。[原 npm 日誌](npm-test-pages.log)。[真實瀏覽器結果](page-tour-browser-result.json)記錄所有 20 步的頁面名稱、文字、按鈕尺寸、393px 無橫向溢出；320px 探險教學也無橫向溢出，所有教學按鈕至少48px。暫停重載後從第三步恢復；最終20步完成回今日；新增20步版本從第八步重載恢復。初始流程完整真實建立與完成一次練習任務，再選接續入口。
+驗證：原 npm test 全套 326/326 通過，新增頁面狀態測試 4/4 通過（已加入 npm test/test:guided）。原 npm 日誌（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/npm-test-pages.log`）。[真實瀏覽器結果](page-tour-browser-result.json)記錄所有 20 步的頁面名稱、文字、按鈕尺寸、393px 無橫向溢出；320px 探險教學也無橫向溢出，所有教學按鈕至少48px。暫停重載後從第三步恢復；最終20步完成回今日；新增20步版本從第八步重載恢復。初始流程完整真實建立與完成一次練習任務，再選接續入口。
 
-畫面：[探險頁教學](screenshots/20-expedition-page-tour.png)、[320px 教學](screenshots/21-page-tour-320.png)。仍維持 V3.6.0，更新快取為 guided-pages。此次僅本機來源與測試預覽，尚未合併或部署。
+畫面：探險頁教學（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/20-expedition-page-tour.png`）、320px 教學（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/screenshots/21-page-tour-320.png`）。仍維持 V3.6.0，更新快取為 guided-pages。此次僅本機來源與測試預覽，尚未合併或部署。
 
 ## 2026-10-04：成長章節區塊改版
 
@@ -175,7 +175,7 @@ iPhone Safari／主畫面 PWA 與 Android Chrome：真正安裝、首次慢網�
 
 修正舊教學指向已隱藏的圖鑑控制項：教學可直接開指定夥伴的真正養成頁，找到碎片／升星或故事入口。養成頁新增碎片持有量、下一星成本及真實升星按鈕，沿用既有 upgradeStar 交易與確認流程；不足與滿星會停用。取消不扣資源；確認才消耗指定夥伴碎片。
 
-驗證：npm 全套330/330通過，修改JS語法檢查通過。[全套日誌](npm-test-growth.log)、[27項相關測試](growth-focused-tests.log)、[章節原生瀏覽器證據](growth-browser-result.json)。四章15步均完成操作檢查；真實撫摸記錄實作，未派遣／未製作的閱讀保持「已了解」。故事與工坊重載續接、暫停再續接皆成功。隔離DB準備5個碎片：取消升星仍持有5個；確認後持有0個、下一星成本15，顯示本章已實作。未連接正式資料或送出回報。
+驗證：npm 全套330/330通過，修改JS語法檢查通過。全套日誌（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/npm-test-growth.log`）、27項相關測試（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/guided-onboarding/growth-focused-tests.log`）、[章節原生瀏覽器證據](growth-browser-result.json)。四章15步均完成操作檢查；真實撫摸記錄實作，未派遣／未製作的閱讀保持「已了解」。故事與工坊重載續接、暫停再續接皆成功。隔離DB準備5個碎片：取消升星仍持有5個；確認後持有0個、下一星成本15，顯示本章已實作。未連接正式資料或送出回報。
 
 393px頁面及實際320px iframe無水平溢出，章節／教學按鈕至少48px；步驟列可水平捲動且目前步驟會保持可見。畫面：成長中心26、養成27、派遣24、送禮25及窄螢幕28。手機原生螢幕閱讀器、真實手機離線與真人學習成效仍待裝置／真人驗證。
 

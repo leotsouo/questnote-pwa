@@ -451,28 +451,28 @@ AFTER
 
 ### 當次操作步驟與截圖證據
 
-1. 初次歡迎 — 健康：入口與略過清楚。![01 First-time](01-first-time.jpg)
-2. 教學進到今日定位 — 健康：下一步明確。![02 Before reload](02-guide-before-reload.jpg)
-3. 中途 reload — 健康：同一 checkpoint 續接。![03 Restored](03-guide-restored.jpg)
-4. 預填真實新增表單 — 健康：內容預備、進階選填。随后真實按新增、完成並看 +20/+1/+5 結果。![04 Tutorial form](04-tutorial-form.jpg)
-5. 一般模式輸入未保存 task — 草稿正常存在於表單。![05 Draft](05-unsaved-task.jpg)
-6. Close 再開 — I04：表單空白；無離開確認。![06 Lost draft](06-draft-lost.jpg)
-7. 空白習慣按建立 — 健康：required popup 與焦點定位。![07 Invalid input](07-habit-invalid.jpg)
-8. 保存 task + 子任務，再 reload — 健康：任務保留、不重跑主教學。![08 Returning](08-returning-saved.jpg)
-9. 子任務 0/1→1/1 — I06：仍同名「完成子任務」、無 pressed；再按變 0/1。截圖為完成後 toast 仍可見的真實結果，不作為穩態布局判斷。![09 Subtask](09-subtask-completed-label.jpg)
-10. 文字入口開啟易讀模式、回首頁 — 健康：同資料、明確控制。![10 Senior](10-senior-home.jpg)
-11. 易讀 dirty Close — 健康：繼續／放棄；繼續後原文字仍在，明確放棄才返回。![11 Dirty guard](11-senior-dirty-guard.jpg)
+1. 初次歡迎 — 健康：入口與略過清楚。01 First-time（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/01-first-time.jpg`）
+2. 教學進到今日定位 — 健康：下一步明確。02 Before reload（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/02-guide-before-reload.jpg`）
+3. 中途 reload — 健康：同一 checkpoint 續接。03 Restored（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/03-guide-restored.jpg`）
+4. 預填真實新增表單 — 健康：內容預備、進階選填。随后真實按新增、完成並看 +20/+1/+5 結果。04 Tutorial form（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/04-tutorial-form.jpg`）
+5. 一般模式輸入未保存 task — 草稿正常存在於表單。05 Draft（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/05-unsaved-task.jpg`）
+6. Close 再開 — I04：表單空白；無離開確認。06 Lost draft（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/06-draft-lost.jpg`）
+7. 空白習慣按建立 — 健康：required popup 與焦點定位。07 Invalid input（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/07-habit-invalid.jpg`）
+8. 保存 task + 子任務，再 reload — 健康：任務保留、不重跑主教學。08 Returning（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/08-returning-saved.jpg`）
+9. 子任務 0/1→1/1 — I06：仍同名「完成子任務」、無 pressed；再按變 0/1。截圖為完成後 toast 仍可見的真實結果，不作為穩態布局判斷。09 Subtask（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/09-subtask-completed-label.jpg`）
+10. 文字入口開啟易讀模式、回首頁 — 健康：同資料、明確控制。10 Senior（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/10-senior-home.jpg`）
+11. 易讀 dirty Close — 健康：繼續／放棄；繼續後原文字仍在，明確放棄才返回。11 Dirty guard（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/11-senior-dirty-guard.jpg`）
 
 截圖都以當次工具原始 JPEG 保存，保存後讀回檢視；不使用上一輪截图。預設 viewport 由 App 管理，未宣稱固定手機尺寸或一致 breakpoint 比較。操作遇到的 AX/DOM role 差異與 selector timeout 经新 DOM 修正，不當成產品 failure。
 
 ### 驗證與可重跑證據
 
-- [learning-tests.log](learning-tests.log)：32/32，guided/page-tour/senior/onboarding。
-- [error-tests.log](error-tests.log)：44/44，feedback/reminders/cache-recovery；追加 startup reproduction。
-- [recovery-tests.log](recovery-tests.log)：85/85，task/habit-view/gift/gacha/bond/awakening/backup/reward；追加受控重送與故障重現。包含一個 harness fixture 缺 Map 的初次失敗與修正，不是產品回歸。
-- [recovery-repro.mjs](recovery-repro.mjs)：source callback + service／craft orchestration 的 synthetic boundary reproduction。
-- [startup-repro.mjs](startup-repro.mjs)：source 語句與 synthetic DOM，驗證 detached loader。
+- learning-tests.log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/learning-tests.log`）：32/32，guided/page-tour/senior/onboarding。
+- error-tests.log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/error-tests.log`）：44/44，feedback/reminders/cache-recovery；追加 startup reproduction。
+- recovery-tests.log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/recovery-tests.log`）：85/85，task/habit-view/gift/gacha/bond/awakening/backup/reward；追加受控重送與故障重現。包含一個 harness fixture 缺 Map 的初次失敗與修正，不是產品回歸。
+- recovery-repro.mjs（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/recovery-repro.mjs`）：source callback + service／craft orchestration 的 synthetic boundary reproduction。
+- startup-repro.mjs（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/startup-repro.mjs`）：source 語句與 synthetic DOM，驗證 detached loader。
 - [interaction-notes.json](interaction-notes.json)：隔離 origin、安全界線、UI observation 與未測項。
-- [audit-validation.log](audit-validation.log)：文件連結／函式引用／截图與 staged whitespace 驗證。
+- audit-validation.log（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/scenario-audit-2026-10-05/audit-validation.log`）：文件連結／函式引用／截图與 staged whitespace 驗證。
 
 上述 Node/source harness 可重跑；瀏覽器互動為當次人工 agent trace 與截图，不宣稱自動化完整端對端覆蓋。沒有重跑完整 npm test，因为沒有 runtime 變更；本輪聚焦驗證對應 Scenario 的現有核心行為。

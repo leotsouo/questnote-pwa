@@ -13,7 +13,7 @@
 
 ## 驗證
 
-254 項 Node 測試與召喚邏輯斷言、GitHub CI、12 項原生產物驗收、11 個親密度完整瀏覽器情境通過。親密度瀏覽器驗收涵蓋三種主題、三種視窗、兩種字體、備份還原、雙視窗防重複領獎及原生 SW 下離線故事／約定／領獎。正式 417 個 staged Git blobs 全數符合產物雜湊；24 個正式 HTTPS 檔案（含全部變更檔案）符合 pinned artifact。[HTTPS 記錄](live-hashes.json)、[產物驗證](verified-artifacts.json)、[原生瀏覽器結果](artifact-browser.json)、[回歸測試](tests.log)、[親密度驗收](../production-acceptance/browser-results.json)。
+254 項 Node 測試與召喚邏輯斷言、GitHub CI、12 項原生產物驗收、11 個親密度完整瀏覽器情境通過。親密度瀏覽器驗收涵蓋三種主題、三種視窗、兩種字體、備份還原、雙視窗防重複領獎及原生 SW 下離線故事／約定／領獎。正式 417 個 staged Git blobs 全數符合產物雜湊；24 個正式 HTTPS 檔案（含全部變更檔案）符合 pinned artifact。[HTTPS 記錄](live-hashes.json)、[產物驗證](verified-artifacts.json)、[原生瀏覽器結果](artifact-browser.json)、回歸測試（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/production-release/tests.log`）、[親密度驗收](../production-acceptance/browser-results.json)。
 
 完整親密度套件第一次在建立原生 artifact 情境時，因相同 artifact ID 的不同輸入模式留下不同 manifest metadata 而被不可變目錄檢查拒絕；未改寫或刪除產物。第二次使用獨立驗收輸出目錄，11 情境全部通過。驗收產物全部 sourceFiles 與正式 pinned artifact 相同；正式 artifact 另直接通過 12 項原生驗收。
 
@@ -21,4 +21,4 @@
 
 正式站 HTTPS 已為 V3.5.1；既有 in-app browser 的正式 origin 仍由 V3.4.32 快取控制，已偵測 verified waiting 更新。按更新時，正常保護機制提示另一個 QuestNote 視窗仍開啟；未強制啟用 SW、未清除 IndexedDB、未關閉使用者分頁。請關閉其他正式 QuestNote 視窗，再到「更多 → 更新並重新載入」。裝置已安裝 App 的實際套用狀態仍由各裝置決定。
 
-![正式 origin 的已驗證待套用更新](update-waiting.png)
+正式 origin 的已驗證待套用更新（圖片已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/bond-v351/production-release/update-waiting.png`）

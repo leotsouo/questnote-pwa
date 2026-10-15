@@ -49,7 +49,7 @@
 3. 圖鑑：切霜誓峽灣系列，檢查圖片、詳情與長文捲動。
 4. 兩種主題：更多 → 設定，切换深色／甜美；也可切換減少動畫。
 
-截圖：[任務 default](task-default-390.jpg)、[任務 sweet](task-sweet-390.jpg)、[召喚 default](summon-default-390.jpg)、[召喚 sweet](summon-sweet-390.jpg)、[sweet 十連結果](glacier-summary-sweet-390.jpg)、[default 單抽結果](glacier-single-default-390.jpg)、[圖鑑 default](collection-default-390.jpg)、[圖鑑 sweet](collection-sweet-390.jpg)、[modal default](pet-modal-default-390.jpg)、[modal sweet](pet-modal-sweet-390.jpg)、[桌面召喚](summon-desktop.jpg)。
+截圖：任務 default（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/task-default-390.jpg`）、任務 sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/task-sweet-390.jpg`）、召喚 default（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/summon-default-390.jpg`）、召喚 sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/summon-sweet-390.jpg`）、sweet 十連結果（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/glacier-summary-sweet-390.jpg`）、default 單抽結果（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/glacier-single-default-390.jpg`）、圖鑑 default（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/collection-default-390.jpg`）、圖鑑 sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/collection-sweet-390.jpg`）、modal default（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/pet-modal-default-390.jpg`）、modal sweet（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/pet-modal-sweet-390.jpg`）、桌面召喚（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/release-v3.4.8/summon-desktop.jpg`）。
 
 ## 核准後才執行的發布順序
 

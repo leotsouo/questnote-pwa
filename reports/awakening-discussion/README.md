@@ -4,7 +4,7 @@
 
 - 使用者選擇：保留現在第三版卡圖，完成覺醒後開放雙形態與專屬演出。
 - [独立系統草案](../../docs/pet-awakening-system.md)：親密度、試煉、素材候選、三 UR 故事例子、既有進度與存檔要求；規則仍待討論。
-- [圖像比較頁](review.html)：三 UR 前版與正式第三版並排，明示第三版現在就已公開；可切換只看正式圖。頁面只操作展示，沒有 App 匯入或存檔寫入。
+- 圖像比較頁（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/awakening-discussion/review.html`）：三 UR 前版與正式第三版並排，明示第三版現在就已公開；可切換只看正式圖。頁面只操作展示，沒有 App 匯入或存檔寫入。
 - [圖片清單](art-inventory.json)：20組不同圖片的 SHA-256、來源和新舊角色 ID。前版圖是 v2 封存候選；新的初遇用途需另外選圖，不能冒用正式卡圖的認可。
 
 啟動：`node devtools/awakening-discussion-server.mjs`。伺服器只開 loopback、GET及清單內文件／圖片，啟動時輸出實際 URL。本輪頁面 http://127.0.0.1:63478/reports/awakening-discussion/review.html 已在 Codex 開啟。

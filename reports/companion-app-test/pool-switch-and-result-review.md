@@ -45,6 +45,6 @@
 - 版本與快取同步至 V3.5.17；既有 precache 已包含共用時間模組，本次沒有新 runtime 檔案。
 - 短切換、結果插畫比例與驗證規格已更新於 `docs/new-card-pool-sop.md`。沒有把工程測試回填為人工驗收。
 
-截圖：[白邊修正前](screenshots/result-full-bleed-before-desktop.png)、[桌機修正後](screenshots/result-full-bleed-after-desktop.png)、[393px 結果](screenshots/result-full-bleed-after-393.png)、[320px／200%](screenshots/result-full-bleed-320-200.png)、[十連結果](screenshots/result-full-bleed-ten-393.png)、[蜜光糖庭短切換](screenshots/pool-switch-sugar-393.png)、[自動返回](screenshots/pool-switch-sugar-return-393.png)。
+截圖：白邊修正前（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/result-full-bleed-before-desktop.png`）、桌機修正後（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/result-full-bleed-after-desktop.png`）、393px 結果（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/result-full-bleed-after-393.png`）、320px／200%（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/result-full-bleed-320-200.png`）、十連結果（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/result-full-bleed-ten-393.png`）、蜜光糖庭短切換（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/pool-switch-sugar-393.png`）、自動返回（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/companion-app-test/screenshots/pool-switch-sugar-return-393.png`）。
 
 本機試演未啟用 service worker，不能代表正式更新／離線驗收。iPhone VoiceOver、原生字級、觸覺與裝置效能仍須實機驗證。

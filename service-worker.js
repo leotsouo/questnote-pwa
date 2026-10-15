@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.9.11
+ * QuestNote Service Worker — V3.10.1
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3911-add-task-layout';
+const CACHE_NAME = 'questnote-preview-cache-v3101-ui-view-modules';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -53,7 +53,36 @@ const PRECACHE_URLS = [
   'src/seniorModeController.js',
   'index.html',
   'manifest.webmanifest',
-  'src/styles.css',
+  'src/styles/01-foundation.css',
+  'src/styles/02-core-views.css',
+  'src/styles/03-tasks-habits-workshop.css',
+  'src/styles/04-toasts-forms-themes.css',
+  'src/styles/05-daily-blessing-wheel.css',
+  'src/styles/06-rates-summon-reveal.css',
+  'src/styles/07-quests.css',
+  'src/styles/08-bond.css',
+  'src/styles/09-exploration-expedition.css',
+  'src/styles/10-typography-collection.css',
+  'src/styles/11-mailbox-handbook.css',
+  'src/styles/12-themed-pools.css',
+  'src/styles/13-feedback-workshop-camp.css',
+  'src/styleParts.js',
+  'src/uiSourceParts.js',
+  'src/ui/dailyWheelView.js',
+  'src/ui/handbookView.js',
+  'src/ui/mailboxView.js',
+  'src/ui/achievementsView.js',
+  'src/ui/settingsView.js',
+  'src/ui/expeditionView.js',
+  'src/ui/habitsView.js',
+  'src/ui/workshopView.js',
+  'src/ui/collectionView.js',
+  'src/ui/gachaView.js',
+  'src/ui/dailyBlessingView.js',
+  'src/ui/companionView.js',
+  'src/ui/taskFormView.js',
+  'src/ui/taskListView.js',
+  'src/ui/modalHost.js',
   'src/ui-polish.css',
   'src/rewardClaimService.js',
   'src/summon-polish.css',

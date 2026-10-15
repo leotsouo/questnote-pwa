@@ -33,7 +33,7 @@
 
 ## 截圖與資料邊界
 
-[完整 gallery](gallery.html)；[首頁 Before / After](home-before-after.jpg)；[12 張 Before](before-matrix.jpg)；[12 張 After](after-matrix.jpg)；[可操作並排預覽截圖](interactive-comparison.jpg)。另保存 18 張次要頁、三套 320px 首頁、三套任務彈窗與品牌測試。
+完整 gallery（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/theme-round-two/gallery.html`）；首頁 Before / After（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/theme-round-two/home-before-after.jpg`）；12 張 Before（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/theme-round-two/before-matrix.jpg`）；12 張 After（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/theme-round-two/after-matrix.jpg`）；可操作並排預覽截圖（檔案已移出 repo，見 tag pre-cleanup-2026-10-14：`reports/theme-round-two/interactive-comparison.jpg`）。另保存 18 張次要頁、三套 320px 首頁、三套任務彈窗與品牌測試。
 
 主要矩陣使用同一份隔離驗證存檔：真實 `pet_n01` 灰影幼狼、9/72 收藏、親密 Lv.1 / 0 EXP、0/2 完成、0 星塵、0 能量。兩件任務明確標示「UI 測試」，收益由原服務計算；沒有填入假 KPI 或假玩家數據。彈窗截圖在完成回歸之後保存，該測試存檔為 80 星塵／3 能量／20 EXP；不得把它當成主矩陣的初始存檔。
 
