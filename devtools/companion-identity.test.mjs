@@ -23,7 +23,8 @@ test('every public catalog identity preserves its canonical name before its epit
 });
 
 test('pool preview respects real eligibility including the existing locked expansion', () => {
-  const expected = { standard:56, eternal_slumber_bloom:12, frost_oath_fjord:12, honeylight_sugar_garden_v2:12, swordwild_shanhe_v3:20, lionheart_inverse_oath:12 };
+  const expected = { standard:56, eternal_slumber_bloom:12, frost_oath_fjord:12, honeylight_sugar_garden_v2:12, swordwild_shanhe_v3:20, lionheart_inverse_oath:12,
+    sunward_letters:12, darkcrown_court_release:20, aurora_fairy_feast:10 };
   for (const pool of pools) assert.equal(poolCandidates(pets,pool).length,expected[pool.id]);
   const bloom = pools.find((pool) => pool.id === 'eternal_slumber_bloom');
   const locked = poolCandidates(pets,bloom);
