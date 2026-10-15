@@ -29,10 +29,10 @@ test('every pool has ten actual candidates, ordered SSR+ and same-batch duplicat
   }
 });
 
-test('all twenty awakening previews have distinct existing before and after artwork', async () => {
+test('all thirty-one awakening previews have distinct existing before and after artwork', async () => {
   const { pets: entries } = JSON.parse(await fs.readFile(new URL('../data/pet-awakening.json',import.meta.url)));
   const { pets } = JSON.parse(await fs.readFile(new URL('../data/pets.json',import.meta.url)));
-  assert.equal(entries.length,20);
+  assert.equal(entries.length,31);
   for(const entry of entries) {
     const pet = pets.find((p) => p.id === entry.petId);
     const after = entry.awakenedImage?.stage || pet.imageVariants.stage;

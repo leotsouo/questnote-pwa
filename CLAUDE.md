@@ -9,7 +9,7 @@ QuestNote 是純靜態的瀏覽器 PWA（任務、習慣、寵物收藏、召喚
 - **工作區：** 只有這個資料夾。不建立 git worktree（包含 subagent 的 worktree isolation），不另外 clone 來開發。
 - **分支：** 長期只有 `main`（正式來源）與 `dev`（開發中）。所有工作直接 commit 到 `dev`；不建立功能分支。`main` 只透過「持續整合：dev → main」PR 合併。合併後 `dev` fast-forward 跟上 `main` 繼續使用，不刪除、不重建。
 - **PR：** 同一時間只有一個開啟的 `dev → main` PR，它是唯一的驗收入口。每完成一段工作就更新 PR 說明（文字結論與數字）。PR 合併後，下一輪的第一個 commit 推上去時，用相同標題開下一個。
-- **預覽：** 永遠是 <https://leotsouo.github.io/questnote-pwa-preview/>。執行 `npm run preview:deploy`（在乾淨的 `dev` 上）會組裝 preview profile 的 artifact、驗證、覆蓋同一個網址並用 HTTPS 逐檔讀回。不建立版本子目錄，不開其他預覽站。
+- **預覽：** 永遠是 <https://leotsouo.github.io/questnote-pwa-preview/>。執行 `npm run preview:deploy`（在乾淨的 `dev` 上）會組裝 preview profile 的 artifact、驗證、覆蓋同一個網址並用 HTTPS 逐檔讀回。**更新預覽站之前，`dev` 一定要先推上 GitHub**（本機 `dev` 等於 `origin/dev`），讓預覽站上的版本永遠對得到 PR 上看得到、CI 跑過的 commit。不建立版本子目錄，不開其他預覽站。
 - **審查頁：** 新卡池的互動動畫檢視頁等審查頁面，放在預覽站的固定路徑 `…/questnote-pwa-preview/reports/review/`，用 `npm run preview:deploy -- --review-dir <資料夾>` 覆蓋。（選 `reports/` 是因為 service worker 不攔截這個路徑；其他路徑的導覽會被導回 App。）
 - **本機：** `npm run serve` 固定開在 <http://127.0.0.1:8000/>。只用 8000 埠，用完關掉。不要用 `file://`。
 - **驗收與發布：** 使用者在 PR 上說「可以」或「可以發布」，代表一次到位：合併 PR、組裝並發布正式 artifact 到 `gh-pages`、讀回正式 HTTPS 驗證、`dev` 跟上 `main`。照 [docs/release-flow.md](docs/release-flow.md) 執行 `npm run release:production -- --confirm 可以發布`。沒有這句明確同意就等待；不自動推 `main`、不自動發布、不部署後端。
