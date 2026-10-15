@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.10.2
+ * QuestNote Service Worker — V3.10.3
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3102-detail-image-viewer';
+const CACHE_NAME = 'questnote-preview-cache-v3103-health-check';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -512,6 +512,9 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== base.origin || !url.pathname.startsWith(base.pathname)) return;
   const relativePath = url.pathname.slice(base.pathname.length);
   if (/^(devtools|scripts|content|reports|docs)\//.test(relativePath)) return;
+  // The worker script is never precached; the App health check reads it from the network,
+  // as the browser's own update check does.
+  if (relativePath === 'service-worker.js') return;
 
   if (isGlobalMailboxRequest(url)) {
     event.respondWith(networkFirstMailbox(request));
