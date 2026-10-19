@@ -57,6 +57,18 @@ test('the record is inserted once, at the top, in the file own line-ending style
   assert.equal(hasReleaseEntry('## V3.10.1 已發布\n', '3.10.1'), true);
 });
 
+test('a tools-only release under an unchanged version is recorded once per PR', () => {
+  const recorded = '# V3.12.0 已發布 — 2026-10-19\n\n[PR #110](https://x/110) 經使用者「可以發布」。\n';
+  const entry = '# V3.12.0 已發布 — 2026-10-19\n\n[PR #111](https://x/111) 經使用者「可以發布」。\n';
+  assert.equal(hasReleaseEntry(recorded, '3.12.0', 111), false);
+  assert.equal(hasReleaseEntry(recorded, '3.12.0', 110), true);
+  assert.equal(hasReleaseEntry(recorded, '3.12.0', 11), false, 'PR #11 is not PR #110');
+  const first = insertReleaseEntry(recorded, entry, '3.12.0', 111);
+  assert.equal(first.inserted, true);
+  assert.ok(first.markdown.startsWith(entry));
+  assert.equal(insertReleaseEntry(first.markdown, entry, '3.12.0', 111).inserted, false);
+});
+
 test('the next PR body points at the release and carries the project signature', () => {
   const body = buildNextPullRequestBody({ version: '3.10.3', pullRequest: { number: 108 } });
   assert.match(body, /V3\.10\.3 已正式發布（見 PR #108/);

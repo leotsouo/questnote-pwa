@@ -97,8 +97,9 @@ async function publishFromMergedMain(pr) {
     approval: confirmation, resumedAfterMerge: resume || undefined, sourceCommit, artifactId: artifact.artifactId,
     manifestSha256: artifact.manifestSha256, deployCommit, ...live, verifiedAt: new Date().toISOString(),
     devFollowsMain: git(PROJECT_ROOT, ['rev-parse', 'HEAD']) };
-  summary.evidence = await writeEvidence(`release-v${artifact.version}.json`, summary);
-  return { summary, evidenceName: `release-v${artifact.version}.json` };
+  const evidenceName = `release-v${artifact.version}-pr${pr.number}.json`;
+  summary.evidence = await writeEvidence(evidenceName, summary);
+  return { summary, evidenceName };
 }
 
 /**
@@ -117,7 +118,7 @@ async function wrapUp(pr, { summary, evidenceName }) {
     resumed: resume, evidenceName,
   });
   const file = path.join(PROJECT_ROOT, FINAL_INTEGRATION);
-  const { markdown, inserted } = insertReleaseEntry(await fs.readFile(file, 'utf8'), entry, summary.version);
+  const { markdown, inserted } = insertReleaseEntry(await fs.readFile(file, 'utf8'), entry, summary.version, pr.number);
   if (inserted) {
     await fs.writeFile(file, markdown);
     git(PROJECT_ROOT, ['add', FINAL_INTEGRATION]);
@@ -165,7 +166,7 @@ try {
           mergeCommit: source.mergeCommit?.oid || '(merge commit)', artifactId: artifact.artifactId,
           deployCommit: '(gh-pages commit)', verifiedFiles: report.files,
           summary: extractSummary(source.body, git(PROJECT_ROOT, ['log', '--no-merges', '--format=%s', 'origin/main..HEAD'])
-            .split('\n').filter(Boolean)), evidenceName: `release-v${artifact.version}.json` });
+            .split('\n').filter(Boolean)), evidenceName: `release-v${artifact.version}-pr${source.number}.json` });
         report.recordPreviewSource = `PR #${source.number} @ ${head.slice(0, 7)}`;
       }
     } catch (error) {
