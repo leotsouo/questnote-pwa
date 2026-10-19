@@ -10,7 +10,7 @@
 
 食物、偏好、材料、探險 baseline 和四個相關 runtime 檔案納入 baseline hashes；`ecosystem.json` 納入 content approval。缺漏或未完成時不能 approve/stage。新模板、tags、專長或地區 runtime 支援先完成，再 init 鎖定 baseline。新的標準池僅一種食物／至多一個新地區；較大規模先另行擴充契約，不繞過限制。
 
-新增地區必須依 [SOP 地區圖片要求](new-card-pool-sop.md#新增探險地區的圖片是必交項目) 完成生成插畫與雙畫面驗收。先在 reviewed source 放入 `assets/expeditions/<areaId>.webp`，不是將未受支援的非寵物資源塞進 candidate。Assembler 在合併有效 companion catalogs 後驗證所有地區圖片；缺圖、無法完整解碼、尺寸／比例錯誤均拒絕組裝。執行 `npm run images:check` 核對來源 precache；地區圖片隨 sourceFiles 及 artifact files hash 固定，並進入發布後的 HTTPS／离線驗證。產圖紀錄與審圖證據保存於被 ignore 的 `.dev-backups/evidence/`，文字結論寫進 PR 與 `reports/` 的 markdown 摘要。
+新增地區必須依 [SOP 地區圖片要求](card-pool-spec.md#新增探險地區的圖片是必交項目) 完成生成插畫與雙畫面驗收。先在 reviewed source 放入 `assets/expeditions/<areaId>.webp`，不是將未受支援的非寵物資源塞進 candidate。Assembler 在合併有效 companion catalogs 後驗證所有地區圖片；缺圖、無法完整解碼、尺寸／比例錯誤均拒絕組裝。執行 `npm run images:check` 核對來源 precache；地區圖片隨 sourceFiles 及 artifact files hash 固定，並進入發布後的 HTTPS／离線驗證。產圖紀錄與審圖證據保存於被 ignore 的 `.dev-backups/evidence/`，文字結論寫進 PR 與 `reports/` 的 markdown 摘要。
 
 產圖前優先盤點已安裝、適用的外掛插件，確認不额外計費再使用；不能確認費用時不呼叫。每隻 `prompts.json` 的 `provenance` 必須含實際 `tool`、`noExtraCost: true`、`costBasis`，其他生成資訊按實際可取得內容記錄。
 
@@ -76,6 +76,17 @@ node scripts/card-pool.mjs init rain_lanterns --brief brief-draft.json
 node scripts/card-pool.mjs status rain_lanterns
 ```
 
+日常流程另有四個便利指令，都不放寬任何閘門：
+
+```text
+node scripts/card-pool.mjs author rain_lanterns [--dry-run]      # authoring.json → pets / pets-lore / pool / ecosystem / prompts
+node scripts/card-pool.mjs approve-all rain_lanterns --reviewer <name> [--ack-warnings] [--through <stage>]
+node scripts/card-pool.mjs codex-handoff rain_lanterns           # 產生 CODEX-IMAGES.md 給 Codex 產圖
+node scripts/card-pool.mjs review-page rain_lanterns [--out <dir>]  # 通用動畫檢視頁資料夾
+```
+
+`author` 是確定性的（`scripts/lib/poolAuthoring.mjs`），模板的未知佔位符會報錯，提示詞未變時保留既有 provenance。`approve-all`（`scripts/lib/poolWorkflow.mjs`）以 `reviewerType: ai` 逐階段呼叫 `approvePipelineStage`，在缺檔、驗證錯誤、未確認 warning 或 `human` 模式的 images 停下。這些模組不在 tool fingerprint 內，新增或修改它們不會讓既有 receipts 失效。
+
 `init` 只建立 `content/pet-series/rain_lanterns/`，其中有 `AI-HANDOFF.md` 和各階段 JSON scaffold。相同 brief 重跑回傳現有狀態，不重配 ID、不覆寫已核准內容。不同 brief 用同一 workspace ID 呼叫 init 會被拒絕。核心 roster 數量與 identity 若需改變，須另建新 workspace／新 ID；既有 reservations 保留，不回收給其他草稿。
 
 按以下順序審核；每次修改工作副本後先重新 `status`，閱讀該階段 `files` 和 `outputHash`，並檢查實際檔案內容：
@@ -86,7 +97,7 @@ node scripts/card-pool.mjs status rain_lanterns
 4. **prompts**：完成 `prompts.json`，每個 pet ID 對應 `{ "prompt": "...", "negativePrompt": "...", "provenance": "..." }`。provenance 可記錄使用的生成工具、模型、版本、seed 或 reference 說明；可用的生成資訊應保留，不猜測未提供資訊。
 5. **images**：放入 `images/<petId>.png`，必須可完整解碼、正方形、至少 512 px、每張不超過 5 MB。超過 2048 px 或 2 MB 會要求審核 warning。依 brief 模式由人工或 AI 檢查外觀、角色識別、實際卡片縮圖、裁切、透明度與 prompt／Lore 一致性。
 
-美術依 [SOP：故事如何成為卡圖](new-card-pool-sop.md#故事如何成為卡圖) 執行：每隻 `plan.design` 明確寫出辨識特徵、故事動作與可見結果，content 同步名稱／Lore／描述／入場短句，prompts 保留這些具體要求。先在實際縮圖檢查關鍵角色再延伸全池，逐張檢查故事是否可見，依 brief 模式留審圖紀錄。文字與圖片修訂依原 hash 失效規則處理。
+美術依 [規格：故事如何成為卡圖](card-pool-spec.md#故事如何成為卡圖) 執行：每隻 `plan.design` 明確寫出辨識特徵、故事動作與可見結果，content 同步名稱／Lore／描述／入場短句，prompts 保留這些具體要求。先在實際縮圖檢查關鍵角色再延伸全池，逐張檢查故事是否可見，依 brief 模式留審圖紀錄。文字與圖片修訂依原 hash 失效規則處理。
 
 核准命令必須帶入當前顯示的完整 SHA-256；不是從聊天中猜測或沿用舊 hash：
 
@@ -129,7 +140,7 @@ assets/pets/*.png     當前核准的新原圖
 assets/pets/variants/*.webp
 ```
 
-`candidate.files` 精確列出所有其他檔案的 SHA-256，不含自己的 hash；M3A assembler 另封存 candidate.json。文字 snapshots 在 approvals.json 以 base64 保存原始 bytes（包括 prompts 和 provenance），歷次圖片 snapshot 用 hash/index 指向工作區保留的 revision；當前圖片原文已在 candidate assets。正式發布後先打 tag 保留**整個 authoring workspace**（連同所有舊圖片 revision），再依 [SOP：發布完成後清理草稿](new-card-pool-sop.md#發布完成後清理草稿) 移除不再被驗證工具讀取的 staging、approvals 與候選圖。
+`candidate.files` 精確列出所有其他檔案的 SHA-256，不含自己的 hash；M3A assembler 另封存 candidate.json。文字 snapshots 在 approvals.json 以 base64 保存原始 bytes（包括 prompts 和 provenance），歷次圖片 snapshot 用 hash/index 指向工作區保留的 revision；當前圖片原文已在 candidate assets。正式發布後先打 tag 保留**整個 authoring workspace**（連同所有舊圖片 revision），再依 [規格：發布完成後清理草稿](card-pool-spec.md#發布完成後清理草稿) 移除不再被驗證工具讀取的 staging、approvals 與候選圖。
 
 衍生圖沿用既有 384 card／960 stage 設定，WebP quality 82、effort 5、不放大原圖。512 px 原圖產生 384 card 與 512 stage；stage 檔名仍包含目標上限 960。variant 名稱包含原 PNG hash，candidate manifest 包含实际 WebP hash 與 encoder 版本指紋。
 
@@ -165,7 +176,7 @@ v1 **不自動搶占 stale lock，也不保證任何硬中斷後可無人值守�
 
 ## 驗證
 
-卡池入場文字、SSR／UR 時長、下一位交接及十連略過的共用標準見 `docs/new-card-pool-sop.md`「卡池畫面與動畫的共同驗收規格」。覺醒另依 `docs/pet-awakening-implementation.md`，只在新池影響相關功能時回歸。`checks.animation.evidence` 應連到實際量測、互動紀錄與所屬環境；來源記憶體試演不能充當 pinned artifact 或人工最終驗收。最新來源試演另執行 `node --test devtools/companion-ceremony.test.mjs`，但 Node checks 不代替逐池動畫觀察與真機項目。
+卡池入場文字、SSR／UR 時長、下一位交接及十連略過的共用標準見 `docs/card-pool-spec.md`「卡池畫面與動畫的共同驗收規格」。覺醒另依 `docs/pet-awakening-implementation.md`，只在新池影響相關功能時回歸。`checks.animation.evidence` 應連到實際量測、互動紀錄與所屬環境；來源記憶體試演不能充當 pinned artifact 或人工最終驗收。最新來源試演另執行 `node --test devtools/companion-ceremony.test.mjs`，但 Node checks 不代替逐池動畫觀察與真機項目。
 
 ```text
 node --test devtools/card-pool-pipeline.test.mjs

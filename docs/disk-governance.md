@@ -6,7 +6,7 @@
 
 - **一個工作區。** 不建立 git worktree，不另外 clone 來開發。`node_modules/` 只有這一份。
 - **證據不進 git。** 截圖、瀏覽器錄影、暫存 HTML 審查頁、log 放在被 ignore 的 `.dev-backups/evidence/`。`reports/` 只放精簡的 markdown 摘要（必要時加小型 JSON）；`.gitignore` 會擋下 `reports/` 裡的圖片、影片、HTML 與 log。
-- **卡池草稿用完就清。** 創作期間的 staging、approvals、候選圖可以留在 `dev`；發布完成後只保留驗證工具真正會讀的檔案，其餘移除，歷史由 git tag 保留。細節見 [new-card-pool-sop.md](new-card-pool-sop.md)。
+- **卡池草稿用完就清。** 創作期間的 staging、approvals、候選圖可以留在 `dev`；發布完成後只保留驗證工具真正會讀的檔案，其餘移除，歷史由 git tag 保留。細節見 [card-pool-spec.md](card-pool-spec.md#發布完成後清理草稿)。
 - **組裝產物放在 repo 外。** `prepare-release`、`preview:deploy`、`release:production` 都把 artifact 寫到系統暫存目錄的 `questnote-releases/`，可以隨時刪除。
 - **部署用的 clone** 在 `.dev-backups/preview-repo/` 與 `.dev-backups/pages-repo/`（已 ignore）。它們只是快取，刪掉後下次部署會重新 clone。
 

@@ -54,14 +54,15 @@ QuestNote 是純靜態的瀏覽器 PWA（任務、習慣、寵物收藏、召喚
 
 ## 新卡池
 
-每次新卡池的訪談或企劃之前，先同步並核對最新的正式 HTTPS 部署、artifact、來源 revision 與 `origin/main`；來源最新不等於正式版最新。先讀 [docs/new-card-pool-sop.md](docs/new-card-pool-sop.md)，再讀技術細節 [docs/card-pool-pipeline.md](docs/card-pool-pipeline.md)。
+每次新卡池的訪談或企劃之前，先同步並核對最新的正式 HTTPS 部署、artifact、來源 revision 與 `origin/main`；來源最新不等於正式版最新。先讀一頁流程 [docs/new-card-pool-sop.md](docs/new-card-pool-sop.md)，標準在 [docs/card-pool-spec.md](docs/card-pool-spec.md)，CLI 契約在 [docs/card-pool-pipeline.md](docs/card-pool-pipeline.md)。
 
 - **故事到卡圖：** 每個稀有度都要有可辨識的特徵、有意義的故事動作與可見的結果，記錄在 `plan.design` 與提示詞中，名稱／Lore／說明文字對齊，並在實際卡片尺寸檢查圖片。借用某種生物的氣質不代表混種外形；分清來源事實與原創改編。
 - **探險地區：** 每個新地區都需要生成的地區插畫、來源紀錄與圖片 hash，並在桌面／手機實際檢查地圖小卡與派遣視窗的裁切、載入與離線。佔位 SVG 不算完成。`images:check` 與 artifact 組裝會拒絕缺漏、無效或尺寸不足的地區 WebP。新池的實際背景要在每個 App 主題下與既有卡池並排比較。
-- **審核模式：** 固定三題訪談後，企劃／內容／提示詞由 AI 審查。`brief.imageReviewMode` 設為 `human` 或 `ai-self`（舊 brief 缺欄位視為 human）。兩種模式都需要使用者對確切整包（同一個 package hash）做最終驗收並明確說「可以發布」，才能合併與發布。
+- **選主題：** AI 提 3 個主題方案讓使用者選一個，其餘由 AI 決定。內容用一份 `authoring.json` 經 `card-pool author` 產生，不再為每池寫一次性腳本。
+- **審核模式：** 企劃／內容／提示詞由 AI 審查（`card-pool approve-all` 依序用確切 hash 核准）。`brief.imageReviewMode` 設為 `human` 或 `ai-self`（舊 brief 缺欄位視為 human）。兩種模式都需要使用者對確切整包（同一個 package hash）做最終驗收並明確說「可以發布」，才能合併與發布。
 - **預設內容：** 12 隻（可調整）、一種必備的新食物、每隻寵物的送禮偏好與派遣專長、明確的新增／沿用地區評估。
-- **產圖費用：** 先盤點已安裝且適用的圖片工具，只用確認不額外計費的；費用不明或付費的服務一律不呼叫。
-- **動畫檢視頁：** 最終驗收前，用 pinned artifact 的實際模組、樣式與 presentation 建立並測試互動動畫檢視頁，放在預覽站固定的審查路徑。包含完整登場、切換卡池的完整入場、單抽／十連、每個 UR 與有演出的 SSR、減少動態與重播；使用固定展示結果，不呼叫抽卡、錢包或收藏 API。human 模式才開給使用者看；ai-self 模式由 AI 內部審查。覺醒依獨立規格，只有受影響時才做卡池回歸。
+- **產圖費用：** 先盤點已安裝且適用的圖片工具，只用確認不額外計費的；費用不明或付費的服務一律不呼叫。卡圖與地區插畫目前由 Codex 內建產圖產生（`card-pool codex-handoff` 產生交接檔）。
+- **動畫檢視頁：** 最終驗收前，用通用檢視頁（`card-pool review-page <poolId>`，載入 pinned artifact 的實際模組、樣式與 presentation）並執行它的檢查，放在預覽站固定的審查路徑。包含完整登場、切換卡池的完整入場、單抽／十連、每個 UR 與有演出的 SSR、減少動態與重播；使用固定展示結果，不呼叫抽卡、錢包或收藏 API。human 模式才開給使用者看；ai-self 模式由 AI 內部審查。覺醒依獨立規格，只有受影響時才做卡池回歸。
 
 ## 程式風格
 

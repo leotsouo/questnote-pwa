@@ -1,3 +1,9 @@
+# V3.12.0 已發布 — 2026-10-19
+
+[PR #110](https://github.com/leotsouo/questnote-pwa/pull/110) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `ae1b40fbe384779a7f00d39116672fcee261eafb`。長輩模式改成一頁新增任務，並完全隱藏遊戲層（召喚、圖鑑、探險、獎勵數字），一般模式不變。正式 artifact `d5651a092b551f4c9be964169ee6687b3e0fbeeb333ed6189bc19497600f3349`，gh-pages `da905a3b1f8d97b752043350214915172c41a740`；868 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
+
+證據：`.dev-backups/evidence/release-v3.12.0.json`。
+
 # V3.11.0 已發布 — 2026-10-19
 
 [PR #109](https://github.com/leotsouo/questnote-pwa/pull/109) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `5d080a68b55344beb2461f5edad548bb469fc475`。新增「每週回顧」頁（「更多」裡的入口），可看本週或上週完成的任務、做了幾天習慣與簽到天數；長輩模式只顯示兩個大數字；每週一首頁會出現一張「上週回顧」小卡。正式 artifact `f9e22d924da7df9cb36fe1de3d41af549038cc710f29ce81b161ec8ba2f87f26`，gh-pages `23941a474409ca7853babc8e6e345bc7810e7995`；868 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
