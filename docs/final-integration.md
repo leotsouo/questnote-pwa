@@ -1,3 +1,7 @@
+# V3.10.2 寵物詳情原圖檢視已發布 — 2026-10-15
+
+[PR #107](https://github.com/leotsouo/questnote-pwa/pull/107) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `4be32e1cebe3e0e3ad4977be144c7b9ae1ff39e9`。修正寵物詳情主圖的「點擊圖片查看原圖」原本沒有綁定事件的問題，也包含發布工具的換行修正（`11c84aa`）。正式 artifact `72951e912dcfc744575837b3d1dda80856d74090af30e984ac0b126073690db1`，gh-pages `db206fe00f648ef600926e8da964895e0baf7e7c`；865 個 Git blob 與 865 個正式 HTTPS 檔案逐檔相符，`dev` 已 fast-forward 到 `main`。這是 `release:production` 第一次從頭到尾一次跑完。證據：`.dev-backups/evidence/release-v3.10.2.json`。
+
 # V3.10.1 畫面模組拆分已發布 — 2026-10-15
 
 [PR #106](https://github.com/leotsouo/questnote-pwa/pull/106) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `5526319e56207538bbc9966f9abdf1a3ad9967b5`。這次 `src/ui.js` 從 9,186 行拆成 1,945 行，各畫面移到 `src/ui/` 的 15 個模組，不刻意改動畫面或存檔格式；同一個 PR 也包含前一輪的流程統一與 repo 瘦身。正式 artifact `6a1fc3078ec7a65fd2a6fb9fa8c8ee43294c5c6fdfaf51e66ca4696c778309d1`，gh-pages `ed0d98e362047a295b9623e6248f91ecf8a4b86a`；865 個 Git blob 與 865 個正式 HTTPS 檔案逐檔相符，`dev` 已 fast-forward 到 `main`。
