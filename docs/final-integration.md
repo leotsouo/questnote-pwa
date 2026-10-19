@@ -1,3 +1,9 @@
+# V3.12.1 已發布 — 2026-10-20
+
+[PR #112](https://github.com/leotsouo/questnote-pwa/pull/112) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `906cdde7ad83a4853090d0f348b2cdbd6d5b49f7`。修正「一鍵領取」從 V3.10.1 起一按就跳出「Can't find variable: getMailboxCatalogs」而領不到獎勵的問題（V3.12.1）。正式 artifact `1c98d04cae957f683d64772a199bddc44448910c1cc801b0d65456926714d7cb`，gh-pages `ace1957bca5147b033d88a64ae4376abce9c6a24`；868 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
+
+證據：`.dev-backups/evidence/release-v3.12.1-pr112.json`。
+
 # V3.12.0 已發布 — 2026-10-19
 
 [PR #111](https://github.com/leotsouo/questnote-pwa/pull/111) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `bbfc7afe0adee29b273183dc28b1518ca3266ba0`。卡池 SOP 重做：一份 authoring.json 產生全部內容、一鍵 AI 核准、Codex 產圖交接檔、通用動畫檢視頁，SOP 精簡成一頁流程。正式 artifact `a718c535da22ea0b5a640b612727c882d3fe6728868273f50c7adc8449ecc865`，gh-pages `d50b34bc09defef4c98287d3285c9add4d37a957`；868 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
