@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "artifactId": "d5651a092b551f4c9be964169ee6687b3e0fbeeb333ed6189bc19497600f3349",
-  "sourceCommit": "ae1b40fbe384779a7f00d39116672fcee261eafb",
+  "artifactId": "a718c535da22ea0b5a640b612727c882d3fe6728868273f50c7adc8449ecc865",
+  "sourceCommit": "bbfc7afe0adee29b273183dc28b1518ca3266ba0",
   "profile": {
     "schemaVersion": 1,
     "profile": "production",
-    "artifactId": "d5651a092b551f4c9be964169ee6687b3e0fbeeb333ed6189bc19497600f3349",
-    "sourceCommit": "ae1b40fbe384779a7f00d39116672fcee261eafb",
+    "artifactId": "a718c535da22ea0b5a640b612727c882d3fe6728868273f50c7adc8449ecc865",
+    "sourceCommit": "bbfc7afe0adee29b273183dc28b1518ca3266ba0",
     "scopePath": "/questnote-pwa/",
     "runtimeContentSchema": 1,
     "dbName": "QuestNoteDB",
@@ -3662,7 +3662,7 @@
       "bytes": 6060
     },
     "index.html": {
-      "sha256": "795229301b1ad774c9ec576644eb70b54333c203ad91f592152202abc8dc5a2b",
+      "sha256": "0c83e917bbc60998c0ab71f386a48d306bc80144c7a61693af2931edcbaf7e5f",
       "bytes": 67224
     },
     "manifest.webmanifest": {
@@ -3670,7 +3670,7 @@
       "bytes": 831
     },
     "service-worker.js": {
-      "sha256": "840fa61a5f7ee67581594d4ce3c1947147a464dbb4a46ed4a466d225e65ef7ff",
+      "sha256": "256bd054efa4b39fca23c58fa00dd168cf61d35a4ff80bf2a16e987ac8e02366",
       "bytes": 42129
     },
     "src/achievementService.js": {
@@ -4082,7 +4082,7 @@
       "bytes": 4645
     },
     "src/releaseProfile.js": {
-      "sha256": "1de49d2894c3e8af01abba49f52742d426e4bbe5064a8964b6bd510cd838d423",
+      "sha256": "2dfa5ba2b645f764ebd299c7ec7ace0a62d7611bdfe2662e4b781a0f8733bf27",
       "bytes": 622
     },
     "src/reminder-settings.css": {
@@ -4346,7 +4346,7 @@
       "bytes": 680
     },
     "src/version.js": {
-      "sha256": "51836b8971322084ed3769a59f39ce055f8ec5132f0ba2503fa000807ede90a7",
+      "sha256": "604b0f6f0342a213cb350eada65c120ee0c15246234b9a5789bc86a05f38ef09",
       "bytes": 1121
     },
     "src/weekly-review.css": {
