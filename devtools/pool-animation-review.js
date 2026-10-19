@@ -64,11 +64,12 @@ async function loadCatalog({ appRoot, catalog }) {
     if (!response.ok) throw new Error(`無法讀取 ${relative}（${response.status}）`);
     return response.json();
   };
-  if (catalog) return { source: catalog, ...(await getJson(catalog)) };
   const { RELEASE_PROFILE } = await import(`${appRoot}/src/releaseProfile.js`);
-  if (RELEASE_PROFILE?.contentBundleUrl) return { source: RELEASE_PROFILE.contentBundleUrl, ...(await getJson(RELEASE_PROFILE.contentBundleUrl)) };
+  const artifact = RELEASE_PROFILE ? `${RELEASE_PROFILE.profile} artifact ${RELEASE_PROFILE.artifactId} · source ${RELEASE_PROFILE.sourceCommit.slice(0, 7)}` : '本機來源（非 artifact）';
+  if (catalog) return { source: catalog, artifact, ...(await getJson(catalog)) };
+  if (RELEASE_PROFILE?.contentBundleUrl) return { source: RELEASE_PROFILE.contentBundleUrl, artifact, ...(await getJson(RELEASE_PROFILE.contentBundleUrl)) };
   const [petsData, poolsData, loreData] = await Promise.all(['data/pets.json', 'data/pools.json', 'data/pets-lore.json'].map(getJson));
-  return { source: 'data/*.json', petsData, poolsData, loreData };
+  return { source: 'data/*.json', artifact, petsData, poolsData, loreData };
 }
 
 /** Pet image paths are App-root relative; make them work from this page. */
@@ -123,7 +124,7 @@ const presentation = ceremony.ceremonyPresentation(pool);
 
 document.title = `${pool.name}｜動畫檢視`;
 document.getElementById('review-title').textContent = `${pool.name}｜動畫檢視`;
-meta.textContent = `卡池 ${pool.id} · 動畫 ${presentation.animationKey} · ${pets.length} 隻 · 目錄 ${catalog.source} · App 樣式 ${styleCount} 個。使用固定展示結果，不抽卡、不扣星塵、不寫入收藏。`;
+meta.textContent = `卡池 ${pool.id} · 動畫 ${presentation.animationKey} · ${pets.length} 隻 · 目錄 ${catalog.source} · App 樣式 ${styleCount} 個 · ${catalog.artifact}。使用固定展示結果，不抽卡、不扣星塵、不寫入收藏。`;
 
 const reduced = () => document.getElementById('reduce-motion').checked;
 let busy = false;
@@ -277,7 +278,7 @@ async function runChecks() {
   }
   await check('整個檢視頁沒有存取資料庫', async () => { assert(databaseAttempts === 0, `嘗試存取資料庫 ${databaseAttempts} 次`); });
   const passed = cases.filter((item) => item.ok).length;
-  const report = { pool: pool.id, animationKey: presentation.animationKey, passed, failed: cases.length - passed, cases };
+  const report = { pool: pool.id, animationKey: presentation.animationKey, artifact: catalog.artifact, theme: document.body.dataset.theme, passed, failed: cases.length - passed, cases };
   output.textContent = JSON.stringify(report, null, 2);
   document.title = `${report.failed ? 'FAIL' : 'PASS'} — ${pool.name}動畫檢視`;
   globalThis.__poolAnimationReview = report;
