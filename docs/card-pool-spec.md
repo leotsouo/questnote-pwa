@@ -155,7 +155,7 @@ V3.5.21 相容性標準：UI 與交易必須共用 `resolveActivePool`，不能�
 
 最終整包驗收前，必須製作可操作的動畫檢視頁並由 AI 實際檢查。檢視頁放在預覽站的固定審查路徑 `https://leotsouo.github.io/questnote-pwa-preview/reports/review/`，用 `npm run preview:deploy -- --review-dir <資料夾>` 覆蓋；頁面原始檔與截圖、錄影留在 `.dev-backups/evidence/`，不進 git。`human` 模式主動開啟並提供使用者可重開的連結；`ai-self` 模式只保留內部檢視頁與證據，使用者不看動畫。不能只交文字說明、靜態卡圖或自動測試紀錄，也不能要求耗費星塵、抽到稀有角色才能檢視。
 
-使用通用檢視頁 `devtools/pool-animation-review.html`，不再為每池另寫檢視頁：`node scripts/card-pool.mjs review-page <poolId>` 產生資料夾，再 `npm run preview:deploy -- --review-dir <資料夾>` 放到固定審查路徑。它從預覽站載入 App 自己的 `encounterCeremony` 模組、樣式表（依 `index.html` 順序）與 release catalog，提供完整登場、切換卡池入場、單抽、十連（含每隻 UR／SSR 與一個重複結果）、每隻 SSR／UR 角色登場、減少動態、三套 App 主題切換，以及「執行檢查」（一般與減少動態下略過後的清除、結果順序、角色卡圖、水平溢出、不碰資料庫）。本機可用 `devtools/pool-animation-review.html?pool=<poolId>&auto` 先跑。檢查通過不代替觀看實際播放。
+使用通用檢視頁 `devtools/pool-animation-review.html`，不再為每池另寫檢視頁：`node scripts/card-pool.mjs review-page <poolId>` 產生資料夾，再 `npm run preview:deploy -- --review-dir <資料夾>` 放到固定審查路徑。它從預覽站載入 App 自己的 `encounterCeremony` 模組、樣式表（依 `index.html` 順序）與 release catalog，提供完整登場、切換卡池入場、單抽、十連（含每隻 UR／SSR 與一個重複結果）、每隻 SSR／UR 角色登場、減少動態、三套 App 主題切換，以及「執行檢查」（一般與減少動態下略過後的清除、結果順序、角色卡圖、水平溢出、不碰資料庫）。本機可用 `devtools/pool-animation-review.html?pool=<poolId>&auto` 先跑。檢查通過不代替觀看實際播放。頁首顯示實際載入的 artifact ID；曾開過預覽 App 的瀏覽器會讓舊 Service Worker 提供舊版模組，此時頁面顯示警告且檢查不通過，用頁面上的按鈕（只清這個 App scope 與 profile 快取，不碰存檔與正式版快取）重新載入後再看，並確認 artifact ID 等於剛部署的版本。
 
 播放頁直接使用待發布 artifact 的實際動畫模組、樣式、卡圖與 presentation 資料，標示 artifact ID；展示用固定結果與真實抽卡交易分開，不呼叫抽卡、扣款、收藏、保底或補償 API。至少提供完整入場、切換卡池完整登場、單抽、十連、每一隻 UR，以及所有有演出的 SSR；十連包含重複角色以查看揭露順序。提供正常／減少動態切換、重播、略過與繼續操作。
 
