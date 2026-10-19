@@ -1,5 +1,11 @@
 # V3.12.0 已發布 — 2026-10-19
 
+[PR #111](https://github.com/leotsouo/questnote-pwa/pull/111) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `bbfc7afe0adee29b273183dc28b1518ca3266ba0`。卡池 SOP 重做：一份 authoring.json 產生全部內容、一鍵 AI 核准、Codex 產圖交接檔、通用動畫檢視頁，SOP 精簡成一頁流程。正式 artifact `a718c535da22ea0b5a640b612727c882d3fe6728868273f50c7adc8449ecc865`，gh-pages `d50b34bc09defef4c98287d3285c9add4d37a957`；868 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
+
+證據：`.dev-backups/evidence/release-v3.12.0-pr111.json`。
+
+# V3.12.0 已發布 — 2026-10-19
+
 [PR #110](https://github.com/leotsouo/questnote-pwa/pull/110) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `ae1b40fbe384779a7f00d39116672fcee261eafb`。長輩模式改成一頁新增任務，並完全隱藏遊戲層（召喚、圖鑑、探險、獎勵數字），一般模式不變。正式 artifact `d5651a092b551f4c9be964169ee6687b3e0fbeeb333ed6189bc19497600f3349`，gh-pages `da905a3b1f8d97b752043350214915172c41a740`；868 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
 
 證據：`.dev-backups/evidence/release-v3.12.0.json`。

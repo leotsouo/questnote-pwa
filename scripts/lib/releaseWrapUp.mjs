@@ -66,14 +66,19 @@ function detectEol(text) {
   return text.includes('\r\n') ? '\r\n' : '\n';
 }
 
-export function hasReleaseEntry(markdown, version) {
+/**
+ * A release is identified by its PR: a tools-only release can ship under an unchanged App version.
+ * Without a PR number (older callers), fall back to the version heading.
+ */
+export function hasReleaseEntry(markdown, version, prNumber) {
+  if (prNumber != null) return markdown.includes(`[PR #${Number(prNumber)}](`);
   const escaped = String(version).replace(/\./g, '\\.');
   return new RegExp(`^#{1,3} V${escaped}(?![\\d.])`, 'm').test(markdown);
 }
 
-/** Newest entries go first. Returns the same text untouched when this version is already recorded. */
-export function insertReleaseEntry(markdown, entry, version) {
-  if (hasReleaseEntry(markdown, version)) return { markdown, inserted: false };
+/** Newest entries go first. Returns the same text untouched when this release is already recorded. */
+export function insertReleaseEntry(markdown, entry, version, prNumber) {
+  if (hasReleaseEntry(markdown, version, prNumber)) return { markdown, inserted: false };
   const eol = detectEol(markdown);
   const normalized = entry.replace(/\r?\n/g, eol);
   return { markdown: `${normalized}${eol}${markdown}`, inserted: true };
