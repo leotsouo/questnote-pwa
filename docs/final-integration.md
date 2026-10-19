@@ -1,3 +1,9 @@
+# V3.11.0 已發布 — 2026-10-19
+
+[PR #109](https://github.com/leotsouo/questnote-pwa/pull/109) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `5d080a68b55344beb2461f5edad548bb469fc475`。新增「每週回顧」頁（「更多」裡的入口），可看本週或上週完成的任務、做了幾天習慣與簽到天數；長輩模式只顯示兩個大數字；每週一首頁會出現一張「上週回顧」小卡。正式 artifact `f9e22d924da7df9cb36fe1de3d41af549038cc710f29ce81b161ec8ba2f87f26`，gh-pages `23941a474409ca7853babc8e6e345bc7810e7995`；868 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
+
+證據：`.dev-backups/evidence/release-v3.11.0.json`。
+
 # V3.10.3 已發布 — 2026-10-19
 
 [PR #108](https://github.com/leotsouo/questnote-pwa/pull/108) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `91b0490919cd7baf685c3414d4673575baa078bb`。三個漏掉的 companion 測試納入 `npm test`；App 內建健康檢查的過期失敗全部改成檢查現況（沒有刪除任何檢查），在原始碼環境與預覽版都是 **43 項全部通過**；預覽版設定頁新增「執行健康檢查」按鈕，手機上也能看結果。正式 artifact `152911daa7a1e7a73bc280e9fbdfa2ca439638b898e06b48e02ab6b22113bd55`，gh-pages `9ef2b0a85ef393a0c770cabd57d1defaf3d40693`；865 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。

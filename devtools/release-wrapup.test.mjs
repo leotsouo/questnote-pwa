@@ -147,6 +147,6 @@ test('a release can resume only from a merge commit that is on origin/main, even
   git(work, ['fetch', 'origin']);
   assert.doesNotThrow(() => assertMergeCommitOnMain({ git, cwd: work, mergeCommit }));
 
-  assert.throws(() => assertMergeCommitOnMain({ git, cwd: work, mergeCommit: devHead.replace(/./, '0') }), /not on origin\/main|ambiguous|bad object|nothing to resume/i);
+  assert.throws(() => assertMergeCommitOnMain({ git, cwd: work, mergeCommit: devHead.replace(/./, (c) => (c === '0' ? '1' : '0')) }), /not on origin\/main|ambiguous|bad object|nothing to resume/i);
   assert.throws(() => assertMergeCommitOnMain({ git, cwd: work, mergeCommit: undefined }), /no merge commit/);
 });

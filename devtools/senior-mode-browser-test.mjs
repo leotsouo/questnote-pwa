@@ -99,12 +99,17 @@ async function closeModal() {
   await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
 }
 async function wizardStep(target) {
+  // Senior mode uses the one-page form: every field past "what to do" sits in the folded options.
+  if (!(await page.locator('.task-wizard__step').count())) {
+    if (target > 0) await page.locator('#task-form .senior-form-options').evaluate((details) => { details.open = true; });
+    return;
+  }
   while (Number(await page.locator('.task-wizard__step:visible').getAttribute('data-wizard-step')) < target) {
     await page.locator('.task-wizard__next').click();
   }
 }
 async function finishWizard() {
-  await wizardStep(5);
+  if (await page.locator('.task-wizard__step').count()) await wizardStep(5);
   await page.locator('#task-form button[type="submit"]').click();
 }
 
@@ -157,7 +162,8 @@ try {
     await page.waitForFunction(async () => (await window.seniorTest.taskService.getAllTasks()).some((row) => row.title === '喝一杯水'));
     const practice = (await taskRows()).find((row) => row.title === '喝一杯水');
     await page.locator(`.task-card[data-id="${practice.id}"] [data-action="toggle"]`).click();
-    await page.locator('[data-senior-action="guide-summon"]').waitFor({ state: 'visible' });
+    // The game layer is hidden in senior mode, so the guide ends without a summon step.
+    await page.waitForFunction(() => document.querySelector('[data-senior-action="guide-finish"]')?.textContent === '我知道了');
     await shot('senior-practice-completed');
     await page.locator('[data-senior-action="guide-finish"]').click();
     await page.locator('#senior-practice').waitFor({ state: 'hidden' });
@@ -172,9 +178,9 @@ try {
       'Senior date shortcuts must override legacy modal flex layout');
     await shot('senior-add-top');
     await page.locator('#task-content').fill('晚上吃藥');
+    assert.equal(await page.locator('.task-wizard__step').count(), 0, 'senior mode adds a task on one page, not the six-step wizard');
     await wizardStep(1);
     await page.locator('#task-planned-time').fill('20:00');
-    assert.equal(await page.locator('.task-wizard__step:visible').getAttribute('data-wizard-step'), '1');
     await shot('senior-add');
     await finishWizard();
     await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
@@ -196,7 +202,7 @@ try {
     const after = await wallet();
     assert.ok(after.stardust > before.stardust);
     const receipt = await page.locator('.senior-completion-receipt').innerText();
-    assert.ok(receipt.includes(`${after.stardust - before.stardust} 星塵`));
+    assert.ok(!receipt.includes('星塵'), 'senior mode announces the completion, not reward numbers');
     await shot('senior-completion');
     await shot('senior-reward');
     await page.waitForTimeout(3000);
@@ -239,42 +245,27 @@ try {
     await page.getByRole('button', { name: '放棄修改', exact: true }).click();
     await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
   });
-  await check('single summon confirms cost, charges once and preserves a readable result', async () => {
-    await nav('gacha');
-    // Current production presentation delegates to encounterActions; legacy controls are hidden.
-    await page.locator('#view-gacha [data-identity-action="summon"]').waitFor();
-    await shot('senior-gacha');
-    const before = await wallet();
-    const statsBefore = await page.evaluate(() => window.seniorTest.gachaService.getGachaStats());
-    await page.locator('#view-gacha [data-identity-action="summon"]').click();
-    await page.locator('#confirm-ok').waitFor();
-    await shot('senior-summon-confirmation');
-    assert.deepEqual(await wallet(), before, 'confirmation must precede spending');
-    await page.locator('#confirm-cancel').click();
-    assert.deepEqual(await wallet(), before, 'canceling a summon never spends currency');
-    await page.locator('#view-gacha [data-identity-action="summon"]').click();
-    await page.locator('#confirm-ok').click();
-    await page.waitForFunction(async (count) => (await window.seniorTest.gachaService.getGachaStats()).totalPulls === count + 1, statsBefore.totalPulls, { timeout: 30000 });
-    await page.waitForTimeout(2500);
-    await shot('senior-summon-result');
-    const after = await wallet();
-    assert.ok(before.stardust > after.stardust);
-    // The original summon layer has a persistent result and a visible close control.
-    await page.locator('[data-identity-action="skip-reveal"]').click();
-    return { cost: before.stardust - after.stardust, pulls: 1 };
-  });
-  await check('collection and pet details remain reachable, with explicit home navigation', async () => {
-    await nav('collection');
-    await shot('senior-collection');
-    await page.locator('#view-collection .collection-card [data-pet="pet_n01"]').click();
-    await page.locator('#identity-dialog-content').waitFor();
-    await shot('senior-pet');
-    await page.locator('[data-identity-action="close-dialog"]').first().click();
+  await check('senior mode hides the game layer and keeps the everyday pages', async () => {
+    await nav('tasks');
+    for (const selector of ['.bottom-nav [data-view="gacha"]', '.bottom-nav [data-view="collection"]', '.bottom-nav [data-view="expedition"]',
+      '#view-tasks .stats-bar', '#home-hub', '#bond-journey-home', '#senior-home-intro .casino-entry-btn']) {
+      assert.equal(await page.locator(selector).first().isVisible(), false, `${selector} must be hidden in senior mode`);
+    }
+    assert.equal(await page.locator('.bottom-nav [data-view="tasks"]').isVisible(), true);
+    await page.locator('.bottom-nav [data-view="more"]').click();
+    await page.locator('#view-more.active').waitFor();
+    for (const view of ['achievements', 'workshop', 'handbook']) {
+      assert.equal(await page.locator(`#view-more [data-goto="${view}"]`).isVisible(), false, `${view} entry must be hidden`);
+    }
+    for (const view of ['weekly-review', 'habits', 'settings']) {
+      assert.equal(await page.locator(`#view-more [data-goto="${view}"]`).isVisible(), true, `${view} entry stays`);
+    }
+    await shot('senior-more');
     await page.locator('#senior-location [data-senior-action="home"]').click();
     await page.locator('#view-tasks.active').waitFor();
   });
   await check('primary touch targets, modal keyboard semantics and system reduced motion', async () => {
-    const controls = await page.locator('.twilight-add-task, .bottom-nav button').evaluateAll((items) => items.map((el) => ({
+    const controls = await page.locator('.twilight-add-task, .bottom-nav button:visible').evaluateAll((items) => items.map((el) => ({
       name: el.getAttribute('aria-label') || el.textContent.trim(), width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height,
     })));
     assert.ok(controls.every((control) => control.width >= 44 && control.height >= 44), JSON.stringify(controls));
@@ -286,7 +277,7 @@ try {
     assert.equal(semantics.role, 'dialog');
     assert.equal(semantics.modal, 'true');
     assert.match(semantics.name, /新增任務/);
-    await page.locator('.task-wizard__next').focus();
+    await page.locator('#task-form button[type="submit"]').focus();
     await page.keyboard.press('Tab');
     assert.equal(await page.evaluate(() => !!document.activeElement.closest('#modal-overlay')), true);
     await page.keyboard.press('Escape');
@@ -298,7 +289,7 @@ try {
   });
   await check('all visible actionable controls have touch targets across main views', async () => {
     const measurements = [];
-    for (const view of ['tasks', 'settings', 'gacha', 'collection', 'expedition', 'more']) {
+    for (const view of ['tasks', 'settings', 'more']) {
       await nav(view);
       measurements.push(...await page.locator('.view.active').evaluate((root, view) => [...root.querySelectorAll('button, select, summary, input, textarea, a[href]')]
         .filter((el) => el.getClientRects().length && !el.disabled && getComputedStyle(el).visibility !== 'hidden')
@@ -352,7 +343,7 @@ try {
       await load();
       for (const width of [320, 393, 430, 852]) {
         await page.setViewportSize({ width, height: width === 852 ? 393 : 852 });
-        for (const view of ['tasks', 'settings', 'gacha', 'collection']) {
+        for (const view of ['tasks', 'settings']) {
           await nav(view);
           const size = await page.evaluate(() => ({ viewport: innerWidth, scroll: document.documentElement.scrollWidth,
             reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -386,7 +377,7 @@ try {
     await page.setViewportSize({ width: 320, height: 852 });
     await page.addStyleTag({ content: 'html { font-size: 32px !important; } body[data-reading-mode="senior"] :is(p, label, button, input, select, textarea, summary, h1, h2, h3, span) { line-height: 1.5 !important; letter-spacing: .12em !important; word-spacing: .16em !important; } body[data-reading-mode="senior"] p { margin-bottom: 2em !important; }' });
     const measurements = [];
-    for (const view of ['tasks', 'settings', 'gacha', 'collection']) {
+    for (const view of ['tasks', 'settings']) {
       await nav(view);
       measurements.push({ view, ...await page.evaluate(() => ({ width: innerWidth, scrollWidth: document.documentElement.scrollWidth })) });
       await shot(`senior-200percent-spacing-${view}`);

@@ -120,3 +120,37 @@ test('invalid or conflicting backup preferences are rejected before normalizatio
   }
   assert.equal(validateBackup(conflicting).valid, false);
 });
+
+test('senior mode hides the game layer in markup and keeps the everyday entries', () => {
+  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../src/seniorMode.css', import.meta.url), 'utf8');
+  assert.match(css, /body\[data-reading-mode="senior"\] \.normal-only \{ display: none !important; \}/);
+  const classesOf = (pattern) => (html.match(pattern)?.[1] || '').split(/\s+/);
+  for (const view of ['gacha', 'collection', 'expedition']) {
+    assert.ok(classesOf(new RegExp(`class="([^"]*)" data-view="${view}"`)).includes('normal-only'), `nav ${view} is hidden in senior mode`);
+  }
+  for (const view of ['tasks', 'more']) {
+    assert.ok(!classesOf(new RegExp(`class="([^"]*)" data-view="${view}"`)).includes('normal-only'), `nav ${view} stays`);
+  }
+  for (const view of ['achievements', 'workshop', 'handbook']) {
+    assert.ok(classesOf(new RegExp(`class="([^"]*)" data-goto="${view}"`)).includes('normal-only'), `more entry ${view} is hidden`);
+  }
+  for (const view of ['weekly-review', 'habits', 'settings']) {
+    assert.ok(!classesOf(new RegExp(`class="([^"]*)" data-goto="${view}"`)).includes('normal-only'), `more entry ${view} stays`);
+  }
+  assert.ok(classesOf(/<section class="([^"]*)" aria-label="資源統計"/).includes('normal-only'), 'resource bar');
+  assert.ok(classesOf(/<section id="home-hub" class="([^"]*)"/).includes('normal-only'), 'home hub');
+  assert.ok(classesOf(/<section id="bond-journey-home" class="([^"]*)"/).includes('normal-only'), 'bond journey');
+  assert.ok(!classesOf(/<section id="companion-section" class="([^"]*)"/).includes('normal-only'), 'the companion pet card stays');
+  assert.ok(!html.includes('data-senior-action="guide-summon"'), 'the senior guide no longer leads to summoning');
+});
+
+test('senior mode adds a task on one page and announces completions without reward numbers', () => {
+  const form = readFileSync(new URL('../src/ui/taskFormView.js', import.meta.url), 'utf8');
+  assert.match(form, /if \(!isEdit && !practice && !isSeniorMode\(\)\) wizard = initTaskWizard/);
+  const senior = readFileSync(new URL('../src/seniorModeController.js', import.meta.url), 'utf8');
+  assert.match(senior, /details\.before\(plannedDate\);/, 'only the date stays outside the folded options');
+  assert.ok(!/星塵|召喚/.test(senior.match(/guide\.querySelector\('p'\)\.textContent = \{[^}]+\}/)?.[0] || '星塵'), 'guide copy has no game terms');
+  const ui = readFileSync(new URL('../src/ui.js', import.meta.url), 'utf8');
+  assert.match(ui, /function showRewardToast\([^)]*\) \{\s*\/\/[^\n]*\n\s*if \(isSeniorMode\(\)\) return;/);
+});
