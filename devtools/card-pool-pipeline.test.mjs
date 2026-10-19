@@ -12,6 +12,7 @@ import { PIPELINE_STAGES, createPipelineWorkspace, loadPipelineStatus, validateP
 import { buildPetImages, getPetImageVariants } from './build-pet-images.mjs';
 import { ECOSYSTEM_CATALOGS, ECOSYSTEM_RUNTIME } from '../scripts/poolEcosystem.mjs';
 import { getPetSpecialty } from '../src/expeditionGameplay.js';
+import { approveAllStages } from '../scripts/lib/poolWorkflow.mjs';
 
 const exec = promisify(execFile);
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -604,4 +605,38 @@ test('SOP brief rejects unknown artwork review mode', async (t) => {
   const root = await setup(t);
   await assert.rejects(createPipelineWorkspace(root, { ...sopBrief('bad_review_mode'), imageReviewMode: 'unknown' }),
     { code: 'SOP_BRIEF_INVALID' });
+});
+
+test('approve-all approves every ai-self stage in order with exact hashes and AI receipts', async (t) => {
+  const definition = { ...sopBrief('approve_all_fixture'), imageReviewMode: 'ai-self' }; delete definition.purpose;
+  const { root } = await setupSop(t, definition);
+  await assert.rejects(approveAllStages(root, definition.seriesId, {}), /--reviewer/);
+  const partial = await approveAllStages(root, definition.seriesId, { reviewer: 'AI fixture', acknowledgeWarnings: true, through: 'prompts' });
+  assert.equal(partial.ok, true);
+  assert.deepEqual(partial.approved.map((entry) => entry.stage), PIPELINE_STAGES.slice(0, 4));
+  assert.equal(partial.nextStage, 'images');
+  const result = await approveAllStages(root, definition.seriesId, { reviewer: 'AI fixture', acknowledgeWarnings: true });
+  assert.deepEqual(result.approved.map((entry) => entry.stage), ['images']);
+  assert.equal(result.readyToStage, true);
+  const state = await read(path.join(root, 'content/pet-series', definition.seriesId, 'pipeline.json'));
+  assert.ok(state.history.every((receipt) => receipt.reviewerType === 'ai' && receipt.reviewer === 'AI fixture'));
+});
+
+test('approve-all stops at human artwork review and on unacknowledged warnings', async (t) => {
+  const definition = { ...sopBrief('approve_all_human'), imageReviewMode: 'human' }; delete definition.purpose;
+  const { root } = await setupSop(t, definition);
+  const result = await approveAllStages(root, definition.seriesId, { reviewer: 'AI fixture', acknowledgeWarnings: true });
+  assert.equal(result.ok, false);
+  assert.equal(result.stoppedAt, 'images');
+  assert.equal(result.reason, 'human_image_review_required');
+  assert.equal((await loadPipelineStatus(root, definition.seriesId)).readyToStage, false);
+  const warned = { ...sopBrief('approve_all_warned'), imageReviewMode: 'ai-self' }; delete warned.purpose;
+  const fixture = await setupSop(t, warned);
+  const stopped = await approveAllStages(fixture.root, warned.seriesId, { reviewer: 'AI fixture' });
+  const warnings = (await validatePipelineWorkspace(fixture.root, warned.seriesId)).warnings;
+  // The SOP fixture is expected to raise schema warnings; without --ack-warnings approval must stop there.
+  assert.ok(warnings.length > 0, 'fixture should carry warnings');
+  assert.equal(stopped.ok, false);
+  assert.equal(stopped.reason, 'WARNINGS_UNREVIEWED');
+  assert.equal((await loadPipelineStatus(fixture.root, warned.seriesId)).readyToStage, false);
 });
