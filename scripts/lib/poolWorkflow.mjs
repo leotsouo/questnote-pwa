@@ -4,6 +4,7 @@
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { PIPELINE_STAGES, loadPipelineStatus, approvePipelineStage } from '../cardPoolPipeline.mjs';
 import { AUTHORING_FILE } from './poolAuthoring.mjs';
 
@@ -121,9 +122,15 @@ export async function writeReviewPage(root, poolId, { out } = {}) {
   const target = path.resolve(root, out || path.join('.dev-backups', 'evidence', 'review', poolId));
   await fs.mkdir(target, { recursive: true });
   const devtools = path.join(root, 'devtools');
-  await fs.copyFile(path.join(devtools, REVIEW_PAGE_FILES[0]), path.join(target, 'index.html'));
-  await fs.copyFile(path.join(devtools, REVIEW_PAGE_FILES[1]), path.join(target, REVIEW_PAGE_FILES[1]));
+  const script = await fs.readFile(path.join(devtools, REVIEW_PAGE_FILES[1]));
+  const version = createHash('sha256').update(script).digest('hex').slice(0, 12);
+  // GitHub Pages lets browsers cache files for minutes; a content-hash query keeps a redeploy from showing the old script.
+  const html = (await fs.readFile(path.join(devtools, REVIEW_PAGE_FILES[0]), 'utf8'))
+    .replace(`src="${REVIEW_PAGE_FILES[1]}"`, `src="${REVIEW_PAGE_FILES[1]}?v=${version}"`);
+  await fs.writeFile(path.join(target, 'index.html'), html);
+  await fs.writeFile(path.join(target, REVIEW_PAGE_FILES[1]), script);
   await fs.writeFile(path.join(target, 'review-config.json'), `${JSON.stringify({ pool: poolId, appRoot: '../..' }, null, 2)}\n`);
   const dir = path.relative(root, target).replaceAll('\\', '/');
-  return { ok: true, pool: poolId, dir, deploy: `npm run preview:deploy -- --review-dir ${dir}` };
+  return { ok: true, pool: poolId, dir, version, deploy: `npm run preview:deploy -- --review-dir ${dir}`,
+    open: `https://leotsouo.github.io/questnote-pwa-preview/reports/review/?v=${version}` };
 }

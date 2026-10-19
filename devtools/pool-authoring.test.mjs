@@ -124,7 +124,9 @@ test('review-page builds a fixed-path folder that loads the App two levels up an
   assert.equal(result.dir, 'out/review');
   assert.equal(result.deploy, 'npm run preview:deploy -- --review-dir out/review');
   assert.deepEqual(await read(path.join(root, 'out/review/review-config.json')), { pool: 'sunward_letters', appRoot: '../..' });
-  assert.match(await fs.readFile(path.join(root, 'out/review/index.html'), 'utf8'), /src="pool-animation-review\.js"/);
+  assert.match(result.version, /^[a-f0-9]{12}$/);
+  assert.ok((await fs.readFile(path.join(root, 'out/review/index.html'), 'utf8')).includes(`src="pool-animation-review.js?v=${result.version}"`));
+  assert.equal(result.open, `https://leotsouo.github.io/questnote-pwa-preview/reports/review/?v=${result.version}`);
   await assert.rejects(writeReviewPage(root, '../x'), /pool ID/);
 
   const source = await fs.readFile(path.join(import.meta.dirname, 'pool-animation-review.js'), 'utf8');
