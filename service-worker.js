@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.10.3
+ * QuestNote Service Worker — V3.11.0
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-preview-cache-v3103-health-check';
+const CACHE_NAME = 'questnote-preview-cache-v3110-weekly-review';
 const PET_IMAGE_CACHE = 'questnote-preview-pet-images-v235';
 const MAILBOX_RUNTIME_CACHE = 'questnote-preview-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -49,6 +49,7 @@ const PRECACHE_URLS = [
   'src/dailyRaceController.js',
   'src/daily-race.css',
   'src/dailyRaceService.js',
+  'src/weekly-review.css',
   'src/seniorMode.css',
   'src/seniorModeController.js',
   'index.html',
@@ -83,6 +84,7 @@ const PRECACHE_URLS = [
   'src/ui/taskFormView.js',
   'src/ui/taskListView.js',
   'src/ui/modalHost.js',
+  'src/ui/weeklyReviewView.js',
   'src/ui-polish.css',
   'src/rewardClaimService.js',
   'src/summon-polish.css',
@@ -196,6 +198,7 @@ const PRECACHE_URLS = [
   'src/preferencesService.js',
   'src/achievementService.js',
   'src/habitService.js',
+  'src/weeklyReviewService.js',
   'src/todayHabitsView.js',
   'src/loreService.js',
   'src/devService.js',
