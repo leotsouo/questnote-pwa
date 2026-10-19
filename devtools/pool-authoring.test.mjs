@@ -111,3 +111,26 @@ test('Codex handoff lists every card with its output path, prompt and the no-ext
   assert.equal(written.file, 'content/pet-series/sunward_letters/CODEX-IMAGES.md');
   assert.equal(written.cards, 12);
 });
+
+test('review-page builds a fixed-path folder that loads the App two levels up and never touches player services', async (t) => {
+  const { writeReviewPage } = await import('../scripts/lib/poolWorkflow.mjs');
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'questnote-review-page-test-'));
+  t.after(() => fs.rm(root, { recursive: true, force: true }));
+  await fs.mkdir(path.join(root, 'devtools'));
+  for (const name of ['pool-animation-review.html', 'pool-animation-review.js']) {
+    await fs.copyFile(path.join(import.meta.dirname, name), path.join(root, 'devtools', name));
+  }
+  const result = await writeReviewPage(root, 'sunward_letters', { out: 'out/review' });
+  assert.equal(result.dir, 'out/review');
+  assert.equal(result.deploy, 'npm run preview:deploy -- --review-dir out/review');
+  assert.deepEqual(await read(path.join(root, 'out/review/review-config.json')), { pool: 'sunward_letters', appRoot: '../..' });
+  assert.match(await fs.readFile(path.join(root, 'out/review/index.html'), 'utf8'), /src="pool-animation-review\.js"/);
+  await assert.rejects(writeReviewPage(root, '../x'), /pool ID/);
+
+  const source = await fs.readFile(path.join(import.meta.dirname, 'pool-animation-review.js'), 'utf8');
+  const imports = [...source.matchAll(/import\(`\$\{(?:config\.)?appRoot\}\/src\/([^`]+)`\)/g)].map((match) => match[1]).sort();
+  assert.deepEqual(imports, ['encounterCeremony.js', 'loreService.js', 'petPoolFilter.js', 'releaseProfile.js',
+    'summonRevealService.js', 'themeRegistry.js', 'themedSummonController.js']);
+  assert.doesNotMatch(source, /gachaService|gachaTransaction|collectionService|walletService|db\.js/);
+  assert.match(source, /indexedDB\.open = /);
+});

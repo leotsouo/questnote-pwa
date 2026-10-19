@@ -108,3 +108,22 @@ export async function writeCodexHandoff(root, id) {
   const missingPrompts = plan.pets.filter((pet) => !prompts.prompts?.[pet.petId]).map((pet) => pet.petId);
   return { ok: missingPrompts.length === 0, file: path.relative(root, file).replaceAll('\\', '/'), cards: plan.pets.length, missingPrompts };
 }
+
+const REVIEW_PAGE_FILES = ['pool-animation-review.html', 'pool-animation-review.js'];
+
+/**
+ * Build the fixed-path animation review folder for one pool. Deployed with
+ * `npm run preview:deploy -- --review-dir <out>`, it lands at <preview>/reports/review/ and loads the
+ * preview's own pinned modules, styles and catalog from two levels up.
+ */
+export async function writeReviewPage(root, poolId, { out } = {}) {
+  if (!/^[a-z][a-z0-9_]*$/.test(poolId || '')) throw new Error('review-page requires a pool ID');
+  const target = path.resolve(root, out || path.join('.dev-backups', 'evidence', 'review', poolId));
+  await fs.mkdir(target, { recursive: true });
+  const devtools = path.join(root, 'devtools');
+  await fs.copyFile(path.join(devtools, REVIEW_PAGE_FILES[0]), path.join(target, 'index.html'));
+  await fs.copyFile(path.join(devtools, REVIEW_PAGE_FILES[1]), path.join(target, REVIEW_PAGE_FILES[1]));
+  await fs.writeFile(path.join(target, 'review-config.json'), `${JSON.stringify({ pool: poolId, appRoot: '../..' }, null, 2)}\n`);
+  const dir = path.relative(root, target).replaceAll('\\', '/');
+  return { ok: true, pool: poolId, dir, deploy: `npm run preview:deploy -- --review-dir ${dir}` };
+}
