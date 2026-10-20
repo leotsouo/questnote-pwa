@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-19T19:56:57.669Z",
+  "generatedAt": "2026-10-20T03:29:27.888Z",
   "messages": [
     {
       "id": "2026-10-v362-encounter-fragments-gift-01",
@@ -396,6 +396,24 @@
         "view": "tasks",
         "label": "回到任務"
       }
+    },
+    {
+      "id": "2026-10-v3121-claim-all-compensation-01",
+      "type": "compensation",
+      "title": "一鍵領取異常補償｜星塵 1,500＋冒險能量 5",
+      "body": "親愛的旅人：\n\n10 月 15 日起的幾天裡，「一鍵領取」會跳出錯誤而無法領取祝福、信箱、收藏與探險獎勵，造成不便，非常抱歉。\n\nV3.12.1 已修正這個問題。先前還沒領到的獎勵都還在，現在可以一次領完。\n\n請收下這份補償：星塵 1,500 與冒險能量 5。",
+      "publishedAt": "2026-10-20T11:30:00+08:00",
+      "expiresAt": "2026-11-20T23:59:59+08:00",
+      "priority": "high",
+      "enabled": true,
+      "minAppVersion": "3.12.1",
+      "maxAppVersion": null,
+      "icon": "🎁",
+      "reward": {
+        "stardust": 1500,
+        "adventureEnergy": 5
+      },
+      "action": null
     }
   ]
 }
