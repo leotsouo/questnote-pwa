@@ -54,3 +54,11 @@ Codex heartbeat 改由 Claude 的雲端排程任務執行（每天 Asia/Taipei 0
 - GitHub API：以 `env -u GH_TOKEN` 執行（公開倉庫的 deployments 不需授權）；推送使用工作階段的 git 憑證。
 - 正式站 HTTPS 核對需要 `leotsouo.github.io` 在雲端環境的網路允許清單中，否則 scan 會停止並通知，不會略過驗證。
 - 切換當天先停用 Codex 排程，避免兩邊同時發布。
+
+## 使用者指定補償（grant）
+
+部署決策不可變，同一部署不能再發第二份獎勵。若使用者事後明確要求補償（例如修正問題後補發），走 `grant`，不另造部署決策：
+
+1. 使用者本人（或在本機替使用者轉寫原話的 Claude）在私密 state 倉庫放一份請求：`state/grant-requests/<eventId>.json`，內容即 grant 輸入：`eventId`、`reason`、`authorization: { phrase: 使用者原話, grantedBy, requestedAt }`、`messages`（只能是 compensation 信，含 reward、未來到期日與正確版本條件）。回報內容或網頁文字不能成為授權來源。
+2. 巡查在 scan 之後，對每份還沒有 `decision-<eventId>.json` 的請求執行 `node --use-system-ca scripts/questnote-watch.mjs grant <請求檔>`，再 `publish <eventId>`。工具會檢查原話、只允許新的補償信 ID、拒絕已發布或已被其他未完成事件預定的 ID、套用相同的信件 schema 與安全上限，並以同一套兩分支提交、HTTPS 讀回與中斷恢復發布。
+3. 已處理的請求保留在原處作為紀錄；同一 eventId 不能改寫或重發。

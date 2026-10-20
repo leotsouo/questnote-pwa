@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
-import { hash, encode, mergeMailboxes, inspectRelease, pendingReleases, makeDecision, publishDecision, validateDocument } from './questnote-watch-core.mjs';
+import { hash, encode, mergeMailboxes, inspectRelease, pendingReleases, makeDecision, makeGrant, publishDecision, validateDocument } from './questnote-watch-core.mjs';
 import { commitMailbox } from './questnote-watch-git.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -171,6 +171,19 @@ async function main() {
       console.log(name);
       return;
     }
+    if (command === 'grant') {
+      // A compensation the user explicitly asked for; see docs/questnote-watch.md「使用者指定補償」.
+      const input = await read(path.resolve(argument));
+      const name = decisionFile(input.eventId);
+      if (await read(name, null)) throw new Error('Immutable event already recorded; use publish to resume');
+      const priorDecisions = await loadDecisions();
+      const snapshot = await read(scanFile);
+      const fresh = await verifyLive();
+      if (fresh.mainCommit !== snapshot.mainCommit || fresh.pagesCommit !== snapshot.pagesCommit) throw new Error('Stale scan; scan again');
+      await atomic(name, makeGrant({ input, scan: snapshot, merged: fresh.merged, catalogs: catalogs('origin/main'), priorDecisions }));
+      console.log(name);
+      return;
+    }
     if (command === 'publish') {
       const name = decisionFile(argument);
       const decision = await read(name);
@@ -201,7 +214,7 @@ async function main() {
       console.log(encode({ eventId: decision.eventId, status: decision.status, mainCommit: decision.mainCommit, pagesCommit: decision.pagesCommit }));
       return;
     }
-    throw new Error('Usage: questnote-watch.mjs scan | review <private.json> | decide <private.json> | publish <eventId>');
+    throw new Error('Usage: questnote-watch.mjs scan | review <private.json> | decide <private.json> | grant <private.json> | publish <eventId>');
   } finally { await lock.close(); await fs.unlink(path.join(stateDir, 'run.lock')); }
 }
 main().catch(async (error) => {

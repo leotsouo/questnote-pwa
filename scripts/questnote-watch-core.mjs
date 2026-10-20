@@ -52,8 +52,40 @@ export function makeDecision({ input, scan, merged, catalogs = {}, existing, pri
   if (priorDecisions.some((prior) => prior.deployments.some((commit) => input.deployments.includes(commit)))) throw new Error('Deployment already has a decision; resume it rather than issue another reward');
   if (input.action === 'publish' && (!Array.isArray(input.messages) || !input.messages.length)) throw new Error('Publish decision requires messages');
   if (input.action === 'skip' && input.messages?.length) throw new Error('Skip cannot carry messages');
+  checkMessages(input.messages || [], { scan, merged, catalogs });
+  const document = validateDocument({ ...merged, generatedAt: input.decidedAt || scan.checkedAt, messages: [...merged.messages, ...(input.messages || [])] }, catalogs);
+  const decision = { ...input, messages: input.messages || [], documentHash: hash(encode(document)), document, release: scan.release, mainBase: scan.mainCommit, pagesBase: scan.pagesCommit, status: input.action === 'skip' ? 'skipped' : 'prepared' };
+  if (existing && !equal(existing, decision)) throw new Error('Event ID already has an immutable decision');
+  return decision;
+}
+
+/**
+ * A compensation the user explicitly asked for, not tied to a new deployment (the deployment
+ * decision is immutable and may not issue a second reward). It carries the user's own words, may
+ * only add compensation letters with new IDs, and publishes through the same publishDecision path.
+ */
+export function makeGrant({ input, scan, merged, catalogs = {}, existing, priorDecisions = [] }) {
+  if (!input.eventId || !/^[A-Za-z0-9_-]+$/.test(input.eventId) || !input.reason?.trim()) throw new Error('Grant requires a stable eventId and reason');
+  const authorization = input.authorization;
+  if (!authorization?.phrase?.trim() || !authorization.grantedBy?.trim() || Number.isNaN(Date.parse(authorization.requestedAt || ''))) {
+    throw new Error('Grant requires the user authorization phrase, grantedBy and requestedAt');
+  }
+  if (input.deployments?.length) throw new Error('A grant is not a deployment decision; leave deployments empty');
+  if (!Array.isArray(input.messages) || !input.messages.length) throw new Error('Grant requires messages');
+  if (input.messages.some((message) => message.type !== 'compensation' || !message.reward)) throw new Error('A grant may only add compensation letters with a reward');
+  const planned = new Set(priorDecisions.filter((prior) => !['published', 'skipped'].includes(prior.status))
+    .flatMap((prior) => (prior.messages || []).map((message) => message.id)));
+  for (const message of input.messages) if (planned.has(message.id)) throw new Error(`Message ID already prepared by another event: ${message.id}`);
+  checkMessages(input.messages, { scan, merged, catalogs });
+  const document = validateDocument({ ...merged, generatedAt: input.decidedAt || scan.checkedAt, messages: [...merged.messages, ...input.messages] }, catalogs);
+  const grant = { ...input, kind: 'grant', action: 'publish', deployments: [], documentHash: hash(encode(document)), document, release: scan.release, mainBase: scan.mainCommit, pagesBase: scan.pagesCommit, status: 'prepared' };
+  if (existing && !equal(existing, grant)) throw new Error('Event ID already has an immutable decision');
+  return grant;
+}
+
+function checkMessages(messages, { scan, merged, catalogs }) {
   const existingIds = new Set(merged.messages.map((message) => message.id));
-  for (const message of input.messages || []) {
+  for (const message of messages) {
     if (existingIds.has(message.id)) throw new Error(`Already published message ID: ${message.id}`);
     if (!MAILBOX_MESSAGE_TYPES.includes(message.type) || message.enabled !== true || !message.title?.trim() || !message.body?.trim() || /[<>]/.test(message.title + message.body)) throw new Error('Invalid plain-text message');
     if (!/^\d+\.\d+\.\d+$/.test(message.minAppVersion || '') || compareAppVersions(message.minAppVersion, scan.release.version) > 0) throw new Error('Invalid minimum app version');
@@ -63,10 +95,6 @@ export function makeDecision({ input, scan, merged, catalogs = {}, existing, pri
     const single = validateMailboxDocument({ schemaVersion: 1, messages: [message] }, catalogs);
     if (!single.ok || single.warnings.length) throw new Error([...single.errors, ...single.warnings].join('; '));
   }
-  const document = validateDocument({ ...merged, generatedAt: input.decidedAt || scan.checkedAt, messages: [...merged.messages, ...(input.messages || [])] }, catalogs);
-  const decision = { ...input, messages: input.messages || [], documentHash: hash(encode(document)), document, release: scan.release, mainBase: scan.mainCommit, pagesBase: scan.pagesCommit, status: input.action === 'skip' ? 'skipped' : 'prepared' };
-  if (existing && !equal(existing, decision)) throw new Error('Event ID already has an immutable decision');
-  return decision;
 }
 
 /** Checkpoint exact commits BEFORE push, so an interrupted response is safely retried. */

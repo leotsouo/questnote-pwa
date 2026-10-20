@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { commitMailbox } from '../scripts/questnote-watch-git.mjs';
-import { encode, hash, mergeMailboxes, inspectRelease, pendingReleases, makeDecision, publishDecision } from '../scripts/questnote-watch-core.mjs';
+import { encode, hash, mergeMailboxes, inspectRelease, pendingReleases, makeDecision, makeGrant, publishDecision } from '../scripts/questnote-watch-core.mjs';
 
 const message = (id, changes = {}) => ({ id, type: 'update', title: '更新', body: '新功能已上線', publishedAt: '2026-10-05T00:00:00Z', expiresAt: null, priority: 'normal', enabled: true, minAppVersion: '3.8.1', maxAppVersion: null, reward: null, action: null, ...changes });
 const document = (messages = []) => ({ schemaVersion: 1, generatedAt: null, messages });
@@ -137,4 +137,39 @@ test('real Git private-index commits preserve dirty checkout/staging and both br
     if (path.dirname(temporary) !== path.resolve(os.tmpdir()) || !path.basename(temporary).startsWith('questnote-watch-git-')) throw new Error('Unexpected temporary test path');
     await fs.rm(temporary, { recursive: true, force: true });
   }
+});
+
+const gift = (id = 'gift-01', changes = {}) => message(id, { type: 'compensation', reward: { stardust: 1500, adventureEnergy: 5 }, expiresAt: '2099-01-01T00:00:00Z', priority: 'high', ...changes });
+const grantInput = (changes = {}) => ({ eventId: 'grant-01', reason: '一鍵領取故障五天的補償', authorization: { phrase: '請觸發巡查補發補償：星塵 1500、冒險能量 5', grantedBy: 'leo', requestedAt: '2026-10-20T03:30:00Z' }, messages: [gift()], ...changes });
+
+test('a user-authorized grant adds only new compensation letters without a deployment', async () => {
+  const grant = makeGrant({ input: grantInput(), scan, merged: document([message('old-01')]), priorDecisions: [decision()] });
+  assert.equal(grant.status, 'prepared');
+  assert.equal(grant.kind, 'grant');
+  assert.deepEqual(grant.deployments, []);
+  assert.deepEqual(grant.document.messages.map((item) => item.id), ['old-01', 'gift-01']);
+  // A grant is not a deployment decision: the pending deployments can still be decided normally.
+  assert.equal(makeDecision({ input: input(), scan, merged: document(), priorDecisions: [grant] }).status, 'prepared');
+  const fake = fakeTransport();
+  let durable;
+  const published = await publishDecision(grant, fake.transport, async (value) => { durable = structuredClone(value); });
+  assert.equal(published.status, 'published');
+  assert.deepEqual(fake.pushes, ['main', 'gh-pages']);
+  assert.equal(durable.status, 'published');
+});
+
+test('a grant needs the user words, compensation-only letters, new IDs and no deployments', () => {
+  const merged = document([gift('gift-old')]);
+  const make = (changes, priorDecisions = []) => makeGrant({ input: grantInput(changes), scan, merged, priorDecisions });
+  assert.throws(() => make({ authorization: undefined }), /authorization/);
+  assert.throws(() => make({ authorization: { phrase: ' ', grantedBy: 'leo', requestedAt: '2026-10-20T03:30:00Z' } }), /authorization/);
+  assert.throws(() => make({ deployments: ['p1'] }), /not a deployment decision/);
+  assert.throws(() => make({ messages: [message('note-01')] }), /only add compensation/);
+  assert.throws(() => make({ messages: [] }), /requires messages/);
+  assert.throws(() => make({ messages: [gift('gift-old')] }), /Already published/);
+  assert.throws(() => make({ messages: [gift('gift-01', { expiresAt: '2020-01-01T00:00:00Z' })] }), /future expiry/);
+  assert.throws(() => make({ messages: [gift('gift-01', { minAppVersion: '9.0.0' })] }), /minimum app version/);
+  assert.throws(() => make({ messages: [gift('gift-01', { reward: { stardust: 5001 } })] }));
+  const pendingOther = { ...decision({ messages: [gift('gift-01')] }), status: 'prepared' };
+  assert.throws(() => make({}, [pendingOther]), /already prepared/);
 });
