@@ -64,6 +64,30 @@ QuestNote 是純靜態的瀏覽器 PWA（任務、習慣、寵物收藏、召喚
 - **產圖費用：** 先盤點已安裝且適用的圖片工具，只用確認不額外計費的；費用不明或付費的服務一律不呼叫。卡圖與地區插畫目前由 Codex 內建產圖產生（`card-pool codex-handoff` 產生交接檔）。
 - **動畫檢視頁：** 最終驗收前，用通用檢視頁（`card-pool review-page <poolId>`，載入 pinned artifact 的實際模組、樣式與 presentation）並執行它的檢查，放在預覽站固定的審查路徑。包含完整登場、切換卡池的完整入場、單抽／十連、每個 UR 與有演出的 SSR、減少動態與重播；使用固定展示結果，不呼叫抽卡、錢包或收藏 API。human 模式才開給使用者看；ai-self 模式由 AI 內部審查。覺醒依獨立規格，只有受影響時才做卡池回歸。
 
+## 新功能與更新檢查清單
+
+每次新功能、修 bug 或重構，開始前與送出前都照這份清單走；一鍵完整檢查是 `npm run check`（lint → 語法解析 → `npm test` → catalog → 圖片），CI 跑的是同一組。
+
+**開始前**
+- 先讀相關模組與既有測試（`devtools/` 同名 `*.test.mjs`），確認有沒有可重用的流程、helper 或測試 fixture。
+- 跨模組呼叫（`src/ui.js` ↔ `src/ui/*.js`）一律經 `export`／`import` 或 `connect…()` 注入；不靠全域變數。`npm run lint` 的 `no-undef` 與 `devtools/ui-split-references.test.mjs` 會擋下漏 import 的函式（V3.10.1–V3.12.0 的「Can't find variable: getMailboxCatalogs」就是這類）。
+- 會改存檔格式、IndexedDB、備份格式時，先照「存檔與發布相容性」準備 migration 與測試。
+
+**每個 bug 修正**
+- 先寫能重現的測試並確認它失敗，再修，再確認通過；測試檔開頭註明症狀與版本（例：`devtools/app-health-source.test.mjs`、`devtools/confirm-modal-once.test.mjs`）。
+- 修好的測試加進 `package.json` 的 `test` 清單；不要只靠手動驗證。
+
+**送出前**
+- 跑 `npm run check` 全部通過；只動局部時至少跑相關測試加 `npm run lint`。
+- 修改 runtime 程式（`src/`、`service-worker.js`、`index.html`、樣式）時：同步 `src/version.js` 與 `service-worker.js` 的 `CACHE_NAME`／版本註解；新增 runtime 檔案要加進 `service-worker.js` precache（`devtools/release-artifact.test.mjs` 會檢查）；新樣式檔同步 `src/styleParts.js`、`index.html`。
+- 有畫面的改動：在 `npm run serve`（<http://127.0.0.1:8000/>）用手機尺寸實際走過流程，先清掉 Service Worker 與 Cache 再測，記錄實際結果；檢查 console 沒有新的錯誤，設定頁「最近錯誤」為空。
+- 真實 UI 流程（教學、任務、習慣、陪伴、備份）跑 `devtools/product-flow-browser-test.html` 與 `devtools/final-user-browser-test.html`：用 `.claude/launch.json` 的 `e2e-flows`（8765）／`e2e-final-user`（8766）啟動對應的隔離伺服器，在**看得見的**瀏覽器視窗執行（隱藏的視窗會凍結 CSS transition，modal 的 visibility 檢查會誤判）。
+- 使用者回報沒有描述時，先看設定頁版本卡的「最近錯誤」與回報表單的「環境資訊」（`src/errorLog.js` 會記下本次 session 的未捕捉錯誤與 unhandled rejection）。
+
+**防止同類問題再發生**
+- 同一類錯誤出現第二次，就在共用層修（例如 `openConfirmModal` 的一次性防護、`functionSource()` 取整個函式本體），並補一條 lint 規則或 source-level 測試。
+- 靜態檢查原始碼時不要用固定字元數的視窗（`[\s\S]{0,600}`）；用 `functionSource()` 或整檔比對。
+
 ## 程式風格
 
 兩個空白縮排、分號、單引號字串、明確寫出 `.js` 的 import、函式與變數用 camelCase、常數用 UPPER_SNAKE_CASE。寫得像周圍的程式碼。持久化邏輯不放在 DOM handler 裡。共用的 `src/ui.js`、`index.html`、樣式、版本與 service worker 變更集中在同一個 commit 序列處理，避免彼此覆蓋。
