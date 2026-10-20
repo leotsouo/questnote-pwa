@@ -1,3 +1,4 @@
+import { installErrorLog } from './errorLog.js';
 import { ensureEncounterMigration, getEncounterEconomy } from './encounterEconomyService.js';
 import { LOCAL_ART_PREVIEW } from './localArtPreview.js';
 /**
@@ -756,6 +757,9 @@ async function initApp() {
 }
 
 
+
+// Keep the last uncaught errors of this session for the feedback report and the settings card.
+installErrorLog();
 
 // Release bootstrap imports this module only after the verified worker is ready.
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initApp, { once: true });

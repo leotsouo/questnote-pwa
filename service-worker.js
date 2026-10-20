@@ -1,12 +1,12 @@
 /**
- * QuestNote Service Worker — V3.12.1
+ * QuestNote Service Worker — V3.12.2
  * 快取 App Shell 與靜態資源，支援離線使用
  * data/global-mailbox.json 使用動態 Network First，不進 App Shell precache
  * 作者本機工具（mailbox publisher／pet series builder／summon preview）原始碼不得加入 App Shell precache
  * 寵物圖片不得加入 App Shell precache
  */
 
-const CACHE_NAME = 'questnote-production-app-1c98d04cae957f683d64772a199bddc44448910c1cc801b0d65456926714d7cb';
+const CACHE_NAME = 'questnote-production-app-bddcdf4aa68390adca92dda20d1ffcdfd231c3081cb0b462f61a38febf97d60e';
 const PET_IMAGE_CACHE = 'questnote-production-pet-images-v1';
 const MAILBOX_RUNTIME_CACHE = 'questnote-production-mailbox-runtime-v1';
 const MAILBOX_FETCH_TIMEOUT_MS = 7000;
@@ -40,8 +40,8 @@ self.addEventListener('notificationclick', (event) => {
 const BUILD_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "1c98d04cae957f683d64772a199bddc44448910c1cc801b0d65456926714d7cb",
-  "sourceCommit": "906cdde7ad83a4853090d0f348b2cdbd6d5b49f7",
+  "artifactId": "bddcdf4aa68390adca92dda20d1ffcdfd231c3081cb0b462f61a38febf97d60e",
+  "sourceCommit": "2f07bced8497c69d9fc148a49559b81277ccd294",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
@@ -90,11 +90,11 @@ const PRECACHE_HASHES = {
   "data/pools.json": "4fd1cdc8674e5592b6b2256603bad59b5bf555650c482237eedb6a86b3867fcc",
   "data/releases/53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046/catalog.json": "53f3cf3aea133c9186cbaf0396dfd54241d5fb0bb4debbf57601cd4d2c944046",
   "data/titles.json": "ea884cd1a86ff66a8512ba8016632eaea57ee25d55db3cff2a3afac6dc602fcb",
-  "index.html": "c866fe4b9be46597601c5143600ce04758eb2c3afc62774a1aa22fb34c256308",
+  "index.html": "874d2e95e85889c1203c206d5205697372931a2fb5a14aaf02aa03fc67f585e0",
   "manifest.webmanifest": "45efb645d3caed544546178ec4b0306f16ea4b5d6ff1874cf220284e739d6d28",
   "src/achievementService.js": "9d2b24cb553d3ec084edf353b5be0da3a50c3b527175d0fb8ca3269f7af34ca9",
   "src/adventureHandbookService.js": "8ac72423649a5d786e10af713225add10802f02feb9a8ad24ab537b34e639f79",
-  "src/app.js": "d91ab5074002ff343f1c678205bfbb9858ef480930ef4df7d41ac8bc3812a194",
+  "src/app.js": "63e1f26a7e6c3a5fc0928ba4892eba3e1c271df416689e9d9b0e17068a480cc9",
   "src/aurora-fairy-feast.css": "1257ed271007548d4556a8c19c9948b6221ac7c91cd5a3b8e1382fba1aff2feb",
   "src/auroraFairyScene.js": "e541a90166e670c6f687ef34eb499dcdbcfc88fb877e9c436ab36d286276c361",
   "src/backupSchema.js": "33cb4644253ef2862e7b4ffa993415ec7a1f75b5e3f1953189701d29b493bbc7",
@@ -136,13 +136,14 @@ const PRECACHE_HASHES = {
   "src/encounterScenery.js": "3dc5476f5ede488a7aa35bd8b4d2b0ab3c4ac33cc05b3d2b6eef3b3eb62de736",
   "src/encounterView.js": "40174a7f63979b2deb89dc7cfb96abc2be8987c34118e0eafd5c81933d72e2bf",
   "src/encounterViewModel.js": "1e4fca3200539c5d3a63d63acd00340d5d5c6940430c12268c9cdf95325a414a",
+  "src/errorLog.js": "414fd8670c70fc80fb5b66e4b2097eca2c543a3f445fd8be62839c074f6f1baf",
   "src/expeditionGameplay.js": "49518eb6bf54a51ac871b2cbbcff9baf81ed6fd295466edd71de58508aa842a0",
   "src/expeditionService.js": "201eb9922736d0870f976ba167681a803efca23b0a5e3eb3ab6f4f3b9fe49a6e",
   "src/expeditionStatusService.js": "3682a96f9df5da9b34b0afb6c944a191a76a8de40b7bbc6b5226636b69b883c4",
   "src/explorationService.js": "dc7260d90cb4a533033608a99e48d44f5b1cbcf2458898ba053168a0ee414e34",
   "src/feedbackConfig.js": "a4d552eeb313ec5c6fb34f04b37b4132e7320c1de71f4a40fd138bdd8eab3827",
   "src/feedbackController.js": "259d2ce58a2749f70971cb6a4846a8adfb1c379b30cbffff92b36e4be5e22c7e",
-  "src/feedbackService.js": "b1a8e7b5ce29198557ab8c672e610d9bf5a20d9c2658676152a80e15ff84e11d",
+  "src/feedbackService.js": "57fea17b5acecff71360e38a25e61e198c68be8cbb92bdff2a6e4d2701a4a10f",
   "src/filterGestureController.js": "afe7a9bc2b5ad8f11d25bdd241f88daa07367ceb070db1db512a3f937bcce64c",
   "src/font-size-settings.css": "c726cdeea1da35ab3a05c5379928a91c5e58412c25de821310ef089ed351f60e",
   "src/gachaService.js": "ab98b06e464363f439ecb3ac4a70e080e3ded77851fdba35a34ff22594cfd3c6",
@@ -155,7 +156,7 @@ const PRECACHE_HASHES = {
   "src/guidedOnboardingService.js": "24ed20f8676617777321ebaab58913d447bd2b9dedfaded990fc44357ca1e1a0",
   "src/guidedPageTour.js": "ac30fe4bcb5b38f3774954f1505834a601382c08ba90852de57fddcd979b3048",
   "src/habitService.js": "c5e6e65ee9a450bb3bc4efc811372ce2718baeb49b64712b9d67f1afbcb46a2c",
-  "src/healthCheckService.js": "e240a981ca860b6bd5a38d38b6cf5a8f9b8e25b42542664b3b7af9bd5a89e5f0",
+  "src/healthCheckService.js": "fb5505cb78f639cf2f72508a1e49b6fcf6d7a96df5b00c001b7b95255ac31da4",
   "src/honeylight-sugar.css": "45c4ac8a6949ef219dc8c66e598675342500111b0106b49293fcc0d363faccd8",
   "src/honeylightSugarScene.js": "eb6fb360fa1682afeb34eb1122ac9afacfa3409801562f1b4c2b23117c13c11d",
   "src/iconPresentation.js": "7968b5b39c17d4e912486df1fc912f93c9d368579ee6e16875ab069e53b46e2a",
@@ -194,7 +195,7 @@ const PRECACHE_HASHES = {
   "src/questIcons.js": "fa0cb1d6c415b3c5812a5d769526050f3fe7fde36a3734d49e09cc622e5959ba",
   "src/questService.js": "285bdbe4e15cd931e56a7126b7e6d14d8257df9baa61ff3568f9e7b7be813389",
   "src/releaseCatalog.js": "1483284705afd533d78d07bdd87f90d29eb20454c004bc624f01f45e51fd9b30",
-  "src/releaseProfile.js": "f2eb598962bffdcadcd68be89a6ef29c5dc070aef083eb9bd93ba657fb9e530b",
+  "src/releaseProfile.js": "40ea2a191ad73f1421db4f814490cbd1669756cf4b5546394b0e7526c6ec3435",
   "src/reminder-settings.css": "3332cd2d88fc7e6db264d4b5669ed43334fb48e0538629b0f15afbeeb5c6c88d",
   "src/reminderController.js": "f11298bb890a387e52babc9d19ad2f40ab3d60c40ac97f475bd39a67b1666653",
   "src/reminderRules.js": "33a762131288af03d1038797e79202954638a5d320c791d3c4f2ab0a4b301473",
@@ -249,8 +250,8 @@ const PRECACHE_HASHES = {
   "src/ui/habitsView.js": "7d04fa4d6892f54de5ff5a3fa948622f94365c13b141802ec64cc55bf1c4f8f0",
   "src/ui/handbookView.js": "96683c190c90c9fcd6d146eaf2f5dec6295a419bec644bf4ffaf832eafce2a0a",
   "src/ui/mailboxView.js": "ab29c2eed1d9013e46b08abc84a3c5103ef2e1d6b7ef55c89f456dd452d01e1b",
-  "src/ui/modalHost.js": "079d77049d1a444a0323630652e8a21462e8eda9c008edc2b84a5fadec8fc1cc",
-  "src/ui/settingsView.js": "a6770c1a427f781262340394ed1d3d7350279972bef7131b37b5d3d0a04023ec",
+  "src/ui/modalHost.js": "6355305a252d354eca1abfd92a8b9cb43fa96ca034f087a2c58f9f1bf96aec3a",
+  "src/ui/settingsView.js": "873dbbfcae04cd030de66082fdddaf3bc167d798fd8c3a4f066dae78615cd81b",
   "src/ui/taskFormView.js": "4005e9f31ee4d6102b7d147b2f7ead72a8e4928902377f44bdbe459f9f8aa1fe",
   "src/ui/taskListView.js": "fe318f1c17581d96e95c1af4ff853412d26d3f9eccbe389f62efaf88127955db",
   "src/ui/weeklyReviewView.js": "2d63a5a56192f437b5933040232680a8dcfd3ac9242ee33e39969d3dcb8d80f4",
@@ -260,7 +261,7 @@ const PRECACHE_HASHES = {
   "src/updateActivity.js": "2cb4d2e9f5b4a77b0e92cd2793e577578914cdc4a5f4c2aee3410838a22526b5",
   "src/updateController.js": "fcf45665a4ed9fa8dc8e14f719e65320ce2de90fe877cfa87245387cfafaa8e4",
   "src/updateProtocol.js": "df73542b7899fb473b91f913bc890463331fbb0832db56289f783c33e9d588a0",
-  "src/version.js": "362b08cbf46b69ae59e7065b2a8d256a6bf3ac3049f96661d42bf046e6d46598",
+  "src/version.js": "a79f3a155931bae3ac9fd722f72cfe7aaa21e869cf79c7af37d0ff645cc60279",
   "src/weekly-review.css": "540ee55a1d22b0c6dac9a9bf32930c855b168e5359f6f6e34382de3dc16628f1",
   "src/weeklyReviewService.js": "4e1681fd26d685cff09a929938c0a926adeb61dd602ef773997c03b19d45d25d",
   "src/workshopGiftView.js": "7465474a1ac4ed2270e2d1fe9106760ec3855ea1ca48958c0762861d3ce25f09",
@@ -355,6 +356,7 @@ const PRECACHE_URLS = [
   "src/encounterScenery.js",
   "src/encounterView.js",
   "src/encounterViewModel.js",
+  "src/errorLog.js",
   "src/expeditionGameplay.js",
   "src/expeditionService.js",
   "src/expeditionStatusService.js",
