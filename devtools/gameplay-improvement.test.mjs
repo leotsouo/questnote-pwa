@@ -10,8 +10,8 @@ const materials = JSON.parse(await fs.readFile(new URL('../data/materials.json',
 
 const area = { id: 'mist_forest', energyCost: 3, durationMinutes: 15,
   rewards: { stardust: { min: 20, max: 20 }, material: { id: 'forest_leaf', min: 1, max: 2 }, bondExp: 5 } };
-const forestPet = { id: 'pet_n01', name: '森林芽芽', element: '木', rarity: 'N', bondLevel: 1, bondLevel: 1 };
-const scoutPet = { id: 'pet_r01', name: '雪狐', element: '冰', rarity: 'R', bondLevel: 3, bondLevel: 2 };
+const forestPet = { id: 'pet_n01', name: '森林芽芽', element: '木', rarity: 'N', bondLevel: 1 };
+const scoutPet = { id: 'pet_r01', name: '雪狐', element: '冰', rarity: 'R', bondLevel: 2 };
 
 test('recommendations match each objective and outrank a stronger nonmatching companion', () => {
   const pets = [forestPet, scoutPet,

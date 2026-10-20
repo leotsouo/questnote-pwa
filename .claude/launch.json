@@ -6,6 +6,18 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["devtools/serve.mjs"],
       "port": 8000
+    },
+    {
+      "name": "e2e-flows",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["devtools/onboarding-browser-server.mjs", "8765"],
+      "port": 8765
+    },
+    {
+      "name": "e2e-final-user",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["devtools/final-user-browser-server.mjs", "8766"],
+      "port": 8766
     }
   ]
 }

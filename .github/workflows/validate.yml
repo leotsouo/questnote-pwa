@@ -22,6 +22,10 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      # Same gate as `npm run check` locally: lint (undefined names, duplicate keys), parse every
+      # runtime file, unit/flow tests, catalog and image validation.
+      - run: npm run lint
+      - run: node devtools/syntax-check.mjs
       - run: npm test
       - run: npm run pools:validate
       - run: npm run images:check
