@@ -128,6 +128,7 @@ import { syncPetAwakening } from './petAwakeningService.js';
 import { awakeningPortrait } from './petAwakeningView.js';
 import { preloadAwakeningForms } from './petAwakeningScene.js';
 import { preloadCompanionImage, preloadOwnedPetImages } from './imagePreloadService.js';
+import { syncAppBadge } from './appBadge.js';
 
 
 
@@ -321,6 +322,7 @@ async function refreshState(options = {}) {
   appState.dailyCheckIn = dailyCheckIn;
 
   appState.tasks = sortTasks(tasks);
+  void syncAppBadge(appState.tasks);
 
   appState.wallet = wallet;
   appState.encounterEconomy = await getEncounterEconomy();

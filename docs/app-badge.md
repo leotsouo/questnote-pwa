@@ -1,0 +1,20 @@
+# App 圖示角標（V3.13.0）
+
+主畫面上的 QuestNote 圖示會顯示**還沒完成的待辦數量**；全部完成時角標會消失。這是轉成原生 App、做清單小工具之前的第一步（見 [pwa-to-native-app-feasibility.md](pwa-to-native-app-feasibility.md)）。
+
+- **計算方式：** 所有 `completed` 為 false 的任務，不含教學任務，也不分有沒有安排日期。實作在 `src/appBadge.js`。
+- **什麼時候更新：** 每次 `refreshState()` 載入任務之後（開 App、新增、完成、刪除、匯入備份都會經過這裡）。同一個數字不會重複設定。
+- **權限：** iOS 16.4 起的主畫面網頁 App 支援 Badging API；只要允許通知，角標權限就會自動給，不會另外跳提示（[WebKit Features in Safari 16.4](https://webkit.org/blog/13966/webkit-features-in-safari-16-4/)）。還沒允許通知、或瀏覽器不支援時，什麼都不做，也不顯示錯誤。
+- **限制：** App 沒有打開時，數字不會自己變。例如在另一台裝置完成任務，要等這台下次打開 QuestNote 才會更新。
+- **測試：** `devtools/app-badge.test.mjs`。瀏覽器手機尺寸實測（2026-10-24，本機 8000 埠，攔截 `setAppBadge`）：新增 1 個任務 → `setAppBadge(1)`；完成它 → `clearAppBadge()`；console 沒有錯誤。桌面瀏覽器看不到 iOS 圖示，畫面要在實機確認。
+
+## iPhone 實機測試清單
+
+正式版發布後，在主畫面版 QuestNote 進行：
+
+1. 設定頁「每日提醒」已開啟，或系統設定 → 通知 → QuestNote 已允許通知。
+2. 新增 2 個任務，回到主畫面：圖示右上角顯示 **2**。
+3. 打開 App 完成其中 1 個，回到主畫面：顯示 **1**。
+4. 完成最後 1 個：角標消失。
+5. 關掉 QuestNote 的通知權限，再新增任務：App 正常運作，不會跳錯誤（角標可能不更新，這是預期行為）。
+6. 設定頁版本卡顯示 **V3.13.0**，「最近錯誤」為空。
