@@ -7,7 +7,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { countUnfinishedTasks, syncAppBadge, resetAppBadgeCache } from '../src/appBadge.js';
+import { countUnfinishedTasks, syncAppBadge, resetAppBadgeCache, appBadgeStatus, enableAppBadge } from '../src/appBadge.js';
 
 function fakeNavigator({ reject = false } = {}) {
   const calls = [];
@@ -49,6 +49,40 @@ test('missing API and refused permission are silent', async () => {
   // A refused call is not cached, so the badge appears once notifications are allowed.
   assert.equal(await syncAppBadge(tasks, nav), 'denied');
   assert.equal(nav.calls.length, 2);
+});
+
+// V3.13.1: the preview build has no reminder backend, so "啟用每日提醒" never asks for notification
+// permission there and the badge could not be tested. The badge now asks for permission on its own.
+test('badge status follows API support and notification permission', () => {
+  assert.equal(appBadgeStatus({}, { permission: 'granted' }), 'unsupported');
+  assert.equal(appBadgeStatus(fakeNavigator(), undefined), 'unsupported');
+  assert.equal(appBadgeStatus(fakeNavigator(), { permission: 'default' }), 'off');
+  assert.equal(appBadgeStatus(fakeNavigator(), { permission: 'granted' }), 'on');
+  assert.equal(appBadgeStatus(fakeNavigator(), { permission: 'denied' }), 'blocked');
+});
+
+test('enabling the badge asks for permission and then shows the count', async () => {
+  resetAppBadgeCache();
+  const nav = fakeNavigator();
+  let permission = 'default';
+  const notification = { get permission() { return permission; }, requestPermission: async () => { permission = 'granted'; return permission; } };
+  assert.equal(await enableAppBadge({ nav, notification, loadTasks: async () => tasks }), 'on');
+  assert.deepEqual(nav.calls, [['set', 2]]);
+
+  permission = 'default';
+  const refusing = { get permission() { return permission; }, requestPermission: async () => { permission = 'denied'; return permission; } };
+  let loaded = false;
+  assert.equal(await enableAppBadge({ nav, notification: refusing, loadTasks: async () => { loaded = true; return tasks; } }), 'blocked');
+  assert.equal(loaded, false);
+});
+
+test('settings show a badge switch that works without the reminder backend', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="app-badge-enable"/);
+  assert.match(html, /id="app-badge-status"/);
+  const controller = await readFile(new URL('../src/reminderController.js', import.meta.url), 'utf8');
+  assert.match(controller, /enableAppBadge\(/);
+  assert.match(controller, /renderAppBadgeSetting\(\)/);
 });
 
 test('refreshState syncs the badge after loading tasks', async () => {
