@@ -113,3 +113,12 @@ test('file helpers: settings-compatible name and share detection', () => {
   assert.equal(canShareBackupFile({ share() {}, canShare: () => { throw new Error('x'); } }, file), false);
   assert.equal(canShareBackupFile(undefined, file), false);
 });
+
+// V3.14.0: the developer health check showed in the iOS app because only production hid it.
+test('the developer health check is hidden in production and in the iOS app', async () => {
+  const { isHealthCheckVisible } = await import('../src/ui/settingsView.js');
+  assert.equal(isHealthCheckVisible('production'), false);
+  assert.equal(isHealthCheckVisible('ios'), false);
+  assert.equal(isHealthCheckVisible('preview'), true);
+  assert.equal(isHealthCheckVisible(undefined), true, 'source checkout keeps it');
+});

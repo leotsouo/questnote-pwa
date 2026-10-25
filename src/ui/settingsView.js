@@ -355,8 +355,11 @@ function recentErrorsRowHtml() {
       </div>`;
 }
 
-/** The App health check is a developer tool: offered in the source checkout and the preview, never in production. */
-const HEALTH_CHECK_VISIBLE = RELEASE_PROFILE?.profile !== 'production';
+/** The App health check is a developer tool: offered in the source checkout and the preview, never in production or the iOS app. */
+export function isHealthCheckVisible(profile) {
+  return profile !== 'production' && profile !== 'ios';
+}
+const HEALTH_CHECK_VISIBLE = isHealthCheckVisible(RELEASE_PROFILE?.profile);
 // The version card can re-render while a check runs, so the block is always drawn from this state.
 let healthCheckRunning = false;
 let healthCheckReport = null;
