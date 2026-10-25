@@ -14,7 +14,8 @@ import { createHash } from 'node:crypto';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const webDir = path.join(projectRoot, 'ios-web');
-const outputRoot = path.join(os.tmpdir(), 'questnote-ios-artifacts');
+// macOS puts the temp folder under /var, a symlink the assembler refuses; use its real path.
+const outputRoot = path.join(await fs.realpath(os.tmpdir()), 'questnote-ios-artifacts');
 
 const built = await prepareReleaseArtifact({ projectRoot, outputRoot, profile: 'ios', scopePath: '/' });
 const manifestSha256 = createHash('sha256').update(await fs.readFile(built.manifestPath)).digest('hex');
