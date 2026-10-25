@@ -1,0 +1,8 @@
+{
+  "appId": "io.github.leotsouo.questnote",
+  "appName": "QuestNote",
+  "webDir": "ios-web",
+  "ios": {
+    "contentInset": "never"
+  }
+}
