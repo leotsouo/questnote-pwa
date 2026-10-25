@@ -1,3 +1,9 @@
+# V3.13.1 已發布 — 2026-10-25
+
+[PR #114](https://github.com/leotsouo/questnote-pwa/pull/114) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `3a440e8e77a9c6d8a812b8c47bbdf4e02a6fbdc6`。主畫面的 QuestNote 圖示會顯示還沒完成的待辦數量，設定頁可以單獨開啟圖示角標。正式 artifact `b856a6e2e3ef82d09e5c4d2b0740c9ac3e236a75c93826d38220f85cd6fe8172`，gh-pages `73ae4120748d1c9ace0a88c14722654374c8ea71`；870 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
+
+證據：`.dev-backups/evidence/release-v3.13.1-pr114.json`。
+
 # V3.12.2 已發布 — 2026-10-21
 
 [PR #113](https://github.com/leotsouo/questnote-pwa/pull/113) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `2f07bced8497c69d9fc148a49559b81277ccd294`。V3.12.2 修正確認視窗連點會重複執行（例如刪除兩次）與健康檢查誤報，新增設定頁「最近錯誤」與回報自動附錯誤紀錄，並加上 lint 與一鍵完整檢查防止同類錯誤再上線。正式 artifact `bddcdf4aa68390adca92dda20d1ffcdfd231c3081cb0b462f61a38febf97d60e`，gh-pages `83372fd593ff6f6d56430ac06f3720c3c045a3a3`；869 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
