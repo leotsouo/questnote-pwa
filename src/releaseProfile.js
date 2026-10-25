@@ -2,8 +2,8 @@
 export const RELEASE_PROFILE = {
   "schemaVersion": 1,
   "profile": "production",
-  "artifactId": "bddcdf4aa68390adca92dda20d1ffcdfd231c3081cb0b462f61a38febf97d60e",
-  "sourceCommit": "2f07bced8497c69d9fc148a49559b81277ccd294",
+  "artifactId": "b856a6e2e3ef82d09e5c4d2b0740c9ac3e236a75c93826d38220f85cd6fe8172",
+  "sourceCommit": "3a440e8e77a9c6d8a812b8c47bbdf4e02a6fbdc6",
   "scopePath": "/questnote-pwa/",
   "runtimeContentSchema": 1,
   "dbName": "QuestNoteDB",
