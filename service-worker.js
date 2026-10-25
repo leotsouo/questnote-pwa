@@ -227,6 +227,8 @@ const PRECACHE_URLS = [
   'src/backupSchema.js',
   'src/imagePreloadService.js',
   'src/appBadge.js',
+  'src/nativeBridge.js',
+  'src/widgetSnapshot.js',
   'src/deferredRenderGate.js',
   'src/perfDiagnostics.js',
   'data/dailyWheelRewards.json',

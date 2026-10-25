@@ -129,6 +129,7 @@ import { awakeningPortrait } from './petAwakeningView.js';
 import { preloadAwakeningForms } from './petAwakeningScene.js';
 import { preloadCompanionImage, preloadOwnedPetImages } from './imagePreloadService.js';
 import { syncAppBadge } from './appBadge.js';
+import { syncNativeWidget } from './nativeBridge.js';
 
 
 
@@ -323,6 +324,7 @@ async function refreshState(options = {}) {
 
   appState.tasks = sortTasks(tasks);
   void syncAppBadge(appState.tasks);
+  void syncNativeWidget(appState.tasks);
 
   appState.wallet = wallet;
   appState.encounterEconomy = await getEncounterEconomy();
