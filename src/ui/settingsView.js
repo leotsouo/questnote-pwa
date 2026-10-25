@@ -36,6 +36,7 @@ import {
 } from '../version.js';
 import { formatRecentErrors, getRecentErrors } from '../errorLog.js';
 import { handleAchievementCheckAfterAction } from './achievementsView.js';
+import { initWebMigrationCard } from './webMigrationView.js';
 
 // Bound from src/ui.js by connectSettingsView() so this module never imports ui.js back.
 let applyReduceMotionClass, applyTheme, notifyBondUnlocks, onRefresh, openConfirmModal, renderFontSizePickerState, renderThemePickerState, setText, showToast, state, switchView, uiDebugLog;
@@ -186,6 +187,7 @@ export function initImportBackupHandlers() {
   const reloadBtn = document.getElementById('btn-import-reload');
 
   resetImportUI();
+  initWebMigrationCard();
 
   selectBtn?.addEventListener('click', () => {
     fileInput?.click();
