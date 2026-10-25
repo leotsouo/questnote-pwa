@@ -60,8 +60,10 @@ function constant(source, name, json = true) {
 
 export async function verifyReleaseArtifact({ artifactDir, artifactId, manifestSha256, profile, scopePath } = {}) {
   requireValue(typeof artifactDir === 'string' && HASH.test(artifactId || '') && HASH.test(manifestSha256 || '')
-    && ['production', 'preview'].includes(profile) && typeof scopePath === 'string'
-    && /^\/(?:[a-zA-Z0-9_-]+\/)+$/.test(scopePath), 'Artifact directory, artifact ID, manifest SHA-256, profile and non-root scope pins are required');
+    && ['production', 'preview', 'ios'].includes(profile) && typeof scopePath === 'string'
+    // Only the iOS bundle is served from the root of its own app scheme.
+    && (profile === 'ios' ? scopePath === '/' : /^\/(?:[a-zA-Z0-9_-]+\/)+$/.test(scopePath)),
+  'Artifact directory, artifact ID, manifest SHA-256, profile and non-root scope pins are required');
   const root = await noLinks(artifactDir);
   requireValue((await fs.stat(root)).isDirectory(), 'Artifact root must be a directory');
   await noLinks(path.join(root, MANIFEST));
@@ -98,8 +100,8 @@ export async function verifyReleaseArtifact({ artifactDir, artifactId, manifestS
   const webmanifest = JSON.parse(text('manifest.webmanifest'));
   requireValue(webmanifest.id === scopePath && webmanifest.scope === scopePath
     && webmanifest.start_url === `${scopePath}index.html`
-    && webmanifest.name === (profile === 'production' ? 'QuestNote' : 'QuestNote 預覽')
-    && webmanifest.short_name === (profile === 'production' ? 'QN' : 'QN 預覽'), 'Webmanifest deployment identity mismatch');
+    && webmanifest.name === (profile === 'preview' ? 'QuestNote 預覽' : 'QuestNote')
+    && webmanifest.short_name === (profile === 'preview' ? 'QN 預覽' : 'QN'), 'Webmanifest deployment identity mismatch');
   const worker = text('service-worker.js');
   const version = text('src/version.js');
   requireValue(isDeepStrictEqual(constant(worker, 'BUILD_PROFILE'), descriptor), 'Worker descriptor identity mismatch');

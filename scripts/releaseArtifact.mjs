@@ -13,7 +13,8 @@ const CATALOG_FILES = { petsData: 'data/pets.json', poolsData: 'data/pools.json'
   loreData: 'data/pets-lore.json', seriesCatalog: 'data/pet-series.json' };
 const HASH = /^[a-f0-9]{64}$/;
 const PROFILES = { production: { dbName: 'QuestNoteDB', cacheNamespace: 'questnote-production-' },
-  preview: { dbName: 'QuestNotePreviewDB', cacheNamespace: 'questnote-preview-' } };
+  preview: { dbName: 'QuestNotePreviewDB', cacheNamespace: 'questnote-preview-' },
+  ios: { dbName: 'QuestNoteDB', cacheNamespace: 'questnote-ios-' } };
 const MANIFEST_FILE = 'release-artifact.json';
 const LEGACY_DIRECTORY = 'content/release-compatibility/v3.4.4';
 const CANDIDATE_METADATA = new Set(['validation.json', 'approvals.json', 'ecosystem.json',
@@ -280,7 +281,7 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   candidateDir, bundlePath, assetRoot, dryRun = false } = {}) {
   if (!projectRoot || !outputRoot || !Object.hasOwn(PROFILES, profile)
     || typeof scopePath !== 'string' || !/^\/(?:[a-zA-Z0-9_-]+\/)*$/.test(scopePath)) {
-    throw new Error('projectRoot, outputRoot, production|preview profile and an absolute slash-terminated scopePath are required');
+    throw new Error('projectRoot, outputRoot, production|preview|ios profile and an absolute slash-terminated scopePath are required');
   }
   const sourceRoot = await noLinks(projectRoot);
   const output = await noLinks(outputRoot, { allowMissing: true });
@@ -371,7 +372,7 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   const publicUrl = new URL(scopePath, 'https://leotsouo.github.io').href;
   const publicImageUrl = 'https://questnote.taste-compare.com/assets/questnote-og-v2.jpg';
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:title" content="[^"]+" \/>/,
-    `<meta property="og:title" content="${profile === 'production' ? 'QuestNote｜小事完成，冒險繼續' : 'QuestNote 預覽'}" />`, 'OG title');
+    `<meta property="og:title" content="${profile === 'preview' ? 'QuestNote 預覽' : 'QuestNote｜小事完成，冒險繼續'}" />`, 'OG title');
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:url" content="[^"]+" \/>/,
     `<meta property="og:url" content="${publicUrl}" />`, 'OG URL');
   sourceHtml = replaceOne(sourceHtml, /<meta property="og:image" content="[^"]+" \/>/,
@@ -379,8 +380,8 @@ export async function prepareReleaseArtifact({ projectRoot, outputRoot, profile,
   files.set('index.html', Buffer.from(replaceOne(sourceHtml, /<\/head>/,
     `  <meta name="questnote-artifact" content="${artifactId}">\n</head>`, 'HTML closing head')));
   const manifest = JSON.parse(source.get('manifest.webmanifest'));
-  Object.assign(manifest, { name: profile === 'production' ? 'QuestNote' : 'QuestNote 預覽',
-    short_name: profile === 'production' ? 'QN' : 'QN 預覽', id: scopePath, scope: scopePath,
+  Object.assign(manifest, { name: profile === 'preview' ? 'QuestNote 預覽' : 'QuestNote',
+    short_name: profile === 'preview' ? 'QN 預覽' : 'QN', id: scopePath, scope: scopePath,
     start_url: `${scopePath}index.html` });
   files.set('manifest.webmanifest', jsonBytes(manifest));
   let version = source.get('src/version.js').toString('utf8');
