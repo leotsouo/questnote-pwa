@@ -24,6 +24,19 @@ test('the ios profile is a valid release profile with the production database na
   assert.throws(() => validateReleaseProfile({ ...iosProfile, dbName: 'QuestNotePreviewDB' }), /Invalid/);
 });
 
+// TestFlight build 3 (V3.14.0) could not open: db.js only knew production/preview and threw
+// "Invalid release database profile" for the ios profile.
+test('db.js accepts every release profile with the same database name', async () => {
+  const source = await read('src/db.js');
+  const table = source.match(/const PROFILE_DATABASES = Object\.freeze\((\{[^}]+\})\)/)[1];
+  const databases = Function(`return ${table}`)();
+  for (const profile of ['production', 'preview', 'ios']) {
+    const descriptor = { ...iosProfile, profile, scopePath: profile === 'ios' ? '/' : `/${profile}/`,
+      dbName: databases[profile], cacheNamespace: `questnote-${profile}-` };
+    assert.equal(validateReleaseProfile(descriptor).dbName, databases[profile], profile);
+  }
+});
+
 test('the bundled ios app starts without a service worker', async () => {
   let started = false;
   const result = await bootApplication({ profile: iosProfile, marker: HASH, serviceWorker: null,
