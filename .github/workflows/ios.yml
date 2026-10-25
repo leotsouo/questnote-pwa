@@ -1,18 +1,14 @@
 name: iOS
 
-# Push to dev: compile for the simulator without signing, to catch native errors quickly.
+# Push to dev that changes native code: compile for the simulator without signing.
+# Web code is covered by npm test, so it does not trigger a macOS run on its own.
 # Manual run with "upload": sign with the App Store Connect API key and upload to TestFlight.
 on:
   push:
     branches: [dev]
     paths:
       - 'ios/**'
-      - 'src/**'
-      - 'index.html'
       - 'capacitor.config.json'
-      - 'package-lock.json'
-      - 'scripts/build-ios-web.mjs'
-      - 'scripts/releaseArtifact.mjs'
       - '.github/workflows/ios.yml'
   workflow_dispatch:
     inputs:
