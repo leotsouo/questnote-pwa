@@ -106,7 +106,7 @@ struct Provider: TimelineProvider {
 private let navy = Color(red: 0.06, green: 0.12, blue: 0.22)
 private let cream = Color(red: 0.96, green: 0.92, blue: 0.85)
 private let gold = Color(red: 0.85, green: 0.65, blue: 0.36)
-private let alert = Color(red: 0.95, green: 0.55, blue: 0.48)
+private let overdueRed = Color(red: 0.95, green: 0.55, blue: 0.48)
 
 struct TaskRow: View {
     let task: WidgetTask
@@ -119,7 +119,7 @@ struct TaskRow: View {
             Spacer(minLength: 4)
             if let label = dueLabel(task, today: today) {
                 Text(label).font(.caption2.weight(.semibold))
-                    .foregroundStyle(group(of: task, today: today) == .overdue ? alert : gold)
+                    .foregroundStyle(group(of: task, today: today) == .overdue ? overdueRed : gold)
             }
         }
     }
