@@ -60,3 +60,12 @@ test('the widget decodes the fields the snapshot sends', async () => {
     assert.match(swift, new RegExp(`let ${field}:`), field);
   }
 });
+
+// TestFlight build 11 (V3.15.0): the widget appeared but never showed tasks. SceneDelegate built a
+// plain CAPBridgeViewController, so MainViewController never ran and QuestNoteWidgetBridge was
+// never registered; every snapshot from src/nativeBridge.js failed silently.
+test('the scene shows MainViewController, which registers the widget bridge', async () => {
+  const scene = await read('ios/App/App/SceneDelegate.swift');
+  assert.match(scene, /rootViewController = MainViewController\(\)/);
+  assert.doesNotMatch(scene, /rootViewController = CAPBridgeViewController\(\)/);
+});
