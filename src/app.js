@@ -483,7 +483,11 @@ export async function runAchievementCheck() {
 
 
 
-/** iOS widget taps: the task list, a new task, or the tapped task (its edit form if the list hides it). */
+/**
+ * iOS widget taps: the task list, a new task, or the tapped task. The widget lists tasks that
+ * are not in today's plan too, so the list switches to 全部 when needed; if a filter still
+ * hides the task, its edit form opens instead.
+ */
 async function openWidgetLink(link) {
   await openTeachingTarget({ view: 'tasks' });
   if (link.action === 'add') {
@@ -491,7 +495,9 @@ async function openWidgetLink(link) {
     return;
   }
   if (link.action !== 'task' || !appState.tasks.some((task) => task.id === link.taskId)) return;
-  const card = document.querySelector(`#view-tasks .task-card[data-id="${CSS.escape(link.taskId)}"]`);
+  const findCard = () => document.querySelector(`#view-tasks .task-card[data-id="${CSS.escape(link.taskId)}"]`);
+  if (!findCard()) document.querySelector('#task-view-tabs [data-task-view="all"]')?.click();
+  const card = findCard();
   if (!card) {
     openTaskForm(link.taskId);
     return;
