@@ -129,7 +129,7 @@ import { awakeningPortrait } from './petAwakeningView.js';
 import { preloadAwakeningForms } from './petAwakeningScene.js';
 import { preloadCompanionImage, preloadOwnedPetImages } from './imagePreloadService.js';
 import { syncAppBadge } from './appBadge.js';
-import { syncNativeWidget } from './nativeBridge.js';
+import { syncNativeWidget, listenForWidgetLinks } from './nativeBridge.js';
 
 
 
@@ -483,6 +483,24 @@ export async function runAchievementCheck() {
 
 
 
+/** iOS widget taps: the task list, a new task, or the tapped task (its edit form if the list hides it). */
+async function openWidgetLink(link) {
+  await openTeachingTarget({ view: 'tasks' });
+  if (link.action === 'add') {
+    openTaskForm();
+    return;
+  }
+  if (link.action !== 'task' || !appState.tasks.some((task) => task.id === link.taskId)) return;
+  const card = document.querySelector(`#view-tasks .task-card[data-id="${CSS.escape(link.taskId)}"]`);
+  if (!card) {
+    openTaskForm(link.taskId);
+    return;
+  }
+  card.scrollIntoView({ block: 'center' });
+  card.classList.add('task-card--widget-focus');
+  setTimeout(() => card.classList.remove('task-card--widget-focus'), 2400);
+}
+
 function refreshAfterDayChange() {
   const today = getTodayDateString();
   if (today === lastKnownDate) return;
@@ -722,6 +740,7 @@ async function initApp() {
       showGrowthHelp: () => { closeModal(); switchView('guide'); requestAnimationFrame(() => document.querySelector('#guide-growth-title')?.focus()); } });
     initOnboarding(appState, { switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, showToast }, onboardingAtStartup);
     hideLoader();
+    listenForWidgetLinks((link) => { void openWidgetLink(link); });
 
 
 

@@ -51,7 +51,7 @@ test('app, widget and bridge agree on the App Group, plugin name and controller'
   assert.ok((await read('ios/App/QuestNoteWidget/QuestNoteWidget.swift')).includes(`snapshotKey = "${key}"`));
   const storyboard = await read('ios/App/App/Base.lproj/Main.storyboard');
   assert.match(storyboard, /customClass="MainViewController" customModule="App"/);
-  assert.match(await read('ios/App/App/MainViewController.swift'), /registerPluginInstance\(QuestNoteWidgetBridge\(\)\)/);
+  assert.match(await read('ios/App/App/MainViewController.swift'), /let widgetBridge = QuestNoteWidgetBridge\(\)\s+bridge\?\.registerPluginInstance\(widgetBridge\)/);
 });
 
 test('the widget decodes the fields the snapshot sends', async () => {
@@ -68,4 +68,26 @@ test('the scene shows MainViewController, which registers the widget bridge', as
   const scene = await read('ios/App/App/SceneDelegate.swift');
   assert.match(scene, /rootViewController = MainViewController\(\)/);
   assert.doesNotMatch(scene, /rootViewController = CAPBridgeViewController\(\)/);
+});
+
+// V3.16.0: widget taps open the task list, a new task or the tapped task.
+test('widget links, the URL scheme and the bridge agree', async () => {
+  const { parseWidgetLink, WIDGET_LINK_EVENT } = await import('../src/nativeBridge.js');
+  const info = await read('ios/App/App/Info.plist');
+  assert.match(info, /<key>CFBundleURLSchemes<\/key>\s*<array>\s*<string>questnote<\/string>/);
+  const widget = await read('ios/App/QuestNoteWidget/QuestNoteWidget.swift');
+  for (const url of widget.matchAll(/URL\(string: "(questnote:\/\/[^"]+)"\)/g)) {
+    const sample = url[1].replace('\(encoded)', 'task_1');
+    assert.ok(parseWidgetLink(sample), sample);
+  }
+  assert.match(widget, /\.widgetURL\(WidgetLink\.tasks\)/);
+  assert.match(widget, /Link\(destination: WidgetLink\.task\(task\.id\)\)/);
+  assert.match(widget, /Link\(destination: WidgetLink\.add\)/);
+  const bridge = await read('ios/App/App/QuestNoteWidgetBridge.swift');
+  assert.match(bridge, /CAPPluginMethod\(name: "consumeLink"/);
+  assert.equal(bridge.match(/linkEvent = "([^"]+)"/)[1], WIDGET_LINK_EVENT);
+  const scene = await read('ios/App/App/SceneDelegate.swift');
+  assert.match(scene, /connectionOptions\.urlContexts\.forEach \{ QuestNoteWidgetBridge\.receive\(\$0\.url\) \}/);
+  assert.match(scene, /URLContexts\.forEach \{ QuestNoteWidgetBridge\.receive\(\$0\.url\) \}/);
+  assert.match(await read('ios/App/App/MainViewController.swift'), /QuestNoteWidgetBridge\.current = widgetBridge/);
 });
