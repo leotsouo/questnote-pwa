@@ -8,6 +8,12 @@
       "port": 8000
     },
     {
+      "name": "ios-web",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["devtools/serve.mjs", "--root", "ios-web"],
+      "port": 8000
+    },
+    {
       "name": "e2e-flows",
       "runtimeExecutable": "node",
       "runtimeArgs": ["devtools/onboarding-browser-server.mjs", "8765"],
