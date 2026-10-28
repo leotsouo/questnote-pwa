@@ -1,6 +1,6 @@
 # QuestNote iOS App 計畫：App 外殼 + 主畫面待辦小工具
 
-日期：2026-10-25。狀態：**計畫，等使用者確認後開始第 0 階段。** 背景與取捨見 [pwa-to-native-app-feasibility.md](pwa-to-native-app-feasibility.md)。
+日期：2026-10-25。狀態：**第 0–2 階段已完成**（見文末「進度紀錄」）。 背景與取捨見 [pwa-to-native-app-feasibility.md](pwa-to-native-app-feasibility.md)。
 
 ## 目標
 
@@ -118,3 +118,10 @@ WidgetKit 小工具（SwiftUI）
 - 新增 `ios/`、`capacitor.config.json`、`.github/workflows/ios.yml`、`src/nativeBridge.js`；`package.json` 新增 Capacitor 相依套件。
 - PWA 的程式、存檔格式、production／preview 發布流程都不變。CLAUDE.md 和 `docs/release-flow.md` 會補上「iOS build 由 workflow 手動觸發上傳 TestFlight」。
 - 後端只有第 1 階段的 CORS 需要部署，部署前會先問你。
+
+## 進度紀錄
+
+- **第 0 階段（2026-10-25 完成）：** App Group `group.io.github.leotsouo.questnote`、Bundle ID `io.github.leotsouo.questnote` 與 `.widget` 已註冊；App Store Connect App 已建立；API key「QuestNote CI」（Admin）的 Key ID／Issuer ID 存在 repo 變數，私鑰存在 secret `ASC_KEY_P8`。GitHub Actions 雲端簽章與 TestFlight 上傳可行。內部測試群組「自己」開啟自動分發。
+- **第 1 階段：** App 外殼（`ios` profile）與 PWA → App 搬家（V3.15.0）完成，瀏覽器端到端驗證通過。TestFlight build 3 因 `db.js` 不認得 `ios` profile 而打不開，已設為過期，build 6 起修正。
+- **第 2 階段（2026-10-26）：** 主畫面／鎖定畫面待辦小工具（build 11）。使用者 2026-10-29 回報 iPhone 上已出現小工具。
+- **尚未完成：** App 內的圖示角標（原生 badge）、點小工具直接開到任務頁、App 版的每日提醒（原生通知）、回報表單的 CORS（需部署後端）。
