@@ -8,13 +8,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
 
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = CAPBridgeViewController()
+        window?.rootViewController = MainViewController()
         window?.makeKeyAndVisible()
 
+        // A widget tap that launched the app.
+        connectionOptions.urlContexts.forEach { QuestNoteWidgetBridge.receive($0.url) }
         SceneDelegateProxy.shared.scene(scene, willConnectTo: session, options: connectionOptions)
     }
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        URLContexts.forEach { QuestNoteWidgetBridge.receive($0.url) }
         SceneDelegateProxy.shared.scene(scene, openURLContexts: URLContexts)
     }
 
