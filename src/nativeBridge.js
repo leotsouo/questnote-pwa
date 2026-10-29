@@ -36,7 +36,7 @@ export function resetNativeWidgetCache() {
 /** Fired by QuestNoteWidgetBridge.swift when a widget link arrives while the app is running. */
 export const WIDGET_LINK_EVENT = 'questnote:widget-link';
 
-/** questnote://tasks, questnote://add or questnote://task?id=… → what to open; anything else → null. */
+/** questnote://tasks, questnote://add, questnote://voice or questnote://task?id=… → what to open; anything else → null. */
 export function parseWidgetLink(url) {
   let parsed;
   try {
@@ -47,6 +47,7 @@ export function parseWidgetLink(url) {
   if (parsed.protocol !== 'questnote:') return null;
   if (parsed.hostname === 'tasks') return { action: 'tasks' };
   if (parsed.hostname === 'add') return { action: 'add' };
+  if (parsed.hostname === 'voice') return { action: 'voice' };
   const taskId = parsed.searchParams.get('id');
   if (parsed.hostname === 'task' && taskId) return { action: 'task', taskId };
   return null;

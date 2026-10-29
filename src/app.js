@@ -115,7 +115,7 @@ import {
   hasLowMaterials,
 } from './workshopService.js';
 
-import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, openTaskForm, showGuidedHome, showToast } from './ui.js';
+import { initUI, renderAfterRefresh, applyReduceMotionClass, syncGlobalMailbox, switchView, openGlobalMailbox, getMailboxGiftStatus, openTeachingTarget, openTaskForm, openQuickVoice, showGuidedHome, showToast } from './ui.js';
 import { prepareOnboarding, resetOnboardingState } from './onboardingService.js';
 import { initOnboarding, openOnboardingEducation } from './onboardingController.js';
 import { initGuidedOnboarding } from './guidedOnboardingController.js';
@@ -492,6 +492,10 @@ async function openWidgetLink(link) {
   await openTeachingTarget({ view: 'tasks' });
   if (link.action === 'add') {
     openTaskForm();
+    return;
+  }
+  if (link.action === 'voice') {
+    openQuickVoice();
     return;
   }
   if (link.action !== 'task' || !appState.tasks.some((task) => task.id === link.taskId)) return;
