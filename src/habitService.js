@@ -527,7 +527,7 @@ export async function uncompleteHabitToday(id, today = getTodayDateString()) {
 
   delete logs[today];
 
-  if (hadReward || hadStardust > 0) {
+  if (hadReward || hadStardust > 0 || hadBond > 0) {
     logs[today] = {
       completed: false,
       rewardClaimed: true,
