@@ -66,7 +66,7 @@ function showUndoBar(task) {
     removeUndoBar();
     openQuickVoice();
   });
-  barTimers.push(setTimeout(() => bar.querySelector('[data-qv="undo"]')?.setAttribute('hidden', ''), UNDO_MS));
+  barTimers.push(setTimeout(() => bar.querySelector('[data-qv="undo"]')?.remove(), UNDO_MS));
   barTimers.push(setTimeout(removeUndoBar, BAR_MS));
 }
 
