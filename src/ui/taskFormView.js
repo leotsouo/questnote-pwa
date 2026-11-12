@@ -144,7 +144,7 @@ export function openTaskForm(taskId = null) {
     });
   });
 
-  const formSubtasks = [...subtasks];
+  const formSubtasks = subtasks.map((s) => ({ ...s }));
 
   function renderSubtaskFormList() {
     const list = document.getElementById('subtask-form-list');
