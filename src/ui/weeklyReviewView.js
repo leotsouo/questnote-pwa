@@ -54,7 +54,7 @@ function seniorHtml(review) {
 
 function tasksHtml(review) {
   const { completed, recent } = review.tasks;
-  if (!completed) return `<section class="weekly-review__section card"><h2>完成的任務</h2><p class="weekly-review__empty">這週還沒有完成的任務。</p></section>`;
+  if (!completed) return `<section class="weekly-review__section card"><h2>完成的任務</h2><p class="weekly-review__empty">${review.isCurrentWeek ? '這週還沒有完成的任務。' : '上週沒有完成的任務。'}</p></section>`;
   const rows = recent.map((task) => `<li>${escapeHtml((task.title || '').split('\n')[0])}</li>`).join('');
   const more = completed > recent.length ? `<p class="weekly-review__more">還有 ${completed - recent.length} 件</p>` : '';
   return `<section class="weekly-review__section card"><h2>完成的任務</h2><ul class="weekly-review__list">${rows}</ul>${more}</section>`;
