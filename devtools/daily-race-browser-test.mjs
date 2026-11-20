@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 import { RACE_SCENE_MS } from '../src/dailyRaceScene.js';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
-const output = path.resolve(process.argv[2]);
+const output = path.resolve(process.argv[2] || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/evidence/browser/daily-race');
 await fs.mkdir(output, { recursive: true });
 const server = spawn(process.execPath, ['devtools/onboarding-browser-server.mjs', '0', '--workshop-offline'], { windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
 let browser;

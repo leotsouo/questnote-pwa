@@ -6,7 +6,7 @@ import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 
 const root = path.resolve(import.meta.dirname, '..');
-const output = path.resolve(root, process.env.QUESTNOTE_POOL_PREVIEW_REPORT_DIR || '.dev-backups/test-runs/pool-awakening-preview');
+const output = path.resolve(root, process.env.QUESTNOTE_POOL_PREVIEW_REPORT_DIR || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/test-runs/pool-awakening-preview');
 const { chromium } = createRequire(import.meta.url)(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
 const server = spawn(process.execPath, ['devtools/onboarding-browser-server.mjs', '0'], { cwd: root, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
 const base = await new Promise((resolve, reject) => {

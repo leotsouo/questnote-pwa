@@ -1,12 +1,14 @@
 /** Real dispatch UI, only on the server-owned synthetic database. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin = process.argv[2];
+const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
+const origin = server?.origin || process.argv[2];
 assert.equal(new URL(origin).hostname, '127.0.0.1');
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
-const output = 'reports/expedition-recommendations';
+const output = evidenceDir('expedition-recommendations');
 await fs.mkdir(output, { recursive: true });
 try {
   const context = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -17,7 +19,7 @@ try {
   const marker = await (await context.request.get(`${origin}/__onboarding_test_guard__`)).json();
   assert.equal(marker.purpose, 'questnote-onboarding-synthetic-only');
   await page.goto(`${origin}/index.html`);
-  await page.locator('[data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   assert.equal(await page.evaluate(() => window.__questNoteOnboardingTest?.databaseName), marker.databaseName);
   const seed = await page.evaluate(async () => {
     const pets = (await (await fetch('/data/pets.json')).json()).pets;
@@ -50,7 +52,8 @@ try {
     for (const id of Object.values(groups).flat()) await collection.addPetToCollection(id);
     for (const [index, id] of groups.scout.entries()) {
       const pet = await collection.getPetCollection(id);
-      await db.dbPut(db.STORES.COLLECTION, { ...pet, stars: index + 1 });
+      // V3.9.10 (8f2ec5f) replaced stars with legacySpecialtyFloor; migrated entries with stars fail app init.
+      await db.dbPut(db.STORES.COLLECTION, { ...pet, legacySpecialtyFloor: index + 1 });
     }
     await collection.setCompanion(groups.guardian[0]);
   }, seed);
@@ -126,4 +129,4 @@ try {
     layout, objectives: ['explore', 'gather', 'bond'], confirmed: active.expedition.petIds, errors }, null, 2));
   console.log('PASS: all objectives, no matches, specialty ranking, squad adjustment, focus, 18 layouts, confirmation and busy exclusion');
   await context.close();
-} finally { await browser.close(); }
+} finally { await browser.close(); server?.close(); }

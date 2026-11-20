@@ -7,10 +7,10 @@ import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const reports = path.join(root, 'reports/senior-production');
+const reports = process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || path.join(root, '.dev-backups/evidence/browser/senior-guided');
 await fs.mkdir(reports, { recursive: true });
 const require = createRequire(import.meta.url);
-const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'C:/Users/User/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
 const results = [];
 const errors = [];
 const server = spawn(process.execPath, ['devtools/onboarding-browser-server.mjs', '0'], { cwd: root, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });

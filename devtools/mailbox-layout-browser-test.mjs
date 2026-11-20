@@ -2,17 +2,27 @@
 // PLAYWRIGHT_MODULE may point to an installed Playwright module URL.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin = process.argv[2] || 'http://127.0.0.1:8768';
+const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
+const origin = server?.origin || process.argv[2];
 assert.equal(new URL(origin).hostname, '127.0.0.1');
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
   const context = await browser.newContext({ viewport: { width: 430, height: 932 }, serviceWorkers: 'block' });
-  await context.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  // The live mailbox changes daily and the long gift letter expired on 2026-10-27; serve it without expiry so the layout case stays fixed.
+  const mailbox = JSON.parse(await fs.readFile('data/global-mailbox.json', 'utf8'));
+  for (const message of mailbox.messages) if (message.id === '2026-09-v3413-growth-lessons-gift') message.expiresAt = null;
+  await context.route('**/*', (route) => {
+    const url = new URL(route.request().url());
+    if (url.origin !== origin) return route.abort();
+    if (url.pathname === '/data/global-mailbox.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify(mailbox) });
+    return route.continue();
+  });
   const page = await context.newPage();
   page.on('pageerror', (error) => console.error(error.message));
   await page.goto(origin + '/index.html');
-  await page.locator('#onboarding-root [data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   await page.evaluate(async () => {
     document.body.dataset.theme = 'sweet';
     document.documentElement.style.setProperty('--safe-top', '59px');
@@ -24,8 +34,9 @@ try {
   await page.locator('[data-action="mailbox-filter"][data-filter="all"]').click();
   await page.locator('[data-message-id="2026-09-v3413-growth-lessons-gift"]').click();
   await page.locator('.mailbox-detail__title').waitFor();
-  await fs.mkdir('reports/mailbox-layout', { recursive: true });
-  await page.screenshot({ path: 'reports/mailbox-layout/after.png' });
+  const output = evidenceDir('mailbox-layout');
+  await fs.mkdir(output, { recursive: true });
+  await page.screenshot({ path: `${output}/after.png` });
   for (const viewport of [{ width: 430, height: 932 }, { width: 320, height: 568 }, { width: 932, height: 430 }, { width: 1280, height: 900 }]) {
     await page.setViewportSize(viewport);
     for (const theme of ['sweet', 'default']) {
@@ -67,4 +78,4 @@ try {
     }
   }
   await context.close();
-} finally { await browser.close(); }
+} finally { await browser.close(); server?.close(); }

@@ -1,20 +1,22 @@
 /** Real habit actions on a guarded, disposable local database. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin = process.argv[2];
+const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
+const origin = server?.origin || process.argv[2];
 assert.equal(new URL(origin).hostname, '127.0.0.1');
 const marker = await (await fetch(origin + '/__onboarding_test_guard__')).json();
 assert.equal(marker.purpose, 'questnote-onboarding-synthetic-only');
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
-const output = 'reports/today-habits';
+const output = evidenceDir('today-habits');
 await fs.mkdir(output, { recursive: true });
 try {
   const context = await browser.newContext({ viewport: { width: 393, height: 852 }, timezoneId: 'Asia/Taipei', serviceWorkers: 'block' });
   await context.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   const page = await context.newPage();
   await page.goto(origin + '/index.html');
-  await page.locator('[data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   assert.equal(await page.evaluate(() => window.__questNoteOnboardingTest.databaseName), marker.databaseName);
   await page.locator('.today-habits [data-action="habit-create-first"]').click();
   await page.locator('#habit-name').fill('每天喝水，照顧自己的身體');
@@ -114,4 +116,4 @@ try {
     behavior: ['create from today', 'active daily only', 'double click', 'focus', 'reload persistence', 'undo/redo rewards', 'cross-page sync', 'category filtering', 'tab isolation', 'task storage unchanged'] }, null, 2));
   console.log(`PASS habit behavior and ${layouts} responsive layouts`);
   await context.close();
-} finally { await browser.close(); }
+} finally { await browser.close(); server?.close(); }

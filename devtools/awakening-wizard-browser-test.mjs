@@ -6,7 +6,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 const root = path.resolve(import.meta.dirname, '..');
 const { chromium } = createRequire(import.meta.url)(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
-const output = process.env.QUESTNOTE_WIZARD_REPORT_DIR;
+const output = process.env.QUESTNOTE_WIZARD_REPORT_DIR || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR;
 if (output) await fs.mkdir(output, { recursive: true });
 const child = spawn(process.execPath, ['devtools/onboarding-browser-server.mjs', '0'], { cwd: root, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
 const base = await new Promise((resolve, reject) => { let text = ''; child.stdout.on('data', (b) => { text += b; const match = text.match(/http:\/\/127\.0\.0\.1:\d+/); if (match) resolve(match[0]); }); child.once('error', reject); });
