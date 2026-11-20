@@ -82,6 +82,13 @@ async function load() {
     && document.querySelector('#guide-tutorial-status')?.textContent);
   const skip = page.locator('.onboarding-dialog [data-onboarding-action="skip"]');
   if (await skip.isVisible()) await skip.click();
+  // V3.4.12 (9f966cd) guided onboarding: fresh profiles open the guided tour, which makes the nav inert.
+  const guidedSkip = page.locator('[data-guided-action="skip"]');
+  if (await guidedSkip.isVisible()) {
+    await guidedSkip.click();
+    await page.locator('[data-guided-action="confirm-skip"]').click();
+    await page.locator('.guided-coach').waitFor({ state: 'detached' });
+  }
   await page.evaluate(async (scope) => {
     const names = ['db', 'bondJourneyService', 'collectionService', 'taskService', 'habitService', 'backupService', 'rewardService', 'preferencesService', 'ui'];
     window.bondTest = Object.fromEntries(await Promise.all(names.map(async (name) => [name, await import(`${scope}/src/${name}.js`)])));
@@ -197,7 +204,8 @@ try {
       await action('start').click();
       await page.locator('[data-bond-screen="overview"]').waitFor();
       await action('go-source').click();
-      await page.locator(`[data-id="${fixtures.habit.id}"] [data-action="habit-complete"]`).click();
+      // V3.5.4 (3f95fa4) also renders the habit on the Today card; complete it from the opened source view.
+      await page.locator(`[data-id="${fixtures.habit.id}"] [data-action="habit-complete"]:visible`).click();
       await page.waitForFunction(async () => (await window.bondTest.bondJourneyService.getBondJourney()).active.progress === 1);
       await openHome(); await action('pause').click();
       await page.waitForFunction(async () => (await window.bondTest.bondJourneyService.getBondJourney()).active.status === 'paused');
