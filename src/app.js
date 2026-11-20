@@ -108,7 +108,6 @@ import {
   loadCraftables,
   getInventory,
   getWorkshopStats,
-  getEnabledCraftables,
   hasCraftableMaterials,
   hasBondItemsInInventory,
   companionLikesAnyGift,

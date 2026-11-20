@@ -271,7 +271,6 @@ export function openTaskForm(taskId = null) {
     submit.disabled = true;
     try {
       if (isEdit) {
-        const todayStr = getTodayDateString();
         await updateTask(taskId, {
           content,
           priority,

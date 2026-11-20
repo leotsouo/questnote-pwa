@@ -30,7 +30,6 @@ let appState = null;
 let resolvePresentation = null;
 
 let screen = document.getElementById('identity-screen');
-let refreshApp = null;
 let appActions = null;
 const dialog = modalHost.querySelector('#identity-detail-dialog');
 const reveal = modalHost.querySelector('#identity-reveal-dialog');
@@ -594,7 +593,6 @@ export function renderEncounterView(name, state, refresh, actions) {
   appState = state;
   poolId = resolveActivePool(state.poolsData, state.gachaStats?.selectedPoolId).id;
   document.body.dataset.reduceMotion = String(!!state.userPreferences?.reduceMotion);
-  refreshApp = refresh;
   appActions = actions;
   canonicalPets = state.allPets;
   awakeningCatalog = state.awakeningCatalog;

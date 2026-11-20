@@ -218,8 +218,6 @@ export async function playPoolUnlock(options = {}) {
   activeAbort = controller;
 
   let skipped = false;
-  let fallback = false;
-  let seen = false;
   let onKey = null;
 
   const markSkip = () => {
@@ -335,12 +333,10 @@ export async function playPoolUnlock(options = {}) {
       }
     });
 
-    seen = true;
     window.removeEventListener('keydown', onKey);
     return { ok: true, skipped, fallback: false, seen: true };
   } catch (err) {
     console.warn('[PoolAwakening] fallback', err);
-    fallback = true;
     // 簡化解鎖結果
     try {
       const simple = document.createElement('div');
@@ -363,9 +359,8 @@ export async function playPoolUnlock(options = {}) {
           resolve();
         }, { once: true });
       });
-      seen = true;
     } catch {
-      seen = true;
+      // 簡化畫面也失敗時仍回報已看過，避免卡住解鎖流程
     }
     return { ok: true, skipped, fallback: true, seen: true };
   } finally {

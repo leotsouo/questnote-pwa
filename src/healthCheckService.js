@@ -8,7 +8,7 @@ import { PET_IMAGE_CACHE } from './version.js';
 import { RELEASE_PROFILE } from './releaseProfile.js';
 import { normalizeTask } from './taskMigration.js';
 import { normalizeWallet, DEFAULT_MATERIALS } from './rewardService.js';
-import { normalizeEntry, normalizeCollectionItem } from './collectionService.js';
+import { normalizeCollectionItem } from './collectionService.js';
 import { normalizeHabit } from './habitService.js';
 import { normalizeAchievementsState, loadAchievementsCatalog, loadTitlesCatalog } from './achievementService.js';
 import { normalizeUserPreferences, normalizeTheme } from './preferencesService.js';

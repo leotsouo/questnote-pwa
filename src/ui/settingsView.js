@@ -46,7 +46,6 @@ export function connectSettingsView(deps) {
 }
 
 let pendingImportBackup = null;
-let pendingImportFileName = '';
 let pendingImportWarnings = [];
 function formatBackupDateTime(isoString) {
   if (!isoString) return '無資料';
@@ -63,7 +62,6 @@ function formatBackupDateTime(isoString) {
 
 function resetImportUI() {
   pendingImportBackup = null;
-  pendingImportFileName = '';
   pendingImportWarnings = [];
 
   const fileInput = document.getElementById('import-file-input');
@@ -164,7 +162,6 @@ async function handleImportFileSelect(file) {
 
     const normalized = normalizeBackupPayload(rawBackup);
     pendingImportBackup = normalized;
-    pendingImportFileName = file.name;
     pendingImportWarnings = validation.warnings || [];
 
     const preview = previewBackup(normalized, {
