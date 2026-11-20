@@ -1,7 +1,7 @@
 // Disposable loopback storage only. Insets simulate layout, not native iOS chrome.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 
@@ -35,7 +35,7 @@ try {
   page.on('pageerror', (error) => failures.push(error.message));
   page.on('console', (message) => { if (message.type() === 'error') failures.push(message.text()); });
   await page.goto(`${origin}/index.html`);
-  await page.locator('[data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   await page.locator('#app-loader').waitFor({ state: 'hidden' });
   await page.evaluate(async () => {
     assertNoRelease();
@@ -64,7 +64,8 @@ try {
   };
   const screenshot = async (name) => {
     await page.evaluate(async () => {
-      await Promise.all([...document.querySelectorAll('.view.active img')].map((img) => img.decode().catch(() => {})));
+      // decode() on off-screen loading=lazy images (settings theme previews) crashes the headless Edge renderer.
+      await Promise.all([...document.querySelectorAll('.view.active img:not([loading="lazy"])')].map((img) => img.decode().catch(() => {})));
     });
     return page.screenshot({ path: `${output}/${phase}-${name}.png` });
   };
@@ -82,8 +83,9 @@ try {
       const bond = document.querySelector('.twilight-bond').getBoundingClientRect();
       return { overlap: hr.bottom - cr.top, left: cr.left, right: cr.right, top: cr.top, radius: getComputedStyle(heading).borderTopLeftRadius, bondBottom: bond.bottom };
     });
-    assert.equal(seam.radius, '28px');
-    assert.equal(seam.overlap, 28, 'Entire paper radius overlaps the night scene');
+    // theme-refinements.css (1e8e4e9) ties the paper radius and overlap to the theme's --radius-xl token instead of a fixed 28px.
+    assert.ok(parseFloat(seam.radius) > 0, 'Paper has rounded corners');
+    assert.equal(seam.overlap, parseFloat(seam.radius), 'Entire paper radius overlaps the night scene');
     assert.ok(seam.bondBottom < seam.top, 'Bond stays clear of paper');
     if (seam.top + 1 < page.viewportSize().height - 110) {
       assert.ok(isNight(await pixel(seam.left + 1, seam.top + 1)), 'Left paper corner has night backing');
@@ -95,6 +97,11 @@ try {
   await navigate('tasks');
   await page.locator('#twilight-home:not([hidden]) .twilight-masthead').waitFor();
   await page.locator('#task-view-content .empty-state').first().waitFor();
+  // Since V3.6.0 (60c1825) skipping the tour leaves a first-visit hint above the home until 我知道了; check the steady layout.
+  const hint = page.locator('[data-guided-hint-dismiss]');
+  if (await hint.isVisible()) await hint.click();
+  await page.locator('#toast-container > .show').waitFor({ state: 'detached', timeout: 10000 }).catch(() => {});
+  await settle();
   await screenshot('home-empty');
   if (!before) {
     await checkHomeSeam();
