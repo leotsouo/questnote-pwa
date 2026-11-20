@@ -25,15 +25,16 @@ try {
     await reward.addInventoryItem('item_small_spirit_food', 2);
   });
   await page.reload();
-  await page.locator('.companion-feed-btn').waitFor();
+  // Since V3.4.26 (1e8e4e9) the home feed entry is the hero's .qn-companion-feed; the old companion card is hidden.
+  const homeFeed = page.locator('[data-action="companion-feed"]:visible');
+  await homeFeed.waitFor();
   const output = evidenceDir('companion-feeding');
   await fs.mkdir(output, { recursive: true });
-  await page.locator('.companion-card').scrollIntoViewIfNeeded();
-  await page.evaluate(() => window.scrollBy(0, 180));
+  await homeFeed.scrollIntoViewIfNeeded();
   await page.waitForTimeout(350);
   await page.screenshot({ path: `${output}/home.png` });
 
-  await page.locator('.companion-feed-btn').click();
+  await homeFeed.click();
   assert.ok(await page.locator('#companion-feed-btn').isVisible(), 'Companion entry opens feeding');
   await page.waitForTimeout(400);
   await page.screenshot({ path: `${output}/feed.png` });
@@ -53,7 +54,9 @@ try {
 
   await page.locator('#modal-close').click();
   await page.locator('.nav-item[data-view="collection"]').click();
-  await page.locator('.collection-card[data-pet-id="pet_ur02"] [data-action="view-detail"]').click();
+  // V3.5.20 (6fb9615) collection is the identity surface; owned pets reach the app detail (and feeding) from its dialog.
+  await page.locator('#view-collection [data-pet="pet_ur02"]').click();
+  await page.locator('[data-identity-action="app-pet-detail"][data-pet-id="pet_ur02"]').click();
   assert.ok(await page.locator('[data-action="detail-feed-pet"]').isVisible(), 'Owned pet detail has a feed entry');
   await page.waitForTimeout(3400);
   await page.screenshot({ path: `${output}/collection-detail.png` });
@@ -75,8 +78,9 @@ try {
   assert.equal(await page.locator('[data-workshop-tab="craft"]').getAttribute('aria-selected'), 'true');
 
   await page.locator('.nav-item[data-view="collection"]').click();
-  await page.locator('.collection-card[data-pet-id="pet_n01"] [data-action="view-detail"]').click();
-  assert.equal(await page.locator('[data-action="detail-feed-pet"]').count(), 0, 'Unowned pet has no feed entry');
+  await page.locator('#view-collection [data-pet="pet_n01"]').click();
+  await page.locator('#identity-detail-dialog[open]').waitFor();
+  assert.equal(await page.locator('[data-identity-action="app-pet-detail"]:visible').count(), 0, 'Unowned pet has no feed entry');
   await context.close();
   console.log('PASS: companion and collection feed the intended pet, consume one item each, and handle empty stock');
 } finally {
