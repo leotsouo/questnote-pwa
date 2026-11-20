@@ -11,7 +11,12 @@ import worker from '../backend/reminders/worker.js';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = path.resolve('.');
 const db = new DatabaseSync(':memory:'); db.exec(await fs.readFile('backend/reminders/schema.sql', 'utf8'));
-const binding = { prepare(sql) { return { bind(...args) { return { first: async () => db.prepare(sql).get(...args) || null, run: async () => db.prepare(sql).run(...args) }; } }; } };
+// Same D1 stand-in as reminders.test.mjs; the worker needs all() and batch() since 0fff9e1.
+const binding = { prepare(sql) { return { bind(...args) { return { first: async () => db.prepare(sql).get(...args) || null, run: async () => db.prepare(sql).run(...args), all: async () => ({ results: db.prepare(sql).all(...args) }) }; } }; },
+  async batch(statements) {
+    db.exec('BEGIN');
+    try { const results = []; for (const statement of statements) results.push(await statement.all()); db.exec('COMMIT'); return results; } catch (error) { db.exec('ROLLBACK'); throw error; }
+  } };
 const keys = webpush.generateVAPIDKeys(); const ec = createECDH('prime256v1'); ec.generateKeys();
 const subscription = { endpoint: 'https://web.push.apple.com/isolated-test', keys: { p256dh: ec.getPublicKey().toString('base64url'), auth: randomBytes(16).toString('base64url') } };
 let origin; let rejectSync = false;
@@ -49,7 +54,9 @@ try {
   }, { subscription, publicKey: keys.publicKey });
   const page = await context.newPage(); const errors = []; page.on('pageerror', (e) => errors.push(e.message));
   await page.goto(origin); await skipGuidedTour(page);
-  await page.locator('#btn-add-task').click(); await page.locator('#task-content').fill('明天要繳電費\nPRIVATE LONG TEXT');
+  await page.locator('[data-action="empty-add-task"]:visible').first().click(); await page.locator('#task-content').fill('明天要繳電費\nPRIVATE LONG TEXT');
+  // The task form is a step wizard (V3.8.3, 4178649); the date step is no longer on the first page.
+  while (!(await page.locator('[data-plan-date="tomorrow"]').isVisible())) await page.locator('.task-wizard__next').click();
   await page.locator('[data-plan-date="tomorrow"]').click();
   const tomorrow = await page.locator('#task-plan-date').inputValue();
   while (await page.locator('.task-wizard__next').isVisible()) await page.locator('.task-wizard__next').click();
