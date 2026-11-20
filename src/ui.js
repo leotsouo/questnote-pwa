@@ -61,9 +61,6 @@ import {
 } from './achievementService.js';
 import { isDevMode, isAuthorLocalDevMode } from './devService.js';
 import {
-  playPoolDebutPresentation,
-} from './themedSummonController.js';
-import {
   escapeHtml,
 } from './uiHelpers.js';
 import {
@@ -789,7 +786,6 @@ function bindDelegatedEvents() {
       }
 
       if (isSeniorMode()) {
-        const reward = result.reward;
         seniorFeedback(isCompleting
           ? `已完成「${taskBefore.title}」。${state.companion ? '夥伴也很開心。' : '完成狀態已儲存。'}`
           : `「${taskBefore.title}」已改回未完成。已領獎勵不會重複發放。`, 'success');
@@ -1739,10 +1735,9 @@ function renderThemePickerState(activeTheme) {
 function renderNavBadges() {
   if (!state) return;
 
-  const { wallet, activeExpedition, companion, achievementSummary } = state;
+  const { activeExpedition, companion, achievementSummary } = state;
   const expeditionComplete =
     activeExpedition && isExpeditionTimeComplete(activeExpedition) && !activeExpedition.claimed;
-  const stardust = wallet?.stardust ?? 0;
   const claimable = achievementSummary?.claimable ?? 0;
   const hasUnseenTitles = achievementSummary?.hasUnseenTitles ?? false;
   const habitIncomplete = state.habitStats?.hasIncompleteToday ?? false;

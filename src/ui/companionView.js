@@ -520,22 +520,6 @@ export function refreshCompanionBubble(overrides = {}) {
   setCompanionBubbleText(line, !overrides.isWelcome);
 }
 
-function showCompanionDialogue() {
-  const card = document.querySelector('.companion-card');
-  const img = document.querySelector('.companion-card__image');
-  if (!state.companion) return;
-
-  trackUserActivity();
-  refreshCompanionBubble();
-  card?.classList.add('companion-card--bounce');
-  img?.classList.add('companion-img--bounce');
-  setTimeout(() => {
-    card?.classList.remove('companion-card--bounce');
-    img?.classList.remove('companion-img--bounce');
-  }, 500);
-  scheduleCompanionDialogueTimer();
-}
-
 function scheduleCompanionDialogueTimer() {
   stopCompanionDialogueTimer();
   if (!state?.companion || !isTasksViewCurrent()) return;

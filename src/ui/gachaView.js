@@ -390,7 +390,6 @@ export async function maybePlayPoolDebut(poolId) {
   if (LOCAL_ART_PREVIEW) return;
   const pool = getSelectedGachaPool();
   if (!pool || pool.id !== poolId || isGachaPullInProgress() || maybePlayPoolDebut._inflight) return;
-  const presentation = normalizePoolPresentation(pool);
   maybePlayPoolDebut._inflight = true;
   try {
     {
@@ -1010,11 +1009,6 @@ function sweetSummonStatusBadge(isNew, amount) {
   return `<span class="sweet-summon-badge sweet-summon-badge--fragment">碎片 +${amount}</span>`;
 }
 
-function sweetSummonRarityDesc(rarity) {
-  const labels = { N: '普通夥伴', R: '稀有夥伴', SR: '超稀有夥伴', SSR: '極稀有夥伴', UR: '傳說夥伴' };
-  return labels[rarity] || rarity;
-}
-
 function upgradeSingleResultImage(pet) {
   const image = document.querySelector('.summon-result-single__frame .pet-img');
   const stageSrc = getPetImageSrc(pet, 'stage');
@@ -1143,11 +1137,6 @@ function defaultSummonStatusBadge(isNew, amount) {
     return '<span class="default-summon-badge default-summon-badge--new">NEW</span>';
   }
   return `<span class="default-summon-badge default-summon-badge--fragment">碎片 +${amount}</span>`;
-}
-
-function defaultSummonRarityDesc(rarity) {
-  const labels = { N: '普通夥伴', R: '稀有夥伴', SR: '超稀有夥伴', SSR: '極稀有夥伴', UR: '傳說夥伴' };
-  return labels[rarity] || rarity;
 }
 
 function defaultSummonRarityHint(rarity) {

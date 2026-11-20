@@ -72,7 +72,6 @@ export function renderExpeditionView() {
   const { wallet, expeditionAreas, activeExpedition } = state;
   const ownedPets = getOwnedPets();
   const hasActive = !!activeExpedition;
-  const isComplete = activeExpedition && isExpeditionTimeComplete(activeExpedition);
 
   // 冒險能量卡片
   const energyEl = document.getElementById('expedition-energy');
