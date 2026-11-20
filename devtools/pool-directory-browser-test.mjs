@@ -11,7 +11,7 @@ const { chromium } = process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE
 const root = fileURLToPath(new URL('../', import.meta.url));
 const catalog = JSON.parse(await fs.readFile(path.join(root, 'data/pools.json'), 'utf8')).pools.filter((row) => row.active);
 const { POOL_NAVIGATION } = await import('../src/poolDirectory.js');
-const output = path.resolve(process.argv[2] || '.dev-backups/test-runs/pool-directory-browser');
+const output = path.resolve(process.argv[2] || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/test-runs/pool-directory-browser');
 assert.ok(output.startsWith(path.join(root, '.dev-backups', 'test-runs') + path.sep));
 await fs.mkdir(output, { recursive:true });
 const types = { '.html':'text/html', '.js':'text/javascript', '.json':'application/json', '.css':'text/css', '.svg':'image/svg+xml', '.png':'image/png', '.webp':'image/webp', '.woff2':'font/woff2' };

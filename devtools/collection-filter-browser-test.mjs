@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
-const output = process.env.QUESTNOTE_FILTER_REPORT_DIR;
+const output = process.env.QUESTNOTE_FILTER_REPORT_DIR || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR;
 assert.ok(output, 'Use a dedicated ignored evidence directory');
 await fs.mkdir(output, { recursive: true });
 const server = spawn(process.execPath, ['devtools/onboarding-browser-server.mjs', '0'], { windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });

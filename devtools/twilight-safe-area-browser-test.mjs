@@ -1,15 +1,17 @@
 // Disposable loopback storage only. Insets simulate layout, not native iOS chrome.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin = process.argv[2] || 'http://127.0.0.1:8773';
+const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
+const origin = server?.origin || process.argv[2];
 assert.equal(new URL(origin).hostname, '127.0.0.1');
 const before = process.argv.includes('--before');
 const phase = before ? 'before' : 'after';
-const output = 'reports/twilight-safe-area';
+const output = evidenceDir('twilight-safe-area');
 await fs.mkdir(output, { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 const failures = [];
@@ -198,4 +200,5 @@ try {
   await context.close();
 } finally {
   await browser.close();
+  server?.close();
 }

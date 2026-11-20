@@ -7,7 +7,7 @@ import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const reportDir = path.resolve(root, process.env.QUESTNOTE_SENIOR_REPORT_DIR || 'reports/senior-mode');
+const reportDir = path.resolve(root, process.env.QUESTNOTE_SENIOR_REPORT_DIR || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/evidence/browser/senior-mode');
 await fs.mkdir(reportDir, { recursive: true });
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');

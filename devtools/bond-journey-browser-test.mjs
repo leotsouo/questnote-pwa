@@ -9,7 +9,7 @@ import os from 'node:os';
 import { prepareReleaseArtifact } from '../scripts/releaseArtifact.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const reportDir = path.join(root, 'reports', 'bond-v351');
+const reportDir = process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || path.join(root, '.dev-backups', 'evidence', 'browser', 'bond-journey');
 await fs.mkdir(reportDir, { recursive: true });
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');

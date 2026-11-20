@@ -1,20 +1,25 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const catalog = JSON.parse(await fs.readFile(process.env.QUESTNOTE_CATALOG, 'utf8'));
+// Optional QUESTNOTE_CATALOG pins an approved catalog snapshot; otherwise the repo data is served.
+const catalog = process.env.QUESTNOTE_CATALOG ? JSON.parse(await fs.readFile(process.env.QUESTNOTE_CATALOG, 'utf8')) : null;
+const output = evidenceDir('collection-swipe');
+const server = await startTestOrigin();
+const origin = server.origin;
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
  for (const width of [320, 430]) {
   const context = await browser.newContext({ viewport: {width,height:932}, isMobile:true, hasTouch:true, serviceWorkers:'block' });
   await context.route('**/*', route=>{
    const url=new URL(route.request().url());
-   if(url.origin!=='http://127.0.0.1:8775') return route.abort();
+   if(url.origin!==origin) return route.abort();
    const field={'/data/pets.json':'petsData','/data/pools.json':'poolsData','/data/pets-lore.json':'loreData','/data/pet-series.json':'seriesCatalog'}[url.pathname];
-   if(field) return route.fulfill({contentType:'application/json',body:JSON.stringify(catalog[field])});
+   if(field && catalog) return route.fulfill({contentType:'application/json',body:JSON.stringify(catalog[field])});
    return route.continue();
   });
   const page=await context.newPage();
-  await page.goto('http://127.0.0.1:8775/index.html');
+  await page.goto(origin + '/index.html');
   await page.getByRole('button',{name:'略過教學',exact:true}).click();
   await page.locator('.nav-item[data-view="collection"]').click();
   assert.equal(await page.locator('#collection-series-select').count(),0,'No added series picker');
@@ -80,9 +85,9 @@ try {
   const boundaries=await page.evaluate(()=>({body:document.documentElement.scrollWidth, viewport:innerWidth, touch:getComputedStyle(document.body).touchAction}));
   assert.ok(boundaries.body<=width,'No page-wide horizontal overflow');
   assert.equal(boundaries.touch,'pan-x pan-y');
-  await fs.mkdir('reports/collection-swipe',{recursive:true});
+  await fs.mkdir(output,{recursive:true});
   await page.waitForTimeout(250);
-  await page.screenshot({path:`reports/collection-swipe/collection-${width}.png`});
+  await page.screenshot({path:`${output}/collection-${width}.png`});
   const beforeScroll=await page.evaluate(()=>scrollY);
   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:width-2,y}]});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:width-2,y:y-90}]});
@@ -91,4 +96,4 @@ try {
   console.log(`PASS ${width}px: native touch row swipe, edge swipe, original chips and series selection, no overflow`);
   await context.close();
  }
-} finally {await browser.close();}
+} finally {await browser.close(); server.close();}

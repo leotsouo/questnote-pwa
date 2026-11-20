@@ -5,7 +5,7 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { createRequire } from 'node:module';
 const root = path.resolve(import.meta.dirname, '..');
-const report = path.join(root, 'reports/awakening-guide');
+const report = process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || path.join(root, '.dev-backups/evidence/browser/awakening-guide');
 await fs.mkdir(report, { recursive: true });
 const { chromium } = createRequire(import.meta.url)(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
 const server = spawn(process.execPath, ['devtools/onboarding-browser-server.mjs', '0'], { cwd: root, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });

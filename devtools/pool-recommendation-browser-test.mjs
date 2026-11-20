@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { POOL_NAVIGATION } from '../src/poolDirectory.js';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
-const output = path.resolve(process.argv[2] || '.dev-backups/test-runs/pool-recommendation-browser');
+const output = path.resolve(process.argv[2] || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/test-runs/pool-recommendation-browser');
 assert.ok(output.startsWith(path.join(root, '.dev-backups', 'test-runs') + path.sep));
 await fs.mkdir(output, { recursive: true });
 const fixture = { startsAt: '2026-10-10T00:00:00+08:00', endsAt: '2026-10-24T00:00:00+08:00' };

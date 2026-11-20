@@ -1,8 +1,10 @@
 // Use browser-test-server.mjs on an isolated loopback origin.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin = process.argv[2] || 'http://127.0.0.1:8879';
+const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
+const origin = server?.origin || process.argv[2];
 assert.equal(new URL(origin).hostname, '127.0.0.1');
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
@@ -70,7 +72,8 @@ try {
     document.documentElement.style.fontSize = '16px';
     document.querySelector('#modal-body').scrollTop = 0;
   });
-  await fs.mkdir('reports/task-form-layout', { recursive: true });
-  await page.screenshot({ path: 'reports/task-form-layout/after.png' });
+  const output = evidenceDir('task-form-layout');
+  await fs.mkdir(output, { recursive: true });
+  await page.screenshot({ path: `${output}/after.png` });
   await context.close();
-} finally { await browser.close(); }
+} finally { await browser.close(); server?.close(); }

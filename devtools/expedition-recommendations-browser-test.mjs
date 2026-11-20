@@ -1,12 +1,14 @@
 /** Real dispatch UI, only on the server-owned synthetic database. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin = process.argv[2];
+const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
+const origin = server?.origin || process.argv[2];
 assert.equal(new URL(origin).hostname, '127.0.0.1');
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
-const output = 'reports/expedition-recommendations';
+const output = evidenceDir('expedition-recommendations');
 await fs.mkdir(output, { recursive: true });
 try {
   const context = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -126,4 +128,4 @@ try {
     layout, objectives: ['explore', 'gather', 'bond'], confirmed: active.expedition.petIds, errors }, null, 2));
   console.log('PASS: all objectives, no matches, specialty ranking, squad adjustment, focus, 18 layouts, confirmation and busy exclusion');
   await context.close();
-} finally { await browser.close(); }
+} finally { await browser.close(); server?.close(); }

@@ -5,7 +5,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 const root = path.resolve(import.meta.dirname, '..');
-const reports = path.resolve(root, process.env.QUESTNOTE_AWAKENING_REPORT_DIR || 'reports/awakening-implementation');
+const reports = path.resolve(root, process.env.QUESTNOTE_AWAKENING_REPORT_DIR || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/evidence/browser/pet-awakening');
 await fs.mkdir(reports, { recursive: true });
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');

@@ -2,8 +2,10 @@
 // PLAYWRIGHT_MODULE may point to an installed Playwright module URL.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin = process.argv[2] || 'http://127.0.0.1:8768';
+const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
+const origin = server?.origin || process.argv[2];
 assert.equal(new URL(origin).hostname, '127.0.0.1');
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
@@ -24,8 +26,9 @@ try {
   await page.locator('[data-action="mailbox-filter"][data-filter="all"]').click();
   await page.locator('[data-message-id="2026-09-v3413-growth-lessons-gift"]').click();
   await page.locator('.mailbox-detail__title').waitFor();
-  await fs.mkdir('reports/mailbox-layout', { recursive: true });
-  await page.screenshot({ path: 'reports/mailbox-layout/after.png' });
+  const output = evidenceDir('mailbox-layout');
+  await fs.mkdir(output, { recursive: true });
+  await page.screenshot({ path: `${output}/after.png` });
   for (const viewport of [{ width: 430, height: 932 }, { width: 320, height: 568 }, { width: 932, height: 430 }, { width: 1280, height: 900 }]) {
     await page.setViewportSize(viewport);
     for (const theme of ['sweet', 'default']) {
@@ -67,4 +70,4 @@ try {
     }
   }
   await context.close();
-} finally { await browser.close(); }
+} finally { await browser.close(); server?.close(); }

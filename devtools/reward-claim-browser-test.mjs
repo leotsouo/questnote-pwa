@@ -1,10 +1,12 @@
 // Loopback only, disposable browser storage, synthetic rewards, no external requests.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin = process.argv[2];
+const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
+const origin = server?.origin || process.argv[2];
 assert.equal(new URL(origin).hostname, '127.0.0.1');
-const output = 'reports/reward-claim';
+const output = evidenceDir('reward-claim');
 await fs.mkdir(output, { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
@@ -155,4 +157,4 @@ try {
   console.log('PASS duplicate prevention, batch lock, atomic abort, unread preservation; no browser errors');
   await fs.writeFile(`${output}/results.json`, JSON.stringify({ layoutCases: 108, kinds, atomic, errors }, null, 2));
   await context.close();
-} finally { await browser.close(); }
+} finally { await browser.close(); server?.close(); }
