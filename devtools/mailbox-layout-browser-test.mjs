@@ -10,7 +10,15 @@ assert.equal(new URL(origin).hostname, '127.0.0.1');
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
   const context = await browser.newContext({ viewport: { width: 430, height: 932 }, serviceWorkers: 'block' });
-  await context.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  // The live mailbox changes daily and the long gift letter expired on 2026-10-27; serve it without expiry so the layout case stays fixed.
+  const mailbox = JSON.parse(await fs.readFile('data/global-mailbox.json', 'utf8'));
+  for (const message of mailbox.messages) if (message.id === '2026-09-v3413-growth-lessons-gift') message.expiresAt = null;
+  await context.route('**/*', (route) => {
+    const url = new URL(route.request().url());
+    if (url.origin !== origin) return route.abort();
+    if (url.pathname === '/data/global-mailbox.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify(mailbox) });
+    return route.continue();
+  });
   const page = await context.newPage();
   page.on('pageerror', (error) => console.error(error.message));
   await page.goto(origin + '/index.html');
