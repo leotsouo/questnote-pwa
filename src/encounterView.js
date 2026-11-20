@@ -456,11 +456,6 @@ function showBatchSummary() {
   document.getElementById('identity-announcement').textContent = `十連相遇完成，共 10 位結果，${count} 位初次相遇。所有結果已加入圖鑑。`;
 }
 
-function finishPresentation() {
-  if (activeBatch) showBatchSummary();
-  else phase('result');
-}
-
 function closeReveal() { clearTimers(); reveal.close(); activeBatch = null; const resolve = resolvePresentation; resolvePresentation = null; resolve?.(); render(); }
 
 function activationHaptic() {

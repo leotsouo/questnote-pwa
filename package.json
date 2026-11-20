@@ -28,7 +28,7 @@
     "test:awakening:browser": "node devtools/pet-awakening-browser-test.mjs",
     "test:senior:browser": "node devtools/senior-mode-browser-test.mjs",
     "test:guided": "node --test devtools/guided-page-tour.test.mjs devtools/guided-onboarding.test.mjs",
-    "lint": "eslint src service-worker.js devtools scripts backend",
+    "lint": "eslint --max-warnings 0 src service-worker.js devtools scripts backend",
     "check": "npm run lint && node devtools/syntax-check.mjs && npm test && npm run pools:validate && npm run images:check",
     "ios:web": "node scripts/build-ios-web.mjs",
     "ios:icon": "node scripts/build-ios-icon.mjs"
