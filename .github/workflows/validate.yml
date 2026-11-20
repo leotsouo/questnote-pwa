@@ -29,3 +29,6 @@ jobs:
       - run: npm test
       - run: npm run pools:validate
       - run: npm run images:check
+      # Runtime files (src/, service-worker.js, index.html) changed vs main must come with an APP_VERSION bump.
+      - if: github.event_name == 'pull_request'
+        run: node devtools/check-version-bump.mjs origin/main
