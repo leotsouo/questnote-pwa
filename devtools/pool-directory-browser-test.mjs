@@ -12,7 +12,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const catalog = JSON.parse(await fs.readFile(path.join(root, 'data/pools.json'), 'utf8')).pools.filter((row) => row.active);
 const { POOL_NAVIGATION } = await import('../src/poolDirectory.js');
 const output = path.resolve(process.argv[2] || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/test-runs/pool-directory-browser');
-assert.ok(output.startsWith(path.join(root, '.dev-backups', 'test-runs') + path.sep));
+assert.ok(output.startsWith(path.join(root, '.dev-backups') + path.sep), 'Evidence must stay in the ignored .dev-backups folder');
 await fs.mkdir(output, { recursive:true });
 const types = { '.html':'text/html', '.js':'text/javascript', '.json':'application/json', '.css':'text/css', '.svg':'image/svg+xml', '.png':'image/png', '.webp':'image/webp', '.woff2':'font/woff2' };
 const server = http.createServer(async (req, res) => {
@@ -154,18 +154,14 @@ try {
     await preferences.setReadingMode('senior');
   });
   await page.reload();
-  await page.locator('.bottom-nav [data-view="gacha"]').click();
-  await settle('standard');
-  assert.ok(await page.locator('.summon-dock').isVisible());
-  assert.ok(await page.evaluate(() => getComputedStyle(document.querySelector('.hero-caption')).position === 'static'));
-  await page.locator('[data-identity-action="series-directory"]').click();
-  assert.equal(await rows.count(), catalog.length);
-  await page.keyboard.press('Escape');
+  // V3.12.0 (1604d6b) hides summon and the other game screens in senior reading mode.
+  await page.waitForFunction(() => document.body.dataset.readingMode === 'senior');
+  await page.locator('.bottom-nav [data-view="gacha"]').waitFor({ state: 'hidden' });
   await page.evaluate(async () => { await (await import('/src/preferencesService.js')).setReadingMode('normal'); });
   await page.reload();
   await page.locator('.bottom-nav [data-view="gacha"]').click();
   await settle('standard');
-  evidence.push('Senior reading mode keeps summon controls and every series available');
+  evidence.push('Senior reading mode hides summon; returning to normal mode restores the saved series');
 
   // Offline navigation uses cached runtime modules and native persisted selection.
   await page.evaluate(async () => { await navigator.serviceWorker.ready; });

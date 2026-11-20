@@ -1,7 +1,7 @@
 /** Real dispatch UI, only on the server-owned synthetic database. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
@@ -19,7 +19,7 @@ try {
   const marker = await (await context.request.get(`${origin}/__onboarding_test_guard__`)).json();
   assert.equal(marker.purpose, 'questnote-onboarding-synthetic-only');
   await page.goto(`${origin}/index.html`);
-  await page.locator('[data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   assert.equal(await page.evaluate(() => window.__questNoteOnboardingTest?.databaseName), marker.databaseName);
   const seed = await page.evaluate(async () => {
     const pets = (await (await fetch('/data/pets.json')).json()).pets;
@@ -52,7 +52,8 @@ try {
     for (const id of Object.values(groups).flat()) await collection.addPetToCollection(id);
     for (const [index, id] of groups.scout.entries()) {
       const pet = await collection.getPetCollection(id);
-      await db.dbPut(db.STORES.COLLECTION, { ...pet, stars: index + 1 });
+      // V3.9.10 (8f2ec5f) replaced stars with legacySpecialtyFloor; migrated entries with stars fail app init.
+      await db.dbPut(db.STORES.COLLECTION, { ...pet, legacySpecialtyFloor: index + 1 });
     }
     await collection.setCompanion(groups.guardian[0]);
   }, seed);

@@ -8,7 +8,7 @@ import { POOL_NAVIGATION } from '../src/poolDirectory.js';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = path.resolve(process.argv[2] || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/test-runs/pool-recommendation-browser');
-assert.ok(output.startsWith(path.join(root, '.dev-backups', 'test-runs') + path.sep));
+assert.ok(output.startsWith(path.join(root, '.dev-backups') + path.sep), 'Evidence must stay in the ignored .dev-backups folder');
 await fs.mkdir(output, { recursive: true });
 const fixture = { startsAt: '2026-10-10T00:00:00+08:00', endsAt: '2026-10-24T00:00:00+08:00' };
 const start = Date.parse(fixture.startsAt);
@@ -181,11 +181,10 @@ try {
   evidence.push('Expiry during both native single and ten draws leaves reveal, committed results and selected pool intact; controls recover afterward');
   await page.evaluate(async () => { await (await import('/src/preferencesService.js')).setReadingMode('senior'); });
   await page.reload();
-  await page.locator('.bottom-nav [data-view="gacha"]').click();
-  await settle(POOL_NAVIGATION.featuredPoolId);
-  assert.ok(await note.isVisible());
-  assert.ok(await page.evaluate(() => parseFloat(getComputedStyle(document.querySelector('.pool-recommendation-note')).fontSize) >= 16));
-  await page.screenshot({ path: path.join(output, 'senior-ended-preview.png'), fullPage: true });
+  // V3.12.0 (1604d6b) hides summon and the other game screens in senior reading mode.
+  await page.waitForFunction(() => document.body.dataset.readingMode === 'senior');
+  await page.locator('.bottom-nav [data-view="gacha"]').waitFor({ state: 'hidden' });
+  await page.screenshot({ path: path.join(output, 'senior-hidden-summon.png'), fullPage: true });
   assert.deepEqual(errors, []);
   await fs.writeFile(path.join(output, 'result.json'), JSON.stringify({ ok: true, fixtureOnly: true, fixture, evidence }, null, 2));
   console.log(evidence.map((row) => 'PASS ' + row).join('\n'));
