@@ -1,7 +1,7 @@
 /** Browser acceptance on an isolated loopback origin; never touches a user's save. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
@@ -15,7 +15,7 @@ try {
   const page = await context.newPage();
   page.on('pageerror', (error) => console.error('Page error:', error.message));
   await page.goto(`${origin}/index.html`);
-  await page.locator('[data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   await page.evaluate(async () => {
     const collection = await import('/src/collectionService.js');
     const reward = await import('/src/rewardService.js');

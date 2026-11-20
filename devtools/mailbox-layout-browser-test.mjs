@@ -2,7 +2,7 @@
 // PLAYWRIGHT_MODULE may point to an installed Playwright module URL.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
 const origin = server?.origin || process.argv[2];
@@ -14,7 +14,7 @@ try {
   const page = await context.newPage();
   page.on('pageerror', (error) => console.error(error.message));
   await page.goto(origin + '/index.html');
-  await page.locator('#onboarding-root [data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   await page.evaluate(async () => {
     document.body.dataset.theme = 'sweet';
     document.documentElement.style.setProperty('--safe-top', '59px');

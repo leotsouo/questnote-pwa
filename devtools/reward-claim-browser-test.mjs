@@ -1,7 +1,7 @@
 // Loopback only, disposable browser storage, synthetic rewards, no external requests.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
 const origin = server?.origin || process.argv[2];
@@ -25,7 +25,7 @@ try {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto(`${origin}/index.html`);
-  await page.locator('[data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   await page.waitForFunction(() => document.querySelector('#home-hub [data-hub="quest"]'));
   await page.evaluate(async () => {
     const { dbPut, STORES } = await import('/src/db.js');

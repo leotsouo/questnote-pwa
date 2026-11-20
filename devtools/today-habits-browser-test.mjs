@@ -1,7 +1,7 @@
 /** Real habit actions on a guarded, disposable local database. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const server = process.argv[2]?.startsWith('http') ? null : await startTestOrigin();
 const origin = server?.origin || process.argv[2];
@@ -16,7 +16,7 @@ try {
   await context.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   const page = await context.newPage();
   await page.goto(origin + '/index.html');
-  await page.locator('[data-onboarding-action="skip"]').click();
+  await skipGuidedTour(page);
   assert.equal(await page.evaluate(() => window.__questNoteOnboardingTest.databaseName), marker.databaseName);
   await page.locator('.today-habits [data-action="habit-create-first"]').click();
   await page.locator('#habit-name').fill('每天喝水，照顧自己的身體');

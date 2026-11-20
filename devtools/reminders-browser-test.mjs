@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import path from 'node:path';
 import fs from 'node:fs/promises';
+import { skipGuidedTour } from './browser-test-origin.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { createECDH, randomBytes } from 'node:crypto';
 import webpush from 'web-push';
@@ -47,7 +48,7 @@ try {
     if (!window.PushManager) window.PushManager = class {};
   }, { subscription, publicKey: keys.publicKey });
   const page = await context.newPage(); const errors = []; page.on('pageerror', (e) => errors.push(e.message));
-  await page.goto(origin); await page.getByRole('button', { name: '略過教學', exact: true }).click();
+  await page.goto(origin); await skipGuidedTour(page);
   await page.locator('#btn-add-task').click(); await page.locator('#task-content').fill('明天要繳電費\nPRIVATE LONG TEXT');
   await page.locator('[data-plan-date="tomorrow"]').click();
   const tomorrow = await page.locator('#task-plan-date').inputValue();

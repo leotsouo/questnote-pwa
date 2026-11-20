@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { startTestOrigin, evidenceDir } from './browser-test-origin.mjs';
+import { startTestOrigin, evidenceDir, skipGuidedTour } from './browser-test-origin.mjs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const server = await startTestOrigin();
 const origin = server.origin;
@@ -13,8 +13,9 @@ try {
       await context.route('**/*', async route => {
         const url = new URL(route.request().url());
         if (url.origin !== origin) return route.abort();
-        if (url.pathname === '/src/ui.js') {
-          const body = await fs.readFile('src/ui.js', 'utf8');
+        // The helper moved to src/ui/achievementsView.js in the UI split (86be7dd); expose it for this test only.
+        if (url.pathname === '/src/ui/achievementsView.js') {
+          const body = await fs.readFile('src/ui/achievementsView.js', 'utf8');
           return route.fulfill({ contentType: 'text/javascript', body: body + '\nexport { showAchievementUnlockNotifications };' });
         }
         return route.continue();
@@ -23,12 +24,14 @@ try {
       page.on('pageerror', e => console.log('ERROR', e.message));
       await page.goto(origin + '/index.html');
       await page.waitForTimeout(1500);
-      await page.getByRole('button', { name: '略過教學', exact: true }).click();
+      await skipGuidedTour(page);
+      // Skipping the tour shows its own confirmation toast (V3.6.0); let it expire before stacking ours.
+      await page.waitForFunction(() => !document.querySelector('#toast-container > *'), null, { timeout: 15000 });
       await page.evaluate(async theme => {
         document.body.dataset.theme = theme;
         const ui = await import('/src/ui.js');
         ui.showRewardToast(100, 5);
-        ui.showAchievementUnlockNotifications({ newlyUnlocked: [{ name: '完成第一個任務並開始持續累積每日努力的成就' }], newTitles: [{ name: '冒險新手' }] });
+        (await import('/src/ui/achievementsView.js')).showAchievementUnlockNotifications({ newlyUnlocked: [{ name: '完成第一個任務並開始持續累積每日努力的成就' }], newTitles: [{ name: '冒險新手' }] });
       }, theme);
       await page.waitForTimeout(1200);
       const boxes = await page.locator('#toast-container > .show').evaluateAll(nodes => nodes.map(node => {
