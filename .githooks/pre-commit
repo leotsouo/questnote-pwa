@@ -1,0 +1,3 @@
+#!/bin/sh
+# Lint and syntax-parse before every commit; the full suite runs in pre-push.
+npm run lint && node devtools/syntax-check.mjs
