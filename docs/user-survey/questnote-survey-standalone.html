@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>QuestNote 改版問卷</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: one calm column like a quest journal; question cards, big tap targets, sticky submit bar. */
+:root {
+  --bg: #eef3f1;
+  --surface: #ffffff;
+  --ink: #1c2a28;
+  --muted: #5b6d69;
+  --line: #d3dfdb;
+  --accent: #2b7563;
+  --accent-soft: #dcefe8;
+  --accent-ink: #ffffff;
+  --gold: #a8730f;
+  --gold-soft: #f8ecd2;
+  --gold-ink: #ffffff;
+  --danger: #a8402f;
+  --display: "LXGW WenKai TC", "Noto Serif TC", "PingFang TC", serif;
+  --body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121a19; --surface: #1a2524; --ink: #e5eeeb; --muted: #9db0ab; --line: #2c3b39;
+    --accent: #5fbfa5; --accent-soft: #1f3a34; --accent-ink: #0d1716;
+    --gold: #e2b155; --gold-soft: #3a2f19; --gold-ink: #1c1608; --danger: #e48a79; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121a19; --surface: #1a2524; --ink: #e5eeeb; --muted: #9db0ab; --line: #2c3b39;
+  --accent: #5fbfa5; --accent-soft: #1f3a34; --accent-ink: #0d1716;
+  --gold: #e2b155; --gold-soft: #3a2f19; --gold-ink: #1c1608; --danger: #e48a79; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.65; }
+.wrap { max-width: 680px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 0; }
+header h1 { font-family: var(--display); font-size: 2rem; line-height: 1.25; margin: 0; text-wrap: balance; }
+header p { color: var(--muted); margin: 8px 0 0; }
+.eyebrow { font-size: .8rem; letter-spacing: .12em; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 22px 0 8px; }
+.tab { appearance: none; border: 2px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 14px; padding: 12px 14px; text-align: left; cursor: pointer; font: inherit; display: grid; gap: 2px; }
+.tab b { font-family: var(--display); font-size: 1.2rem; font-weight: 700; }
+.tab span { color: var(--muted); font-size: .85rem; }
+.tab[aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.tab.fun[aria-selected="true"] { border-color: var(--gold); background: var(--gold-soft); }
+.tab.wide { width: 100%; margin-top: 2px; }
+.tab:focus-visible, .chip:focus-within, button:focus-visible, textarea:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.intro { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; margin: 14px 0; }
+.intro p { margin: 0; }
+.field-label { font-weight: 700; display: block; margin: 14px 0 6px; }
+input[type="text"], textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+textarea { min-height: 96px; resize: vertical; }
+textarea.short { min-height: 72px; }
+.qs { display: grid; gap: 14px; margin: 14px 0 0; padding: 0; list-style: none; }
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; min-width: 0; }
+.q.done { border-color: var(--accent); }
+.fun-mode .q.done { border-color: var(--gold); }
+.q-head { display: flex; gap: 12px; align-items: baseline; }
+.q-head > div { min-width: 0; }
+.q-num { font-family: var(--display); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; min-width: 1.8em; }
+.fun-mode .q-num { color: var(--gold); }
+.q h2 { font-size: 1.08rem; font-weight: 700; margin: 0; line-height: 1.5; }
+.q .hint { color: var(--muted); font-size: .92rem; margin: 6px 0 0; }
+.q-body { margin-top: 12px; display: grid; gap: 10px; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { position: relative; display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: 999px; padding: 9px 16px; cursor: pointer; background: var(--bg); line-height: 1.4; min-height: 44px; user-select: none; }
+.chip input { position: absolute; opacity: 0; pointer-events: none; }
+.chip:has(input:checked) { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 500; }
+.fun-mode .chip:has(input:checked) { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); }
+.chip:has(input:disabled) { opacity: .45; cursor: not-allowed; }
+.follow-label { font-size: .95rem; color: var(--muted); }
+.bar { position: sticky; bottom: 0; margin-top: 22px; background: var(--surface); border-top: 1px solid var(--line); padding-block: 12px calc(12px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar-inner { max-width: 680px; margin: 0 auto; display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.progress { flex: 1 1 160px; min-width: 0; }
+.progress-text { font-size: .9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.track { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 4px; }
+.track i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
+.fun-mode .track i { background: var(--gold); }
+.btn { appearance: none; font: inherit; font-weight: 700; border: 0; border-radius: 12px; padding: 12px 22px; cursor: pointer; background: var(--accent); color: var(--accent-ink); min-height: 48px; }
+.fun-mode .btn { background: var(--gold); color: var(--gold-ink); }
+.btn.ghost, .fun-mode .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+.btn:disabled { opacity: .6; cursor: progress; }
+.result { background: var(--surface); border: 2px solid var(--accent); border-radius: 16px; padding: 20px; margin: 18px 0; display: grid; gap: 12px; }
+.fun-mode .result { border-color: var(--gold); }
+.result h2 { font-family: var(--display); margin: 0; font-size: 1.4rem; }
+.result p { margin: 0; }
+.btn.line { background: #06c755; border-color: #06c755; color: #fff; }
+.result .note { font-size: .9rem; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.copybox { width: 100%; min-height: 160px; font-size: .9rem; }
+.note { font-size: .88rem; color: var(--muted); }
+.warn { color: var(--danger); }
+.resp-list { display: grid; gap: 12px; margin: 14px 0 32px; }
+.resp { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; min-width: 0; }
+.resp summary { cursor: pointer; font-weight: 700; }
+.resp pre { white-space: pre-wrap; word-break: break-word; font-family: var(--body); font-size: .92rem; margin: 10px 0 0; }
+.tag { display: inline-block; font-size: .78rem; border-radius: 99px; padding: 1px 10px; margin-left: 6px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.tag.fun { background: var(--gold-soft); color: var(--gold); }
+footer { color: var(--muted); font-size: .85rem; padding-block: 20px 8px; }
+@media (max-width: 420px) { header h1 { font-size: 1.7rem; } .q { padding: 16px 14px; } }
+@media (prefers-reduced-motion: reduce) { .track i { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="app">
+  <header>
+    <div class="eyebrow">QUESTNOTE・改版前的小調查</div>
+    <h1>你希望 QuestNote 變成什麼樣子？</h1>
+    <p>QuestNote 正在從網頁版變成真正的手機 App，想趁這次大改版聽聽你的想法。每一題都可以跳過，想到什麼寫什麼就好。</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="選擇問卷">
+    <button class="tab fun" role="tab" id="tab-fun" data-key="fun"><b>有趣篇</b><span>13 題・約 8 分鐘</span></button>
+    <button class="tab" role="tab" id="tab-core" data-key="core"><b>重要篇</b><span>16 題・約 10 分鐘</span></button>
+  </div>
+  <button class="tab wide" role="tab" id="tab-responses" data-key="responses" hidden><b>查看回覆</b><span id="resp-count">只有你看得到</span></button>
+
+  <main id="survey"></main>
+  <section id="responses" hidden></section>
+  <footer>你的答案只會給 QuestNote 的開發者看，用來決定下一版要做什麼。</footer>
+</div>
+<div class="bar" id="bar">
+  <div class="bar-inner">
+    <div class="progress"><div class="progress-text" id="progress-text">已回答 0 題</div><div class="track"><i id="progress-fill"></i></div></div>
+    <button class="btn" id="submit">送出答案</button>
+  </div>
+</div>
+
+<script>
+const SURVEYS = {
+  fun: {
+    title: '有趣篇',
+    intro: '這一份是隨便聊聊：你喜歡 QuestNote 的什麼，對寵物和故事有什麼想像。沒有標準答案，越天馬行空越好。',
+    questions: [
+      { id: 'f1', type: 'text', title: '如果要用一句話跟朋友介紹 QuestNote，你會怎麼說？', hint: '照你平常講話的方式就好。' },
+      { id: 'f2', type: 'single', title: '整個 App 裡，你最喜歡的是哪一刻？', options: ['抽到新寵物的那一刻', '把圖鑑一格一格收集完整', '讀寵物的故事', '派寵物去探險、等牠回來', '送禮物、看寵物的反應', '在工坊做東西', '欣賞卡面的圖'], other: true, follow: '為什麼是這個？' },
+      { id: 'f3', type: 'single', title: '對你來說，寵物比較像什麼？', options: ['收藏品，重點是集齊', '夥伴，會想跟牠互動', '進度條，代表我做了多少事', '沒特別感覺'], other: true },
+      { id: 'f4', type: 'multi', max: 3, title: '如果寵物能多做一些事，你最想要哪些？', hint: '最多選 3 個。', options: ['升級、進化、覺醒', '住在一個可以佈置的家', '跟著我的真實習慣成長，例如常運動牠就變壯', '跟朋友的寵物見面、互動', '出現在手機桌面上陪我', '在我拖延時來催我', '生小寵物、一代傳一代'], other: true },
+      { id: 'f5', type: 'text', title: '如果寵物會跟你說話，你希望牠在什麼時候、說些什麼？', hint: '例如早上起床、完成任務後，或好幾天沒打開 App 的時候。' },
+      { id: 'f6', type: 'single', title: '如果每天完成的任務會推進一段主線故事，做越多、故事走越遠，你會想看嗎？', options: ['很想，聽起來很好玩', '要看故事好不好看', '不太需要，我只想記事'], follow: '你會想看什麼樣的故事？' },
+      { id: 'f7', type: 'single', title: '有一天沒做到習慣，你希望 App 怎麼對你？', options: ['什麼都別說，明天再來', '溫柔提醒一下就好', '要有一點小代價，不然沒動力', '讓我用遊戲道具補簽'], other: true },
+      { id: 'f8', type: 'single', title: '你會想跟別人一起玩 QuestNote 嗎？', options: ['想，跟家人', '想，跟朋友', '不想，這是我自己的事'], follow: '如果一起玩，你想怎麼玩？例如互相看進度、互送禮物、一起養一隻寵物、排行榜。' },
+      { id: 'f9', type: 'text', title: '有沒有其他 App 或遊戲的某個設計，讓你覺得「QuestNote 也有就好了」？', hint: '寫出是哪個 App 或遊戲，以及你喜歡它的哪一點。' },
+      { id: 'f10', type: 'text', title: '你希望 QuestNote 幫你「記得」什麼？', hint: '例如一年前的今天你做了什麼、最長的連續紀錄、哪隻寵物陪你最久。' },
+      { id: 'f11', type: 'text', title: '如果你可以自己設計一隻寵物，或一整套新卡池，你會做什麼？', hint: '牠長什麼樣子、住在哪裡、有什麼故事都可以寫。' },
+      { id: 'f12', type: 'text', title: '不考慮技術和錢，你希望一年後的 QuestNote 長什麼樣子？', hint: '這題最重要，盡量多寫一點。' },
+      { id: 'f13', type: 'text', title: '還有什麼想說的嗎？' }
+    ]
+  },
+  core: {
+    title: '重要篇',
+    intro: '這一份會決定改版的方向：你實際怎麼用、哪裡卡住、最需要什麼。大部分是選擇題，很快就能填完。',
+    questions: [
+      { id: 'c1', type: 'single', title: '你多常打開 QuestNote？', options: ['一天好幾次', '每天一次', '一週幾次', '偶爾想到才開', '最近很少開了'] },
+      { id: 'c2', type: 'multi', max: 3, title: '你主要用它來做什麼？', hint: '最多選 3 個。', options: ['記待辦任務', '培養每日習慣', '收集寵物、看圖鑑', '召喚抽卡', '派寵物探險', '工坊', '看信箱公告'], other: true },
+      { id: 'c3', type: 'text', title: '如果你最近用得比較少，是從什麼時候、因為什麼開始的？', hint: '沒有變少可以跳過。' },
+      { id: 'c4', type: 'single', title: '新增一個任務的流程，你覺得順不順？', options: ['很快，沒問題', '還可以，但步驟有點多', '有點麻煩，常常懶得記'] },
+      { id: 'c5', type: 'single', title: '最近新增的語音輸入（按一下、說話、按停止就存），你用過嗎？', options: ['常常用', '試過幾次', '知道但沒用', '不知道有這個功能'], follow: '用起來哪裡順、哪裡不順？' },
+      { id: 'c6', type: 'single', title: '寵物、抽卡、探險這些遊戲元素，對你「持續完成任務」幫助有多大？', options: ['沒有它我大概不會用', '有幫助，是加分', '可有可無', '其實有點干擾，我只想記事'] },
+      { id: 'c7', type: 'single', title: '你覺得獎勵來得太快、剛好，還是太慢？', options: ['太快，很快就沒東西想要了', '剛好', '太慢，做很多事才抽得到一次'], follow: '你覺得做多少事換一次抽卡比較合理？' },
+      { id: 'c8', type: 'single', title: '下面幾個方向，哪一個最像你想要的 QuestNote？', options: ['極簡任務本：最快記、最快勾，遊戲只是小點心', '養成遊戲：寵物和世界觀是主角，任務是養牠的方式', '成長紀錄：看長期趨勢和回顧，知道自己進步了', '陪伴型：像一個會關心我今天過得如何的角色', '一起來：跟家人朋友互相看進度、互相鼓勵'], other: true, follow: '第二想要的是哪一個？' },
+      { id: 'c9', type: 'text', title: '反過來說，如果 QuestNote 變成哪種樣子，你會想刪掉它？' },
+      { id: 'c10', type: 'single', title: '打開 App 時，你最希望第一眼看到什麼？', options: ['今天的任務清單', '我的寵物', '今天的進度摘要', '一個可以直接記事的輸入框'], other: true },
+      { id: 'c11', type: 'text', title: '用 QuestNote 時，最讓你煩的一件事是什麼？', hint: '越具體越好，例如在哪個畫面、本來想做什麼。' },
+      { id: 'c12', type: 'multi', title: '下面這些狀況，你遇過哪些？', hint: '可以複選。', options: ['資料不見或進度沒存到', '載入很慢或卡住', '沒網路時不能用', '提醒沒有跳出來', '不知道怎麼備份或換手機', '字或按鈕太小', '動畫太多、太花', '都沒遇過'], other: true },
+      { id: 'c13', type: 'text', title: '有沒有哪些功能拿掉，App 反而會更好？' },
+      { id: 'c14', type: 'multi', max: 3, title: '變成手機 App 之後，下面哪些你真的會用？', hint: '最多選 3 個。', options: ['桌面小工具：直接看任務、直接打勾', '鎖定畫面顯示今天進度', '準時的推播提醒', '用 Siri 記任務', '用 Apple Watch 打勾', '連動健康資料，走路步數自動完成運動習慣', '雲端同步，換手機也不怕', '用 Face ID 鎖住，保護隱私'], other: true },
+      { id: 'c15', type: 'single', title: '如果有一個功能讓你願意付費，你能接受哪一種？', options: ['不會付費', '一次買斷', '每月訂閱'], follow: '是什麼功能？多少錢你覺得合理？' },
+      { id: 'c16', type: 'single', title: '你的年齡區間', options: ['18 歲以下', '18–25', '26–35', '36–50', '51–65', '65 歲以上'] }
+    ]
+  }
+};
+
+const OTHER = '其他';
+const DRAFT_KEY = 'questnote-survey-draft-v1';
+const state = { key: 'fun', name: '', answers: { fun: {}, core: {} }, submitted: { fun: false, core: false } };
+let db = null, user = null, myId = null, isOwner = false, unsubResponses = null;
+
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    state.name = d.name || '';
+    state.answers = { fun: {}, core: {}, ...(d.answers || {}) };
+    state.submitted = { fun: false, core: false, ...(d.submitted || {}) };
+  } catch (e) {}
+}
+function saveDraft() {
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ name: state.name, answers: state.answers, submitted: state.submitted })); } catch (e) {}
+}
+
+function el(tag, attrs, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === 'class') n.className = v;
+    else if (k === 'text') n.textContent = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else if (v !== false && v != null) n.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of kids) if (c) n.append(c);
+  return n;
+}
+
+function ans(qid) {
+  const a = state.answers[state.key];
+  if (!a[qid]) a[qid] = { choice: [], other: '', text: '', follow: '' };
+  return a[qid];
+}
+function isAnswered(a) { return !!a && (a.choice.length > 0 || !!a.text.trim() || !!a.other.trim() || !!a.follow.trim()); }
+function autoGrow(t) { t.style.height = 'auto'; t.style.height = Math.max(t.classList.contains('short') ? 72 : 96, t.scrollHeight + 4) + 'px'; }
+
+function renderSurvey() {
+  const s = SURVEYS[state.key];
+  const main = document.getElementById('survey');
+  main.replaceChildren();
+  const fun = state.key === 'fun';
+  document.getElementById('app').classList.toggle('fun-mode', fun);
+  document.getElementById('bar').classList.toggle('fun-mode', fun);
+
+  const nameInput = el('input', { type: 'text', id: 'name', placeholder: '例如：小明、阿嬤、同事 A', autocomplete: 'nickname', maxlength: '40' });
+  nameInput.value = state.name;
+  nameInput.addEventListener('input', () => { state.name = nameInput.value; saveDraft(); });
+  main.append(el('div', { class: 'intro' }, el('p', { text: s.intro }), el('label', { class: 'field-label', for: 'name', text: '怎麼稱呼你？' }), nameInput));
+
+  const list = el('ol', { class: 'qs' });
+  s.questions.forEach((q, i) => list.append(renderQuestion(q, i)));
+  main.append(list);
+  updateProgress();
+}
+
+function renderQuestion(q, i) {
+  const a = ans(q.id);
+  const card = el('li', { class: 'q' + (isAnswered(a) ? ' done' : ''), id: 'q-' + q.id });
+  const head = el('div', { class: 'q-head' },
+    el('span', { class: 'q-num', text: String(i + 1).padStart(2, '0') }),
+    el('div', {}, el('h2', { id: 'h-' + q.id, text: q.title }), q.hint ? el('p', { class: 'hint', text: q.hint }) : null));
+  const body = el('div', { class: 'q-body' });
+  const touch = () => { card.classList.toggle('done', isAnswered(a)); saveDraft(); updateProgress(); };
+
+  if (q.type === 'text') {
+    const t = el('textarea', { id: 'in-' + q.id, 'aria-labelledby': 'h-' + q.id, placeholder: '寫在這裡…' });
+    t.value = a.text;
+    t.addEventListener('input', () => { a.text = t.value; autoGrow(t); touch(); });
+    body.append(t);
+    requestAnimationFrame(() => autoGrow(t));
+  } else {
+    const opts = el('div', { class: 'opts', role: q.type === 'single' ? 'radiogroup' : 'group', 'aria-labelledby': 'h-' + q.id });
+    const all = q.other ? [...q.options, OTHER] : q.options;
+    const otherInput = el('input', { type: 'text', id: 'other-' + q.id, placeholder: '請寫下你的答案', 'aria-label': '其他答案', hidden: !a.choice.includes(OTHER) });
+    otherInput.value = a.other;
+    otherInput.addEventListener('input', () => { a.other = otherInput.value; touch(); });
+    const inputs = [];
+    const syncDisabled = () => {
+      if (q.type !== 'multi' || !q.max) return;
+      const full = a.choice.length >= q.max;
+      inputs.forEach(inp => { inp.disabled = full && !inp.checked; });
+    };
+    all.forEach((opt, j) => {
+      const inp = el('input', { type: q.type === 'single' ? 'radio' : 'checkbox', name: 'opt-' + q.id, id: `opt-${q.id}-${j}`, value: opt });
+      inp.checked = a.choice.includes(opt);
+      inp.addEventListener('change', () => {
+        if (q.type === 'single') a.choice = inp.checked ? [opt] : [];
+        else a.choice = inputs.filter(x => x.checked).map(x => x.value);
+        otherInput.hidden = !a.choice.includes(OTHER);
+        if (!otherInput.hidden && inp.value === OTHER && inp.checked) otherInput.focus();
+        syncDisabled(); touch();
+      });
+      inputs.push(inp);
+      opts.append(el('label', { class: 'chip', for: inp.id }, inp, document.createTextNode(opt)));
+    });
+    syncDisabled();
+    body.append(opts, otherInput);
+    if (q.follow) {
+      const f = el('textarea', { id: 'follow-' + q.id, class: 'short', placeholder: '寫在這裡…' });
+      f.value = a.follow;
+      f.addEventListener('input', () => { a.follow = f.value; autoGrow(f); touch(); });
+      body.append(el('label', { class: 'follow-label', for: f.id, text: q.follow }), f);
+      requestAnimationFrame(() => autoGrow(f));
+    }
+  }
+  card.append(head, body);
+  return card;
+}
+
+function updateProgress() {
+  const s = SURVEYS[state.key];
+  const n = s.questions.filter(q => isAnswered(state.answers[state.key][q.id])).length;
+  document.getElementById('progress-text').textContent = `已回答 ${n} / ${s.questions.length} 題`;
+  document.getElementById('progress-fill').style.width = (n / s.questions.length * 100) + '%';
+}
+
+function formatAnswers(key, answers, name) {
+  const s = SURVEYS[key];
+  const lines = [`【QuestNote 問卷・${s.title}】`, `稱呼：${String(name || '').trim() || '（未填）'}`, ''];
+  s.questions.forEach((q, i) => {
+    const a = answers && answers[q.id];
+    if (!isAnswered(a)) return;
+    lines.push(`${i + 1}. ${q.title}`);
+    if (q.type === 'text') lines.push('→ ' + a.text.trim());
+    else {
+      const picks = a.choice.map(c => c === OTHER ? `其他：${a.other.trim()}` : c);
+      if (picks.length) lines.push('→ ' + picks.join('、'));
+      if (a.follow && a.follow.trim()) lines.push(`　${q.follow} ${a.follow.trim()}`);
+    }
+    lines.push('');
+  });
+  return lines.join('\n').trim();
+}
+
+function withTimeout(p, ms) {
+  return Promise.race([p, new Promise((_, rej) => setTimeout(() => rej({ code: 'timeout' }), ms))]);
+}
+
+async function trySave(key) {
+  if (!db || !myId) return false;
+  try {
+    const ref = db.doc('responses/' + myId);
+    const snap = await withTimeout(ref.get(), 10000);
+    const prev = snap.exists ? JSON.parse(JSON.stringify(snap.data())) : {};
+    prev.name = state.name.trim().slice(0, 40);
+    prev[key] = { answers: state.answers[key], submittedAt: new Date().toISOString() };
+    await withTimeout(ref.set(prev), 10000);
+    return true;
+  } catch (e) { return false; }
+}
+
+async function copyText(text, box, btn) {
+  try { await navigator.clipboard.writeText(text); btn.textContent = '已複製'; }
+  catch (e) { box.hidden = false; box.focus(); box.select(); btn.textContent = '請長按下面的文字，選「拷貝」'; }
+}
+
+const LINE_URL_LIMIT = 12000;
+async function sendViaLine(text, box) {
+  const encoded = encodeURIComponent(text);
+  if (encoded.length <= LINE_URL_LIMIT) { location.href = 'https://line.me/R/share?text=' + encoded; return; }
+  // Too long for a share link: copy it first, then open LINE so they can paste.
+  try { await navigator.clipboard.writeText(text); alert('答案比較長，已經幫你複製好了。LINE 打開後，選我的聊天室，長按輸入框貼上再傳送。'); }
+  catch (e) { box.hidden = false; box.select(); alert('答案比較長，請先長按下面的文字全選、拷貝，再到 LINE 貼上傳給我。'); return; }
+  location.href = 'https://line.me/R/';
+}
+
+async function submit() {
+  const btn = document.getElementById('submit');
+  const key = state.key;
+  btn.disabled = true; btn.textContent = '送出中…';
+  const saved = await trySave(key);
+  btn.disabled = false; btn.textContent = '送出答案';
+  state.submitted[key] = true; saveDraft();
+  const text = formatAnswers(key, state.answers[key], state.name);
+  const otherKey = key === 'fun' ? 'core' : 'fun';
+  const box = el('textarea', { class: 'copybox', id: 'copybox', readonly: true, 'aria-label': '你的答案' });
+  box.value = text;
+  const copyBtn = el('button', { class: 'btn' + (saved ? '' : ' ghost'), id: 'copy-btn', text: '複製我的答案' });
+  copyBtn.addEventListener('click', () => copyText(text, box, copyBtn));
+  const lineBtn = el('button', { class: 'btn line', id: 'line-btn', text: '用 LINE 傳給我' });
+  lineBtn.addEventListener('click', () => sendViaLine(text, box));
+  const shareBtn = navigator.share ? el('button', { class: 'btn ghost', id: 'share-btn', text: '用其他 App 傳送' }) : null;
+  if (shareBtn) shareBtn.addEventListener('click', () => navigator.share({ text }).catch(() => {}));
+  const panel = el('section', { class: 'result', id: 'result' },
+    el('h2', { text: saved ? '收到了，謝謝你！' : '最後一步：把答案傳給我' }),
+    el('p', { text: saved
+      ? '你的答案已經存好了。想留一份或補充，也可以用 LINE 再傳一次。'
+      : '按「用 LINE 傳給我」，LINE 會打開並帶好你的答案，選我的名字、按傳送就完成了。' }),
+    el('div', { class: 'row' }, lineBtn, shareBtn, copyBtn),
+    box,
+    el('p', { class: 'note', text: 'LINE 沒有打開，或答案沒帶過去的話：按「複製我的答案」，再到 LINE 貼上傳給我。' }),
+    state.submitted[otherKey] ? null : el('div', { class: 'row' }, el('button', { class: 'btn ghost', text: `接著填${SURVEYS[otherKey].title}`, onclick: () => go(otherKey) }))
+  );
+  const old = document.getElementById('result'); if (old) old.remove();
+  document.getElementById('survey').prepend(panel);
+  panel.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
+
+function go(key) {
+  if (key === 'responses' && !(isOwner && db)) key = 'fun';
+  if (key !== 'responses' && !SURVEYS[key]) key = 'fun';
+  if (location.hash.slice(1) !== key) history.replaceState(null, '', '#' + key);
+  ['fun', 'core', 'responses'].forEach(k => document.getElementById('tab-' + k).setAttribute('aria-selected', String(k === key)));
+  const showResp = key === 'responses';
+  document.getElementById('survey').hidden = showResp;
+  document.getElementById('bar').hidden = showResp;
+  document.getElementById('responses').hidden = !showResp;
+  document.getElementById('app').classList.toggle('fun-mode', !showResp && key === 'fun');
+  if (showResp) { startResponses(); return; }
+  state.key = key;
+  renderSurvey();
+  window.scrollTo({ top: 0 });
+}
+
+function startResponses() {
+  if (unsubResponses) return;
+  const sec = document.getElementById('responses');
+  sec.replaceChildren(el('p', { class: 'note', text: '正在讀取回覆…' }));
+  const timer = setTimeout(() => sec.prepend(el('p', { class: 'note warn', text: '暫時讀不到回覆，連上之後會自動更新。' })), 10000);
+  unsubResponses = db.collection('responses').onSnapshot(snap => {
+    if (!snap.metadata.fromCache) clearTimeout(timer);
+    renderResponses(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+  }, () => {
+    clearTimeout(timer);
+    unsubResponses = null;
+    sec.replaceChildren(el('p', { class: 'note warn', text: '讀取回覆失敗，請重新整理頁面。' }));
+  });
+}
+
+function latest(r) { return [r.fun && r.fun.submittedAt, r.core && r.core.submittedAt].filter(Boolean).sort().pop() || ''; }
+
+function renderResponses(rows) {
+  const sec = document.getElementById('responses');
+  const entries = rows.flatMap(r => ['fun', 'core'].filter(k => r[k] && r[k].answers).map(k => ({ r, k })));
+  document.getElementById('resp-count').textContent = `${entries.length} 份回覆・只有你看得到`;
+  entries.sort((x, y) => String(y.r[y.k].submittedAt).localeCompare(String(x.r[x.k].submittedAt)));
+  const allText = entries.map(({ r, k }) => formatAnswers(k, r[k].answers, r.name)).join('\n\n────────\n\n');
+  const box = el('textarea', { class: 'copybox', readonly: true, hidden: true, 'aria-label': '全部回覆' });
+  box.value = allText;
+  const copyAll = el('button', { class: 'btn', text: '複製全部回覆', disabled: !entries.length });
+  copyAll.addEventListener('click', () => copyText(allText, box, copyAll));
+  const list = el('div', { class: 'resp-list' });
+  if (!entries.length) list.append(el('p', { class: 'note', text: '還沒有人在這個頁面上送出答案。透過 LINE 傳回來的答案不會出現在這裡。' }));
+  entries.forEach(({ r, k }) => {
+    const when = new Date(r[k].submittedAt);
+    const sum = el('summary', {},
+      document.createTextNode(String(r.name || '').trim() || '未填稱呼'),
+      el('span', { class: 'tag' + (k === 'fun' ? ' fun' : ''), text: SURVEYS[k].title }),
+      el('span', { class: 'note', text: isNaN(when) ? '' : '　' + when.toLocaleString('zh-TW') }));
+    list.append(el('details', { class: 'resp' }, sum, el('pre', { text: formatAnswers(k, r[k].answers, r.name) })));
+  });
+  sec.replaceChildren(
+    el('div', { class: 'intro' },
+      el('p', { text: '在這個頁面上送出的回覆會出現在這裡，填答者看不到別人的答案。' }),
+      el('div', { class: 'row', style: 'margin-top:12px' }, copyAll), box),
+    list);
+}
+
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => go(t.dataset.key)));
+document.getElementById('submit').addEventListener('click', submit);
+window.addEventListener('hashchange', () => { const k = location.hash.slice(1); if (k && k !== (document.getElementById('responses').hidden ? state.key : 'responses')) go(k); });
+
+loadDraft();
+go(location.hash.slice(1) || 'fun');
+
+(async () => {
+  if (!window.claude || typeof window.claude.use !== 'function') return;
+  try {
+    [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    if (user) { myId = await user.id(); isOwner = await user.isOwner(); }
+    if (isOwner && db) document.getElementById('tab-responses').hidden = false;
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
