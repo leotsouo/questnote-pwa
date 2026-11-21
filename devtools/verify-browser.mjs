@@ -10,7 +10,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const only = args.flatMap((arg, i) => (arg === '--only' ? [args[i + 1]] : []));
 const timeoutIndex = args.indexOf('--timeout');
-const timeoutMs = (timeoutIndex >= 0 ? Number(args[timeoutIndex + 1]) : 5) * 60_000;
+const timeoutMs = (timeoutIndex >= 0 ? Number(args[timeoutIndex + 1]) : 10) * 60_000; // bond-journey alone takes ~4 min on a busy machine
 const TAIL_LINES = 40;
 
 const now = new Date();

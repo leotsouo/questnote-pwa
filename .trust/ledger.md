@@ -27,7 +27,7 @@
 | 靠記憶執行的檢查 | 5 | 2：`npm run verify:browser`、`test:pool:release` |
 | 本機自動執行 | 無 | pre-commit（lint＋語法）、pre-push（`npm run check`） |
 | 版本／cache 同步 | 文字提醒 | 測試＋PR 的 CI 步驟 |
-| 瀏覽器測試 | 24 支跑不起來 | 25 支單一入口，約 15 分鐘；24 過、1 失敗（暮光 safe-area，待使用者決定） |
+| 瀏覽器測試 | 24 支跑不起來 | 25 支單一入口，14–25 分鐘（視機器負載）；最後一次全跑 23 過、2 失敗：暮光 safe-area（待使用者決定）與 bond-journey（撞到每支 5 分鐘上限，單獨跑 224 秒通過，上限已調為 10 分鐘，調整後尚未全跑驗證） |
 | 已知失敗的檢查 | 1 類 | 1 支（同上，未設容忍清單） |
 | 固定字元視窗 | 30 處（都在 healthCheckService） | 16 處未清；devtools 有測試擋 |
 | 功能地圖 | 無 | `docs/feature-map.md`，測試保鮮，巡覽實走 17 個畫面 |
