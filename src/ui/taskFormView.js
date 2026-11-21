@@ -144,7 +144,7 @@ export function openTaskForm(taskId = null) {
     });
   });
 
-  const formSubtasks = [...subtasks];
+  const formSubtasks = subtasks.map((s) => ({ ...s }));
 
   function renderSubtaskFormList() {
     const list = document.getElementById('subtask-form-list');
@@ -271,7 +271,6 @@ export function openTaskForm(taskId = null) {
     submit.disabled = true;
     try {
       if (isEdit) {
-        const todayStr = getTodayDateString();
         await updateTask(taskId, {
           content,
           priority,

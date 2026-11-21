@@ -61,9 +61,6 @@ import {
 } from './achievementService.js';
 import { isDevMode, isAuthorLocalDevMode } from './devService.js';
 import {
-  playPoolDebutPresentation,
-} from './themedSummonController.js';
-import {
   escapeHtml,
 } from './uiHelpers.js';
 import {
@@ -209,6 +206,7 @@ import {
   trackUserActivity,
 } from './ui/companionView.js';
 import { connectTaskFormView, openTaskForm } from './ui/taskFormView.js';
+import { connectQuickVoiceView, openQuickVoice } from './ui/quickVoiceView.js';
 import {
   connectTaskListView,
   taskListUi,
@@ -233,7 +231,7 @@ import {
 
 export { openModal, closeModal, openPetImageViewer, openPetImageViewerBySrc, closePetImageViewer, petImageHtml };
 
-export { openTaskForm };
+export { openTaskForm, openQuickVoice };
 
 export { updateGachaAffordability };
 
@@ -454,6 +452,7 @@ function connectViewModules() {
   connectModalHost({ petDisplayName, petOriginalName, showToast, state });
   connectTaskListView({ PRIORITY_LABELS, formatDateTime, notifyBondUnlocks, onRefresh, renderAchievementStrip, renderBondHomeSection, renderHomeHub, setText, showToast, state });
   connectTaskFormView({ closeModal, dismissModal, formatCategoryLabel, isTodayTaskViewMode, onRefresh, openModal, showToast, state });
+  connectQuickVoiceView({ closeModal, onRefresh, openModal, showToast });
   connectCompanionView({ bondBadgeHtml, closeModal, isModalOpen, isTasksViewCurrent, notifyBondUnlocks, onRefresh, openModal, openPetImageViewer, openTeachingTarget, petDisplayName, petImageHtml, petOriginalNameHtml, showBondLevelUpToast, showToast, state });
   connectDailyBlessingView({ claimAllButtonHtml, closeModal, onRefresh, openModal, showToast, state, switchView });
   connectGachaView({ RARITY_LABELS, closeModal, collectionRenderGate, encounterActions, onRefresh, openModal, openNicknameModal, petImageHtml, renderGachaDailyBlessingEntry, setText, showToast, state, switchView });
@@ -787,7 +786,6 @@ function bindDelegatedEvents() {
       }
 
       if (isSeniorMode()) {
-        const reward = result.reward;
         seniorFeedback(isCompleting
           ? `已完成「${taskBefore.title}」。${state.companion ? '夥伴也很開心。' : '完成狀態已儲存。'}`
           : `「${taskBefore.title}」已改回未完成。已領獎勵不會重複發放。`, 'success');
@@ -924,6 +922,7 @@ function bindDelegatedEvents() {
   }));
 
   document.getElementById('btn-add-task')?.addEventListener('click', () => openTaskForm());
+  document.getElementById('btn-voice-task')?.addEventListener('click', () => openQuickVoice());
 
   document.getElementById('view-gacha')?.addEventListener('click', trackUpdateActivity(async (e) => {
     const target = e.target.closest('[data-action]');
@@ -1736,10 +1735,9 @@ function renderThemePickerState(activeTheme) {
 function renderNavBadges() {
   if (!state) return;
 
-  const { wallet, activeExpedition, companion, achievementSummary } = state;
+  const { activeExpedition, companion, achievementSummary } = state;
   const expeditionComplete =
     activeExpedition && isExpeditionTimeComplete(activeExpedition) && !activeExpedition.claimed;
-  const stardust = wallet?.stardust ?? 0;
   const claimable = achievementSummary?.claimable ?? 0;
   const hasUnseenTitles = achievementSummary?.hasUnseenTitles ?? false;
   const habitIncomplete = state.habitStats?.hasIncompleteToday ?? false;

@@ -266,7 +266,6 @@ function buildHandbookExpedition(exp) {
     : '探險與工坊';
 
   const areaRows = (exp.areas || []).map((a) => {
-    const target = a.nextMilestonePercent ?? 100;
     return `<div class="handbook-area">
       <div class="handbook-area__head">
         <span class="handbook-area__name">${escapeHtml(a.icon)} ${escapeHtml(a.name)}</span>

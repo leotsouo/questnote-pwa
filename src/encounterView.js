@@ -30,7 +30,6 @@ let appState = null;
 let resolvePresentation = null;
 
 let screen = document.getElementById('identity-screen');
-let refreshApp = null;
 let appActions = null;
 const dialog = modalHost.querySelector('#identity-detail-dialog');
 const reveal = modalHost.querySelector('#identity-reveal-dialog');
@@ -457,11 +456,6 @@ function showBatchSummary() {
   document.getElementById('identity-announcement').textContent = `十連相遇完成，共 10 位結果，${count} 位初次相遇。所有結果已加入圖鑑。`;
 }
 
-function finishPresentation() {
-  if (activeBatch) showBatchSummary();
-  else phase('result');
-}
-
 function closeReveal() { clearTimers(); reveal.close(); activeBatch = null; const resolve = resolvePresentation; resolvePresentation = null; resolve?.(); render(); }
 
 function activationHaptic() {
@@ -594,7 +588,6 @@ export function renderEncounterView(name, state, refresh, actions) {
   appState = state;
   poolId = resolveActivePool(state.poolsData, state.gachaStats?.selectedPoolId).id;
   document.body.dataset.reduceMotion = String(!!state.userPreferences?.reduceMotion);
-  refreshApp = refresh;
   appActions = actions;
   canonicalPets = state.allPets;
   awakeningCatalog = state.awakeningCatalog;

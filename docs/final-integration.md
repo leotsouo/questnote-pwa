@@ -1,3 +1,9 @@
+# V3.15.0 已發布 — 2026-10-29
+
+[PR #115](https://github.com/leotsouo/questnote-pwa/pull/115) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `4f53ee55293d626fed6f93f5c15b9518c4515a32`。QuestNote 有了 iOS App（TestFlight），網頁版可以把存檔整份搬進 App。正式 artifact `4a557e601dbc3e9b8d657e3c7b5f82defdfae4253791653e597407157a9fe161`，gh-pages `35a9a73e57cfd475e1baa8aaf607ecda6cb07040`；874 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。
+
+證據：`.dev-backups/evidence/release-v3.15.0-pr115.json`。
+
 # V3.13.1 已發布 — 2026-10-25
 
 [PR #114](https://github.com/leotsouo/questnote-pwa/pull/114) 經使用者「可以發布」與 CI 通過後，以 merge commit 合併為 `3a440e8e77a9c6d8a812b8c47bbdf4e02a6fbdc6`。主畫面的 QuestNote 圖示會顯示還沒完成的待辦數量，設定頁可以單獨開啟圖示角標。正式 artifact `b856a6e2e3ef82d09e5c4d2b0740c9ac3e236a75c93826d38220f85cd6fe8172`，gh-pages `73ae4120748d1c9ace0a88c14722654374c8ea71`；870 個檔案的 Git blob 與正式 HTTPS 內容逐檔相符，`dev` 已 fast-forward 到 `main`。

@@ -8,7 +8,7 @@ import { PET_IMAGE_CACHE } from './version.js';
 import { RELEASE_PROFILE } from './releaseProfile.js';
 import { normalizeTask } from './taskMigration.js';
 import { normalizeWallet, DEFAULT_MATERIALS } from './rewardService.js';
-import { normalizeEntry, normalizeCollectionItem } from './collectionService.js';
+import { normalizeCollectionItem } from './collectionService.js';
 import { normalizeHabit } from './habitService.js';
 import { normalizeAchievementsState, loadAchievementsCatalog, loadTitlesCatalog } from './achievementService.js';
 import { normalizeUserPreferences, normalizeTheme } from './preferencesService.js';
@@ -506,19 +506,19 @@ async function checkRenderSystem() {
   stats.push(`onRefresh 含 renderMode(ui.js): ${onRefreshWithMode}`);
   stats.push(`onRefresh 預設 current(ui.js): ${onRefreshDefault}`);
 
-  if (!/renderAll[\s\S]{0,400}isWheelSpinning/.test(uiText)) {
+  if (!functionSource(uiText, 'renderAll').includes('isWheelSpinning')) {
     notes.push('renderAll 可能缺少轉盤動畫 guard');
   }
-  if (!/renderCurrentView[\s\S]{0,400}isWheelSpinning/.test(uiText)) {
+  if (!functionSource(uiText, 'renderCurrentView').includes('isWheelSpinning')) {
     notes.push('renderCurrentView 可能缺少轉盤動畫 guard');
   }
-  if (!/renderCurrentView[\s\S]{0,500}isModalOpen/.test(uiText)) {
+  if (!functionSource(uiText, 'renderCurrentView').includes('isModalOpen')) {
     notes.push('renderCurrentView 可能缺少 Modal guard');
   }
-  if (!/renderViews[\s\S]{0,500}isModalOpen/.test(uiText)) {
+  if (!functionSource(uiText, 'renderViews').includes('isModalOpen')) {
     notes.push('renderViews 可能缺少 Modal guard');
   }
-  if (/function renderSharedUI[\s\S]{0,1200}renderAll\s*\(/.test(uiText)) {
+  if (/renderAll\s*\(/.test(functionSource(uiText, 'renderSharedUI'))) {
     notes.push('renderSharedUI 可能呼叫 renderAll（不應發生）');
   }
   if (!/case\s+'more'[\s\S]{0,400}default[\s\S]{0,200}renderAll/.test(uiText)) {
@@ -752,7 +752,7 @@ async function checkVersionInfo() {
   if (!uiText.includes('export function renderVersionInfo')) {
     throw new Error('renderVersionInfo 不存在');
   }
-  if (!/updateServiceWorkerStatusDisplay[\s\S]{0,800}catch/.test(uiText)) {
+  if (!functionSource(uiText, 'updateServiceWorkerStatusDisplay').includes('catch')) {
     notes.push('service worker status check 可能缺少 try/catch');
   }
   if (!uiText.includes('檢查中')) {
@@ -871,7 +871,7 @@ async function checkGachaSync() {
   }
   stats.push('updateGachaAffordability=exists');
 
-  if (!/function renderSharedUI[\s\S]{0,1200}updateGachaAffordability\s*\(/.test(uiText)) {
+  if (!/updateGachaAffordability\s*\(/.test(functionSource(uiText, 'renderSharedUI'))) {
     throw new Error('renderSharedUI 未呼叫 updateGachaAffordability');
   }
   stats.push('renderSharedUI→updateGachaAffordability=ok');
@@ -884,10 +884,10 @@ async function checkGachaSync() {
   }
 
   // 單抽 / 十連 click handler 依最新 state.wallet 判斷
-  if (!/function handlePull[\s\S]{0,200}state\.wallet\.stardust/.test(uiText)) {
+  if (!functionSource(uiText, 'handlePull').includes('state.wallet.stardust')) {
     throw new Error('handlePull 未依最新 state.wallet 判斷');
   }
-  if (!/function handleTenPull[\s\S]{0,200}state\.wallet\.stardust/.test(uiText)) {
+  if (!functionSource(uiText, 'handleTenPull').includes('state.wallet.stardust')) {
     throw new Error('handleTenPull 未依最新 state.wallet 判斷');
   }
   stats.push('pull handlers 讀最新 wallet=ok');
@@ -1031,7 +1031,7 @@ async function checkSummonReveal() {
   stats.push('skip button=ok');
 
   // 4. overlay 結束後會移除
-  if (!/removeSummonRevealOverlay[\s\S]{0,300}removeChild/.test(svcText)
+  if (!functionSource(svcText, 'removeSummonRevealOverlay').includes('removeChild')
     && !svcText.includes("querySelectorAll('.summon-reveal-overlay')")) {
     notes.push('overlay 可能未確保移除');
   } else {
@@ -1396,7 +1396,7 @@ async function checkBondSystem() {
   stats.push('bond API=ok');
 
   // normalizeEntry 是否整合 bondUnlocks（migration 支援）
-  if (!/normalizeEntry[\s\S]{0,600}bondUnlocks:\s*normalizeBondUnlocks/.test(collectionText)) {
+  if (!/bondUnlocks:\s*normalizeBondUnlocks/.test(functionSource(collectionText, 'normalizeEntry'))) {
     throw new Error('normalizeEntry 未整合 normalizeBondUnlocks（舊資料 migration 可能失效）');
   }
   stats.push('normalizeEntry 補 bondUnlocks=ok');
@@ -2095,7 +2095,7 @@ async function checkStabilityReadabilityPolish() {
   if (!uiText.includes('uiInitialized')) {
     throw new Error('initUI 缺少 uiInitialized guard');
   }
-  if (!/export function initUI[\s\S]{0,400}if\s*\(\s*uiInitialized\s*\)/.test(uiText)) {
+  if (!/if\s*\(\s*uiInitialized\s*\)/.test(functionSource(uiText, 'initUI'))) {
     throw new Error('initUI 未在綁定前檢查 uiInitialized');
   }
   if (!/uiInitialized\s*=\s*false/.test(uiText)) {
@@ -3221,7 +3221,7 @@ async function checkMailboxDevTools() {
   if (!serviceText.includes('clearLocalDevMailboxMessages')) {
     throw new Error('缺少清除測試信件');
   }
-  if (/clearLocalDevMailboxMessages[\s\S]{0,800}claimedIds\s*=/.test(serviceText)) {
+  if (/claimedIds\s*=/.test(functionSource(serviceText, 'clearLocalDevMailboxMessages'))) {
     throw new Error('清除測試信件不應清除 claimedIds');
   }
   if (backupText.includes('questnote_dev_mailbox_messages')
@@ -3229,7 +3229,7 @@ async function checkMailboxDevTools() {
     throw new Error('測試信件不應加入備份');
   }
   if (serviceText.includes('putMailboxRuntimeCache')
-    && /injectLocalDev[\s\S]{0,400}putMailboxRuntimeCache/.test(serviceText)) {
+    && ['injectLocalDevAnnouncement', 'injectLocalDevCompensation'].some((name) => functionSource(serviceText, name).includes('putMailboxRuntimeCache'))) {
     throw new Error('測試信件不應寫入 runtime cache');
   }
   stats.push('local-messages=ok');

@@ -186,11 +186,6 @@ function trackTimer(id) {
   return id;
 }
 
-function trackRaf(id) {
-  activeRafIds.push(id);
-  return id;
-}
-
 function clearTrackedTimers() {
   activeTimers.forEach((id) => clearTimeout(id));
   activeTimers = [];

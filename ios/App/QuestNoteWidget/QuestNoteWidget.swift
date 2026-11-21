@@ -34,13 +34,18 @@ enum TaskGroup: Int {
     case overdue, today, upcoming, other
 }
 
-func localDateString(_ date: Date) -> String {
+// Built once: a DateFormatter is costly and every redraw formats the day.
+private let dayFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.calendar = Calendar(identifier: .gregorian)
     formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.timeZone = .current
     formatter.dateFormat = "yyyy-MM-dd"
-    return formatter.string(from: date)
+    return formatter
+}()
+
+func localDateString(_ date: Date) -> String {
+    dayFormatter.timeZone = .current
+    return dayFormatter.string(from: date)
 }
 
 func group(of task: WidgetTask, today: String) -> TaskGroup {
@@ -69,6 +74,18 @@ func dueLabel(_ task: WidgetTask, today: String) -> String? {
         guard parts.count == 3, let month = Int(parts[1]), let day = Int(parts[2]) else { return nil }
         return "\(month)/\(day)"
     case .other: return nil
+    }
+}
+
+// MARK: - Links (read by parseWidgetLink in src/nativeBridge.js)
+
+enum WidgetLink {
+    static let tasks = URL(string: "questnote://tasks")!
+    static let add = URL(string: "questnote://add")!
+
+    static func task(_ id: String) -> URL {
+        let encoded = id.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? ""
+        return URL(string: "questnote://task?id=\(encoded)") ?? tasks
     }
 }
 
@@ -128,6 +145,8 @@ struct TaskRow: View {
 struct HomeWidgetView: View {
     let entry: TaskEntry
     let limit: Int
+    /// A small widget has one tap target, so rows and the add button link from medium up.
+    let linksRows: Bool
 
     var body: some View {
         let today = localDateString(entry.date)
@@ -136,6 +155,12 @@ struct HomeWidgetView: View {
                 Text("待辦").font(.caption.weight(.semibold)).foregroundStyle(gold)
                 Spacer()
                 Text("\(entry.snapshot?.unfinishedCount ?? 0)").font(.title2.weight(.bold)).foregroundStyle(cream)
+                if linksRows {
+                    Link(destination: WidgetLink.add) {
+                        Image(systemName: "plus.circle.fill").font(.title3).foregroundStyle(gold)
+                    }
+                    .accessibilityLabel("新增任務")
+                }
             }
             if let snapshot = entry.snapshot {
                 if snapshot.tasks.isEmpty {
@@ -144,7 +169,11 @@ struct HomeWidgetView: View {
                     Spacer()
                 } else {
                     ForEach(orderedTasks(snapshot.tasks, today: today).prefix(limit)) { task in
-                        TaskRow(task: task, today: today)
+                        if linksRows {
+                            Link(destination: WidgetLink.task(task.id)) { TaskRow(task: task, today: today) }
+                        } else {
+                            TaskRow(task: task, today: today)
+                        }
                     }
                     Spacer(minLength: 0)
                 }
@@ -155,6 +184,7 @@ struct HomeWidgetView: View {
             }
         }
         .containerBackground(navy, for: .widget)
+        .widgetURL(WidgetLink.tasks)
     }
 }
 
@@ -194,11 +224,11 @@ struct QuestNoteWidgetEntryView: View {
 
     var body: some View {
         switch family {
-        case .accessoryCircular: CircularWidgetView(entry: entry)
-        case .accessoryRectangular: RectangularWidgetView(entry: entry)
-        case .systemLarge: HomeWidgetView(entry: entry, limit: 8)
-        case .systemMedium: HomeWidgetView(entry: entry, limit: 4)
-        default: HomeWidgetView(entry: entry, limit: 2)
+        case .accessoryCircular: CircularWidgetView(entry: entry).widgetURL(WidgetLink.tasks)
+        case .accessoryRectangular: RectangularWidgetView(entry: entry).widgetURL(WidgetLink.tasks)
+        case .systemLarge: HomeWidgetView(entry: entry, limit: 8, linksRows: true)
+        case .systemMedium: HomeWidgetView(entry: entry, limit: 4, linksRows: true)
+        default: HomeWidgetView(entry: entry, limit: 2, linksRows: false)
         }
     }
 }
@@ -212,7 +242,7 @@ struct QuestNoteWidget: Widget {
             QuestNoteWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("QuestNote 待辦")
-        .description("顯示還沒完成的待辦，逾期和今天的排在最前面。")
+        .description("顯示還沒完成的待辦，逾期和今天的排在最前面。點一項就打開那項任務。")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryCircular, .accessoryRectangular])
     }
 }

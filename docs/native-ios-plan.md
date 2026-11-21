@@ -124,4 +124,5 @@ WidgetKit 小工具（SwiftUI）
 - **第 0 階段（2026-10-25 完成）：** App Group `group.io.github.leotsouo.questnote`、Bundle ID `io.github.leotsouo.questnote` 與 `.widget` 已註冊；App Store Connect App 已建立；API key「QuestNote CI」（Admin）的 Key ID／Issuer ID 存在 repo 變數，私鑰存在 secret `ASC_KEY_P8`。GitHub Actions 雲端簽章與 TestFlight 上傳可行。內部測試群組「自己」開啟自動分發。
 - **第 1 階段：** App 外殼（`ios` profile）與 PWA → App 搬家（V3.15.0）完成，瀏覽器端到端驗證通過。TestFlight build 3 因 `db.js` 不認得 `ios` profile 而打不開，已設為過期，build 6 起修正。
 - **第 2 階段（2026-10-26）：** 主畫面／鎖定畫面待辦小工具（build 11）。使用者 2026-10-29 回報 iPhone 上已出現小工具。
-- **尚未完成：** App 內的圖示角標（原生 badge）、點小工具直接開到任務頁、App 版的每日提醒（原生通知）、回報表單的 CORS（需部署後端）。
+- **V3.16.0（2026-10-29）：** 修正 build 11 小工具一直沒有待辦的原因：`SceneDelegate` 沒用到註冊外掛的 `MainViewController`，快照從沒送到小工具。小工具加上跳轉（`questnote://`）：點一項打開那項任務（任務頁切到「全部」並框出；被篩選擋住就開編輯表單），中／大尺寸的 ＋ 開新增任務，其他位置開任務頁。CI 模擬器編譯通過、瀏覽器以假 bridge 驗證冷啟動與執行中兩種情況；iPhone 實機待驗收。
+- **尚未完成：** App 內的圖示角標（原生 badge，需要通知權限）、App 版的每日提醒（原生通知）、回報表單的 CORS（需部署後端）、在小工具上直接打勾（iOS 17 互動小工具）。

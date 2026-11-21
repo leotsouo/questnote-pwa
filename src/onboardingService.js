@@ -1,5 +1,5 @@
 /** First-use guide state. Kept in the local profile, outside exported backups. */
-import { dbGet, dbPut, readAllStoresSnapshot, STORES } from './db.js';
+import { dbGet, dbPut, STORES } from './db.js';
 import { LESSONS, getLesson, normalizeLessonProgress, nextLessonProgress } from './onboardingLessons.js';
 import { prepareGuidedOnboarding } from './guidedOnboardingService.js';
 

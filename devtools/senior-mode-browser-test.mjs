@@ -7,7 +7,7 @@ import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const reportDir = path.resolve(root, process.env.QUESTNOTE_SENIOR_REPORT_DIR || 'reports/senior-mode');
+const reportDir = path.resolve(root, process.env.QUESTNOTE_SENIOR_REPORT_DIR || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/evidence/browser/senior-mode');
 await fs.mkdir(reportDir, { recursive: true });
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE || 'playwright');
@@ -424,6 +424,8 @@ try {
     await page.locator('#modal-overlay.open').waitFor({ state: 'hidden' });
     await card.locator('[data-action="toggle"]').click();
     await page.waitForFunction(async (id) => (await window.seniorTest.taskService.getTaskById(id)).completed, task.id);
+    // The list redraws after a completion and a redraw closes the menu; open it only once the card shows done.
+    await page.locator(`.task-card--done[data-id="${task.id}"]`).waitFor();
     await card.locator('.twilight-task-menu summary').click();
     await card.locator('[data-action="delete"]').click();
     await page.locator('#confirm-ok').click();

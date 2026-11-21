@@ -9,8 +9,8 @@ const { chromium } = process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE
   ? createRequire(import.meta.url)(process.env.QUESTNOTE_PLAYWRIGHT_PACKAGE)
   : await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../',import.meta.url));
-const output = path.resolve(process.argv[2] || '.dev-backups/test-runs/daily-encounter-browser');
-assert.ok(output.startsWith(path.join(root,'.dev-backups','test-runs') + path.sep));
+const output = path.resolve(process.argv[2] || process.env.QUESTNOTE_BROWSER_EVIDENCE_DIR || '.dev-backups/test-runs/daily-encounter-browser');
+assert.ok(output.startsWith(path.join(root,'.dev-backups') + path.sep), 'Evidence must stay in the ignored .dev-backups folder');
 await fs.mkdir(output,{recursive:true});
 const types = {'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.woff2':'font/woff2'};
 const server = http.createServer(async (req,res) => {

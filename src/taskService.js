@@ -251,7 +251,7 @@ export async function toggleTaskComplete(id) {
     completedAt: now,
   });
 
-  if (isCompletedBeforeDue(updated)) {
+  if (!task.rewardClaimed && isCompletedBeforeDue(updated)) {
     await recordCompletedBeforeDue();
   }
 
