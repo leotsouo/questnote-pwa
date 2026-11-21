@@ -43,7 +43,7 @@
 
 ## 主要畫面與進入方式
 
-給自動巡覽用。起點都是任務頁；「更多」底下的畫面先點 `.nav-item[data-view="more"]`。進入後根容器會有 `.active`。
+給自動巡覽用，`devtools/layout-tour-browser-test.mjs` 每次執行都會實際走過這張表。起點都是任務頁；「更多」底下的畫面先點 `.nav-item[data-view="more"]`。進入後根容器會有 `.active`。
 
 | 畫面 | 導覽步驟 | 根容器 |
 |---|---|---|
@@ -62,7 +62,7 @@
 | 意見與問題回報 | 更多 → 展開 `.more-support summary` → `[data-feedback-open]` | `#view-feedback` |
 | 分享 QuestNote | 更多 → 展開 `.more-support summary` → `.more-menu-item[data-goto="share"]` | `#view-share` |
 | 信箱（視窗） | 任務頁 `#btn-global-mailbox` | `#global-mailbox-modal` |
-| 新增任務（視窗） | 任務頁 `#btn-add-task` | `#modal-overlay #task-form` |
+| 新增任務（視窗） | 任務頁 `#view-tasks .twilight-add-task`（`#btn-add-task` 浮動鈕在所有主題都被 `theme-system.css` 隱藏） | `#modal-overlay #task-form` |
 | 星辰賭場（視窗） | 任務頁 `.page-header--tasks [data-action="daily-open-race"]` | `#daily-race-panel` |
 
 返回：子頁的 `.page-back-btn[data-goto="more"]`。
