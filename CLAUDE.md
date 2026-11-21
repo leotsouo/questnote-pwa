@@ -29,7 +29,7 @@ QuestNote 是純靜態的瀏覽器 PWA（任務、習慣、寵物收藏、召喚
 ## 存檔與發布相容性
 
 - 不改變使用者存檔格式：IndexedDB 名稱、store、key、欄位意義、匯出備份格式。真的必須改時，要附 migration 與測試，並在 PR 標成「需你決定」。
-- 修改 runtime 程式時，同步 `src/version.js` 與 `service-worker.js` 的 cache 名稱和 precache 清單。保留已驗證的快取復原機制、release profile 隔離（preview 用 `QuestNotePreviewDB`，production 用 `QuestNoteDB`）與凍結的舊 catalog。
+- 保留已驗證的快取復原機制、release profile 隔離（preview 用 `QuestNotePreviewDB`，production 用 `QuestNoteDB`）與凍結的舊 catalog。
 - 不修改 hash 鎖定的 authoring snapshot、相容性資料（`content/release-compatibility/`）的位元組，也不做換行正規化。
 - 已發布的寵物、卡池、Lore、系列 ID 與圖片不可移除或替換；撤回卡池是停用它並保留所有紀錄。
 
@@ -40,7 +40,9 @@ QuestNote 是純靜態的瀏覽器 PWA（任務、習慣、寵物收藏、召喚
 ## 開發與測試
 
 - 需要 Node.js 24（feedback 後端測試用 `node:sqlite`）與 `npm ci`。沒有前端編譯步驟。這台電腦沒有 Python。
-- `npm test` 跑整合測試與揭示流程檢查。修改過的 JavaScript 跑 `node --check <file>`。
+- `npm test` 跑 `devtools/*.test.mjs` 全部與揭示流程檢查。git 掛鉤（`.githooks/`，`npm ci` 時自動啟用）在 commit 前跑 lint 與語法檢查、推 `dev`／`main` 前跑 `npm run check`；不用 `--no-verify`。
+- `npm run verify:browser` 依序跑 `devtools/*-browser-test.mjs` 全部（系統 Edge，約 15 分鐘），結果與截圖寫到 `.dev-backups/evidence/<日期>/browser/summary.md`；`-- --only <名稱片段>` 只跑部分。
+- 使用者用口語指某個畫面時，先查 [docs/feature-map.md](docs/feature-map.md)（用語 → 模組 → 選擇器 → 測試）。
 - catalog／圖片變更跑 `npm run pools:validate` 與 `npm run images:check`；pipeline／release 變更跑 `npm run test:pool:release`；回報功能跑 `npm run test:feedback`（瀏覽器驗收用 `npm run test:feedback:browser`，隔離的 loopback 伺服器與記憶體 SQL）。
 - 依風險選測試範圍：小改動跑相關測試；跨模組跑流程測試；核心架構、資料遷移、發布前跑完整驗證。
 - 需要實際畫面時，檢查 `devtools/` 內對應的瀏覽器測試工具並記錄實際結果。iPhone 專屬行為需要真機確認，不能用桌面瀏覽器代簽。
@@ -66,7 +68,7 @@ QuestNote 是純靜態的瀏覽器 PWA（任務、習慣、寵物收藏、召喚
 
 ## 新功能與更新檢查清單
 
-每次新功能、修 bug 或重構，開始前與送出前都照這份清單走；一鍵完整檢查是 `npm run check`（lint → 語法解析 → `npm test` → catalog → 圖片），CI 跑的是同一組。
+每次新功能、修 bug 或重構，開始前與送出前都照這份清單走；完整檢查是 `npm run check`（lint → 語法解析 → `npm test` → catalog → 圖片），pre-push 掛鉤與 CI 跑的是同一組。
 
 **開始前**
 - 先讀相關模組與既有測試（`devtools/` 同名 `*.test.mjs`），確認有沒有可重用的流程、helper 或測試 fixture。
@@ -75,12 +77,11 @@ QuestNote 是純靜態的瀏覽器 PWA（任務、習慣、寵物收藏、召喚
 
 **每個 bug 修正**
 - 先寫能重現的測試並確認它失敗，再修，再確認通過；測試檔開頭註明症狀與版本（例：`devtools/app-health-source.test.mjs`、`devtools/confirm-modal-once.test.mjs`）。
-- 修好的測試加進 `package.json` 的 `test` 清單；不要只靠手動驗證。
+- 測試檔命名為 `devtools/<名稱>.test.mjs` 就會被 `npm test` 納入；不要只靠手動驗證。
 
 **送出前**
-- 跑 `npm run check` 全部通過；只動局部時至少跑相關測試加 `npm run lint`。
-- 修改 runtime 程式（`src/`、`service-worker.js`、`index.html`、樣式）時：同步 `src/version.js` 與 `service-worker.js` 的 `CACHE_NAME`／版本註解；新增 runtime 檔案要加進 `service-worker.js` precache（`devtools/release-artifact.test.mjs` 會檢查）；新樣式檔同步 `src/styleParts.js`、`index.html`。
-- 有畫面的改動：在 `npm run serve`（<http://127.0.0.1:8000/>）用手機尺寸實際走過流程，先清掉 Service Worker 與 Cache 再測，記錄實際結果；檢查 console 沒有新的錯誤，設定頁「最近錯誤」為空。
+- 修改 runtime 程式（`src/`、`service-worker.js`、`index.html`、樣式）時要升版：`src/version.js` 的 `APP_VERSION` 與兩處 `CACHE_NAME`（測試與 CI 會擋不一致或沒升版）、`service-worker.js` 檔頭版本註解；新增 runtime 檔案加進 precache，新樣式檔同步 `src/styleParts.js`、`index.html`。
+- 有畫面的改動：跑 `npm run verify:browser`（至少 `--only` 相關的幾支），PR 說明附通過／失敗數。另外在 `npm run serve`（<http://127.0.0.1:8000/>）用手機尺寸實際走過流程，先清掉 Service Worker 與 Cache 再測，記錄實際結果；檢查 console 沒有新的錯誤，設定頁「最近錯誤」為空。
 - 真實 UI 流程（教學、任務、習慣、陪伴、備份）跑 `devtools/product-flow-browser-test.html` 與 `devtools/final-user-browser-test.html`：用 `.claude/launch.json` 的 `e2e-flows`（8765）／`e2e-final-user`（8766）啟動對應的隔離伺服器，在**看得見的**瀏覽器視窗執行（隱藏的視窗會凍結 CSS transition，modal 的 visibility 檢查會誤判）。
 - 使用者回報沒有描述時，先看設定頁版本卡的「最近錯誤」與回報表單的「環境資訊」（`src/errorLog.js` 會記下本次 session 的未捕捉錯誤與 unhandled rejection）。
 
